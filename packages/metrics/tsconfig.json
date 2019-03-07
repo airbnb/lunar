@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.options.json",
+  "compilerOptions": {
+    "declarationDir": "lib",
+    "emitDeclarationOnly": true,
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "exclude": ["lib", "test"],
+  "include": ["src/**/*", "../../types/**/*"],
+  "references": [
+    { "path": "../core" },
+    { "path": "../test-utils" }
+  ]
+}

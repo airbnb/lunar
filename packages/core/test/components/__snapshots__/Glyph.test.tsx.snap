@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Glyph /> renders diagonal fraction 1`] = `
+<span
+  className="inline-0_16rx5id"
+>
+  1/3
+</span>
+`;
+
+exports[`<Glyph /> renders normal by default 1`] = `
+<span
+  className="inline-0_emnk3p"
+>
+  Text
+</span>
+`;
+
+exports[`<Glyph /> renders ordinal suffix 1`] = `
+<span
+  className="inline-0_o8ahlx"
+>
+  1st
+</span>
+`;
+
+exports[`<Glyph /> renders slashed zero 1`] = `
+<span
+  className="inline-0_1bxqwjh"
+>
+  100
+</span>
+`;
+
+exports[`<Glyph /> renders stacked fraction 1`] = `
+<span
+  className="inline-0_1sotufh"
+>
+  1/3
+</span>
+`;
+
+exports[`<Glyph /> renders tabular numbers 1`] = `
+<span
+  className="inline-0_1lh8h1f"
+>
+  123.45
+</span>
+`;

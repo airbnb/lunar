@@ -1,0 +1,111 @@
+{
+  "private": true,
+  "name": "lunar-root",
+  "version": "0.1.0",
+  "description": "React toolkit and design language for Airbnb open source and internal projects.",
+  "license": "MIT",
+  "scripts": {
+    "autorelease": "npm run release:version && npm run release:publish",
+    "bootstrap": "lerna bootstrap --hoist && bash ./scripts/symlinkPackages.sh",
+    "build": "npm run clean && lerna run build && npm run type",
+    "clean": "rm -rf ./packages/*/{lib,esm}",
+    "coverage": "npm run jest:cov",
+    "gen:icon": "node ./scripts/generateIcon",
+    "ghp": "npm run sg:build && gh-pages -d public",
+    "jest:cov": "npm run jest -- --coverage",
+    "jest": "NODE_ICU_DATA=$(npx node-full-icu-path) NODE_ENV=test TZ=UTC jest --colors --logHeapUsage",
+    "lint:errors": "npm run lint -- --quiet",
+    "lint": "eslint --color --ext .ts,.tsx,.js,.jsx --report-unused-disable-directives ./packages/*/{src,test}",
+    "posttest": "npm run lint",
+    "pretest": "npm run type",
+    "prettier": "prettier --write ./*.{md,json} ./packages/*/{src,test}/**/*.{ts,tsx,js,jsx,gql,graphql,yml,yaml,md}",
+    "release:publish": "lerna publish from-git --yes",
+    "release:version": "lerna version --yes --conventional-commits --changelog-preset conventional-changelog-beemo --github-release --push",
+    "sg:build": "styleguidist build",
+    "sg": "NODE_ENV=development styleguidist server",
+    "test": "npm run jest:cov",
+    "type": "tsc --build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/lunar.git"
+  },
+  "engines": {
+    "node": ">=10.10.0",
+    "npm": ">=6.8.0"
+  },
+  "browserslist": [
+    "last 3 chrome versions",
+    "last 3 firefox versions",
+    "last 3 safari versions",
+    "last 3 edge versions"
+  ],
+  "contributors": [
+    {
+      "name": "Miles Johnson",
+      "url": "https://github.com/milesj"
+    },
+    {
+      "name": "Stefanie Hatcher",
+      "url": "https://github.com/stefhatcher"
+    },
+    {
+      "name": "Michael Hayes",
+      "url": "https://github.com/hayes"
+    },
+    {
+      "name": "Aleck Landgraf",
+      "url": "https://github.com/alecklandgraf"
+    }
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
+    "@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/enzyme": "^3.9.1",
+    "@types/jest": "^24.0.11",
+    "@typescript-eslint/eslint-plugin": "^1.4.0",
+    "@typescript-eslint/parser": "^1.4.0",
+    "airbnb-js-shims": "^2.1.1",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-dev": "^2.0.1",
+    "babel-plugin-typescript-to-proptypes": "^0.17.1",
+    "conventional-changelog-beemo": "^1.0.0-alpha.0",
+    "core-js": "^2.6.5",
+    "danger": "^7.0.14",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "enzyme-to-json": "^3.3.5",
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-compat": "^2.7.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.3.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-unicorn": "^7.1.0",
+    "fast-glob": "^2.2.6",
+    "full-icu": "^1.2.1",
+    "gh-pages": "^2.0.1",
+    "jest": "^24.1.0",
+    "lerna": "^3.13.1",
+    "moment": "^2.24.0",
+    "prettier": "^1.16.4",
+    "react": "^16.8.4",
+    "react-docgen-typescript": "^1.12.3",
+    "react-dom": "^16.8.4",
+    "react-styleguidist": "^9.0.4",
+    "svgo": "^1.2.0",
+    "typescript": "^3.3.3",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.6"
+  }
+}

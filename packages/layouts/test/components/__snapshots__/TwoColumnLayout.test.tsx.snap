@@ -1,0 +1,6 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TwoColumnLayout /> errors if \`before\` and \`after\` are used at the same time 1`] = `
+"Warning: Failed prop type: A TwoColumnLayout cannot have more than one of these boolean props be true: after, or before
+    in TwoColumnLayout"
+`;

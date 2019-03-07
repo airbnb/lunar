@@ -1,0 +1,6 @@
+*.md
+package-lock.json
+tsconfig.json
+src/
+test/
+types/

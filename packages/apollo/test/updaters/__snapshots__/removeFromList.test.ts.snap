@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`removeFromList() errors if property name is not an array 1`] = `"\\"getSomething\\" list \\"something.name\\" is not an array."`;
+
+exports[`removeFromList() errors if query does not exist in cache 1`] = `
+"Can't find field things on object {
+  \\"something\\": {
+    \\"type\\": \\"id\\",
+    \\"generated\\": false,
+    \\"id\\": \\"something:123\\",
+    \\"typename\\": \\"something\\"
+  }
+}."
+`;

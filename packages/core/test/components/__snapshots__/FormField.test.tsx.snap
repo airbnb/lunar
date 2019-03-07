@@ -1,0 +1,256 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormField /> errors for invalid prefix 1`] = `
+"Warning: Failed prop type: \`FormField\` only accepts children of type Prefix
+    in FormField"
+`;
+
+exports[`<FormField /> errors for invalid suffix 1`] = `
+"Warning: Failed prop type: \`FormField\` only accepts children of type Suffix
+    in FormField"
+`;
+
+exports[`<FormField /> hides the label 1`] = `
+<section
+  className="field_k3wq0g"
+>
+  <div
+    className=""
+  >
+    <label
+      className="label_2s5uhd-o_O-label_hidden_1u9fru1"
+      htmlFor="foo"
+    >
+      <StatusText
+        bold={true}
+        danger={false}
+        muted={false}
+        small={false}
+      >
+        Label
+      </StatusText>
+    </label>
+    <div
+      className="input_nv7oj6-o_O-input_hideLabel_16pg94n"
+    >
+      <div
+        className="anchor_t0tx82"
+      >
+        Foo
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`<FormField /> renders input after the label 1`] = `
+<section
+  className="field_k3wq0g"
+>
+  <div
+    className=""
+  >
+    <label
+      className="label_2s5uhd"
+      htmlFor="foo"
+    >
+      <StatusText
+        bold={true}
+        danger={false}
+        muted={false}
+        small={false}
+      >
+        Label
+      </StatusText>
+    </label>
+    <div
+      className="input_nv7oj6"
+    >
+      <div
+        className="anchor_t0tx82"
+      >
+        Foo
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`<FormField /> renders input after the label 2`] = `
+<section
+  className="field_k3wq0g"
+>
+  <div
+    className="content_inline_5kaapu"
+  >
+    <label
+      className="label_2s5uhd-o_O-label_noSpacing_16pg94n"
+      htmlFor="foo"
+    >
+      <StatusText
+        bold={true}
+        danger={false}
+        muted={false}
+        small={false}
+      >
+        Label
+      </StatusText>
+    </label>
+    <div
+      className="input_nv7oj6-o_O-input_afterInline_pog3hg"
+    >
+      <div
+        className="anchor_t0tx82"
+      >
+        Foo
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`<FormField /> renders input before the label 1`] = `
+<section
+  className="field_k3wq0g"
+>
+  <div
+    className=""
+  >
+    <div
+      className="input_nv7oj6"
+    >
+      <div
+        className="anchor_t0tx82"
+      >
+        Foo
+      </div>
+    </div>
+    <label
+      className="label_2s5uhd-o_O-label_noSpacing_16pg94n"
+      htmlFor="foo"
+    >
+      <StatusText
+        bold={true}
+        danger={false}
+        muted={false}
+        small={false}
+      >
+        Label
+      </StatusText>
+    </label>
+  </div>
+</section>
+`;
+
+exports[`<FormField /> renders input before the label 2`] = `
+<section
+  className="field_k3wq0g"
+>
+  <div
+    className="content_inline_5kaapu"
+  >
+    <div
+      className="input_nv7oj6-o_O-input_beforeInline_14tkmhr"
+    >
+      <div
+        className="anchor_t0tx82"
+      >
+        Foo
+      </div>
+    </div>
+    <label
+      className="label_2s5uhd-o_O-label_noSpacing_16pg94n"
+      htmlFor="foo"
+    >
+      <StatusText
+        bold={true}
+        danger={false}
+        muted={false}
+        small={false}
+      >
+        Label
+      </StatusText>
+    </label>
+  </div>
+</section>
+`;
+
+exports[`<FormField /> supports a prefix 1`] = `
+<section
+  className="field_k3wq0g"
+>
+  <div
+    className=""
+  >
+    <label
+      className="label_2s5uhd"
+      htmlFor="foo"
+    >
+      <StatusText
+        bold={true}
+        danger={false}
+        muted={false}
+        small={false}
+      >
+        Label
+      </StatusText>
+    </label>
+    <div
+      className="input_nv7oj6"
+    >
+      <div
+        className="affix_1n0jrn7"
+      >
+        <Prefix>
+          Foo
+        </Prefix>
+      </div>
+      <div
+        className="anchor_t0tx82"
+      >
+        Foo
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`<FormField /> supports a suffix 1`] = `
+<section
+  className="field_k3wq0g"
+>
+  <div
+    className=""
+  >
+    <label
+      className="label_2s5uhd"
+      htmlFor="foo"
+    >
+      <StatusText
+        bold={true}
+        danger={false}
+        muted={false}
+        small={false}
+      >
+        Label
+      </StatusText>
+    </label>
+    <div
+      className="input_nv7oj6"
+    >
+      <div
+        className="anchor_t0tx82"
+      >
+        Foo
+      </div>
+      <div
+        className="affix_1n0jrn7"
+      >
+        <Suffix>
+          Foo
+        </Suffix>
+      </div>
+    </div>
+  </div>
+</section>
+`;

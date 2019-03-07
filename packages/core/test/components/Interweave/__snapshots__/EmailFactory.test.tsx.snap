@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`linkFactory() renders a link 1`] = `
+<Link
+  baseline={true}
+  href="mailto:email@airbnb.com"
+  large={false}
+  openInNewWindow={false}
+  small={false}
+>
+  email@airbnb.com
+</Link>
+`;

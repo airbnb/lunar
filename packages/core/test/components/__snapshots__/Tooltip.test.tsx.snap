@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tooltip /> can underline  1`] = `
+<span
+  className="container_36rlri"
+>
+  <div
+    aria-labelledby="uuid-test-mock"
+    className="underlined_h2mklz"
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <a
+      href="#"
+    >
+      hello world
+    </a>
+  </div>
+  <div
+    className="offscreen_rzqoz2"
+    id="uuid-test-mock"
+  >
+    test
+  </div>
+  <Overlay
+    noBackground={true}
+    onClose={[Function]}
+  >
+    <div
+      className="tooltip_zyobsu-o_O-tooltip_below_107f6ui-o_O-inline-0_1e0uzxh"
+      role="tooltip"
+    >
+      <div
+        className="shadow_4pyz3e"
+      >
+        <NotchedBox
+          inverted={true}
+          notchBelow={false}
+        >
+          <Text
+            inverted={true}
+          >
+            test
+          </Text>
+        </NotchedBox>
+      </div>
+    </div>
+  </Overlay>
+</span>
+`;
+
+exports[`<Tooltip /> disabled does not underline 1`] = `
+<span
+  className="container_36rlri"
+>
+  <div
+    aria-labelledby="uuid-test-mock"
+    className=""
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <a
+      href="#"
+    >
+      hello world
+    </a>
+  </div>
+  <div
+    className="offscreen_rzqoz2"
+    id="uuid-test-mock"
+  >
+    test
+  </div>
+  <Overlay
+    noBackground={true}
+    onClose={[Function]}
+  >
+    <div
+      className="tooltip_zyobsu-o_O-tooltip_below_107f6ui-o_O-inline-0_1e0uzxh"
+      role="tooltip"
+    >
+      <div
+        className="shadow_4pyz3e"
+      >
+        <NotchedBox
+          inverted={true}
+          notchBelow={false}
+        >
+          <Text
+            inverted={true}
+          >
+            test
+          </Text>
+        </NotchedBox>
+      </div>
+    </div>
+  </Overlay>
+</span>
+`;
+
+exports[`<Tooltip /> disabled does not up when hovered 1`] = `
+<span
+  className="container_36rlri"
+>
+  <div
+    aria-labelledby="uuid-test-mock"
+    className=""
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <a
+      href="#"
+    >
+      hello world
+    </a>
+  </div>
+  <div
+    className="offscreen_rzqoz2"
+    id="uuid-test-mock"
+  >
+    test
+  </div>
+  <Overlay
+    noBackground={true}
+    onClose={[Function]}
+  >
+    <div
+      className="tooltip_zyobsu-o_O-tooltip_below_107f6ui-o_O-inline-0_1e0uzxh"
+      role="tooltip"
+    >
+      <div
+        className="shadow_4pyz3e"
+      >
+        <NotchedBox
+          inverted={true}
+          notchBelow={false}
+        >
+          <Text
+            inverted={true}
+          >
+            test
+          </Text>
+        </NotchedBox>
+      </div>
+    </div>
+  </Overlay>
+</span>
+`;
+
+exports[`<Tooltip /> once open supports changing content 1`] = `
+<span
+  className="container_36rlri"
+>
+  <div
+    aria-labelledby="uuid-test-mock"
+    className=""
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <a
+      href="#"
+    >
+      hello world
+    </a>
+  </div>
+  <div
+    className="offscreen_rzqoz2"
+    id="uuid-test-mock"
+  >
+    whatever
+  </div>
+  <Overlay
+    noBackground={true}
+    onClose={[Function]}
+    open={true}
+  >
+    <div
+      className="tooltip_zyobsu-o_O-tooltip_below_107f6ui-o_O-inline-0_1e0uzxh"
+      role="tooltip"
+    >
+      <div
+        className="shadow_4pyz3e"
+      >
+        <NotchedBox
+          inverted={true}
+          notchBelow={false}
+        >
+          <Text
+            inverted={true}
+          >
+            whatever
+          </Text>
+        </NotchedBox>
+      </div>
+    </div>
+  </Overlay>
+</span>
+`;
+
+exports[`<Tooltip /> opens up when hovered 1`] = `
+<span
+  className="container_36rlri"
+>
+  <div
+    aria-labelledby="uuid-test-mock"
+    className=""
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <a
+      href="#"
+    >
+      hello world
+    </a>
+  </div>
+  <div
+    className="offscreen_rzqoz2"
+    id="uuid-test-mock"
+  >
+    test
+  </div>
+  <Overlay
+    noBackground={true}
+    onClose={[Function]}
+    open={true}
+  >
+    <div
+      className="tooltip_zyobsu-o_O-tooltip_below_107f6ui-o_O-inline-0_1e0uzxh"
+      role="tooltip"
+    >
+      <div
+        className="shadow_4pyz3e"
+      >
+        <NotchedBox
+          inverted={true}
+          notchBelow={false}
+        >
+          <Text
+            inverted={true}
+          >
+            test
+          </Text>
+        </NotchedBox>
+      </div>
+    </div>
+  </Overlay>
+</span>
+`;

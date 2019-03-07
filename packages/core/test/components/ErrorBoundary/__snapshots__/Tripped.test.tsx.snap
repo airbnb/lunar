@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tripped /> will render an alert with a message 1`] = `
+<Alert
+  danger={true}
+  title={
+    <Translate
+      context="Loading a feature crashed"
+      html={false}
+      phrase="This feature has crashed or failed to load."
+    />
+  }
+>
+  <Translate
+    context="Message letting the user known to try again"
+    phrase="Please try again."
+  />
+</Alert>
+`;

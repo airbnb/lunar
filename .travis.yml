@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - 'node'
+  - '10'
+  - '8'
+matrix:
+  fast_finish: true
+before_script:
+  - npm run bootstrap
+  - npm run build
+script:
+  - npm test
+# before_deploy:
+#   - git config --local user.name "Airbnb Release Bot"
+#   - git config --local user.email "airbnb-cli-bot@airbnb.com"
+deploy:
+  - provider: script
+    script: npm run ghp
+    skip_cleanup: true
+    on:
+      branch: master
+      node: '10'
+  - provider: script
+    script: npm run autorelease
+    skip_cleanup: true
+    on:
+      branch: master
+      node: '10'

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FieldAffix /> renders compact 1`] = `
+<div
+  className="affix_1ypg015-o_O-affix_compact_tue55j-o_O-affix_after_h7uxoa"
+>
+  Child
+</div>
+`;

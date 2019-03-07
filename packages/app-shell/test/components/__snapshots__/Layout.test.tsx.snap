@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout renders all toasts 1`] = `
+<div
+  className="layout_149btvt"
+>
+  Child
+</div>
+`;

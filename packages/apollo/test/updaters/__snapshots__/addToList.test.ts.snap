@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`addToList() errors if mutation data does not exist 1`] = `"Cannot find mutation \\"updateThing\\". Unable to update query list."`;
+
+exports[`addToList() errors if property name is not an array 1`] = `"\\"getSomething\\" list \\"something.name\\" is not an array."`;
+
+exports[`addToList() errors if query does not exist in cache 1`] = `
+"Can't find field things on object {
+  \\"something\\": {
+    \\"type\\": \\"id\\",
+    \\"generated\\": false,
+    \\"id\\": \\"something:123\\",
+    \\"typename\\": \\"something\\"
+  }
+}."
+`;

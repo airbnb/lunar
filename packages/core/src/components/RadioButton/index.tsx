@@ -1,0 +1,63 @@
+import React from 'react';
+import uuid from 'uuid/v4';
+import { Omit } from 'utility-types';
+import BaseRadioButton, { Props as BaseRadioButtonProps } from '../private/BaseRadioButton';
+import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import Text from '../Text';
+
+export type Props = Omit<BaseRadioButtonProps, 'value'> &
+  FormFieldProps & {
+    /** Top align content. */
+    topAlign?: boolean;
+    /** Unique value for this radio. */
+    value: string;
+  };
+
+export type State = {
+  id: string;
+};
+
+/** A controlled radio button field. */
+export default class RadioButton extends React.Component<Props, State> {
+  static defaultProps = {
+    button: false,
+    checked: false,
+    children: null,
+    topAlign: false,
+  };
+
+  state = {
+    // Support for RadioButtonController
+    id: this.props.id || uuid(),
+  };
+
+  render() {
+    const { topAlign } = this.props;
+    const { children, fieldProps, inputProps } = partitionFieldProps(this.props);
+    const { id } = this.state;
+    const { hideLabel } = fieldProps;
+
+    return (
+      <FormField
+        {...fieldProps}
+        id={id}
+        hideLabel={fieldProps.hideLabel || inputProps.button}
+        renderFullWidth={inputProps.button}
+        topAlign={topAlign}
+        inline
+        renderBeforeLabel
+        renderLargeLabel
+        stretchLabel
+      >
+        <BaseRadioButton {...inputProps} id={id} hideLabel={hideLabel}>
+          {children || (
+            <>
+              <Text bold>{fieldProps.label}</Text>
+              {fieldProps.labelDescription && <Text>{fieldProps.labelDescription}</Text>}
+            </>
+          )}
+        </BaseRadioButton>
+      </FormField>
+    );
+  }
+}

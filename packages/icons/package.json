@@ -1,0 +1,31 @@
+{
+  "name": "@airbnb/lunar-icons",
+  "version": "0.1.0",
+  "description": "Icons for Lunar.",
+  "license": "(MIT AND Apache-2.0)",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "module": "./esm/index.js",
+  "sideEffects": false,
+  "priority": 100,
+  "repository": "https://github.com/airbnb/lunar",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "BUILD=cjs babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./lib",
+    "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./esm"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "devDependencies": {
+    "@airbnb/lunar-test-utils": "*",
+    "react": "^16.8.4"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.3.4",
+    "@types/react": "^16.8.6"
+  }
+}

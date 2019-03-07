@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.options.json",
+  "compilerOptions": {
+    "declarationDir": "lib",
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "exclude": ["lib", "test"],
+  "include": ["src/**/*", "types/**/*", "../../types/**/*"],
+  "references": [
+    { "path": "../icons" },
+    { "path": "../test-utils" }
+  ]
+}

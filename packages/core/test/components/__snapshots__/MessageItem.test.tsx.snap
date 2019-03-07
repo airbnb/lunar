@@ -1,0 +1,567 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MessageItem> renders a loading author 1`] = `
+<div
+  className="container_gxo12q"
+>
+  <div
+    className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+  >
+    <Shimmer
+      height={32}
+      radius="50%"
+      width={32}
+    />
+  </div>
+  <div
+    className="messageBody_14846yz-o_O-tableCell_6x7qes"
+  >
+    <Spacing
+      bottom={0.5}
+    >
+      <Spacing
+        inline={true}
+        right={1}
+      >
+        <Shimmer
+          height={14}
+          width={175}
+        />
+      </Spacing>
+      <Text
+        inline={true}
+        muted={true}
+        small={true}
+      >
+        11:56 AM
+      </Text>
+    </Spacing>
+    Hello world
+  </div>
+</div>
+`;
+
+exports[`<MessageItem> renders a message item 1`] = `
+<div
+  className="container_gxo12q"
+>
+  <div
+    className="table_cv8yzh"
+  >
+    <div
+      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+    >
+      <ProfilePhoto
+        imageSrc="https://image.com"
+        size={4}
+        title="title"
+      />
+    </div>
+    <div
+      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+    >
+      <Spacing
+        bottom={0.5}
+      >
+        <span
+          className="messageTitle_ft2sf8"
+        >
+          <Text
+            bold={true}
+            inline={true}
+          >
+            title
+          </Text>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
+      </Spacing>
+      <div
+        className="messageBodyContent_1dcp06s"
+      >
+        Hello world
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageItem> renders a message item with \`horizontalSpacing\` 1`] = `
+<div
+  className="container_gxo12q-o_O-container_horizontalSpacing_kelmes"
+>
+  <div
+    className="table_cv8yzh"
+  >
+    <div
+      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+    >
+      <ProfilePhoto
+        imageSrc="https://image.com"
+        size={4}
+        title="title"
+      />
+    </div>
+    <div
+      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+    >
+      <Spacing
+        bottom={0.5}
+      >
+        <span
+          className="messageTitle_ft2sf8"
+        >
+          <Text
+            bold={true}
+            inline={true}
+          >
+            title
+          </Text>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
+      </Spacing>
+      <div
+        className="messageBodyContent_1dcp06s"
+      >
+        Hello world
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageItem> renders a message item with \`important\` 1`] = `
+<div
+  className="container_gxo12q-o_O-container_withStripe_3ecezm-o_O-container_important_zh0amp"
+>
+  <div
+    className="table_cv8yzh"
+  >
+    <div
+      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+    >
+      <ProfilePhoto
+        imageSrc="https://image.com"
+        size={4}
+        title="title"
+      />
+    </div>
+    <div
+      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+    >
+      <Spacing
+        bottom={0.5}
+      >
+        <span
+          className="messageTitle_ft2sf8"
+        >
+          <Text
+            bold={true}
+            inline={true}
+          >
+            title
+          </Text>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
+      </Spacing>
+      <div
+        className="messageBodyContent_1dcp06s"
+      >
+        Hello world
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageItem> renders a message item with \`info\` stripe 1`] = `
+<div
+  className="container_gxo12q-o_O-container_withStripe_3ecezm-o_O-container_info_1jxyydc"
+>
+  <div
+    className="table_cv8yzh"
+  >
+    <div
+      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+    >
+      <ProfilePhoto
+        imageSrc="https://image.com"
+        size={4}
+        title="title"
+      />
+    </div>
+    <div
+      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+    >
+      <Spacing
+        bottom={0.5}
+      >
+        <span
+          className="messageTitle_ft2sf8"
+        >
+          <Text
+            bold={true}
+            inline={true}
+          >
+            title
+          </Text>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
+      </Spacing>
+      <div
+        className="messageBodyContent_1dcp06s"
+      >
+        Hello world
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageItem> renders a message item with \`verticalSpacing\` 1`] = `
+<div
+  className="container_gxo12q-o_O-container_verticalSpacing_170i3mz"
+>
+  <div
+    className="table_cv8yzh"
+  >
+    <div
+      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+    >
+      <ProfilePhoto
+        imageSrc="https://image.com"
+        size={4}
+        title="title"
+      />
+    </div>
+    <div
+      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+    >
+      <Spacing
+        bottom={0.5}
+      >
+        <span
+          className="messageTitle_ft2sf8"
+        >
+          <Text
+            bold={true}
+            inline={true}
+          >
+            title
+          </Text>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
+      </Spacing>
+      <div
+        className="messageBodyContent_1dcp06s"
+      >
+        Hello world
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageItem> renders a message item with \`warning\` stripe 1`] = `
+<div
+  className="container_gxo12q-o_O-container_withStripe_3ecezm-o_O-container_warning_ver4t1"
+>
+  <div
+    className="table_cv8yzh"
+  >
+    <div
+      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+    >
+      <ProfilePhoto
+        imageSrc="https://image.com"
+        size={4}
+        title="title"
+      />
+    </div>
+    <div
+      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+    >
+      <Spacing
+        bottom={0.5}
+      >
+        <span
+          className="messageTitle_ft2sf8"
+        >
+          <Text
+            bold={true}
+            inline={true}
+          >
+            title
+          </Text>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
+      </Spacing>
+      <div
+        className="messageBodyContent_1dcp06s"
+      >
+        Hello world
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageItem> renders a sending overlay when message is sending 1`] = `
+<div
+  className="container_gxo12q"
+>
+  <div
+    className="table_cv8yzh"
+  >
+    <div
+      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+    >
+      <ProfilePhoto
+        imageSrc="https://image.com"
+        size={4}
+        title="title"
+      />
+    </div>
+    <div
+      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+    >
+      <Spacing
+        bottom={0.5}
+      >
+        <span
+          className="messageTitle_ft2sf8"
+        >
+          <Text
+            bold={true}
+            inline={true}
+          >
+            title
+          </Text>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
+      </Spacing>
+      <div
+        className="messageBodyContent_1dcp06s"
+      >
+        Hello world
+      </div>
+    </div>
+  </div>
+  <div
+    className="sendingOverlay_f0q3k7"
+  />
+</div>
+`;
+
+exports[`<MessageItem> renders a source when given 1`] = `
+<div
+  className="container_gxo12q"
+>
+  <div
+    className="table_cv8yzh"
+  >
+    <div
+      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+    >
+      <ProfilePhoto
+        imageSrc="https://image.com"
+        size={4}
+        title="title"
+      />
+    </div>
+    <div
+      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+    >
+      <Spacing
+        bottom={0.5}
+      >
+        <span
+          className="messageTitle_ft2sf8"
+        >
+          <Text
+            bold={true}
+            inline={true}
+          >
+            title
+          </Text>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM via web
+        </Text>
+      </Spacing>
+      <div
+        className="messageBodyContent_1dcp06s"
+      >
+        Hello world
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageItem> renders a title tag when given 1`] = `
+<div
+  className="container_gxo12q"
+>
+  <div
+    className="table_cv8yzh"
+  >
+    <div
+      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+    >
+      <ProfilePhoto
+        imageSrc="https://image.com"
+        size={4}
+        title="title"
+      />
+    </div>
+    <div
+      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+    >
+      <Spacing
+        bottom={0.5}
+      >
+        <span
+          className="messageTitle_ft2sf8"
+        >
+          <Text
+            bold={true}
+            inline={true}
+          >
+            title
+          </Text>
+        </span>
+        <span
+          className="tag_5ns9qb"
+        >
+          <Text
+            inline={true}
+            micro={true}
+            muted={true}
+          >
+            CX
+          </Text>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
+      </Spacing>
+      <div
+        className="messageBodyContent_1dcp06s"
+      >
+        Hello world
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<MessageItem> renders an email when given 1`] = `
+<div
+  className="container_gxo12q"
+>
+  <div
+    className="table_cv8yzh"
+  >
+    <div
+      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+    >
+      <ProfilePhoto
+        imageSrc="https://image.com"
+        size={4}
+        title="title"
+      />
+    </div>
+    <div
+      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+    >
+      <Spacing
+        bottom={0.5}
+      >
+        <span
+          className="messageTitle_ft2sf8"
+        >
+          <Text
+            bold={true}
+            inline={true}
+          >
+            title
+          </Text>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
+        <Text
+          muted={true}
+          small={true}
+        >
+          <Translate
+            context="Who the message is from"
+            email="foo@airbnb.com"
+            html={true}
+            phrase="From: %{email}"
+          />
+        </Text>
+      </Spacing>
+      <div
+        className="messageBodyContent_1dcp06s"
+      >
+        Hello world
+      </div>
+    </div>
+  </div>
+</div>
+`;

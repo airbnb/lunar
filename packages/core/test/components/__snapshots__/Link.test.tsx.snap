@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Link /> renders bold 1`] = `
+<Text
+  baseline={false}
+  bold={true}
+  inline={true}
+  large={false}
+  small={false}
+>
+  <ButtonOrLink
+    className="link_vk1gl8"
+    href="#"
+  >
+    Bold
+  </ButtonOrLink>
+</Text>
+`;
+
+exports[`<Link /> renders disabled 1`] = `
+<span
+  className="text_i23n2q-o_O-text_inline_36rlri"
+>
+  <ButtonOrLink
+    className="link_vk1gl8-o_O-link_disabled_q28bcx"
+    disabled={true}
+    href="#"
+  >
+    Disabled
+  </ButtonOrLink>
+</span>
+`;
+
+exports[`<Link /> renders inverted 1`] = `
+<span
+  className="text_i23n2q-o_O-text_inline_36rlri"
+>
+  <ButtonOrLink
+    className="link_vk1gl8-o_O-link_inverted_1hj4kjb"
+    href="#"
+  >
+    Inverted
+  </ButtonOrLink>
+</span>
+`;
+
+exports[`<Link /> renders large 1`] = `
+<span
+  className="text_i23n2q-o_O-text_inline_36rlri-o_O-text_large_1b2mxt3"
+>
+  <ButtonOrLink
+    className="link_vk1gl8"
+    href="#"
+  >
+    Large
+  </ButtonOrLink>
+</span>
+`;
+
+exports[`<Link /> renders muted 1`] = `
+<span
+  className="text_i23n2q-o_O-text_inline_36rlri"
+>
+  <ButtonOrLink
+    className="link_vk1gl8-o_O-link_muted_74pra7"
+    href="#"
+  >
+    Muted
+  </ButtonOrLink>
+</span>
+`;
+
+exports[`<Link /> renders small 1`] = `
+<span
+  className="text_i23n2q-o_O-text_inline_36rlri-o_O-text_small_kvmv64"
+>
+  <ButtonOrLink
+    className="link_vk1gl8"
+    href="#"
+  >
+    Small
+  </ButtonOrLink>
+</span>
+`;

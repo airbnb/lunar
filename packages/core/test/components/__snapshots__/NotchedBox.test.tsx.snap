@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NotchedBox /> can be below 1`] = `
+<div
+  className="box_1pswgv9-o_O-border_1urjdog"
+>
+  <div
+    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-notch_below_9egivs-o_O-border_1urjdog"
+  />
+  <div
+    className="content_15unt15"
+  >
+    hello world
+  </div>
+</div>
+`;
+
+exports[`<NotchedBox /> can be inline 1`] = `
+<div
+  className="box_1pswgv9-o_O-border_1urjdog-o_O-box_inline_36rlri"
+>
+  <div
+    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-border_1urjdog"
+  />
+  <div
+    className="content_15unt15"
+  >
+    hello world
+  </div>
+</div>
+`;
+
+exports[`<NotchedBox /> can be inverted 1`] = `
+<div
+  className="box_1pswgv9"
+>
+  <div
+    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-inverted_1liwe23"
+  />
+  <div
+    className="content_15unt15-o_O-inverted_1liwe23"
+  >
+    hello world
+  </div>
+</div>
+`;
+
+exports[`<NotchedBox /> can have a negative offet 1`] = `
+<div
+  className="box_1pswgv9-o_O-border_1urjdog"
+>
+  <div
+    className="notch_1nwxvyt-o_O-border_1urjdog-o_O-inline-0_14d28p4"
+  />
+  <div
+    className="content_15unt15"
+  >
+    hello world
+  </div>
+</div>
+`;
+
+exports[`<NotchedBox /> can have an offet of 0 1`] = `
+<div
+  className="box_1pswgv9-o_O-border_1urjdog"
+>
+  <div
+    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-border_1urjdog"
+  />
+  <div
+    className="content_15unt15"
+  >
+    hello world
+  </div>
+</div>
+`;

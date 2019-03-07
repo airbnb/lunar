@@ -1,0 +1,19 @@
+// KEYCODES
+export const BACKSPACE = 'Backspace';
+export const TAB = 'Tab';
+export const ENTER = 'Enter';
+export const SHIFT = 'Shift';
+export const CONTROL = 'Control';
+export const ALT = 'Alt';
+export const CAPSLOCK = 'CapsLock';
+export const ESCAPE = 'Escape';
+export const SPACE = ' ';
+export const PAGEUP = 'PageUp';
+export const PAGEDOWN = 'PageDown';
+export const END = 'End';
+export const HOME = 'Home';
+export const ARROW_LEFT = 'ArrowLeft';
+export const ARROW_UP = 'ArrowUp';
+export const ARROW_RIGHT = 'ArrowRight';
+export const ARROW_DOWN = 'ArrowDown';
+export const DELETE = 'Delete';

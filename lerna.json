@@ -1,0 +1,12 @@
+{
+  "version": "independent",
+  "command": {
+    "publish": {
+      "ignoreChanges": ["*.md"],
+      "message": "Release [ci skip]"
+    }
+  },
+  "packages": [
+    "./packages/*"
+  ]
+}

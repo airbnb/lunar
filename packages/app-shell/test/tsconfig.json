@@ -1,0 +1,9 @@
+{
+  "extends": "../../../tsconfig.options.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": "."
+  },
+  "include": ["**/*", "../../../types/**/*"],
+  "references": [{ "path": ".." }]
+}
