@@ -85,18 +85,32 @@ describe('<DatePickerInput />', () => {
   });
 
   describe('handleChange()', () => {
-    it('calls `onChange`', () => {
+    it('calls `onChange` with an ISO date', () => {
       const spy = jest.fn();
       const wrapper = shallow(<DatePickerInput {...props} onChange={spy} />);
       const instance = wrapper.instance() as DatePickerInput;
       const event = {
-        currentTarget: { value: 'foo' },
+        currentTarget: { value: '2019-01-01' },
       };
 
       // @ts-ignore Allow private access
       instance.handleChange(event);
 
-      expect(spy).toHaveBeenCalledWith('foo', event);
+      expect(spy).toHaveBeenCalledWith('2019-01-01', new Date(2019, 0, 1), event);
+    });
+
+    it('calls `onChange` with a null when an invalid date', () => {
+      const spy = jest.fn();
+      const wrapper = shallow(<DatePickerInput {...props} onChange={spy} />);
+      const instance = wrapper.instance() as DatePickerInput;
+      const event = {
+        currentTarget: { value: '2019-ah-01' },
+      };
+
+      // @ts-ignore Allow private access
+      instance.handleChange(event);
+
+      expect(spy).toHaveBeenCalledWith('2019-ah-01', null, event);
     });
   });
 
@@ -110,7 +124,7 @@ describe('<DatePickerInput />', () => {
       // @ts-ignore Allow private access
       instance.handleDayChange(date);
 
-      expect(spy).toHaveBeenCalledWith(instance.formatDate(date), {});
+      expect(spy).toHaveBeenCalledWith(instance.formatDate(date), date, {});
     });
 
     it('doesnt call `onChange` if falsy', () => {

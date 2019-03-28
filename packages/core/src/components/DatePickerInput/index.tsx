@@ -12,7 +12,7 @@ import { mdyCalendarBundle } from '../../messages';
 import PrivatePickerInput from './Input';
 import { Locale } from '../../types';
 
-export type Props = Omit<BaseInputProps, 'id' | 'value'> &
+export type Props = Omit<BaseInputProps, 'id' | 'onChange' | 'value'> &
   FormFieldProps & {
     /** Clear the input when clicking on a previously selected day. */
     clearOnDayClick?: DayPickerInputProps['clickUnselectsDay'];
@@ -26,6 +26,12 @@ export type Props = Omit<BaseInputProps, 'id' | 'value'> &
     hideOnDayClick?: DayPickerInputProps['hideOnDayClick'];
     /** Locale to translate and format the calendar to. Defaults to "en". */
     locale?: Locale;
+    /** Callback fired when the value changes. */
+    onChange: (
+      value: string,
+      date: Date | null,
+      event: React.ChangeEvent<HTMLInputElement>,
+    ) => void;
     /** Handler function called when the overlay is hidden. */
     onHidePicker?: DayPickerInputProps['onDayPickerHide'];
     /** The default date value. */
@@ -47,7 +53,10 @@ export default class DatePickerInput extends React.Component<Props, State> {
   };
 
   private handleChange = (event: React.ChangeEvent<any>) => {
-    this.props.onChange(event.currentTarget.value, event);
+    const { value } = event.currentTarget;
+    const date = this.parseDate(value);
+
+    this.props.onChange(value, date || null, event);
   };
 
   private handleDayChange = (day?: Date) => {
@@ -59,7 +68,7 @@ export default class DatePickerInput extends React.Component<Props, State> {
 
     // Update the parent form with the selected value.
     // We also don't have a real event object, so fake it.
-    this.props.onChange(this.formatDate(day), {} as any);
+    this.props.onChange(this.formatDate(day), day, {} as any);
   };
 
   getFormat(): string {
