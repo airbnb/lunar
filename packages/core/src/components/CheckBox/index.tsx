@@ -30,8 +30,8 @@ export default class CheckBox extends React.Component<Props, State> {
   };
 
   render() {
-    const { topAlign } = this.props;
     const { children, fieldProps, inputProps } = partitionFieldProps(this.props);
+    const { topAlign, ...restProps } = inputProps;
     const { id } = this.state;
     const { hideLabel } = fieldProps;
 
@@ -47,7 +47,7 @@ export default class CheckBox extends React.Component<Props, State> {
         renderLargeLabel
         stretchLabel
       >
-        <BaseCheckBox {...inputProps} id={id} hideLabel={hideLabel}>
+        <BaseCheckBox {...restProps} id={id} hideLabel={hideLabel}>
           {children || (
             <>
               <Text bold>{fieldProps.label}</Text>

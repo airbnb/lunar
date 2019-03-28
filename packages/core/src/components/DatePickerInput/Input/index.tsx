@@ -43,7 +43,7 @@ export default class PrivatePickerInput extends DayPickerInput {
 
   handleOverlayFocus?(): void;
 
-  private handleRef = (ref: HTMLInputElement | null) => {
+  private loadRef = (ref: HTMLInputElement | null) => {
     // @ts-ignore Ignore typings
     const { propagateRef } = this.props.inputProps;
 
@@ -123,7 +123,7 @@ export default class PrivatePickerInput extends DayPickerInput {
           onKeyDown={this.handleInputKeyDown}
           onKeyUp={this.handleInputKeyUp}
           onClick={this.handleInputClick}
-          propagateRef={this.handleRef}
+          propagateRef={this.loadRef}
         />
 
         {this.state.showOverlay && this.renderOverlay()}

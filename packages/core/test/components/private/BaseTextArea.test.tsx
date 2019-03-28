@@ -127,7 +127,7 @@ describe('<BaseTextArea />', () => {
     });
   });
 
-  describe('handleRef()', () => {
+  describe('loadRef()', () => {
     it('reflows when ref is set', () => {
       const spy = jest.fn();
       const wrapper = shallow<BaseTextArea>(<BaseTextArea name="foo" onChange={() => {}} />);
@@ -135,7 +135,7 @@ describe('<BaseTextArea />', () => {
       wrapper.instance().reflowTextarea = spy;
 
       // @ts-ignore Allow private access
-      wrapper.instance().handleRef(document.createElement('textarea'));
+      wrapper.instance().loadRef(document.createElement('textarea'));
 
       expect(spy).toHaveBeenCalled();
     });
@@ -147,7 +147,7 @@ describe('<BaseTextArea />', () => {
       wrapper.instance().reflowTextarea = spy;
 
       // @ts-ignore Allow private access
-      wrapper.instance().handleRef(null);
+      wrapper.instance().loadRef(null);
 
       expect(spy).not.toHaveBeenCalled();
     });
@@ -159,7 +159,7 @@ describe('<BaseTextArea />', () => {
       );
 
       // @ts-ignore Allow private access
-      wrapper.instance().handleRef(null);
+      wrapper.instance().loadRef(null);
 
       expect(spy).toHaveBeenCalledWith(null);
     });
