@@ -2,7 +2,7 @@
 
 ## 🛠 Developing
 
-Lunar at minimum requires Node v8.9 and NPM v6.8. To being, run `npm install` and
+Lunar at minimum requires Node v8.9 and NPM v6.8. To begin, run `npm install` and
 `npm run bootstrap`.
 
 - Builds can be ran with `npm run build`.
