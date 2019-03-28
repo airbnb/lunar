@@ -133,8 +133,7 @@ export default class FileInput extends React.Component<Props, State> {
           type="file"
           tagName="input"
           onChange={this.handleChange}
-          // eslint-disable-next-line
-          onRef={this.ref}
+          wrappedRef={this.ref}
           hidden
         />
 

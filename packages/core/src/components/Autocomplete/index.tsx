@@ -658,7 +658,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
             onClick={this.handleInputClick}
             onFocus={this.handleInputFocus}
             onKeyDown={this.handleInputKeyDown}
-            onRef={this.handleInputRef}
+            wrappedRef={this.handleInputRef}
             value={value}
           />
 

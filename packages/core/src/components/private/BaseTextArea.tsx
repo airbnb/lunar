@@ -85,7 +85,7 @@ export default class BaseTextArea extends React.Component<Props> {
       this.reflowTextarea();
     }
 
-    passThroughRef(this.props.onRef, ref);
+    passThroughRef(this.props.wrappedRef, ref);
   };
 
   render() {
@@ -95,7 +95,7 @@ export default class BaseTextArea extends React.Component<Props> {
       <FormInput
         {...restProps}
         onChange={this.handleChange}
-        onRef={this.handleRef}
+        wrappedRef={this.handleRef}
         tagName="textarea"
       />
     );
