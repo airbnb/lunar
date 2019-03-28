@@ -57,9 +57,9 @@ const values = {
 
 <Form
   initialValues={values}
-  onFailedSubmit={(...args) => log('onFailedSubmit', ...args)}
-  onSubmit={(...args) => log('onSubmit', ...args)}
-  onStateUpdate={(...args) => log('onStateUpdate', ...args)}
+  onFailedSubmit={debug('onFailedSubmit')}
+  onSubmit={debug('onSubmit')}
+  onStateUpdate={debug('onStateUpdate')}
 >
   <Input
     label="Text"
@@ -258,4 +258,77 @@ const values = {
 
   <FormActions showReset />
 </Form>;
+```
+
+Testing effects of unmounting, unregistering, and batching.
+
+```jsx
+import Button from ':core/components/Button';
+import Form from './index';
+import Input from './Input';
+
+function isRequired(value) {
+  const pass = Array.isArray(value) ? value.length : value;
+
+  if (!pass) {
+    throw new Error('Field is required.');
+  }
+}
+
+class UnmountExample extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      mounted: true,
+    };
+
+    this.handleToggleMount = this.handleToggleMount.bind(this);
+  }
+
+  handleToggleMount() {
+    this.setState(prevState => ({
+      mounted: !prevState.mounted,
+    }));
+  }
+
+  render() {
+    const { mounted } = this.state;
+
+    return (
+      <Form
+        onFailedSubmit={debug('onFailedSubmit')}
+        onSubmit={debug('onSubmit')}
+        onStateUpdate={debug('onStateUpdate')}
+      >
+        {mounted && (
+          <Input
+            label="Prefills other field on change"
+            name="text_base"
+            onChange={debug('onChange')}
+            onBatchChange={() => ({
+              text_other: 'Prefilled',
+            })}
+            validator={isRequired}
+            unregisterOnUnmount
+          />
+        )}
+
+        <Input
+          label="Cannot be empty"
+          name="text_other"
+          onChange={debug('onChange')}
+          validator={isRequired}
+          unregisterOnUnmount
+        />
+
+        <Button onClick={this.handleToggleMount}>
+          {mounted ? 'Unmount Input' : 'Mount Input'}
+        </Button>
+      </Form>
+    );
+  }
+}
+
+<UnmountExample />;
 ```

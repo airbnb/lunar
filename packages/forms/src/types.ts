@@ -11,6 +11,7 @@ export type Context = {
   change: (name: string, value: string, batchValues?: object) => void;
   getState: () => FormState;
   register: (field: Field, onUpdate: FieldSubscriber) => Unsubscribe;
+  submit: () => Promise<object | undefined>;
 };
 
 export type Errors = {
