@@ -20,4 +20,4 @@ to: @milesj @stefhatcher @hayes @alecklandgraf
 
 - My code follows the style guide of this project.
 - I have updated or added documentation accordingly.
-- I have read the [CONTRIBUTING](https://github.com/airbnb/lunar/blob/master/.github/CONTRIBUTING.md) document.
+- I have read the CONTRIBUTING document.
