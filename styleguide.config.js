@@ -19,7 +19,7 @@ glob
     const folder = path.basename(filePath);
     const { name } = require(path.join(filePath, 'package.json'));
 
-    if (filePath.includes('metrics')) {
+    if (filePath.includes('metrics') || filePath.includes('test-utils')) {
       return;
     }
 

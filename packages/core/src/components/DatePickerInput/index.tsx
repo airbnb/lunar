@@ -47,7 +47,9 @@ export default class DatePickerInput extends React.Component<Props, State> {
   };
 
   private handleChange = (event: React.ChangeEvent<any>) => {
-    this.props.onChange(event.currentTarget.value, event);
+    const date = this.parseDate(event.currentTarget.value);
+
+    this.props.onChange(date ? date.toISOString() : '', event);
   };
 
   private handleDayChange = (day?: Date) => {
@@ -59,7 +61,7 @@ export default class DatePickerInput extends React.Component<Props, State> {
 
     // Update the parent form with the selected value.
     // We also don't have a real event object, so fake it.
-    this.props.onChange(this.formatDate(day), {} as any);
+    this.props.onChange(day.toISOString(), {} as any);
   };
 
   getFormat(): string {
