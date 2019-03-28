@@ -152,10 +152,10 @@ describe('<BaseTextArea />', () => {
       expect(spy).not.toHaveBeenCalled();
     });
 
-    it('passes to `wrappedRef`', () => {
+    it('passes to `propagateRef`', () => {
       const spy = jest.fn();
       const wrapper = shallow<BaseTextArea>(
-        <BaseTextArea name="foo" onChange={() => {}} wrappedRef={spy} />,
+        <BaseTextArea name="foo" onChange={() => {}} propagateRef={spy} />,
       );
 
       // @ts-ignore Allow private access
