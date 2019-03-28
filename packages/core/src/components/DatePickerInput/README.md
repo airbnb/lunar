@@ -79,19 +79,19 @@ class DatePickerInputDemo extends React.Component {
   }
 
   handleDayClick() {
-    setTimeout(() => this.toRef && this.toRef.focus(), 0);
+    setTimeout(() => this.ref && this.ref.focus(), 0);
   }
 
-  handleFromChange(from) {
-    this.setState({ from: createDateTime(from, { sourceFormat: 'MM/dd/yyyy' }).toJSDate() });
+  handleFromChange(value, from) {
+    this.setState({ from });
   }
 
-  handleToChange(to) {
-    this.setState({ to: createDateTime(to, { sourceFormat: 'MM/dd/yyyy' }).toJSDate() });
+  handleToChange(value, to) {
+    this.setState({ to });
   }
 
   handleToInputRef(ref) {
-    this.toRef = ref;
+    this.ref = ref;
   }
 
   render() {
