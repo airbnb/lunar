@@ -621,10 +621,9 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           value={this.state.text}
           onClick={this.handleTextAreaClick}
           onKeyDown={this.handleTextAreaKeyDown}
-          // eslint-disable-next-line react/jsx-handler-names
-          onRef={this.textareaRef}
           onScroll={this.handleScroll}
           onInput={this.handleInput}
+          wrappedRef={this.textareaRef}
         />
 
         {position && selectedError && (
