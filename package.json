@@ -105,7 +105,7 @@
     "react-dom": "^16.8.6",
     "react-styleguidist": "^9.0.5",
     "svgo": "^1.2.0",
-    "typescript": "^3.3.3",
+    "typescript": "^3.4.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.6"
   }
