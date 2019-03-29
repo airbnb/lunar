@@ -12,7 +12,7 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** Render with reduced vertical padding. */
   compact?: boolean;
-  /** @ignore Max height of row. */
+  /** Max height of row. */
   maxHeight?: number | string;
   /** Align contents in the middle vertically. */
   middleAlign?: boolean;
