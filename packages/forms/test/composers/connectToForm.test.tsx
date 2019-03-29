@@ -25,8 +25,10 @@ describe('connectToForm()', () => {
   beforeEach(() => {
     form = {
       change: jest.fn(),
+      getFields: jest.fn(),
       getState: jest.fn(),
       register: jest.fn(() => jest.fn()),
+      submit: jest.fn(),
     };
   });
 

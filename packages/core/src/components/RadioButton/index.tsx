@@ -32,8 +32,8 @@ export default class RadioButton extends React.Component<Props, State> {
   };
 
   render() {
-    const { topAlign } = this.props;
     const { children, fieldProps, inputProps } = partitionFieldProps(this.props);
+    const { topAlign, ...restProps } = inputProps;
     const { id } = this.state;
     const { hideLabel } = fieldProps;
 
@@ -49,7 +49,7 @@ export default class RadioButton extends React.Component<Props, State> {
         renderLargeLabel
         stretchLabel
       >
-        <BaseRadioButton {...inputProps} id={id} hideLabel={hideLabel}>
+        <BaseRadioButton {...restProps} id={id} hideLabel={hideLabel}>
           {children || (
             <>
               <Text bold>{fieldProps.label}</Text>

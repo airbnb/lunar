@@ -564,6 +564,16 @@ describe('<Form />', () => {
     });
   });
 
+  describe('submitForm()', () => {
+    it('calls `submit` on the final-form instance', () => {
+      const spy = jest.spyOn(instance.form, 'submit');
+
+      instance.submitForm();
+
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
   describe('validate()', () => {
     it('returns empty object for unknown fields', async () => {
       expect(await instance.validate({ foo: 123 })).toEqual({});

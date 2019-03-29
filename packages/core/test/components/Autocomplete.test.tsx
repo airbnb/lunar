@@ -84,7 +84,7 @@ describe('<Autocomplete />', () => {
       const input = document.createElement('input');
       input.focus = spy;
 
-      instance.inputRef = input;
+      instance.inputRef = { current: input };
       instance.focusInput();
 
       expect(spy).toHaveBeenCalled();
@@ -130,7 +130,7 @@ describe('<Autocomplete />', () => {
       const spy = jest.fn();
       const input = document.createElement('input');
       input.focus = spy;
-      instance.inputRef = input;
+      instance.inputRef = { current: input };
       instance.ignoreBlur = true;
       instance.ignoreFocus = false;
 
@@ -266,7 +266,7 @@ describe('<Autocomplete />', () => {
       const spy = jest.fn();
       const input = document.createElement('input');
       input.select = spy;
-      instance.inputRef = input;
+      instance.inputRef = { current: input };
       instance.ignoreBlur = true;
 
       wrapper.setState({
@@ -287,7 +287,7 @@ describe('<Autocomplete />', () => {
       const spy = jest.fn();
       const input = document.createElement('input');
       input.focus = spy;
-      instance.inputRef = input;
+      instance.inputRef = { current: input };
       instance.ignoreBlur = true;
 
       wrapper.setState({

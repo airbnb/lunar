@@ -117,7 +117,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
 
   ignoreFocus: boolean = false;
 
-  inputRef: HTMLInputElement | null = null;
+  inputRef = React.createRef<HTMLInputElement>();
 
   state = {
     error: null,
@@ -162,8 +162,8 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   }
 
   focusInput = () => {
-    if (this.inputRef) {
-      this.inputRef.focus();
+    if (this.inputRef.current) {
+      this.inputRef.current.focus();
     }
   };
 
@@ -172,9 +172,9 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
       this.props.onBlur(event);
     }
 
-    if (this.inputRef && this.ignoreBlur) {
+    if (this.inputRef.current && this.ignoreBlur) {
       this.ignoreFocus = true;
-      this.inputRef.focus();
+      this.inputRef.current.focus();
 
       return;
     }
@@ -196,9 +196,14 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
 
   private handleInputClick = (event: React.MouseEvent<HTMLInputElement>) => {
     const { open } = this.state;
-    const input = this.inputRef;
+    const { current } = this.inputRef;
 
-    if (input && input.ownerDocument && input === input.ownerDocument.activeElement && !open) {
+    if (
+      current &&
+      current.ownerDocument &&
+      current === current.ownerDocument.activeElement &&
+      !open
+    ) {
       this.setState({
         open: true,
       });
@@ -321,8 +326,8 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
           open: false,
         },
         () => {
-          if (this.inputRef) {
-            this.inputRef.select();
+          if (this.inputRef.current) {
+            this.inputRef.current.select();
           }
         },
       );
@@ -357,10 +362,6 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   private handleInputKeyDownTab = () => {
     // In case the user is currently hovering over the menu
     this.setIgnoreBlur(false);
-  };
-
-  private handleInputRef = (ref: HTMLInputElement | null) => {
-    this.inputRef = ref;
   };
 
   private handleItemMouseEnter = (index: number) => {
@@ -658,7 +659,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
             onClick={this.handleInputClick}
             onFocus={this.handleInputFocus}
             onKeyDown={this.handleInputKeyDown}
-            wrappedRef={this.handleInputRef}
+            propagateRef={this.inputRef}
             value={value}
           />
 

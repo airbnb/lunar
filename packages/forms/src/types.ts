@@ -1,6 +1,7 @@
 import {
   IsEqual,
   FormState,
+  FieldState,
   FieldSubscriber,
   FieldSubscription,
   FieldValidator,
@@ -9,8 +10,10 @@ import {
 
 export type Context = {
   change: (name: string, value: string, batchValues?: object) => void;
+  getFields: () => FieldState[];
   getState: () => FormState;
   register: (field: Field, onUpdate: FieldSubscriber) => Unsubscribe;
+  submit: () => Promise<object | undefined>;
 };
 
 export type Errors = {

@@ -78,14 +78,14 @@ export default class BaseTextArea extends React.Component<Props> {
     this.props.onChange(event.currentTarget.value, event);
   };
 
-  private handleRef = (ref: HTMLTextAreaElement | null) => {
+  private loadRef = (ref: HTMLTextAreaElement | null) => {
     this.textareaRef = ref;
 
     if (ref) {
       this.reflowTextarea();
     }
 
-    passThroughRef(this.props.wrappedRef, ref);
+    passThroughRef(this.props.propagateRef, ref);
   };
 
   render() {
@@ -95,7 +95,7 @@ export default class BaseTextArea extends React.Component<Props> {
       <FormInput
         {...restProps}
         onChange={this.handleChange}
-        wrappedRef={this.handleRef}
+        propagateRef={this.loadRef}
         tagName="textarea"
       />
     );

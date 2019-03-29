@@ -132,7 +132,7 @@ export default class Form<Data extends object = any> extends React.Component<Pro
   /**
    * Change the value of the source input, while also changing batch values using an object.
    */
-  changeValue = (name: string, value: any, batchValues?: object) => {
+  changeValue = (name: string, value: any, batchValues?: Partial<Data>) => {
     const values = {
       ...batchValues,
       [name]: value,
@@ -152,7 +152,7 @@ export default class Form<Data extends object = any> extends React.Component<Pro
   /**
    * Return a list of all field states.
    */
-  getFields(): FieldState[] {
+  getFields = (): FieldState[] => {
     if (!this.form) {
       return [];
     }
@@ -162,7 +162,7 @@ export default class Form<Data extends object = any> extends React.Component<Pro
       .getRegisteredFields()
       .map(name => this.form.getFieldState(name))
       .filter(field => typeof field !== 'undefined');
-  }
+  };
 
   /**
    * Return form state.
@@ -173,7 +173,7 @@ export default class Form<Data extends object = any> extends React.Component<Pro
    * Handle form submission once data has been validated.
    * https://github.com/final-form/final-form#onsubmit-values-object-form-formapi-callback-errors-object--void--object--promiseobject--void
    */
-  private handleSubmit = (data: object, form: FormApi, setErrors?: (errors?: Errors) => void) => {
+  private handleSubmit = (data: Data, form: FormApi, setErrors?: (errors?: Errors) => void) => {
     const preparedData = this.prepareData(data);
     let promise;
 
@@ -254,8 +254,9 @@ export default class Form<Data extends object = any> extends React.Component<Pro
    * https://github.com/final-form/final-form#validate-values-object--object--promiseobject
    */
   private handleValidate = throttleToSinglePromise(async (data: object) => {
-    const errors = await this.validate(data as Data);
-    const passes = await this.props.onValidate!(data as Data, errors, this.getFields());
+    const nextData = data as Data;
+    const errors = await this.validate(nextData);
+    const passes = await this.props.onValidate!(nextData, errors, this.getFields());
     let errorCount = Object.keys(errors).length;
 
     if (!passes && errorCount === 0) {
@@ -268,7 +269,7 @@ export default class Form<Data extends object = any> extends React.Component<Pro
     }
 
     if (errorCount > 0) {
-      this.props.onFailedValidate!(data as Data, errors);
+      this.props.onFailedValidate!(nextData, errors);
     }
 
     return errors;
@@ -277,7 +278,7 @@ export default class Form<Data extends object = any> extends React.Component<Pro
   /**
    * Trim and type cast the dataset.
    */
-  prepareData(initialData: object): Data {
+  prepareData(initialData: Partial<Data>): Data {
     return this.getFields().reduce((data, { name, data: fieldData }) => {
       let value = getIn(data, name);
 
@@ -350,6 +351,11 @@ export default class Form<Data extends object = any> extends React.Component<Pro
   }
 
   /**
+   * Manually submit the form.
+   */
+  submitForm = () => Promise.resolve(this.form.submit());
+
+  /**
    * Validate data and return an object of errors.
    */
   async validate(data: Data): Promise<Errors> {
@@ -406,8 +412,10 @@ export default class Form<Data extends object = any> extends React.Component<Pro
       <FormContext.Provider
         value={{
           change: this.changeValue,
+          getFields: this.getFields,
           getState: this.getState,
           register: this.registerField,
+          submit: this.submitForm,
         }}
       >
         <form

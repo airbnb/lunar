@@ -125,7 +125,7 @@ class DatePickerInputDemo extends React.Component {
             label="To"
             name="to-date"
             onChange={this.handleToChange}
-            wrappedRef={this.handleToInputRef}
+            propagateRef={this.handleToInputRef}
             placeholder="End date"
             value={to}
             datePickerProps={{

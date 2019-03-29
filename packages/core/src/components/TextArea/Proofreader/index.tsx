@@ -623,7 +623,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           onKeyDown={this.handleTextAreaKeyDown}
           onScroll={this.handleScroll}
           onInput={this.handleInput}
-          wrappedRef={this.textareaRef}
+          propagateRef={this.textareaRef}
         />
 
         {position && selectedError && (

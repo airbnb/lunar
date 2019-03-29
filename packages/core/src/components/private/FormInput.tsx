@@ -36,10 +36,10 @@ export type Props<T = any> = {
   noTranslate?: boolean;
   /** Mark the field as optional. */
   optional?: boolean;
+  /** Reference to access the underlying input DOM element. */
+  propagateRef?: React.Ref<T>;
   /** Current value. */
   value?: string;
-  /** Callback to access the underlying input DOM element. */
-  wrappedRef?: React.Ref<T>;
 };
 
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoreAttributes> &
@@ -91,8 +91,8 @@ class FormInput extends React.Component<PrivateProps> {
       important,
       invalid,
       noTranslate,
-      wrappedRef,
       optional,
+      propagateRef,
       styles,
       tagName: Tag,
       ...restProps
@@ -134,7 +134,7 @@ class FormInput extends React.Component<PrivateProps> {
     }
 
     // @ts-ignore [ts] JSX element type 'Component' does not have any construct or call signatures. [2604]
-    return <Tag {...props} ref={wrappedRef} data-gramm="false" data-enable-grammarly="false" />;
+    return <Tag {...props} ref={propagateRef} data-gramm="false" data-enable-grammarly="false" />;
   }
 }
 
