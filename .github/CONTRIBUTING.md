@@ -2,9 +2,10 @@
 
 ## 🛠 Developing
 
-Lunar at minimum requires Node v8.9 and NPM v6.8.
+Lunar at minimum requires Node v8.9 and NPM v6.8. To begin, run `npm install` and
+`npm run bootstrap`.
 
-- Builds can be ran with `npm run build` (Webpack) or `npm run setup`.
+- Builds can be ran with `npm run build`.
 - Testing can be ran with `npm run jest`.
 - Linting can be ran with `npm run lint`.
 - Type checking can be ran with `npm run type`.
@@ -22,8 +23,8 @@ understandable when groking the changelog.
 - Use the imperative mood ("Move cursor to..." not "Moves cursor to...").
 - When adding a new component, be direct and explicit ("Add Button component" or "New Button
   component").
-- When updating a component, prefix the title with the component name wrapped in brackets ("[Button]
-  Add new size prop").
+- When updating a component, prefix with the component name wrapped in parens ("new(Button): Add new
+  size prop").
 - When touching a non-component, be as descriptive as possible ("Update NewRelic metrics config").
 
 ### Release Prefixes
@@ -31,15 +32,8 @@ understandable when groking the changelog.
 Lunar utilizes [lerna](https://lernajs.io/) and
 [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) for
 automatic releases when a PR is merged to master. For this to work correctly, all PR titles must be
-prefixed with one of the following tags (based on
-[eslint preset](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-eslint)):
-
-- `Fix:` - Fixed or patched a bug.
-- `Update:` - Updated an existing feature.
-- `Docs:` - Changes to documentation only.
-- `Build:` - Changes to build process only.
-- `New:` - Implemented a new feature.
-- `Upgrade:` - Upgraded dependencies.
+prefixed with one of the following tags defined in the
+[beemo preset](https://github.com/beemojs/conventional-changelog-beemo).
 
 _**Do not**_ label PRs as breaking, as breaking changes follow a defined release cycle.
 
@@ -152,8 +146,7 @@ To hide related components from the styleguide, simply place them in a sub-folde
 A few guidelines and patterns when working with TypeScript:
 
 - Interfaces and types must be exported when they're part of the files public API (annotating an
-  argument, return, property, generic, etc). Running `npm run setup` will help to identify
-  mistakes.
+  argument, return, property, generic, etc).
 - Use
   [TypeScript's type inference](https://www.typescriptlang.org/docs/handbook/type-inference.html)
   for constants and primitive variables.
@@ -162,8 +155,8 @@ A few guidelines and patterns when working with TypeScript:
 
 - Non-required props must be marked as optional with `?`.
 - Prop types may extend other prop types _if_ all the inherited props are used.
-- Prop types _must not_ extend HOC type (like `WithStylesProps`). Instead use an intersection at the component's
-  generics callsite.
+- Prop types _must not_ extend HOC type (like `WithStylesProps`). Instead use an intersection at the
+  component's generics callsite.
 
 ```jsx
 class Button extends React.Component<ButtonProps & WithStylesProps, ButtonState> {}
