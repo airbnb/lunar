@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@airbnb/lunar-test-utils": "*",
-    "react": "^16.8.4"
+    "react": "^16.8.6"
   },
   "dependencies": {
     "@babel/runtime": "^7.3.4",
