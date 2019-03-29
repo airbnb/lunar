@@ -8,6 +8,8 @@ import Mutation from './components/Mutation';
 import Query from './components/Query';
 import Provider from './components/Provider';
 
+export * from 'apollo-client';
+
 export { onError, HttpLink, Mutation, Query, Provider };
 
 export type Settings = {

@@ -8,6 +8,8 @@ import renderElementOrFunction, {
   RenderableProp,
 } from '@airbnb/lunar/lib/utils/renderElementOrFunction';
 
+export * from 'react-apollo/Query';
+
 export type Props<Data, Vars> = Omit<QueryProps<Data, Vars>, 'children' | 'client'> & {
   /** Child function to render when the data has been received. */
   children: (data: Data | null, result: QueryResult<Data, Vars>) => React.ReactNode;

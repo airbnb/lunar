@@ -14,6 +14,8 @@ import renderElementOrFunction, {
   RenderableProp,
 } from '@airbnb/lunar/lib/utils/renderElementOrFunction';
 
+export * from 'react-apollo/Mutation';
+
 export type Props<Data, Vars> = Omit<MutationProps<Data, Vars>, 'client'> & {
   /**
    * Render an element or a function that returns an element when an error occurs.
