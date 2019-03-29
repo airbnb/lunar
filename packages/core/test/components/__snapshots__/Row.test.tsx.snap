@@ -2,7 +2,7 @@
 
 exports[`<Row /> renders as compact 1`] = `
 <div
-  className="row_jro6t0-o_O-row_compact_1g93c0b"
+  className="row_jro6t0-o_O-row_compact_1g93c0b-o_O-inline-0_3hmsj"
 >
   <div
     className="primary_4ommi7"
@@ -14,7 +14,7 @@ exports[`<Row /> renders as compact 1`] = `
 
 exports[`<Row /> renders as spacious 1`] = `
 <div
-  className="row_jro6t0-o_O-row_spacious_1gf0ih7"
+  className="row_jro6t0-o_O-row_spacious_1gf0ih7-o_O-inline-0_3hmsj"
 >
   <div
     className="primary_4ommi7"
@@ -26,7 +26,7 @@ exports[`<Row /> renders as spacious 1`] = `
 
 exports[`<Row /> renders in middle 1`] = `
 <div
-  className="row_jro6t0-o_O-row_middleAlign_1moixrt"
+  className="row_jro6t0-o_O-row_middleAlign_1moixrt-o_O-inline-0_3hmsj"
 >
   <div
     className="primary_4ommi7"
@@ -38,7 +38,7 @@ exports[`<Row /> renders in middle 1`] = `
 
 exports[`<Row /> renders with a baseline 1`] = `
 <div
-  className="row_jro6t0-o_O-row_baseline_bi7c4v"
+  className="row_jro6t0-o_O-row_baseline_bi7c4v-o_O-inline-0_3hmsj"
 >
   <div
     className="primary_4ommi7"
@@ -50,7 +50,7 @@ exports[`<Row /> renders with a baseline 1`] = `
 
 exports[`<Row /> renders with a topline 1`] = `
 <div
-  className="row_jro6t0-o_O-row_topline_hg23ez"
+  className="row_jro6t0-o_O-row_topline_hg23ez-o_O-inline-0_3hmsj"
 >
   <div
     className="primary_4ommi7"
