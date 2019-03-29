@@ -54,7 +54,6 @@ export class Accordion extends React.Component<Props & WithStylesProps, State> {
 
     return (
       <div {...css(styles.container, bordered && styles.container_bordered)} role="tablist">
-        {/* eslint-disable-next-line unicorn/no-fn-reference-in-iterator */}
         {React.Children.map(children, (child, i) => {
           if (!child) {
             return null;

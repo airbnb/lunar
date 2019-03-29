@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-zero-fractions */
+
 import formatPrice from '../../src/utils/formatPrice';
 
 describe('formatPrice()', () => {
