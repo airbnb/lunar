@@ -18,6 +18,7 @@ module.exports = {
     [
       '@babel/plugin-transform-runtime',
       {
+        corejs: 3,
         regenerator: false,
       },
     ],
@@ -26,6 +27,7 @@ module.exports = {
     [
       '@babel/preset-env',
       {
+        corejs: 3,
         loose: true,
         modules: ESM ? false : 'commonjs',
         shippedProposals: true,
