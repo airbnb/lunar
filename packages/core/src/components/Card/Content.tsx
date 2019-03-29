@@ -40,7 +40,7 @@ export type Props = {
   /** Whether the image content is large. */
   large?: boolean;
   /** Max height of content. */
-  maxHeight?: number;
+  maxHeight?: number | string;
   /** Align contents in the middle vertically. */
   middleAlign?: boolean;
   /** Top image URL. */

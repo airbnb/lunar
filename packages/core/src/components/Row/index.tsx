@@ -13,7 +13,7 @@ export type Props = {
   /** Render with reduced vertical padding. */
   compact?: boolean;
   /** @ignore Max height of row. */
-  maxHeight?: number;
+  maxHeight?: number | string;
   /** Align contents in the middle vertically. */
   middleAlign?: boolean;
   /** Render with vertical padding. */
