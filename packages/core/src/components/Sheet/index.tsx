@@ -75,7 +75,7 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
 
   cleanupPortal() {
     if (this.openTimeout) {
-      clearTimeout(this.openTimeout);
+      window.clearTimeout(this.openTimeout);
     }
 
     document.removeEventListener('keydown', this.handleKeyDown);

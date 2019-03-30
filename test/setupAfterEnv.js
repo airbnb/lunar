@@ -92,7 +92,7 @@ const oldRIC = window.requestIdleCallback;
 
 beforeEach(() => {
   window.requestAnimationFrame = jest.fn(cb => cb() && 123);
-  window.requestIdleCallback = jest.fn(cb => setTimeout(cb));
+  window.requestIdleCallback = jest.fn(cb => cb() && 456);
 
   global.newrelic = {};
 });

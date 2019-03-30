@@ -149,6 +149,8 @@ describe('<Modal />', () => {
 
     expect(clearTimeoutSpy).toHaveBeenCalled();
     expect(document.activeElement).toBe(focused);
+
+    clearTimeoutSpy.mockRestore();
   });
 
   it('renders an image layout when an image config is provided', () => {

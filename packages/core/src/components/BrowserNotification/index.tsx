@@ -36,7 +36,7 @@ export default class BrowserNotification extends React.PureComponent<Props> {
 
   componentWillUnmount() {
     if (this.closeTimeout) {
-      clearTimeout(this.closeTimeout);
+      window.clearTimeout(this.closeTimeout);
     }
 
     if (this.notification) {

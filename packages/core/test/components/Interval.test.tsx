@@ -20,11 +20,16 @@ describe('<Interval />', () => {
 
   it('calls the function child roughly at the provided interval', () => {
     const spy = jest.spyOn(window, 'setTimeout');
+
     shallow(<Interval every={1000}>{() => 'Child'}</Interval>);
 
     expect(spy).toHaveBeenCalledTimes(1);
-    jest.advanceTimersByTime(1500);
+
+    jest.advanceTimersByTime(2000);
+
     expect(spy).toHaveBeenCalledTimes(3);
+
+    spy.mockRestore();
   });
 
   it('calls the function child with a timestamp', () => {

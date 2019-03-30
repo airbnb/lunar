@@ -4,5 +4,5 @@ export default function removeFocusOnMouseUp<T>(event: React.MouseEvent<T>) {
   // And we do not need to do it syncronously.
   const { target } = event;
 
-  setTimeout(() => (target as HTMLElement).blur(), 0);
+  window.setTimeout(() => (target as HTMLElement).blur(), 0);
 }

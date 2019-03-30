@@ -44,6 +44,8 @@ describe('<BaseTextArea />', () => {
     wrapper.instance().componentWillUnmount();
 
     expect(spy).toHaveBeenCalledWith(123);
+
+    spy.mockRestore();
   });
 
   it('triggers `onChange` handler', () => {
