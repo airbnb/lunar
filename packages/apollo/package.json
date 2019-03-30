@@ -31,7 +31,7 @@
     "react-test-renderer": "^16.8.6"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.2",
+    "@babel/runtime-corejs3": "^7.4.2",
     "@types/graphql": "^14.0.7",
     "@types/lodash": "^4.14.121",
     "apollo-cache-inmemory": "^1.5.1",
