@@ -6,7 +6,6 @@
     "declarationMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "incremental": true,
     "jsx": "react",
     "lib": ["dom", "esnext"],
     "module": "commonjs",
