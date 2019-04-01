@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-icons",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.0",
   "description": "Icons for Lunar.",
   "license": "(MIT AND Apache-2.0)",
   "main": "./lib/index.js",
