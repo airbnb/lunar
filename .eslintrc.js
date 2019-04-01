@@ -149,9 +149,9 @@ module.exports = {
     {
       files: ['*.{ts,tsx}'],
       parser: '@typescript-eslint/parser',
-      // parserOptions: {
-      //   project: './tsconfig.json',
-      // },
+      parserOptions: {
+        project: './tsconfig.options.json',
+      },
       plugins: ['@typescript-eslint'],
       rules: {
         'no-restricted-globals': 'off',
