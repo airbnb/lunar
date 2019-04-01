@@ -48,7 +48,7 @@ export function wrapConsole(property: keyof Console, callback: (spy: jest.Mock) 
   };
 }
 
-export function getWrapperName(wrapper: Enzyme.ShallowWrapper): string {
+export function getWrapperName(wrapper: Enzyme.ShallowWrapper<any, any>): string {
   let name = wrapper.type();
 
   if (typeof name === 'function') {
@@ -63,11 +63,11 @@ export function getWrapperName(wrapper: Enzyme.ShallowWrapper): string {
 }
 
 export function unwrapHOCs(
-  wrapper: Enzyme.ShallowWrapper,
+  wrapper: Enzyme.ShallowWrapper<any, any>,
   target: string,
   context: any = {},
   options: { exitOnContext?: boolean; render?: boolean } = {},
-): Enzyme.ShallowWrapper {
+): Enzyme.ShallowWrapper<any, any> {
   let result = wrapper;
 
   // Unwrap all wrapping and annoying HOCs
@@ -105,7 +105,7 @@ export function unwrapHOCs(
   return result;
 }
 
-export function unwrapIntoContext(wrapper: Enzyme.ShallowWrapper, context: any) {
+export function unwrapIntoContext(wrapper: Enzyme.ShallowWrapper<any, any>, context: any) {
   return unwrapHOCs(wrapper, '_unknown_', context, { exitOnContext: true });
 }
 

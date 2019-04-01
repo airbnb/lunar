@@ -17,16 +17,16 @@
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./esm"
   },
   "peerDependencies": {
-    "@airbnb/lunar": "^0.1.0",
+    "@airbnb/lunar": "^1.0.0-alpha.0",
     "react": "^16.8.0"
   },
   "devDependencies": {
-    "@airbnb/lunar": "^0.1.0",
+    "@airbnb/lunar": "^1.0.0-alpha.0",
     "@airbnb/lunar-test-utils": "*",
-    "react": "^16.8.4"
+    "react": "^16.8.6"
   },
   "dependencies": {
-    "@babel/runtime": "^7.3.4",
+    "@babel/runtime-corejs3": "^7.4.2",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
     "shallowequal": "^1.1.0",

@@ -68,3 +68,4 @@ esm/
 lib/
 dist/
 public/
+tsconfig.tsbuildinfo

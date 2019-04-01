@@ -18,7 +18,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
 
   lastActiveElement: HTMLElement | null = null;
 
-  openTimeout?: NodeJS.Timer;
+  openTimeout?: number;
 
   componentDidMount() {
     this.handleOpen();
@@ -29,7 +29,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
     document.removeEventListener('click', this.handleClickOutside, true);
 
     if (this.openTimeout) {
-      clearTimeout(this.openTimeout);
+      window.clearTimeout(this.openTimeout);
     }
 
     if (this.lastActiveElement) {
@@ -51,8 +51,9 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
     this.lastActiveElement = document.activeElement as HTMLElement;
 
     // Putting this in a setTimeout helps screen readers notice that focus has changed.
-    this.openTimeout = setTimeout(() => {
+    this.openTimeout = window.setTimeout(() => {
       const { current: dialogRefElement } = this.dialogRef;
+
       if (dialogRefElement) {
         focusFirstFocusableChild(dialogRefElement);
       }

@@ -18,7 +18,7 @@ describe('<PriceGroup />', () => {
   it('render multiple amounts but place USD last', () => {
     const wrapper = mount(<PriceGroup amounts={{ GBP: 123, JPY: 456, USD: 789, ZAR: 1011 }} />);
 
-    expect(wrapper.text()).toBe('£123.00, ¥456, ZAR 1,011.00, $789.00');
+    expect(wrapper.text()).toMatch(/£123\.00, ¥456, ZAR\s*1,011\.00, \$789\.00/);
   });
 
   it('changes the display and rounding', () => {
@@ -26,7 +26,7 @@ describe('<PriceGroup />', () => {
       <PriceGroup amounts={{ GBP: 123.45, JPY: 456.93 }} round display="code" />,
     );
 
-    expect(wrapper.text()).toBe('GBP 123.00, JPY 457');
+    expect(wrapper.text()).toMatch(/GBP\s*123\.00, JPY\s*457/);
   });
 
   it('changes the divider', () => {

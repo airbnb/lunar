@@ -77,7 +77,7 @@ describe('<TextArea />', () => {
     );
 
     expect(wrapper.find(BaseTextArea).prop('maxLength')).toBe(1000);
-    expect(wrapper.find(FormField).prop('labelDescription').props).toEqual({
+    expect((wrapper.find(FormField).prop('labelDescription') as React.ReactElement).props).toEqual({
       phrase: '%{current}/%{max} characters used',
       current: '5',
       max: '1,000',
@@ -89,6 +89,8 @@ describe('<TextArea />', () => {
       value: 'Hello this is a longer string',
     });
 
-    expect(wrapper.find(FormField).prop('labelDescription').props.current).toBe('29');
+    expect(
+      (wrapper.find(FormField).prop('labelDescription') as React.ReactElement).props.current,
+    ).toBe('29');
   });
 });

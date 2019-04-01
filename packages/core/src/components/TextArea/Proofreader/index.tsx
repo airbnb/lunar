@@ -140,7 +140,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       // and dimensions may be out of sync, so we need to manually update them.
       // Don't use RAF though as it may take too long to render.
       if (value.length < prevProps.value.length) {
-        setTimeout(this.performSyncScroll, 0);
+        window.setTimeout(this.performSyncScroll, 0);
       }
     }
   }
@@ -505,7 +505,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     // will not fire when scrolled to the very bottom, so we
     // get into a weird state where the scroll positions don't match.
     // Add a small timeout to fix this issue.
-    clearTimeout(this.scrollTimeout);
+    window.clearTimeout(this.scrollTimeout);
 
     this.scrollTimeout = window.setTimeout(this.syncScrollPositions, 500);
   };

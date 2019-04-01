@@ -1,19 +1,29 @@
 import removeFocusOnMouseUp from '../../src/utils/removeFocusOnMouseUp';
 
-jest.useFakeTimers();
-
 describe('removeFocusOnMouseUp()', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   it('triggers blur on target', () => {
-    const spy = jest.fn();
+    const timeoutSpy = jest.spyOn(window, 'setTimeout');
+    const blurSpy = jest.fn();
 
     removeFocusOnMouseUp({
       // @ts-ignore Allow fake event
-      target: { blur: spy },
+      target: { blur: blurSpy },
     });
 
-    expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(timeoutSpy).toHaveBeenCalledTimes(1);
 
     jest.runOnlyPendingTimers();
-    expect(spy).toHaveBeenCalled();
+
+    expect(blurSpy).toHaveBeenCalled();
+
+    timeoutSpy.mockRestore();
   });
 });

@@ -79,7 +79,7 @@ class DatePickerInputDemo extends React.Component {
   }
 
   handleDayClick() {
-    setTimeout(() => this.ref && this.ref.focus(), 0);
+    window.setTimeout(() => this.ref && this.ref.focus(), 0);
   }
 
   handleFromChange(value, from) {

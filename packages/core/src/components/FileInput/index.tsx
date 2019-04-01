@@ -151,7 +151,7 @@ export default class FileInput extends React.Component<Props, State> {
             smartCount={props.multiple ? 0 : 1}
           />
 
-          {files.length > 0 && ` (${files.length})`}
+          {files.length > 0 && <span>{` (${files.length})`}</span>}
         </FormInputButton>
 
         {files.length > 0 && !fieldProps.inline && (
