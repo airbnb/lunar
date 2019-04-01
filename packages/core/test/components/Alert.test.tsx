@@ -7,7 +7,7 @@ import { STATUSES as BASE_STATUSES } from '../../src/constants';
 
 const STATUSES = [...BASE_STATUSES];
 
-function unwrap(element: any): Enzyme.ShallowWrapper {
+function unwrap(element: any): Enzyme.ShallowWrapper<any, any> {
   return unwrapHOCs(shallow(element), 'Alert', {}, { render: true });
 }
 

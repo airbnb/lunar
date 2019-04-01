@@ -81,13 +81,19 @@ describe('<FileInput />', () => {
   it('shows file count in button when files are selected', () => {
     const wrapper = shallow(<FileInput {...props} />);
 
-    expect(wrapper.find(FormInputButton).prop('children')[1]).toBe(false);
+    expect(wrapper.find(FormInputButton).find('span')).toHaveLength(0);
 
     wrapper.setState({
       files: [new File([], 'foo.png')],
     });
 
-    expect(wrapper.find(FormInputButton).prop('children')[1]).toBe(' (1)');
+    expect(wrapper.find(FormInputButton).find('span')).toHaveLength(1);
+    expect(
+      wrapper
+        .find(FormInputButton)
+        .find('span')
+        .prop('children'),
+    ).toBe(' (1)');
   });
 
   it('shows a table with 4 columns when files exist', () => {

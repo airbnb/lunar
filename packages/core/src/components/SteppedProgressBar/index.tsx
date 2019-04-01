@@ -20,7 +20,6 @@ export class SteppedProgressBar extends React.Component<Props & WithStylesProps>
 
     return (
       <div {...css(styles.bar)}>
-        {/* eslint-disable-next-line unicorn/no-fn-reference-in-iterator */}
         {React.Children.map(children, (child, index) =>
           React.cloneElement(child as React.ReactElement<any>, {
             first: index === 0,

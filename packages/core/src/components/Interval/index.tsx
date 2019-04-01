@@ -30,12 +30,12 @@ export default class Interval extends React.PureComponent<Props, State> {
   }
 
   componentWillUnmount() {
-    /* istanbul ignore next */
+    // istanbul ignore next
     if (this.timer) {
-      clearTimeout(this.timer);
+      window.clearTimeout(this.timer);
     }
 
-    /* istanbul ignore next */
+    // istanbul ignore next
     if (this.ric) {
       window.cancelIdleCallback(this.ric);
     }

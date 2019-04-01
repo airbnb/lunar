@@ -28,11 +28,16 @@ export default class PriceGroup extends React.PureComponent<Props> {
 
   render() {
     const { amounts, divider, ...restProps } = this.props;
+    const { USD, ...amountsWithoutUSD } = amounts;
 
     // Sort the currencies so that USD is last
-    const currencies = Object.keys(amounts);
+    const currencies = Object.keys(amountsWithoutUSD);
 
-    currencies.sort((a, b) => (a === DEFAULT_CURRENCY ? 1 : a.localeCompare(b)));
+    currencies.sort((a, b) => a.localeCompare(b));
+
+    if (typeof USD !== 'undefined') {
+      currencies.push(DEFAULT_CURRENCY);
+    }
 
     // Loop through and generate the prices
     const output: JSX.Element[] = [];

@@ -221,7 +221,7 @@ describe('<Accordion />', () => {
     wrapper
       .find(AccordionItem)
       .at(0)
-      .prop('onClick')(0);
+      .prop('onClick')!(0);
 
     expect(wrapper.state('index')).toBe(0);
   });
@@ -238,7 +238,7 @@ describe('<Accordion />', () => {
     wrapper
       .find(AccordionItem)
       .at(0)
-      .prop('onClick')(0);
+      .prop('onClick')!(0);
 
     expect(wrapper.state('index')).toBe(-1);
   });

@@ -95,7 +95,6 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
     let content = null;
     const nav = (
       <nav role="tablist" {...css(styles.nav, borderless && styles.nav_borderless)}>
-        {/* eslint-disable-next-line unicorn/no-fn-reference-in-iterator */}
         {React.Children.map(children, (child, i) => {
           if (!child) {
             return null;

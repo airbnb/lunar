@@ -44,7 +44,7 @@ export default class Copy extends React.Component<Props, State> {
   };
 
   private handleMouseLeave = () => {
-    setTimeout(() => {
+    window.setTimeout(() => {
       this.setState({
         copied: false,
       });

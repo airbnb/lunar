@@ -22,7 +22,6 @@ export class Breadcrumbs extends React.Component<Props & WithStylesProps> {
     return (
       <nav aria-label={accessibilityLabel}>
         <ol {...css(styles.ol)}>
-          {/* eslint-disable-next-line unicorn/no-fn-reference-in-iterator */}
           {React.Children.map(children, child => {
             if (!child) {
               return null;

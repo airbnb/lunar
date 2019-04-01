@@ -29,7 +29,7 @@ describe('<MenuToggle />', () => {
       </MenuToggle>,
     ).dive();
 
-    const iconDown = wrapper.find(Button).prop('afterIcon');
+    const iconDown = wrapper.find(Button).prop('afterIcon') as React.ReactElement;
     expect(iconDown).not.toBeNull();
     expect(iconDown.type).toBe(IconChevronDown);
 
@@ -37,7 +37,7 @@ describe('<MenuToggle />', () => {
       opened: true,
     });
 
-    const iconUp = wrapper.find(Button).prop('afterIcon');
+    const iconUp = wrapper.find(Button).prop('afterIcon') as React.ReactElement;
     expect(iconUp).not.toBeNull();
     expect(iconUp.type).toBe(IconChevronUp);
   });
@@ -49,7 +49,7 @@ describe('<MenuToggle />', () => {
       </MenuToggle>,
     ).dive();
 
-    expect(wrapper.find(Button).prop('afterIcon').props.size).toBe('1.5em');
+    expect((wrapper.find(Button).prop('afterIcon') as React.ReactElement).props.size).toBe('1.5em');
   });
 
   it('renders large icon size', () => {
@@ -59,7 +59,7 @@ describe('<MenuToggle />', () => {
       </MenuToggle>,
     ).dive();
 
-    expect(wrapper.find(Button).prop('afterIcon').props.size).toBe('2em');
+    expect((wrapper.find(Button).prop('afterIcon') as React.ReactElement).props.size).toBe('2em');
   });
 
   it('renders small icon size', () => {
@@ -69,7 +69,7 @@ describe('<MenuToggle />', () => {
       </MenuToggle>,
     ).dive();
 
-    expect(wrapper.find(Button).prop('afterIcon').props.size).toBe('1em');
+    expect((wrapper.find(Button).prop('afterIcon') as React.ReactElement).props.size).toBe('1em');
   });
 
   it('renders a list with max height', () => {

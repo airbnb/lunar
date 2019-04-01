@@ -61,7 +61,7 @@ export class Toast extends React.Component<Props & WithStylesProps> {
   componentDidMount() {
     const { delay = 0, duration = 0 } = this.props;
 
-    setTimeout(this.showToast, delay);
+    window.setTimeout(this.showToast, delay);
 
     if (duration > 0) {
       this.hideTimer = window.setTimeout(this.handleClosePress, delay + duration);

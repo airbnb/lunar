@@ -24,11 +24,8 @@ export class ButtonGroup extends React.Component<Props & WithStylesProps> {
 
     return (
       <div {...css(styles.buttonGroup, stacked && styles.buttonGroup_stacked)}>
-        {React.Children.map(
-          // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
-          children,
-          child =>
-            child ? <div {...css(stacked ? styles.cell_stacked : styles.cell)}>{child}</div> : null,
+        {React.Children.map(children, child =>
+          child ? <div {...css(stacked ? styles.cell_stacked : styles.cell)}>{child}</div> : null,
         )}
       </div>
     );
