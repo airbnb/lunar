@@ -20,9 +20,9 @@ deploy:
     on:
       branch: master
       node: '10'
-  - provider: script
-    script: npm run autorelease
-    skip_cleanup: true
-    on:
-      branch: master
-      node: '10'
+  # - provider: script
+  #   script: npm run autorelease
+  #   skip_cleanup: true
+  #   on:
+  #     branch: master
+  #     node: '10'
