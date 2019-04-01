@@ -32,7 +32,7 @@ export default class PriceGroup extends React.PureComponent<Props> {
     // Sort the currencies so that USD is last
     const currencies = Object.keys(amounts);
 
-    currencies.sort((a, b) => (a === DEFAULT_CURRENCY ? 1 : a.localeCompare(b)));
+    currencies.sort((a, b) => (a === DEFAULT_CURRENCY ? 2 : a.localeCompare(b)));
 
     // Loop through and generate the prices
     const output: JSX.Element[] = [];

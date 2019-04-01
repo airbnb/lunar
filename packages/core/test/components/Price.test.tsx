@@ -44,7 +44,7 @@ describe('<Price />', () => {
         display: 'code',
       });
 
-      expect(wrapper.text()).toBe('JPY 12,300');
+      expect(wrapper.text()).toMatch(/JPY\s*12,300/);
 
       wrapper.setProps({
         display: 'name',
@@ -147,7 +147,7 @@ describe('<Price />', () => {
         display: 'code',
       });
 
-      expect(wrapper.text()).toBe('JPY 12,300');
+      expect(wrapper.text()).toMatch(/JPY\s*12,300/);
 
       wrapper.setProps({
         display: 'name',
