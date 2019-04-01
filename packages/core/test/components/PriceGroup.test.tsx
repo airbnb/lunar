@@ -26,7 +26,7 @@ describe('<PriceGroup />', () => {
       <PriceGroup amounts={{ GBP: 123.45, JPY: 456.93 }} round display="code" />,
     );
 
-    expect(wrapper.text()).toBe('GBP 123.00, JPY 457');
+    expect(wrapper.text()).toMatch(/GBP\s*123\.00, JPY\s*457/);
   });
 
   it('changes the divider', () => {
