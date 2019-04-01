@@ -17,7 +17,7 @@
     "jest": "NODE_ICU_DATA=$(npx node-full-icu-path) NODE_ENV=test TZ=UTC jest --colors --logHeapUsage",
     "lint:errors": "npm run lint -- --quiet",
     "lint:in": "eslint --color --ext .ts,.tsx,.js,.jsx --report-unused-disable-directives",
-    "lint": "npm run lint:in -- ./packages/*/{src,test}",
+    "lint": "npm run lint:in ./packages/*/src ./packages/*/test",
     "posttest": "npm run lint",
     "pretest": "npm run type",
     "prettier": "prettier --write ./*.{md,json} ./packages/*/{src,test}/**/*.{ts,tsx,js,jsx,gql,graphql,yml,yaml,md}",
