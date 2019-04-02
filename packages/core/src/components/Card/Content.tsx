@@ -39,6 +39,8 @@ export type Props = {
   compact?: boolean;
   /** Whether the image content is large. */
   large?: boolean;
+  /** Max height of content. */
+  maxHeight?: number | string;
   /** Align contents in the middle vertically. */
   middleAlign?: boolean;
   /** Top image URL. */
@@ -68,6 +70,7 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
       children,
       compact,
       large,
+      maxHeight,
       middleAlign,
       onClick,
       styles,
@@ -134,6 +137,7 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
         <Row
           after={afterContent}
           before={beforeContent}
+          maxHeight={maxHeight}
           middleAlign={middleAlign}
           truncated={truncated}
         >
