@@ -24,7 +24,7 @@
     "@airbnb/lunar-test-utils": "^0.1.1-alpha.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.4.2",
+    "@babel/runtime-corejs3": "^7.4.3",
     "@types/new-relic-browser": "0.1072.1",
     "raven-js": "^3.27.0"
   }
