@@ -12,7 +12,7 @@
     "clean:hard": "npm run clean && rm -f ./packages/*/*.tsbuildinfo",
     "coverage": "npm run jest:cov",
     "gen:icon": "node ./scripts/generateIcon",
-    "ghp": "npm run sg:build && gh-pages -d public",
+    "ghp": "npm run sg:build && node ./scripts/publishGitHubPages",
     "jest:cov": "npm run jest -- --coverage",
     "jest": "NODE_ICU_DATA=$(npx node-full-icu-path) NODE_ENV=test TZ=UTC jest --colors --logHeapUsage",
     "lint:errors": "npm run lint -- --quiet",
