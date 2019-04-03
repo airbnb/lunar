@@ -141,7 +141,7 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
           commonMode="frequently-used"
           columnCount={10}
           emojiPadding={5}
-          emojiPath={Core.settings.emojiCdn}
+          emojiPath={Core.settings.emojiCDN}
           emojiSize={20}
           emojiLargeSize={48}
           stickyGroupHeader

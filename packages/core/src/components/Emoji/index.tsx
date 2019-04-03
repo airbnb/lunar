@@ -18,7 +18,7 @@ export class Emoji extends React.PureComponent<Props & WithEmojiDataProps> {
         emojiSize="1.25em"
         emojiLargeSize="1.25em"
         {...this.props}
-        emojiPath={Core.settings.emojiCdn}
+        emojiPath={Core.settings.emojiCDN}
       />
     );
   }

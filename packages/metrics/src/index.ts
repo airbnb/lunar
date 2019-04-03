@@ -4,15 +4,15 @@ import hasNewRelic from './utils/hasNewRelic';
 export type IgnoreError = string | RegExp;
 
 export type Settings = {
-  context: { [key: string]: unknown };
-  ignoreErrors: IgnoreError[];
-  sentryKey: string;
-  sentryProject: string;
-  userID: number | null;
+  context?: { [key: string]: unknown };
+  ignoreErrors?: IgnoreError[];
+  sentryKey?: string;
+  sentryProject?: string;
+  userID?: number | null;
 };
 
 class Metrics {
-  settings: Settings = {
+  settings: Required<Settings> = {
     context: {},
     ignoreErrors: [],
     sentryKey: '',
@@ -20,7 +20,7 @@ class Metrics {
     userID: null,
   };
 
-  initialize(settings: Partial<Settings> = {}) {
+  initialize(settings?: Settings) {
     this.settings = {
       ...this.settings,
       ...settings,

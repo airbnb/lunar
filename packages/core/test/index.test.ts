@@ -3,7 +3,7 @@ import { Settings as LuxonSettings } from 'luxon';
 import Core, { Settings } from '../src';
 
 describe('Core', () => {
-  let oldSettings: Settings;
+  let oldSettings: Required<Settings>;
 
   beforeEach(() => {
     oldSettings = Core.settings;
@@ -16,6 +16,7 @@ describe('Core', () => {
   describe('initialize()', () => {
     it('sets settings', () => {
       Core.initialize({
+        name: 'Lunar',
         defaultLocale: 'ja',
       });
 
@@ -30,7 +31,9 @@ describe('Core', () => {
       const bootAesthetic = jest.spyOn(Core, 'bootstrapAesthetic');
       const bootLuxon = jest.spyOn(Core, 'bootstrapLuxon');
 
-      Core.initialize();
+      Core.initialize({
+        name: 'Lunar',
+      });
 
       expect(bootAesthetic).toHaveBeenCalled();
       expect(bootLuxon).toHaveBeenCalled();

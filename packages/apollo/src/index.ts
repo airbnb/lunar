@@ -7,23 +7,25 @@ import { HttpLink } from 'apollo-link-http';
 import Mutation from './components/Mutation';
 import Query from './components/Query';
 import Provider from './components/Provider';
+// @ts-ignore
+import pkg from '../package.json';
 
 export * from 'apollo-client';
 
 export { onError, HttpLink, Mutation, Query, Provider };
 
 export type Settings = {
-  links: ApolloLink[];
+  links?: ApolloLink[];
 };
 
 class Apollo {
-  settings: Settings = {
+  settings: Required<Settings> = {
     links: [],
   };
 
   protected client?: ApolloClient<any>;
 
-  initialize(settings: Partial<Settings> = {}) {
+  initialize(settings?: Settings) {
     this.settings = {
       ...this.settings,
       ...settings,
@@ -44,7 +46,7 @@ class Apollo {
       connectToDevTools: __DEV__,
       link: ApolloLink.from(links),
       name: Core.settings.name,
-      version: '1.0.0',
+      version: pkg.version,
     });
 
     if (__DEV__) {
