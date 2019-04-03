@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable import/no-extraneous-dependencies */
-
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
