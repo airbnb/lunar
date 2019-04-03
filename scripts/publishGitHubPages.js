@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-const gph = require('gh-pages');
+const ghp = require('gh-pages');
 
-gph.publish(
+ghp.publish(
   'public',
   {
     repo: `https://${process.env.GH_TOKEN}@github.com/airbnb/lunar.git`,
     silent: true,
   },
   () => {
-    console.log('Published styleguide to GitHub pages!');
+    console.log('Published style guide to GitHub pages!');
   },
 );
