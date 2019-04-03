@@ -5,6 +5,8 @@ node_js:
   - '8'
 matrix:
   fast_finish: true
+  allow_failures:
+    - node_js: 'node'
 before_script:
   - npm run bootstrap
   - npm run build
