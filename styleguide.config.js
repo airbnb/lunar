@@ -4,7 +4,13 @@ const camelCase = require('lodash/camelCase');
 const upperFirst = require('lodash/upperFirst');
 const docgenTypescript = require('react-docgen-typescript');
 
-const sections = [];
+const sections = [
+  {
+    name: 'Lunar',
+    content: './guide/README.md',
+  },
+];
+
 const aliases = {
   ':core': path.join(__dirname, 'packages/core/src'),
   ':icons': path.join(__dirname, 'packages/icons/src'),
