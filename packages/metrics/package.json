@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-metrics",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0",
   "description": "Metrics handling for Lunar.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -20,8 +20,8 @@
     "@airbnb/lunar": "^1.0.0"
   },
   "devDependencies": {
-    "@airbnb/lunar": "^1.0.0-alpha.1",
-    "@airbnb/lunar-test-utils": "^0.1.1-alpha.0"
+    "@airbnb/lunar": "^1.0.0",
+    "@airbnb/lunar-test-utils": "^1.0.0"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.4.3",
