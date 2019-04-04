@@ -10,21 +10,32 @@ matrix:
 before_script:
   - npm run bootstrap
   - npm run build
-script:
-  - npm test
+# script:
+#   - npm test
 # before_deploy:
 #   - git config --local user.name "Airbnb Release Bot"
 #   - git config --local user.email "airbnb-cli-bot@airbnb.com"
+jobs:
+  include:
+    - stage: check
+      name: Danger Check
+      script: npx danger ci
+      node_js: '10'
+    - stage: test
+      name: Jest
+      script: npm run jest:coverage
+    - name: ESLint
+      script: npm run lint:errors
 deploy:
   - provider: script
-    script: npm run ghp
+    script: npm run deploy:ghp
     skip_cleanup: true
     on:
       branch: master
-      node: '10'
-  # - provider: script
-  #   script: npm run autorelease
-  #   skip_cleanup: true
-  #   on:
-  #     branch: master
-  #     node: '10'
+      node_js: '10'
+# - provider: script
+#   script: npm run deploy:release
+#   skip_cleanup: true
+#   on:
+#     branch: master
+#     node_js: '10'
