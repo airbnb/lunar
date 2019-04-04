@@ -1,28 +1,25 @@
 language: node_js
+node_js: '10'
 before_script:
   - npx danger ci
   - npm run bootstrap
   - npm run build
-script: echo "Skip"
-# before_deploy:
-#   - git config --local user.name "Airbnb Release Bot"
-#   - git config --local user.email "airbnb-cli-bot@airbnb.com"
+script:
+  - echo "Skip"
 matrix:
   fast_finish: true
-  allow_failures:
-    - node_js: 'node'
 jobs:
   include:
-    - name: Jest @ 8
+    - name: Test @ 8
       script: npm run jest:coverage -- -w 4
       node_js: '8'
-    - name: Jest @ 10
+    - name: Test @ 10
       script: npm run jest:coverage -- -w 4
       node_js: '10'
-    - name: ESLint @ 8
+    - name: Lint @ 8
       script: npm run lint:errors
       node_js: '8'
-    - name: ESLint @ 10
+    - name: Lint @ 10
       script: npm run lint:errors
       node_js: '10'
 deploy:
