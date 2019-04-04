@@ -8,6 +8,7 @@ matrix:
   allow_failures:
     - node_js: 'node'
 before_script:
+  - npx danger ci
   - npm run bootstrap
   - npm run build
 # script:
@@ -17,12 +18,7 @@ before_script:
 #   - git config --local user.email "airbnb-cli-bot@airbnb.com"
 jobs:
   include:
-    - stage: check
-      name: Danger Check
-      script: npx danger ci
-      node_js: '10'
-    - stage: test
-      name: Jest
+    - name: Jest
       script: npm run jest:coverage -- -w 4
     - name: ESLint
       script: npm run lint:errors
