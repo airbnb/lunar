@@ -1,12 +1,4 @@
 language: node_js
-node_js:
-  - 'node'
-  - '10'
-  - '8'
-matrix:
-  fast_finish: true
-  allow_failures:
-    - node_js: 'node'
 before_script:
   - npx danger ci
   - npm run bootstrap
@@ -16,12 +8,22 @@ before_script:
 # before_deploy:
 #   - git config --local user.name "Airbnb Release Bot"
 #   - git config --local user.email "airbnb-cli-bot@airbnb.com"
+matrix:
+  fast_finish: true
+  allow_failures:
+    - node_js: 'node'
 jobs:
   include:
     - name: Jest
       script: npm run jest:coverage -- -w 4
+      node_js:
+        - '10'
+        - '8'
     - name: ESLint
       script: npm run lint:errors
+      node_js:
+        - '10'
+        - '8'
 deploy:
   - provider: script
     script: npm run deploy:ghp
