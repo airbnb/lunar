@@ -3,8 +3,7 @@ before_script:
   - npx danger ci
   - npm run bootstrap
   - npm run build
-# script:
-#   - npm test
+script: echo "Skip"
 # before_deploy:
 #   - git config --local user.name "Airbnb Release Bot"
 #   - git config --local user.email "airbnb-cli-bot@airbnb.com"
@@ -14,16 +13,18 @@ matrix:
     - node_js: 'node'
 jobs:
   include:
-    - name: Jest
+    - name: Jest @ 8
       script: npm run jest:coverage -- -w 4
-      node_js:
-        - '10'
-        - '8'
-    - name: ESLint
+      node_js: '8'
+    - name: Jest @ 10
+      script: npm run jest:coverage -- -w 4
+      node_js: '10'
+    - name: ESLint @ 8
       script: npm run lint:errors
-      node_js:
-        - '10'
-        - '8'
+      node_js: '8'
+    - name: ESLint @ 10
+      script: npm run lint:errors
+      node_js: '10'
 deploy:
   - provider: script
     script: npm run deploy:ghp
