@@ -23,7 +23,7 @@ jobs:
       node_js: '10'
     - stage: test
       name: Jest
-      script: npm run jest:coverage
+      script: npm run jest:coverage -- -w 4
     - name: ESLint
       script: npm run lint:errors
 deploy:
