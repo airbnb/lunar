@@ -17,7 +17,7 @@
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./esm"
   },
   "peerDependencies": {
-    "@airbnb/lunar": "^1.0.0-alpha.0",
+    "@airbnb/lunar": "^1.0.0",
     "graphql": "^14.1.0",
     "graphql-tag": "^2.10.0",
     "react": "^16.8.0"
@@ -31,16 +31,16 @@
     "react-test-renderer": "^16.8.6"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.4.2",
-    "@types/graphql": "^14.0.7",
-    "@types/lodash": "^4.14.121",
+    "@babel/runtime-corejs3": "^7.4.3",
+    "@types/graphql": "^14.2.0",
+    "@types/lodash": "^4.14.123",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
-    "apollo-link": "^1.2.8",
-    "apollo-link-error": "^1.1.7",
-    "apollo-link-http": "^1.5.11",
+    "apollo-link": "^1.2.11",
+    "apollo-link-error": "^1.1.10",
+    "apollo-link-http": "^1.5.14",
     "lodash": "^4.17.11",
-    "react-apollo": "^2.5.1",
-    "utility-types": "^3.4.1"
+    "react-apollo": "^2.5.3",
+    "utility-types": "^3.5.0"
   }
 }

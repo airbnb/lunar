@@ -1,10 +1,10 @@
 /* global BroadcastChannel */
 
-export type Handler = (value: unknown) => void;
+export type Handler = (value: any) => void;
 
 export type Message = {
   key: string;
-  value: unknown;
+  value: any;
 };
 
 export class Crosstab {
@@ -38,7 +38,7 @@ export class Crosstab {
     }
   }
 
-  emit(key: string, value?: unknown, selfEmit: boolean = false) {
+  emit(key: string, value?: any, selfEmit: boolean = false) {
     const message: Message = {
       key,
       value,

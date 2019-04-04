@@ -17,7 +17,7 @@
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./esm"
   },
   "peerDependencies": {
-    "@airbnb/lunar-icons": "^1.0.0-alpha.0",
+    "@airbnb/lunar-icons": "^1.0.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
@@ -28,14 +28,14 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.4.2",
+    "@babel/runtime-corejs3": "^7.4.3",
     "@types/airbnb-prop-types": "^2.11.0",
     "@types/hoist-non-react-statics": "^3.3.0",
-    "@types/lodash": "^4.14.121",
+    "@types/lodash": "^4.14.123",
     "@types/luxon": "^1.12.0",
     "@types/prop-types": "^15.7.0",
-    "@types/react": "^16.8.6",
-    "@types/react-dom": "^16.8.2",
+    "@types/react": "^16.8.12",
+    "@types/react-dom": "^16.8.3",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
     "aesthetic": "^3.4.1",
@@ -52,13 +52,13 @@
     "interweave-emoji": "^3.1.3",
     "interweave-emoji-picker": "^3.1.3",
     "lodash": "^4.17.11",
-    "luxon": "^1.11.4",
+    "luxon": "^1.12.0",
     "ms": "^2.1.1",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.2",
     "react-day-picker": "^7.3.0",
     "shader": "^1.0.0",
     "shallowequal": "^1.1.0",
-    "utility-types": "^3.4.1",
+    "utility-types": "^3.5.0",
     "uuid": "^3.3.2"
   }
 }

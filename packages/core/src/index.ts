@@ -19,25 +19,25 @@ import {
 } from './types';
 
 export type Settings = {
-  defaultLocale: Locale;
-  defaultTimezone: TimeZone;
-  emojiCdn: EmojiPath;
-  errorUrl: string;
-  fontFaces: { [fontFamily: string]: FontFace[] };
-  fontFamily: string;
-  logger: Logger | null;
+  defaultLocale?: Locale;
+  defaultTimezone?: TimeZone;
+  emojiCDN?: EmojiPath;
+  errorURL?: string;
+  fontFaces?: { [fontFamily: string]: FontFace[] };
+  fontFamily?: string;
+  logger?: Logger | null;
   name: string;
-  theme: 'light' | 'dark';
-  translator: Translator | null;
-  translatorComponent: React.ComponentType<TranslateProps> | null;
+  theme?: 'light' | 'dark';
+  translator?: Translator | null;
+  translatorComponent?: React.ComponentType<TranslateProps> | null;
 };
 
 class Core {
-  settings: Settings = {
+  settings: Required<Settings> = {
     defaultLocale: getLocaleFromClient() || DEFAULT_LOCALE,
     defaultTimezone: getTimezoneFromClient() || DEFAULT_TIMEZONE,
-    emojiCdn: '',
-    errorUrl: '',
+    emojiCDN: '',
+    errorURL: '',
     fontFaces: {},
     fontFamily:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
@@ -50,7 +50,7 @@ class Core {
 
   protected aesthetic?: Aesthetic<Theme, NativeBlock, ParsedBlock>;
 
-  initialize(settings: Partial<Settings> = {}) {
+  initialize(settings: Settings) {
     this.settings = {
       ...this.settings,
       ...settings,

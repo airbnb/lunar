@@ -1,30 +1,37 @@
 language: node_js
-node_js:
-  - 'node'
-  - '10'
-  - '8'
-matrix:
-  fast_finish: true
-  allow_failures:
-    - node_js: 'node'
+node_js: '10'
 before_script:
+  - npx danger ci
   - npm run bootstrap
   - npm run build
 script:
-  - npm test
-# before_deploy:
-#   - git config --local user.name "Airbnb Release Bot"
-#   - git config --local user.email "airbnb-cli-bot@airbnb.com"
+  - echo "Skip"
+matrix:
+  fast_finish: true
+jobs:
+  include:
+    - name: Test @ 8
+      script: npm run jest:coverage -- -w 4
+      node_js: '8'
+    - name: Test @ 10
+      script: npm run jest:coverage -- -w 4
+      node_js: '10'
+    - name: Lint @ 8
+      script: npm run lint:errors
+      node_js: '8'
+    - name: Lint @ 10
+      script: npm run lint:errors
+      node_js: '10'
 deploy:
   - provider: script
-    script: npm run ghp
+    script: npm run deploy:ghp
     skip_cleanup: true
     on:
       branch: master
-      node: '10'
-  # - provider: script
-  #   script: npm run autorelease
-  #   skip_cleanup: true
-  #   on:
-  #     branch: master
-  #     node: '10'
+      node_js: '10'
+# - provider: script
+#   script: npm run deploy:release
+#   skip_cleanup: true
+#   on:
+#     branch: master
+#     node_js: '10'

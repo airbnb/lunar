@@ -1,5 +1,5 @@
 import { danger, fail, warn } from 'danger';
-import { checkCommitFormat } from 'conventional-changelog-beemo';
+import checkCommitFormat from 'conventional-changelog-beemo/lib/checkCommitFormat';
 
 // Verify the PR title contains the conventional-changelog required prefix.
 // https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-eslint

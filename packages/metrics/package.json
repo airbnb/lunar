@@ -17,14 +17,14 @@
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./esm"
   },
   "peerDependencies": {
-    "@airbnb/lunar": "^1.0.0-alpha.0"
+    "@airbnb/lunar": "^1.0.0"
   },
   "devDependencies": {
     "@airbnb/lunar": "^1.0.0-alpha.1",
     "@airbnb/lunar-test-utils": "^0.1.1-alpha.0"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.4.2",
+    "@babel/runtime-corejs3": "^7.4.3",
     "@types/new-relic-browser": "0.1072.1",
     "raven-js": "^3.27.0"
   }

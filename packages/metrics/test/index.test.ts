@@ -14,7 +14,7 @@ jest.mock('raven-js', () => {
   return ravenClass;
 });
 
-const settings: Settings = {
+const settings: Required<Settings> = {
   context: {},
   ignoreErrors: [],
   sentryKey: '',

@@ -2,7 +2,7 @@ import ApolloClient from 'apollo-client';
 import Apollo, { Settings, HttpLink } from '../src';
 
 describe('Apollo', () => {
-  let oldSettings: Settings;
+  let oldSettings: Required<Settings>;
 
   beforeEach(() => {
     oldSettings = Apollo.settings;

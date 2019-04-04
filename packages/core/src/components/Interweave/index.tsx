@@ -76,7 +76,7 @@ export class Interweave extends React.PureComponent<Props & WithEmojiDataProps> 
         content={content}
         filters={filters}
         matchers={finalMatchers}
-        emojiPath={Core.settings.emojiCdn}
+        emojiPath={Core.settings.emojiCDN}
         emojiSize="1.25em"
         transform={transformer}
         newWindow

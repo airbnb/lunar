@@ -4,7 +4,7 @@ import Core, { Settings } from '../../src';
 import Translate from '../../src/components/Translate';
 
 describe('<Translate />', () => {
-  let oldSettings: Settings;
+  let oldSettings: Required<Settings>;
 
   function T() {
     return null;

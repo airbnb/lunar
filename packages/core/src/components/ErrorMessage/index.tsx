@@ -23,7 +23,7 @@ export function getErrorMessage(error: any, includeCode: boolean = false): strin
 
 /* istanbul ignore next */
 function createRedirectURL(id: string, url?: string) {
-  return () => window.open(url || Core.settings.errorUrl.replace('{{id}}', id), '_blank');
+  return () => window.open(url || Core.settings.errorURL.replace('{{id}}', id), '_blank');
 }
 
 export type Props = {
