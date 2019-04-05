@@ -26,7 +26,17 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 module.exports = {
-  ignore: ['node_modules/', 'public/', 'esm/', 'lib/', 'tmp/', 'dist/', '__tests__', '__mocks__'],
+  ignore: [
+    'node_modules/',
+    'public/',
+    'esm/',
+    'lib/',
+    'tmp/',
+    'dist/',
+    '__tests__',
+    '__mocks__',
+    /\.story\.tsx?$/,
+  ],
   plugins,
   presets: [
     [

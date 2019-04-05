@@ -16,5 +16,6 @@
     "removeComments": false,
     "strict": true,
     "target": "esnext"
-  }
+  },
+  "exclude": ["*.story.ts", "*.story.tsx"]
 }
