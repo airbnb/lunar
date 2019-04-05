@@ -114,6 +114,7 @@
     "prettier": "^1.16.4",
     "react": "^16.8.6",
     "react-docgen-typescript": "^1.12.3",
+    "react-docgen-typescript-loader": "^3.1.0",
     "react-dom": "^16.8.6",
     "react-styleguidist": "^9.0.5",
     "svgo": "^1.2.0",

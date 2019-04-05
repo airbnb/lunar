@@ -1,18 +1,18 @@
 const path = require('path');
 
 module.exports = async ({ config }) => {
-  console.log(config.module);
+  const babelRule = config.module.rules[0];
 
   // Enable TypeScript support
   config.module.rules.push({
-    test: /\.(ts|tsx)$/,
+    ...babelRule,
+    test: /\.tsx?$/,
     use: [
       {
-        loader: require.resolve('awesome-typescript-loader'),
+        loader: 'babel-loader',
       },
-      // Optional
       {
-        loader: require.resolve('react-docgen-typescript-loader'),
+        loader: 'react-docgen-typescript-loader',
       },
     ],
   });

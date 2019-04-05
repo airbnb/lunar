@@ -6,5 +6,5 @@ addParameters({});
 const glob = require.context('../packages', true, /\.story\.tsx?$/);
 
 configure(() => {
-  glob.keys().forEach(filename => req(filename));
+  glob.keys().forEach(filename => glob(filename));
 }, module);
