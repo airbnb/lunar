@@ -67,7 +67,7 @@ export class Toast extends React.Component<Props & WithStylesProps> {
     window.setTimeout(this.showToast, delay);
 
     if (duration > 0) {
-      this.hideTimer = window.setTimeout(this.handleClosePress, delay + duration);
+      this.hideTimer = window.setTimeout(this.handleClose, delay + duration);
     }
 
     if (crosstabClose) {
