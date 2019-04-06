@@ -2,6 +2,7 @@ import { addDecorator, addParameters, configure } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import { withInfo } from '@storybook/addon-info';
 import Lunar from '@airbnb/lunar';
+import Spacing from '@airbnb/lunar/lib/components/Spacing';
 
 Lunar.initialize({
   name: 'Lunar',
@@ -13,6 +14,8 @@ Lunar.initialize({
 addDecorator(withA11y);
 
 addDecorator(withInfo);
+
+addDecorator(story => <Spacing all={2}>{story()}</Spacing>);
 
 addParameters({
   options: {

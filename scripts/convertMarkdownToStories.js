@@ -4,6 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const glob = require('fast-glob');
+const upperFirst = require('lodash/upperFirst');
 const Parser = require('remark-parse/lib/parser');
 
 function createHeader(packageName, componentName, imports = []) {
@@ -13,7 +14,7 @@ import { action } from '@storybook/addon-actions';
 ${Array.from(imports).join('\n')}
 import ${componentName} from './${componentName}';
 
-storiesOf('${packageName}/${componentName}', module)`;
+storiesOf('${upperFirst(packageName)}/${componentName}', module)`;
 }
 
 function createStory(title, markup) {
@@ -32,7 +33,7 @@ function cleanupCode(baseCode, componentName) {
     code = `<>${code}</>`;
   }
 
-  return code;
+  return code.replace(/'\.\.\//g, "'./").replace(/debug\(/g, 'action(');
 }
 
 function extractImports(baseCode) {
@@ -40,7 +41,9 @@ function extractImports(baseCode) {
   const code = baseCode.replace(
     /import ([a-z0-9,{} ]+) from '([a-z0-9./:]+)';/giu,
     (match, specifiers, basePath) => {
-      const importPath = basePath.replace(':icons', '@airbnb/lunar-icons/lib');
+      const importPath = basePath
+        .replace(':core', '@airbnb/lunar/lib')
+        .replace(':icons', '@airbnb/lunar-icons/lib');
 
       imports.push(`import ${specifiers} from '${importPath}';`);
 

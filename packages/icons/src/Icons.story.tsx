@@ -122,7 +122,7 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
     const { color, size } = this.state;
 
     return (
-      <Spacing all={2}>
+      <div>
         <Grid>
           <Col span={6}>
             <Select label="Color" name="color" value={color} onChange={this.handleColorChange}>
@@ -152,7 +152,7 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
             size={size}
           />
         ))}
-      </Spacing>
+      </div>
     );
   }
 }
