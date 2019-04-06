@@ -10,7 +10,7 @@
     "clean": "rm -rf ./packages/*/{lib,esm}",
     "clean:hard": "npm run clean && rm -f ./packages/*/*.tsbuildinfo",
     "coverage": "npm run jest:cov",
-    "deploy:ghp": "npm run sg:build && node ./scripts/publishGitHubPages",
+    "deploy:ghp": "npm run storybook:build && node ./scripts/publishGitHubPages",
     "deploy:release": "npm run release:version && npm run release:publish",
     "gen:icon": "node ./scripts/generateIcon",
     "jest:coverage": "npm run jest -- --coverage",
@@ -27,8 +27,8 @@
     "sg": "NODE_ENV=development npm run storybook",
     "test": "npm run jest:cov",
     "type": "tsc --build",
-    "storybook": "start-storybook -p 6006",
-    "storybook:build": "build-storybook"
+    "storybook": "STORYBOOK=true start-storybook -p 6006",
+    "storybook:build": "STORYBOOK=true build-storybook"
   },
   "repository": {
     "type": "git",
@@ -67,6 +67,7 @@
     "@storybook/addon-actions": "^5.0.6",
     "@storybook/addon-backgrounds": "^5.0.6",
     "@storybook/addon-console": "^1.1.0",
+    "@storybook/addon-info": "^5.0.6",
     "@storybook/addon-links": "^5.0.6",
     "@storybook/addon-viewport": "^5.0.6",
     "@storybook/addons": "^5.0.6",
@@ -90,6 +91,7 @@
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
     "airbnb-js-shims": "^2.1.1",
+    "babel-loader": "^8.0.5",
     "babel-plugin-dynamic-import-node": "^2.2.0",
     "babel-plugin-transform-dev": "^2.0.1",
     "babel-plugin-typescript-to-proptypes": "^0.17.1",

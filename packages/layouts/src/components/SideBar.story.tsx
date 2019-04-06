@@ -5,7 +5,7 @@ import IconSettings from '@airbnb/lunar-icons/lib/interface/IconSettings';
 import IconChat from '@airbnb/lunar-icons/lib/interface/IconChat';
 import SideBar, { Item } from './SideBar';
 
-storiesOf('layouts/SideBar', module)
+storiesOf('Layouts/SideBar', module)
   .add('A vertical sidebar with menu items.', () => (
     <SideBar accessibilityLabel="Side menu">
       <Item icon={<IconUser accessibilityLabel="Profile" />} />

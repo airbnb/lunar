@@ -239,5 +239,11 @@ module.exports = {
         'unicorn/no-fn-reference-in-iterator': 'off',
       },
     },
+    {
+      files: ['*.{ts,tsx}'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
   ],
 };
