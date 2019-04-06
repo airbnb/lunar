@@ -5,6 +5,9 @@ import Lunar from '@airbnb/lunar';
 
 Lunar.initialize({
   name: 'Lunar',
+  emojiCDN: hexcode =>
+    `https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/${hexcode.toLowerCase()}.png`,
+  logger: console.log,
 });
 
 addDecorator(withA11y);
@@ -22,8 +25,8 @@ addParameters({
   ],
 });
 
-const glob = require.context('../packages', true, /\.story\.tsx?$/);
-
 configure(() => {
+  const glob = require.context('../packages', true, /\.story\.tsx?$/);
+
   glob.keys().forEach(filename => glob(filename));
 }, module);

@@ -240,9 +240,11 @@ module.exports = {
       },
     },
     {
-      files: ['*.{ts,tsx}'],
+      files: ['*.story.{ts,tsx}'],
       rules: {
+        'max-classes-per-file': 'off',
         'import/no-extraneous-dependencies': 'off',
+        'react/no-multi-comp': 'off',
       },
     },
   ],
