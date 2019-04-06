@@ -1,8 +1,23 @@
+import React from 'react';
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import { withInfo } from '@storybook/addon-info';
 import Lunar from '@airbnb/lunar';
-import Spacing from '@airbnb/lunar/lib/components/Spacing';
+import lightTheme from '@airbnb/lunar/lib/themes/light';
+import darkTheme from '@airbnb/lunar/lib/themes/dark';
+import createTheme from './addons/themes/createTheme';
+
+const params = new URLSearchParams(location.search.slice(1));
+const themes = {
+  light: lightTheme,
+  dark: darkTheme,
+};
+
+let theme = params.get('theme');
+
+if (theme !== 'light' && theme !== 'dark') {
+  theme = 'light';
+}
 
 Lunar.initialize({
   name: 'Lunar',
@@ -15,17 +30,16 @@ addDecorator(withA11y);
 
 addDecorator(withInfo);
 
-addDecorator(story => <Spacing all={2}>{story()}</Spacing>);
+addDecorator(story => (
+  <div style={{ padding: 20, fontSize: 15, fontFamily: Lunar.settings.fontFamily }}>{story()}</div>
+));
 
 addParameters({
   options: {
     name: 'Lunar',
+    theme: createTheme(theme, themes[theme](), Lunar.settings.fontFamily),
   },
-  backgrounds: [
-    { name: 'Transparent', value: 'transparent', default: true },
-    { name: 'White', value: '#fff' },
-    { name: 'Black', value: '#000' },
-  ],
+  backgrounds: [{ name: 'White', value: '#fff' }, { name: 'Black', value: '#000' }],
 });
 
 configure(() => {
