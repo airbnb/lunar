@@ -57,6 +57,13 @@ With a border applied.
 </StatusLabel>
 ```
 
+With compact applied.
+
+```jsx
+<StatusLabel compact>Compact</StatusLabel>
+<StatusLabel compact inverted bordered>Compact</StatusLabel>
+```
+
 Within a block of text.
 
 ```jsx
