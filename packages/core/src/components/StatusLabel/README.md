@@ -57,11 +57,12 @@ With a border applied.
 </StatusLabel>
 ```
 
-With compact applied.
+With compact padding.
 
 ```jsx
-<StatusLabel compact>Compact</StatusLabel>
-<StatusLabel compact inverted bordered>Compact</StatusLabel>
+<StatusLabel compact uppercased>Compact</StatusLabel>
+<StatusLabel info compact uppercased>Info</StatusLabel>
+<StatusLabel compact info inverted bordered uppercased>Info Inverted</StatusLabel>
 ```
 
 Within a block of text.
