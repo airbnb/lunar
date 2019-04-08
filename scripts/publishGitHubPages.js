@@ -5,7 +5,7 @@ const ghp = require('gh-pages');
 ghp.publish(
   'public',
   {
-    repo: `https://${process.env.GH_TOKEN}@github.com/airbnb/lunar.git`,
+    repo: `https://${process.env.GHP_TOKEN}@github.com/airbnb/lunar.git`,
     silent: true,
   },
   () => {
