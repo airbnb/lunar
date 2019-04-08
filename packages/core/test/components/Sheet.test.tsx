@@ -1,10 +1,12 @@
+import Enzyme, { mount, shallow } from 'enzyme';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Enzyme, { shallow, mount } from 'enzyme';
 import { mockContextConsumer, unwrapHOCs } from '@airbnb/lunar-test-utils';
-import IconButton from '../../src/components/IconButton';
+import IconButton from '../../lib/components/IconButton';
+import Row from '../../src/components/Row';
 import Sheet from '../../src/components/Sheet';
 import SheetContext from '../../src/components/Sheet/SheetContext';
+import Spacing from '../../src/components/Spacing';
 import { ESCAPE } from '../../src/keys';
 
 describe('<Sheet />', () => {
@@ -49,7 +51,7 @@ describe('<Sheet />', () => {
       </Sheet>,
     );
 
-    wrapper.find(IconButton).simulate('click');
+    shallow(wrapper.find(Row).prop('before')).simulate('click');
 
     expect(close).toHaveBeenCalled();
   });
