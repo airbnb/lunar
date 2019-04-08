@@ -113,7 +113,7 @@ export default function buildTheme(
       },
       regularButton: {
         ...font.textRegular,
-        padding: `${unit * 1.25}px ${unit * 2}px`,
+        padding: `${unit * 1.25}px ${unit * 1.5}px`,
       },
       largeButton: {
         ...font.textLarge,
