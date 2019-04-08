@@ -93,7 +93,7 @@ function convertToStory(filePath) {
 
     story.unshift(createHeader(packageName, componentName, imports));
 
-    return fs.writeFile(storyPath, story.join(''), 'utf8');
+    return fs.writeFile(storyPath, story.join(''), 'utf8').then(() => fs.remove(filePath));
   });
 }
 

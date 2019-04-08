@@ -74,4 +74,17 @@ storiesOf('Core/StatusLabel', module)
         </StatusLabel>
       </div>
     </>
+  ))
+  .add('With compact padding.', () => (
+    <>
+      <StatusLabel compact uppercased>
+        Compact
+      </StatusLabel>
+      <StatusLabel info compact uppercased>
+        Info
+      </StatusLabel>
+      <StatusLabel compact info inverted bordered uppercased>
+        Info Inverted
+      </StatusLabel>
+    </>
   ));
