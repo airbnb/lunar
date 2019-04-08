@@ -83,7 +83,8 @@ function convertToStory(filePath) {
         const result = extractImports(cleanupCode(node.value, componentName));
 
         imports = new Set([...imports, ...result.imports]);
-        story.push(createStory(title || 'NO TITLE', result.code.trim()));
+
+        story.push(createStory((title || 'NO TITLE').replace(/\s{2,}/g, ' '), result.code.trim()));
       } else {
         throw new Error(`Unsupported node type ${node.type}`);
       }
