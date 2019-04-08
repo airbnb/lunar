@@ -1,64 +1,18 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import IconSettings from '@airbnb/lunar-icons/lib/interface/IconSettings';
+import LoremIpsum from ':storybook/components/LoremIpsum';
 import SideBar, { Item } from './SideBar';
 import SplitLayout from './SplitLayout';
 
 storiesOf('Layouts/SplitLayout', module)
   .add('A split column layout with before and after aside.', () => (
-    <SplitLayout
-      after={
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
-        </div>
-      }
-      before={
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
-        </div>
-      }
-    />
+    <SplitLayout after={<LoremIpsum />} before={<LoremIpsum />} />
   ))
   .add('With side bar.', () => (
     <SplitLayout
-      after={
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
-        </div>
-      }
-      before={
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
-        </div>
-      }
+      after={<LoremIpsum />}
+      before={<LoremIpsum />}
       sideBar={
         <SideBar accessibilityLabel="Nav">
           <Item icon={<IconSettings accessibilityLabel="Settings" />} />

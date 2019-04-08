@@ -60,7 +60,7 @@ storiesOf('Core/StatusLabel', module)
   ))
   .add('Within a block of text.', () => (
     <Text>
-      Lorem ipsum dolor sit amet. <StatusLabel>Default</StatusLabel> Consectetur adipiscing elit.
+      Content before the label. <StatusLabel>Default</StatusLabel> Content after the label.
     </Text>
   ))
   .add('With before and or after icons.', () => (

@@ -2,6 +2,7 @@
 
 declare module 'fake-indexeddb';
 declare module 'full-icu';
+declare module ':storybook/components/*';
 declare module '*.jpg';
 declare module '*.png';
 

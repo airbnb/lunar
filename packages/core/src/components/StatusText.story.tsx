@@ -1,38 +1,53 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import LoremIpsum from ':storybook/components/LoremIpsum';
 import StatusText from './StatusText';
 
 storiesOf('Core/StatusText', module)
   .add('Default and status classified text.', () => (
     <>
-      <StatusText>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</StatusText>
-      <StatusText notice>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</StatusText>
-      <StatusText info>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</StatusText>
-      <StatusText success>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</StatusText>
-      <StatusText warning>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</StatusText>
-      <StatusText danger>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</StatusText>
-      <StatusText muted>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</StatusText>
+      <StatusText>
+        <LoremIpsum short />
+      </StatusText>
+      <StatusText notice>
+        <LoremIpsum short />
+      </StatusText>
+      <StatusText info>
+        <LoremIpsum short />
+      </StatusText>
+      <StatusText success>
+        <LoremIpsum short />
+      </StatusText>
+      <StatusText warning>
+        <LoremIpsum short />
+      </StatusText>
+      <StatusText danger>
+        <LoremIpsum short />
+      </StatusText>
+      <StatusText muted>
+        <LoremIpsum short />
+      </StatusText>
     </>
   ))
   .add('Can pass props to the underlying component.', () => (
     <>
       <StatusText notice micro>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <LoremIpsum short />
       </StatusText>
       <StatusText info small>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <LoremIpsum short />
       </StatusText>
       <StatusText success large>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <LoremIpsum short />
       </StatusText>
       <StatusText warning disabled>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <LoremIpsum short />
       </StatusText>
       <StatusText danger light>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <LoremIpsum short />
       </StatusText>
       <StatusText muted bold>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <LoremIpsum short />
       </StatusText>
     </>
   ));

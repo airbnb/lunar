@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import lunar from ':image/lunar-logo.png';
+import lunar from ':storybook/images/lunar-logo.png';
 import Shimmer from './Shimmer';
 import ResponsiveImage from './ResponsiveImage';
 

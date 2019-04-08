@@ -5,6 +5,7 @@ import Button from '@airbnb/lunar/lib/components/Button';
 import ButtonGroup from '@airbnb/lunar/lib/components/ButtonGroup';
 import FormActions from '@airbnb/lunar/lib/components/FormActions';
 import Text from '@airbnb/lunar/lib/components/Text';
+import LoremIpsum from ':storybook/components/LoremIpsum';
 import Input from './Form/Input';
 import TextArea from './Form/TextArea';
 import Select from './Form/Select';
@@ -136,7 +137,7 @@ storiesOf('Forms/Form', module)
       <TextArea
         label="Textarea"
         name="textarea"
-        defaultValue="Lorem ipsum..."
+        defaultValue="Type something..."
         onChange={action('onChange')}
         validator={isRequired}
         autoResize
@@ -233,9 +234,7 @@ storiesOf('Forms/Form', module)
               label="Foo"
               labelDescription={
                 <Text muted>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-                  porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed
-                  feugiat lorem vitae augue blandit, sed mollis mi laoreet.
+                  <LoremIpsum medium />
                 </Text>
               }
               topAlign
@@ -246,9 +245,7 @@ storiesOf('Forms/Form', module)
               label="Bar"
               labelDescription={
                 <Text muted>
-                  Donec auctor, enim eget tempus auctor, est lorem laoreet nisi, a rutrum dolor quam
-                  eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod erat. Fusce at
-                  fermentum velit.
+                  <LoremIpsum medium />
                 </Text>
               }
               topAlign
@@ -259,9 +256,7 @@ storiesOf('Forms/Form', module)
               label="Baz"
               labelDescription={
                 <Text muted>
-                  Nam efficitur vulputate augue non pretium. Suspendisse vitae dui elit. Aliquam
-                  erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque ullamcorper
-                  quam a nibh aliquam bibendum.
+                  <LoremIpsum medium />
                 </Text>
               }
               topAlign

@@ -2,7 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import IconBolt from '@airbnb/lunar-icons/lib/general/IconBolt';
-import lunar from ':image/lunar-logo.png';
+import LoremIpsum from ':storybook/components/LoremIpsum';
+import lunar from ':storybook/images/lunar-logo.png';
 import Text from './Text';
 import Interweave from './Interweave';
 import MessageItem from './MessageItem';
@@ -13,14 +14,10 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -30,14 +27,10 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -47,14 +40,10 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -64,14 +53,10 @@ storiesOf('Core/MessageItem', module)
       imageDescription="Link"
       imageBadgeSrc={lunar}
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -81,14 +66,10 @@ storiesOf('Core/MessageItem', module)
       icon={<IconBolt size="1.25em" />}
       imageDescription="Link"
       source="web"
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -98,14 +79,10 @@ storiesOf('Core/MessageItem', module)
       imageDescription="Link - Click to open Nova profile"
       imageSrc={lunar}
       onClickImage={action('onClickImage')}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -115,15 +92,11 @@ storiesOf('Core/MessageItem', module)
       imageDescription="Link"
       imageSrc={lunar}
       onClickTitle={action('onClickTitle')}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
       titleClickDescription="Real name: Link - Click to chat"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -133,14 +106,10 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -150,14 +119,10 @@ storiesOf('Core/MessageItem', module)
       imageDescription="Link"
       imageSrc={lunar}
       source="web"
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -166,15 +131,11 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
       titleTag="CS"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -183,7 +144,7 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
       titleTag="CS"
     >
       <Text>
@@ -197,15 +158,11 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
       titleTag="CS"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -215,15 +172,11 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
       titleTag="CS"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -233,15 +186,11 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
       titleTag="CS"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -251,15 +200,11 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
       titleTag="CS"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ))
@@ -270,14 +215,10 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      title="Lorem ipsum dolor sit amet"
+      title="Some custom title"
     >
       <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
-        sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
-        blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet
-        nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut, maximus euismod
-        erat.
+        <LoremIpsum />
       </Text>
     </MessageItem>
   ));

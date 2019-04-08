@@ -26,7 +26,7 @@ storiesOf('Core/Menu', module)
   .add('With spacious padding and custom rows.', () => (
     <Menu accessibilityLabel="User menu">
       <Row spacious>
-        <Text>Lorem ipsum dolor sit amet.</Text>
+        <Text>This is a row with very fat padding.</Text>
       </Row>
       <Item spacious>Link</Item>
     </Menu>

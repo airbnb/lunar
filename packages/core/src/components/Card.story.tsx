@@ -2,9 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
-import lunar from ':image/lunar-logo.png';
-import stars from ':image/stars.jpg';
-import moon from ':image/moon.png';
+import LoremIpsum from ':storybook/components/LoremIpsum';
+import lunar from ':storybook/images/lunar-logo.png';
+import stars from ':storybook/images/stars.jpg';
+import moon from ':storybook/images/moon.png';
 import Text from './Text';
 import ResponsiveImage from './ResponsiveImage';
 import Card, { Content } from './Card';
@@ -14,14 +15,7 @@ storiesOf('Core/Card', module)
     <Card>
       <Content>
         <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
     </Card>
@@ -30,27 +24,13 @@ storiesOf('Core/Card', module)
     <Card>
       <Content>
         <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
 
       <Content>
         <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
     </Card>
@@ -58,7 +38,9 @@ storiesOf('Core/Card', module)
   .add('With a max height.', () => (
     <Card>
       <Content middleAlign maxHeight={50}>
-        <Text>Lorem ipsum dolor sit amet.</Text>
+        <Text>
+          <LoremIpsum />
+        </Text>
       </Content>
     </Card>
   ))
@@ -66,14 +48,7 @@ storiesOf('Core/Card', module)
     <Card>
       <Content topImageSrc={stars}>
         <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
     </Card>
@@ -82,14 +57,7 @@ storiesOf('Core/Card', module)
     <Card>
       <Content large topImageSrc={stars}>
         <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
     </Card>
@@ -98,14 +66,7 @@ storiesOf('Core/Card', module)
     <Card>
       <Content beforeImageSrc={moon}>
         <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
     </Card>
@@ -114,14 +75,7 @@ storiesOf('Core/Card', module)
     <Card>
       <Content large beforeImageSrc={moon}>
         <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
     </Card>
@@ -130,14 +84,7 @@ storiesOf('Core/Card', module)
     <Card>
       <Content afterImageSrc={moon}>
         <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
     </Card>
@@ -146,14 +93,7 @@ storiesOf('Core/Card', module)
     <Card>
       <Content large afterImageSrc={moon}>
         <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
     </Card>
@@ -162,25 +102,11 @@ storiesOf('Core/Card', module)
     <Card>
       <Content truncated beforeImageSrc={stars}>
         <Text truncated>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
 
         <Text truncated>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
     </Card>
@@ -193,14 +119,7 @@ storiesOf('Core/Card', module)
         onClick={action('onClick Card')}
       >
         <Text truncated>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
     </Card>
@@ -209,14 +128,7 @@ storiesOf('Core/Card', module)
     <Card>
       <Content compact>
         <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
       </Content>
     </Card>
@@ -243,15 +155,9 @@ storiesOf('Core/Card', module)
         <Text bold>Suspendisse vitae dui elit?</Text>
 
         <Text truncated>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
-          porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem
-          vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est
-          lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh orci, faucibus in dolor ut,
-          maximus euismod erat. Nam efficitur vulputate augue non pretium. Suspendisse vitae dui
-          elit. Aliquam erat volutpat. Curabitur rutrum id elit ut hendrerit. Pellentesque
-          ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit. Phasellus malesuada
-          dapibus tincidunt.
+          <LoremIpsum />
         </Text>
+
         <Text>Read more</Text>
       </Content>
     </Card>

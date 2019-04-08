@@ -14,7 +14,7 @@ module.exports = async ({ config }) => {
   config.resolve.extensions.push('.ts', '.tsx');
 
   // Add custom Webpack aliases
-  config.resolve.alias[':image'] = path.join(__dirname, 'images');
+  config.resolve.alias[':storybook'] = __dirname;
 
   // Use source files so we don't have duplicate and or stale components
   glob.sync(path.join(__dirname, '../packages/*/package.json')).forEach(filePath => {

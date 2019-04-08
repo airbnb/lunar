@@ -11,7 +11,7 @@ storiesOf('Core/Loader', module)
   ))
   .add('A loader inline.', () => (
     <Text>
-      Lorem ipsum. <Loader inline /> Dolor sit amet.
+      Content before the loader. <Loader inline /> Content after the loader.
     </Text>
   ))
   .add('With a larger size positioned statically.', () => <Loader static large />);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import lunar from ':image/lunar-logo.png';
+import lunar from ':storybook/images/lunar-logo.png';
 import ProfilePhoto from './ProfilePhoto';
 
 storiesOf('Core/ProfilePhoto', module)
@@ -27,9 +27,5 @@ storiesOf('Core/ProfilePhoto', module)
     <ProfilePhoto imageSrc={lunar} inline title="Photo" large square />
   ))
   .add('Broken image with overflowing alt text.', () => (
-    <ProfilePhoto
-      imageSrc="BROKEN_IMAGE"
-      title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      large
-    />
+    <ProfilePhoto imageSrc="BROKEN_IMAGE" title="Alt title text." large />
   ));

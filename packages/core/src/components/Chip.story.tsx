@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import IconCloseAlt from '@airbnb/lunar-icons/lib/interface/IconCloseAlt';
 import IconSettings from '@airbnb/lunar-icons/lib/interface/IconSettings';
-import lunar from ':image/lunar-logo.png';
+import lunar from ':storybook/images/lunar-logo.png';
 import Spacing from './Spacing';
 import Chip from './Chip';
 
