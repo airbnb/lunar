@@ -1,16 +1,18 @@
 import React from 'react';
 import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import { Z_INDEX_PORTAL } from '../../constants';
 import { ESCAPE } from '../../keys';
 import focusableSelector from '../../utils/focusableSelector';
-import IconButton from '../IconButton';
+import toRGBA from '../../utils/toRGBA';
 import FocusTrap from '../FocusTrap';
+import IconButton from '../IconButton';
 import Portal from '../Portal';
+import Row from '../Row';
+import Spacing from '../Spacing';
 import T from '../Translate';
 import SheetArea from './SheetArea';
 import SheetContext, { Context } from './SheetContext';
-import toRGBA from '../../utils/toRGBA';
-import { Z_INDEX_PORTAL } from '../../constants';
 
 export { SheetArea, SheetContext };
 
@@ -27,6 +29,8 @@ export type Props = {
   gap?: boolean;
   /** Determines if the sheet animates in/out. */
   noAnimation?: boolean;
+  /** Content of the header bar */
+  headerBar?: React.ReactNode;
 };
 
 export type PrivateProps = {
@@ -159,13 +163,18 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
 
   render() {
     const { animating } = this.state;
-    const { gap, theme, styles, portal, visible, children } = this.props;
+    const { gap, theme, styles, portal, visible, children, headerBar } = this.props;
 
     if (!visible && !animating) {
       return null;
     }
 
     const closeText = T.phrase('Close', {}, 'Close a sheet popup');
+    const closeIcon = (
+      <IconButton onClick={this.handleClose}>
+        <IconClose accessibilityLabel={closeText} size={3 * theme!.unit} />
+      </IconButton>
+    );
 
     const sheetContent = (
       <div
@@ -209,11 +218,11 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
                 gap && animating && visible && styles.sheet_slide_in,
               )}
             >
-              <div {...css(styles.closeButton, gap && styles.closeButton_rightAlign)}>
-                <IconButton onClick={this.handleClose}>
-                  <IconClose accessibilityLabel={closeText} size={3 * theme!.unit} />
-                </IconButton>
-              </div>
+              <Spacing all={4} bottom={0}>
+                <Row middleAlign before={!gap && closeIcon} after={gap && closeIcon}>
+                  {headerBar || ''}
+                </Row>
+              </Spacing>
 
               <div {...css(styles.content)}>{children}</div>
             </div>
@@ -362,15 +371,6 @@ const InternalSheet = withStyles(
 
     wrapper_gap: {
       height: 'auto',
-    },
-
-    closeButton: {
-      padding: 4 * unit,
-      paddingBottom: 0,
-    },
-
-    closeButton_rightAlign: {
-      textAlign: 'right',
     },
 
     content: {

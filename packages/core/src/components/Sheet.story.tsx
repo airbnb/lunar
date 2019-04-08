@@ -11,6 +11,7 @@ class SheetDemo extends React.Component<
   {
     animated: boolean;
     gap: boolean;
+    headerBar: boolean;
     portal: boolean;
     visible: boolean;
   }
@@ -18,6 +19,7 @@ class SheetDemo extends React.Component<
   state = {
     animated: true,
     gap: false,
+    headerBar: false,
     portal: false,
     visible: false,
   };
@@ -34,12 +36,16 @@ class SheetDemo extends React.Component<
     this.setState(({ gap }) => ({ gap: !gap }));
   };
 
-  handlePortalChange = () => {
+  handleHeaderBarChange() {
+    this.setState(({ headerBar }) => ({ headerBar: !headerBar }));
+  }
+
+  handlePortalChange() {
     this.setState(({ portal }) => ({ portal: !portal }));
-  };
+  }
 
   render() {
-    const { animated, gap, portal, visible } = this.state;
+    const { animated, gap, headerBar, portal, visible } = this.state;
 
     return (
       <SheetArea>
@@ -61,10 +67,18 @@ class SheetDemo extends React.Component<
           />
 
           <CheckBox
+            noSpacing
             name="animated"
             label="Render with animation"
             checked={animated}
             onChange={this.handleAnimatedChange}
+          />
+
+          <CheckBox
+            name="header"
+            label="Show header bar"
+            checked={headerBar}
+            onChange={this.handleHeaderBarChange}
           />
 
           <Sheet
@@ -73,6 +87,7 @@ class SheetDemo extends React.Component<
             portal={portal}
             visible={visible}
             onClose={this.handleClick}
+            headerBar={headerBar && <Text>This is the header!</Text>}
           >
             <Spacing inner vertical={12}>
               <Text>This is in a sheet!</Text>
