@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import gql from 'graphql-tag';
+import Button from '@airbnb/lunar/lib/components/Button';
 import Shimmer from '@airbnb/lunar/lib/components/Shimmer';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
 import { MockedProvider } from 'react-apollo/test-utils';
@@ -49,7 +50,7 @@ const errorMock = {
 
 function UpdateButton({ onUpdate }: any) {
   return (
-    <button
+    <Button
       type="button"
       onClick={() => {
         onUpdate({
@@ -61,7 +62,7 @@ function UpdateButton({ onUpdate }: any) {
       }}
     >
       {'Update name to "Lunar"'}
-    </button>
+    </Button>
   );
 }
 

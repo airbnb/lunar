@@ -7,15 +7,14 @@ import lightTheme from '@airbnb/lunar/lib/themes/light';
 import darkTheme from '@airbnb/lunar/lib/themes/dark';
 import createTheme from './addons/themes/createTheme';
 
-const params = new URLSearchParams(location.search.slice(1));
 const themes = {
   light: lightTheme,
   dark: darkTheme,
 };
 
-let theme = params.get('theme');
+let theme = localStorage.getItem('storybook.theme');
 
-if (theme !== 'light' && theme !== 'dark') {
+if (!theme || (theme !== 'light' && theme !== 'dark')) {
   theme = 'light';
 }
 
@@ -24,6 +23,7 @@ Lunar.initialize({
   emojiCDN: hexcode =>
     `https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/${hexcode.toLowerCase()}.png`,
   logger: console.log,
+  theme,
 });
 
 addDecorator(withA11y);

@@ -3,7 +3,7 @@ import { Icons, IconButton, WithTooltip, TooltipLinkList } from '@storybook/comp
 
 export default class ThemeSelector extends React.Component {
   state = {
-    theme: this.props.api.getQueryParam('theme'),
+    theme: localStorage.getItem('storybook.theme') || 'light',
     expanded: false,
   };
 
@@ -13,9 +13,9 @@ export default class ThemeSelector extends React.Component {
       expanded: false,
     });
 
-    this.props.api.setQueryParams({
-      theme,
-    });
+    localStorage.setItem('storybook.theme', theme);
+
+    location.reload(true);
   };
 
   handleVisibilityChange = expanded => {
