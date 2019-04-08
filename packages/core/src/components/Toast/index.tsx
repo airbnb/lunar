@@ -8,10 +8,13 @@ import Button from '../Button';
 import Text from '../Text';
 import T from '../Translate';
 import Spacing from '../Spacing';
+import crosstab from '../../crosstab';
 
 const statusPropType = mutuallyExclusiveTrueProps('danger', 'success');
 
 export type Props = {
+  /** Use cross tab events to sync closes for the same toast id across tabs  */
+  crosstabClose?: boolean;
   /** Dangerous/failure status (red). */
   danger?: boolean;
   /** Delay before showing the toast. */
@@ -59,13 +62,21 @@ export class Toast extends React.Component<Props & WithStylesProps> {
   };
 
   componentDidMount() {
-    const { delay = 0, duration = 0 } = this.props;
+    const { delay = 0, duration = 0, crosstabClose } = this.props;
 
     window.setTimeout(this.showToast, delay);
 
     if (duration > 0) {
-      this.hideTimer = window.setTimeout(this.handleClosePress, delay + duration);
+      this.hideTimer = window.setTimeout(this.handleClose, delay + duration);
     }
+
+    if (crosstabClose) {
+      crosstab.on(this.crosstabCloseEvent(), this.handleClose);
+    }
+  }
+
+  componentWillUnmount() {
+    crosstab.off(this.crosstabCloseEvent(), this.handleClose);
   }
 
   showToast = () => {
@@ -77,6 +88,14 @@ export class Toast extends React.Component<Props & WithStylesProps> {
   };
 
   private handleClosePress = () => {
+    this.handleClose();
+
+    if (this.props.crosstabClose) {
+      crosstab.emit(this.crosstabCloseEvent());
+    }
+  };
+
+  private handleClose = () => {
     window.clearTimeout(this.hideTimer);
 
     this.setState({ visible: false }, () => {
@@ -96,6 +115,10 @@ export class Toast extends React.Component<Props & WithStylesProps> {
   /* istanbul ignore next */
   private handleRefreshPress() {
     global.location.reload();
+  }
+
+  private crosstabCloseEvent() {
+    return `toast:crosstabClose:${this.props.id}`;
   }
 
   render() {
