@@ -51,7 +51,7 @@ describe('<Sheet />', () => {
       </Sheet>,
     );
 
-    shallow(wrapper.find(Row).prop('before')).simulate('click');
+    shallow(wrapper.find(Row).prop('before') as React.ReactElement).simulate('click');
 
     expect(close).toHaveBeenCalled();
   });
