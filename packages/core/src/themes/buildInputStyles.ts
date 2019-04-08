@@ -89,6 +89,8 @@ export default function buildInputStyles({
   return {
     input: {
       ...common,
+      paddingLeft: unit * 1.5,
+      paddingRight: unit * 1.5,
     },
 
     input_important: {
