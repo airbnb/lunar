@@ -182,6 +182,68 @@ class ModalDemo extends React.Component {
 <ModalDemo />;
 ```
 
+Display a compact Modal.
+
+```jsx
+import Button from '../Button';
+import ButtonGroup from '../ButtonGroup';
+import Spacing from '../Spacing';
+import Tooltip from '../Tooltip';
+import Text from '../Text';
+
+class ModalDemo extends React.Component {
+  constructor() {
+    super();
+    this.state = { visible: false };
+    this.handleToggle = () => this.setState({ visible: !this.state.visible });
+    this.handleClose = () => this.setState({ visible: false });
+  }
+
+  render() {
+    const { visible } = this.state;
+    return (
+      <div>
+        <Button onClick={this.handleToggle}>Open a compact modal</Button>
+
+        {visible && (
+          <Modal
+            compact
+            footer={
+              <ButtonGroup>
+                <Button onClick={this.handleToggle}>OK</Button>
+                <Button inverted onClick={this.handleToggle}>
+                  Cancel
+                </Button>
+              </ButtonGroup>
+            }
+            onClose={this.handleClose}
+            title="Modal Header"
+            visible={this.state.visible}
+          >
+            <div>
+              <Text>
+                <div>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec
+                  porttitor sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed
+                  feugiat lorem vitae augue blandit, sed mollis mi laoreet. Donec auctor, enim eget
+                  tempus auctor, est lorem laoreet nisi, a rutrum dolor quam eget mi. Integer nibh
+                  orci, faucibus in dolor ut, maximus euismod erat. Nam efficitur vulputate augue
+                  non pretium. Suspendisse vitae dui elit. Aliquam erat volutpat. Curabitur rutrum
+                  id elit ut hendrerit. Pellentesque ullamcorper quam a nibh aliquam bibendum. Fusce
+                  at fermentum velit. Phasellus malesuada dapibus tincidunt.
+                </div>
+              </Text>
+            </div>
+          </Modal>
+        )}
+      </div>
+    );
+  }
+}
+
+<ModalDemo />;
+```
+
 Display a Modal with a centered image.
 
 ```jsx

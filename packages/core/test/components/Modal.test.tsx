@@ -219,6 +219,25 @@ describe('<Modal />', () => {
     expect(titleWrapper.prop('children')).toBe('Title wave');
   });
 
+  it('render a large titel when prop large is true', () => {
+    const { wrapper } = setup(
+      {
+        title: 'Title wave',
+        large: true,
+      },
+      false /* isShallow */,
+    );
+
+    const headerWrapper = wrapper
+      .find(Spacing)
+      .find({ tag: 'header' })
+      .first();
+    expect(headerWrapper.prop('bottom')).toEqual(3);
+
+    const titleWrapper = wrapper.find(Title);
+    expect(titleWrapper.prop('level')).toEqual(1);
+  });
+
   it('adjusts header spacing if no title is provided', () => {
     const { wrapper } = setup(
       {

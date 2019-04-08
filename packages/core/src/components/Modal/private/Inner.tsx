@@ -66,13 +66,14 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, footer, image, large, styles, title } = this.props;
+    const { children, footer, image, large, compact, styles, title } = this.props;
     const showLargeContent = large || !!image;
 
     const innerContent = (
       <ModalInnerContent
         footer={footer}
         large={showLargeContent}
+        compact={compact}
         onClose={this.handleClose}
         title={title}
       >
