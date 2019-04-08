@@ -11,7 +11,7 @@ storiesOf('Core/Row', module)
     </Row>
   ))
   .add('Before content.', () => (
-    <Row before={<img src="http://via.placeholder.com/50x50" />}>
+    <Row before={<img src="http://via.placeholder.com/50x50" alt="" />}>
       <Text>This row has a before component.</Text>
     </Row>
   ))
@@ -22,7 +22,7 @@ storiesOf('Core/Row', module)
   ))
   .add('Both before and after content.', () => (
     <Row
-      before={<img src="http://via.placeholder.com/50x50" />}
+      before={<img src="http://via.placeholder.com/50x50" alt="" />}
       after={<Button>Take an action</Button>}
       middleAlign
     >
@@ -31,7 +31,7 @@ storiesOf('Core/Row', module)
   ))
   .add('With long content.', () => (
     <Row
-      before={<img src="http://via.placeholder.com/50x50" />}
+      before={<img src="http://via.placeholder.com/50x50" alt="" />}
       after={<Button>Take an action</Button>}
     >
       <Text>

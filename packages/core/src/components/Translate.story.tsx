@@ -54,6 +54,5 @@ storiesOf('Core/Translate', module)
         { name: 'Bruce' },
         'This message is for translation editors.',
       )}
-      >
     </div>
   ));

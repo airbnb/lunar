@@ -1,7 +1,6 @@
 import React from 'react';
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
-import { withInfo } from '@storybook/addon-info';
 import Lunar from '@airbnb/lunar';
 import lightTheme from '@airbnb/lunar/lib/themes/light';
 import darkTheme from '@airbnb/lunar/lib/themes/dark';
@@ -27,8 +26,6 @@ Lunar.initialize({
 });
 
 addDecorator(withA11y);
-
-addDecorator(withInfo);
 
 addDecorator(story => (
   <div style={{ padding: 20, fontSize: 15, fontFamily: Lunar.settings.fontFamily }}>{story()}</div>

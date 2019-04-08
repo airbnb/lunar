@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import IconUser from '@airbnb/lunar-icons/lib/general/IconUser';
 import IconSettings from '@airbnb/lunar-icons/lib/interface/IconSettings';
 import IconKey from '@airbnb/lunar-icons/lib/interface/IconKey';
@@ -60,16 +59,16 @@ storiesOf('Core/Menu', module)
       <Item
         submenu={
           <Menu accessibilityLabel="B menu">
-            <Item tip="Ctrl + A">B > 1</Item>
-            <Item tip="Cmd + S">B > 2</Item>
+            <Item tip="Ctrl + A">{'B > 1'}</Item>
+            <Item tip="Cmd + S">{'B > 2'}</Item>
             <Item
               submenu={
                 <Menu accessibilityLabel="B > 3 menu">
-                  <Item>B > 3 > 1</Item>
+                  <Item>{'B > 3 > 1'}</Item>
                 </Menu>
               }
             >
-              B > 3
+              {'B > 3'}
             </Item>
           </Menu>
         }
@@ -79,7 +78,7 @@ storiesOf('Core/Menu', module)
       <Item
         submenu={
           <Menu accessibilityLabel="C menu">
-            <Item>C > 1</Item>
+            <Item>{'C > 1'}</Item>
           </Menu>
         }
       >
