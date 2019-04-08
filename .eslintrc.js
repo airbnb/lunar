@@ -244,6 +244,8 @@ module.exports = {
       rules: {
         'max-classes-per-file': 'off',
         'import/no-extraneous-dependencies': 'off',
+        'jsx-a11y/anchor-is-valid': 'off',
+        'jsx-a11y/no-static-element-interactions': 'off',
         'react/no-multi-comp': 'off',
       },
     },

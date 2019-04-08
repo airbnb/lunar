@@ -165,5 +165,3 @@ class ProofreaderDemo extends React.Component {
 
 <ProofreaderDemo />;
 ```
-
-> Proofreading functionality requires a LanguageTool service. This demo is entirely hardcoded.

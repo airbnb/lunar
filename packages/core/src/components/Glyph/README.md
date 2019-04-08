@@ -41,5 +41,3 @@ import Text from '../Text';
   <Glyph ordinal>1st</Glyph> <Glyph ordinal>2nd</Glyph> <Glyph ordinal>3rd</Glyph>
 </Text>;
 ```
-
-> Glyph variants are font AND browser dependent.

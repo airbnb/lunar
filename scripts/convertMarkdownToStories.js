@@ -86,7 +86,8 @@ function convertToStory(filePath) {
 
         story.push(createStory((title || 'NO TITLE').replace(/\s{2,}/g, ' '), result.code.trim()));
       } else {
-        throw new Error(`Unsupported node type ${node.type}`);
+        console.log(node);
+        throw new Error(`Unsupported node type ${node.type} in ${componentName}`);
       }
     });
 

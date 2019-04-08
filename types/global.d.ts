@@ -2,6 +2,8 @@
 
 declare module 'fake-indexeddb';
 declare module 'full-icu';
+declare module '*.jpg';
+declare module '*.png';
 
 declare const __DEV__: boolean;
 declare const jsdom: any;
