@@ -1,11 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import Grid, { Col } from '@airbnb/lunar/lib/components/Grid';
-import Spacing from '@airbnb/lunar/lib/components/Spacing';
-import Select from '@airbnb/lunar/lib/components/Select';
-import Text from '@airbnb/lunar/lib/components/Text';
-import Copy from '@airbnb/lunar/lib/components/Copy';
 import { WithIconWrapperProps } from './withIcon';
 
 type IconSet = {
@@ -53,19 +48,10 @@ class IconGrid extends React.Component<
   render() {
     const { category, title, icons, color, size } = this.props;
     const { icon } = this.state;
-    const importPath = `import ${icon} from '@airbnb/lunar-icons/lib/${category}/${icon}';`;
 
     return (
-      <Spacing top={2}>
-        <Text bold large>
-          {title}
-        </Text>
-
-        <Spacing bottom={2}>
-          <Text muted>
-            {importPath} <Copy text={importPath} />
-          </Text>
-        </Spacing>
+      <div style={{ marginBottom: 16 }}>
+        <h3 style={{ marginTop: 0 }}>{title}</h3>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 16 }}>
           {icons.map(Icon => (
@@ -74,7 +60,10 @@ class IconGrid extends React.Component<
               key={Icon.displayName}
               title={Icon.displayName}
               onClick={() => {
-                action(Icon.displayName!)(importPath);
+                action(Icon.displayName!)(
+                  `import ${icon} from '@airbnb/lunar-icons/lib/${category}/${icon}';`,
+                );
+
                 this.handleSetName(Icon.displayName!);
               }}
               style={{
@@ -95,7 +84,7 @@ class IconGrid extends React.Component<
             </button>
           ))}
         </div>
-      </Spacing>
+      </div>
     );
   }
 }
@@ -123,24 +112,24 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
 
     return (
       <div>
-        <Grid>
-          <Col span={6}>
-            <Select label="Color" name="color" value={color} onChange={this.handleColorChange}>
+        {/* <div stlye={{ display: 'flex' }}>
+          <div style={{ width: '50%' }}>
+            <select label="Color" name="color" value={color} onChange={this.handleColorChange}>
               <option value="">None</option>
               <option value="red">Red</option>
               <option value="green">Green</option>
               <option value="blue">Blue</option>
-            </Select>
-          </Col>
+            </select>
+          </div>
 
-          <Col span={6}>
-            <Select label="Size" name="size" value={size} onChange={this.handleSizeChange}>
+          <div style={{ width: '50%' }}>
+            <select label="Size" name="size" value={size} onChange={this.handleSizeChange}>
               <option value="1em">1x</option>
               <option value="2em">2x</option>
               <option value="3em">3x</option>
-            </Select>
-          </Col>
-        </Grid>
+            </select>
+          </div>
+        </div> */}
 
         {Object.keys(iconData).map(category => (
           <IconGrid
@@ -157,4 +146,4 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
   }
 }
 
-storiesOf('Icons', module).add('Gallery', () => <IconList />);
+storiesOf('Icons', module).add('Icon gallery.', () => <IconList />);
