@@ -1,8 +1,6 @@
 language: node_js
 node_js: '10'
 before_script:
-  - DANGER_GITHUB_API_TOKEN=faketoken DANGER_JS_APP_INSTALL_ID=810101 DEBUG=* npx danger ci
-    --use-github-checks
   - npm run bootstrap
   - npm run build
 script:
@@ -11,6 +9,13 @@ matrix:
   fast_finish: true
 jobs:
   include:
+    - name: Danger
+      script: npx danger ci --use-github-checks
+      node_js: '10'
+      env:
+        # public_repo access only
+        - DANGER_GITHUB_API_TOKEN=743783e5ddd4db9bc0aa2d47d79c9677a5c96eba
+        - DANGER_JS_APP_INSTALL_ID=810101
     - name: Test @ 8
       script: npm run jest:coverage -- -w 4
       node_js: '8'
