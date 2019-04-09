@@ -35,3 +35,6 @@ deploy:
 #   on:
 #     branch: master
 #     node_js: '10'
+env:
+  - DANGER_GITHUB_API_TOKEN=faketoken
+  - DANGER_JS_APP_INSTALL_ID=810101
