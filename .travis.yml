@@ -14,7 +14,7 @@ jobs:
       node_js: '10'
       env:
         # public_repo access only
-        - DANGER_GITHUB_API_TOKEN=743783e5ddd4db9bc0aa2d47d79c9677a5c96eba
+        - DANGER_GITHUB_API_TOKEN=1a876baad3e6586666046a5402bbef928f1fb542
         - DANGER_JS_APP_INSTALL_ID=810101
     - name: Test @ 8
       script: npm run jest:coverage -- -w 4
