@@ -1,7 +1,8 @@
 language: node_js
 node_js: '10'
 before_script:
-  - npx danger ci --use-github-checks
+  - DANGER_GITHUB_API_TOKEN=faketoken DANGER_JS_APP_INSTALL_ID=810101 DEBUG=* npx danger ci
+    --use-github-checks
   - npm run bootstrap
   - npm run build
 script:
@@ -35,6 +36,3 @@ deploy:
 #   on:
 #     branch: master
 #     node_js: '10'
-env:
-  - DANGER_GITHUB_API_TOKEN=faketoken
-  - DANGER_JS_APP_INSTALL_ID=810101
