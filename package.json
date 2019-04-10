@@ -7,7 +7,6 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist && bash ./scripts/symlinkPackages.sh",
     "build": "npm run clean && lerna run build && npm run type",
-    "check:danger": "node ./scripts/runDangerChecks",
     "clean": "rm -rf ./packages/*/{lib,esm}",
     "clean:hard": "npm run clean && rm -f ./packages/*/*.tsbuildinfo",
     "coverage": "npm run jest:cov",

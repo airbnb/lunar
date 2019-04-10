@@ -10,7 +10,7 @@ matrix:
 jobs:
   include:
     - name: Danger
-      script: npm run check:danger
+      script: npx danger ci --use-github-checks
       node_js: '10'
     - name: Test @ 8
       script: npm run jest:coverage -- -w 4
