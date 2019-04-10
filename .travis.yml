@@ -1,7 +1,6 @@
 language: node_js
 node_js: '10'
 before_script:
-  - npx danger ci --use-github-checks
   - npm run bootstrap
   - npm run build
 script:
@@ -10,6 +9,9 @@ matrix:
   fast_finish: true
 jobs:
   include:
+    - name: Danger
+      script: npx danger ci --use-github-checks
+      node_js: '10'
     - name: Test @ 8
       script: npm run jest:coverage -- -w 4
       node_js: '8'
