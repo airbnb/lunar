@@ -10,12 +10,8 @@ matrix:
 jobs:
   include:
     - name: Danger
-      script: npx danger ci --use-github-checks
+      script: npm run check:danger
       node_js: '10'
-      env:
-        # public_repo access only
-        - DANGER_GITHUB_API_TOKEN=1a876baad3e6586666046a5402bbef928f1fb542
-        - DANGER_JS_APP_INSTALL_ID=810101
     - name: Test @ 8
       script: npm run jest:coverage -- -w 4
       node_js: '8'
