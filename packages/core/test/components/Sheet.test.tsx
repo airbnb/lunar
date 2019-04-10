@@ -2,11 +2,9 @@ import Enzyme, { mount, shallow } from 'enzyme';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mockContextConsumer, unwrapHOCs } from '@airbnb/lunar-test-utils';
-import IconButton from '../../lib/components/IconButton';
 import Row from '../../src/components/Row';
 import Sheet from '../../src/components/Sheet';
 import SheetContext from '../../src/components/Sheet/SheetContext';
-import Spacing from '../../src/components/Spacing';
 import { ESCAPE } from '../../src/keys';
 
 describe('<Sheet />', () => {
