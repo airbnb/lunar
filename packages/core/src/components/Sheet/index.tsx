@@ -31,6 +31,10 @@ export type Props = {
   noAnimation?: boolean;
   /** Content of the header bar */
   headerBar?: React.ReactNode;
+  /** Render with reduced padding */
+  compact?: boolean;
+  /** Render the header area with a drop-shadow */
+  headerShadow?: boolean;
 };
 
 export type PrivateProps = {
@@ -163,7 +167,17 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
 
   render() {
     const { animating } = this.state;
-    const { gap, theme, styles, portal, visible, children, headerBar } = this.props;
+    const {
+      gap,
+      theme,
+      styles,
+      portal,
+      visible,
+      children,
+      headerBar,
+      compact,
+      headerShadow,
+    } = this.props;
 
     if (!visible && !animating) {
       return null;
@@ -218,13 +232,15 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
                 gap && animating && visible && styles.sheet_slide_in,
               )}
             >
-              <Spacing all={4} bottom={0}>
-                <Row middleAlign before={!gap && closeIcon} after={gap && closeIcon}>
-                  {headerBar || ''}
-                </Row>
-              </Spacing>
+              <div {...css(headerShadow && styles.headerShadow)}>
+                <Spacing all={compact ? 1 : 4} bottom={0}>
+                  <Row middleAlign before={!gap && closeIcon} after={gap && closeIcon}>
+                    {headerBar || ''}
+                  </Row>
+                </Spacing>
+              </div>
 
-              <div {...css(styles.content)}>{children}</div>
+              <div {...css(styles.content, compact && styles.contentCompact)}>{children}</div>
             </div>
           </div>
         </FocusTrap>
@@ -378,6 +394,14 @@ const InternalSheet = withStyles(
       padding: 4 * unit,
       paddingTop: 0,
       flex: 1,
+    },
+
+    contentCompact: {
+      padding: 1 * unit,
+    },
+
+    headerShadow: {
+      boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
     },
   }),
   {
