@@ -15,6 +15,8 @@ export type Props = {
   bordered?: boolean;
   /** Content within the label. */
   children: NonNullable<React.ReactNode>;
+  /** Use compact padding. */
+  compact?: boolean;
   /** Dangerous/failure status (red). */
   danger?: boolean;
   /** Informational status (blue). */
@@ -54,6 +56,7 @@ export class StatusLabel extends React.Component<Props & WithStylesProps> {
     afterIcon: null,
     beforeIcon: null,
     bordered: false,
+    compact: false,
     danger: false,
     info: false,
     inverted: false,
@@ -72,6 +75,7 @@ export class StatusLabel extends React.Component<Props & WithStylesProps> {
       beforeIcon,
       bordered,
       children,
+      compact,
       danger,
       info,
       inverted,
@@ -92,6 +96,7 @@ export class StatusLabel extends React.Component<Props & WithStylesProps> {
           uppercased && styles.label_uppercased,
           inverted && styles.label_inverted,
           bordered && styles.label_bordered,
+          compact && styles.label_compact,
           danger && (inverted ? styles.label_inverted_danger : styles.label_danger),
           info && (inverted ? styles.label_inverted_info : styles.label_info),
           muted && (inverted ? styles.label_inverted_muted : styles.label_muted),
@@ -137,6 +142,13 @@ export default withStyles(({ color, font, ui, unit }) => ({
 
   label_bordered: {
     border: ui.border,
+  },
+
+  label_compact: {
+    paddingLeft: 0.75 * unit,
+    paddingRight: 0.75 * unit,
+    paddingTop: unit / 4,
+    paddingBottom: unit / 4,
   },
 
   label_inverted: {
