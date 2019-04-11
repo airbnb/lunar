@@ -397,11 +397,11 @@ const InternalSheet = withStyles(
     },
 
     contentCompact: {
-      padding: 1 * unit,
+      padding: unit,
     },
 
     headerShadow: {
-      boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+      boxShadow: ui.boxShadow,
     },
   }),
   {
