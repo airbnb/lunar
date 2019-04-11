@@ -66,6 +66,7 @@ export default class ButtonOrLink extends React.Component<Props> {
       href,
       loading,
       openInNewWindow,
+      rel,
       type,
       ...restProps
     } = this.props;
