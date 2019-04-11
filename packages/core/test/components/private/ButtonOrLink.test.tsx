@@ -50,6 +50,16 @@ describe('<ButtonOrLink />', () => {
     expect(wrapper.prop('rel')).toBe('noopener noreferrer');
   });
 
+  it('overrides rel when passed and opening in a new widnow', () => {
+    const wrapper = shallow(
+      <ButtonOrLink href="/" rel="noopener" openInNewWindow>
+        Child
+      </ButtonOrLink>,
+    );
+
+    expect(wrapper.prop('rel')).toBe('noopener');
+  });
+
   it('calls passed through `onClick`', () => {
     const spy = jest.fn();
     const wrapper = shallow(
