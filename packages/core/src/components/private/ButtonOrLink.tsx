@@ -76,11 +76,14 @@ export default class ButtonOrLink extends React.Component<Props> {
     // Determine props based on element type
     if (href) {
       props.href = href;
+      props.rel = rel;
 
       if (openInNewWindow) {
         props.target = '_blank';
-        props.rel = rel === undefined ? 'noopener noreferrer' : rel;
-      }
+
+        if(props.rel === undefined) {
+          props.rel = 'noopener noreferrer';
+        }
     } else {
       props.disabled = disabled || loading || false;
       props.type = type || 'button';
