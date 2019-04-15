@@ -81,9 +81,10 @@ export default class ButtonOrLink extends React.Component<Props> {
       if (openInNewWindow) {
         props.target = '_blank';
 
-        if(props.rel === undefined) {
+        if (props.rel === undefined) {
           props.rel = 'noopener noreferrer';
         }
+      }
     } else {
       props.disabled = disabled || loading || false;
       props.type = type || 'button';
