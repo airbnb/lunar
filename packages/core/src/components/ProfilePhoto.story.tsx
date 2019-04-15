@@ -4,6 +4,9 @@ import lunar from ':storybook/images/lunar-logo.png';
 import ProfilePhoto from './ProfilePhoto';
 
 storiesOf('Core/ProfilePhoto', module)
+  .addParameters({
+    inspectComponents: [ProfilePhoto],
+  })
   .add('Default profile photo.', () => <ProfilePhoto imageSrc={lunar} title="Photo" />)
   .add('With different sizing: units-based size, small, regular (default), large, macro.', () => (
     <>

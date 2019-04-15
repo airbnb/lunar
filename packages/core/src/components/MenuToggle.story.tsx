@@ -17,6 +17,9 @@ const children = [
 ];
 
 storiesOf('Core/MenuToggle', module)
+  .addParameters({
+    inspectComponents: [MenuToggle],
+  })
   .addDecorator(story => <div style={{ width: 200, margin: 'auto' }}>{story()}</div>)
   .add('A basic menu with menu items.', () => (
     <MenuToggle accessibilityLabel="Actions" toggleLabel="Actions" zIndex={10}>

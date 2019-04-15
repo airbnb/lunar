@@ -5,6 +5,9 @@ import Text from './Text';
 import Tabs, { Tab } from './Tabs';
 
 storiesOf('Core/Tabs', module)
+  .addParameters({
+    inspectComponents: [Tabs, Tab],
+  })
   .add('Standard tabs with no body content.', () => (
     <Tabs>
       <Tab key="a" label={<Text bold>Bruce W.</Text>} />

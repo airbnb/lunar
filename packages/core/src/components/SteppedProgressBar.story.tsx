@@ -3,6 +3,9 @@ import { storiesOf } from '@storybook/react';
 import SteppedProgressBar, { Step } from './SteppedProgressBar';
 
 storiesOf('Core/SteppedProgressBar', module)
+  .addParameters({
+    inspectComponents: [SteppedProgressBar, Step],
+  })
   .add('Standard progress bar.', () => (
     <SteppedProgressBar>
       <Step complete />

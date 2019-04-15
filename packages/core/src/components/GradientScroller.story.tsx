@@ -31,6 +31,9 @@ class ButtonGroupDemo extends React.Component<{}, { buttons: number[] }> {
 }
 
 storiesOf('Core/GradientScroller', module)
+  .addParameters({
+    inspectComponents: [GradientScroller],
+  })
   .add('A scrollable container.', () => (
     <GradientScroller>
       <Text>

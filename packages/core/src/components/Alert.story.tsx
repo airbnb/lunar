@@ -8,6 +8,9 @@ import Spacing from './Spacing';
 import Alert from './Alert';
 
 storiesOf('Core/Alert', module)
+  .addParameters({
+    inspectComponents: [Alert],
+  })
   .add('Default and status classified alerts.', () => (
     <>
       <Alert title="Alert title" />

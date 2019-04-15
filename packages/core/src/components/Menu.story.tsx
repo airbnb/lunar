@@ -7,6 +7,9 @@ import Text from './Text';
 import Menu, { Item, Separator, Row } from './Menu';
 
 storiesOf('Core/Menu', module)
+  .addParameters({
+    inspectComponents: [Menu, Item, Row, Separator],
+  })
   .addDecorator(story => <div style={{ width: 200 }}>{story()}</div>)
   .add('A basic menu with menu items.', () => (
     <Menu accessibilityLabel="User menu">

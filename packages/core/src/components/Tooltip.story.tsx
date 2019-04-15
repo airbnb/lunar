@@ -57,6 +57,9 @@ class TooltipOnShowDemo extends React.Component<{}, { text: string; count: numbe
 }
 
 storiesOf('Core/Tooltip', module)
+  .addParameters({
+    inspectComponents: [Tooltip],
+  })
   .add('Displays when an element is hovered.', () => (
     <>
       <div>

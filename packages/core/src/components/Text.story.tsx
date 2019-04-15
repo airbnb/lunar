@@ -4,6 +4,9 @@ import LoremIpsum from ':storybook/components/LoremIpsum';
 import Text from './Text';
 
 storiesOf('Core/Text', module)
+  .addParameters({
+    inspectComponents: [Text],
+  })
   .add('A basic string of text.', () => (
     <Text>
       <LoremIpsum short />

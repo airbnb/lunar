@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import FeedbackForm from './FeedbackForm';
 
 storiesOf('Forms/FeedbackForm', module)
+  .addParameters({
+    inspectComponents: [FeedbackForm],
+  })
   .add('Basic form.', () => (
     <FeedbackForm
       categories={{

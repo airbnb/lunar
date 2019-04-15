@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import Input from './Input';
 
 storiesOf('Core/Input', module)
+  .addParameters({
+    inspectComponents: [Input],
+  })
   .add('A standard text field.', () => (
     <Input
       name="input-basic"

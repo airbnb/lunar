@@ -6,6 +6,9 @@ import SideBar, { Item } from './SideBar';
 import Layout from './Layout';
 
 storiesOf('Layouts/Layout', module)
+  .addParameters({
+    inspectComponents: [Layout],
+  })
   .add('Standard layout.', () => (
     <Layout>
       <LoremIpsum />

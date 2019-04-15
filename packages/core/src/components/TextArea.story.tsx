@@ -92,6 +92,9 @@ class ProofreaderDemo extends React.Component<{}, { value: string }> {
 }
 
 storiesOf('Core/TextArea', module)
+  .addParameters({
+    inspectComponents: [TextArea],
+  })
   .add('A standard textarea field.', () => (
     <TextArea name="textarea-basic" label="Label" onChange={action('onChange')} />
   ))

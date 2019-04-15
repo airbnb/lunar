@@ -69,8 +69,11 @@ class ModalDemo extends React.Component<
 }
 
 storiesOf('Core/Modal', module)
+  .addParameters({
+    inspectComponents: [Modal],
+  })
   .add('A standard modal.', () => <ModalDemo />)
-  .add('As large.', () => <ModalDemo large />)
+  .add('A large modal.', () => <ModalDemo large />)
   .add('With no title.', () => <ModalDemo noTitle />)
   .add('With a centered image.', () => <ModalDemo image="center" />)
   .add('With a right cover image.', () => <ModalDemo image="cover" />);

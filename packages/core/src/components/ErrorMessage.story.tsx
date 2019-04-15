@@ -3,6 +3,9 @@ import { storiesOf } from '@storybook/react';
 import ErrorMessage from './ErrorMessage';
 
 storiesOf('Core/ErrorMessage', module)
+  .addParameters({
+    inspectComponents: [ErrorMessage],
+  })
   .add('With an `Error`.', () => (
     <ErrorMessage error={new Error('Something is broken!')} title="Oops" />
   ))

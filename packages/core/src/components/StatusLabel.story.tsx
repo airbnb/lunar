@@ -5,6 +5,9 @@ import Text from './Text';
 import StatusLabel from './StatusLabel';
 
 storiesOf('Core/StatusLabel', module)
+  .addParameters({
+    inspectComponents: [StatusLabel],
+  })
   .add('Default and status labels.', () => (
     <>
       <StatusLabel>Default</StatusLabel>

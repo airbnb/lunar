@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import Switch from './Switch';
 
 storiesOf('Core/Switch', module)
+  .addParameters({
+    inspectComponents: [Switch],
+  })
   .add('A standard switch field.', () => (
     <Switch name="switch-basic" label="Label" onChange={action('onChange')} />
   ))

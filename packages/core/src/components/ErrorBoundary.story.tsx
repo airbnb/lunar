@@ -10,8 +10,12 @@ function TestComponent() {
   return null;
 }
 
-storiesOf('Core/ErrorBoundary', module).add('Wraps and catches an error.', () => (
-  <ErrorBoundary onCatch={action('onCatch')}>
-    <TestComponent />
-  </ErrorBoundary>
-));
+storiesOf('Core/ErrorBoundary', module)
+  .addParameters({
+    inspectComponents: [ErrorBoundary],
+  })
+  .add('Wraps and catches an error.', () => (
+    <ErrorBoundary onCatch={action('onCatch')}>
+      <TestComponent />
+    </ErrorBoundary>
+  ));

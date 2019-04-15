@@ -5,6 +5,9 @@ import IconAddAlt from '@airbnb/lunar-icons/lib/interface/IconAddAlt';
 import Link from './Link';
 
 storiesOf('Core/Link', module)
+  .addParameters({
+    inspectComponents: [Link],
+  })
   .add('A standard link.', () => <Link href="https://github.com/airbnb/lunar">Link</Link>)
   .add('A button link.', () => <Link onClick={action('onClick')}>Link</Link>)
   .add('With different sizing: small, regular (default), and large.', () => (

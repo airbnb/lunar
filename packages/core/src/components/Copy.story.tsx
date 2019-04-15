@@ -4,6 +4,9 @@ import Button from './Button';
 import Copy from './Copy';
 
 storiesOf('Core/Copy', module)
+  .addParameters({
+    inspectComponents: [Copy],
+  })
   .add('Copy a string of text to the clipboard.', () => (
     <Copy text="This string has been copied." />
   ))

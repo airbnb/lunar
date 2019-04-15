@@ -69,6 +69,8 @@ class BrowserNotificationExample extends React.Component<{}, State> {
   }
 }
 
-storiesOf('Core/BrowserNotification', module).add('Display browser notifications.', () => (
-  <BrowserNotificationExample />
-));
+storiesOf('Core/BrowserNotification', module)
+  .addParameters({
+    inspectComponents: [BrowserNotification],
+  })
+  .add('Display browser notifications.', () => <BrowserNotificationExample />);

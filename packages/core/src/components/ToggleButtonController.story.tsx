@@ -1,10 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import Button from './Button';
 import ButtonGroup from './ButtonGroup';
 import ToggleButtonController from './ToggleButtonController';
 
 storiesOf('Core/ToggleButtonController', module)
+  .addParameters({
+    inspectComponents: [ToggleButtonController, Button],
+  })
   .add('A list of single select toggle buttons.', () => (
     <ToggleButtonController
       value="red"

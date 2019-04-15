@@ -3,6 +3,9 @@ import { storiesOf } from '@storybook/react';
 import Toast from './Toast';
 
 storiesOf('Core/Toast', module)
+  .addParameters({
+    inspectComponents: [Toast],
+  })
   .add('A standard toast.', () => (
     <Toast id="foo" message="This is a message within a toast." duration={0} />
   ))

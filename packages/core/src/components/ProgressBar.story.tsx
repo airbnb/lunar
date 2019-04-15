@@ -3,6 +3,9 @@ import { storiesOf } from '@storybook/react';
 import ProgressBar from './ProgressBar';
 
 storiesOf('Core/ProgressBar', module)
+  .addParameters({
+    inspectComponents: [ProgressBar],
+  })
   .add('A progress bar with different completion percentages and widths.', () => (
     <>
       <ProgressBar percent={1} />

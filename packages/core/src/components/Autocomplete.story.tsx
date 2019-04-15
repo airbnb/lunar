@@ -11,6 +11,9 @@ const items = [
 ];
 
 storiesOf('Core/Autocomplete', module)
+  .addParameters({
+    inspectComponents: [Autocomplete],
+  })
   .add('Standard autocomplete used for searching.', () => (
     <Autocomplete
       accessibilityLabel="Favorite color?"

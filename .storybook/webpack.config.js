@@ -9,7 +9,7 @@ module.exports = async ({ config }) => {
 
   // Replace Flow with TypeScript
   babelConfig.test = /\.(j|t)sx?$/;
-  babelConfig.exclude.push(/node_modules/, /lib\//);
+  babelConfig.exclude.push(/node_modules/);
   babelConfig.use[0].options.sourceType = 'unambiguous';
   babelConfig.use[0].options.presets[2] = require.resolve('@babel/preset-typescript');
 

@@ -7,6 +7,9 @@ import CheckBox from './Form/CheckBox';
 import FilterMenu, { Row } from './FilterMenu';
 
 storiesOf('Forms/FilterMenu', module)
+  .addParameters({
+    inspectComponents: [FilterMenu],
+  })
   .add('Form in a dropdown.', () => (
     <Form onSubmit={action('onSubmit')}>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>

@@ -4,6 +4,9 @@ import Text from './Text';
 import Interweave from './Interweave';
 
 storiesOf('Core/Interweave', module)
+  .addParameters({
+    inspectComponents: [Interweave],
+  })
   .add('Render HTML without using .', () => (
     <Text>
       <Interweave content="This text <b>will be bold</b>. And this <a href='www.airbnb.com'>link will work</a>." />

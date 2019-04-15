@@ -190,6 +190,9 @@ class DatePickerMouseRangeSelectDemo extends React.Component<{}, RangeState> {
 }
 
 storiesOf('Core/DatePicker', module)
+  .addParameters({
+    inspectComponents: [DatePicker],
+  })
   .add('Display a single month.', () => <DatePicker />)
   .add('Display a "Today" button.', () => (
     <DatePicker

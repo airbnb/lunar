@@ -5,6 +5,9 @@ import Text from './Text';
 import NotchedBox from './NotchedBox';
 
 storiesOf('Core/NotchedBox', module)
+  .addParameters({
+    inspectComponents: [NotchedBox],
+  })
   .add('Display a box with a notch.', () => (
     <NotchedBox>
       <Text>

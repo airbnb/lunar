@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import FileInput from './FileInput';
 
 storiesOf('Core/FileInput', module)
+  .addParameters({
+    inspectComponents: [FileInput],
+  })
   .add('A standard file upload field.', () => (
     <FileInput name="input-basic" label="Label" onChange={action('onChange')} />
   ))

@@ -6,6 +6,9 @@ import Button from './Button';
 import Row from './Row';
 
 storiesOf('Core/Row', module)
+  .addParameters({
+    inspectComponents: [Row],
+  })
   .add('Primary content.', () => (
     <Row>
       <Text>This row only has primary content in it.</Text>

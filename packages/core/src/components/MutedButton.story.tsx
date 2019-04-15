@@ -1,10 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
 import MutedButton from './MutedButton';
 
 storiesOf('Core/MutedButton', module)
+  .addParameters({
+    inspectComponents: [MutedButton],
+  })
   .add('A muted button with an inverted variant.', () => (
     <>
       <MutedButton>Button</MutedButton> <MutedButton inverted>Button</MutedButton>

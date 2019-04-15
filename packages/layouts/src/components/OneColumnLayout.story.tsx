@@ -6,6 +6,9 @@ import SideBar, { Item } from './SideBar';
 import OneColumnLayout from './OneColumnLayout';
 
 storiesOf('Layouts/OneColumnLayout', module)
+  .addParameters({
+    inspectComponents: [OneColumnLayout],
+  })
   .add('A single column layout with no asides.', () => (
     <OneColumnLayout>
       <LoremIpsum />

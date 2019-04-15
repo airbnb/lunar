@@ -61,5 +61,8 @@ class OverlayNoBgDemo extends React.Component<{}, State> {
 }
 
 storiesOf('Core/Overlay', module)
+  .addParameters({
+    inspectComponents: [Overlay],
+  })
   .add('An overlay with visible dark background.', () => <OverlayDemo />)
   .add('With no background.', () => <OverlayNoBgDemo />);

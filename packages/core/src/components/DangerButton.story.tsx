@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import DangerButton from './DangerButton';
 
 storiesOf('Core/DangerButton', module)
+  .addParameters({
+    inspectComponents: [DangerButton],
+  })
   .add('Button with an inverted variant.', () => (
     <>
       <DangerButton>Button</DangerButton> <DangerButton inverted>Button</DangerButton>

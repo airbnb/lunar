@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import DateTimeSelect from './DateTimeSelect';
 
 storiesOf('Core/DateTimeSelect', module)
+  .addParameters({
+    inspectComponents: [DateTimeSelect],
+  })
   .add('Standard select field for dates and times.', () => (
     <DateTimeSelect name="dts-basic" label="Label" onChange={action('onChange')} />
   ))

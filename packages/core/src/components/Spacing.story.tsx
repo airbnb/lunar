@@ -4,6 +4,9 @@ import StatusLabel from './StatusLabel';
 import Spacing from './Spacing';
 
 storiesOf('Core/Spacing', module)
+  .addParameters({
+    inspectComponents: [Spacing],
+  })
   .add('Apply top margin.', () => (
     <Spacing top={3}>
       <StatusLabel>Content</StatusLabel>

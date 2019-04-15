@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Spacing from './Spacing';
 import DatePickerInput from './DatePickerInput';
+import DatePicker from './DatePicker';
 
 class DatePickerInputDemo extends React.Component<{}, { from: Date | null; to?: Date | null }> {
   state = {
@@ -73,6 +74,9 @@ class DatePickerInputDemo extends React.Component<{}, { from: Date | null; to?: 
 }
 
 storiesOf('Core/DatePickerInput', module)
+  .addParameters({
+    inspectComponents: [DatePickerInput, DatePicker],
+  })
   .add('A single month.', () => (
     <DatePickerInput name="date" label="Label" onChange={action('onChange')} />
   ))

@@ -6,6 +6,9 @@ import SideBar, { Item } from './SideBar';
 import ThreeColumnLayout from './ThreeColumnLayout';
 
 storiesOf('Layouts/ThreeColumnLayout', module)
+  .addParameters({
+    inspectComponents: [ThreeColumnLayout],
+  })
   .add('A three column layout.', () => (
     <ThreeColumnLayout after={<LoremIpsum />} before={<LoremIpsum />}>
       <LoremIpsum />

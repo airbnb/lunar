@@ -1,10 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
 import CheckBoxController from './CheckBoxController';
+import BaseCheckBox from './CheckBox';
 
 storiesOf('Core/CheckBoxController', module)
+  .addParameters({
+    inspectComponents: [CheckBoxController, BaseCheckBox],
+  })
   .add('Controls multiple checkboxes.', () => (
     <CheckBoxController
       label="Favorite colors?"

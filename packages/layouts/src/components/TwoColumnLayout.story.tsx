@@ -6,6 +6,9 @@ import SideBar, { Item } from './SideBar';
 import TwoColumnLayout from './TwoColumnLayout';
 
 storiesOf('Layouts/TwoColumnLayout', module)
+  .addParameters({
+    inspectComponents: [TwoColumnLayout],
+  })
   .add('A two column layout with before (left) aside.', () => (
     <TwoColumnLayout aside={<LoremIpsum />} before>
       <LoremIpsum />

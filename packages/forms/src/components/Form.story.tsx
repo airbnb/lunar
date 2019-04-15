@@ -106,6 +106,9 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
 }
 
 storiesOf('Forms/Form', module)
+  .addParameters({
+    inspectComponents: [Form],
+  })
   .add('With all fields.', () => (
     <Form
       initialValues={values}

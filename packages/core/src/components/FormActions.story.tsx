@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import FormActions from './FormActions';
 
 storiesOf('Core/FormActions', module)
+  .addParameters({
+    inspectComponents: [FormActions],
+  })
   .add('A pair of form action buttons.', () => <FormActions />)
   .add('With custom text and click handlers.', () => (
     <FormActions

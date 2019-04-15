@@ -35,6 +35,9 @@ class PageDataExample extends React.Component<{ onSubmit: Function }, { data: st
 }
 
 storiesOf('AppShell', module)
+  .addParameters({
+    inspectComponents: [AppShell],
+  })
   .add('Supports toasts.', () => (
     <AppShell name="Lunar">
       <AppContext.Consumer>

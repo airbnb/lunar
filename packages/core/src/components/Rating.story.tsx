@@ -3,6 +3,9 @@ import { storiesOf } from '@storybook/react';
 import Rating from './Rating';
 
 storiesOf('Core/Rating', module)
+  .addParameters({
+    inspectComponents: [Rating],
+  })
   .add('Star ratings.', () => (
     <>
       <Rating rating={0} />
@@ -19,7 +22,7 @@ storiesOf('Core/Rating', module)
     </>
   ))
   .add('With reviews.', () => <Rating rating={4.5} reviews={100} />)
-  .add('With different sizing: micro, small, regular (default), and large.', () => (
+  .add('With different sizing.', () => (
     <>
       <Rating micro rating={3.5} reviews={100} />
       <Rating small rating={3.5} reviews={100} />

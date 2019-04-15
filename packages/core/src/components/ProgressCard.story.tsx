@@ -7,6 +7,9 @@ import SteppedProgressBar, { Step } from './SteppedProgressBar';
 import ProgressCard from './ProgressCard';
 
 storiesOf('Core/ProgressCard', module)
+  .addParameters({
+    inspectComponents: [ProgressCard],
+  })
   .add('A card with a progress bar.', () => (
     <ProgressCard title="Upload progress" progress={<ProgressBar percent={66} />} />
   ))

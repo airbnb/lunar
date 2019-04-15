@@ -4,6 +4,9 @@ import LoremIpsum from ':storybook/components/LoremIpsum';
 import StatusText from './StatusText';
 
 storiesOf('Core/StatusText', module)
+  .addParameters({
+    inspectComponents: [StatusText],
+  })
   .add('Default and status classified text.', () => (
     <>
       <StatusText>

@@ -14,6 +14,9 @@ function Box({ children = null }: { children: any }) {
 }
 
 storiesOf('Core/Grid', module)
+  .addParameters({
+    inspectComponents: [Grid, Col],
+  })
   .add('A 12 column grid with 16px gutters.', () => (
     <Text>
       <Grid>

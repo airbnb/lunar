@@ -6,7 +6,7 @@ import Accordion, { Item } from './Accordion';
 
 storiesOf('Core/Accordion', module)
   .addParameters({
-    inspectComponents: ['Accordion', 'AccordionItem'],
+    inspectComponents: [Accordion, Item],
   })
   .add('Multiple items with borders.', () => (
     <Accordion bordered>

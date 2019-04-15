@@ -4,6 +4,8 @@ import childrenWithComponentName from '../../prop-types/childrenWithComponentNam
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 import Item, { Props as AccordionItemProps } from './Item';
 
+export { Item };
+
 export type Props = {
   /** Apply a border. */
   bordered?: boolean;
@@ -71,8 +73,6 @@ export class Accordion extends React.Component<Props & WithStylesProps, State> {
     );
   }
 }
-
-export { Item };
 
 export default withStyles(({ color }) => ({
   container: {

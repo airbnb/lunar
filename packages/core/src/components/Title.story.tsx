@@ -4,6 +4,9 @@ import LoremIpsum from ':storybook/components/LoremIpsum';
 import Title from './Title';
 
 storiesOf('Core/Title', module)
+  .addParameters({
+    inspectComponents: [Title],
+  })
   .add('Titles with different heading levels.', () => (
     <>
       <Title level={1}>

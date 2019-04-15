@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { WithIconWrapperProps } from './withIcon';
+import IconAdd from './interface/IconAdd';
 
 type IconSet = {
   label: string;
@@ -146,4 +147,8 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
   }
 }
 
-storiesOf('Icons', module).add('Icon gallery.', () => <IconList />);
+storiesOf('Icons', module)
+  .addParameters({
+    inspectComponents: [IconAdd],
+  })
+  .add('Icon gallery.', () => <IconList />);

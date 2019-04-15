@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import Breadcrumbs, { Breadcrumb } from './Breadcrumbs';
 
 storiesOf('Core/Breadcrumbs', module)
+  .addParameters({
+    inspectComponents: [Breadcrumbs, Breadcrumb],
+  })
   .add('Breadcrumbs with `highlighted` and optional `href` or `onClick`.', () => (
     <Breadcrumbs accessibilityLabel="Breadcrumb">
       <Breadcrumb label="Galaxy" href="#cool" />

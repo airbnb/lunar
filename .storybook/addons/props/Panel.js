@@ -1,20 +1,11 @@
 import React from 'react';
-import { styled } from '@storybook/theming';
 import { Placeholder } from '@storybook/components';
 import Tabs from '@storybook/addon-a11y/dist/components/Tabs';
 import PropTable from './PropTable';
 
-// export const NoResults = styled.pre({
-//   flex: 1,
-//   margin: 0,
-//   padding: '16px',
-//   overflowY: 'auto',
-//   color: '#666',
-// });
-
 export default class Panel extends React.Component {
   state = {
-    components: [],
+    components: {},
     propTables: {},
   };
 
@@ -31,20 +22,27 @@ export default class Panel extends React.Component {
   };
 
   render() {
+    const { active } = this.props;
     const { components, propTables } = this.state;
 
-    if (components.length === 0) {
+    if (!active) {
+      return null;
+    }
+
+    if (Object.keys(components).length === 0) {
       return <Placeholder>No components found to be inspected.</Placeholder>;
     }
 
-    const tabs = components.map(component => {
-      const propTable = Object.values(propTables).find(table => table.name === component);
-
-      return {
-        label: component,
-        panel: <PropTable table={propTable} component={component} />,
-      };
-    });
+    const tabs = Object.entries(components).map(([name, component]) => ({
+      label: name,
+      panel: (
+        <PropTable
+          name={name}
+          component={component}
+          table={Object.values(propTables).find(table => table.name === name)}
+        />
+      ),
+    }));
 
     if (tabs.length === 1) {
       return tabs[0].panel;

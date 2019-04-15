@@ -90,4 +90,8 @@ class SheetDemo extends React.Component<
   }
 }
 
-storiesOf('Core/Sheet', module).add('A sheet that appears over content.', () => <SheetDemo />);
+storiesOf('Core/Sheet', module)
+  .addParameters({
+    inspectComponents: [Sheet, SheetArea],
+  })
+  .add('A sheet that appears over content.', () => <SheetDemo />);

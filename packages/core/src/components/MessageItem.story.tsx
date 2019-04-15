@@ -9,6 +9,9 @@ import Interweave from './Interweave';
 import MessageItem from './MessageItem';
 
 storiesOf('Core/MessageItem', module)
+  .addParameters({
+    inspectComponents: [MessageItem],
+  })
   .add('Message item.', () => (
     <MessageItem
       formattedTimestamp="2:45 AM"

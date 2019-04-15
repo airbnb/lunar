@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import Pagination from './Pagination';
 
 storiesOf('Core/Pagination', module)
+  .addParameters({
+    inspectComponents: [Pagination],
+  })
   .add('No previous or next pages.', () => (
     <Pagination page={1} onNext={action('onNext')} onPrevious={action('onPrevious')} />
   ))

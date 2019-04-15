@@ -3,6 +3,9 @@ import { storiesOf } from '@storybook/react';
 import Shimmer from './Shimmer';
 
 storiesOf('Core/Shimmer', module)
+  .addParameters({
+    inspectComponents: [Shimmer],
+  })
   .add('A shimmer with random widths (default).', () => (
     <>
       <Shimmer block width="random" />

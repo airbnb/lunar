@@ -4,6 +4,9 @@ import Text from './Text';
 import Loader from './Loader';
 
 storiesOf('Core/Loader', module)
+  .addParameters({
+    inspectComponents: [Loader],
+  })
   .add('A loader absolutely centered within a parent.', () => (
     <div style={{ height: 100, position: 'relative' }}>
       <Loader />

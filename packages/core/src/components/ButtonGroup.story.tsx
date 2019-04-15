@@ -5,6 +5,9 @@ import Tooltip from './Tooltip';
 import ButtonGroup from './ButtonGroup';
 
 storiesOf('Core/ButtonGroup', module)
+  .addParameters({
+    inspectComponents: [ButtonGroup],
+  })
   .add('Group an arbitrary number of components.', () => (
     <ButtonGroup>
       <Button>One</Button>

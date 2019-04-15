@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import Select from './Select';
 
 storiesOf('Core/Select', module)
+  .addParameters({
+    inspectComponents: [Select],
+  })
   .add('A standard select field.', () => (
     <Select name="select-basic" label="Label" onChange={action('onChange')}>
       <option value="foo">Foo</option>

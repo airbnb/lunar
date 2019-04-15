@@ -33,6 +33,9 @@ class CountExample extends React.Component<{}, { count: number }> {
 }
 
 storiesOf('Core/CountBadge', module)
+  .addParameters({
+    inspectComponents: [CountBadge],
+  })
   .add('Default animation.', () => <CountBadge accessibilityLabel="5 unread messages" value={5} />)
   .add('Add waggle animation.', () => (
     <CountBadge accessibilityLabel="5 unread messages" value={5} waggle />

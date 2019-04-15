@@ -8,6 +8,9 @@ import Spacing from './Spacing';
 import Chip from './Chip';
 
 storiesOf('Core/Chip', module)
+  .addParameters({
+    inspectComponents: [Chip],
+  })
   .add('Simple chip.', () => <Chip>Chip</Chip>)
   .add('With an icon.', () => <Chip icon={<IconCloseAlt size="2em" />}>Chip</Chip>)
   .add('With an icon button.', () => (

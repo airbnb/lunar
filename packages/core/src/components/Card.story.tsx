@@ -11,6 +11,9 @@ import ResponsiveImage from './ResponsiveImage';
 import Card, { Content } from './Card';
 
 storiesOf('Core/Card', module)
+  .addParameters({
+    inspectComponents: [Card, Content],
+  })
   .add('A standard card.', () => (
     <Card>
       <Content>
@@ -53,7 +56,7 @@ storiesOf('Core/Card', module)
       </Content>
     </Card>
   ))
-  .add('A card with a top featured image.', () => (
+  .add('A card with a large top featured image.', () => (
     <Card>
       <Content large topImageSrc={stars}>
         <Text>
@@ -71,7 +74,7 @@ storiesOf('Core/Card', module)
       </Content>
     </Card>
   ))
-  .add('A card with a left featured image.', () => (
+  .add('A card with a large left featured image.', () => (
     <Card>
       <Content large beforeImageSrc={moon}>
         <Text>
@@ -89,7 +92,7 @@ storiesOf('Core/Card', module)
       </Content>
     </Card>
   ))
-  .add('A card with a right featured image.', () => (
+  .add('A card with a large right featured image.', () => (
     <Card>
       <Content large afterImageSrc={moon}>
         <Text>
@@ -124,7 +127,7 @@ storiesOf('Core/Card', module)
       </Content>
     </Card>
   ))
-  .add('Compact.', () => (
+  .add('As compact.', () => (
     <Card>
       <Content compact>
         <Text>

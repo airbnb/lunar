@@ -5,6 +5,9 @@ import Text from './Text';
 import Multicomplete from './Multicomplete';
 
 storiesOf('Core/Multicomplete', module)
+  .addParameters({
+    inspectComponents: [Multicomplete],
+  })
   .add('An autocomplete that supports selecting multiple items.', () => (
     <Multicomplete
       accessibilityLabel="Favorite color?"

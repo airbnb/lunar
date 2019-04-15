@@ -6,6 +6,9 @@ import SideBar, { Item } from './SideBar';
 import SplitLayout from './SplitLayout';
 
 storiesOf('Layouts/SplitLayout', module)
+  .addParameters({
+    inspectComponents: [SplitLayout],
+  })
   .add('A split column layout with before and after aside.', () => (
     <SplitLayout after={<LoremIpsum />} before={<LoremIpsum />} />
   ))

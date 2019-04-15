@@ -6,12 +6,16 @@ import Input from './Input';
 import TextArea from './TextArea';
 import FocusTrap from './FocusTrap';
 
-storiesOf('Core/FocusTrap', module).add('Traps focus (try tabbing around).', () => (
-  <FocusTrap>
-    <Input name="trap-input" label="Input" onChange={action('onChange')} />
+storiesOf('Core/FocusTrap', module)
+  .addParameters({
+    inspectComponents: [FocusTrap],
+  })
+  .add('Traps focus (try tabbing around).', () => (
+    <FocusTrap>
+      <Input name="trap-input" label="Input" onChange={action('onChange')} />
 
-    <TextArea name="trap-textarea" label="Textarea" onChange={action('onChange')} />
+      <TextArea name="trap-textarea" label="Textarea" onChange={action('onChange')} />
 
-    <Button>Action</Button>
-  </FocusTrap>
-));
+      <Button>Action</Button>
+    </FocusTrap>
+  ));

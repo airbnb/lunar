@@ -4,6 +4,9 @@ import Text from './Text';
 import AppLoader from './AppLoader';
 
 storiesOf('Core/AppLoader', module)
+  .addParameters({
+    inspectComponents: [AppLoader],
+  })
   .add('By default, displays a loading state while requesting data.', () => (
     <AppLoader failureText="Failed to load application" loadingText="Loading application">
       <Text>Content</Text>

@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import RadioButton from './RadioButton';
 
 storiesOf('Core/RadioButton', module)
+  .addParameters({
+    inspectComponents: [RadioButton],
+  })
   .add('A standard radio button field.', () => (
     <RadioButton name="radio-basic" label="Label" value="foo" onChange={action('onChange')} />
   ))

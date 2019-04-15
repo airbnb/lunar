@@ -4,6 +4,9 @@ import Text from './Text';
 import Glyph from './Glyph';
 
 storiesOf('Core/Glyph', module)
+  .addParameters({
+    inspectComponents: [Glyph],
+  })
   .add('Fractions as diagonal or stacked.', () => (
     <Text>
       <Glyph diagonal>1/3</Glyph>

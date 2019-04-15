@@ -5,6 +5,9 @@ import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
 import IconButton from './IconButton';
 
 storiesOf('Core/IconButton', module)
+  .addParameters({
+    inspectComponents: [IconButton],
+  })
   .add('A standard button, with different sizes.', () => (
     <>
       <IconButton onClick={action('onClick')}>

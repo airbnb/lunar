@@ -1,10 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
 import RadioButtonController from './RadioButtonController';
+import BaseRadioButton from './RadioButton';
 
 storiesOf('Core/RadioButtonController', module)
+  .addParameters({
+    inspectComponents: [RadioButtonController, BaseRadioButton],
+  })
   .add('Controls multiple radio buttons.', () => (
     <RadioButtonController
       label="Favorite food?"

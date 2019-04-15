@@ -5,6 +5,9 @@ import ProfilePhoto from './ProfilePhoto';
 import ProfilePhotoGroup from './ProfilePhotoGroup';
 
 storiesOf('Core/ProfilePhotoGroup', module)
+  .addParameters({
+    inspectComponents: [ProfilePhotoGroup],
+  })
   .add('Display a horizontal group of profile photos.', () => (
     <ProfilePhotoGroup>
       <ProfilePhoto imageSrc={lunar} title="Photo" />

@@ -5,6 +5,9 @@ import IconAddAlt from '@airbnb/lunar-icons/lib/interface/IconAddAlt';
 import Button from './Button';
 
 storiesOf('Core/Button', module)
+  .addParameters({
+    inspectComponents: [Button],
+  })
   .add('Standard button with an inverted variant.', () => (
     <>
       <Button>Button</Button> <Button inverted>Button</Button>

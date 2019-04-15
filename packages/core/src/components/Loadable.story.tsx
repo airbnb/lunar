@@ -3,6 +3,9 @@ import { storiesOf } from '@storybook/react';
 import Loadable from './Loadable';
 
 storiesOf('Core/Loadable', module)
+  .addParameters({
+    inspectComponents: [Loadable],
+  })
   .add('Render a component after importing it.', () => (
     <Loadable component={() => import('./Shimmer')} />
   ))

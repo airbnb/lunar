@@ -15,6 +15,9 @@ const year = new Date();
 year.setFullYear(year.getFullYear() - 2);
 
 storiesOf('Core/DateTimeRange', module)
+  .addParameters({
+    inspectComponents: [DateTimeRange],
+  })
   .add('Different day range.', () => <DateTimeRange from={date} to={Date.now()} />)
   .add('Different weeks range.', () => <DateTimeRange from={week} to={Date.now()} />)
   .add('Different months range.', () => <DateTimeRange from={month} to={Date.now()} />)

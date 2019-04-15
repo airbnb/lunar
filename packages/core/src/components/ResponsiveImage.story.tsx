@@ -5,6 +5,9 @@ import Shimmer from './Shimmer';
 import ResponsiveImage from './ResponsiveImage';
 
 storiesOf('Core/ResponsiveImage', module)
+  .addParameters({
+    inspectComponents: [ResponsiveImage],
+  })
   .add('An image that is constrained proportionally.', () => (
     <ResponsiveImage
       src={lunar}

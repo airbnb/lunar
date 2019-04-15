@@ -4,6 +4,9 @@ import Text from './Text';
 import Table, { Cell, Row } from './Table';
 
 storiesOf('Core/Table', module)
+  .addParameters({
+    inspectComponents: [Table, Cell, Row],
+  })
   .add('Display a table with no styles.', () => (
     <Text>
       <Table>

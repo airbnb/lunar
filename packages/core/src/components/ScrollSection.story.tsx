@@ -48,7 +48,10 @@ class ScrollDemo extends React.Component<{}, { activeSection: string }> {
   }
 }
 
-storiesOf('Core/ScrollSection', module).add(
-  'Section scrolled to the top of the wrapper will be set as the active section.',
-  () => <ScrollDemo />,
-);
+storiesOf('Core/ScrollSection', module)
+  .addParameters({
+    inspectComponents: [ScrollSection, ScrollWrapper],
+  })
+  .add('Section scrolled to the top of the wrapper will be set as the active section.', () => (
+    <ScrollDemo />
+  ));

@@ -39,6 +39,9 @@ class DropdownDemo extends React.Component<any, { open: boolean }> {
 }
 
 storiesOf('Core/Dropdown', module)
+  .addParameters({
+    inspectComponents: [Dropdown],
+  })
   .add('Bottom-left dropdown.', () => <DropdownDemo>Toggle bottom-left (default)</DropdownDemo>)
   .add('Top-right dropdown.', () => (
     <DropdownDemo right="0" bottom="100%">

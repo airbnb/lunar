@@ -4,6 +4,9 @@ import { action } from '@storybook/addon-actions';
 import CheckBox from './CheckBox';
 
 storiesOf('Core/CheckBox', module)
+  .addParameters({
+    inspectComponents: [CheckBox],
+  })
   .add('A standard checkbox field.', () => (
     <CheckBox name="cb-basic" label="Label" onChange={action('onChange')} />
   ))

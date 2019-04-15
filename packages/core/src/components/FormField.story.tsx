@@ -6,9 +6,12 @@ import IconCurrency from '@airbnb/lunar-icons/lib/general/IconCurrency';
 import Input from './Input';
 import Select from './Select';
 import TextArea from './TextArea';
-import { Prefix, Suffix } from './FormField';
+import FormField, { Prefix, Suffix } from './FormField';
 
 storiesOf('Core/FormField', module)
+  .addParameters({
+    inspectComponents: [FormField, Prefix, Suffix],
+  })
   .add('Supports a disabled state.', () => (
     <>
       <Input name="disabled-input" label="Input" onChange={action('onChange')} disabled />

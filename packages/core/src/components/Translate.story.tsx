@@ -4,6 +4,9 @@ import Text from './Text';
 import Translate from './Translate';
 
 storiesOf('Core/Translate', module)
+  .addParameters({
+    inspectComponents: [Translate],
+  })
   .add('Display a message with an editor related context.', () => (
     <Text>
       <Translate

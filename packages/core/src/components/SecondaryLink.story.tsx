@@ -5,6 +5,9 @@ import IconAddAlt from '@airbnb/lunar-icons/lib/interface/IconAddAlt';
 import SecondaryLink from './SecondaryLink';
 
 storiesOf('Core/SecondaryLink', module)
+  .addParameters({
+    inspectComponents: [SecondaryLink],
+  })
   .add('A secondary link.', () => (
     <SecondaryLink href="https://github.com/airbnb/lunar">Link</SecondaryLink>
   ))
