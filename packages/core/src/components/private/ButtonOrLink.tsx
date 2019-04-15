@@ -24,6 +24,8 @@ export type Props = {
   onMouseUp?: (event: React.MouseEvent<ButtonOrLinkTypes>) => void;
   /** When a link, open the target in a new window. */
   openInNewWindow?: boolean;
+  /** Rel attribute override for if the component has an href */
+  rel?: string;
   /** When a button, the type of button. */
   type?: 'button' | 'submit' | 'reset';
 };
