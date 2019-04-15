@@ -1,16 +1,31 @@
 const path = require('path');
 const glob = require('fast-glob');
+const tsConfig = require('../tsconfig.options.json');
+
+delete tsConfig.compilerOptions.moduleResolution;
 
 module.exports = async ({ config }) => {
   const babelConfig = config.module.rules[0];
 
   // Replace Flow with TypeScript
   babelConfig.test = /\.(j|t)sx?$/;
-  babelConfig.exclude.push(/node_modules/);
+  babelConfig.exclude.push(/node_modules/, /lib\//);
   babelConfig.use[0].options.sourceType = 'unambiguous';
   babelConfig.use[0].options.presets[2] = require.resolve('@babel/preset-typescript');
-  babelConfig.use.unshift({ loader: require.resolve('react-docgen-typescript-loader') });
 
+  // Replace babel-plugin-react-docgen with react-docgen-typescript-loader
+  babelConfig.use[0].options.plugins = babelConfig.use[0].options.plugins.filter(
+    plugin =>
+      typeof plugin === 'string' ||
+      (Array.isArray(plugin) && !plugin[0].includes('babel-plugin-react-docgen')),
+  );
+
+  babelConfig.use.push({
+    loader: 'react-docgen-typescript-loader',
+    options: { compilerOptions: tsConfig.compilerOptions },
+  });
+
+  // Set TypeScript extensions
   config.resolve.extensions.push('.ts', '.tsx');
 
   // Add custom Webpack aliases

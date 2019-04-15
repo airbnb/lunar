@@ -46,6 +46,9 @@ const errorMock = {
 };
 
 storiesOf('Apollo/Query', module)
+  .addParameters({
+    inspectComponents: [Query],
+  })
   .add('Execute a GraphQL query and render the response when received.', () => (
     <MockedProvider mocks={[mock]} addTypename={false}>
       <Query query={QUERY} variables={{ id: 123 }}>

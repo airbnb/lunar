@@ -5,6 +5,7 @@
   "description": "React toolkit and design language for Airbnb open source and internal projects.",
   "license": "MIT",
   "scripts": {
+    "setup": "npm run bootstrap && npm run build",
     "bootstrap": "lerna bootstrap --hoist && bash ./scripts/symlinkPackages.sh",
     "build": "npm run clean && lerna run build && npm run type",
     "clean": "rm -rf ./packages/*/{lib,esm}",
@@ -63,14 +64,14 @@
     }
   ],
   "dependencies": {
-    "@storybook/addon-a11y": "^5.0.6",
-    "@storybook/addon-actions": "^5.0.6",
-    "@storybook/addon-backgrounds": "^5.0.6",
+    "@storybook/addon-a11y": "^5.0.8",
+    "@storybook/addon-actions": "^5.0.8",
+    "@storybook/addon-backgrounds": "^5.0.8",
     "@storybook/addon-console": "^1.1.0",
-    "@storybook/addon-links": "^5.0.6",
-    "@storybook/addon-viewport": "^5.0.6",
-    "@storybook/addons": "^5.0.6",
-    "@storybook/react": "^5.0.6"
+    "@storybook/addon-links": "^5.0.8",
+    "@storybook/addon-viewport": "^5.0.8",
+    "@storybook/addons": "^5.0.8",
+    "@storybook/react": "^5.0.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",

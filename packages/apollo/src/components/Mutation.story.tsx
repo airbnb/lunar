@@ -67,6 +67,9 @@ function UpdateButton({ onUpdate }: any) {
 }
 
 storiesOf('Apollo/Mutation', module)
+  .addParameters({
+    inspectComponents: [Mutation],
+  })
   .add('Execute a GraphQL mutation and handle the response when received.', () => (
     <MockedProvider mocks={[mock]} addTypename={false}>
       <Mutation mutation={MUTATION} variables={variables}>

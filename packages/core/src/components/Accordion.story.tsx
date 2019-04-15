@@ -5,6 +5,9 @@ import Text from './Text';
 import Accordion, { Item } from './Accordion';
 
 storiesOf('Core/Accordion', module)
+  .addParameters({
+    inspectComponents: ['Accordion', 'AccordionItem'],
+  })
   .add('Multiple items with borders.', () => (
     <Accordion bordered>
       <Item title="Item 1" id="one">
