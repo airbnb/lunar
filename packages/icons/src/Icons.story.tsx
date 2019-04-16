@@ -1,8 +1,10 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/no-onchange */
+
+import React, { ChangeEvent } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { WithIconWrapperProps } from './withIcon';
-import IconAdd from './interface/IconAdd';
+import FakeIcon from './FakeIcon';
 
 type IconSet = {
   label: string;
@@ -32,23 +34,15 @@ context.keys().forEach(file => {
   iconData[category].icons.push(Icon);
 });
 
-class IconGrid extends React.Component<
-  { category: string; title: string; icons: IconSet['icons']; color: string; size: string },
-  { icon: string }
-> {
-  state = {
-    icon: 'IconName',
-  };
-
-  handleSetName = (icon: string) => {
-    this.setState({
-      icon,
-    });
-  };
-
+class IconGrid extends React.Component<{
+  category: string;
+  title: string;
+  icons: IconSet['icons'];
+  color: string;
+  size: string;
+}> {
   render() {
     const { category, title, icons, color, size } = this.props;
-    const { icon } = this.state;
 
     return (
       <div style={{ marginBottom: 16 }}>
@@ -61,11 +55,9 @@ class IconGrid extends React.Component<
               key={Icon.displayName}
               title={Icon.displayName}
               onClick={() => {
-                action(Icon.displayName!)(
-                  `import ${icon} from '@airbnb/lunar-icons/lib/${category}/${icon}';`,
-                );
+                const icon = Icon.displayName!;
 
-                this.handleSetName(Icon.displayName!);
+                action(icon)(`import ${icon} from '@airbnb/lunar-icons/lib/${category}/${icon}';`);
               }}
               style={{
                 fontSize: 15,
@@ -96,15 +88,15 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
     size: '2em',
   };
 
-  handleColorChange = (color: string) => {
+  handleColorChange = (event: ChangeEvent<HTMLSelectElement>) => {
     this.setState({
-      color,
+      color: event.currentTarget.value,
     });
   };
 
-  handleSizeChange = (size: string) => {
+  handleSizeChange = (event: ChangeEvent<HTMLSelectElement>) => {
     this.setState({
-      size,
+      size: event.currentTarget.value,
     });
   };
 
@@ -112,25 +104,26 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
     const { color, size } = this.state;
 
     return (
-      <div>
-        {/* <div stlye={{ display: 'flex' }}>
-          <div style={{ width: '50%' }}>
-            <select label="Color" name="color" value={color} onChange={this.handleColorChange}>
-              <option value="">None</option>
-              <option value="red">Red</option>
-              <option value="green">Green</option>
-              <option value="blue">Blue</option>
-            </select>
-          </div>
+      <div style={{ position: 'relative' }}>
+        <div style={{ display: 'flex', position: 'absolute', top: 0, right: 0 }}>
+          <select name="color" value={color} onChange={this.handleColorChange}>
+            <option value="">No Color</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+          </select>
 
-          <div style={{ width: '50%' }}>
-            <select label="Size" name="size" value={size} onChange={this.handleSizeChange}>
-              <option value="1em">1x</option>
-              <option value="2em">2x</option>
-              <option value="3em">3x</option>
-            </select>
-          </div>
-        </div> */}
+          <select
+            name="size"
+            value={size}
+            onChange={this.handleSizeChange}
+            style={{ marginLeft: 8 }}
+          >
+            <option value="1em">1x</option>
+            <option value="2em">2x</option>
+            <option value="3em">3x</option>
+          </select>
+        </div>
 
         {Object.keys(iconData).map(category => (
           <IconGrid
@@ -149,6 +142,6 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
 
 storiesOf('Icons', module)
   .addParameters({
-    inspectComponents: [IconAdd],
+    inspectComponents: [FakeIcon],
   })
   .add('Icon gallery.', () => <IconList />);

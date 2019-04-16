@@ -122,7 +122,6 @@
     "react": "^16.8.6",
     "react-docgen-typescript-loader": "^3.1.0",
     "react-dom": "^16.8.6",
-    "remark-parse": "^6.0.3",
     "svgo": "^1.2.0",
     "typescript": "^3.4.1",
     "url-loader": "^1.1.2",
