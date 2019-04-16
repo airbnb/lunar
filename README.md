@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div align="center">
 <img src="https://raw.githubusercontent.com/airbnb/lunar/storybook/.storybook/images/lunar-logo-small.png" />
 
 # Lunar
