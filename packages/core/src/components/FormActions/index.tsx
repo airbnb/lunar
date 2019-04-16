@@ -1,6 +1,8 @@
 import React from 'react';
 import T from '../Translate';
-import Button from '../Button';
+import NormalButton from '../Button';
+import DangerButton from '../DangerButton';
+import MutedButton from '../MutedButton';
 import ButtonGroup from '../ButtonGroup';
 
 export type Props = {
@@ -8,6 +10,8 @@ export type Props = {
   cancelText?: React.ReactNode;
   /** Text to display in the continue/submit button. Defaults to "Submit". */
   continueText?: React.ReactNode;
+  /** Render a danger button over a regular button. */
+  danger?: boolean;
   /** Whether to disable the continue button. */
   disabled?: boolean;
   /** Hide the cancel button. */
@@ -33,6 +37,7 @@ export default class FormActions extends React.PureComponent<Props> {
   static defaultProps = {
     cancelText: null,
     continueText: null,
+    danger: false,
     disabled: false,
     hideCancel: false,
     processing: false,
@@ -46,6 +51,7 @@ export default class FormActions extends React.PureComponent<Props> {
     const {
       cancelText,
       continueText,
+      danger,
       disabled,
       hideCancel,
       onCancel,
@@ -56,6 +62,7 @@ export default class FormActions extends React.PureComponent<Props> {
       showReset,
       small,
     } = this.props;
+    const Button = danger ? DangerButton : NormalButton;
 
     return (
       <ButtonGroup>
@@ -74,15 +81,15 @@ export default class FormActions extends React.PureComponent<Props> {
         </Button>
 
         {!hideCancel && (
-          <Button inverted onClick={onCancel} small={small} disabled={processing}>
+          <MutedButton inverted onClick={onCancel} small={small} disabled={processing}>
             {cancelText || <T phrase="Cancel" context="Button label to cancel a form action" />}
-          </Button>
+          </MutedButton>
         )}
 
         {showReset && (
-          <Button type="reset" inverted small={small} disabled={processing}>
+          <MutedButton type="reset" inverted small={small} disabled={processing}>
             {resetText || <T phrase="Reset" context="Button label to reset a form" />}
-          </Button>
+          </MutedButton>
         )}
       </ButtonGroup>
     );
