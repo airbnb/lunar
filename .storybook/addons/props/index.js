@@ -1,4 +1,5 @@
 import addons, { makeDecorator } from '@storybook/addons';
+import kebabCase from 'lodash/kebabCase';
 
 function stripHOCs(fullName) {
   if (typeof fullName !== 'string') {
@@ -37,6 +38,7 @@ export const withProps = makeDecorator({
       // If we dont cast to JSON, a ton of data is lost by being set to undefined.
       // I have no idea why this happens, but JSON persists it.
       propTables: JSON.stringify(global.STORYBOOK_REACT_CLASSES),
+      section: kebabCase(context.kind.split('/')[0]),
     });
 
     return getStory(context);

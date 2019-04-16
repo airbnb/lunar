@@ -7,6 +7,7 @@ export default class Panel extends React.Component {
   state = {
     components: {},
     propTables: {},
+    section: '',
   };
 
   componentDidMount() {
@@ -17,16 +18,17 @@ export default class Panel extends React.Component {
     this.props.channel.removeListener('SET_PROPS_DATA', this.handleSetProps);
   }
 
-  handleSetProps = ({ components, propTables }) => {
+  handleSetProps = ({ components, propTables, section }) => {
     this.setState({
       components,
       propTables: JSON.parse(propTables),
+      section,
     });
   };
 
   render() {
     const { active } = this.props;
-    const { components, propTables } = this.state;
+    const { components, propTables, section } = this.state;
 
     if (!active) {
       return null;
@@ -42,7 +44,9 @@ export default class Panel extends React.Component {
         <PropTable
           name={name}
           component={component}
-          table={Object.values(propTables).find(table => table.name === name)}
+          table={Object.values(propTables).find(
+            table => table.name === name && table.path.includes(section),
+          )}
         />
       ),
     }));

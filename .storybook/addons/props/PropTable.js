@@ -3,15 +3,26 @@ import Markdown from 'markdown-to-jsx';
 import { styled } from '@storybook/theming';
 import { Placeholder } from '@storybook/components';
 import getTypeName from './getTypeName';
+import getImportPath from './getImportPath';
 
-const Wrapper = styled.div(({ theme }) => ({
+const Wrapper = styled.div({
   padding: 16,
   fontSize: 14,
-}));
+});
 
 const Description = styled.div({
   marginBottom: 16,
 });
+
+const ImportPath = styled.table(({ theme }) => ({
+  padding: 8,
+  fontSize: 13,
+  width: '100%',
+  backgroundColor: theme.barBg,
+  border: `1px solid ${theme.appBorderColor}`,
+  borderRadius: theme.appBorderRadius,
+  marginBottom: 16,
+}));
 
 const Table = styled.table(({ theme }) => ({
   width: '100%',
@@ -21,9 +32,11 @@ const Table = styled.table(({ theme }) => ({
   border: `1px solid ${theme.appBorderColor}`,
   borderCollapse: 'collapse',
   borderSpacing: 0,
+  borderRadius: theme.appBorderRadius,
 
   '& th': {
     textAlign: 'left',
+    backgroundColor: theme.barBg,
   },
 
   '& td, & th': {
@@ -60,9 +73,7 @@ function Row({ prop }) {
           <Value>{getTypeName(prop.defaultValue && prop.defaultValue.value)}</Value>
         )}
       </td>
-      <td>
-        <Markdown>{prop.description}</Markdown>
-      </td>
+      <td>{prop.description ? <Markdown>{prop.description}</Markdown> : null}</td>
     </tr>
   );
 }
@@ -93,34 +104,35 @@ export default class PropTable extends React.Component {
     });
 
     const props = [...requiredProps.sort(alphaSort), ...optionalProps.sort(alphaSort)];
-
-    if (props.length === 0) {
-      return <Placeholder>No props found for {name}.</Placeholder>;
-    }
+    const importPath = getImportPath(table.path, table.name);
 
     return (
       <Wrapper>
+        {importPath && <ImportPath>{importPath}</ImportPath>}
+
         {description && (
           <Description>
             <Markdown>{description}</Markdown>
           </Description>
         )}
 
-        <Table>
-          <thead>
-            <tr>
-              <th>Prop</th>
-              <th>Type</th>
-              <th>Value</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.map(prop => (
-              <Row key={prop.name} prop={prop} />
-            ))}
-          </tbody>
-        </Table>
+        {props.length > 0 && (
+          <Table>
+            <thead>
+              <tr>
+                <th>Prop</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {props.map(prop => (
+                <Row key={prop.name} prop={prop} />
+              ))}
+            </tbody>
+          </Table>
+        )}
       </Wrapper>
     );
   }
