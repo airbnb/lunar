@@ -7,7 +7,7 @@ export default function LoremIpsum({ short, medium }) {
 
   if (medium) {
     return (
-      <div>
+      <div style={{ marginTop: 8, marginBottom: 8 }}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
         sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
         blandit, sed mollis mi laoreet.
@@ -16,7 +16,7 @@ export default function LoremIpsum({ short, medium }) {
   }
 
   return (
-    <div>
+    <div style={{ marginTop: 8, marginBottom: 8 }}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam leo erat, lacinia nec porttitor
       sed, mollis sed nibh. Nam porta sit amet risus quis interdum. Sed feugiat lorem vitae augue
       blandit, sed mollis mi laoreet. Donec auctor, enim eget tempus auctor, est lorem laoreet nisi,

@@ -34,7 +34,9 @@ export const withProps = makeDecorator({
 
     addons.getChannel().emit('SET_PROPS_DATA', {
       components,
-      propTables: global.STORYBOOK_REACT_CLASSES,
+      // If we dont cast to JSON, a ton of data is lost by being set to undefined.
+      // I have no idea why this happens, but JSON persists it.
+      propTables: JSON.stringify(global.STORYBOOK_REACT_CLASSES),
     });
 
     return getStory(context);

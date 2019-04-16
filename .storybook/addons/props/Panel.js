@@ -17,8 +17,11 @@ export default class Panel extends React.Component {
     this.props.channel.removeListener('SET_PROPS_DATA', this.handleSetProps);
   }
 
-  handleSetProps = data => {
-    this.setState(data);
+  handleSetProps = ({ components, propTables }) => {
+    this.setState({
+      components,
+      propTables: JSON.parse(propTables),
+    });
   };
 
   render() {

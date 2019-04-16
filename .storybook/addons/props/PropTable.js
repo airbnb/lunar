@@ -35,6 +35,10 @@ const Type = styled.span(({ theme }) => ({
   color: theme.color.secondary,
 }));
 
+const Value = styled.span(({ theme }) => ({
+  color: theme.color.green,
+}));
+
 const Required = styled.span(({ theme }) => ({
   color: theme.color.negative,
 }));
@@ -52,7 +56,7 @@ function Row({ prop }) {
         {prop.required ? (
           <Required>Required</Required>
         ) : (
-          <Type>{getTypeName(prop.defaultValue && prop.defaultValue.value)}</Type>
+          <Value>{getTypeName(prop.defaultValue && prop.defaultValue.value)}</Value>
         )}
       </td>
       <td>{prop.description}</td>
@@ -69,11 +73,23 @@ export default class PropTable extends React.Component {
     }
 
     const { description } = table.docgenInfo;
-    const props = Object.values(table.docgenInfo.props)
-      .filter(prop => !prop.description.includes('@ignore'))
-      .sort((a, b) => a.name.localeCompare(b.name));
+    const requiredProps = [];
+    const optionalProps = [];
+    const alphaSort = (a, b) => a.name.localeCompare(b.name);
 
-    // TODO sort by required
+    Object.values(table.docgenInfo.props).forEach(prop => {
+      if (prop.description.includes('@ignore')) {
+        return;
+      }
+
+      if (prop.required) {
+        requiredProps.push(prop);
+      } else {
+        optionalProps.push(prop);
+      }
+    });
+
+    const props = [...requiredProps.sort(alphaSort), ...optionalProps.sort(alphaSort)];
 
     if (props.length === 0) {
       return <Placeholder>No props found for {name}.</Placeholder>;

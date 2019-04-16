@@ -5,13 +5,13 @@ const CHILD = /string \| number \| boolean \| \{\} \| ReactElement<any, string \
 const ELEMENT = /ReactElement<any, string \| \(\(props: any\) => ReactElement<any, string \| \.\.\. \| \(new \(props: any\) => Component<any, any, any>\)> \| null\) \| \(new \(props: any\) => Component<any, any, any>\)> \| \.\.\. \d+ more \.\.\./;
 
 export default function getTypeName(type) {
-  if (typeof type === 'undefined') {
+  if (type == null) {
     return '';
   }
 
-  type = type.replace(CHILD, 'NonNullable<ReactNode>*');
-  type = type.replace(NODE, 'ReactNode*');
-  type = type.replace(ELEMENT, 'ReactElement*');
+  type = type.replace(CHILD, 'NonNullable<ReactNode>');
+  type = type.replace(NODE, 'ReactNode');
+  type = type.replace(ELEMENT, 'ReactElement');
 
   return type.replace('| undefined', '').trim();
 }

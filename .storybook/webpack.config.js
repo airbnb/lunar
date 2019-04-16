@@ -2,8 +2,6 @@ const path = require('path');
 const glob = require('fast-glob');
 const tsConfig = require('../tsconfig.options.json');
 
-delete tsConfig.compilerOptions.moduleResolution;
-
 module.exports = async ({ config }) => {
   const babelConfig = config.module.rules[0];
 
@@ -22,7 +20,14 @@ module.exports = async ({ config }) => {
 
   babelConfig.use.push({
     loader: 'react-docgen-typescript-loader',
-    options: { compilerOptions: tsConfig.compilerOptions },
+    options: {
+      compilerOptions: {
+        ...tsConfig.compilerOptions,
+        composite: undefined,
+        moduleResolution: undefined,
+        sourceMap: true,
+      },
+    },
   });
 
   // Set TypeScript extensions
