@@ -10,6 +10,7 @@ storiesOf('Forms/FilterMenu', module)
   .addParameters({
     inspectComponents: [FilterMenu],
   })
+  .addDecorator(story => <div style={{ margin: 'auto' }}>{story()}</div>)
   .add('Form in a dropdown.', () => (
     <Form onSubmit={action('onSubmit')}>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>

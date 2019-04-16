@@ -1,0 +1,32 @@
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import Form from './Form';
+import Multicomplete from './Form/Multicomplete';
+
+const items = [
+  { value: 'red', name: 'Red' },
+  { value: 'black', name: 'Black' },
+  { value: 'blue', name: 'Blue' },
+  { value: 'green', name: 'Green' },
+];
+
+storiesOf('Forms/Multicomplete', module)
+  .addParameters({
+    inspectComponents: [Multicomplete],
+  })
+  .add('Connected to the parent `Form`.', () => (
+    <Form onSubmit={action('onSubmit')}>
+      <Multicomplete
+        name="field"
+        label="Label"
+        accessibilityLabel="Multicomplete"
+        onLoadOptions={value =>
+          Promise.resolve(
+            items.filter(item => item.name.toLowerCase().match(value.toLowerCase())),
+          ) as any
+        }
+        validator={() => {}}
+      />
+    </Form>
+  ));

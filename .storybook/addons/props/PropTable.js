@@ -1,4 +1,5 @@
 import React from 'react';
+import Markdown from 'markdown-to-jsx';
 import { styled } from '@storybook/theming';
 import { Placeholder } from '@storybook/components';
 import getTypeName from './getTypeName';
@@ -59,7 +60,9 @@ function Row({ prop }) {
           <Value>{getTypeName(prop.defaultValue && prop.defaultValue.value)}</Value>
         )}
       </td>
-      <td>{prop.description}</td>
+      <td>
+        <Markdown>{prop.description}</Markdown>
+      </td>
     </tr>
   );
 }
@@ -97,7 +100,11 @@ export default class PropTable extends React.Component {
 
     return (
       <Wrapper>
-        {description && <Description>{description}</Description>}
+        {description && (
+          <Description>
+            <Markdown>{description}</Markdown>
+          </Description>
+        )}
 
         <Table>
           <thead>
