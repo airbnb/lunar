@@ -35,6 +35,6 @@ export default function createTheme(type, theme, fontFamily) {
     // Brand
     brandTitle: `Lunar (${type})`,
     brandUrl: 'https://airbnb.io/lunar',
-    brandImage: 'https://placehold.it/350x150',
+    brandImage: '',
   });
 }
