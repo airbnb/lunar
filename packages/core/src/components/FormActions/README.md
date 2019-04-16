@@ -21,10 +21,10 @@ With no cancel button.
 <FormActions hideCancel />
 ```
 
-With a reset button.
+With a reset button and a danger state.
 
 ```jsx
-<FormActions showReset />
+<FormActions showReset danger />
 ```
 
 With small buttons in a processing state.
