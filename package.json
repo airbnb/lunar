@@ -10,7 +10,6 @@
     "build": "npm run clean && lerna run build && npm run type",
     "clean": "rm -rf ./packages/*/{lib,esm}",
     "clean:hard": "npm run clean && rm -f ./packages/*/*.tsbuildinfo",
-    "coverage": "npm run jest:cov",
     "deploy:ghp": "npm run storybook:build && node ./scripts/publishGitHubPages",
     "deploy:release": "npm run release:version && npm run release:publish",
     "gen:icon": "node ./scripts/generateIcon",
@@ -26,7 +25,7 @@
     "release:publish": "lerna publish from-git --yes",
     "release:version": "lerna version --yes --conventional-commits --changelog-preset conventional-changelog-beemo --github-release --push",
     "sg": "NODE_ENV=development npm run storybook",
-    "test": "npm run jest:cov",
+    "test": "npm run jest:coverage",
     "type": "tsc --build",
     "storybook": "STORYBOOK=true start-storybook -p 6006",
     "storybook:build": "STORYBOOK=true build-storybook"

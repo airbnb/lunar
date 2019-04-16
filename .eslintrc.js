@@ -240,7 +240,7 @@ module.exports = {
       },
     },
     {
-      files: ['*.story.{ts,tsx}'],
+      files: ['*.story.tsx'],
       rules: {
         'max-classes-per-file': 'off',
         'import/extensions': 'off',

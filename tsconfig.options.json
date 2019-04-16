@@ -17,5 +17,5 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["*.story.ts", "*.story.tsx"]
+  "exclude": ["*.story.tsx"]
 }

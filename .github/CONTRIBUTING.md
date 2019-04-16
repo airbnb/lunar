@@ -107,6 +107,40 @@ Extremely helpful in meeting the threshold.
 
 > Branch coverage is slightly lower than the others, so don't worry too much about it.
 
+## 🎨 Styleguide Requirements
+
+Our styleguide (powered by [Storybook](https://storybook.js.org/)) requires a bit of manual
+documentation of components to be properly infer prop types.
+
+- Component definitions require a
+  [docblock comment description](https://github.com/reactjs/react-docgen#proptypes). Furthermore, a
+  few docblock params can be included in the decription.
+  - When adding an experimental component, include an `@experimental` param.
+  - When deprecating a component, include a `@deprecated` param with an optional message.
+- Component prop types require a
+  [docblock comment description](https://github.com/reactjs/react-docgen#proptypes).
+- Component names are extracted by the default export (or the named export when wrapped with an
+  HOC).
+- Stories must be placed within a `<component>.story.tsx` file, in the root of the components
+  folder.
+- When running `npm run sg`, there should be _no_ errors/warnings in your terminal or browser
+  console.
+- All comments, descriptions, and example text must be in sentence case with proper capitalization
+  and punctuation (please end with a period).
+
+### Organization
+
+To support components in our styleguide, every component must be placed within an `index` file, in a
+folder with the component name. For example, a `Button` component would be located at
+`components/Button/index.tsx`.
+
+Furthermore, related and co-located components within the same component folder will also be
+supported. These are typically components that are named exports from the `index`. For example, the
+`Menu` component exports an `Item` and `Row` component, both of which will be displayed in the
+styleguide.
+
+To hide related components from the styleguide, simply place them in a `private` sub-folder.
+
 ## ⚙️ TypeScript Patterns
 
 A few guidelines and patterns when working with TypeScript:
