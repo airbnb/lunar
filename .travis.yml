@@ -5,6 +5,12 @@ before_script:
   - npm run build
 script:
   - echo "Skip"
+  - git config --get user.name
+  - git config --get user.email
+before_deploy:
+  - git config --global user.email ${GITHUB_EMAIL}
+  - git config --global user.name ${GITHUB_USER}
+  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
 matrix:
   fast_finish: true
 jobs:
