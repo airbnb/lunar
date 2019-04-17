@@ -24,16 +24,26 @@ jobs:
     - name: Lint @ 10
       script: npm run lint:errors
       node_js: '10'
-deploy:
-  - provider: script
-    script: npm run deploy:ghp
-    skip_cleanup: true
-    on:
-      branch: master
+    - name: Lint @ 10
+      script: npm run lint:errors
       node_js: '10'
-# - provider: script
-#   script: npm run deploy:release
-#   skip_cleanup: true
-#   on:
-#     branch: master
-#     node_js: '10'
+    - stage: Publish Storybook
+      script: skip
+      node_js: '10'
+      if: branch = master
+      deploy:
+        provider: script
+        script: npm run deploy:ghp
+        skip_cleanup: true
+        on:
+          branch: master
+    - stage: Release Packages
+      script: skip
+      node_js: '10'
+      if: branch = master
+      deploy:
+        provider: script
+        script: npm run deploy:release
+        skip_cleanup: true
+        on:
+          branch: master
