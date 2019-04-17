@@ -53,11 +53,11 @@ export class AppShell extends React.Component<Props, State> {
   };
 
   addToast = (message: string | Error, type: ToastType, props: Partial<ToastProps> = {}) => {
-    const id = uuid();
+    const id = props.id || uuid();
 
     this.setState(prevState => ({
       toasts: [
-        ...prevState.toasts,
+        ...prevState.toasts.filter(toast => toast.id !== id),
         {
           id,
           message,

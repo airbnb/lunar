@@ -84,6 +84,35 @@ describe('AppShell', () => {
         },
       ]);
     });
+
+    it('can specify id for toast', () => {
+      expect(wrapper.state('toasts')).toEqual([]);
+
+      instance.addSuccessToast('Data has saved', { delay: 1000, id: '123' });
+
+      expect(wrapper.state('toasts')).toEqual([
+        {
+          id: '123',
+          message: 'Data has saved',
+          props: { delay: 1000, success: true, id: '123' },
+        },
+      ]);
+    });
+
+    it('adding a toast with an id that already exists replaces the toast', () => {
+      expect(wrapper.state('toasts')).toEqual([]);
+
+      instance.addSuccessToast('first', { delay: 1000, id: '123' });
+      instance.addSuccessToast('second', { delay: 1000, id: '123' });
+
+      expect(wrapper.state('toasts')).toEqual([
+        {
+          id: '123',
+          message: 'second',
+          props: { delay: 1000, success: true, id: '123' },
+        },
+      ]);
+    });
   });
 
   describe('addFailureToast()', () => {
