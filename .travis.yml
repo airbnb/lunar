@@ -28,13 +28,10 @@ jobs:
     - name: Lint @ 10
       script: npm run lint:errors
       node_js: '10'
-    - name: Lint @ 10
-      script: npm run lint:errors
-      node_js: '10'
     - stage: Publish Storybook
       script: skip
       node_js: '10'
-      # if: branch = master
+      if: branch = master
       deploy:
         provider: script
         script: npm run deploy:ghp
