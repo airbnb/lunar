@@ -3,19 +3,17 @@ node_js: '10'
 before_script:
   - npm run bootstrap
   - npm run build
-script:
-  - echo "Skip"
   - git config --get user.name
   - git config --get user.email
-before_deploy:
-  - git config --global user.email ${GITHUB_EMAIL}
-  - git config --global user.name ${GITHUB_USER}
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
+script:
+  - echo "Skip"
 matrix:
   fast_finish: true
 jobs:
   include:
-    - name: Danger
+    - stage: Tests
+      name: Danger
       script: npx danger ci --use-github-checks
       node_js: '10'
     - name: Test @ 8
@@ -36,7 +34,7 @@ jobs:
     - stage: Publish Storybook
       script: skip
       node_js: '10'
-      if: branch = master
+      # if: branch = master
       deploy:
         provider: script
         script: npm run deploy:ghp
