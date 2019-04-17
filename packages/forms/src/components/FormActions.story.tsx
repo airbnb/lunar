@@ -9,7 +9,13 @@ storiesOf('Forms/FormActions', module)
     inspectComponents: [FormActions],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <FormActions />
     </Form>
   ));

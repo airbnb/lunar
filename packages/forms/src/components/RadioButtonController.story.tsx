@@ -9,7 +9,13 @@ storiesOf('Forms/RadioButtonController', module)
     inspectComponents: [RadioButtonController],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <RadioButtonController name="field" label="Label" validator={() => {}}>
         {RadioButton => (
           <div>

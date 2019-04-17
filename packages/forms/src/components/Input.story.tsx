@@ -9,7 +9,13 @@ storiesOf('Forms/Input', module)
     inspectComponents: [Input],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <Input name="field" label="Label" validator={() => {}} />
     </Form>
   ));

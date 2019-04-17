@@ -16,7 +16,11 @@ storiesOf('Forms/FeedbackForm', module)
       channel="Lunar"
       channelID={1}
       teamID={2}
-      onSubmit={action('onSubmit')}
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
     />
   ))
   .add('Without bug reporting.', () => (
@@ -28,7 +32,11 @@ storiesOf('Forms/FeedbackForm', module)
       channel="Lunar"
       channelID={1}
       teamID={2}
-      onSubmit={action('onSubmit')}
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
       disableBugReporting
     />
   ));

@@ -9,7 +9,13 @@ storiesOf('Forms/DateTimeSelect', module)
     inspectComponents: [DateTimeSelect],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <DateTimeSelect name="field" label="Label" validator={() => {}} />
     </Form>
   ));

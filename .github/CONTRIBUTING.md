@@ -110,7 +110,7 @@ Extremely helpful in meeting the threshold.
 ## 🎨 Styleguide Requirements
 
 Our styleguide (powered by [Storybook](https://storybook.js.org/)) requires a bit of manual
-documentation of components to be properly infer prop types.
+documenting of components to properly infer prop types.
 
 - Component definitions require a
   [docblock comment description](https://github.com/reactjs/react-docgen#proptypes). Furthermore, a

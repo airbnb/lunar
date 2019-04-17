@@ -9,7 +9,13 @@ storiesOf('Forms/Select', module)
     inspectComponents: [Select],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <Select name="field" label="Label" validator={() => {}}>
         <option value="foo">Foo</option>
         <option value="bar">Bar</option>

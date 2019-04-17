@@ -12,7 +12,13 @@ storiesOf('Forms/FilterMenu', module)
   })
   .addDecorator(story => <div style={{ margin: 'auto' }}>{story()}</div>)
   .add('Form in a dropdown.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <FilterMenu
           accessibilityLabel="Filter menu"
@@ -47,7 +53,13 @@ storiesOf('Forms/FilterMenu', module)
     </Form>
   ))
   .add('Left-aligned menu.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <FilterMenu dropdownProps={{ left: 0 }} accessibilityLabel="Filter menu">
         <Row>
           <Select
@@ -75,7 +87,13 @@ storiesOf('Forms/FilterMenu', module)
     </Form>
   ))
   .add('With overflow.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <FilterMenu accessibilityLabel="Filter menu" menuProps={{ maxHeight: 200 }} zIndex={2}>
           <Row>

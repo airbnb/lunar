@@ -20,4 +20,5 @@ storiesOf('Core/FormActions', module)
   .add('With a reset button.', () => <FormActions showReset />)
   .add('With small buttons in a processing state.', () => (
     <FormActions showReset small processing />
-  ));
+  ))
+  .add('In a danger state.', () => <FormActions danger />);

@@ -9,7 +9,13 @@ storiesOf('Forms/DatePickerInput', module)
     inspectComponents: [DatePickerInput],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <DatePickerInput name="field" label="Label" validator={() => {}} />
     </Form>
   ));

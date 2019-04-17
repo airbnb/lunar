@@ -10,7 +10,13 @@ storiesOf('Forms/ToggleButtonController', module)
     inspectComponents: [ToggleButtonController],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <ToggleButtonController name="field" label="Label" validator={() => {}}>
         {ControlledButton => (
           <ButtonGroup>

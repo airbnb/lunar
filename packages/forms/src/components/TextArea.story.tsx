@@ -9,7 +9,13 @@ storiesOf('Forms/TextArea', module)
     inspectComponents: [TextArea],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <TextArea name="field" label="Label" validator={() => {}} />
     </Form>
   ));

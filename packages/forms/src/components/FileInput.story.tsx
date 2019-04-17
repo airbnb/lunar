@@ -9,7 +9,13 @@ storiesOf('Forms/FileInput', module)
     inspectComponents: [FileInput],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <FileInput name="field" label="Label" validator={() => {}} />
     </Form>
   ));

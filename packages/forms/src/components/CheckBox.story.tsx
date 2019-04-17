@@ -9,7 +9,13 @@ storiesOf('Forms/CheckBox', module)
     inspectComponents: [CheckBox],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <CheckBox name="field" label="Label" validator={() => {}} />
     </Form>
   ));

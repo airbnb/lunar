@@ -73,7 +73,11 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
     return (
       <Form
         onFailedSubmit={action('onFailedSubmit')}
-        onSubmit={action('onSubmit')}
+        onSubmit={() => {
+          action('onSubmit')();
+
+          return Promise.resolve();
+        }}
         onStateUpdate={action('onStateUpdate')}
       >
         {mounted && (
@@ -113,7 +117,11 @@ storiesOf('Forms/Form', module)
     <Form
       initialValues={values}
       onFailedSubmit={action('onFailedSubmit')}
-      onSubmit={action('onSubmit')}
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
       onStateUpdate={action('onStateUpdate')}
     >
       <Input

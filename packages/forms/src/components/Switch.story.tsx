@@ -9,7 +9,13 @@ storiesOf('Forms/Switch', module)
     inspectComponents: [Switch],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <Switch name="field" label="Label" validator={() => {}} />
     </Form>
   ));

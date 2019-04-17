@@ -16,7 +16,13 @@ storiesOf('Forms/Autocomplete', module)
     inspectComponents: [Autocomplete],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <Autocomplete
         name="field"
         label="Label"

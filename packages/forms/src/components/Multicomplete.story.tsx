@@ -16,7 +16,13 @@ storiesOf('Forms/Multicomplete', module)
     inspectComponents: [Multicomplete],
   })
   .add('Connected to the parent `Form`.', () => (
-    <Form onSubmit={action('onSubmit')}>
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
       <Multicomplete
         name="field"
         label="Label"
