@@ -25,8 +25,23 @@ if (process.env.NODE_ENV === 'test') {
   plugins.push('babel-plugin-dynamic-import-node');
 }
 
+const ignore = [
+  'node_modules/',
+  'public/',
+  'esm/',
+  'lib/',
+  'tmp/',
+  'dist/',
+  '__tests__',
+  '__mocks__',
+];
+
+if (!process.env.STORYBOOK) {
+  ignore.push(/\.story\.tsx?$/);
+}
+
 module.exports = {
-  ignore: ['node_modules/', 'public/', 'esm/', 'lib/', 'tmp/', 'dist/', '__tests__', '__mocks__'],
+  ignore,
   plugins,
   presets: [
     [

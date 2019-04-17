@@ -109,20 +109,20 @@ Extremely helpful in meeting the threshold.
 
 ## 🎨 Styleguide Requirements
 
-Our styleguide (powered by [Styleguidist](https://react-styleguidist.js.org/)) requires a bit of
-manual documentation of components to be properly supported.
+Our styleguide (powered by [Storybook](https://storybook.js.org/)) requires a bit of manual
+documenting of components to properly infer prop types.
 
 - Component definitions require a
-  [docblock comment description](https://react-styleguidist.js.org/docs/documenting.html#code-comments-and-proptypes).
-  Furthermore, a few docblock params can be included in the decription.
+  [docblock comment description](https://github.com/reactjs/react-docgen#proptypes). Furthermore, a
+  few docblock params can be included in the decription.
   - When adding an experimental component, include an `@experimental` param.
   - When deprecating a component, include a `@deprecated` param with an optional message.
 - Component prop types require a
-  [docblock comment description](https://react-styleguidist.js.org/docs/documenting.html#code-comments-and-proptypes).
+  [docblock comment description](https://github.com/reactjs/react-docgen#proptypes).
 - Component names are extracted by the default export (or the named export when wrapped with an
-  HOC). If for some reason the name isn't found (Styleguidist is buggy), a
-  `/** @component Button */` docblock param is required.
-- Examples must be placed within a `README.md` file, in a folder of the same component name.
+  HOC).
+- Stories must be placed within a `<component>.story.tsx` file, in the root of the components
+  folder.
 - When running `npm run sg`, there should be _no_ errors/warnings in your terminal or browser
   console.
 - All comments, descriptions, and example text must be in sentence case with proper capitalization
@@ -139,7 +139,7 @@ supported. These are typically components that are named exports from the `index
 `Menu` component exports an `Item` and `Row` component, both of which will be displayed in the
 styleguide.
 
-To hide related components from the styleguide, simply place them in a sub-folder.
+To hide related components from the styleguide, simply place them in a `private` sub-folder.
 
 ## ⚙️ TypeScript Patterns
 

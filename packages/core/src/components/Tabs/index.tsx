@@ -7,6 +7,8 @@ import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 import GradientScroller from '../GradientScroller';
 import Tab, { Props as TabProps } from './Tab';
 
+export { Tab };
+
 export type Props = {
   /** Hide bottom border of Tabs. */
   borderless?: boolean;
@@ -141,8 +143,6 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
     );
   }
 }
-
-export { Tab };
 
 export default withBoundary('Tabs')(
   withStyles(({ color, ui, unit }) => ({

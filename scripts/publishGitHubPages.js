@@ -3,7 +3,7 @@
 const ghp = require('gh-pages');
 
 ghp.publish(
-  'public',
+  'storybook-static',
   {
     repo: `https://${process.env.GHP_TOKEN}@github.com/airbnb/lunar.git`,
     silent: true,

@@ -13,8 +13,8 @@
   },
   "scripts": {
     "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "BUILD=cjs babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./lib",
-    "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./esm"
+    "build:cjs": "BUILD=cjs babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./lib",
+    "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
   },
   "peerDependencies": {
     "@airbnb/lunar": "^1.0.0"
