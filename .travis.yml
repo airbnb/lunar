@@ -9,7 +9,8 @@ matrix:
   fast_finish: true
 jobs:
   include:
-    - name: Danger
+    - stage: Tests
+      name: Danger
       script: npx danger ci --use-github-checks
       node_js: '10'
     - name: Test @ 8
@@ -24,16 +25,27 @@ jobs:
     - name: Lint @ 10
       script: npm run lint:errors
       node_js: '10'
-deploy:
-  - provider: script
-    script: npm run deploy:ghp
-    skip_cleanup: true
-    on:
-      branch: master
+    - stage: Publish Storybook
+      script: skip
       node_js: '10'
-# - provider: script
-#   script: npm run deploy:release
-#   skip_cleanup: true
-#   on:
-#     branch: master
-#     node_js: '10'
+      if: branch = master
+      deploy:
+        provider: script
+        script: npm run deploy:ghp
+        skip_cleanup: true
+        on:
+          branch: master
+    - stage: Release Packages
+      script: skip
+      node_js: '10'
+      if: branch = master
+      before_deploy:
+        - git config --global user.name ${GITHUB_USER}
+        - git config --global user.email ${GITHUB_EMAIL}
+        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
+      deploy:
+        provider: script
+        script: npm run deploy:release -- --loglevel silly
+        skip_cleanup: true
+        on:
+          branch: master
