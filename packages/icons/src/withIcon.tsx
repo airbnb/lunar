@@ -1,10 +1,15 @@
 import React from 'react';
 
 export type WithIconWrapperProps = {
+  /** Accessibility label. Required if `decorative` not defined. */
   accessibilityLabel?: string;
+  /** Mark as decorative only and avoid accessibility. Required if `accessibilityLabel` not defined. */
   decorative?: boolean;
+  /** Size of the icon. */
   size?: number | string;
+  /** Color the icon using a CSS hexcode. */
   color?: string;
+  /** Render as inline instead of block. */
   inline?: boolean;
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-metrics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Metrics handling for Lunar.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -13,15 +13,15 @@
   },
   "scripts": {
     "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "BUILD=cjs babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./lib",
-    "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./esm"
+    "build:cjs": "BUILD=cjs babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./lib",
+    "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
   },
   "peerDependencies": {
     "@airbnb/lunar": "^1.0.0"
   },
   "devDependencies": {
-    "@airbnb/lunar": "^1.0.0",
-    "@airbnb/lunar-test-utils": "^1.0.0"
+    "@airbnb/lunar": "^1.1.0",
+    "@airbnb/lunar-test-utils": "^1.0.1"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.4.3",

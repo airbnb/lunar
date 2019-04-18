@@ -12,6 +12,8 @@ import SheetContext, { Context } from './SheetContext';
 import toRGBA from '../../utils/toRGBA';
 import { Z_INDEX_PORTAL } from '../../constants';
 
+export { SheetArea, SheetContext };
+
 export type Props = {
   /** Invoked when the sheet close button is pressed, or when escape is pressed when displaying a portal sheet. This function should set the `visible` prop to false. */
   onClose: () => void;
@@ -382,8 +384,6 @@ const InternalSheet = withStyles(
     passThemeProp: true,
   },
 )(BaseSheet);
-
-export { SheetArea, SheetContext };
 
 /**
  * A modal-like UI that is used to display content in a sheet that covers the existing UI. There are

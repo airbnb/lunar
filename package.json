@@ -5,12 +5,12 @@
   "description": "React toolkit and design language for Airbnb open source and internal projects.",
   "license": "MIT",
   "scripts": {
+    "setup": "npm run bootstrap && npm run build",
     "bootstrap": "lerna bootstrap --hoist && bash ./scripts/symlinkPackages.sh",
     "build": "npm run clean && lerna run build && npm run type",
     "clean": "rm -rf ./packages/*/{lib,esm}",
     "clean:hard": "npm run clean && rm -f ./packages/*/*.tsbuildinfo",
-    "coverage": "npm run jest:cov",
-    "deploy:ghp": "npm run sg:build && node ./scripts/publishGitHubPages",
+    "deploy:ghp": "npm run storybook:build && node ./scripts/publishGitHubPages",
     "deploy:release": "npm run release:version && npm run release:publish",
     "gen:icon": "node ./scripts/generateIcon",
     "jest:coverage": "npm run jest -- --coverage",
@@ -24,10 +24,11 @@
     "release": "npm run build && lerna publish",
     "release:publish": "lerna publish from-git --yes",
     "release:version": "lerna version --yes --conventional-commits --changelog-preset conventional-changelog-beemo --github-release --push",
-    "sg:build": "styleguidist build",
-    "sg": "NODE_ENV=development styleguidist server",
-    "test": "npm run jest:cov",
-    "type": "tsc --build"
+    "sg": "NODE_ENV=development npm run storybook",
+    "test": "npm run jest:coverage",
+    "type": "tsc --build",
+    "storybook": "STORYBOOK=true start-storybook -p 6006",
+    "storybook:build": "STORYBOOK=true build-storybook"
   },
   "repository": {
     "type": "git",
@@ -61,6 +62,17 @@
       "url": "https://github.com/alecklandgraf"
     }
   ],
+  "dependencies": {
+    "@storybook/addon-a11y": "^5.0.8",
+    "@storybook/addon-actions": "^5.0.8",
+    "@storybook/addon-backgrounds": "^5.0.8",
+    "@storybook/addon-console": "^1.1.0",
+    "@storybook/addon-links": "^5.0.8",
+    "@storybook/addon-viewport": "^5.0.8",
+    "@storybook/addons": "^5.0.8",
+    "@storybook/react": "^5.0.8",
+    "markdown-to-jsx": "^6.9.3"
+  },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
@@ -73,6 +85,9 @@
     "@babel/preset-typescript": "^7.3.3",
     "@types/enzyme": "^3.9.1",
     "@types/jest": "^24.0.11",
+    "@types/storybook__addon-a11y": "^5.0.0",
+    "@types/storybook__addon-actions": "^3.4.2",
+    "@types/storybook__react": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
     "airbnb-js-shims": "^2.1.1",
@@ -104,9 +119,8 @@
     "moment": "^2.24.0",
     "prettier": "^1.16.4",
     "react": "^16.8.6",
-    "react-docgen-typescript": "^1.12.3",
+    "react-docgen-typescript-loader": "^3.1.0",
     "react-dom": "^16.8.6",
-    "react-styleguidist": "^9.0.5",
     "svgo": "^1.2.0",
     "typescript": "^3.4.1",
     "url-loader": "^1.1.2",

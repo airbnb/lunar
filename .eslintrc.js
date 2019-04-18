@@ -239,5 +239,17 @@ module.exports = {
         'unicorn/no-fn-reference-in-iterator': 'off',
       },
     },
+    {
+      files: ['*.story.tsx'],
+      rules: {
+        'max-classes-per-file': 'off',
+        'import/extensions': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        'import/no-unresolved': 'off',
+        'jsx-a11y/anchor-is-valid': 'off',
+        'jsx-a11y/no-static-element-interactions': 'off',
+        'react/no-multi-comp': 'off',
+      },
+    },
   ],
 };
