@@ -3,9 +3,6 @@ node_js: '10'
 before_script:
   - npm run bootstrap
   - npm run build
-  - git config --get user.name
-  - git config --get user.email
-  - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
 script:
   - echo "Skip"
 matrix:
@@ -42,6 +39,10 @@ jobs:
       script: skip
       node_js: '10'
       if: branch = master
+      before_deploy:
+        - git config --global user.name ${GITHUB_USER}
+        - git config --global user.email ${GITHUB_EMAIL}
+        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
       deploy:
         provider: script
         script: npm run deploy:release
