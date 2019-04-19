@@ -31,14 +31,14 @@ export default function ColumnLabels({
   selectable,
   columnMetadata,
 }: {
-  styles: WithStylesProps['styles'];
+  styles?: WithStylesProps['styles'];
   columnToLabel?: ColumnToLabel;
   showColumnDividers?: boolean;
-  rowHeight: RowHeightOptions;
-  columnHeaderHeight: HeightOptions;
-  expandable: boolean;
-  selectable: boolean;
-  columnMetadata: ColumnMetadata;
+  rowHeight?: RowHeightOptions;
+  columnHeaderHeight?: HeightOptions;
+  expandable?: boolean;
+  selectable?: boolean;
+  columnMetadata?: ColumnMetadata;
 }) {
   return ({ className, columns, style }: ColumnLabelsProps) => {
     const leftmostIdx = Number(expandable) + Number(selectable);
@@ -67,12 +67,12 @@ export default function ColumnLabels({
 
       const newHeader = (
         <Spacing left={indent ? 2 : 0}>
-          <div style={heightStyle} {...css(showDivider && styles.column_divider)}>
+          <div style={heightStyle} {...css((showDivider && styles) && styles.column_divider)}>
             <div
               style={
-                columnMetadata[key] && columnMetadata[key].rightAlign ? rightAlignmentStyle : {}
+                columnMetadata && columnMetadata[key] && columnMetadata[key].rightAlign ? rightAlignmentStyle : {}
               }
-              {...css(styles.row)}
+              {...css(styles && styles.row)}
             >
               <span>
                 <Text micro muted>
@@ -98,7 +98,10 @@ export default function ColumnLabels({
         className={className}
         role="row"
         style={style}
-        {...css(styles.column_header, styles.row)}
+        {...css(
+          styles && styles.column_header, 
+          styles && styles.row
+        )}
       >
         {newColumns}
       </div>

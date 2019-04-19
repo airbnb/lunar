@@ -10,7 +10,7 @@ import { HeaderButton, SelectedRows } from './types';
 
 export type Props = {
   /** Specifies whether or not editMode can be enabled */
-  editable: boolean;
+  editable?: boolean;
   /** Determines which set of header buttons to render. */
   editMode: boolean;
   /** Without instantEdit the header renders Cancel and Apply, otherwise it just renders Done. */

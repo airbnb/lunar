@@ -44,10 +44,10 @@ export function getRowColor(
   return '';
 }
 
-export function getHeight(defaultHeight: RowHeightOptions, overrideHeight: HeightOptions) {
+export function getHeight(defaultHeight?: RowHeightOptions, overrideHeight?: HeightOptions) {
   if (overrideHeight) {
     return HEIGHT_TO_PX[overrideHeight];
   }
 
-  return HEIGHT_TO_PX[defaultHeight];
+  return defaultHeight ? HEIGHT_TO_PX[defaultHeight] : 0;
 }

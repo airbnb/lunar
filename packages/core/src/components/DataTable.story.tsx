@@ -3,6 +3,10 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import DataTable from './DataTable';
+import {
+  SelectedRows,
+  TableRow,
+} from './DataTable/types';
 
 const getData = require('../../../../guide/DataTableData').default;
 const tenureRenderer = require('../../../../guide/DataTableRenderers/TenureRenderer').default;
@@ -30,7 +34,7 @@ const columnMetadata = {
   },
 };
 
-const headerButtonClick = (selectedRows) => () => {
+const headerButtonClick = (selectedRows: SelectedRows) => () => {
   console.log(selectedRows);
 }
 
@@ -59,7 +63,7 @@ const columnToLabel = {
   tenureDays: 'TENURE',
 };
 
-const catsCallback = (args) => {
+const catsCallback = () => {
   console.log('meow');
 }
 
@@ -67,7 +71,7 @@ const editCallbacks = {
   'cats': catsCallback,
 };
 
-const defaultEditCallback = (row, key, newVal, event) => {
+const defaultEditCallback = (row: TableRow, key: string, newVal: any, event:  React.SyntheticEvent<EventTarget>,) => {
   console.log({
     row,
     key,

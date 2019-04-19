@@ -40,7 +40,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   state = {
     changeLog: {},
     preEditSortedDataList: [],
-    sortedDataList: indexDataList(this.props.data),
+    sortedDataList: indexDataList(this.props.data ? this.props.data : []),
     expandedRows: new Set(),
     selectedRows: {},
     sortBy: this.props.sortByOverride || '',
@@ -83,14 +83,14 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     this.props.keys.length > 0
       ? this.props.keys
       : Array.from(
-          this.props.data.reduce((keySet: Set<string>, row: ParentRow) => {
+          this.props.data ? this.props.data.reduce((keySet: Set<string>, row: ParentRow) => {
             Object.keys(row.data).forEach(key => {
               if (row.metadata == undefined || row.metadata.colspanKey !== key) {
                 keySet.add(key);
               }
             });
             return keySet;
-          }, new Set()),
+          }, new Set()) : [],
         );
 
   rowStyles = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }): RowStyles => ({

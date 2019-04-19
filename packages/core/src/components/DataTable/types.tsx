@@ -70,59 +70,59 @@ export type DefaultDataTableProps =
 
 export interface DataTableProps {
   /** Height of the column header. */
-  columnHeaderHeight: HeightOptions;
+  columnHeaderHeight?: HeightOptions;
   /** Keys mapped onto custom column label names. */
-  columnToLabel: ColumnToLabel;
+  columnToLabel?: ColumnToLabel;
   /** Override default width for specific a column's properties. */
-  columnMetadata: ColumnMetadata;
+  columnMetadata?: ColumnMetadata;
   /** Array of data rows. */
-  data: ParentRow[];
+  data?: ParentRow[];
   /** When instant edit is disabled, callback on edit application. */
-  defaultEditCallback: EditCallback;
+  defaultEditCallback?: EditCallback;
   /** Specifies whether or not editMode can be enabled */
-  editable: boolean;
+  editable?: boolean;
   /** Callback overides for instant edit on specific keys. */
-  editCallbacks: { [key: string]: EditCallback };
+  editCallbacks?: { [key: string]: EditCallback };
   /** When instant edit is disabled, callback that gets trigged on edit application. */
-  enactEditsCallback: (changeLog: ChangeLog) => void;
+  enactEditsCallback?: (changeLog: ChangeLog) => void;
   /** If enabled, a special column is rendered that allows row to be expanded. */
-  expandable: boolean;
+  expandable?: boolean;
   /** Extra buttons to render in the header during non-edit mode. */
-  extraHeaderButtons: HeaderButton[];
+  extraHeaderButtons?: HeaderButton[];
   /** Height of the entire table. */
-  height: number;
+  height?: number;
   /** If enabled, every edit immediately triggers a parent callback, see docs for details. */
-  instantEdit: boolean;
+  instantEdit?: boolean;
   /** References row fields to render as columns, infered from data if not specified. */
-  keys: string[];
+  keys?: string[];
   /** Custom renderers mapped to column keys. */
-  renderers: Renderers;
+  renderers?: Renderers;
   /** Height of table rows, default for table header and column header height. */
-  rowHeight: RowHeightOptions;
+  rowHeight?: RowHeightOptions;
   /** If enabled, a special column is rendered to allows rows to be selected. */
-  selectable: boolean;
+  selectable?: boolean;
   /** If enabled, clicking the row triggers the same function as click the selection checkbox. */
-  selectOnRowClick: boolean;
+  selectOnRowClick?: boolean;
   /** If enabled, renders a border between each column. */
-  showColumnDividers: boolean;
+  showColumnDividers?: boolean;
   /** If enabled, renders a border between each row. */
-  showRowDividers: boolean;
+  showRowDividers?: boolean;
   /** Overrides sort and hands control to the parent component. */
-  sortOverride: boolean;
+  sortOverride?: boolean;
   /** sortBy value if override is enabled. */
-  sortByOverride: string;
+  sortByOverride?: string;
   /** sortDirection value if override is enabled. */
-  sortDirectionOverride: SortDirectionType;
+  sortDirectionOverride?: SortDirectionType;
   /** sortCallback in override is enabled. */
-  sortCallback: (sortBy: string, sortDirection: SortDirectionType) => void;
+  sortCallback?: (sortBy: string, sortDirection: SortDirectionType) => void;
   /** Label for the table header. */
-  tableHeaderLabel: string;
+  tableHeaderLabel?: string;
   /** Height of the table header. */
-  tableHeaderHeight: HeightOptions;
+  tableHeaderHeight?: HeightOptions;
   /** Width of the entire table. */
-  width: number;
+  width?: number;
   /** If enabled, every other row will appear in grey. */
-  zebra: boolean;
+  zebra?: boolean;
 }
 
 export interface GenericRow {
