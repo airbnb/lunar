@@ -16,14 +16,14 @@ import { DEFAULT_WIDTH_PROPERTIES } from '../constants';
 
 type ArgumentsFromProps = {
   columnMetadata?: ColumnMetadata;
-  showColumnDividers: boolean;
-  styles: WithStylesProps['styles'];
-  renderers: DataTableProps['renderers'];
-  zebra: boolean;
-  rowHeight: HeightOptions;
+  showColumnDividers?: boolean;
+  styles?: WithStylesProps['styles'];
+  renderers?: DataTableProps['renderers'];
+  zebra?: boolean;
+  rowHeight?: HeightOptions;
   theme?: WithStylesProps['theme'];
-  selectable: boolean;
-  expandable: boolean;
+  selectable?: boolean;
+  expandable?: boolean;
 };
 
 export default function DataColumns(
@@ -44,7 +44,7 @@ export default function DataColumns(
   const renderCell = (key: string, isLeftmost: boolean) => (row: TableRow) => {
     const { metadata } = row.rowData;
     const { isChild } = metadata;
-    const renderer = renderers[key];
+    const renderer = renderers && renderers[key];
 
     const indentSize = !expandable || !isLeftmost ? 2 : 2.5;
     const spacing = isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
@@ -54,11 +54,11 @@ export default function DataColumns(
       key,
       editMode,
       handleEdit,
-      zebra,
+      zebra: zebra || false,
       theme,
     };
 
-    if (metadata && metadata.colspanKey) {
+    if (metadata && metadata.colspanKey && renderers) {
       if (isLeftmost) {
         const colspanRenderer = renderers[metadata.colspanKey];
         if (colspanRenderer) {
@@ -72,8 +72,8 @@ export default function DataColumns(
       : DefaultContentRenderer(rendererArguments);
 
     return (
-      <div {...css(styles.row)}>
-        <div {...css(styles.row_inner)}>
+      <div {...css(styles && styles.row)}>
+        <div {...css(styles && styles.row_inner)}>
           <Spacing left={spacing} right={2}>
             {contents}
           </Spacing>
@@ -108,7 +108,7 @@ export default function DataColumns(
         maxWidth={widthProperties.maxWidth}
         minWidth={widthProperties.minWidth}
         cellRenderer={renderCell(key, isLeftmost)}
-        {...css(styles.column, showColumnDividers && !isRightmost && styles.column_divider)}
+        {...css(styles && styles.column, showColumnDividers && !isRightmost && styles && styles.column_divider)}
       />
     );
   });

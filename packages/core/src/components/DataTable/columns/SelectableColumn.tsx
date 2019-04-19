@@ -11,8 +11,8 @@ import { ExpandedRow, SelectedRows, TableRow } from '../types';
 
 export default function SelectableColumn(
   selectedRows: SelectedRows,
-  handleSelection: (rowData: ExpandedRow) => () => void,
-  expandable: boolean,
+  handleSelection?: (rowData: ExpandedRow) => () => void,
+  expandable?: boolean,
 ) {
   const width = expandable ? SELECTABLE_COLUMN_WIDTH_EXPANDABLE : SELECTABLE_COLUMN_WIDTH;
 

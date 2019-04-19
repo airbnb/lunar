@@ -14,7 +14,7 @@ export type Props = {
   /** Determines which set of header buttons to render. */
   editMode: boolean;
   /** Without instantEdit the header renders Cancel and Apply, otherwise it just renders Done. */
-  instantEdit: boolean;
+  instantEdit?: boolean;
   /** Height of the TableHeader, falls back to RowHeight if not specified. */
   height: number;
   /** Label to display in the top left side. */

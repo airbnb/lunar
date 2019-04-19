@@ -80,7 +80,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   // Infers keys from data if they aren't explicitely defined
   keys =
-    this.props.keys.length > 0
+      this.props.keys && this.props.keys.length > 0
       ? this.props.keys
       : Array.from(
           this.props.data ? this.props.data.reduce((keySet: Set<string>, row: ParentRow) => {
@@ -94,7 +94,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         );
 
   rowStyles = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }): RowStyles => ({
-    background: getRowColor(expandedDataList[index], index, this.props.zebra, this.props.theme),
+    background: getRowColor(expandedDataList[index], index, this.props.zebra || false, this.props.theme),
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -357,11 +357,11 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
           <AutoSizer disableHeight>
             {({ width }) => (
               <Table
-                height={this.props.height}
+                height={this.props.height || 0}
                 width={this.props.width || width}
                 headerHeight={getHeight(rowHeight, columnHeaderHeight)}
                 rowCount={expandedDataList.length}
-                rowHeight={HEIGHT_TO_PX[rowHeight]}
+                rowHeight={HEIGHT_TO_PX[(rowHeight || "regular")]}
                 rowGetter={this.rowGetter(expandedDataList)}
                 rowStyle={this.rowStyles(expandedDataList)}
                 sort={this.sort}
