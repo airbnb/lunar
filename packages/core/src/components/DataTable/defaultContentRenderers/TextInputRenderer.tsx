@@ -1,0 +1,24 @@
+import React from 'react';
+import Input from '../../Input';
+import { RendererProps } from '../types';
+
+export default function TextInputRenderer({
+  row,
+  key,
+  handleEdit,
+}: RendererProps): NonNullable<React.ReactNode> {
+  const content = row.rowData.data[key];
+
+  return (
+    typeof content === 'string' && (
+      <Input
+        label=""
+        name=""
+        onClick={e => e.stopPropagation()}
+        hideLabel
+        value={content}
+        onChange={handleEdit(row, key)}
+      />
+    )
+  );
+}
