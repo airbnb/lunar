@@ -42,6 +42,9 @@ jobs:
       before_deploy:
         - git config --global user.name ${GITHUB_USER}
         - git config --global user.email ${GITHUB_EMAIL}
+        - git remote set-url origin "https://${GH_TOKEN}@github.com/airbnb/lunar.git" > /dev/null
+          2>&1
+        - git checkout master
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
       deploy:
         provider: script
