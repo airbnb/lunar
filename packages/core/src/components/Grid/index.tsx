@@ -3,24 +3,24 @@ import { childrenOfType, mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 import Col from './Col';
 
-const horizontalAlignProp = mutuallyExclusiveTrueProps('centered', 'leftAlign', 'rightAlign');
+const horizontalAlignProp = mutuallyExclusiveTrueProps('centerAlign', 'startAlign', 'endAlign');
 const verticalAlignProp = mutuallyExclusiveTrueProps('bottomAlign', 'middleAlign', 'topAlign');
 
 export type Props = {
   /** Vertically align the columns at the bottom. */
   bottomAlign?: boolean;
   /** Horizontally align the columns to the center. */
-  centered?: boolean;
+  centerAlign?: boolean;
   /** Columns to render. */
   children: NonNullable<React.ReactNode>;
-  /** Horizontally align the columns to the left (flex-start). */
-  leftAlign?: boolean;
+  /** Horizontally align the columns to the end (flex-end). */
+  endAlign?: boolean;
   /** Vertically align the columns in the middle. */
   middleAlign?: boolean;
   /** Reverse the order of columns. */
   reversed?: boolean;
-  /** Horizontally align the columns to the left (flex-end). */
-  rightAlign?: boolean;
+  /** Horizontally align the columns to the start (flex-start). */
+  startAlign?: boolean;
   /** Vertically align the columns at the top. */
   topAlign?: boolean;
 };
@@ -29,33 +29,33 @@ export type Props = {
 export class Grid extends React.Component<Props & WithStylesProps> {
   static propTypes = {
     bottomAlign: verticalAlignProp,
-    centered: horizontalAlignProp,
+    centerAlign: horizontalAlignProp,
     children: childrenOfType(Col).isRequired,
-    leftAlign: horizontalAlignProp,
+    endAlign: horizontalAlignProp,
     middleAlign: verticalAlignProp,
-    rightAlign: horizontalAlignProp,
+    startAlign: horizontalAlignProp,
     topAlign: verticalAlignProp,
   };
 
   static defaultProps = {
     bottomAlign: false,
-    centered: false,
-    leftAlign: false,
+    centerAlign: false,
+    endAlign: false,
     middleAlign: false,
     reversed: false,
-    rightAlign: false,
+    startAlign: false,
     topAlign: false,
   };
 
   render() {
     const {
       bottomAlign,
-      centered,
+      centerAlign,
       children,
-      leftAlign,
+      endAlign,
       middleAlign,
       reversed,
-      rightAlign,
+      startAlign,
       styles,
       topAlign,
     } = this.props;
@@ -68,9 +68,9 @@ export class Grid extends React.Component<Props & WithStylesProps> {
           bottomAlign && styles.grid_bottom,
           middleAlign && styles.grid_middle,
           topAlign && styles.grid_top,
-          leftAlign && styles.grid_left,
-          rightAlign && styles.grid_right,
-          centered && styles.grid_centered,
+          startAlign && styles.grid_start,
+          endAlign && styles.grid_end,
+          centerAlign && styles.grid_center,
         )}
       >
         {children}
@@ -97,15 +97,15 @@ export default withStyles(({ unit }) => ({
     flexDirection: 'row-reverse',
   },
 
-  grid_centered: {
+  grid_center: {
     justifyContent: 'center',
   },
 
-  grid_left: {
+  grid_start: {
     justifyContent: 'flex-start',
   },
 
-  grid_right: {
+  grid_end: {
     justifyContent: 'flex-end',
   },
 

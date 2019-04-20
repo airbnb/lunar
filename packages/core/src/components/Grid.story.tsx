@@ -187,19 +187,19 @@ storiesOf('Core/Grid', module)
   ))
   .add('Can align children along the horizontal axis (default is space-between)', () => (
     <Text>
-      <Grid leftAlign>
+      <Grid startAlign>
         <Col span={6}>
           <Box>6</Box>
         </Col>
       </Grid>
       <br />
-      <Grid centered>
+      <Grid centerAlign>
         <Col span={6}>
           <Box>6</Box>
         </Col>
       </Grid>
       <br />
-      <Grid rightAlign>
+      <Grid endAlign>
         <Col span={6}>
           <Box>6</Box>
         </Col>

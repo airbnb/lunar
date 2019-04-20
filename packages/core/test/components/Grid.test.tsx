@@ -16,11 +16,11 @@ describe('<Grid />', () => {
 
   [
     'bottomAlign',
-    'centered',
-    'leftAlign',
+    'centerAlign',
+    'endAlign',
     'middleAlign',
     'reversed',
-    'rightAlign',
+    'startAlign',
     'topAlign',
   ].forEach(type => {
     it(`renders ${type}`, () => {
