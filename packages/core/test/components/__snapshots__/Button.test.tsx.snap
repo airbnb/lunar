@@ -62,7 +62,7 @@ exports[`<Button /> renders loading 1`] = `
 exports[`<Button /> renders small 1`] = `
 <ButtonOrLink
   aria-busy={false}
-  className="button_1lp5a5w-o_O-button_small_1ghjfam"
+  className="button_1lp5a5w-o_O-button_small_1uh2yjw"
 >
   Button
 </ButtonOrLink>
