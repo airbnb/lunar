@@ -5,16 +5,14 @@ import { RendererProps } from '../types';
 export default function TextInputRenderer({ row, key, onEdit }: RendererProps) {
   const content = row.rowData.data[key];
 
-  return (
-    typeof content === 'string' && (
-      <Input
-        label=""
-        name=""
-        onClick={e => e.stopPropagation()}
-        hideLabel
-        value={content}
-        onChange={onEdit(row, key)}
-      />
-    )
-  );
+  return typeof content === 'string' ? (
+    <Input
+      label=""
+      name=""
+      onClick={e => e.stopPropagation()}
+      hideLabel
+      value={content}
+      onChange={onEdit(row, key)}
+    />
+  ) : null;
 }
