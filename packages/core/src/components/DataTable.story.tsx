@@ -8,10 +8,15 @@ import {
   TableRow,
 } from './DataTable/types';
 
+// @ts-ignore
 import getData from '../../../../.storybook/components/DataTable/DataTableData';
+// @ts-ignore
 import TenureRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/TenureRenderer';
+// @ts-ignore
 import ColSpanRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/ColSpanRenderer';
+// @ts-ignore
 import CatRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/CatRenderer';
+// @ts-ignore
 import MenuRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/MenuRenderer';
 
 const renderers = {

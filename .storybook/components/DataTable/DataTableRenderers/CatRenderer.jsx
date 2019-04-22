@@ -4,13 +4,7 @@ import Emoji from '../../../../packages/core/src/components/Emoji';
 import CountBadge from '../../../../packages/core/src/components/CountBadge';
 import { TableRow, RendererProps } from '../../../../packages/core/src/components/DataTable/types';
 
-type CatRendererProps = {
-  row: RendererProps['row'];
-  key: RendererProps['key'];
-  editMode: RendererProps['editMode'];
-  onEdit: RendererProps['onEdit'];
-};
-class CatRenderer extends React.Component<CatRendererProps> {
+class CatRenderer extends React.Component {
   state = {
     hovered: false,
   };
@@ -55,23 +49,16 @@ class CatRenderer extends React.Component<CatRendererProps> {
   }
 }
 
-export default function catRenderer({ row, key, editMode, onEdit }: CatRendererProps) {
+export default function catRenderer({ row, key, editMode, onEdit }) {
   return <CatRenderer row={row} key={key} editMode={editMode} onEdit={onEdit} />;
 }
 
-type IncrementableBadgeProps = {
-  row: TableRow;
-  colKey: string;
-  onChange: (newCount: number, event: React.SyntheticEvent<EventTarget>) => void;
-  value?: number;
-};
-
-export class IncrementableBadge extends React.Component<IncrementableBadgeProps> {
+export class IncrementableBadge extends React.Component {
   state = {
     count: this.props.value || 1,
   };
 
-  private handleClick = (event: React.SyntheticEvent<EventTarget>) => {
+  handleClick = (event) => {
     event.stopPropagation();
     const { count } = this.state;
     const { onChange } = this.props;

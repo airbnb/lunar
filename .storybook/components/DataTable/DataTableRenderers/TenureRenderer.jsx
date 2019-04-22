@@ -4,7 +4,7 @@ import { RendererProps } from '../../../../packages/core/src/components/DataTabl
 import Text from '../../../../packages/core/src/components/Text';
 import Row from '../../../../packages/core/src/components/Row';
 
-function daysBreakdown(totalDays: number) {
+function daysBreakdown(totalDays) {
   const years = Math.floor(totalDays / 365);
   const months = Math.floor((totalDays % 365) / 30);
   const days = Math.floor(totalDays % 30);
@@ -12,7 +12,7 @@ function daysBreakdown(totalDays: number) {
   return { years, months, days };
 }
 
-export default function tenureRenderer({ row }: { row: RendererProps['row'] }) {
+export default function tenureRenderer({ row }) {
   const { years, months, days } = daysBreakdown(row.rowData.data.tenureDays);
 
   const text = <Text>{`${years > 0 ? `${years}y ` : ''}${months}m ${days}d`}</Text>;

@@ -16,13 +16,13 @@ export class MenuRenderer extends React.Component {
     document.removeEventListener('mousedown', this.handleClick.bind(this));
   }
 
-  private handleClick() {
+  handleClick() {
     this.setState({
       open: false,
     });
   }
 
-  private toggleClick = (event: React.SyntheticEvent<EventTarget>) => {
+  toggleClick = (event) => {
     event.stopPropagation();
 
     this.setState({
@@ -31,13 +31,13 @@ export class MenuRenderer extends React.Component {
   };
 
   render() {
-    const containerStyle: React.CSSProperties = {
+    const containerStyle = {
       width: 200,
       position: 'fixed',
       zIndex: 1000,
     };
 
-    const innerStyle: React.CSSProperties = {
+    const innerStyle = {
       position: 'relative',
       right: '148px',
       bottom: '5px',

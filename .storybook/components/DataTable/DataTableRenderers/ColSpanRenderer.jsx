@@ -2,7 +2,6 @@ import React from 'react';
 
 import Text from '../../../../packages/core/src/components/Text';
 import Spacing from '../../../../packages/core/src/components/Spacing';
-import { RendererProps } from '../../../../packages/core/src/components/DataTable/types';
 import { getRowColor } from '../../../../packages/core/src/components/DataTable/helpers';
 
 export default function ColspanRenderer({
@@ -12,12 +11,12 @@ export default function ColspanRenderer({
   onEdit,
   zebra,
   theme,
-}: RendererProps) {
+}) {
   const { rowData, rowIndex } = row;
   const { data, metadata } = rowData;
   const color = getRowColor(rowData, rowIndex, zebra, theme);
 
-  const colSpanStyle: React.CSSProperties = {
+  const colSpanStyle = {
     width: '100%',
     background: color,
     zIndex: 100,
