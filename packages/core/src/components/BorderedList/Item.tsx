@@ -24,11 +24,11 @@ class BorderedListItem extends React.Component<Props & WithStylesProps> {
 
 export default withStyles(({ ui, unit }) => ({
   item: {
+    borderTop: ui.border,
+
     ':last-child': {
       borderBottom: ui.border,
     },
-
-    borderTop: ui.border,
   },
 
   item_compact: {

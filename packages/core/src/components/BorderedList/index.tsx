@@ -6,7 +6,7 @@ import Item from './Item';
 export { Item };
 
 type Props = {
-  /** BorderedList `Item`s. */
+  /** Bordered list items. */
   children: NonNullable<React.ReactNode>;
 };
 
