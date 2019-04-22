@@ -4,7 +4,8 @@ import SortCarets from '../SortCarets';
 import Text from '../Text';
 import Spacing from '../Spacing';
 import { css, WithStylesProps } from '../../composers/withStyles';
-import { camelToWords, getHeight } from './helpers';
+import { getHeight } from './helpers';
+import startCase from 'lodash/startCase';
 import { ColumnMetadata, ColumnToLabel, HeightOptions, RowHeightOptions } from './types';
 
 // Theses anys are required to match the param types from react-virtualized
@@ -56,7 +57,7 @@ export default function ColumnLabels({
       const key = children[0].props.children;
       const label = columnToLabel[key]
         ? columnToLabel[key]
-        : key && camelToWords(key).toUpperCase();
+        : key && startCase(key).toUpperCase();
       const sort = children[1] && children[1].props.sortDirection;
 
       const isLeftmost = idx === leftmostIdx;

@@ -27,7 +27,7 @@ type EditCallback = (
   event: React.SyntheticEvent<EventTarget>,
 ) => void;
 
-export type HandleEdit = (
+export type OnEdit = (
   row: TableRow,
   key: string,
 ) => (newVal: any, event: React.SyntheticEvent<EventTarget>) => void;
@@ -39,34 +39,7 @@ export type HeaderButton = {
   displayEditMode?: boolean;
 };
 
-export type DefaultDataTableProps =
-  | 'columnHeaderHeight'
-  | 'columnToLabel'
-  | 'columnMetadata'
-  | 'data'
-  | 'defaultEditCallback'
-  | 'editable'
-  | 'editCallbacks'
-  | 'enactEditsCallback'
-  | 'expandable'
-  | 'extraHeaderButtons'
-  | 'height'
-  | 'instantEdit'
-  | 'keys'
-  | 'renderers'
-  | 'rowHeight'
-  | 'selectable'
-  | 'selectOnRowClick'
-  | 'showColumnDividers'
-  | 'showRowDividers'
-  | 'sortOverride'
-  | 'sortByOverride'
-  | 'sortDirectionOverride'
-  | 'sortCallback'
-  | 'tableHeaderLabel'
-  | 'tableHeaderHeight'
-  | 'width'
-  | 'zebra';
+export type DefaultDataTableProps = keyof DataTableProps;
 
 export interface DataTableProps {
   /** Height of the column header. */
@@ -146,13 +119,13 @@ export interface TableRow {
 export type Status = string;
 
 type ParentMetadata = {
-  colspanKey?: string;
+  colSpanKey?: string;
   children?: ChildRow[];
   status?: string;
 };
 
 type ChildMetadata = {
-  colspanKey?: string;
+  colSpanKey?: string;
   status?: Status;
 };
 
@@ -233,7 +206,7 @@ export type RendererProps = {
   /** Whether or not edit mode is enabled. */
   editMode: boolean;
   /** Callback to trigger on cell edit. */
-  handleEdit: HandleEdit;
+  onEdit: OnEdit;
   /** Whether or not zebra mode is enabled. */
   zebra: boolean;
   /** Theme from Lunar. */

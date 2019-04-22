@@ -4,13 +4,13 @@ import IconCaretDown from '@airbnb/lunar-icons/lib/interface/IconCaretDown';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
-  // Whether or not to display the bottom caret.
+  /** Whether or not to display the bottom caret. */
   down?: boolean;
-  // If enabled, the caret is more pronounced.
+  /** If enabled, the caret is more pronounced. */
   enableDown: boolean;
-  // If enabled, the caret is more pronounced.
+  /** If enabled, the caret is more pronounced. */
   enableUp: boolean;
-  // Whether or not to display the top caret.
+  /** Whether or not to display the top caret. */
   up?: boolean;
 };
 
@@ -32,7 +32,7 @@ export class Carets extends React.Component<Props & WithStylesProps> {
           {...css(
             down && styles.caret_up,
             styles.caret,
-            enableUp ? this.props.styles.caret_active : styles.caret_inactive,
+            enableUp ? styles.caret_active : styles.caret_inactive,
           )}
         >
           <IconCaretUp size="2em" />

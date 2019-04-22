@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { RendererProps } from '../../packages/core/src/components/DataTable/types';
-import Text from '../../packages/core/src/components/Text';
-import Row from '../../packages/core/src/components/Row';
+import { RendererProps } from '../../../../packages/core/src/components/DataTable/types';
+import Text from '../../../../packages/core/src/components/Text';
+import Row from '../../../../packages/core/src/components/Row';
 
 function daysBreakdown(totalDays: number) {
   const years = Math.floor(totalDays / 365);

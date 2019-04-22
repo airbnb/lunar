@@ -8,17 +8,17 @@ import {
   TableRow,
 } from './DataTable/types';
 
-const getData = require('../../../../guide/DataTableData').default;
-const tenureRenderer = require('../../../../guide/DataTableRenderers/TenureRenderer').default;
-const colspanRenderer = require('../../../../guide/DataTableRenderers/ColspanRenderer').default;
-const catRenderer = require('../../../../guide/DataTableRenderers/CatRenderer').default;
-const menuRenderer = require('../../../../guide/DataTableRenderers/MenuRenderer').default;
+import getData from '../../../../.storybook/components/DataTable/DataTableData';
+import TenureRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/TenureRenderer';
+import ColSpanRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/ColSpanRenderer';
+import CatRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/CatRenderer';
+import MenuRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/MenuRenderer';
 
 const renderers = {
-  colspan: colspanRenderer,
-  cats: catRenderer,
-  tenureDays: tenureRenderer,
-  menu: menuRenderer,
+  colSpan: ColSpanRenderer,
+  cats: CatRenderer,
+  tenureDays: TenureRenderer,
+  menu: MenuRenderer,
 };
 
 const columnMetadata = {
@@ -35,7 +35,7 @@ const columnMetadata = {
 };
 
 const headerButtonClick = (selectedRows: SelectedRows) => () => {
-  console.log(selectedRows);
+  action('this callback has access to the selected rows');
 }
 
 const headerButtons = [
@@ -64,7 +64,7 @@ const columnToLabel = {
 };
 
 const catsCallback = () => {
-  console.log('meow');
+  action('meow');
 }
 
 const editCallbacks = {
@@ -72,12 +72,7 @@ const editCallbacks = {
 };
 
 const defaultEditCallback = (row: TableRow, key: string, newVal: any, event:  React.SyntheticEvent<EventTarget>,) => {
-  console.log({
-    row,
-    key,
-    newVal,
-    event,
-  });
+  action('this callback has access to row, key, newVal and event');
 }
 
 storiesOf('Core/DataTable', module)
@@ -97,6 +92,7 @@ storiesOf('Core/DataTable', module)
       data={getData()}
       keys={['name', 'jobTitle']}
       expandable
+      selectable
     />
   ))
   .add('An editable table.', () => (
@@ -151,7 +147,7 @@ storiesOf('Core/DataTable', module)
       data={getData()}
       instantEdit={false}
       defaultEditCallback={defaultEditCallback}
-      enactEditsCallback={() => console.log('applying edits')}
+      enactEditsCallback={() => action('applying edits')}
       editCallbacks={editCallbacks}
     />
   ))
@@ -176,7 +172,7 @@ storiesOf('Core/DataTable', module)
       columnHeaderHeight="micro"
       tableHeaderHeight="large"
       defaultEditCallback={defaultEditCallback}
-      enactEditsCallback={() => console.log('applying edits')}
+      enactEditsCallback={() => action('applying edits')}
       editCallbacks={editCallbacks}
       keys={['name', 'cats', 'tenureDays']}
     />

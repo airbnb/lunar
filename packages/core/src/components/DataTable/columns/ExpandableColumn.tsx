@@ -22,7 +22,6 @@ export default function ExpandableColumn(
         <div
           role="button"
           tabIndex={0}
-          {...css(styles.chevron)}
           onClick={expandRow(originalIndex)}
           onKeyPress={expandRow(originalIndex)}
         >

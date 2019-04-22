@@ -2,7 +2,7 @@ import { SortDirectionType } from 'react-virtualized';
 import sortList from './sortList';
 import { IndexedParentRow, IndexedChildRow, ExpandedRow } from '../types';
 
-/*  Itterate over the sortedDataList in state to flatten out children stashed in metadata */
+/*  Iterate over the sortedDataList in state to flatten out children stashed in metadata */
 export default function expandDataList(
   sortedDataList: IndexedParentRow[],
   expandedRows: Set<number>,

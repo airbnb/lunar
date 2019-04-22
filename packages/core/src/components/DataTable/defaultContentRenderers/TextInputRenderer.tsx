@@ -2,11 +2,7 @@ import React from 'react';
 import Input from '../../Input';
 import { RendererProps } from '../types';
 
-export default function TextInputRenderer({
-  row,
-  key,
-  handleEdit,
-}: RendererProps): NonNullable<React.ReactNode> {
+export default function TextInputRenderer({ row, key, onEdit }: RendererProps) {
   const content = row.rowData.data[key];
 
   return (
@@ -17,7 +13,7 @@ export default function TextInputRenderer({
         onClick={e => e.stopPropagation()}
         hideLabel
         value={content}
-        onChange={handleEdit(row, key)}
+        onChange={onEdit(row, key)}
       />
     )
   );

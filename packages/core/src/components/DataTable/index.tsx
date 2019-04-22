@@ -85,7 +85,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       : Array.from(
           this.props.data ? this.props.data.reduce((keySet: Set<string>, row: ParentRow) => {
             Object.keys(row.data).forEach(key => {
-              if (row.metadata == undefined || row.metadata.colspanKey !== key) {
+              if (row.metadata == undefined || row.metadata.colSpanKey !== key) {
                 keySet.add(key);
               }
             });
@@ -157,7 +157,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     });
   }
 
-  private handleEdit = (row: TableRow, key: string) => (
+  private onEdit = (row: TableRow, key: string) => (
     newVal: any,
     event: React.SyntheticEvent<EventTarget>,
   ) => {
@@ -312,10 +312,10 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         editable={editable}
         editMode={editMode}
         instantEdit={instantEdit}
-        handleEnableEditMode={this.enableEditMode}
-        handleDisableEditMode={this.disableEditMode}
-        handleCancelEditMode={this.cancelEditMode}
-        handleEnactEdits={this.enactEdits}
+        onEnableEditMode={this.enableEditMode}
+        onDisableEditMode={this.disableEditMode}
+        onCancelEditMode={this.cancelEditMode}
+        onEnactEdits={this.enactEdits}
         extraHeaderButtons={extraHeaderButtons}
         height={getHeight(rowHeight, tableHeaderHeight)}
         selectedRows={selectedRows}
@@ -372,7 +372,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
               >
                 {expandable && ExpandableColumn(styles, expandedRows, this.expandRow)}
                 {selectable && SelectableColumn(selectedRows, this.handleSelection, expandable)}
-                {DataColumns(this.keys, editMode, this.handleEdit, this.props)}
+                {DataColumns(this.keys, editMode, this.onEdit, this.props)}
               </Table>
             )}
           </AutoSizer>

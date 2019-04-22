@@ -1,14 +1,14 @@
 import React from 'react';
 
-import Emoji from '../../packages/core/src/components/Emoji';
-import CountBadge from '../../packages/core/src/components/CountBadge';
-import { TableRow, RendererProps } from '../../packages/core/src/components/DataTable/types';
+import Emoji from '../../../../packages/core/src/components/Emoji';
+import CountBadge from '../../../../packages/core/src/components/CountBadge';
+import { TableRow, RendererProps } from '../../../../packages/core/src/components/DataTable/types';
 
 type CatRendererProps = {
   row: RendererProps['row'];
   key: RendererProps['key'];
   editMode: RendererProps['editMode'];
-  handleEdit: RendererProps['handleEdit'];
+  onEdit: RendererProps['onEdit'];
 };
 class CatRenderer extends React.Component<CatRendererProps> {
   state = {
@@ -16,14 +16,14 @@ class CatRenderer extends React.Component<CatRendererProps> {
   };
 
   renderCounter() {
-    const { row, key, handleEdit } = this.props;
+    const { row, key, onEdit } = this.props;
 
     return (
       <IncrementableBadge
         value={row.rowData.data.cats}
         row={row}
         colKey="cats"
-        onChange={handleEdit(row, 'cats')}
+        onChange={onEdit(row, 'cats')}
       />
     );
   }
@@ -55,8 +55,8 @@ class CatRenderer extends React.Component<CatRendererProps> {
   }
 }
 
-export default function catRenderer({ row, key, editMode, handleEdit }: CatRendererProps) {
-  return <CatRenderer row={row} key={key} editMode={editMode} handleEdit={handleEdit} />;
+export default function catRenderer({ row, key, editMode, onEdit }: CatRendererProps) {
+  return <CatRenderer row={row} key={key} editMode={editMode} onEdit={onEdit} />;
 }
 
 type IncrementableBadgeProps = {

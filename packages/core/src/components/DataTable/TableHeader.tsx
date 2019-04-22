@@ -22,13 +22,13 @@ export type Props = {
   /** Width of the header. */
   width: number;
   /** Callback for toggling editMode. */
-  handleEnableEditMode: () => void;
+  onEnableEditMode: () => void;
   /** Callback for toggling editMode. */
-  handleDisableEditMode: () => void;
+  onDisableEditMode: () => void;
   /** Undos edits if instantEdit is disabled. */
-  handleCancelEditMode: () => void;
+  onCancelEditMode: () => void;
   /** Applys edits if instantEdit is enabled. */
-  handleEnactEdits: () => void;
+  onEnactEdits: () => void;
   /** Extra buttons to render in the header. */
   extraHeaderButtons?: HeaderButton[];
   /** Selected status of all rows, can by used by header buttons. */
@@ -41,10 +41,10 @@ export function TableHeader({
   editMode,
   extraHeaderButtons,
   height,
-  handleEnableEditMode,
-  handleDisableEditMode,
-  handleCancelEditMode,
-  handleEnactEdits,
+  onEnableEditMode,
+  onDisableEditMode,
+  onCancelEditMode,
+  onEnactEdits,
   instantEdit,
   selectedRows,
   styles,
@@ -66,7 +66,7 @@ export function TableHeader({
     ));
 
   const instantEditButtons = (
-    <Button small onClick={handleDisableEditMode}>
+    <Button small onClick={onDisableEditMode}>
       <Translate phrase="Done" context="This button exits edit mode." />
     </Button>
   );
@@ -74,13 +74,13 @@ export function TableHeader({
   const editModeButtons = instantEdit
     ? instantEditButtons
     : [
-        <Button small inverted onClick={handleCancelEditMode} key={0}>
+        <Button small inverted onClick={onCancelEditMode} key={0}>
           <Translate
             phrase="Cancel"
             context="This button cancels out of edit mode without applying changes."
           />
         </Button>,
-        <Button small onClick={handleEnactEdits} key={1}>
+        <Button small onClick={onEnactEdits} key={1}>
           <Translate phrase="Apply" context="This button applies all live edits." />
         </Button>,
       ];
@@ -88,7 +88,7 @@ export function TableHeader({
   const modeButtons = editMode ? (
     editModeButtons
   ) : (
-    <Button inverted small onClick={handleEnableEditMode}>
+    <Button inverted small onClick={onEnableEditMode}>
       <Translate phrase="Edit" context="This button enables edit mode." />
     </Button>
   );

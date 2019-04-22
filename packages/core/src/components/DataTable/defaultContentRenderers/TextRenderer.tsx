@@ -2,7 +2,7 @@ import React from 'react';
 import Text from '../../Text';
 import { RendererProps } from '../types';
 
-export default function TextRenderer({ row, key }: RendererProps): NonNullable<React.ReactNode> {
+export default function TextRenderer({ row, key }: RendererProps) {
   const content = row.rowData.data[key];
 
   return typeof content === 'string' || typeof content === 'number' ? (

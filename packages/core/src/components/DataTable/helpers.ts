@@ -1,11 +1,6 @@
-import React from 'react';
 import { WithStylesProps } from '../../composers/withStyles';
 import { STATUS_OPTIONS, HEIGHT_TO_PX } from './constants';
 import { HeightOptions, ExpandedRow, RowHeightOptions, Status } from './types';
-
-export function camelToWords(s: string) {
-  return s.replace(/([A-Z])/g, ' $1');
-}
 
 function getStatusColor(theme: WithStylesProps['theme'], status: Status) {
   if (theme) {
@@ -26,7 +21,7 @@ export function getRowColor(
   theme: WithStylesProps['theme'],
 ) {
   if (theme) {
-    const { core, accent } = theme.color;
+    const { accent, core } = theme.color;
 
     if (index < 0) {
       return accent.bg;
@@ -35,7 +30,7 @@ export function getRowColor(
       return getStatusColor(theme, row.metadata.status);
     }
     if (zebra) {
-      return index % 2 ? accent.bg : theme.color.core.neutral[0];
+      return index % 2 ? accent.bg : core.neutral[0];
     }
 
     return accent.bg;

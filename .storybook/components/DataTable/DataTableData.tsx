@@ -1,4 +1,4 @@
-import { STATUS_OPTIONS } from '../packages/core/src/components/DataTable/constants';
+import { STATUS_OPTIONS } from '../../../packages/core/src/components/DataTable/constants';
 
 export default function getData() {
   return [
@@ -18,10 +18,10 @@ export default function getData() {
         tenureDays: 407,
         menu: '',
         cats: 1,
-        colspan: 'This person is hidden because you have insufficient permissions.',
+        colSpan: 'This person is hidden because you have insufficient permissions.',
       },
       metadata: {
-        colspanKey: 'colspan',
+        colSpanKey: 'colSpan',
       },
     },
     {

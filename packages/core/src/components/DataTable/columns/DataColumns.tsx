@@ -7,7 +7,7 @@ import {
   ColumnMetadata,
   DataTableProps,
   TableRow,
-  HandleEdit,
+  OnEdit,
   HeightOptions,
   WidthProperties,
   RendererProps,
@@ -29,7 +29,7 @@ type ArgumentsFromProps = {
 export default function DataColumns(
   keys: string[],
   editMode: boolean,
-  handleEdit: HandleEdit,
+  onEdit: OnEdit,
   {
     columnMetadata,
     showColumnDividers,
@@ -53,16 +53,16 @@ export default function DataColumns(
       row,
       key,
       editMode,
-      handleEdit,
+      onEdit,
       zebra: zebra || false,
       theme,
     };
 
-    if (metadata && metadata.colspanKey && renderers) {
+    if (metadata && metadata.colSpanKey && renderers) {
       if (isLeftmost) {
-        const colspanRenderer = renderers[metadata.colspanKey];
-        if (colspanRenderer) {
-          return colspanRenderer(rendererArguments);
+        const colSpanRenderer = renderers[metadata.colSpanKey];
+        if (colSpanRenderer) {
+          return colSpanRenderer(rendererArguments);
         }
       }
     }
