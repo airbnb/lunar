@@ -10,7 +10,7 @@ export type Props = {
   spacious?: boolean;
 };
 
-class BorderedListItem extends React.Component<Props & WithStylesProps> {
+export class BorderedListItem extends React.Component<Props & WithStylesProps> {
   render() {
     const { children, compact, spacious, styles } = this.props;
 
