@@ -2,6 +2,8 @@ import React from 'react';
 import ScrollWrapper from './ScrollWrapper';
 import ScrollSectionContext, { Context } from './ScrollContext';
 
+export { ScrollWrapper, ScrollSectionContext };
+
 export type Props = {
   /** A globally unique ID for this scroll section. Will be the ID of the wrapper. */
   id: string;
@@ -36,8 +38,6 @@ export class InternalScrollSection extends React.Component<Props & PrivateProps>
     );
   }
 }
-
-export { ScrollWrapper, ScrollSectionContext };
 
 /**
  * A section of the page that's measured for active scrolling by wrapping children in section

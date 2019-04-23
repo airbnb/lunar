@@ -58,9 +58,13 @@ export type PrivateProps = Props &
   WithStylesProps & {
     // Support everything for convenience
     [key: string]: any;
+    /** @ignore */
     children?: React.ReactNode;
+    /** @ignore */
     hasPrefix?: boolean;
+    /** @ignore */
     hasSuffix?: boolean;
+    /** @ignore */
     tagName: 'input' | 'select' | 'textarea';
   };
 

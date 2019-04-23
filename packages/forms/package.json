@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-forms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Form functionality for Lunar.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -13,16 +13,16 @@
   },
   "scripts": {
     "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "BUILD=cjs babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./lib",
-    "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx --copy-files ./src --out-dir ./esm"
+    "build:cjs": "BUILD=cjs babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./lib",
+    "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
   },
   "peerDependencies": {
     "@airbnb/lunar": "^1.0.0",
     "react": "^16.8.0"
   },
   "devDependencies": {
-    "@airbnb/lunar": "^1.0.0",
-    "@airbnb/lunar-test-utils": "^1.0.0",
+    "@airbnb/lunar": "^1.1.0",
+    "@airbnb/lunar-test-utils": "^1.0.1",
     "react": "^16.8.6"
   },
   "dependencies": {

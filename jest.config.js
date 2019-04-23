@@ -9,7 +9,7 @@ module.exports = {
     'tmp/',
     'dist/',
     'mock.ts',
-    'node_modules',
+    'story.tsx',
     // We don't need tests for these files
     'core/src/components/DatePickerInput/Input',
     'core/src/utils/getLocaleFromClient',

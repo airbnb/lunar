@@ -68,4 +68,5 @@ esm/
 lib/
 dist/
 public/
+storybook-static/
 tsconfig.tsbuildinfo

@@ -1,5 +1,6 @@
 import React from 'react';
 import omit from 'lodash/omit';
+import { Omit } from 'utility-types';
 import { fieldSubscriptionItems, FieldState, Unsubscribe } from 'final-form';
 import finishHOC from '@airbnb/lunar/lib/utils/finishHOC';
 import FormContext from '../components/FormContext';
@@ -27,10 +28,10 @@ export const PROP_NAMES = [
 
 // Our composer provides implementations for required props
 // in the wrapped component, so we need to mark them as optional.
-export type OnChangeHandler = (...args: any[]) => void;
+export type OnChangeHandler = (...args: any[]) => any;
 
 export type OptionalOnChange<T> = T extends { onChange: OnChangeHandler }
-  ? Pick<T, Exclude<keyof T, 'onChange'>> & Partial<Pick<T, 'onChange'>>
+  ? Omit<T, 'onChange'> & Partial<Pick<T, 'onChange'>>
   : T & { onChange?: OnChangeHandler };
 
 export type Options = {
@@ -43,12 +44,12 @@ export type Options = {
 
 export interface ConnectToFormProps {
   name: string;
-  invalid: boolean;
-  errorMessage: string;
-  field: Partial<FieldState>;
-  onBlur: (event: React.FocusEvent) => void;
-  onChange: (...args: any[]) => void;
-  onFocus: (event: React.FocusEvent) => void;
+  invalid?: boolean;
+  errorMessage?: string;
+  field?: Partial<FieldState>;
+  onBlur?: (event: React.FocusEvent) => void;
+  onChange?: (...args: any[]) => void;
+  onFocus?: (event: React.FocusEvent) => void;
   value?: any;
   checked?: boolean;
 }
