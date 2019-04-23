@@ -9,14 +9,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - Switch to Storybook from Styleguidist (#19) ([129e5c7](https://github.com/airbnb/lunar/commit/129e5c7)), closes [#19](https://github.com/airbnb/lunar/issues/19)
 
-**Note:** Version bump only for package @airbnb/lunar-forms
-
-
-
-
-
-# 1.0.0 - 2019-04-04
-
-#### 🎉 Release
-
-- Official first release!
+**Note:** Version bump only for package @airbnb/lunar-test-utils
