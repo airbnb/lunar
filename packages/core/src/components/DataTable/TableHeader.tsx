@@ -2,8 +2,6 @@ import React from 'react';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
-import Row from '../Row';
-import Spacing from '../Spacing';
 import Text from '../Text';
 import Translate from '../Translate';
 import { HeaderButton, SelectedRows } from './types';
@@ -53,18 +51,18 @@ export function TableHeader({
 }: Props & WithStylesProps) {
   const extraButtons =
     extraHeaderButtons &&
-    extraHeaderButtons.map((btnConfig: HeaderButton) => 
-    (!editMode && btnConfig.display || (editMode && btnConfig.displayEditMode)) && (
-      <Button
-        small
-        inverted
-        onClick={btnConfig.onClick && btnConfig.onClick(selectedRows)}
-        key={btnConfig.label}
-      >
-        {btnConfig.label}
-      </Button>
-    ));
-
+    extraHeaderButtons.map(
+      (btnConfig: HeaderButton) =>
+        ((!editMode && btnConfig.display) || (editMode && btnConfig.displayEditMode)) && (
+          <Button
+            small
+            inverted
+            onClick={btnConfig.onClick && btnConfig.onClick(selectedRows)}
+            key={btnConfig.label}
+          >
+            {btnConfig.label}
+          </Button>
+        ));
   const instantEditButtons = (
     <Button small onClick={onDisableEditMode}>
       <Translate phrase="Done" context="This button exits edit mode." />
@@ -105,7 +103,7 @@ export function TableHeader({
     height,
   };
 
-  const label = (<Text bold>{tableHeaderLabel}</Text>);
+  const label = <Text bold>{tableHeaderLabel}</Text>;
 
   return (
     <div {...css(styles.tableHeader)} style={dimensionStyles}>
@@ -123,8 +121,8 @@ export default withStyles(theme => ({
     alignItems: 'center',
     height: '100%',
     justifyContent: 'space-between',
-    marginLeft: 2* theme.unit,
-    marginRight: 2* theme.unit,
+    marginLeft: 2 * theme.unit,
+    marginRight: 2 * theme.unit,
   },
   tableHeader: {
     borderTop: '1px solid',

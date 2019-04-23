@@ -108,7 +108,10 @@ export default function DataColumns(
         maxWidth={widthProperties.maxWidth}
         minWidth={widthProperties.minWidth}
         cellRenderer={renderCell(key, isLeftmost)}
-        {...css(styles && styles.column, showColumnDividers && !isRightmost && styles && styles.column_divider)}
+        {...css(
+          styles && styles.column,
+          showColumnDividers && !isRightmost && styles && styles.column_divider
+        )}
       />
     );
   });

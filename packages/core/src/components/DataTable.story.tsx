@@ -3,10 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import DataTable from './DataTable';
-import {
-  SelectedRows,
-  TableRow,
-} from './DataTable/types';
+import { SelectedRows, TableRow } from './DataTable/types';
 
 // @ts-ignore
 import getData from '../../../../.storybook/components/DataTable/DataTableData';
@@ -41,26 +38,26 @@ const columnMetadata = {
 
 const headerButtonClick = (selectedRows: SelectedRows) => () => {
   action('this callback has access to the selected rows');
-}
+};
 
 const headerButtons = [
   {
     label: 'Always Displayed',
     display: true,
     displayEditMode: true,
-    onClick: headerButtonClick
+    onClick: headerButtonClick,
   },
   {
     label: 'Extra Non Edit Button',
     display: true,
     displayEditMode: false,
-    onClick: headerButtonClick
+    onClick: headerButtonClick,
   },
   {
     label: 'Extra Edit Mode Button',
     display: false,
     displayEditMode: true,
-    onClick: headerButtonClick
+    onClick: headerButtonClick,
   },
 ];
 
@@ -70,26 +67,27 @@ const columnToLabel = {
 
 const catsCallback = () => {
   action('meow');
-}
-
-const editCallbacks = {
-  'cats': catsCallback,
 };
 
-const defaultEditCallback = (row: TableRow, key: string, newVal: any, event:  React.SyntheticEvent<EventTarget>,) => {
+const editCallbacks = {
+  cats: catsCallback,
+};
+
+const defaultEditCallback = (
+  row: TableRow,
+  key: string,
+  newVal: any,
+  event: React.SyntheticEvent<EventTarget>
+) => {
   action('this callback has access to row, key, newVal and event');
-}
+};
 
 storiesOf('Core/DataTable', module)
   .addParameters({
     inspectComponents: [DataTable],
   })
   .add('A standard table.', () => (
-    <DataTable
-      tableHeaderLabel="My Great Table"
-      data={getData()}
-      keys={['name', 'jobTitle']}
-    />
+    <DataTable tableHeaderLabel="My Great Table" data={getData()} keys={['name', 'jobTitle']} />
   ))
   .add('A table with selectable and exandable rows.', () => (
     <DataTable

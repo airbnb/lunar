@@ -1,11 +1,12 @@
 import React from 'react';
+import startCase from 'lodash/startCase';
 import { SortDirection } from 'react-virtualized';
+
 import SortCarets from '../SortCarets';
-import Text from '../Text';
 import Spacing from '../Spacing';
+import Text from '../Text';
 import { css, WithStylesProps } from '../../composers/withStyles';
 import { getHeight } from './helpers';
-import startCase from 'lodash/startCase';
 import { ColumnMetadata, ColumnToLabel, HeightOptions, RowHeightOptions } from './types';
 
 // Theses anys are required to match the param types from react-virtualized
@@ -55,9 +56,7 @@ export default function ColumnLabels({
     const newColumns = columns.map((col: React.ReactElement, idx: number) => {
       const { children } = col.props;
       const key = children[0].props.children;
-      const label = columnToLabel[key]
-        ? columnToLabel[key]
-        : key && startCase(key).toUpperCase();
+      const label = columnToLabel[key] ? columnToLabel[key] : key && startCase(key).toUpperCase();
       const sort = children[1] && children[1].props.sortDirection;
 
       const isLeftmost = idx === leftmostIdx;
@@ -68,10 +67,12 @@ export default function ColumnLabels({
 
       const newHeader = (
         <Spacing left={indent ? 2 : 0}>
-          <div style={heightStyle} {...css((showDivider && styles) && styles.column_divider)}>
+          <div style={heightStyle} {...css(showDivider && styles && styles.column_divider)}>
             <div
               style={
-                columnMetadata && columnMetadata[key] && columnMetadata[key].rightAlign ? rightAlignmentStyle : {}
+                columnMetadata && columnMetadata[key] && columnMetadata[key].rightAlign
+                  ? rightAlignmentStyle
+                  : {}
               }
               {...css(styles && styles.row)}
             >
@@ -99,10 +100,7 @@ export default function ColumnLabels({
         className={className}
         role="row"
         style={style}
-        {...css(
-          styles && styles.column_header, 
-          styles && styles.row
-        )}
+        {...css(styles && styles.column_header, styles && styles.row)}
       >
         {newColumns}
       </div>

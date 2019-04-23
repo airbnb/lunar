@@ -80,21 +80,29 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   // Infers keys from data if they aren't explicitely defined
   keys =
-      this.props.keys && this.props.keys.length > 0
+    this.props.keys && this.props.keys.length > 0
       ? this.props.keys
       : Array.from(
-          this.props.data ? this.props.data.reduce((keySet: Set<string>, row: ParentRow) => {
-            Object.keys(row.data).forEach(key => {
-              if (row.metadata == undefined || row.metadata.colSpanKey !== key) {
-                keySet.add(key);
-              }
-            });
-            return keySet;
-          }, new Set()) : [],
-        );
+          this.props.data
+            ? this.props.data.reduce((keySet: Set<string>, row: ParentRow) => {
+                Object.keys(row.data).forEach(key => {
+                  if (row.metadata === undefined || row.metadata.colSpanKey !== key) {
+                    keySet.add(key);
+                  }
+                });
+
+                return keySet;
+              }, new Set())
+              : [],
+            );
 
   rowStyles = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }): RowStyles => ({
-    background: getRowColor(expandedDataList[index], index, this.props.zebra || false, this.props.theme),
+    background: getRowColor(
+      expandedDataList[index],
+      index,
+      this.props.zebra || false,
+      this.props.theme,
+    ),
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -169,7 +177,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     if (editCallbacks && editCallbacks[key]) {
       editCallbacks[key](row, key, newVal, event);
-    } 
+    }
 
     if (!instantEdit) {
       const { changeLog }: { changeLog: ChangeLog } = this.state;
@@ -350,9 +358,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     return (
       <div>
-        <AutoSizer disableHeight>
-          {({ width }) => this.renderTableHeader(width)}
-        </AutoSizer>
+        <AutoSizer disableHeight>{({ width }) => this.renderTableHeader(width)}</AutoSizer>
         <div {...css(styles.table_container)}>
           <AutoSizer disableHeight>
             {({ width }) => (
@@ -361,7 +367,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
                 width={this.props.width || width}
                 headerHeight={getHeight(rowHeight, columnHeaderHeight)}
                 rowCount={expandedDataList.length}
-                rowHeight={HEIGHT_TO_PX[(rowHeight || "regular")]}
+                rowHeight={HEIGHT_TO_PX[rowHeight || "regular"]}
                 rowGetter={this.rowGetter(expandedDataList)}
                 rowStyle={this.rowStyles(expandedDataList)}
                 sort={this.sort}

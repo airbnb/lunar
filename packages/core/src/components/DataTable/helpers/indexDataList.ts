@@ -1,5 +1,4 @@
 import { ChildRow, IndexedChildRow, IndexedParentRow, ParentRow } from '../types';
-import { SELECTION_OPTIONS } from '../constants';
 
 export default function indexDataList(dataList: ParentRow[]): IndexedParentRow[] {
   const indexedDataList: IndexedParentRow[] = [];
