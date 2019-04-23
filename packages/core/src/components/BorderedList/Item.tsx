@@ -1,5 +1,8 @@
 import React from 'react';
+import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+
+const paddingPropType = mutuallyExclusiveTrueProps('compact', 'spacious');
 
 export type Props = {
   /** Item content. */
@@ -11,6 +14,16 @@ export type Props = {
 };
 
 export class BorderedListItem extends React.Component<Props & WithStylesProps> {
+  static propTypes = {
+    compact: paddingPropType,
+    spacious: paddingPropType,
+  };
+
+  static defaultProps = {
+    compact: false,
+    spacious: false,
+  };
+
   render() {
     const { children, compact, spacious, styles } = this.props;
 
