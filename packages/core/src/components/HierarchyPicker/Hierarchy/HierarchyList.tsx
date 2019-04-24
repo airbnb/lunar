@@ -28,29 +28,39 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
 
   ref = React.createRef<HTMLDivElement>();
 
-  closestListToActiveElement(): HTMLDivElement | null {
-    const { activeElement } = document;
-
-    if (!activeElement || !activeElement.closest || !this.ref.current) {
-      return null;
-    }
-
-    const ul = activeElement.closest('ul');
-    const div = ul && ul.closest('div');
-
-    return div;
-  }
-
   isChosen(definition: TreePath): boolean {
     const { chosen } = this.props;
 
     return definition.every((name, i) => chosen![i] === name);
   }
 
+  /** Returns the closest <li> to the current document activeElement */
+  closestRowToActiveElement(): HTMLLIElement | null {
+    const { activeElement } = document;
+
+    if (!activeElement || !activeElement.closest || !this.ref.current) {
+      return null;
+    }
+
+    return activeElement.closest('li');
+  }
+
   private handleDomFocusDeeper = () => {
-    const parentList = this.closestListToActiveElement();
-    const nextMenu = parentList && parentList.nextElementSibling;
-    const deeper = nextMenu && nextMenu.querySelector('[tabindex]');
+    const { verticallyAlign } = this.props;
+    const li = this.closestRowToActiveElement();
+
+    let deeper;
+    if (verticallyAlign) {
+      // next HierarchyList is a sibling
+      const ul = li && li.parentElement;
+      const parentDiv = ul && ul.parentElement;
+      const nextMenu = parentDiv && parentDiv.nextElementSibling;
+      deeper = nextMenu && nextMenu.querySelector('[tabindex]');
+    } else {
+      // next HierarchyList is a child
+      const ul = li && li.lastElementChild;
+      deeper = ul && ul.querySelector('[tabindex]');
+    }
 
     if (deeper) {
       (deeper as HTMLElement).focus();
@@ -58,13 +68,22 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
   };
 
   private handleDomFocusShallower = () => {
-    const parentList = this.closestListToActiveElement();
-    const parentMenu = parentList && parentList.previousElementSibling;
-    // focused parent tabIndex is higher than other parents
-    const shallower = parentMenu && parentMenu.querySelector('[tabindex="1"]');
+    const { verticallyAlign, parents } = this.props;
+    const li = this.closestRowToActiveElement();
+    if (parents!.length === 0 || !li) return;
 
-    if (this.props.parents!.length === 0 || !shallower) {
-      return;
+    let shallower;
+    if (verticallyAlign) {
+      // prev HierarchyList is a sibling
+      const ul = li && li.parentElement;
+      const parentDiv = ul && ul.parentElement;
+      const prevMenu = parentDiv && parentDiv.previousElementSibling;
+      // focused parent tabIndex is higher than other parents
+      shallower = prevMenu && prevMenu.querySelector('[tabindex="1"]');
+    } else {
+      // prev HierarchyList is a parent
+      const parentLi = li && li.parentElement && li.parentElement.closest('li');
+      shallower = parentLi && parentLi.querySelector('[tabindex]');
     }
 
     if (shallower) {
@@ -115,7 +134,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
     const { maxHeight, width } = passThruProps;
     const isNested = parents.length > 0;
 
-    // Track focused item to render as a sibling in vertically aligned menus
+    // Track focused item to render as a sibling if vertically aligned
     let focusedItem: ItemShape | undefined;
     let currentSection: string | undefined;
 
@@ -131,6 +150,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
             {
               width,
               maxHeight: verticallyAlign ? maxHeight : undefined,
+              zIndex: 1,
             },
           )}
           ref={this.ref}
@@ -208,7 +228,6 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
 export default withStyles(({ color, pattern, unit, ui }) => ({
   pane: {
     display: 'flex',
-    borderTop: `1px solid ${color.accent.border}`,
     borderRadius: ui.borderRadius,
   },
 

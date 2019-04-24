@@ -216,6 +216,44 @@ const demoItems2 = [
   {
     name: 'Team no-sub-teams',
   },
+  {
+    name: 'Overflown sub-teams',
+    readonly: true,
+    items: [
+      {
+        section: 'Sub-teams',
+        name: 'Team 4a',
+      },
+      {
+        name: 'Team 4b',
+      },
+      {
+        name: 'Team 4c',
+        readonly: true,
+        items: [
+          {
+            section: 'Sub-sub-teams',
+            name: 'Team 4c i',
+          },
+        ],
+      },
+      {
+        name: 'Team 4d',
+      },
+      {
+        name: 'Team 4e',
+      },
+      {
+        name: 'Team 4f',
+      },
+      {
+        name: 'Team 4g',
+      },
+      {
+        name: 'Team 4h',
+      },
+    ],
+  },
 ];
 
 class PickerDemo extends React.Component<Partial<Props>, { chosen: Props['chosen'] }> {
@@ -247,5 +285,9 @@ storiesOf('Core/HierarchyPicker', module)
   })
   .add('Vertically offset menu', () => <PickerDemo items={demoItems} />)
   .add('Vertically aligned menu', () => <PickerDemo items={demoItems} verticallyAlign />)
-  .add('With sub-sections', () => <PickerDemo items={demoItems2} verticallyAlign />)
-  .add('With chosen value', () => <PickerDemo items={demoItems} chosen={['Account', 'Access']} />);
+  .add('With sub-sections and max height', () => (
+    <PickerDemo items={demoItems2} verticallyAlign hierarchyMaxHeight={234} />
+  ))
+  .add('With chosen value', () => <PickerDemo items={demoItems} chosen={['Account', 'Access']} />)
+  .add('Disabled', () => <PickerDemo items={demoItems} disabled />)
+  .add('Invalid', () => <PickerDemo items={demoItems} invalid />);

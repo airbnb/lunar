@@ -3,7 +3,7 @@ export interface ItemShape {
   name: string;
   /** Localized content displayed in lieu of name. */
   label?: string;
-  /** Long-worded localized description of the issue. */
+  /** Long-worded localized description of an item. */
   description?: string;
   /** Optional flag to signal item should not be pickable. */
   readonly?: boolean;
@@ -11,6 +11,8 @@ export interface ItemShape {
   keywords?: string;
   /** Optional recursive sub-items. */
   items?: ItemShape[] | null;
+  /** Optional menu section label. */
+  section?: string;
 }
 
 export type FuseMatch = {

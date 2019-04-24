@@ -91,7 +91,6 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
   };
 
   private handleSearch = (searchQuery: string) => {
-    console.log('Picker handleSearch', searchQuery);
     this.setState({ searchQuery });
   };
 
@@ -108,6 +107,7 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
       chosen,
       hierarchyMaxHeight,
       hierarchyWidth,
+      indexParentPath,
       items,
       formatter,
       noResultsLabel,
@@ -126,6 +126,7 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
       <div {...css(styles.pane)} ref={this.ref} onKeyDown={this.handleKeyDown}>
         <Search
           formatter={formatter}
+          indexParentPath={indexParentPath}
           items={items}
           maxHeight={searchMaxHeight}
           noResultsLabel={noResultsLabel}
@@ -160,7 +161,6 @@ export default withStyles(({ ui, unit, color }) => ({
     display: 'inline-block',
     borderRadius: ui.borderRadius,
     backgroundColor: color.accent.bg,
-    // border: ui.border,
     boxShadow: ui.boxShadowMedium,
     marginBottom: unit,
   },

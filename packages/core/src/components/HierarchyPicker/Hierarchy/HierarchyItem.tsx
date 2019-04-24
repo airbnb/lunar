@@ -104,7 +104,7 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
         onMouseMove={this.handleMouseMove}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
-        tabIndex={focused ? 1 : 0}
+        tabIndex={focused ? 1 : 0} // this is needed to find a focused parent item in a vertically aligned list
       >
         {selected && (
           <span {...css(styles.checkmark)}>
