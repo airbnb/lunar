@@ -22,8 +22,6 @@
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@airbnb/lunar-icons": "^1.0.2",
-    "@airbnb/lunar-test-utils": "^1.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
