@@ -1,34 +1,34 @@
 import React from 'react';
 import { Placeholder } from '@storybook/components';
 import Tabs from '@storybook/addon-a11y/dist/components/Tabs';
-import PropTable from './PropTable';
+import About from './About';
 
 export default class Panel extends React.Component {
   state = {
     components: {},
-    propTables: {},
+    componentMetadata: {},
     section: '',
+    storyPath: '',
   };
 
   componentDidMount() {
-    this.props.channel.on('SET_PROPS_DATA', this.handleSetProps);
+    this.props.channel.on('SET_PROPS_DATA', this.handleSetData);
   }
 
   componentWillUnmount() {
-    this.props.channel.removeListener('SET_PROPS_DATA', this.handleSetProps);
+    this.props.channel.removeListener('SET_PROPS_DATA', this.handleSetData);
   }
 
-  handleSetProps = ({ components, propTables, section }) => {
+  handleSetData = ({ componentMetadata, ...data }) => {
     this.setState({
-      components,
-      propTables: JSON.parse(propTables),
-      section,
+      componentMetadata: JSON.parse(componentMetadata),
+      ...data,
     });
   };
 
   render() {
     const { active } = this.props;
-    const { components, propTables, section } = this.state;
+    const { components, componentMetadata, section, storyPath } = this.state;
 
     if (!active) {
       return null;
@@ -41,11 +41,12 @@ export default class Panel extends React.Component {
     const tabs = Object.entries(components).map(([name, component]) => ({
       label: name,
       panel: (
-        <PropTable
+        <About
           name={name}
           component={component}
-          table={Object.values(propTables).find(
-            table => table.name === name && table.path.includes(section),
+          storyPath={storyPath}
+          metadata={Object.values(componentMetadata).find(
+            meta => meta.name === name && meta.path.includes(section),
           )}
         />
       ),
