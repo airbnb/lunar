@@ -4,7 +4,7 @@ import Panel from './Panel';
 
 addons.register('storybook/props', api => {
   addons.add('storybook/props/panel', {
-    title: 'Props',
+    title: 'About',
     type: types.PANEL,
     render: ({ active, key }) => (
       <Panel key={key} api={api} active={active} channel={addons.getChannel()} />
