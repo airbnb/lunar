@@ -16,7 +16,6 @@ import TextArea from './components/Form/TextArea';
 import ToggleButtonController from './components/Form/ToggleButtonController';
 import connectToForm from './composers/connectToForm';
 
-// eslint-disable-next-line import/export
 export * from './types';
 
 export {
