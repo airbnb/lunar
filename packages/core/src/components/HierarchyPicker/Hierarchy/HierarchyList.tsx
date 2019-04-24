@@ -236,7 +236,7 @@ export default withStyles(({ color, pattern, unit, ui }) => ({
   },
 
   pane_nested: {
-    borderLeft: `1px solid ${color.accent.border}`,
+    borderLeft: ui.border,
   },
 
   pane_verticallyOffset: {

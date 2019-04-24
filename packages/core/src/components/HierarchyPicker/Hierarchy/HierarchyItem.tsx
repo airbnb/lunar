@@ -28,15 +28,7 @@ export type Props = {
 
 const ICON_SIZE = 18;
 
-function defaultRenderItem(item: ItemShape, selected: boolean) {
-  return <Text>{item.label || item.name}</Text>;
-}
-
 class HierarchyItem extends React.Component<Props & WithStylesProps> {
-  static defaultProps = {
-    renderItem: defaultRenderItem,
-  };
-
   maybePick = () => {
     const { onItemPicked, item, definition } = this.props;
 
@@ -93,8 +85,26 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
     }
   };
 
+  renderItem = () => {
+    const { focused, item, styles, selected, renderItem, theme } = this.props;
+
+    return renderItem ? (
+      renderItem(item, selected, focused)
+    ) : (
+      <>
+        {selected && (
+          <span {...css(styles.checkmark)}>
+            <IconCheckmark color={theme!.color.core.primary[3]} size={ICON_SIZE} decorative />
+          </span>
+        )}
+
+        <span {...css(styles.label)}>{<Text>{item.label || item.name}</Text>}</span>
+      </>
+    );
+  };
+
   render() {
-    const { focused, item, renderItem, styles, selected, theme } = this.props;
+    const { focused, item, styles, selected, theme } = this.props;
 
     return (
       <div
@@ -106,14 +116,7 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
         onKeyDown={this.handleKeyDown}
         tabIndex={focused ? 1 : 0} // this is needed to find a focused parent item in a vertically aligned list
       >
-        {selected && (
-          <span {...css(styles.checkmark)}>
-            <IconCheckmark color={theme!.color.core.primary[3]} size={ICON_SIZE} decorative />
-          </span>
-        )}
-
-        <span {...css(styles.label)}>{renderItem!(item, selected, focused)}</span>
-
+        {this.renderItem()}
         {item.items && (
           <IconChevronRight size="1.4em" color={theme!.color.core.primary[3]} decorative inline />
         )}

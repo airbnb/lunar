@@ -15,7 +15,7 @@ export class ItemDescription extends React.Component<Props & WithStylesProps> {
     return (
       <div>
         <Text bold>
-          <T phrase="Apply this when:" context="Description on when to apply a policy rule" />
+          <T phrase="Description" context="Description of item" />
         </Text>
 
         <div {...css(styles.description)}>

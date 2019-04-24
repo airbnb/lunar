@@ -289,5 +289,16 @@ storiesOf('Core/HierarchyPicker', module)
     <PickerDemo items={demoItems2} verticallyAlign hierarchyMaxHeight={234} />
   ))
   .add('With chosen value', () => <PickerDemo items={demoItems} chosen={['Account', 'Access']} />)
+  .add('Custom hierarchy width', () => (
+    <PickerDemo hierarchyWidth={150} items={demoItems2} chosen={['Team 3', 'Team 3b']} />
+  ))
+  .add('Custom search dimensions', () => (
+    <PickerDemo
+      searchWidth={500}
+      searchMaxHeight={150}
+      items={demoItems2}
+      chosen={['Team 3', 'Team 3b']}
+    />
+  ))
   .add('Disabled', () => <PickerDemo items={demoItems} disabled />)
   .add('Invalid', () => <PickerDemo items={demoItems} invalid />);

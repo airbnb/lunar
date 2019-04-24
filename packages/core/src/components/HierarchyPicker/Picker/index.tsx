@@ -18,6 +18,7 @@ export type Props = {
   chosen?: TreePath;
   hierarchyMaxHeight?: number;
   hierarchyWidth?: number;
+  indexParentPath?: boolean;
   items: ItemShape[];
   formatter: Formatter;
   noResultsLabel: string;
@@ -163,11 +164,6 @@ export default withStyles(({ ui, unit, color }) => ({
     backgroundColor: color.accent.bg,
     boxShadow: ui.boxShadowMedium,
     marginBottom: unit,
-  },
-
-  search: {
-    position: 'relative',
-    padding: 1.5 * unit,
   },
 
   hierarchy: {

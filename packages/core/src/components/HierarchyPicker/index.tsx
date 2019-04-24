@@ -9,7 +9,14 @@ import Text from '../Text';
 import Picker from './Picker';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 
-import { ItemShape, TreePath, Labeler, ItemPickedHandler, ToggleHandler } from './types';
+import {
+  ItemShape,
+  TreePath,
+  Labeler,
+  ItemPickedHandler,
+  ItemRenderer,
+  ToggleHandler,
+} from './types';
 import defaultFormatter from './defaultFormatter';
 
 export type Props = {
@@ -39,7 +46,7 @@ export type Props = {
   onItemPicked: ItemPickedHandler;
   /** Callback for when user opens/closes the dropdown. */
   onPickerToggle?: ToggleHandler;
-  /** Render a hierarchy item. */
+  /** Override rendering of a hierarchy list item. */
   renderItem?: ItemRenderer;
   /** Maximum height of Hierarchy Search result list. */
   searchMaxHeight?: number;
