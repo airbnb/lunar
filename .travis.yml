@@ -48,7 +48,7 @@ jobs:
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
       deploy:
         provider: script
-        script: npm run deploy:release -- --loglevel silly
+        script: npm run deploy:release
         skip_cleanup: true
         on:
           branch: master
