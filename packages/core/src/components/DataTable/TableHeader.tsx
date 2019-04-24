@@ -121,11 +121,11 @@ export default withStyles((theme: WithStylesProps['theme']) => ({
     alignItems: 'center',
     height: '100%',
     justifyContent: 'space-between',
-    marginLeft: 2 * theme.unit,
-    marginRight: 2 * theme.unit,
+    marginLeft: 2 * theme!.unit,
+    marginRight: 2 * theme!.unit,
   },
   tableHeader: {
     borderTop: '1px solid',
-    borderColor: theme.color.core.neutral[1],
+    borderColor: theme!.color.core.neutral[1],
   },
 }))(TableHeader);

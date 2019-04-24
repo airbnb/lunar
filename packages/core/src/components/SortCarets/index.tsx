@@ -73,17 +73,17 @@ export class Carets extends React.Component<Props & WithStylesProps> {
 
 export default withStyles((theme: WithStylesProps['theme']) => ({
   caret_container: {
-    marginRight: 0.5 * theme.unit,
+    marginRight: 0.5 * theme!.unit,
   },
   caret: {
     position: 'relative',
-    right: 0.5 * theme.unit,
+    right: 0.5 * theme!.unit,
   },
   caret_inactive: {
-    color: theme.color.core.neutral[1],
+    color: theme!.color.core.neutral[1],
   },
   caret_active: {
-    color: theme.color.core.neutral[4],
+    color: theme!.color.core.neutral[4],
   },
   caret_up: {
     bottom: -11,

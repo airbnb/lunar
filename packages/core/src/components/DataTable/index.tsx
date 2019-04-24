@@ -397,14 +397,14 @@ export default withStyles((theme: WithStylesProps['theme']) => ({
     column_header: {
       borderTop: '1px solid',
       borderBottom: '1px solid',
-      borderColor: theme.color.core.neutral[1],
+      borderColor: theme!.color.core.neutral[1],
     },
     column: {
       height: 'inherit',
     },
     column_divider: {
       borderRight: '1px solid',
-      borderColor: theme.color.core.neutral[1],
+      borderColor: theme!.color.core.neutral[1],
     },
     row: {
       height: '100%',
