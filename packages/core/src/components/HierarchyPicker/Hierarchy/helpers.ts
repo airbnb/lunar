@@ -1,10 +1,10 @@
 import { ItemShape } from '../types';
 
-export function allChildrenReadonly(parent: ItemShape): Boolean {
+export function allChildrenReadonly(parent: ItemShape): boolean {
   const children = parent.items || [];
 
   return children.length > 0
-    ? children.reduce((acc: Boolean, item: ItemShape) => acc && allChildrenReadonly(item), true)
+    ? children.reduce((acc: boolean, item: ItemShape) => acc && allChildrenReadonly(item), true)
     : !!parent.readonly;
 }
 
