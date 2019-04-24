@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.0 - 2019-04-24
+
+#### 🚀 Updates
+
+- **[ButtonOrLink]** Rework rel prop logic (#41) ([aa6b686](https://github.com/airbnb/lunar/commit/aa6b686)), closes [#41](https://github.com/airbnb/lunar/issues/41)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.1.5 - 2019-04-24
 
 #### 🚀 Updates
