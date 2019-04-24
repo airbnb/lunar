@@ -37,8 +37,9 @@ export const withProps = makeDecorator({
       components,
       // If we dont cast to JSON, a ton of data is lost by being set to undefined.
       // I have no idea why this happens, but JSON persists it.
-      propTables: JSON.stringify(global.STORYBOOK_REACT_CLASSES),
+      componentMetadata: JSON.stringify(global.STORYBOOK_REACT_CLASSES),
       section: kebabCase(context.kind.split('/')[0]),
+      storyPath: context.parameters.fileName,
     });
 
     return getStory(context);
