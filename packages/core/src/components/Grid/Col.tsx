@@ -47,7 +47,7 @@ export default withStyles(({ unit }) => {
     };
 
     offsets[`offset${offset}`] = {
-      marginLeft: offset > 0 ? 100 / (12 / offset) : 0,
+      marginLeft: offset > 0 ? `${100 / (12 / offset)}%` : 0,
     };
 
     return span;
