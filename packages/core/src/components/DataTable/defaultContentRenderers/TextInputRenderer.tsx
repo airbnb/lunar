@@ -9,7 +9,7 @@ export default function TextInputRenderer({ row, key, onEdit }: RendererProps) {
     <Input
       label=""
       name=""
-      onClick={e => e.stopPropagation()}
+      onClick={(e: React.SyntheticEvent<EventTarget>) => e.stopPropagation()}
       hideLabel
       value={content}
       onChange={onEdit(row, key)}

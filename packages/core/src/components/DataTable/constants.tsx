@@ -12,7 +12,11 @@ export const STATUS_OPTIONS = {
   WARNING: 'WARNING',
 };
 
-export const HEIGHT_TO_PX = {
+type heightMapType = {
+  [key: string]: number;
+};
+
+export const HEIGHT_TO_PX: heightMapType = {
   micro: 32,
   small: 48,
   regular: 56,

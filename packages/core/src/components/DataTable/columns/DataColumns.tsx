@@ -1,8 +1,9 @@
 import React from 'react';
+import { css, WithStylesProps } from '../../../composers/withStyles';
 import { Column } from 'react-virtualized';
+
 import DefaultContentRenderer from '../defaultContentRenderers';
 import Spacing from '../../Spacing';
-import { css, WithStylesProps } from '../../../composers/withStyles';
 import {
   ColumnMetadata,
   DataTableProps,
@@ -26,7 +27,7 @@ type ArgumentsFromProps = {
   expandable?: boolean;
 };
 
-export default function DataColumns(
+export default function renderDataColumns(
   keys: string[],
   editMode: boolean,
   onEdit: OnEdit,

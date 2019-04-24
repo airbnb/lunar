@@ -115,7 +115,7 @@ export function TableHeader({
   );
 }
 
-export default withStyles(theme => ({
+export default withStyles((theme: WithStylesProps['theme']) => ({
   tableHeader_inner: {
     display: 'flex',
     alignItems: 'center',

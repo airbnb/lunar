@@ -1,15 +1,16 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
-import Spacing from '../../Spacing';
+
 import CheckBox from '../../CheckBox';
+import Spacing from '../../Spacing';
+import { ExpandedRow, SelectedRows, TableRow } from '../types';
 import {
   SELECTION_OPTIONS,
   SELECTABLE_COLUMN_WIDTH,
   SELECTABLE_COLUMN_WIDTH_EXPANDABLE,
 } from '../constants';
-import { ExpandedRow, SelectedRows, TableRow } from '../types';
 
-export default function SelectableColumn(
+export default function renderSelectableColumn(
   selectedRows: SelectedRows,
   handleSelection: (rowData: ExpandedRow) => () => void,
   expandable?: boolean,

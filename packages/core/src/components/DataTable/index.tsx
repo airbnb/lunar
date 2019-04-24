@@ -16,9 +16,9 @@ import {
   IndexedChildRow,
 } from './types';
 import ColumnLabels from './ColumnLabels';
-import DataColumns from './columns/DataColumns';
-import ExpandableColumn from './columns/ExpandableColumn';
-import SelectableColumn from './columns/SelectableColumn';
+import renderDataColumns from './columns/DataColumns';
+import renderExpandableColumn from './columns/ExpandableColumn';
+import renderSelectableColumn from './columns/SelectableColumn';
 import TableHeader from './TableHeader';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 import { getRowColor, getHeight } from './helpers';
@@ -358,10 +358,12 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     return (
       <div>
-        <AutoSizer disableHeight>{({ width }) => this.renderTableHeader(width)}</AutoSizer>
+        <AutoSizer disableHeight>
+          {({ width }: { width: number }) => this.renderTableHeader(width)}
+        </AutoSizer>
         <div {...css(styles.table_container)}>
           <AutoSizer disableHeight>
-            {({ width }) => (
+            {({ width }: { width: number }) => (
               <Table
                 height={this.props.height || 0}
                 width={this.props.width || width}
@@ -376,9 +378,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
                 headerRowRenderer={ColumnLabels(this.props)}
                 onRowClick={this.handleRowClick}
               >
-                {expandable && ExpandableColumn(styles, expandedRows, this.expandRow)}
-                {selectable && SelectableColumn(selectedRows, this.handleSelection, expandable)}
-                {DataColumns(this.keys, editMode, this.onEdit, this.props)}
+                {expandable && renderExpandableColumn(styles, expandedRows, this.expandRow)}
+                {selectable && renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
+                {renderDataColumns(this.keys, editMode, this.onEdit, this.props)}
               </Table>
             )}
           </AutoSizer>
@@ -388,8 +390,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   }
 }
 
-export default withStyles(
-  theme => ({
+export default withStyles((theme: WithStylesProps['theme']) => ({
     table_container: {
       overflowX: 'scroll',
     },
