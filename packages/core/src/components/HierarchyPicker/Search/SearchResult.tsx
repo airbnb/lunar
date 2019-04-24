@@ -26,7 +26,7 @@ class SearchResult extends React.Component<Props & WithStylesProps> {
     const [labelMatch = null] = mbk.label || [];
     const [descMatch = null] = mbk.description || [];
     const [keywMatch = null] = mbk.keywords || [];
-    const [longest] = query!.split(' ').sort((a, b) => b.length - a.length);
+    const [longest] = query!.split(/\s{1,}/).sort((a, b) => b.length - a.length);
 
     return (
       <div {...css(styles.resultItem)}>
