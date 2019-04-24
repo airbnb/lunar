@@ -9,9 +9,8 @@ import HierarchyItem, {
   Props as HierarchyItemProps,
 } from '../../../src/components/HierarchyPicker/Hierarchy/HierarchyItem';
 import ItemDescription from '../../../src/components/HierarchyPicker/Hierarchy/ItemDescription';
-import { TopicOriginKey } from '../../../src/components/HierarchyPicker/types';
+import { ChoiceDetails } from '../../../src/components/HierarchyPicker/types';
 import { SPACE, ENTER, ARROW_LEFT, ARROW_RIGHT } from '../../../src/keys';
-
 import testItems from './mockItems';
 
 const props = {
@@ -32,8 +31,8 @@ describe('<Hierarchy />', () => {
     expect(handlePicked).not.toHaveBeenCalled();
     wrapper.find(HierarchyList).simulate('itemPicked', ['foo']);
     expect(handlePicked).toHaveBeenCalledWith(['foo'], {
-      origin: TopicOriginKey.Hierarchy,
-    });
+      origin: 'Hierarchy',
+    } as ChoiceDetails);
   });
 
   describe('HierarchyList', () => {

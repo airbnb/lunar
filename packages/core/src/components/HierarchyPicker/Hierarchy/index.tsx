@@ -9,11 +9,8 @@ import {
   ItemRenderer,
   ItemShape,
   ItemPickedHandler,
-  TopicOriginKey,
   TreePath,
 } from '../types';
-
-const { Hierarchy: HierarchyKey } = TopicOriginKey;
 
 export type Props = {
   /** An array of names define the path to the currently selected item. */
@@ -86,7 +83,7 @@ export default class Hierarchy extends React.Component<Props, State> {
   };
 
   private handleItemPicked = (chosen: TreePath | null) => {
-    this.props.onItemPicked(chosen, { origin: HierarchyKey });
+    this.props.onItemPicked(chosen, { origin: 'Hierarchy' });
   };
 
   render() {

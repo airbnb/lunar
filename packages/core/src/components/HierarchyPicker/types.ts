@@ -34,10 +34,7 @@ export type SearchItemResult = {
   matches: FuseMatch[];
 };
 
-export enum TopicOriginKey {
-  Hierarchy = 'Hierarchy',
-  Search = 'Search',
-}
+export type TopicOriginKey = 'Hierarchy' | 'Search';
 
 export type ChoiceDetails = { origin: TopicOriginKey; charCount?: number };
 

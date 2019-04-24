@@ -7,8 +7,6 @@ import Picker, {
 } from '../../../src/components/HierarchyPicker/Picker';
 import Search from '../../../src/components/HierarchyPicker/Search';
 import Hierarchy from '../../../src/components/HierarchyPicker/Hierarchy';
-
-import { TopicOriginKey } from '../../../src/components/HierarchyPicker/types';
 import { ARROW_DOWN, ARROW_UP } from '../../../src/keys';
 import testItems from './mockItems';
 
@@ -90,7 +88,7 @@ describe('<Picker />', () => {
 
     describe('handleItemPicked', () => {
       it('calls close if passed something', () => {
-        const details = { origin: TopicOriginKey.Search };
+        const details = { origin: 'Search' };
         wrapper.find(Search).simulate('itemPicked', ['foo'], details);
 
         expect(myProps.onClose).toHaveBeenCalled();

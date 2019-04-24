@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Autocomplete from '../../../src/components/Autocomplete';
 import Search, { Props as SearchProps } from '../../../src/components/HierarchyPicker/Search';
-import { TopicOriginKey, SearchItemResult } from '../../../src/components/HierarchyPicker/types';
+import { SearchItemResult, ChoiceDetails } from '../../../src/components/HierarchyPicker/types';
 import testItems from './mockItems';
 
 const props = {
@@ -45,8 +45,8 @@ describe('<Search />', () => {
     onSelectItem('', { item: { definition: ['foo'] } });
     expect(handlePicked).toHaveBeenCalledWith(['foo'], {
       charCount: query.length,
-      origin: TopicOriginKey.Search,
-    });
+      origin: 'Search',
+    } as ChoiceDetails);
   });
 
   describe('search functionality', () => {

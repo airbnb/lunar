@@ -11,7 +11,6 @@ import {
   SearchItemShape,
   SearchItemResult,
   TreePath,
-  TopicOriginKey,
 } from '../types';
 
 export type Props = {
@@ -122,7 +121,7 @@ export default class Search extends React.Component<Props> {
   private handleItemPicked = (itemValue: string, result: SearchItemResult | null) => {
     const { query, onItemPicked } = this.props;
     onItemPicked((result && result.item.definition) || null, {
-      origin: TopicOriginKey.Search,
+      origin: 'Search',
       charCount: query!.length,
     });
   };
