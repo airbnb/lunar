@@ -114,7 +114,9 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
 
         <span {...css(styles.label)}>{renderItem!(item, selected, focused)}</span>
 
-        {item.items && <IconChevronRight size="1.4em" decorative inline />}
+        {item.items && (
+          <IconChevronRight size="1.4em" color={theme!.color.core.primary[3]} decorative inline />
+        )}
       </div>
     );
   }
