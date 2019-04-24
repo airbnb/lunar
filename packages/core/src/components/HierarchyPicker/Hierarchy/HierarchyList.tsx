@@ -98,14 +98,12 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
       return null;
     }
 
-    const isNested = parents.length > 0;
-
     return (
       <aside
         {...css(
           styles.pane,
-          isNested && styles.pane_nested,
-          isNested && !verticallyAlign && styles.pane_verticallyOffset,
+          styles.pane_nested, // descriptions are always nested
+          !verticallyAlign && styles.pane_verticallyOffset,
           styles.aside,
           { width },
         )}

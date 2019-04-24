@@ -17,28 +17,28 @@ const demoItems = [
           },
           {
             name: 'Item 1a ii',
-            label: 'Item 1a ii (has description)',
+            label: 'Item 1a ii (description)',
             description:
               'testingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflow',
           },
           {
-            name: 'Item 1a iii (has description)',
+            name: 'Item 1a iii (description)',
             description: 'A little bit of info.',
           },
         ],
       },
       {
-        name: 'Airlock',
+        name: 'Item 1b',
         readonly: true,
         items: [
           {
-            name: 'General',
+            name: 'Item 1b i',
           },
         ],
       },
       {
-        name: 'Other',
-        label: 'Autre Chose',
+        name: 'Item 1c',
+        label: 'Item 1c (description)',
         description:
           'Something that does not fit in the other categories in this taxonomy, like an apple, a pear, a plum, or maybe the distant call of a long lost friend.',
         keywords: 'bonjour Bonsoir',
@@ -67,7 +67,7 @@ const demoItems = [
         name: 'Item 2d (clickable)',
         items: [
           {
-            name: 'Item 2d i (has description)',
+            name: 'Item 2d i (description)',
             description: 'Description of the item',
           },
         ],
@@ -77,14 +77,14 @@ const demoItems = [
         readonly: true,
         items: [
           {
-            name: 'Item 2e i (has description)',
+            name: 'Item 2e i (description)',
             description: 'Description of the item',
           },
         ],
       },
     ],
   },
-  { name: 'Item 3' },
+  { name: 'Item 3 (description)', description: 'Description of the item' },
   {
     name: 'Item 4 (should not show)',
     readonly: true,
@@ -217,6 +217,9 @@ const demoItems2 = [
     name: 'Team no-sub-teams',
   },
   {
+    name: 'Team (description)',
+  },
+  {
     name: 'Overflown sub-teams',
     readonly: true,
     items: [
@@ -267,6 +270,7 @@ class PickerDemo extends React.Component<Partial<Props>, { chosen: Props['chosen
       <HierarchyPicker
         items={items}
         chosen={chosen}
+        searchWidth={400}
         onItemPicked={nextChosen => {
           console.log(nextChosen);
           this.setState({ chosen: nextChosen || undefined });

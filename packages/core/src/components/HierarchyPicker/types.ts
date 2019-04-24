@@ -1,3 +1,5 @@
+import { Item } from '../Autocomplete';
+
 export interface ItemShape {
   /** Identifier used in chosen definition. */
   name: string;
@@ -29,10 +31,10 @@ export interface SearchItemShape extends ItemShape {
   formattedParents: string;
 }
 
-export type SearchItemResult = {
+export interface SearchItemResult extends Item {
   item: SearchItemShape;
   matches: FuseMatch[];
-};
+}
 
 export type TopicOriginKey = 'Hierarchy' | 'Search';
 
