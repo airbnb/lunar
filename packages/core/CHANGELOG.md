@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.5 - 2019-04-24
+
+#### 🚀 Updates
+
+- **[BorderedList]** Add BorderedList component. (#38) ([3cfc4ea](https://github.com/airbnb/lunar/commit/3cfc4ea)), closes [#38](https://github.com/airbnb/lunar/issues/38)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 1.1.4 - 2019-04-24
 
 #### 🐞 Fixes
