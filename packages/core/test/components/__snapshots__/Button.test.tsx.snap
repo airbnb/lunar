@@ -3,7 +3,7 @@
 exports[`<Button /> renders block 1`] = `
 <ButtonOrLink
   aria-busy={false}
-  className="button_1lp5a5w-o_O-button_regular_twgt7x-o_O-button_block_2ow2so"
+  className="button_1lp5a5w-o_O-button_regular_jprlrd-o_O-button_block_2ow2so"
 >
   Button
 </ButtonOrLink>
@@ -12,7 +12,7 @@ exports[`<Button /> renders block 1`] = `
 exports[`<Button /> renders borderless 1`] = `
 <ButtonOrLink
   aria-busy={false}
-  className="button_1lp5a5w-o_O-button_regular_twgt7x-o_O-button_inverted_1fj8x3s-o_O-button_borderless_1j06z2k"
+  className="button_1lp5a5w-o_O-button_regular_jprlrd-o_O-button_inverted_1fj8x3s-o_O-button_borderless_1j06z2k"
 >
   Button
 </ButtonOrLink>
@@ -21,7 +21,7 @@ exports[`<Button /> renders borderless 1`] = `
 exports[`<Button /> renders disabled 1`] = `
 <ButtonOrLink
   aria-busy={false}
-  className="button_1lp5a5w-o_O-button_regular_twgt7x-o_O-button_disabled_5k6q5e"
+  className="button_1lp5a5w-o_O-button_regular_jprlrd-o_O-button_disabled_5k6q5e"
   disabled={true}
 >
   Button
@@ -31,7 +31,7 @@ exports[`<Button /> renders disabled 1`] = `
 exports[`<Button /> renders inverted 1`] = `
 <ButtonOrLink
   aria-busy={false}
-  className="button_1lp5a5w-o_O-button_regular_twgt7x-o_O-button_inverted_1fj8x3s"
+  className="button_1lp5a5w-o_O-button_regular_jprlrd-o_O-button_inverted_1fj8x3s"
 >
   Button
 </ButtonOrLink>
@@ -49,7 +49,7 @@ exports[`<Button /> renders large 1`] = `
 exports[`<Button /> renders loading 1`] = `
 <ButtonOrLink
   aria-busy={true}
-  className="button_1lp5a5w-o_O-button_regular_twgt7x-o_O-button_disabled_5k6q5e-o_O-button_loading_1ety1lk"
+  className="button_1lp5a5w-o_O-button_regular_jprlrd-o_O-button_disabled_5k6q5e-o_O-button_loading_1ety1lk"
   loading={true}
 >
   <Loader
@@ -62,7 +62,7 @@ exports[`<Button /> renders loading 1`] = `
 exports[`<Button /> renders small 1`] = `
 <ButtonOrLink
   aria-busy={false}
-  className="button_1lp5a5w-o_O-button_small_1ghjfam"
+  className="button_1lp5a5w-o_O-button_small_1uh2yjw"
 >
   Button
 </ButtonOrLink>

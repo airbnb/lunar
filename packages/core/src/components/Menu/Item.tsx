@@ -130,7 +130,7 @@ export default withStyles(({ color, font, pattern, unit, transition }) => ({
     ...transition.box,
     ...font.textRegular,
     width: '100%',
-    padding: unit,
+    padding: `${unit}px ${1.5 * unit}px`,
     border: 0,
     textAlign: 'left',
     backgroundColor: 'transparent',
