@@ -71,7 +71,7 @@ export class Carets extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(theme => ({
+export default withStyles((theme: WithStylesProps['theme']) => ({
   caret_container: {
     marginRight: 0.5 * theme.unit,
   },
