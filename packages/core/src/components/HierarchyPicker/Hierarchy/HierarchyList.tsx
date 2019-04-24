@@ -188,7 +188,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
                       focused={isFocused}
                     />
 
-                    {!verticallyAlign && isFocused && item.items ? (
+                    {!verticallyAlign && isFocused && item.items && item.items.length > 0 ? (
                       <HierarchyList
                         {...passThruProps}
                         styles={styles}
@@ -207,7 +207,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
           </ul>
         </div>
 
-        {verticallyAlign && focusedItem && focusedItem!.items ? (
+        {verticallyAlign && focusedItem && focusedItem!.items && focusedItem.items.length > 0 ? (
           <HierarchyList
             key="sub-list"
             {...passThruProps}
