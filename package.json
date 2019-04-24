@@ -23,7 +23,7 @@
     "prettier": "prettier --write ./*.{md,json} ./packages/*/{src,test}/**/*.{ts,tsx,js,jsx,gql,graphql,yml,yaml,md}",
     "release": "npm run build && lerna publish",
     "release:publish": "lerna publish from-git --yes",
-    "release:version": "lerna version --yes --conventional-commits --changelog-preset conventional-changelog-beemo --github-release --push",
+    "release:version": "lerna version --yes --conventional-commits --changelog-preset conventional-changelog-beemo --push",
     "sg": "NODE_ENV=development npm run storybook",
     "test": "npm run jest:coverage",
     "type": "tsc --build",
