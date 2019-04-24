@@ -4,26 +4,26 @@ import HierarchyPicker, { Props } from './HierarchyPicker';
 
 const demoItems = [
   {
-    name: 'Account',
-    label: 'Compte',
+    name: 'Item 1',
+    label: 'Item 1 (label)',
     readonly: true,
     items: [
       {
-        name: 'Access',
+        name: 'Item 1a',
         readonly: true,
         items: [
           {
-            name: 'General',
+            name: 'Item 1a i',
           },
           {
-            name: 'Suspension',
-            label: 'Why was I suspended? Whats going on???',
+            name: 'Item 1a ii',
+            label: 'Item 1a ii (has description)',
             description:
               'testingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflow',
           },
           {
-            name: 'Cancelation',
-            description: 'Annuled reservation',
+            name: 'Item 1a iii (has description)',
+            description: 'A little bit of info.',
           },
         ],
       },
@@ -52,41 +52,41 @@ const demoItems = [
     ],
   },
   {
-    name: 'Admin',
+    name: 'Item 2',
     items: [
       {
-        name: "Couldn't authenticate",
+        name: 'Item 2a',
       },
       {
-        name: 'Feature request',
+        name: 'Item 2b',
       },
       {
-        name: 'Other',
+        name: 'Item 2c',
       },
       {
-        name: 'Clickable submenu',
+        name: 'Item 2d (clickable)',
         items: [
           {
-            name: 'Submenu of overflow',
+            name: 'Item 2d i (has description)',
             description: 'Description of the item',
           },
         ],
       },
       {
-        name: 'Unclickable submenu',
+        name: 'Item 2e (not clickable)',
         readonly: true,
         items: [
           {
-            name: 'Submenu of overflow',
+            name: 'Item 2e i (has description)',
             description: 'Description of the item',
           },
         ],
       },
     ],
   },
-  { name: 'No sub-items' },
+  { name: 'Item 3' },
   {
-    name: 'Should not show',
+    name: 'Item 4 (should not show)',
     readonly: true,
     items: [
       {
