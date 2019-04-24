@@ -1,6 +1,5 @@
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
-
+import Enzyme, { shallow } from 'enzyme';
 import Hierarchy from '../../../src/components/HierarchyPicker/Hierarchy';
 import HierarchyList, {
   HierarchyList as BaseHierarchyList,

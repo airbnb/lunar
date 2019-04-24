@@ -5,7 +5,6 @@ import HierarchyPicker, {
   Props as HierarchyPickerProps,
   State as HierarchyPickerState,
 } from '../../../src/components/HierarchyPicker';
-
 import { SPACE, ENTER } from '../../../src/keys';
 import Overlay from '../../../src/components/Overlay';
 import testItems from './mockItems';

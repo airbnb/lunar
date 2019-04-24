@@ -1,6 +1,5 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-
 import Autocomplete from '../../../src/components/Autocomplete';
 import Search, { Props as SearchProps } from '../../../src/components/HierarchyPicker/Search';
 import { TopicOriginKey, SearchItemResult } from '../../../src/components/HierarchyPicker/types';

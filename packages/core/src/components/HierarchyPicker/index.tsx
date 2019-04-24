@@ -1,7 +1,6 @@
 import React from 'react';
 import { FuseOptions } from 'fuse.js';
 import IconCaretDown from '@airbnb/lunar-icons/lib/interface/IconCaretDown';
-
 import Overlay from '../Overlay';
 import { SPACE, ENTER } from '../../keys';
 import T from '../Translate';

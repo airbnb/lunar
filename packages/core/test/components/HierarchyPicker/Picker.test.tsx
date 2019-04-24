@@ -1,6 +1,5 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
-
 import Picker, {
   Picker as BasePicker,
   Props as PickerProps,

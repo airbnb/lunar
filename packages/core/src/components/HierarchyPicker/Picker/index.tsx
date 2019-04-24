@@ -1,9 +1,7 @@
 import React from 'react';
-
 import Hierarchy from '../Hierarchy';
 import Search from '../Search';
 import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
-
 import { ARROW_UP, ARROW_DOWN } from '../../../keys';
 import {
   ChoiceDetails,
