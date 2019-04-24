@@ -218,7 +218,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
             verticallyAlign
           />
         ) : (
-          focusedItem && this.renderAside(focusedItem)
+          verticallyAlign && focusedItem && this.renderAside(focusedItem)
         )}
       </>
     );

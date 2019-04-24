@@ -2,6 +2,7 @@ import React from 'react';
 import Fuse from 'fuse.js';
 import Autocomplete from '../../Autocomplete';
 import SearchResult from './SearchResult';
+import T from '../../Translate';
 import fuseLoader from './fuseLoader';
 import {
   Formatter,
@@ -19,6 +20,7 @@ export type Props = {
   formatter: Formatter;
   query?: string;
   noResultsLabel: NonNullable<React.ReactNode>;
+  onSearch: (searchQuery: string) => void;
   placeholder?: string;
   indexParentPath?: boolean;
   fuseOptions?: Fuse.FuseOptions<any>;
@@ -53,7 +55,7 @@ const defaultFuseKeys = [
   },
 ];
 
-export default class Search extends React.Component<Props & WithStylesProps> {
+export default class Search extends React.Component<Props> {
   static defaultProps = {
     fuseOptions: {},
     items: [],
@@ -153,17 +155,23 @@ export default class Search extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { query, noResultsLabel, placeholder, width, onChange, maxHeight } = this.props;
+    const { query, noResultsLabel, placeholder, width, onSearch, maxHeight } = this.props;
 
     return (
       <div style={{ width: query ? width : undefined }}>
         <Autocomplete<SearchItemResult>
+          accessibilityLabel={T.phrase(
+            'Hierarchy item search',
+            {},
+            'Search functionality to find items within the hierarchy menu.',
+          )}
           hideLabel
+          label=""
           getItemValue={this.getItemValue}
           maxHeight={maxHeight}
           name="autocomplete-search"
           noResultsText={noResultsLabel}
-          onChange={onChange}
+          onChange={onSearch}
           onLoadOptions={this.handleSearch}
           onSelectItem={this.handleItemPicked}
           optional

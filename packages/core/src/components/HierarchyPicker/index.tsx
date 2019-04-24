@@ -17,6 +17,7 @@ import {
   ItemRenderer,
   ToggleHandler,
 } from './types';
+
 import defaultFormatter from './defaultFormatter';
 
 export type Props = {

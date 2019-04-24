@@ -36,6 +36,10 @@ export type State = {
 };
 
 export class Picker extends React.Component<Props & WithStylesProps, State> {
+  static defaultProps = {
+    searchWidth: 300,
+  };
+
   state = {
     searchQuery: '',
   };
@@ -112,10 +116,10 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
       items,
       formatter,
       noResultsLabel,
+      renderItem,
       searchMaxHeight,
       searchPlaceholder,
       searchWidth,
-      renderItem,
       styles,
       verticallyAlign,
     } = this.props;
@@ -131,7 +135,7 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
           items={items}
           maxHeight={searchMaxHeight}
           noResultsLabel={noResultsLabel}
-          onChange={this.handleSearch}
+          onSearch={this.handleSearch}
           onItemPicked={this.handleItemPicked}
           placeholder={searchPlaceholder}
           query={searchQuery}
