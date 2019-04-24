@@ -14,7 +14,15 @@ describe('<Grid />', () => {
     expect(wrapper.find(Col)).toHaveLength(2);
   });
 
-  ['topAlign', 'middleAlign', 'bottomAlign', 'reversed'].forEach(type => {
+  [
+    'bottomAlign',
+    'centerAlign',
+    'endAlign',
+    'middleAlign',
+    'reversed',
+    'startAlign',
+    'topAlign',
+  ].forEach(type => {
     it(`renders ${type}`, () => {
       const wrapper = shallow(
         <Grid {...{ [type]: true }}>
