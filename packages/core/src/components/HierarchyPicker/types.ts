@@ -34,8 +34,12 @@ export type SearchItemResult = {
   matches: FuseMatch[];
 };
 
-// @TODO possibly remove
-export type ChoiceDetails = { charCount?: number };
+export enum TopicOriginKey {
+  Hierarchy = 'Hierarchy',
+  Search = 'Search',
+}
+
+export type ChoiceDetails = { origin: TopicOriginKey; charCount?: number };
 
 export type Labeler = (chosen: TreePath) => string;
 
@@ -47,7 +51,7 @@ export type ItemRenderer = (
   focused: boolean,
 ) => NonNullable<React.ReactNode>;
 
-export type ItemPickedHandler = (chosen: TreePath | null) => void;
+export type ItemPickedHandler = (chosen: TreePath | null, details?: ChoiceDetails) => void;
 
 export type DeepFocusHandler = () => void;
 

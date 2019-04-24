@@ -3,16 +3,17 @@ import debounce from 'lodash/debounce';
 import HierarchyList from './HierarchyList';
 import { readonlyReducer } from './helpers';
 import {
+  ChoiceDetails,
+  DeepFocusHandler,
+  Formatter,
   ItemRenderer,
   ItemShape,
   ItemPickedHandler,
+  TopicOriginKey,
   TreePath,
-  DeepFocusHandler,
-  Formatter,
-  ChoiceDetails,
 } from '../types';
 
-// const { Hierarchy: HierarchyKey } = TopicOriginKey;
+const { Hierarchy: HierarchyKey } = TopicOriginKey;
 
 export type Props = {
   /** An array of names define the path to the currently selected item. */
@@ -84,8 +85,8 @@ export default class Hierarchy extends React.Component<Props, State> {
     }
   };
 
-  private handleItemPicked = (chosen: TreePath | null, details?: ChoiceDetails) => {
-    this.props.onItemPicked(chosen, details);
+  private handleItemPicked = (chosen: TreePath | null) => {
+    this.props.onItemPicked(chosen, { origin: HierarchyKey });
   };
 
   render() {

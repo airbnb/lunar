@@ -4,12 +4,13 @@ import Autocomplete from '../../Autocomplete';
 import SearchResult from './SearchResult';
 import fuseLoader from './fuseLoader';
 import {
-  ItemPickedHandler,
   Formatter,
-  TreePath,
+  ItemPickedHandler,
   ItemShape,
   SearchItemShape,
   SearchItemResult,
+  TreePath,
+  TopicOriginKey,
 } from '../types';
 
 export type Props = {
@@ -118,7 +119,10 @@ export default class Search extends React.Component<Props & WithStylesProps> {
 
   private handleItemPicked = (itemValue: string, result: SearchItemResult | null) => {
     const { query, onItemPicked } = this.props;
-    onItemPicked(result && result.item.definition, { charCount: query!.length });
+    onItemPicked((result && result.item.definition) || null, {
+      origin: TopicOriginKey.Search,
+      charCount: query!.length,
+    });
   };
 
   private handleSearch = (query: string) => {
