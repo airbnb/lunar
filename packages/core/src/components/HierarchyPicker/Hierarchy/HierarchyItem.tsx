@@ -117,9 +117,7 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
         tabIndex={focused ? 1 : 0} // this is needed to find a focused parent item in a vertically aligned list
       >
         {this.renderItem()}
-        {item.items && (
-          <IconChevronRight size="1.4em" color={theme!.color.core.primary[3]} decorative inline />
-        )}
+        {item.items && <IconChevronRight size="1.4em" decorative inline />}
       </div>
     );
   }
