@@ -21,6 +21,8 @@ export type Props = {
   dropdownProps?: Partial<DropdownProps>;
   /** If true, will not close the menu when an outside element is clicked. */
   ignoreClickOutside?: boolean;
+  /** If true, will not close the menu when the menu is reset and cleared. */
+  keepOpenOnClear?: boolean;
   /** Increase font size to large. */
   large?: boolean;
   /** Props to pass to the `Menu` component. */
@@ -98,7 +100,9 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
 
   private handleClear = () => {
     this.props.onClear!();
-    this.handleHideFilters();
+    if (!this.props.keepOpenOnClear) {
+      this.handleHideFilters();
+    }
   };
 
   private handleClickOutside = (event: MouseEvent) => {
