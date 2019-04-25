@@ -22,7 +22,7 @@ const props = {
   onClose: jest.fn(),
   onSubtree: jest.fn(),
   onItemPicked: jest.fn(),
-  renderItem: null,
+  renderItem: undefined,
   searchMaxHeight: 101,
   searchPlaceholder: 'search',
   searchWidth: 27,

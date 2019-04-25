@@ -37,11 +37,11 @@ describe('<Hierarchy />', () => {
 
   describe('HierarchyList', () => {
     let wrapper: Enzyme.ShallowWrapper<HierarchyListProps>;
-    let instance: BaseHierarchyPicker;
+    let instance: BaseHierarchyList;
 
     beforeEach(() => {
       wrapper = shallow(<HierarchyList {...props} focus={['foo']} />).dive();
-      instance = wrapper.instance() as BaseHierarchyList;
+      instance = wrapper.instance();
     });
 
     describe('instance', () => {
