@@ -92,7 +92,7 @@ export default class Hierarchy extends React.Component<Props, State> {
     return (
       <HierarchyList
         chosen={chosen}
-        focus={focusDef || []}
+        focus={focusDef}
         items={filteredItems}
         maxHeight={hierarchyMaxHeight}
         onItemPicked={this.handleItemPicked}

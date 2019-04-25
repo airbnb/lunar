@@ -68,9 +68,8 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
   };
 
   private handleDomFocusShallower = () => {
-    const { verticallyAlign, parents } = this.props;
+    const { verticallyAlign } = this.props;
     const li = this.closestRowToActiveElement();
-    if (parents!.length === 0 || !li) return;
 
     let shallower;
     if (verticallyAlign) {

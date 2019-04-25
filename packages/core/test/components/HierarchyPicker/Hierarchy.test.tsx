@@ -1,6 +1,5 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import { Text } from '../../../src/components/Text';
 import Hierarchy from '../../../src/components/HierarchyPicker/Hierarchy';
 import HierarchyList, {
   HierarchyList as BaseHierarchyList,
@@ -26,14 +25,43 @@ const props = {
 };
 
 describe('<Hierarchy />', () => {
-  it('decorates onItemPicked with correct origin', () => {
-    const handlePicked = jest.fn();
-    const wrapper = shallow(<Hierarchy {...props} onItemPicked={handlePicked} />);
-    expect(handlePicked).not.toHaveBeenCalled();
-    wrapper.find(HierarchyList).simulate('itemPicked', ['foo']);
-    expect(handlePicked).toHaveBeenCalledWith(['foo'], {
-      origin: 'Hierarchy',
-    } as ChoiceDetails);
+  describe('Hierarchy', () => {
+    it('filters readonly items and updates on prop change', () => {
+      const readOnlyItems = [
+        { name: 'test', readonly: true, items: [{ name: 'test 2', readonly: true }] },
+      ];
+      const wrapper = shallow(<Hierarchy {...props} />);
+      expect(wrapper.state('filteredItems')).toHaveLength(props.items.length);
+
+      wrapper.setProps({ items: readOnlyItems });
+      expect(wrapper.state('filteredItems')).toHaveLength(0);
+
+      wrapper.setProps({ items: undefined });
+      expect(wrapper.state('filteredItems')).toHaveLength(0);
+    });
+
+    it('decorates onItemPicked with correct origin', () => {
+      const handlePicked = jest.fn();
+      const wrapper = shallow(<Hierarchy {...props} onItemPicked={handlePicked} />);
+      expect(handlePicked).not.toHaveBeenCalled();
+      wrapper.find(HierarchyList).simulate('itemPicked', ['foo']);
+      expect(handlePicked).toHaveBeenCalledWith(['foo'], {
+        origin: 'Hierarchy',
+      } as ChoiceDetails);
+    });
+
+    it('handles focus definition updates', () => {
+      const wrapper = shallow(<Hierarchy {...props} />);
+      expect(wrapper.state('focusDef')).toEqual([]);
+
+      const list = wrapper.find(HierarchyList);
+
+      list.prop('onSubtree')(['foo']); // debounced = no affect
+      expect(wrapper.state('focusDef')).toEqual([]);
+
+      list.prop('onSubtree')(['foo', 'bar'], undefined, /** immediate= */ true);
+      expect(wrapper.state('focusDef')).toEqual(['foo', 'bar']);
+    });
   });
 
   describe('HierarchyList', () => {
@@ -54,6 +82,14 @@ describe('<Hierarchy />', () => {
       });
 
       it('has domFocus functions that do not throw', () => {
+        // @ts-ignore Allow private access
+        expect(instance.handleDomFocusDeeper).not.toThrow();
+        // @ts-ignore Allow private access
+        expect(instance.handleDomFocusShallower).not.toThrow();
+
+        wrapper.setProps({ verticallyAlign: true });
+        instance = wrapper.instance() as BaseHierarchyList;
+
         // @ts-ignore Allow private access
         expect(instance.handleDomFocusDeeper).not.toThrow();
         // @ts-ignore Allow private access
@@ -81,15 +117,34 @@ describe('<Hierarchy />', () => {
     describe('ItemDescription', () => {
       it('renders an ItemDescription if a description is focused', () => {
         wrapper.setProps({ focus: ['foo', 'coverage is hard'] });
-        const nestedList = wrapper.find(BaseHierarchyList).dive();
+        let nestedList = wrapper.find(BaseHierarchyList).dive();
+        expect(nestedList.find(ItemDescription)).toHaveLength(1);
+
+        wrapper.setProps({ verticallyAlign: true });
+        nestedList = wrapper.find(BaseHierarchyList).dive();
         expect(nestedList.find(ItemDescription)).toHaveLength(1);
       });
 
-      it('ItemDescription renders description text', () => {
+      it('renders null if a description is focused', () => {
+        wrapper.setProps({ focus: ['foo', 'hello'] });
+        const nestedList = wrapper.find(BaseHierarchyList).dive();
+        expect(nestedList.find(ItemDescription)).toHaveLength(0);
+      });
+
+      it('renders description text', () => {
         wrapper.setProps({ focus: ['foo', 'coverage is hard'] });
         const nestedList = wrapper.find(BaseHierarchyList).dive();
         const description = nestedList.find(ItemDescription);
         expect(description.html()).toMatch('very hard');
+      });
+
+      it('Clicking description invokes onItemPicked', () => {
+        wrapper.setProps({ focus: ['foo', 'coverage is hard'] });
+        const nestedList = wrapper.find(BaseHierarchyList).dive();
+        const button = nestedList.find('aside button');
+        button.simulate('click');
+
+        expect(props.onItemPicked).toHaveBeenCalled();
       });
     });
   });

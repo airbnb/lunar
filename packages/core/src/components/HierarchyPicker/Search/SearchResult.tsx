@@ -19,9 +19,8 @@ export class SearchResult extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    console.log('search result');
     const { styles, item, formattedParents, matches, query } = this.props;
-    const { description, label } = item;
+    const { description, label, name } = item;
     const mbk = groupBy(matches, 'key');
     const [labelMatch = null] = mbk.label || [];
     const [descMatch = null] = mbk.description || [];
@@ -32,7 +31,7 @@ export class SearchResult extends React.Component<Props & WithStylesProps> {
       <div {...css(styles.resultItem)}>
         <Text bold>
           {formattedParents}
-          <Highlight word={longest} match={labelMatch} fallback={label} />
+          <Highlight word={longest} match={labelMatch} fallback={label || name} />
         </Text>
 
         {description && (

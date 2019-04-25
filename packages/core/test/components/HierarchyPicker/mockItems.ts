@@ -19,6 +19,7 @@ export default [
         name: 'coverage is hard',
         description: 'very hard',
         keywords: 'bonjour bonsoir',
+        section: 'test them',
       },
     ],
   },
