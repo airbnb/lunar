@@ -1,4 +1,4 @@
-import { Item } from '../Autocomplete';
+import { Item as AutocompleteItem } from '../Autocomplete';
 
 export interface ItemShape {
   /** Identifier used in chosen definition. */
@@ -31,7 +31,7 @@ export interface SearchItemShape extends ItemShape {
   formattedParents: string;
 }
 
-export interface SearchItemResult extends Item {
+export interface SearchItemResult extends AutocompleteItem {
   item: SearchItemShape;
   matches: FuseMatch[];
 }

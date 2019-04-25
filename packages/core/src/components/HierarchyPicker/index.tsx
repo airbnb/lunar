@@ -7,6 +7,7 @@ import T from '../Translate';
 import Text from '../Text';
 import Picker from './Picker';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import buildInputStyles from '../../themes/buildInputStyles';
 
 import {
   ItemShape,
@@ -172,8 +173,11 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
         <div
           {...css(
             styles.selectlike,
-            disabled ? styles.selectlike_disabled : styles.selectlike_enabled,
-            invalid && styles.selectlike_invalid,
+            !disabled && styles.selectlike_enabled,
+            styles.input,
+            styles.select,
+            invalid && styles.input_invalid,
+            disabled && styles.input_disabled,
           )}
           tabIndex={disabled ? -1 : 0}
           role="button"
@@ -212,39 +216,15 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
   }
 }
 
-export default withStyles(({ color, unit, ui, pattern }) => ({
+export default withStyles(theme => ({
+  ...buildInputStyles(theme),
+
   selectlike: {
-    background: color.accent.bg,
-    border: ui.borderThick,
-    borderRadius: ui.borderRadius,
-    padding: unit * 1.5,
-    paddingRight: unit * 4,
     position: 'relative',
-    width: '100%',
-    userSelect: 'none',
   },
 
   selectlike_enabled: {
     cursor: 'pointer',
-
-    '@selectors': {
-      ':focus': {
-        ...pattern.focused,
-      },
-
-      ':hover': {
-        borderColor: color.accent.borderHover,
-      },
-    },
-  },
-
-  selectlike_disabled: {
-    outline: 'none',
-    ...pattern.disabled,
-  },
-
-  selectlike_invalid: {
-    ...pattern.invalid,
   },
 
   arrow: {
@@ -253,7 +233,7 @@ export default withStyles(({ color, unit, ui, pattern }) => ({
     top: 0,
     bottom: 0,
     overflow: 'hidden',
-    width: unit * 5,
+    width: theme.unit * 5,
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
