@@ -1,5 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
+import { Text } from '../../../src/components/Text';
 import Hierarchy from '../../../src/components/HierarchyPicker/Hierarchy';
 import HierarchyList, {
   HierarchyList as BaseHierarchyList,
@@ -77,9 +78,19 @@ describe('<Hierarchy />', () => {
       });
     });
 
-    it('renders an ItemDescription', () => {
-      wrapper.setProps({ focus: ['foo', 'coverage is hard'] });
-      expect(wrapper.find(ItemDescription)).toHaveLength(0);
+    describe('ItemDescription', () => {
+      it('renders an ItemDescription if a description is focused', () => {
+        wrapper.setProps({ focus: ['foo', 'coverage is hard'] });
+        const nestedList = wrapper.find(BaseHierarchyList).dive();
+        expect(nestedList.find(ItemDescription)).toHaveLength(1);
+      });
+
+      it('ItemDescription renders description text', () => {
+        wrapper.setProps({ focus: ['foo', 'coverage is hard'] });
+        const nestedList = wrapper.find(BaseHierarchyList).dive();
+        const description = nestedList.find(ItemDescription);
+        expect(description.html()).toMatch('very hard');
+      });
     });
   });
 

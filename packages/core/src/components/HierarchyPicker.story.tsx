@@ -292,7 +292,9 @@ storiesOf('Core/HierarchyPicker', module)
   .add('With sub-sections and max height', () => (
     <PickerDemo items={demoItems2} verticallyAlign hierarchyMaxHeight={234} />
   ))
-  .add('With chosen value', () => <PickerDemo items={demoItems} chosen={['Item 1', 'Funtastic Testing']} />)
+  .add('With chosen value', () => (
+    <PickerDemo items={demoItems} chosen={['Item 1', 'Funtastic Testing']} />
+  ))
   .add('Custom hierarchy width', () => (
     <PickerDemo hierarchyWidth={150} items={demoItems2} chosen={['Team 3', 'Team 3b']} />
   ))

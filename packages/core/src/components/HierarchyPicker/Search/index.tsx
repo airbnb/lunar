@@ -139,7 +139,7 @@ export default class Search extends React.Component<Props> {
 
   handleAsyncSearch = (query: string) => Promise.resolve(this.handleSearch(query));
 
-  renderItem = ({ matches, item: { definition, formattedParents, ...item } }: SearchItemResult) => {
+  renderItem = ({ matches, item: { formattedParents, ...item } }: SearchItemResult) => {
     const { query } = this.props;
 
     return (
@@ -148,7 +148,6 @@ export default class Search extends React.Component<Props> {
         item={item}
         formattedParents={formattedParents}
         matches={matches}
-        definition={definition}
       />
     );
   };

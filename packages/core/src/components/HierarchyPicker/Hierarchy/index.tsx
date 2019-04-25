@@ -3,7 +3,6 @@ import debounce from 'lodash/debounce';
 import HierarchyList from './HierarchyList';
 import { readonlyReducer } from './helpers';
 import {
-  ChoiceDetails,
   DeepFocusHandler,
   Formatter,
   ItemRenderer,

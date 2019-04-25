@@ -37,6 +37,8 @@ describe('<Picker />', () => {
 
   describe('handles scroll and focus', () => {
     const oldScrollTo = window.scrollTo;
+    const oldFocus = HTMLDivElement.prototype.focus;
+    const oldGetFocusables = BasePicker.prototype.getFocusables;
 
     beforeEach(() => {
       window.scrollTo = jest.fn();
@@ -44,6 +46,8 @@ describe('<Picker />', () => {
 
     afterEach(() => {
       window.scrollTo = oldScrollTo;
+      HTMLDivElement.prototype.focus = oldFocus;
+      BasePicker.prototype.getFocusables = oldGetFocusables;
     });
 
     it('calls scrollTo on mount', () => {
@@ -51,11 +55,36 @@ describe('<Picker />', () => {
       expect(window.scrollTo).toHaveBeenCalled();
     });
 
-    it('has getFocusables fn', () => {
-      const instance = shallow(<Picker {...props} />)
-        .dive()
-        .instance();
-      expect(() => (instance as BasePicker).getFocusables()).not.toThrow();
+    describe('focusables', () => {
+      it('has getFocusables() fn', () => {
+        const instance = shallow(<Picker {...props} />)
+          .dive()
+          .instance();
+        expect(() => (instance as BasePicker).getFocusables()).not.toThrow();
+      });
+
+      it('focusNext() invokes .focus() on focusables', () => {
+        HTMLDivElement.prototype.focus = jest.fn();
+        const mockElement = document.createElement('div');
+        const mockFocusables = [mockElement];
+
+        mockFocusables.findIndex = () => 0;
+        const mockGetFocusables = jest.fn(() => mockFocusables);
+        BasePicker.prototype.getFocusables = mockGetFocusables;
+
+        const instance = shallow(<Picker {...props} />)
+          .dive()
+          .instance();
+
+        // @ts-ignore private invocation
+        instance.focusNext();
+        // @ts-ignore private invocation
+        instance.focusNext(true);
+
+        // these are also called at mount
+        expect(mockGetFocusables).toHaveBeenCalledTimes(3);
+        expect(HTMLDivElement.prototype.focus).toHaveBeenCalledTimes(3);
+      });
     });
   });
 

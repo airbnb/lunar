@@ -3,23 +3,23 @@ import groupBy from 'lodash/groupBy';
 import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
 import Text from '../../Text';
 import Highlight from './Highlight';
-import { TreePath, ItemShape, FuseMatch } from '../types';
+import { ItemShape, FuseMatch } from '../types';
 
 export type Props = {
   item: ItemShape;
-  definition: TreePath;
   formattedParents: string;
   matches?: FuseMatch[];
   query?: string;
 };
 
-class SearchResult extends React.Component<Props & WithStylesProps> {
+export class SearchResult extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
     matches: [],
     query: '',
   };
 
   render() {
+    console.log('search result');
     const { styles, item, formattedParents, matches, query } = this.props;
     const { description, label } = item;
     const mbk = groupBy(matches, 'key');

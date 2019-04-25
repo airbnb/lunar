@@ -2,6 +2,7 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Autocomplete from '../../../src/components/Autocomplete';
 import Search, { Props as SearchProps } from '../../../src/components/HierarchyPicker/Search';
+import { SearchResult } from '../../../src/components/HierarchyPicker/Search/SearchResult';
 import { SearchItemResult, ChoiceDetails } from '../../../src/components/HierarchyPicker/types';
 import testItems from './mockItems';
 
@@ -29,8 +30,22 @@ describe('<Search />', () => {
     instance = wrapper.instance() as Search;
   });
 
-  it('renders an Autocomplete', () => {
-    expect(wrapper.find(Autocomplete)).toHaveLength(1);
+  describe('Autocomplete', () => {
+    it('renders an <Autocomplete />', () => {
+      expect(wrapper.find(Autocomplete)).toHaveLength(1);
+    });
+
+    it('renderItem renders SearchResults', () => {
+      const auto = wrapper.find(Autocomplete);
+      const item = shallow(
+        auto.prop('renderItem')({
+          item: { definition: ['foo'], label: '', formattedParents: '', name: '' },
+          matches: [],
+        }),
+      );
+
+      expect(item.type()).toBe(SearchResult);
+    });
   });
 
   it('calls handlePicked upon picking', () => {
@@ -84,6 +99,15 @@ describe('<Search />', () => {
 
     it('filters readonly results', () => {
       expect(instance.handleSearch('hello')).toHaveLength(0);
+    });
+
+    it('handleAsyncSearch resolves to handleSearch', () => {
+      expect.assertions(1);
+      const syncResult = instance.handleSearch('coverage');
+
+      return instance.handleAsyncSearch('coverage').then((asyncResult: SearchItemResult[]) => {
+        expect(syncResult).toEqual(asyncResult);
+      });
     });
   });
 

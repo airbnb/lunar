@@ -38,6 +38,7 @@ describe('<HierarchyPicker />', () => {
       expect(instance.boundFormatter(['foo'])).toBe('Foo');
       expect(instance.boundFormatter(['foo', 'hello'])).toBe('Foo > hello');
       expect(instance.boundFormatter(props.chosen)).toBe('Foo > Barrrrrr');
+      expect(instance.boundFormatter([])).toBe('Select from hierarchy');
     });
 
     it('custom works', () => {
