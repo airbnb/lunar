@@ -137,7 +137,7 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
           onItemPicked={this.handleItemPicked}
           placeholder={searchPlaceholder}
           query={searchQuery}
-          width={searchWidth}
+          width={searchWidth!}
         />
 
         {!searchQuery && (
