@@ -36,6 +36,9 @@ module.exports = async ({ config }) => {
   // Add custom Webpack aliases
   config.resolve.alias[':storybook'] = __dirname;
 
+  // Use named modules so we have accurate file paths
+  config.optimization.moduleIds = 'named';
+
   // Use source files so we don't have duplicate and or stale components
   glob.sync(path.join(__dirname, '../packages/*/package.json')).forEach(filePath => {
     const { name } = require(filePath);
