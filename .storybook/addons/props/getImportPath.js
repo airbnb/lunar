@@ -19,16 +19,16 @@ export default function getImportPath(filePath, baseName) {
   if (childName === 'index') {
     // Special handling
     if (compName === 'Form') {
-      return `import Form from '@airbnb/${packageName}';`;
+      return `import Form from '@airbnb/${packageName}'`;
     }
 
-    return `import ${compName} from '@airbnb/${packageName}/lib/components/${compName}';`;
+    return `import ${compName} from '@airbnb/${packageName}/lib/components/${compName}'`;
   }
 
   // Special handling
   if (packageName === 'lunar-forms') {
-    return `import { ${childName} } from '@airbnb/${packageName}';`;
+    return `import { ${childName} } from '@airbnb/${packageName}'`;
   }
 
-  return `import { ${childName} } from '@airbnb/${packageName}/lib/components/${compName}';`;
+  return `import { ${childName} } from '@airbnb/${packageName}/lib/components/${compName}'`;
 }

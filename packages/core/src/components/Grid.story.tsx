@@ -170,11 +170,38 @@ storiesOf('Core/Grid', module)
   .add('Supports columns with offsets for advanced spacing.', () => (
     <Text>
       <Grid>
+        <Col span={12}>
+          <Box>12</Box>
+        </Col>
+      </Grid>
+      <br />
+      <Grid>
         <Col span={7}>
           <Box>7</Box>
         </Col>
         <Col span={4} offset={1}>
           <Box>4 + 1 offset</Box>
+        </Col>
+      </Grid>
+    </Text>
+  ))
+  .add('Can align children along the horizontal axis (default is space-between)', () => (
+    <Text>
+      <Grid startAlign>
+        <Col span={6}>
+          <Box>6</Box>
+        </Col>
+      </Grid>
+      <br />
+      <Grid centerAlign>
+        <Col span={6}>
+          <Box>6</Box>
+        </Col>
+      </Grid>
+      <br />
+      <Grid endAlign>
+        <Col span={6}>
+          <Box>6</Box>
         </Col>
       </Grid>
     </Text>

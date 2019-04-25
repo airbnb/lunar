@@ -24,6 +24,8 @@ export type Props = {
   onMouseUp?: (event: React.MouseEvent<ButtonOrLinkTypes>) => void;
   /** When a link, open the target in a new window. */
   openInNewWindow?: boolean;
+  /** Rel attribute override for if the component has an href */
+  rel?: string;
   /** When a button, the type of button. */
   type?: 'button' | 'submit' | 'reset';
 };
@@ -66,6 +68,7 @@ export default class ButtonOrLink extends React.Component<Props> {
       href,
       loading,
       openInNewWindow,
+      rel,
       type,
       ...restProps
     } = this.props;
@@ -75,10 +78,14 @@ export default class ButtonOrLink extends React.Component<Props> {
     // Determine props based on element type
     if (href) {
       props.href = href;
+      props.rel = rel;
 
       if (openInNewWindow) {
         props.target = '_blank';
-        props.rel = 'noopener noreferrer';
+
+        if (props.rel === undefined) {
+          props.rel = 'noopener noreferrer';
+        }
       }
     } else {
       props.disabled = disabled || loading || false;
