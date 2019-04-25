@@ -41,7 +41,7 @@ describe('<Hierarchy />', () => {
 
     beforeEach(() => {
       wrapper = shallow(<HierarchyList {...props} focus={['foo']} />).dive();
-      instance = wrapper.instance();
+      instance = wrapper.instance() as BaseHierarchyList;
     });
 
     describe('instance', () => {
