@@ -204,6 +204,35 @@ describe('<FilterMenu />', () => {
     ).toBe(false);
   });
 
+  it('clicking clear keeps the menu open when keepOpenOnClear is passed', () => {
+    const wrapper = shallow(
+      <FilterMenu keepOpenOnClear {...props}>
+        <Row>Foo</Row>
+      </FilterMenu>,
+    ).dive();
+
+    openFilters(wrapper);
+
+    expect(
+      wrapper
+        .find('div')
+        .at(1)
+        .prop('aria-expanded'),
+    ).toBe(true);
+
+    wrapper
+      .find(Link)
+      .at(1)
+      .simulate('click');
+
+    expect(
+      wrapper
+        .find('div')
+        .at(1)
+        .prop('aria-expanded'),
+    ).toBe(true);
+  });
+
   it('right-aligns by default', () => {
     const wrapper = shallow(
       <FilterMenu {...props}>
