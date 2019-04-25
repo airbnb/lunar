@@ -13,6 +13,7 @@ export default [
       },
       {
         name: 'hello',
+        description: 'no show',
         readonly: true,
       },
       {
