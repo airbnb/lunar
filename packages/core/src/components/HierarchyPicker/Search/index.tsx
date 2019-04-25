@@ -3,7 +3,6 @@ import Fuse from 'fuse.js';
 import Autocomplete from '../../Autocomplete';
 import SearchResult from './SearchResult';
 import T from '../../Translate';
-import fuseLoader from './fuseLoader';
 import {
   Formatter,
   ItemPickedHandler,
@@ -22,12 +21,12 @@ export type Props = {
   onSearch: (searchQuery: string) => void;
   placeholder?: string;
   indexParentPath?: boolean;
-  fuseOptions?: Fuse.FuseOptions<any>;
+  fuseOptions?: Fuse.FuseOptions<SearchItemShape>;
   width: number;
   maxHeight?: number;
 };
 
-const defaultFuseOptions: Fuse.FuseOptions<any> = {
+const defaultFuseOptions: Fuse.FuseOptions<SearchItemShape> = {
   shouldSort: true,
   includeMatches: true,
   tokenize: true,
@@ -39,7 +38,9 @@ const defaultFuseOptions: Fuse.FuseOptions<any> = {
   minMatchCharLength: 3,
 };
 
-const defaultFuseKeys = [
+type FuseKey = { name: keyof SearchItemShape; weight: number };
+
+const defaultFuseKeys: FuseKey[] = [
   {
     name: 'label',
     weight: 0.8,
@@ -61,16 +62,16 @@ export default class Search extends React.Component<Props> {
     query: '',
   };
 
-  fusePromise?: Promise<Fuse<SearchItemResult>>;
+  fuse?: Fuse<SearchItemShape, Fuse.FuseOptions<SearchItemShape>>;
 
   componentDidMount() {
     this.buildIndex(this.props.items);
   }
 
   componentDidUpdate(prevProps: Props) {
-    const { items } = this.props;
+    const { items, indexParentPath } = this.props;
 
-    if (items !== prevProps.items) {
+    if (items !== prevProps.items || indexParentPath !== prevProps.indexParentPath) {
       this.buildIndex(items);
     }
   }
@@ -110,15 +111,15 @@ export default class Search extends React.Component<Props> {
 
     const fuseOptions = { ...defaultFuseOptions, keys: fuseKeys };
 
-    this.fusePromise = fuseLoader(flatItemList, {
+    this.fuse = new Fuse(flatItemList, {
       ...fuseOptions,
       ...this.props.fuseOptions,
     });
   }
 
-  private getItemValue = (result: SearchItemResult) => result.item.name;
+  getItemValue = (result: SearchItemResult) => result.item.name;
 
-  private handleItemPicked = (itemValue: string, result: SearchItemResult | null) => {
+  handleItemPicked = (itemValue: string, result: SearchItemResult | null) => {
     const { query, onItemPicked } = this.props;
     onItemPicked((result && result.item.definition) || null, {
       origin: 'Search',
@@ -126,20 +127,19 @@ export default class Search extends React.Component<Props> {
     });
   };
 
-  private handleSearch = (query: string) => {
+  handleSearch = (query: string) => {
     const trimmedQuery = query.trim();
 
-    if (!trimmedQuery || !this.fusePromise) {
-      return Promise.resolve([]);
+    if (!trimmedQuery || !this.fuse) {
+      return [];
     }
 
-    return this.fusePromise.then(index => index.search(trimmedQuery));
+    return (this.fuse.search(trimmedQuery) as unknown) as SearchItemResult[];
   };
 
-  private renderItem = ({
-    matches,
-    item: { definition, formattedParents, ...item },
-  }: SearchItemResult) => {
+  handleAsyncSearch = (query: string) => Promise.resolve(this.handleSearch(query));
+
+  renderItem = ({ matches, item: { definition, formattedParents, ...item } }: SearchItemResult) => {
     const { query } = this.props;
 
     return (
@@ -171,7 +171,7 @@ export default class Search extends React.Component<Props> {
           name="autocomplete-search"
           noResultsText={noResultsLabel}
           onChange={onSearch}
-          onLoadOptions={this.handleSearch}
+          onLoadOptions={this.handleAsyncSearch}
           onSelectItem={this.handleItemPicked}
           optional
           placeholder={placeholder}

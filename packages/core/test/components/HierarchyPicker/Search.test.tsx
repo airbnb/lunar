@@ -54,80 +54,48 @@ describe('<Search />', () => {
 
   describe('search functionality', () => {
     it('finds child items by name', () => {
-      // @ts-ignore allow private method
-      return instance.handleSearch('coverage').then((results: SearchItemResult[]) => {
-        expect(results).toHaveLength(1);
-      });
+      expect(instance.handleSearch('coverage')).toHaveLength(1);
     });
 
     it('updates items on change and handles empty items', () => {
       wrapper.setProps({ items: [] });
-
-      // @ts-ignore allow private method
-      return instance.handleSearch('coverage').then((results: SearchItemResult[]) => {
-        expect(results).toHaveLength(0);
-      });
+      expect(instance.handleSearch('coverage')).toHaveLength(0);
     });
 
     it('finds grandchild items by name', () => {
-      // @ts-ignore allow private method
-      return instance.handleSearch('whatever').then((results: SearchItemResult[]) => {
-        expect(results).toHaveLength(1);
-      });
+      expect(instance.handleSearch('whatever')).toHaveLength(1);
     });
 
     it('finds items by description', () => {
-      // @ts-ignore allow private method
-      return instance.handleSearch('what I want').then((results: SearchItemResult[]) => {
-        expect(results).toHaveLength(1);
-      });
+      expect(instance.handleSearch('what I want')).toHaveLength(1);
     });
 
     it('finds items by keywords', () => {
-      // @ts-ignore allow private method
-      return instance.handleSearch('bonsoir').then((results: SearchItemResult[]) => {
-        expect(results).toHaveLength(1);
-      });
+      expect(instance.handleSearch('bonsoir')).toHaveLength(1);
     });
 
     it('trims the query', () => {
-      // @ts-ignore allow private method
-      return instance.handleSearch(' ').then((results: SearchItemResult[]) => {
-        expect(results).toHaveLength(0);
-      });
+      expect(instance.handleSearch(' ')).toHaveLength(0);
     });
 
     it('filters non-matching results', () => {
-      // @ts-ignore allow private method
-      return instance.handleSearch('nonsense').then((results: SearchItemResult[]) => {
-        expect(results).toHaveLength(0);
-      });
+      expect(instance.handleSearch('nonsense')).toHaveLength(0);
     });
 
     it('filters readonly results', () => {
-      // @ts-ignore allow private method
-      return instance.handleSearch('hello').then((results: SearchItemResult[]) => {
-        expect(results).toHaveLength(0);
-      });
+      expect(instance.handleSearch('hello')).toHaveLength(0);
     });
   });
 
   describe('indexParentPath', () => {
     it('when false, should filter items matching formattedParents', () => {
-      // @ts-ignore allow private method
-      return instance.handleSearch('foo bar').then((results: SearchItemResult[]) => {
-        expect(results).toHaveLength(0);
-      });
+      expect(instance.handleSearch('foo bar')).toHaveLength(0);
     });
 
     it('when true, should match items against formattedParents', () => {
       wrapper = shallow(<Search {...props} indexParentPath />);
       instance = wrapper.instance() as Search;
-
-      // @ts-ignore allow private method
-      return instance.handleSearch('foo bar').then((results: SearchItemResult[]) => {
-        expect(results).toHaveLength(2); // 'foo > bar >' has 2 children
-      });
+      expect(instance.handleSearch('foo bar')).toHaveLength(2); // 'foo > bar >' has 2 children
     });
   });
 
@@ -135,11 +103,7 @@ describe('<Search />', () => {
     it('shows no results', () => {
       wrapper = shallow(<Search {...props} fuseOptions={{ keys: [] }} />);
       instance = wrapper.instance() as Search;
-
-      // @ts-ignore allow private method
-      return instance.handleSearch('coverage').then((results: SearchItemResult[]) => {
-        expect(results).toHaveLength(0);
-      });
+      expect(instance.handleSearch('coverage')).toHaveLength(0);
     });
   });
 });

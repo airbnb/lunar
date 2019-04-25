@@ -32,12 +32,6 @@ describe('<Highlight />', () => {
     it('shows highlighted matches', () => {
       expect(wrapper.find('mark')).toHaveLength(2);
       expect(wrapper.text()).toBe('hello world foo');
-      expect(wrapper).toMatchSnapshot();
-    });
-
-    it('works without a word', () => {
-      wrapper.setProps({ word: '' });
-      expect(wrapper).toMatchSnapshot();
     });
   });
 });
