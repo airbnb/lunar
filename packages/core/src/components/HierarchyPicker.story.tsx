@@ -284,7 +284,7 @@ class PickerDemo extends React.Component<Partial<Props>, { chosen: Props['chosen
           items={items}
           chosen={chosen}
           searchWidth={400}
-          onItemPicked={(nextChosen: Props['chosen']) => {
+          onItemPicked={(nextChosen: string[] | null) => {
             console.log(nextChosen);
             this.setState({ chosen: nextChosen || undefined });
           }}

@@ -1,7 +1,10 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Autocomplete from '../../../src/components/Autocomplete';
-import Search, { Props as SearchProps } from '../../../src/components/HierarchyPicker/Search';
+import Search, {
+  Search as BaseSearch,
+  Props as SearchProps,
+} from '../../../src/components/HierarchyPicker/Search';
 import { SearchResult } from '../../../src/components/HierarchyPicker/Search/SearchResult';
 import { SearchItemResult, ChoiceDetails } from '../../../src/components/HierarchyPicker/types';
 import testItems from './mockItems';
@@ -22,12 +25,12 @@ const props = {
 describe('<Search />', () => {
   let wrapper: Enzyme.ShallowWrapper<SearchProps>;
   let handlePicked: jest.Mock;
-  let instance: Search;
+  let instance: BaseSearch;
 
   beforeEach(() => {
     handlePicked = jest.fn();
     wrapper = shallow(<Search {...props} onItemPicked={handlePicked} />).dive();
-    instance = wrapper.instance() as Search;
+    instance = wrapper.instance() as BaseSearch;
   });
 
   describe('Autocomplete', () => {
@@ -118,7 +121,7 @@ describe('<Search />', () => {
 
     it('when true, should match items against formattedParents', () => {
       wrapper = shallow(<Search {...props} indexParentPath />).dive();
-      instance = wrapper.instance() as Search;
+      instance = wrapper.instance() as BaseSearch;
       expect(instance.handleSearch('foo bar')).toHaveLength(2); // 'foo > bar >' has 2 children
     });
   });
@@ -126,7 +129,7 @@ describe('<Search />', () => {
   describe('overriding fuse options with no keys', () => {
     it('shows no results', () => {
       wrapper = shallow(<Search {...props} fuseOptions={{ keys: [] }} />).dive();
-      instance = wrapper.instance() as Search;
+      instance = wrapper.instance() as BaseSearch;
       expect(instance.handleSearch('coverage')).toHaveLength(0);
     });
   });

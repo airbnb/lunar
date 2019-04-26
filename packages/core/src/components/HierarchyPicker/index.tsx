@@ -10,12 +10,12 @@ import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 import buildInputStyles from '../../themes/buildInputStyles';
 
 import {
-  ItemShape,
-  TreePath,
-  Labeler,
   ItemPickedHandler,
   ItemRenderer,
+  ItemShape,
+  Labeler,
   ToggleHandler,
+  TreePath,
 } from './types';
 
 import defaultFormatter from './defaultFormatter';
@@ -28,7 +28,7 @@ export type Props = {
   /** Disables the picker. */
   disabled?: boolean;
   /** A function to format the display of choice. */
-  formatter?: (chosen: TreePath, labeler: Labeler) => NonNullable<React.ReactNode>;
+  formatter?: (chosen: TreePath, labeler: Labeler) => string;
   /** Fuse.js search options to override. */
   fuseOptions?: FuseOptions<any>;
   /** Maximum height of a (vertically aligned) hierarchy menu. */
