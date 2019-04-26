@@ -1,5 +1,7 @@
 const path = require('path');
 const glob = require('fast-glob');
+const webpack = require('webpack');
+const getChangelogFromGitHistory = require('./helpers/getChangelogFromGitHistory');
 const tsConfig = require('../tsconfig.options.json');
 
 module.exports = async ({ config }) => {
@@ -35,6 +37,16 @@ module.exports = async ({ config }) => {
 
   // Add custom Webpack aliases
   config.resolve.alias[':storybook'] = __dirname;
+
+  // Use named modules so we have accurate file paths
+  config.optimization.moduleIds = 'named';
+
+  // Extract our git history for changelog purposes
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      COMPONENT_CHANGELOGS: JSON.stringify(getChangelogFromGitHistory()),
+    }),
+  );
 
   // Use source files so we don't have duplicate and or stale components
   glob.sync(path.join(__dirname, '../packages/*/package.json')).forEach(filePath => {
