@@ -5,7 +5,7 @@ import HierarchyPicker, { Props } from './HierarchyPicker';
 const demoItems = [
   {
     name: 'Item 1',
-    label: 'Item 1 (label)',
+    label: 'Custom label',
     readonly: true,
     items: [
       {
@@ -16,13 +16,7 @@ const demoItems = [
             name: 'Item 1a i',
           },
           {
-            name: 'Item 1a ii',
-            label: 'Item 1a ii (description)',
-            description:
-              'testingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflow',
-          },
-          {
-            name: 'Item 1a iii (description)',
+            name: 'Item 1a ii (description)',
             description: 'A little bit of info.',
           },
         ],
@@ -52,7 +46,7 @@ const demoItems = [
     ],
   },
   {
-    name: 'Item 2',
+    name: 'Item 2 (clickable)',
     items: [
       {
         name: 'Item 2a',
@@ -84,9 +78,8 @@ const demoItems = [
       },
     ],
   },
-  { name: 'Item 3 (description)', description: 'Description of the item' },
   {
-    name: 'Item 4 (should not show)',
+    name: 'Item 3 (not clickable)',
     readonly: true,
     items: [
       {
@@ -101,13 +94,24 @@ const demoItems = [
       },
       {
         name: 'bar',
-        readonly: true,
       },
       {
         name: 'baz',
         readonly: true,
       },
     ],
+  },
+  {
+    name: 'Item 4 (description)',
+    section: 'Section label',
+    description:
+      'Description of the item. It is clickable and searchable. It can be long and will wrap as along as its content has spaces.',
+  },
+  {
+    name: 'Item 5',
+    label: 'Item with long label & overflown description',
+    description:
+      'testingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflowtestingoverflow',
   },
 ];
 
@@ -156,8 +160,7 @@ const demoItems2 = [
     ],
   },
   {
-    name: 'Team 2',
-    readonly: true,
+    name: 'Team 2 (clickable)',
     items: [
       {
         section: 'Sub-teams',
@@ -185,7 +188,7 @@ const demoItems2 = [
     ],
   },
   {
-    name: 'Team 3',
+    name: 'Team 3 (not clickable)',
     readonly: true,
     items: [
       {
@@ -218,6 +221,8 @@ const demoItems2 = [
   },
   {
     name: 'Team (description)',
+    description:
+      'Description of the item. It is clickable and searchable. It can be long and will wrap as along as its content has spaces.',
   },
   {
     name: 'Overflown sub-teams',
@@ -255,6 +260,12 @@ const demoItems2 = [
       {
         name: 'Team 4h',
       },
+      {
+        name: 'Team 4i',
+      },
+      {
+        name: 'Team 4j',
+      },
     ],
   },
 ];
@@ -289,14 +300,18 @@ storiesOf('Core/HierarchyPicker', module)
   })
   .add('Vertically offset menu', () => <PickerDemo items={demoItems} />)
   .add('Vertically aligned menu', () => <PickerDemo items={demoItems} verticallyAlign />)
-  .add('With sub-sections and max height', () => (
-    <PickerDemo items={demoItems2} verticallyAlign hierarchyMaxHeight={234} />
+  .add('With sub-sections and hierarchy dimensions', () => (
+    <PickerDemo items={demoItems2} verticallyAlign hierarchyMaxHeight={272} hierarchyWidth={260} />
   ))
   .add('With chosen value', () => (
     <PickerDemo items={demoItems} chosen={['Item 1', 'Funtastic Testing']} />
   ))
   .add('Custom hierarchy width', () => (
-    <PickerDemo hierarchyWidth={150} items={demoItems2} chosen={['Team 3', 'Team 3b']} />
+    <PickerDemo
+      hierarchyWidth={150}
+      items={demoItems2}
+      chosen={[demoItems2[1].name, demoItems2[1].items![2].name]}
+    />
   ))
   .add('Custom search dimensions', () => (
     <PickerDemo
