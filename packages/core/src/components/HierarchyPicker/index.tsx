@@ -28,7 +28,7 @@ export type Props = {
   /** Disables the picker. */
   disabled?: boolean;
   /** A function to format the display of choice. */
-  formatter?: (chosen: TreePath, labeler: Labeler) => string;
+  formatter?: (chosen: TreePath, labeler: Labeler) => NonNullable<React.ReactNode>;
   /** Fuse.js search options to override. */
   fuseOptions?: FuseOptions<any>;
   /** Maximum height of a (vertically aligned) hierarchy menu. */
@@ -157,12 +157,12 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
 
   render() {
     const {
-      styles,
+      children,
       disabled,
       invalid,
-      children,
-      searchPlaceholder,
       noResultsLabel,
+      searchPlaceholder,
+      styles,
       ...passThruProps
     } = this.props;
     const { chosen } = passThruProps;

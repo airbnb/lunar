@@ -128,7 +128,7 @@ export default withStyles(
     item: {
       display: 'flex',
       alignItems: 'center',
-      padding: `${unit}px ${1.5 * unit}px ${unit}px ${3 * unit}px`,
+      padding: `${unit}px ${1.5 * unit}px ${unit}px ${2.75 * unit}px`,
       cursor: 'pointer',
       position: 'relative',
       borderRadius: ui.borderRadius,
@@ -155,7 +155,7 @@ export default withStyles(
 
     checkmark: {
       position: 'absolute',
-      left: 0.5 * unit,
+      left: 0.25 * unit + 1,
       top: ICON_SIZE / 2 + 1,
     },
   }),

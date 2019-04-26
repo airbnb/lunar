@@ -3,6 +3,7 @@ import Fuse from 'fuse.js';
 import Autocomplete from '../../Autocomplete';
 import SearchResult from './SearchResult';
 import T from '../../Translate';
+import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
 import {
   Formatter,
   ItemPickedHandler,
@@ -55,7 +56,7 @@ const defaultFuseKeys: FuseKey[] = [
   },
 ];
 
-export default class Search extends React.Component<Props> {
+export class Search extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
     fuseOptions: {},
     items: [],
@@ -153,10 +154,10 @@ export default class Search extends React.Component<Props> {
   };
 
   render() {
-    const { query, noResultsLabel, placeholder, width, onSearch, maxHeight } = this.props;
+    const { noResultsLabel, maxHeight, onSearch, placeholder, query, styles, width } = this.props;
 
     return (
-      <div style={{ width: query ? width : undefined }}>
+      <div {...css(styles.container, { width: query ? width : undefined })}>
         <Autocomplete<SearchItemResult>
           accessibilityLabel={T.phrase(
             'Hierarchy item search',
@@ -182,3 +183,9 @@ export default class Search extends React.Component<Props> {
     );
   }
 }
+
+export default withStyles(({ unit }) => ({
+  container: {
+    padding: unit,
+  },
+}))(Search);

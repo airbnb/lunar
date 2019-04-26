@@ -26,7 +26,7 @@ describe('<Search />', () => {
 
   beforeEach(() => {
     handlePicked = jest.fn();
-    wrapper = shallow(<Search {...props} onItemPicked={handlePicked} />);
+    wrapper = shallow(<Search {...props} onItemPicked={handlePicked} />).dive();
     instance = wrapper.instance() as Search;
   });
 
@@ -117,7 +117,7 @@ describe('<Search />', () => {
     });
 
     it('when true, should match items against formattedParents', () => {
-      wrapper = shallow(<Search {...props} indexParentPath />);
+      wrapper = shallow(<Search {...props} indexParentPath />).dive();
       instance = wrapper.instance() as Search;
       expect(instance.handleSearch('foo bar')).toHaveLength(2); // 'foo > bar >' has 2 children
     });
@@ -125,7 +125,7 @@ describe('<Search />', () => {
 
   describe('overriding fuse options with no keys', () => {
     it('shows no results', () => {
-      wrapper = shallow(<Search {...props} fuseOptions={{ keys: [] }} />);
+      wrapper = shallow(<Search {...props} fuseOptions={{ keys: [] }} />).dive();
       instance = wrapper.instance() as Search;
       expect(instance.handleSearch('coverage')).toHaveLength(0);
     });

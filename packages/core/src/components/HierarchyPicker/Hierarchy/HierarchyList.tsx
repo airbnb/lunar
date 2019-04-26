@@ -268,6 +268,7 @@ export default withStyles(({ color, pattern, unit, ui }) => ({
     flex: 1,
     alignItems: 'flex-start',
     overflow: 'auto',
+    wordBreak: 'break-word',
   },
 
   asideButton: {

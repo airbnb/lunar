@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import HierarchyPicker, { Props } from './HierarchyPicker';
+import Button from './Button';
 
 const demoItems = [
   {
@@ -105,7 +106,7 @@ const demoItems = [
     name: 'Item 4 (description)',
     section: 'Section label',
     description:
-      'Description of the item. It is clickable and searchable. It can be long and will wrap as along as its content has spaces.',
+      'Description of the item. It is clickable and searchable. It can be long and will wrap.',
   },
   {
     name: 'Item 5',
@@ -222,7 +223,7 @@ const demoItems2 = [
   {
     name: 'Team (description)',
     description:
-      'Description of the item. It is clickable and searchable. It can be long and will wrap as along as its content has spaces.',
+      'Description of the item. It is clickable and searchable. It can be long and will wrap.',
   },
   {
     name: 'Overflown sub-teams',
@@ -278,18 +279,22 @@ class PickerDemo extends React.Component<Partial<Props>, { chosen: Props['chosen
     const { chosen = initChosen } = this.state;
 
     return (
-      <HierarchyPicker
-        items={items}
-        chosen={chosen}
-        searchWidth={400}
-        onItemPicked={nextChosen => {
-          console.log(nextChosen);
-          this.setState({ chosen: nextChosen || undefined });
-        }}
-        searchPlaceholder="Search all the things"
-        noResultsLabel="No results match your query."
-        {...passThroughProps}
-      />
+      <>
+        <HierarchyPicker
+          items={items}
+          chosen={chosen}
+          searchWidth={400}
+          onItemPicked={(nextChosen: Props['chosen']) => {
+            console.log(nextChosen);
+            this.setState({ chosen: nextChosen || undefined });
+          }}
+          searchPlaceholder="Search all the things"
+          noResultsLabel="No results match your query."
+          {...passThroughProps}
+        />
+        <br />
+        <Button>Padding test</Button>
+      </>
     );
   }
 }
