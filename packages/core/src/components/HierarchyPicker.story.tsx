@@ -84,7 +84,7 @@ const demoItems = [
     readonly: true,
     items: [
       {
-        name: 'foo',
+        name: 'Should not see me',
         readonly: true,
         items: [
           {
@@ -94,10 +94,10 @@ const demoItems = [
         ],
       },
       {
-        name: 'bar',
+        name: 'Item 3b (others filtered)',
       },
       {
-        name: 'baz',
+        name: 'Should not see me 2',
         readonly: true,
       },
     ],

@@ -230,6 +230,7 @@ export default withStyles(({ color, pattern, unit, ui }) => ({
 
   pane_verticallyAlign: {
     overflowY: 'auto',
+    borderRadius: 0,
   },
 
   pane_nested: {

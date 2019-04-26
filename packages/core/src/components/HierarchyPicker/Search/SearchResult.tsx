@@ -54,12 +54,5 @@ export default withStyles(({ color, unit }) => ({
   resultItem: {
     padding: unit,
     wordBreak: 'break-word',
-
-    '@selectors': {
-      ':hover, :focus': {
-        backgroundColor: color.accent.bgHover,
-        outline: 'none',
-      },
-    },
   },
 }))(SearchResult);
