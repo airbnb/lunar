@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.0 - 2019-04-26
+
+#### 🚀 Updates
+
+- **[Icons]** Add pie chart icon (#48) ([69ba4bd](https://github.com/airbnb/lunar/commit/69ba4bd)), closes [#48](https://github.com/airbnb/lunar/issues/48)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ### 1.0.3 - 2019-04-24
 
 #### 🐞 Fixes
