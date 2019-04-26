@@ -32,11 +32,11 @@ export default function PathBar({ sourcePath, storyPath, importPath }) {
   return (
     <Wrapper>
       <RightAlign>
-        <Button href={sourcePath} isLink secondary small>
+        <Button href={sourcePath} target="_blank" isLink secondary small>
           View source
         </Button>
 
-        <Button href={storyPath} isLink secondary small>
+        <Button href={storyPath} target="_blank" isLink secondary small>
           View story
         </Button>
       </RightAlign>

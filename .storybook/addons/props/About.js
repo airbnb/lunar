@@ -6,19 +6,37 @@ import getImportPath from './getImportPath';
 import getSourcePath from './getSourcePath';
 import PathBar from './PathBar';
 import PropTable from './PropTable';
+import LogTable from './LogTable';
 
 const Wrapper = styled.div({
   padding: 16,
   fontSize: 14,
 });
 
+const Header = styled.h2({
+  marginBottom: 16,
+  marginTop: 24,
+});
+
+const SubHeader = styled.h4(({ theme }) => ({
+  float: 'right',
+  color: theme.color.mediumdark,
+  margin: 0,
+  marginTop: 16,
+}));
+
 const Description = styled.div({
   marginBottom: 16,
 });
 
 export default class About extends React.Component {
+  static defaultProps = {
+    changelog: [],
+    metadata: {},
+  };
+
   render() {
-    const { name, metadata, storyPath } = this.props;
+    const { changelog, name, metadata, storyPath } = this.props;
 
     if (!metadata) {
       return <Placeholder>No component information found for {name}.</Placeholder>;
@@ -57,7 +75,20 @@ export default class About extends React.Component {
           </Description>
         )}
 
-        {props.length > 0 && <PropTable props={props} />}
+        {changelog.length > 0 && (
+          <>
+            <SubHeader>Past 1 month</SubHeader>
+            <Header>Changelog</Header>
+            <LogTable logs={changelog} />
+          </>
+        )}
+
+        {props.length > 0 && (
+          <>
+            <Header>Props</Header>
+            <PropTable props={props} />
+          </>
+        )}
       </Wrapper>
     );
   }
