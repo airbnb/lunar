@@ -53,6 +53,7 @@ export class SearchResult extends React.Component<Props & WithStylesProps> {
 export default withStyles(({ color, unit }) => ({
   resultItem: {
     padding: unit,
+    wordBreak: 'break-word',
 
     '@selectors': {
       ':hover, :focus': {
