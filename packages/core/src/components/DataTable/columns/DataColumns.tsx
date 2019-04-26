@@ -111,7 +111,7 @@ export default function renderDataColumns(
         cellRenderer={renderCell(key, isLeftmost)}
         {...css(
           styles && styles.column,
-          showColumnDividers && !isRightmost && styles && styles.column_divider
+          showColumnDividers && !isRightmost && styles && styles.column_divider,
         )}
       />
     );

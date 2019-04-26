@@ -77,7 +77,7 @@ const defaultEditCallback = (
   row: TableRow,
   key: string,
   newVal: any,
-  event: React.SyntheticEvent<EventTarget>
+  event: React.SyntheticEvent<EventTarget>,
 ) => {
   action('this callback has access to row, key, newVal and event');
 };

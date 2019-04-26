@@ -62,7 +62,8 @@ export function TableHeader({
           >
             {btnConfig.label}
           </Button>
-        ));
+        )
+      );
   const instantEditButtons = (
     <Button small onClick={onDisableEditMode}>
       <Translate phrase="Done" context="This button exits edit mode." />

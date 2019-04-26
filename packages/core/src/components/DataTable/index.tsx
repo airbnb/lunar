@@ -93,8 +93,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
                 return keySet;
               }, new Set())
-              : [],
-            );
+            : [],
+          );
 
   rowStyles = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }): RowStyles => ({
     background: getRowColor(

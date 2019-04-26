@@ -1,12 +1,13 @@
 import React from 'react';
 import { css, WithStylesProps } from '../../../composers/withStyles';
-import { Column } from 'react-virtualized';
 
 import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import Spacing from '../../Spacing';
+import { Column } from 'react-virtualized';
 import { TableRow } from '../types';
 import { EXPANDABLE_COLUMN_WIDTH } from '../constants';
+
 
 export default function renderExpandableColumn(
   styles: WithStylesProps['styles'],
