@@ -323,7 +323,11 @@ storiesOf('Core/HierarchyPicker', module)
       searchWidth={500}
       searchMaxHeight={150}
       items={demoItems2}
-      chosen={['Team 3', 'Team 3b']}
+      chosen={[
+        demoItems2[1].name,
+        demoItems2[1].items![2].name,
+        demoItems2[1].items![2].items![1].name,
+      ]}
     />
   ))
   .add('Disabled', () => <PickerDemo items={demoItems} disabled />)
