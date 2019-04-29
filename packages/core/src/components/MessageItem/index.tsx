@@ -15,7 +15,7 @@ const stripeColorTypePropType = mutuallyExclusiveTrueProps('important', 'info', 
 export type Props = {
   /** Message body. */
   children: NonNullable<React.ReactNode>;
-  /** Disables translation suggestions from Google Translate. */
+  /** Wraps title in a span to disables translation suggestions from Google Translate. */
   disableTitleTranslation?: boolean;
   /** Email display; displays that the message is from the provided email. */
   email?: React.ReactNode;
