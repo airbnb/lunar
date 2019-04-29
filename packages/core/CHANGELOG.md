@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.4.0 - 2019-04-29
+
+#### 🚀 Updates
+
+- **[MessageItem]** Add disable title translation prop. (#49) ([f5b8fff](https://github.com/airbnb/lunar/commit/f5b8fff)), closes [#49](https://github.com/airbnb/lunar/issues/49)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.3.0 - 2019-04-26
 
 #### 🚀 Updates
