@@ -6,8 +6,8 @@ import { RendererProps } from '../types';
 
 export default function DefaultContentRenderer(props: RendererProps) {
   if (props.editMode) {
-    return <TextInputRenderer {...props} />;
+    return TextInputRenderer({...props});
   }
 
-  return <TextRenderer {...props} />;
+  return TextRenderer({...props});
 }
