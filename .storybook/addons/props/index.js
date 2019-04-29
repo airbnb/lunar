@@ -33,11 +33,11 @@ export const withProps = makeDecorator({
       components[stripHOCs(component.displayName || component.name)] = component;
     });
 
+    // We need to cast globals to JSON, otherwise the data is lost
     addons.getChannel().emit('SET_PROPS_DATA', {
       components,
-      // If we dont cast to JSON, a ton of data is lost by being set to undefined.
-      // I have no idea why this happens, but JSON persists it.
-      componentMetadata: JSON.stringify(global.STORYBOOK_REACT_CLASSES),
+      componentChangelogs: JSON.stringify(COMPONENT_CHANGELOGS),
+      componentMetadata: JSON.stringify(STORYBOOK_REACT_CLASSES),
       section: kebabCase(context.kind.split('/')[0]),
       storyPath: context.parameters.fileName,
     });

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.3.0 - 2019-04-26
+
+#### 🚀 Updates
+
+- **[HierarchyPicker]** Add new picker component (#50) ([029dbe4](https://github.com/airbnb/lunar/commit/029dbe4)), closes [#50](https://github.com/airbnb/lunar/issues/50)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 1.2.1 - 2019-04-26
+
+#### 🛠 Internals
+
+- Add changelog to storybook. Fix link issues. (#47) ([5af9e54](https://github.com/airbnb/lunar/commit/5af9e54)), closes [#47](https://github.com/airbnb/lunar/issues/47)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.2.0 - 2019-04-24
 
 #### 🚀 Updates
