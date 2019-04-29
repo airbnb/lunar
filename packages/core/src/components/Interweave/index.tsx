@@ -1,11 +1,19 @@
 import React from 'react';
-import BaseInterweave, { InterweaveProps as BaseInterweaveProps } from 'interweave';
+import BaseInterweave, {
+  InterweaveProps as BaseInterweaveProps,
+  MatcherInterface,
+  FilterInterface,
+} from 'interweave';
 import { EmailMatcher, UrlMatcher } from 'interweave-autolink';
 import withEmojiData, { WithEmojiDataProps, EmojiMatcher } from 'interweave-emoji';
 import Core from '../..';
 import EmailFactory from './factories/Email';
 import UrlFactory from './factories/Url';
 import transformer from './factories/transformer';
+
+export const globalMatchers: MatcherInterface<any>[] = [];
+
+export const globalFilters: FilterInterface[] = [];
 
 const emojiOptions = {
   convertEmoticon: false,
@@ -60,7 +68,9 @@ export class Interweave extends React.PureComponent<Props & WithEmojiDataProps> 
   render() {
     const { content, filters, matchers, onlyMatchers, withEmoticons, ...props } = this
       .props as Required<Props>;
+    const finalFilters = [...globalFilters, ...filters];
     let finalMatchers = [
+      ...globalMatchers,
       emailMatcher,
       urlMatcher,
       withEmoticons ? emojiMatcherWithEmoticons : emojiMatcher,
@@ -74,7 +84,7 @@ export class Interweave extends React.PureComponent<Props & WithEmojiDataProps> 
     return (
       <BaseInterweave
         content={content}
-        filters={filters}
+        filters={finalFilters}
         matchers={finalMatchers}
         emojiPath={Core.settings.emojiCDN}
         emojiSize="1.25em"
