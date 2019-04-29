@@ -13,11 +13,14 @@ export type Props = InputProps & {
   hideLabel?: boolean;
   /** Callback fired when the value changes. */
   onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Size of the checkbox */
+  size?: string;
 };
 
 class BaseCheckBox extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
     checked: false,
+    size: '1.5em',
   };
 
   private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +36,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
       hideLabel,
       id,
       invalid,
+      size,
       styles,
       ...restProps
     } = this.props;
@@ -62,7 +66,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
         >
           {checked && (
             <span {...css(styles.checkmark)}>
-              <IconCheck size="1.5em" decorative />
+              <IconCheck size={size} decorative />
             </span>
           )}
         </span>
