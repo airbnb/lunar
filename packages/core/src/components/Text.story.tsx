@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
-import Row from './Row';
 import Text from './Text';
 
 storiesOf('Core/Text', module)
