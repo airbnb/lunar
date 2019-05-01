@@ -6,7 +6,7 @@ describe('<Text />', () => {
   it('errors when multiple alignments are used at once', () => {
     expect(() => {
       shallow(
-        <Text centerAlign endAlign>
+        <Text startAlign endAlign>
           Default
         </Text>,
       ).dive();
