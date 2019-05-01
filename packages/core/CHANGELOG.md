@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.4.1 - 2019-05-01
+
+#### 🐞 Fixes
+
+- **[removeFocusOnMouseUp]** Remove focus from currentTarget. (#53) ([dd7d8ef](https://github.com/airbnb/lunar/commit/dd7d8ef)), closes [#53](https://github.com/airbnb/lunar/issues/53)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.4.0 - 2019-04-29
 
 #### 🚀 Updates
