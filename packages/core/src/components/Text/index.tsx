@@ -5,20 +5,20 @@ import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 const sizingProp = mutuallyExclusiveTrueProps('micro', 'small', 'large');
 const emphasisProp = mutuallyExclusiveTrueProps('bold', 'light');
 const stateProp = mutuallyExclusiveTrueProps('disabled', 'muted', 'inverted');
-const alignProp = mutuallyExclusiveTrueProps('centerAlign', 'endAlign');
+const alignProp = mutuallyExclusiveTrueProps('centerAlign', 'endAlign', 'startAlign');
 
 export type Props = {
   /** Render the text inline instead of block. */
   baseline?: boolean;
   /** Apply bold emphasis. */
   bold?: boolean;
-  /** Align the text in the center. */
+  /** Align the text to the center. */
   centerAlign?: boolean;
   /** The text to render. */
   children?: React.ReactNode;
   /** Mark the text as disabled. */
   disabled?: boolean;
-  /** Align the text on the end. */
+  /** Align the text to the end. */
   endAlign?: boolean;
   /** Render the text inline-block instead of block. */
   inline?: boolean;
@@ -36,6 +36,8 @@ export type Props = {
   preserveWhitespace?: boolean;
   /** Decrease font size to small. */
   small?: boolean;
+  /** Align the text to the start. */
+  startAlign?: boolean;
   /** Truncate the text with an ellipsis. */
   truncated?: boolean;
   /** Uppercase all text. */
@@ -72,6 +74,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
     muted: false,
     preserveWhitespace: false,
     small: false,
+    startAlign: false,
     truncated: false,
     uppercased: false,
   };
@@ -92,6 +95,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
       preserveWhitespace,
       endAlign,
       small,
+      startAlign,
       styles,
       truncated,
       uppercased,
@@ -124,7 +128,8 @@ export class Text extends React.Component<Props & WithStylesProps> {
           truncated && styles.text_truncated,
           uppercased && styles.text_uppercased,
           centerAlign && styles.text_center,
-          endAlign && styles.text_right,
+          endAlign && styles.text_end,
+          startAlign && styles.text_start,
         )}
       >
         {children}
@@ -204,7 +209,11 @@ export default withStyles(({ color, font, pattern }) => ({
     textAlign: 'center',
   },
 
-  text_right: {
+  text_end: {
     textAlign: 'right',
+  },
+
+  text_start: {
+    textAlign: 'left',
   },
 }))(Text);
