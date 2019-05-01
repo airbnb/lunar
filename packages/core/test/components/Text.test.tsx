@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Text from '../../src/components/Text';
 
 describe('<Text />', () => {
-  it.only('errors when multiple alignments are used at once', () => {
+  it('errors when multiple alignments are used at once', () => {
     expect(() => {
       shallow(
         <Text startAlign endAlign>
