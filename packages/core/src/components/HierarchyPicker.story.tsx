@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import HierarchyPicker, { Props } from './HierarchyPicker';
 import Button from './Button';
 
@@ -285,7 +286,7 @@ class PickerDemo extends React.Component<Partial<Props>, { chosen: Props['chosen
           chosen={chosen}
           searchWidth={400}
           onItemPicked={(nextChosen: string[] | null) => {
-            console.log(nextChosen);
+            action('onItemPicked')(nextChosen);
             this.setState({ chosen: nextChosen || undefined });
           }}
           searchPlaceholder="Search all the things"
