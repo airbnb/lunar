@@ -11,6 +11,14 @@ describe('<Text />', () => {
         </Text>,
       ).dive();
     }).toThrowError();
+
+    expect(() => {
+      shallow(
+        <Text startAlign endAlign>
+          Default
+        </Text>,
+      ).dive();
+    }).toThrowError();
   });
 
   it('errors when multiple states are used at once', () => {
