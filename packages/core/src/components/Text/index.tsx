@@ -50,13 +50,14 @@ export class Text extends React.Component<Props & WithStylesProps> {
     bold: emphasisProp,
     centerAlign: alignProp,
     disabled: stateProp,
+    endAlign: alignProp,
     inverted: stateProp,
     large: sizingProp,
     light: emphasisProp,
     micro: sizingProp,
     muted: stateProp,
-    endAlign: alignProp,
     small: sizingProp,
+    startAlign: alignProp,
   };
 
   static defaultProps = {
@@ -86,6 +87,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
       centerAlign,
       children,
       disabled,
+      endAlign,
       inline,
       inverted,
       large,
@@ -93,7 +95,6 @@ export class Text extends React.Component<Props & WithStylesProps> {
       micro,
       muted,
       preserveWhitespace,
-      endAlign,
       small,
       startAlign,
       styles,
