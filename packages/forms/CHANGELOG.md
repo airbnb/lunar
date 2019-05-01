@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.0.7 - 2019-05-01
+
+#### 📦 Dependencies
+
+- Update Interweave and Aesthetic. (#51) ([d36b547](https://github.com/airbnb/lunar/commit/d36b547)), closes [#51](https://github.com/airbnb/lunar/issues/51)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 1.0.6 - 2019-04-26
 
 **Note:** Version bump only for package @airbnb/lunar-forms
