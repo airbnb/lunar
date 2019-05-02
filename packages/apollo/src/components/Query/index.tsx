@@ -47,7 +47,7 @@ export default class Query<Data = any, Vars = OperationVariables> extends React.
       return renderElementOrFunction(this.props.loading) || <Loader static />;
     }
 
-    if (result.error) {
+    if (result.error && result.error.networkError) {
       return (
         renderElementOrFunction(this.props.error, result.error) || (
           <ErrorMessage error={result.error} />
