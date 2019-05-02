@@ -121,7 +121,7 @@ export function TableHeader({
   const label = <Text bold>{tableHeaderLabel}</Text>;
 
   return (
-    <div {...css(styles.tableHeader)} style={dimensionStyles}>
+    <div style={dimensionStyles}>
       <div {...css(styles.tableHeader_inner)}>
         {label}
         {headerButtons}
@@ -130,7 +130,7 @@ export function TableHeader({
   );
 }
 
-export default withStyles((theme: WithStylesProps['theme']) => ({
+export default withStyles((theme) => ({
   tableHeader_inner: {
     display: 'flex',
     alignItems: 'center',
@@ -138,9 +138,5 @@ export default withStyles((theme: WithStylesProps['theme']) => ({
     justifyContent: 'space-between',
     marginLeft: 2 * theme!.unit,
     marginRight: 2 * theme!.unit,
-  },
-  tableHeader: {
-    borderTop: '1px solid',
-    borderColor: theme!.color.core.neutral[1],
   },
 }))(TableHeader);

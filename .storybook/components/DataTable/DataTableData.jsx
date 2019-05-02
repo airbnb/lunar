@@ -1,4 +1,4 @@
-import { STATUS_OPTIONS } from '../../../packages/core/src/components/DataTable/constants';
+import { STATUS_OPTIONS } from '@airbnb/lunar/src/components/DataTable/constants';
 
 export default function getData() {
   return [

@@ -129,7 +129,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     }
   };
 
-  private expandRow = (newExpandedRowIndex: number) => (event: any) => {
+  private expandRow = (newExpandedRowIndex: number) => (event: React.SyntheticEvent<EventTarget>) => {
     event.stopPropagation();
     this.setState(({ expandedRows }) => {
       const newExpandedRows = new Set(expandedRows);
@@ -318,7 +318,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     const { editMode, selectedRows } = this.state;
 
-    return (
+    
+
+    return editable || extraHeaderButtons!.length > 0 ||  !!tableHeaderLabel && (
       <TableHeader
         editable={editable}
         editMode={editMode}
@@ -395,12 +397,13 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
 export default withStyles((theme: WithStylesProps['theme']) => ({
     table_container: {
-      overflowX: 'scroll',
+      overflowX: 'auto',
     },
     column_header: {
       borderTop: '1px solid',
       borderBottom: '1px solid',
       borderColor: theme!.color.core.neutral[1],
+      cursor: 'pointer',
     },
     column: {
       height: 'inherit',
@@ -416,6 +419,9 @@ export default withStyles((theme: WithStylesProps['theme']) => ({
     },
     row_inner: {
       width: '100%',
+    },
+    expand_caret: {
+      cursor: 'pointer',
     },
   }),
   {

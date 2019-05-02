@@ -1,8 +1,7 @@
 import React from 'react';
-import { css, WithStylesProps } from '../../../composers/withStyles';
 import { Column } from 'react-virtualized';
 
-import DefaultContentRenderer from '../defaultContentRenderers';
+import renderDefaultContent from '../defaultContentRenderers';
 import Spacing from '../../Spacing';
 import {
   ColumnMetadata,
@@ -13,6 +12,7 @@ import {
   WidthProperties,
   RendererProps,
 } from '../types';
+import { css, WithStylesProps } from '../../../composers/withStyles';
 import { DEFAULT_WIDTH_PROPERTIES } from '../constants';
 
 type ArgumentsFromProps = {
@@ -70,7 +70,7 @@ export default function renderDataColumns(
 
     const contents: NonNullable<React.ReactNode> = renderer
       ? renderer(rendererArguments)
-      : DefaultContentRenderer(rendererArguments);
+      : renderDefaultContent(rendererArguments);
 
     return (
       <div {...css(styles && styles.row)}>

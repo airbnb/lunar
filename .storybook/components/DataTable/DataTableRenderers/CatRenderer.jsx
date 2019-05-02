@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Emoji from '../../../../packages/core/src/components/Emoji';
-import CountBadge from '../../../../packages/core/src/components/CountBadge';
-import { TableRow, RendererProps } from '../../../../packages/core/src/components/DataTable/types';
+import Emoji from '@airbnb/lunar/src/components/Emoji';
+import CountBadge from '@airbnb/lunar/src/components/CountBadge';
 
 class CatRenderer extends React.Component {
   state = {

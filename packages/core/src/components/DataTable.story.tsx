@@ -6,16 +6,11 @@ import DataTable from './DataTable';
 import { SelectedRows, TableRow } from './DataTable/types';
 import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
 
-// @ts-ignore
-import getData from '../../../../.storybook/components/DataTable/DataTableData';
-// @ts-ignore
-import TenureRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/TenureRenderer';
-// @ts-ignore
-import ColSpanRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/ColSpanRenderer';
-// @ts-ignore
-import CatRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/CatRenderer';
-// @ts-ignore
-import MenuRenderer from '../../../../.storybook/components/DataTable/DataTableRenderers/MenuRenderer';
+import getData from ':storybook/components/DataTable/DataTableData';
+import TenureRenderer from ':storybook/components/DataTable/DataTableRenderers/TenureRenderer';
+import ColSpanRenderer from ':storybook/components/DataTable/DataTableRenderers/ColSpanRenderer';
+import CatRenderer from ':storybook/components/DataTable/DataTableRenderers/CatRenderer';
+import MenuRenderer from ':storybook/components/DataTable/DataTableRenderers/MenuRenderer';
 
 const renderers = {
   colSpan: ColSpanRenderer,
@@ -93,7 +88,7 @@ storiesOf('Core/DataTable', module)
     inspectComponents: [DataTable],
   })
   .add('A standard table.', () => (
-    <DataTable tableHeaderLabel="My Great Table" data={getData()} keys={['name', 'jobTitle']} />
+    <DataTable data={getData()} keys={['name', 'jobTitle']} />
   ))
   .add('A table with selectable and exandable rows.', () => (
     <DataTable
