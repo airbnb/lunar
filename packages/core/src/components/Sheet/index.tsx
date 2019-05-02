@@ -240,7 +240,7 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
                 </Spacing>
               </div>
 
-              <div {...css(styles.content, compact && styles.contentCompact)}>{children}</div>
+              <div {...css(styles.content, compact && styles.content_compact)}>{children}</div>
             </div>
           </div>
         </FocusTrap>
@@ -396,7 +396,7 @@ const InternalSheet = withStyles(
       flex: 1,
     },
 
-    contentCompact: {
+    content_compact: {
       padding: unit,
     },
 
