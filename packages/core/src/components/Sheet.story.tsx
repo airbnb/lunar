@@ -80,28 +80,6 @@ class SheetDemo extends React.Component<
 
           <CheckBox
             noSpacing
-            name="header"
-            label="Show header bar"
-            checked={headerBar}
-            onChange={this.handleHeaderBarChange}
-          />
-
-          <CheckBox
-            noSpacing
-            name="headerShadow"
-            label="Show shadow on header bar"
-            checked={headerShadow}
-            onChange={this.handleHeaderBarShadowChange}
-          />
-
-          <CheckBox
-            name="compact"
-            label="Render with compact spacing"
-            checked={compact}
-            onChange={this.handleCompactChange}
-          />
-
-          <CheckBox
             name="animated"
             label="Render with animation"
             checked={animated}
