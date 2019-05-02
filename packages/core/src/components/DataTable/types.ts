@@ -2,7 +2,7 @@ import React from 'react';
 import { SortDirectionType } from 'react-virtualized';
 import { WithStylesProps } from '../../composers/withStyles';
 
-export type RowHeightOptions = 'micro' | 'small' | 'regular' | 'large';
+export type RowHeightOptions = 'micro' | 'small' | 'regular' | 'large' | 'jumbo';
 export type HeightOptions = RowHeightOptions | undefined;
 
 export type SelectedRows = {
@@ -195,7 +195,7 @@ export type ColumnMetadata = {
 };
 
 export type ColumnToLabel = {
-  [key: string]: string;
+  [key: string]: any;
 };
 
 export type RendererProps = {

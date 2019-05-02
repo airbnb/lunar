@@ -76,7 +76,7 @@ export default function renderDataColumns(
       <div {...css(styles && styles.row)}>
         <div {...css(styles && styles.row_inner)}>
           <Spacing left={spacing} right={2}>
-            {contents}
+            {contents ? contents : ''}
           </Spacing>
         </div>
       </div>

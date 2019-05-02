@@ -3,15 +3,11 @@ import { STATUS_OPTIONS, HEIGHT_TO_PX } from './constants';
 import { HeightOptions, ExpandedRow, RowHeightOptions, Status } from './types';
 
 function getStatusColor(theme: WithStylesProps['theme'], status: Status) {
-  if (theme) {
-    if (status === STATUS_OPTIONS.ALERT) {
-      return theme.color.core.danger[0];
-    }
-
-    return theme.color.core.warning[0];
+  if (status === STATUS_OPTIONS.ALERT) {
+    return theme!.color.core.danger[0];
   }
 
-  return '';
+  return theme!.color.core.warning[0];
 }
 
 export function getRowColor(
@@ -20,23 +16,19 @@ export function getRowColor(
   zebra: boolean,
   theme: WithStylesProps['theme'],
 ) {
-  if (theme) {
-    const { accent, core } = theme.color;
+  const { accent, core } = theme!.color;
 
-    if (index < 0) {
-      return accent.bg;
-    }
-    if (row.metadata && row.metadata.status) {
-      return getStatusColor(theme, row.metadata.status);
-    }
-    if (zebra) {
-      return index % 2 ? accent.bg : core.neutral[0];
-    }
-
+  if (index < 0) {
     return accent.bg;
   }
+  if (row.metadata && row.metadata.status) {
+    return getStatusColor(theme, row.metadata.status);
+  }
+  if (zebra) {
+    return index % 2 ? accent.bg : core.neutral[0];
+  }
 
-  return '';
+  return accent.bg;
 }
 
 export function getHeight(defaultHeight?: RowHeightOptions, overrideHeight?: HeightOptions) {

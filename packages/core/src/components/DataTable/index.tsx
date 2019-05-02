@@ -40,11 +40,11 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   state = {
     changeLog: {},
     preEditSortedDataList: [],
-    sortedDataList: indexDataList(this.props.data ? this.props.data : []),
+    sortedDataList: indexDataList(this.props.data!),
     expandedRows: new Set(),
     selectedRows: {},
     sortBy: this.props.sortByOverride || '',
-    sortDirection: this.props.sortDirectionOverride || SortDirection.ASC,
+    sortDirection: this.props.sortDirectionOverride,
     editMode: false,
   };
 
@@ -83,18 +83,16 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     this.props.keys && this.props.keys.length > 0
       ? this.props.keys
       : Array.from(
-          this.props.data
-            ? this.props.data.reduce((keySet: Set<string>, row: ParentRow) => {
-                Object.keys(row.data).forEach(key => {
-                  if (row.metadata === undefined || row.metadata.colSpanKey !== key) {
-                    keySet.add(key);
-                  }
-                });
+          this.props.data!.reduce((keySet: Set<string>, row: ParentRow) => {
+            Object.keys(row.data).forEach(key => {
+              if (row.metadata === undefined || row.metadata.colSpanKey !== key) {
+                keySet.add(key);
+              }
+            });
 
-                return keySet;
-              }, new Set())
-            : [],
-          );
+            return keySet;
+          }, new Set()),
+        );
 
   rowStyles = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }): RowStyles => ({
     background: getRowColor(
@@ -107,7 +105,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottom: this.props.showRowDividers ? '1px solid' : '',
-    borderColor: this.props.theme ? this.props.theme.color.core.neutral[1] : '',
+    borderColor: this.props.theme!.color.core.neutral[1],
   });
 
   private sort = ({
@@ -153,7 +151,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     this.setState(({ sortedDataList }) => {
       const newDataList = sortedDataList;
-      if (parentIndex && !isNaN(parentIndex)) {
+      if (parentIndex) {
         newDataList[parentIndex].metadata.children[originalIndex].data[key] = newVal;
       } else if (typeof preExpandedIndex !== 'undefined') {
         newDataList[preExpandedIndex].data[key] = newVal;
@@ -236,30 +234,36 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     const { parentOriginalIndex, parentIndex, originalIndex } = row.metadata;
 
-    if (parentOriginalIndex !== undefined && parentIndex !== undefined) {
-      if (Object.prototype.hasOwnProperty.call(selectedRows, parentOriginalIndex)) {
-        const { selectedChildren } = selectedRows[parentOriginalIndex];
-        if (selectedChildren.has(originalIndex)) {
-          selectedChildren.delete(originalIndex);
-          if (selectedChildren.size === 0) {
-            delete selectedRows[parentOriginalIndex];
-          } else {
-            selectedRows[parentOriginalIndex].status = SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
-          }
+    // If parent is already selected
+    if (Object.prototype.hasOwnProperty.call(selectedRows, parentOriginalIndex!)) {
+      const { selectedChildren } = selectedRows[parentOriginalIndex!];
+      // If child is already selected
+      if (selectedChildren.has(originalIndex)) {
+        selectedChildren.delete(originalIndex);
+        // If there are now 0 selected children
+        if (selectedChildren.size === 0) {
+          delete selectedRows[parentOriginalIndex!];
+          // If there is still at least one selected child
         } else {
-          selectedChildren.add(originalIndex);
-          if (sortedDataList[parentIndex].metadata.children.length === selectedChildren.size) {
-            selectedRows[parentOriginalIndex].status = SELECTION_OPTIONS.ACTIVE;
-          } else {
-            selectedRows[parentOriginalIndex].status = SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
-          }
+          selectedRows[parentOriginalIndex!].status = SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
         }
+        // If child is not already selected
       } else {
-        selectedRows[parentOriginalIndex] = {
-          status: SELECTION_OPTIONS.HAS_ACTIVE_CHILD,
-          selectedChildren: new Set([originalIndex]),
-        };
+        selectedChildren.add(originalIndex);
+        // If all children are now selected
+        if (sortedDataList[parentIndex!].metadata.children.length === selectedChildren.size) {
+          selectedRows[parentOriginalIndex!].status = SELECTION_OPTIONS.ACTIVE;
+          // If not all children are now selected
+        } else {
+          selectedRows[parentOriginalIndex!].status = SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
+        }
       }
+      // If parent is not already selected
+    } else {
+      selectedRows[parentOriginalIndex!] = {
+        status: SELECTION_OPTIONS.HAS_ACTIVE_CHILD,
+        selectedChildren: new Set([originalIndex]),
+      };
     }
 
     this.setState({
@@ -269,22 +273,21 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   private handleParentSelection(row: ExpandedRow) {
     const { selectedRows }: { selectedRows: SelectedRows } = this.state;
-    const { preExpandedIndex, originalIndex } = row.metadata;
+    const { originalIndex } = row.metadata;
 
-    if (typeof preExpandedIndex !== 'undefined') {
-      if (Object.prototype.hasOwnProperty.call(selectedRows, originalIndex)) {
-        delete selectedRows[originalIndex];
-      } else {
-        const children = row.metadata.children
-          ? row.metadata.children.map((child: IndexedChildRow) =>
-              child.metadata ? child.metadata.originalIndex : -1,
-            )
-          : [];
-        selectedRows[originalIndex] = {
-          status: SELECTION_OPTIONS.ACTIVE,
-          selectedChildren: row.metadata && row.metadata.children ? new Set(children) : new Set(),
-        };
-      }
+    // If parent is already selected
+    if (Object.prototype.hasOwnProperty.call(selectedRows, originalIndex)) {
+      delete selectedRows[originalIndex];
+      // If parent is not already selected
+    } else {
+      // Is there are children, select them all
+      const children = row.metadata.children
+        ? row.metadata.children.map((child: IndexedChildRow) => child.metadata.originalIndex)
+        : [];
+      selectedRows[originalIndex] = {
+        status: SELECTION_OPTIONS.ACTIVE,
+        selectedChildren: new Set(children),
+      };
     }
 
     this.setState({ selectedRows });
@@ -365,11 +368,11 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
           <AutoSizer disableHeight>
             {({ width }: { width: number }) => (
               <Table
-                height={this.props.height || 0}
+                height={this.props.height!}
                 width={this.props.width || width}
                 headerHeight={getHeight(rowHeight, columnHeaderHeight)}
                 rowCount={expandedDataList.length}
-                rowHeight={HEIGHT_TO_PX[rowHeight || "regular"]}
+                rowHeight={HEIGHT_TO_PX[rowHeight!]}
                 rowGetter={this.rowGetter(expandedDataList)}
                 rowStyle={this.rowStyles(expandedDataList)}
                 sort={this.sort}

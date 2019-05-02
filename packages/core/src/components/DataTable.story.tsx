@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import DataTable from './DataTable';
 import { SelectedRows, TableRow } from './DataTable/types';
+import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
 
 // @ts-ignore
 import getData from '../../../../.storybook/components/DataTable/DataTableData';
@@ -62,7 +63,12 @@ const headerButtons = [
 ];
 
 const columnToLabel = {
-  tenureDays: 'TENURE',
+  tenureDays: (
+    <span>
+      ICON IN HEADER
+      <IconStar inline />
+    </span>
+  ),
 };
 
 const catsCallback = () => {
@@ -178,5 +184,6 @@ storiesOf('Core/DataTable', module)
       enactEditsCallback={() => action('applying edits')}
       editCallbacks={editCallbacks}
       keys={['name', 'cats', 'tenureDays']}
+      editable
     />
   ));

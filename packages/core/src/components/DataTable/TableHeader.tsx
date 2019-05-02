@@ -49,40 +49,53 @@ export function TableHeader({
   tableHeaderLabel,
   width,
 }: Props & WithStylesProps) {
-  const extraButtons =
-    extraHeaderButtons &&
-    extraHeaderButtons.map(
-      (btnConfig: HeaderButton) =>
-        ((!editMode && btnConfig.display) || (editMode && btnConfig.displayEditMode)) && (
-          <Button
-            small
-            inverted
-            onClick={btnConfig.onClick && btnConfig.onClick(selectedRows)}
-            key={btnConfig.label}
-          >
-            {btnConfig.label}
-          </Button>
-        )
-      );
-  const instantEditButtons = (
-    <Button small onClick={onDisableEditMode}>
-      <Translate phrase="Done" context="This button exits edit mode." />
-    </Button>
+  const extraEditButtons = extraHeaderButtons!.map(
+    (btnConfig: HeaderButton) =>
+      btnConfig.displayEditMode && (
+        <Button
+          small
+          inverted
+          onClick={btnConfig.onClick && btnConfig.onClick(selectedRows)}
+          key={btnConfig.label}
+        >
+          {btnConfig.label}
+        </Button>
+      ),
   );
 
+  const extraNonEditButtons = extraHeaderButtons!.map(
+    (btnConfig: HeaderButton) =>
+      btnConfig.display && (
+        <Button
+          small
+          inverted
+          onClick={btnConfig.onClick && btnConfig.onClick(selectedRows)}
+          key={btnConfig.label}
+        >
+          {btnConfig.label}
+        </Button>
+      ),
+  );
+
+  const extraButtons = editMode ? extraEditButtons : extraNonEditButtons;
+
   const editModeButtons = instantEdit
-    ? instantEditButtons
-    : [
-        <Button small inverted onClick={onCancelEditMode} key={0}>
-          <Translate
-            phrase="Cancel"
-            context="This button cancels out of edit mode without applying changes."
-          />
+    ? [
+        <Button small onClick={onDisableEditMode} key={0}>
+          <Translate phrase="Done" context="This button exits edit mode." />
         </Button>,
-        <Button small onClick={onEnactEdits} key={1}>
-          <Translate phrase="Apply" context="This button applies all live edits." />
-        </Button>,
-      ];
+      ] 
+        : [
+          <Button small inverted onClick={onCancelEditMode} key={0}>
+            <Translate
+              phrase="Cancel"
+              context="This button cancels out of edit mode without applying changes."
+            />
+          </Button>,
+          <Button small onClick={onEnactEdits} key={1}>
+            <Translate phrase="Apply" context="This button applies all live edits." />
+          </Button>,
+        ];
 
   const modeButtons = editMode ? (
     editModeButtons
@@ -92,12 +105,13 @@ export function TableHeader({
     </Button>
   );
 
-  const headerButtons = (
-    <ButtonGroup>
-      {extraButtons}
-      {editable && modeButtons}
-    </ButtonGroup>
-  );
+  const headerButtons = 
+    extraHeaderButtons!.length > -1 || editable ? (
+      <ButtonGroup>
+        {extraButtons}
+        {editable && modeButtons}
+      </ButtonGroup>
+    ) : null;
 
   const dimensionStyles: React.CSSProperties = {
     width,

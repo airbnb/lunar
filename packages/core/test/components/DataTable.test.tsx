@@ -17,101 +17,11 @@ import FormInput from '../../src/components/private/FormInput';
 import BaseInput from '../../src/components/private/BaseInput';
 import Row from '../../src/components/Row';
 import Button from '../../src/components/Button';
-// import getData from '../../../../.storybook/components/DataTable/DataTableData'
+import getData from '../../../../.storybook/components/DataTable/DataTableData'
 // import getData from '../../../../../../../../.storybook/components/DataTable/DataTableData';
 import Checkbox from '../../src/components/CheckBox';
+import BaseCheckBox, { Props } from '@airbnb/lunar/lib/components/CheckBox';
 import { STATUS_OPTIONS } from '../../../../packages/core/src/components/DataTable/constants';
-
-function getData() {
-  return [
-    {
-      data: {
-        name: 'Product Percy',
-        jobTitle: 'PM',
-        tenureDays: 307,
-        menu: '',
-        cats: 1,
-      },
-    },
-    {
-      data: {
-        name: 'Hidden Henry',
-        jobTitle: 'Engineer',
-        tenureDays: 407,
-        menu: '',
-        cats: 1,
-        colSpan: 'This person is hidden because you have insufficient permissions.',
-      },
-      metadata: {
-        colSpanKey: 'colSpan',
-      },
-    },
-    {
-      data: {
-        name: 'Engineer Emma',
-        jobTitle: 'Engineer',
-        tenureDays: 500,
-        menu: '',
-        cats: 2,
-      },
-    },
-    {
-      data: {
-        name: 'Frontend Fabien',
-        jobTitle: 'Engineer',
-        tenureDays: 600,
-        menu: '',
-        cats: 1,
-      },
-    },
-    {
-      data: {
-        name: 'Manager Mary',
-        jobTitle: 'Manager',
-        tenureDays: 820,
-        menu: '',
-        cats: 3,
-      },
-      metadata: {
-        children: [
-          {
-            data: {
-              name: 'Coding Cece',
-              jobTitle: 'Engineer',
-              tenureDays: 1610,
-              menu: '',
-              cats: 2,
-            },
-            metadata: {
-              status: STATUS_OPTIONS.ALERT,
-            },
-          },
-          {
-            data: {
-              name: 'Hacker Helen',
-              jobTitle: 'Engineer',
-              tenureDays: 1095,
-              menu: '',
-              cats: 3,
-            },
-          },
-        ],
-      },
-    },
-    {
-      data: {
-        name: 'Dev Ops Danny',
-        jobTitle: 'Engineer',
-        tenureDays: 30,
-        menu: '',
-        cats: 1,
-      },
-      metadata: {
-        status: STATUS_OPTIONS.ALERT,
-      },
-    },
-  ];
-}
 
 const columnMetadata = {
   jobTitle: {
@@ -126,289 +36,204 @@ const columnMetadata = {
   },
 };
 
+const headerButtonClick = (selectedRows: SelectedRows) => () => {
+  console.log('this callback has access to the selected rows');
+};
+
+const editCallback = () => {
+  console.log('edited');
+};
+
+const editCallbacks = {
+  name: editCallback,
+};
+
+const headerButtons = [
+  {
+    label: 'Always Displayed',
+    display: true,
+    displayEditMode: true,
+    onClick: headerButtonClick,
+  },
+  {
+    label: 'Extra Non Edit Button',
+    display: true,
+    displayEditMode: false,
+    onClick: headerButtonClick,
+  },
+  {
+    label: 'Extra Edit Mode Button',
+    display: false,
+    displayEditMode: true,
+    onClick: headerButtonClick,
+  },
+];
+
+const simpleProps = {
+  data: getData(),
+  width: 500,
+  height: 300,
+  selectable: true,
+  expandable: true,
+  editable: true,
+};
+
+const data = getData();
+
+const getRow = (table: any, row: number) => table.find(Grid).find(`[aria-rowindex=${row}]`);
+
+const getCell = (wrapper: any, row: number, col: number) =>
+  wrapper
+    .find(Grid)
+    .find(`[aria-rowindex=${row}]`)
+    .find(`[aria-colindex=${col}]`);
+
+const getCheckbox = (table: any, row: number) => getRow(table, row).find(Checkbox);
+const getCaret =  (table: any, row: number) => getCell(table, row, 1);
+
+const selectRow = (table: any, row: number) => {
+  getCheckbox(table, row).prop('onChange')();
+  table.update();
+}
+
+const expandRow = (table: any, row: number) => {
+  getCaret(table, row).childAt(0).simulate('click');
+}
+
+const getHeader = (wrapper: any) =>
+  wrapper
+    .find(AutoSizer)
+    .at(0)
+    .dive()
+    .find(TableHeader);
+
+const NAME_COL = 3;
+
+const ROW = 3;
+const PARENT_ROW = 5;
+const CHILD_ROW = 6;
+
 describe('<DataTable /> rows can be selected', () => {
-  const data = getData();
-  const props = {
-    data,
-    width: 500,
-    selectable: true,
-    expandable: true,
-  };
-
   it('should be selectable', () => {
-    // @ts-ignore
-    const table = mount(<DataTable {...props} />);
-    const grid = table.find(Grid);
-    const row = grid.find('[aria-rowindex=5]');
-    const checkbox = row.find('[aria-colindex=2]');
-    checkbox.simulate('click');
-    expect(
-      table
-        .find(Grid)
-        .find('[aria-rowindex=5]')
-        .find(Checkbox)
-        .props().checked,
-    ).toBe(true);
+    const table = mount(<DataTable {...simpleProps} />);
+    
+    selectRow(table, ROW)
+    expect(getCheckbox(table, ROW).props().checked).toBe(true);
   });
 
-  it('should be deselectable', () => {
-    // @ts-ignore
-    const table = mount(<DataTable {...props} />);
-    const grid = table.find(Grid);
-    const row = grid.find('[aria-rowindex=5]');
-    const checkbox = row.find('[aria-colindex=2]');
-    checkbox.simulate('click');
-    checkbox.simulate('click');
-    expect(
-      table
-        .find(Grid)
-        .find('[aria-rowindex=5]')
-        .find(Checkbox)
-        .props().checked,
-    ).toBe(false);
+  it('should be selectable by row click', () => {
+    const table = mount(<DataTable {...simpleProps} selectOnRowClick />);
+
+    getRow(table, ROW).simulate('click');
+    table.update();
+
+    expect(getCheckbox(table, ROW).props().checked).toBe(true);    
   });
-
-  it('should be expandable and selectable', () => {
-    // @ts-ignore
-    const table = mount(<DataTable {...props} />);
-    const grid = table.find(Grid);
-    const row = grid.find('[aria-rowindex=5]');
-    const expandCaret = row.find('[aria-colindex=1]').childAt(0);
-    expandCaret.simulate('click');
-
-    const expandedGrid = table.find(Grid);
-    const childRow = expandedGrid.find('[aria-rowindex=6]');
-    const checkbox = childRow.find('[aria-colindex=2]');
-    checkbox.simulate('click');
-
-    expect(
-      table
-        .find(Grid)
-        .find('[aria-rowindex=6]')
-        .find(Checkbox)
-        .props().checked,
-    ).toBe(true);
-  });
-
-  it('Selecting one child should render the parent invalid', () => {
-    // @ts-ignore
-    const table = mount(<DataTable {...props} />);
-    const grid = table.find(Grid);
-    const row = grid.find('[aria-rowindex=5]');
-    const expandCaret = row.find('[aria-colindex=1]').childAt(0);
-    expandCaret.simulate('click');
-
-    const expandedGrid = table.find(Grid);
-    const childRow = expandedGrid.find('[aria-rowindex=6]');
-    const checkbox = childRow.find('[aria-colindex=2]');
-    checkbox.simulate('click');
-
-    expect(
-      table
-        .find(Grid)
-        .find('[aria-rowindex=5]')
-        .find(Checkbox)
-        .props().invalid,
-    ).toBe(true);
-  });
-
-  it('Selecting both children should select the parent', () => {
-    // @ts-ignore
-    const table = mount(<DataTable {...props} />);
-    const grid = table.find(Grid);
-    const row = grid.find('[aria-rowindex=5]');
-    const expandCaret = row.find('[aria-colindex=1]').childAt(0);
-    expandCaret.simulate('click');
-
-    table
-      .find(Grid)
-      .find('[aria-rowindex=6]')
-      .find('[aria-colindex=2]')
-      .simulate('click');
-    table
-      .find(Grid)
-      .find('[aria-rowindex=7]')
-      .find('[aria-colindex=2]')
-      .simulate('click');
-
-    expect(
-      table
-        .find(Grid)
-        .find('[aria-rowindex=5]')
-        .find(Checkbox)
-        .props().invalid,
-    ).toBe(false);
-
-    expect(
-      table
-        .find(Grid)
-        .find('[aria-rowindex=5]')
-        .find(Checkbox)
-        .props().checked,
-    ).toBe(true);
-  });
-
-  it('Selecting the parent should select both children', () => {
-    // @ts-ignore
-    const table = mount(<DataTable {...props} />);
-    const grid = table.find(Grid);
-    const row = grid.find('[aria-rowindex=5]');
-    const expandCaret = row.find('[aria-colindex=1]').childAt(0);
-    expandCaret.simulate('click');
-
-    row
-      .find('[aria-colindex=2]')
-      .childAt(0)
-      .simulate('click');
-
-    expect(
-      table
-        .find(Grid)
-        .find('[aria-rowindex=6]')
-        .find(Checkbox)
-        .props().checked,
-    ).toBe(true);
-
-    expect(
-      table
-        .find(Grid)
-        .find('[aria-rowindex=7]')
-        .find(Checkbox)
-        .props().checked,
-    ).toBe(true);
-  });
-
-  it('Deselecting the parent should deselect both children', () => {
-    // @ts-ignore
-    const table = mount(<DataTable {...props} />);
-    const grid = table.find(Grid);
-    const row = grid.find('[aria-rowindex=5]');
-    const expandCaret = row.find('[aria-colindex=1]').childAt(0);
-    expandCaret.simulate('click');
-
-    // Select one child
-    table
-      .find(Grid)
-      .find('[aria-rowindex=6]')
-      .find('[aria-colindex=2]')
-      .simulate('click');
-
-    // Select parent (deselects both children)
-    row
-      .find('[aria-colindex=2]')
-      .childAt(0)
-      .simulate('click');
-
-    expect(
-      table
-        .find(Grid)
-        .find('[aria-rowindex=7]')
-        .find(Checkbox)
-        .props().checked,
-    ).toBe(false);
-  });
-});
-
-describe('<DataTable /> rows can expand', () => {
-  const data = getData();
-
-  const props = {
-    data,
-    width: 500,
-    expandable: true,
-  };
 
   it('should be expandable', () => {
-    // @ts-ignore
-    const table = mount(<DataTable {...props} />);
-    const grid = table.find(Grid);
-    const row = grid.find('[aria-rowindex=5]');
-    const expandCaret = row.find('[aria-colindex=1]').childAt(0);
-    expandCaret.simulate('click');
-    const expandedGrid = table.find(Grid);
-    const childRow = expandedGrid.find('[aria-rowindex=6]');
-    const childCol = childRow.find('[aria-colindex=2]');
-    const text = childCol.find(Text);
-    expect(text.text()).toBe('Coding Cece');
+    const table = mount(<DataTable {...simpleProps} />);
+
+    expandRow(table, PARENT_ROW);
+
+    expect(
+      getCell(table, CHILD_ROW, 3)
+        .find(Text)
+        .text(),
+    ).toBe(data[4].metadata!.children![0].data.name);
+  });
+
+  it('should be unexpandable', () => {
+    const table = mount(<DataTable {...simpleProps} />);
+
+    expandRow(table, PARENT_ROW);
+    expandRow(table, PARENT_ROW);
+
+    expect(
+      getCell(table, 6, 3)
+        .find(Text)
+        .text(),
+    ).toBe(data[5].data.name);
+  });
+
+  it('should have selectable children', () => {
+    const table = mount(<DataTable {...simpleProps} />);
+
+    expandRow(table, PARENT_ROW);
+    selectRow(table, CHILD_ROW);
+
+    expect(getCheckbox(table, CHILD_ROW).props().checked).toBe(true);    
+  });
+
+  it('selecting the parent should select the children', () => {
+    const table = mount(<DataTable {...simpleProps} />);
+
+    expandRow(table, PARENT_ROW);
+    selectRow(table, PARENT_ROW);
+
+    expect(getCheckbox(table, CHILD_ROW).props().checked).toBe(true);
+  });
+
+  it('selecting the parent then deselecting child should deselect child', () => {
+    const table = mount(<DataTable {...simpleProps} />);
+
+    expandRow(table, PARENT_ROW);
+    selectRow(table, PARENT_ROW);
+    selectRow(table, CHILD_ROW);
+
+    expect(getCheckbox(table, CHILD_ROW).props().checked).toBe(false);
+  });
+
+  it('Selecting the parent then deselecting both children should deselect the parent', () => {
+    const table = mount(<DataTable {...simpleProps} />);
+
+    expandRow(table, PARENT_ROW);
+    selectRow(table, PARENT_ROW);
+    selectRow(table, CHILD_ROW);
+    selectRow(table, CHILD_ROW + 1);
+
+    expect(getCheckbox(table, PARENT_ROW).props().checked).toBe(false);
   });
 });
 
-describe('<DataTable /> renders data', () => {
-  const data = getData();
-
-  const props = {
-    data,
-    width: 500,
-  };
-
+describe('<DataTable /> renders and sorts data', () => {
   it('should render data', () => {
-    // @ts-ignore
-    const grid = mount(<DataTable {...props} />).find(Grid);
-    const row = grid.find('[aria-rowindex=1]');
-    const col = row.find('[aria-colindex=1]');
-    const text = col.find(Text);
-    expect(text.text()).toBe(data[0].data.name);
-  });
-  it('should sort data in Ascending Order', () => {
-    // @ts-ignore
-    const table = mount(<DataTable {...props} />).find(Table);
-    const grid = table.find(Grid);
-    const columnLabels = table.find('.ReactVirtualized__Table__headerColumn');
-    const nameLabel = columnLabels.first();
-    nameLabel.simulate('click');
+    const table = mount(<DataTable {...simpleProps} />);
+    const text = getCell(table, 1, NAME_COL).find(Text).text();
 
-    const row = grid.find('[aria-rowindex=2]');
-    const col = row.find('[aria-colindex=1]');
-    const text = col.find(Text);
-    expect(text.text()).toBe('Product Percy');
+    expect(text).toBe(data[0].data.name);
   });
+  
   it('should sort data in Descending Order', () => {
-    // @ts-ignore
-    const table = mount(<DataTable {...props} />).find(Table);
-    const grid = table.find(Grid);
-    const columnLabels = table.find('.ReactVirtualized__Table__headerColumn');
-    const nameLabel = columnLabels.first();
-    nameLabel.simulate('click');
-    nameLabel.simulate('click');
+    const table = mount(<DataTable {...simpleProps} />);
 
-    const row = grid.find('[aria-rowindex=1]');
-    const col = row.find('[aria-colindex=1]');
-    const text = col.find(Text);
-    expect(text.text()).toBe('Dev Ops Danny');
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
+    nameHeader.simulate('click');
+
+    const text = getCell(table, 1, NAME_COL).find(Text).text();
+
+    expect(text).toBe('Product Percy');
+  });
+
+  it('should sort data in Ascending Order', () => {
+    const table = mount(<DataTable {...simpleProps} />);
+
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(NAME_COL);
+    nameHeader.simulate('click');
+    nameHeader.simulate('click');
+    table.update();
+
+    const text = getCell(table, 1, NAME_COL).find(Text).text();
+
+    expect(text).toBe('Dev Ops Danny');
   });
 });
 
-describe('Static <DataTable /> basic functionality, headers, labels', () => {
-  const data = getData();
-
-  it('should render a div', () => {
-    // @ts-ignore
-    const wrapper = shallow(<DataTable />).dive();
-    expect(wrapper.is('div')).toBe(true);
-  });
-  it('should render an autosizer', () => {
-    // @ts-ignore
-    const wrapper = shallow(<DataTable />).dive();
-    const div = wrapper.find('div div');
-    const auto = div.find(AutoSizer);
-    expect(auto).toHaveLength(1);
-  });
-  it('should render an table header', () => {
-    // @ts-ignore
-    const wrapper = mount(<DataTable tableHeaderLabel="My Table" />);
-    const header = wrapper.find(TableHeader);
-    const text = header
-      .find(Text)
-      .find('div')
-      .text();
-
-    expect(text).toBe('My Table');
-  });
+describe('<DataTable /> renders column labels', () => {
   it('should render the correct column labels', () => {
-    // @ts-ignore
-    const wrapper = shallow(<DataTable data={data} />).dive();
+    const wrapper = shallow(<DataTable data={data} editable={true} />).dive();
     const table = wrapper
       .find(AutoSizer)
+      .at(1)
       .dive()
       .find(Table)
       .dive();
@@ -424,7 +249,7 @@ describe('Static <DataTable /> basic functionality, headers, labels', () => {
       ).toBe(labels[idx]);
     });
   });
-  it('should render the custom column labels', () => {
+  it('should render custom column labels', () => {
     const labels = [
       'CUSTOM NAME',
       'CUSTOM JOB',
@@ -436,7 +261,6 @@ describe('Static <DataTable /> basic functionality, headers, labels', () => {
     ];
 
     const wrapper = shallow(
-      // @ts-ignore
       <DataTable
         data={data}
         columnToLabel={{
@@ -452,6 +276,7 @@ describe('Static <DataTable /> basic functionality, headers, labels', () => {
     ).dive();
     const table = wrapper
       .find(AutoSizer)
+      .at(1)
       .dive()
       .find(Table)
       .dive();
@@ -475,28 +300,37 @@ describe('<DataTable /> handles edits', () => {
     data,
     width: 500,
     tableHeaderLabel: 'My Table',
+    editable: true,
+    editCallbacks: editCallbacks,
   };
 
-  it('should enable instant edit mode', () => {
-    // @ts-ignore
-    const wrapper = shallow(<DataTable {...props} />).dive();
-    const editButton = wrapper
-      .find(TableHeader)
-      .dive()
-      .dive()
-      .find(Row)
+  it('should be able to toggle edit mode off', () => {
+    const wrapper = shallow(<DataTable {...props} instantEdit={true} />).dive();
+    const editButton = getHeader(wrapper)
       .dive()
       .dive()
       .find(Button);
     editButton.simulate('click');
-    editButton.simulate('click');
+
+    const doneButton = getHeader(wrapper)
+      .dive()
+      .dive()
+      .find(Button);
+    doneButton.simulate('click');
+
+    expect(wrapper.state('editMode')).toBe(false);
+  });
+
+  it('should enable instant edit mode', () => {
+    const wrapper = shallow(<DataTable {...props} instantEdit={true} />).dive();
+    const editButton = getHeader(wrapper)
+      .dive()
+      .dive()
+      .find(Button);
+
     editButton.simulate('click');
 
-    const doneButton = wrapper
-      .find(TableHeader)
-      .dive()
-      .dive()
-      .find(Row)
+    const doneButton = getHeader(wrapper)
       .dive()
       .dive()
       .find(Button);
@@ -505,24 +339,16 @@ describe('<DataTable /> handles edits', () => {
     expect(doneButton.find(Translate).prop('phrase')).toBe('Done');
   });
 
-  it('should enable edit mode', () => {
+  it('should enable edit mode and handle edit cancelation', () => {
     // @ts-ignore
     const wrapper = shallow(<DataTable {...props} instantEdit={false} />).dive();
-    const editButton = wrapper
-      .find(TableHeader)
-      .dive()
-      .dive()
-      .find(Row)
+    const editButton = getHeader(wrapper)
       .dive()
       .dive()
       .find(Button);
     editButton.simulate('click');
 
-    const buttons = wrapper
-      .find(TableHeader)
-      .dive()
-      .dive()
-      .find(Row)
+    const buttons = getHeader(wrapper)
       .dive()
       .dive()
       .find(Button);
@@ -551,46 +377,53 @@ describe('<DataTable /> handles edits', () => {
     expect(input.prop('value')).toBe(data[0].data.name);
   });
 
-  // it('should be editable', () => {
-  //   const spy = jest.fn();
+  it('should be editable', () => {
+    // @ts-ignore
+    const wrapper = mount(<DataTable {...props} />);
+    const button = wrapper.find(TableHeader).find(Button);
+    button.simulate('click');
+    const grid = wrapper.find(Grid);
+    const row = grid.find('[aria-rowindex=1]');
+    const col = row.find('[aria-colindex=1]');
+    const input = col.find(Input).find(FormInput);
 
-  //   // @ts-ignore
-  //   const wrapper = mount(<DataTable {...props} />);
-  //   const button = wrapper.find(TableHeader).find(Button);
-  //   button.simulate('click');
-  //   const grid = wrapper.find(Grid)
-  //   const row = grid.find('[aria-rowindex=1]');
-  //   const col = row.find('[aria-colindex=1]');
-  //   const input = col.find(Input).find(FormInput);//.childAt(0).childAt(0);
+    const event = {
+      currentTarget: {
+        value: 'foo',
+      },
+    };
 
-  //   console.log(input.debug());
+    input.simulate('change', event);
+    input.simulate('click');
 
-  //   // input.simulate('click');
-  //   // input.simulate('change', 'abcdefg', {target:{}});
-  //   // input.simulate('keydown', { value: 'asdf' });
-  //   const event = {
-  //     currentTarget: {
-  //       value: 'foo',
-  //     },
-  //   };
-  //   // input.setProps({value: 'asdf' });
+    expect(
+      wrapper
+        .find(Grid)
+        .find('[aria-rowindex=1]')
+        .find('[aria-colindex=1]')
+        .find(Input)
+        .prop('value'),
+    ).toBe(data[0].data.name);
+  });
 
-  //   // console.log(wrapper.state());
+  it('children should be editable', () => {
+    const table = mount(<DataTable {...props} expandable={true} />);
 
-  //   input.simulate('change', event);
+    const expandCaret = getCell(table, 5, 1).childAt(0);
+    expandCaret.simulate('click');
 
-  //   console.log(wrapper.find(Grid).find('[aria-rowindex=1]').find('[aria-colindex=1]')
-  //     .find(Input).find(FormInput).debug());
+    expect(
+      getCell(table, 6, 2)
+        .find(Text)
+        .text(),
+    ).toBe(data[4].metadata!.children![0].data.name);
 
-  //   expect(wrapper.find(Grid)
-  //     .find('[aria-rowindex=1]')
-  //     .find('[aria-colindex=1]')
-  //     .find(Input)
-  //     .prop('value')).toBe(data[0].data);
-  // });
+    const button = table.find(TableHeader).find(Button);
+    button.simulate('click');
+  });
 });
 
-describe('<DataTable /> uses a bvunch of props', () => {
+describe('<DataTable /> does not break with weird props', () => {
   const data = getData();
 
   const props = {
@@ -604,11 +437,22 @@ describe('<DataTable /> uses a bvunch of props', () => {
       name: 'CUSTOM NAME',
     },
     expandable: true,
+    columnHeaderHeight: 'micro',
+    tableHeaderHeight: 'large',
+    keys: ['name'],
+    showRowDividers: true,
+    extraHeaderButtons: headerButtons,
   };
 
-  it('should enable instant edit mode', () => {
+  it('should render with a lot of props', () => {
     // @ts-ignore
-    const wrapper = shallow(<DataTable {...props} />).dive();
+    const wrapper = mount(<DataTable {...props} />);
+    expect(true).toBe(true);
+  });
+
+  it('should render with no props', () => {
+    // @ts-ignore
+    const wrapper = mount(<DataTable />);
     expect(true).toBe(true);
   });
 });

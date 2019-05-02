@@ -21,6 +21,7 @@ export const HEIGHT_TO_PX: heightMapType = {
   small: 48,
   regular: 56,
   large: 64,
+  jumbo: 108,
 };
 
 export const DEFAULT_WIDTH_PROPERTIES: WidthProperties = {
