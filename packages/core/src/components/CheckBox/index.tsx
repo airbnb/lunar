@@ -20,6 +20,7 @@ export default class CheckBox extends React.Component<Props, State> {
     button: false,
     checked: false,
     children: null,
+    neutral: false,
     topAlign: false,
     value: '1',
   };
