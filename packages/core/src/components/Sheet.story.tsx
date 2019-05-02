@@ -36,25 +36,25 @@ class SheetDemo extends React.Component<
     this.setState(({ animated }) => ({ animated: !animated }));
   };
 
-  handleCompactChange() {
+  handleCompactChange = () => {
     this.setState(({ compact }) => ({ compact: !compact }));
-  }
+  };
 
-  handleGapChange() {
+  handleGapChange = () => {
     this.setState(({ gap }) => ({ gap: !gap }));
-  }
+  };
 
-  handleHeaderBarChange() {
+  handleHeaderBarChange = () => {
     this.setState(({ headerBar }) => ({ headerBar: !headerBar }));
-  }
+  };
 
-  handleHeaderBarShadowChange() {
+  handleHeaderBarShadowChange = () => {
     this.setState(({ headerShadow }) => ({ headerShadow: !headerShadow }));
-  }
+  };
 
-  handlePortalChange() {
+  handlePortalChange = () => {
     this.setState(({ portal }) => ({ portal: !portal }));
-  }
+  };
 
   render() {
     const { animated, compact, gap, headerBar, headerShadow, portal, visible } = this.state;
@@ -80,6 +80,28 @@ class SheetDemo extends React.Component<
 
           <CheckBox
             noSpacing
+            name="header"
+            label="Show header bar"
+            checked={headerBar}
+            onChange={this.handleHeaderBarChange}
+          />
+
+          <CheckBox
+            noSpacing
+            name="headerShadow"
+            label="Show shadow on header bar"
+            checked={headerShadow}
+            onChange={this.handleHeaderBarShadowChange}
+          />
+
+          <CheckBox
+            name="compact"
+            label="Render with compact spacing"
+            checked={compact}
+            onChange={this.handleCompactChange}
+          />
+
+          <CheckBox
             name="animated"
             label="Render with animation"
             checked={animated}
