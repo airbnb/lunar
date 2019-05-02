@@ -106,6 +106,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     alignItems: 'center',
     borderBottom: this.props.showRowDividers ? '1px solid' : '',
     borderColor: this.props.theme!.color.core.neutral[1],
+    outline: 'none',
   });
 
   private sort = ({
