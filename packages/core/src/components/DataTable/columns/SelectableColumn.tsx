@@ -9,6 +9,7 @@ import {
   SELECTABLE_COLUMN_WIDTH,
   SELECTABLE_COLUMN_WIDTH_EXPANDABLE,
 } from '../constants';
+import { isEnumType } from 'graphql';
 
 export default function renderSelectableColumn(
   selectedRows: SelectedRows,
@@ -32,7 +33,7 @@ export default function renderSelectableColumn(
         selectedRows[originalIndex].status === SELECTION_OPTIONS.ACTIVE;
     }
 
-    const isInvalid =
+    const isNeutral =
       !isChild &&
       Object.prototype.hasOwnProperty.call(selectedRows, originalIndex) &&
       selectedRows[originalIndex].status === SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
@@ -45,7 +46,7 @@ export default function renderSelectableColumn(
         <CheckBox
           label=""
           name=""
-          invalid={isInvalid}
+          neutral={isNeutral}
           checked={isSelected}
           onChange={handleSelection(row.rowData)}
         />
