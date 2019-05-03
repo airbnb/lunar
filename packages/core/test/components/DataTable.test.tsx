@@ -1,10 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import {
-  AutoSizer,
-  Grid,
-  Table,
-} from 'react-virtualized';
+import { AutoSizer, Grid, Table } from 'react-virtualized';
 
 import getData from '../../../../.storybook/components/DataTable/DataTableData';
 import DataTable from '../../src/components/DataTable';
@@ -232,7 +228,7 @@ describe('<DataTable /> renders and sorts data', () => {
 
 describe('<DataTable /> renders column labels', () => {
   it('should render the correct column labels', () => {
-    const wrapper = shallow(<DataTable data={data} editable={true} />).dive();
+    const wrapper = shallow(<DataTable data={data} editable />).dive();
     const table = wrapper
       .find(AutoSizer)
       .at(1)
@@ -296,18 +292,16 @@ describe('<DataTable /> renders column labels', () => {
 });
 
 describe('<DataTable /> handles edits', () => {
-  const data = getData();
-
   const props = {
     data,
     width: 500,
     tableHeaderLabel: 'My Table',
     editable: true,
-    editCallbacks: editCallbacks,
+    editCallbacks,
   };
 
   it('should be able to toggle edit mode off', () => {
-    const wrapper = shallow(<DataTable {...props} instantEdit={true} />).dive();
+    const wrapper = shallow(<DataTable {...props} instantEdit />).dive();
     const editButton = getHeader(wrapper)
       .dive()
       .dive()
@@ -324,7 +318,7 @@ describe('<DataTable /> handles edits', () => {
   });
 
   it('should enable instant edit mode', () => {
-    const wrapper = shallow(<DataTable {...props} instantEdit={true} />).dive();
+    const wrapper = shallow(<DataTable {...props} instantEdit />).dive();
     const editButton = getHeader(wrapper)
       .dive()
       .dive()
@@ -409,7 +403,7 @@ describe('<DataTable /> handles edits', () => {
   });
 
   it('children should be editable', () => {
-    const table = mount(<DataTable {...props} expandable={true} />);
+    const table = mount(<DataTable {...props} expandable />);
 
     const expandCaret = getCell(table, 5, 1).childAt(0);
     expandCaret.simulate('click');
@@ -426,8 +420,6 @@ describe('<DataTable /> handles edits', () => {
 });
 
 describe('<DataTable /> does not break with weird props', () => {
-  const data = getData();
-
   const props = {
     data,
     width: 500,
@@ -447,14 +439,17 @@ describe('<DataTable /> does not break with weird props', () => {
   };
 
   it('should render with a lot of props', () => {
-    // @ts-ignore
-    const wrapper = mount(<DataTable {...props} />);
-    expect(true).toBe(true);
+    const table = mount(<DataTable {...props} />);
+    const text = getCell(table, 1, NAME_COL)
+      .find(Text)
+      .text();
+
+    expect(text).toBe(data[0].data.name);
   });
 
   it('should render with no props', () => {
-    // @ts-ignore
-    const wrapper = mount(<DataTable />);
-    expect(true).toBe(true);
+    const table = mount(<DataTable />);
+
+    expect(table).toBe(true);
   });
 });

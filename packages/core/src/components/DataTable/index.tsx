@@ -129,9 +129,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       });
     }
   };
-
-  private expandRow = (newExpandedRowIndex: number) => (
-    (event: React.SyntheticEvent<EventTarget>) => {
+  
+  // eslint-disable-next-line 
+  private expandRow = (newExpandedRowIndex: number) => (event: React.SyntheticEvent<EventTarget>) => {
     event.stopPropagation();
     this.setState(({ expandedRows }) => {
       const newExpandedRows = new Set(expandedRows);
@@ -145,7 +145,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         expandedRows: newExpandedRows,
       };
     });
-  });
+  };
 
   private updateCellData(row: TableRow, key: string, newVal: any) {
     const { metadata } = row.rowData;
@@ -304,9 +304,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   };
 
   // Have to use any to match react-virutalized's specified callback signature
-  private handleRowClick = ({ rowData }: { rowData: any }): void => {
+  private handleRowClick = ({ rowData }: { rowData: any }) =>
     this.props.selectOnRowClick && this.handleSelection(rowData)();
-  };
 
   renderTableHeader(parentWidth: number) {
     const {
@@ -320,25 +319,28 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     const { editMode, selectedRows } = this.state;
 
-    const shouldRender = (editable || extraHeaderButtons!.length > 0 ||  !!tableHeaderLabel);
+    const shouldRender = editable || extraHeaderButtons!.length > 0 || !!tableHeaderLabel;
 
-    return shouldRender &&
-      (
-        <TableHeader
-          editable={editable}
-          editMode={editMode}
-          instantEdit={instantEdit}
-          onEnableEditMode={this.enableEditMode}
-          onDisableEditMode={this.disableEditMode}
-          onCancelEditMode={this.cancelEditMode}
-          onEnactEdits={this.enactEdits}
-          extraHeaderButtons={extraHeaderButtons}
-          height={getHeight(rowHeight, tableHeaderHeight)}
-          selectedRows={selectedRows}
-          tableHeaderLabel={tableHeaderLabel}
-          width={this.props.width ? Math.min(this.props.width, parentWidth) : parentWidth}
-        />
-      );
+    return shouldRender ? (
+      <TableHeader
+        editable={editable}
+        editMode={editMode}
+        instantEdit={instantEdit}
+        // eslint-disable-next-line react/jsx-handler-names
+        onEnableEditMode={this.enableEditMode}
+        // eslint-disable-next-line react/jsx-handler-names
+        onDisableEditMode={this.disableEditMode}
+        // eslint-disable-next-line react/jsx-handler-names
+        onCancelEditMode={this.cancelEditMode}
+        // eslint-disable-next-line react/jsx-handler-names
+        onEnactEdits={this.enactEdits}
+        extraHeaderButtons={extraHeaderButtons}
+        height={getHeight(rowHeight, tableHeaderHeight)}
+        selectedRows={selectedRows}
+        tableHeaderLabel={tableHeaderLabel}
+        width={this.props.width ? Math.min(this.props.width, parentWidth) : parentWidth}
+      />
+    ) : null;
   }
 
   rowGetter = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }) =>
