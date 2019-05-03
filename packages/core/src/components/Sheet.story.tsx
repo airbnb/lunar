@@ -89,7 +89,7 @@ class SheetDemo extends React.Component<
           <CheckBox
             noSpacing
             name="header"
-            label="Show header bar"
+            label="Show header"
             checked={header}
             onChange={this.handleHeaderChange}
           />
@@ -97,7 +97,7 @@ class SheetDemo extends React.Component<
           <CheckBox
             noSpacing
             name="headerShadow"
-            label="Show shadow on header bar"
+            label="Show shadow on header"
             checked={headerShadow}
             onChange={this.handleHeaderShadowChange}
           />
