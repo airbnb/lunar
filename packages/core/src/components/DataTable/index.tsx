@@ -44,7 +44,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     expandedRows: new Set(),
     selectedRows: {},
     sortBy: this.props.sortByOverride || '',
-    sortDirection: this.props.sortDirectionOverride,
+    sortDirection: this.props.sortDirectionOverride!,
     editMode: false,
   };
 
@@ -360,8 +360,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       sortedDataList,
       expandedRows,
       sortBy,
-      sortDirection,
       this.keys,
+      sortDirection,
     );
 
     return (

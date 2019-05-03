@@ -19,9 +19,9 @@ function sortDesc(a: any, b: any) {
 
 export default function sortList<T extends GenericRow>(
   list: T[],
-  sortDirection: SortDirectionType,
   keys: string[],
   sortBy?: string,
+  sortDirection?: SortDirectionType,
 ): T[] {
   if (sortBy && keys.includes(sortBy)) {
     if (sortDirection === SortDirection.ASC) {

@@ -68,7 +68,7 @@ export default function renderDataColumns(
       }
     }
 
-    const contents: NonNullable<React.ReactNode> = renderer
+    const contents: React.ReactNode = renderer
       ? renderer(rendererArguments)
       : renderDefaultContent(rendererArguments);
 

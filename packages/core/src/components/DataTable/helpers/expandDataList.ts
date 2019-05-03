@@ -7,8 +7,8 @@ export default function expandDataList(
   sortedDataList: IndexedParentRow[],
   expandedRows: Set<number>,
   sortBy: string,
-  sortDirection: SortDirectionType,
   keys: string[],
+  sortDirection?: SortDirectionType,
 ) {
   const expandedDataList: ExpandedRow[] = [];
   sortedDataList.forEach((row: IndexedParentRow, idx: number) => {
@@ -20,7 +20,7 @@ export default function expandDataList(
       },
     });
     if (row.metadata.originalIndex && expandedRows.has(row.metadata.originalIndex)) {
-      const children = sortList(row.metadata.children, sortDirection, keys, sortBy);
+      const children = sortList(row.metadata.children, keys, sortBy, sortDirection);
       children.forEach((child: IndexedChildRow) => {
         expandedDataList.push({
           ...child,
