@@ -8,7 +8,6 @@ import {
 } from 'react-virtualized';
 
 import DataTable from '../../src/components/DataTable';
-import SelectedRows from '../../src/components/DataTable/types';
 import TableHeader from '../../src/components/DataTable/TableHeader';
 import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
@@ -30,7 +29,7 @@ const columnMetadata = {
   },
 };
 
-const headerButtonClick = (selectedRows: SelectedRows) => () => {
+const headerButtonClick = (selectedRows: any) => () => {
   console.log('this callback has access to the selected rows');
 };
 
