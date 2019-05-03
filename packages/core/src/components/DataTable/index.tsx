@@ -123,7 +123,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       const { sortedDataList } = this.state;
 
       this.setState({
-        sortedDataList: sortList(sortedDataList, sortDirection, this.keys, sortBy),
+        sortedDataList: sortList(sortedDataList, this.keys, sortBy, sortDirection),
         sortBy,
         sortDirection,
       });
