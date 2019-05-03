@@ -1,27 +1,21 @@
 import React from 'react';
+import getData from ':storybook/components/DataTable/DataTableData';
 import { shallow, mount } from 'enzyme';
 import {
   AutoSizer,
-  SortDirection,
-  SortDirectionType,
   Grid,
   Table,
-  Column,
 } from 'react-virtualized';
+
 import DataTable from '../../src/components/DataTable';
+import SelectedRows from '../../src/components/DataTable/types';
 import TableHeader from '../../src/components/DataTable/TableHeader';
 import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
 import Input from '../../src/components/Input';
 import FormInput from '../../src/components/private/FormInput';
-import BaseInput from '../../src/components/private/BaseInput';
-import Row from '../../src/components/Row';
 import Button from '../../src/components/Button';
-import getData from '../../../../.storybook/components/DataTable/DataTableData';
-// import getData from '../../../../../../../../.storybook/components/DataTable/DataTableData';
 import Checkbox from '../../src/components/CheckBox';
-import BaseCheckBox, { Props } from '@airbnb/lunar/lib/components/CheckBox';
-import { STATUS_OPTIONS } from '../../../../packages/core/src/components/DataTable/constants';
 
 const columnMetadata = {
   jobTitle: {
