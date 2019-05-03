@@ -30,7 +30,7 @@ export type Props = {
   /** Determines if the sheet animates in/out. */
   noAnimation?: boolean;
   /** Content of the header bar */
-  headerBar?: React.ReactNode;
+  header?: React.ReactNode;
   /** Render with reduced padding */
   compact?: boolean;
   /** Render the header area with a drop-shadow */
@@ -174,7 +174,7 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
       portal,
       visible,
       children,
-      headerBar,
+      header,
       compact,
       headerShadow,
     } = this.props;
@@ -235,7 +235,7 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
               <div {...css(headerShadow && styles.headerShadow)}>
                 <Spacing all={compact ? 1 : 4} bottom={0}>
                   <Row middleAlign before={!gap && closeIcon} after={gap && closeIcon}>
-                    {headerBar || ''}
+                    {header || ''}
                   </Row>
                 </Spacing>
               </div>

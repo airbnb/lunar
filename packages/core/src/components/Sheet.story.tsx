@@ -12,7 +12,7 @@ class SheetDemo extends React.Component<
     animated: boolean;
     compact: boolean;
     gap: boolean;
-    headerBar: boolean;
+    header: boolean;
     headerShadow: boolean;
     portal: boolean;
     visible: boolean;
@@ -44,11 +44,11 @@ class SheetDemo extends React.Component<
     this.setState(({ gap }) => ({ gap: !gap }));
   };
 
-  handleHeaderBarChange = () => {
-    this.setState(({ headerBar }) => ({ headerBar: !headerBar }));
+  handleHeaderChange = () => {
+    this.setState(({ header }) => ({ header: !header }));
   };
 
-  handleHeaderBarShadowChange = () => {
+  handleHeaderShadowChange = () => {
     this.setState(({ headerShadow }) => ({ headerShadow: !headerShadow }));
   };
 
@@ -57,7 +57,7 @@ class SheetDemo extends React.Component<
   };
 
   render() {
-    const { animated, compact, gap, headerBar, headerShadow, portal, visible } = this.state;
+    const { animated, compact, gap, header, headerShadow, portal, visible } = this.state;
 
     return (
       <SheetArea>
@@ -90,8 +90,8 @@ class SheetDemo extends React.Component<
             noSpacing
             name="header"
             label="Show header bar"
-            checked={headerBar}
-            onChange={this.handleHeaderBarChange}
+            checked={header}
+            onChange={this.handleHeaderChange}
           />
 
           <CheckBox
@@ -99,7 +99,7 @@ class SheetDemo extends React.Component<
             name="headerShadow"
             label="Show shadow on header bar"
             checked={headerShadow}
-            onChange={this.handleHeaderBarShadowChange}
+            onChange={this.handleHeaderShadowChange}
           />
 
           <CheckBox
@@ -115,7 +115,7 @@ class SheetDemo extends React.Component<
             portal={portal}
             visible={visible}
             onClose={this.handleClick}
-            headerBar={headerBar && <Text>This is the header!</Text>}
+            header={header && <Text>This is the header!</Text>}
             headerShadow={headerShadow}
             compact={compact}
           >
