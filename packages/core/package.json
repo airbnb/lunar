@@ -55,6 +55,7 @@
     "ms": "^2.1.1",
     "prop-types": "^15.7.2",
     "react-day-picker": "^7.3.0",
+    "react-virtualized": "9.21.0",
     "shader": "^1.0.0",
     "shallowequal": "^1.1.0",
     "utility-types": "^3.5.0",
