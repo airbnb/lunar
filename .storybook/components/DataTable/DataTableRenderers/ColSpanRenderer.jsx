@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Text from '../../../../packages/core/src/components/Text';
-import Spacing from '../../../../packages/core/src/components/Spacing';
-import { getRowColor } from '../../../../packages/core/src/components/DataTable/helpers';
+import Text from '@airbnb/lunar/src/components/Text';
+import Spacing from '@airbnb/lunar/src/components/Spacing';
+import { getRowColor } from '@airbnb/lunar/src/components/DataTable/helpers';
 
 export default function ColspanRenderer({
   row,

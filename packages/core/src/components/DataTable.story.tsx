@@ -87,9 +87,7 @@ storiesOf('Core/DataTable', module)
   .addParameters({
     inspectComponents: [DataTable],
   })
-  .add('A standard table.', () => (
-    <DataTable data={getData()} keys={['name', 'jobTitle']} />
-  ))
+  .add('A standard table.', () => <DataTable data={getData()} keys={['name', 'jobTitle']} />)
   .add('A table with selectable and exandable rows.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"

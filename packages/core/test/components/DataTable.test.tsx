@@ -17,7 +17,7 @@ import FormInput from '../../src/components/private/FormInput';
 import BaseInput from '../../src/components/private/BaseInput';
 import Row from '../../src/components/Row';
 import Button from '../../src/components/Button';
-import getData from '../../../../.storybook/components/DataTable/DataTableData'
+import getData from '../../../../.storybook/components/DataTable/DataTableData';
 // import getData from '../../../../../../../../.storybook/components/DataTable/DataTableData';
 import Checkbox from '../../src/components/CheckBox';
 import BaseCheckBox, { Props } from '@airbnb/lunar/lib/components/CheckBox';
@@ -90,16 +90,18 @@ const getCell = (wrapper: any, row: number, col: number) =>
     .find(`[aria-colindex=${col}]`);
 
 const getCheckbox = (table: any, row: number) => getRow(table, row).find(Checkbox);
-const getCaret =  (table: any, row: number) => getCell(table, row, 1);
+const getCaret = (table: any, row: number) => getCell(table, row, 1);
 
 const selectRow = (table: any, row: number) => {
   getCheckbox(table, row).prop('onChange')();
   table.update();
-}
+};
 
 const expandRow = (table: any, row: number) => {
-  getCaret(table, row).childAt(0).simulate('click');
-}
+  getCaret(table, row)
+    .childAt(0)
+    .simulate('click');
+};
 
 const getHeader = (wrapper: any) =>
   wrapper
@@ -117,8 +119,8 @@ const CHILD_ROW = 6;
 describe('<DataTable /> rows can be selected', () => {
   it('should be selectable', () => {
     const table = mount(<DataTable {...simpleProps} />);
-    
-    selectRow(table, ROW)
+
+    selectRow(table, ROW);
     expect(getCheckbox(table, ROW).props().checked).toBe(true);
   });
 
@@ -128,7 +130,7 @@ describe('<DataTable /> rows can be selected', () => {
     getRow(table, ROW).simulate('click');
     table.update();
 
-    expect(getCheckbox(table, ROW).props().checked).toBe(true);    
+    expect(getCheckbox(table, ROW).props().checked).toBe(true);
   });
 
   it('should be expandable', () => {
@@ -162,7 +164,7 @@ describe('<DataTable /> rows can be selected', () => {
     expandRow(table, PARENT_ROW);
     selectRow(table, CHILD_ROW);
 
-    expect(getCheckbox(table, CHILD_ROW).props().checked).toBe(true);    
+    expect(getCheckbox(table, CHILD_ROW).props().checked).toBe(true);
   });
 
   it('selecting the parent should select the children', () => {
@@ -199,18 +201,22 @@ describe('<DataTable /> rows can be selected', () => {
 describe('<DataTable /> renders and sorts data', () => {
   it('should render data', () => {
     const table = mount(<DataTable {...simpleProps} />);
-    const text = getCell(table, 1, NAME_COL).find(Text).text();
+    const text = getCell(table, 1, NAME_COL)
+      .find(Text)
+      .text();
 
     expect(text).toBe(data[0].data.name);
   });
-  
+
   it('should sort data in Descending Order', () => {
     const table = mount(<DataTable {...simpleProps} />);
 
     const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
     nameHeader.simulate('click');
 
-    const text = getCell(table, 1, NAME_COL).find(Text).text();
+    const text = getCell(table, 1, NAME_COL)
+      .find(Text)
+      .text();
 
     expect(text).toBe('Product Percy');
   });
@@ -223,7 +229,9 @@ describe('<DataTable /> renders and sorts data', () => {
     nameHeader.simulate('click');
     table.update();
 
-    const text = getCell(table, 1, NAME_COL).find(Text).text();
+    const text = getCell(table, 1, NAME_COL)
+      .find(Text)
+      .text();
 
     expect(text).toBe('Dev Ops Danny');
   });

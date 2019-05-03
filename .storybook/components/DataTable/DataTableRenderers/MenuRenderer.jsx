@@ -1,6 +1,6 @@
 import React from 'react';
-import Menu, { Item } from '../../../../packages/core/src/components/Menu';
-import Button from '../../../../packages/core/src/components/Button';
+import Menu, { Item } from '@airbnb/lunar/src/components/Menu';
+import Button from '@airbnb/lunar/src/components/Button';
 import IconMenuDots from '@airbnb/lunar-icons/lib/interface/IconMenuDots';
 
 export class MenuRenderer extends React.Component {

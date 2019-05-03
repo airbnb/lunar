@@ -88,7 +88,7 @@ export default function buildInputStyles({
 
   const commonNeutral = {
     borderColor: color.core.neutral[4],
-    
+
     '@selectors': {
       ':hover, :focus': {
         borderColor: color.core.neutral[4],
