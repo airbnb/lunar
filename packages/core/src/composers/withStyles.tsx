@@ -4,7 +4,7 @@ import {
   WithStylesOptions,
   WithStylesProps as BaseWithStylesProps,
 } from 'aesthetic';
-import { NativeBlock, ParsedBlock } from 'aesthetic-adapter-aphrodite';
+import { NativeBlock, ParsedBlock } from 'aesthetic-adapter-jss';
 import Core from '..';
 import { Theme } from '../types';
 

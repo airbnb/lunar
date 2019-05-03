@@ -1,5 +1,9 @@
 import Aesthetic, { FontFace } from 'aesthetic';
-import AphroditeAesthetic, { NativeBlock, ParsedBlock } from 'aesthetic-adapter-aphrodite';
+import JSSAesthetic, { NativeBlock, ParsedBlock } from 'aesthetic-adapter-jss';
+import { create } from 'jss';
+import rtl from 'jss-rtl';
+// @ts-ignore
+import preset from 'jss-preset-default';
 import { Settings as LuxonSettings } from 'luxon';
 import { Path as EmojiPath } from 'interweave-emoji';
 import globalStyles from './themes/global';
@@ -27,6 +31,7 @@ export type Settings = {
   fontFamily?: string;
   logger?: Logger | null;
   name: string;
+  rtl?: boolean;
   theme?: 'light' | 'dark';
   translator?: Translator | null;
   translatorComponent?: React.ComponentType<TranslateProps> | null;
@@ -43,6 +48,7 @@ class Core {
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     logger: null,
     name: 'Lunar',
+    rtl: false,
     theme: 'light',
     translator: null,
     translatorComponent: null,
@@ -63,8 +69,11 @@ class Core {
   bootstrapAesthetic() {
     const { theme, fontFamily, fontFaces } = this.settings;
     const globals = globalStyles(fontFaces);
+    const jss = create({
+      plugins: preset().plugins.concat(rtl({ enabled: this.settings.rtl })),
+    });
 
-    this.aesthetic = new AphroditeAesthetic<Theme>([], {
+    this.aesthetic = new JSSAesthetic<Theme>(jss, {
       theme,
       passThemeProp: false,
       pure: true,
@@ -124,7 +133,7 @@ class Core {
     }
 
     // Low-level token interpolation
-    return message.replace(/%\{(\w+)\}/g, (match, key) => String(params[key] || ''));
+    return message.replace(/%\{(\w+)\}/g, (match, key) => `${params[key]}`);
   };
 }
 
