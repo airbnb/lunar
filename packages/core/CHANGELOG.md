@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.6.0 - 2019-05-03
+
+#### 🚀 Updates
+
+- **[Sheet]** Add header bar (#20) ([138f690](https://github.com/airbnb/lunar/commit/138f690)), closes [#20](https://github.com/airbnb/lunar/issues/20)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.5.0 - 2019-05-01
 
 #### 🚀 Updates
