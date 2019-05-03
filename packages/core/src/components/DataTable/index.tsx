@@ -129,8 +129,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       });
     }
   };
-  
-  // eslint-disable-next-line 
+
+  // eslint-disable-next-line
   private expandRow = (newExpandedRowIndex: number) => (event: React.SyntheticEvent<EventTarget>) => {
     event.stopPropagation();
     this.setState(({ expandedRows }) => {
