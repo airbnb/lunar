@@ -9,7 +9,6 @@ import {
   SELECTABLE_COLUMN_WIDTH,
   SELECTABLE_COLUMN_WIDTH_EXPANDABLE,
 } from '../constants';
-import { isEnumType } from 'graphql';
 
 export default function renderSelectableColumn(
   selectedRows: SelectedRows,

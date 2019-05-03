@@ -130,7 +130,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     }
   };
 
-  private expandRow = (newExpandedRowIndex: number) => (event: React.SyntheticEvent<EventTarget>) => {
+  private expandRow = (newExpandedRowIndex: number) => (
+    (event: React.SyntheticEvent<EventTarget>) => {
     event.stopPropagation();
     this.setState(({ expandedRows }) => {
       const newExpandedRows = new Set(expandedRows);
@@ -144,7 +145,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         expandedRows: newExpandedRows,
       };
     });
-  };
+  });
 
   private updateCellData(row: TableRow, key: string, newVal: any) {
     const { metadata } = row.rowData;
@@ -319,22 +320,25 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     const { editMode, selectedRows } = this.state;
 
-    return (editable || extraHeaderButtons!.length > 0 ||  !!tableHeaderLabel) && (
-      <TableHeader
-        editable={editable}
-        editMode={editMode}
-        instantEdit={instantEdit}
-        onEnableEditMode={this.enableEditMode}
-        onDisableEditMode={this.disableEditMode}
-        onCancelEditMode={this.cancelEditMode}
-        onEnactEdits={this.enactEdits}
-        extraHeaderButtons={extraHeaderButtons}
-        height={getHeight(rowHeight, tableHeaderHeight)}
-        selectedRows={selectedRows}
-        tableHeaderLabel={tableHeaderLabel}
-        width={this.props.width ? Math.min(this.props.width, parentWidth) : parentWidth}
-      />
-    );
+    const shouldRender = (editable || extraHeaderButtons!.length > 0 ||  !!tableHeaderLabel);
+
+    return shouldRender &&
+      (
+        <TableHeader
+          editable={editable}
+          editMode={editMode}
+          instantEdit={instantEdit}
+          onEnableEditMode={this.enableEditMode}
+          onDisableEditMode={this.disableEditMode}
+          onCancelEditMode={this.cancelEditMode}
+          onEnactEdits={this.enactEdits}
+          extraHeaderButtons={extraHeaderButtons}
+          height={getHeight(rowHeight, tableHeaderHeight)}
+          selectedRows={selectedRows}
+          tableHeaderLabel={tableHeaderLabel}
+          width={this.props.width ? Math.min(this.props.width, parentWidth) : parentWidth}
+        />
+      );
   }
 
   rowGetter = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }) =>
@@ -383,7 +387,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
                 onRowClick={this.handleRowClick}
               >
                 {expandable && renderExpandableColumn(styles, expandedRows, this.expandRow)}
-                {selectable && renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
+                {selectable &&
+                  renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
                 {renderDataColumns(this.keys, editMode, this.onEdit, this.props)}
               </Table>
             )}
@@ -394,7 +399,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   }
 }
 
-export default withStyles((theme: WithStylesProps['theme']) => ({
+export default withStyles(
+  (theme: WithStylesProps['theme']) => ({
     table_container: {
       overflowX: 'auto',
     },

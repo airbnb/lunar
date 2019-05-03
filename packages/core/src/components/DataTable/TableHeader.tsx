@@ -84,18 +84,18 @@ export function TableHeader({
         <Button small onClick={onDisableEditMode} key={0}>
           <Translate phrase="Done" context="This button exits edit mode." />
         </Button>,
-      ] 
-        : [
-          <Button small inverted onClick={onCancelEditMode} key={0}>
-            <Translate
-              phrase="Cancel"
-              context="This button cancels out of edit mode without applying changes."
-            />
-          </Button>,
-          <Button small onClick={onEnactEdits} key={1}>
-            <Translate phrase="Apply" context="This button applies all live edits." />
-          </Button>,
-        ];
+      ]
+    : [
+        <Button small inverted onClick={onCancelEditMode} key={0}>
+          <Translate
+            phrase="Cancel"
+            context="This button cancels out of edit mode without applying changes."
+          />
+        </Button>,
+        <Button small onClick={onEnactEdits} key={1}>
+          <Translate phrase="Apply" context="This button applies all live edits." />
+        </Button>,
+      ];
 
   const modeButtons = editMode ? (
     editModeButtons
@@ -105,7 +105,7 @@ export function TableHeader({
     </Button>
   );
 
-  const headerButtons = 
+  const headerButtons =
     extraHeaderButtons!.length > -1 || editable ? (
       <ButtonGroup>
         {extraButtons}
@@ -130,7 +130,7 @@ export function TableHeader({
   );
 }
 
-export default withStyles((theme) => ({
+export default withStyles(theme => ({
   tableHeader_inner: {
     display: 'flex',
     alignItems: 'center',
