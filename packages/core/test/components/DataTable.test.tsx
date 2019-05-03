@@ -1,5 +1,4 @@
 import React from 'react';
-import getData from ':storybook/components/DataTable/DataTableData';
 import { shallow, mount } from 'enzyme';
 import {
   AutoSizer,
@@ -7,6 +6,7 @@ import {
   Table,
 } from 'react-virtualized';
 
+import getData from '../../../../.storybook/components/DataTable/DataTableData';
 import DataTable from '../../src/components/DataTable';
 import TableHeader from '../../src/components/DataTable/TableHeader';
 import Text from '../../src/components/Text';
