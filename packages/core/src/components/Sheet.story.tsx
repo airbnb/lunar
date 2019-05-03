@@ -22,7 +22,7 @@ class SheetDemo extends React.Component<
     animated: true,
     compact: false,
     gap: false,
-    headerBar: false,
+    header: false,
     headerShadow: false,
     portal: false,
     visible: false,
