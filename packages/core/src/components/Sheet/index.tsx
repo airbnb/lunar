@@ -17,24 +17,24 @@ import SheetContext, { Context } from './SheetContext';
 export { SheetArea, SheetContext };
 
 export type Props = {
-  /** Invoked when the sheet close button is pressed, or when escape is pressed when displaying a portal sheet. This function should set the `visible` prop to false. */
-  onClose: () => void;
   /** The contents of the sheet. */
   children: NonNullable<React.ReactNode>;
-  /** Determines if the sheet is currently visible or not. */
-  visible?: boolean;
-  /** Determines if the sheet is displayed as a full-page view that covers the entire application. */
-  portal?: boolean;
-  /** Determines if the sheet has a side gap. */
-  gap?: boolean;
-  /** Determines if the sheet animates in/out. */
-  noAnimation?: boolean;
-  /** Content of the header bar */
-  header?: React.ReactNode;
   /** Render with reduced padding */
   compact?: boolean;
+  /** Determines if the sheet has a side gap. */
+  gap?: boolean;
+  /** Content of the header bar */
+  header?: React.ReactNode;
   /** Render the header area with a drop-shadow */
   headerShadow?: boolean;
+  /** Determines if the sheet animates in/out. */
+  noAnimation?: boolean;
+  /** Invoked when the sheet close button is pressed, or when escape is pressed when displaying a portal sheet. This function should set the `visible` prop to false. */
+  onClose: () => void;
+  /** Determines if the sheet is displayed as a full-page view that covers the entire application. */
+  portal?: boolean;
+  /** Determines if the sheet is currently visible or not. */
+  visible?: boolean;
 };
 
 export type PrivateProps = {
