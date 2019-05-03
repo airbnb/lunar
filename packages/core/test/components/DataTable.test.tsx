@@ -76,6 +76,7 @@ const simpleProps = {
   selectable: true,
   expandable: true,
   editable: true,
+  tableHeaderLabel: 'My Great Table',
 };
 
 const data = getData();

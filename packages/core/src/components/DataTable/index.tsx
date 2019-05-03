@@ -321,7 +321,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     
 
-    return editable || extraHeaderButtons!.length > 0 ||  !!tableHeaderLabel && (
+    return (editable || extraHeaderButtons!.length > 0 ||  !!tableHeaderLabel) && (
       <TableHeader
         editable={editable}
         editMode={editMode}
