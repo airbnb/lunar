@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { AutoSizer, Grid, Table } from 'react-virtualized';
 
-import getData from '../../../../.storybook/components/DataTable/DataTableData';
 import DataTable from '../../src/components/DataTable';
 import TableHeader from '../../src/components/DataTable/TableHeader';
 import Text from '../../src/components/Text';
@@ -11,6 +10,97 @@ import Input from '../../src/components/Input';
 import FormInput from '../../src/components/private/FormInput';
 import Button from '../../src/components/Button';
 import Checkbox from '../../src/components/CheckBox';
+import { ParentRow } from '../../src/components/DataTable/types';
+import { STATUS_OPTIONS } from '../../src/components/DataTable/constants';
+
+const data: ParentRow[] = [
+  {
+    data: {
+      name: 'Product Percy',
+      jobTitle: 'PM',
+      tenureDays: 307,
+      menu: '',
+      cats: 1,
+    },
+  },
+  {
+    data: {
+      name: 'Hidden Henry',
+      jobTitle: 'Engineer',
+      tenureDays: 407,
+      menu: '',
+      cats: 1,
+      colSpan: 'This person is hidden because you have insufficient permissions.',
+    },
+    metadata: {
+      colSpanKey: 'colSpan',
+    },
+  },
+  {
+    data: {
+      name: 'Engineer Emma',
+      jobTitle: 'Engineer',
+      tenureDays: 500,
+      menu: '',
+      cats: 2,
+    },
+  },
+  {
+    data: {
+      name: 'Frontend Fabien',
+      jobTitle: 'Engineer',
+      tenureDays: 600,
+      menu: '',
+      cats: 1,
+    },
+  },
+  {
+    data: {
+      name: 'Manager Mary',
+      jobTitle: 'Manager',
+      tenureDays: 820,
+      menu: '',
+      cats: 3,
+    },
+    metadata: {
+      children: [
+        {
+          data: {
+            name: 'Coding Cece',
+            jobTitle: 'Engineer',
+            tenureDays: 1610,
+            menu: '',
+            cats: 2,
+          },
+          metadata: {
+            status: STATUS_OPTIONS.ALERT,
+          },
+        },
+        {
+          data: {
+            name: 'Hacker Helen',
+            jobTitle: 'Engineer',
+            tenureDays: 1095,
+            menu: '',
+            cats: 3,
+          },
+        },
+      ],
+    },
+  },
+  {
+    data: {
+      name: 'Dev Ops Danny',
+      jobTitle: 'Engineer',
+      tenureDays: 30,
+      menu: '',
+      cats: 1,
+    },
+    metadata: {
+      status: STATUS_OPTIONS.ALERT,
+    },
+  },
+];
 
 const columnMetadata = {
   jobTitle: {
@@ -59,7 +149,7 @@ const headerButtons = [
 ];
 
 const simpleProps = {
-  data: getData(),
+  data: data,
   width: 500,
   height: 300,
   selectable: true,
@@ -67,8 +157,6 @@ const simpleProps = {
   editable: true,
   tableHeaderLabel: 'My Great Table',
 };
-
-const data = getData();
 
 const getRow = (table: any, row: number) => table.find(Grid).find(`[aria-rowindex=${row}]`);
 
