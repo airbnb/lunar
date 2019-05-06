@@ -15,7 +15,7 @@ export type Props = {
 };
 
 /** Carets to indicate sorting on DataTable. */
-export class Carets extends React.Component<Props & WithStylesProps> {
+export class SortCarets extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
     down: true,
     enableDown: false,
@@ -91,4 +91,4 @@ export default withStyles((theme: WithStylesProps['theme']) => ({
   caret_down: {
     bottom: 11,
   },
-}))(Carets);
+}))(SortCarets);

@@ -14,14 +14,14 @@ export type Props = InputProps & {
   hideLabel?: boolean;
   /** Callback fired when the value changes. */
   onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
-  /** Mark the checkbox as greyed out with a dash to indicate a neutral or inindeterminate state. */
-  neutral?: boolean;
+  /** Mark the checkbox as greyed out with a dash to indicate an indeterminate state. */
+  indeterminate?: boolean;
 };
 
 class BaseCheckBox extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
     checked: false,
-    neutral: false,
+    indeterminate: false,
   };
 
   private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +37,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
       hideLabel,
       id,
       invalid,
-      neutral,
+      indeterminate,
       styles,
       ...restProps
     } = this.props;
@@ -60,7 +60,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
         <span
           {...css(
             styles.input,
-            neutral && styles.input_neutral,
+            indeterminate && styles.input_indeterminate,
             checked && styles.input_checked,
             invalid && styles.input_invalid,
             disabled && styles.input_disabled,
@@ -71,8 +71,8 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
               <IconCheck size="1.5em" decorative />
             </span>
           )}
-          {neutral && (
-            <span {...css(styles.neutral)}>
+          {indeterminate && (
+            <span {...css(styles.indeterminate)}>
               <IconRemove size="1.64em" decorative />
             </span>
           )}
@@ -82,7 +82,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { button, checked, children, disabled, id, invalid, neutral, styles } = this.props;
+    const { button, checked, children, disabled, id, invalid, indeterminate, styles } = this.props;
 
     if (!button) {
       return this.renderCheckBox();
@@ -93,7 +93,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
         htmlFor={id}
         {...css(
           styles.button,
-          neutral && styles.input_neutral,
+          indeterminate && styles.input_indeterminate,
           checked && styles.button_checked,
           invalid && styles.button_invalid,
           disabled && styles.button_disabled,
@@ -150,7 +150,7 @@ export default withStyles(theme => {
       left: -1,
     },
 
-    neutral: {
+    indeterminate: {
       position: 'relative',
       top: -1,
       left: -1,

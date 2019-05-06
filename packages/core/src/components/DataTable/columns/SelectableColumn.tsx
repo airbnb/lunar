@@ -45,7 +45,7 @@ export default function renderSelectableColumn(
         <CheckBox
           label=""
           name=""
-          neutral={isNeutral}
+          indeterminate={isNeutral}
           checked={isSelected}
           onChange={handleSelection(row.rowData)}
         />

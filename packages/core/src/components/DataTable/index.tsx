@@ -194,13 +194,13 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     }
   };
 
-  private disableEditMode = () => {
+  private handleDisableEditMode = () => {
     this.setState({
       editMode: false,
     });
   };
 
-  private enableEditMode = () => {
+  private handleEnableEditMode = () => {
     const { sortedDataList } = this.state;
 
     this.setState({
@@ -209,14 +209,14 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     });
   };
 
-  private cancelEditMode = () => {
+  private handleCancelEditMode = () => {
     this.setState(prevState => ({
       sortedDataList: prevState.preEditSortedDataList,
       editMode: false,
     }));
   };
 
-  private enactEdits = () => {
+  private handleEnactEdits = () => {
     const { changeLog } = this.state;
     const { enactEditsCallback } = this.props;
     this.setState({
@@ -326,14 +326,10 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         editable={editable}
         editMode={editMode}
         instantEdit={instantEdit}
-        // eslint-disable-next-line react/jsx-handler-names
-        onEnableEditMode={this.enableEditMode}
-        // eslint-disable-next-line react/jsx-handler-names
-        onDisableEditMode={this.disableEditMode}
-        // eslint-disable-next-line react/jsx-handler-names
-        onCancelEditMode={this.cancelEditMode}
-        // eslint-disable-next-line react/jsx-handler-names
-        onEnactEdits={this.enactEdits}
+        onEnableEditMode={this.handleEnableEditMode}
+        onDisableEditMode={this.handleDisableEditMode}
+        onCancelEditMode={this.handleCancelEditMode}
+        onEnactEdits={this.handleEnactEdits}
         extraHeaderButtons={extraHeaderButtons}
         height={getHeight(rowHeight, tableHeaderHeight)}
         selectedRows={selectedRows}
