@@ -36,7 +36,7 @@ export default function renderSelectableColumn(
       !isChild &&
       Object.prototype.hasOwnProperty.call(selectedRows, originalIndex) &&
       selectedRows[originalIndex].status === SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
-    
+
     const indentSize = expandable ? 2.5 : 2;
     const spacing = isChild || !expandable ? indentSize : 0;
 
