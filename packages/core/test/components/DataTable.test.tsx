@@ -431,6 +431,7 @@ describe('<DataTable /> does not break with weird props', () => {
       name: 'CUSTOM NAME',
     },
     expandable: true,
+    selectable: true,
     columnHeaderHeight: 'micro',
     tableHeaderHeight: 'large',
     keys: ['name'],
@@ -450,6 +451,6 @@ describe('<DataTable /> does not break with weird props', () => {
   it('should render with no props', () => {
     const table = mount(<DataTable />);
 
-    expect(table).toBe(true);
+    expect(!!table).toBe(true);
   });
 });
