@@ -32,11 +32,12 @@ export default function renderSelectableColumn(
         selectedRows[originalIndex].status === SELECTION_OPTIONS.ACTIVE;
     }
 
+    
     const isNeutral =
       !isChild &&
       Object.prototype.hasOwnProperty.call(selectedRows, originalIndex) &&
       selectedRows[originalIndex].status === SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
-
+    
     const indentSize = expandable ? 2.5 : 2;
     const spacing = isChild || !expandable ? indentSize : 0;
 
@@ -45,7 +46,7 @@ export default function renderSelectableColumn(
         <CheckBox
           label=""
           name=""
-          indeterminate={isNeutral}
+          indeterminate={true}
           checked={isSelected}
           onChange={handleSelection(row.rowData)}
         />

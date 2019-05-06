@@ -129,7 +129,7 @@ export default function buildInputStyles({
       color: color.base,
     },
 
-    input_neutral: {
+    input_indeterminate: {
       ...commonNeutral,
       backgroundColor: color.core.neutral[4],
       color: color.base,

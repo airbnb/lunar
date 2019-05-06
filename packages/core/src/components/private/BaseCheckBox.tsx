@@ -42,6 +42,8 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
       ...restProps
     } = this.props;
 
+    console.log(indeterminate);
+
     return (
       <label htmlFor={id} {...css(styles.checkbox, hideLabel && styles.checkbox_hideLabel)}>
         <FormInput
@@ -73,7 +75,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
           )}
           {indeterminate && (
             <span {...css(styles.indeterminate)}>
-              <IconRemove size="1.64em" decorative />
+              <IconRemove size="1.5em" decorative />
             </span>
           )}
         </span>
