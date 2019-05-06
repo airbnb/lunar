@@ -32,7 +32,6 @@ export default function renderSelectableColumn(
         selectedRows[originalIndex].status === SELECTION_OPTIONS.ACTIVE;
     }
 
-    
     const isNeutral =
       !isChild &&
       Object.prototype.hasOwnProperty.call(selectedRows, originalIndex) &&
