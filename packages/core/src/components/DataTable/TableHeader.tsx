@@ -81,18 +81,18 @@ export function TableHeader({
 
   const editModeButtons = instantEdit
     ? [
-        <Button small onClick={onDisableEditMode} key={0}>
+        <Button small onClick={onDisableEditMode} key="Done">
           <Translate phrase="Done" context="This button exits edit mode." />
         </Button>,
       ]
     : [
-        <Button small inverted onClick={onCancelEditMode} key={0}>
+        <Button small inverted onClick={onCancelEditMode} key="Cancel">
           <Translate
             phrase="Cancel"
             context="This button cancels out of edit mode without applying changes."
           />
         </Button>,
-        <Button small onClick={onEnactEdits} key={1}>
+        <Button small onClick={onEnactEdits} key="Apply">
           <Translate phrase="Apply" context="This button applies all live edits." />
         </Button>,
       ];

@@ -1,16 +1,15 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
-import DataTable from './DataTable';
-import { SelectedRows, TableRow } from './DataTable/types';
 import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
-
 import getData from ':storybook/components/DataTable/DataTableData';
 import TenureRenderer from ':storybook/components/DataTable/DataTableRenderers/TenureRenderer';
 import ColSpanRenderer from ':storybook/components/DataTable/DataTableRenderers/ColSpanRenderer';
 import CatRenderer from ':storybook/components/DataTable/DataTableRenderers/CatRenderer';
 import MenuRenderer from ':storybook/components/DataTable/DataTableRenderers/MenuRenderer';
+
+import DataTable from './DataTable';
+import { SelectedRows, TableRow } from './DataTable/types';
 
 const renderers = {
   colSpan: ColSpanRenderer,
