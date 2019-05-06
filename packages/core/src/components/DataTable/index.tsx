@@ -130,6 +130,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     }
   };
 
+  // Prettier throws a weird error here that cascades badly.
   // eslint-disable-next-line
   private expandRow = (newExpandedRowIndex: number) => (event: React.SyntheticEvent<EventTarget>) => {
     event.stopPropagation();
