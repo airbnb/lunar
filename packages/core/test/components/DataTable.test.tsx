@@ -149,7 +149,7 @@ const headerButtons = [
 ];
 
 const simpleProps = {
-  data: data,
+  data,
   width: 500,
   height: 300,
   selectable: true,
