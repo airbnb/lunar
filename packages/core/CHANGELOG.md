@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.7.0 - 2019-05-07
+
+#### 🚀 Updates
+
+- **[DataTable]** Add new dynamic data table (#36) ([85b9ab2](https://github.com/airbnb/lunar/commit/85b9ab2)), closes [#36](https://github.com/airbnb/lunar/issues/36)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.6.0 - 2019-05-03
 
 #### 🚀 Updates
