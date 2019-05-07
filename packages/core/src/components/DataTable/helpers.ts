@@ -7,10 +7,15 @@ import { ColumnLabelCase, HeightOptions, ExpandedRow, RowHeightOptions, Status }
 export function caseColumnLabel(label: string, casing: ColumnLabelCase) {
   if (casing === 'title') {
     return startCase(label);
-  } else if (casing === 'sentence') {
+  }
+
+  if (casing === 'sentence') {
     const s = startCase(label);
+
     return s[0] + s.toLowerCase().slice(1);
-  } else if (casing === 'uppercase') {
+  }
+
+  if (casing === 'uppercase') {
     return startCase(label).toUpperCase();
   }
 
