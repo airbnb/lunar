@@ -332,6 +332,27 @@ describe('<DataTable /> renders column labels', () => {
     });
   });
 
+  it('should not format labels if you provide an empty string', () => {
+    const wrapper = shallow(<DataTable data={data} editable columnLabelCase="" />).dive();
+    const table = wrapper
+      .find(AutoSizer)
+      .at(1)
+      .dive()
+      .find(Table)
+      .dive();
+    const columnLabels = table.childAt(0);
+    const labels = ['name', 'jobTitle', 'tenureDays', 'menu', 'cats', 'log', 'colspan'];
+
+    columnLabels.find(Text).forEach((node, idx) => {
+      expect(
+        node
+          .dive()
+          .dive()
+          .text(),
+      ).toBe(labels[idx]);
+    });
+  });
+
   it('should render the correct column labels in caps', () => {
     const wrapper = shallow(<DataTable data={data} editable columnLabelCase="caps" />).dive();
     const table = wrapper
