@@ -12,9 +12,9 @@ export function caseColumnLabel(label: string, casing: ColumnLabelCase) {
     return s[0] + s.toLowerCase().slice(1);
   } else if (casing === 'uppercase') {
     return startCase(label).toUpperCase();
-  } else {
-    return label;
   }
+
+  return label;
 }
 
 function getStatusColor(theme: WithStylesProps['theme'], status: Status) {
