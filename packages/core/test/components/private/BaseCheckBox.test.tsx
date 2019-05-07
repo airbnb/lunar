@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
+import IconRemove from '@airbnb/lunar-icons/lib/interface/IconRemove';
 import BaseCheckBox from '../../../src/components/private/BaseCheckBox';
 import FormInput from '../../../src/components/private/FormInput';
 
@@ -40,6 +41,18 @@ describe('<BaseCheckBox />', () => {
     });
 
     expect(wrapper.find(IconCheck)).toHaveLength(1);
+  });
+
+  it('displays a checkmark when indeterminate', () => {
+    const wrapper = shallow(<BaseCheckBox id="foo" name="foo" onChange={() => {}} />).dive();
+
+    expect(wrapper.find(IconRemove)).toHaveLength(0);
+
+    wrapper.setProps({
+      indeterminate: true,
+    });
+
+    expect(wrapper.find(IconRemove)).toHaveLength(1);
   });
 
   it('triggers `onChange` handler', () => {

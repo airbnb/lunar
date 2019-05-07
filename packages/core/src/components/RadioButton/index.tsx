@@ -1,9 +1,12 @@
 import React from 'react';
 import uuid from 'uuid/v4';
+import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import { Omit } from 'utility-types';
 import BaseRadioButton, { Props as BaseRadioButtonProps } from '../private/BaseRadioButton';
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
 import Text from '../Text';
+
+const stateProp = mutuallyExclusiveTrueProps('checked', 'indeterminate');
 
 export type Props = Omit<BaseRadioButtonProps, 'value'> &
   FormFieldProps & {
@@ -23,7 +26,13 @@ export default class RadioButton extends React.Component<Props, State> {
     button: false,
     checked: false,
     children: null,
+    indeterminate: false,
     topAlign: false,
+  };
+
+  static propTypes = {
+    checked: stateProp,
+    indeterminate: stateProp,
   };
 
   state = {

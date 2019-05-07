@@ -30,6 +30,16 @@ storiesOf('Core/RadioButton', module)
       disabled
     />
   ))
+  .add('With a label description in a indeterminate state.', () => (
+    <RadioButton
+      name="radio-neutral"
+      label="Label"
+      value="foo"
+      labelDescription="This is a small label description."
+      onChange={action('onChange')}
+      indeterminate
+    />
+  ))
   .add('With a top alignment.', () => (
     <RadioButton
       topAlign

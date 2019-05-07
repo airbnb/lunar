@@ -44,6 +44,18 @@ describe('<CheckBox />', () => {
     expect(wrapper.find(BaseCheckBox).prop('checked')).toBe(true);
   });
 
+  it('can set indeterminate', () => {
+    const wrapper = shallow(<CheckBox name="foo" label="Label" value="1" onChange={() => {}} />);
+
+    expect(wrapper.find(BaseCheckBox).prop('indeterminate')).toBe(false);
+
+    wrapper.setProps({
+      indeterminate: true,
+    });
+
+    expect(wrapper.find(BaseCheckBox).prop('indeterminate')).toBe(true);
+  });
+
   describe('button mode', () => {
     let wrapper: Enzyme.ShallowWrapper<Props, State>;
 
