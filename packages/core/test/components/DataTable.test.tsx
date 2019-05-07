@@ -353,7 +353,7 @@ describe('<DataTable /> renders column labels', () => {
     });
   });
 
-  it('should render the correct column labels in caps', () => {
+  it('should render the correct column labels in uppercase', () => {
     const wrapper = shallow(<DataTable data={data} editable columnLabelCase="uppercase" />).dive();
     const table = wrapper
       .find(AutoSizer)

@@ -47,7 +47,7 @@ export type DefaultDataTableProps = keyof DataTableProps;
 export interface DataTableProps {
   /** Height of the column header. */
   columnHeaderHeight?: HeightOptions;
-  /** Change all column label keys to ALL CAPS or Sentence Case*/
+  /** Change all column label keys to UPPERCASE or Title Case or Sentence case*/
   columnLabelCase?: ColumnLabelCase;
   /** Keys mapped onto custom column label names. */
   columnToLabel?: ColumnToLabel;

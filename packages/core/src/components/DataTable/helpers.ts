@@ -10,7 +10,7 @@ export function caseColumnLabel(label: string, casing: ColumnLabelCase) {
   } else if (casing === 'sentence') {
     const s = startCase(label);
     return s[0] + s.toLowerCase().slice(1);
-  } else if (casing === 'caps') {
+  } else if (casing === 'uppercase') {
     return startCase(label).toUpperCase();
   } else {
     return label;
