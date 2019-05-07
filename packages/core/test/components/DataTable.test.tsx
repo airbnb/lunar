@@ -311,8 +311,29 @@ describe('<DataTable /> renders and sorts data', () => {
 });
 
 describe('<DataTable /> renders column labels', () => {
-  it('should render the correct column labels', () => {
+  it('should render the correct column labels in sentence case by default', () => {
     const wrapper = shallow(<DataTable data={data} editable />).dive();
+    const table = wrapper
+      .find(AutoSizer)
+      .at(1)
+      .dive()
+      .find(Table)
+      .dive();
+    const columnLabels = table.childAt(0);
+    const labels = ['Name', 'Job title', 'Tenure days', 'Menu', 'Cats', 'Log', 'Colspan'];
+
+    columnLabels.find(Text).forEach((node, idx) => {
+      expect(
+        node
+          .dive()
+          .dive()
+          .text(),
+      ).toBe(labels[idx]);
+    });
+  });
+
+  it('should render the correct column labels in caps', () => {
+    const wrapper = shallow(<DataTable data={data} editable columnLabelCase="caps" />).dive();
     const table = wrapper
       .find(AutoSizer)
       .at(1)
@@ -331,6 +352,28 @@ describe('<DataTable /> renders column labels', () => {
       ).toBe(labels[idx]);
     });
   });
+
+  it('should render the correct column labels in title case', () => {
+    const wrapper = shallow(<DataTable data={data} editable columnLabelCase="title" />).dive();
+    const table = wrapper
+      .find(AutoSizer)
+      .at(1)
+      .dive()
+      .find(Table)
+      .dive();
+    const columnLabels = table.childAt(0);
+    const labels = ['Name', 'Job Title', 'Tenure Days', 'Menu', 'Cats', 'Log', 'Colspan'];
+
+    columnLabels.find(Text).forEach((node, idx) => {
+      expect(
+        node
+          .dive()
+          .dive()
+          .text(),
+      ).toBe(labels[idx]);
+    });
+  });
+
   it('should render custom column labels', () => {
     const labels = [
       'CUSTOM NAME',

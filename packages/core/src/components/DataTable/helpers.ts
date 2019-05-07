@@ -5,14 +5,15 @@ import { STATUS_OPTIONS, HEIGHT_TO_PX } from './constants';
 import { ColumnLabelCase, HeightOptions, ExpandedRow, RowHeightOptions, Status } from './types';
 
 export function caseColumnLabel(label: string, casing: ColumnLabelCase) {
-  if (casing === undefined) {
-    return label;
-  } else if (casing === 'title') {
+  if (casing === 'title') {
     return startCase(label);
   } else if (casing === 'sentence') {
-    return startCase(label.toLowerCase());
-  } else {
+    const s = startCase(label);
+    return s[0] + s.toLowerCase().slice(1);
+  } else if (casing === 'caps') {
     return startCase(label).toUpperCase();
+  } else {
+    return label;
   }
 }
 
