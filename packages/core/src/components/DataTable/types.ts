@@ -71,7 +71,7 @@ export interface DataTableProps {
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];
   /** Propagated as the 'ref' prop to the underlying react-virtualized Table instance. */
-  propagateRef: TableRef;
+  propagateRef?: TableRef;
   /** Custom renderers mapped to column keys. */
   renderers?: Renderers;
   /** Height of table rows, default for table header and column header height. */
