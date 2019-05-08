@@ -42,8 +42,6 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
       ...restProps
     } = this.props;
 
-    console.log(indeterminate);
-
     return (
       <label htmlFor={id} {...css(styles.checkbox, hideLabel && styles.checkbox_hideLabel)}>
         <FormInput
