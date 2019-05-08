@@ -567,9 +567,9 @@ describe('<DataTable />', () => {
   });
 
   it('Propagates a ref to the underlying Table', () => {
-    const ref = jest.fn();
+    const ref = React.createRef<Table>();
     mount(<DataTable data={data} propagateRef={ref} />);
 
-    expect(ref).toHaveBeenCalledTimes(1);
+    expect(ref.current).toBeDefined();
   });
 });
