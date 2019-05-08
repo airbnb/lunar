@@ -130,13 +130,14 @@ export function TableHeader({
   );
 }
 
-export default withStyles(theme => ({
+export default withStyles(({ unit, color }) => ({
   tableHeader_inner: {
+    background: color.accent.bg,
     display: 'flex',
     alignItems: 'center',
     height: '100%',
     justifyContent: 'space-between',
-    marginLeft: 2 * theme!.unit,
-    marginRight: 2 * theme!.unit,
+    paddingLeft: 2 * unit,
+    paddingRight: 2 * unit,
   },
 }))(TableHeader);
