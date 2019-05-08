@@ -70,7 +70,7 @@ export interface DataTableProps {
   instantEdit?: boolean;
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];
-  /** Propogated as the 'ref' prop to the underlying react-virtualized Table instance. */
+  /** Propagated as the 'ref' prop to the underlying react-virtualized Table instance. */
   propagateRef: TableRef;
   /** Custom renderers mapped to column keys. */
   renderers?: Renderers;
