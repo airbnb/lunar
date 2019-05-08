@@ -66,6 +66,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     rowHeight: 'regular',
     selectable: false,
     selectOnRowClick: false,
+    showAllRows: false,
     showColumnDividers: false,
     showRowDividers: false,
     sortByOverride: '',
@@ -109,6 +110,26 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     outline: 'none',
   });
 
+  private getTableHeight = (expandedDataList: ExpandedRow[]) => {
+    const { height, rowHeight, showAllRows } = this.props;
+
+    return showAllRows
+      ? expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight()
+      : height || 0;
+  };
+
+  private getColumnHeaderHeight = () => {
+    const { columnHeaderHeight, rowHeight } = this.props;
+
+    return getHeight(rowHeight, columnHeaderHeight);
+  };
+
+  private shouldRenderTableHeader = () => {
+    const { editable, extraHeaderButtons, tableHeaderLabel } = this.props;
+
+    return editable || extraHeaderButtons!.length > 0 || !!tableHeaderLabel;
+  };
+
   private sort = ({
     sortBy,
     sortDirection,
@@ -130,9 +151,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     }
   };
 
-  // Prettier throws a weird error here that cascades badly.
-  // eslint-disable-next-line
-  private expandRow = (newExpandedRowIndex: number) => (event: React.SyntheticEvent<EventTarget>) => {
+  private expandRow = (newExpandedRowIndex: number) => (
+    event: React.SyntheticEvent<EventTarget>,
+  ) => {
     event.stopPropagation();
     this.setState(({ expandedRows }) => {
       const newExpandedRows = new Set(expandedRows);
@@ -320,9 +341,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     const { editMode, selectedRows } = this.state;
 
-    const shouldRender = editable || extraHeaderButtons!.length > 0 || !!tableHeaderLabel;
-
-    return shouldRender ? (
+    return (
       <TableHeader
         editable={editable}
         editMode={editMode}
@@ -337,14 +356,14 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         tableHeaderLabel={tableHeaderLabel}
         width={this.props.width ? Math.min(this.props.width, parentWidth) : parentWidth}
       />
-    ) : null;
+    );
   }
 
   rowGetter = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }) =>
     expandedDataList[index];
 
   render() {
-    const { columnHeaderHeight, expandable, rowHeight, selectable, styles } = this.props;
+    const { expandable, propagateRef, rowHeight, selectable, styles } = this.props;
 
     const {
       sortedDataList,
@@ -365,16 +384,19 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     return (
       <div>
-        <AutoSizer disableHeight>
-          {({ width }: { width: number }) => this.renderTableHeader(width)}
-        </AutoSizer>
+        {this.shouldRenderTableHeader() && (
+          <AutoSizer disableHeight>
+            {({ width }: { width: number }) => this.renderTableHeader(width)}
+          </AutoSizer>
+        )}
         <div {...css(styles.table_container)}>
           <AutoSizer disableHeight>
             {({ width }: { width: number }) => (
               <Table
-                height={this.props.height!}
+                height={this.getTableHeight(expandedDataList)}
                 width={this.props.width || width}
-                headerHeight={getHeight(rowHeight, columnHeaderHeight)}
+                headerHeight={this.getColumnHeaderHeight()}
+                ref={propagateRef}
                 rowCount={expandedDataList.length}
                 rowHeight={HEIGHT_TO_PX[rowHeight!]}
                 rowGetter={this.rowGetter(expandedDataList)}

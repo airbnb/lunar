@@ -96,6 +96,20 @@ storiesOf('Core/DataTable', module)
       selectable
     />
   ))
+  .add('A table that shows all rows.', () => (
+    // This shows the height dynamically change with expanded rows
+    <div style={{ background: '#835EFE', padding: 8 }}>
+      <DataTable
+        tableHeaderLabel="Auto height table"
+        data={getData()}
+        keys={['name', 'jobTitle']}
+        expandable
+        selectable
+        showAllRows
+        showRowDividers
+      />
+    </div>
+  ))
   .add('An editable table.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"

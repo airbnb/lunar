@@ -1,6 +1,8 @@
 import React from 'react';
-import { SortDirectionType } from 'react-virtualized';
+import { SortDirectionType, Table } from 'react-virtualized';
 import { WithStylesProps } from '../../composers/withStyles';
+
+export type TableRef = React.RefObject<Table>;
 
 export type RowHeightOptions = string;
 export type HeightOptions = RowHeightOptions | undefined;
@@ -52,7 +54,7 @@ export interface DataTableProps {
   data?: ParentRow[];
   /** When instant edit is disabled, callback on edit application. */
   defaultEditCallback?: EditCallback;
-  /** Specifies whether or not editMode can be enabled */
+  /** Specifies whether or not editMode can be enabled. */
   editable?: boolean;
   /** Callback overides for instant edit on specific keys. */
   editCallbacks?: { [key: string]: EditCallback };
@@ -68,6 +70,8 @@ export interface DataTableProps {
   instantEdit?: boolean;
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];
+  /** Propagated as the 'ref' prop to the underlying react-virtualized Table instance. */
+  propagateRef?: TableRef;
   /** Custom renderers mapped to column keys. */
   renderers?: Renderers;
   /** Height of table rows, default for table header and column header height. */
@@ -76,6 +80,12 @@ export interface DataTableProps {
   selectable?: boolean;
   /** If enabled, clicking the row triggers the same function as click the selection checkbox. */
   selectOnRowClick?: boolean;
+  /**
+   * If true, will set Table height to accomodate showing _all_ rows.
+   * This effectively _disables_ virtualized row rendering and may have detrimental
++  * performance implications for rendering many rows.
+   * */
+  showAllRows?: boolean;
   /** If enabled, renders a border between each column. */
   showColumnDividers?: boolean;
   /** If enabled, renders a border between each row. */

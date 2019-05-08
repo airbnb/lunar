@@ -362,7 +362,7 @@ describe('<DataTable /> renders column labels', () => {
     ).dive();
     const table = wrapper
       .find(AutoSizer)
-      .at(1)
+      .at(0)
       .dive()
       .find(Table)
       .dive();
@@ -540,5 +540,36 @@ describe('<DataTable /> does not break with weird props', () => {
     const table = mount(<DataTable />);
 
     expect(!!table).toBe(true);
+  });
+});
+
+describe('<DataTable />', () => {
+  it('Auto-computes height when showAllRows is `true`', () => {
+    const height = 50;
+    const wrapper = shallow(<DataTable data={data} height={height} />).dive();
+    let table = wrapper
+      .find(AutoSizer)
+      .at(0)
+      .dive()
+      .find(Table);
+
+    expect(table.prop('height')).toBe(height);
+
+    wrapper.setProps({ showAllRows: true });
+
+    table = wrapper
+      .find(AutoSizer)
+      .at(0)
+      .dive()
+      .find(Table);
+
+    expect(table.prop('height')).toBeGreaterThan(height);
+  });
+
+  it('Propagates a ref to the underlying Table', () => {
+    const ref = React.createRef<Table>();
+    mount(<DataTable data={data} propagateRef={ref} />);
+
+    expect(ref.current).toBeDefined();
   });
 });
