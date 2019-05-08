@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.8.0 - 2019-05-08
+
+#### 🚀 Updates
+
+- **[DataTable]** Add showAllRows and propagateRef props (#57) ([567316e](https://github.com/airbnb/lunar/commit/567316e)), closes [#57](https://github.com/airbnb/lunar/issues/57)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.7.0 - 2019-05-07
 
 #### 🚀 Updates
