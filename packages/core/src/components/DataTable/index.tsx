@@ -110,17 +110,21 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     outline: 'none',
   });
 
-  getTableHeight = (expandedDataList: ExpandedRow[]) => {
-    const { columnHeaderHeight, height, rowHeight, showAllRows, tableHeaderHeight } = this.props;
+  private getTableHeight = (expandedDataList: ExpandedRow[]) => {
+    const { height, rowHeight, showAllRows } = this.props;
 
     return showAllRows
-      ? expandedDataList.length * getHeight(rowHeight) +
-          getHeight(columnHeaderHeight) +
-          getHeight(rowHeight, tableHeaderHeight)
+      ? expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight()
       : height || 0;
   };
 
-  private shouldRenderHeader = () => {
+  private getColumnHeaderHeight = () => {
+    const { columnHeaderHeight, rowHeight } = this.props;
+
+    return getHeight(rowHeight, columnHeaderHeight);
+  };
+
+  private shouldRenderTableHeader = () => {
     const { editable, extraHeaderButtons, tableHeaderLabel } = this.props;
 
     return editable || extraHeaderButtons!.length > 0 || !!tableHeaderLabel;
@@ -361,14 +365,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     expandedDataList[index];
 
   render() {
-    const {
-      columnHeaderHeight,
-      expandable,
-      propagateRef,
-      rowHeight,
-      selectable,
-      styles,
-    } = this.props;
+    const { expandable, propagateRef, rowHeight, selectable, styles } = this.props;
 
     const {
       sortedDataList,
@@ -389,7 +386,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     return (
       <div>
-        {this.shouldRenderHeader() && (
+        {this.shouldRenderTableHeader() && (
           <AutoSizer disableHeight>
             {({ width }: { width: number }) => this.renderTableHeader(width)}
           </AutoSizer>
@@ -400,7 +397,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
               <Table
                 height={this.getTableHeight(expandedDataList)}
                 width={this.props.width || width}
-                headerHeight={getHeight(rowHeight, columnHeaderHeight)}
+                headerHeight={this.getColumnHeaderHeight()}
                 ref={propagateRef}
                 rowCount={expandedDataList.length}
                 rowHeight={HEIGHT_TO_PX[rowHeight!]}
