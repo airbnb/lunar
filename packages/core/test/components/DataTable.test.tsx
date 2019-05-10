@@ -115,13 +115,9 @@ const columnMetadata = {
   },
 };
 
-const headerButtonClick = (selectedRows: any) => () => {
-  console.log('this callback has access to the selected rows');
-};
+const headerButtonClick = jest.fn();
 
-const editCallback = () => {
-  console.log('edited');
-};
+const editCallback = jest.fn();
 
 const editCallbacks = {
   name: editCallback,
