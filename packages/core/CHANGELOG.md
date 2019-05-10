@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.8.1 - 2019-05-10
+
+#### 📦 Dependencies
+
+- Update Interweave to fix emoji and rendering issues. (#58) ([1e4ec0c](https://github.com/airbnb/lunar/commit/1e4ec0c)), closes [#58](https://github.com/airbnb/lunar/issues/58)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.8.0 - 2019-05-08
 
 #### 🚀 Updates
