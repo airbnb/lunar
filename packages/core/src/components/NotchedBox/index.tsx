@@ -86,16 +86,16 @@ export default withStyles(({ ui, color, unit }) => {
       border,
     },
 
-    inverted: {
-      borderColor: color.clear,
-      backgroundColor: color.core.neutral[6],
-    },
-
     content: {
       padding: NOTCH_SPACING * unit,
       position: 'relative',
       backgroundColor: color.core.neutral[0],
       borderRadius,
+    },
+
+    inverted: {
+      borderColor: color.clear,
+      backgroundColor: color.core.neutral[6],
     },
   };
 })(NotchedBox);

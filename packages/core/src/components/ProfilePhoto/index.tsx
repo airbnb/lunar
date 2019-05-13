@@ -67,7 +67,7 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
       <div
         {...css(
           inline && styles.inline,
-          styles.regular,
+          !size && styles.regular,
           macro && styles.macro,
           large && styles.large,
           small && styles.small,
@@ -83,7 +83,7 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
         <img
           {...css(
             styles.image,
-            styles.regular,
+            !size && styles.regular,
             !square && styles.roundedImage,
             macro && styles.macro,
             large && styles.large,
@@ -120,17 +120,17 @@ export default withStyles(
     roundedImage: {
       borderRadius: '50%',
     },
-    small: {
-      height: 24,
-      width: 24,
-      maxHeight: 24,
-      maxWidth: 24,
-    },
     regular: {
       height: 48,
       width: 48,
       maxHeight: 48,
       maxWidth: 48,
+    },
+    small: {
+      height: 24,
+      width: 24,
+      maxHeight: 24,
+      maxWidth: 24,
     },
     large: {
       height: 96,
