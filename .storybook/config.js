@@ -26,6 +26,7 @@ Lunar.initialize({
       hexcode,
     ).toLowerCase()}.png`,
   logger: console.log,
+  rtl: true,
   theme,
 });
 
