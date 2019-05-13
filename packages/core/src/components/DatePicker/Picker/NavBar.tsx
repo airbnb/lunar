@@ -4,6 +4,7 @@ import IconArrowLeft from '@airbnb/lunar-icons/lib/interface/IconArrowLeft';
 import IconArrowRight from '@airbnb/lunar-icons/lib/interface/IconArrowRight';
 import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
 import datePickerStyles from '../../private/datePickerStyles';
+import DirectionalIcon from '../../DirectionalIcon';
 import IconButton from '../../IconButton';
 import T from '../../Translate';
 
@@ -53,7 +54,13 @@ class NavBar extends React.Component<Props & WithStylesProps> {
         {showPreviousButton && (
           <div className={classNames.navButtonPrev}>
             <IconButton tooltip={labels.previousMonth} onClick={this.handlePreviousClick}>
-              <IconArrowLeft size="1.25em" accessibilityLabel={labels.previousMonth} />
+              <DirectionalIcon
+                direction="left"
+                left={IconArrowLeft}
+                right={IconArrowRight}
+                size="1.25em"
+                accessibilityLabel={labels.previousMonth}
+              />
             </IconButton>
           </div>
         )}
@@ -61,7 +68,13 @@ class NavBar extends React.Component<Props & WithStylesProps> {
         {showNextButton && (
           <div className={classNames.navButtonNext}>
             <IconButton tooltip={labels.nextMonth} onClick={this.handleNextClick}>
-              <IconArrowRight size="1.25em" accessibilityLabel={labels.nextMonth} />
+              <DirectionalIcon
+                direction="right"
+                left={IconArrowLeft}
+                right={IconArrowRight}
+                size="1.25em"
+                accessibilityLabel={labels.nextMonth}
+              />
             </IconButton>
           </div>
         )}

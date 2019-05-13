@@ -71,6 +71,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
               <IconCheck size="1.5em" decorative />
             </span>
           )}
+
           {indeterminate && (
             <span {...css(styles.indeterminate)}>
               <IconRemove size="1.5em" decorative />
@@ -136,6 +137,7 @@ export default withStyles(theme => {
       padding: 0,
       display: 'inline-block',
       cursor: 'pointer',
+      position: 'relative',
       // Checkmark
       textAlign: 'center',
       fontSize: 10,
@@ -145,13 +147,13 @@ export default withStyles(theme => {
     },
 
     checkmark: {
-      position: 'relative',
+      position: 'absolute',
       top: -1,
       left: -1,
     },
 
     indeterminate: {
-      position: 'relative',
+      position: 'absolute',
       top: -1,
       left: -1,
     },

@@ -1,9 +1,11 @@
 import React from 'react';
+import IconCaretLeft from '@airbnb/lunar-icons/lib/interface/IconCaretLeft';
 import IconCaretRight from '@airbnb/lunar-icons/lib/interface/IconCaretRight';
 import iconComponent from '../../prop-types/iconComponent';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
 import Text from '../Text';
+import DirectionalIcon from '../DirectionalIcon';
 
 export type Props = {
   /** Content within the menu item. */
@@ -88,7 +90,17 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
       tip,
     } = this.props;
     const { showSubmenu } = this.state;
-    const after = submenu ? <IconCaretRight size="1.5em" decorative /> : tip;
+    const after = submenu ? (
+      <DirectionalIcon
+        direction="right"
+        left={IconCaretLeft}
+        right={IconCaretRight}
+        size="1.5em"
+        decorative
+      />
+    ) : (
+      tip
+    );
 
     return (
       <li role="none" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>

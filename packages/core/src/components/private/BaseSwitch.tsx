@@ -111,6 +111,7 @@ export default withStyles(theme => {
       cursor: 'pointer',
       backgroundColor: styles.input.borderColor,
       borderRadius: height,
+      position: 'relative',
     },
 
     input_checked: {
@@ -129,7 +130,7 @@ export default withStyles(theme => {
     },
 
     checkmark: {
-      position: 'relative',
+      position: 'absolute',
       top: 2.5,
       left: 2.5,
     },

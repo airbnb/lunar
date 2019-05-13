@@ -1,7 +1,9 @@
 import React from 'react';
+import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import DirectionalIcon from '../DirectionalIcon';
 
 export type Props = {
   /** Apply a border. */
@@ -56,7 +58,13 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
           {expanded ? (
             <IconChevronDown decorative size={theme!.unit * 3} />
           ) : (
-            <IconChevronRight decorative size={theme!.unit * 3} />
+            <DirectionalIcon
+              direction="right"
+              left={IconChevronLeft}
+              right={IconChevronRight}
+              decorative
+              size={theme!.unit * 3}
+            />
           )}
         </button>
 

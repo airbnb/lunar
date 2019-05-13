@@ -1,4 +1,5 @@
 import React from 'react';
+import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconCheckmark from '@airbnb/lunar-icons/lib/interface/IconCheck';
 import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
@@ -13,6 +14,7 @@ import {
   ItemShape,
   ItemRenderer,
 } from '../types';
+import DirectionalIcon from '../../DirectionalIcon';
 
 export type Props = {
   item: ItemShape;
@@ -117,7 +119,17 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
         tabIndex={focused ? 1 : 0} // this is needed to find a focused parent item in a vertically aligned list
       >
         {this.renderItem()}
-        {item.items && <IconChevronRight size="1.4em" decorative inline />}
+
+        {item.items && (
+          <DirectionalIcon
+            direction="right"
+            left={IconChevronLeft}
+            right={IconChevronRight}
+            size="1.4em"
+            decorative
+            inline
+          />
+        )}
       </div>
     );
   }
