@@ -2,7 +2,7 @@
 
 exports[`<Accordion /> renders bordered 1`] = `
 <div
-  className="container_1ytewkj-o_O-container_bordered_w9a1au"
+  className="container-0-2-1 container_bordered-0-2-2"
   role="tablist"
 >
   <AccordionItem

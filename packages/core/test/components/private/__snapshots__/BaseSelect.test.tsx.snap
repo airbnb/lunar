@@ -2,7 +2,7 @@
 
 exports[`<BaseSelect /> renders compact 1`] = `
 <div
-  className="select_jd2fw5"
+  className="select-0-2-1"
 >
   <FormInput
     compact={true}
@@ -17,7 +17,7 @@ exports[`<BaseSelect /> renders compact 1`] = `
     </option>
   </FormInput>
   <div
-    className="arrow_1lvqbjq-o_O-arrow_compact_ib86un"
+    className="arrow-0-2-2 arrow_compact-0-2-5"
   >
     <IconCaretDown
       decorative={true}
@@ -29,7 +29,7 @@ exports[`<BaseSelect /> renders compact 1`] = `
 
 exports[`<BaseSelect /> renders disabled 1`] = `
 <div
-  className="select_jd2fw5"
+  className="select-0-2-1"
 >
   <FormInput
     disabled={true}
@@ -44,7 +44,7 @@ exports[`<BaseSelect /> renders disabled 1`] = `
     </option>
   </FormInput>
   <div
-    className="arrow_1lvqbjq-o_O-arrow_disabled_5k6q5e"
+    className="arrow-0-2-2 arrow_disabled-0-2-3"
   >
     <IconCaretDown
       decorative={true}
@@ -56,7 +56,7 @@ exports[`<BaseSelect /> renders disabled 1`] = `
 
 exports[`<BaseSelect /> renders invalid 1`] = `
 <div
-  className="select_jd2fw5"
+  className="select-0-2-1"
 >
   <FormInput
     invalid={true}
@@ -71,7 +71,7 @@ exports[`<BaseSelect /> renders invalid 1`] = `
     </option>
   </FormInput>
   <div
-    className="arrow_1lvqbjq-o_O-arrow_invalid_u10i2o"
+    className="arrow-0-2-2 arrow_invalid-0-2-4"
   >
     <IconCaretDown
       decorative={true}

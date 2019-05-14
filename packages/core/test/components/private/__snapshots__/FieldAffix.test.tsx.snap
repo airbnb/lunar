@@ -2,7 +2,7 @@
 
 exports[`<FieldAffix /> renders compact 1`] = `
 <div
-  className="affix_1ypg015-o_O-affix_compact_tue55j-o_O-affix_after_h7uxoa"
+  className="affix-0-2-1 affix_compact-0-2-2 affix_after-0-2-3"
 >
   Child
 </div>

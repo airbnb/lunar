@@ -5,7 +5,7 @@ exports[`<MenuRow /> renders spacious 1`] = `
   role="none"
 >
   <div
-    className="item_rr6y3q-o_O-item_spacious_1x0fg6n"
+    className="item-0-2-1 item_spacious-0-2-2"
   >
     Foo
   </div>

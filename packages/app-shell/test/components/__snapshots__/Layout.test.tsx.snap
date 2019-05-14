@@ -2,7 +2,7 @@
 
 exports[`Layout renders all toasts 1`] = `
 <div
-  className="layout_149btvt"
+  className="layout-0-1-1"
 >
   Child
 </div>

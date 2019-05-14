@@ -2,7 +2,7 @@
 
 exports[`<Spacing /> renders as inline 1`] = `
 <div
-  className="outerTop_2_1vk19cb-o_O-outerBottom_2_p03egf-o_O-spacing_inline_36rlri"
+  className="outerTop_2-0-2-33 outerBottom_2-0-2-37 spacing_inline-0-2-201"
 >
   Content
 </div>
@@ -10,7 +10,7 @@ exports[`<Spacing /> renders as inline 1`] = `
 
 exports[`<Spacing /> renders with a side 1`] = `
 <div
-  className="outerTop_1_klarpw"
+  className="outerTop_1-0-2-17"
 >
   Content
 </div>
@@ -18,7 +18,7 @@ exports[`<Spacing /> renders with a side 1`] = `
 
 exports[`<Spacing /> renders with many sides 1`] = `
 <div
-  className="outerTop_1_klarpw-o_O-outerBottom_3_152qbzi-o_O-outerLeft_2_1mqc21n-o_O-outerRight_4_h8tpom"
+  className="outerTop_1-0-2-17 outerBottom_3-0-2-53 outerLeft_2-0-2-39 outerRight_4-0-2-67"
 >
   Content
 </div>
@@ -26,7 +26,7 @@ exports[`<Spacing /> renders with many sides 1`] = `
 
 exports[`<Spacing /> renders with padding 1`] = `
 <div
-  className="innerTop_2_121xeo4-o_O-innerRight_2_c0l5kf-o_O-innerBottom_2_1ouw2w0-o_O-innerLeft_2_18jukes"
+  className="innerTop_2-0-2-34 innerRight_2-0-2-36 innerBottom_2-0-2-38 innerLeft_2-0-2-40"
 >
   Content
 </div>

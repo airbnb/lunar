@@ -95,12 +95,11 @@ describe('getCustomModifiers()', () => {
       start: new Date(Date.UTC(2000, 1, 1)),
     };
 
-    const startStylesClassName = css(mockStyles.modifier_start).className;
     const customModifiers = getCustomModifiers(modifiers, mockStyles);
 
     expect('start' in customModifiers).toBe(true);
     expect('end' in customModifiers).toBe(false);
-    expect(startStylesClassName in customModifiers).toBe(true);
+    expect(Object.keys(customModifiers)).toHaveLength(2);
   });
 
   it('handles `start` and `end` modifiers', () => {
@@ -109,17 +108,11 @@ describe('getCustomModifiers()', () => {
       end: new Date(),
     };
 
-    const startWithRangeStylesClassName = css(
-      mockStyles.modifier_start,
-      mockStyles.modifier_startWithRange,
-    ).className;
-    const endStylesClassName = css(mockStyles.modifier_end).className;
     const customModifiers = getCustomModifiers(modifiers, mockStyles);
 
     expect('start' in customModifiers).toBe(true);
     expect('end' in customModifiers).toBe(true);
-    expect(startWithRangeStylesClassName in customModifiers).toBe(true);
-    expect(endStylesClassName in customModifiers).toBe(true);
+    expect(Object.keys(customModifiers)).toHaveLength(4);
   });
 
   it('does not add end styles if no `start` modifier is provided', () => {

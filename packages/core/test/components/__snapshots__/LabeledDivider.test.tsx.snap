@@ -2,7 +2,7 @@
 
 exports[`<LabeledDivider /> renders a string as expected 1`] = `
 <div
-  className="rule_bi7c4v"
+  className="rule-0-2-1"
 >
   <Text
     bold={true}
@@ -16,7 +16,7 @@ exports[`<LabeledDivider /> renders a string as expected 1`] = `
 
 exports[`<LabeledDivider /> renders a translation node as expected 1`] = `
 <div
-  className="rule_bi7c4v"
+  className="rule-0-2-1"
 >
   <Text
     bold={true}

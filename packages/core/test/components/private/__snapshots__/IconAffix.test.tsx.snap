@@ -2,7 +2,7 @@
 
 exports[`<IconAffix /> renders after 1`] = `
 <div
-  className="affix_zg9aho-o_O-affix_after_pog3hg"
+  className="affix-0-2-1 affix_after-0-2-2"
 >
   Child
 </div>
@@ -10,7 +10,7 @@ exports[`<IconAffix /> renders after 1`] = `
 
 exports[`<IconAffix /> renders before 1`] = `
 <div
-  className="affix_zg9aho-o_O-affix_before_14tkmhr"
+  className="affix-0-2-1 affix_before-0-2-3"
 >
   Child
 </div>

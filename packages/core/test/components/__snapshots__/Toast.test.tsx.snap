@@ -2,7 +2,7 @@
 
 exports[`<Toast /> renders error 1`] = `
 <div
-  className="container_ox9dw2-o_O-container_danger_qr3yx7"
+  className="container-0-2-1 container_danger-0-2-4"
 >
   <div>
     <Text
@@ -12,7 +12,7 @@ exports[`<Toast /> renders error 1`] = `
     </Text>
   </div>
   <div
-    className="right_iqzunz"
+    className="right-0-2-5"
   >
     <IconButton
       inverted={true}
@@ -29,7 +29,7 @@ exports[`<Toast /> renders error 1`] = `
 
 exports[`<Toast /> renders message 1`] = `
 <div
-  className="container_ox9dw2"
+  className="container-0-2-1"
 >
   <div>
     <Text
@@ -39,7 +39,7 @@ exports[`<Toast /> renders message 1`] = `
     </Text>
   </div>
   <div
-    className="right_iqzunz"
+    className="right-0-2-5"
   >
     <IconButton
       inverted={true}
@@ -56,7 +56,7 @@ exports[`<Toast /> renders message 1`] = `
 
 exports[`<Toast /> renders refresh 1`] = `
 <div
-  className="container_ox9dw2"
+  className="container-0-2-1"
 >
   <div>
     <Text
@@ -80,7 +80,7 @@ exports[`<Toast /> renders refresh 1`] = `
     </Spacing>
   </div>
   <div
-    className="right_iqzunz"
+    className="right-0-2-5"
   >
     <IconButton
       inverted={true}
@@ -97,7 +97,7 @@ exports[`<Toast /> renders refresh 1`] = `
 
 exports[`<Toast /> sets failed class 1`] = `
 <div
-  className="container_ox9dw2-o_O-container_danger_qr3yx7"
+  className="container-0-2-1 container_danger-0-2-4"
 >
   <div>
     <Text
@@ -107,7 +107,7 @@ exports[`<Toast /> sets failed class 1`] = `
     </Text>
   </div>
   <div
-    className="right_iqzunz"
+    className="right-0-2-5"
   >
     <IconButton
       inverted={true}
@@ -124,7 +124,7 @@ exports[`<Toast /> sets failed class 1`] = `
 
 exports[`<Toast /> sets failed class if an \`Error\` 1`] = `
 <div
-  className="container_ox9dw2-o_O-container_danger_qr3yx7"
+  className="container-0-2-1 container_danger-0-2-4"
 >
   <div>
     <Text
@@ -134,7 +134,7 @@ exports[`<Toast /> sets failed class if an \`Error\` 1`] = `
     </Text>
   </div>
   <div
-    className="right_iqzunz"
+    className="right-0-2-5"
   >
     <IconButton
       inverted={true}
@@ -151,7 +151,7 @@ exports[`<Toast /> sets failed class if an \`Error\` 1`] = `
 
 exports[`<Toast /> sets success class 1`] = `
 <div
-  className="container_ox9dw2-o_O-container_success_1e8jx2r"
+  className="container-0-2-1 container_success-0-2-3"
 >
   <div>
     <Text
@@ -161,7 +161,7 @@ exports[`<Toast /> sets success class 1`] = `
     </Text>
   </div>
   <div
-    className="right_iqzunz"
+    className="right-0-2-5"
   >
     <IconButton
       inverted={true}

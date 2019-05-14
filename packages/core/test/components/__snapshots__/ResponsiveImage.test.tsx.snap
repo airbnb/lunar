@@ -3,7 +3,7 @@
 exports[`<ResponsiveImage /> with a shimmer prop renders the image with state={ imageLoaded: true } 1`] = `
 <img
   alt="bar"
-  className="image_9yfome-o_O-inline-0_2z4ibo"
+  className="image-0-2-1 inline-0-0-2-4"
   height="auto"
   src="foo"
   width="100%"
@@ -19,7 +19,7 @@ exports[`<ResponsiveImage /> with a shimmer prop renders the shimmer component w
 exports[`<ResponsiveImage /> without a shimmer prop renders the image element while the image is loading 1`] = `
 <img
   alt="bar"
-  className="image_9yfome-o_O-inline-0_2z4ibo"
+  className="image-0-2-1 inline-0-0-2-5"
   height="auto"
   src="foo"
   width="100%"
@@ -29,7 +29,7 @@ exports[`<ResponsiveImage /> without a shimmer prop renders the image element wh
 exports[`<ResponsiveImage /> without a shimmer prop renders the image element with state={ imageLoaded: true } 1`] = `
 <img
   alt="bar"
-  className="image_9yfome-o_O-inline-0_2z4ibo"
+  className="image-0-2-1 inline-0-0-2-6"
   height="auto"
   src="foo"
   width="100%"

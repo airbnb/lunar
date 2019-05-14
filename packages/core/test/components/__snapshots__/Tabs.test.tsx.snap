@@ -10,7 +10,7 @@ exports[`<Tabs/> errors if non-tab children are passed 1`] = `
 exports[`<Tabs/> it renders a stretched nav 1`] = `
 <div>
   <nav
-    className="nav_1x0pvrr"
+    className="nav-0-2-1"
     role="tablist"
   >
     <Tab

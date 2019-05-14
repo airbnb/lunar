@@ -2,13 +2,13 @@
 
 exports[`<NotchedBox /> can be below 1`] = `
 <div
-  className="box_1pswgv9-o_O-border_1urjdog"
+  className="box-0-2-1 border-0-2-6"
 >
   <div
-    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-notch_below_9egivs-o_O-border_1urjdog"
+    className="notch-0-2-3 notch_position-0-2-4 notch_below-0-2-5 border-0-2-6"
   />
   <div
-    className="content_15unt15"
+    className="content-0-2-7"
   >
     hello world
   </div>
@@ -17,13 +17,13 @@ exports[`<NotchedBox /> can be below 1`] = `
 
 exports[`<NotchedBox /> can be inline 1`] = `
 <div
-  className="box_1pswgv9-o_O-border_1urjdog-o_O-box_inline_36rlri"
+  className="box-0-2-1 border-0-2-6 box_inline-0-2-2"
 >
   <div
-    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-border_1urjdog"
+    className="notch-0-2-3 notch_position-0-2-4 border-0-2-6"
   />
   <div
-    className="content_15unt15"
+    className="content-0-2-7"
   >
     hello world
   </div>
@@ -32,13 +32,13 @@ exports[`<NotchedBox /> can be inline 1`] = `
 
 exports[`<NotchedBox /> can be inverted 1`] = `
 <div
-  className="box_1pswgv9"
+  className="box-0-2-1"
 >
   <div
-    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-inverted_1liwe23"
+    className="notch-0-2-3 notch_position-0-2-4 inverted-0-2-8"
   />
   <div
-    className="content_15unt15-o_O-inverted_1liwe23"
+    className="content-0-2-7 inverted-0-2-8"
   >
     hello world
   </div>
@@ -47,13 +47,13 @@ exports[`<NotchedBox /> can be inverted 1`] = `
 
 exports[`<NotchedBox /> can have a negative offet 1`] = `
 <div
-  className="box_1pswgv9-o_O-border_1urjdog"
+  className="box-0-2-1 border-0-2-6"
 >
   <div
-    className="notch_1nwxvyt-o_O-border_1urjdog-o_O-inline-0_14d28p4"
+    className="notch-0-2-3 border-0-2-6 inline-0-0-2-9"
   />
   <div
-    className="content_15unt15"
+    className="content-0-2-7"
   >
     hello world
   </div>
@@ -62,13 +62,13 @@ exports[`<NotchedBox /> can have a negative offet 1`] = `
 
 exports[`<NotchedBox /> can have an offet of 0 1`] = `
 <div
-  className="box_1pswgv9-o_O-border_1urjdog"
+  className="box-0-2-1 border-0-2-6"
 >
   <div
-    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-border_1urjdog"
+    className="notch-0-2-3 notch_position-0-2-4 border-0-2-6"
   />
   <div
-    className="content_15unt15"
+    className="content-0-2-7"
   >
     hello world
   </div>

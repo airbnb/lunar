@@ -2,10 +2,10 @@
 
 exports[`<Table /> renders bordered 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="responsive_wrapper-0-2-10"
 >
   <table
-    className="table_1te9n79-o_O-table_bordered_1urjdog"
+    className="table-0-2-1 table_bordered-0-2-2"
   >
     Bordered
   </table>
@@ -14,10 +14,10 @@ exports[`<Table /> renders bordered 1`] = `
 
 exports[`<Table /> renders compact 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="responsive_wrapper-0-2-10"
 >
   <table
-    className="table_1te9n79-o_O-table_compact_3oir43"
+    className="table-0-2-1 table_compact-0-2-3"
   >
     Compact
   </table>
@@ -26,10 +26,10 @@ exports[`<Table /> renders compact 1`] = `
 
 exports[`<Table /> renders fixed 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="responsive_wrapper-0-2-10"
 >
   <table
-    className="table_1te9n79-o_O-table_fixed_91eznd"
+    className="table-0-2-1 table_fixed-0-2-5"
   >
     Fixed
   </table>
@@ -38,10 +38,10 @@ exports[`<Table /> renders fixed 1`] = `
 
 exports[`<Table /> renders horizontal 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="responsive_wrapper-0-2-10"
 >
   <table
-    className="table_1te9n79-o_O-table_horizontal_1qi915e"
+    className="table-0-2-1 table_horizontal-0-2-4"
   >
     Horizontal
   </table>
@@ -50,10 +50,10 @@ exports[`<Table /> renders horizontal 1`] = `
 
 exports[`<Table /> renders loading 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="responsive_wrapper-0-2-10"
 >
   <table
-    className="table_1te9n79-o_O-table_loading_e0u7o3"
+    className="table-0-2-1 table_loading-0-2-6"
   >
     Loading
   </table>
@@ -62,10 +62,10 @@ exports[`<Table /> renders loading 1`] = `
 
 exports[`<Table /> renders middleAlign 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="responsive_wrapper-0-2-10"
 >
   <table
-    className="table_1te9n79-o_O-content_middle_align_14ilzse"
+    className="table-0-2-1 content_middle_align-0-2-11"
   >
     Vertical
   </table>
@@ -74,10 +74,10 @@ exports[`<Table /> renders middleAlign 1`] = `
 
 exports[`<Table /> renders striped 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="responsive_wrapper-0-2-10"
 >
   <table
-    className="table_1te9n79-o_O-table_striped_uvwezh"
+    className="table-0-2-1 table_striped-0-2-7"
   >
     Striped
   </table>
@@ -86,10 +86,10 @@ exports[`<Table /> renders striped 1`] = `
 
 exports[`<Table /> renders transparent 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="responsive_wrapper-0-2-10"
 >
   <table
-    className="table_1te9n79-o_O-table_transparent_1eiqo0c"
+    className="table-0-2-1 table_transparent-0-2-8"
   >
     Transparent
   </table>
@@ -98,10 +98,10 @@ exports[`<Table /> renders transparent 1`] = `
 
 exports[`<Table /> renders vertical 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="responsive_wrapper-0-2-10"
 >
   <table
-    className="table_1te9n79-o_O-table_vertical_dhjq9v"
+    className="table-0-2-1 table_vertical-0-2-9"
   >
     Vertical
   </table>

@@ -2,7 +2,7 @@
 
 exports[`<Cell /> renders center 1`] = `
 <td
-  className="cell_center_12to336"
+  className="cell_center-0-2-3"
 >
   Center
 </td>
@@ -10,7 +10,7 @@ exports[`<Cell /> renders center 1`] = `
 
 exports[`<Cell /> renders left 1`] = `
 <td
-  className="cell_left_e4x16a"
+  className="cell_left-0-2-2"
 >
   Left
 </td>
@@ -18,7 +18,7 @@ exports[`<Cell /> renders left 1`] = `
 
 exports[`<Cell /> renders right 1`] = `
 <td
-  className="cell_right_140n9qh"
+  className="cell_right-0-2-4"
 >
   Right
 </td>
@@ -26,7 +26,7 @@ exports[`<Cell /> renders right 1`] = `
 
 exports[`<Cell /> renders truncate 1`] = `
 <td
-  className="cell_truncate_1sgzp64"
+  className="cell_truncate-0-2-1"
 >
   Truncate
 </td>

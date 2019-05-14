@@ -7,10 +7,10 @@ exports[`<ProfilePhotoGroup /> errors when a non-button is passed 1`] = `
 
 exports[`<ProfilePhotoGroup /> handles components that return a falsy value 1`] = `
 <div
-  className="group_1yr212"
+  className="group-0-2-1"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell-0-2-2 inline-0-0-2-17"
     key="0"
   >
     <FakePhoto
@@ -25,10 +25,10 @@ exports[`<ProfilePhotoGroup /> handles components that return a falsy value 1`] 
 
 exports[`<ProfilePhotoGroup /> handles photos that return falsy values 1`] = `
 <div
-  className="group_1yr212"
+  className="group-0-2-1"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell-0-2-2 inline-0-0-2-16"
     key="0"
   >
     <ProfilePhoto
@@ -45,10 +45,10 @@ exports[`<ProfilePhotoGroup /> handles photos that return falsy values 1`] = `
 
 exports[`<ProfilePhotoGroup /> renders a remainder cell when the max is met 1`] = `
 <div
-  className="group_1yr212"
+  className="group-0-2-1"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell-0-2-2 inline-0-0-2-10"
     key="0"
   >
     <ProfilePhoto
@@ -61,14 +61,14 @@ exports[`<ProfilePhotoGroup /> renders a remainder cell when the max is met 1`] 
     />
   </div>
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell-0-2-2 inline-0-0-2-11"
     key="remainder"
   >
     <div
-      className="remainder_1isx801-o_O-inline-0_ksaxgv"
+      className="remainder-0-2-3 inline-0-0-2-12"
     >
       <span
-        className="remainderNumber_d1qlh4"
+        className="remainderNumber-0-2-4"
       >
         +2
       </span>
@@ -79,10 +79,10 @@ exports[`<ProfilePhotoGroup /> renders a remainder cell when the max is met 1`] 
 
 exports[`<ProfilePhotoGroup /> renders a single photo 1`] = `
 <div
-  className="group_1yr212"
+  className="group-0-2-1"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell-0-2-2 inline-0-0-2-9"
     key="0"
   >
     <ProfilePhoto
@@ -99,10 +99,10 @@ exports[`<ProfilePhotoGroup /> renders a single photo 1`] = `
 
 exports[`<ProfilePhotoGroup /> renders photos 1`] = `
 <div
-  className="group_1yr212"
+  className="group-0-2-1"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell-0-2-2 inline-0-0-2-6"
     key="0"
   >
     <ProfilePhoto
@@ -115,7 +115,7 @@ exports[`<ProfilePhotoGroup /> renders photos 1`] = `
     />
   </div>
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell-0-2-2 inline-0-0-2-7"
     key="1"
   >
     <ProfilePhoto
@@ -128,7 +128,7 @@ exports[`<ProfilePhotoGroup /> renders photos 1`] = `
     />
   </div>
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell-0-2-2 inline-0-0-2-8"
     key="2"
   >
     <ProfilePhoto
@@ -145,10 +145,10 @@ exports[`<ProfilePhotoGroup /> renders photos 1`] = `
 
 exports[`<ProfilePhotoGroup /> supports custom sizes 1`] = `
 <div
-  className="group_1yr212"
+  className="group-0-2-1"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell-0-2-2 inline-0-0-2-13"
     key="0"
   >
     <ProfilePhoto
@@ -161,7 +161,7 @@ exports[`<ProfilePhotoGroup /> supports custom sizes 1`] = `
     />
   </div>
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell-0-2-2 inline-0-0-2-14"
     key="1"
   >
     <ProfilePhoto
@@ -174,7 +174,7 @@ exports[`<ProfilePhotoGroup /> supports custom sizes 1`] = `
     />
   </div>
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell-0-2-2 inline-0-0-2-15"
     key="2"
   >
     <ProfilePhoto
