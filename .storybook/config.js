@@ -6,18 +6,15 @@ import Lunar from '@airbnb/lunar';
 import lightTheme from '@airbnb/lunar/lib/themes/light';
 import darkTheme from '@airbnb/lunar/lib/themes/dark';
 import { withProps } from './addons/props';
-import createTheme from './addons/themes/createTheme';
+import createTheme from './helpers/createTheme';
 
 const themes = {
   light: lightTheme,
   dark: darkTheme,
 };
 
-let theme = localStorage.getItem('storybook.theme');
-
-if (!theme || (theme !== 'light' && theme !== 'dark')) {
-  theme = 'light';
-}
+const theme = localStorage.getItem('storybook.theme') || 'light';
+const rtl = localStorage.getItem('storybook.rtl') === 'true';
 
 Lunar.initialize({
   name: 'Lunar',
@@ -26,13 +23,12 @@ Lunar.initialize({
       hexcode,
     ).toLowerCase()}.png`,
   logger: console.log,
-  rtl: true,
+  rtl,
   theme,
 });
 
 addDecorator(withA11y);
 addDecorator(withProps);
-
 addDecorator(story => (
   <div style={{ padding: 20, fontSize: 15, fontFamily: Lunar.settings.fontFamily }}>{story()}</div>
 ));
