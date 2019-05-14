@@ -311,8 +311,8 @@ describe('<DataTable /> renders and sorts data', () => {
 });
 
 describe('<DataTable /> renders column labels', () => {
-  it('should render the correct column labels in sentence case by default', () => {
-    const wrapper = shallow(<DataTable data={data} editable />).dive();
+  it('should render the correct column labels in sentence case', () => {
+    const wrapper = shallow(<DataTable data={data} editable columnLabelCase="sentence" />).dive();
     const table = wrapper
       .find(AutoSizer)
       .at(1)
@@ -332,8 +332,8 @@ describe('<DataTable /> renders column labels', () => {
     });
   });
 
-  it('should not format labels if you provide an empty string', () => {
-    const wrapper = shallow(<DataTable data={data} editable columnLabelCase="" />).dive();
+  it('should not format labels by default', () => {
+    const wrapper = shallow(<DataTable data={data} editable />).dive();
     const table = wrapper
       .find(AutoSizer)
       .at(1)
