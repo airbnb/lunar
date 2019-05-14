@@ -50,7 +50,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   static defaultProps: Pick<DataTableProps, DefaultDataTableProps> = {
     columnHeaderHeight: undefined,
-    columnLabelCase: 'sentence',
+    columnLabelCase: '',
     columnMetadata: {},
     columnToLabel: {},
     data: [],
