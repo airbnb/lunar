@@ -91,7 +91,9 @@ export default withStyles(theme => {
       lineHeight: '22px',
       verticalAlign: 'top',
       left: 0,
-      transition: `left ${ui.transitionTime}, transform ${ui.transitionTime}`,
+      transition: `left ${ui.transitionTime}, right ${ui.transitionTime}, transform ${
+        ui.transitionTime
+      }`,
       // Subtract border
       width: height - 4,
       height: height - 4,

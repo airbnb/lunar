@@ -105,8 +105,21 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
 
     return (
       <div style={{ position: 'relative' }}>
-        <div style={{ display: 'flex', position: 'absolute', top: 0, right: 0 }}>
-          <select name="color" value={color} onChange={this.handleColorChange}>
+        <div
+          style={{
+            display: 'flex',
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+          }}
+        >
+          <select
+            name="color"
+            value={color}
+            onChange={this.handleColorChange}
+            style={{ marginReft: 8, marginRight: 8 }}
+          >
             <option value="">No Color</option>
             <option value="red">Red</option>
             <option value="green">Green</option>
@@ -117,7 +130,7 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
             name="size"
             value={size}
             onChange={this.handleSizeChange}
-            style={{ marginLeft: 8 }}
+            style={{ marginReft: 8, marginRight: 8 }}
           >
             <option value="1em">1x</option>
             <option value="2em">2x</option>
