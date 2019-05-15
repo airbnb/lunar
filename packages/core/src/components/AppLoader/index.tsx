@@ -12,6 +12,8 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** Request error. */
   error?: Error | null;
+  /** Title to display on error message. */
+  errorTitle?: React.ReactNode;
   /** Text to display on a failed request. */
   failureText: NonNullable<React.ReactNode>;
   /** Whether a request is fetched. */
@@ -37,6 +39,7 @@ export class AppLoader extends React.Component<Props & WithStylesProps> {
       centered,
       children,
       error,
+      errorTitle,
       failureText,
       fetched,
       loadingText,
@@ -60,7 +63,7 @@ export class AppLoader extends React.Component<Props & WithStylesProps> {
         )}
 
         <div {...css(styles.errorOrLoader)}>
-          {error ? <ErrorMessage error={error} /> : <Loader inline />}
+          {error ? <ErrorMessage error={error} title={errorTitle} /> : <Loader inline />}
         </div>
       </div>
     );
