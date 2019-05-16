@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.9.0 - 2019-05-16
+
+#### 🚀 Updates
+
+- **[Title]** Add primary color option. (#61) ([dbb8b87](https://github.com/airbnb/lunar/commit/dbb8b87)), closes [#61](https://github.com/airbnb/lunar/issues/61)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 1.8.1 - 2019-05-10
 
 #### 📦 Dependencies
