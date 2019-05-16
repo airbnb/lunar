@@ -4,6 +4,7 @@ import ErrorMessage from '../ErrorMessage';
 import Loader from '../Loader';
 import Title from '../Title';
 import Text from '../Text';
+import { ErrorType } from '../../types';
 
 export type Props = {
   /** Center the loader and content. */
@@ -11,7 +12,7 @@ export type Props = {
   /** Content to be rendered on a successful request. */
   children: NonNullable<React.ReactNode>;
   /** Request error. */
-  error?: Error | null;
+  error?: ErrorType | null;
   /** Title to display on error message. */
   errorTitle?: React.ReactNode;
   /** Text to display on a failed request. */
