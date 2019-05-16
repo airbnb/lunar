@@ -2,7 +2,7 @@ import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 
-const stateProp = mutuallyExclusiveTrueProps('muted', 'inverted');
+const stateProp = mutuallyExclusiveTrueProps('muted', 'inverted', 'primary');
 const alignProp = mutuallyExclusiveTrueProps('centerAlign', 'endAlign');
 
 export type Props = {
@@ -20,6 +20,8 @@ export type Props = {
   level: 1 | 2 | 3;
   /** Mark the text as muted. */
   muted?: boolean;
+  /** Render with primary color text. */
+  primary?: boolean;
 };
 
 /** Display a string of text as a heading and or section title. */
@@ -29,6 +31,7 @@ export class Title extends React.Component<Props & WithStylesProps> {
     endAlign: alignProp,
     inverted: stateProp,
     muted: stateProp,
+    primary: stateProp,
   };
 
   static defaultProps = {
@@ -38,10 +41,21 @@ export class Title extends React.Component<Props & WithStylesProps> {
     inline: false,
     inverted: false,
     muted: false,
+    primary: false,
   };
 
   render() {
-    const { centerAlign, children, inline, inverted, level, muted, endAlign, styles } = this.props;
+    const {
+      centerAlign,
+      children,
+      endAlign,
+      inline,
+      inverted,
+      level,
+      muted,
+      primary,
+      styles,
+    } = this.props;
     const Tag: 'h1' | 'h2' | 'h3' = `h${level}` as any;
 
     return (
@@ -54,6 +68,7 @@ export class Title extends React.Component<Props & WithStylesProps> {
           inline && styles.title_inline,
           inverted && styles.title_inverted,
           muted && styles.title_muted,
+          primary && styles.title_primary,
           centerAlign && styles.title_center,
           endAlign && styles.title_right,
         )}
@@ -92,6 +107,10 @@ export default withStyles(({ color, font }) => ({
 
   title_muted: {
     color: color.muted,
+  },
+
+  title_primary: {
+    color: color.core.primary[3],
   },
 
   title_center: {
