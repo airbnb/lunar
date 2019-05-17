@@ -6,7 +6,7 @@ export type TableRef = React.RefObject<Table>;
 
 export type RowHeightOptions = string;
 export type HeightOptions = RowHeightOptions | undefined;
-export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '' | undefined;
+export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '';
 
 export type SelectedRows = {
   [key: number]: {
