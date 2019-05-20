@@ -10,6 +10,8 @@ export const MODAL_MAX_WIDTH_SMALL = 568;
 export type Props = ModalInnerContentProps & {
   /** Image configuration to be used as the right pane in a dual pane layout. If provided, will force the modal to a `large` layout. */
   image?: ModalImageConfig;
+  /** True to show a version of the dialog that scales to the content size */
+  fitContent?: boolean;
 };
 
 /** A Dialog component with a backdrop and a standardized layout. */
@@ -66,8 +68,8 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, footer, image, large, styles, title } = this.props;
-    const showLargeContent = large || !!image;
+    const { children, footer, image, large, fitContent, styles, title } = this.props;
+    const showLargeContent = large || fitContent || !!image;
 
     const innerContent = (
       <ModalInnerContent
@@ -85,7 +87,11 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
         aria-modal
         role="dialog"
         ref={this.dialogRef}
-        {...css(styles.content, showLargeContent && styles.responsiveContent)}
+        {...css(
+          styles.content,
+          showLargeContent && styles.responsiveContent,
+          fitContent && styles.fitContent,
+        )}
       >
         <FocusTrap>
           {image ? <ModalImageLayout {...image}>{innerContent}</ModalImageLayout> : innerContent}
@@ -117,5 +123,10 @@ export default withStyles(({ color, responsive, ui }) => ({
         maxWidth: MODAL_MAX_WIDTH_SMALL,
       },
     },
+  },
+
+  fitContent: {
+    maxWidth: '100%',
+    width: 'auto',
   },
 }))(ModalInner);

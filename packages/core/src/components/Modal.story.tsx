@@ -10,7 +10,7 @@ import Text from './Text';
 import Modal from './Modal';
 
 class ModalDemo extends React.Component<
-  { large?: boolean; noTitle?: boolean; image?: 'center' | 'cover' },
+  { large?: boolean; noTitle?: boolean; fitContent?: boolean; image?: 'center' | 'cover' },
   { visible: boolean }
 > {
   state = { visible: false };
@@ -21,7 +21,7 @@ class ModalDemo extends React.Component<
 
   render() {
     const { visible } = this.state;
-    const { image, large, noTitle } = this.props;
+    const { image, fitContent, large, noTitle } = this.props;
 
     return (
       <div>
@@ -36,6 +36,7 @@ class ModalDemo extends React.Component<
               }
             }
             large={large}
+            fitContent={fitContent}
             footer={
               <ButtonGroup>
                 <Button onClick={this.handleToggle}>OK</Button>
@@ -76,4 +77,5 @@ storiesOf('Core/Modal', module)
   .add('A large modal.', () => <ModalDemo large />)
   .add('With no title.', () => <ModalDemo noTitle />)
   .add('With a centered image.', () => <ModalDemo image="center" />)
-  .add('With a right cover image.', () => <ModalDemo image="cover" />);
+  .add('With a right cover image.', () => <ModalDemo image="cover" />)
+  .add('Sized to fit content.', () => <ModalDemo fitContent />);
