@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.2.0 - 2019-05-21
+
+#### 🚀 Updates
+
+- **[Icon]** Add IconTune (#63) ([59025ef](https://github.com/airbnb/lunar/commit/59025ef)), closes [#63](https://github.com/airbnb/lunar/issues/63)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ### 1.1.1 - 2019-05-01
 
 #### 📦 Dependencies
