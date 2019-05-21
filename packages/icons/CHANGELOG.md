@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.2.1 - 2019-05-21
+
+#### 🐞 Fixes
+
+- Remove Babel runtime setup (#65) ([a58ade2](https://github.com/airbnb/lunar/commit/a58ade2)), closes [#65](https://github.com/airbnb/lunar/issues/65)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ## 1.2.0 - 2019-05-21
 
 #### 🚀 Updates
