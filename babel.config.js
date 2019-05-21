@@ -40,11 +40,11 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        corejs: 3,
+        // corejs: 3,
         loose: true,
         modules: ESM ? false : 'commonjs',
         shippedProposals: true,
-        useBuiltIns: 'usage',
+        // useBuiltIns: 'usage',
       },
     ],
     '@babel/preset-react',
