@@ -24,7 +24,6 @@
     "react": "^16.8.6"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.4.3",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
     "shallowequal": "^1.1.0",
