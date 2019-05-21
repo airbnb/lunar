@@ -1,4 +1,5 @@
 import React from 'react';
+import { stripHexcode } from 'emojibase';
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import Lunar from '@airbnb/lunar';
@@ -20,8 +21,10 @@ if (!theme || (theme !== 'light' && theme !== 'dark')) {
 
 Lunar.initialize({
   name: 'Lunar',
-  emojiCDN: hexcode =>
-    `https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/${hexcode.toLowerCase()}.png`,
+  emojiCDN: (hexcode, large) =>
+    `https://cdn.jsdelivr.net/emojione/assets/4.5/png/${large ? 64 : 32}/${stripHexcode(
+      hexcode,
+    ).toLowerCase()}.png`,
   logger: console.log,
   theme,
 });

@@ -10,14 +10,20 @@ class SheetDemo extends React.Component<
   {},
   {
     animated: boolean;
+    compact: boolean;
     gap: boolean;
+    header: boolean;
+    headerShadow: boolean;
     portal: boolean;
     visible: boolean;
   }
 > {
   state = {
     animated: true,
+    compact: false,
     gap: false,
+    header: false,
+    headerShadow: false,
     portal: false,
     visible: false,
   };
@@ -30,8 +36,20 @@ class SheetDemo extends React.Component<
     this.setState(({ animated }) => ({ animated: !animated }));
   };
 
+  handleCompactChange = () => {
+    this.setState(({ compact }) => ({ compact: !compact }));
+  };
+
   handleGapChange = () => {
     this.setState(({ gap }) => ({ gap: !gap }));
+  };
+
+  handleHeaderChange = () => {
+    this.setState(({ header }) => ({ header: !header }));
+  };
+
+  handleHeaderShadowChange = () => {
+    this.setState(({ headerShadow }) => ({ headerShadow: !headerShadow }));
   };
 
   handlePortalChange = () => {
@@ -39,7 +57,7 @@ class SheetDemo extends React.Component<
   };
 
   render() {
-    const { animated, gap, portal, visible } = this.state;
+    const { animated, compact, gap, header, headerShadow, portal, visible } = this.state;
 
     return (
       <SheetArea>
@@ -61,10 +79,34 @@ class SheetDemo extends React.Component<
           />
 
           <CheckBox
+            noSpacing
             name="animated"
             label="Render with animation"
             checked={animated}
             onChange={this.handleAnimatedChange}
+          />
+
+          <CheckBox
+            noSpacing
+            name="header"
+            label="Show header"
+            checked={header}
+            onChange={this.handleHeaderChange}
+          />
+
+          <CheckBox
+            noSpacing
+            name="headerShadow"
+            label="Show shadow on header"
+            checked={headerShadow}
+            onChange={this.handleHeaderShadowChange}
+          />
+
+          <CheckBox
+            name="compact"
+            label="Render with compact spacing"
+            checked={compact}
+            onChange={this.handleCompactChange}
           />
 
           <Sheet
@@ -73,6 +115,9 @@ class SheetDemo extends React.Component<
             portal={portal}
             visible={visible}
             onClose={this.handleClick}
+            header={header && <Text>This is the header!</Text>}
+            headerShadow={headerShadow}
+            compact={compact}
           >
             <Spacing inner vertical={12}>
               <Text>This is in a sheet!</Text>

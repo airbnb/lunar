@@ -4,8 +4,13 @@ import Tabs from '@storybook/addon-a11y/dist/components/Tabs';
 import About from './About';
 
 export default class Panel extends React.Component {
+  static defaultProps = {
+    active: false,
+  };
+
   state = {
     components: {},
+    componentChangelogs: {},
     componentMetadata: {},
     section: '',
     storyPath: '',
@@ -19,8 +24,9 @@ export default class Panel extends React.Component {
     this.props.channel.removeListener('SET_PROPS_DATA', this.handleSetData);
   }
 
-  handleSetData = ({ componentMetadata, ...data }) => {
+  handleSetData = ({ componentChangelogs, componentMetadata, ...data }) => {
     this.setState({
+      componentChangelogs: JSON.parse(componentChangelogs),
       componentMetadata: JSON.parse(componentMetadata),
       ...data,
     });
@@ -28,7 +34,7 @@ export default class Panel extends React.Component {
 
   render() {
     const { active } = this.props;
-    const { components, componentMetadata, section, storyPath } = this.state;
+    const { components, componentChangelogs, componentMetadata, section, storyPath } = this.state;
 
     if (!active) {
       return null;
@@ -45,6 +51,7 @@ export default class Panel extends React.Component {
           name={name}
           component={component}
           storyPath={storyPath}
+          changelog={componentChangelogs[name]}
           metadata={Object.values(componentMetadata).find(
             meta => meta.name === name && meta.path.includes(section),
           )}

@@ -86,6 +86,16 @@ export default function buildInputStyles({
     },
   };
 
+  const commonNeutral = {
+    borderColor: color.core.neutral[4],
+
+    '@selectors': {
+      ':hover, :focus': {
+        borderColor: color.core.neutral[4],
+      },
+    },
+  };
+
   return {
     input: {
       ...common,
@@ -116,6 +126,12 @@ export default function buildInputStyles({
     input_checked: {
       ...commonChecked,
       backgroundColor: color.core.primary[3],
+      color: color.base,
+    },
+
+    input_indeterminate: {
+      ...commonNeutral,
+      backgroundColor: color.core.neutral[4],
       color: color.base,
     },
 
@@ -169,6 +185,10 @@ export default function buildInputStyles({
 
     button_invalid: {
       ...commonInvalid,
+    },
+
+    button_neutral: {
+      ...commonNeutral,
     },
   };
 }

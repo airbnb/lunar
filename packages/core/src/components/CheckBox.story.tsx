@@ -28,6 +28,15 @@ storiesOf('Core/CheckBox', module)
       disabled
     />
   ))
+  .add('With a label description in an indeterminate state.', () => (
+    <CheckBox
+      name="cb-disabled"
+      label="Label"
+      labelDescription="This is a small label description."
+      onChange={action('onChange')}
+      indeterminate
+    />
+  ))
   .add('With a top alignment.', () => (
     <CheckBox
       topAlign

@@ -15,6 +15,8 @@ const stripeColorTypePropType = mutuallyExclusiveTrueProps('important', 'info', 
 export type Props = {
   /** Message body. */
   children: NonNullable<React.ReactNode>;
+  /** Wraps title in a span to disables translation suggestions from Google Translate. */
+  disableTitleTranslation?: boolean;
   /** Email display; displays that the message is from the provided email. */
   email?: React.ReactNode;
   /** Message timestamp display, e.g. "6:30 PM". */
@@ -64,6 +66,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
   };
 
   static defaultProps = {
+    disableTitleTranslation: false,
     email: null,
     horizontalSpacing: false,
     imageBadgeSrc: '',
@@ -82,6 +85,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
   render() {
     const {
       children,
+      disableTitleTranslation,
       email,
       formattedTimestamp,
       horizontalSpacing,
@@ -120,6 +124,12 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
       important && styles.container_important,
       info && styles.container_info,
       warning && styles.container_warning,
+    );
+
+    const formatedTitle = disableTitleTranslation ? (
+      <span className="notranslate">{title}</span>
+    ) : (
+      title
     );
 
     if (loadingAuthor) {
@@ -216,12 +226,12 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
                     onMouseUp={removeFocusOnMouseUp}
                   >
                     <Text inline bold>
-                      {title}
+                      {formatedTitle}
                     </Text>
                   </button>
                 ) : (
                   <Text inline bold>
-                    {title}
+                    {formatedTitle}
                   </Text>
                 )}
               </span>

@@ -75,15 +75,21 @@ storiesOf('Core/Text', module)
     </Text>
   ))
   .add('With aligned text.', () => (
-    <>
+    <div style={{ textAlign: 'center' }}>
       <Text>
-        <LoremIpsum short />
+        <Text bold>Parent alignment</Text> <LoremIpsum short />
       </Text>
+      <br />
+      <Text startAlign>
+        <Text bold>Start align</Text> <LoremIpsum short />
+      </Text>
+      <br />
       <Text centerAlign>
-        <LoremIpsum short />
+        <Text bold>Center align</Text> <LoremIpsum short />
       </Text>
+      <br />
       <Text endAlign>
-        <LoremIpsum short />
+        <Text bold>End align</Text> <LoremIpsum short />
       </Text>
-    </>
+    </div>
   ));

@@ -54,6 +54,20 @@ describe('<RadioButton />', () => {
     expect(wrapper.find(BaseRadioButton).prop('checked')).toBe(true);
   });
 
+  it('can set indeterminate', () => {
+    const wrapper = shallow(
+      <RadioButton name="foo" label="Label" value="foo" onChange={() => {}} />,
+    );
+
+    expect(wrapper.find(BaseRadioButton).prop('indeterminate')).toBe(false);
+
+    wrapper.setProps({
+      indeterminate: true,
+    });
+
+    expect(wrapper.find(BaseRadioButton).prop('indeterminate')).toBe(true);
+  });
+
   describe('button mode', () => {
     let wrapper: Enzyme.ShallowWrapper<Props, State>;
 

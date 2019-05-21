@@ -1,8 +1,8 @@
+import Enzyme, { mount, shallow } from 'enzyme';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Enzyme, { shallow, mount } from 'enzyme';
 import { mockContextConsumer, unwrapHOCs } from '@airbnb/lunar-test-utils';
-import IconButton from '../../src/components/IconButton';
+import Row from '../../src/components/Row';
 import Sheet from '../../src/components/Sheet';
 import SheetContext from '../../src/components/Sheet/SheetContext';
 import { ESCAPE } from '../../src/keys';
@@ -49,7 +49,7 @@ describe('<Sheet />', () => {
       </Sheet>,
     );
 
-    wrapper.find(IconButton).simulate('click');
+    shallow(wrapper.find(Row).prop('before') as React.ReactElement).simulate('click');
 
     expect(close).toHaveBeenCalled();
   });

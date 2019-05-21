@@ -224,4 +224,17 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
+  ))
+  .add('With disable title translation.', () => (
+    <MessageItem
+      disableTitleTranslation
+      formattedTimestamp="2:45 AM"
+      imageDescription="Link"
+      imageSrc={lunar}
+      title="Some custom title"
+    >
+      <Text>
+        <LoremIpsum />
+      </Text>
+    </MessageItem>
   ));

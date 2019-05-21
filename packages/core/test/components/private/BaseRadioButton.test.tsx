@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import IconRecord from '@airbnb/lunar-icons/lib/interface/IconRecord';
+import IconRemove from '@airbnb/lunar-icons/lib/interface/IconRemove';
 import BaseRadioButton from '../../../src/components/private/BaseRadioButton';
 import FormInput from '../../../src/components/private/FormInput';
 
@@ -40,6 +41,18 @@ describe('<BaseRadioButton />', () => {
     });
 
     expect(wrapper.find(IconRecord)).toHaveLength(1);
+  });
+
+  it('displays a dash when indeterminate', () => {
+    const wrapper = shallow(<BaseRadioButton id="foo" name="foo" onChange={() => {}} />).dive();
+
+    expect(wrapper.find(IconRemove)).toHaveLength(0);
+
+    wrapper.setProps({
+      indeterminate: true,
+    });
+
+    expect(wrapper.find(IconRemove)).toHaveLength(1);
   });
 
   it('triggers `onChange` handler', () => {

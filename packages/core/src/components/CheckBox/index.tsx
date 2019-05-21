@@ -1,8 +1,11 @@
 import React from 'react';
 import uuid from 'uuid/v4';
+import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import BaseCheckBox, { Props as BaseCheckBoxProps } from '../private/BaseCheckBox';
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
 import Text from '../Text';
+
+const stateProp = mutuallyExclusiveTrueProps('checked', 'indeterminate');
 
 export type Props = BaseCheckBoxProps &
   FormFieldProps & {
@@ -20,8 +23,14 @@ export default class CheckBox extends React.Component<Props, State> {
     button: false,
     checked: false,
     children: null,
+    indeterminate: false,
     topAlign: false,
     value: '1',
+  };
+
+  static propTypes = {
+    checked: stateProp,
+    indeterminate: stateProp,
   };
 
   state = {
