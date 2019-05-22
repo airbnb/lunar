@@ -131,22 +131,10 @@ export default withStyles(({ color, font, pattern, transition, ui, unit }) => ({
   },
 
   chip_active_button: {
-    cursor: 'pointer',
-    padding: 0,
-
     '@selectors': {
-      ':not([disabled]):active': {
-        boxShadow: ui.boxShadow,
-      },
-
       ':not([disabled]):hover': {
         backgroundColor: color.core.primary[2],
       },
-    },
-
-    ':focus': {
-      backgroundColor: color.accent.bgHover,
-      outline: 'none',
     },
   },
 
