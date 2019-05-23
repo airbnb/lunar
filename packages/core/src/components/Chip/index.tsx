@@ -6,9 +6,6 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
-const beforePropType = mutuallyExclusiveProps(PropTypes.any, 'beforeIcon', 'profileImageSrc');
-const afterPropType = mutuallyExclusiveProps(PropTypes.node, 'afterIcon', 'icon');
-
 export type Props = {
   /** Renders with a primary background and white text. */
   active?: boolean;
@@ -37,8 +34,14 @@ export class Chip extends React.Component<Props & WithStylesProps> {
   static propTypes = {
     icon: requiredBy('onIconClick', iconComponent),
     onClick: mutuallyExclusiveProps(PropTypes.func, 'onIconClick'),
-    beforeIcon: beforePropType,
-    profileImageSrc: beforePropType,
+    beforeIcon: mutuallyExclusiveProps(PropTypes.any, 'beforeIcon', 'profileImageSrc'),
+    profileImageSrc: mutuallyExclusiveProps(
+      PropTypes.any,
+      'beforeIcon',
+      'profileImageSrc',
+      'compact',
+    ),
+    compact: mutuallyExclusiveProps(PropTypes.any, 'profileImageSrc', 'compact'),
   };
 
   render() {

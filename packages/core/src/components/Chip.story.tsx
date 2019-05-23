@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import IconCalendar from '@airbnb/lunar-icons/lib/general/IconCalendar';
+import IconUser from '@airbnb/lunar-icons/lib/general/IconUser';
 import IconCloseAlt from '@airbnb/lunar-icons/lib/interface/IconCloseAlt';
 import IconSettings from '@airbnb/lunar-icons/lib/interface/IconSettings';
 import lunar from ':storybook/images/lunar-logo.png';
@@ -13,10 +14,57 @@ storiesOf('Core/Chip', module)
     inspectComponents: [Chip],
   })
   .add('Simple chip.', () => <Chip>Chip</Chip>)
+  .add('With a icons before or after.', () => (
+    <>
+      <Spacing right={1} inline>
+        <Chip icon={<IconCloseAlt size="2em" />}>Chip</Chip>
+      </Spacing>
+
+      <Spacing right={1} inline>
+        <Chip beforeIcon={<IconCalendar size="1.2em" />}>Calendar</Chip>
+      </Spacing>
+
+      <Spacing right={1} inline>
+        <Chip icon={<IconCloseAlt size="2em" />} beforeIcon={<IconUser size="1.2em" />}>
+          Calendar
+        </Chip>
+      </Spacing>
+
+      <Spacing right={0} inline>
+        <Chip icon={<IconCloseAlt size="2em" />} beforeIcon={<IconCalendar size="1.2em" />}>
+          Calendar
+        </Chip>
+      </Spacing>
+    </>
+  ))
   .add('Compact chip.', () => (
     <>
       <Spacing right={1} inline>
-        <Chip compact onClick={action('onClick')}>
+        <Chip profileImageSrc={lunar} compact onClick={action('onClick')}>
+          Chip
+        </Chip>
+      </Spacing>
+
+      <Spacing right={1} inline>
+        <Chip beforeIcon={<IconUser size="1.2em" />} compact onClick={action('onClick')}>
+          Chip
+        </Chip>
+      </Spacing>
+
+      <Spacing right={1} inline>
+        <Chip afterIcon={<IconCalendar size="1.2em" />} compact onClick={action('onClick')}>
+          Chip
+        </Chip>
+      </Spacing>
+
+      <Spacing right={1} inline>
+        <Chip
+          active
+          beforeIcon={<IconUser size="1.2em" />}
+          afterIcon={<IconCalendar size="1.2em" />}
+          compact
+          onClick={action('onClick')}
+        >
           Chip
         </Chip>
       </Spacing>
@@ -25,17 +73,6 @@ storiesOf('Core/Chip', module)
         <Chip compact active onClick={action('onClick')}>
           Chip
         </Chip>
-      </Spacing>
-    </>
-  ))
-  .add('With a icons before or after.', () => (
-    <>
-      <Spacing right={1} inline>
-        <Chip icon={<IconCloseAlt size="2em" />}>Chip</Chip>
-      </Spacing>
-
-      <Spacing right={0} inline>
-        <Chip beforeIcon={<IconCalendar size="1.2em" />}>Calendar</Chip>
       </Spacing>
     </>
   ))
