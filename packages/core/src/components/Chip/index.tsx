@@ -85,8 +85,8 @@ export class Chip extends React.Component<Props & WithStylesProps> {
         className={cx(
           styles.chip,
           onClick && styles.chip_button,
-          !profileImageSrc && styles.chip_noBefore,
-          !icon && styles.chip_noAfter,
+          !shouldRenderBefore && styles.chip_noBefore,
+          !shouldRenderAfter && styles.chip_noAfter,
           active && styles.chip_active,
           onClick && active && styles.chip_active_button,
           compact && styles.chip_compact,
@@ -96,7 +96,13 @@ export class Chip extends React.Component<Props & WithStylesProps> {
       >
         {shouldRenderBefore && (
           <div className={cx(styles.chipItem, styles.sideContent)}>
-            <div className={cx(styles.sideContentInner)}>
+            <div
+              className={cx(
+                styles.sideContentInner,
+                !!beforeIcon && styles.iconWrapper,
+                !!beforeIcon && styles.iconWrapperBefore,
+              )}
+            >
               {profileImageSrc && <ProfilePhoto imageSrc={profileImageSrc} title="" size={4} />}
               {beforeIcon && beforeIcon}
             </div>
@@ -107,7 +113,9 @@ export class Chip extends React.Component<Props & WithStylesProps> {
 
         {shouldRenderAfter && (
           <div className={cx(styles.chipItem, styles.sideContent)}>
-            <div className={cx(styles.sideContentInner, styles.iconWrapper)}>
+            <div
+              className={cx(styles.sideContentInner, styles.iconWrapper, styles.iconWrapperAfter)}
+            >
               {onIconClick ? (
                 <ButtonOrLink
                   className={(styles.iconButton, disabled && styles.iconButton_disabled)}
@@ -210,8 +218,15 @@ export default withStyles(({ color, font, pattern, transition, ui, unit }) => ({
   },
 
   iconWrapper: {
-    padding: `${unit * 0.5}px ${unit * 0.5}px ${unit * 0.5}px 0`,
     color: color.core.neutral[3],
+  },
+
+  iconWrapperAfter: {
+    padding: `${unit * 0.5}px ${unit * 0.5}px ${unit * 0.5}px 0`,
+  },
+
+  iconWrapperBefore: {
+    padding: `${unit * 0.5}px 0 ${unit * 0.5}px ${unit * 0.5}px`,
   },
 
   iconButton: {

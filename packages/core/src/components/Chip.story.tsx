@@ -14,10 +14,10 @@ storiesOf('Core/Chip', module)
     inspectComponents: [Chip],
   })
   .add('Simple chip.', () => <Chip>Chip</Chip>)
-  .add('With a icons before or after.', () => (
+  .add('With a icons before and/or after.', () => (
     <>
       <Spacing right={1} inline>
-        <Chip icon={<IconCloseAlt size="2em" />}>Chip</Chip>
+        <Chip afterIcon={<IconCloseAlt size="2em" />}>Chip</Chip>
       </Spacing>
 
       <Spacing right={1} inline>
@@ -25,13 +25,7 @@ storiesOf('Core/Chip', module)
       </Spacing>
 
       <Spacing right={1} inline>
-        <Chip icon={<IconCloseAlt size="2em" />} beforeIcon={<IconUser size="1.2em" />}>
-          Calendar
-        </Chip>
-      </Spacing>
-
-      <Spacing right={0} inline>
-        <Chip icon={<IconCloseAlt size="2em" />} beforeIcon={<IconCalendar size="1.2em" />}>
+        <Chip afterIcon={<IconCalendar size="1.2em" />} beforeIcon={<IconCalendar size="1.2em" />}>
           Calendar
         </Chip>
       </Spacing>
@@ -73,17 +67,13 @@ storiesOf('Core/Chip', module)
   .add('With an icon button.', () => (
     <>
       <Spacing right={1} inline>
-        <Chip icon={<IconCloseAlt decorative size="2em" />} onIconClick={action('onIconClick')}>
+        <Chip afterIcon={<IconCloseAlt size="2em" />} onIconClick={action('onIconClick')}>
           Close
         </Chip>
       </Spacing>
 
       <Spacing right={0} inline>
-        <Chip
-          disabled
-          icon={<IconCloseAlt decorative size="2em" />}
-          onIconClick={action('onIconClick')}
-        >
+        <Chip disabled afterIcon={<IconCloseAlt size="2em" />} onIconClick={action('onIconClick')}>
           Close
         </Chip>
       </Spacing>
@@ -91,7 +81,7 @@ storiesOf('Core/Chip', module)
   ))
   .add('With a profile photo.', () => <Chip profileImageSrc={lunar}>User</Chip>)
   .add('With both a profile photo and an icon.', () => (
-    <Chip icon={<IconSettings decorative size="2em" />} profileImageSrc={lunar}>
+    <Chip afterIcon={<IconSettings size="2em" />} profileImageSrc={lunar}>
       Settings
     </Chip>
   ))
@@ -102,13 +92,13 @@ storiesOf('Core/Chip', module)
       </Spacing>
 
       <Spacing right={1} inline>
-        <Chip disabled icon={<IconSettings decorative size="2em" />} profileImageSrc={lunar}>
+        <Chip disabled afterIcon={<IconSettings size="2em" />} profileImageSrc={lunar}>
           User
         </Chip>
       </Spacing>
 
       <Spacing right={0} inline>
-        <Chip disabled icon={<IconSettings decorative size="2em" />}>
+        <Chip disabled afterIcon={<IconSettings size="2em" />}>
           Settings
         </Chip>
       </Spacing>
@@ -122,7 +112,7 @@ storiesOf('Core/Chip', module)
 
       <Spacing right={1} inline>
         <Chip
-          icon={<IconSettings decorative size="2em" />}
+          afterIcon={<IconSettings size="2em" />}
           profileImageSrc={lunar}
           onClick={action('onClick')}
         >
@@ -131,7 +121,7 @@ storiesOf('Core/Chip', module)
       </Spacing>
 
       <Spacing right={0} inline>
-        <Chip icon={<IconSettings decorative size="2em" />} onClick={action('onClick')}>
+        <Chip afterIcon={<IconSettings size="2em" />} onClick={action('onClick')}>
           Settings
         </Chip>
       </Spacing>
