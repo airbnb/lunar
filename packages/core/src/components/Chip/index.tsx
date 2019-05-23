@@ -7,8 +7,12 @@ import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
 export type Props = {
+  /** Renders with a primary background and white text */
+  active?: boolean;
   /** Primary chip contents. */
   children: NonNullable<React.ReactNode>;
+  /** Renders with less padding and sharper corners. */
+  compact?: boolean;
   /** Disabled / gray. */
   disabled?: boolean;
   /** Icon to render to the right of the primary content. */
@@ -29,7 +33,17 @@ export class Chip extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, disabled, icon, onClick, onIconClick, profileImageSrc, styles } = this.props;
+    const {
+      active,
+      children,
+      compact,
+      disabled,
+      icon,
+      onClick,
+      onIconClick,
+      profileImageSrc,
+      styles,
+    } = this.props;
 
     const Component = onClick ? 'button' : 'div';
     const props: React.HTMLProps<HTMLButtonElement> =
@@ -49,6 +63,9 @@ export class Chip extends React.Component<Props & WithStylesProps> {
           onClick && styles.chip_button,
           !profileImageSrc && styles.chip_noBefore,
           !icon && styles.chip_noAfter,
+          active && styles.chip_active,
+          onClick && active && styles.chip_active_button,
+          compact && styles.chip_compact,
           disabled && styles.chip_disabled,
         )}
         {...props}
@@ -105,6 +122,26 @@ export default withStyles(({ color, font, pattern, transition, ui, unit }) => ({
 
   chip_noAfter: {
     paddingRight: unit,
+  },
+
+  chip_active: {
+    background: color.core.primary[3],
+    borderColor: color.core.primary[3],
+    color: color.accent.bg,
+  },
+
+  chip_active_button: {
+    '@selectors': {
+      ':not([disabled]):hover': {
+        backgroundColor: color.core.primary[4],
+      },
+    },
+  },
+
+  chip_compact: {
+    borderRadius: 2,
+    padding: `0 ${unit}`,
+    height: 3 * unit,
   },
 
   chip_disabled: {
