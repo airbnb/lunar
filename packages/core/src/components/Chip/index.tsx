@@ -10,7 +10,7 @@ export type Props = {
   /** Renders with a primary background and white text. */
   active?: boolean;
   /** Icon to render to the left of the primary content. */
-  beforeIcon?: React.ReactNode;
+  before?: React.ReactNode;
   /** Primary chip contents. */
   children: NonNullable<React.ReactNode>;
   /** Renders with less padding and sharper corners. */
