@@ -57,6 +57,12 @@ export class Chip extends React.Component<Props & WithStylesProps> {
       styles,
     } = this.props;
 
+    if (__DEV__) {
+      if (icon) {
+        console.log('Chip: `icon` prop is deprecated, please use `afterIcon` instead.');
+      }
+    }
+
     const Component = onClick ? 'button' : 'div';
     const props: React.HTMLProps<HTMLButtonElement> =
       Component === 'button'
@@ -66,6 +72,8 @@ export class Chip extends React.Component<Props & WithStylesProps> {
             type: 'button',
           }
         : {};
+
+    const shouldRenderAfter = afterIcon || icon;
 
     return (
       // @ts-ignore [ts] JSX element type 'Component' does not have any construct or call signatures. [2604]
