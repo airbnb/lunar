@@ -74,6 +74,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
         : {};
 
     const shouldRenderAfter = afterIcon || icon;
+    const shouldRenderBefore = beforeIcon || profileImageSrc;
 
     return (
       // @ts-ignore [ts] JSX element type 'Component' does not have any construct or call signatures. [2604]
@@ -90,7 +91,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
         )}
         {...props}
       >
-        {(beforeIcon || profileImageSrc) && (
+        {shouldRenderBefore && (
           <div className={cx(styles.chipItem, styles.sideContent)}>
             <div className={cx(styles.sideContentInner)}>
               {profileImageSrc && <ProfilePhoto imageSrc={profileImageSrc} title="" size={4} />}
