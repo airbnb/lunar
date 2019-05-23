@@ -65,7 +65,7 @@ export default function ColumnLabels({
       const key = children[0].props.children;
       const label = columnToLabel[key]
         ? columnToLabel[key]
-        : key && caseColumnLabel(key, columnLabelCase);
+        : key && caseColumnLabel(key, columnLabelCase!);
       const sort = children[1] && children[1].props.sortDirection;
 
       const isLeftmost = idx === leftmostIdx;
