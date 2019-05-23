@@ -40,12 +40,6 @@ storiesOf('Core/Chip', module)
   .add('Compact chip.', () => (
     <>
       <Spacing right={1} inline>
-        <Chip profileImageSrc={lunar} compact onClick={action('onClick')}>
-          Chip
-        </Chip>
-      </Spacing>
-
-      <Spacing right={1} inline>
         <Chip beforeIcon={<IconUser size="1.2em" />} compact onClick={action('onClick')}>
           Chip
         </Chip>
@@ -60,8 +54,8 @@ storiesOf('Core/Chip', module)
       <Spacing right={1} inline>
         <Chip
           active
-          beforeIcon={<IconUser size="1.2em" />}
-          afterIcon={<IconCalendar size="1.2em" />}
+          beforeIcon={<IconUser size="1.2em" color="white" />}
+          afterIcon={<IconCalendar size="1.2em" color="white" />}
           compact
           onClick={action('onClick')}
         >
