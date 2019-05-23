@@ -7,7 +7,7 @@ import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
 export type Props = {
-  /** Renders with a primary background and white text */
+  /** Renders with a primary background and white text. */
   active?: boolean;
   /** Primary chip contents. */
   children: NonNullable<React.ReactNode>;
