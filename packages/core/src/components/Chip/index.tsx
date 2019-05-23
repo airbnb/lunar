@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { mutuallyExclusiveProps, mutuallyExclusiveTrueProps, requiredBy } from 'airbnb-prop-types';
+import { mutuallyExclusiveProps, requiredBy } from 'airbnb-prop-types';
 import iconComponent from '../../prop-types/iconComponent';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ProfilePhoto from '../ProfilePhoto';
@@ -27,7 +27,11 @@ export type Props = {
   profileImageSrc?: string;
 };
 
-const beforePropType = mutuallyExclusiveTrueProps('beforeIcon', 'profileImageSrc');
+const beforePropType = mutuallyExclusiveProps(
+  PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  'before',
+  'profileImageSrc',
+);
 
 /** Compact component that represents a snippet of information, such as a filter. */
 export class Chip extends React.Component<Props & WithStylesProps> {
