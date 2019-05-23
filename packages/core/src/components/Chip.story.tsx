@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import IconCalendar from '@airbnb/lunar-icons/lib/general/IconCalendar';
 import IconCloseAlt from '@airbnb/lunar-icons/lib/interface/IconCloseAlt';
 import IconSettings from '@airbnb/lunar-icons/lib/interface/IconSettings';
 import lunar from ':storybook/images/lunar-logo.png';
@@ -27,7 +28,17 @@ storiesOf('Core/Chip', module)
       </Spacing>
     </>
   ))
-  .add('With an icon.', () => <Chip icon={<IconCloseAlt decorative size="2em" />}>Chip</Chip>)
+  .add('With a icons before or after.', () => (
+    <>
+      <Spacing right={1} inline>
+        <Chip icon={<IconCloseAlt size="2em" />}>Chip</Chip>
+      </Spacing>
+
+      <Spacing right={0} inline>
+        <Chip beforeIcon={<IconCalendar size="1.2em" />}>Calendar</Chip>
+      </Spacing>
+    </>
+  ))
   .add('With an icon button.', () => (
     <>
       <Spacing right={1} inline>

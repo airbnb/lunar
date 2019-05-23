@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { mutuallyExclusiveProps, requiredBy } from 'airbnb-prop-types';
+import { mutuallyExclusiveProps, mutuallyExclusiveTrueProps, requiredBy } from 'airbnb-prop-types';
 import iconComponent from '../../prop-types/iconComponent';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ProfilePhoto from '../ProfilePhoto';
@@ -9,6 +9,8 @@ import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 export type Props = {
   /** Renders with a primary background and white text. */
   active?: boolean;
+  /** Icon to render to the left of the primary content. */
+  beforeIcon?: React.ReactNode;
   /** Primary chip contents. */
   children: NonNullable<React.ReactNode>;
   /** Renders with less padding and sharper corners. */
@@ -25,17 +27,22 @@ export type Props = {
   profileImageSrc?: string;
 };
 
+const beforePropType = mutuallyExclusiveTrueProps('beforeIcon', 'profileImageSrc');
+
 /** Compact component that represents a snippet of information, such as a filter. */
 export class Chip extends React.Component<Props & WithStylesProps> {
   static propTypes = {
     icon: requiredBy('onIconClick', iconComponent),
     onClick: mutuallyExclusiveProps(PropTypes.func, 'onIconClick'),
+    beforeIcon: beforePropType,
+    profileImageSrc: beforePropType,
   };
 
   render() {
     const {
       cx,
       active,
+      beforeIcon,
       children,
       compact,
       disabled,
@@ -71,10 +78,11 @@ export class Chip extends React.Component<Props & WithStylesProps> {
         )}
         {...props}
       >
-        {profileImageSrc && (
+        {(beforeIcon || profileImageSrc) && (
           <div className={cx(styles.chipItem, styles.sideContent)}>
             <div className={cx(styles.sideContentInner)}>
-              <ProfilePhoto imageSrc={profileImageSrc} title="" size={4} />
+              {profileImageSrc && <ProfilePhoto imageSrc={profileImageSrc} title="" size={4} />}
+              {beforeIcon && beforeIcon}
             </div>
           </div>
         )}
