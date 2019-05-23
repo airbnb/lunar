@@ -35,7 +35,7 @@ storiesOf('Core/Chip', module)
       </Spacing>
 
       <Spacing right={0} inline>
-        <Chip before={<IconCalendar size="1.2em" />}>Calendar</Chip>
+        <Chip beforeIcon={<IconCalendar size="1.2em" />}>Calendar</Chip>
       </Spacing>
     </>
   ))

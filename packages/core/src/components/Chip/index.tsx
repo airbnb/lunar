@@ -6,13 +6,16 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
-const beforePropType = mutuallyExclusiveProps(PropTypes.any, 'before', 'profileImageSrc');
+const beforePropType = mutuallyExclusiveProps(PropTypes.any, 'beforeIcon', 'profileImageSrc');
+const afterPropType = mutuallyExclusiveProps(PropTypes.node, 'afterIcon', 'icon');
 
 export type Props = {
   /** Renders with a primary background and white text. */
   active?: boolean;
+  /** Icon to render to the right of the primary content. */
+  afterIcon?: React.ReactNode;
   /** Icon to render to the left of the primary content. */
-  before?: React.ReactNode;
+  beforeIcon?: React.ReactNode;
   /** Primary chip contents. */
   children: NonNullable<React.ReactNode>;
   /** Renders with less padding and sharper corners. */
@@ -42,6 +45,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
     const {
       cx,
       active,
+      afterIcon,
       beforeIcon,
       children,
       compact,
@@ -89,23 +93,25 @@ export class Chip extends React.Component<Props & WithStylesProps> {
 
         <div className={cx(styles.chipItem, styles.content)}>{children}</div>
 
-        {icon && (
-          <div className={cx(styles.chipItem, styles.sideContent)}>
-            <div className={cx(styles.sideContentInner, styles.iconWrapper)}>
-              {onIconClick ? (
-                <ButtonOrLink
-                  className={cx(styles.iconButton, disabled && styles.iconButton_disabled)}
-                  disabled={disabled}
-                  onClick={onIconClick}
-                >
-                  {icon}
-                </ButtonOrLink>
-              ) : (
-                icon
-              )}
+        {afterIcon ||
+          (icon && (
+            <div className={cx(styles.chipItem, styles.sideContent)}>
+              <div className={cx(styles.sideContentInner, styles.iconWrapper)}>
+                {onIconClick ? (
+                  <ButtonOrLink
+                    className={(styles.iconButton, disabled && styles.iconButton_disabled)}
+                    disabled={disabled}
+                    onClick={onIconClick}
+                  >
+                    {afterIcon}
+                    {icon}
+                  </ButtonOrLink>
+                ) : (
+                  icon
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          ))}
       </Component>
     );
   }
