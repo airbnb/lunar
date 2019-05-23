@@ -102,25 +102,24 @@ export class Chip extends React.Component<Props & WithStylesProps> {
 
         <div className={cx(styles.chipItem, styles.content)}>{children}</div>
 
-        {afterIcon ||
-          (icon && (
-            <div className={cx(styles.chipItem, styles.sideContent)}>
-              <div className={cx(styles.sideContentInner, styles.iconWrapper)}>
-                {onIconClick ? (
-                  <ButtonOrLink
-                    className={(styles.iconButton, disabled && styles.iconButton_disabled)}
-                    disabled={disabled}
-                    onClick={onIconClick}
-                  >
-                    {afterIcon}
-                    {icon}
-                  </ButtonOrLink>
-                ) : (
-                  icon
-                )}
-              </div>
+        {shouldRenderAfter && (
+          <div className={cx(styles.chipItem, styles.sideContent)}>
+            <div className={cx(styles.sideContentInner, styles.iconWrapper)}>
+              {onIconClick ? (
+                <ButtonOrLink
+                  className={(styles.iconButton, disabled && styles.iconButton_disabled)}
+                  disabled={disabled}
+                  onClick={onIconClick}
+                >
+                  {afterIcon}
+                  {icon}
+                </ButtonOrLink>
+              ) : (
+                icon
+              )}
             </div>
-          ))}
+          </div>
+        )}
       </Component>
     );
   }
