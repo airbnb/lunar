@@ -6,6 +6,8 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
+const beforePropType = mutuallyExclusiveProps(PropTypes.any, 'before', 'profileImageSrc');
+
 export type Props = {
   /** Renders with a primary background and white text. */
   active?: boolean;
@@ -26,12 +28,6 @@ export type Props = {
   /** Profile photo to render to the left of the primary content. */
   profileImageSrc?: string;
 };
-
-const beforePropType = mutuallyExclusiveProps(
-  PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
-  'before',
-  'profileImageSrc',
-);
 
 /** Compact component that represents a snippet of information, such as a filter. */
 export class Chip extends React.Component<Props & WithStylesProps> {
