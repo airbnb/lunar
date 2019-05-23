@@ -11,7 +11,7 @@ export type Props = {
   active?: boolean;
   /** Primary chip contents. */
   children: NonNullable<React.ReactNode>;
-  /** Renders with less padding and sharper corners */
+  /** Renders with less padding and sharper corners. */
   compact?: boolean;
   /** Disabled / gray. */
   disabled?: boolean;
@@ -133,7 +133,7 @@ export default withStyles(({ color, font, pattern, transition, ui, unit }) => ({
   chip_active_button: {
     '@selectors': {
       ':not([disabled]):hover': {
-        backgroundColor: color.core.primary[2],
+        backgroundColor: color.core.primary[4],
       },
     },
   },
