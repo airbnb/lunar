@@ -52,11 +52,11 @@ export interface DataTableProps {
   columnMetadata?: ColumnMetadata;
   /** Array of data rows. */
   data?: ParentRow[];
-  /** When instant edit is disabled, callback on edit application. */
+  /** Default callback on all edits. */
   defaultEditCallback?: EditCallback;
   /** Specifies whether or not editMode can be enabled. */
   editable?: boolean;
-  /** Callback overides for instant edit on specific keys. */
+  /** Callback for any specific key, called on all edits. */
   editCallbacks?: { [key: string]: EditCallback };
   /** When instant edit is disabled, callback that gets trigged on edit application. */
   enactEditsCallback?: (changeLog: ChangeLog) => void;
