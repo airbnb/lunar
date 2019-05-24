@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-app-shell",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Application shell powered by Lunar.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -24,7 +24,6 @@
     "react": "^16.8.6"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.4.3",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
     "shallowequal": "^1.1.0",

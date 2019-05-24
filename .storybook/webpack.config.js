@@ -56,33 +56,5 @@ module.exports = async ({ config }) => {
     config.resolve.alias[`${name}/lib`] = `${name}/src`;
   });
 
-  // Temporary fix until Storybook supports core-js v3
-  delete config.resolve.alias['core-js'];
-
-  config.resolve.alias['core-js/modules/es.string.match$'] = path.resolve(
-    __dirname,
-    '../node_modules/core-js/modules/es.string.match',
-  );
-
-  config.resolve.alias['core-js/modules/es.string.replace$'] = path.resolve(
-    __dirname,
-    '../node_modules/core-js/modules/es.string.replace',
-  );
-
-  config.resolve.alias['core-js/modules/es.string.split$'] = path.resolve(
-    __dirname,
-    '../node_modules/core-js/modules/es.string.split',
-  );
-
-  config.resolve.alias['core-js/modules/web.dom-collections.iterator$'] = path.resolve(
-    __dirname,
-    '../node_modules/core-js/modules/web.dom-collections.iterator',
-  );
-
-  config.resolve.alias['core-js'] = path.resolve(
-    __dirname,
-    '../node_modules/@storybook/core/node_modules/core-js',
-  );
-
   return config;
 };

@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar",
-  "version": "1.8.1",
+  "version": "1.10.0",
   "description": "React toolkit and design language for Airbnb open source and internal projects.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -26,7 +26,6 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.4.3",
     "@types/airbnb-prop-types": "^2.11.0",
     "@types/hoist-non-react-statics": "^3.3.0",
     "@types/lodash": "^4.14.123",
