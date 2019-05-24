@@ -12,6 +12,21 @@ storiesOf('Core/Chip', module)
     inspectComponents: [Chip],
   })
   .add('Simple chip.', () => <Chip>Chip</Chip>)
+  .add('Compact chip.', () => (
+    <>
+      <Spacing right={1} inline>
+        <Chip compact onClick={action('onClick')}>
+          Chip
+        </Chip>
+      </Spacing>
+
+      <Spacing right={0} inline>
+        <Chip compact active onClick={action('onClick')}>
+          Chip
+        </Chip>
+      </Spacing>
+    </>
+  ))
   .add('With an icon.', () => <Chip icon={<IconCloseAlt size="2em" />}>Chip</Chip>)
   .add('With an icon button.', () => (
     <>

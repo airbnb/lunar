@@ -12,13 +12,6 @@ const plugins = [
   '@babel/plugin-proposal-class-properties',
   '@babel/plugin-proposal-optional-catch-binding',
   '@babel/plugin-syntax-dynamic-import',
-  [
-    '@babel/plugin-transform-runtime',
-    {
-      corejs: 3,
-      regenerator: false,
-    },
-  ],
 ];
 
 if (process.env.NODE_ENV === 'test') {
@@ -47,11 +40,11 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        corejs: 3,
+        // corejs: 3,
         loose: true,
         modules: ESM ? false : 'commonjs',
         shippedProposals: true,
-        useBuiltIns: 'usage',
+        // useBuiltIns: 'usage',
       },
     ],
     '@babel/preset-react',
