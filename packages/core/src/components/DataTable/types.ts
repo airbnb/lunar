@@ -6,6 +6,7 @@ export type TableRef = React.RefObject<Table>;
 
 export type RowHeightOptions = string;
 export type HeightOptions = RowHeightOptions | undefined;
+export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '';
 
 export type SelectedRows = {
   [key: number]: {
@@ -46,6 +47,8 @@ export type DefaultDataTableProps = keyof DataTableProps;
 export interface DataTableProps {
   /** Height of the column header. */
   columnHeaderHeight?: HeightOptions;
+  /** Change all column label keys to UPPERCASE or Title Case or Sentence case */
+  columnLabelCase?: ColumnLabelCase;
   /** Keys mapped onto custom column label names. */
   columnToLabel?: ColumnToLabel;
   /** Override default width for specific a column's properties. */

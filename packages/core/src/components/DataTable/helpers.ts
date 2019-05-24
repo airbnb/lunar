@@ -1,6 +1,26 @@
+import startCase from 'lodash/startCase';
+
 import { WithStylesProps } from '../../composers/withStyles';
 import { STATUS_OPTIONS, HEIGHT_TO_PX } from './constants';
-import { HeightOptions, ExpandedRow, RowHeightOptions, Status } from './types';
+import { ColumnLabelCase, HeightOptions, ExpandedRow, RowHeightOptions, Status } from './types';
+
+export function caseColumnLabel(label: string, casing: ColumnLabelCase) {
+  if (casing === 'title') {
+    return startCase(label);
+  }
+
+  if (casing === 'sentence') {
+    const s = startCase(label);
+
+    return s[0] + s.toLowerCase().slice(1);
+  }
+
+  if (casing === 'uppercase') {
+    return startCase(label).toUpperCase();
+  }
+
+  return label;
+}
 
 function getStatusColor(theme: WithStylesProps['theme'], status: Status) {
   if (status === STATUS_OPTIONS.ALERT) {

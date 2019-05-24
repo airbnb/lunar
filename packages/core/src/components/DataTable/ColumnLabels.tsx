@@ -1,13 +1,18 @@
 import React from 'react';
-import startCase from 'lodash/startCase';
 import { SortDirection } from 'react-virtualized';
 
 import SortCarets from '../SortCarets';
 import Spacing from '../Spacing';
 import Text from '../Text';
 import { css, WithStylesProps } from '../../composers/withStyles';
-import { getHeight } from './helpers';
-import { ColumnMetadata, ColumnToLabel, HeightOptions, RowHeightOptions } from './types';
+import { caseColumnLabel, getHeight } from './helpers';
+import {
+  ColumnLabelCase,
+  ColumnMetadata,
+  ColumnToLabel,
+  HeightOptions,
+  RowHeightOptions,
+} from './types';
 
 // Theses anys are required to match the param types from react-virtualized
 // https://github.com/bvaughn/react-virtualized/blob/master/source/Table/types.js
@@ -32,6 +37,7 @@ export default function ColumnLabels({
   expandable,
   selectable,
   columnMetadata,
+  columnLabelCase,
 }: {
   styles?: WithStylesProps['styles'];
   columnToLabel?: ColumnToLabel;
@@ -41,6 +47,7 @@ export default function ColumnLabels({
   expandable?: boolean;
   selectable?: boolean;
   columnMetadata?: ColumnMetadata;
+  columnLabelCase?: ColumnLabelCase;
 }) {
   return ({ className, columns, style }: ColumnLabelsProps) => {
     const leftmostIdx = Number(expandable) + Number(selectable);
@@ -56,7 +63,9 @@ export default function ColumnLabels({
     const newColumns = columns.map((col: React.ReactElement, idx: number) => {
       const { children } = col.props;
       const key = children[0].props.children;
-      const label = columnToLabel[key] ? columnToLabel[key] : key && startCase(key).toUpperCase();
+      const label = columnToLabel[key]
+        ? columnToLabel[key]
+        : key && caseColumnLabel(key, columnLabelCase!);
       const sort = children[1] && children[1].props.sortDirection;
 
       const isLeftmost = idx === leftmostIdx;
