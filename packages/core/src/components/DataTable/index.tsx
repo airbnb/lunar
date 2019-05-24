@@ -111,6 +111,14 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     outline: 'none',
   });
 
+  static getDerivedStateFromProps(props: DataTableProps, state: State) {
+    if (indexDataList(props.data!) != state.sortedDataList) {
+      return {
+        sortedDataList: indexDataList(props.data!),
+      };
+    }
+  }
+
   private getTableHeight = (expandedDataList: ExpandedRow[]) => {
     const { height, rowHeight, showAllRows } = this.props;
 

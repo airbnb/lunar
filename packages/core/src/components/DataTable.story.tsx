@@ -2,14 +2,16 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
-import getData from ':storybook/components/DataTable/DataTableData';
+import getData, { generateRandomData } from ':storybook/components/DataTable/DataTableData';
 import TenureRenderer from ':storybook/components/DataTable/DataTableRenderers/TenureRenderer';
 import ColSpanRenderer from ':storybook/components/DataTable/DataTableRenderers/ColSpanRenderer';
 import CatRenderer from ':storybook/components/DataTable/DataTableRenderers/CatRenderer';
 import MenuRenderer from ':storybook/components/DataTable/DataTableRenderers/MenuRenderer';
 
+import Button from './Button';
 import DataTable from './DataTable';
-import { SelectedRows, TableRow } from './DataTable/types';
+import Spacing from './Spacing';
+import { ParentRow, SelectedRows, TableRow } from './DataTable/types';
 
 const renderers = {
   colSpan: ColSpanRenderer,
@@ -82,11 +84,33 @@ const defaultEditCallback = (
   action('this callback has access to row, key, newVal and event');
 };
 
+class NewDataDemo extends React.Component<{ data: ParentRow[] }> {
+  state = {
+    data: generateRandomData(),
+  };
+
+  private newData = () => this.setState({ data: generateRandomData() });
+
+  render() {
+    const { data } = this.state;
+
+    return (
+      <>
+        <Spacing bottom={1}>
+          <Button onClick={this.newData}>New Data</Button>
+        </Spacing>
+        <DataTable data={data} />
+      </>
+    );
+  }
+}
+
 storiesOf('Core/DataTable', module)
   .addParameters({
     inspectComponents: [DataTable],
   })
   .add('A standard table.', () => <DataTable data={getData()} keys={['name', 'jobTitle']} />)
+  .add('A table that receives a large amount of new data and rerenders.', () => <NewDataDemo />)
   .add('A table with selectable and exandable rows.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"
@@ -181,7 +205,7 @@ storiesOf('Core/DataTable', module)
       selectOnRowClick
       instantEdit={false}
       height={300}
-      width={1000}
+      width={2000}
       tableHeaderLabel="My Great Table"
       rowHeight="regular"
       columnHeaderHeight="micro"
@@ -189,7 +213,7 @@ storiesOf('Core/DataTable', module)
       defaultEditCallback={defaultEditCallback}
       enactEditsCallback={() => action('applying edits')}
       editCallbacks={editCallbacks}
-      keys={['name', 'cats', 'tenureDays']}
+      keys={['name', 'cats', 'tenureDays', 'menu']}
       editable
     />
   ));
