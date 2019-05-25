@@ -84,7 +84,7 @@ const defaultEditCallback = (
   action('this callback has access to row, key, newVal and event');
 };
 
-class NewDataDemo extends React.Component<{ data: ParentRow[] }> {
+class NewDataDemo extends React.Component {
   state = {
     data: generateRandomData(),
   };
