@@ -26,7 +26,7 @@ export type Props<Data, Vars> = Omit<QueryProps<Data, Vars>, 'children' | 'clien
   loading?: RenderableProp;
   /**
    * Allow graphql errors to be passed to the render function.  If this is true the render function
-   * may receive partial data and is expected to be able to handle `result.errors`
+   * may receive partial data and is expected to be able to handle `result.error.graphQLErrors`
    */
   ignoreGraphQLErrors?: boolean;
 };
