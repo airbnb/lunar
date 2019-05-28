@@ -269,6 +269,16 @@ describe('<DataTable /> rows can be selected', () => {
 
     expect(getCheckbox(table, PARENT_ROW).props().checked).toBe(false);
   });
+
+  it('Selecting both children should select the parent', () => {
+    const table = mount(<DataTable {...simpleProps} />);
+
+    expandRow(table, PARENT_ROW);
+    selectRow(table, CHILD_ROW);
+    selectRow(table, CHILD_ROW + 1);
+
+    expect(getCheckbox(table, PARENT_ROW).props().checked).toBe(true);
+  });
 });
 
 describe('<DataTable /> renders and sorts data', () => {
@@ -298,7 +308,6 @@ describe('<DataTable /> renders and sorts data', () => {
     const table = mount(<DataTable {...simpleProps} />);
 
     const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(2);
-    console.log(nameHeader.debug());
     nameHeader.simulate('click');
     nameHeader.simulate('click');
     table.update();
@@ -565,6 +574,35 @@ describe('<DataTable /> handles edits', () => {
 
     const button = table.find(TableHeader).find(Button);
     button.simulate('click');
+  });
+
+  it('should be editable with instantEdit off', () => {
+    // @ts-ignore
+    const wrapper = mount(<DataTable {...props} instantEdit={false} />);
+    const button = wrapper.find(TableHeader).find(Button);
+    button.simulate('click');
+    const grid = wrapper.find(Grid);
+    const row = grid.find('[aria-rowindex=1]');
+    const col = row.find('[aria-colindex=1]');
+    const input = col.find(Input).find(FormInput);
+
+    const event = {
+      currentTarget: {
+        value: 'foo',
+      },
+    };
+
+    input.simulate('change', event);
+    input.simulate('click');
+
+    expect(
+      wrapper
+        .find(Grid)
+        .find('[aria-rowindex=1]')
+        .find('[aria-colindex=1]')
+        .find(Input)
+        .prop('value'),
+    ).toBe(data[0].data.name);
   });
 });
 
