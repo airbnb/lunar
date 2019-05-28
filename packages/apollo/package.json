@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-apollo",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Apollo and GraphQL utilities.",
   "license": "MIT",
   "main": "./lib/index.js",
