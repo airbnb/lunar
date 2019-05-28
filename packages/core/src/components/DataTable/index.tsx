@@ -9,7 +9,6 @@ import {
   DefaultDataTableProps,
   ExpandedRow,
   IndexedParentRow,
-  ParentRow,
   RowStyles,
   TableRow,
   SelectedRows,
@@ -108,6 +107,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         ),
       };
     }
+
     return null;
   }
 
