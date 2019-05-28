@@ -297,7 +297,8 @@ describe('<DataTable /> renders and sorts data', () => {
   it('should sort data in Ascending Order', () => {
     const table = mount(<DataTable {...simpleProps} />);
 
-    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(NAME_COL);
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(2);
+    console.log(nameHeader.debug());
     nameHeader.simulate('click');
     nameHeader.simulate('click');
     table.update();
