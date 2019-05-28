@@ -11,7 +11,7 @@ import MenuRenderer from ':storybook/components/DataTable/DataTableRenderers/Men
 import Button from './Button';
 import DataTable from './DataTable';
 import Spacing from './Spacing';
-import { ParentRow, SelectedRows, TableRow } from './DataTable/types';
+import { SelectedRows, TableRow } from './DataTable/types';
 
 const renderers = {
   colSpan: ColSpanRenderer,
@@ -89,7 +89,7 @@ class NewDataDemo extends React.Component {
     data: generateRandomData(),
   };
 
-  private newData = () => this.setState({ data: generateRandomData() });
+  private handleNewData = () => this.setState({ data: generateRandomData() });
 
   render() {
     const { data } = this.state;
@@ -97,7 +97,7 @@ class NewDataDemo extends React.Component {
     return (
       <>
         <Spacing bottom={1}>
-          <Button onClick={this.newData}>New Data</Button>
+          <Button onClick={this.handleNewData}>New Data</Button>
         </Spacing>
         <DataTable data={data} />
       </>

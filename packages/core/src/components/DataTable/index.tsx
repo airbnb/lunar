@@ -21,7 +21,7 @@ import renderExpandableColumn from './columns/ExpandableColumn';
 import renderSelectableColumn from './columns/SelectableColumn';
 import TableHeader from './TableHeader';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
-import { getRowColor, getHeight } from './helpers';
+import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
 
 export type State = {
@@ -81,20 +81,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   };
 
   // Infers keys from data if they aren't explicitely defined
-  keys =
-    this.props.keys && this.props.keys.length > 0
-      ? this.props.keys
-      : Array.from(
-          this.props.data!.reduce((keySet: Set<string>, row: ParentRow) => {
-            Object.keys(row.data).forEach(key => {
-              if (row.metadata === undefined || row.metadata.colSpanKey !== key) {
-                keySet.add(key);
-              }
-            });
-
-            return keySet;
-          }, new Set()),
-        );
+  keys = getKeys(this.props.keys!, this.props.data!);
 
   rowStyles = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }): RowStyles => ({
     background: getRowColor(
@@ -112,13 +99,31 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   });
 
   static getDerivedStateFromProps(props: DataTableProps, state: State) {
-    if (indexDataList(props.data!) != state.sortedDataList) {
+    // const { sortedDataList } = this.state;
+    if (indexDataList(props.data!) !== state.sortedDataList) {
       return {
-        sortedDataList: indexDataList(props.data!),
+        sortedDataList: sortList(
+          indexDataList(props.data!),
+          getKeys(props.keys!, props.data!),
+          state.sortBy,
+          state.sortDirection,
+        ),
       };
     }
-
     return null;
+  }
+
+  private shouldComponentUpdate(nextProps: DataTableProps, nextState: State) {
+    return true;
+    //   const { sortedDataList } = this.state;
+    //   if (indexDataList(nextProps.data!) !== sortedDataList) {
+    //     return true;
+    //     // return {
+    //     //   sortedDataList: indexDataList(props.data!),
+    //     // };
+    //   }
+    //   return false;
+    //   // return null;
   }
 
   private getTableHeight = (expandedDataList: ExpandedRow[]) => {
@@ -392,6 +397,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       this.keys,
       sortDirection,
     );
+
+    console.log(this.state);
 
     return (
       <div>
