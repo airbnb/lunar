@@ -28,6 +28,11 @@ export type Props<Data, Vars> = Omit<MutationProps<Data, Vars>, 'client'> & {
    * When not defined, this defaults to `Loader`.
    */
   loading?: RenderableProp;
+  /**
+   * Allow graphql errors to be passed to the render function.  If this is true the render function
+   * may receive partial data and is expected to be able to handle `result.error.graphQLErrors`
+   */
+  ignoreGraphQLErrors?: boolean;
 };
 
 /**
@@ -39,6 +44,7 @@ export default class Mutation<Data = any, Vars = OperationVariables> extends Rea
 > {
   static defaultProps = {
     awaitRefetchQueries: false,
+    ignoreGraphQLErrors: false,
     ignoreResults: false,
     variables: {},
   };
@@ -48,7 +54,7 @@ export default class Mutation<Data = any, Vars = OperationVariables> extends Rea
       return renderElementOrFunction(this.props.loading) || <Loader static />;
     }
 
-    if (result.error) {
+    if (result.error && (!this.props.ignoreGraphQLErrors || result.error.networkError)) {
       // istanbul ignore next (need to fix tests)
       return (
         renderElementOrFunction(this.props.error, result.error) || (
