@@ -116,7 +116,7 @@ describe('Query', () => {
 
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Query query={QUERY} ignoreGraphQLErrors={true}>
+          <Query query={QUERY} ignoreGraphQLErrors>
             {spy}
           </Query>
         </MockedProvider>,

@@ -157,7 +157,7 @@ describe('Mutation', () => {
 
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Mutation mutation={MUTATION} ignoreGraphQLErrors={true}>
+          <Mutation mutation={MUTATION} ignoreGraphQLErrors>
             {spy}
           </Mutation>
         </MockedProvider>,
