@@ -79,6 +79,19 @@ describe('Mutation', () => {
         variables: { id: 123, name: 'Something' },
       },
       result: {
+        errors: [
+          {
+            message: 'Error!',
+            locations: undefined,
+            path: undefined,
+            nodes: undefined,
+            source: undefined,
+            positions: undefined,
+            originalError: undefined,
+            extensions: undefined,
+            name: '',
+          },
+        ],
         data: {
           updateSomething: {
             id: 123,
@@ -87,7 +100,6 @@ describe('Mutation', () => {
           },
         },
       },
-      error: new Error('404'),
     };
 
     it('renders an `ErrorMessage` by default', async () => {
@@ -136,6 +148,20 @@ describe('Mutation', () => {
       } catch (error) {
         // Ignore
       }
+    });
+
+    it('will ignore an error with the `ignoreGraphQLErrors` prop', async () => {
+      const spy = jest.fn(() => null);
+
+      renderer.create(
+        <MockedProvider mocks={[mock]} addTypename={false}>
+          <Mutation mutation={MUTATION} ignoreGraphQLErrors={true}>
+            {spy}
+          </Mutation>
+        </MockedProvider>,
+      );
+
+      expect(spy).toHaveBeenCalled();
     });
   });
 
