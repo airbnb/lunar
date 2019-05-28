@@ -37,7 +37,11 @@ describe('Mutation', () => {
       },
       result: {
         data: {
-          updateSomething: {},
+          updateSomething: {
+            id: 123,
+            name: 'Something',
+            __typename: 'something',
+          },
         },
       },
     };
@@ -70,9 +74,7 @@ describe('Mutation', () => {
     });
   });
 
-  // Cannot figure out why these  throwing an error
-  // eslint-disable-next-line jest/no-disabled-tests
-  describe.skip('error', () => {
+  describe('error', () => {
     const mock = {
       request: {
         query: MUTATION,
