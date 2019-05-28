@@ -97,10 +97,11 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   });
 
   static getDerivedStateFromProps(props: DataTableProps, state: State) {
-    if (indexDataList(props.data!) !== state.sortedDataList) {
+    const indexedDataList = indexDataList(props.data!);
+    if (indexedDataList !== state.sortedDataList) {
       return {
         sortedDataList: sortList(
-          indexDataList(props.data!),
+          indexedDataList,
           getKeys(props.keys!, props.data!),
           state.sortBy,
           state.sortDirection,
