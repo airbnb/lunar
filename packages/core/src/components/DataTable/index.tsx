@@ -383,8 +383,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       sortDirection,
     );
 
-    console.log(this.state);
-
     return (
       <div>
         {this.shouldRenderTableHeader() && (
