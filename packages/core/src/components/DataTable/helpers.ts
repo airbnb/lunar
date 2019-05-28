@@ -66,6 +66,7 @@ export function getHeight(defaultHeight?: RowHeightOptions, overrideHeight?: Hei
   return defaultHeight ? HEIGHT_TO_PX[defaultHeight] : 0;
 }
 
+// Infers keys from data if they aren't explicitely defined
 export function getKeys(keys: string[], data: ParentRow[]) {
   return keys.length > 0
     ? keys

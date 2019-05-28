@@ -80,7 +80,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     zebra: false,
   };
 
-  // Infers keys from data if they aren't explicitely defined
   keys = getKeys(this.props.keys!, this.props.data!);
 
   rowStyles = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }): RowStyles => ({
@@ -99,7 +98,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   });
 
   static getDerivedStateFromProps(props: DataTableProps, state: State) {
-    // const { sortedDataList } = this.state;
     if (indexDataList(props.data!) !== state.sortedDataList) {
       return {
         sortedDataList: sortList(
@@ -111,19 +109,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       };
     }
     return null;
-  }
-
-  private shouldComponentUpdate(nextProps: DataTableProps, nextState: State) {
-    return true;
-    //   const { sortedDataList } = this.state;
-    //   if (indexDataList(nextProps.data!) !== sortedDataList) {
-    //     return true;
-    //     // return {
-    //     //   sortedDataList: indexDataList(props.data!),
-    //     // };
-    //   }
-    //   return false;
-    //   // return null;
   }
 
   private getTableHeight = (expandedDataList: ExpandedRow[]) => {
