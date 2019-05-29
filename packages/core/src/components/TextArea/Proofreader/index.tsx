@@ -704,17 +704,6 @@ export default withStyles(
 
     const { backgroundColor: colorImportant } = inputImportant;
 
-    const controlsAfter = {
-      content: '""',
-      display: 'block',
-      top: 0,
-      left: 0,
-      right: 0,
-      height: 1,
-      position: 'absolute' as const,
-      background: `linear-gradient(to right, ${theme.color.accent.border}, ${theme.color.base})`,
-    };
-
     return {
       proofread: {
         position: 'relative',
@@ -773,14 +762,24 @@ export default withStyles(
         // Do not cover scrollbar or resizer
         right: inputPadding + 2,
 
-        '::after': controlsAfter,
+        '::after': {
+          content: '""',
+          display: 'block',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 1,
+          position: 'absolute',
+          background: `linear-gradient(to right, ${theme.color.accent.border}, ${
+            theme.color.base
+          })`,
+        },
       },
 
       controls_important: {
         background: colorImportant,
         boxShadow: `2px -2px 2px 0px ${colorImportant}`,
         '::after': {
-          ...controlsAfter,
           background: `linear-gradient(to right, ${theme.color.accent.border}, ${colorImportant})`,
         },
       },
