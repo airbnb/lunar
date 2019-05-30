@@ -1,4 +1,5 @@
 import React from 'react';
+import memoize from 'lodash/memoize';
 import { AutoSizer, SortDirection, SortDirectionType, Table } from 'react-virtualized';
 import sortList from './helpers/sortList';
 import expandDataList from './helpers/expandDataList';
@@ -97,19 +98,14 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   });
 
   static getDerivedStateFromProps(props: DataTableProps, state: State) {
-    const sortedDataList = sortList(
-      indexDataList(props.data!),
-      getKeys(props.keys!, props.data!),
-      state.sortBy,
-      state.sortDirection,
-    );
-    if (sortedDataList !== state.sortedDataList) {
-      return {
-        sortedDataList: sortedDataList,
-      };
-    }
-
-    return null;
+    return {
+      sortedDataList: sortList(
+        indexDataList(props.data!),
+        getKeys(props.keys!, props.data!),
+        state.sortBy,
+        state.sortDirection,
+      ),
+    };
   }
 
   private getTableHeight = (expandedDataList: ExpandedRow[]) => {

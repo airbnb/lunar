@@ -99,7 +99,7 @@ class NewDataDemo extends React.Component {
         <Spacing bottom={1}>
           <Button onClick={this.handleNewData}>New Data</Button>
         </Spacing>
-        <DataTable data={data} />
+        <DataTable data={data} selectable />
       </>
     );
   }
