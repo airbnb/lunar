@@ -1,7 +1,7 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
 
-import renderDefaultContent from '../defaultContentRenderers';
+import renderDefaultContent from '../DefaultRenderer';
 import Spacing from '../../Spacing';
 import {
   ColumnMetadata,

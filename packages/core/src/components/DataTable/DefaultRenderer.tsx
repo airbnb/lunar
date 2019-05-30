@@ -1,6 +1,6 @@
 import React from 'react';
-import Text from '../../Text';
-import { RendererProps } from '../types';
+import Text from '../Text';
+import { RendererProps } from './types';
 
 export default function renderDefaultContent({ row, key, onEdit }: RendererProps) {
   const content = row.rowData.data[key];
