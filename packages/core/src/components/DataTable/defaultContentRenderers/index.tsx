@@ -1,11 +1,13 @@
-import TextInputRenderer from './TextInputRenderer';
-import TextRenderer from './TextRenderer';
+import React from 'react';
+import Text from '../../Text';
 import { RendererProps } from '../types';
 
-export default function renderDefaultContent(props: RendererProps) {
-  if (props.editMode) {
-    return TextInputRenderer({ ...props });
-  }
+export default function renderDefaultContent({ row, key, onEdit }: RendererProps) {
+  const content = row.rowData.data[key];
 
-  return TextRenderer({ ...props });
+  return typeof content === 'string' || typeof content === 'number' ? (
+    <Text>{row.rowData.data[key]}</Text>
+  ) : (
+    <Text />
+  );
 }

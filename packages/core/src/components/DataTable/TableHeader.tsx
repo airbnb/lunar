@@ -11,8 +11,6 @@ export type Props = {
   editable?: boolean;
   /** Determines which set of header buttons to render. */
   editMode: boolean;
-  /** Without instantEdit the header renders Cancel and Apply, otherwise it just renders Done. */
-  instantEdit?: boolean;
   /** Height of the TableHeader, falls back to RowHeight if not specified. */
   height: number;
   /** Label to display in the top left side. */
@@ -23,10 +21,6 @@ export type Props = {
   onEnableEditMode: () => void;
   /** Callback for toggling editMode. */
   onDisableEditMode: () => void;
-  /** Undos edits if instantEdit is disabled. */
-  onCancelEditMode: () => void;
-  /** Applys edits if instantEdit is enabled. */
-  onEnactEdits: () => void;
   /** Extra buttons to render in the header. */
   extraHeaderButtons?: HeaderButton[];
   /** Selected status of all rows, can by used by header buttons. */
@@ -41,9 +35,6 @@ export function TableHeader({
   height,
   onEnableEditMode,
   onDisableEditMode,
-  onCancelEditMode,
-  onEnactEdits,
-  instantEdit,
   selectedRows,
   styles,
   tableHeaderLabel,
@@ -79,23 +70,11 @@ export function TableHeader({
 
   const extraButtons = editMode ? extraEditButtons : extraNonEditButtons;
 
-  const editModeButtons = instantEdit
-    ? [
-        <Button small onClick={onDisableEditMode} key="Done">
-          <Translate phrase="Done" context="This button exits edit mode." />
-        </Button>,
-      ]
-    : [
-        <Button small inverted onClick={onCancelEditMode} key="Cancel">
-          <Translate
-            phrase="Cancel"
-            context="This button cancels out of edit mode without applying changes."
-          />
-        </Button>,
-        <Button small onClick={onEnactEdits} key="Apply">
-          <Translate phrase="Apply" context="This button applies all live edits." />
-        </Button>,
-      ];
+  const editModeButtons = (
+    <Button small onClick={onDisableEditMode} key="Done">
+      <Translate phrase="Done" context="This button exits edit mode." />
+    </Button>
+  );
 
   const modeButtons = editMode ? (
     editModeButtons

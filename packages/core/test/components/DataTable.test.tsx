@@ -449,7 +449,7 @@ describe('<DataTable /> handles edits', () => {
   };
 
   it('should be able to toggle edit mode off', () => {
-    const wrapper = shallow(<DataTable {...props} instantEdit />).dive();
+    const wrapper = shallow(<DataTable {...props} />).dive();
     const editButton = getHeader(wrapper)
       .dive()
       .dive()
@@ -466,7 +466,7 @@ describe('<DataTable /> handles edits', () => {
   });
 
   it('should enable instant edit mode', () => {
-    const wrapper = shallow(<DataTable {...props} instantEdit />).dive();
+    const wrapper = shallow(<DataTable {...props} />).dive();
     const editButton = getHeader(wrapper)
       .dive()
       .dive()
@@ -481,32 +481,6 @@ describe('<DataTable /> handles edits', () => {
 
     expect(wrapper.state('editMode')).toBe(true);
     expect(doneButton.find(Translate).prop('phrase')).toBe('Done');
-  });
-
-  it('should enable edit mode and handle edit cancelation', () => {
-    // @ts-ignore
-    const wrapper = shallow(<DataTable {...props} instantEdit={false} />).dive();
-    const editButton = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
-    editButton.simulate('click');
-
-    const buttons = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
-    const cancelButton = buttons.at(0);
-    const applyButton = buttons.at(1);
-
-    cancelButton.simulate('click');
-    editButton.simulate('click');
-    applyButton.simulate('click');
-    editButton.simulate('click');
-
-    expect(wrapper.state('editMode')).toBe(true);
-    expect(cancelButton.find(Translate).prop('phrase')).toBe('Cancel');
-    expect(applyButton.find(Translate).prop('phrase')).toBe('Apply');
   });
 
   it('should replace text with inputs', () => {

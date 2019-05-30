@@ -1,17 +1,21 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+// @ts-ignore
 import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
-import getData from ':storybook/components/DataTable/DataTableData';
+import getData, { generateRandomData } from ':storybook/components/DataTable/DataTableData';
 import TenureRenderer from ':storybook/components/DataTable/DataTableRenderers/TenureRenderer';
 import ColSpanRenderer from ':storybook/components/DataTable/DataTableRenderers/ColSpanRenderer';
 import CatRenderer from ':storybook/components/DataTable/DataTableRenderers/CatRenderer';
 import MenuRenderer from ':storybook/components/DataTable/DataTableRenderers/MenuRenderer';
+import EditableTextRenderer from ':storybook/components/DataTable/DataTableRenderers/EditableTextRenderer';
 
 import DataTable from './DataTable';
-import { SelectedRows, TableRow } from './DataTable/types';
+import Input from './Input';
+import { SelectedRows, TableRow, IndexedParentRow } from './DataTable/types';
 
 const renderers = {
+  name: EditableTextRenderer,
   colSpan: ColSpanRenderer,
   cats: CatRenderer,
   tenureDays: TenureRenderer,
@@ -73,6 +77,10 @@ const editCallbacks = {
   cats: catsCallback,
 };
 
+const filterData = (data: IndexedParentRow[]) => {
+  return data.filter(row => row.data.jobTitle === 'Engineer');
+};
+
 const defaultEditCallback = (
   row: TableRow,
   key: string,
@@ -81,6 +89,38 @@ const defaultEditCallback = (
 ) => {
   action('this callback has access to row, key, newVal and event');
 };
+
+export interface SearchDemoProps {
+  data: IndexedParentRow[];
+}
+
+export class SearchDemo extends React.Component<SearchDemoProps> {
+  state = {
+    search: '',
+  };
+
+  onChange = (value: string) => {
+    this.setState({
+      search: value,
+    });
+  };
+
+  filter = (search: string) => (data: IndexedParentRow[]): IndexedParentRow[] => {
+    return data.filter((row: IndexedParentRow) => row.data.number.toString().includes(search));
+  };
+
+  render() {
+    const { search } = this.state;
+    const { data } = this.props;
+
+    return (
+      <>
+        <Input label="" name="" hideLabel value={search} onChange={this.onChange} />
+        <DataTable data={data} filterData={this.filter(search)} />
+      </>
+    );
+  }
+}
 
 storiesOf('Core/DataTable', module)
   .addParameters({
@@ -96,6 +136,17 @@ storiesOf('Core/DataTable', module)
       selectable
     />
   ))
+  .add('A table with filtered data.', () => (
+    <DataTable
+      tableHeaderLabel="My Engineer Table"
+      data={getData()}
+      keys={['name', 'jobTitle']}
+      expandable
+      selectable
+      filterData={filterData}
+    />
+  ))
+  .add('A table with a search box.', () => <SearchDemo data={generateRandomData()} />)
   .add('A table that shows all rows.', () => (
     // This shows the height dynamically change with expanded rows
     <div style={{ background: '#835EFE', padding: 8 }}>
@@ -118,17 +169,8 @@ storiesOf('Core/DataTable', module)
       selectable
       expandable
       editable
-    />
-  ))
-  .add('An editable table with cancelable edits.', () => (
-    <DataTable
-      tableHeaderLabel="My Great Table"
-      data={getData()}
-      keys={['name', 'jobTitle']}
-      selectable
-      expandable
-      editable
-      instantEdit={false}
+      defaultEditCallback={defaultEditCallback}
+      renderers={renderers}
     />
   ))
   .add('An table with zebra coloring, a colspan, infered keys and renderers.', () => (
@@ -160,9 +202,7 @@ storiesOf('Core/DataTable', module)
     <DataTable
       tableHeaderLabel="My Great Table"
       data={getData()}
-      instantEdit={false}
       defaultEditCallback={defaultEditCallback}
-      enactEditsCallback={() => action('applying edits')}
       editCallbacks={editCallbacks}
     />
   ))
@@ -179,7 +219,6 @@ storiesOf('Core/DataTable', module)
       showRowDividers
       zebra
       selectOnRowClick
-      instantEdit={false}
       height={300}
       width={1000}
       tableHeaderLabel="My Great Table"
@@ -187,7 +226,6 @@ storiesOf('Core/DataTable', module)
       columnHeaderHeight="micro"
       tableHeaderHeight="large"
       defaultEditCallback={defaultEditCallback}
-      enactEditsCallback={() => action('applying edits')}
       editCallbacks={editCallbacks}
       keys={['name', 'cats', 'tenureDays']}
       editable

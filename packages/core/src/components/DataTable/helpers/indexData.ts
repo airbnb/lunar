@@ -1,6 +1,6 @@
 import { ChildRow, IndexedChildRow, IndexedParentRow, ParentRow } from '../types';
 
-export default function indexDataList(dataList: ParentRow[]): IndexedParentRow[] {
+export default function indexData(dataList: ParentRow[]): IndexedParentRow[] {
   const indexedDataList: IndexedParentRow[] = [];
   dataList.forEach((row: ParentRow, idx: number) => {
     const children: IndexedChildRow[] = [];
