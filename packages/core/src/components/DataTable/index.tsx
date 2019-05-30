@@ -1,5 +1,4 @@
 import React from 'react';
-import memoize from 'lodash/memoize';
 import { AutoSizer, SortDirection, SortDirectionType, Table } from 'react-virtualized';
 import sortList from './helpers/sortList';
 import expandDataList from './helpers/expandDataList';
