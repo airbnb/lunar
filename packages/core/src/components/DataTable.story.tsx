@@ -99,7 +99,7 @@ export class SearchDemo extends React.Component<SearchDemoProps> {
     search: '',
   };
 
-  onChange = (value: string) => {
+  handleChange = (value: string) => {
     this.setState({
       search: value,
     });
@@ -115,7 +115,8 @@ export class SearchDemo extends React.Component<SearchDemoProps> {
 
     return (
       <>
-        <Input label="" name="" hideLabel value={search} onChange={this.onChange} />
+        <Input label="" name="" hideLabel value={search} onChange={this.handleChange} />
+        {/* @ts-ignore */}
         <DataTable data={data} filterData={this.filter(search)} />
       </>
     );

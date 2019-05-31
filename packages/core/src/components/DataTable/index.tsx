@@ -27,8 +27,6 @@ import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
 
 export type State = {
-  changeLog: ChangeLog;
-  preEditSortedDataList: IndexedParentRow[];
   expandedRows: Set<number>;
   selectedRows: SelectedRows;
   sortBy: string;
@@ -39,8 +37,6 @@ export type State = {
 /** A dynamic and responsive table for displaying tabular data. */
 export class DataTable extends React.Component<DataTableProps & WithStylesProps, State> {
   state = {
-    changeLog: {},
-    preEditSortedDataList: [],
     expandedRows: new Set(),
     selectedRows: {},
     sortBy: this.props.sortByOverride || '',
@@ -104,6 +100,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     (data: ParentRow[], sortBy: string, sortDirection: SortDirectionType): IndexedParentRow[] => {
       const indexedData = indexData(data);
       const sortedData = sortData(indexedData, this.keys, sortBy, sortDirection);
+
       return sortedData;
     },
     (...args) => JSON.stringify(args),

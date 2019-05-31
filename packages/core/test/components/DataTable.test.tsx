@@ -483,64 +483,6 @@ describe('<DataTable /> handles edits', () => {
     expect(doneButton.find(Translate).prop('phrase')).toBe('Done');
   });
 
-  it('should replace text with inputs', () => {
-    // @ts-ignore
-    const wrapper = mount(<DataTable {...props} />);
-    const button = wrapper.find(TableHeader).find(Button);
-    button.simulate('click');
-    const grid = wrapper.find(Grid);
-    const row = grid.find('[aria-rowindex=1]');
-    const col = row.find('[aria-colindex=1]');
-    const input = col.find(Input);
-    expect(input.prop('value')).toBe(data[0].data.name);
-  });
-
-  it('should be editable', () => {
-    // @ts-ignore
-    const wrapper = mount(<DataTable {...props} />);
-    const button = wrapper.find(TableHeader).find(Button);
-    button.simulate('click');
-    const grid = wrapper.find(Grid);
-    const row = grid.find('[aria-rowindex=1]');
-    const col = row.find('[aria-colindex=1]');
-    const input = col.find(Input).find(FormInput);
-
-    const event = {
-      currentTarget: {
-        value: 'foo',
-      },
-    };
-
-    input.simulate('change', event);
-    input.simulate('click');
-
-    expect(
-      wrapper
-        .find(Grid)
-        .find('[aria-rowindex=1]')
-        .find('[aria-colindex=1]')
-        .find(Input)
-        .prop('value'),
-    ).toBe(data[0].data.name);
-  });
-
-  it('children should be editable', () => {
-    const table = mount(<DataTable {...props} expandable />);
-
-    const expandCaret = getCell(table, 5, 1).childAt(0);
-    expandCaret.simulate('click');
-
-    expect(
-      getCell(table, 6, 2)
-        .find(Text)
-        .text(),
-    ).toBe(data[4].metadata!.children![0].data.name);
-
-    const button = table.find(TableHeader).find(Button);
-    button.simulate('click');
-  });
-});
-
 describe('<DataTable /> does not break with weird props', () => {
   const props = {
     data,
