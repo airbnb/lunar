@@ -154,7 +154,7 @@ export default withStyles(theme => {
     indeterminate: {
       position: 'relative',
       top: 1,
-      left: 1,
+      left: 0.5,
     },
 
     children: {

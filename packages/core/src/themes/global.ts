@@ -21,15 +21,18 @@ export default (fontFaces: { [fontFamily: string]: FontFace[] }) => ({ color, fo
         fontFamily: font.fontFamily,
         fontSize: font.textRegular.fontSize,
         lineHeight: font.textRegular.lineHeight,
-        // Support upstream in Aesthetic?
         '-ms-text-size-adjust': '100%',
         '-webkit-text-size-adjust': '100%',
         '-webkit-font-smoothing': 'antialiased',
         '-moz-osx-font-smoothing': 'grayscale',
       },
-      'button, input': {
+      'button, input, textarea': {
         color: 'inherit',
         backgroundColor: 'inherit',
+      },
+      img: {
+        display: 'inline-block',
+        verticalAlign: 'middle',
       },
     },
     '@font-face': fontFaces,

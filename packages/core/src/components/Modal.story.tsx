@@ -27,6 +27,11 @@ class ModalDemo extends React.Component<
       <div>
         <Button onClick={this.handleToggle}>Open standard modal</Button>
 
+        <br />
+        <br />
+
+        {(image || large) && <Text>(May need to resize your browser to view the example)</Text>}
+
         {visible && (
           <Modal
             image={
