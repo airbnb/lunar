@@ -6,6 +6,7 @@ import sortData from './helpers/sortData';
 import expandData from './helpers/expandData';
 import { indexData } from './helpers/indexData';
 import {
+  ChangeLog,
   DataTableProps,
   DefaultDataTableProps,
   ExpandedRow,
@@ -26,6 +27,7 @@ import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
 
 export type State = {
+  changeLog: ChangeLog;
   expandedRows: Set<number>;
   selectedRows: SelectedRows;
   sortBy: string;
@@ -36,6 +38,7 @@ export type State = {
 /** A dynamic and responsive table for displaying tabular data. */
 export class DataTable extends React.Component<DataTableProps & WithStylesProps, State> {
   state = {
+    changeLog: {},
     expandedRows: new Set(),
     selectedRows: {},
     sortBy: this.props.sortByOverride || '',
@@ -52,10 +55,12 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     defaultEditCallback: () => {},
     editable: false,
     editCallbacks: {},
+    enactEditsCallback: () => {},
     expandable: false,
     extraHeaderButtons: [],
     filterData: (data: IndexedParentRow[]) => data,
     height: 400,
+    instantEdit: true,
     keys: [],
     renderers: {},
     rowHeight: 'regular',
@@ -176,7 +181,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     newVal: any,
     event: React.SyntheticEvent<EventTarget>,
   ) => {
-    const { defaultEditCallback, editCallbacks } = this.props;
+    const { defaultEditCallback, editCallbacks, instantEdit } = this.props;
     if (defaultEditCallback) {
       defaultEditCallback(row, key, newVal, event);
     }
@@ -184,12 +189,36 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     if (editCallbacks && editCallbacks[key]) {
       editCallbacks[key](row, key, newVal, event);
     }
+
+    if (!instantEdit) {
+      const { changeLog }: { changeLog: ChangeLog } = this.state;
+      const { originalIndex } = row.rowData.metadata;
+      if (Object.prototype.hasOwnProperty.call(changeLog, originalIndex)) {
+        changeLog[originalIndex][key] = newVal;
+      } else {
+        changeLog[originalIndex] = { [key]: newVal };
+      }
+      this.setState({
+        changeLog,
+      });
+    }
   };
 
   private handleDisableEditMode = () => {
     this.setState({
       editMode: false,
     });
+  };
+
+  private handleEnactEdits = () => {
+    const { enactEditsCallback } = this.props;
+    const { changeLog } = this.state;
+    this.setState({
+      editMode: false,
+    });
+    if (enactEditsCallback) {
+      enactEditsCallback(changeLog);
+    }
   };
 
   private handleEnableEditMode = () => {
@@ -289,6 +318,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     const {
       editable,
       extraHeaderButtons,
+      instantEdit,
       rowHeight,
       tableHeaderLabel,
       tableHeaderHeight,
@@ -300,10 +330,12 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       <TableHeader
         editable={editable}
         editMode={editMode}
+        onEnactEdits={this.handleEnactEdits}
         onEnableEditMode={this.handleEnableEditMode}
         onDisableEditMode={this.handleDisableEditMode}
         extraHeaderButtons={extraHeaderButtons}
         height={getHeight(rowHeight, tableHeaderHeight)}
+        instantEdit={instantEdit}
         selectedRows={selectedRows}
         tableHeaderLabel={tableHeaderLabel}
         width={this.props.width ? Math.min(this.props.width, parentWidth) : parentWidth}

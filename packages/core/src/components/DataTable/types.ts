@@ -63,6 +63,8 @@ export interface DataTableProps {
   editable?: boolean;
   /** Callback for any specific key, called on all edits. */
   editCallbacks?: { [key: string]: EditCallback };
+  /** When instant edit is disabled, callback that gets trigged on edit application. */
+  enactEditsCallback?: (changeLog: ChangeLog) => void;
   /** If enabled, a special column is rendered that allows row to be expanded. */
   expandable?: boolean;
   /** Extra buttons to render in the header during non-edit mode. */
@@ -71,6 +73,8 @@ export interface DataTableProps {
   filterData?: (data: IndexedParentRow[]) => IndexedParentRow[];
   /** Height of the entire table. */
   height?: number;
+  /** If instantEdit is disabled, header will render Cancel and Apply buttons during edit mode. */
+  instantEdit: boolean;
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];
   /** Propagated as the 'ref' prop to the underlying react-virtualized Table instance. */

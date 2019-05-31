@@ -13,6 +13,8 @@ export type Props = {
   editMode: boolean;
   /** Height of the TableHeader, falls back to RowHeight if not specified. */
   height: number;
+  /** If instantEdit is disabled, header will render Cancel and Apply buttons during edit mode. */
+  instantEdit: boolean;
   /** Label to display in the top left side. */
   tableHeaderLabel?: string;
   /** Width of the header. */
@@ -21,6 +23,8 @@ export type Props = {
   onEnableEditMode: () => void;
   /** Callback for toggling editMode. */
   onDisableEditMode: () => void;
+  /** Applys edits if instantEdit is dissabled. */
+  onEnactEdits: () => void;
   /** Extra buttons to render in the header. */
   extraHeaderButtons?: HeaderButton[];
   /** Selected status of all rows, can by used by header buttons. */
@@ -33,6 +37,8 @@ export function TableHeader({
   editMode,
   extraHeaderButtons,
   height,
+  instantEdit,
+  onEnactEdits,
   onEnableEditMode,
   onDisableEditMode,
   selectedRows,
@@ -70,10 +76,22 @@ export function TableHeader({
 
   const extraButtons = editMode ? extraEditButtons : extraNonEditButtons;
 
-  const editModeButtons = (
+  const editModeButtons = instantEdit ? (
     <Button small onClick={onDisableEditMode} key="Done">
       <Translate phrase="Done" context="This button exits edit mode." />
     </Button>
+  ) : (
+    [
+      <Button small inverted onClick={onDisableEditMode} key="Cancel">
+        <Translate
+          phrase="Cancel"
+          context="This button cancels out of edit mode without applying changes."
+        />
+      </Button>,
+      <Button small onClick={onEnactEdits} key="Apply">
+        <Translate phrase="Apply" context="This button applies all live edits." />
+      </Button>,
+    ]
   );
 
   const modeButtons = editMode ? (
