@@ -10,14 +10,14 @@ import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
 import Button from '../../src/components/Button';
 import Checkbox from '../../src/components/CheckBox';
-import { ParentRow } from '../../src/components/DataTable/types';
+import { ParentRow, TableRow } from '../../src/components/DataTable/types';
 import { STATUS_OPTIONS } from '../../src/components/DataTable/constants';
 
 type EditableTextRendererProps = {
-  row: ParentRow;
+  row: TableRow;
   keyName: string;
   onEdit: (
-    row: ParentRow,
+    row: TableRow,
     keyName: string,
     newVal: string,
     event: React.SyntheticEvent<EventTarget>,
@@ -36,7 +36,7 @@ class EditableTextRenderer extends React.Component<
     value: this.props.value,
   };
 
-  onEdit = (row: ParentRow, keyName: string) => (
+  onEdit = (row: TableRow, keyName: string) => (
     newVal: string,
     event: React.SyntheticEvent<EventTarget>,
   ) => {
@@ -66,11 +66,11 @@ export default function editableTextRenderer({
   editMode,
   onEdit,
 }: {
-  row: ParentRow;
+  row: TableRow;
   key: string;
   editMode: boolean;
   onEdit: (
-    row: ParentRow,
+    row: TableRow,
     key: string,
     newVal: string,
     event: React.SyntheticEvent<EventTarget>,
