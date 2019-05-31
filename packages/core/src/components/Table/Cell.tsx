@@ -14,6 +14,8 @@ export type Props = {
   startAlign?: boolean;
   /** Truncate text and display all on hover. */
   truncate?: boolean;
+  /** Wrap text and white space. */
+  wrap?: boolean;
 };
 
 /** An individual table cell. */
@@ -24,6 +26,7 @@ export class TableCell extends React.Component<Props & WithStylesProps> {
     header: false,
     startAlign: false,
     truncate: false,
+    wrap: false,
   };
 
   render() {
@@ -35,6 +38,7 @@ export class TableCell extends React.Component<Props & WithStylesProps> {
       endAlign,
       styles,
       truncate,
+      wrap,
       ...props
     } = this.props;
     const Tag = header ? 'th' : 'td';
@@ -47,6 +51,7 @@ export class TableCell extends React.Component<Props & WithStylesProps> {
           startAlign && styles.cell_left,
           centerAlign && styles.cell_center,
           endAlign && styles.cell_right,
+          wrap && styles.cell_wrap,
         )}
       >
         {children}
@@ -79,5 +84,10 @@ export default withStyles(() => ({
 
   cell_right: {
     textAlign: 'right',
+  },
+
+  cell_wrap: {
+    whiteSpace: 'normal',
+    wordWrap: 'break-word',
   },
 }))(TableCell);

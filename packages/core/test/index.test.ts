@@ -6,7 +6,7 @@ describe('Core', () => {
   let oldSettings: Required<Settings>;
 
   beforeEach(() => {
-    oldSettings = Core.settings;
+    oldSettings = { ...Core.settings };
   });
 
   afterEach(() => {
@@ -62,6 +62,32 @@ describe('Core', () => {
 
       LuxonSettings.defaultLocale = 'en';
       LuxonSettings.defaultZoneName = 'UTC';
+    });
+  });
+
+  describe('fontFamily()', () => {
+    it('returns Japanese font family', () => {
+      Core.settings.defaultLocale = 'ja';
+
+      expect(Core.fontFamily()).toContain('ヒラギノ角ゴ Pro');
+    });
+
+    it('returns Korean font family', () => {
+      Core.settings.defaultLocale = 'ko';
+
+      expect(Core.fontFamily()).toContain('나눔 고딕');
+    });
+
+    it('returns Chinese font family', () => {
+      Core.settings.defaultLocale = 'zh';
+
+      expect(Core.fontFamily()).toContain('华文细黑');
+    });
+
+    it('returns default font family', () => {
+      Core.settings.defaultLocale = 'en';
+
+      expect(Core.fontFamily()).toContain('-apple-system');
     });
   });
 
