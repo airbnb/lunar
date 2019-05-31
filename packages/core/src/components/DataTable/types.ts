@@ -74,7 +74,7 @@ export interface DataTableProps {
   /** Height of the entire table. */
   height?: number;
   /** If instantEdit is disabled, header will render Cancel and Apply buttons during edit mode. */
-  instantEdit: boolean;
+  instantEdit?: boolean;
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];
   /** Propagated as the 'ref' prop to the underlying react-virtualized Table instance. */
