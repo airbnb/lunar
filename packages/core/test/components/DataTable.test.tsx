@@ -195,6 +195,15 @@ describe('<DataTable /> rows can be selected', () => {
     expect(getCheckbox(table, ROW).props().checked).toBe(true);
   });
 
+  it('should be unselectable', () => {
+    const table = mount(<DataTable {...simpleProps} />);
+
+    selectRow(table, ROW);
+    selectRow(table, ROW);
+
+    expect(getCheckbox(table, ROW).props().checked).toBe(false);
+  });
+
   it('should be selectable by row click', () => {
     const table = mount(<DataTable {...simpleProps} selectOnRowClick />);
 
@@ -247,6 +256,16 @@ describe('<DataTable /> rows can be selected', () => {
     expect(getCheckbox(table, CHILD_ROW).props().checked).toBe(true);
   });
 
+  it('selecting both children should select the parent', () => {
+    const table = mount(<DataTable {...simpleProps} />);
+
+    expandRow(table, PARENT_ROW);
+    selectRow(table, CHILD_ROW);
+    selectRow(table, CHILD_ROW + 1);
+
+    expect(getCheckbox(table, PARENT_ROW).props().checked).toBe(true);
+  });
+
   it('selecting the parent then deselecting child should deselect child', () => {
     const table = mount(<DataTable {...simpleProps} />);
 
@@ -295,7 +314,7 @@ describe('<DataTable /> renders and sorts data', () => {
   it('should sort data in Ascending Order', () => {
     const table = mount(<DataTable {...simpleProps} />);
 
-    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(NAME_COL);
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(NAME_COL - 1);
     nameHeader.simulate('click');
     nameHeader.simulate('click');
     table.update();

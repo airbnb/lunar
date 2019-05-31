@@ -6,7 +6,6 @@ import sortData from './helpers/sortData';
 import expandData from './helpers/expandData';
 import { indexData } from './helpers/indexData';
 import {
-  ChildRow,
   DataTableProps,
   DefaultDataTableProps,
   ExpandedRow,
