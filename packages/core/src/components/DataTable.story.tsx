@@ -136,6 +136,7 @@ export class SearchDemo extends React.Component {
             <Input inline label="" name="" hideLabel value={search} onChange={this.handleChange} />
           </Row>
         </Spacing>
+        {/* // eslint-disable-next-line unicorn/no-fn-reference-in-iterator */}
         <DataTable data={data} filterData={this.filter(search)} selectable expandable />
       </>
     );

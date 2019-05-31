@@ -2,6 +2,7 @@ import memoize from 'lodash/memoize';
 
 import { ChildRow, IndexedChildRow, IndexedParentRow, ParentRow } from '../types';
 
+// eslint-disable-next-line import/prefer-default-export
 export const indexData = memoize(
   (dataList: ParentRow[]): IndexedParentRow[] => {
     const indexedDataList: IndexedParentRow[] = [];
