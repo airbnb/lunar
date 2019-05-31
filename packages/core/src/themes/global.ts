@@ -1,7 +1,7 @@
 import { FontFace, GlobalSheet } from 'aesthetic';
 import { Theme } from '../types';
 
-export default (fontFaces: { [fontFamily: string]: FontFace[] }) => ({ color }: Theme) =>
+export default (fontFaces: { [fontFamily: string]: FontFace[] }) => ({ color, font }: Theme) =>
   ({
     '@global': {
       '*': {
@@ -14,13 +14,22 @@ export default (fontFaces: { [fontFamily: string]: FontFace[] }) => ({ color }: 
         height: '100%',
         margin: 0,
         padding: 0,
-        color: color.accent.text,
       },
-      // CSS resets (override browser styles)
+      body: {
+        color: color.accent.text,
+        backgroundColor: color.base,
+        fontFamily: font.fontFamily,
+        fontSize: font.textRegular.fontSize,
+        lineHeight: font.textRegular.lineHeight,
+        // Support upstream in Aesthetic?
+        '-ms-text-size-adjust': '100%',
+        '-webkit-text-size-adjust': '100%',
+        '-webkit-font-smoothing': 'antialiased',
+        '-moz-osx-font-smoothing': 'grayscale',
+      },
       'button, input': {
         color: 'inherit',
-        // Conflicts with O2
-        // backgroundColor: 'inherit',
+        backgroundColor: 'inherit',
       },
     },
     '@font-face': fontFaces,
