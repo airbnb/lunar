@@ -5,6 +5,10 @@ export type WithIconWrapperProps = {
   accessibilityLabel?: string;
   /** Mark as decorative only and avoid accessibility. Required if `accessibilityLabel` not defined. */
   decorative?: boolean;
+  /** Flip the icon on the horizontal axis. */
+  flip?: boolean;
+  /** Flip the icon on the vertical axis. */
+  flipVertical?: boolean;
   /** Size of the icon. */
   size?: number | string;
   /** Color the icon using a CSS hexcode. */
@@ -30,12 +34,23 @@ export default function withIcon(
 
       static defaultProps = {
         color: 'currentColor',
+        flip: false,
+        flipVertical: false,
         inline: false,
         size: '1em',
       };
 
       render() {
-        const { accessibilityLabel, decorative, color, size, inline } = this.props;
+        const {
+          accessibilityLabel,
+          color,
+          decorative,
+          flip,
+          flipVertical,
+          inline,
+          size,
+        } = this.props;
+
         const props: any = {
           focusable: 'false',
           role: decorative ? 'presentation' : 'img',
@@ -44,6 +59,11 @@ export default function withIcon(
             width: size,
             display: inline ? 'inline' : 'block',
             fill: color,
+            transform:
+              flip || flipVertical
+                ? `scale(${flip ? -1 : 1}, ${flipVertical ? -1 : 1})`
+                : 'scale(1)', // keep scale(1) for transition flipping
+            transition: 'transform 300ms ease-out',
           },
         };
 
