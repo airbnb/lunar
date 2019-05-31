@@ -6,8 +6,13 @@ export default (fontFaces: { [fontFamily: string]: FontFace[] }) => ({ color, fo
     '@global': {
       '*': {
         boxSizing: 'border-box',
-        ':focus': {
-          outlineColor: color.core.primary[3],
+        '@selectors': {
+          ':focus': {
+            outlineColor: color.core.primary[3],
+          },
+          ':focus:not(:focus-visible)': {
+            outline: 'none',
+          },
         },
       },
       'html, body': {
