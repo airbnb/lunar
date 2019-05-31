@@ -3,6 +3,8 @@ import { shallow, mount } from 'enzyme';
 import { AutoSizer, Grid, Table } from 'react-virtualized';
 
 import DataTable from '../../src/components/DataTable';
+import Input from '../../src/components/Input';
+import FormInput from '../../src/components/private/FormInput';
 import TableHeader from '../../src/components/DataTable/TableHeader';
 import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
@@ -10,6 +12,80 @@ import Button from '../../src/components/Button';
 import Checkbox from '../../src/components/CheckBox';
 import { ParentRow } from '../../src/components/DataTable/types';
 import { STATUS_OPTIONS } from '../../src/components/DataTable/constants';
+
+type EditableTextRendererProps = {
+  row: ParentRow;
+  keyName: string;
+  onEdit: (
+    row: ParentRow,
+    keyName: string,
+    newVal: string,
+    event: React.SyntheticEvent<EventTarget>,
+  ) => {};
+  value: string;
+  editMode: boolean;
+};
+type EditableTextRendererState = {
+  value: string;
+};
+class EditableTextRenderer extends React.Component<
+  EditableTextRendererProps,
+  EditableTextRendererState
+> {
+  state = {
+    value: this.props.value,
+  };
+
+  onEdit = (row: ParentRow, keyName: string) => (
+    newVal: string,
+    event: React.SyntheticEvent<EventTarget>,
+  ) => {
+    const { onEdit } = this.props;
+    onEdit(row, keyName, newVal, event);
+
+    this.setState({
+      value: newVal,
+    });
+  };
+
+  render() {
+    const { editMode, row, keyName } = this.props;
+    const { value } = this.state;
+
+    return editMode ? (
+      <Input label="" name="" hideLabel value={value} onChange={this.onEdit(row, keyName)} />
+    ) : (
+      <Text>{value}</Text>
+    );
+  }
+}
+
+export default function editableTextRenderer({
+  row,
+  key,
+  editMode,
+  onEdit,
+}: {
+  row: ParentRow;
+  key: string;
+  editMode: boolean;
+  onEdit: (
+    row: ParentRow,
+    key: string,
+    newVal: string,
+    event: React.SyntheticEvent<EventTarget>,
+  ) => {};
+}) {
+  return (
+    <EditableTextRenderer
+      editMode={editMode}
+      onEdit={onEdit}
+      value={row.rowData.data[key]}
+      row={row}
+      keyName={key}
+    />
+  );
+}
 
 const data: ParentRow[] = [
   {
@@ -463,6 +539,9 @@ describe('<DataTable /> handles edits', () => {
     tableHeaderLabel: 'My Table',
     editable: true,
     editCallbacks,
+    renderers: {
+      name: editableTextRenderer,
+    },
   };
 
   it('should be able to toggle edit mode off', () => {
@@ -498,6 +577,64 @@ describe('<DataTable /> handles edits', () => {
 
     expect(wrapper.state('editMode')).toBe(true);
     expect(doneButton.find(Translate).prop('phrase')).toBe('Done');
+  });
+
+  it('should be editable', () => {
+    // @ts-ignore
+    const wrapper = mount(<DataTable {...props} />);
+    const button = wrapper.find(TableHeader).find(Button);
+    button.simulate('click');
+    const grid = wrapper.find(Grid);
+    const row = grid.find('[aria-rowindex=1]');
+    const col = row.find('[aria-colindex=1]');
+    const input = col.find(Input).find(FormInput);
+
+    const event = {
+      currentTarget: {
+        value: 'foo',
+      },
+    };
+
+    input.simulate('change', event);
+    input.simulate('click');
+
+    expect(
+      wrapper
+        .find(Grid)
+        .find('[aria-rowindex=1]')
+        .find('[aria-colindex=1]')
+        .find(Input)
+        .prop('value'),
+    ).toBe(data[0].data.name);
+  });
+
+  it('should be editable without instant edit', () => {
+    // @ts-ignore
+    const wrapper = mount(<DataTable {...props} instantEdit={false} />);
+    const button = wrapper.find(TableHeader).find(Button);
+    button.simulate('click');
+    const grid = wrapper.find(Grid);
+    const row = grid.find('[aria-rowindex=1]');
+    const col = row.find('[aria-colindex=1]');
+    const input = col.find(Input).find(FormInput);
+
+    const event = {
+      currentTarget: {
+        value: 'foo',
+      },
+    };
+
+    input.simulate('change', event);
+    input.simulate('click');
+
+    expect(
+      wrapper
+        .find(Grid)
+        .find('[aria-rowindex=1]')
+        .find('[aria-colindex=1]')
+        .find(Input)
+        .prop('value'),
+    ).toBe(data[0].data.name);
   });
 });
 
