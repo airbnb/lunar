@@ -4,9 +4,8 @@ import memoize from 'lodash/memoize';
 
 import sortData from './helpers/sortData';
 import expandData from './helpers/expandData';
-import indexData from './helpers/indexData';
 import {
-  ChangeLog,
+  ChildRow,
   DataTableProps,
   DefaultDataTableProps,
   ExpandedRow,
@@ -98,12 +97,49 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   private getData = memoize(
     (data: ParentRow[], sortBy: string, sortDirection: SortDirectionType): IndexedParentRow[] => {
-      const indexedData = indexData(data);
+      const indexedData = this.indexData(data);
       const sortedData = sortData(indexedData, this.keys, sortBy, sortDirection);
 
       return sortedData;
     },
     (...args) => JSON.stringify(args),
+  );
+
+  private indexData = memoize(
+    (dataList: ParentRow[]): IndexedParentRow[] => {
+      const indexedDataList: IndexedParentRow[] = [];
+      dataList.forEach((row: ParentRow, idx: number) => {
+        const children: IndexedChildRow[] = [];
+        if (row.metadata && row.metadata.children && row.metadata.children.length > 0) {
+          row.metadata.children.forEach((child: ChildRow, childIdx: number) => {
+            children.push({
+              ...child,
+              metadata: {
+                ...child.metadata,
+                originalIndex: childIdx,
+                isChild: true,
+              },
+            });
+          });
+        }
+        indexedDataList.push({
+          ...row,
+          metadata: {
+            ...row.metadata,
+            children,
+            originalIndex: idx,
+            isChild: false,
+          },
+        });
+      });
+
+      this.setState({
+        selectedRows: {},
+        expandedRows: new Set(),
+      });
+
+      return indexedDataList;
+    },
   );
 
   private getTableHeight = (expandedDataList: ExpandedRow[]) => {
@@ -155,6 +191,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       } else {
         newExpandedRows.add(newExpandedRowIndex);
       }
+
+      console.log(newExpandedRows);
 
       return {
         expandedRows: newExpandedRows,

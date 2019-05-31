@@ -19,7 +19,7 @@ export default function expandData(
         preExpandedIndex: idx,
       },
     });
-    if (row.metadata.originalIndex && expandedRows.has(row.metadata.originalIndex)) {
+    if (row.metadata.originalIndex !== undefined && expandedRows.has(row.metadata.originalIndex)) {
       const children = sortList(row.metadata.children, keys, sortBy, sortDirection);
       children.forEach((child: IndexedChildRow) => {
         expandedData.push({

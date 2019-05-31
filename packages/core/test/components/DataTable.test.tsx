@@ -6,8 +6,6 @@ import DataTable from '../../src/components/DataTable';
 import TableHeader from '../../src/components/DataTable/TableHeader';
 import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
-import Input from '../../src/components/Input';
-import FormInput from '../../src/components/private/FormInput';
 import Button from '../../src/components/Button';
 import Checkbox from '../../src/components/CheckBox';
 import { ParentRow } from '../../src/components/DataTable/types';

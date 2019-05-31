@@ -11,7 +11,10 @@ import MenuRenderer from ':storybook/components/DataTable/DataTableRenderers/Men
 import EditableTextRenderer from ':storybook/components/DataTable/DataTableRenderers/EditableTextRenderer';
 
 import DataTable from './DataTable';
+import Button from './Button';
 import Input from './Input';
+import Row from './Row';
+import Spacing from './Spacing';
 import { SelectedRows, TableRow, IndexedParentRow } from './DataTable/types';
 
 const renderers = {
@@ -94,9 +97,10 @@ export interface SearchDemoProps {
   data: IndexedParentRow[];
 }
 
-export class SearchDemo extends React.Component<SearchDemoProps> {
+export class SearchDemo extends React.Component {
   state = {
     search: '',
+    data: generateRandomData(),
   };
 
   handleChange = (value: string) => {
@@ -105,19 +109,34 @@ export class SearchDemo extends React.Component<SearchDemoProps> {
     });
   };
 
+  private handleNewData = () => {
+    this.setState({
+      data: generateRandomData(),
+    });
+  };
+
   filter = (search: string) => (data: IndexedParentRow[]): IndexedParentRow[] => {
+    // @ts-ignore
     return data.filter((row: IndexedParentRow) => row.data.number.toString().includes(search));
   };
 
   render() {
-    const { search } = this.state;
-    const { data } = this.props;
+    const { data, search } = this.state;
+
+    const button = (
+      <Button inline onClick={this.handleNewData}>
+        New Data
+      </Button>
+    );
 
     return (
       <>
-        <Input label="" name="" hideLabel value={search} onChange={this.handleChange} />
-        {/* @ts-ignore */}
-        <DataTable data={data} filterData={this.filter(search)} />
+        <Spacing bottom={2}>
+          <Row before={button}>
+            <Input inline label="" name="" hideLabel value={search} onChange={this.handleChange} />
+          </Row>
+        </Spacing>
+        <DataTable data={data} filterData={this.filter(search)} selectable expandable />
       </>
     );
   }
@@ -147,7 +166,7 @@ storiesOf('Core/DataTable', module)
       filterData={filterData}
     />
   ))
-  .add('A table with a search box.', () => <SearchDemo data={generateRandomData()} />)
+  .add('A table with a search box.', () => <SearchDemo />)
   .add('A table that shows all rows.', () => (
     // This shows the height dynamically change with expanded rows
     <div style={{ background: '#835EFE', padding: 8 }}>

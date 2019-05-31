@@ -6,6 +6,14 @@ export function generateRandomData() {
       number: Math.random(),
       zero: x,
     },
+    metadata: {
+      children: new Array(2).fill(0).map(x => ({
+        data: {
+          number: Math.random(),
+          zero: x,
+        },
+      })),
+    },
   }));
 }
 
