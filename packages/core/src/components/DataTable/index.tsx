@@ -105,6 +105,15 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     (...args) => JSON.stringify(args),
   );
 
+  componentDidUpdate(prevProps: DataTableProps) {
+    if (this.props.data !== prevProps.data) {
+      this.setState({
+        selectedRows: {},
+        expandedRows: new Set(),
+      });
+    }
+  }
+
   private indexData = memoize(
     (dataList: ParentRow[]): IndexedParentRow[] => {
       const indexedDataList: IndexedParentRow[] = [];
@@ -131,11 +140,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             isChild: false,
           },
         });
-      });
-
-      this.setState({
-        selectedRows: {},
-        expandedRows: new Set(),
       });
 
       return indexedDataList;
