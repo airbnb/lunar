@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.12.1 - 2019-05-31
+
+#### 🎨 Styles
+
+- Migrate globals and styles from O2  (#74) ([2568a52](https://github.com/airbnb/lunar/commit/2568a52)), closes [#74](https://github.com/airbnb/lunar/issues/74)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.12.0 - 2019-05-31
 
 #### 🚀 Updates
