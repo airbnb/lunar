@@ -335,7 +335,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         onDisableEditMode={this.handleDisableEditMode}
         extraHeaderButtons={extraHeaderButtons}
         height={getHeight(rowHeight, tableHeaderHeight)}
-        instantEdit={instantEdit}
+        instantEdit={instantEdit!}
         selectedRows={selectedRows}
         tableHeaderLabel={tableHeaderLabel}
         width={this.props.width ? Math.min(this.props.width, parentWidth) : parentWidth}
