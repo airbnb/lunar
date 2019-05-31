@@ -164,8 +164,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         newExpandedRows.add(newExpandedRowIndex);
       }
 
-      console.log(newExpandedRows);
-
       return {
         expandedRows: newExpandedRows,
       };

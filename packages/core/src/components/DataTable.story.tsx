@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-// @ts-ignore
 import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
 import getData, { generateRandomData } from ':storybook/components/DataTable/DataTableData';
 import TenureRenderer from ':storybook/components/DataTable/DataTableRenderers/TenureRenderer';
