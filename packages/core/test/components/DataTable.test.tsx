@@ -482,6 +482,7 @@ describe('<DataTable /> handles edits', () => {
     expect(wrapper.state('editMode')).toBe(true);
     expect(doneButton.find(Translate).prop('phrase')).toBe('Done');
   });
+});
 
 describe('<DataTable /> does not break with weird props', () => {
   const props = {
