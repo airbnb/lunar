@@ -115,6 +115,8 @@ export class SearchDemo extends React.Component {
     });
   };
 
+  // Providing this function instead of filtering outside DataTable allows new data to be renderered
+  // Without changing the underlying data prop, which lets selectedRows/expandedRows persist.
   filter = (search: string) => (data: IndexedParentRow[]): IndexedParentRow[] => {
     return data.filter((row: IndexedParentRow) => row.data.number.toString().includes(search));
   };
