@@ -73,7 +73,7 @@ export interface DataTableProps {
   filterData?: (data: IndexedParentRow[]) => IndexedParentRow[];
   /** Height of the entire table. */
   height?: number;
-  /** If instantEdit is disabled, header will render Cancel and Apply buttons during edit mode. */
+  /** Renders a Done button. Defaults to Cancel and Apply buttons. */
   instantEdit?: boolean;
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];
