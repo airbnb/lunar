@@ -11,6 +11,7 @@ module.exports = {
     __DEV__: true,
     jsdom: true,
     newrelic: true,
+    ga: true,
   },
 
   env: {

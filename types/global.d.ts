@@ -75,6 +75,7 @@ interface KeyboardEvent {
 declare namespace NodeJS {
   interface Global {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
+    ga: UniversalAnalytics.ga | any | undefined;
     location: Location;
     navigator: Navigator;
     newrelic: NewRelic.Browser;
