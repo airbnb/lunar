@@ -23,7 +23,7 @@ export type Props = {
   onEnableEditMode: () => void;
   /** Callback for toggling editMode. */
   onDisableEditMode: () => void;
-  /** Applys edits if instantEdit is dissabled. */
+  /** Applies edits if instantEdit is disabled. */
   onEnactEdits: () => void;
   /** Extra buttons to render in the header. */
   extraHeaderButtons?: HeaderButton[];
