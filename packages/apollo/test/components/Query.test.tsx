@@ -54,7 +54,27 @@ describe('Query', () => {
         query: QUERY,
         variables: {},
       },
-      error: new Error('404'),
+      result: {
+        errors: [
+          {
+            message: 'Error!',
+            locations: undefined,
+            path: undefined,
+            nodes: undefined,
+            source: undefined,
+            positions: undefined,
+            originalError: undefined,
+            extensions: undefined,
+            name: '',
+          },
+        ],
+        data: {
+          something: {
+            id: 123,
+            name: 'Something',
+          },
+        },
+      },
     };
 
     it('renders an `ErrorMessage` by default', async () => {
@@ -71,7 +91,7 @@ describe('Query', () => {
       expect(error).toBeDefined();
       expect(error.props).toEqual(
         expect.objectContaining({
-          error: new Error('Network error: 404'),
+          error: new Error('GraphQL error: Error!'),
         }),
       );
     });
@@ -89,6 +109,22 @@ describe('Query', () => {
       await wait();
 
       expect(wrapper.root.findByType('div').children).toEqual(['Failed!']);
+    });
+
+    it('will ignore graphQLErrors via `ignoreGraphQLErrors` prop', async () => {
+      const spy = jest.fn(() => null);
+
+      renderer.create(
+        <MockedProvider mocks={[mock]} addTypename={false}>
+          <Query query={QUERY} ignoreGraphQLErrors>
+            {spy}
+          </Query>
+        </MockedProvider>,
+      );
+
+      await wait();
+
+      expect(spy).toHaveBeenCalled();
     });
   });
 

@@ -36,13 +36,15 @@ context.keys().forEach(file => {
 
 class IconGrid extends React.Component<{
   category: string;
-  title: string;
-  icons: IconSet['icons'];
   color: string;
+  flip: boolean;
+  flipVertical: boolean;
+  icons: IconSet['icons'];
   size: string;
+  title: string;
 }> {
   render() {
-    const { category, title, icons, color, size } = this.props;
+    const { category, title, icons, color, size, flip, flipVertical } = this.props;
 
     return (
       <div style={{ marginBottom: 16 }}>
@@ -71,7 +73,14 @@ class IconGrid extends React.Component<{
                 width: 90,
               }}
             >
-              <Icon inline decorative size={size} color={color || undefined} />
+              <Icon
+                inline
+                decorative
+                size={size}
+                color={color || undefined}
+                flip={flip}
+                flipVertical={flipVertical}
+              />
 
               <div style={{ fontSize: 11, marginTop: 4 }}>{Icon.displayName!.slice(4)}</div>
             </button>
@@ -82,9 +91,14 @@ class IconGrid extends React.Component<{
   }
 }
 
-class IconList extends React.Component<{}, { color: string; size: string }> {
+class IconList extends React.Component<
+  {},
+  { color: string; flipX: boolean; flipY: boolean; size: string }
+> {
   state = {
     color: '',
+    flipX: false,
+    flipY: false,
     size: '2em',
   };
 
@@ -94,6 +108,18 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
     });
   };
 
+  handleFlipXChange = () => {
+    this.setState(prevState => ({
+      flipX: !prevState.flipX,
+    }));
+  };
+
+  handleFlipYChange = () => {
+    this.setState(prevState => ({
+      flipY: !prevState.flipY,
+    }));
+  };
+
   handleSizeChange = (event: ChangeEvent<HTMLSelectElement>) => {
     this.setState({
       size: event.currentTarget.value,
@@ -101,11 +127,11 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
   };
 
   render() {
-    const { color, size } = this.state;
+    const { color, flipX, flipY, size } = this.state;
 
     return (
       <div style={{ position: 'relative' }}>
-        <div style={{ display: 'flex', position: 'absolute', top: 0, right: 0 }}>
+        <div style={{ display: 'flex', fontSize: '12px', position: 'absolute', top: 0, right: 0 }}>
           <select name="color" value={color} onChange={this.handleColorChange}>
             <option value="">No Color</option>
             <option value="red">Red</option>
@@ -123,6 +149,16 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
             <option value="2em">2x</option>
             <option value="3em">3x</option>
           </select>
+
+          <div style={{ marginLeft: 16 }}>
+            Flip X{' '}
+            <input checked={flipX} type="checkbox" name="flipx" onChange={this.handleFlipXChange} />
+          </div>
+
+          <div style={{ marginLeft: 8 }}>
+            Flip Y{' '}
+            <input checked={flipY} type="checkbox" name="flipy" onChange={this.handleFlipYChange} />
+          </div>
         </div>
 
         {Object.keys(iconData).map(category => (
@@ -133,6 +169,8 @@ class IconList extends React.Component<{}, { color: string; size: string }> {
             icons={iconData[category].icons}
             color={color}
             size={size}
+            flip={flipX}
+            flipVertical={flipY}
           />
         ))}
       </div>
