@@ -67,7 +67,7 @@ export function getHeight(defaultHeight?: RowHeightOptions, overrideHeight?: Hei
   return defaultHeight ? HEIGHT_TO_PX[defaultHeight] : 0;
 }
 
-// Infers keys from data if they aren't explicitely defined
+// Infers keys from data if they aren't explicitly defined
 export const getKeys = memoize((keys: string[], data: ParentRow[]) => {
   return keys.length > 0
     ? keys

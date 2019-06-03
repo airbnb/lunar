@@ -24,9 +24,9 @@ class EditableTextRenderer extends React.Component {
 
     return editMode ? (
       <Input
-        label=""
-        name=""
         hideLabel
+        label="Edit row"
+        name=""
         value={value}
         onChange={this.onEdit(row, key)}
         onClick={onClick}

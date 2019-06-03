@@ -133,7 +133,14 @@ export class SearchDemo extends React.Component {
       <>
         <Spacing bottom={2}>
           <Row before={button}>
-            <Input inline label="" name="" hideLabel value={search} onChange={this.handleChange} />
+            <Input
+              hideLabel
+              inline
+              label="Edit row"
+              name=""
+              value={search}
+              onChange={this.handleChange}
+            />
           </Row>
         </Spacing>
         <DataTable
