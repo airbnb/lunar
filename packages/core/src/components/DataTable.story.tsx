@@ -116,7 +116,6 @@ export class SearchDemo extends React.Component {
   };
 
   filter = (search: string) => (data: IndexedParentRow[]): IndexedParentRow[] => {
-    // @ts-ignore
     return data.filter((row: IndexedParentRow) => row.data.number.toString().includes(search));
   };
 
