@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.13.0 - 2019-06-04
+
+#### 🚀 Updates
+
+- **[DataTable]** Enable Filtering and Fix Rerender Bugs (#73) ([fd77068](https://github.com/airbnb/lunar/commit/fd77068)), closes [#73](https://github.com/airbnb/lunar/issues/73)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 1.12.1 - 2019-05-31
 
 #### 🎨 Styles
