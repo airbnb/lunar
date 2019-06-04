@@ -183,7 +183,7 @@ describe('<Proofreader />', () => {
     expect(wrapper.find(T).prop('locale')).toBe('foo');
   });
 
-  it('resets error state if value is empt', () => {
+  it('resets error state if value is empty', () => {
     wrapper = shallow(<Proofreader {...props} value="Hello" />).dive();
 
     wrapper.setState({
@@ -197,6 +197,12 @@ describe('<Proofreader />', () => {
 
     expect(wrapper.state('errors')).toEqual([]);
     expect(wrapper.state('selectedError')).toBeNull();
+  });
+
+  it('plumbs the important prop through to BaseTextArea', () => {
+    wrapper = shallow(<Proofreader {...props} important />).dive();
+
+    expect(wrapper.find(BaseTextArea).prop('important')).toBeTruthy();
   });
 
   describe('checkText()', () => {
