@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.14.0 - 2019-06-04
+
+#### 🚀 Updates
+
+- **[Proofreader]** Add background styling for important prop (#71) ([33e846f](https://github.com/airbnb/lunar/commit/33e846f)), closes [#71](https://github.com/airbnb/lunar/issues/71)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.13.0 - 2019-06-04
 
 #### 🚀 Updates
