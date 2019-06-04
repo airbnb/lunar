@@ -17,7 +17,7 @@ function sortDesc(a: any, b: any) {
   return 1;
 }
 
-export default function sortList<T extends GenericRow>(
+export default function sortData<T extends GenericRow>(
   list: T[],
   keys: string[],
   sortBy?: string,

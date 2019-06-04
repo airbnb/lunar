@@ -1,7 +1,7 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
 
-import renderDefaultContent from '../defaultContentRenderers';
+import renderDefaultContent from '../DefaultRenderer';
 import Spacing from '../../Spacing';
 import {
   ColumnMetadata,
@@ -45,7 +45,7 @@ export default function renderDataColumns(
   const renderCell = (key: string, isLeftmost: boolean) => (row: TableRow) => {
     const { metadata } = row.rowData;
     const { isChild } = metadata;
-    const renderer = renderers && renderers[key];
+    const customRenderer = renderers && renderers[key];
 
     const indentSize = !expandable || !isLeftmost ? 2 : 2.5;
     const spacing = isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
@@ -68,8 +68,8 @@ export default function renderDataColumns(
       }
     }
 
-    const contents: React.ReactNode = renderer
-      ? renderer(rendererArguments)
+    const contents: React.ReactNode = customRenderer
+      ? customRenderer(rendererArguments)
       : renderDefaultContent(rendererArguments);
 
     return (

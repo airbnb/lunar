@@ -74,6 +74,9 @@ export default function ColumnLabels({
 
       const showDivider = showColumnDividers && !!label && !isRightmost;
 
+      const sortable =
+        !columnMetadata || !columnMetadata[key] || columnMetadata[key].disableSorting !== 1;
+
       const newHeader = (
         <Spacing left={indent ? 2 : 0}>
           <div style={heightStyle} {...css(showDivider && styles && styles.column_divider)}>
@@ -90,7 +93,7 @@ export default function ColumnLabels({
                   {label}
                 </Text>
               </span>
-              {label && (
+              {label && sortable && (
                 <SortCarets
                   enableUp={sort === SortDirection.DESC}
                   enableDown={sort === SortDirection.ASC}

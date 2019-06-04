@@ -33,7 +33,9 @@ type EditCallback = (
 export type OnEdit = (
   row: TableRow,
   key: string,
-) => (newVal: any, event: React.SyntheticEvent<EventTarget>) => void;
+  newVal: any,
+  event: React.SyntheticEvent<EventTarget>,
+) => void;
 
 export type HeaderButton = {
   label: string;
@@ -67,9 +69,11 @@ export interface DataTableProps {
   expandable?: boolean;
   /** Extra buttons to render in the header during non-edit mode. */
   extraHeaderButtons?: HeaderButton[];
+  /** Filter function to handle searching and filtering.. */
+  filterData?: (data: IndexedParentRow[]) => IndexedParentRow[];
   /** Height of the entire table. */
   height?: number;
-  /** If enabled, every edit immediately triggers a parent callback, see docs for details. */
+  /** Renders a Done button. Defaults to Cancel and Apply buttons. */
   instantEdit?: boolean;
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];
