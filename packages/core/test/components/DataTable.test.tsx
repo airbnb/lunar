@@ -3,15 +3,85 @@ import { shallow, mount } from 'enzyme';
 import { AutoSizer, Grid, Table } from 'react-virtualized';
 
 import DataTable from '../../src/components/DataTable';
+import Input from '../../src/components/Input';
+import FormInput from '../../src/components/private/FormInput';
 import TableHeader from '../../src/components/DataTable/TableHeader';
 import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
-import Input from '../../src/components/Input';
-import FormInput from '../../src/components/private/FormInput';
 import Button from '../../src/components/Button';
 import Checkbox from '../../src/components/CheckBox';
-import { ParentRow } from '../../src/components/DataTable/types';
+import { OnEdit, ParentRow, TableRow } from '../../src/components/DataTable/types';
 import { STATUS_OPTIONS } from '../../src/components/DataTable/constants';
+
+type EditableTextRendererProps = {
+  row: TableRow;
+  keyName: string;
+  onEdit: OnEdit;
+  value: string;
+  editMode: boolean;
+};
+type EditableTextRendererState = {
+  value: string;
+};
+class EditableTextRenderer extends React.Component<
+  EditableTextRendererProps,
+  EditableTextRendererState
+> {
+  state = {
+    value: this.props.value,
+  };
+
+  onEdit = (row: TableRow, keyName: string) => (
+    newVal: string,
+    event: React.SyntheticEvent<EventTarget>,
+  ) => {
+    const { onEdit } = this.props;
+    onEdit(row, keyName, newVal, event);
+
+    this.setState({
+      value: newVal,
+    });
+  };
+
+  render() {
+    const { editMode, row, keyName } = this.props;
+    const { value } = this.state;
+
+    return editMode ? (
+      <Input
+        hideLabel
+        label="Edit row"
+        name=""
+        value={value}
+        onChange={this.onEdit(row, keyName)}
+      />
+    ) : (
+      <Text>{value}</Text>
+    );
+  }
+}
+
+export default function editableTextRenderer({
+  row,
+  key,
+  editMode,
+  onEdit,
+}: {
+  row: TableRow;
+  key: string;
+  editMode: boolean;
+  onEdit: OnEdit;
+}) {
+  return (
+    <EditableTextRenderer
+      editMode={editMode}
+      onEdit={onEdit}
+      value={row.rowData.data[key]}
+      row={row}
+      keyName={key}
+    />
+  );
+}
 
 const data: ParentRow[] = [
   {
@@ -197,6 +267,15 @@ describe('<DataTable /> rows can be selected', () => {
     expect(getCheckbox(table, ROW).props().checked).toBe(true);
   });
 
+  it('should be unselectable', () => {
+    const table = mount(<DataTable {...simpleProps} />);
+
+    selectRow(table, ROW);
+    selectRow(table, ROW);
+
+    expect(getCheckbox(table, ROW).props().checked).toBe(false);
+  });
+
   it('should be selectable by row click', () => {
     const table = mount(<DataTable {...simpleProps} selectOnRowClick />);
 
@@ -249,6 +328,16 @@ describe('<DataTable /> rows can be selected', () => {
     expect(getCheckbox(table, CHILD_ROW).props().checked).toBe(true);
   });
 
+  it('selecting both children should select the parent', () => {
+    const table = mount(<DataTable {...simpleProps} />);
+
+    expandRow(table, PARENT_ROW);
+    selectRow(table, CHILD_ROW);
+    selectRow(table, CHILD_ROW + 1);
+
+    expect(getCheckbox(table, PARENT_ROW).props().checked).toBe(true);
+  });
+
   it('selecting the parent then deselecting child should deselect child', () => {
     const table = mount(<DataTable {...simpleProps} />);
 
@@ -297,7 +386,7 @@ describe('<DataTable /> renders and sorts data', () => {
   it('should sort data in Ascending Order', () => {
     const table = mount(<DataTable {...simpleProps} />);
 
-    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(NAME_COL);
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(NAME_COL - 1);
     nameHeader.simulate('click');
     nameHeader.simulate('click');
     table.update();
@@ -446,10 +535,13 @@ describe('<DataTable /> handles edits', () => {
     tableHeaderLabel: 'My Table',
     editable: true,
     editCallbacks,
+    renderers: {
+      name: editableTextRenderer,
+    },
   };
 
   it('should be able to toggle edit mode off', () => {
-    const wrapper = shallow(<DataTable {...props} instantEdit />).dive();
+    const wrapper = shallow(<DataTable {...props} />).dive();
     const editButton = getHeader(wrapper)
       .dive()
       .dive()
@@ -466,7 +558,7 @@ describe('<DataTable /> handles edits', () => {
   });
 
   it('should enable instant edit mode', () => {
-    const wrapper = shallow(<DataTable {...props} instantEdit />).dive();
+    const wrapper = shallow(<DataTable {...props} />).dive();
     const editButton = getHeader(wrapper)
       .dive()
       .dive()
@@ -481,44 +573,6 @@ describe('<DataTable /> handles edits', () => {
 
     expect(wrapper.state('editMode')).toBe(true);
     expect(doneButton.find(Translate).prop('phrase')).toBe('Done');
-  });
-
-  it('should enable edit mode and handle edit cancelation', () => {
-    // @ts-ignore
-    const wrapper = shallow(<DataTable {...props} instantEdit={false} />).dive();
-    const editButton = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
-    editButton.simulate('click');
-
-    const buttons = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
-    const cancelButton = buttons.at(0);
-    const applyButton = buttons.at(1);
-
-    cancelButton.simulate('click');
-    editButton.simulate('click');
-    applyButton.simulate('click');
-    editButton.simulate('click');
-
-    expect(wrapper.state('editMode')).toBe(true);
-    expect(cancelButton.find(Translate).prop('phrase')).toBe('Cancel');
-    expect(applyButton.find(Translate).prop('phrase')).toBe('Apply');
-  });
-
-  it('should replace text with inputs', () => {
-    // @ts-ignore
-    const wrapper = mount(<DataTable {...props} />);
-    const button = wrapper.find(TableHeader).find(Button);
-    button.simulate('click');
-    const grid = wrapper.find(Grid);
-    const row = grid.find('[aria-rowindex=1]');
-    const col = row.find('[aria-colindex=1]');
-    const input = col.find(Input);
-    expect(input.prop('value')).toBe(data[0].data.name);
   });
 
   it('should be editable', () => {
@@ -550,20 +604,33 @@ describe('<DataTable /> handles edits', () => {
     ).toBe(data[0].data.name);
   });
 
-  it('children should be editable', () => {
-    const table = mount(<DataTable {...props} expandable />);
+  it('should be editable without instant edit', () => {
+    // @ts-ignore
+    const wrapper = mount(<DataTable {...props} instantEdit={false} />);
+    const button = wrapper.find(TableHeader).find(Button);
+    button.simulate('click');
+    const grid = wrapper.find(Grid);
+    const row = grid.find('[aria-rowindex=1]');
+    const col = row.find('[aria-colindex=1]');
+    const input = col.find(Input).find(FormInput);
 
-    const expandCaret = getCell(table, 5, 1).childAt(0);
-    expandCaret.simulate('click');
+    const event = {
+      currentTarget: {
+        value: 'foo',
+      },
+    };
+
+    input.simulate('change', event);
+    input.simulate('click');
 
     expect(
-      getCell(table, 6, 2)
-        .find(Text)
-        .text(),
-    ).toBe(data[4].metadata!.children![0].data.name);
-
-    const button = table.find(TableHeader).find(Button);
-    button.simulate('click');
+      wrapper
+        .find(Grid)
+        .find('[aria-rowindex=1]')
+        .find('[aria-colindex=1]')
+        .find(Input)
+        .prop('value'),
+    ).toBe(data[0].data.name);
   });
 });
 
