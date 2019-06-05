@@ -28,10 +28,7 @@ describe('<Pagination />', () => {
         hasNext: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles;
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />).dive();
 
       expect(wrapper.find(IconButton)).toHaveLength(2);
     });
@@ -43,10 +40,7 @@ describe('<Pagination />', () => {
         page: 2,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles;
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />).dive();
 
       expect(wrapper.find(IconButton)).toHaveLength(2);
     });
@@ -58,10 +52,7 @@ describe('<Pagination />', () => {
         page: 3,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles;
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />).dive();
 
       expect(wrapper.find(T).prop('pageNumber')).toBe(request.page);
     });
@@ -85,10 +76,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles;
-        .dive() // Row
-        .dive();
+      ).dive();
 
       expect(wrapper.find(T).prop('pageNumber')).toBe(request.page);
       expect(wrapper.find(T).prop('pageCount')).toBe(pageCount);
@@ -120,10 +108,7 @@ describe('<Pagination />', () => {
         page: 1,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />).dive();
 
       expect(
         wrapper
@@ -141,10 +126,7 @@ describe('<Pagination />', () => {
         fetching: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />).dive();
 
       expect(
         wrapper
@@ -161,10 +143,9 @@ describe('<Pagination />', () => {
       };
 
       const onPrevious = jest.fn();
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={onPrevious} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(
+        <Pagination {...request} onNext={noop} onPrevious={onPrevious} />,
+      ).dive();
 
       wrapper
         .find(IconButton)
@@ -181,10 +162,7 @@ describe('<Pagination />', () => {
         hasPrev: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />).dive();
 
       expect(
         wrapper
@@ -203,10 +181,7 @@ describe('<Pagination />', () => {
         hasPrev: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />).dive();
 
       expect(
         wrapper
@@ -224,10 +199,7 @@ describe('<Pagination />', () => {
         fetching: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />).dive();
 
       expect(
         wrapper
@@ -243,10 +215,7 @@ describe('<Pagination />', () => {
         hasNext: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />).dive();
 
       expect(
         wrapper
@@ -263,10 +232,7 @@ describe('<Pagination />', () => {
       };
 
       const onNext = jest.fn();
-      const wrapper = shallow(<Pagination {...request} onNext={onNext} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={onNext} onPrevious={noop} />).dive();
 
       wrapper
         .find(IconButton)
@@ -284,10 +250,7 @@ describe('<Pagination />', () => {
         hasNext: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />).dive();
 
       expect(wrapper.find(IconButton)).toHaveLength(2);
     });
@@ -310,10 +273,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      ).dive();
 
       expect(
         wrapper
@@ -343,10 +303,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      ).dive();
 
       expect(
         wrapper
@@ -375,10 +332,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      ).dive();
 
       wrapper
         .find(IconButton)
@@ -408,10 +362,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      ).dive();
 
       expect(
         wrapper
@@ -429,10 +380,7 @@ describe('<Pagination />', () => {
         hasNext: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />).dive();
 
       expect(wrapper.find(IconButton)).toHaveLength(2);
     });
@@ -455,10 +403,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      ).dive();
 
       expect(
         wrapper
@@ -488,10 +433,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      ).dive();
 
       expect(
         wrapper
@@ -520,10 +462,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      ).dive();
 
       wrapper
         .find(IconButton)
@@ -552,10 +491,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      ).dive();
 
       expect(
         wrapper
