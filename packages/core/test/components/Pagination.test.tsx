@@ -93,6 +93,23 @@ describe('<Pagination />', () => {
       expect(wrapper.find(T).prop('pageNumber')).toBe(request.page);
       expect(wrapper.find(T).prop('pageCount')).toBe(pageCount);
     });
+
+    it('displays the page label', () => {
+      const request = {
+        ...baseRequest,
+        hasNext: true,
+        page: 3,
+      };
+
+      const wrapper = shallow(
+        <Pagination {...request} onNext={noop} onPrevious={noop} pageLabel="Photo" />,
+      )
+        .dive() // withStyles;
+        .dive() // Row
+        .dive();
+
+      expect(wrapper.find(T).prop('pageLabel')).toBe('Photo');
+    });
   });
 
   describe('the previous button', () => {

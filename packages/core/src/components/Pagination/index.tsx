@@ -18,10 +18,10 @@ export type Props = {
   hasNext?: boolean;
   /** Whether it has a previous page. */
   hasPrev?: boolean;
-  /** Content to label the pages. Default is "Page" */
-  label: string;
   /** Current page number. */
   page: number;
+  /** Content to label the pages. Default is "Page" */
+  pageLabel: string;
   /** Total page count. Required when `showBookends` is true. */
   pageCount?: number;
   /** Invoked when the first page button is pressed. */
@@ -42,7 +42,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
     fetching: false,
     hasNext: false,
     hasPrev: false,
-    label: T.phrase('Page', {}, 'Label for pages'),
+    pageLabel: T.phrase('Page', {}, 'Label for pages'),
     showBookends: false,
   };
 
@@ -57,7 +57,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       fetching,
       hasNext,
       hasPrev,
-      label,
+      pageLabel,
       onFirst,
       onLast,
       onNext,
@@ -154,16 +154,16 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
           <Text muted>
             {showBookends && pageCount ? (
               <T
-                phrase="%{label} %{pageNumber} of %{pageCount}"
-                label={label}
+                phrase="%{pageLabel} %{pageNumber} of %{pageCount}"
+                pageLabel={pageLabel}
                 pageCount={pageCount}
                 pageNumber={page}
                 context="Showing the current page number and total page count"
               />
             ) : (
               <T
-                phrase="%{label} %{pageNumber}"
-                label={label}
+                phrase="%{pageLabel} %{pageNumber}"
+                pageLabel={pageLabel}
                 pageNumber={page}
                 context="Showing the current page number"
               />

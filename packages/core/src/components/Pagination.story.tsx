@@ -30,7 +30,17 @@ storiesOf('Core/Pagination', module)
     <Pagination
       hasPrev
       hasNext
-      label={T.phrase('Photo', {}, 'Label for photo pagination')}
+      pageLabel={T.phrase('Photo', {}, 'Label for photo pagination')}
+      page={2}
+      onNext={action('onNext')}
+      onPrevious={action('onPrevious')}
+    />
+  ))
+  .add('With no label.', () => (
+    <Pagination
+      hasPrev
+      hasNext
+      pageLabel=""
       page={2}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
