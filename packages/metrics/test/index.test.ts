@@ -32,7 +32,7 @@ describe('Metrics', () => {
     global.newrelic.setCustomAttribute = jest.fn();
     global.newrelic.setErrorHandler = jest.fn();
 
-    global.ga = jest.fn();
+    global.ga = (jest.fn() as unknown) as UniversalAnalytics.ga;
   });
 
   afterEach(() => {
