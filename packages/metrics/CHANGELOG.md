@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.0 - 2019-06-05
+
+#### 🚀 Updates
+
+- **[Metrics]** Set Google Analytics userId if able. (#75) ([4b883f6](https://github.com/airbnb/lunar/commit/4b883f6)), closes [#75](https://github.com/airbnb/lunar/issues/75)
+
+**Note:** Version bump only for package @airbnb/lunar-metrics
+
+
+
+
+
 ### 1.0.6 - 2019-05-21
 
 #### 🐞 Fixes
