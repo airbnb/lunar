@@ -50,7 +50,7 @@ export default class PrivatePickerInput extends DayPickerInput {
     this.input = ref;
 
     if (propagateRef) {
-      propagateRef(ref);
+      propagateRef.current = ref;
     }
   };
 

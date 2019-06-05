@@ -61,7 +61,8 @@ class Core {
   }
 
   bootstrapAesthetic() {
-    const { theme, fontFamily, fontFaces } = this.settings;
+    const { theme, fontFaces } = this.settings;
+    const fontFamily = this.fontFamily();
     const globals = globalStyles(fontFaces);
 
     this.aesthetic = new AphroditeAesthetic<Theme>([], {
@@ -89,6 +90,24 @@ class Core {
     }
 
     return this.aesthetic!;
+  }
+
+  fontFamily(): string {
+    const locale = this.locale();
+
+    if (locale.startsWith('ja')) {
+      return '"ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", "MS Gothic", "ＭＳ ゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif';
+    }
+
+    if (locale.startsWith('ko')) {
+      return '"나눔 고딕", "Nanum Gothic", "맑은 고딕", "Malgun Gothic", "Apple Gothic", 돋움, Dotum, "Helvetica Neue", Helvetica, Arial, sans-serif';
+    }
+
+    if (locale.includes('zh')) {
+      return '"Hiragino Sans GB", 华文细黑, STHeiti, 微软雅黑, "Microsoft YaHei", SimHei, "Helvetica Neue", Helvetica, Arial, sans-serif';
+    }
+
+    return this.settings.fontFamily;
   }
 
   locale(): Locale {

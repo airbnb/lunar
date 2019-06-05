@@ -12,6 +12,8 @@ FakeIcon.defaultProps = {
   accessibilityLabel: '',
   color: 'currentColor',
   decorative: false,
+  flip: false,
+  flipVertical: false,
   inline: false,
   size: '1em',
 };

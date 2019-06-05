@@ -3,6 +3,114 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.14.0 - 2019-06-04
+
+#### 🚀 Updates
+
+- **[Proofreader]** Add background styling for important prop (#71) ([33e846f](https://github.com/airbnb/lunar/commit/33e846f)), closes [#71](https://github.com/airbnb/lunar/issues/71)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 1.13.0 - 2019-06-04
+
+#### 🚀 Updates
+
+- **[DataTable]** Enable Filtering and Fix Rerender Bugs (#73) ([fd77068](https://github.com/airbnb/lunar/commit/fd77068)), closes [#73](https://github.com/airbnb/lunar/issues/73)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 1.12.1 - 2019-05-31
+
+#### 🎨 Styles
+
+- Migrate globals and styles from O2  (#74) ([2568a52](https://github.com/airbnb/lunar/commit/2568a52)), closes [#74](https://github.com/airbnb/lunar/issues/74)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 1.12.0 - 2019-05-31
+
+#### 🚀 Updates
+
+- **[withIcon]** Add new icon props to flip horizontally and/or vertically. (#72) ([84bda27](https://github.com/airbnb/lunar/commit/84bda27)), closes [#72](https://github.com/airbnb/lunar/issues/72)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 1.11.0 - 2019-05-24
+
+#### 🚀 Updates
+
+- **[DataTable]** Column header casing (#68) ([f959bd4](https://github.com/airbnb/lunar/commit/f959bd4)), closes [#68](https://github.com/airbnb/lunar/issues/68)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 1.10.1 - 2019-05-24
+
+#### 📘 Docs
+
+- **[DataTable]** update type descriptions (recovered) (#69) ([16a425e](https://github.com/airbnb/lunar/commit/16a425e)), closes [#69](https://github.com/airbnb/lunar/issues/69)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 1.10.0 - 2019-05-23
+
+#### 🚀 Updates
+
+- **[Chip]** Add new compact and active props (#66) ([aefd828](https://github.com/airbnb/lunar/commit/aefd828)), closes [#66](https://github.com/airbnb/lunar/issues/66)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 1.9.1 - 2019-05-21
+
+#### 🐞 Fixes
+
+- Remove Babel runtime setup (#65) ([a58ade2](https://github.com/airbnb/lunar/commit/a58ade2)), closes [#65](https://github.com/airbnb/lunar/issues/65)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 1.9.0 - 2019-05-16
+
+#### 🚀 Updates
+
+- **[Title]** Add primary color option. (#61) ([dbb8b87](https://github.com/airbnb/lunar/commit/dbb8b87)), closes [#61](https://github.com/airbnb/lunar/issues/61)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 1.8.1 - 2019-05-10
 
 #### 📦 Dependencies

@@ -6,6 +6,7 @@ export type TableRef = React.RefObject<Table>;
 
 export type RowHeightOptions = string;
 export type HeightOptions = RowHeightOptions | undefined;
+export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '';
 
 export type SelectedRows = {
   [key: number]: {
@@ -32,7 +33,9 @@ type EditCallback = (
 export type OnEdit = (
   row: TableRow,
   key: string,
-) => (newVal: any, event: React.SyntheticEvent<EventTarget>) => void;
+  newVal: any,
+  event: React.SyntheticEvent<EventTarget>,
+) => void;
 
 export type HeaderButton = {
   label: string;
@@ -46,17 +49,19 @@ export type DefaultDataTableProps = keyof DataTableProps;
 export interface DataTableProps {
   /** Height of the column header. */
   columnHeaderHeight?: HeightOptions;
+  /** Change all column label keys to UPPERCASE or Title Case or Sentence case */
+  columnLabelCase?: ColumnLabelCase;
   /** Keys mapped onto custom column label names. */
   columnToLabel?: ColumnToLabel;
   /** Override default width for specific a column's properties. */
   columnMetadata?: ColumnMetadata;
   /** Array of data rows. */
   data?: ParentRow[];
-  /** When instant edit is disabled, callback on edit application. */
+  /** Default callback on all edits. */
   defaultEditCallback?: EditCallback;
   /** Specifies whether or not editMode can be enabled. */
   editable?: boolean;
-  /** Callback overides for instant edit on specific keys. */
+  /** Callback for any specific key, called on all edits. */
   editCallbacks?: { [key: string]: EditCallback };
   /** When instant edit is disabled, callback that gets trigged on edit application. */
   enactEditsCallback?: (changeLog: ChangeLog) => void;
@@ -64,9 +69,11 @@ export interface DataTableProps {
   expandable?: boolean;
   /** Extra buttons to render in the header during non-edit mode. */
   extraHeaderButtons?: HeaderButton[];
+  /** Filter function to handle searching and filtering.. */
+  filterData?: (data: IndexedParentRow[]) => IndexedParentRow[];
   /** Height of the entire table. */
   height?: number;
-  /** If enabled, every edit immediately triggers a parent callback, see docs for details. */
+  /** Renders a Done button. Defaults to Cancel and Apply buttons. */
   instantEdit?: boolean;
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];

@@ -64,7 +64,7 @@ export class Rating extends React.Component<Props & WithStylesProps> {
               Star = IconStarFull;
             }
 
-            return <Star key={key} color={color} decorative />;
+            return <Star key={key} color={color} size="1.15em" decorative />;
           })}
 
           {reviews && <Spacing left={reviews ? 0.5 : 0}>{reviews}</Spacing>}

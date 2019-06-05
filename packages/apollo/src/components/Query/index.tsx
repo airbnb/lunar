@@ -24,6 +24,11 @@ export type Props<Data, Vars> = Omit<QueryProps<Data, Vars>, 'children' | 'clien
    * When not defined, this defaults to `Loader`.
    */
   loading?: RenderableProp;
+  /**
+   * Allow graphql errors to be passed to the render function.  If this is true the render function
+   * may receive partial data and is expected to be able to handle `result.error.graphQLErrors`
+   */
+  ignoreGraphQLErrors?: boolean;
 };
 
 /**
@@ -34,6 +39,7 @@ export default class Query<Data = any, Vars = OperationVariables> extends React.
   Props<Data, Vars>
 > {
   static defaultProps = {
+    ignoreGraphQLErrors: false,
     notifyOnNetworkStatusChange: false,
     partialRefetch: false,
     pollInterval: 0,
@@ -47,7 +53,7 @@ export default class Query<Data = any, Vars = OperationVariables> extends React.
       return renderElementOrFunction(this.props.loading) || <Loader static />;
     }
 
-    if (result.error) {
+    if (result.error && (!this.props.ignoreGraphQLErrors || result.error.networkError)) {
       return (
         renderElementOrFunction(this.props.error, result.error) || (
           <ErrorMessage error={result.error} />

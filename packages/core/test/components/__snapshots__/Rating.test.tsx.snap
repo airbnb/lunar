@@ -13,26 +13,31 @@ exports[`<Rating /> renders default 1`] = `
       color="#C2C2C2"
       decorative={true}
       key="star-0"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-1"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-2"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-3"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-4"
+      size="1.15em"
     />
   </div>
 </Text>
@@ -51,26 +56,31 @@ exports[`<Rating /> renders large 1`] = `
       color="#C2C2C2"
       decorative={true}
       key="star-0"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-1"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-2"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-3"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-4"
+      size="1.15em"
     />
   </div>
 </Text>
@@ -89,26 +99,31 @@ exports[`<Rating /> renders micro 1`] = `
       color="#C2C2C2"
       decorative={true}
       key="star-0"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-1"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-2"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-3"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-4"
+      size="1.15em"
     />
   </div>
 </Text>
@@ -127,26 +142,31 @@ exports[`<Rating /> renders reviews 1`] = `
       color="#C2C2C2"
       decorative={true}
       key="star-0"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-1"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-2"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-3"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-4"
+      size="1.15em"
     />
     <Spacing
       left={0.5}
@@ -170,26 +190,31 @@ exports[`<Rating /> renders small 1`] = `
       color="#C2C2C2"
       decorative={true}
       key="star-0"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-1"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-2"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-3"
+      size="1.15em"
     />
     <IconStar
       color="#C2C2C2"
       decorative={true}
       key="star-4"
+      size="1.15em"
     />
   </div>
 </Text>

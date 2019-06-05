@@ -32,6 +32,8 @@ export type Props = {
   micro?: boolean;
   /** Mark the text as muted. */
   muted?: boolean;
+  /** Disable text and white space wrapping. */
+  noWrap?: boolean;
   /** Preserve whitespace at the beginning and end of children. */
   preserveWhitespace?: boolean;
   /** Decrease font size to small. */
@@ -73,6 +75,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
     light: false,
     micro: false,
     muted: false,
+    noWrap: false,
     preserveWhitespace: false,
     small: false,
     startAlign: false,
@@ -94,6 +97,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
       light,
       micro,
       muted,
+      noWrap,
       preserveWhitespace,
       small,
       startAlign,
@@ -131,6 +135,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
           centerAlign && styles.text_center,
           endAlign && styles.text_end,
           startAlign && styles.text_start,
+          noWrap && styles.text_noWrap,
         )}
       >
         {children}
@@ -216,5 +221,9 @@ export default withStyles(({ color, font, pattern }) => ({
 
   text_start: {
     textAlign: 'left',
+  },
+
+  text_noWrap: {
+    whiteSpace: 'nowrap',
   },
 }))(Text);

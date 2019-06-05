@@ -80,7 +80,7 @@ export default withStyles((theme: WithStylesProps['theme']) => ({
     right: 0.5 * theme!.unit,
   },
   caret_inactive: {
-    color: theme!.color.core.neutral[1],
+    color: theme!.color.core.neutral[3],
   },
   caret_active: {
     color: theme!.color.core.neutral[4],
