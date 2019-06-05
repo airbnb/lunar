@@ -177,9 +177,10 @@ describe('Metrics', () => {
     it('does not attempt to set the google analytics user if ga is not present', () => {
       Metrics.settings.userID = 123;
       global.ga = undefined;
-      Metrics.bootstrapGoogleAnalyticsUser();
 
-      expect(global.ga).toBeUndefined();
+      expect(() => {
+        Metrics.bootstrapGoogleAnalyticsUser();
+      }).not.toThrow();
     });
   });
 });
