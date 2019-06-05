@@ -21,7 +21,7 @@ export type Props = {
   /** Current page number. */
   page: number;
   /** Content to label the pages. Default is "Page" */
-  pageLabel: string;
+  pageLabel?: string;
   /** Total page count. Required when `showBookends` is true. */
   pageCount?: number;
   /** Invoked when the first page button is pressed. */
