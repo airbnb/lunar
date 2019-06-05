@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { requiredBy } from 'airbnb-prop-types';
+import { requiredBy, mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconFirst from '@airbnb/lunar-icons/lib/interface/IconFirst';
@@ -9,6 +9,8 @@ import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 import IconButton from '../IconButton';
 import Text from '../Text';
 import T from '../Translate';
+
+const alignProp = mutuallyExclusiveTrueProps('centerAlign', 'endAlign', 'startAlign');
 
 export type Props = {
   /** Align arrows in the center */
@@ -57,6 +59,9 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
   };
 
   static propTypes = {
+    centerAlign: alignProp,
+    endAlign: alignProp,
+    startAlign: alignProp,
     onFirst: requiredBy('showBookends', PropTypes.func),
     onLast: requiredBy('showBookends', PropTypes.func),
     pageCount: requiredBy('showBookends', PropTypes.number),
