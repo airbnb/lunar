@@ -8,10 +8,13 @@ import IconLast from '@airbnb/lunar-icons/lib/interface/IconLast';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 import IconButton from '../IconButton';
 import Text from '../Text';
-import Row from '../Row';
 import T from '../Translate';
 
 export type Props = {
+  /** Align arrows in the center */
+  centerAlign?: boolean;
+  /** Align arrows to the end */
+  endAlign?: boolean;
   /** Show fetching state. */
   fetching?: boolean;
   /** Whether it has a next page. */
@@ -24,6 +27,10 @@ export type Props = {
   pageLabel?: string;
   /** Total page count. Required when `showBookends` is true. */
   pageCount?: number;
+  /** Render the pagination as 100% width. */
+  renderFullWidth?: boolean;
+  /** Align arrows to the start */
+  startAlign?: boolean;
   /** Invoked when the first page button is pressed. */
   onFirst?: () => void;
   /** Invoked when the last page button is pressed. */
@@ -39,11 +46,14 @@ export type Props = {
 /** Pagination controls. */
 export class Pagination extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
+    centerAlign: false,
+    endAlign: false,
     fetching: false,
     hasNext: false,
     hasPrev: false,
     pageLabel: T.phrase('Page', {}, 'Label for pages'),
     showBookends: false,
+    startAlign: false,
   };
 
   static propTypes = {
@@ -54,6 +64,8 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      centerAlign,
+      endAlign,
       fetching,
       hasNext,
       hasPrev,
@@ -65,6 +77,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       page,
       pageCount,
       showBookends,
+      startAlign,
       styles,
       theme,
     } = this.props;
@@ -167,34 +180,62 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
     }
 
     return (
-      <Row
-        before={
-          <>
-            {firstPage}
-            {previousPage}
-          </>
-        }
-        after={
-          <>
-            {nextPage}
-            {lastPage}
-          </>
-        }
-        middleAlign
+      <div
+        {...css(
+          styles.wrapper,
+          endAlign && styles.end_align,
+          centerAlign && styles.center_align,
+          startAlign && styles.start_align,
+        )}
       >
-        <div {...css(styles.centered)}>
+        <div {...css(styles.previous)}>
+          {firstPage}
+          {previousPage}
+        </div>
+        <div {...css(styles.page)}>
           <Text muted>{paginationText}</Text>
         </div>
-      </Row>
+        <div {...css(styles.next)}>
+          {nextPage}
+          {lastPage}
+        </div>
+      </div>
     );
   }
 }
 
 export default withStyles(
-  () => ({
-    centered: {
-      width: '100%',
-      textAlign: 'center',
+  ({ unit }) => ({
+    wrapper: {
+      display: 'grid',
+      gridTemplateAreas: '"previous page next"',
+      gridTemplateColumns: 'auto 1fr auto',
+      gridColumnGap: unit * 2,
+      alignItems: 'center',
+      justifyItems: 'center',
+    },
+    page: {
+      gridArea: 'page',
+    },
+    previous: {
+      gridArea: 'previous',
+    },
+    next: {
+      gridArea: 'next',
+    },
+    end_align: {
+      gridTemplateAreas: '"page previous next"',
+      gridTemplateColumns: 'auto',
+      justifyContent: 'end',
+    },
+    center_align: {
+      gridTemplateColumns: 'auto',
+      justifyContent: 'center',
+    },
+    start_align: {
+      gridTemplateAreas: '"previous next page"',
+      gridTemplateColumns: 'auto',
+      justifyContent: 'start',
     },
   }),
   {
