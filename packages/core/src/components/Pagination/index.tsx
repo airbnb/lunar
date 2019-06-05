@@ -29,8 +29,6 @@ export type Props = {
   pageLabel?: string;
   /** Total page count. Required when `showBookends` is true. */
   pageCount?: number;
-  /** Render the pagination as 100% width. */
-  renderFullWidth?: boolean;
   /** Align arrows to the start */
   startAlign?: boolean;
   /** Invoked when the first page button is pressed. */
