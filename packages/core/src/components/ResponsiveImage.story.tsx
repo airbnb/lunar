@@ -18,6 +18,16 @@ storiesOf('Core/ResponsiveImage', module)
       shimmer={<Shimmer height={150} width={150} block />}
     />
   ))
+  .add('With contain.', () => (
+    <ResponsiveImage
+      contain
+      src={lunar}
+      alt="Image"
+      maxWidth={150}
+      maxHeight={100}
+      shimmer={<Shimmer height={100} width={150} block />}
+    />
+  ))
   .add('With cover.', () => (
     <ResponsiveImage
       cover
