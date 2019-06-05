@@ -31,6 +31,8 @@ describe('Metrics', () => {
 
     global.newrelic.setCustomAttribute = jest.fn();
     global.newrelic.setErrorHandler = jest.fn();
+
+    global.ga = (jest.fn() as unknown) as UniversalAnalytics.ga;
   });
 
   afterEach(() => {
@@ -56,14 +58,17 @@ describe('Metrics', () => {
     it('calls boostrap functions', () => {
       const nrBoot = jest.spyOn(Metrics, 'bootstrapNewRelic');
       const sentryBoot = jest.spyOn(Metrics, 'bootstrapSentry');
+      const bootstrapGoogleAnalyticsUser = jest.spyOn(Metrics, 'bootstrapGoogleAnalyticsUser');
 
       Metrics.initialize();
 
       expect(nrBoot).toHaveBeenCalled();
       expect(sentryBoot).toHaveBeenCalled();
+      expect(bootstrapGoogleAnalyticsUser).toHaveBeenCalled();
 
       nrBoot.mockRestore();
       sentryBoot.mockRestore();
+      bootstrapGoogleAnalyticsUser.mockRestore();
     });
   });
 
@@ -150,6 +155,32 @@ describe('Metrics', () => {
           camelCase: 'value',
         }),
       );
+    });
+  });
+
+  describe('bootstrapGoogleAnalyticsUser', () => {
+    it('sets the google analytics user if present', () => {
+      Metrics.settings.userID = 12355;
+      Metrics.bootstrapGoogleAnalyticsUser();
+
+      expect(global.ga).toBeCalledTimes(1);
+      expect(global.ga).toBeCalledWith('set', 'userId', 12355);
+    });
+
+    it('does not attempt to set the google analytics user if the user ID is not present', () => {
+      Metrics.settings.userID = null;
+      Metrics.bootstrapGoogleAnalyticsUser();
+
+      expect(global.ga).not.toHaveBeenCalled();
+    });
+
+    it('does not attempt to set the google analytics user if ga is not present', () => {
+      Metrics.settings.userID = 123;
+      global.ga = undefined;
+
+      expect(() => {
+        Metrics.bootstrapGoogleAnalyticsUser();
+      }).not.toThrow();
     });
   });
 });
