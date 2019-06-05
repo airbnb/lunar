@@ -158,7 +158,7 @@ describe('Metrics', () => {
     });
   });
 
-  describe('setGoogleAnalyticsUser', () => {
+  describe('bootstrapGoogleAnalyticsUser', () => {
     it('sets the google analytics user if present', () => {
       Metrics.settings.userID = 12355;
       Metrics.bootstrapGoogleAnalyticsUser();
