@@ -1,7 +1,9 @@
 import React from 'react';
+import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 
 export const DEFAULT_BORDER_RADIUS = 6;
+const objectFitPropType = mutuallyExclusiveTrueProps('contain', 'cover');
 
 export type Props = {
   /** An accessible label. */
@@ -10,6 +12,8 @@ export type Props = {
   borderRadius?: number;
   /** Hide the box-shadow. */
   noShadow?: boolean;
+  /** Whether to have the image maintain its aspect ratio while contained in its dimentions or not. */
+  contain?: boolean;
   /** Whether to have the image cover its dimensions or not. */
   cover?: boolean;
   /**
@@ -42,11 +46,17 @@ export type State = {
 export class ResponsiveImage extends React.Component<Props & WithStylesProps, State> {
   static defaultProps = {
     borderRadius: DEFAULT_BORDER_RADIUS,
+    contain: false,
     cover: false,
     maxHeight: 'none',
     maxWidth: 'none',
     noShadow: false,
     shimmer: null,
+  };
+
+  static propTypes = {
+    contain: objectFitPropType,
+    cover: objectFitPropType,
   };
 
   image?: HTMLImageElement;
@@ -101,6 +111,7 @@ export class ResponsiveImage extends React.Component<Props & WithStylesProps, St
   render() {
     const {
       alt,
+      contain,
       cover,
       noShadow,
       maxWidth,
@@ -118,11 +129,17 @@ export class ResponsiveImage extends React.Component<Props & WithStylesProps, St
 
     return (
       <img
-        {...css(styles.image, cover && styles.image_cover, noShadow && styles.image_noShadow, {
-          borderRadius,
-          maxWidth,
-          maxHeight,
-        })}
+        {...css(
+          styles.image,
+          contain && styles.image_contain,
+          cover && styles.image_cover,
+          noShadow && styles.image_noShadow,
+          {
+            borderRadius,
+            maxWidth,
+            maxHeight,
+          },
+        )}
         src={src}
         width="100%"
         height="auto"
@@ -144,5 +161,9 @@ export default withStyles(({ ui }) => ({
 
   image_cover: {
     objectFit: 'cover',
+  },
+
+  image_contain: {
+    objectFit: 'contain',
   },
 }))(ResponsiveImage);

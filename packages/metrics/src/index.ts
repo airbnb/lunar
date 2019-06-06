@@ -1,5 +1,6 @@
 import Raven from 'raven-js';
 import hasNewRelic from './utils/hasNewRelic';
+import hasGoogleAnalytics from './utils/hasGoogleAnalytics';
 
 export type IgnoreError = string | RegExp;
 
@@ -28,6 +29,7 @@ class Metrics {
 
     this.bootstrapNewRelic();
     this.bootstrapSentry();
+    this.bootstrapGoogleAnalyticsUser();
   }
 
   bootstrapNewRelic() {
@@ -81,6 +83,12 @@ class Metrics {
         ...context,
       })
       .install();
+  }
+
+  bootstrapGoogleAnalyticsUser() {
+    if (hasGoogleAnalytics() && this.settings.userID) {
+      ga('set', 'userId', this.settings.userID);
+    }
   }
 }
 

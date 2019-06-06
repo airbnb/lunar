@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.16.0 - 2019-06-05
+
+#### 🚀 Updates
+
+- **[AppLoader]** Add errorTitle prop (#60) ([e9a3b66](https://github.com/airbnb/lunar/commit/e9a3b66)), closes [#60](https://github.com/airbnb/lunar/issues/60)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 1.15.0 - 2019-06-05
+
+#### 🚀 Updates
+
+- **[ResponsiveImage]** Add contain prop (#77) ([ae4ff43](https://github.com/airbnb/lunar/commit/ae4ff43)), closes [#77](https://github.com/airbnb/lunar/issues/77)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.14.0 - 2019-06-04
 
 #### 🚀 Updates
