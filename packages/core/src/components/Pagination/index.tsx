@@ -154,7 +154,11 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
           <Text muted>
             {showBookends && pageCount ? (
               <T
-                phrase="%{pageLabel} %{pageNumber} of %{pageCount}"
+                phrase={
+                  pageLabel
+                    ? '%{pageLabel} %{pageNumber} of %{pageCount}'
+                    : '%{pageNumber} of %{pageNumber}'
+                }
                 pageLabel={pageLabel}
                 pageCount={pageCount}
                 pageNumber={page}
@@ -162,7 +166,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
               />
             ) : (
               <T
-                phrase="%{pageLabel} %{pageNumber}"
+                phrase={pageLabel ? '%{pageLabel} %{pageNumber}' : '%{pageNumber}'}
                 pageLabel={pageLabel}
                 pageNumber={page}
                 context="Showing the current page number"
