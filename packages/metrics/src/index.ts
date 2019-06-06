@@ -87,7 +87,7 @@ class Metrics {
 
   bootstrapGoogleAnalyticsUser() {
     if (hasGoogleAnalytics() && this.settings.userID) {
-      ga('set', 'userId', this.settings.userID);
+      ga('set', 'userId', `${this.settings.userID}`);
     }
   }
 }
