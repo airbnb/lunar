@@ -29,8 +29,6 @@ export type Props = {
   pageLabel?: string;
   /** Total page count. Required when `showBookends` is true. */
   pageCount?: number;
-  /** Align arrows to the start */
-  startAlign?: boolean;
   /** Invoked when the first page button is pressed. */
   onFirst?: () => void;
   /** Invoked when the last page button is pressed. */
@@ -41,6 +39,8 @@ export type Props = {
   onPrevious: () => void;
   /** Show the first and last page buttons. */
   showBookends?: boolean;
+  /** Align arrows to the start */
+  startAlign?: boolean;
 };
 
 /** Pagination controls. */
@@ -59,10 +59,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
   static propTypes = {
     centerAlign: alignProp,
     endAlign: alignProp,
-    startAlign: alignProp,
     onFirst: requiredBy('showBookends', PropTypes.func),
     onLast: requiredBy('showBookends', PropTypes.func),
     pageCount: requiredBy('showBookends', PropTypes.number),
+    startAlign: alignProp,
   };
 
   render() {
@@ -186,9 +186,9 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       <div
         {...css(
           styles.wrapper,
-          endAlign && styles.end_align,
-          centerAlign && styles.center_align,
-          startAlign && styles.start_align,
+          endAlign && styles.wrapper_endAlign,
+          centerAlign && styles.wrapper_centerAlign,
+          startAlign && styles.wrapper_startAlign,
         )}
       >
         <div {...css(styles.previous)}>
@@ -217,28 +217,34 @@ export default withStyles(
       alignItems: 'center',
       justifyItems: 'center',
     },
-    page: {
-      gridArea: 'page',
-    },
-    previous: {
-      gridArea: 'previous',
-    },
-    next: {
-      gridArea: 'next',
-    },
-    end_align: {
+
+    wrapper_endAlign: {
       gridTemplateAreas: '"page previous next"',
       gridTemplateColumns: 'auto',
       justifyContent: 'end',
     },
-    center_align: {
+
+    wrapper_centerAlign: {
       gridTemplateColumns: 'auto',
       justifyContent: 'center',
     },
-    start_align: {
+
+    wrapper_startAlign: {
       gridTemplateAreas: '"previous next page"',
       gridTemplateColumns: 'auto',
       justifyContent: 'start',
+    },
+
+    page: {
+      gridArea: 'page',
+    },
+
+    previous: {
+      gridArea: 'previous',
+    },
+
+    next: {
+      gridArea: 'next',
     },
   }),
   {
