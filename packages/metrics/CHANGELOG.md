@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.1.2 - 2019-06-06
+
+#### 🐞 Fixes
+
+- **[Metrics]** set ga userId as string. (#81) ([6b08b2b](https://github.com/airbnb/lunar/commit/6b08b2b)), closes [#81](https://github.com/airbnb/lunar/issues/81)
+
+**Note:** Version bump only for package @airbnb/lunar-metrics
+
+
+
+
+
 ### 1.1.1 - 2019-06-06
 
 #### 🐞 Fixes
