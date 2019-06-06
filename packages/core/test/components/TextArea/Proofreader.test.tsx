@@ -9,7 +9,8 @@ import Proofreader, {
 import T from '../../../src/components/Translate';
 import ErrorMenu from '../../../src/components/TextArea/Proofreader/ErrorMenu';
 import LocaleMenu from '../../../src/components/TextArea/Proofreader/LocaleMenu';
-import Mark from '../../../src/components/TextArea/Proofreader/Mark';
+import Mark, { Props as MarkProps } from '../../../src/components/TextArea/Proofreader/Mark';
+import SecondaryMark from '../../../src/components/TextArea/Proofreader/SecondaryMark';
 import Loader from '../../../src/components/Loader';
 import Link from '../../../src/components/Link';
 import BaseTextArea from '../../../src/components/private/BaseTextArea';
@@ -787,6 +788,13 @@ describe('<Proofreader />', () => {
   });
 
   describe('renderTextWithMarks()', () => {
+    const markProps: MarkProps = {
+      children: 'Mark children',
+      selected: false,
+      onSelect: expect.anything(),
+      alwaysHighlight: false,
+    };
+
     it('returns text if no errors', () => {
       wrapper.setState({
         text: 'Something foobar',
@@ -803,9 +811,29 @@ describe('<Proofreader />', () => {
 
       expect(instance.renderTextWithMarks()).toEqual([
         'Something ',
-        <Mark key="foobar-10" selected={false} onSelect={expect.anything()}>
+        <Mark {...markProps} key="foobar-10">
           foobar
         </Mark>,
+        '',
+        '.',
+      ]);
+    });
+
+    it('wraps errors in a secondary mark if secondaryMark prop is true', () => {
+      wrapper.setProps({
+        secondaryMark: true,
+      });
+
+      wrapper.setState({
+        text: 'Something foobar',
+        errors: [error],
+      });
+
+      expect(instance.renderTextWithMarks()).toEqual([
+        'Something ',
+        <SecondaryMark {...markProps} key="foobar-10">
+          foobar
+        </SecondaryMark>,
         '',
         '.',
       ]);
@@ -820,7 +848,7 @@ describe('<Proofreader />', () => {
 
       expect(instance.renderTextWithMarks()).toEqual([
         'Something ',
-        <Mark key="foobar-10" selected onSelect={expect.anything()}>
+        <Mark {...markProps} key="foobar-10" selected>
           foobar
         </Mark>,
         '',
@@ -846,11 +874,11 @@ describe('<Proofreader />', () => {
 
       expect(instance.renderTextWithMarks()).toEqual([
         '',
-        <Mark key="something-0" selected={false} onSelect={expect.anything()}>
+        <Mark {...markProps} key="something-0">
           something
         </Mark>,
         ' ',
-        <Mark key="foobar-10" selected onSelect={expect.anything()}>
+        <Mark {...markProps} key="foobar-10" selected>
           foobar
         </Mark>,
         '',

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Mark /> renders 1`] = `
+<mark
+  className="mark_jc2c4c"
+>
+  Word
+</mark>
+`;
+
+exports[`<Mark /> renders alwaysHighlight 1`] = `
+<mark
+  className="mark_jc2c4c-o_O-mark_highlight_1arrkjl"
+>
+  Word
+</mark>
+`;
+
+exports[`<Mark /> renders selected 1`] = `
+<mark
+  className="mark_jc2c4c-o_O-mark_highlight_1arrkjl"
+>
+  Word
+</mark>
+`;

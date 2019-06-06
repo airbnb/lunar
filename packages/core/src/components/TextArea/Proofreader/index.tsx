@@ -10,7 +10,8 @@ import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import buildInputStyles from '../../../themes/buildInputStyles';
 import { LT_LOCALES } from '../../../constants';
 import { ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT } from '../../../keys';
-import Mark from './Mark';
+import Mark, { Props as MarkProps } from './Mark';
+import SecondaryMark from './SecondaryMark';
 import ErrorMenu from './ErrorMenu';
 import LocaleMenu from './LocaleMenu';
 import { ProofreadRuleMatch, ProofreaderResponse, DefinitionShape } from './types';
@@ -37,15 +38,17 @@ export type Position = {
   top: number;
 };
 
-export type Props = Pick<FormInputProps, 'important'> & {
-  locale?: string;
-  name: string;
-  id: string;
-  noTranslate?: boolean;
-  onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onCheckText: (params: any) => Promise<ProofreaderResponse>;
-  value: string;
-};
+export type Props = Pick<FormInputProps, 'important'> &
+  Partial<Pick<MarkProps, 'alwaysHighlight'>> & {
+    locale?: string;
+    name: string;
+    id: string;
+    noTranslate?: boolean;
+    onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    onCheckText: (params: any) => Promise<ProofreaderResponse>;
+    value: string;
+    secondaryMark?: boolean;
+  };
 
 export type State = {
   errors: ProofreadRuleMatch[];
@@ -540,6 +543,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
 
   renderTextWithMarks() {
     const { errors, selectedError, text } = this.state;
+    const { alwaysHighlight, secondaryMark } = this.props;
 
     if (errors.length === 0) {
       return text;
@@ -568,14 +572,16 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       // Extract match and wrap in a component
       const word = text.slice(offset, lastIndex);
 
+      const MarkComponent = secondaryMark ? SecondaryMark : Mark;
       content.push(
-        <Mark
+        <MarkComponent
           key={`${word}-${offset}`}
           selected={error === selectedError}
           onSelect={this.handleOpenErrorMenu}
+          alwaysHighlight={!!alwaysHighlight}
         >
           {word}
-        </Mark>,
+        </MarkComponent>,
       );
     });
 
@@ -590,7 +596,17 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   }
 
   render() {
-    const { cx, children, styles, onCheckText, theme, important, ...props } = this.props;
+    const {
+      cx,
+      children,
+      styles,
+      onCheckText,
+      theme,
+      important,
+      alwaysHighlight,
+      secondaryMark,
+      ...props
+    } = this.props;
     const {
       position,
       errors,

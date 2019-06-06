@@ -1,11 +1,18 @@
 import React from 'react';
 import { mountWithStyles, shallowWithStyles } from '@airbnb/lunar-test-utils';
-import Mark from '../../../src/components/TextArea/Proofreader/Mark';
+import Mark, { Props } from '../../../src/components/TextArea/Proofreader/Mark';
 
 describe('<Mark />', () => {
+  const props: Props = {
+    children: 'Mark children',
+    selected: false,
+    onSelect: () => {},
+    alwaysHighlight: false,
+  };
+
   it('renders', () => {
     const wrapper = shallowWithStyles(
-      <Mark selected={false} onSelect={() => {}}>
+      <Mark {...props} selected={false} onSelect={() => {}}>
         Word
       </Mark>,
     );
@@ -15,7 +22,7 @@ describe('<Mark />', () => {
 
   it('renders selected', () => {
     const wrapper = shallowWithStyles(
-      <Mark selected onSelect={() => {}}>
+      <Mark {...props} selected onSelect={() => {}}>
         Word
       </Mark>,
     );
@@ -27,7 +34,7 @@ describe('<Mark />', () => {
     const spy = jest.fn();
 
     mountWithStyles(
-      <Mark selected onSelect={spy}>
+      <Mark {...props} selected onSelect={spy}>
         Word
       </Mark>,
     );
@@ -39,7 +46,7 @@ describe('<Mark />', () => {
     const spy = jest.fn();
 
     mountWithStyles(
-      <Mark selected={false} onSelect={spy}>
+      <Mark {...props} selected={false} onSelect={spy}>
         Word
       </Mark>,
     );
@@ -50,7 +57,7 @@ describe('<Mark />', () => {
   it('triggers `onSelect` if updated to selected', () => {
     const spy = jest.fn();
     const wrapper = mountWithStyles(
-      <Mark selected={false} onSelect={spy}>
+      <Mark {...props} selected={false} onSelect={spy}>
         Word
       </Mark>,
     );
@@ -67,7 +74,7 @@ describe('<Mark />', () => {
   it('doesnt trigger `onSelect` if updated from selected', () => {
     const spy = jest.fn();
     const wrapper = mountWithStyles(
-      <Mark selected onSelect={spy}>
+      <Mark {...props} selected onSelect={spy}>
         Word
       </Mark>,
     );
