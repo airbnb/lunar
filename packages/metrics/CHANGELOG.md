@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.1.1 - 2019-06-06
+
+#### 🐞 Fixes
+
+- **[Metrics]** safely check for ga. (#80) ([5617a6f](https://github.com/airbnb/lunar/commit/5617a6f)), closes [#80](https://github.com/airbnb/lunar/issues/80)
+
+**Note:** Version bump only for package @airbnb/lunar-metrics
+
+
+
+
+
 ## 1.1.0 - 2019-06-05
 
 #### 🚀 Updates
