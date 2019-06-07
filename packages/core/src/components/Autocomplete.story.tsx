@@ -62,6 +62,18 @@ storiesOf('Core/Autocomplete', module)
       disabled
     />
   ))
+  .add('Load items on focus.', () => (
+    <Autocomplete
+      accessibilityLabel="Label"
+      name="autocomplete-load-on-focus"
+      label="Label"
+      loadItemsOnFocus
+      onChange={action('onChange')}
+      onSelectItem={action('onSelectItem')}
+      onLoadOptions={value => Promise.resolve(items) as any}
+      labelDescription="Load some items on focus."
+    />
+  ))
   .add('Disable selected items with `isItemSelectable`.', () => (
     <Autocomplete
       accessibilityLabel="Favorite color?"
