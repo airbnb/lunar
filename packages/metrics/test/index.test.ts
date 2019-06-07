@@ -164,7 +164,7 @@ describe('Metrics', () => {
       Metrics.bootstrapGoogleAnalyticsUser();
 
       expect(global.ga).toBeCalledTimes(1);
-      expect(global.ga).toBeCalledWith('set', 'userId', 12355);
+      expect(global.ga).toBeCalledWith('set', 'userId', '12355');
     });
 
     it('does not attempt to set the google analytics user if the user ID is not present', () => {
