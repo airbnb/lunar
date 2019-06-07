@@ -20,6 +20,8 @@ export type Props = {
   hasPrev?: boolean;
   /** Current page number. */
   page: number;
+  /** Content to label the pages. Default is "Page" */
+  pageLabel?: string;
   /** Total page count. Required when `showBookends` is true. */
   pageCount?: number;
   /** Invoked when the first page button is pressed. */
@@ -40,6 +42,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
     fetching: false,
     hasNext: false,
     hasPrev: false,
+    pageLabel: T.phrase('Page', {}, 'Label for pages'),
     showBookends: false,
   };
 
@@ -54,6 +57,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       fetching,
       hasNext,
       hasPrev,
+      pageLabel,
       onFirst,
       onLast,
       onNext,
@@ -130,6 +134,38 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       );
     }
 
+    let paginationText =
+      showBookends && pageCount ? (
+        <T
+          phrase={'%{pageNumber} of %{pageNumber}'}
+          pageCount={pageCount}
+          pageNumber={page}
+          context="Showing the current page number and total page count"
+        />
+      ) : (
+        <T phrase={'%{pageNumber}'} pageNumber={page} context="Showing the current page number" />
+      );
+
+    if (pageLabel) {
+      paginationText =
+        showBookends && pageCount ? (
+          <T
+            phrase={'%{pageLabel} %{pageNumber} of %{pageCount}'}
+            pageLabel={pageLabel}
+            pageCount={pageCount}
+            pageNumber={page}
+            context="Showing the current page number and total page count"
+          />
+        ) : (
+          <T
+            phrase={'%{pageLabel} %{pageNumber}'}
+            pageLabel={pageLabel}
+            pageNumber={page}
+            context="Showing the current page number"
+          />
+        );
+    }
+
     return (
       <Row
         before={
@@ -147,22 +183,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
         middleAlign
       >
         <div {...css(styles.centered)}>
-          <Text muted>
-            {showBookends && pageCount ? (
-              <T
-                phrase="Page %{pageNumber} of %{pageCount}"
-                pageCount={pageCount}
-                pageNumber={page}
-                context="Showing the current page number and total page count"
-              />
-            ) : (
-              <T
-                phrase="Page %{pageNumber}"
-                pageNumber={page}
-                context="Showing the current page number"
-              />
-            )}
-          </Text>
+          <Text muted>{paginationText}</Text>
         </div>
       </Row>
     );

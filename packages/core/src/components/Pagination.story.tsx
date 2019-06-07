@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Pagination from './Pagination';
+import T from './Translate';
 
 storiesOf('Core/Pagination', module)
   .addParameters({
@@ -20,6 +21,26 @@ storiesOf('Core/Pagination', module)
     <Pagination
       hasPrev
       hasNext
+      page={2}
+      onNext={action('onNext')}
+      onPrevious={action('onPrevious')}
+    />
+  ))
+  .add('With label.', () => (
+    <Pagination
+      hasPrev
+      hasNext
+      pageLabel={T.phrase('Photo', {}, 'Label for photo pagination')}
+      page={2}
+      onNext={action('onNext')}
+      onPrevious={action('onPrevious')}
+    />
+  ))
+  .add('With no label.', () => (
+    <Pagination
+      hasPrev
+      hasNext
+      pageLabel=""
       page={2}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
