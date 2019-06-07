@@ -49,52 +49,52 @@ storiesOf('Core/Pagination', module)
   .add('Bookends, first page.', () => (
     <Pagination
       hasNext
+      showBookends
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
       page={1}
       pageCount={3}
-      showBookends
     />
   ))
   .add('Bookends, last page.', () => (
     <Pagination
       hasPrev
+      showBookends
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
       page={3}
       pageCount={3}
-      showBookends
     />
   ))
   .add('Bookends, middle page.', () => (
     <Pagination
       hasNext
       hasPrev
+      showBookends
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
       page={2}
       pageCount={3}
-      showBookends
     />
   ))
   .add('Align arrows at the start', () => (
     <Pagination
       hasNext
       hasPrev
+      showBookends
+      startAlign
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
       page={2}
       pageCount={3}
-      showBookends
-      startAlign
     />
   ))
   .add('Align arrows in the center', () => (
@@ -102,13 +102,13 @@ storiesOf('Core/Pagination', module)
       centerAlign
       hasNext
       hasPrev
+      showBookends
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
       page={2}
       pageCount={3}
-      showBookends
     />
   ))
   .add('Align arrows at the end', () => (
@@ -116,12 +116,12 @@ storiesOf('Core/Pagination', module)
       endAlign
       hasNext
       hasPrev
+      showBookends
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
       page={2}
       pageCount={3}
-      showBookends
     />
   ));

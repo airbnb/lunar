@@ -23,6 +23,10 @@ export type Props = {
   hasNext?: boolean;
   /** Whether it has a previous page. */
   hasPrev?: boolean;
+  /** Show the first and last page buttons. */
+  showBookends?: boolean;
+  /** Align arrows to the start */
+  startAlign?: boolean;
   /** Current page number. */
   page: number;
   /** Content to label the pages. Default is "Page" */
@@ -37,10 +41,6 @@ export type Props = {
   onNext: () => void;
   /** Invoked when the previous page button is pressed. */
   onPrevious: () => void;
-  /** Show the first and last page buttons. */
-  showBookends?: boolean;
-  /** Align arrows to the start */
-  startAlign?: boolean;
 };
 
 /** Pagination controls. */
@@ -59,10 +59,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
   static propTypes = {
     centerAlign: alignProp,
     endAlign: alignProp,
+    startAlign: alignProp,
     onFirst: requiredBy('showBookends', PropTypes.func),
     onLast: requiredBy('showBookends', PropTypes.func),
     pageCount: requiredBy('showBookends', PropTypes.number),
-    startAlign: alignProp,
   };
 
   render() {
@@ -72,6 +72,8 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       fetching,
       hasNext,
       hasPrev,
+      showBookends,
+      startAlign,
       pageLabel,
       onFirst,
       onLast,
@@ -79,8 +81,6 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       onPrevious,
       page,
       pageCount,
-      showBookends,
-      startAlign,
       styles,
       theme,
     } = this.props;
