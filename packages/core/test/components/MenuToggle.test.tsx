@@ -101,7 +101,11 @@ describe('<MenuToggle />', () => {
   it('can render an icon button', () => {
     const label = 'Foo';
     const wrapper = shallow(
-      <MenuToggle accessibilityLabel="Foo" toggleIcon={<IconCheck />} toggleLabel={label}>
+      <MenuToggle
+        accessibilityLabel="Foo"
+        toggleIcon={<IconCheck decorative />}
+        toggleLabel={label}
+      >
         <Item>Child</Item>
       </MenuToggle>,
     ).dive();

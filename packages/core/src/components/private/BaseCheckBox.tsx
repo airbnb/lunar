@@ -68,13 +68,13 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
         >
           {checked && (
             <span {...css(styles.checkmark)}>
-              <IconCheck size="1.5em" decorative />
+              <IconCheck decorative size="1.5em" />
             </span>
           )}
 
           {indeterminate && (
             <span {...css(styles.indeterminate)}>
-              <IconRemove size="1.5em" decorative />
+              <IconRemove decorative size="1.5em" />
             </span>
           )}
         </span>

@@ -221,7 +221,7 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
               type="button"
               onClick={this.handleScrollLeft}
             >
-              <IconChevronLeft size="2em" decorative />
+              <IconChevronLeft decorative size="2em" />
             </button>
           ) : (
             <span
@@ -239,7 +239,7 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
               type="button"
               onClick={this.handleScrollRight}
             >
-              <IconChevronRight size="2em" decorative />
+              <IconChevronRight decorative size="2em" />
             </button>
           ) : (
             <span
