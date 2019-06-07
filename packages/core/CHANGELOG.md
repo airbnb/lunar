@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.17.0 - 2019-06-07
+
+#### 🚀 Updates
+
+- **[Pagination]** Add pageLabel prop (#78) ([0184ad5](https://github.com/airbnb/lunar/commit/0184ad5)), closes [#78](https://github.com/airbnb/lunar/issues/78)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.16.0 - 2019-06-05
 
 #### 🚀 Updates
