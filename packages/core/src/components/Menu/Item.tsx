@@ -88,7 +88,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
       tip,
     } = this.props;
     const { showSubmenu } = this.state;
-    const after = submenu ? <IconCaretRight size="1.5em" decorative /> : tip;
+    const after = submenu ? <IconCaretRight decorative size="1.5em" /> : tip;
 
     return (
       <li role="none" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>

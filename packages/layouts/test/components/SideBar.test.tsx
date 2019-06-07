@@ -17,7 +17,7 @@ describe('<SideBar />', () => {
   it('renders a nav with accessibility', () => {
     const wrapper = shallow(
       <SideBar accessibilityLabel="Test">
-        <Item icon={<IconAdd />} />
+        <Item icon={<IconAdd decorative />} />
       </SideBar>,
     ).dive();
 
@@ -29,9 +29,9 @@ describe('<SideBar />', () => {
   it('renders items', () => {
     const wrapper = shallow(
       <SideBar accessibilityLabel="Test">
-        <Item icon={<IconAdd />} />
-        <Item icon={<IconAdd />} />
-        <Item icon={<IconAdd />} />
+        <Item icon={<IconAdd decorative />} />
+        <Item icon={<IconAdd decorative />} />
+        <Item icon={<IconAdd decorative />} />
       </SideBar>,
     ).dive();
 

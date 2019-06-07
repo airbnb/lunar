@@ -151,7 +151,7 @@ describe('<MessageItem>', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
     const wrapper = shallow(
-      <MessageItem formattedTimestamp={timestamp} title={title} icon={<IconCheck />}>
+      <MessageItem formattedTimestamp={timestamp} title={title} icon={<IconCheck decorative />}>
         Hello world
       </MessageItem>,
     ).dive();

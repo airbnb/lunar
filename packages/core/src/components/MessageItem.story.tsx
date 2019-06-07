@@ -66,7 +66,7 @@ storiesOf('Core/MessageItem', module)
   .add('With an icon avatar.', () => (
     <MessageItem
       formattedTimestamp="2:45 AM"
-      icon={<IconBolt size="1.25em" />}
+      icon={<IconBolt decorative size="1.25em" />}
       imageDescription="Link"
       source="web"
       title="Some custom title"

@@ -28,7 +28,7 @@ export default function renderExpandableColumn(
           onKeyPress={expandRow(originalIndex)}
         >
           <Spacing left={1.5}>
-            <Chevron size="1.6em" />
+            <Chevron decorative size="1.6em" />
           </Spacing>
         </div>
       );

@@ -35,7 +35,7 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
             enableUp ? styles.caret_active : styles.caret_inactive,
           )}
         >
-          <IconCaretUp size="2em" />
+          <IconCaretUp decorative size="2em" />
         </span>
       )
     );
@@ -53,7 +53,7 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
             enableDown ? styles.caret_active : styles.caret_inactive,
           )}
         >
-          <IconCaretDown size="2em" />
+          <IconCaretDown decorative size="2em" />
         </span>
       )
     );

@@ -68,12 +68,12 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
         >
           {checked && (
             <span {...css(styles.bullet)}>
-              <IconRecord size="1em" decorative />
+              <IconRecord decorative size="1em" />
             </span>
           )}
           {indeterminate && (
             <span {...css(styles.indeterminate)}>
-              <IconRemove size="1.64em" decorative />
+              <IconRemove decorative size="1.64em" />
             </span>
           )}
         </span>

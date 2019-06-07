@@ -18,7 +18,7 @@ describe('<IconButton />', () => {
   it('renders disabled', () => {
     const wrapper = shallow(
       <IconButton disabled>
-        <IconCheck />
+        <IconCheck decorative />
       </IconButton>,
     ).dive();
 
@@ -28,7 +28,7 @@ describe('<IconButton />', () => {
   it('wraps in a tooltip', () => {
     const wrapper = shallow(
       <IconButton>
-        <IconCheck />
+        <IconCheck decorative />
       </IconButton>,
     ).dive();
 

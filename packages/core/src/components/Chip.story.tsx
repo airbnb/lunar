@@ -27,17 +27,21 @@ storiesOf('Core/Chip', module)
       </Spacing>
     </>
   ))
-  .add('With an icon.', () => <Chip icon={<IconCloseAlt size="2em" />}>Chip</Chip>)
+  .add('With an icon.', () => <Chip icon={<IconCloseAlt decorative size="2em" />}>Chip</Chip>)
   .add('With an icon button.', () => (
     <>
       <Spacing right={1} inline>
-        <Chip icon={<IconCloseAlt size="2em" />} onIconClick={action('onIconClick')}>
+        <Chip icon={<IconCloseAlt decorative size="2em" />} onIconClick={action('onIconClick')}>
           Close
         </Chip>
       </Spacing>
 
       <Spacing right={0} inline>
-        <Chip disabled icon={<IconCloseAlt size="2em" />} onIconClick={action('onIconClick')}>
+        <Chip
+          disabled
+          icon={<IconCloseAlt decorative size="2em" />}
+          onIconClick={action('onIconClick')}
+        >
           Close
         </Chip>
       </Spacing>
@@ -45,7 +49,7 @@ storiesOf('Core/Chip', module)
   ))
   .add('With a profile photo.', () => <Chip profileImageSrc={lunar}>User</Chip>)
   .add('With both a profile photo and an icon.', () => (
-    <Chip icon={<IconSettings size="2em" />} profileImageSrc={lunar}>
+    <Chip icon={<IconSettings decorative size="2em" />} profileImageSrc={lunar}>
       Settings
     </Chip>
   ))
@@ -56,13 +60,13 @@ storiesOf('Core/Chip', module)
       </Spacing>
 
       <Spacing right={1} inline>
-        <Chip disabled icon={<IconSettings size="2em" />} profileImageSrc={lunar}>
+        <Chip disabled icon={<IconSettings decorative size="2em" />} profileImageSrc={lunar}>
           User
         </Chip>
       </Spacing>
 
       <Spacing right={0} inline>
-        <Chip disabled icon={<IconSettings size="2em" />}>
+        <Chip disabled icon={<IconSettings decorative size="2em" />}>
           Settings
         </Chip>
       </Spacing>
@@ -76,7 +80,7 @@ storiesOf('Core/Chip', module)
 
       <Spacing right={1} inline>
         <Chip
-          icon={<IconSettings size="2em" />}
+          icon={<IconSettings decorative size="2em" />}
           profileImageSrc={lunar}
           onClick={action('onClick')}
         >
@@ -85,7 +89,7 @@ storiesOf('Core/Chip', module)
       </Spacing>
 
       <Spacing right={0} inline>
-        <Chip icon={<IconSettings size="2em" />} onClick={action('onClick')}>
+        <Chip icon={<IconSettings decorative size="2em" />} onClick={action('onClick')}>
           Settings
         </Chip>
       </Spacing>
