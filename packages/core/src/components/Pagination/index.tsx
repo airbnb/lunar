@@ -134,6 +134,38 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       );
     }
 
+    let paginationText =
+      showBookends && pageCount ? (
+        <T
+          phrase={'%{pageNumber} of %{pageNumber}'}
+          pageCount={pageCount}
+          pageNumber={page}
+          context="Showing the current page number and total page count"
+        />
+      ) : (
+        <T phrase={'%{pageNumber}'} pageNumber={page} context="Showing the current page number" />
+      );
+
+    if (pageLabel) {
+      paginationText =
+        showBookends && pageCount ? (
+          <T
+            phrase={'%{pageLabel} %{pageNumber} of %{pageCount}'}
+            pageLabel={pageLabel}
+            pageCount={pageCount}
+            pageNumber={page}
+            context="Showing the current page number and total page count"
+          />
+        ) : (
+          <T
+            phrase={'%{pageLabel} %{pageNumber}'}
+            pageLabel={pageLabel}
+            pageNumber={page}
+            context="Showing the current page number"
+          />
+        );
+    }
+
     return (
       <Row
         before={
@@ -151,28 +183,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
         middleAlign
       >
         <div {...css(styles.centered)}>
-          <Text muted>
-            {showBookends && pageCount ? (
-              <T
-                phrase={
-                  pageLabel
-                    ? '%{pageLabel} %{pageNumber} of %{pageCount}'
-                    : '%{pageNumber} of %{pageNumber}'
-                }
-                pageLabel={pageLabel}
-                pageCount={pageCount}
-                pageNumber={page}
-                context="Showing the current page number and total page count"
-              />
-            ) : (
-              <T
-                phrase={pageLabel ? '%{pageLabel} %{pageNumber}' : '%{pageNumber}'}
-                pageLabel={pageLabel}
-                pageNumber={page}
-                context="Showing the current page number"
-              />
-            )}
-          </Text>
+          <Text muted>{paginationText}</Text>
         </div>
       </Row>
     );
