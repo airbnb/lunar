@@ -16,7 +16,7 @@ export default class ErrorMenu extends React.Component<Props> {
     this.props.onReplaceText(this.props.error, replacement);
   };
 
-  private replacementPhrase = (replacement: string) => {
+  private replacementText = (replacement: string) => {
     switch (replacement) {
       case ' ':
         return T.phrase('(Space)', {}, 'Represents a space character within the spell checker');
@@ -47,7 +47,7 @@ export default class ErrorMenu extends React.Component<Props> {
 
           {error.replacements!.map(replacement => (
             <Item key={replacement!} onClick={() => this.handleClick(replacement)}>
-              <Text>{this.replacementPhrase(replacement)}</Text>
+              <Text>{this.replacementText(replacement)}</Text>
             </Item>
           ))}
         </Menu>
