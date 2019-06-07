@@ -68,6 +68,11 @@ export default function withIcon(
         };
 
         if (__DEV__) {
+          if (!accessibilityLabel && !decorative) {
+            // eslint-disable-next-line no-console
+            console.error('Missing `accessibilityLabel` or `decorative` for accessibility.');
+          }
+
           if (accessibilityLabel && decorative) {
             // eslint-disable-next-line no-console
             console.error('Only one of `accessibilityLabel` or `decorative` may be used.');
