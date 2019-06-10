@@ -36,7 +36,7 @@ export class IconButton extends React.Component<Props & WithStylesProps> {
       <ButtonOrLink
         {...restProps}
         disabled={disabled}
-        {...css(
+        className={cx(
           styles.button,
           active && styles.button_active,
           inverted && styles.button_inverted,

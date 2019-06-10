@@ -25,7 +25,7 @@ class BaseSelect extends React.Component<Props & WithStylesProps> {
     const { cx, children, placeholder, styles, ...restProps } = this.props;
 
     return (
-      <div {...css(styles.select)}>
+      <div className={cx(styles.select)}>
         <FormInput {...restProps} onChange={this.handleChange} tagName="select">
           {placeholder && (
             <option value="" disabled>
@@ -37,7 +37,7 @@ class BaseSelect extends React.Component<Props & WithStylesProps> {
         </FormInput>
 
         <div
-          {...css(
+          className={cx(
             styles.arrow,
             restProps.disabled && styles.arrow_disabled,
             restProps.invalid && styles.arrow_invalid,

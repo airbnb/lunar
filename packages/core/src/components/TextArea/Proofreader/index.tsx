@@ -596,7 +596,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       (this.textareaRef.current && this.textareaRef.current.selectionStart) || 0;
 
     const highlightsProps = {
-      ...css(styles.highlights, important && styles.highlights_important),
+      ...cx(styles.highlights, important && styles.highlights_important),
       ref: this.shadowRef,
     };
     if (this.props.noTranslate) {
@@ -604,13 +604,13 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     }
 
     return (
-      <div {...css(styles.proofread)}>
+      <div className={cx(styles.proofread)}>
         {/* Shadow text for displaying underlined words. */}
         <div {...highlightsProps}>{this.renderTextWithMarks()}</div>
 
         {/* Track the top/left offset of the caret within the textarea. */}
         {caretPosition > 0 && (
-          <div {...css(styles.caret)} ref={this.caretRef}>
+          <div className={cx(styles.caret)} ref={this.caretRef}>
             <span>{text.slice(0, caretPosition)}</span>
             <span>{text.slice(caretPosition)}.</span>
           </div>
@@ -635,10 +635,10 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         )}
 
         <div
-          {...css(styles.controls, important && styles.controls_important)}
+          className={cx(styles.controls, important && styles.controls_important)}
           ref={this.controlsRef}
         >
-          <span {...css(styles.cell, { pointerEvents: 'initial' })}>
+          <span className={cx(styles.cell, { pointerEvents: 'initial' })}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link small onClick={this.handleToggleLocaleMenu}>
               {selectedLocale ? (
@@ -671,7 +671,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           </span>
 
           {errors.length > 0 && (
-            <span {...css(styles.cell)}>
+            <span className={cx(styles.cell)}>
               <Text small muted>
                 <T
                   phrase="%{smartCount} issue||||%{smartCount} issues"
@@ -683,7 +683,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           )}
 
           {loading && (
-            <span {...css(styles.cell)}>
+            <span className={cx(styles.cell)}>
               <Loader inline />
             </span>
           )}

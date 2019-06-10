@@ -59,7 +59,7 @@ export class TableRow extends React.Component<Props & WithStylesProps> {
     return (
       <tr
         {...props}
-        {...css(
+        className={cx(
           danger && styles.row_danger,
           info && styles.row_info,
           muted && styles.row_muted,

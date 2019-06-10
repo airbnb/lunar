@@ -60,7 +60,7 @@ export class StatusText extends React.Component<Props & WithStylesProps> {
     return (
       <Text {...restProps}>
         <span
-          {...css(
+          className={cx(
             danger && styles.text_danger,
             info && styles.text_info,
             muted && styles.text_muted,

@@ -63,7 +63,7 @@ export class Button extends React.Component<Props & WithStylesProps> {
         aria-busy={loading}
         disabled={disabled}
         loading={loading}
-        {...css(
+        className={cx(
           styles.button,
           large && styles.button_large,
           small && styles.button_small,

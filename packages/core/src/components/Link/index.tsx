@@ -66,7 +66,7 @@ export class Link extends React.Component<Props & WithStylesProps> {
         <ButtonOrLink
           {...restProps}
           disabled={disabled}
-          {...css(
+          className={cx(
             styles.link,
             inverted && styles.link_inverted,
             muted && styles.link_muted,

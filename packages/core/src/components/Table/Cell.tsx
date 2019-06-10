@@ -47,7 +47,7 @@ export class TableCell extends React.Component<Props & WithStylesProps> {
     return (
       <Tag
         {...props}
-        {...css(
+        className={cx(
           truncate && styles.cell_truncate,
           startAlign && styles.cell_left,
           centerAlign && styles.cell_center,

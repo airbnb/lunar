@@ -13,9 +13,9 @@ export class SplitLayout extends React.Component<Props & WithStylesProps> {
 
     return (
       <Layout {...props} noBackground noPadding>
-        <div {...css(styles.wrapper)}>
-          <div {...css(styles.column)}>{before}</div>
-          <div {...css(styles.column, styles.column_after)}>{after}</div>
+        <div className={cx(styles.wrapper)}>
+          <div className={cx(styles.column)}>{before}</div>
+          <div className={cx(styles.column, styles.column_after)}>{after}</div>
         </div>
       </Layout>
     );

@@ -105,7 +105,7 @@ class FormInput extends React.Component<PrivateProps> {
     const isSelect = Tag === 'select';
     const props: any = {
       ...restProps,
-      ...css(
+      ...cx(
         styles.input,
         important && styles.input_important,
         compact && styles.input_compact,

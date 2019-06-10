@@ -172,7 +172,7 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
     return (
       <div>
         <div
-          {...css(
+          className={cx(
             styles.selectlike,
             !disabled && styles.selectlike_enabled,
             styles.input,
@@ -188,7 +188,7 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
         >
           {children || <Text>{this.boundFormatter(chosen || [])}</Text>}
 
-          <span {...css(styles.arrow)}>
+          <span className={cx(styles.arrow)}>
             <IconCaretDown decorative size="1.5em" />
           </span>
         </div>

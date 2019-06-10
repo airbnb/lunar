@@ -33,8 +33,8 @@ export class Modal extends React.Component<Props & WithStylesProps> {
 
     return (
       <Portal>
-        <div {...css(styles.container)}>
-          <div onKeyUp={this.handleKeyUp} role="presentation" {...css(styles.wrapper)}>
+        <div className={cx(styles.container)}>
+          <div onKeyUp={this.handleKeyUp} role="presentation" className={cx(styles.wrapper)}>
             <ModalInner {...otherProps} />
           </div>
         </div>
