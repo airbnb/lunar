@@ -6,6 +6,6 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
 };
 
-export function ThemeProvider({ children }: Props) {
+export default function ThemeProvider({ children }: Props) {
   return <BaseThemeProvider aesthetic={Core.aesthetic}>{children}</BaseThemeProvider>;
 }
