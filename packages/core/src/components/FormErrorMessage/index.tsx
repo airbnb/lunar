@@ -24,7 +24,11 @@ export class FormErrorMessage extends React.Component<Props & WithStylesProps> {
     }
 
     return (
-      <div id={`${id}-error`} role="alert" aria-live="polite" {...css(styles.error)}>
+      <div
+        id={`${id}-error`}
+        role="alert"
+        aria-live="polite"
+        className={cx(styles.error)}>
         <StatusText danger>{error}</StatusText>
       </div>
     );

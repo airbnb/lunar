@@ -73,8 +73,8 @@ export default function renderDataColumns(
       : renderDefaultContent(rendererArguments);
 
     return (
-      <div {...css(styles && styles.row)}>
-        <div {...css(styles && styles.row_inner)}>
+      <div className={cx(styles && styles.row)}>
+        <div className={cx(styles && styles.row_inner)}>
           <Spacing left={spacing} right={2}>
             {contents || ''}
           </Spacing>
@@ -109,11 +109,10 @@ export default function renderDataColumns(
         maxWidth={widthProperties.maxWidth}
         minWidth={widthProperties.minWidth}
         cellRenderer={renderCell(key, isLeftmost)}
-        {...css(
+        className={cx(
           styles && styles.column,
           showColumnDividers && !isRightmost && styles && styles.column_divider,
-        )}
-      />
+        )} />
     );
   });
 }

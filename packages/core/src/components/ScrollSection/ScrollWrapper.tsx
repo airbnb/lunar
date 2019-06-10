@@ -121,7 +121,7 @@ export class ScrollWrapper extends React.Component<Props & WithStylesProps> {
 
     return (
       <ScrollSectionContext.Provider value={this.scrollContext}>
-        <div ref={this.scrollRef} {...css(styles.wrapper)}>
+        <div ref={this.scrollRef} className={cx(styles.wrapper)}>
           {children}
         </div>
       </ScrollSectionContext.Provider>

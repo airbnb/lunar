@@ -35,14 +35,13 @@ export default class BaseAffix extends React.PureComponent<Props & WithStylesPro
 
     return (
       <div
-        {...css(
+        className={cx(
           styles.affix,
           compact && styles.affix_compact,
           before && styles.affix_before,
           after && styles.affix_after,
           disabled && styles.affix_disabled,
-        )}
-      >
+        )}>
         {children}
       </div>
     );

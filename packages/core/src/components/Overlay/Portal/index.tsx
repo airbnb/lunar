@@ -101,13 +101,13 @@ export class Portal extends React.Component<Props & WithStylesProps, State> {
       <BasePortal>
         <FocusTrap>
           <div
-            {...css(styles.container, noBackground ? styles.noBg : styles.opaque)}
+            className={cx(styles.container, noBackground ? styles.noBg : styles.opaque)}
             ref={this.ref}
             role="presentation"
             onClick={this.handleClick}
-            onScroll={this.handleScrollThrottled}
-          >
-            <div {...css(styles.content, { paddingTop: y, marginLeft: x, minHeight: height })}>
+            onScroll={this.handleScrollThrottled}>
+            <div
+              className={cx(styles.content, { paddingTop: y, marginLeft: x, minHeight: height })}>
               {children}
             </div>
           </div>

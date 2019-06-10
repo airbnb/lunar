@@ -25,8 +25,11 @@ export class SideBar extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <nav {...css(styles.bar)}>
-        <ul role="menubar" aria-label={accessibilityLabel} {...css(styles.list)}>
+      <nav className={cx(styles.bar)}>
+        <ul
+          role="menubar"
+          aria-label={accessibilityLabel}
+          className={cx(styles.list)}>
           {children}
         </ul>
       </nav>

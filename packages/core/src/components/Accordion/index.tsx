@@ -60,7 +60,9 @@ export class Accordion extends React.Component<Props & WithStylesProps, State> {
     const { id, index } = this.state;
 
     return (
-      <div {...css(styles.container, bordered && styles.container_bordered)} role="tablist">
+      <div
+        className={cx(styles.container, bordered && styles.container_bordered)}
+        role="tablist">
         {React.Children.map(children, (child, i) => {
           if (!child) {
             return null;

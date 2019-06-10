@@ -45,12 +45,11 @@ export class SideBarItem extends React.Component<Props & WithStylesProps> {
           role="menuitem"
           href={href}
           onClick={onClick}
-          {...css(styles.item, active && styles.item_active)}
-        >
-          <span {...css(styles.icon)}>{React.cloneElement(icon, { size: '2em' })}</span>
+          className={cx(styles.item, active && styles.item_active)}>
+          <span className={cx(styles.icon)}>{React.cloneElement(icon, { size: '2em' })}</span>
 
           {label && (
-            <span {...css(styles.label)}>
+            <span className={cx(styles.label)}>
               <Text micro bold uppercased inverted>
                 {label}
               </Text>

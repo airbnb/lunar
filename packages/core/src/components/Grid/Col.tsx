@@ -30,8 +30,7 @@ export class Col extends React.Component<Props & WithStylesProps> {
       <div
         data-span={span}
         data-offset={offset}
-        {...css(styles.col, styles[`span${span}`], styles[`offset${offset}`])}
-      >
+        className={cx(styles.col, styles[`span${span}`], styles[`offset${offset}`])}>
         {children}
       </div>
     );

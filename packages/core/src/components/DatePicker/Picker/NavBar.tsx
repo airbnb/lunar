@@ -68,8 +68,12 @@ class NavBar extends React.Component<Props & WithStylesProps> {
         )}
 
         {showResetButton && (
-          <div {...css(styles.resetButton, noFooter && styles.resetButton_noFooter)}>
-            <button {...css(styles.todayButton)} type="button" onClick={this.handleResetClick}>
+          <div
+            className={cx(styles.resetButton, noFooter && styles.resetButton_noFooter)}>
+            <button
+              className={cx(styles.todayButton)}
+              type="button"
+              onClick={this.handleResetClick}>
               {T.phrase('Reset', {}, 'Reset selected dates')}
             </button>
           </div>

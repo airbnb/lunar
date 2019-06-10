@@ -93,12 +93,12 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
     ) : (
       <>
         {selected && (
-          <span {...css(styles.checkmark)}>
+          <span className={cx(styles.checkmark)}>
             <IconCheckmark decorative color={theme!.color.core.primary[3]} size={ICON_SIZE} />
           </span>
         )}
 
-        <span {...css(styles.label)}>{<Text>{item.label || item.name}</Text>}</span>
+        <span className={cx(styles.label)}>{<Text>{item.label || item.name}</Text>}</span>
       </>
     );
   };
@@ -114,14 +114,18 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        {...css(styles.item, focused && styles.item_focused, item.readonly && styles.item_readonly)}
+        className={cx(
+          styles.item,
+          focused && styles.item_focused,
+          item.readonly && styles.item_readonly,
+        )}
         role="option"
         aria-selected={selected}
         onMouseMove={this.handleMouseMove}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
-        tabIndex={focused ? 1 : 0} // this is needed to find a focused parent item in a vertically aligned list
-      >
+        // this is needed to find a focused parent item in a vertically aligned list
+        tabIndex={focused ? 1 : 0}>
         {this.renderItem()}
         {item.items && <IconChevronRight decorative inline size="1.4em" />}
       </div>

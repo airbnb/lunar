@@ -110,17 +110,16 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
           tabIndex={tabIndex}
           aria-haspopup={!!submenu}
           aria-expanded={showSubmenu}
-          {...css(
+          className={cx(
             styles.item,
             (showSubmenu || highlighted) && styles.item_highlighted,
             disabled && styles.item_disabled,
             spacious && styles.item_spacious,
-          )}
-        >
+          )}>
           {children}
         </ButtonOrLink>
 
-        {showSubmenu && <div {...css(styles.submenu)}>{submenu}</div>}
+        {showSubmenu && <div className={cx(styles.submenu)}>{submenu}</div>}
       </li>
     );
   }

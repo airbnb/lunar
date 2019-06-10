@@ -31,7 +31,7 @@ export class SheetArea extends React.Component<Props & WithStylesProps, State> {
 
     return (
       <SheetContext.Provider value={this.setSheetVisible}>
-        <div {...css(visible && styles.sheet_visible)}>{children}</div>
+        <div className={cx(visible && styles.sheet_visible)}>{children}</div>
       </SheetContext.Provider>
     );
   }

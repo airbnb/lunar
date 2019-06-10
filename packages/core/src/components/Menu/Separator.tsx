@@ -20,7 +20,7 @@ export class MenuSeparator extends React.Component<Props & WithStylesProps> {
 
     return (
       <li role="separator">
-        <hr {...css(styles.separator)} />
+        <hr className={cx(styles.separator)} />
       </li>
     );
   }

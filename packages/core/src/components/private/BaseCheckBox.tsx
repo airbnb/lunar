@@ -43,7 +43,9 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <label htmlFor={id} {...css(styles.checkbox, hideLabel && styles.checkbox_hideLabel)}>
+      <label
+        htmlFor={id}
+        className={cx(styles.checkbox, hideLabel && styles.checkbox_hideLabel)}>
         <FormInput
           {...restProps}
           checked={checked}
@@ -58,22 +60,21 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
         />
 
         <span
-          {...css(
+          className={cx(
             styles.input,
             indeterminate && styles.input_indeterminate,
             checked && styles.input_checked,
             invalid && styles.input_invalid,
             disabled && styles.input_disabled,
-          )}
-        >
+          )}>
           {checked && (
-            <span {...css(styles.checkmark)}>
+            <span className={cx(styles.checkmark)}>
               <IconCheck decorative size="1.5em" />
             </span>
           )}
 
           {indeterminate && (
-            <span {...css(styles.indeterminate)}>
+            <span className={cx(styles.indeterminate)}>
               <IconRemove decorative size="1.5em" />
             </span>
           )}
@@ -102,17 +103,16 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
     return (
       <label
         htmlFor={id}
-        {...css(
+        className={cx(
           styles.button,
           indeterminate && styles.input_indeterminate,
           checked && styles.button_checked,
           invalid && styles.button_invalid,
           disabled && styles.button_disabled,
-        )}
-      >
+        )}>
         {this.renderCheckBox()}
 
-        <div {...css(styles.children)}>{children}</div>
+        <div className={cx(styles.children)}>{children}</div>
       </label>
     );
   }

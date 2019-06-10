@@ -26,7 +26,7 @@ export class Divider extends React.Component<Props & WithStylesProps> {
 
     return (
       <Spacing bottom={bottom} top={top}>
-        <div {...css(styles.divider)} />
+        <div className={cx(styles.divider)} />
       </Spacing>
     );
   }

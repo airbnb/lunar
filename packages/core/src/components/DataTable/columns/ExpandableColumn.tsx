@@ -21,12 +21,11 @@ export default function renderExpandableColumn(
 
       return (
         <div
-          {...css(styles.expand_caret)}
+          className={cx(styles.expand_caret)}
           role="button"
           tabIndex={0}
           onClick={expandRow(originalIndex)}
-          onKeyPress={expandRow(originalIndex)}
-        >
+          onKeyPress={expandRow(originalIndex)}>
           <Spacing left={1.5}>
             <Chevron decorative size="1.6em" />
           </Spacing>
@@ -34,7 +33,7 @@ export default function renderExpandableColumn(
       );
     }
 
-    return <div {...css(styles.row)} />;
+    return <div className={cx(styles.row)} />;
   };
 
   return <Column dataKey="expanded" cellRenderer={cellRenderer} width={EXPANDABLE_COLUMN_WIDTH} />;

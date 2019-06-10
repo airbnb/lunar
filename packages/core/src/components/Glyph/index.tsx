@@ -1,6 +1,5 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import '../../composers/withStyles';
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric
 const fractionProp = mutuallyExclusiveTrueProps('diagonal', 'stacked');
@@ -63,6 +62,6 @@ export default class Glyph extends React.Component<Props> {
   render() {
     const { children, ...props } = this.props;
 
-    return <span {...css({ fontVariantNumeric: getNumericVariant(props) })}>{children}</span>;
+    return <span className={cx({ fontVariantNumeric: getNumericVariant(props) })}>{children}</span>;
   }
 }

@@ -44,11 +44,10 @@ export class Highlight extends React.Component<Props & WithStylesProps> {
           output.push(
             <span
               key={`end-${i}`}
-              {...css(
+              className={cx(
                 styles.highlight,
                 substr.trim().toLowerCase() === searchWord && styles.highlight_dark,
-              )}
-            >
+              )}>
               <mark>{substr}</mark>
             </span>,
           );

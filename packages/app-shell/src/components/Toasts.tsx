@@ -11,15 +11,10 @@ export type Props = {
 
 export class Toasts extends React.Component<Props & WithStylesProps> {
   render() {
-    const {
-      cx,
-      onRemove,
-      toasts,
-      styles,
-    } = this.props;
+    const { cx, onRemove, toasts, styles } = this.props;
 
     return (
-      <div {...css(styles.toasts)}>
+      <div className={cx(styles.toasts)}>
         {toasts
           .map(toast => (
             <Toast

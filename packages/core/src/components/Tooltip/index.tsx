@@ -178,33 +178,31 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     const distance = halfNotch + 1;
 
     return (
-      <span {...css(styles.container)} ref={this.containerRef}>
+      <span className={cx(styles.container)} ref={this.containerRef}>
         <div
           aria-labelledby={labelID}
           onMouseEnter={this.handleEnter}
           onMouseLeave={this.handleClose}
           onMouseDown={this.handleMouseDown}
-          {...css(!disabled && underlined && styles.underlined)}
-        >
+          className={cx(!disabled && underlined && styles.underlined)}>
           {children}
         </div>
 
-        <div id={labelID} {...css(styles.offscreen)}>
+        <div id={labelID} className={cx(styles.offscreen)}>
           {content}
         </div>
 
         <Overlay open={open} onClose={this.handleClose} noBackground>
           <div
             role="tooltip"
-            {...css(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
+            className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
               width,
               marginLeft: marginLeft[align as keyof StyleStruct],
               marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
               textAlign: align,
             })}
-            ref={this.handleTooltipRef}
-          >
-            <div {...css(styles.shadow)}>
+            ref={this.handleTooltipRef}>
+            <div className={cx(styles.shadow)}>
               <NotchedBox
                 inverted={!inverted}
                 notchOffset={notchOffset[align as keyof StyleStruct]}

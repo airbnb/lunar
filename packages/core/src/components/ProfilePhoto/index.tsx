@@ -66,7 +66,7 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        {...css(
+        className={cx(
           inline && styles.inline,
           styles.regular,
           macro && styles.macro,
@@ -79,10 +79,9 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
               maxWidth: size * unit,
               width: size * unit,
             },
-        )}
-      >
+        )}>
         <img
-          {...css(
+          className={cx(
             styles.image,
             styles.regular,
             !square && styles.roundedImage,
@@ -99,8 +98,7 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
           )}
           src={imageSrc}
           alt={title}
-          title={title}
-        />
+          title={title} />
       </div>
     );
   }

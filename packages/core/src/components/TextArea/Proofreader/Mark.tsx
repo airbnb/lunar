@@ -35,7 +35,9 @@ class Mark extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <mark {...css(styles.mark, selected && styles.mark_selected)} ref={this.ref}>
+      <mark
+        className={cx(styles.mark, selected && styles.mark_selected)}
+        ref={this.ref}>
         {children}
       </mark>
     );

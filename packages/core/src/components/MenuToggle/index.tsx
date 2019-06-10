@@ -143,7 +143,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
     }
 
     return (
-      <div {...css(styles.container)} ref={this.ref}>
+      <div className={cx(styles.container)} ref={this.ref}>
         {toggleIcon ? (
           <IconButton aria-label={accessibilityLabel} onClick={this.handleToggleMenu}>
             {toggleIcon}
@@ -167,11 +167,10 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
         )}
 
         <div
-          {...css(styles.dropdown, !opened && styles.dropdown_hidden, { zIndex })}
-          aria-expanded={opened}
-        >
+          className={cx(styles.dropdown, !opened && styles.dropdown_hidden, { zIndex })}
+          aria-expanded={opened}>
           <Dropdown {...dropdownProps} onClickOutside={this.handleClickOutside} visible={opened}>
-            <div {...css(styles.menu)}>
+            <div className={cx(styles.menu)}>
               <Menu
                 minWidth={250}
                 maxHeight={300}

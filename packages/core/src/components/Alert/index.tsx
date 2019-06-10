@@ -101,7 +101,7 @@ export class Alert extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        {...css(
+        className={cx(
           styles.alert,
           inline && styles.alert_inline,
           !hideStatusIcon && !!StatusIcon && styles.alert_statusIcon,
@@ -110,8 +110,7 @@ export class Alert extends React.Component<Props & WithStylesProps> {
           notice && styles.alert_notice,
           success && styles.alert_success,
           warning && styles.alert_warning,
-        )}
-      >
+        )}>
         <Row
           middleAlign={!children}
           after={

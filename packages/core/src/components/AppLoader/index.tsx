@@ -55,16 +55,16 @@ export class AppLoader extends React.Component<Props & WithStylesProps> {
     }
 
     return (
-      <div {...css(styles.appLoader, centered && styles.appLoader_centered)}>
+      <div className={cx(styles.appLoader, centered && styles.appLoader_centered)}>
         <Title level={small ? 3 : 1}>{error ? failureText : loadingText}</Title>
 
         {subtitle && (
-          <div {...css(styles.subtitle)}>
+          <div className={cx(styles.subtitle)}>
             <Text large={!small}>{subtitle}</Text>
           </div>
         )}
 
-        <div {...css(styles.errorOrLoader)}>
+        <div className={cx(styles.errorOrLoader)}>
           {error ? <ErrorMessage error={error} title={errorTitle} /> : <Loader inline />}
         </div>
       </div>

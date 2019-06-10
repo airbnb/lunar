@@ -118,7 +118,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
 
     return (
       <Tag
-        {...css(
+        className={cx(
           styles.text,
           bold && styles.text_bold,
           disabled && styles.text_disabled,
@@ -137,8 +137,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
           endAlign && styles.text_end,
           startAlign && styles.text_start,
           noWrap && styles.text_noWrap,
-        )}
-      >
+        )}>
         {children}
       </Tag>
     );

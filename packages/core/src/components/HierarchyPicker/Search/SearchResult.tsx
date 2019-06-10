@@ -35,7 +35,7 @@ export class SearchResult extends React.Component<Props & WithStylesProps> {
     const [longest] = query!.split(/\s{1,}/).sort((a, b) => b.length - a.length);
 
     return (
-      <div {...css(styles.resultItem)}>
+      <div className={cx(styles.resultItem)}>
         <Text bold>
           {formattedParents}
           <Highlight word={longest} match={labelMatch} fallback={label || name} />

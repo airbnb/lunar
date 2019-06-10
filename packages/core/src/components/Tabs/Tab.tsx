@@ -70,14 +70,13 @@ export class Tab extends React.Component<Props & WithStylesProps> {
 
     return (
       <span
-        {...css(
+        className={cx(
           styles.tab,
           disabled && styles.tab_disabled,
           borderless && styles.tab_borderless,
           selected && styles.tab_selected,
           stretched && styles.tab_stretched,
-        )}
-      >
+        )}>
         <TrackingBoundary name={trackingName}>
           <ButtonOrLink
             aria-selected={selected}
@@ -85,8 +84,7 @@ export class Tab extends React.Component<Props & WithStylesProps> {
             href={href}
             role="tab"
             onClick={disabled ? undefined : this.handleClick}
-            {...css(styles.tabButton)}
-          >
+            className={cx(styles.tabButton)}>
             {label}
           </ButtonOrLink>
         </TrackingBoundary>

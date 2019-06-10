@@ -137,13 +137,12 @@ export class Toast extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        {...css(
+        className={cx(
           styles.container,
           visible && styles.container_visible,
           failed && styles.container_danger,
           success && styles.container_success,
-        )}
-      >
+        )}>
         {refresh ? (
           <div>
             <Text bold inverted>
@@ -168,7 +167,7 @@ export class Toast extends React.Component<Props & WithStylesProps> {
           </div>
         )}
 
-        <div {...css(styles.right)}>
+        <div className={cx(styles.right)}>
           <IconButton inverted onClick={this.handleClosePress}>
             <IconClose
               size="1.5em"

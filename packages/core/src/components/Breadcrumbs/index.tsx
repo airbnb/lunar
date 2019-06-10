@@ -26,13 +26,13 @@ export class Breadcrumbs extends React.Component<Props & WithStylesProps> {
 
     return (
       <nav aria-label={accessibilityLabel}>
-        <ol {...css(styles.ol)}>
+        <ol className={cx(styles.ol)}>
           {React.Children.map(children, child => {
             if (!child) {
               return null;
             }
 
-            return <li {...css(styles.li)}>{child}</li>;
+            return <li className={cx(styles.li)}>{child}</li>;
           })}
         </ol>
       </nav>

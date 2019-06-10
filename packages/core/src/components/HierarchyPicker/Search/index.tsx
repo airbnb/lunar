@@ -166,7 +166,7 @@ export class Search extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <div {...css(styles.container, { width: query ? width : undefined })}>
+      <div className={cx(styles.container, { width: query ? width : undefined })}>
         <Autocomplete<SearchItemResult>
           accessibilityLabel={T.phrase(
             'Hierarchy item search',

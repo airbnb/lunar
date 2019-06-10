@@ -59,9 +59,9 @@ export class Table extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <div {...css(styles.responsive_wrapper)}>
+      <div className={cx(styles.responsive_wrapper)}>
         <table
-          {...css(
+          className={cx(
             styles.table,
             middleAlign && styles.content_middle_align,
             fixed && styles.table_fixed,
@@ -72,8 +72,7 @@ export class Table extends React.Component<Props & WithStylesProps> {
             striped && styles.table_striped,
             loading && styles.table_loading,
             transparent && styles.table_transparent,
-          )}
-        >
+          )}>
           {children}
         </table>
       </div>

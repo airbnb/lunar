@@ -24,7 +24,7 @@ export class MenuRow extends React.Component<Props & WithStylesProps> {
 
     return (
       <li role="none">
-        <div {...css(styles.item, spacious && styles.item_spacious)}>{children}</div>
+        <div className={cx(styles.item, spacious && styles.item_spacious)}>{children}</div>
       </li>
     );
   }

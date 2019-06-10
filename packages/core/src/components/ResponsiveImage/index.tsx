@@ -130,7 +130,7 @@ export class ResponsiveImage extends React.Component<Props & WithStylesProps, St
 
     return (
       <img
-        {...css(
+        className={cx(
           styles.image,
           contain && styles.image_contain,
           cover && styles.image_cover,
@@ -144,8 +144,7 @@ export class ResponsiveImage extends React.Component<Props & WithStylesProps, St
         src={src}
         width="100%"
         height="auto"
-        alt={alt}
-      />
+        alt={alt} />
     );
   }
 }

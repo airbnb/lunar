@@ -61,7 +61,7 @@ export class Title extends React.Component<Props & WithStylesProps> {
 
     return (
       <Tag
-        {...css(
+        className={cx(
           styles.title,
           level === 1 && styles.title_level1,
           level === 2 && styles.title_level2,
@@ -72,8 +72,7 @@ export class Title extends React.Component<Props & WithStylesProps> {
           primary && styles.title_primary,
           centerAlign && styles.title_center,
           endAlign && styles.title_right,
-        )}
-      >
+        )}>
         {children}
       </Tag>
     );

@@ -33,25 +33,23 @@ class ModalImageLayout extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <div {...css(styles.splitContent)}>
-        <div {...css(styles.splitContentPane)}>{children}</div>
-        <div {...css(styles.splitContentPane, styles.splitContentImagePane)}>
+      <div className={cx(styles.splitContent)}>
+        <div className={cx(styles.splitContentPane)}>{children}</div>
+        <div className={cx(styles.splitContentPane, styles.splitContentImagePane)}>
           {type === 'center' && (
             <img
-              {...css(styles.image, styles.imageMaxHeight, styles.imageCentered)}
+              className={cx(styles.image, styles.imageMaxHeight, styles.imageCentered)}
               src={url}
               srcSet={srcSet && srcSet.join(',')}
               sizes={sizes && sizes.join(',')}
-              alt=""
-            />
+              alt="" />
           )}
           {type === 'cover' && (
             <img
-              {...css(styles.image, styles.imageCover)}
+              className={cx(styles.image, styles.imageCover)}
               src={url}
               srcSet={srcSet && srcSet.join(',')}
-              alt=""
-            />
+              alt="" />
           )}
         </div>
       </div>

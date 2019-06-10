@@ -207,7 +207,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
 
     return (
       <FormField {...fieldProps} id={id}>
-        <div {...css(styles.selects)}>
+        <div className={cx(styles.selects)}>
           {!hideDate && (
             <>
               <BaseSelect
@@ -225,7 +225,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 ))}
               </BaseSelect>
 
-              <div {...css(styles.spacer)} />
+              <div className={cx(styles.spacer)} />
 
               <BaseSelect
                 {...restProps}
@@ -242,7 +242,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 ))}
               </BaseSelect>
 
-              <div {...css(styles.spacer)} />
+              <div className={cx(styles.spacer)} />
 
               {!hideYear && (
                 <BaseSelect
@@ -263,8 +263,8 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
 
               {!hideTime && (
                 <>
-                  <div {...css(styles.spacer)} />
-                  <div {...css(styles.spacer)} />
+                  <div className={cx(styles.spacer)} />
+                  <div className={cx(styles.spacer)} />
                 </>
               )}
             </>
@@ -287,7 +287,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 ))}
               </BaseSelect>
 
-              <div {...css(styles.spacer)}>:</div>
+              <div className={cx(styles.spacer)}>:</div>
 
               <BaseSelect
                 {...restProps}
@@ -306,7 +306,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
 
               {enable12HourClock && (
                 <>
-                  <div {...css(styles.spacer)} />
+                  <div className={cx(styles.spacer)} />
 
                   <BaseSelect
                     {...restProps}

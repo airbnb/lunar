@@ -23,7 +23,7 @@ export class SteppedProgressBar extends React.Component<Props & WithStylesProps>
     const steps = React.Children.count(children);
 
     return (
-      <div {...css(styles.bar)}>
+      <div className={cx(styles.bar)}>
         {React.Children.map(children, (child, index) =>
           React.cloneElement(child as React.ReactElement<any>, {
             first: index === 0,

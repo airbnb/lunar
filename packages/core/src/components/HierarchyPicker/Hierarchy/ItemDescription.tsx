@@ -22,7 +22,7 @@ export class ItemDescription extends React.Component<Props & WithStylesProps> {
           <T phrase="Description" context="Description of item" />
         </Text>
 
-        <div {...css(styles.description)}>
+        <div className={cx(styles.description)}>
           <Text>{item.description}</Text>
         </div>
       </div>

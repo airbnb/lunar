@@ -42,8 +42,7 @@ export class Shimmer extends React.Component<Props & WithStylesProps> {
           width: this.randomWidth || width,
           height,
         }}
-        {...css(styles.shimmer, block && styles.shimmer_block)}
-      />
+        className={cx(styles.shimmer, block && styles.shimmer_block)} />
     );
   }
 }

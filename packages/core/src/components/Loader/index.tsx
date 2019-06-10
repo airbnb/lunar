@@ -33,22 +33,20 @@ export class Loader extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        {...css(
+        className={cx(
           styles.loader,
           inline && styles.loader_inline,
           !isStatic && !inline && styles.loader_absolute,
-        )}
-      >
+        )}>
         {[1, 2, 3].map(no => (
           <span
             key={no}
-            {...css(
+            className={cx(
               styles.dot,
               styles[`dot_${no}`],
               large && styles.dot_large,
               inverted && styles.dot_inverted,
-            )}
-          />
+            )} />
         ))}
       </div>
     );

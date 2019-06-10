@@ -45,12 +45,11 @@ export class Menu extends React.Component<Props & WithStylesProps> {
       <ul
         role={role}
         aria-label={accessibilityLabel}
-        {...css(
+        className={cx(
           styles.menu,
           { maxHeight: scrollable ? maxHeight : 'auto', minWidth },
           scrollable && styles.menu_scrollable,
-        )}
-      >
+        )}>
         {children}
       </ul>
     );

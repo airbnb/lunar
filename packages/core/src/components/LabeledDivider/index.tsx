@@ -17,7 +17,7 @@ export class LabeledDivider extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <div {...css(styles.rule)}>
+      <div className={cx(styles.rule)}>
         <Text small bold inline>
           {label}
         </Text>

@@ -183,7 +183,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
         }
         middleAlign
       >
-        <div {...css(styles.centered)}>
+        <div className={cx(styles.centered)}>
           <Text muted>{paginationText}</Text>
         </div>
       </Row>

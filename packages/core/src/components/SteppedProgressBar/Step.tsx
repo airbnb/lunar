@@ -40,9 +40,7 @@ export class Step extends React.Component<Props & WithStylesProps> {
       />
     );
 
-    return (
-      <div {...css(styles.step)}>{label ? <Tooltip content={label}>{bar}</Tooltip> : bar}</div>
-    );
+    return <div className={cx(styles.step)}>{label ? <Tooltip content={label}>{bar}</Tooltip> : bar}</div>;
   }
 }
 

@@ -127,7 +127,7 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
 
     return (
       /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
-      <div {...css(styles.pane)} ref={this.ref} onKeyDown={this.handleKeyDown}>
+      <div className={cx(styles.pane)} ref={this.ref} onKeyDown={this.handleKeyDown}>
         <Search
           formatter={formatter}
           indexParentPath={indexParentPath}
@@ -142,7 +142,7 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
         />
 
         {!searchQuery && (
-          <div role="listbox" {...css(styles.hierarchy)}>
+          <div role="listbox" className={cx(styles.hierarchy)}>
             <Hierarchy
               chosen={chosen}
               items={items}

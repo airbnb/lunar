@@ -7,13 +7,9 @@ export type Props = {
 
 export class ShellLayout extends React.Component<Props & WithStylesProps> {
   render() {
-    const {
-      cx,
-      children,
-      styles,
-    } = this.props;
+    const { cx, children, styles } = this.props;
 
-    return <div {...css(styles.layout)}>{children}</div>;
+    return <div className={cx(styles.layout)}>{children}</div>;
   }
 }
 

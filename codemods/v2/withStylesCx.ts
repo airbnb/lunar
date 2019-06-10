@@ -158,6 +158,13 @@ module.exports = function withStylesCx(
     });
   });
 
+  // Replace `css()` with `cx()`
+  source.find(cs.CallExpression).forEach(({ node }) => {
+    if (node.callee.type === 'Identifier' && node.callee.name === 'css') {
+      node.callee.name = 'cx';
+    }
+  });
+
   return source.toSource({
     tabWidth: 2,
     quote: 'single',

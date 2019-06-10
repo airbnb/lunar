@@ -28,9 +28,9 @@ export class ButtonGroup extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <div {...css(styles.buttonGroup, stacked && styles.buttonGroup_stacked)}>
+      <div className={cx(styles.buttonGroup, stacked && styles.buttonGroup_stacked)}>
         {React.Children.map(children, child =>
-          child ? <div {...css(stacked ? styles.cell_stacked : styles.cell)}>{child}</div> : null,
+          child ? <div className={cx(stacked ? styles.cell_stacked : styles.cell)}>{child}</div> : null,
         )}
       </div>
     );

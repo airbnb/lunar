@@ -38,9 +38,9 @@ export class ProfilePhotoGroup extends React.Component<Props & WithStylesProps> 
     }
 
     return (
-      <div {...css(styles.group)}>
+      <div className={cx(styles.group)}>
         {photos.map((photo, i) => (
-          <div key={i} {...css(styles.cell, margin)}>
+          <div key={i} className={cx(styles.cell, margin)}>
             {React.cloneElement(photo as React.ReactElement<ProfilePhotoProps>, {
               size,
               inline: false,
@@ -50,16 +50,15 @@ export class ProfilePhotoGroup extends React.Component<Props & WithStylesProps> 
         ))}
 
         {remainder > 0 && (
-          <div key="remainder" {...css(styles.cell, margin)}>
+          <div key="remainder" className={cx(styles.cell, margin)}>
             <div
-              {...css(styles.remainder, {
+              className={cx(styles.remainder, {
                 height: size * unit,
                 maxHeight: size * unit,
                 maxWidth: size * unit,
                 width: size * unit,
-              })}
-            >
-              <span {...css(styles.remainderNumber)}>{`+${remainder}`}</span>
+              })}>
+              <span className={cx(styles.remainderNumber)}>{`+${remainder}`}</span>
             </div>
           </div>
         )}

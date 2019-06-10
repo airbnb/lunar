@@ -22,7 +22,7 @@ class BorderedList extends React.Component<Props & WithStylesProps> {
       styles,
     } = this.props;
 
-    return <ul {...css(styles.list)}>{children}</ul>;
+    return <ul className={cx(styles.list)}>{children}</ul>;
   }
 }
 

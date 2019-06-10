@@ -49,18 +49,17 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <div {...css(styles.item, bordered && styles.item_bordered)}>
+      <div className={cx(styles.item, bordered && styles.item_bordered)}>
         <button
-          {...css(styles.title)}
+          className={cx(styles.title)}
           aria-controls={`accordion-body-${id}`}
           aria-selected={expanded}
           id={`accordion-title-${id}`}
           onClick={this.handleClick}
           role="tab"
           tabIndex={0}
-          type="button"
-        >
-          {title && <span {...css(styles.titleText)}>{title}</span>}
+          type="button">
+          {title && <span className={cx(styles.titleText)}>{title}</span>}
 
           {expanded ? (
             <IconChevronDown decorative size={theme!.unit * 3} />
@@ -70,12 +69,11 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
         </button>
 
         <section
-          {...css(styles.body, expanded && styles.body_expanded)}
+          className={cx(styles.body, expanded && styles.body_expanded)}
           aria-hidden={!expanded}
           aria-labelledby={`accordion-title-${id}`}
           id={`accordion-body-${id}`}
-          role="tabpanel"
-        >
+          role="tabpanel">
           {children}
         </section>
       </div>

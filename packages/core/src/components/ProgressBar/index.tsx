@@ -32,17 +32,21 @@ export class ProgressBar extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <div {...css(styles.wrapper)}>
-        <div {...css(styles.bar, !leading && styles.bar_leading, !trailing && styles.bar_trailing)}>
+      <div className={cx(styles.wrapper)}>
+        <div
+          className={cx(
+            styles.bar,
+            !leading && styles.bar_leading,
+            !trailing && styles.bar_trailing,
+          )}>
           <div
-            {...css(
+            className={cx(
               styles.bar,
               !leading && styles.bar_leading,
               !trailing && styles.bar_trailing,
               styles.progress,
             )}
-            style={{ width: `${percent}%` }}
-          />
+            style={{ width: `${percent}%` }} />
         </div>
       </div>
     );

@@ -96,7 +96,9 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
     // Generate content
     let content = null;
     const nav = (
-      <nav role="tablist" {...css(styles.nav, borderless && styles.nav_borderless)}>
+      <nav
+        role="tablist"
+        className={cx(styles.nav, borderless && styles.nav_borderless)}>
         {React.Children.map(children, (child, i) => {
           if (!child) {
             return null;
@@ -135,7 +137,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
         )}
 
         {content && (
-          <section role="tabpanel" {...css(styles.panel)}>
+          <section role="tabpanel" className={cx(styles.panel)}>
             {content}
           </section>
         )}

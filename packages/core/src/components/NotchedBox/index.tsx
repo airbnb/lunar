@@ -44,17 +44,17 @@ export class NotchedBox extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <div {...css(styles.box, !inverted && styles.border, inline && styles.box_inline)}>
+      <div
+        className={cx(styles.box, !inverted && styles.border, inline && styles.box_inline)}>
         <div
-          {...css(
+          className={cx(
             styles.notch,
             notchOffset ? createPosition(notchOffset) : styles.notch_position,
             notchBelow && styles.notch_below,
             inverted ? styles.inverted : styles.border,
-          )}
-        />
+          )} />
 
-        <div {...css(styles.content, inverted && styles.inverted)}>{children}</div>
+        <div className={cx(styles.content, inverted && styles.inverted)}>{children}</div>
       </div>
     );
   }

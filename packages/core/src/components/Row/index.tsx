@@ -55,7 +55,7 @@ export class Row extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        {...css(
+        className={cx(
           styles.row,
           { maxHeight },
           compact && styles.row_compact,
@@ -63,13 +63,12 @@ export class Row extends React.Component<Props & WithStylesProps> {
           middleAlign && styles.row_middleAlign,
           baseline && styles.row_baseline,
           topline && styles.row_topline,
-        )}
-      >
-        {before && <div {...css(compact ? styles.before_compact : styles.before)}>{before}</div>}
+        )}>
+        {before && <div className={cx(compact ? styles.before_compact : styles.before)}>{before}</div>}
 
-        <div {...css(styles.primary, truncated && styles.primary_truncated)}>{children}</div>
+        <div className={cx(styles.primary, truncated && styles.primary_truncated)}>{children}</div>
 
-        {after && <div {...css(compact ? styles.after_compact : styles.after)}>{after}</div>}
+        {after && <div className={cx(compact ? styles.after_compact : styles.after)}>{after}</div>}
       </div>
     );
   }
