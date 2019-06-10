@@ -2,7 +2,7 @@
 
 exports[`<SteppedProgressBar /> renders steps 1`] = `
 <div
-  className="bar_jro6t0"
+  className="f1f1ygnm"
 >
   <Step
     first={true}

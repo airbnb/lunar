@@ -2,14 +2,14 @@
 
 exports[`<Tab/> renders a button 1`] = `
 <span
-  className="tab_oe67rv"
+  className="f1d4emls"
 >
   <TrackingBoundary
     name="Default"
   >
     <ButtonOrLink
       aria-selected={false}
-      className="tabButton_17c4m1l"
+      className="fmey6qa"
       onClick={[Function]}
       role="tab"
     >
@@ -21,14 +21,14 @@ exports[`<Tab/> renders a button 1`] = `
 
 exports[`<Tab/> renders disabled 1`] = `
 <span
-  className="tab_oe67rv-o_O-tab_disabled_12oo6iq"
+  className="f10nc1e"
 >
   <TrackingBoundary
     name="Default"
   >
     <ButtonOrLink
       aria-selected={false}
-      className="tabButton_17c4m1l"
+      className="fmey6qa"
       disabled={true}
       role="tab"
     >
@@ -40,14 +40,14 @@ exports[`<Tab/> renders disabled 1`] = `
 
 exports[`<Tab/> renders selected 1`] = `
 <span
-  className="tab_oe67rv-o_O-tab_selected_dfv9v3"
+  className="fypci4f"
 >
   <TrackingBoundary
     name="Default"
   >
     <ButtonOrLink
       aria-selected={true}
-      className="tabButton_17c4m1l"
+      className="fmey6qa"
       onClick={[Function]}
       role="tab"
     >
@@ -59,14 +59,14 @@ exports[`<Tab/> renders selected 1`] = `
 
 exports[`<Tab/> renders stretched 1`] = `
 <span
-  className="tab_oe67rv-o_O-tab_stretched_bc4egv"
+  className="fq1m34n"
 >
   <TrackingBoundary
     name="Default"
   >
     <ButtonOrLink
       aria-selected={false}
-      className="tabButton_17c4m1l"
+      className="fmey6qa"
       onClick={[Function]}
       role="tab"
     >

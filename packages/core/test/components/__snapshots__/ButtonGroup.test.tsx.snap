@@ -7,10 +7,10 @@ exports[`<ButtonGroup /> errors when a non-button is passed 1`] = `
 
 exports[`<ButtonGroup /> handles buttons that return falsy values 1`] = `
 <div
-  className="buttonGroup_5kaapu-o_O-buttonGroup_stacked_ohgw5r"
+  className="f17ngz76"
 >
   <div
-    className="cell_stacked_123jc7u"
+    className="f13xp2de"
     key=".1"
   >
     <Button>
@@ -22,10 +22,10 @@ exports[`<ButtonGroup /> handles buttons that return falsy values 1`] = `
 
 exports[`<ButtonGroup /> handles components that return a falsy value 1`] = `
 <div
-  className="buttonGroup_5kaapu-o_O-buttonGroup_stacked_ohgw5r"
+  className="f17ngz76"
 >
   <div
-    className="cell_stacked_123jc7u"
+    className="f13xp2de"
     key=".0"
   >
     <FakeButton />
@@ -35,10 +35,10 @@ exports[`<ButtonGroup /> handles components that return a falsy value 1`] = `
 
 exports[`<ButtonGroup /> renders a single button 1`] = `
 <div
-  className="buttonGroup_5kaapu"
+  className="fddsvlq"
 >
   <div
-    className="cell_1cks6un"
+    className="fm82xdt"
     key=".0"
   >
     <Button>
@@ -50,10 +50,10 @@ exports[`<ButtonGroup /> renders a single button 1`] = `
 
 exports[`<ButtonGroup /> renders buttons 1`] = `
 <div
-  className="buttonGroup_5kaapu"
+  className="fddsvlq"
 >
   <div
-    className="cell_1cks6un"
+    className="fm82xdt"
     key=".0"
   >
     <Button>
@@ -61,7 +61,7 @@ exports[`<ButtonGroup /> renders buttons 1`] = `
     </Button>
   </div>
   <div
-    className="cell_1cks6un"
+    className="fm82xdt"
     key=".1"
   >
     <Button>
@@ -69,7 +69,7 @@ exports[`<ButtonGroup /> renders buttons 1`] = `
     </Button>
   </div>
   <div
-    className="cell_1cks6un"
+    className="fm82xdt"
     key=".2"
   >
     <Button>
@@ -81,10 +81,10 @@ exports[`<ButtonGroup /> renders buttons 1`] = `
 
 exports[`<ButtonGroup /> renders buttons stacked 1`] = `
 <div
-  className="buttonGroup_5kaapu-o_O-buttonGroup_stacked_ohgw5r"
+  className="f17ngz76"
 >
   <div
-    className="cell_stacked_123jc7u"
+    className="f13xp2de"
     key=".0"
   >
     <Button>
@@ -92,7 +92,7 @@ exports[`<ButtonGroup /> renders buttons stacked 1`] = `
     </Button>
   </div>
   <div
-    className="cell_stacked_123jc7u"
+    className="f13xp2de"
     key=".1"
   >
     <Button>
@@ -100,7 +100,7 @@ exports[`<ButtonGroup /> renders buttons stacked 1`] = `
     </Button>
   </div>
   <div
-    className="cell_stacked_123jc7u"
+    className="f13xp2de"
     key=".2"
   >
     <Button>

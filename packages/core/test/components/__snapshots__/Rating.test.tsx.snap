@@ -7,7 +7,7 @@ exports[`<Rating /> renders default 1`] = `
   small={false}
 >
   <div
-    className="ratingContainer_au0dw8"
+    className="f1ht9ksz"
   >
     <IconStar
       color="#C2C2C2"
@@ -50,7 +50,7 @@ exports[`<Rating /> renders large 1`] = `
   small={false}
 >
   <div
-    className="ratingContainer_au0dw8-o_O-ratingContainer_large_1al5d6z"
+    className="f1ae02ml"
   >
     <IconStar
       color="#C2C2C2"
@@ -93,7 +93,7 @@ exports[`<Rating /> renders micro 1`] = `
   small={false}
 >
   <div
-    className="ratingContainer_au0dw8-o_O-ratingContainer_micro_l5dkxe"
+    className="f1yff7zo"
   >
     <IconStar
       color="#C2C2C2"
@@ -136,7 +136,7 @@ exports[`<Rating /> renders reviews 1`] = `
   small={false}
 >
   <div
-    className="ratingContainer_au0dw8"
+    className="f1ht9ksz"
   >
     <IconStar
       color="#C2C2C2"
@@ -184,7 +184,7 @@ exports[`<Rating /> renders small 1`] = `
   small={true}
 >
   <div
-    className="ratingContainer_au0dw8-o_O-ratingContainer_small_9f436v"
+    className="faun9gh"
   >
     <IconStar
       color="#C2C2C2"

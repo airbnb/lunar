@@ -2,13 +2,13 @@
 
 exports[`<ProgressBar /> renders a progress bar 1`] = `
 <div
-  className="wrapper_fyg7bf"
+  className="f145humy"
 >
   <div
-    className="bar_xmolfv-o_O-bar_leading_satysr-o_O-bar_trailing_j3624r"
+    className="fzhd24y"
   >
     <div
-      className="bar_xmolfv-o_O-bar_leading_satysr-o_O-bar_trailing_j3624r-o_O-progress_hk8cyc"
+      className="fq1nq8g"
       style={
         Object {
           "width": "10%",
@@ -21,13 +21,13 @@ exports[`<ProgressBar /> renders a progress bar 1`] = `
 
 exports[`<ProgressBar /> renders leading 1`] = `
 <div
-  className="wrapper_fyg7bf"
+  className="f145humy"
 >
   <div
-    className="bar_xmolfv-o_O-bar_trailing_j3624r"
+    className="f1b8vqgm"
   >
     <div
-      className="bar_xmolfv-o_O-bar_trailing_j3624r-o_O-progress_hk8cyc"
+      className="f15kd1o4"
       style={
         Object {
           "width": "50%",
@@ -40,13 +40,13 @@ exports[`<ProgressBar /> renders leading 1`] = `
 
 exports[`<ProgressBar /> renders trailing 1`] = `
 <div
-  className="wrapper_fyg7bf"
+  className="f145humy"
 >
   <div
-    className="bar_xmolfv-o_O-bar_leading_satysr"
+    className="f1d9jsba"
   >
     <div
-      className="bar_xmolfv-o_O-bar_leading_satysr-o_O-progress_hk8cyc"
+      className="f1u758d0"
       style={
         Object {
           "width": "50%",

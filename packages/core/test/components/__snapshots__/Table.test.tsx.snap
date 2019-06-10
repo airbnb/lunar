@@ -2,10 +2,10 @@
 
 exports[`<Table /> renders bordered 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="ff4hosz"
 >
   <table
-    className="table_1te9n79-o_O-table_bordered_1urjdog"
+    className="fg6xadl"
   >
     Bordered
   </table>
@@ -14,10 +14,10 @@ exports[`<Table /> renders bordered 1`] = `
 
 exports[`<Table /> renders compact 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="ff4hosz"
 >
   <table
-    className="table_1te9n79-o_O-table_compact_3oir43"
+    className="f1f8e8bi"
   >
     Compact
   </table>
@@ -26,10 +26,10 @@ exports[`<Table /> renders compact 1`] = `
 
 exports[`<Table /> renders fixed 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="ff4hosz"
 >
   <table
-    className="table_1te9n79-o_O-table_fixed_91eznd"
+    className="fk5yox1"
   >
     Fixed
   </table>
@@ -38,10 +38,10 @@ exports[`<Table /> renders fixed 1`] = `
 
 exports[`<Table /> renders horizontal 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="ff4hosz"
 >
   <table
-    className="table_1te9n79-o_O-table_horizontal_1qi915e"
+    className="fjkta6w"
   >
     Horizontal
   </table>
@@ -50,10 +50,10 @@ exports[`<Table /> renders horizontal 1`] = `
 
 exports[`<Table /> renders loading 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="ff4hosz"
 >
   <table
-    className="table_1te9n79-o_O-table_loading_e0u7o3"
+    className="f10w3wv"
   >
     Loading
   </table>
@@ -62,10 +62,10 @@ exports[`<Table /> renders loading 1`] = `
 
 exports[`<Table /> renders middleAlign 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="ff4hosz"
 >
   <table
-    className="table_1te9n79-o_O-content_middle_align_14ilzse"
+    className="ft4brx4"
   >
     Vertical
   </table>
@@ -74,10 +74,10 @@ exports[`<Table /> renders middleAlign 1`] = `
 
 exports[`<Table /> renders striped 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="ff4hosz"
 >
   <table
-    className="table_1te9n79-o_O-table_striped_uvwezh"
+    className="fmjpbe4"
   >
     Striped
   </table>
@@ -86,10 +86,10 @@ exports[`<Table /> renders striped 1`] = `
 
 exports[`<Table /> renders transparent 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="ff4hosz"
 >
   <table
-    className="table_1te9n79-o_O-table_transparent_1eiqo0c"
+    className="f7rx67x"
   >
     Transparent
   </table>
@@ -98,10 +98,10 @@ exports[`<Table /> renders transparent 1`] = `
 
 exports[`<Table /> renders vertical 1`] = `
 <div
-  className="responsive_wrapper_18n6f1e"
+  className="ff4hosz"
 >
   <table
-    className="table_1te9n79-o_O-table_vertical_dhjq9v"
+    className="f12qna1q"
   >
     Vertical
   </table>

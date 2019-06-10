@@ -12,13 +12,13 @@ exports[`<FormField /> errors for invalid suffix 1`] = `
 
 exports[`<FormField /> hides the label 1`] = `
 <section
-  className="field_k3wq0g"
+  className="f1w0znbn"
 >
   <div
     className=""
   >
     <label
-      className="label_2s5uhd-o_O-label_hidden_1u9fru1"
+      className="flc4a5n"
       htmlFor="foo"
     >
       <StatusText
@@ -31,10 +31,10 @@ exports[`<FormField /> hides the label 1`] = `
       </StatusText>
     </label>
     <div
-      className="input_nv7oj6-o_O-input_hideLabel_16pg94n"
+      className="fg75sgm"
     >
       <div
-        className="anchor_t0tx82"
+        className="f8xi195"
       >
         Foo
       </div>
@@ -45,13 +45,13 @@ exports[`<FormField /> hides the label 1`] = `
 
 exports[`<FormField /> renders input after the label 1`] = `
 <section
-  className="field_k3wq0g"
+  className="f1w0znbn"
 >
   <div
     className=""
   >
     <label
-      className="label_2s5uhd"
+      className="fsss56w"
       htmlFor="foo"
     >
       <StatusText
@@ -64,10 +64,10 @@ exports[`<FormField /> renders input after the label 1`] = `
       </StatusText>
     </label>
     <div
-      className="input_nv7oj6"
+      className="f14cbhw9"
     >
       <div
-        className="anchor_t0tx82"
+        className="f8xi195"
       >
         Foo
       </div>
@@ -78,13 +78,13 @@ exports[`<FormField /> renders input after the label 1`] = `
 
 exports[`<FormField /> renders input after the label 2`] = `
 <section
-  className="field_k3wq0g"
+  className="f1w0znbn"
 >
   <div
-    className="content_inline_5kaapu"
+    className="fddsvlq"
   >
     <label
-      className="label_2s5uhd-o_O-label_noSpacing_16pg94n"
+      className="fsss56w"
       htmlFor="foo"
     >
       <StatusText
@@ -97,10 +97,10 @@ exports[`<FormField /> renders input after the label 2`] = `
       </StatusText>
     </label>
     <div
-      className="input_nv7oj6-o_O-input_afterInline_pog3hg"
+      className="fg9j8xs"
     >
       <div
-        className="anchor_t0tx82"
+        className="f8xi195"
       >
         Foo
       </div>
@@ -111,22 +111,22 @@ exports[`<FormField /> renders input after the label 2`] = `
 
 exports[`<FormField /> renders input before the label 1`] = `
 <section
-  className="field_k3wq0g"
+  className="f1w0znbn"
 >
   <div
     className=""
   >
     <div
-      className="input_nv7oj6"
+      className="f14cbhw9"
     >
       <div
-        className="anchor_t0tx82"
+        className="f8xi195"
       >
         Foo
       </div>
     </div>
     <label
-      className="label_2s5uhd-o_O-label_noSpacing_16pg94n"
+      className="fsss56w"
       htmlFor="foo"
     >
       <StatusText
@@ -144,22 +144,22 @@ exports[`<FormField /> renders input before the label 1`] = `
 
 exports[`<FormField /> renders input before the label 2`] = `
 <section
-  className="field_k3wq0g"
+  className="f1w0znbn"
 >
   <div
-    className="content_inline_5kaapu"
+    className="fddsvlq"
   >
     <div
-      className="input_nv7oj6-o_O-input_beforeInline_14tkmhr"
+      className="fsktlp7"
     >
       <div
-        className="anchor_t0tx82"
+        className="f8xi195"
       >
         Foo
       </div>
     </div>
     <label
-      className="label_2s5uhd-o_O-label_noSpacing_16pg94n"
+      className="fsss56w"
       htmlFor="foo"
     >
       <StatusText
@@ -177,13 +177,13 @@ exports[`<FormField /> renders input before the label 2`] = `
 
 exports[`<FormField /> supports a prefix 1`] = `
 <section
-  className="field_k3wq0g"
+  className="f1w0znbn"
 >
   <div
     className=""
   >
     <label
-      className="label_2s5uhd"
+      className="fsss56w"
       htmlFor="foo"
     >
       <StatusText
@@ -196,17 +196,17 @@ exports[`<FormField /> supports a prefix 1`] = `
       </StatusText>
     </label>
     <div
-      className="input_nv7oj6"
+      className="f14cbhw9"
     >
       <div
-        className="affix_1n0jrn7"
+        className="f1em3zdk"
       >
         <Prefix>
           Foo
         </Prefix>
       </div>
       <div
-        className="anchor_t0tx82"
+        className="f8xi195"
       >
         Foo
       </div>
@@ -217,13 +217,13 @@ exports[`<FormField /> supports a prefix 1`] = `
 
 exports[`<FormField /> supports a suffix 1`] = `
 <section
-  className="field_k3wq0g"
+  className="f1w0znbn"
 >
   <div
     className=""
   >
     <label
-      className="label_2s5uhd"
+      className="fsss56w"
       htmlFor="foo"
     >
       <StatusText
@@ -236,15 +236,15 @@ exports[`<FormField /> supports a suffix 1`] = `
       </StatusText>
     </label>
     <div
-      className="input_nv7oj6"
+      className="f14cbhw9"
     >
       <div
-        className="anchor_t0tx82"
+        className="f8xi195"
       >
         Foo
       </div>
       <div
-        className="affix_1n0jrn7"
+        className="f1em3zdk"
       >
         <Suffix>
           Foo

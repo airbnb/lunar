@@ -2,7 +2,7 @@
 
 exports[`<Glyph /> renders diagonal fraction 1`] = `
 <span
-  className="inline-0_16rx5id"
+  className="f157ki83"
 >
   1/3
 </span>
@@ -10,7 +10,7 @@ exports[`<Glyph /> renders diagonal fraction 1`] = `
 
 exports[`<Glyph /> renders normal by default 1`] = `
 <span
-  className="inline-0_emnk3p"
+  className="fuqiicj"
 >
   Text
 </span>
@@ -18,7 +18,7 @@ exports[`<Glyph /> renders normal by default 1`] = `
 
 exports[`<Glyph /> renders ordinal suffix 1`] = `
 <span
-  className="inline-0_o8ahlx"
+  className="f156y2zn"
 >
   1st
 </span>
@@ -26,7 +26,7 @@ exports[`<Glyph /> renders ordinal suffix 1`] = `
 
 exports[`<Glyph /> renders slashed zero 1`] = `
 <span
-  className="inline-0_1bxqwjh"
+  className="fzkl3a3"
 >
   100
 </span>
@@ -34,7 +34,7 @@ exports[`<Glyph /> renders slashed zero 1`] = `
 
 exports[`<Glyph /> renders stacked fraction 1`] = `
 <span
-  className="inline-0_1sotufh"
+  className="f4q3iq3"
 >
   1/3
 </span>
@@ -42,7 +42,7 @@ exports[`<Glyph /> renders stacked fraction 1`] = `
 
 exports[`<Glyph /> renders tabular numbers 1`] = `
 <span
-  className="inline-0_1lh8h1f"
+  className="f12yjfs5"
 >
   123.45
 </span>

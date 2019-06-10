@@ -135,7 +135,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
 
     if (loadingAuthor) {
       return (
-        <div {...containerStyles}>
+        <div className={containerStyles}>
           <div className={cx(styles.profilePhoto, styles.tableCell)}>
             <Shimmer width={32} height={32} radius="50%" />
           </div>
@@ -197,7 +197,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
     );
 
     return (
-      <div {...containerStyles}>
+      <div className={containerStyles}>
         <div className={cx(styles.table)}>
           <div className={cx(styles.profilePhoto, styles.tableCell)}>
             {onClickImage ? (

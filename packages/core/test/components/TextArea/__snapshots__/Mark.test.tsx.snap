@@ -2,7 +2,7 @@
 
 exports[`<Mark /> renders 1`] = `
 <mark
-  className="mark_jc2c4c"
+  className="fc2wgsh"
 >
   Word
 </mark>
@@ -10,7 +10,7 @@ exports[`<Mark /> renders 1`] = `
 
 exports[`<Mark /> renders selected 1`] = `
 <mark
-  className="mark_jc2c4c-o_O-mark_selected_1arrkjl"
+  className="f4bousf"
 >
   Word
 </mark>

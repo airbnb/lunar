@@ -770,9 +770,9 @@ export default withStyles(
           right: 0,
           height: 1,
           position: 'absolute',
-          background: `linear-gradient(to right, ${theme.color.accent.border}, ${
-            theme.color.base
-          })`,
+          background:
+            // prettier-ignore
+            `linear-gradient(to right, ${theme.color.accent.border}, ${theme.color.base})`,
         },
       },
 

@@ -2,11 +2,11 @@
 
 exports[`<ProfilePhoto /> renders custom size 1`] = `
 <div
-  className="regular_i5aehb-o_O-inline-0_x9m9b"
+  className="f18bir32"
 >
   <img
     alt="Name"
-    className="image_qfr8ll-o_O-regular_i5aehb-o_O-roundedImage_1bpjyj1-o_O-inline-0_x9m9b"
+    className="fdpqx7e"
     src="https://domain.com/some/file.jpg"
     title="Name"
   />
@@ -15,11 +15,11 @@ exports[`<ProfilePhoto /> renders custom size 1`] = `
 
 exports[`<ProfilePhoto /> renders inline 1`] = `
 <div
-  className="inline_36rlri-o_O-regular_i5aehb"
+  className="f1mqa9uw"
 >
   <img
     alt="Name"
-    className="image_qfr8ll-o_O-regular_i5aehb-o_O-roundedImage_1bpjyj1"
+    className="f1hbk716"
     src="https://domain.com/some/file.jpg"
     title="Name"
   />
@@ -28,11 +28,11 @@ exports[`<ProfilePhoto /> renders inline 1`] = `
 
 exports[`<ProfilePhoto /> renders large 1`] = `
 <div
-  className="regular_i5aehb-o_O-large_1kuwd2n"
+  className="f6nanb2"
 >
   <img
     alt="Name"
-    className="image_qfr8ll-o_O-regular_i5aehb-o_O-roundedImage_1bpjyj1-o_O-large_1kuwd2n"
+    className="f1b31zkq"
     src="https://domain.com/some/file.jpg"
     title="Name"
   />
@@ -41,11 +41,11 @@ exports[`<ProfilePhoto /> renders large 1`] = `
 
 exports[`<ProfilePhoto /> renders macro 1`] = `
 <div
-  className="regular_i5aehb-o_O-macro_137gz1r"
+  className="f1j852ta"
 >
   <img
     alt="Name"
-    className="image_qfr8ll-o_O-regular_i5aehb-o_O-roundedImage_1bpjyj1-o_O-macro_137gz1r"
+    className="fbm7oyi"
     src="https://domain.com/some/file.jpg"
     title="Name"
   />
@@ -54,11 +54,11 @@ exports[`<ProfilePhoto /> renders macro 1`] = `
 
 exports[`<ProfilePhoto /> renders small 1`] = `
 <div
-  className="regular_i5aehb-o_O-small_n3ao3z"
+  className="f1fmsgf2"
 >
   <img
     alt="Name"
-    className="image_qfr8ll-o_O-regular_i5aehb-o_O-roundedImage_1bpjyj1-o_O-small_n3ao3z"
+    className="foew6u2"
     src="https://domain.com/some/file.jpg"
     title="Name"
   />
@@ -67,11 +67,11 @@ exports[`<ProfilePhoto /> renders small 1`] = `
 
 exports[`<ProfilePhoto /> renders with the expected props (but not necessarily with the expected styles) 1`] = `
 <div
-  className="regular_i5aehb"
+  className="f53a1r2"
 >
   <img
     alt="Name"
-    className="image_qfr8ll-o_O-regular_i5aehb-o_O-roundedImage_1bpjyj1"
+    className="f1hbk716"
     src="https://domain.com/some/file.jpg"
     title="Name"
   />

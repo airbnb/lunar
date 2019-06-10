@@ -9,7 +9,7 @@ exports[`<SecondaryLink /> renders a secondary link 1`] = `
   small={false}
 >
   <ButtonOrLink
-    className="link_ebyk5g"
+    className="f1t1780y"
   >
     Link
   </ButtonOrLink>
