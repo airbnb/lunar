@@ -50,7 +50,7 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     isItemSelectable?: (item: T, selected?: boolean) => boolean;
     /** Determine if an item is selected. Will compare values by default if not defined. */
     isItemSelected?: (item: T, value: string) => boolean;
-    /** */
+    /** Whether to invoke onLoadOptions with an empty string when focused. */
     loadItemsOnFocus?: boolean;
     /** Load and show items on mount. */
     loadItemsOnMount?: boolean;
@@ -223,7 +223,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
     }
 
     if (this.props.loadItemsOnFocus) {
-      this.loadItems('', true);
+      this.loadItems('');
     }
 
     this.setState({
@@ -445,8 +445,10 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
       loading: true,
     });
 
+    const { loadItemsOnFocus } = this.props;
+
     // Exit early if no value
-    if (!value && !force) {
+    if (!value && !force && !loadItemsOnFocus) {
       this.props.onSelectItem!('', null);
 
       return Promise.resolve([]);
