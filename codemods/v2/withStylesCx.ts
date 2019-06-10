@@ -11,6 +11,13 @@ import {
   ObjectProperty,
 } from 'jscodeshift';
 
+function hasCxProp(props: ObjectPattern['properties']): boolean {
+  return props.some(
+    prop =>
+      prop.type === 'ObjectProperty' && prop.key.type === 'Identifier' && prop.key.name === 'cx',
+  );
+}
+
 function injectCxInBlockStatement(
   body: BlockStatement,
   cxProp: ObjectProperty,
@@ -27,7 +34,8 @@ function injectCxInBlockStatement(
               decl.init.object.type === 'ThisExpression' &&
               decl.init.property.type === 'Identifier' &&
               decl.init.property.name === propsName)) &&
-          decl.id.type === 'ObjectPattern'
+          decl.id.type === 'ObjectPattern' &&
+          !hasCxProp(decl.id.properties)
         ) {
           decl.id.properties.unshift(cxProp);
         }
@@ -95,13 +103,14 @@ module.exports = function withStylesCx(
         return;
       }
 
+      const param = node.params[0];
       let propsName = '';
 
       // From argument
-      if (node.params[0].type === 'ObjectPattern') {
-        (node.params[0] as ObjectPattern).properties.unshift(cxProp);
-      } else if (node.params[0].type === 'Identifier') {
-        propsName = (node.params[0] as Identifier).name;
+      if (param.type === 'ObjectPattern' && !hasCxProp(param.properties)) {
+        param.properties.unshift(cxProp);
+      } else if (param.type === 'Identifier') {
+        propsName = param.name;
       }
 
       // Within body
@@ -126,7 +135,7 @@ module.exports = function withStylesCx(
 
   // Replace `{...css()}` with `className={cx()}`
   source.find(cs.JSXSpreadAttribute).forEach(path => {
-    const parent = path.parent as JSXOpeningElement;
+    const parent = path.parent.node as JSXOpeningElement;
 
     if (!parent || !parent.attributes || parent.attributes.length === 0) {
       return;
