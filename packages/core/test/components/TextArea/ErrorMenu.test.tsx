@@ -60,6 +60,6 @@ describe('<ErrorMenu />', () => {
         .find(Item)
         .find(Text)
         .prop('children'),
-    ).toBe('Delete this note');
+    ).toBe('Delete');
   });
 });

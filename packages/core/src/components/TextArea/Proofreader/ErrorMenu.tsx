@@ -21,7 +21,7 @@ export default class ErrorMenu extends React.Component<Props> {
       case ' ':
         return T.phrase('(Space)', {}, 'Represents a space character within the spell checker');
       case '':
-        return T.phrase('Delete this note', {}, 'Represents deleting within the spell checker');
+        return T.phrase('Delete', {}, 'Represents deleting within the spell checker');
       default:
         return replacement;
     }
