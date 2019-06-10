@@ -5,6 +5,7 @@ import { Props } from '../components/DatePicker';
 export function getCustomModifiers(
   modifiers: DayPickerProps['modifiers'],
   styles: WithStylesProps['styles'],
+  cx: WithStylesProps['cx'],
 ) {
   const customModifiers = modifiers || {};
   if (customModifiers.start && customModifiers.end) {
@@ -23,9 +24,9 @@ export function getCustomModifiers(
 export function getClassNames(
   type: 'input' | 'calendar',
   styles: WithStylesProps['styles'],
-  props: Props,
+  props: Props & WithStylesProps,
 ) {
-  const { showResetButton, todayButton } = props;
+  const { cx, showResetButton, todayButton } = props;
   const baseClassNames = {
     interactionDisabled: cx(styles.interactionDisabled),
     wrapper: cx(styles.wrapper),

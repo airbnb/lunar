@@ -1,6 +1,5 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
-
 import renderDefaultContent from '../DefaultRenderer';
 import Spacing from '../../Spacing';
 import {
@@ -18,7 +17,8 @@ import { DEFAULT_WIDTH_PROPERTIES } from '../constants';
 type ArgumentsFromProps = {
   columnMetadata?: ColumnMetadata;
   showColumnDividers?: boolean;
-  styles?: WithStylesProps['styles'];
+  cx: WithStylesProps['cx'];
+  styles: WithStylesProps['styles'];
   renderers?: DataTableProps['renderers'];
   zebra?: boolean;
   rowHeight?: HeightOptions;
@@ -34,6 +34,7 @@ export default function renderDataColumns(
   {
     columnMetadata,
     showColumnDividers,
+    cx,
     styles,
     renderers,
     zebra,

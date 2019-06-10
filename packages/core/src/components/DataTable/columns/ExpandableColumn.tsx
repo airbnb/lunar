@@ -9,6 +9,7 @@ import { TableRow } from '../types';
 import { EXPANDABLE_COLUMN_WIDTH } from '../constants';
 
 export default function renderExpandableColumn(
+  cx: WithStylesProps['cx'],
   styles: WithStylesProps['styles'],
   expandedRows: Set<number>,
   expandRow: (newExpandedRowIndex: number) => (event: any) => void,

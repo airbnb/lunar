@@ -26,7 +26,9 @@ export class ProfilePhotoGroup extends React.Component<Props & WithStylesProps> 
   };
 
   render() {
-    const { children, max, size, styles, theme } = this.props as Required<Props & WithStylesProps>;
+    const { cx, children, max, size, styles, theme } = this.props as Required<
+      Props & WithStylesProps
+    >;
     const { unit } = theme;
     const margin = { marginLeft: -(size * (unit / 2.5)) };
     let photos = React.Children.toArray(children).filter(child => !!child);

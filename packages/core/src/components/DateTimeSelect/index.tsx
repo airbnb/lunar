@@ -191,6 +191,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
   render() {
     const { fieldProps, inputProps } = partitionFieldProps(this.props);
     const {
+      cx,
       name,
       styles,
       // Omit everything

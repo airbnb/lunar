@@ -594,11 +594,11 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     } = this.state;
     const caretPosition =
       (this.textareaRef.current && this.textareaRef.current.selectionStart) || 0;
-
     const highlightsProps = {
-      ...cx(styles.highlights, important && styles.highlights_important),
+      className: cx(styles.highlights, important && styles.highlights_important),
       ref: this.shadowRef,
     };
+
     if (this.props.noTranslate) {
       highlightsProps.className += ' notranslate';
     }
@@ -770,7 +770,9 @@ export default withStyles(
           right: 0,
           height: 1,
           position: 'absolute',
-          background: `linear-gradient(to right, ${theme.color.accent.border}, ${theme.color.base})`,
+          background: `linear-gradient(to right, ${theme.color.accent.border}, ${
+            theme.color.base
+          })`,
         },
       },
 

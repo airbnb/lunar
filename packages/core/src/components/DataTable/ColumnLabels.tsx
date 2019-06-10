@@ -1,6 +1,5 @@
 import React from 'react';
 import { SortDirection } from 'react-virtualized';
-
 import SortCarets from '../SortCarets';
 import Spacing from '../Spacing';
 import Text from '../Text';
@@ -29,6 +28,7 @@ type ColumnLabelsProps = {
     In order to overwrite the existing labels and carets in defaultHeaderRowRenderer,
     we clone them from props (children[0] = label, children[1] = carets), build around their data. */
 export default function ColumnLabels({
+  cx,
   styles,
   columnToLabel = {},
   showColumnDividers,
@@ -39,7 +39,8 @@ export default function ColumnLabels({
   columnMetadata,
   columnLabelCase,
 }: {
-  styles?: WithStylesProps['styles'];
+  cx: WithStylesProps['cx'];
+  styles: WithStylesProps['styles'];
   columnToLabel?: ColumnToLabel;
   showColumnDividers?: boolean;
   rowHeight?: RowHeightOptions;
@@ -109,10 +110,9 @@ export default function ColumnLabels({
 
     return (
       <div
-        className={className}
         role="row"
         style={style}
-        className={cx(styles && styles.column_header, styles && styles.row)}
+        className={cx(className, styles && styles.column_header, styles && styles.row)}
       >
         {newColumns}
       </div>

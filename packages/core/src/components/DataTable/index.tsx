@@ -391,9 +391,11 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
                 headerRowRenderer={ColumnLabels(this.props)}
                 onRowClick={this.handleRowClick}
               >
-                {expandable && renderExpandableColumn(styles, expandedRows, this.expandRow)}
+                {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
+
                 {selectable &&
                   renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
+
                 {renderDataColumns(this.keys, editMode, this.onEdit, this.props)}
               </Table>
             )}
@@ -405,7 +407,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 }
 
 export default withStyles(
-  (theme: WithStylesProps['theme']) => ({
+  theme => ({
     table_container: {
       overflowX: 'auto',
     },

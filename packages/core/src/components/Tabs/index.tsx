@@ -90,7 +90,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
   };
 
   render() {
-    const { borderless, children, scrollable, stretched, styles } = this.props;
+    const { cx, borderless, children, scrollable, stretched, styles } = this.props;
     const { selectedKey } = this.state;
 
     // Generate content

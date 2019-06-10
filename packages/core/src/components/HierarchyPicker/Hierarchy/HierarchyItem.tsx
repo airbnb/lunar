@@ -86,7 +86,7 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
   };
 
   renderItem = () => {
-    const { focused, item, styles, selected, renderItem, theme } = this.props;
+    const { cx, focused, item, styles, selected, renderItem, theme } = this.props;
 
     return renderItem ? (
       renderItem(item, selected, focused)

@@ -30,6 +30,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
 
   renderCheckBox = () => {
     const {
+      cx,
       button,
       checked,
       children,

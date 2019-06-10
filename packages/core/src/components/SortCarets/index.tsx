@@ -24,7 +24,7 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
   };
 
   renderCaretUp() {
-    const { down, up, enableUp, styles } = this.props;
+    const { cx, down, up, enableUp, styles } = this.props;
 
     return (
       up && (
@@ -42,7 +42,7 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
   }
 
   renderCaretDown() {
-    const { down, up, enableDown, styles } = this.props;
+    const { cx, down, up, enableDown, styles } = this.props;
 
     return (
       down && (

@@ -168,6 +168,7 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
   render() {
     const { animating } = this.state;
     const {
+      cx,
       gap,
       theme,
       styles,

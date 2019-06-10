@@ -45,6 +45,7 @@ export class Table extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       bordered,
       children,
       compact,

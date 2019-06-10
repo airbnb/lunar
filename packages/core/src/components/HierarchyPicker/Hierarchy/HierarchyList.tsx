@@ -91,7 +91,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
   };
 
   renderAside(item: ItemShape) {
-    const { styles, parents = [], onItemPicked, width, verticallyAlign } = this.props;
+    const { cx, styles, parents = [], onItemPicked, width, verticallyAlign } = this.props;
 
     if (item.items || !item.description) {
       return null;
@@ -120,7 +120,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
   }
 
   render() {
-    const { focus, items, styles, parents, verticallyAlign, ...passThruProps } = this
+    const { cx, focus, items, styles, parents, verticallyAlign, ...passThruProps } = this
       .props as Required<Props & WithStylesProps>;
 
     if (items.length === 0) {
@@ -188,6 +188,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
                     {!verticallyAlign && isFocused && item.items && item.items.length > 0 ? (
                       <HierarchyList
                         {...passThruProps}
+                        cx={cx}
                         styles={styles}
                         items={item.items!}
                         focus={focusRest}
@@ -208,6 +209,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
           <HierarchyList
             key="sub-list"
             {...passThruProps}
+            cx={cx}
             styles={styles}
             items={focusedItem!.items}
             focus={focusRest}

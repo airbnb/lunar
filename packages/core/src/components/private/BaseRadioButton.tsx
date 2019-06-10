@@ -30,6 +30,7 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
 
   renderRadioButton = () => {
     const {
+      cx,
       button,
       checked,
       children,

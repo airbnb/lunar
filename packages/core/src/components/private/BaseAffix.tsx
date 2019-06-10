@@ -31,7 +31,7 @@ export default class BaseAffix extends React.PureComponent<Props & WithStylesPro
   };
 
   render() {
-    const { after, before, children, compact, disabled, styles } = this.props;
+    const { cx, after, before, children, compact, disabled, styles } = this.props;
 
     return (
       <div
