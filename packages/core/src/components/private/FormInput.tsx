@@ -1,6 +1,6 @@
 import React from 'react';
 import { Omit } from 'utility-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import buildInputStyles from '../../themes/buildInputStyles';
 
 export type IgnoreAttributes =
@@ -85,6 +85,7 @@ class FormInput extends React.Component<PrivateProps> {
 
   render() {
     const {
+      cx,
       children,
       compact,
       disabled,
@@ -99,7 +100,7 @@ class FormInput extends React.Component<PrivateProps> {
       propagateRef,
       styles,
       tagName: Tag,
-      ...restProps
+      ...restProps,
     } = this.props;
     const isSelect = Tag === 'select';
     const props: any = {

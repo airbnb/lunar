@@ -1,6 +1,6 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Step from './Step';
 
 export type Props = {
@@ -15,7 +15,11 @@ export class SteppedProgressBar extends React.Component<Props & WithStylesProps>
   };
 
   render() {
-    const { children, styles } = this.props;
+    const {
+      cx,
+      children,
+      styles,
+    } = this.props;
     const steps = React.Children.count(children);
 
     return (

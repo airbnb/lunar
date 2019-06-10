@@ -1,6 +1,6 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import Item from './Item';
 
 export type Props = {
@@ -17,7 +17,12 @@ export class SideBar extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { accessibilityLabel, children, styles } = this.props;
+    const {
+      cx,
+      accessibilityLabel,
+      children,
+      styles,
+    } = this.props;
 
     return (
       <nav {...css(styles.bar)}>

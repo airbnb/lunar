@@ -1,6 +1,6 @@
 import React from 'react';
 import { elementType } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import SideBar from '../SideBar';
 
 export type Props = {
@@ -42,6 +42,7 @@ export class Layout extends React.Component<Props & AsideProps & WithStylesProps
 
   render() {
     const {
+      cx,
       after,
       asideWidth,
       before,

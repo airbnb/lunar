@@ -1,6 +1,6 @@
 import React from 'react';
 import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Item from './Item';
 
 export { Item };
@@ -16,7 +16,11 @@ class BorderedList extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, styles } = this.props;
+    const {
+      cx,
+      children,
+      styles,
+    } = this.props;
 
     return <ul {...css(styles.list)}>{children}</ul>;
   }

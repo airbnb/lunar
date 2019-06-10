@@ -1,5 +1,5 @@
 import { DayPickerProps } from 'react-day-picker';
-import { css, WithStylesProps } from '../composers/withStyles';
+import { WithStylesProps } from '../composers/withStyles';
 import { Props } from '../components/DatePicker';
 
 export function getCustomModifiers(

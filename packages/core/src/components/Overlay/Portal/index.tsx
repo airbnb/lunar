@@ -1,6 +1,6 @@
 import React from 'react';
 import throttle from 'lodash/throttle';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import FocusTrap from '../../FocusTrap';
 import BasePortal from '../../Portal';
 import { ESCAPE } from '../../../keys';
@@ -87,7 +87,14 @@ export class Portal extends React.Component<Props & WithStylesProps, State> {
   );
 
   render() {
-    const { children, styles, x, y, noBackground } = this.props;
+    const {
+      cx,
+      children,
+      styles,
+      x,
+      y,
+      noBackground,
+    } = this.props;
     const { height } = this.state;
 
     return (

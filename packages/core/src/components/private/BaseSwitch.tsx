@@ -1,6 +1,6 @@
 import React from 'react';
 import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import FormInput, { InputProps } from './FormInput';
 import buildInputStyles from '../../themes/buildInputStyles';
 
@@ -23,7 +23,15 @@ class BaseSwitch extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { checked, disabled, id, invalid, styles, ...restProps } = this.props;
+    const {
+      cx,
+      checked,
+      disabled,
+      id,
+      invalid,
+      styles,
+      ...restProps,
+    } = this.props;
 
     return (
       <label htmlFor={id} {...css(styles.switch)}>

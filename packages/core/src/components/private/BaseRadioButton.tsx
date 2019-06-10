@@ -1,7 +1,7 @@
 import React from 'react';
 import IconRecord from '@airbnb/lunar-icons/lib/interface/IconRecord';
 import IconRemove from '@airbnb/lunar-icons/lib/interface/IconRemove';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import FormInput, { InputProps } from './FormInput';
 import buildInputStyles from '../../themes/buildInputStyles';
 
@@ -82,7 +82,17 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { button, checked, children, disabled, id, invalid, indeterminate, styles } = this.props;
+    const {
+      cx,
+      button,
+      checked,
+      children,
+      disabled,
+      id,
+      invalid,
+      indeterminate,
+      styles,
+    } = this.props;
 
     if (!button) {
       return this.renderRadioButton();

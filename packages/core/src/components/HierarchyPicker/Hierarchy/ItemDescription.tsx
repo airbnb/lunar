@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import Text from '../../Text';
 import T from '../../Translate';
 import { ItemShape } from '../types';
@@ -10,7 +10,11 @@ export type Props = {
 
 export class ItemDescription extends React.Component<Props & WithStylesProps> {
   render() {
-    const { item, styles } = this.props;
+    const {
+      cx,
+      item,
+      styles,
+    } = this.props;
 
     return (
       <div>

@@ -27,7 +27,7 @@ export default function withIcon(
   name: string,
 ): (WrappedComponent: React.ComponentType<Props>) => React.ComponentType<WithIconWrapperProps> {
   return WrappedComponent =>
-    class Icon extends React.Component<WithIconWrapperProps> {
+    (class Icon extends React.Component<WithIconWrapperProps> {
       static displayName = name;
 
       static WrappedComponent = WrappedComponent;
@@ -89,5 +89,5 @@ export default function withIcon(
 
         return <WrappedComponent {...props} />;
       }
-    };
+    });
 }

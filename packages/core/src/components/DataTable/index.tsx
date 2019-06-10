@@ -22,7 +22,7 @@ import renderDataColumns from './columns/DataColumns';
 import renderExpandableColumn from './columns/ExpandableColumn';
 import renderSelectableColumn from './columns/SelectableColumn';
 import TableHeader from './TableHeader';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
 
@@ -348,6 +348,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   render() {
     const {
+      cx,
       data,
       expandable,
       filterData,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import { css, WithStylesProps } from '../../composers/withStyles';
+import { WithStylesProps } from '../../composers/withStyles';
 
 const dirProp = mutuallyExclusiveTrueProps('after', 'before');
 

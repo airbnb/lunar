@@ -1,6 +1,6 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import T from '../Translate';
 import Text from '../Text';
 import StatusText from '../StatusText';
@@ -92,6 +92,7 @@ export class FormField extends React.Component<PrivateProps> {
 
   render() {
     const {
+      cx,
       children,
       compact,
       compactSpacing,

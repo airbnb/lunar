@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 
 export type Props = {
   children: NonNullable<React.ReactNode>;
@@ -27,7 +27,12 @@ class Mark extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, selected, styles } = this.props;
+    const {
+      cx,
+      children,
+      selected,
+      styles,
+    } = this.props;
 
     return (
       <mark {...css(styles.mark, selected && styles.mark_selected)} ref={this.ref}>

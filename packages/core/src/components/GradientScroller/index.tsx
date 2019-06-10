@@ -4,7 +4,7 @@ import debounce from 'lodash/debounce';
 import throttle from 'lodash/throttle';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 const INCREMENT = 25;
 
@@ -209,7 +209,13 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
   };
 
   render() {
-    const { children, styles, hideScrollbar, showArrows } = this.props;
+    const {
+      cx,
+      children,
+      styles,
+      hideScrollbar,
+      showArrows,
+    } = this.props;
     const { showStartGradient, showEndGradient } = this.state;
 
     return (

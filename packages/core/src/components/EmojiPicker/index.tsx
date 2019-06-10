@@ -10,7 +10,7 @@ import IconSmile from '@airbnb/lunar-icons/lib/general/IconSmile';
 import IconUtensils from '@airbnb/lunar-icons/lib/general/IconUtensils';
 import IconVideoGame from '@airbnb/lunar-icons/lib/general/IconVideoGame';
 import IconCloseAlt from '@airbnb/lunar-icons/lib/interface/IconCloseAlt';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Core from '../..';
 import { ESCAPE } from '../../keys';
 import T from '../Translate';
@@ -72,7 +72,12 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { styles, disableAutoFocus, ...props } = this.props;
+    const {
+      cx,
+      styles,
+      disableAutoFocus,
+      ...props,
+    } = this.props;
     const classNames = {
       picker: css(styles.picker).className,
       emoji: css(styles.emoji).className,

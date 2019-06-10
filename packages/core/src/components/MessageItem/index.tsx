@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import removeFocusOnMouseUp from '../../utils/removeFocusOnMouseUp';
 import ProfilePhoto from '../ProfilePhoto';
 import Shimmer from '../Shimmer';
@@ -84,6 +84,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       children,
       disableTitleTranslation,
       email,

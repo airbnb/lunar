@@ -1,7 +1,7 @@
 import React from 'react';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconCheckmark from '@airbnb/lunar-icons/lib/interface/IconCheck';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import { ENTER, SPACE, ARROW_RIGHT, ARROW_LEFT } from '../../../keys';
 import Text from '../../Text';
 import {
@@ -104,7 +104,13 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { focused, item, styles, selected } = this.props;
+    const {
+      cx,
+      focused,
+      item,
+      styles,
+      selected,
+    } = this.props;
 
     return (
       <div

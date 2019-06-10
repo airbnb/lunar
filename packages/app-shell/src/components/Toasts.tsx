@@ -1,6 +1,6 @@
 import React from 'react';
 import Toast from '@airbnb/lunar/lib/components/Toast';
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import { Z_INDEX_TOAST } from '@airbnb/lunar/lib/constants';
 import { Toast as ToastItem } from '../types';
 
@@ -11,7 +11,12 @@ export type Props = {
 
 export class Toasts extends React.Component<Props & WithStylesProps> {
   render() {
-    const { onRemove, toasts, styles } = this.props;
+    const {
+      cx,
+      onRemove,
+      toasts,
+      styles,
+    } = this.props;
 
     return (
       <div {...css(styles.toasts)}>

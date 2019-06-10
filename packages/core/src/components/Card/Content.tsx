@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { mutuallyExclusiveProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Row from '../Row';
 import Spacing from '../Spacing';
 
@@ -63,6 +63,7 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       after,
       afterImageSrc,
       before,

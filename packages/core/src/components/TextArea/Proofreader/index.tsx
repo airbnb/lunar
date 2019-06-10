@@ -6,7 +6,7 @@ import Text from '../../Text';
 import Link from '../../Link';
 import Loader from '../../Loader';
 import Dropdown from '../../Dropdown';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import buildInputStyles from '../../../themes/buildInputStyles';
 import { LT_LOCALES } from '../../../constants';
 import { ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT } from '../../../keys';
@@ -581,7 +581,15 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   }
 
   render() {
-    const { children, styles, onCheckText, theme, important, ...props } = this.props;
+    const {
+      cx,
+      children,
+      styles,
+      onCheckText,
+      theme,
+      important,
+      ...props,
+    } = this.props;
     const {
       position,
       errors,

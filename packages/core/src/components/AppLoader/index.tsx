@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ErrorMessage from '../ErrorMessage';
 import Loader from '../Loader';
 import Title from '../Title';
@@ -37,6 +37,7 @@ export class AppLoader extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       centered,
       children,
       error,

@@ -4,7 +4,7 @@ import { SortDirection } from 'react-virtualized';
 import SortCarets from '../SortCarets';
 import Spacing from '../Spacing';
 import Text from '../Text';
-import { css, WithStylesProps } from '../../composers/withStyles';
+import { WithStylesProps } from '../../composers/withStyles';
 import { caseColumnLabel, getHeight } from './helpers';
 import {
   ColumnLabelCase,

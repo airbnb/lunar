@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import { FuseMatch } from '../types';
 
 export type Props = {
@@ -10,7 +10,13 @@ export type Props = {
 
 export class Highlight extends React.Component<Props & WithStylesProps> {
   render() {
-    const { fallback, match, styles, word: searchWord } = this.props;
+    const {
+      cx,
+      fallback,
+      match,
+      styles,
+      word: searchWord,
+    } = this.props;
 
     if (!match) {
       return <>{fallback}</>;

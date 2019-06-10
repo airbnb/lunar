@@ -1,6 +1,6 @@
 import React from 'react';
 import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { Props as ProfilePhotoProps } from '../ProfilePhoto';
 
 /* eslint-disable react/no-array-index-key */

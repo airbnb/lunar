@@ -2,7 +2,7 @@ import React from 'react';
 import { NavbarElementProps as NavBarProps } from 'react-day-picker';
 import IconArrowLeft from '@airbnb/lunar-icons/lib/interface/IconArrowLeft';
 import IconArrowRight from '@airbnb/lunar-icons/lib/interface/IconArrowRight';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import datePickerStyles from '../../private/datePickerStyles';
 import IconButton from '../../IconButton';
 import T from '../../Translate';
@@ -38,6 +38,7 @@ class NavBar extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       className,
       classNames,
       labels,

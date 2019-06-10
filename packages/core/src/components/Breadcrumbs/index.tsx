@@ -1,6 +1,6 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Breadcrumb from './Breadcrumb';
 
 export type Props = {
@@ -17,7 +17,12 @@ export class Breadcrumbs extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { accessibilityLabel, children, styles } = this.props;
+    const {
+      cx,
+      accessibilityLabel,
+      children,
+      styles,
+    } = this.props;
 
     return (
       <nav aria-label={accessibilityLabel}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
 import Text from '../Text';
 
@@ -47,6 +47,7 @@ export class Link extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       block,
       baseline,
       children,
@@ -57,7 +58,7 @@ export class Link extends React.Component<Props & WithStylesProps> {
       small,
       bold,
       styles,
-      ...restProps
+      ...restProps,
     } = this.props;
 
     return (

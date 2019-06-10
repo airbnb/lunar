@@ -1,7 +1,7 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { getErrorMessage } from '../ErrorMessage';
 import IconButton from '../IconButton';
 import Button from '../Button';
@@ -123,7 +123,15 @@ export class Toast extends React.Component<Props & WithStylesProps> {
 
   render() {
     const { visible } = this.state;
-    const { styles, message, title, danger, success, refresh } = this.props;
+    const {
+      cx,
+      styles,
+      message,
+      title,
+      danger,
+      success,
+      refresh,
+    } = this.props;
     const isError = message instanceof Error;
     const failed = danger || isError;
 

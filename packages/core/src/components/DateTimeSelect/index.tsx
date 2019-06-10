@@ -2,7 +2,7 @@ import React from 'react';
 import uuid from 'uuid/v4';
 import { DateTime } from 'luxon';
 import { Omit } from 'utility-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import BaseSelect from '../private/BaseSelect';
 import { SelectProps } from '../private/FormInput';
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';

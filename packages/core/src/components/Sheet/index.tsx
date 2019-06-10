@@ -1,6 +1,6 @@
 import React from 'react';
 import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { Z_INDEX_PORTAL } from '../../constants';
 import { ESCAPE } from '../../keys';
 import focusableSelector from '../../utils/focusableSelector';

@@ -1,6 +1,6 @@
 import React from 'react';
 import Text from '../../Text';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import HierarchyItem from './HierarchyItem';
 import ItemDescription from './ItemDescription';
 import { ItemShape, TreePath, SubTreeHandler, ItemPickedHandler, ItemRenderer } from '../types';

@@ -1,7 +1,7 @@
 import React from 'react';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Apply a border. */
@@ -37,7 +37,16 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { bordered, children, expanded, id, styles, theme, title } = this.props;
+    const {
+      cx,
+      bordered,
+      children,
+      expanded,
+      id,
+      styles,
+      theme,
+      title,
+    } = this.props;
 
     return (
       <div {...css(styles.item, bordered && styles.item_bordered)}>

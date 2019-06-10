@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Item, { Props as AccordionItemProps } from './Item';
 
 export { Item };
@@ -51,7 +51,12 @@ export class Accordion extends React.Component<Props & WithStylesProps, State> {
   };
 
   render() {
-    const { bordered, children, styles } = this.props;
+    const {
+      cx,
+      bordered,
+      children,
+      styles,
+    } = this.props;
     const { id, index } = this.state;
 
     return (

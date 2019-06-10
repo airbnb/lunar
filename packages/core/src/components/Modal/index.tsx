@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Portal from '../Portal';
 import ModalInner, { Props as ModalInnerProps } from './private/Inner';
 import { ESCAPE } from '../../keys';
@@ -29,7 +29,11 @@ export class Modal extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { styles, ...otherProps } = this.props;
+    const {
+      cx,
+      styles,
+      ...otherProps,
+    } = this.props;
 
     return (
       <Portal>

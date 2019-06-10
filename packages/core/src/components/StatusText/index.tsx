@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Text, { Props as TextProps } from '../Text';
 import { STATUSES } from '../../constants';
 
@@ -45,6 +45,7 @@ export class StatusText extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       children,
       danger,
       info,
@@ -53,7 +54,7 @@ export class StatusText extends React.Component<Props & WithStylesProps> {
       styles,
       success,
       warning,
-      ...restProps
+      ...restProps,
     } = this.props;
 
     return (

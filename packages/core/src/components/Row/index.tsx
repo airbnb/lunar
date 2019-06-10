@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** The contents following the primary contents. */
@@ -39,6 +39,7 @@ export class Row extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       after,
       baseline,
       before,

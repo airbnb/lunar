@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 
 export const MAX_HEIGHT_IMAGE = 720;
 export const MAX_HEIGHT_IMAGE_SMALL = 420;
@@ -22,7 +22,15 @@ export type Props = ModalImageConfig & {
 
 class ModalImageLayout extends React.Component<Props & WithStylesProps> {
   render() {
-    const { children, sizes, srcSet, type, url, styles } = this.props;
+    const {
+      cx,
+      children,
+      sizes,
+      srcSet,
+      type,
+      url,
+      styles,
+    } = this.props;
 
     return (
       <div {...css(styles.splitContent)}>

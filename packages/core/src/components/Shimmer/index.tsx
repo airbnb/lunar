@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Display as block instead of inline. */
@@ -25,7 +25,14 @@ export class Shimmer extends React.Component<Props & WithStylesProps> {
     this.props.width === 'random' ? `${Math.round(Math.random() * (90 - 30) + 30)}%` : '';
 
   render() {
-    const { block, height, radius, styles, width } = this.props;
+    const {
+      cx,
+      block,
+      height,
+      radius,
+      styles,
+      width,
+    } = this.props;
 
     return (
       <span

@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Separator from './Separator';
 import Item from './Item';
 import Row from './Row';
@@ -30,6 +30,7 @@ export class Menu extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       accessibilityLabel,
       children,
       maxHeight,

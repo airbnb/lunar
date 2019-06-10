@@ -1,6 +1,6 @@
 import React from 'react';
 import IconCaretDown from '@airbnb/lunar-icons/lib/interface/IconCaretDown';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import FormInput, { SelectProps } from './FormInput';
 
 export type Props = SelectProps & {
@@ -22,7 +22,13 @@ class BaseSelect extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, placeholder, styles, ...restProps } = this.props;
+    const {
+      cx,
+      children,
+      placeholder,
+      styles,
+      ...restProps,
+    } = this.props;
 
     return (
       <div {...css(styles.select)}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 function createPosition(offset: number | string) {
   if (typeof offset === 'number' && offset < 0) {
@@ -33,7 +33,15 @@ export class NotchedBox extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { styles, inverted, children, inline, notchBelow, notchOffset } = this.props;
+    const {
+      cx,
+      styles,
+      inverted,
+      children,
+      inline,
+      notchBelow,
+      notchOffset,
+    } = this.props;
 
     return (
       <div {...css(styles.box, !inverted && styles.border, inline && styles.box_inline)}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import ButtonOrLink, { ButtonOrLinkTypes } from '@airbnb/lunar/lib/components/private/ButtonOrLink';
 import iconComponent from '@airbnb/lunar/lib/prop-types/iconComponent';
 import Text from '@airbnb/lunar/lib/components/Text';
@@ -29,7 +29,15 @@ export class SideBarItem extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { active, label, href, icon, onClick, styles } = this.props;
+    const {
+      cx,
+      active,
+      label,
+      href,
+      icon,
+      onClick,
+      styles,
+    } = this.props;
 
     return (
       <li role="none">

@@ -5,7 +5,7 @@ import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconFirst from '@airbnb/lunar-icons/lib/interface/IconFirst';
 import IconLast from '@airbnb/lunar-icons/lib/interface/IconLast';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import IconButton from '../IconButton';
 import Text from '../Text';
 import Row from '../Row';
@@ -54,6 +54,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       fetching,
       hasNext,
       hasPrev,

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { mutuallyExclusiveProps, requiredBy } from 'airbnb-prop-types';
 import iconComponent from '../../prop-types/iconComponent';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
@@ -34,6 +34,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       active,
       children,
       compact,

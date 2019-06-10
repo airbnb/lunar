@@ -5,7 +5,7 @@ import uuid from 'uuid/v4';
 import Overlay from '../Overlay';
 import NotchedBox, { NOTCH_SIZE, NOTCH_SPACING } from '../NotchedBox';
 import Text from '../Text';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Width of the tooltip in units. */
@@ -151,6 +151,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
 
   render() {
     const {
+      cx,
       styles,
       theme,
       width: widthProp,

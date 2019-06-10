@@ -3,7 +3,7 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
 import withBoundary from '../../composers/withBoundary';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import GradientScroller from '../GradientScroller';
 import Tab, { Props as TabProps } from './Tab';
 

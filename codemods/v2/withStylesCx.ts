@@ -47,25 +47,26 @@ module.exports = function withStylesCx(
   let compName = '';
 
   // Find the imported HOC name
-  source.find(cs.ImportDeclaration).forEach(({ node }) => {
-    const importPath = String(node.source.value);
+  source
+    .find(cs.ImportDeclaration)
+    .filter(({ node }) => String(node.source.value).endsWith('withStyles'))
+    .filter(({ node }) => {
+      // Capture imported HOC name
+      node.specifiers.forEach(spec => {
+        if (spec.type === 'ImportDefaultSpecifier') {
+          hocName = spec.local.name;
+        }
+      });
 
-    if (!importPath.endsWith('withStyles')) {
-      return;
-    }
+      // Remove `css` named import
+      node.specifiers = node.specifiers.filter(
+        spec => spec.local.type === 'Identifier' && spec.local.name !== 'css',
+      );
 
-    // Capture imported HOC name
-    node.specifiers.forEach(spec => {
-      if (spec.type === 'ImportDefaultSpecifier') {
-        hocName = spec.local.name;
-      }
-    });
-
-    // Remove `css` named import
-    node.specifiers = node.specifiers.filter(
-      spec => spec.local.type === 'Identifier' && spec.local.name !== 'css',
-    );
-  });
+      // Return all imports that are no longer being used
+      return node.specifiers.length === 0;
+    })
+    .remove();
 
   // Find the component name from the HOC call site
   if (hocName) {

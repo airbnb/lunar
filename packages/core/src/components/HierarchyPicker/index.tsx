@@ -6,7 +6,7 @@ import { SPACE, ENTER } from '../../keys';
 import T from '../Translate';
 import Text from '../Text';
 import Picker from './Picker';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import buildInputStyles from '../../themes/buildInputStyles';
 
 import {
@@ -157,13 +157,14 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
 
   render() {
     const {
+      cx,
       children,
       disabled,
       invalid,
       noResultsLabel,
       searchPlaceholder,
       styles,
-      ...passThruProps
+      ...passThruProps,
     } = this.props;
     const { chosen } = passThruProps;
     const { open } = this.state;

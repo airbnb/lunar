@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import withBoundary from '../../composers/withBoundary';
 import Cell from './Cell';
 import Row from './Row';

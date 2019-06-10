@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Display inline instead of absolutely positioned. */
@@ -22,7 +22,14 @@ export class Loader extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { styles, inline, inverted, large, static: isStatic } = this.props;
+    const {
+      cx,
+      styles,
+      inline,
+      inverted,
+      large,
+      static: isStatic,
+    } = this.props;
 
     return (
       <div

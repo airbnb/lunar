@@ -12,7 +12,7 @@ import {
   WidthProperties,
   RendererProps,
 } from '../types';
-import { css, WithStylesProps } from '../../../composers/withStyles';
+import { WithStylesProps } from '../../../composers/withStyles';
 import { DEFAULT_WIDTH_PROPERTIES } from '../constants';
 
 type ArgumentsFromProps = {

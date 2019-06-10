@@ -64,6 +64,7 @@ export class DatePicker extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       disabledDays,
       firstDayOfWeek,
       fromMonth,

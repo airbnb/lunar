@@ -1,7 +1,7 @@
 import React from 'react';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
 import TrackingBoundary from '../TrackingBoundary';
 
@@ -55,7 +55,17 @@ export class Tab extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { borderless, disabled, href, keyName, label, selected, stretched, styles } = this.props;
+    const {
+      cx,
+      borderless,
+      disabled,
+      href,
+      keyName,
+      label,
+      selected,
+      stretched,
+      styles,
+    } = this.props;
     const trackingName = upperFirst(camelCase(keyName || 'Tab'));
 
     return (

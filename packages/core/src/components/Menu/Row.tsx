@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Content to display in the row. */
@@ -15,7 +15,12 @@ export class MenuRow extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, spacious, styles } = this.props;
+    const {
+      cx,
+      children,
+      spacious,
+      styles,
+    } = this.props;
 
     return (
       <li role="none">
