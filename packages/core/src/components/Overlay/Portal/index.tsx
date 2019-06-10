@@ -87,14 +87,7 @@ export class Portal extends React.Component<Props & WithStylesProps, State> {
   );
 
   render() {
-    const {
-      cx,
-      children,
-      styles,
-      x,
-      y,
-      noBackground,
-    } = this.props;
+    const { cx, children, styles, x, y, noBackground } = this.props;
     const { height } = this.state;
 
     return (
@@ -105,9 +98,11 @@ export class Portal extends React.Component<Props & WithStylesProps, State> {
             ref={this.ref}
             role="presentation"
             onClick={this.handleClick}
-            onScroll={this.handleScrollThrottled}>
+            onScroll={this.handleScrollThrottled}
+          >
             <div
-              className={cx(styles.content, { paddingTop: y, marginLeft: x, minHeight: height })}>
+              className={cx(styles.content, { paddingTop: y, marginLeft: x, minHeight: height })}
+            >
               {children}
             </div>
           </div>

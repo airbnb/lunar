@@ -79,7 +79,8 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
               maxWidth: size * unit,
               width: size * unit,
             },
-        )}>
+        )}
+      >
         <img
           className={cx(
             styles.image,
@@ -98,7 +99,8 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
           )}
           src={imageSrc}
           alt={title}
-          title={title} />
+          title={title}
+        />
       </div>
     );
   }

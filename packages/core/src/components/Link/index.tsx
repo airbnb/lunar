@@ -58,7 +58,7 @@ export class Link extends React.Component<Props & WithStylesProps> {
       small,
       bold,
       styles,
-      ...restProps,
+      ...restProps
     } = this.props;
 
     return (

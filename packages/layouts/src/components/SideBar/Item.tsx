@@ -29,15 +29,7 @@ export class SideBarItem extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      active,
-      label,
-      href,
-      icon,
-      onClick,
-      styles,
-    } = this.props;
+    const { cx, active, label, href, icon, onClick, styles } = this.props;
 
     return (
       <li role="none">
@@ -45,7 +37,8 @@ export class SideBarItem extends React.Component<Props & WithStylesProps> {
           role="menuitem"
           href={href}
           onClick={onClick}
-          className={cx(styles.item, active && styles.item_active)}>
+          className={cx(styles.item, active && styles.item_active)}
+        >
           <span className={cx(styles.icon)}>{React.cloneElement(icon, { size: '2em' })}</span>
 
           {label && (

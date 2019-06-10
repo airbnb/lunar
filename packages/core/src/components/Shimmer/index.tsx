@@ -25,14 +25,7 @@ export class Shimmer extends React.Component<Props & WithStylesProps> {
     this.props.width === 'random' ? `${Math.round(Math.random() * (90 - 30) + 30)}%` : '';
 
   render() {
-    const {
-      cx,
-      block,
-      height,
-      radius,
-      styles,
-      width,
-    } = this.props;
+    const { cx, block, height, radius, styles, width } = this.props;
 
     return (
       <span
@@ -42,7 +35,8 @@ export class Shimmer extends React.Component<Props & WithStylesProps> {
           width: this.randomWidth || width,
           height,
         }}
-        className={cx(styles.shimmer, block && styles.shimmer_block)} />
+        className={cx(styles.shimmer, block && styles.shimmer_block)}
+      />
     );
   }
 }

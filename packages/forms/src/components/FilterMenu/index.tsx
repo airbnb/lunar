@@ -156,7 +156,8 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
 
         <div
           className={cx(styles.form, !opened && styles.form_hidden, { zIndex })}
-          aria-expanded={opened}>
+          aria-expanded={opened}
+        >
           <Dropdown {...dropdownProps} onClickOutside={this.handleClickOutside} visible={opened}>
             <div className={cx(styles.menu)}>
               <Menu

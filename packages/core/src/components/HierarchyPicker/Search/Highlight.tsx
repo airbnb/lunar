@@ -10,13 +10,7 @@ export type Props = {
 
 export class Highlight extends React.Component<Props & WithStylesProps> {
   render() {
-    const {
-      cx,
-      fallback,
-      match,
-      styles,
-      word: searchWord,
-    } = this.props;
+    const { cx, fallback, match, styles, word: searchWord } = this.props;
 
     if (!match) {
       return <>{fallback}</>;
@@ -47,7 +41,8 @@ export class Highlight extends React.Component<Props & WithStylesProps> {
               className={cx(
                 styles.highlight,
                 substr.trim().toLowerCase() === searchWord && styles.highlight_dark,
-              )}>
+              )}
+            >
               <mark>{substr}</mark>
             </span>,
           );

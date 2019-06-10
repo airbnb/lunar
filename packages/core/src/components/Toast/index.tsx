@@ -123,15 +123,7 @@ export class Toast extends React.Component<Props & WithStylesProps> {
 
   render() {
     const { visible } = this.state;
-    const {
-      cx,
-      styles,
-      message,
-      title,
-      danger,
-      success,
-      refresh,
-    } = this.props;
+    const { cx, styles, message, title, danger, success, refresh } = this.props;
     const isError = message instanceof Error;
     const failed = danger || isError;
 
@@ -142,7 +134,8 @@ export class Toast extends React.Component<Props & WithStylesProps> {
           visible && styles.container_visible,
           failed && styles.container_danger,
           success && styles.container_success,
-        )}>
+        )}
+      >
         {refresh ? (
           <div>
             <Text bold inverted>

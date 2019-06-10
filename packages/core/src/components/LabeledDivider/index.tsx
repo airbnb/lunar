@@ -10,11 +10,7 @@ export type Props = {
 /** A horizontal divider with a label. */
 export class LabeledDivider extends React.Component<Props & WithStylesProps> {
   render() {
-    const {
-      cx,
-      styles,
-      label,
-    } = this.props;
+    const { cx, styles, label } = this.props;
 
     return (
       <div className={cx(styles.rule)}>

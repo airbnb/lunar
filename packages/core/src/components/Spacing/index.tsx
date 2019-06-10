@@ -131,7 +131,9 @@ export class Spacing extends React.Component<Props & WithStylesProps> {
       }
     }
 
-    return <TagProp className={cx(...classes, inline && styles.spacing_inline)}>{children}</TagProp>;
+    return (
+      <TagProp className={cx(...classes, inline && styles.spacing_inline)}>{children}</TagProp>
+    );
   }
 }
 

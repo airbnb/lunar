@@ -22,13 +22,7 @@ class BaseSelect extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      children,
-      placeholder,
-      styles,
-      ...restProps,
-    } = this.props;
+    const { cx, children, placeholder, styles, ...restProps } = this.props;
 
     return (
       <div {...css(styles.select)}>

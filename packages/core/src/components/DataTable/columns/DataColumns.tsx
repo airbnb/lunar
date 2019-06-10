@@ -112,7 +112,8 @@ export default function renderDataColumns(
         className={cx(
           styles && styles.column,
           showColumnDividers && !isRightmost && styles && styles.column_divider,
-        )} />
+        )}
+      />
     );
   });
 }

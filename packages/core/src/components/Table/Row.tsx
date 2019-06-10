@@ -53,7 +53,7 @@ export class TableRow extends React.Component<Props & WithStylesProps> {
       styles,
       success,
       warning,
-      ...props,
+      ...props
     } = this.props;
 
     return (

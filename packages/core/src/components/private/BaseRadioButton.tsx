@@ -43,9 +43,7 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <label
-        htmlFor={id}
-        className={cx(styles.radio, hideLabel && styles.radio_hideLabel)}>
+      <label htmlFor={id} className={cx(styles.radio, hideLabel && styles.radio_hideLabel)}>
         <FormInput
           {...restProps}
           checked={checked}
@@ -66,7 +64,8 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
             checked && styles.input_checked,
             invalid && styles.input_invalid,
             disabled && styles.input_disabled,
-          )}>
+          )}
+        >
           {checked && (
             <span className={cx(styles.bullet)}>
               <IconRecord decorative size="1em" />
@@ -108,7 +107,8 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
           checked && styles.button_checked,
           invalid && styles.button_invalid,
           disabled && styles.button_disabled,
-        )}>
+        )}
+      >
         {this.renderRadioButton()}
 
         <div className={cx(styles.children)}>{children}</div>

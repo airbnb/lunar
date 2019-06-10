@@ -79,16 +79,15 @@ export default function ColumnLabels({
 
       const newHeader = (
         <Spacing left={indent ? 2 : 0}>
-          <div
-            style={heightStyle}
-            className={cx(showDivider && styles && styles.column_divider)}>
+          <div style={heightStyle} className={cx(showDivider && styles && styles.column_divider)}>
             <div
               style={
                 columnMetadata && columnMetadata[key] && columnMetadata[key].rightAlign
                   ? rightAlignmentStyle
                   : {}
               }
-              className={cx(styles && styles.row)}>
+              className={cx(styles && styles.row)}
+            >
               <span>
                 <Text micro muted>
                   {label}
@@ -113,7 +112,8 @@ export default function ColumnLabels({
         className={className}
         role="row"
         style={style}
-        className={cx(styles && styles.column_header, styles && styles.row)}>
+        className={cx(styles && styles.column_header, styles && styles.row)}
+      >
         {newColumns}
       </div>
     );

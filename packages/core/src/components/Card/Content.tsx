@@ -91,7 +91,8 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
           compact && styles.side_compact,
           styles.after,
           compact && styles.after_compact,
-        )}>
+        )}
+      >
         {after}
       </div>
     ) : null;
@@ -99,12 +100,7 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
     if (!afterContent && afterImageSrc) {
       afterContent = (
         <div className={cx(styles.imageWrapper, large && styles.imageWrapper_large)}>
-          <img
-            className={cx(styles.image)}
-            alt=""
-            height="100%"
-            src={afterImageSrc}
-            width="100%" />
+          <img className={cx(styles.image)} alt="" height="100%" src={afterImageSrc} width="100%" />
         </div>
       );
     }
@@ -116,7 +112,8 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
           compact && styles.side_compact,
           styles.before,
           compact && styles.before_compact,
-        )}>
+        )}
+      >
         {before}
       </div>
     ) : null;
@@ -129,24 +126,18 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
             alt=""
             height="100%"
             src={beforeImageSrc}
-            width="100%" />
+            width="100%"
+          />
         </div>
       );
     }
 
     return (
       // @ts-ignore [ts] JSX element type 'ContainerTag' does not have any construct or call signatures. [2604]
-      <ContainerTag
-        {...props}
-        className={cx(styles.container, onClick && styles.container_button)}>
+      <ContainerTag {...props} className={cx(styles.container, onClick && styles.container_button)}>
         {topImageSrc && (
           <div className={cx(styles.topImage, large && styles.topImage_large)}>
-            <img
-              className={cx(styles.image)}
-              alt=""
-              height="100%"
-              src={topImageSrc}
-              width="100%" />
+            <img className={cx(styles.image)} alt="" height="100%" src={topImageSrc} width="100%" />
           </div>
         )}
 

@@ -12,23 +12,14 @@ export type Props = {
 /** Display a simple error message for use within forms. */
 export class FormErrorMessage extends React.Component<Props & WithStylesProps> {
   render() {
-    const {
-      cx,
-      id,
-      error,
-      styles,
-    } = this.props;
+    const { cx, id, error, styles } = this.props;
 
     if (!error) {
       return null;
     }
 
     return (
-      <div
-        id={`${id}-error`}
-        role="alert"
-        aria-live="polite"
-        className={cx(styles.error)}>
+      <div id={`${id}-error`} role="alert" aria-live="polite" className={cx(styles.error)}>
         <StatusText danger>{error}</StatusText>
       </div>
     );

@@ -104,13 +104,7 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      focused,
-      item,
-      styles,
-      selected,
-    } = this.props;
+    const { cx, focused, item, styles, selected } = this.props;
 
     return (
       <div
@@ -125,7 +119,8 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
         // this is needed to find a focused parent item in a vertically aligned list
-        tabIndex={focused ? 1 : 0}>
+        tabIndex={focused ? 1 : 0}
+      >
         {this.renderItem()}
         {item.items && <IconChevronRight decorative inline size="1.4em" />}
       </div>

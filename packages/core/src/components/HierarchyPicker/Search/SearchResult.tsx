@@ -19,14 +19,7 @@ export class SearchResult extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      styles,
-      item,
-      formattedParents,
-      matches,
-      query,
-    } = this.props;
+    const { cx, styles, item, formattedParents, matches, query } = this.props;
     const { description, label, name } = item;
     const mbk = groupBy(matches, 'key');
     const [labelMatch = null] = mbk.label || [];

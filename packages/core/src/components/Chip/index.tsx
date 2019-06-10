@@ -69,7 +69,8 @@ export class Chip extends React.Component<Props & WithStylesProps> {
           compact && styles.chip_compact,
           disabled && styles.chip_disabled,
         )}
-        {...props}>
+        {...props}
+      >
         {profileImageSrc && (
           <div className={cx(styles.chipItem, styles.sideContent)}>
             <div className={cx(styles.sideContentInner)}>
@@ -87,7 +88,8 @@ export class Chip extends React.Component<Props & WithStylesProps> {
                 <ButtonOrLink
                   className={cx(styles.iconButton, disabled && styles.iconButton_disabled)}
                   disabled={disabled}
-                  onClick={onIconClick}>
+                  onClick={onIconClick}
+                >
                   {icon}
                 </ButtonOrLink>
               ) : (

@@ -57,7 +57,8 @@ export class ProfilePhotoGroup extends React.Component<Props & WithStylesProps> 
                 maxHeight: size * unit,
                 maxWidth: size * unit,
                 width: size * unit,
-              })}>
+              })}
+            >
               <span className={cx(styles.remainderNumber)}>{`+${remainder}`}</span>
             </div>
           </div>

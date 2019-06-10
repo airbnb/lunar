@@ -22,15 +22,7 @@ export type Props = ModalImageConfig & {
 
 class ModalImageLayout extends React.Component<Props & WithStylesProps> {
   render() {
-    const {
-      cx,
-      children,
-      sizes,
-      srcSet,
-      type,
-      url,
-      styles,
-    } = this.props;
+    const { cx, children, sizes, srcSet, type, url, styles } = this.props;
 
     return (
       <div className={cx(styles.splitContent)}>
@@ -42,14 +34,16 @@ class ModalImageLayout extends React.Component<Props & WithStylesProps> {
               src={url}
               srcSet={srcSet && srcSet.join(',')}
               sizes={sizes && sizes.join(',')}
-              alt="" />
+              alt=""
+            />
           )}
           {type === 'cover' && (
             <img
               className={cx(styles.image, styles.imageCover)}
               src={url}
               srcSet={srcSet && srcSet.join(',')}
-              alt="" />
+              alt=""
+            />
           )}
         </div>
       </div>

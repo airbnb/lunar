@@ -13,10 +13,7 @@ export type Props = {
 /** A separator between menu items. */
 export class MenuSeparator extends React.Component<Props & WithStylesProps> {
   render() {
-    const {
-      cx,
-      styles,
-    } = this.props;
+    const { cx, styles } = this.props;
 
     return (
       <li role="separator">

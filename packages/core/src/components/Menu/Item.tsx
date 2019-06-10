@@ -115,7 +115,8 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
             (showSubmenu || highlighted) && styles.item_highlighted,
             disabled && styles.item_disabled,
             spacious && styles.item_spacious,
-          )}>
+          )}
+        >
           {children}
         </ButtonOrLink>
 

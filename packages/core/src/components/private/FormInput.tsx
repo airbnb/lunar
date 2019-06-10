@@ -100,7 +100,7 @@ class FormInput extends React.Component<PrivateProps> {
       propagateRef,
       styles,
       tagName: Tag,
-      ...restProps,
+      ...restProps
     } = this.props;
     const isSelect = Tag === 'select';
     const props: any = {

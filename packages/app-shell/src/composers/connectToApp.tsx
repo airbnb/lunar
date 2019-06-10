@@ -71,14 +71,14 @@ export default function connectToApp(scope: string) /* infer */ {
       render() {
         const { app, ...props } = this.props;
 
-        return <WrappedComponent {...props as any} ref={this.instanceRef} />;
+        return <WrappedComponent {...(props as any)} ref={this.instanceRef} />;
       }
     }
 
     function ConnectToAppWrapper(props: Props) {
       return (
         <AppContext.Consumer>
-          {app => app && <ConnectToApp {...props as any} app={app} />}
+          {app => app && <ConnectToApp {...(props as any)} app={app} />}
         </AppContext.Consumer>
       );
     }

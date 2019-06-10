@@ -49,7 +49,8 @@ export class Menu extends React.Component<Props & WithStylesProps> {
           styles.menu,
           { maxHeight: scrollable ? maxHeight : 'auto', minWidth },
           scrollable && styles.menu_scrollable,
-        )}>
+        )}
+      >
         {children}
       </ul>
     );

@@ -72,12 +72,7 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      styles,
-      disableAutoFocus,
-      ...props,
-    } = this.props;
+    const { cx, styles, disableAutoFocus, ...props } = this.props;
     const classNames = {
       picker: css(styles.picker).className,
       emoji: css(styles.emoji).className,

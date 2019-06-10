@@ -125,7 +125,8 @@ export class FormField extends React.Component<PrivateProps> {
           inline && !renderBeforeLabel && styles.input_afterInline,
           hideLabel && styles.input_hideLabel,
           renderFullWidth && styles.input_fullWidth,
-        )}>
+        )}
+      >
         {prefix && <div className={cx(styles.affix)}>{prefix}</div>}
 
         <div className={cx(styles.anchor)}>{children}</div>
@@ -140,9 +141,9 @@ export class FormField extends React.Component<PrivateProps> {
           styles.field,
           (compact || compactSpacing) && !noSpacing && styles.field_compactSpacing,
           noSpacing && styles.field_noSpacing,
-        )}>
-        <div
-          className={cx(inline && styles.content_inline, topAlign && styles.content_topAlign)}>
+        )}
+      >
+        <div className={cx(inline && styles.content_inline, topAlign && styles.content_topAlign)}>
           {renderBeforeLabel && content}
 
           <label
@@ -152,7 +153,8 @@ export class FormField extends React.Component<PrivateProps> {
               stretchLabel && styles.label_stretch,
               hideLabel && styles.label_hidden,
               (inline || renderBeforeLabel) && styles.label_noSpacing,
-            )}>
+            )}
+          >
             <StatusText danger={invalid} muted={disabled} small={compact} bold={!renderLargeLabel}>
               {label}
 

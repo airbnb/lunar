@@ -99,13 +99,20 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
 
     return (
       <aside
-        className={cx(styles.pane, // descriptions are always nested
-        styles.pane_nested, !verticallyAlign && styles.pane_verticallyOffset, styles.aside, { width })}>
+        className={cx(
+          styles.pane, // descriptions are always nested
+          styles.pane_nested,
+          !verticallyAlign && styles.pane_verticallyOffset,
+          styles.aside,
+          { width },
+        )}
+      >
         <button
           className={cx(styles.asideButton)}
           onClick={() => onItemPicked([...parents, item.name])}
           tabIndex={-1}
-          type="button">
+          type="button"
+        >
           <ItemDescription item={item} />
         </button>
       </aside>
@@ -128,87 +135,90 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
     let focusedItem: ItemShape | undefined;
     let currentSection: string | undefined;
 
-    return <>
-      <div
-        key="list"
-        className={cx(
-          styles.pane,
-          verticallyAlign && styles.pane_verticallyAlign,
-          isNested && styles.pane_nested,
-          isNested && !verticallyAlign && styles.pane_verticallyOffset,
-          {
-            width,
-            maxHeight: verticallyAlign ? maxHeight : undefined,
-            zIndex: 1,
-          },
-        )}
-        ref={this.ref}>
-        <ul className={cx(styles.list)}>
-          {items.map((item, index) => {
-            const { name, section } = item;
-            const definition = parents.concat(name);
-            const isFocused = name === focusName;
-            const shouldRenderSection = typeof section === 'string' && section !== currentSection;
+    return (
+      <>
+        <div
+          key="list"
+          className={cx(
+            styles.pane,
+            verticallyAlign && styles.pane_verticallyAlign,
+            isNested && styles.pane_nested,
+            isNested && !verticallyAlign && styles.pane_verticallyOffset,
+            {
+              width,
+              maxHeight: verticallyAlign ? maxHeight : undefined,
+              zIndex: 1,
+            },
+          )}
+          ref={this.ref}
+        >
+          <ul className={cx(styles.list)}>
+            {items.map((item, index) => {
+              const { name, section } = item;
+              const definition = parents.concat(name);
+              const isFocused = name === focusName;
+              const shouldRenderSection = typeof section === 'string' && section !== currentSection;
 
-            focusedItem = verticallyAlign && isFocused ? item : focusedItem;
-            currentSection = shouldRenderSection ? section : currentSection;
+              focusedItem = verticallyAlign && isFocused ? item : focusedItem;
+              currentSection = shouldRenderSection ? section : currentSection;
 
-            return (
-              <React.Fragment key={item.name}>
-                {shouldRenderSection && index > 0 ? <li className={cx(styles.divider)} /> : null}
+              return (
+                <React.Fragment key={item.name}>
+                  {shouldRenderSection && index > 0 ? <li className={cx(styles.divider)} /> : null}
 
-                {shouldRenderSection && section ? (
-                  <li className={cx(styles.sectionHeader)}>
-                    <Text small bold uppercased>
-                      {section}
-                    </Text>
-                  </li>
-                ) : null}
+                  {shouldRenderSection && section ? (
+                    <li className={cx(styles.sectionHeader)}>
+                      <Text small bold uppercased>
+                        {section}
+                      </Text>
+                    </li>
+                  ) : null}
 
-                <li className={cx(styles.row)}>
-                  <HierarchyItem
-                    {...passThruProps}
-                    onDomFocusDeeper={this.handleDomFocusDeeper}
-                    onDomFocusShallower={this.handleDomFocusShallower}
-                    item={item}
-                    definition={definition}
-                    selected={this.isChosen(definition)}
-                    focused={isFocused}
-                  />
-
-                  {!verticallyAlign && isFocused && item.items && item.items.length > 0 ? (
-                    <HierarchyList
+                  <li className={cx(styles.row)}>
+                    <HierarchyItem
                       {...passThruProps}
-                      styles={styles}
-                      items={item.items!}
-                      focus={focusRest}
-                      parents={parents.concat(item.name)}
-                      verticallyAlign={false}
+                      onDomFocusDeeper={this.handleDomFocusDeeper}
+                      onDomFocusShallower={this.handleDomFocusShallower}
+                      item={item}
+                      definition={definition}
+                      selected={this.isChosen(definition)}
+                      focused={isFocused}
                     />
-                  ) : (
-                    !verticallyAlign && isFocused && this.renderAside(item)
-                  )}
-                </li>
-              </React.Fragment>
-            );
-          })}
-        </ul>
-      </div>
 
-      {verticallyAlign && focusedItem && focusedItem!.items && focusedItem.items.length > 0 ? (
-        <HierarchyList
-          key="sub-list"
-          {...passThruProps}
-          styles={styles}
-          items={focusedItem!.items}
-          focus={focusRest}
-          parents={parents.concat(focusedItem!.name)}
-          verticallyAlign
-        />
-      ) : (
-        verticallyAlign && focusedItem && this.renderAside(focusedItem)
-      )}
-    </>;
+                    {!verticallyAlign && isFocused && item.items && item.items.length > 0 ? (
+                      <HierarchyList
+                        {...passThruProps}
+                        styles={styles}
+                        items={item.items!}
+                        focus={focusRest}
+                        parents={parents.concat(item.name)}
+                        verticallyAlign={false}
+                      />
+                    ) : (
+                      !verticallyAlign && isFocused && this.renderAside(item)
+                    )}
+                  </li>
+                </React.Fragment>
+              );
+            })}
+          </ul>
+        </div>
+
+        {verticallyAlign && focusedItem && focusedItem!.items && focusedItem.items.length > 0 ? (
+          <HierarchyList
+            key="sub-list"
+            {...passThruProps}
+            styles={styles}
+            items={focusedItem!.items}
+            focus={focusRest}
+            parents={parents.concat(focusedItem!.name)}
+            verticallyAlign
+          />
+        ) : (
+          verticallyAlign && focusedItem && this.renderAside(focusedItem)
+        )}
+      </>
+    );
   }
 }
 

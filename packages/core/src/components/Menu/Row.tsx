@@ -15,12 +15,7 @@ export class MenuRow extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      children,
-      spacious,
-      styles,
-    } = this.props;
+    const { cx, children, spacious, styles } = this.props;
 
     return (
       <li role="none">

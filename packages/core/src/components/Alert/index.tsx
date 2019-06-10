@@ -110,7 +110,8 @@ export class Alert extends React.Component<Props & WithStylesProps> {
           notice && styles.alert_notice,
           success && styles.alert_success,
           warning && styles.alert_warning,
-        )}>
+        )}
+      >
         <Row
           middleAlign={!children}
           after={

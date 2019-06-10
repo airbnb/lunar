@@ -29,11 +29,7 @@ export class Modal extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      styles,
-      ...otherProps,
-    } = this.props;
+    const { cx, styles, ...otherProps } = this.props;
 
     return (
       <Portal>

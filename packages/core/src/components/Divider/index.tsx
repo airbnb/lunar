@@ -17,12 +17,7 @@ export class Divider extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      styles,
-      bottom,
-      top,
-    } = this.props;
+    const { cx, styles, bottom, top } = this.props;
 
     return (
       <Spacing bottom={bottom} top={top}>

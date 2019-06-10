@@ -9,13 +9,7 @@ export type Props = Required<AsideProps> &
 /** A symmetrical two-column layout with optional top and side navigation. */
 export class SplitLayout extends React.Component<Props & WithStylesProps> {
   render() {
-    const {
-      cx,
-      before,
-      after,
-      styles,
-      ...props,
-    } = this.props;
+    const { cx, before, after, styles, ...props } = this.props;
 
     return (
       <Layout {...props} noBackground noPadding>

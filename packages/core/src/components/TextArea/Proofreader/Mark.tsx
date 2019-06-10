@@ -27,17 +27,10 @@ class Mark extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      children,
-      selected,
-      styles,
-    } = this.props;
+    const { cx, children, selected, styles } = this.props;
 
     return (
-      <mark
-        className={cx(styles.mark, selected && styles.mark_selected)}
-        ref={this.ref}>
+      <mark className={cx(styles.mark, selected && styles.mark_selected)} ref={this.ref}>
         {children}
       </mark>
     );

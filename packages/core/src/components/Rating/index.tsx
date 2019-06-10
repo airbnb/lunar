@@ -38,16 +38,7 @@ export class Rating extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      large,
-      micro,
-      rating = 0,
-      reviews,
-      small,
-      styles,
-      theme,
-    } = this.props;
+    const { cx, large, micro, rating = 0, reviews, small, styles, theme } = this.props;
 
     return (
       <Text large={large} micro={micro} small={small}>
@@ -57,7 +48,8 @@ export class Rating extends React.Component<Props & WithStylesProps> {
             large && styles.ratingContainer_large,
             micro && styles.ratingContainer_micro,
             small && styles.ratingContainer_small,
-          )}>
+          )}
+        >
           {STARS.map((star, index) => {
             const key = `star-${index}`;
             const color =

@@ -244,7 +244,7 @@ export default function connectToForm(options: Options = {}) /* infer */ {
     function ConnectToFormWrapper(props: OwnProps) {
       return (
         <FormContext.Consumer>
-          {form => form && <ConnectToForm {...props as any} form={form} />}
+          {form => form && <ConnectToForm {...(props as any)} form={form} />}
         </FormContext.Consumer>
       );
     }

@@ -40,7 +40,7 @@ export class TableCell extends React.Component<Props & WithStylesProps> {
       styles,
       truncate,
       wrap,
-      ...props,
+      ...props
     } = this.props;
     const Tag = header ? 'th' : 'td';
 

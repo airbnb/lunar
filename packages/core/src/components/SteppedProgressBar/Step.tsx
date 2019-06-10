@@ -24,14 +24,7 @@ export class Step extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      complete,
-      first,
-      last,
-      label,
-      styles,
-    } = this.props;
+    const { cx, complete, first, last, label, styles } = this.props;
     const bar = (
       <ProgressBar
         leading={first || (!first && !last)}
@@ -40,7 +33,11 @@ export class Step extends React.Component<Props & WithStylesProps> {
       />
     );
 
-    return <div className={cx(styles.step)}>{label ? <Tooltip content={label}>{bar}</Tooltip> : bar}</div>;
+    return (
+      <div className={cx(styles.step)}>
+        {label ? <Tooltip content={label}>{bar}</Tooltip> : bar}
+      </div>
+    );
   }
 }
 

@@ -10,11 +10,7 @@ export type Props = {
 
 export class ItemDescription extends React.Component<Props & WithStylesProps> {
   render() {
-    const {
-      cx,
-      item,
-      styles,
-    } = this.props;
+    const { cx, item, styles } = this.props;
 
     return (
       <div>

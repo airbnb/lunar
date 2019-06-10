@@ -72,7 +72,8 @@ export class Grid extends React.Component<Props & WithStylesProps> {
           startAlign && styles.grid_start,
           endAlign && styles.grid_end,
           centerAlign && styles.grid_center,
-        )}>
+        )}
+      >
         {children}
       </section>
     );

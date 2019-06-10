@@ -37,16 +37,7 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      bordered,
-      children,
-      expanded,
-      id,
-      styles,
-      theme,
-      title,
-    } = this.props;
+    const { cx, bordered, children, expanded, id, styles, theme, title } = this.props;
 
     return (
       <div className={cx(styles.item, bordered && styles.item_bordered)}>
@@ -58,7 +49,8 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
           onClick={this.handleClick}
           role="tab"
           tabIndex={0}
-          type="button">
+          type="button"
+        >
           {title && <span className={cx(styles.titleText)}>{title}</span>}
 
           {expanded ? (
@@ -73,7 +65,8 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
           aria-hidden={!expanded}
           aria-labelledby={`accordion-title-${id}`}
           id={`accordion-body-${id}`}
-          role="tabpanel">
+          role="tabpanel"
+        >
           {children}
         </section>
       </div>

@@ -22,11 +22,7 @@ export class SheetArea extends React.Component<Props & WithStylesProps, State> {
   };
 
   render() {
-    const {
-      cx,
-      styles,
-      children,
-    } = this.props;
+    const { cx, styles, children } = this.props;
     const { visible } = this.state;
 
     return (

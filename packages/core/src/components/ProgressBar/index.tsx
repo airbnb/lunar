@@ -23,13 +23,7 @@ export class ProgressBar extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      percent,
-      leading,
-      trailing,
-      styles,
-    } = this.props;
+    const { cx, percent, leading, trailing, styles } = this.props;
 
     return (
       <div className={cx(styles.wrapper)}>
@@ -38,7 +32,8 @@ export class ProgressBar extends React.Component<Props & WithStylesProps> {
             styles.bar,
             !leading && styles.bar_leading,
             !trailing && styles.bar_trailing,
-          )}>
+          )}
+        >
           <div
             className={cx(
               styles.bar,
@@ -46,7 +41,8 @@ export class ProgressBar extends React.Component<Props & WithStylesProps> {
               !trailing && styles.bar_trailing,
               styles.progress,
             )}
-            style={{ width: `${percent}%` }} />
+            style={{ width: `${percent}%` }}
+          />
         </div>
       </div>
     );

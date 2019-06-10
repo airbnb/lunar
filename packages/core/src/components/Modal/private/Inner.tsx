@@ -66,15 +66,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      children,
-      footer,
-      image,
-      large,
-      styles,
-      title,
-    } = this.props;
+    const { cx, children, footer, image, large, styles, title } = this.props;
     const showLargeContent = large || !!image;
 
     const innerContent = (
@@ -93,7 +85,8 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
         aria-modal
         role="dialog"
         ref={this.dialogRef}
-        className={cx(styles.content, showLargeContent && styles.responsiveContent)}>
+        className={cx(styles.content, showLargeContent && styles.responsiveContent)}
+      >
         <FocusTrap>
           {image ? <ModalImageLayout {...image}>{innerContent}</ModalImageLayout> : innerContent}
         </FocusTrap>

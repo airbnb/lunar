@@ -164,7 +164,7 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
       noResultsLabel,
       searchPlaceholder,
       styles,
-      ...passThruProps,
+      ...passThruProps
     } = this.props;
     const { chosen } = passThruProps;
     const { open } = this.state;

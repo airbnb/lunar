@@ -202,20 +202,23 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
           !gap && animating && styles.sheet_animating,
           !gap && animating && !visible && styles.sheet_out,
           !gap && animating && visible && styles.sheet_in,
-        )}>
+        )}
+      >
         <FocusTrap disabled={!portal}>
           <div
             className={cx(
               styles.container,
               gap && styles.container_gap,
               portal && animating && styles.container_animating,
-            )}>
+            )}
+          >
             {gap && (
               <button
                 className={cx(styles.gap)}
                 aria-label={closeText}
                 type="button"
-                onClick={this.handleClose} />
+                onClick={this.handleClose}
+              />
             )}
 
             <div
@@ -227,7 +230,8 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
                 gap && animating && styles.sheet_animating,
                 gap && animating && !visible && styles.sheet_slide_out,
                 gap && animating && visible && styles.sheet_slide_in,
-              )}>
+              )}
+            >
               <div className={cx(headerShadow && styles.headerShadow)}>
                 <Spacing all={compact ? 1 : 4} bottom={0}>
                   <Row middleAlign before={!gap && closeIcon} after={gap && closeIcon}>
@@ -236,7 +240,9 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
                 </Spacing>
               </div>
 
-              <div className={cx(styles.content, compact && styles.content_compact)}>{children}</div>
+              <div className={cx(styles.content, compact && styles.content_compact)}>
+                {children}
+              </div>
             </div>
           </div>
         </FocusTrap>

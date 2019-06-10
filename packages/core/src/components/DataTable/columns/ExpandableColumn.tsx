@@ -25,7 +25,8 @@ export default function renderExpandableColumn(
           role="button"
           tabIndex={0}
           onClick={expandRow(originalIndex)}
-          onKeyPress={expandRow(originalIndex)}>
+          onKeyPress={expandRow(originalIndex)}
+        >
           <Spacing left={1.5}>
             <Chevron decorative size="1.6em" />
           </Spacing>

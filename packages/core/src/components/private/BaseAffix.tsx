@@ -41,7 +41,8 @@ export default class BaseAffix extends React.PureComponent<Props & WithStylesPro
           before && styles.affix_before,
           after && styles.affix_after,
           disabled && styles.affix_disabled,
-        )}>
+        )}
+      >
         {children}
       </div>
     );

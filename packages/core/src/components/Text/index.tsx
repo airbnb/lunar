@@ -137,7 +137,8 @@ export class Text extends React.Component<Props & WithStylesProps> {
           endAlign && styles.text_end,
           startAlign && styles.text_start,
           noWrap && styles.text_noWrap,
-        )}>
+        )}
+      >
         {children}
       </Tag>
     );

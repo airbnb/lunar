@@ -206,7 +206,8 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
                 type="button"
                 title={imageDescription || title}
                 onClick={onClickImage}
-                onMouseUp={removeFocusOnMouseUp}>
+                onMouseUp={removeFocusOnMouseUp}
+              >
                 {avatar}
               </button>
             ) : (
@@ -223,7 +224,8 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
                     type="button"
                     title={titleClickDescription || title}
                     onClick={onClickTitle}
-                    onMouseUp={removeFocusOnMouseUp}>
+                    onMouseUp={removeFocusOnMouseUp}
+                  >
                     <Text inline bold>
                       {formatedTitle}
                     </Text>

@@ -67,7 +67,8 @@ class Breadcrumb extends React.Component<Props & WithStylesProps> {
         afterIcon={hideIcon ? null : <IconChevronRight decorative size={24} />}
         disabled={disabled}
         href={href}
-        onClick={this.handleClick}>
+        onClick={this.handleClick}
+      >
         {label}
       </ButtonOrLink>
     );

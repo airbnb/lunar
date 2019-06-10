@@ -31,16 +31,7 @@ export class IconButton extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      children,
-      active,
-      disabled,
-      inverted,
-      tooltip,
-      styles,
-      ...restProps,
-    } = this.props;
+    const { cx, children, active, disabled, inverted, tooltip, styles, ...restProps } = this.props;
     const button = (
       <ButtonOrLink
         {...restProps}

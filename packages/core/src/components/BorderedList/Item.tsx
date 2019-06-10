@@ -25,13 +25,7 @@ export class BorderedListItem extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      children,
-      compact,
-      spacious,
-      styles,
-    } = this.props;
+    const { cx, children, compact, spacious, styles } = this.props;
 
     return (
       <li
@@ -39,7 +33,8 @@ export class BorderedListItem extends React.Component<Props & WithStylesProps> {
           styles.item,
           compact && styles.item_compact,
           spacious && styles.item_spacious,
-        )}>
+        )}
+      >
         {children}
       </li>
     );

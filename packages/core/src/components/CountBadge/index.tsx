@@ -42,13 +42,7 @@ export class CountBadge extends React.Component<Props & WithStylesProps> {
   }
 
   render() {
-    const {
-      cx,
-      accessibilityLabel,
-      styles,
-      value,
-      waggle,
-    } = this.props;
+    const { cx, accessibilityLabel, styles, value, waggle } = this.props;
 
     if (!value) {
       return null;
@@ -58,7 +52,8 @@ export class CountBadge extends React.Component<Props & WithStylesProps> {
       <div
         className={cx(styles.badge, waggle ? styles.animateInAndWaggle : styles.animateIn)}
         ref={this.badgeRef}
-        aria-label={accessibilityLabel}>
+        aria-label={accessibilityLabel}
+      >
         {value.toLocaleString()}
       </div>
     );

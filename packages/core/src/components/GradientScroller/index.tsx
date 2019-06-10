@@ -209,55 +209,52 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
   };
 
   render() {
-    const {
-      cx,
-      children,
-      styles,
-      hideScrollbar,
-      showArrows,
-    } = this.props;
+    const { cx, children, styles, hideScrollbar, showArrows } = this.props;
     const { showStartGradient, showEndGradient } = this.state;
 
     return (
       <div className={cx(styles.container)}>
-        <div
-          className={cx(styles.leftGradient, showStartGradient && styles.gradient_reveal)}>
+        <div className={cx(styles.leftGradient, showStartGradient && styles.gradient_reveal)}>
           {showArrows ? (
             <button
               className={cx(styles.leftArrow, hideScrollbar && styles.arrow_hideScrollbar)}
               type="button"
-              onClick={this.handleScrollLeft}>
+              onClick={this.handleScrollLeft}
+            >
               <IconChevronLeft decorative size="2em" />
             </button>
           ) : (
             <span
               className={cx(styles.scrollTrigger)}
               onMouseEnter={this.handleScrollLeft}
-              onMouseLeave={this.handleScrollStop} />
+              onMouseLeave={this.handleScrollStop}
+            />
           )}
         </div>
 
-        <div
-          className={cx(styles.rightGradient, showEndGradient && styles.gradient_reveal)}>
+        <div className={cx(styles.rightGradient, showEndGradient && styles.gradient_reveal)}>
           {showArrows ? (
             <button
               className={cx(styles.rightArrow, hideScrollbar && styles.arrow_hideScrollbar)}
               type="button"
-              onClick={this.handleScrollRight}>
+              onClick={this.handleScrollRight}
+            >
               <IconChevronRight decorative size="2em" />
             </button>
           ) : (
             <span
               className={cx(styles.scrollTrigger)}
               onMouseEnter={this.handleScrollRight}
-              onMouseLeave={this.handleScrollStop} />
+              onMouseLeave={this.handleScrollStop}
+            />
           )}
         </div>
 
         <div
           className={cx(styles.scroller, hideScrollbar && styles.scroller_hideScrollbar)}
           ref={this.handleScrollerRef}
-          onScroll={this.handleScrollThrottled}>
+          onScroll={this.handleScrollThrottled}
+        >
           <div className={cx(styles.contents)} ref={this.handleContentsRef}>
             {children}
           </div>

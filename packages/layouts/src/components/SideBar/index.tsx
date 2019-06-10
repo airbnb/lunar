@@ -17,19 +17,11 @@ export class SideBar extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      accessibilityLabel,
-      children,
-      styles,
-    } = this.props;
+    const { cx, accessibilityLabel, children, styles } = this.props;
 
     return (
       <nav className={cx(styles.bar)}>
-        <ul
-          role="menubar"
-          aria-label={accessibilityLabel}
-          className={cx(styles.list)}>
+        <ul role="menubar" aria-label={accessibilityLabel} className={cx(styles.list)}>
           {children}
         </ul>
       </nav>

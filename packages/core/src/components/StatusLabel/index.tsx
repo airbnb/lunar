@@ -106,7 +106,8 @@ export class StatusLabel extends React.Component<Props & WithStylesProps> {
           warning && (inverted ? styles.label_inverted_warning : styles.label_warning),
           luxury && (inverted ? styles.label_inverted_luxury : styles.label_luxury),
           plus && (inverted ? styles.label_inverted_plus : styles.label_plus),
-        )}>
+        )}
+      >
         {beforeIcon && <IconAffix before>{beforeIcon}</IconAffix>}
 
         <span>{children}</span>

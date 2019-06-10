@@ -63,8 +63,11 @@ export class Row extends React.Component<Props & WithStylesProps> {
           middleAlign && styles.row_middleAlign,
           baseline && styles.row_baseline,
           topline && styles.row_topline,
-        )}>
-        {before && <div className={cx(compact ? styles.before_compact : styles.before)}>{before}</div>}
+        )}
+      >
+        {before && (
+          <div className={cx(compact ? styles.before_compact : styles.before)}>{before}</div>
+        )}
 
         <div className={cx(styles.primary, truncated && styles.primary_truncated)}>{children}</div>
 

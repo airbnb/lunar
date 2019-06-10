@@ -59,7 +59,9 @@ export class Layout extends React.Component<Props & AsideProps & WithStylesProps
         {sideBar && <aside className={cx(styles.aside)}>{sideBar}</aside>}
 
         {before && (
-          <aside className={cx(styles.aside, styles.aside_before, { width: asideWidth })}>{before}</aside>
+          <aside className={cx(styles.aside, styles.aside_before, { width: asideWidth })}>
+            {before}
+          </aside>
         )}
 
         <main
@@ -68,12 +70,15 @@ export class Layout extends React.Component<Props & AsideProps & WithStylesProps
             styles.main,
             noBackground && styles.main_noBackground,
             noPadding && styles.main_noPadding,
-          )}>
+          )}
+        >
           <div className={cx(!fluid && styles.mainContent)}>{children}</div>
         </main>
 
         {after && (
-          <aside className={cx(styles.aside, styles.aside_after, { width: asideWidth })}>{after}</aside>
+          <aside className={cx(styles.aside, styles.aside_after, { width: asideWidth })}>
+            {after}
+          </aside>
         )}
       </div>
     );

@@ -581,15 +581,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   }
 
   render() {
-    const {
-      cx,
-      children,
-      styles,
-      onCheckText,
-      theme,
-      important,
-      ...props,
-    } = this.props;
+    const { cx, children, styles, onCheckText, theme, important, ...props } = this.props;
     const {
       position,
       errors,
@@ -778,9 +770,7 @@ export default withStyles(
           right: 0,
           height: 1,
           position: 'absolute',
-          background: `linear-gradient(to right, ${theme.color.accent.border}, ${
-            theme.color.base
-          })`,
+          background: `linear-gradient(to right, ${theme.color.accent.border}, ${theme.color.base})`,
         },
       },
 

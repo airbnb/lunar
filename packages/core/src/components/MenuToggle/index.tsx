@@ -168,7 +168,8 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
 
         <div
           className={cx(styles.dropdown, !opened && styles.dropdown_hidden, { zIndex })}
-          aria-expanded={opened}>
+          aria-expanded={opened}
+        >
           <Dropdown {...dropdownProps} onClickOutside={this.handleClickOutside} visible={opened}>
             <div className={cx(styles.menu)}>
               <Menu

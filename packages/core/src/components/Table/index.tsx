@@ -72,7 +72,8 @@ export class Table extends React.Component<Props & WithStylesProps> {
             striped && styles.table_striped,
             loading && styles.table_loading,
             transparent && styles.table_transparent,
-          )}>
+          )}
+        >
           {children}
         </table>
       </div>

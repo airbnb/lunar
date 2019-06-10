@@ -54,7 +54,7 @@ export class Button extends React.Component<Props & WithStylesProps> {
       loading,
       small,
       styles,
-      ...restProps,
+      ...restProps
     } = this.props;
 
     return (

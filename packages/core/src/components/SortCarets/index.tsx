@@ -26,38 +26,41 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
   renderCaretUp() {
     const { down, up, enableUp, styles } = this.props;
 
-    return up && (
-      <span
-        className={cx(
-          down && styles.caret_up,
-          styles.caret,
-          enableUp ? styles.caret_active : styles.caret_inactive,
-        )}>
-        <IconCaretUp decorative size="2em" />
-      </span>
+    return (
+      up && (
+        <span
+          className={cx(
+            down && styles.caret_up,
+            styles.caret,
+            enableUp ? styles.caret_active : styles.caret_inactive,
+          )}
+        >
+          <IconCaretUp decorative size="2em" />
+        </span>
+      )
     );
   }
 
   renderCaretDown() {
     const { down, up, enableDown, styles } = this.props;
 
-    return down && (
-      <span
-        className={cx(
-          up && styles.caret_down,
-          styles.caret,
-          enableDown ? styles.caret_active : styles.caret_inactive,
-        )}>
-        <IconCaretDown decorative size="2em" />
-      </span>
+    return (
+      down && (
+        <span
+          className={cx(
+            up && styles.caret_down,
+            styles.caret,
+            enableDown ? styles.caret_active : styles.caret_inactive,
+          )}
+        >
+          <IconCaretDown decorative size="2em" />
+        </span>
+      )
     );
   }
 
   render() {
-    const {
-      cx,
-      styles,
-    } = this.props;
+    const { cx, styles } = this.props;
 
     return (
       <span className={cx(styles.caret_container)}>

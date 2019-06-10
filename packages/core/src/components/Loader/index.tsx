@@ -22,14 +22,7 @@ export class Loader extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      styles,
-      inline,
-      inverted,
-      large,
-      static: isStatic,
-    } = this.props;
+    const { cx, styles, inline, inverted, large, static: isStatic } = this.props;
 
     return (
       <div
@@ -37,7 +30,8 @@ export class Loader extends React.Component<Props & WithStylesProps> {
           styles.loader,
           inline && styles.loader_inline,
           !isStatic && !inline && styles.loader_absolute,
-        )}>
+        )}
+      >
         {[1, 2, 3].map(no => (
           <span
             key={no}
@@ -46,7 +40,8 @@ export class Loader extends React.Component<Props & WithStylesProps> {
               styles[`dot_${no}`],
               large && styles.dot_large,
               inverted && styles.dot_inverted,
-            )} />
+            )}
+          />
         ))}
       </div>
     );

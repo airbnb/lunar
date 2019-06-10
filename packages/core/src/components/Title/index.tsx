@@ -72,7 +72,8 @@ export class Title extends React.Component<Props & WithStylesProps> {
           primary && styles.title_primary,
           centerAlign && styles.title_center,
           endAlign && styles.title_right,
-        )}>
+        )}
+      >
         {children}
       </Tag>
     );

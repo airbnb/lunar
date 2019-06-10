@@ -23,15 +23,7 @@ class BaseSwitch extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const {
-      cx,
-      checked,
-      disabled,
-      id,
-      invalid,
-      styles,
-      ...restProps,
-    } = this.props;
+    const { cx, checked, disabled, id, invalid, styles, ...restProps } = this.props;
 
     return (
       <label htmlFor={id} {...css(styles.switch)}>

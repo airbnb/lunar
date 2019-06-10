@@ -184,7 +184,8 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
           onMouseEnter={this.handleEnter}
           onMouseLeave={this.handleClose}
           onMouseDown={this.handleMouseDown}
-          className={cx(!disabled && underlined && styles.underlined)}>
+          className={cx(!disabled && underlined && styles.underlined)}
+        >
           {children}
         </div>
 
@@ -201,7 +202,8 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
               marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
               textAlign: align,
             })}
-            ref={this.handleTooltipRef}>
+            ref={this.handleTooltipRef}
+          >
             <div className={cx(styles.shadow)}>
               <NotchedBox
                 inverted={!inverted}

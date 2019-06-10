@@ -144,7 +144,8 @@ export class ResponsiveImage extends React.Component<Props & WithStylesProps, St
         src={src}
         width="100%"
         height="auto"
-        alt={alt} />
+        alt={alt}
+      />
     );
   }
 }

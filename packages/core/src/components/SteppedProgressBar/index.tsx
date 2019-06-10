@@ -15,11 +15,7 @@ export class SteppedProgressBar extends React.Component<Props & WithStylesProps>
   };
 
   render() {
-    const {
-      cx,
-      children,
-      styles,
-    } = this.props;
+    const { cx, children, styles } = this.props;
     const steps = React.Children.count(children);
 
     return (

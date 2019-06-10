@@ -54,7 +54,7 @@ export class StatusText extends React.Component<Props & WithStylesProps> {
       styles,
       success,
       warning,
-      ...restProps,
+      ...restProps
     } = this.props;
 
     return (
