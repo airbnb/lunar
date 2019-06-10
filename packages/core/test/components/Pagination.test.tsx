@@ -91,10 +91,7 @@ describe('<Pagination />', () => {
 
       const wrapper = shallow(
         <Pagination {...request} onNext={noop} onPrevious={noop} pageLabel="Photo" />,
-      )
-        .dive() // withStyles;
-        .dive() // Row
-        .dive();
+      ).dive();
 
       expect(wrapper.find(T).prop('pageLabel')).toBe('Photo');
     });
