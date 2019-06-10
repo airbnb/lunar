@@ -67,7 +67,7 @@ const columnToLabel = {
   tenureDays: (
     <span>
       ICON IN HEADER
-      <IconStar inline />
+      <IconStar decorative inline />
     </span>
   ),
 };

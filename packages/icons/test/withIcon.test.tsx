@@ -16,7 +16,7 @@ describe('withIcon()', () => {
 
   it('passes through props', () => {
     const Hoc = withIcon('IconTest')(Foo);
-    const wrapper = shallow(<Hoc inline size={16} color="white" />);
+    const wrapper = shallow(<Hoc decorative inline size={16} color="white" />);
     const style: React.CSSProperties = wrapper.find(Foo).prop('style');
 
     expect(style.width).toBe(16);
@@ -28,7 +28,7 @@ describe('withIcon()', () => {
 
   it('flips horizontally', () => {
     const Hoc = withIcon('IconTest')(Foo);
-    const wrapper = shallow(<Hoc flip />);
+    const wrapper = shallow(<Hoc decorative flip />);
     const style: React.CSSProperties = wrapper.find(Foo).prop('style');
 
     expect(style.transform).toBe('scale(-1, 1)');
@@ -36,7 +36,7 @@ describe('withIcon()', () => {
 
   it('flips vertically', () => {
     const Hoc = withIcon('IconTest')(Foo);
-    const wrapper = shallow(<Hoc flipVertical />);
+    const wrapper = shallow(<Hoc decorative flipVertical />);
     const style: React.CSSProperties = wrapper.find(Foo).prop('style');
 
     expect(style.transform).toBe('scale(1, -1)');
@@ -44,7 +44,7 @@ describe('withIcon()', () => {
 
   it('flips horizontally & vertically', () => {
     const Hoc = withIcon('IconTest')(Foo);
-    const wrapper = shallow(<Hoc flip flipVertical />);
+    const wrapper = shallow(<Hoc decorative flip flipVertical />);
     const style: React.CSSProperties = wrapper.find(Foo).prop('style');
 
     expect(style.transform).toBe('scale(-1, -1)');
@@ -60,5 +60,19 @@ describe('withIcon()', () => {
 
     expect(wrapperWithLabel.find(Foo).prop('role')).toBe('img');
     expect(wrapperWithLabel.find(Foo).prop('aria-label')).toBe('foobar');
+  });
+
+  it('errors when an a11y prop is missing', () => {
+    expect(() => {
+      const Hoc = withIcon('IconTest')(Foo);
+      shallow(<Hoc />);
+    }).toThrowError('Missing `accessibilityLabel` or `decorative` for accessibility.');
+  });
+
+  it('errors when both a11y props are added', () => {
+    expect(() => {
+      const Hoc = withIcon('IconTest')(Foo);
+      shallow(<Hoc decorative accessibilityLabel="foobar" />);
+    }).toThrowError('Only one of `accessibilityLabel` or `decorative` may be used.');
   });
 });

@@ -22,7 +22,7 @@ export class MenuRenderer extends React.Component {
     });
   }
 
-  toggleClick = (event) => {
+  toggleClick = event => {
     event.stopPropagation();
 
     this.setState({
@@ -57,7 +57,7 @@ export class MenuRenderer extends React.Component {
     return (
       <React.Fragment>
         <Button inverted small onClick={this.toggleClick}>
-          <IconMenuDots />
+          <IconMenuDots decorative />
         </Button>
         {menu}
       </React.Fragment>

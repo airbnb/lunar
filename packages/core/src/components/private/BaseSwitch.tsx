@@ -51,7 +51,7 @@ class BaseSwitch extends React.Component<Props & WithStylesProps> {
           <span {...css(styles.toggle, checked && styles.toggle_checked)}>
             {checked && (
               <span {...css(styles.checkmark)}>
-                <IconCheck size="1.5em" decorative />
+                <IconCheck decorative size="1.5em" />
               </span>
             )}
           </span>

@@ -20,13 +20,13 @@ describe('<Chip />', () => {
   });
 
   it('renders an icon if provided', () => {
-    const icon = <IconCheck />;
+    const icon = <IconCheck decorative />;
     const wrapper = shallow(<Chip icon={icon}>Sour Cream and Onion</Chip>).dive();
     expect(wrapper.contains(icon)).toBe(true);
   });
 
   it('renders the icon as a button if `onIconClick` is provided', () => {
-    const icon = <IconCheck />;
+    const icon = <IconCheck decorative />;
     const onClick = () => {};
     const wrapper = shallow(
       <Chip icon={icon} onIconClick={onClick}>
