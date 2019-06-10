@@ -57,7 +57,7 @@ module.exports = function withStylesCx(
   // Find the imported HOC name
   source
     .find(cs.ImportDeclaration)
-    .filter(({ node }) => String(node.source.value).endsWith('withStyles'))
+    .filter(({ node }) => String(node.source.value).endsWith('composers/withStyles'))
     .filter(({ node }) => {
       // Capture imported HOC name
       node.specifiers.forEach(spec => {
