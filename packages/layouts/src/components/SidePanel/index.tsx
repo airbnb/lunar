@@ -1,5 +1,7 @@
 import React from 'react';
 import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import PropTypes from 'prop-types';
+import { mutuallyExclusiveProps } from 'airbnb-prop-types';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import Spacing from '@airbnb/lunar/lib/components/Spacing';
@@ -11,10 +13,10 @@ export type SplitPaneProps = {
   mainPane: React.ReactNode;
   collapsible?: boolean;
   compact?: boolean;
-  minWidth?: string | number;
-  maxWidth?: string | number;
-  fixedWidth?: string | number;
-  percentWidth?: number;
+  minWidth?: mutuallyExclusiveProps(PropTypes.string | PropTypes.number, 'fixedWidth');
+  maxWidth?: mutuallyExclusiveProps(PropTypes.string | PropTypes.number, 'fixedWidth');
+  fixedWidth?: mutuallyExclusiveProps(PropTypes.string | PropTypes.number, 'percentWidth', 'minWidth', 'maxWidth');
+  percentWidth?: mutuallyExclusiveProps(PropTypes.number, 'fixedWidth');;
   iconColor?: string;
   iconClosed?: iconComponent;
   iconOpen?: iconComponent;
