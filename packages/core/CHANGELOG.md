@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.19.0 - 2019-06-11
+
+#### 🚀 Updates
+
+- **[Pagination]** Add arrow startAlign, centerAlign, and endAlign properties (#79) ([a0ac6dd](https://github.com/airbnb/lunar/commit/a0ac6dd)), closes [#79](https://github.com/airbnb/lunar/issues/79)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.18.0 - 2019-06-07
 
 #### 🚀 Updates
