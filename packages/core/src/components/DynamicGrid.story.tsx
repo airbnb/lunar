@@ -33,8 +33,8 @@ storiesOf('Core/DynamicGrid', module)
       <Card>Grid Item</Card>
     </DynamicGrid>
   ))
-  .add('A grid with 4 items per row and compact padding', () => (
-    <DynamicGrid defaultItems={4} padding={1}>
+  .add('A grid with 4 items per row and no padding', () => (
+    <DynamicGrid defaultItems={4} padding={0}>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
