@@ -159,7 +159,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
           context="Showing the current page number and total page count"
         />
       ) : (
-        <T phrase={page} context="Showing the current page number" />
+        page
       );
 
     if (pageLabel) {
