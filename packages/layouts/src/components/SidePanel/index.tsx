@@ -6,7 +6,7 @@ import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import Spacing from '@airbnb/lunar/lib/components/Spacing';
 
-import iconComponent from '../../prop-types/iconComponent';
+import iconComponent from '../../../../core/src/prop-types/iconComponent';
 
 export type SplitPaneProps = {
   sidePane: React.ReactNode;
@@ -18,8 +18,8 @@ export type SplitPaneProps = {
   fixedWidth?: string | number;
   percentWidth?: number;
   iconColor?: string;
-  iconClosed?: iconComponent;
-  iconOpen?: iconComponent;
+  iconClosed?: React.ReactNode;
+  iconOpen?: React.ReactNode;
   iconSize?: string;
   buttonTop?: number;
   background?: string;
@@ -33,6 +33,8 @@ export type SplitPaneState = {
 /** A symmetrical two-column layout with optional top and side navigation. */
 class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitPaneState> {
   static propTypes = {
+    iconOpen: iconComponent,
+    iconClosed: iconComponent,
     minWidth: mutuallyExclusiveProps(
       PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       'fixedWidth',
