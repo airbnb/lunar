@@ -73,8 +73,6 @@ class DynamicGrid extends React.PureComponent<Props, State> {
       marginRight: -padding! * theme!.unit,
     };
 
-    console.log(children);
-
     const childElements =
       children &&
       React.Children.map(children, (child: React.ReactNode, idx: number) => (
