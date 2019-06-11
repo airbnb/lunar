@@ -1,5 +1,5 @@
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import React from 'react';
+import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
 
 type State = {
   items: number;
