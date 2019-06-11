@@ -1,6 +1,5 @@
 import { SheetMap } from 'aesthetic';
 import { DayPickerProps } from 'react-day-picker';
-import { create } from 'free-style';
 import { getClassNames, getCustomModifiers } from '../../src/utils/datePicker';
 
 const STYLE: SheetMap<any> = {
@@ -39,12 +38,10 @@ const STYLE: SheetMap<any> = {
   wrapper: { opacity: 0.32 },
 };
 
-const styler = create();
-
 function cx(...styles: any[]): string {
   return styles
     .filter(Boolean)
-    .map(style => styler.registerStyle(style))
+    .map(style => JSON.stringify(style))
     .join('-');
 }
 

@@ -1,6 +1,5 @@
 import { FontFace } from 'aesthetic';
-import TypeStyleAesthetic from 'aesthetic-adapter-typestyle';
-import { TypeStyle } from 'typestyle';
+import AphroditeAesthetic from 'aesthetic-adapter-aphrodite';
 import { Settings as LuxonSettings } from 'luxon';
 import { Path as EmojiPath } from 'interweave-emoji';
 import globalStyles from './themes/global';
@@ -49,7 +48,7 @@ class Core {
     translatorComponent: null,
   };
 
-  aesthetic = new TypeStyleAesthetic<Theme>(new TypeStyle({ autoGenerateTag: true }), {
+  aesthetic = new AphroditeAesthetic<Theme>([], {
     theme: 'light',
     passThemeProp: false,
     pure: true,

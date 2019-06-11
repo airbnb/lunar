@@ -2,32 +2,32 @@
 
 exports[`<GradientScroller /> has the correct default sizing 1`] = `
 <div
-  className="fpgasi7"
+  className="container_96a0ch"
 >
   <div
-    className="ff8e7eo"
+    className="leftGradient_n8tqy6"
   >
     <span
-      className="fk0grf2"
+      className="scrollTrigger_1mfsr54"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     />
   </div>
   <div
-    className="faurr5w"
+    className="rightGradient_18cxrym-o_O-gradient_reveal_18smsgc"
   >
     <span
-      className="fk0grf2"
+      className="scrollTrigger_1mfsr54"
       onMouseEnter={[Function]}
       onMouseLeave={[Function]}
     />
   </div>
   <div
-    className="f139fhiy"
+    className="scroller_cb33bt"
     onScroll={[Function]}
   >
     <div
-      className="fadue9j"
+      className="contents_lrf9wj"
     />
   </div>
 </div>

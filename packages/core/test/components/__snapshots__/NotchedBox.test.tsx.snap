@@ -2,13 +2,13 @@
 
 exports[`<NotchedBox /> can be below 1`] = `
 <div
-  className="fj6qquh"
+  className="box_1pswgv9-o_O-border_1urjdog"
 >
   <div
-    className="fplf5l1"
+    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-notch_below_9egivs-o_O-border_1urjdog"
   />
   <div
-    className="fellj54"
+    className="content_15unt15"
   >
     hello world
   </div>
@@ -17,13 +17,13 @@ exports[`<NotchedBox /> can be below 1`] = `
 
 exports[`<NotchedBox /> can be inline 1`] = `
 <div
-  className="f1d96uqn"
+  className="box_1pswgv9-o_O-border_1urjdog-o_O-box_inline_36rlri"
 >
   <div
-    className="fbyel7x"
+    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-border_1urjdog"
   />
   <div
-    className="fellj54"
+    className="content_15unt15"
   >
     hello world
   </div>
@@ -32,13 +32,13 @@ exports[`<NotchedBox /> can be inline 1`] = `
 
 exports[`<NotchedBox /> can be inverted 1`] = `
 <div
-  className="f1dc9byp"
+  className="box_1pswgv9"
 >
   <div
-    className="f1j8sg7n"
+    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-inverted_1liwe23"
   />
   <div
-    className="f1ye6mfi"
+    className="content_15unt15-o_O-inverted_1liwe23"
   >
     hello world
   </div>
@@ -47,13 +47,13 @@ exports[`<NotchedBox /> can be inverted 1`] = `
 
 exports[`<NotchedBox /> can have a negative offet 1`] = `
 <div
-  className="fj6qquh"
+  className="box_1pswgv9-o_O-border_1urjdog"
 >
   <div
-    className="fja3rry"
+    className="notch_1nwxvyt-o_O-border_1urjdog-o_O-inline-0_14d28p4"
   />
   <div
-    className="fellj54"
+    className="content_15unt15"
   >
     hello world
   </div>
@@ -62,13 +62,13 @@ exports[`<NotchedBox /> can have a negative offet 1`] = `
 
 exports[`<NotchedBox /> can have an offet of 0 1`] = `
 <div
-  className="fj6qquh"
+  className="box_1pswgv9-o_O-border_1urjdog"
 >
   <div
-    className="fbyel7x"
+    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-border_1urjdog"
   />
   <div
-    className="fellj54"
+    className="content_15unt15"
   >
     hello world
   </div>

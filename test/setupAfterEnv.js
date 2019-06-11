@@ -50,6 +50,18 @@ expect.addSnapshotSerializer(
   }),
 );
 
+// APHRODITE
+
+const { StyleSheetTestUtils } = require('aphrodite');
+
+beforeEach(() => {
+  StyleSheetTestUtils.suppressStyleInjection();
+});
+
+afterEach(() => {
+  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
 // LUNAR
 
 const React = require('react');

@@ -9,7 +9,7 @@ exports[`<MenuItem /> renders highlighted 1`] = `
   <ButtonOrLink
     aria-expanded={false}
     aria-haspopup={false}
-    className="f53v9zt"
+    className="item_12t53i1-o_O-item_highlighted_16ovkzb"
     role="menuitem"
     tabIndex={-1}
   >
@@ -27,7 +27,7 @@ exports[`<MenuItem /> renders spacious 1`] = `
   <ButtonOrLink
     aria-expanded={false}
     aria-haspopup={false}
-    className="f16v3qra"
+    className="item_12t53i1-o_O-item_spacious_1x0fg6n"
     role="menuitem"
     tabIndex={-1}
   >

@@ -2,7 +2,7 @@
 
 exports[`<Alert /> renders close button 1`] = `
 <div
-  className="f1wiy088"
+  className="alert_1ypwfdz"
 >
   <Row
     after={
@@ -33,7 +33,7 @@ exports[`<Alert /> renders close button 1`] = `
 
 exports[`<Alert /> renders inline 1`] = `
 <div
-  className="fn214z0"
+  className="alert_1ypwfdz-o_O-alert_inline_36rlri"
 >
   <Row
     before={null}
@@ -50,7 +50,7 @@ exports[`<Alert /> renders inline 1`] = `
 
 exports[`<Alert /> renders statuses renders danger alert 1`] = `
 <div
-  className="fiwda3u"
+  className="alert_1ypwfdz-o_O-alert_statusIcon_l3ubg1-o_O-alert_danger_67ky1g"
 >
   <Row
     before={
@@ -76,7 +76,7 @@ exports[`<Alert /> renders statuses renders danger alert 1`] = `
 
 exports[`<Alert /> renders statuses renders info alert 1`] = `
 <div
-  className="ft01794"
+  className="alert_1ypwfdz-o_O-alert_statusIcon_l3ubg1-o_O-alert_info_1mewzye"
 >
   <Row
     before={
@@ -102,7 +102,7 @@ exports[`<Alert /> renders statuses renders info alert 1`] = `
 
 exports[`<Alert /> renders statuses renders muted alert 1`] = `
 <div
-  className="f1wiy088"
+  className="alert_1ypwfdz"
 >
   <Row
     before={null}
@@ -119,7 +119,7 @@ exports[`<Alert /> renders statuses renders muted alert 1`] = `
 
 exports[`<Alert /> renders statuses renders notice alert 1`] = `
 <div
-  className="fo6sd6j"
+  className="alert_1ypwfdz-o_O-alert_statusIcon_l3ubg1-o_O-alert_notice_uvd2g5"
 >
   <Row
     before={
@@ -145,7 +145,7 @@ exports[`<Alert /> renders statuses renders notice alert 1`] = `
 
 exports[`<Alert /> renders statuses renders success alert 1`] = `
 <div
-  className="f1g4rlhu"
+  className="alert_1ypwfdz-o_O-alert_statusIcon_l3ubg1-o_O-alert_success_1law0a4"
 >
   <Row
     before={
@@ -171,7 +171,7 @@ exports[`<Alert /> renders statuses renders success alert 1`] = `
 
 exports[`<Alert /> renders statuses renders warning alert 1`] = `
 <div
-  className="f1h9buxq"
+  className="alert_1ypwfdz-o_O-alert_statusIcon_l3ubg1-o_O-alert_warning_1hlm3ds"
 >
   <Row
     before={

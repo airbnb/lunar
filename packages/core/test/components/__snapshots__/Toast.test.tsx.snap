@@ -2,7 +2,7 @@
 
 exports[`<Toast /> renders error 1`] = `
 <div
-  className="f15o64d"
+  className="container_ox9dw2-o_O-container_danger_qr3yx7"
 >
   <div>
     <Text
@@ -12,7 +12,7 @@ exports[`<Toast /> renders error 1`] = `
     </Text>
   </div>
   <div
-    className="fxkq7zt"
+    className="right_iqzunz"
   >
     <IconButton
       inverted={true}
@@ -29,7 +29,7 @@ exports[`<Toast /> renders error 1`] = `
 
 exports[`<Toast /> renders message 1`] = `
 <div
-  className="ftv6gm4"
+  className="container_ox9dw2"
 >
   <div>
     <Text
@@ -39,7 +39,7 @@ exports[`<Toast /> renders message 1`] = `
     </Text>
   </div>
   <div
-    className="fxkq7zt"
+    className="right_iqzunz"
   >
     <IconButton
       inverted={true}
@@ -56,7 +56,7 @@ exports[`<Toast /> renders message 1`] = `
 
 exports[`<Toast /> renders refresh 1`] = `
 <div
-  className="ftv6gm4"
+  className="container_ox9dw2"
 >
   <div>
     <Text
@@ -80,7 +80,7 @@ exports[`<Toast /> renders refresh 1`] = `
     </Spacing>
   </div>
   <div
-    className="fxkq7zt"
+    className="right_iqzunz"
   >
     <IconButton
       inverted={true}
@@ -97,7 +97,7 @@ exports[`<Toast /> renders refresh 1`] = `
 
 exports[`<Toast /> sets failed class 1`] = `
 <div
-  className="f15o64d"
+  className="container_ox9dw2-o_O-container_danger_qr3yx7"
 >
   <div>
     <Text
@@ -107,7 +107,7 @@ exports[`<Toast /> sets failed class 1`] = `
     </Text>
   </div>
   <div
-    className="fxkq7zt"
+    className="right_iqzunz"
   >
     <IconButton
       inverted={true}
@@ -124,7 +124,7 @@ exports[`<Toast /> sets failed class 1`] = `
 
 exports[`<Toast /> sets failed class if an \`Error\` 1`] = `
 <div
-  className="f15o64d"
+  className="container_ox9dw2-o_O-container_danger_qr3yx7"
 >
   <div>
     <Text
@@ -134,7 +134,7 @@ exports[`<Toast /> sets failed class if an \`Error\` 1`] = `
     </Text>
   </div>
   <div
-    className="fxkq7zt"
+    className="right_iqzunz"
   >
     <IconButton
       inverted={true}
@@ -151,7 +151,7 @@ exports[`<Toast /> sets failed class if an \`Error\` 1`] = `
 
 exports[`<Toast /> sets success class 1`] = `
 <div
-  className="fjpduh1"
+  className="container_ox9dw2-o_O-container_success_1e8jx2r"
 >
   <div>
     <Text
@@ -161,7 +161,7 @@ exports[`<Toast /> sets success class 1`] = `
     </Text>
   </div>
   <div
-    className="fxkq7zt"
+    className="right_iqzunz"
   >
     <IconButton
       inverted={true}

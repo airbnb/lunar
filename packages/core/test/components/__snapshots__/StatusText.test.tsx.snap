@@ -2,10 +2,10 @@
 
 exports[`<StatusText /> can pass props to underlying \`Text\` 1`] = `
 <h4
-  className="f15ktvug"
+  className="text_8h9m6q-o_O-text_large_1aiv2f"
 >
   <span
-    className="f15gw5b4"
+    className="text_muted_10k87om"
   >
     Text
   </span>
@@ -14,10 +14,10 @@ exports[`<StatusText /> can pass props to underlying \`Text\` 1`] = `
 
 exports[`<StatusText /> statuses renders text 1`] = `
 <div
-  className="f85st9h"
+  className="text_8h9m6q"
 >
   <span
-    className="f1h4bg46"
+    className="text_notice_16fnaxc"
   >
     notice
   </span>
@@ -26,10 +26,10 @@ exports[`<StatusText /> statuses renders text 1`] = `
 
 exports[`<StatusText /> statuses renders text 2`] = `
 <div
-  className="f85st9h"
+  className="text_8h9m6q"
 >
   <span
-    className="f1yvzoue"
+    className="text_info_1qlg6bk"
   >
     info
   </span>
@@ -38,10 +38,10 @@ exports[`<StatusText /> statuses renders text 2`] = `
 
 exports[`<StatusText /> statuses renders text 3`] = `
 <div
-  className="f85st9h"
+  className="text_8h9m6q"
 >
   <span
-    className="f197guvy"
+    className="text_success_xr5ae0"
   >
     success
   </span>
@@ -50,10 +50,10 @@ exports[`<StatusText /> statuses renders text 3`] = `
 
 exports[`<StatusText /> statuses renders text 4`] = `
 <div
-  className="f85st9h"
+  className="text_8h9m6q"
 >
   <span
-    className="fgxorx7"
+    className="text_warning_1b6zul9"
   >
     warning
   </span>
@@ -62,10 +62,10 @@ exports[`<StatusText /> statuses renders text 4`] = `
 
 exports[`<StatusText /> statuses renders text 5`] = `
 <div
-  className="f85st9h"
+  className="text_8h9m6q"
 >
   <span
-    className="fs8j2ev"
+    className="text_danger_1ardfxt"
   >
     danger
   </span>
@@ -74,10 +74,10 @@ exports[`<StatusText /> statuses renders text 5`] = `
 
 exports[`<StatusText /> statuses renders text 6`] = `
 <div
-  className="f85st9h"
+  className="text_8h9m6q"
 >
   <span
-    className="f15gw5b4"
+    className="text_muted_10k87om"
   >
     muted
   </span>

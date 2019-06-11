@@ -6,7 +6,7 @@ exports[`<Divider /> renders a divider 1`] = `
   top={2}
 >
   <div
-    className="ffenw9w"
+    className="divider_bi7c4v"
   />
 </Spacing>
 `;

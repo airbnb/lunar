@@ -2,18 +2,18 @@
 
 exports[`<Loader /> renders default 1`] = `
 <div
-  className="f1hjws0q"
+  className="loader_1pzb0ut-o_O-loader_absolute_1lfa8e4"
 >
   <span
-    className="f1qb1x6m"
+    className="dot_1n663f4-o_O-dot_1_q3fdyh"
     key="1"
   />
   <span
-    className="fc6bjex"
+    className="dot_1n663f4-o_O-dot_2_1661oda"
     key="2"
   />
   <span
-    className="fa44eki"
+    className="dot_1n663f4"
     key="3"
   />
 </div>
@@ -21,18 +21,18 @@ exports[`<Loader /> renders default 1`] = `
 
 exports[`<Loader /> renders inline 1`] = `
 <div
-  className="f1o6z6v3"
+  className="loader_1pzb0ut-o_O-loader_inline_36rlri"
 >
   <span
-    className="f1qb1x6m"
+    className="dot_1n663f4-o_O-dot_1_q3fdyh"
     key="1"
   />
   <span
-    className="fc6bjex"
+    className="dot_1n663f4-o_O-dot_2_1661oda"
     key="2"
   />
   <span
-    className="fa44eki"
+    className="dot_1n663f4"
     key="3"
   />
 </div>
@@ -40,18 +40,18 @@ exports[`<Loader /> renders inline 1`] = `
 
 exports[`<Loader /> renders inverted 1`] = `
 <div
-  className="f1hjws0q"
+  className="loader_1pzb0ut-o_O-loader_absolute_1lfa8e4"
 >
   <span
-    className="f18v6v7s"
+    className="dot_1n663f4-o_O-dot_1_q3fdyh-o_O-dot_inverted_9isulr"
     key="1"
   />
   <span
-    className="f193l1fj"
+    className="dot_1n663f4-o_O-dot_2_1661oda-o_O-dot_inverted_9isulr"
     key="2"
   />
   <span
-    className="f1qye81g"
+    className="dot_1n663f4-o_O-dot_inverted_9isulr"
     key="3"
   />
 </div>
@@ -59,18 +59,18 @@ exports[`<Loader /> renders inverted 1`] = `
 
 exports[`<Loader /> renders large 1`] = `
 <div
-  className="f1hjws0q"
+  className="loader_1pzb0ut-o_O-loader_absolute_1lfa8e4"
 >
   <span
-    className="f2u60k2"
+    className="dot_1n663f4-o_O-dot_1_q3fdyh-o_O-dot_large_1jk0giu"
     key="1"
   />
   <span
-    className="ffthmud"
+    className="dot_1n663f4-o_O-dot_2_1661oda-o_O-dot_large_1jk0giu"
     key="2"
   />
   <span
-    className="f5vp3zi"
+    className="dot_1n663f4-o_O-dot_large_1jk0giu"
     key="3"
   />
 </div>
@@ -78,18 +78,18 @@ exports[`<Loader /> renders large 1`] = `
 
 exports[`<Loader /> renders static 1`] = `
 <div
-  className="fweo6zt"
+  className="loader_1pzb0ut"
 >
   <span
-    className="f1qb1x6m"
+    className="dot_1n663f4-o_O-dot_1_q3fdyh"
     key="1"
   />
   <span
-    className="fc6bjex"
+    className="dot_1n663f4-o_O-dot_2_1661oda"
     key="2"
   />
   <span
-    className="fa44eki"
+    className="dot_1n663f4"
     key="3"
   />
 </div>

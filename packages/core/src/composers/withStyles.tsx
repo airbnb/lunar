@@ -1,5 +1,5 @@
 import { withStylesFactory, WithStylesWrappedProps } from 'aesthetic-react';
-import { NativeBlock, ParsedBlock } from 'aesthetic-adapter-typestyle';
+import { NativeBlock, ParsedBlock } from 'aesthetic-adapter-aphrodite';
 import { Theme } from '../types';
 import Core from '..';
 

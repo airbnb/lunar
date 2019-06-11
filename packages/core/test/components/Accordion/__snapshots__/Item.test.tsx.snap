@@ -2,12 +2,12 @@
 
 exports[`<AccordionItem /> renders bordered 1`] = `
 <div
-  className="f19xhczu"
+  className="item_14cfb9u-o_O-item_bordered_hg23ez"
 >
   <button
     aria-controls="accordion-body-.0"
     aria-selected={false}
-    className="fvh4ls9"
+    className="title_1sndfdc"
     id="accordion-title-.0"
     onClick={[Function]}
     role="tab"
@@ -15,7 +15,7 @@ exports[`<AccordionItem /> renders bordered 1`] = `
     type="button"
   >
     <span
-      className="f1qo33y1"
+      className="titleText_irsnq7"
     >
       Title
     </span>
@@ -27,7 +27,7 @@ exports[`<AccordionItem /> renders bordered 1`] = `
   <section
     aria-hidden={true}
     aria-labelledby="accordion-title-.0"
-    className="f1vx78kv"
+    className="body_1votmn2"
     id="accordion-body-.0"
     role="tabpanel"
   />
@@ -36,12 +36,12 @@ exports[`<AccordionItem /> renders bordered 1`] = `
 
 exports[`<AccordionItem /> renders expanded 1`] = `
 <div
-  className="f1x7wej8"
+  className="item_14cfb9u"
 >
   <button
     aria-controls="accordion-body-.0"
     aria-selected={true}
-    className="fvh4ls9"
+    className="title_1sndfdc"
     id="accordion-title-.0"
     onClick={[Function]}
     role="tab"
@@ -49,7 +49,7 @@ exports[`<AccordionItem /> renders expanded 1`] = `
     type="button"
   >
     <span
-      className="f1qo33y1"
+      className="titleText_irsnq7"
     >
       Title
     </span>
@@ -61,7 +61,7 @@ exports[`<AccordionItem /> renders expanded 1`] = `
   <section
     aria-hidden={false}
     aria-labelledby="accordion-title-.0"
-    className="fk0ojd8"
+    className="body_1votmn2-o_O-body_expanded_uhlm2"
     id="accordion-body-.0"
     role="tabpanel"
   />

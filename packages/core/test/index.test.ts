@@ -1,4 +1,4 @@
-import Aesthetic from 'aesthetic-adapter-typestyle';
+import Aesthetic from 'aesthetic-adapter-aphrodite';
 import { Settings as LuxonSettings } from 'luxon';
 import Core, { Settings } from '../src';
 

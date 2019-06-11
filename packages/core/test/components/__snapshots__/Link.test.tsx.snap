@@ -9,7 +9,7 @@ exports[`<Link /> renders bold 1`] = `
   small={false}
 >
   <ButtonOrLink
-    className="f2jocwq"
+    className="link_vk1gl8"
     href="#"
   >
     Bold
@@ -19,10 +19,10 @@ exports[`<Link /> renders bold 1`] = `
 
 exports[`<Link /> renders disabled 1`] = `
 <span
-  className="f1jbltt"
+  className="text_8h9m6q-o_O-text_inline_36rlri"
 >
   <ButtonOrLink
-    className="f11ex46j"
+    className="link_vk1gl8-o_O-link_disabled_q28bcx"
     disabled={true}
     href="#"
   >
@@ -33,10 +33,10 @@ exports[`<Link /> renders disabled 1`] = `
 
 exports[`<Link /> renders inverted 1`] = `
 <span
-  className="f1jbltt"
+  className="text_8h9m6q-o_O-text_inline_36rlri"
 >
   <ButtonOrLink
-    className="f1pvipg5"
+    className="link_vk1gl8-o_O-link_inverted_1hj4kjb"
     href="#"
   >
     Inverted
@@ -46,10 +46,10 @@ exports[`<Link /> renders inverted 1`] = `
 
 exports[`<Link /> renders large 1`] = `
 <span
-  className="f1h8wmf0"
+  className="text_8h9m6q-o_O-text_inline_36rlri-o_O-text_large_1aiv2f"
 >
   <ButtonOrLink
-    className="f2jocwq"
+    className="link_vk1gl8"
     href="#"
   >
     Large
@@ -59,10 +59,10 @@ exports[`<Link /> renders large 1`] = `
 
 exports[`<Link /> renders muted 1`] = `
 <span
-  className="f1jbltt"
+  className="text_8h9m6q-o_O-text_inline_36rlri"
 >
   <ButtonOrLink
-    className="fpt8app"
+    className="link_vk1gl8-o_O-link_muted_74pra7"
     href="#"
   >
     Muted
@@ -72,10 +72,10 @@ exports[`<Link /> renders muted 1`] = `
 
 exports[`<Link /> renders small 1`] = `
 <span
-  className="f1bw1br"
+  className="text_8h9m6q-o_O-text_inline_36rlri-o_O-text_small_krq4jw"
 >
   <ButtonOrLink
-    className="f2jocwq"
+    className="link_vk1gl8"
     href="#"
   >
     Small

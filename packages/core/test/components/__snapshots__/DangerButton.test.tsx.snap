@@ -3,7 +3,7 @@
 exports[`<DangerButton /> renders a primary button 1`] = `
 <ButtonOrLink
   aria-busy={false}
-  className="f1rm6qu8"
+  className="button_1aptcl0-o_O-button_regular_un5ukp"
 >
   Button
 </ButtonOrLink>
