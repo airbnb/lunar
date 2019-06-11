@@ -153,7 +153,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
     let paginationText =
       showBookends && pageCount ? (
         <T
-          phrase={'%{pageNumber} of %{pageNumber}'}
+          phrase={'%{pageNumber} of %{pageCount}'}
           pageCount={pageCount}
           pageNumber={page}
           context="Showing the current page number and total page count"
