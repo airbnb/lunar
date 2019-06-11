@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.19.1 - 2019-06-11
+
+#### 🐞 Fixes
+
+- **[Pagination]** Fix page count if label is empty (#89) ([a3a1f55](https://github.com/airbnb/lunar/commit/a3a1f55)), closes [#89](https://github.com/airbnb/lunar/issues/89)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.19.0 - 2019-06-11
 
 #### 🚀 Updates
