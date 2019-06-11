@@ -218,12 +218,14 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   };
 
   private handleInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { value } = this.state;
+
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
 
     if (this.props.loadItemsOnFocus) {
-      this.loadItems('');
+      this.loadItems(value);
     }
 
     this.setState({

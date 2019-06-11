@@ -165,7 +165,7 @@ describe('<Autocomplete />', () => {
       expect(wrapper.state('open')).toBe(true);
     });
 
-    it('calls loadItems if `loadItemsOnFocus` is `true`', () => {
+    it('calls `loadItems` if `loadItemsOnFocus` is `true`', () => {
       const spy = jest.spyOn(instance, 'loadItems');
 
       wrapper.setProps({
