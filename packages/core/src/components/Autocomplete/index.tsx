@@ -50,7 +50,7 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     isItemSelectable?: (item: T, selected?: boolean) => boolean;
     /** Determine if an item is selected. Will compare values by default if not defined. */
     isItemSelected?: (item: T, value: string) => boolean;
-    /** Whether to invoke onLoadOptions with an empty string when focused. */
+    /** Whether to invoke onLoadOptions with the current value when focused. */
     loadItemsOnFocus?: boolean;
     /** Load and show items on mount. */
     loadItemsOnMount?: boolean;
