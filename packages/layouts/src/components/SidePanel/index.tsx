@@ -7,6 +7,7 @@ import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight
 import Spacing from '@airbnb/lunar/lib/components/Spacing';
 
 import iconComponent from '../../../../core/src/prop-types/iconComponent';
+import { WithIconWrapperProps } from '../../../../../packages/icons/src/withIcon';
 
 export type SplitPaneProps = {
   sidePane: React.ReactNode;
@@ -17,9 +18,9 @@ export type SplitPaneProps = {
   maxWidth?: string | number;
   fixedWidth?: string | number;
   percentWidth?: number;
+  iconClosed?: React.ComponentClass<WithIconWrapperProps>;
   iconColor?: string;
-  iconClosed?: React.ReactNode;
-  iconOpen?: React.ReactNode;
+  iconOpen?: React.ComponentClass<WithIconWrapperProps>;
   iconSize?: string;
   buttonTop?: number;
   background?: string;
@@ -33,21 +34,21 @@ export type SplitPaneState = {
 /** A symmetrical two-column layout with optional top and side navigation. */
 class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitPaneState> {
   static propTypes = {
-    iconOpen: iconComponent,
-    iconClosed: iconComponent,
-    minWidth: mutuallyExclusiveProps(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      'fixedWidth',
-    ),
-    maxWidth: mutuallyExclusiveProps(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      'fixedWidth',
-    ),
     fixedWidth: mutuallyExclusiveProps(
       PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       'maxWidth',
       'minWidth',
       'percentWidth',
+    ),
+    iconClosed: iconComponent,
+    iconOpen: iconComponent,
+    maxWidth: mutuallyExclusiveProps(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      'fixedWidth',
+    ),
+    minWidth: mutuallyExclusiveProps(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      'fixedWidth',
     ),
     percentWidth: mutuallyExclusiveProps(PropTypes.number, 'fixedWidth'),
   };
@@ -57,8 +58,8 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
     buttonTop: 16,
     collapsible: true,
     compact: true,
-    iconColor: '#484848', //core.neutral[5]
     iconClosed: IconChevronRight,
+    iconColor: '#484848', // core.neutral[5]
     iconOpen: IconChevronLeft,
     iconSize: '1.1rem',
     maxWidth: Infinity,
@@ -74,7 +75,7 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
     };
   }
 
-  private toggleSidePane = () => {
+  private handleToggleSidePane = () => {
     this.setState(({ collapsed }) => ({
       collapsed: !collapsed,
     }));
@@ -120,7 +121,7 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
         rightSide && collapsed ? buttonBackgroundColor : theme!.color.core.neutral[1],
     };
 
-    const Icon = collapsed ? iconClosed : iconOpen;
+    const Icon: React.ComponentClass<WithIconWrapperProps> = collapsed ? iconClosed! : iconOpen!;
 
     const collapseButtonStyle = {
       top: buttonTop,
@@ -146,7 +147,7 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
           !collapsed && !rightSide && styles.collapseButtonVisibleLeft,
           !collapsed && rightSide && styles.collapseButtonVisibleRight,
         )}
-        onClick={this.toggleSidePane}
+        onClick={this.handleToggleSidePane}
       >
         <Spacing vertical={1} horizontal={compact ? 0 : 1}>
           <Icon color={iconColor} size={iconSize} />

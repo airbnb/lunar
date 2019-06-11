@@ -1,12 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
-import SidePanel from './SidePanel';
 import IconArrowLeft from '@airbnb/lunar-icons/lib/interface/IconArrowLeft';
 import IconArrowRight from '@airbnb/lunar-icons/lib/interface/IconArrowRight';
 import IconCaretRight from '@airbnb/lunar-icons/lib/interface/IconCaretRight';
 import IconCaretLeft from '@airbnb/lunar-icons/lib/interface/IconCaretLeft';
-import Spacing from '@airbnb/lunar/src/components/Spacing';
+
+import SidePanel from './SidePanel';
 
 storiesOf('Layouts/SidePanel', module)
   .addParameters({
