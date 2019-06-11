@@ -67,11 +67,11 @@ storiesOf('Core/Autocomplete', module)
       accessibilityLabel="Label"
       name="autocomplete-load-on-focus"
       label="Label"
-      loadItemsOnFocus
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
       onLoadOptions={value => Promise.resolve(items) as any}
       labelDescription="Load some items on focus."
+      loadItemsOnFocus
     />
   ))
   .add('Disable selected items with `isItemSelectable`.', () => (
