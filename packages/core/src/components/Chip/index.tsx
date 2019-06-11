@@ -112,7 +112,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
                   {afterIcon}
                 </ButtonOrLink>
               ) : (
-                { afterIcon }
+                afterIcon
               )}
             </div>
           </div>
@@ -212,7 +212,7 @@ export default withStyles(({ color, font, pattern, transition, ui, unit }) => ({
   },
 
   iconWrapperBefore: {
-    padding: `${unit * 0.5}px ${unit * 0.5}px ${unit * 0.5}px ${unit * 1}px`,
+    padding: `${unit * 0.5}px ${unit * 0.5}px ${unit * 0.5}px ${unit}px`,
   },
 
   iconButton: {
