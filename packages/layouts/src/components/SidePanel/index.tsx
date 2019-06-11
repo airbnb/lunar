@@ -13,10 +13,10 @@ export type SplitPaneProps = {
   mainPane: React.ReactNode;
   collapsible?: boolean;
   compact?: boolean;
-  minWidth?: mutuallyExclusiveProps(PropTypes.string | PropTypes.number, 'fixedWidth');
-  maxWidth?: mutuallyExclusiveProps(PropTypes.string | PropTypes.number, 'fixedWidth');
-  fixedWidth?: mutuallyExclusiveProps(PropTypes.string | PropTypes.number, 'percentWidth', 'minWidth', 'maxWidth');
-  percentWidth?: mutuallyExclusiveProps(PropTypes.number, 'fixedWidth');;
+  minWidth?: string | number;
+  maxWidth?: string | number;
+  fixedWidth?: string | number;
+  percentWidth?: number;
   iconColor?: string;
   iconClosed?: iconComponent;
   iconOpen?: iconComponent;
@@ -32,6 +32,24 @@ export type SplitPaneState = {
 
 /** A symmetrical two-column layout with optional top and side navigation. */
 class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitPaneState> {
+  static propTypes = {
+    minWidth: mutuallyExclusiveProps(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      'fixedWidth',
+    ),
+    maxWidth: mutuallyExclusiveProps(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      'fixedWidth',
+    ),
+    fixedWidth: mutuallyExclusiveProps(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      'maxWidth',
+      'minWidth',
+      'percentWidth',
+    ),
+    percentWidth: mutuallyExclusiveProps(PropTypes.number, 'fixedWidth'),
+  };
+
   public static defaultProps = {
     background: 'white',
     buttonTop: 16,
