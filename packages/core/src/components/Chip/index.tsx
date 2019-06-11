@@ -19,8 +19,6 @@ export type Props = {
   compact?: boolean;
   /** Disabled / gray. */
   disabled?: boolean;
-  /** Icon to render to the right of the primary content. */
-  icon?: React.ReactNode;
   /** Callback fired when the element is clicked. */
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   /** Callback fired when the icon is clicked (requires an icon). */
@@ -32,9 +30,10 @@ export type Props = {
 /** Compact component that represents a snippet of information, such as a filter. */
 export class Chip extends React.Component<Props & WithStylesProps> {
   static propTypes = {
-    icon: requiredBy('onIconClick', iconComponent),
+    // icon: requiredBy('onIconClick', iconComponent),
+    afterIcon: requiredBy('onIconClick', iconComponent),
+    beforeIcon: mutuallyExclusiveProps(iconComponent, 'beforeIcon', 'profileImageSrc'),
     onClick: mutuallyExclusiveProps(PropTypes.func, 'onIconClick'),
-    beforeIcon: mutuallyExclusiveProps(PropTypes.any, 'beforeIcon', 'profileImageSrc'),
     profileImageSrc: mutuallyExclusiveProps(
       PropTypes.any,
       'beforeIcon',
@@ -53,18 +52,11 @@ export class Chip extends React.Component<Props & WithStylesProps> {
       children,
       compact,
       disabled,
-      icon,
       onClick,
       onIconClick,
       profileImageSrc,
       styles,
     } = this.props;
-
-    if (__DEV__) {
-      if (icon) {
-        console.log('Chip: `icon` prop is deprecated, please use `afterIcon` instead.');
-      }
-    }
 
     const Component = onClick ? 'button' : 'div';
     const props: React.HTMLProps<HTMLButtonElement> =
@@ -76,7 +68,6 @@ export class Chip extends React.Component<Props & WithStylesProps> {
           }
         : {};
 
-    const shouldRenderAfter = afterIcon || icon;
     const shouldRenderBefore = beforeIcon || profileImageSrc;
 
     return (
@@ -86,7 +77,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
           styles.chip,
           onClick && styles.chip_button,
           !shouldRenderBefore && styles.chip_noBefore,
-          !shouldRenderAfter && styles.chip_noAfter,
+          !afterIcon && styles.chip_noAfter,
           active && styles.chip_active,
           onClick && active && styles.chip_active_button,
           compact && styles.chip_compact,
@@ -108,14 +99,10 @@ export class Chip extends React.Component<Props & WithStylesProps> {
             </div>
           </div>
         )}
-
-        <div className={cx(styles.chipItem, styles.content)}>{children}</div>
-
-        {shouldRenderAfter && (
-          <div className={cx(styles.chipItem, styles.sideContent)}>
-            <div
-              className={cx(styles.sideContentInner, styles.iconWrapper, styles.iconWrapperAfter)}
-            >
+        <div {...css(styles.chipItem, styles.content)}>{children}</div>
+        {afterIcon && (
+          <div {...css(styles.chipItem, styles.sideContent)}>
+            <div {...css(styles.sideContentInner, styles.iconWrapper, styles.iconWrapperAfter)}>
               {onIconClick ? (
                 <ButtonOrLink
                   className={(styles.iconButton, disabled && styles.iconButton_disabled)}
@@ -123,10 +110,9 @@ export class Chip extends React.Component<Props & WithStylesProps> {
                   onClick={onIconClick}
                 >
                   {afterIcon}
-                  {icon}
                 </ButtonOrLink>
               ) : (
-                icon
+                { afterIcon }
               )}
             </div>
           </div>
@@ -226,7 +212,7 @@ export default withStyles(({ color, font, pattern, transition, ui, unit }) => ({
   },
 
   iconWrapperBefore: {
-    padding: `${unit * 0.5}px 0 ${unit * 0.5}px ${unit * 0.5}px`,
+    padding: `${unit * 0.5}px ${unit * 0.5}px ${unit * 0.5}px ${unit * 1}px`,
   },
 
   iconButton: {

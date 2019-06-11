@@ -8,6 +8,7 @@ import IconSettings from '@airbnb/lunar-icons/lib/interface/IconSettings';
 import lunar from ':storybook/images/lunar-logo.png';
 import Spacing from './Spacing';
 import Chip from './Chip';
+import Text from './Text';
 
 storiesOf('Core/Chip', module)
   .addParameters({
@@ -16,14 +17,15 @@ storiesOf('Core/Chip', module)
   .add('Simple chip.', () => <Chip>Chip</Chip>)
   .add('With a icons before and/or after.', () => (
     <>
+      <Spacing bottom={1}>
+        <Text>Note that before/after padding is not symetrical</Text>
+      </Spacing>
       <Spacing right={1} inline>
         <Chip afterIcon={<IconCloseAlt size="2em" />}>Chip</Chip>
       </Spacing>
-
       <Spacing right={1} inline>
         <Chip beforeIcon={<IconCalendar size="1.2em" />}>Calendar</Chip>
       </Spacing>
-
       <Spacing right={1} inline>
         <Chip afterIcon={<IconCalendar size="1.2em" />} beforeIcon={<IconCalendar size="1.2em" />}>
           Calendar
@@ -33,6 +35,10 @@ storiesOf('Core/Chip', module)
   ))
   .add('Compact chip.', () => (
     <>
+      <Spacing bottom={1}>
+        <Text>Note that before/after padding is not symetrical</Text>
+      </Spacing>
+
       <Spacing right={1} inline>
         <Chip beforeIcon={<IconUser size="1.2em" />} compact onClick={action('onClick')}>
           Chip
@@ -41,18 +47,6 @@ storiesOf('Core/Chip', module)
 
       <Spacing right={1} inline>
         <Chip afterIcon={<IconCalendar size="1.2em" />} compact onClick={action('onClick')}>
-          Chip
-        </Chip>
-      </Spacing>
-
-      <Spacing right={1} inline>
-        <Chip
-          active
-          beforeIcon={<IconUser size="1.2em" color="white" />}
-          afterIcon={<IconCalendar size="1.2em" color="white" />}
-          compact
-          onClick={action('onClick')}
-        >
           Chip
         </Chip>
       </Spacing>
