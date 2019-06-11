@@ -19,9 +19,15 @@ describe('<Chip />', () => {
     expect(wrapper.prop('onClick')).toBe(onClick);
   });
 
-  it('renders an icon if provided', () => {
+  it('renders an after icon if provided', () => {
     const icon = <IconCheck />;
     const wrapper = shallow(<Chip afterIcon={icon}>Sour Cream and Onion</Chip>).dive();
+    expect(wrapper.contains(icon)).toBe(true);
+  });
+
+  it('renders a before icon if provided', () => {
+    const icon = <IconCheck />;
+    const wrapper = shallow(<Chip beforeIcon={icon}>Sour Cream and Onion</Chip>).dive();
     expect(wrapper.contains(icon)).toBe(true);
   });
 
