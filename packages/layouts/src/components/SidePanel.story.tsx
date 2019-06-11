@@ -2,8 +2,11 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import SidePanel from './SidePanel';
+import IconArrowLeft from '@airbnb/lunar-icons/lib/interface/IconArrowLeft';
+import IconArrowRight from '@airbnb/lunar-icons/lib/interface/IconArrowRight';
 import IconCaretRight from '@airbnb/lunar-icons/lib/interface/IconCaretRight';
 import IconCaretLeft from '@airbnb/lunar-icons/lib/interface/IconCaretLeft';
+import Spacing from '@airbnb/lunar/src/components/Spacing';
 
 storiesOf('Layouts/SidePanel', module)
   .addParameters({
@@ -46,5 +49,16 @@ storiesOf('Layouts/SidePanel', module)
       mainPane={<LoremIpsum />}
       iconOpen={IconCaretRight}
       iconClosed={IconCaretLeft}
+    />
+  ))
+  .add('A collapsible side panel with a customized button.', () => (
+    <SidePanel
+      compact={false}
+      iconSize="1.3rem"
+      iconColor="#008489"
+      sidePane={<LoremIpsum />}
+      mainPane={<LoremIpsum />}
+      iconOpen={IconArrowLeft}
+      iconClosed={IconArrowRight}
     />
   ));

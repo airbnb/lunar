@@ -4,16 +4,21 @@ import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import Spacing from '@airbnb/lunar/lib/components/Spacing';
 
+import iconComponent from '../../prop-types/iconComponent';
+
 export type SplitPaneProps = {
   sidePane: React.ReactNode;
   mainPane: React.ReactNode;
   collapsible?: boolean;
+  compact?: boolean;
   minWidth?: string | number;
   maxWidth?: string | number;
   fixedWidth?: string | number;
   percentWidth?: number;
-  iconOpen?: any;
-  iconClosed?: any;
+  iconColor?: string;
+  iconClosed?: iconComponent;
+  iconOpen?: iconComponent;
+  iconSize?: string;
   buttonTop?: number;
   background?: string;
   rightSide?: boolean;
@@ -29,8 +34,11 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
     background: 'white',
     buttonTop: 16,
     collapsible: true,
-    iconOpen: IconChevronLeft,
+    compact: true,
+    iconColor: '#484848', //core.neutral[5]
     iconClosed: IconChevronRight,
+    iconOpen: IconChevronLeft,
+    iconSize: '1.1rem',
     maxWidth: Infinity,
     minWidth: 0,
     rightSide: false,
@@ -55,8 +63,11 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
       background,
       buttonTop,
       collapsible,
-      iconOpen,
+      compact,
+      iconColor,
       iconClosed,
+      iconOpen,
+      iconSize,
       sidePane,
       mainPane,
       styles,
@@ -115,8 +126,8 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
         )}
         onClick={this.toggleSidePane}
       >
-        <Spacing vertical={1}>
-          <Icon color={theme!.color.core.neutral[5]} size="1.1rem" />
+        <Spacing vertical={1} horizontal={compact ? 0 : 1}>
+          <Icon color={iconColor} size={iconSize} />
         </Spacing>
       </button>
     );
