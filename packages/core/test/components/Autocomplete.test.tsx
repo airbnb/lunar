@@ -504,6 +504,16 @@ describe('<Autocomplete />', () => {
         );
       }));
 
+    it('doesnt cache if `disableCache` is set', () => {
+      wrapper.setProps({
+        disableCache: true,
+      });
+
+      return instance.loadItems('foo').then(() => {
+        expect(instance.cache.foo).toBeUndefined();
+      });
+    });
+
     it('handles success', () =>
       instance.loadItems('foo').then(() => {
         expect(wrapper.state()).toEqual(
