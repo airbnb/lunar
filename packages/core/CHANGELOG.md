@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.20.0 - 2019-06-12
+
+#### 🚀 Updates
+
+- **[Autocomplete]** Add `loadItemsOnFocus` functionality (#85) ([a706fbb](https://github.com/airbnb/lunar/commit/a706fbb)), closes [#85](https://github.com/airbnb/lunar/issues/85)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 1.19.1 - 2019-06-11
 
 #### 🐞 Fixes
