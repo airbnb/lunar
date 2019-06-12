@@ -17,7 +17,7 @@ describe('<Autocomplete />', () => {
     accessibilityLabel: 'Label',
     maxHeight: 400,
     onChange() {},
-    onLoadOptions: () => Promise.resolve([]),
+    onLoadItems: () => Promise.resolve([]),
   };
 
   let wrapper: Enzyme.ShallowWrapper<Props<any>, State<any>, Autocomplete<any>>;
@@ -503,6 +503,16 @@ describe('<Autocomplete />', () => {
           }),
         );
       }));
+
+    it('doesnt cache if `disableCache` is set', () => {
+      wrapper.setProps({
+        disableCache: true,
+      });
+
+      return instance.loadItems('foo').then(() => {
+        expect(instance.cache.foo).toBeUndefined();
+      });
+    });
 
     it('handles success', () =>
       instance.loadItems('foo').then(() => {
