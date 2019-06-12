@@ -20,7 +20,7 @@ describe('<Autocomplete />', () => {
           accessibilityLabel="Label"
           name="foo"
           defaultValue="bar"
-          onLoadOptions={() => Promise.resolve([])}
+          onLoadItems={() => Promise.resolve([])}
           validator={() => {}}
         />,
       ),
