@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { mutuallyExclusiveProps, requiredBy } from 'airbnb-prop-types';
 import iconComponent from '../../prop-types/iconComponent';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
@@ -34,6 +34,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       active,
       children,
       compact,
@@ -58,7 +59,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
     return (
       // @ts-ignore [ts] JSX element type 'Component' does not have any construct or call signatures. [2604]
       <Component
-        {...css(
+        className={cx(
           styles.chip,
           onClick && styles.chip_button,
           !profileImageSrc && styles.chip_noBefore,
@@ -71,21 +72,21 @@ export class Chip extends React.Component<Props & WithStylesProps> {
         {...props}
       >
         {profileImageSrc && (
-          <div {...css(styles.chipItem, styles.sideContent)}>
-            <div {...css(styles.sideContentInner)}>
+          <div className={cx(styles.chipItem, styles.sideContent)}>
+            <div className={cx(styles.sideContentInner)}>
               <ProfilePhoto imageSrc={profileImageSrc} title="" size={4} />
             </div>
           </div>
         )}
 
-        <div {...css(styles.chipItem, styles.content)}>{children}</div>
+        <div className={cx(styles.chipItem, styles.content)}>{children}</div>
 
         {icon && (
-          <div {...css(styles.chipItem, styles.sideContent)}>
-            <div {...css(styles.sideContentInner, styles.iconWrapper)}>
+          <div className={cx(styles.chipItem, styles.sideContent)}>
+            <div className={cx(styles.sideContentInner, styles.iconWrapper)}>
               {onIconClick ? (
                 <ButtonOrLink
-                  {...css(styles.iconButton, disabled && styles.iconButton_disabled)}
+                  className={cx(styles.iconButton, disabled && styles.iconButton_disabled)}
                   disabled={disabled}
                   onClick={onIconClick}
                 >

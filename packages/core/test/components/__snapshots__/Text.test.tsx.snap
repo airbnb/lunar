@@ -2,13 +2,13 @@
 
 exports[`<Text /> can render without children 1`] = `
 <div
-  className="text_i23n2q"
+  className="text_8h9m6q"
 />
 `;
 
 exports[`<Text /> renders bold 1`] = `
 <div
-  className="text_i23n2q-o_O-text_bold_pgfqnw"
+  className="text_8h9m6q-o_O-text_bold_pgfqnw"
 >
   Bold
 </div>
@@ -16,7 +16,7 @@ exports[`<Text /> renders bold 1`] = `
 
 exports[`<Text /> renders disabled 1`] = `
 <div
-  className="text_i23n2q-o_O-text_disabled_5k6q5e"
+  className="text_8h9m6q-o_O-text_disabled_5k6q5e"
 >
   Disabled
 </div>
@@ -24,7 +24,7 @@ exports[`<Text /> renders disabled 1`] = `
 
 exports[`<Text /> renders inline 1`] = `
 <span
-  className="text_i23n2q-o_O-text_inline_36rlri"
+  className="text_8h9m6q-o_O-text_inline_36rlri"
 >
   Inline
 </span>
@@ -32,7 +32,7 @@ exports[`<Text /> renders inline 1`] = `
 
 exports[`<Text /> renders inverted 1`] = `
 <div
-  className="text_i23n2q-o_O-text_inverted_bd4m75"
+  className="text_8h9m6q-o_O-text_inverted_bd4m75"
 >
   Inverted
 </div>
@@ -40,7 +40,7 @@ exports[`<Text /> renders inverted 1`] = `
 
 exports[`<Text /> renders large 1`] = `
 <h4
-  className="text_i23n2q-o_O-text_large_1b2mxt3"
+  className="text_8h9m6q-o_O-text_large_1aiv2f"
 >
   Large
 </h4>
@@ -48,7 +48,7 @@ exports[`<Text /> renders large 1`] = `
 
 exports[`<Text /> renders light 1`] = `
 <div
-  className="text_i23n2q-o_O-text_light_n2wlx5"
+  className="text_8h9m6q-o_O-text_light_n2wlx5"
 >
   Light
 </div>
@@ -56,7 +56,7 @@ exports[`<Text /> renders light 1`] = `
 
 exports[`<Text /> renders micro 1`] = `
 <small
-  className="text_i23n2q-o_O-text_micro_dgmjq3"
+  className="text_8h9m6q-o_O-text_micro_azj9az"
 >
   Micro
 </small>
@@ -64,7 +64,7 @@ exports[`<Text /> renders micro 1`] = `
 
 exports[`<Text /> renders muted 1`] = `
 <div
-  className="text_i23n2q-o_O-text_muted_10k87om"
+  className="text_8h9m6q-o_O-text_muted_10k87om"
 >
   Muted
 </div>
@@ -72,7 +72,7 @@ exports[`<Text /> renders muted 1`] = `
 
 exports[`<Text /> renders small 1`] = `
 <div
-  className="text_i23n2q-o_O-text_small_kvmv64"
+  className="text_8h9m6q-o_O-text_small_krq4jw"
 >
   Small
 </div>
@@ -80,7 +80,7 @@ exports[`<Text /> renders small 1`] = `
 
 exports[`<Text /> renders uppercased 1`] = `
 <div
-  className="text_i23n2q-o_O-text_uppercased_4efw5a"
+  className="text_8h9m6q-o_O-text_uppercased_4efw5a"
 >
   Uppercased
 </div>
@@ -88,7 +88,7 @@ exports[`<Text /> renders uppercased 1`] = `
 
 exports[`<Text /> renders with preserved whitespace 1`] = `
 <div
-  className="text_i23n2q-o_O-text_preserveWhitespace_11oyobo"
+  className="text_8h9m6q-o_O-text_preserveWhitespace_11oyobo"
 >
      
   Preserved whitespace

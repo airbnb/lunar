@@ -1,5 +1,4 @@
+import { useThemeFactory } from 'aesthetic-react';
 import Core from '..';
 
-export default function useTheme() /* infer */ {
-  return Core.getAesthetic().useTheme();
-}
+export default useThemeFactory(Core.aesthetic);

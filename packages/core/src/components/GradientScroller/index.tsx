@@ -4,7 +4,7 @@ import debounce from 'lodash/debounce';
 import throttle from 'lodash/throttle';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 const INCREMENT = 25;
 
@@ -209,15 +209,15 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
   };
 
   render() {
-    const { children, styles, hideScrollbar, showArrows } = this.props;
+    const { cx, children, styles, hideScrollbar, showArrows } = this.props;
     const { showStartGradient, showEndGradient } = this.state;
 
     return (
-      <div {...css(styles.container)}>
-        <div {...css(styles.leftGradient, showStartGradient && styles.gradient_reveal)}>
+      <div className={cx(styles.container)}>
+        <div className={cx(styles.leftGradient, showStartGradient && styles.gradient_reveal)}>
           {showArrows ? (
             <button
-              {...css(styles.leftArrow, hideScrollbar && styles.arrow_hideScrollbar)}
+              className={cx(styles.leftArrow, hideScrollbar && styles.arrow_hideScrollbar)}
               type="button"
               onClick={this.handleScrollLeft}
             >
@@ -225,17 +225,17 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
             </button>
           ) : (
             <span
-              {...css(styles.scrollTrigger)}
+              className={cx(styles.scrollTrigger)}
               onMouseEnter={this.handleScrollLeft}
               onMouseLeave={this.handleScrollStop}
             />
           )}
         </div>
 
-        <div {...css(styles.rightGradient, showEndGradient && styles.gradient_reveal)}>
+        <div className={cx(styles.rightGradient, showEndGradient && styles.gradient_reveal)}>
           {showArrows ? (
             <button
-              {...css(styles.rightArrow, hideScrollbar && styles.arrow_hideScrollbar)}
+              className={cx(styles.rightArrow, hideScrollbar && styles.arrow_hideScrollbar)}
               type="button"
               onClick={this.handleScrollRight}
             >
@@ -243,7 +243,7 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
             </button>
           ) : (
             <span
-              {...css(styles.scrollTrigger)}
+              className={cx(styles.scrollTrigger)}
               onMouseEnter={this.handleScrollRight}
               onMouseLeave={this.handleScrollStop}
             />
@@ -251,11 +251,11 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
         </div>
 
         <div
-          {...css(styles.scroller, hideScrollbar && styles.scroller_hideScrollbar)}
+          className={cx(styles.scroller, hideScrollbar && styles.scroller_hideScrollbar)}
           ref={this.handleScrollerRef}
           onScroll={this.handleScrollThrottled}
         >
-          <div {...css(styles.contents)} ref={this.handleContentsRef}>
+          <div className={cx(styles.contents)} ref={this.handleContentsRef}>
             {children}
           </div>
         </div>

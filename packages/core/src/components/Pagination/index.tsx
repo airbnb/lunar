@@ -5,7 +5,7 @@ import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconFirst from '@airbnb/lunar-icons/lib/interface/IconFirst';
 import IconLast from '@airbnb/lunar-icons/lib/interface/IconLast';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import IconButton from '../IconButton';
 import Text from '../Text';
 import T from '../Translate';
@@ -67,6 +67,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       centerAlign,
       endAlign,
       fetching,
@@ -184,21 +185,21 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        {...css(
+        className={cx(
           styles.wrapper,
           endAlign && styles.wrapper_endAlign,
           centerAlign && styles.wrapper_centerAlign,
           startAlign && styles.wrapper_startAlign,
         )}
       >
-        <div {...css(styles.previous)}>
+        <div className={cx(styles.previous)}>
           {firstPage}
           {previousPage}
         </div>
-        <div {...css(styles.page)}>
+        <div className={cx(styles.page)}>
           <Text muted>{paginationText}</Text>
         </div>
-        <div {...css(styles.next)}>
+        <div className={cx(styles.next)}>
           {nextPage}
           {lastPage}
         </div>

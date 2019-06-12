@@ -1,10 +1,9 @@
 import React from 'react';
 import { SortDirection } from 'react-virtualized';
-
 import SortCarets from '../SortCarets';
 import Spacing from '../Spacing';
 import Text from '../Text';
-import { css, WithStylesProps } from '../../composers/withStyles';
+import { WithStylesProps } from '../../composers/withStyles';
 import { caseColumnLabel, getHeight } from './helpers';
 import {
   ColumnLabelCase,
@@ -29,6 +28,7 @@ type ColumnLabelsProps = {
     In order to overwrite the existing labels and carets in defaultHeaderRowRenderer,
     we clone them from props (children[0] = label, children[1] = carets), build around their data. */
 export default function ColumnLabels({
+  cx,
   styles,
   columnToLabel = {},
   showColumnDividers,
@@ -39,7 +39,8 @@ export default function ColumnLabels({
   columnMetadata,
   columnLabelCase,
 }: {
-  styles?: WithStylesProps['styles'];
+  cx: WithStylesProps['cx'];
+  styles: WithStylesProps['styles'];
   columnToLabel?: ColumnToLabel;
   showColumnDividers?: boolean;
   rowHeight?: RowHeightOptions;
@@ -79,14 +80,14 @@ export default function ColumnLabels({
 
       const newHeader = (
         <Spacing left={indent ? 2 : 0}>
-          <div style={heightStyle} {...css(showDivider && styles && styles.column_divider)}>
+          <div style={heightStyle} className={cx(showDivider && styles && styles.column_divider)}>
             <div
               style={
                 columnMetadata && columnMetadata[key] && columnMetadata[key].rightAlign
                   ? rightAlignmentStyle
                   : {}
               }
-              {...css(styles && styles.row)}
+              className={cx(styles && styles.row)}
             >
               <span>
                 <Text micro muted>
@@ -109,10 +110,9 @@ export default function ColumnLabels({
 
     return (
       <div
-        className={className}
         role="row"
         style={style}
-        {...css(styles && styles.column_header, styles && styles.row)}
+        className={cx(className, styles && styles.column_header, styles && styles.row)}
       >
         {newColumns}
       </div>

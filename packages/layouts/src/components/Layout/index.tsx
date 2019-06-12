@@ -1,6 +1,6 @@
 import React from 'react';
 import { elementType } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import SideBar from '../SideBar';
 
 export type Props = {
@@ -42,6 +42,7 @@ export class Layout extends React.Component<Props & AsideProps & WithStylesProps
 
   render() {
     const {
+      cx,
       after,
       asideWidth,
       before,
@@ -54,26 +55,30 @@ export class Layout extends React.Component<Props & AsideProps & WithStylesProps
     } = this.props;
 
     return (
-      <div {...css(styles.layout)}>
-        {sideBar && <aside {...css(styles.aside)}>{sideBar}</aside>}
+      <div className={cx(styles.layout)}>
+        {sideBar && <aside className={cx(styles.aside)}>{sideBar}</aside>}
 
         {before && (
-          <aside {...css(styles.aside, styles.aside_before, { width: asideWidth })}>{before}</aside>
+          <aside className={cx(styles.aside, styles.aside_before, { width: asideWidth })}>
+            {before}
+          </aside>
         )}
 
         <main
           role="main"
-          {...css(
+          className={cx(
             styles.main,
             noBackground && styles.main_noBackground,
             noPadding && styles.main_noPadding,
           )}
         >
-          <div {...css(!fluid && styles.mainContent)}>{children}</div>
+          <div className={cx(!fluid && styles.mainContent)}>{children}</div>
         </main>
 
         {after && (
-          <aside {...css(styles.aside, styles.aside_after, { width: asideWidth })}>{after}</aside>
+          <aside className={cx(styles.aside, styles.aside_after, { width: asideWidth })}>
+            {after}
+          </aside>
         )}
       </div>
     );

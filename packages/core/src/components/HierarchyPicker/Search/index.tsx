@@ -3,7 +3,7 @@ import Fuse from 'fuse.js';
 import Autocomplete from '../../Autocomplete';
 import SearchResult from './SearchResult';
 import T from '../../Translate';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import {
   Formatter,
   ItemPickedHandler,
@@ -154,10 +154,19 @@ export class Search extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { noResultsLabel, maxHeight, onSearch, placeholder, query, styles, width } = this.props;
+    const {
+      cx,
+      noResultsLabel,
+      maxHeight,
+      onSearch,
+      placeholder,
+      query,
+      styles,
+      width,
+    } = this.props;
 
     return (
-      <div {...css(styles.container, { width: query ? width : undefined })}>
+      <div className={cx(styles.container, { width: query ? width : undefined })}>
         <Autocomplete<SearchItemResult>
           accessibilityLabel={T.phrase(
             'Hierarchy item search',

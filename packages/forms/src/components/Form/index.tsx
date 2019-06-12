@@ -37,7 +37,7 @@ export type Props<Data extends object> = {
   /** Form fields that will be registered and managed by the current form instance. */
   children: NonNullable<React.ReactNode> | ((state: State) => NonNullable<React.ReactNode>);
   /** @ignore Initial values for form fields. Optional, as default values are injected when fields are rendered. */
-  initialValues?: Partial<Data>;
+  initialValues?: Data;
   /** Type of HTTP method. */
   method?: 'get' | 'post';
   /** Callback fired when the form has failed to submit. */
@@ -86,7 +86,7 @@ export default class Form<Data extends object = any> extends React.Component<Pro
     subscriptions: formSubscriptionItems,
   };
 
-  form: FormApi;
+  form: FormApi<Data>;
 
   registeredFields: { [name: string]: Unsubscribe } = {};
 

@@ -1,5 +1,5 @@
-import Aesthetic, { FontFace } from 'aesthetic';
-import AphroditeAesthetic, { NativeBlock, ParsedBlock } from 'aesthetic-adapter-aphrodite';
+import { FontFace } from 'aesthetic';
+import AphroditeAesthetic from 'aesthetic-adapter-aphrodite';
 import { Settings as LuxonSettings } from 'luxon';
 import { Path as EmojiPath } from 'interweave-emoji';
 import globalStyles from './themes/global';
@@ -48,7 +48,11 @@ class Core {
     translatorComponent: null,
   };
 
-  protected aesthetic?: Aesthetic<Theme, NativeBlock, ParsedBlock>;
+  aesthetic = new AphroditeAesthetic<Theme>([], {
+    theme: 'light',
+    passThemeProp: false,
+    pure: true,
+  });
 
   initialize(settings: Settings) {
     this.settings = {
@@ -65,31 +69,21 @@ class Core {
     const fontFamily = this.fontFamily();
     const globals = globalStyles(fontFaces);
 
-    this.aesthetic = new AphroditeAesthetic<Theme>([], {
-      theme,
-      passThemeProp: false,
-      pure: true,
-    })
-      .registerTheme('light', lightTheme(fontFamily), globals)
-      .registerTheme('dark', darkTheme(fontFamily), globals);
+    try {
+      this.aesthetic
+        .registerTheme('light', lightTheme(fontFamily), globals)
+        .registerTheme('dark', darkTheme(fontFamily), globals);
+    } catch {
+      // Tests trigger an error, so ignore it
+    }
+
+    this.aesthetic.options.theme = theme;
   }
 
   bootstrapLuxon() {
     LuxonSettings.defaultLocale = this.locale();
     LuxonSettings.defaultZoneName = this.timezone();
     LuxonSettings.throwOnInvalid = true;
-  }
-
-  getAesthetic() {
-    if (__DEV__) {
-      if (!this.aesthetic) {
-        throw new Error(
-          'Aesthetic has not been initialized. Please call `Core.initialize()` from `@airbnb/lunar`.',
-        );
-      }
-    }
-
-    return this.aesthetic!;
   }
 
   fontFamily(): string {

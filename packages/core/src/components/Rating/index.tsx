@@ -3,7 +3,7 @@ import { between } from 'airbnb-prop-types';
 import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
 import IconStarFull from '@airbnb/lunar-icons/lib/interface/IconStarFull';
 import IconStarHalf from '@airbnb/lunar-icons/lib/interface/IconStarHalf';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Spacing from '../Spacing';
 import Text from '../Text';
 
@@ -38,12 +38,12 @@ export class Rating extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { large, micro, rating = 0, reviews, small, styles, theme } = this.props;
+    const { cx, large, micro, rating = 0, reviews, small, styles, theme } = this.props;
 
     return (
       <Text large={large} micro={micro} small={small}>
         <div
-          {...css(
+          className={cx(
             styles.ratingContainer,
             large && styles.ratingContainer_large,
             micro && styles.ratingContainer_micro,

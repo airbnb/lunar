@@ -104,7 +104,7 @@ export default class Loadable<T extends object = any> extends React.Component<Pr
       return children(Component, restProps);
     }
 
-    return <Component {...restProps as any}>{children}</Component>;
+    return <Component {...(restProps as any)}>{children}</Component>;
   };
 
   renderError = () => {

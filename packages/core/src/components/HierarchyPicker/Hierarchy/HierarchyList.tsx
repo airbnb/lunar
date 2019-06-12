@@ -1,6 +1,6 @@
 import React from 'react';
 import Text from '../../Text';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import HierarchyItem from './HierarchyItem';
 import ItemDescription from './ItemDescription';
 import { ItemShape, TreePath, SubTreeHandler, ItemPickedHandler, ItemRenderer } from '../types';
@@ -91,7 +91,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
   };
 
   renderAside(item: ItemShape) {
-    const { styles, parents = [], onItemPicked, width, verticallyAlign } = this.props;
+    const { cx, styles, parents = [], onItemPicked, width, verticallyAlign } = this.props;
 
     if (item.items || !item.description) {
       return null;
@@ -99,16 +99,16 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
 
     return (
       <aside
-        {...css(
-          styles.pane,
-          styles.pane_nested, // descriptions are always nested
+        className={cx(
+          styles.pane, // descriptions are always nested
+          styles.pane_nested,
           !verticallyAlign && styles.pane_verticallyOffset,
           styles.aside,
           { width },
         )}
       >
         <button
-          {...css(styles.asideButton)}
+          className={cx(styles.asideButton)}
           onClick={() => onItemPicked([...parents, item.name])}
           tabIndex={-1}
           type="button"
@@ -120,7 +120,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
   }
 
   render() {
-    const { focus, items, styles, parents, verticallyAlign, ...passThruProps } = this
+    const { cx, focus, items, styles, parents, verticallyAlign, ...passThruProps } = this
       .props as Required<Props & WithStylesProps>;
 
     if (items.length === 0) {
@@ -139,7 +139,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
       <>
         <div
           key="list"
-          {...css(
+          className={cx(
             styles.pane,
             verticallyAlign && styles.pane_verticallyAlign,
             isNested && styles.pane_nested,
@@ -152,7 +152,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
           )}
           ref={this.ref}
         >
-          <ul {...css(styles.list)}>
+          <ul className={cx(styles.list)}>
             {items.map((item, index) => {
               const { name, section } = item;
               const definition = parents.concat(name);
@@ -164,17 +164,17 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
 
               return (
                 <React.Fragment key={item.name}>
-                  {shouldRenderSection && index > 0 ? <li {...css(styles.divider)} /> : null}
+                  {shouldRenderSection && index > 0 ? <li className={cx(styles.divider)} /> : null}
 
                   {shouldRenderSection && section ? (
-                    <li {...css(styles.sectionHeader)}>
+                    <li className={cx(styles.sectionHeader)}>
                       <Text small bold uppercased>
                         {section}
                       </Text>
                     </li>
                   ) : null}
 
-                  <li {...css(styles.row)}>
+                  <li className={cx(styles.row)}>
                     <HierarchyItem
                       {...passThruProps}
                       onDomFocusDeeper={this.handleDomFocusDeeper}
@@ -188,6 +188,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
                     {!verticallyAlign && isFocused && item.items && item.items.length > 0 ? (
                       <HierarchyList
                         {...passThruProps}
+                        cx={cx}
                         styles={styles}
                         items={item.items!}
                         focus={focusRest}
@@ -208,6 +209,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
           <HierarchyList
             key="sub-list"
             {...passThruProps}
+            cx={cx}
             styles={styles}
             items={focusedItem!.items}
             focus={focusRest}

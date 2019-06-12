@@ -1,6 +1,6 @@
 import React from 'react';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
 
 export type Props = {
@@ -39,14 +39,24 @@ class Breadcrumb extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { disabled, hideIcon, highlighted, label, href, onClick, selected, styles } = this.props;
+    const {
+      cx,
+      disabled,
+      hideIcon,
+      highlighted,
+      label,
+      href,
+      onClick,
+      selected,
+      styles,
+    } = this.props;
     const clickable = !disabled && (!!href || !!onClick);
     const aria = selected ? { 'aria-current': 'page' } : {};
 
     return (
       <ButtonOrLink
         {...aria}
-        {...css(
+        className={cx(
           styles.breadcrumb,
           clickable && styles.breadcrumb_clickable,
           highlighted && styles.breadcrumb_highlighted,

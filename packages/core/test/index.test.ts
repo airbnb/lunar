@@ -47,7 +47,7 @@ describe('Core', () => {
     it('creates an aesthetic instance', () => {
       Core.bootstrapAesthetic();
 
-      expect(Core.getAesthetic()).toBeInstanceOf(Aesthetic);
+      expect(Core.aesthetic).toBeInstanceOf(Aesthetic);
     });
   });
 
