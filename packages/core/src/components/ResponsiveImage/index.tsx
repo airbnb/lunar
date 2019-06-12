@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export const DEFAULT_BORDER_RADIUS = 6;
 const objectFitPropType = mutuallyExclusiveTrueProps('contain', 'cover');
@@ -110,6 +110,7 @@ export class ResponsiveImage extends React.Component<Props & WithStylesProps, St
 
   render() {
     const {
+      cx,
       alt,
       contain,
       cover,
@@ -129,7 +130,7 @@ export class ResponsiveImage extends React.Component<Props & WithStylesProps, St
 
     return (
       <img
-        {...css(
+        className={cx(
           styles.image,
           contain && styles.image_contain,
           cover && styles.image_cover,

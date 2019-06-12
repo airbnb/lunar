@@ -1,7 +1,7 @@
 import React from 'react';
 import Hierarchy from '../Hierarchy';
 import Search from '../Search';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import { ARROW_UP, ARROW_DOWN } from '../../../keys';
 import {
   ChoiceDetails,
@@ -107,6 +107,7 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
 
   render() {
     const {
+      cx,
       chosen,
       hierarchyMaxHeight,
       hierarchyWidth,
@@ -126,7 +127,7 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
 
     return (
       /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
-      <div {...css(styles.pane)} ref={this.ref} onKeyDown={this.handleKeyDown}>
+      <div className={cx(styles.pane)} ref={this.ref} onKeyDown={this.handleKeyDown}>
         <Search
           formatter={formatter}
           indexParentPath={indexParentPath}
@@ -141,7 +142,7 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
         />
 
         {!searchQuery && (
-          <div role="listbox" {...css(styles.hierarchy)}>
+          <div role="listbox" className={cx(styles.hierarchy)}>
             <Hierarchy
               chosen={chosen}
               items={items}

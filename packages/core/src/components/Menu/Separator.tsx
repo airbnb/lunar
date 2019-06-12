@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /**
@@ -13,11 +13,11 @@ export type Props = {
 /** A separator between menu items. */
 export class MenuSeparator extends React.Component<Props & WithStylesProps> {
   render() {
-    const { styles } = this.props;
+    const { cx, styles } = this.props;
 
     return (
       <li role="separator">
-        <hr {...css(styles.separator)} />
+        <hr className={cx(styles.separator)} />
       </li>
     );
   }

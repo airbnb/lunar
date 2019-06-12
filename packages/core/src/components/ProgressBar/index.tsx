@@ -1,6 +1,6 @@
 import React from 'react';
 import { between } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Disable leading rounded corners. */
@@ -23,13 +23,19 @@ export class ProgressBar extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { percent, leading, trailing, styles } = this.props;
+    const { cx, percent, leading, trailing, styles } = this.props;
 
     return (
-      <div {...css(styles.wrapper)}>
-        <div {...css(styles.bar, !leading && styles.bar_leading, !trailing && styles.bar_trailing)}>
+      <div className={cx(styles.wrapper)}>
+        <div
+          className={cx(
+            styles.bar,
+            !leading && styles.bar_leading,
+            !trailing && styles.bar_trailing,
+          )}
+        >
           <div
-            {...css(
+            className={cx(
               styles.bar,
               !leading && styles.bar_leading,
               !trailing && styles.bar_trailing,

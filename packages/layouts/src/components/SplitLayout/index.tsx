@@ -1,6 +1,6 @@
 import React from 'react';
 import { Omit } from 'utility-types';
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import Layout, { Props as LayoutProps, AsideProps } from '../Layout';
 
 export type Props = Required<AsideProps> &
@@ -9,13 +9,13 @@ export type Props = Required<AsideProps> &
 /** A symmetrical two-column layout with optional top and side navigation. */
 export class SplitLayout extends React.Component<Props & WithStylesProps> {
   render() {
-    const { before, after, styles, ...props } = this.props;
+    const { cx, before, after, styles, ...props } = this.props;
 
     return (
       <Layout {...props} noBackground noPadding>
-        <div {...css(styles.wrapper)}>
-          <div {...css(styles.column)}>{before}</div>
-          <div {...css(styles.column, styles.column_after)}>{after}</div>
+        <div className={cx(styles.wrapper)}>
+          <div className={cx(styles.column)}>{before}</div>
+          <div className={cx(styles.column, styles.column_after)}>{after}</div>
         </div>
       </Layout>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import FormInput, { InputProps } from './FormInput';
 import buildInputStyles from '../../themes/buildInputStyles';
 
@@ -23,10 +23,10 @@ class BaseSwitch extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { checked, disabled, id, invalid, styles, ...restProps } = this.props;
+    const { cx, checked, disabled, id, invalid, styles, ...restProps } = this.props;
 
     return (
-      <label htmlFor={id} {...css(styles.switch)}>
+      <label htmlFor={id} className={cx(styles.switch)}>
         <FormInput
           {...restProps}
           checked={checked}
@@ -41,16 +41,16 @@ class BaseSwitch extends React.Component<Props & WithStylesProps> {
         />
 
         <span
-          {...css(
+          className={cx(
             styles.input,
             checked && styles.input_checked,
             invalid && styles.input_invalid,
             disabled && styles.input_disabled,
           )}
         >
-          <span {...css(styles.toggle, checked && styles.toggle_checked)}>
+          <span className={cx(styles.toggle, checked && styles.toggle_checked)}>
             {checked && (
-              <span {...css(styles.checkmark)}>
+              <span className={cx(styles.checkmark)}>
                 <IconCheck decorative size="1.5em" />
               </span>
             )}

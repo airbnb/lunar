@@ -22,7 +22,7 @@ import renderDataColumns from './columns/DataColumns';
 import renderExpandableColumn from './columns/ExpandableColumn';
 import renderSelectableColumn from './columns/SelectableColumn';
 import TableHeader from './TableHeader';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
 
@@ -348,6 +348,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   render() {
     const {
+      cx,
       data,
       expandable,
       filterData,
@@ -372,7 +373,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             {({ width }: { width: number }) => this.renderTableHeader(width)}
           </AutoSizer>
         )}
-        <div {...css(styles.table_container)}>
+        <div className={cx(styles.table_container)}>
           <AutoSizer disableHeight>
             {({ width }: { width: number }) => (
               <Table
@@ -390,9 +391,11 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
                 headerRowRenderer={ColumnLabels(this.props)}
                 onRowClick={this.handleRowClick}
               >
-                {expandable && renderExpandableColumn(styles, expandedRows, this.expandRow)}
+                {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
+
                 {selectable &&
                   renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
+
                 {renderDataColumns(this.keys, editMode, this.onEdit, this.props)}
               </Table>
             )}
@@ -404,7 +407,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 }
 
 export default withStyles(
-  (theme: WithStylesProps['theme']) => ({
+  theme => ({
     table_container: {
       overflowX: 'auto',
     },

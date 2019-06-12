@@ -4,11 +4,12 @@ import { Column } from 'react-virtualized';
 import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import Spacing from '../../Spacing';
-import { css, WithStylesProps } from '../../../composers/withStyles';
+import { WithStylesProps } from '../../../composers/withStyles';
 import { TableRow } from '../types';
 import { EXPANDABLE_COLUMN_WIDTH } from '../constants';
 
 export default function renderExpandableColumn(
+  cx: WithStylesProps['cx'],
   styles: WithStylesProps['styles'],
   expandedRows: Set<number>,
   expandRow: (newExpandedRowIndex: number) => (event: any) => void,
@@ -21,7 +22,7 @@ export default function renderExpandableColumn(
 
       return (
         <div
-          {...css(styles.expand_caret)}
+          className={cx(styles.expand_caret)}
           role="button"
           tabIndex={0}
           onClick={expandRow(originalIndex)}
@@ -34,7 +35,7 @@ export default function renderExpandableColumn(
       );
     }
 
-    return <div {...css(styles.row)} />;
+    return <div className={cx(styles.row)} />;
   };
 
   return <Column dataKey="expanded" cellRenderer={cellRenderer} width={EXPANDABLE_COLUMN_WIDTH} />;

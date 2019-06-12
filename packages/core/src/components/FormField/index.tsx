@@ -1,6 +1,6 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import T from '../Translate';
 import Text from '../Text';
 import StatusText from '../StatusText';
@@ -92,6 +92,7 @@ export class FormField extends React.Component<PrivateProps> {
 
   render() {
     const {
+      cx,
       children,
       compact,
       compactSpacing,
@@ -118,7 +119,7 @@ export class FormField extends React.Component<PrivateProps> {
 
     const content = (
       <div
-        {...css(
+        className={cx(
           styles.input,
           inline && renderBeforeLabel && styles.input_beforeInline,
           inline && !renderBeforeLabel && styles.input_afterInline,
@@ -126,28 +127,28 @@ export class FormField extends React.Component<PrivateProps> {
           renderFullWidth && styles.input_fullWidth,
         )}
       >
-        {prefix && <div {...css(styles.affix)}>{prefix}</div>}
+        {prefix && <div className={cx(styles.affix)}>{prefix}</div>}
 
-        <div {...css(styles.anchor)}>{children}</div>
+        <div className={cx(styles.anchor)}>{children}</div>
 
-        {suffix && <div {...css(styles.affix)}>{suffix}</div>}
+        {suffix && <div className={cx(styles.affix)}>{suffix}</div>}
       </div>
     );
 
     return (
       <section
-        {...css(
+        className={cx(
           styles.field,
           (compact || compactSpacing) && !noSpacing && styles.field_compactSpacing,
           noSpacing && styles.field_noSpacing,
         )}
       >
-        <div {...css(inline && styles.content_inline, topAlign && styles.content_topAlign)}>
+        <div className={cx(inline && styles.content_inline, topAlign && styles.content_topAlign)}>
           {renderBeforeLabel && content}
 
           <label
             htmlFor={id}
-            {...css(
+            className={cx(
               styles.label,
               stretchLabel && styles.label_stretch,
               hideLabel && styles.label_hidden,
@@ -158,7 +159,7 @@ export class FormField extends React.Component<PrivateProps> {
               {label}
 
               {optional && !hideOptionalLabel && (
-                <span {...css(styles.optional)}>
+                <span className={cx(styles.optional)}>
                   <Text inline small muted>
                     <T phrase="(optional)" context="A form field is marked as optional" />
                   </Text>

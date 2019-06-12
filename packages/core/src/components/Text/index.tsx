@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 const sizingProp = mutuallyExclusiveTrueProps('micro', 'small', 'large');
 const emphasisProp = mutuallyExclusiveTrueProps('bold', 'light');
@@ -85,6 +85,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       baseline,
       bold,
       centerAlign,
@@ -117,7 +118,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
 
     return (
       <Tag
-        {...css(
+        className={cx(
           styles.text,
           bold && styles.text_bold,
           disabled && styles.text_disabled,

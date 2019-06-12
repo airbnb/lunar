@@ -1,7 +1,7 @@
 import React from 'react';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Apply a border. */
@@ -37,12 +37,12 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { bordered, children, expanded, id, styles, theme, title } = this.props;
+    const { cx, bordered, children, expanded, id, styles, theme, title } = this.props;
 
     return (
-      <div {...css(styles.item, bordered && styles.item_bordered)}>
+      <div className={cx(styles.item, bordered && styles.item_bordered)}>
         <button
-          {...css(styles.title)}
+          className={cx(styles.title)}
           aria-controls={`accordion-body-${id}`}
           aria-selected={expanded}
           id={`accordion-title-${id}`}
@@ -51,7 +51,7 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
           tabIndex={0}
           type="button"
         >
-          {title && <span {...css(styles.titleText)}>{title}</span>}
+          {title && <span className={cx(styles.titleText)}>{title}</span>}
 
           {expanded ? (
             <IconChevronDown decorative size={theme!.unit * 3} />
@@ -61,7 +61,7 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
         </button>
 
         <section
-          {...css(styles.body, expanded && styles.body_expanded)}
+          className={cx(styles.body, expanded && styles.body_expanded)}
           aria-hidden={!expanded}
           aria-labelledby={`accordion-title-${id}`}
           id={`accordion-body-${id}`}

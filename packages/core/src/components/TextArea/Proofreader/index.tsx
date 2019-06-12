@@ -6,7 +6,7 @@ import Text from '../../Text';
 import Link from '../../Link';
 import Loader from '../../Loader';
 import Dropdown from '../../Dropdown';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import buildInputStyles from '../../../themes/buildInputStyles';
 import { LT_LOCALES } from '../../../constants';
 import { ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT } from '../../../keys';
@@ -581,7 +581,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   }
 
   render() {
-    const { children, styles, onCheckText, theme, important, ...props } = this.props;
+    const { cx, children, styles, onCheckText, theme, important, ...props } = this.props;
     const {
       position,
       errors,
@@ -594,23 +594,23 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     } = this.state;
     const caretPosition =
       (this.textareaRef.current && this.textareaRef.current.selectionStart) || 0;
-
     const highlightsProps = {
-      ...css(styles.highlights, important && styles.highlights_important),
+      className: cx(styles.highlights, important && styles.highlights_important),
       ref: this.shadowRef,
     };
+
     if (this.props.noTranslate) {
       highlightsProps.className += ' notranslate';
     }
 
     return (
-      <div {...css(styles.proofread)}>
+      <div className={cx(styles.proofread)}>
         {/* Shadow text for displaying underlined words. */}
         <div {...highlightsProps}>{this.renderTextWithMarks()}</div>
 
         {/* Track the top/left offset of the caret within the textarea. */}
         {caretPosition > 0 && (
-          <div {...css(styles.caret)} ref={this.caretRef}>
+          <div className={cx(styles.caret)} ref={this.caretRef}>
             <span>{text.slice(0, caretPosition)}</span>
             <span>{text.slice(caretPosition)}.</span>
           </div>
@@ -635,10 +635,10 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         )}
 
         <div
-          {...css(styles.controls, important && styles.controls_important)}
+          className={cx(styles.controls, important && styles.controls_important)}
           ref={this.controlsRef}
         >
-          <span {...css(styles.cell, { pointerEvents: 'initial' })}>
+          <span className={cx(styles.cell, { pointerEvents: 'initial' })}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link small onClick={this.handleToggleLocaleMenu}>
               {selectedLocale ? (
@@ -671,7 +671,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           </span>
 
           {errors.length > 0 && (
-            <span {...css(styles.cell)}>
+            <span className={cx(styles.cell)}>
               <Text small muted>
                 <T
                   phrase="%{smartCount} issue||||%{smartCount} issues"
@@ -683,7 +683,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           )}
 
           {loading && (
-            <span {...css(styles.cell)}>
+            <span className={cx(styles.cell)}>
               <Loader inline />
             </span>
           )}
@@ -770,9 +770,9 @@ export default withStyles(
           right: 0,
           height: 1,
           position: 'absolute',
-          background: `linear-gradient(to right, ${theme.color.accent.border}, ${
-            theme.color.base
-          })`,
+          background:
+            // prettier-ignore
+            `linear-gradient(to right, ${theme.color.accent.border}, ${theme.color.base})`,
         },
       },
 

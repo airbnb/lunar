@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import FocusTrap from '../../FocusTrap';
 import focusFirstFocusableChild from '../../../utils/focus/focusFirstFocusableChild';
 import ModalImageLayout, { ModalImageConfig } from './ImageLayout';
@@ -66,7 +66,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, footer, image, large, styles, title } = this.props;
+    const { cx, children, footer, image, large, styles, title } = this.props;
     const showLargeContent = large || !!image;
 
     const innerContent = (
@@ -85,7 +85,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
         aria-modal
         role="dialog"
         ref={this.dialogRef}
-        {...css(styles.content, showLargeContent && styles.responsiveContent)}
+        className={cx(styles.content, showLargeContent && styles.responsiveContent)}
       >
         <FocusTrap>
           {image ? <ModalImageLayout {...image}>{innerContent}</ModalImageLayout> : innerContent}

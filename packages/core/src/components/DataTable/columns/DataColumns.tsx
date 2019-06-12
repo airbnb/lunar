@@ -1,6 +1,5 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
-
 import renderDefaultContent from '../DefaultRenderer';
 import Spacing from '../../Spacing';
 import {
@@ -12,13 +11,14 @@ import {
   WidthProperties,
   RendererProps,
 } from '../types';
-import { css, WithStylesProps } from '../../../composers/withStyles';
+import { WithStylesProps } from '../../../composers/withStyles';
 import { DEFAULT_WIDTH_PROPERTIES } from '../constants';
 
 type ArgumentsFromProps = {
   columnMetadata?: ColumnMetadata;
   showColumnDividers?: boolean;
-  styles?: WithStylesProps['styles'];
+  cx: WithStylesProps['cx'];
+  styles: WithStylesProps['styles'];
   renderers?: DataTableProps['renderers'];
   zebra?: boolean;
   rowHeight?: HeightOptions;
@@ -34,6 +34,7 @@ export default function renderDataColumns(
   {
     columnMetadata,
     showColumnDividers,
+    cx,
     styles,
     renderers,
     zebra,
@@ -73,8 +74,8 @@ export default function renderDataColumns(
       : renderDefaultContent(rendererArguments);
 
     return (
-      <div {...css(styles && styles.row)}>
-        <div {...css(styles && styles.row_inner)}>
+      <div className={cx(styles && styles.row)}>
+        <div className={cx(styles && styles.row_inner)}>
           <Spacing left={spacing} right={2}>
             {contents || ''}
           </Spacing>
@@ -109,7 +110,7 @@ export default function renderDataColumns(
         maxWidth={widthProperties.maxWidth}
         minWidth={widthProperties.minWidth}
         cellRenderer={renderCell(key, isLeftmost)}
-        {...css(
+        className={cx(
           styles && styles.column,
           showColumnDividers && !isRightmost && styles && styles.column_divider,
         )}

@@ -1,9 +1,7 @@
-import { WithThemeOptions, WithThemeProps as BaseWithThemeProps } from 'aesthetic';
-import Core from '..';
+import { withThemeFactory, WithThemeWrappedProps } from 'aesthetic-react';
 import { Theme } from '../types';
+import Core from '..';
 
-export type WithThemeProps = BaseWithThemeProps<Theme>;
+export type WithThemeProps = WithThemeWrappedProps<Theme>;
 
-export default function withTheme(options?: WithThemeOptions) /* infer */ {
-  return Core.getAesthetic().withTheme(options);
-}
+export default withThemeFactory(Core.aesthetic);

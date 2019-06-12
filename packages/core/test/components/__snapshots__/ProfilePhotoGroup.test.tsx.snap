@@ -65,7 +65,7 @@ exports[`<ProfilePhotoGroup /> renders a remainder cell when the max is met 1`] 
     key="remainder"
   >
     <div
-      className="remainder_1isx801-o_O-inline-0_ksaxgv"
+      className="remainder_15l21mp-o_O-inline-0_ksaxgv"
     >
       <span
         className="remainderNumber_d1qlh4"

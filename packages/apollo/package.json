@@ -39,6 +39,6 @@
     "apollo-link-http": "^1.5.14",
     "lodash": "^4.17.11",
     "react-apollo": "^2.5.3",
-    "utility-types": "^3.5.0"
+    "utility-types": "^3.7.0"
   }
 }

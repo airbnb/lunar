@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 
 export const MAX_HEIGHT_IMAGE = 720;
 export const MAX_HEIGHT_IMAGE_SMALL = 420;
@@ -22,15 +22,15 @@ export type Props = ModalImageConfig & {
 
 class ModalImageLayout extends React.Component<Props & WithStylesProps> {
   render() {
-    const { children, sizes, srcSet, type, url, styles } = this.props;
+    const { cx, children, sizes, srcSet, type, url, styles } = this.props;
 
     return (
-      <div {...css(styles.splitContent)}>
-        <div {...css(styles.splitContentPane)}>{children}</div>
-        <div {...css(styles.splitContentPane, styles.splitContentImagePane)}>
+      <div className={cx(styles.splitContent)}>
+        <div className={cx(styles.splitContentPane)}>{children}</div>
+        <div className={cx(styles.splitContentPane, styles.splitContentImagePane)}>
           {type === 'center' && (
             <img
-              {...css(styles.image, styles.imageMaxHeight, styles.imageCentered)}
+              className={cx(styles.image, styles.imageMaxHeight, styles.imageCentered)}
               src={url}
               srcSet={srcSet && srcSet.join(',')}
               sizes={sizes && sizes.join(',')}
@@ -39,7 +39,7 @@ class ModalImageLayout extends React.Component<Props & WithStylesProps> {
           )}
           {type === 'cover' && (
             <img
-              {...css(styles.image, styles.imageCover)}
+              className={cx(styles.image, styles.imageCover)}
               src={url}
               srcSet={srcSet && srcSet.join(',')}
               alt=""

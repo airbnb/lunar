@@ -1,7 +1,7 @@
 import React from 'react';
 import IconCaretRight from '@airbnb/lunar-icons/lib/interface/IconCaretRight';
 import iconComponent from '../../prop-types/iconComponent';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
 import Text from '../Text';
 
@@ -73,6 +73,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       children,
       disabled,
       highlighted,
@@ -109,7 +110,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
           tabIndex={tabIndex}
           aria-haspopup={!!submenu}
           aria-expanded={showSubmenu}
-          {...css(
+          className={cx(
             styles.item,
             (showSubmenu || highlighted) && styles.item_highlighted,
             disabled && styles.item_disabled,
@@ -119,7 +120,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
           {children}
         </ButtonOrLink>
 
-        {showSubmenu && <div {...css(styles.submenu)}>{submenu}</div>}
+        {showSubmenu && <div className={cx(styles.submenu)}>{submenu}</div>}
       </li>
     );
   }
