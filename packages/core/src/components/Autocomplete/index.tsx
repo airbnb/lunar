@@ -50,7 +50,7 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     isItemSelectable?: (item: T, selected?: boolean) => boolean;
     /** Determine if an item is selected. Will compare values by default if not defined. */
     isItemSelected?: (item: T, value: string) => boolean;
-    /** Whether to invoke onLoadOptions with the current value when focused. */
+    /** Load and show items with the current value when focused. */
     loadItemsOnFocus?: boolean;
     /** Load and show items on mount. */
     loadItemsOnMount?: boolean;
@@ -61,7 +61,7 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     /** Callback fired when the value changes. */
     onChange: (value: string, event: React.SyntheticEvent<any>) => void;
     /** Callback fired to load items. Must return a promise with an array of items. */
-    onLoadOptions: (value: string) => Promise<ItemResponseType<T>>;
+    onLoadItems: (value: string) => Promise<ItemResponseType<T>>;
     /** Callback fired when the display of the menu is toggled. */
     onMenuVisibilityChange?: (open: boolean) => void;
     /**
@@ -511,7 +511,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   }>(
     /* istanbul ignore next */
     (input: string) =>
-      Promise.resolve(this.props.onLoadOptions(input)).then(response => ({
+      Promise.resolve(this.props.onLoadItems(input)).then(response => ({
         input,
         response,
       })),

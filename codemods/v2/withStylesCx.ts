@@ -9,7 +9,9 @@ import {
   ObjectPattern,
   BlockStatement,
   ObjectProperty,
+  CallExpression,
 } from 'jscodeshift';
+import { Codemod } from '../helpers';
 
 function hasCxProp(props: ObjectPattern['properties']): boolean {
   return props.some(
@@ -49,14 +51,13 @@ module.exports = function withStylesCx(
   api: API,
   options: Options,
 ): string | null | undefined | void {
-  const cs = api.jscodeshift;
-  const source = cs(fileInfo.source);
+  const mod = new Codemod(fileInfo, api);
   let hocName = '';
   let compName = '';
 
   // Find the imported HOC name
-  source
-    .find(cs.ImportDeclaration)
+  mod
+    .findImports()
     .filter(({ node }) => String(node.source.value).endsWith('composers/withStyles'))
     .filter(({ node }) => {
       // Capture imported HOC name
@@ -78,7 +79,7 @@ module.exports = function withStylesCx(
 
   // Find the component name from the HOC call site
   if (hocName) {
-    source.find(cs.ExportDefaultDeclaration).forEach(({ node }) => {
+    mod.source.find(mod.cs.ExportDefaultDeclaration).forEach(({ node }) => {
       if (
         node.declaration.type === 'CallExpression' &&
         node.declaration.callee.type === 'CallExpression' &&
@@ -94,11 +95,15 @@ module.exports = function withStylesCx(
 
   // Inject `cx` prop into usage
   if (compName) {
-    const cxProp = cs.objectProperty(cs.identifier('cx'), cs.identifier('cx'));
-    cxProp.shorthand = true;
+    const cxProp = mod.createNode(cs => {
+      const node = cs.objectProperty(cs.identifier('cx'), cs.identifier('cx'));
+      node.shorthand = true;
+
+      return node;
+    });
 
     // Function components
-    source.find(cs.FunctionDeclaration, { id: { name: compName } }).forEach(({ node }) => {
+    mod.source.find(mod.cs.FunctionDeclaration, { id: { name: compName } }).forEach(({ node }) => {
       if (node.params.length === 0) {
         return;
       }
@@ -120,7 +125,7 @@ module.exports = function withStylesCx(
     });
 
     // Class components
-    source.find(cs.ClassDeclaration, { id: { name: compName } }).forEach(({ node }) => {
+    mod.source.find(mod.cs.ClassDeclaration, { id: { name: compName } }).forEach(({ node }) => {
       node.body.body.forEach(stmt => {
         if (
           stmt.type === 'ClassMethod' &&
@@ -134,7 +139,7 @@ module.exports = function withStylesCx(
   }
 
   // Replace `{...css()}` with `className={cx()}`
-  source.find(cs.JSXSpreadAttribute).forEach(path => {
+  mod.source.find(mod.cs.JSXSpreadAttribute).forEach(path => {
     const parent = path.parent.node as JSXOpeningElement;
 
     if (!parent || !parent.attributes || parent.attributes.length === 0) {
@@ -148,10 +153,12 @@ module.exports = function withStylesCx(
         attr.argument.callee.type === 'Identifier' &&
         attr.argument.callee.name === 'css'
       ) {
-        parent.attributes[index] = cs.jsxAttribute(
-          cs.jsxIdentifier('className'),
-          cs.jsxExpressionContainer(
-            cs.callExpression(cs.identifier('cx'), attr.argument.arguments),
+        parent.attributes[index] = mod.createNode(cs =>
+          cs.jsxAttribute(
+            cs.jsxIdentifier('className'),
+            cs.jsxExpressionContainer(
+              cs.callExpression(cs.identifier('cx'), (attr.argument as CallExpression).arguments),
+            ),
           ),
         );
       }
@@ -159,16 +166,11 @@ module.exports = function withStylesCx(
   });
 
   // Replace `css()` with `cx()`
-  source.find(cs.CallExpression).forEach(({ node }) => {
+  mod.source.find(mod.cs.CallExpression).forEach(({ node }) => {
     if (node.callee.type === 'Identifier' && node.callee.name === 'css') {
       node.callee.name = 'cx';
     }
   });
 
-  return source.toSource({
-    tabWidth: 2,
-    quote: 'single',
-    trailingComma: true,
-    ...options,
-  });
+  return mod.toSource(options);
 };

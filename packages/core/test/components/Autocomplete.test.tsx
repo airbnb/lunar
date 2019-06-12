@@ -17,7 +17,7 @@ describe('<Autocomplete />', () => {
     accessibilityLabel: 'Label',
     maxHeight: 400,
     onChange() {},
-    onLoadOptions: () => Promise.resolve([]),
+    onLoadItems: () => Promise.resolve([]),
   };
 
   let wrapper: Enzyme.ShallowWrapper<Props<any>, State<any>, Autocomplete<any>>;

@@ -180,7 +180,7 @@ export class Search extends React.Component<Props & WithStylesProps> {
           name="autocomplete-search"
           noResultsText={noResultsLabel}
           onChange={onSearch}
-          onLoadOptions={this.handleAsyncSearch}
+          onLoadItems={this.handleAsyncSearch}
           onSelectItem={this.handleItemPicked}
           optional
           placeholder={placeholder}
