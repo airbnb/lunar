@@ -23,6 +23,8 @@ export type Props = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabl
   onSelected?: () => void;
   /** Whether the tab is selected or not. */
   selected?: boolean;
+  /** Decrease font size to small. */
+  small?: boolean;
   /** Stretch tabs to fill the full width. */
   stretched?: boolean;
 };
@@ -33,6 +35,7 @@ export class Tab extends React.Component<Props & WithStylesProps> {
     borderless: false,
     children: null,
     selected: false,
+    small: false,
     stretched: false,
   };
 
@@ -59,6 +62,7 @@ export class Tab extends React.Component<Props & WithStylesProps> {
       keyName,
       label,
       selected,
+      small,
       stretched,
       styles,
     } = this.props;
@@ -74,19 +78,25 @@ export class Tab extends React.Component<Props & WithStylesProps> {
           stretched && styles.tab_stretched,
         )}
       >
-        <ButtonOrLink
-          flexAlign
-          aria-selected={selected}
-          afterIcon={afterIcon}
-          beforeIcon={beforeIcon}
-          disabled={disabled}
-          href={href}
-          role="tab"
-          onClick={disabled ? undefined : this.handleClick}
-          className={cx(styles.tabButton)}
-        >
-          {label}
-        </ButtonOrLink>
+        <TrackingBoundary name={trackingName}>
+          <ButtonOrLink
+            flexAlign
+            aria-selected={selected}
+            afterIcon={afterIcon}
+            beforeIcon={beforeIcon}
+            disabled={disabled}
+            href={href}
+            role="tab"
+            onClick={disabled ? undefined : this.handleClick}
+            className={cx(
+              styles.tabButton,
+              small && styles.tabButton_small,
+              selected && styles.tabButton_active,
+            )}
+          >
+            {label}
+          </ButtonOrLink>
+        </TrackingBoundary>
       </span>
     );
   }
@@ -112,10 +122,10 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
   },
 
   tab_selected: {
-    borderColor: color.accent.borderFocus,
+    borderColor: color.accent.borderActive,
 
     ':hover': {
-      borderColor: color.accent.borderFocus,
+      borderColor: color.accent.borderActive,
     },
   },
 
@@ -134,8 +144,10 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
 
   tabButton: {
     ...font.textReset,
+    ...font.textRegular,
     ...transition.box,
     background: color.accent.bg,
+    color: color.accent.text,
     display: 'flex',
     alignItems: 'center',
     paddingTop: unit,
@@ -146,7 +158,16 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     textDecoration: 'none',
     whiteSpace: 'nowrap',
     width: '100%',
+    fontWeight: font.weights.bold,
     borderTopLeftRadius: ui.borderRadius,
     borderTopRightRadius: ui.borderRadius,
+  },
+
+  tabButton_small: {
+    ...font.textSmall,
+  },
+
+  tabButton_active: {
+    color: color.accent.textActive,
   },
 }))(Tab);
