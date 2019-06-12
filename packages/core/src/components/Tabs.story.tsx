@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
+import IconAdd from '@airbnb/lunar-icons/lib/interface/IconAddAlt';
+import IconRemove from '@airbnb/lunar-icons/lib/interface/IconRemoveAlt';
 import Text from './Text';
 import Tabs, { Tab } from './Tabs';
 
@@ -22,11 +24,20 @@ storiesOf('Core/Tabs', module)
       <Tab key="c" label={<Text bold>Peter P.</Text>} />
     </Tabs>
   ))
-  .add('Borderless tabs with no body content.', () => (
+  .add('Borderless tabs with icons.', () => (
     <Tabs borderless>
-      <Tab key="a" label={<Text bold>Bruce W.</Text>} />
+      <Tab
+        key="a"
+        label={<Text bold>Bruce W.</Text>}
+        beforeIcon={<IconAdd decorative size="1.25em" />}
+      />
       <Tab key="b" label={<Text bold>Clark K.</Text>} />
-      <Tab key="c" disabled label={<Text bold>Peter P.</Text>} />
+      <Tab
+        key="c"
+        disabled
+        label={<Text bold>Peter P.</Text>}
+        afterIcon={<IconRemove decorative size="1.25em" />}
+      />
     </Tabs>
   ))
   .add('Render anchor links when passing .', () => (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ButtonOrLink from '../../../src/components/private/ButtonOrLink';
+import IconAffix from '../../../src/components/private/IconAffix';
 import removeFocusOnMouseUp from '../../../src/utils/removeFocusOnMouseUp';
 
 jest.mock('../../../src/utils/removeFocusOnMouseUp');
@@ -157,5 +158,28 @@ describe('<ButtonOrLink />', () => {
 
     expect(wrapper.contains(beforeIcon)).toBe(false);
     expect(wrapper.contains(afterIcon)).toBe(false);
+  });
+
+  it('sets flex alignment on icons', () => {
+    const beforeIcon = <div>Icon</div>;
+    const afterIcon = <div>Icon</div>;
+    const wrapper = shallow(
+      <ButtonOrLink beforeIcon={beforeIcon} afterIcon={afterIcon} flexAlign>
+        Default
+      </ButtonOrLink>,
+    );
+
+    expect(
+      wrapper
+        .find(IconAffix)
+        .at(0)
+        .prop('flex'),
+    ).toBe(true);
+    expect(
+      wrapper
+        .find(IconAffix)
+        .at(1)
+        .prop('flex'),
+    ).toBe(true);
   });
 });

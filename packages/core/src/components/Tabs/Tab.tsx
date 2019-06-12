@@ -2,18 +2,14 @@ import React from 'react';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import ButtonOrLink from '../private/ButtonOrLink';
+import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
 import TrackingBoundary from '../TrackingBoundary';
 
-export type Props = {
+export type Props = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabled' | 'href'> & {
   /** Hide bottom border of Tab when unselected. */
   borderless?: boolean;
   /** Content to render if the tab is selected. */
   children?: React.ReactNode;
-  /** Disable the tab button. */
-  disabled?: boolean;
-  /** Render an anchor link with a URL instead of a button. */
-  href?: string;
   /**
    * Unique key name for this tab.
    * @ignore
@@ -36,8 +32,6 @@ export class Tab extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
     borderless: false,
     children: null,
-    disabled: false,
-    href: '',
     selected: false,
     stretched: false,
   };
@@ -57,6 +51,8 @@ export class Tab extends React.Component<Props & WithStylesProps> {
   render() {
     const {
       cx,
+      afterIcon,
+      beforeIcon,
       borderless,
       disabled,
       href,
@@ -78,18 +74,19 @@ export class Tab extends React.Component<Props & WithStylesProps> {
           stretched && styles.tab_stretched,
         )}
       >
-        <TrackingBoundary name={trackingName}>
-          <ButtonOrLink
-            aria-selected={selected}
-            disabled={disabled}
-            href={href}
-            role="tab"
-            onClick={disabled ? undefined : this.handleClick}
-            className={cx(styles.tabButton)}
-          >
-            {label}
-          </ButtonOrLink>
-        </TrackingBoundary>
+        <ButtonOrLink
+          flexAlign
+          aria-selected={selected}
+          afterIcon={afterIcon}
+          beforeIcon={beforeIcon}
+          disabled={disabled}
+          href={href}
+          role="tab"
+          onClick={disabled ? undefined : this.handleClick}
+          className={cx(styles.tabButton)}
+        >
+          {label}
+        </ButtonOrLink>
       </span>
     );
   }
@@ -139,7 +136,8 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     ...font.textReset,
     ...transition.box,
     background: color.accent.bg,
-    display: 'inline-block',
+    display: 'flex',
+    alignItems: 'center',
     paddingTop: unit,
     paddingBottom: unit,
     border: 0,
