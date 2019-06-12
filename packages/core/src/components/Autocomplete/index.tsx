@@ -50,6 +50,8 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     isItemSelectable?: (item: T, selected?: boolean) => boolean;
     /** Determine if an item is selected. Will compare values by default if not defined. */
     isItemSelected?: (item: T, value: string) => boolean;
+    /** Whether to invoke onLoadOptions with the current value when focused. */
+    loadItemsOnFocus?: boolean;
     /** Load and show items on mount. */
     loadItemsOnMount?: boolean;
     /** Max height of the results dropdown menu. */
@@ -105,6 +107,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
       return true;
     },
     isItemSelected() {},
+    loadItemsOnFocus: false,
     loadItemsOnMount: false,
     onMenuVisibilityChange() {},
     onSelectItem() {},
@@ -215,8 +218,14 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   };
 
   private handleInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { value } = this.state;
+
     if (this.props.onFocus) {
       this.props.onFocus(event);
+    }
+
+    if (this.props.loadItemsOnFocus) {
+      this.loadItems(value);
     }
 
     this.setState({
@@ -438,8 +447,10 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
       loading: true,
     });
 
+    const { loadItemsOnFocus } = this.props;
+
     // Exit early if no value
-    if (!value && !force) {
+    if (!value && !force && !loadItemsOnFocus) {
       this.props.onSelectItem!('', null);
 
       return Promise.resolve([]);
@@ -600,7 +611,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
     const { error, loading, value } = this.state;
     const items = this.renderItems();
 
-    if (!value && items.length === 0) {
+    if (!loading && !value && items.length === 0) {
       return <div />;
     }
 

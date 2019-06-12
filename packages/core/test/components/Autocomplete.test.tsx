@@ -164,6 +164,18 @@ describe('<Autocomplete />', () => {
 
       expect(wrapper.state('open')).toBe(true);
     });
+
+    it('calls `loadItems` if `loadItemsOnFocus` is `true`', () => {
+      const spy = jest.spyOn(instance, 'loadItems');
+
+      wrapper.setProps({
+        loadItemsOnFocus: true,
+      });
+
+      wrapper.find(BaseInput).simulate('focus', {});
+
+      expect(spy).toHaveBeenCalled();
+    });
   });
 
   describe('handleInputKeyDown()', () => {
