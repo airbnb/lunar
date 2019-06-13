@@ -58,7 +58,7 @@ storiesOf('Layouts/SidePanel', module)
       iconColor="#008489"
       sidePane={<LoremIpsum />}
       mainPane={<LoremIpsum />}
-      iconOpen={IconArrowLeft}
-      iconClosed={IconArrowRight}
+      iconOpen={<IconArrowLeft />}
+      iconClosed={<IconArrowRight />}
     />
   ));

@@ -7,7 +7,6 @@ import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight
 import Spacing from '@airbnb/lunar/lib/components/Spacing';
 
 import iconComponent from '@airbnb/lunar/lib/prop-types/iconComponent';
-import { WithIconWrapperProps } from '../../../../../packages/icons/src/withIcon';
 
 export type SplitPaneProps = {
   sidePane: React.ReactNode;
@@ -19,8 +18,9 @@ export type SplitPaneProps = {
   fixedWidth?: string | number;
   percentWidth?: number;
   iconColor?: string;
-  iconClosed?: React.ComponentClass<WithIconWrapperProps>;
-  iconOpen?: React.ComponentClass<WithIconWrapperProps>;
+  // @ts-ignore
+  iconClosed?: any;
+  iconOpen?: any;
   iconSize?: string;
   buttonTop?: number;
   background?: string;
@@ -121,8 +121,6 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
         rightSide && collapsed ? buttonBackgroundColor : theme!.color.core.neutral[1],
     };
 
-    const Icon: React.ComponentClass<WithIconWrapperProps> = collapsed ? iconClosed! : iconOpen!;
-
     const collapseButtonStyle = {
       top: buttonTop,
       background: buttonBackgroundColor,
@@ -150,7 +148,9 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
         onClick={this.handleToggleSidePane}
       >
         <Spacing vertical={1} horizontal={compact ? 0 : 1}>
-          <Icon color={iconColor} size={iconSize} />
+          {collapsed
+            ? React.cloneElement(iconClosed, { size: iconSize, color: iconColor })
+            : React.cloneElement(iconOpen, { size: iconSize, color: iconColor })}
         </Spacing>
       </button>
     );
