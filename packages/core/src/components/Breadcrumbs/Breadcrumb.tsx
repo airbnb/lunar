@@ -1,7 +1,9 @@
 import React from 'react';
+import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
+import DirectionalIcon from '../DirectionalIcon';
 
 export type Props = {
   /** Mark the breadcrumb as disabled. */
@@ -64,7 +66,17 @@ class Breadcrumb extends React.Component<Props & WithStylesProps> {
           selected && styles.breadcrumb_selected,
           disabled && styles.breadcrumb_disabled,
         )}
-        afterIcon={hideIcon ? null : <IconChevronRight decorative size={24} />}
+        afterIcon={
+          hideIcon ? null : (
+            <DirectionalIcon
+              direction="right"
+              left={IconChevronLeft}
+              right={IconChevronRight}
+              size={24}
+              decorative
+            />
+          )
+        }
         disabled={disabled}
         href={href}
         onClick={this.handleClick}

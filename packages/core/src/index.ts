@@ -27,6 +27,7 @@ export type Settings = {
   fontFamily?: string;
   logger?: Logger | null;
   name: string;
+  rtl?: boolean;
   theme?: 'light' | 'dark';
   translator?: Translator | null;
   translatorComponent?: React.ComponentType<TranslateProps> | null;
@@ -43,6 +44,7 @@ class Core {
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     logger: null,
     name: 'Lunar',
+    rtl: false,
     theme: 'light',
     translator: null,
     translatorComponent: null,
@@ -65,7 +67,7 @@ class Core {
   }
 
   bootstrapAesthetic() {
-    const { theme, fontFaces } = this.settings;
+    const { fontFaces, rtl, theme } = this.settings;
     const fontFamily = this.fontFamily();
     const globals = globalStyles(fontFaces);
 
@@ -77,6 +79,7 @@ class Core {
       // Tests trigger an error, so ignore it
     }
 
+    this.aesthetic.options.rtl = rtl;
     this.aesthetic.options.theme = theme;
   }
 
@@ -137,7 +140,7 @@ class Core {
     }
 
     // Low-level token interpolation
-    return message.replace(/%\{(\w+)\}/g, (match, key) => String(params[key] || ''));
+    return message.replace(/%\{(\w+)\}/g, (match, key) => `${params[key]}`);
   };
 }
 

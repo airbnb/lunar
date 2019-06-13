@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { mutuallyExclusiveProps } from 'airbnb-prop-types';
+import Core from '../..';
 
 const PositionShape = PropTypes.oneOfType([
   PropTypes.number.isRequired,
@@ -107,7 +108,11 @@ export default class Dropdown extends React.PureComponent<Props> {
 
     // Set left by default if neither are defined
     if (!('left' in props) && !('right' in props)) {
-      style.left = 0;
+      if (Core.settings.rtl) {
+        style.right = 0;
+      } else {
+        style.left = 0;
+      }
     }
 
     return (

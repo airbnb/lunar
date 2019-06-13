@@ -13,11 +13,8 @@ const themes = {
   dark: darkTheme,
 };
 
-let theme = localStorage.getItem('storybook.theme');
-
-if (!theme || (theme !== 'light' && theme !== 'dark')) {
-  theme = 'light';
-}
+const theme = localStorage.getItem('storybook.theme') || 'light';
+const rtl = localStorage.getItem('storybook.rtl') === 'true';
 
 Lunar.initialize({
   name: 'Lunar',
@@ -26,12 +23,12 @@ Lunar.initialize({
       hexcode,
     ).toLowerCase()}.png`,
   logger: console.log,
+  rtl,
   theme,
 });
 
 addDecorator(withA11y);
 addDecorator(withProps);
-
 addDecorator(story => (
   <div style={{ padding: 20, fontSize: 15, fontFamily: Lunar.settings.fontFamily }}>{story()}</div>
 ));

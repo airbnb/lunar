@@ -39,6 +39,7 @@ storiesOf('Core/GradientScroller', module)
       <Text>
         <span style={{ whiteSpace: 'nowrap' }}>
           <LoremIpsum />
+          <LoremIpsum />
         </span>
       </Text>
     </GradientScroller>
@@ -47,6 +48,7 @@ storiesOf('Core/GradientScroller', module)
     <GradientScroller showArrows hideScrollbar>
       <Text>
         <span style={{ whiteSpace: 'nowrap' }}>
+          <LoremIpsum />
           <LoremIpsum />
         </span>
       </Text>
