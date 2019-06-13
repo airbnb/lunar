@@ -1,23 +1,24 @@
 import React from 'react';
-import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
+import { elementType, mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import Layout, { Props as LayoutProps } from '../Layout';
+import Aside from '../Aside';
 
 const asidePropType = mutuallyExclusiveTrueProps('after', 'before');
 
 export type Props = LayoutProps & {
   /** Display the aside after the content. */
   after?: boolean;
-  /** Display the aside after the content. */
-  before?: boolean;
   /** The aside content. */
   aside: NonNullable<React.ReactNode>;
+  /** Display the aside after the content. */
+  before?: boolean;
 };
 
-/**
- * A fluid two-column layout with a before or after sidebar, and optional top and side navigation. */
+/** A two-column layout. */
 export default class TwoColumnLayout extends React.Component<Props> {
   static propTypes = {
     after: asidePropType,
+    aside: elementType(Aside).isRequired,
     before: asidePropType,
   };
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
 import Content from './Content';
-import useStyles from '../../hooks/useStyles';
-import { Theme } from '../../types';
+import useStyles, { Theme } from '../../hooks/useStyles';
 
 export { Content };
 
