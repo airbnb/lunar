@@ -6,6 +6,7 @@ import T from '@airbnb/lunar/lib/components/Translate';
 import Button from '@airbnb/lunar/lib/components/Button';
 import Dropdown, { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
 import Menu, { Props as MenuProps } from '@airbnb/lunar/lib/components/Menu';
+import ExpandableIcon from '@airbnb/lunar/lib/components/ExpandableIcon';
 import Link from '@airbnb/lunar/lib/components/Link';
 import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import Row from './private/Row';
@@ -150,7 +151,13 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
 
     return (
       <div className={cx(styles.container)} ref={this.ref}>
-        <Button inverted large={large} small={small} onClick={this.handleToggleFilters}>
+        <Button
+          inverted
+          large={large}
+          small={small}
+          onClick={this.handleToggleFilters}
+          afterIcon={<ExpandableIcon expanded={opened} size="1.25em" />}
+        >
           {activeCountLabel || toggleLabel}
         </Button>
 

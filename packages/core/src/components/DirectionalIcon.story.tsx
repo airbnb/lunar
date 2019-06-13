@@ -10,7 +10,7 @@ storiesOf('Core/DirectionalIcon', module)
   })
   .add('Renders left and right icons based on RTL setting.', () => (
     <div>
-      Toggle RTL mode above to view the icon orientation flip.
+      Toggle RTL mode to view the icon orientation flip.
       <br />
       <br />
       <DirectionalIcon
