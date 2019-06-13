@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.0 - 2019-06-13
+
+#### 🚀 Updates
+
+- **[Icons]** Add IconCode (#90) ([ab50abb](https://github.com/airbnb/lunar/commit/ab50abb)), closes [#90](https://github.com/airbnb/lunar/issues/90)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ## 1.4.0 - 2019-06-07
 
 #### 🚀 Updates
