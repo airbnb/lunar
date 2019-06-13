@@ -19,11 +19,8 @@ exports[`<AccordionItem /> renders bordered 1`] = `
     >
       Title
     </span>
-    <DirectionalIcon
-      decorative={true}
-      direction="right"
-      left={[Function]}
-      right={[Function]}
+    <ExpandableIcon
+      expanded={false}
       size={24}
     />
   </button>
@@ -56,8 +53,8 @@ exports[`<AccordionItem /> renders expanded 1`] = `
     >
       Title
     </span>
-    <IconChevronDown
-      decorative={true}
+    <ExpandableIcon
+      expanded={true}
       size={24}
     />
   </button>

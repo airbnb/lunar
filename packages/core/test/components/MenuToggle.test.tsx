@@ -1,7 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
-import IconChevronUp from '@airbnb/lunar-icons/lib/interface/IconChevronUp';
 import Button from '../../src/components/Button';
 import IconButton from '../../src/components/IconButton';
 import Dropdown from '../../src/components/Dropdown';
@@ -30,8 +28,9 @@ describe('<MenuToggle />', () => {
     ).dive();
 
     const iconDown = wrapper.find(Button).prop('afterIcon') as React.ReactElement;
+
     expect(iconDown).not.toBeNull();
-    expect(iconDown.type).toBe(IconChevronDown);
+    expect(iconDown.props.expanded).toBe(false);
 
     wrapper.setState({
       opened: true,
@@ -39,7 +38,7 @@ describe('<MenuToggle />', () => {
 
     const iconUp = wrapper.find(Button).prop('afterIcon') as React.ReactElement;
     expect(iconUp).not.toBeNull();
-    expect(iconUp.type).toBe(IconChevronUp);
+    expect(iconUp.props.expanded).toBe(true);
   });
 
   it('renders regular icon size', () => {
