@@ -92,10 +92,11 @@ export type Theme = {
       bgHover: Hexcode;
       bgError: Hexcode;
       border: Hexcode;
+      borderActive: Hexcode;
       borderHover: Hexcode;
       borderError: Hexcode;
-      borderFocus: Hexcode;
       text: Hexcode;
+      textActive: Hexcode;
       textError: Hexcode;
     };
     base: Hexcode;

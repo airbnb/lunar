@@ -1,13 +1,33 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
 import Tab from '../../src/components/Tabs/Tab';
 import TrackingBoundary from '../../src/components/TrackingBoundary';
+import ButtonOrLink from '../../src/components/private/ButtonOrLink';
 
 describe('<Tab/>', () => {
   it('renders a button', () => {
     const wrapper = shallow(<Tab keyName="default" label="Tab" onClick={() => {}} />).dive();
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('renders a before icon', () => {
+    const icon = <IconCheck decorative />;
+    const wrapper = shallow(
+      <Tab keyName="default" label="Tab" onClick={() => {}} disabled beforeIcon={icon} />,
+    ).dive();
+
+    expect(wrapper.find(ButtonOrLink).prop('beforeIcon')).toBe(icon);
+  });
+
+  it('renders a after icon', () => {
+    const icon = <IconCheck decorative />;
+    const wrapper = shallow(
+      <Tab keyName="default" label="Tab" onClick={() => {}} disabled afterIcon={icon} />,
+    ).dive();
+
+    expect(wrapper.find(ButtonOrLink).prop('afterIcon')).toBe(icon);
   });
 
   it('renders disabled', () => {
