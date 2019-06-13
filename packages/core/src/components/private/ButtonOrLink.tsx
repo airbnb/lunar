@@ -14,6 +14,8 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** Whether the element is disabled. */
   disabled?: boolean;
+  /** Apply flexbox styles to icons. */
+  flexAlign?: boolean;
   /** Render as an anchor link with a URL. */
   href?: string;
   /** Whether the element is loading. */
@@ -35,6 +37,7 @@ export default class ButtonOrLink extends React.Component<Props> {
     afterIcon: null,
     beforeIcon: null,
     disabled: false,
+    flexAlign: false,
     href: '',
     loading: false,
     openInNewWindow: false,
@@ -65,6 +68,7 @@ export default class ButtonOrLink extends React.Component<Props> {
       beforeIcon,
       children,
       disabled,
+      flexAlign,
       href,
       loading,
       openInNewWindow,
@@ -95,11 +99,19 @@ export default class ButtonOrLink extends React.Component<Props> {
     return (
       // @ts-ignore [ts] JSX element type 'Component' does not have any construct or call signatures. [2604]
       <Tag {...restProps} {...props} onClick={this.handleClick} onMouseUp={this.handleMouseUp}>
-        {!loading && beforeIcon && <IconAffix before>{beforeIcon}</IconAffix>}
+        {!loading && beforeIcon && (
+          <IconAffix before flex={flexAlign}>
+            {beforeIcon}
+          </IconAffix>
+        )}
 
         <span>{children}</span>
 
-        {!loading && afterIcon && <IconAffix after>{afterIcon}</IconAffix>}
+        {!loading && afterIcon && (
+          <IconAffix after flex={flexAlign}>
+            {afterIcon}
+          </IconAffix>
+        )}
       </Tag>
     );
   }

@@ -15,6 +15,8 @@ export type Props = {
   compact?: boolean;
   /** Mark the affix as disabled. */
   disabled?: boolean;
+  /** Align using flexbox. */
+  flex?: boolean;
 };
 
 export default class BaseAffix extends React.PureComponent<Props & WithStylesProps> {
@@ -28,10 +30,11 @@ export default class BaseAffix extends React.PureComponent<Props & WithStylesPro
     before: false,
     compact: false,
     disabled: false,
+    flex: false,
   };
 
   render() {
-    const { cx, after, before, children, compact, disabled, styles } = this.props;
+    const { cx, after, before, children, compact, disabled, flex, styles } = this.props;
 
     return (
       <div
@@ -41,6 +44,7 @@ export default class BaseAffix extends React.PureComponent<Props & WithStylesPro
           before && styles.affix_before,
           after && styles.affix_after,
           disabled && styles.affix_disabled,
+          flex && styles.affix_flex,
         )}
       >
         {children}
