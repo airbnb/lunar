@@ -83,6 +83,7 @@ export default withStyles(({ unit, color, pattern, transition }) => ({
     '@selectors': {
       '> svg': {
         display: 'inline-block',
+        margin: 'auto',
       },
     },
   },

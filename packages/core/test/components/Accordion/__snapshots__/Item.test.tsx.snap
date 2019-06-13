@@ -19,8 +19,11 @@ exports[`<AccordionItem /> renders bordered 1`] = `
     >
       Title
     </span>
-    <IconChevronRight
+    <DirectionalIcon
       decorative={true}
+      direction="right"
+      left={[Function]}
+      right={[Function]}
       size={24}
     />
   </button>

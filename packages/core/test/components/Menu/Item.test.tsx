@@ -4,6 +4,7 @@ import IconCaretRight from '@airbnb/lunar-icons/lib/interface/IconCaretRight';
 import Menu from '../../../src/components/Menu';
 import Item from '../../../src/components/Menu/Item';
 import ButtonOrLink from '../../../src/components/private/ButtonOrLink';
+import DirectionalIcon from '../../../src/components/DirectionalIcon';
 
 describe('<MenuItem />', () => {
   it('renders highlighted', () => {
@@ -126,7 +127,7 @@ describe('<MenuItem />', () => {
       const iconWrapper = shallow(icon as any);
 
       expect(icon).not.toBeNull();
-      expect(iconWrapper.find(IconCaretRight)).toHaveLength(1);
+      expect(iconWrapper.find(DirectionalIcon)).toHaveLength(1);
     });
   });
 });

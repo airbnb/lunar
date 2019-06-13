@@ -2,8 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 // @ts-ignore
 import { LocaleUtils } from 'react-day-picker/lib/src/LocaleUtils';
-import IconArrowLeft from '@airbnb/lunar-icons/lib/interface/IconArrowLeft';
-import IconArrowRight from '@airbnb/lunar-icons/lib/interface/IconArrowRight';
+import DirectionalIcon from '../../../../src/components/DirectionalIcon';
 import NavBar, { Props } from '../../../../src/components/DatePicker/Picker/NavBar';
 
 describe('<DatePicker />', () => {
@@ -52,16 +51,10 @@ describe('<DatePicker />', () => {
     onResetClick: () => {},
   };
 
-  it('renders a previous icon', () => {
+  it('renders next & previous icons', () => {
     const wrapper = shallow(<NavBar {...props} />).dive();
 
-    expect(wrapper.find(IconArrowLeft)).toHaveLength(1);
-  });
-
-  it('renders a next icon', () => {
-    const wrapper = shallow(<NavBar {...props} />).dive();
-
-    expect(wrapper.find(IconArrowRight)).toHaveLength(1);
+    expect(wrapper.find(DirectionalIcon)).toHaveLength(2);
   });
 
   it('renders a reset button', () => {
@@ -75,7 +68,8 @@ describe('<DatePicker />', () => {
     const wrapper = shallow(<NavBar {...props} onPreviousClick={spy} />).dive();
 
     wrapper
-      .find(IconArrowLeft)
+      .find(DirectionalIcon)
+      .at(0)
       .parent()
       .simulate('click');
 
@@ -87,7 +81,8 @@ describe('<DatePicker />', () => {
     const wrapper = shallow(<NavBar {...props} onNextClick={spy} />).dive();
 
     wrapper
-      .find(IconArrowRight)
+      .find(DirectionalIcon)
+      .at(1)
       .parent()
       .simulate('click');
 
