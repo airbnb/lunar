@@ -30,7 +30,6 @@ export type Props = {
 /** Compact component that represents a snippet of information, such as a filter. */
 export class Chip extends React.Component<Props & WithStylesProps> {
   static propTypes = {
-    // icon: requiredBy('onIconClick', iconComponent),
     afterIcon: requiredBy('onIconClick', iconComponent),
     beforeIcon: mutuallyExclusiveProps(iconComponent, 'beforeIcon', 'profileImageSrc'),
     onClick: mutuallyExclusiveProps(PropTypes.func, 'onIconClick'),
@@ -95,7 +94,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
               )}
             >
               {profileImageSrc && <ProfilePhoto imageSrc={profileImageSrc} title="" size={4} />}
-              {beforeIcon && beforeIcon}
+              {beforeIcon}
             </div>
           </div>
         )}
@@ -107,7 +106,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
             >
               {onIconClick ? (
                 <ButtonOrLink
-                  className={(styles.iconButton, disabled && styles.iconButton_disabled)}
+                  className={cx(styles.iconButton, disabled && styles.iconButton_disabled)}
                   disabled={disabled}
                   onClick={onIconClick}
                 >
