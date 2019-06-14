@@ -29,7 +29,7 @@ export type Props = {
 };
 
 /** Layout shell that wraps an entire application, providing optional side and top nav bars. */
-export default function LayoutShell({ children, sideBar }: Props) {
+function LayoutShell({ children, sideBar }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
@@ -44,3 +44,5 @@ export default function LayoutShell({ children, sideBar }: Props) {
 LayoutShell.propTypes = {
   sideBar: elementType(SideBar),
 };
+
+export default LayoutShell;

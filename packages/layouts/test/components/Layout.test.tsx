@@ -12,6 +12,16 @@ describe('<Layout />', () => {
     expect(wrapper.find('main').text()).toBe('Child');
   });
 
+  it('renders with props passed', () => {
+    const wrapper = shallow(
+      <Layout noBackground noPadding>
+        Child
+      </Layout>,
+    ).dive();
+
+    expect(wrapper.find('main')).toHaveLength(1);
+  });
+
   it('renders a before aside', () => {
     const aside = <div>Before</div>;
     const wrapper = shallow(<Layout before={<Aside>{aside}</Aside>}>Child</Layout>).dive();
