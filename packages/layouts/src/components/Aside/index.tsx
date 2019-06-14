@@ -26,9 +26,9 @@ const styleSheet = ({ ui, unit }: Theme) => ({
 });
 
 export type Props = {
-  /** Render column before content. */
+  /** Column is rendered after content. */
   after?: boolean;
-  /** Render column before content. */
+  /** Column is rendered before content. */
   before?: boolean;
   /** Content within the column. */
   children: NonNullable<React.ReactNode>;
