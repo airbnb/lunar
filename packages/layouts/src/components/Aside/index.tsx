@@ -40,6 +40,7 @@ export type Props = {
   width?: number;
 };
 
+/** An aside column within a layout. */
 export default function Aside({ after, before, children, noBorder, noPadding, width }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 

@@ -11,12 +11,12 @@ storiesOf('Layouts/ThreeColumnLayout', module)
   .add('A three column layout.', () => (
     <ThreeColumnLayout
       after={
-        <Aside>
+        <Aside width={300}>
           <LoremIpsum />
         </Aside>
       }
       before={
-        <Aside>
+        <Aside width={300}>
           <LoremIpsum />
         </Aside>
       }

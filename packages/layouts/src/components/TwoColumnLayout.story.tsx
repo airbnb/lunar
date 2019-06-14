@@ -11,7 +11,7 @@ storiesOf('Layouts/TwoColumnLayout', module)
   .add('A two column layout with before (left) aside.', () => (
     <TwoColumnLayout
       aside={
-        <Aside>
+        <Aside width={300}>
           <LoremIpsum />
         </Aside>
       }
@@ -26,7 +26,7 @@ storiesOf('Layouts/TwoColumnLayout', module)
   .add('A two column layout with after (right) aside.', () => (
     <TwoColumnLayout
       aside={
-        <Aside>
+        <Aside width={300}>
           <LoremIpsum />
         </Aside>
       }

@@ -13,10 +13,10 @@ storiesOf('Layouts/Layout', module)
       <LoremIpsum />
     </Layout>
   ))
-  .add('With left side, and no padding.', () => (
+  .add('With left aside, and no main padding.', () => (
     <Layout
       before={
-        <Aside>
+        <Aside width={300}>
           <LoremIpsum />
         </Aside>
       }
@@ -25,10 +25,10 @@ storiesOf('Layouts/Layout', module)
       <LoremIpsum />
     </Layout>
   ))
-  .add('With right side, and no background color.', () => (
+  .add('With right aside, and no main background color.', () => (
     <Layout
       after={
-        <Aside>
+        <Aside width={300}>
           <LoremIpsum />
         </Aside>
       }
@@ -40,12 +40,12 @@ storiesOf('Layouts/Layout', module)
   .add('With both sides.', () => (
     <Layout
       before={
-        <Aside>
+        <Aside width={300}>
           <LoremIpsum />
         </Aside>
       }
       after={
-        <Aside>
+        <Aside width={300}>
           <LoremIpsum />
         </Aside>
       }

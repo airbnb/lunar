@@ -28,11 +28,12 @@ export type Props = {
   // topBar?: React.ReactNode;
 };
 
+/** Layout shell that wraps an entire application, providing optional side and top nav bars. */
 export default function LayoutShell({ children, sideBar }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
-    <div className={cx(styles.layout)}>
+    <div className={cx(styles.shell)}>
       {sideBar && <aside className={cx(styles.sideBar)}>{sideBar}</aside>}
 
       <div>{children}</div>

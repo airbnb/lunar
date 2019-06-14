@@ -31,7 +31,7 @@ export class Layout extends React.Component<Props & AsideProps & WithStylesProps
     const { cx, after, before, children, fluid, noBackground, noPadding, styles } = this.props;
 
     return (
-      <>
+      <div className={cx(styles.layout)}>
         {before}
 
         <main
@@ -46,12 +46,19 @@ export class Layout extends React.Component<Props & AsideProps & WithStylesProps
         </main>
 
         {after}
-      </>
+      </div>
     );
   }
 }
 
 export default withStyles(({ breakpoints, color, unit }) => ({
+  layout: {
+    display: 'flex',
+    width: '100%',
+    minHeight: '100vh',
+    justifyContent: 'space-between',
+  },
+
   main: {
     flexGrow: 1,
     padding: unit * 2,
