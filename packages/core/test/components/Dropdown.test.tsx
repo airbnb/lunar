@@ -8,33 +8,21 @@ describe('<Dropdown />', () => {
       <Dropdown visible onClickOutside={() => {}}>
         Foo
       </Dropdown>,
-    );
+    ).dive();
 
     expect(wrapper.is('div')).toBe(true);
     expect(wrapper.prop('children')).toBe('Foo');
-    expect(wrapper.prop('style')).toEqual({
-      position: 'absolute',
-      top: '100%',
-      left: 0,
-      zIndex: 'auto',
-    });
   });
 
-  it('can change position', () => {
+  it('can change position and styles with props', () => {
     const wrapper = shallow(
       <Dropdown fixed visible left="15px" top={15} zIndex={1} onClickOutside={() => {}}>
         Foo
       </Dropdown>,
-    );
+    ).dive();
 
     expect(wrapper.is('div')).toBe(true);
     expect(wrapper.prop('children')).toBe('Foo');
-    expect(wrapper.prop('style')).toEqual({
-      position: 'fixed',
-      top: 15,
-      left: '15px',
-      zIndex: 1,
-    });
   });
 
   it('sets `onBlur` prop', () => {
@@ -43,7 +31,7 @@ describe('<Dropdown />', () => {
       <Dropdown visible onBlur={spy} onClickOutside={() => {}}>
         Foo
       </Dropdown>,
-    );
+    ).dive();
 
     expect(wrapper.prop('onBlur')).toBe(spy);
   });
@@ -54,7 +42,7 @@ describe('<Dropdown />', () => {
       <Dropdown visible onFocus={spy} onClickOutside={() => {}}>
         Foo
       </Dropdown>,
-    );
+    ).dive();
 
     expect(wrapper.prop('onFocus')).toBe(spy);
   });
@@ -74,7 +62,7 @@ describe('<Dropdown />', () => {
       <Dropdown visible onClickOutside={spy}>
         Foo
       </Dropdown>,
-    );
+    ).dive();
 
     eventMap.click();
 
@@ -89,7 +77,7 @@ describe('<Dropdown />', () => {
         <Dropdown visible onClickOutside={() => {}}>
           Foo
         </Dropdown>,
-      );
+      ).dive();
 
       expect(eventSpy).toHaveBeenCalledWith('click', expect.any(Function), true);
 
@@ -101,7 +89,7 @@ describe('<Dropdown />', () => {
     it('adds event listener when `visible` changes to `true`', () => {
       const eventSpy = jest.spyOn(document, 'addEventListener');
 
-      const wrapper = shallow(<Dropdown onClickOutside={() => {}}>Foo</Dropdown>);
+      const wrapper = shallow(<Dropdown onClickOutside={() => {}}>Foo</Dropdown>).dive();
 
       wrapper.setProps({
         visible: true,
@@ -119,7 +107,7 @@ describe('<Dropdown />', () => {
         <Dropdown visible onClickOutside={() => {}}>
           Foo
         </Dropdown>,
-      );
+      ).dive();
 
       wrapper.setProps({
         visible: false,
@@ -139,7 +127,7 @@ describe('<Dropdown />', () => {
         <Dropdown visible onClickOutside={() => {}}>
           Foo
         </Dropdown>,
-      );
+      ).dive();
 
       // @ts-ignore
       wrapper.instance().componentWillUnmount();

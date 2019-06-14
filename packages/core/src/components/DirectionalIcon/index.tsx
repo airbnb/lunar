@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DirectionContext } from 'aesthetic-react';
 import { WithIconWrapperProps } from '@airbnb/lunar-icons/lib/withIcon';
 import Core from '../..';
 
@@ -17,9 +18,12 @@ export default function DirectionalIcon({
   right: RightIcon,
   ...props
 }: Props & WithIconWrapperProps) {
+  const context = useContext(DirectionContext);
+  const rtl = Core.isRTL(context);
+
   if (direction === 'left') {
-    return Core.settings.rtl ? <RightIcon {...props} /> : <LeftIcon {...props} />;
+    return rtl ? <RightIcon {...props} /> : <LeftIcon {...props} />;
   }
 
-  return Core.settings.rtl ? <LeftIcon {...props} /> : <RightIcon {...props} />;
+  return rtl ? <LeftIcon {...props} /> : <RightIcon {...props} />;
 }

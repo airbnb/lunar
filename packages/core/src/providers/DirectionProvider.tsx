@@ -1,3 +1,5 @@
-import { DirectionProvider } from 'aesthetic-react';
+import { DirectionProvider, DirectionContext } from 'aesthetic-react';
+
+export { DirectionContext };
 
 export default DirectionProvider;

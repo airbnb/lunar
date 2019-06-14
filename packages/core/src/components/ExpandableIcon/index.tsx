@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DirectionContext } from 'aesthetic-react';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
@@ -13,12 +14,14 @@ export type Props = {
 };
 
 export default function ExpandableIcon({ expanded, size }: Props) {
+  const context = useContext(DirectionContext);
+
   return expanded ? (
     <IconChevronDown decorative size={size} />
   ) : (
     <DirectionalIcon
       decorative
-      direction={Core.settings.rtl ? 'left' : 'right'}
+      direction={Core.isRTL(context) ? 'left' : 'right'}
       left={IconChevronLeft}
       right={IconChevronRight}
       size={size}

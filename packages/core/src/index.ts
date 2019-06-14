@@ -1,4 +1,4 @@
-import { FontFace } from 'aesthetic';
+import { Direction, FontFace } from 'aesthetic';
 import AphroditeAesthetic from 'aesthetic-adapter-aphrodite';
 import { Settings as LuxonSettings } from 'luxon';
 import { Path as EmojiPath } from 'interweave-emoji';
@@ -50,7 +50,7 @@ class Core {
     translatorComponent: null,
   };
 
-  aesthetic = new AphroditeAesthetic<Theme>([], {
+  readonly aesthetic = new AphroditeAesthetic<Theme>([], {
     theme: 'light',
     passThemeProp: false,
     pure: true,
@@ -105,6 +105,15 @@ class Core {
     }
 
     return this.settings.fontFamily;
+  }
+
+  isRTL(context?: Direction): boolean {
+    if (context && context !== 'neutral') {
+      return context === 'rtl';
+    }
+
+    // If undefined or neutral, fallback to the global setting
+    return this.settings.rtl;
   }
 
   locale(): Locale {
