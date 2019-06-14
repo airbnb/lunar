@@ -5,6 +5,8 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 const paddingPropType = mutuallyExclusiveTrueProps('compact', 'spacious');
 
 export type Props = {
+  /** Render with a top/bottom borders. Last item will have both. */
+  bordered?: boolean;
   /** Item content. */
   children: NonNullable<React.ReactNode>;
   /** Render with reduced vertical padding. */
@@ -13,24 +15,25 @@ export type Props = {
   spacious?: boolean;
 };
 
-export class BorderedListItem extends React.Component<Props & WithStylesProps> {
+export class ListItem extends React.Component<Props & WithStylesProps> {
   static propTypes = {
     compact: paddingPropType,
     spacious: paddingPropType,
   };
 
   static defaultProps = {
+    bordered: false,
     compact: false,
     spacious: false,
   };
 
   render() {
-    const { cx, children, compact, spacious, styles } = this.props;
+    const { bordered, children, compact, cx, spacious, styles } = this.props;
 
     return (
       <li
         className={cx(
-          styles.item,
+          bordered && styles.item_bordered,
           compact && styles.item_compact,
           spacious && styles.item_spacious,
         )}
@@ -42,7 +45,7 @@ export class BorderedListItem extends React.Component<Props & WithStylesProps> {
 }
 
 export default withStyles(({ ui, unit }) => ({
-  item: {
+  item_bordered: {
     borderTop: ui.border,
 
     ':last-child': {
@@ -59,4 +62,4 @@ export default withStyles(({ ui, unit }) => ({
     paddingBottom: unit * 3,
     paddingTop: unit * 3,
   },
-}))(BorderedListItem);
+}))(ListItem);

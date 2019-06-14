@@ -2,35 +2,77 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Text from './Text';
-import BorderedList, { Item } from './BorderedList';
+import List, { Item } from './List';
 
-storiesOf('Core/BorderedList', module)
+storiesOf('Core/List', module)
   .addParameters({
-    inspectComponents: [BorderedList, Item],
+    inspectComponents: [List, Item],
   })
+  .add('Default unordered list.', () => (
+    <List ordered>
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+    </List>
+  ))
+  .add('An ordered list.', () => (
+    <List ordered>
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+    </List>
+  ))
   .add('Multiple items with borders.', () => (
-    <BorderedList>
-      <Item>
+    <List>
+      <Item bordered>
         <Text>
           <LoremIpsum short />
         </Text>
       </Item>
 
-      <Item>
+      <Item bordered>
         <Text>
           <LoremIpsum short />
         </Text>
       </Item>
 
-      <Item>
+      <Item bordered>
         <Text>
           <LoremIpsum short />
         </Text>
       </Item>
-    </BorderedList>
+    </List>
   ))
   .add('Items with `compact` padding.', () => (
-    <BorderedList>
+    <List>
       <Item compact>
         <Text>
           <LoremIpsum short />
@@ -48,10 +90,10 @@ storiesOf('Core/BorderedList', module)
           <LoremIpsum short />
         </Text>
       </Item>
-    </BorderedList>
+    </List>
   ))
   .add('Items with `spacious` padding.', () => (
-    <BorderedList>
+    <List>
       <Item spacious>
         <Text>
           <LoremIpsum short />
@@ -69,5 +111,5 @@ storiesOf('Core/BorderedList', module)
           <LoremIpsum short />
         </Text>
       </Item>
-    </BorderedList>
+    </List>
   ));
