@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 type State = {
   items: number;
@@ -60,7 +60,7 @@ class DynamicGrid extends React.PureComponent<Props, State> {
   };
 
   public render() {
-    const { children, padding, styles, theme } = this.props;
+    const { children, cx, padding, styles, theme } = this.props;
     const { items } = this.state;
 
     const itemStyle = {
@@ -83,7 +83,7 @@ class DynamicGrid extends React.PureComponent<Props, State> {
         </div>
       ));
 
-    return <div {...css(styles.container, containerStyle)}>{childElements}</div>;
+    return <div className={cx(styles.container, containerStyle)}>{childElements}</div>;
   }
 }
 
