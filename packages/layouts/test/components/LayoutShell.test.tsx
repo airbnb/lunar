@@ -7,7 +7,7 @@ describe('<LayoutShell />', () => {
   it('errors if invalid `sideBar` is passed', () => {
     expect(() => {
       shallow(<LayoutShell sideBar="Sidebar">Child</LayoutShell>);
-    }).toThrowErrorMatchingSnapshot();
+    }).toThrowError();
   });
 
   it('renders with content', () => {

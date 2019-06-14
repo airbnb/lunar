@@ -16,24 +16,18 @@ const styleSheet = ({ ui, unit }: Theme) => ({
     borderRight: ui.border,
   },
 
-  aside_noBorder: {
-    border: 0,
-  },
-
   aside_noPadding: {
     padding: 0,
   },
 });
 
 export type Props = {
-  /** Column is rendered after content. */
+  /** Column is rendered after content. Applies a left border. */
   after?: boolean;
-  /** Column is rendered before content. */
+  /** Column is rendered before content. Applies a right border. */
   before?: boolean;
   /** Content within the column. */
   children: NonNullable<React.ReactNode>;
-  /** Remove border from column. */
-  noBorder?: boolean;
   /** Remove padding from column. */
   noPadding?: boolean;
   /** Width of the aside column. */
@@ -41,7 +35,7 @@ export type Props = {
 };
 
 /** An aside column within a layout. */
-export default function Aside({ after, before, children, noBorder, noPadding, width }: Props) {
+export default function Aside({ after, before, children, noPadding, width }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
@@ -50,7 +44,6 @@ export default function Aside({ after, before, children, noBorder, noPadding, wi
         styles.aside,
         after && styles.aside_after,
         before && styles.aside_before,
-        noBorder && styles.aside_noBorder,
         noPadding && styles.aside_noPadding,
         { width },
       )}

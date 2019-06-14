@@ -11,7 +11,7 @@ describe('<Aside />', () => {
 
   it('renders with props enabled', () => {
     const wrapper = shallow(
-      <Aside noBorder noPadding before>
+      <Aside noPadding before>
         Child
       </Aside>,
     );
