@@ -9,6 +9,27 @@ storiesOf('Core/List', module)
     inspectComponents: [List, Item],
   })
   .add('Default unordered list.', () => (
+    <List>
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+    </List>
+  ))
+  .add('List with `ordered` to render as `<ol></ol>`.', () => (
     <List ordered>
       <Item>
         <Text>
@@ -29,28 +50,7 @@ storiesOf('Core/List', module)
       </Item>
     </List>
   ))
-  .add('An ordered list.', () => (
-    <List ordered>
-      <Item>
-        <Text>
-          <LoremIpsum short />
-        </Text>
-      </Item>
-
-      <Item>
-        <Text>
-          <LoremIpsum short />
-        </Text>
-      </Item>
-
-      <Item>
-        <Text>
-          <LoremIpsum short />
-        </Text>
-      </Item>
-    </List>
-  ))
-  .add('Multiple items with borders.', () => (
+  .add('Items with `bordered`.', () => (
     <List>
       <Item bordered>
         <Text>
