@@ -38,4 +38,14 @@ storiesOf('Layouts/Aside', module)
       <LoremIpsum />
       <LoremIpsum />
     </Aside>
+  ))
+  .add('As a scrollable container.', () => (
+    <div style={{ height: 500 }}>
+      <Aside scrollable width={300}>
+        <LoremIpsum />
+        <LoremIpsum />
+        <LoremIpsum />
+        <LoremIpsum />
+      </Aside>
+    </div>
   ));

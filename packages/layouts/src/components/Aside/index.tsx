@@ -19,6 +19,11 @@ const styleSheet = ({ ui, unit }: Theme) => ({
   aside_noPadding: {
     padding: 0,
   },
+
+  aside_scrollable: {
+    overflowY: 'auto',
+    maxHeight: '100%',
+  },
 });
 
 export type Props = {
@@ -30,12 +35,14 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** Remove padding from column. */
   noPadding?: boolean;
+  /** Convert column to a scrollable container. */
+  scrollable?: boolean;
   /** Width of the aside column. */
-  width?: number;
+  width?: number | string;
 };
 
 /** An aside column within a layout. */
-export default function Aside({ after, before, children, noPadding, width }: Props) {
+export default function Aside({ after, before, children, noPadding, scrollable, width }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
@@ -45,6 +52,7 @@ export default function Aside({ after, before, children, noPadding, width }: Pro
         after && styles.aside_after,
         before && styles.aside_before,
         noPadding && styles.aside_noPadding,
+        scrollable && styles.aside_scrollable,
         { width },
       )}
     >
