@@ -15,6 +15,13 @@ describe('<ListItem />', () => {
     expect(wrapper.type()).toEqual('li');
   });
 
+  it('renders bordered', () => {
+    const wrapperDefault = shallow(<ListItem>Content</ListItem>).dive();
+    const wrapperBordered = shallow(<ListItem bordered>Content</ListItem>).dive();
+
+    expect(wrapperDefault.html() === wrapperBordered.html()).toBe(false);
+  });
+
   it('renders compact', () => {
     const wrapperDefault = shallow(<ListItem>Content</ListItem>).dive();
     const wrapperCompact = shallow(<ListItem compact>Content</ListItem>).dive();

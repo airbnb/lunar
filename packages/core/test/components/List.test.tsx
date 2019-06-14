@@ -64,4 +64,24 @@ describe('<List />', () => {
 
     expect(wrapper.find(ListItem)).toHaveLength(1);
   });
+
+  it('renders a <ul /> by default', () => {
+    const wrapper = shallow(
+      <List>
+        <ListItem>Item 1</ListItem>
+      </List>,
+    ).dive();
+
+    expect(wrapper.type()).toEqual('ul');
+  });
+
+  it('renders a <ol /> with `ordered`', () => {
+    const wrapper = shallow(
+      <List ordered>
+        <ListItem>Item 1</ListItem>
+      </List>,
+    ).dive();
+
+    expect(wrapper.type()).toEqual('ol');
+  });
 });
