@@ -1,4 +1,4 @@
-import { FontFace } from 'aesthetic';
+import { Direction, FontFace } from 'aesthetic';
 import AphroditeAesthetic from 'aesthetic-adapter-aphrodite';
 import { Settings as LuxonSettings } from 'luxon';
 import { Path as EmojiPath } from 'interweave-emoji';
@@ -27,6 +27,7 @@ export type Settings = {
   fontFamily?: string;
   logger?: Logger | null;
   name: string;
+  rtl?: boolean;
   theme?: 'light' | 'dark';
   translator?: Translator | null;
   translatorComponent?: React.ComponentType<TranslateProps> | null;
@@ -43,12 +44,13 @@ class Core {
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
     logger: null,
     name: 'Lunar',
+    rtl: false,
     theme: 'light',
     translator: null,
     translatorComponent: null,
   };
 
-  aesthetic = new AphroditeAesthetic<Theme>([], {
+  readonly aesthetic = new AphroditeAesthetic<Theme>([], {
     theme: 'light',
     passThemeProp: false,
     pure: true,
@@ -65,7 +67,7 @@ class Core {
   }
 
   bootstrapAesthetic() {
-    const { theme, fontFaces } = this.settings;
+    const { fontFaces, rtl, theme } = this.settings;
     const fontFamily = this.fontFamily();
     const globals = globalStyles(fontFaces);
 
@@ -77,6 +79,7 @@ class Core {
       // Tests trigger an error, so ignore it
     }
 
+    this.aesthetic.options.rtl = rtl;
     this.aesthetic.options.theme = theme;
   }
 
@@ -102,6 +105,15 @@ class Core {
     }
 
     return this.settings.fontFamily;
+  }
+
+  isRTL(context?: Direction): boolean {
+    if (context && context !== 'neutral') {
+      return context === 'rtl';
+    }
+
+    // If undefined or neutral, fallback to the global setting
+    return this.settings.rtl;
   }
 
   locale(): Locale {
@@ -137,7 +149,7 @@ class Core {
     }
 
     // Low-level token interpolation
-    return message.replace(/%\{(\w+)\}/g, (match, key) => String(params[key] || ''));
+    return message.replace(/%\{(\w+)\}/g, (match, key) => `${params[key]}`);
   };
 }
 

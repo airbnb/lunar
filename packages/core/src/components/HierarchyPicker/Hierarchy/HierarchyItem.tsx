@@ -1,8 +1,10 @@
 import React from 'react';
+import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconCheckmark from '@airbnb/lunar-icons/lib/interface/IconCheck';
 import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import { ENTER, SPACE, ARROW_RIGHT, ARROW_LEFT } from '../../../keys';
+import DirectionalIcon from '../../DirectionalIcon';
 import Text from '../../Text';
 import {
   ItemPickedHandler,
@@ -122,7 +124,17 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
         tabIndex={focused ? 1 : 0}
       >
         {this.renderItem()}
-        {item.items && <IconChevronRight decorative inline size="1.4em" />}
+
+        {item.items && (
+          <DirectionalIcon
+            direction="right"
+            left={IconChevronLeft}
+            right={IconChevronRight}
+            size="1.4em"
+            decorative
+            inline
+          />
+        )}
       </div>
     );
   }

@@ -1,12 +1,10 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
-
-import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
-import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import Spacing from '../../Spacing';
+import ExpandableIcon from '../../ExpandableIcon';
 import { WithStylesProps } from '../../../composers/withStyles';
-import { TableRow } from '../types';
 import { EXPANDABLE_COLUMN_WIDTH } from '../constants';
+import { TableRow } from '../types';
 
 export default function renderExpandableColumn(
   cx: WithStylesProps['cx'],
@@ -18,8 +16,6 @@ export default function renderExpandableColumn(
     const { children, originalIndex } = row.rowData.metadata;
 
     if (children && children.length > 0) {
-      const Chevron = expandedRows.has(originalIndex) ? IconChevronDown : IconChevronRight;
-
       return (
         <div
           className={cx(styles.expand_caret)}
@@ -29,7 +25,7 @@ export default function renderExpandableColumn(
           onKeyPress={expandRow(originalIndex)}
         >
           <Spacing left={1.5}>
-            <Chevron decorative size="1.6em" />
+            <ExpandableIcon expanded={expandedRows.has(originalIndex)} size="1.6em" />
           </Spacing>
         </div>
       );

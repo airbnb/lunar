@@ -162,7 +162,9 @@ describe('Core', () => {
             },
             '',
           ),
-        ).toBe('Normal 123 underscore abc camel case ab12 with numbers 456.7 and undefined ');
+        ).toBe(
+          'Normal 123 underscore abc camel case ab12 with numbers 456.7 and undefined undefined',
+        );
       });
 
       it('handles singular and places', () => {

@@ -5,6 +5,7 @@ import throttle from 'lodash/throttle';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import DirectionalIcon from '../DirectionalIcon';
 
 const INCREMENT = 25;
 
@@ -221,7 +222,13 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
               type="button"
               onClick={this.handleScrollLeft}
             >
-              <IconChevronLeft decorative size="2em" />
+              <DirectionalIcon
+                direction="left"
+                left={IconChevronLeft}
+                right={IconChevronRight}
+                size="2em"
+                decorative
+              />
             </button>
           ) : (
             <span
@@ -239,7 +246,13 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
               type="button"
               onClick={this.handleScrollRight}
             >
-              <IconChevronRight decorative size="2em" />
+              <DirectionalIcon
+                direction="right"
+                left={IconChevronLeft}
+                right={IconChevronRight}
+                size="2em"
+                decorative
+              />
             </button>
           ) : (
             <span

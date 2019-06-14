@@ -13,8 +13,15 @@ module.exports = function getChangelogFromGitHistory() {
     '--since=1.month',
   ]).stdout;
   const components = {};
+  let data = [];
 
-  JSON.parse(`[${history.slice(0, -1)}]`).forEach(row => {
+  try {
+    data = JSON.parse(`[${history.slice(0, -1)}]`);
+  } catch {
+    return components;
+  }
+
+  data.forEach(row => {
     const { subject, hash, date } = row;
 
     if (!subject || subject.includes('[ci skip]')) {

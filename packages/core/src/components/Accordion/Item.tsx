@@ -1,7 +1,6 @@
 import React from 'react';
-import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
-import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import ExpandableIcon from '../ExpandableIcon';
 
 export type Props = {
   /** Apply a border. */
@@ -53,11 +52,7 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
         >
           {title && <span className={cx(styles.titleText)}>{title}</span>}
 
-          {expanded ? (
-            <IconChevronDown decorative size={theme!.unit * 3} />
-          ) : (
-            <IconChevronRight decorative size={theme!.unit * 3} />
-          )}
+          <ExpandableIcon expanded={!!expanded} size={theme!.unit * 3} />
         </button>
 
         <section

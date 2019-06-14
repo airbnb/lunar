@@ -69,12 +69,12 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
         >
           {checked && (
             <span className={cx(styles.bullet)}>
-              <IconRecord decorative size="1em" />
+              <IconRecord decorative size="1.35em" />
             </span>
           )}
           {indeterminate && (
             <span className={cx(styles.indeterminate)}>
-              <IconRemove decorative size="1.64em" />
+              <IconRemove decorative size="1.65em" />
             </span>
           )}
         </span>
@@ -127,7 +127,6 @@ export default withStyles(theme => {
     radio: {
       padding: 0,
       margin: 0,
-      marginTop: 2,
       width: 18,
       height: 18,
       display: 'block',
@@ -149,6 +148,7 @@ export default withStyles(theme => {
       display: 'inline-block',
       cursor: 'pointer',
       borderRadius: '50%',
+      position: 'relative',
       // Bullet
       textAlign: 'center',
       fontSize: 8,
@@ -157,13 +157,13 @@ export default withStyles(theme => {
     },
 
     bullet: {
-      position: 'relative',
-      top: 3,
-      left: 3,
+      position: 'absolute',
+      top: 1.5,
+      left: 1.5,
     },
 
     indeterminate: {
-      position: 'relative',
+      position: 'absolute',
       top: 1,
       left: 0.5,
     },

@@ -9,6 +9,7 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import IconButton from '../IconButton';
 import Text from '../Text';
 import T from '../Translate';
+import DirectionalIcon from '../DirectionalIcon';
 
 const alignProp = mutuallyExclusiveTrueProps('centerAlign', 'endAlign', 'startAlign');
 
@@ -92,7 +93,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
 
     const previousPage = (
       <IconButton active={hasPrev} disabled={!hasPrev || fetching} onClick={onPrevious}>
-        <IconChevronLeft
+        <DirectionalIcon
+          direction="left"
+          left={IconChevronLeft}
+          right={IconChevronRight}
           accessibilityLabel={T.phrase(
             'Load previous page',
             {},
@@ -105,7 +109,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
 
     const nextPage = (
       <IconButton active={hasNext} disabled={!hasNext || fetching} onClick={onNext}>
-        <IconChevronRight
+        <DirectionalIcon
+          direction="right"
+          left={IconChevronLeft}
+          right={IconChevronRight}
           accessibilityLabel={T.phrase(
             'Load next page',
             {},
@@ -122,7 +129,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
     if (showBookends && typeof pageCount === 'number') {
       firstPage = (
         <IconButton active={hasPrev} disabled={page === 1 || fetching} onClick={onFirst}>
-          <IconFirst
+          <DirectionalIcon
+            direction="left"
+            left={IconFirst}
+            right={IconLast}
             accessibilityLabel={T.phrase(
               'Load first page',
               {},
@@ -139,7 +149,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
           disabled={pageCount < 2 || pageCount === page || fetching}
           onClick={onLast}
         >
-          <IconLast
+          <DirectionalIcon
+            direction="right"
+            left={IconFirst}
+            right={IconLast}
             accessibilityLabel={T.phrase(
               'Load last page',
               {},

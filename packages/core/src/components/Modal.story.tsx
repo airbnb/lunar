@@ -25,7 +25,7 @@ class ModalDemo extends React.Component<
 
     return (
       <div>
-        <Button onClick={this.handleToggle}>Open standard modal</Button>
+        <Button onClick={this.handleToggle}>Open modal</Button>
 
         <br />
         <br />

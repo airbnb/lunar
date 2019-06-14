@@ -69,13 +69,13 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
         >
           {checked && (
             <span className={cx(styles.checkmark)}>
-              <IconCheck decorative size="1.5em" />
+              <IconCheck decorative size="1.65em" />
             </span>
           )}
 
           {indeterminate && (
             <span className={cx(styles.indeterminate)}>
-              <IconRemove decorative size="1.5em" />
+              <IconRemove decorative size="1.65em" />
             </span>
           )}
         </span>
@@ -148,6 +148,7 @@ export default withStyles(theme => {
       padding: 0,
       display: 'inline-block',
       cursor: 'pointer',
+      position: 'relative',
       // Checkmark
       textAlign: 'center',
       fontSize: 10,
@@ -157,15 +158,15 @@ export default withStyles(theme => {
     },
 
     checkmark: {
-      position: 'relative',
-      top: -1,
-      left: -1,
+      position: 'absolute',
+      top: -1.5,
+      left: -1.5,
     },
 
     indeterminate: {
-      position: 'relative',
-      top: -0.5,
-      left: -0.5,
+      position: 'absolute',
+      top: -1,
+      left: -1,
     },
 
     children: {

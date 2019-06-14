@@ -6,7 +6,7 @@ import { STRIP_HOC_NAMES } from '../constants';
 
 const propType: PropTypes.Requireable<React.ReactElement> = componentWithName<
   React.ReactElement<WithIconWrapperProps>
->(/Icon[A-Z]/, {
+>(/(Icon[A-Z]|DirectionalIcon)/, {
   stripHOCs: STRIP_HOC_NAMES,
 });
 
