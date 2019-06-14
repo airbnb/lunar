@@ -1,15 +1,15 @@
 import React from 'react';
 import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import Item from './Item';
+import Item, { Props as ItemProps } from './Item';
 
 export { Item };
 
 export type Props = {
   /** List items. */
   children: NonNullable<React.ReactNode>;
-  /** Flex align the items. */
-  flexAlign?: boolean;
+  /** Horizontal list. */
+  horizontal?: boolean;
   /** Renders an `<ol></ol>`. */
   ordered?: boolean;
 };
@@ -20,10 +20,24 @@ class List extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, cx, flexAlign, ordered, styles } = this.props;
+    const { children, cx, horizontal, ordered, styles } = this.props;
     const Tag = ordered ? 'ol' : 'ul';
 
-    return <Tag className={cx(styles.list, flexAlign && styles.list_flexAlign)}>{children}</Tag>;
+    return (
+      <Tag className={cx(styles.list, horizontal && styles.list_horizontal)}>
+        {React.Children.map(children, child => {
+          if (!child) {
+            return null;
+          }
+
+          if (horizontal) {
+            return React.cloneElement(child as React.ReactElement<ItemProps>, { horizontal });
+          }
+
+          return child;
+        })}
+      </Tag>
+    );
   }
 }
 
@@ -34,7 +48,7 @@ export default withStyles(() => ({
     padding: 0,
   },
 
-  list_flexAlign: {
+  list_horizontal: {
     display: 'flex',
   },
 }))(List);

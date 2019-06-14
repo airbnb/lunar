@@ -11,6 +11,8 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** Render with reduced vertical padding. */
   compact?: boolean;
+  /** @ignore */
+  horizontal?: boolean;
   /** Render with vertical padding. */
   spacious?: boolean;
 };
@@ -24,18 +26,22 @@ export class ListItem extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
     bordered: false,
     compact: false,
+    horizontal: false,
     spacious: false,
   };
 
   render() {
-    const { bordered, children, compact, cx, spacious, styles } = this.props;
+    const { bordered, children, compact, cx, horizontal, spacious, styles } = this.props;
 
     return (
       <li
         className={cx(
-          bordered && styles.item_bordered,
-          compact && styles.item_compact,
-          spacious && styles.item_spacious,
+          !horizontal && bordered && styles.item_bordered,
+          horizontal && bordered && styles.item_bordered_horizontal,
+          !horizontal && compact && styles.item_compact,
+          horizontal && compact && styles.item_compact_horizontal,
+          !horizontal && spacious && styles.item_spacious,
+          horizontal && spacious && styles.item_spacious_horizontal,
         )}
       >
         {children}
@@ -53,13 +59,31 @@ export default withStyles(({ ui, unit }) => ({
     },
   },
 
+  item_bordered_horizontal: {
+    borderLeft: ui.border,
+
+    ':last-child': {
+      borderRight: ui.border,
+    },
+  },
+
   item_compact: {
     paddingBottom: unit * 1.5,
     paddingTop: unit * 1.5,
   },
 
+  item_compact_horizontal: {
+    paddingLeft: unit * 1.5,
+    paddingRight: unit * 1.5,
+  },
+
   item_spacious: {
     paddingBottom: unit * 3,
     paddingTop: unit * 3,
+  },
+
+  item_spacious_horizontal: {
+    paddingLeft: unit * 3,
+    paddingRight: unit * 3,
   },
 }))(ListItem);

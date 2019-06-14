@@ -22,7 +22,7 @@ export class Breadcrumbs extends React.Component<Props & WithStylesProps> {
 
     return (
       <nav aria-label={accessibilityLabel}>
-        <List flexAlign ordered>
+        <List horizontal ordered>
           {React.Children.map(children, child => {
             if (!child) {
               return null;
