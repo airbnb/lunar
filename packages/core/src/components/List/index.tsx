@@ -12,6 +12,8 @@ export type Props = {
   horizontal?: boolean;
   /** Renders an `<ol></ol>`. */
   ordered?: boolean;
+  /** Wrap horizontal list. */
+  wrap?: boolean;
 };
 
 class List extends React.Component<Props & WithStylesProps> {
@@ -20,11 +22,17 @@ class List extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, cx, horizontal, ordered, styles } = this.props;
+    const { children, cx, horizontal, ordered, styles, wrap } = this.props;
     const Tag = ordered ? 'ol' : 'ul';
 
     return (
-      <Tag className={cx(styles.list, horizontal && styles.list_horizontal)}>
+      <Tag
+        className={cx(
+          styles.list,
+          horizontal && styles.list_horizontal,
+          horizontal && wrap && styles.list_horizontal_wrap,
+        )}
+      >
         {React.Children.map(children, child => {
           if (!child) {
             return null;
@@ -50,5 +58,9 @@ export default withStyles(() => ({
 
   list_horizontal: {
     display: 'flex',
+  },
+
+  list_horizontal_wrap: {
+    flexWrap: 'wrap',
   },
 }))(List);

@@ -50,6 +50,28 @@ storiesOf('Core/List', module)
       </Item>
     </List>
   ))
+
+  .add('List with `horizontal` and `wrap`.', () => (
+    <List horizontal wrap>
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+    </List>
+  ))
   .add('List with `ordered` to render as `<ol></ol>`.', () => (
     <List ordered>
       <Item>
