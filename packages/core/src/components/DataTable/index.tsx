@@ -366,8 +366,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     const expandedData = expandData(filteredData, expandedRows, sortBy, this.keys, sortDirection);
 
-    console.log(sortDirection);
-
     return (
       <div>
         {this.shouldRenderTableHeader() && (
