@@ -1,7 +1,7 @@
 import { SortDirection, SortDirectionType } from 'react-virtualized';
 import { GenericRow } from '../types';
 
-function sortAsc(a: any, b: any) {
+function sortDesc(a: any, b: any) {
   if (typeof b === 'undefined' || a < b) {
     return 1;
   }
@@ -9,7 +9,7 @@ function sortAsc(a: any, b: any) {
   return -1;
 }
 
-function sortDesc(a: any, b: any) {
+function sortAsc(a: any, b: any) {
   if (typeof b === 'undefined' || a < b) {
     return -1;
   }
