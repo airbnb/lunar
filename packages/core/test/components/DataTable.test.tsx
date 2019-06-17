@@ -408,6 +408,18 @@ describe('<DataTable /> renders and sorts data', () => {
 
     expect(text).toBe('Dev Ops Danny');
   });
+
+  it('should sort data in Descending order through props', () => {
+    const table = mount(
+      <DataTable {...simpleProps} sortByOverride="name" sortDirectionOverride="DESC" />,
+    );
+
+    const text = getCell(table, 1, NAME_COL)
+      .find(Text)
+      .text();
+
+    expect(text).toBe('Product Percy');
+  });
 });
 
 describe('<DataTable /> renders column labels', () => {
