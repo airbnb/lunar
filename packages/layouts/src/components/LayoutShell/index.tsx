@@ -1,9 +1,9 @@
 import React from 'react';
 import { elementType } from 'airbnb-prop-types';
-import useStyles, { Theme } from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 import SideBar from '../SideBar';
 
-const styleSheet = ({ color }: Theme) => ({
+const styleSheet: StyleSheet = ({ color }) => ({
   shell: {
     display: 'flex',
     width: '100%',

@@ -1,7 +1,7 @@
 import React from 'react';
-import useStyles, { Theme } from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 
-const styleSheet = ({ ui, unit }: Theme) => ({
+const styleSheet: StyleSheet = ({ ui, unit }) => ({
   aside: {
     flexGrow: 0,
     flexShrink: 0,

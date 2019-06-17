@@ -1,11 +1,11 @@
 import React from 'react';
 import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
 import Content from './Content';
-import useStyles, { Theme } from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export { Content };
 
-const styleSheet = ({ color, pattern }: Theme) => ({
+const styleSheet: StyleSheet = ({ color, pattern }) => ({
   card: {
     ...pattern.box,
     background: color.accent.bg,
