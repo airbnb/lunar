@@ -160,6 +160,14 @@ storiesOf('Core/DataTable', module)
     inspectComponents: [DataTable],
   })
   .add('A standard table.', () => <DataTable data={getData()} keys={['name', 'jobTitle']} />)
+  .add('A standard table with initial sorting.', () => (
+    <DataTable
+      data={getData()}
+      keys={['name', 'jobTitle']}
+      sortByOverride="name"
+      sortDirectionOverride="ASC"
+    />
+  ))
   .add('A table with selectable and exandable rows.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"
