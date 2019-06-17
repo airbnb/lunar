@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Layout from '../../src/components/Layout';
+import Aside from '../../src/components/Aside';
 import SplitLayout from '../../src/components/SplitLayout';
 
 describe('<SplitLayout />', () => {
@@ -19,11 +20,12 @@ describe('<SplitLayout />', () => {
   // });
 
   it('renders and passes props to `Layout`', () => {
-    const wrapper = shallow(<SplitLayout asideWidth={100} before="Left" after="Right" />).dive();
+    const wrapper = shallow(
+      <SplitLayout before={<Aside>Left</Aside>} after={<Aside>Right</Aside>} />,
+    ).dive();
 
     expect(wrapper.find(Layout).props()).toEqual(
       expect.objectContaining({
-        asideWidth: 100,
         noBackground: true,
         noPadding: true,
       }),
@@ -31,19 +33,21 @@ describe('<SplitLayout />', () => {
   });
 
   it('renders before and after content', () => {
-    const wrapper = shallow(<SplitLayout before="Left" after="Right" />).dive();
+    const wrapper = shallow(
+      <SplitLayout before={<Aside>Left</Aside>} after={<Aside>Right</Aside>} />,
+    ).dive();
 
     expect(
       wrapper
-        .find('div')
-        .at(1)
+        .find(Aside)
+        .at(0)
         .prop('children'),
     ).toBe('Left');
 
     expect(
       wrapper
-        .find('div')
-        .at(2)
+        .find(Aside)
+        .at(1)
         .prop('children'),
     ).toBe('Right');
   });
