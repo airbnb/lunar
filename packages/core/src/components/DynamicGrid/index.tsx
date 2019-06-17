@@ -27,7 +27,6 @@ class DynamicGrid extends React.PureComponent<Props, State> {
     super(props);
 
     this.state = {
-      // eslint-disable-next-line react/destructuring-assignment
       items: this.getItems(),
     };
   }
@@ -47,6 +46,7 @@ class DynamicGrid extends React.PureComponent<Props, State> {
 
     const max = Object.keys(breakpoints!).reduce((acc, breakpoint) => {
       const b = parseInt(breakpoint, 10);
+
       return b < width && b > acc ? b : acc;
     }, -1);
 
