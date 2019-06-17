@@ -96,8 +96,8 @@ export default function ColumnLabels({
               </span>
               {label && sortable && (
                 <SortCarets
-                  enableUp={sort === SortDirection.DESC}
-                  enableDown={sort === SortDirection.ASC}
+                  enableUp={sort === SortDirection.ASC}
+                  enableDown={sort === SortDirection.DESC}
                 />
               )}
             </div>

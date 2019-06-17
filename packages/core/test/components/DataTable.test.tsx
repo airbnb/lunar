@@ -370,12 +370,12 @@ describe('<DataTable /> renders and sorts data', () => {
     expect(text).toBe(data[0].data.name);
   });
 
-  it('should sort data in Descending Order', () => {
+  it('should sort data in Descending order', () => {
     const table = mount(<DataTable {...simpleProps} />);
 
     const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
     nameHeader.simulate('click');
-
+    nameHeader.simulate('click');
     const text = getCell(table, 1, NAME_COL)
       .find(Text)
       .text();
@@ -383,11 +383,10 @@ describe('<DataTable /> renders and sorts data', () => {
     expect(text).toBe('Product Percy');
   });
 
-  it('should sort data in Ascending Order', () => {
+  it('should sort data in Ascending order', () => {
     const table = mount(<DataTable {...simpleProps} />);
 
     const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(NAME_COL - 1);
-    nameHeader.simulate('click');
     nameHeader.simulate('click');
     table.update();
 
@@ -396,6 +395,30 @@ describe('<DataTable /> renders and sorts data', () => {
       .text();
 
     expect(text).toBe('Dev Ops Danny');
+  });
+
+  it('should sort data in Ascending order through props', () => {
+    const table = mount(
+      <DataTable {...simpleProps} sortByOverride="name" sortDirectionOverride="ASC" />,
+    );
+
+    const text = getCell(table, 1, NAME_COL)
+      .find(Text)
+      .text();
+
+    expect(text).toBe('Dev Ops Danny');
+  });
+
+  it('should sort data in Descending order through props', () => {
+    const table = mount(
+      <DataTable {...simpleProps} sortByOverride="name" sortDirectionOverride="DESC" />,
+    );
+
+    const text = getCell(table, 1, NAME_COL)
+      .find(Text)
+      .text();
+
+    expect(text).toBe('Product Percy');
   });
 });
 
