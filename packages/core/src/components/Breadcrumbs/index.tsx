@@ -1,6 +1,7 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import List from '../List';
 import Breadcrumb from './Breadcrumb';
 
 export type Props = {
@@ -21,7 +22,7 @@ export class Breadcrumbs extends React.Component<Props & WithStylesProps> {
 
     return (
       <nav aria-label={accessibilityLabel}>
-        <ol className={cx(styles.ol)}>
+        <List horizontal ordered>
           {React.Children.map(children, child => {
             if (!child) {
               return null;
@@ -29,7 +30,7 @@ export class Breadcrumbs extends React.Component<Props & WithStylesProps> {
 
             return <li className={cx(styles.li)}>{child}</li>;
           })}
-        </ol>
+        </List>
       </nav>
     );
   }
@@ -38,13 +39,6 @@ export class Breadcrumbs extends React.Component<Props & WithStylesProps> {
 export { Breadcrumb };
 
 export default withStyles(({ unit }) => ({
-  ol: {
-    display: 'flex',
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
-  },
-
   li: {
     marginRight: unit,
 
