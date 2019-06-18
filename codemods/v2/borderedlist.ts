@@ -2,17 +2,36 @@
 import { FileInfo, API, Options } from 'jscodeshift';
 import { Codemod } from '../helpers';
 
-module.exports = function autocompleteProps(
-  fileInfo: FileInfo,
-  api: API,
-  options: Options,
-): string | null | undefined | void {
-  const mod = new Codemod(fileInfo, api);
+function addBorderedProp(mod: Codemod, node) {
+  const hasBorderedProp = node.openingElement.attributes.filter(
+    attr =>
+      attr.type === 'JSXAttribute' &&
+      attr.name.type === 'JSXIdentifier' &&
+      attr.name.name === 'bordered',
+  );
 
+  if (hasBorderedProp.length === 0) {
+    const borderedProp = mod.createNode(cs => cs.jsxAttribute(cs.jsxIdentifier('bordered')));
+    node.openingElement.attributes.push(borderedProp);
+  }
+}
+
+function addBorderedPropToItems(mod: Codemod, name: string) {
   mod.source.find(mod.cs.JSXElement).forEach(({ node }) => {
     if (
       node.openingElement.name.type === 'JSXIdentifier' &&
-      node.openingElement.name.name === 'BorderedList'
+      node.openingElement.name.name === name
+    ) {
+      addBorderedProp(mod, node);
+    }
+  });
+}
+
+function addBorderedPropToChildren(mod: Codemod, name: string) {
+  mod.source.find(mod.cs.JSXElement).forEach(({ node }) => {
+    if (
+      node.openingElement.name.type === 'JSXIdentifier' &&
+      node.openingElement.name.name === name
     ) {
       node.children.forEach(child => {
         if (
@@ -20,20 +39,35 @@ module.exports = function autocompleteProps(
           child.openingElement.name.type === 'JSXIdentifier' &&
           child.openingElement.name.name === 'Item'
         ) {
-          const borderedProp = mod.createNode(cs => cs.jsxAttribute(cs.jsxIdentifier('bordered')));
-          child.openingElement.attributes.push(borderedProp);
+          addBorderedProp(mod, child);
         }
       });
-
-      node.openingElement.name.name = 'List';
     }
+  });
+}
 
-    if (
-      node.closingElement &&
-      node.closingElement.name.type === 'JSXIdentifier' &&
-      node.closingElement.name.name === 'BorderedList'
-    ) {
-      node.closingElement.name.name = 'List';
+module.exports = function autocompleteProps(
+  fileInfo: FileInfo,
+  api: API,
+  options: Options,
+): string | null | undefined | void {
+  const mod = new Codemod(fileInfo, api);
+
+  // Add `bordered` to `BorderedListItem`
+  ['@airbnb/lunar/lib/components/BorderedList/Item'].forEach(importPath => {
+    const compName = mod.getComponentNameFromDefaultImport(importPath);
+
+    if (compName) {
+      addBorderedPropToItems(mod, compName);
+    }
+  });
+
+  // Add `bordered` to `Item` of `BorderedList`
+  ['@airbnb/lunar/lib/components/BorderedList'].forEach(importPath => {
+    const compName = mod.getComponentNameFromDefaultImport(importPath);
+
+    if (compName) {
+      addBorderedPropToChildren(mod, compName);
     }
   });
 
