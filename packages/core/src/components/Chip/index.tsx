@@ -7,16 +7,18 @@ import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
 export type Props = {
-  /** Renders with a primary background and white text */
+  /** Renders with a primary background and white text. */
   active?: boolean;
+  /** Icon to render to the right of the primary content. */
+  afterIcon?: React.ReactNode;
+  /** Icon to render to the left of the primary content. */
+  beforeIcon?: React.ReactNode;
   /** Primary chip contents. */
   children: NonNullable<React.ReactNode>;
   /** Renders with less padding and sharper corners. */
   compact?: boolean;
   /** Disabled / gray. */
   disabled?: boolean;
-  /** Icon to render to the right of the primary content. */
-  icon?: React.ReactNode;
   /** Callback fired when the element is clicked. */
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   /** Callback fired when the icon is clicked (requires an icon). */
@@ -28,18 +30,27 @@ export type Props = {
 /** Compact component that represents a snippet of information, such as a filter. */
 export class Chip extends React.Component<Props & WithStylesProps> {
   static propTypes = {
-    icon: requiredBy('onIconClick', iconComponent),
+    afterIcon: requiredBy('onIconClick', iconComponent),
+    beforeIcon: mutuallyExclusiveProps(iconComponent, 'beforeIcon', 'profileImageSrc'),
     onClick: mutuallyExclusiveProps(PropTypes.func, 'onIconClick'),
+    profileImageSrc: mutuallyExclusiveProps(
+      PropTypes.any,
+      'beforeIcon',
+      'profileImageSrc',
+      'compact',
+    ),
+    compact: mutuallyExclusiveProps(PropTypes.any, 'profileImageSrc', 'compact'),
   };
 
   render() {
     const {
       cx,
       active,
+      afterIcon,
+      beforeIcon,
       children,
       compact,
       disabled,
-      icon,
       onClick,
       onIconClick,
       profileImageSrc,
@@ -56,14 +67,16 @@ export class Chip extends React.Component<Props & WithStylesProps> {
           }
         : {};
 
+    const shouldRenderBefore = beforeIcon || profileImageSrc;
+
     return (
       // @ts-ignore [ts] JSX element type 'Component' does not have any construct or call signatures. [2604]
       <Component
         className={cx(
           styles.chip,
           onClick && styles.chip_button,
-          !profileImageSrc && styles.chip_noBefore,
-          !icon && styles.chip_noAfter,
+          !shouldRenderBefore && styles.chip_noBefore,
+          !afterIcon && styles.chip_noAfter,
           active && styles.chip_active,
           onClick && active && styles.chip_active_button,
           compact && styles.chip_compact,
@@ -71,29 +84,36 @@ export class Chip extends React.Component<Props & WithStylesProps> {
         )}
         {...props}
       >
-        {profileImageSrc && (
+        {shouldRenderBefore && (
           <div className={cx(styles.chipItem, styles.sideContent)}>
-            <div className={cx(styles.sideContentInner)}>
-              <ProfilePhoto imageSrc={profileImageSrc} title="" size={4} />
+            <div
+              className={cx(
+                styles.sideContentInner,
+                !!beforeIcon && styles.iconWrapper,
+                !!beforeIcon && styles.iconWrapperBefore,
+              )}
+            >
+              {profileImageSrc && <ProfilePhoto imageSrc={profileImageSrc} title="" size={4} />}
+              {beforeIcon}
             </div>
           </div>
         )}
-
         <div className={cx(styles.chipItem, styles.content)}>{children}</div>
-
-        {icon && (
+        {afterIcon && (
           <div className={cx(styles.chipItem, styles.sideContent)}>
-            <div className={cx(styles.sideContentInner, styles.iconWrapper)}>
+            <div
+              className={cx(styles.sideContentInner, styles.iconWrapper, styles.iconWrapperAfter)}
+            >
               {onIconClick ? (
                 <ButtonOrLink
                   className={cx(styles.iconButton, disabled && styles.iconButton_disabled)}
                   disabled={disabled}
                   onClick={onIconClick}
                 >
-                  {icon}
+                  {afterIcon}
                 </ButtonOrLink>
               ) : (
-                icon
+                afterIcon
               )}
             </div>
           </div>
@@ -185,8 +205,15 @@ export default withStyles(({ color, font, pattern, transition, ui, unit }) => ({
   },
 
   iconWrapper: {
-    padding: `${unit * 0.5}px ${unit * 0.5}px ${unit * 0.5}px 0`,
     color: color.core.neutral[3],
+  },
+
+  iconWrapperAfter: {
+    padding: `${unit * 0.5}px ${unit * 0.5}px ${unit * 0.5}px 0`,
+  },
+
+  iconWrapperBefore: {
+    padding: `${unit * 0.5}px ${unit * 0.5}px ${unit * 0.5}px ${unit}px`,
   },
 
   iconButton: {
