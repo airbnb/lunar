@@ -18,7 +18,7 @@ export type Props = {
 
 class List extends React.Component<Props & WithStylesProps> {
   static propTypes = {
-    children: childrenWithComponentName('ListItem?|li?').isRequired,
+    children: childrenWithComponentName('ListItem|li').isRequired,
   };
 
   render() {
