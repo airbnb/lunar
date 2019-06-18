@@ -1,8 +1,8 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import { unwrapHOCs } from '@airbnb/lunar-test-utils';
-import List from '../../src/components/List';
-import ListItem, { Props as ListItemProps } from '../../src/components/List/Item';
+import List, { Item } from '../../src/components/List';
+import { Props as ItemProps } from '../../src/components/List/Item';
 import proxyComponent from '../../src/utils/proxyComponent';
 
 function unwrap(element: any): Enzyme.ShallowWrapper {
@@ -14,28 +14,26 @@ describe('<List />', () => {
     expect(() => unwrap(<List>Foo</List>)).toThrowError();
   });
 
-  it('does not error if a proxyComponent wrapping a ListItem is passed', () => {
-    const ProxiedListItem = proxyComponent(ListItem, (props: ListItemProps) => (
-      <ListItem {...props} />
-    ));
+  it('does not error if a proxyComponent wrapping a Item is passed', () => {
+    const ProxiedItem = proxyComponent(Item, (props: ItemProps) => <Item {...props} />);
 
     expect(() =>
       unwrap(
         <List>
-          <ProxiedListItem>Item 1</ProxiedListItem>
+          <ProxiedItem>Item 1</ProxiedItem>
         </List>,
       ),
     ).not.toThrowError();
   });
 
-  it('errors if proxyComponent wrapping a non-ListItem is passed', () => {
+  it('errors if proxyComponent wrapping a non-Item is passed', () => {
     const IncompatibleComponent = () => <div />;
-    const ProxiedNonListItem = proxyComponent(IncompatibleComponent, () => <div />);
+    const ProxiedNonItem = proxyComponent(IncompatibleComponent, () => <div />);
 
     expect(() =>
       unwrap(
         <List>
-          <ProxiedNonListItem>Foo</ProxiedNonListItem>
+          <ProxiedNonItem>Foo</ProxiedNonItem>
         </List>,
       ),
     ).toThrowError();
@@ -44,31 +42,31 @@ describe('<List />', () => {
   it('renders expected number of List items', () => {
     const wrapper = unwrap(
       <List>
-        <ListItem>Item 1</ListItem>
-        <ListItem>Item 2</ListItem>
-        <ListItem>Item 3</ListItem>
+        <Item>Item 1</Item>
+        <Item>Item 2</Item>
+        <Item>Item 3</Item>
       </List>,
     );
 
-    expect(wrapper.find(ListItem)).toHaveLength(3);
+    expect(wrapper.find(Item)).toHaveLength(3);
   });
 
   it('handles falsey items', () => {
     const wrapper = unwrap(
       <List>
-        {false && <ListItem>Item 1</ListItem>}
-        {null && <ListItem>Item 2</ListItem>}
-        <ListItem>Item 3</ListItem>
+        {false && <Item>Item 1</Item>}
+        {null && <Item>Item 2</Item>}
+        <Item>Item 3</Item>
       </List>,
     );
 
-    expect(wrapper.find(ListItem)).toHaveLength(1);
+    expect(wrapper.find(Item)).toHaveLength(1);
   });
 
   it('renders a <ul /> by default', () => {
     const wrapper = shallow(
       <List>
-        <ListItem>Item 1</ListItem>
+        <Item>Item 1</Item>
       </List>,
     ).dive();
 
@@ -78,10 +76,26 @@ describe('<List />', () => {
   it('renders a <ol /> with `ordered`', () => {
     const wrapper = shallow(
       <List ordered>
-        <ListItem>Item 1</ListItem>
+        <Item>Item 1</Item>
       </List>,
     ).dive();
 
     expect(wrapper.type()).toEqual('ol');
+  });
+
+  it('renders a horizontal list', () => {
+    const wrapperDefault = shallow(
+      <List>
+        <Item>Item 1</Item>
+      </List>,
+    ).dive();
+
+    const wrapperHorizontal = shallow(
+      <List horizontal>
+        <Item>Item 1</Item>
+      </List>,
+    ).dive();
+
+    expect(wrapperDefault.html() === wrapperHorizontal.html()).toBe(false);
   });
 });

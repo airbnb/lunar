@@ -35,4 +35,37 @@ describe('<ListItem />', () => {
 
     expect(wrapperDefault.html() === wrapperSpacious.html()).toBe(false);
   });
+
+  it('renders horizontal + bordered', () => {
+    const wrapperDefault = shallow(<ListItem bordered>Content</ListItem>).dive();
+    const wrapperHorizontal = shallow(
+      <ListItem bordered horizontal>
+        Content
+      </ListItem>,
+    ).dive();
+
+    expect(wrapperDefault.html() === wrapperHorizontal.html()).toBe(false);
+  });
+
+  it('renders horizontal + compact', () => {
+    const wrapperDefault = shallow(<ListItem compact>Content</ListItem>).dive();
+    const wrapperHorizontal = shallow(
+      <ListItem compact horizontal>
+        Content
+      </ListItem>,
+    ).dive();
+
+    expect(wrapperDefault.html() === wrapperHorizontal.html()).toBe(false);
+  });
+
+  it('renders horizontal + spacious', () => {
+    const wrapperDefault = shallow(<ListItem spacious>Content</ListItem>).dive();
+    const wrapperHorizontal = shallow(
+      <ListItem spacious horizontal>
+        Content
+      </ListItem>,
+    ).dive();
+
+    expect(wrapperDefault.html() === wrapperHorizontal.html()).toBe(false);
+  });
 });
