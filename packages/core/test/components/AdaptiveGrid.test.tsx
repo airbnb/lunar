@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import AdaptiveGrid from '../../lib/components/AdaptiveGrid';
+import AdaptiveGrid from '../../src/components/AdaptiveGrid';
 
 describe('<AdaptiveGrid />', () => {
   it('renders an AdaptiveGrid with items inside', () => {

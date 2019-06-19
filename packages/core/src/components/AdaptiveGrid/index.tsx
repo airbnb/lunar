@@ -19,7 +19,7 @@ type Props = AdaptiveGridProps & WithStylesProps;
 class AdaptiveGrid extends React.PureComponent<Props, State> {
   static defaultProps = {
     breakpoints: {},
-    defaultItems: 1,
+    defaultItemsPerRow: 1,
     noGutter: false,
   };
 
