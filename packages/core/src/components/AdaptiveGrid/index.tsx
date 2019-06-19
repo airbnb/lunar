@@ -11,7 +11,7 @@ export type AdaptiveGridProps = {
   /** Items per row for screens smaller than the smallest breakpoint. */
   defaultItemsPerRow?: number;
   /** Removes padding between items. */
-  noPadding?: boolean;
+  noGutter?: boolean;
 };
 
 type Props = AdaptiveGridProps & WithStylesProps;
@@ -20,7 +20,7 @@ class AdaptiveGrid extends React.PureComponent<Props, State> {
   static defaultProps = {
     breakpoints: {},
     defaultItems: 1,
-    noPadding: false,
+    noGutter: false,
   };
 
   state = {
@@ -56,7 +56,7 @@ class AdaptiveGrid extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { children, cx, noPadding, styles } = this.props;
+    const { children, cx, noGutter, styles } = this.props;
     const { items } = this.state;
 
     const itemStyle = {
@@ -68,13 +68,13 @@ class AdaptiveGrid extends React.PureComponent<Props, State> {
       React.Children.map(children, (child: React.ReactNode, idx: number) => (
         // These items are generic and don't have a guaranteed id or any unique property
         // eslint-disable-next-line react/no-array-index-key
-        <div className={cx(!noPadding && styles.item_padded)} style={itemStyle} key={idx}>
+        <div className={cx(!noGutter && styles.item_padded)} style={itemStyle} key={idx}>
           {child}
         </div>
       ));
 
     return (
-      <div className={cx(styles.container, !noPadding && styles.container_padded)}>
+      <div className={cx(styles.container, !noGutter && styles.container_padded)}>
         {childElements}
       </div>
     );
