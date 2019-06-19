@@ -1,14 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import DynamicGrid from './DynamicGrid';
+import AdaptiveGrid from './AdaptiveGrid';
 import Card from './Card';
 
-storiesOf('Core/DynamicGrid', module)
+storiesOf('Core/AdaptiveGrid', module)
   .addParameters({
-    inspectComponents: [DynamicGrid],
+    inspectComponents: [AdaptiveGrid],
   })
   .add('A grid with 3 items per row', () => (
-    <DynamicGrid defaultItems={3}>
+    <AdaptiveGrid defaultItems={3}>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
@@ -18,10 +18,10 @@ storiesOf('Core/DynamicGrid', module)
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
-    </DynamicGrid>
+    </AdaptiveGrid>
   ))
   .add('A grid with 4/3/2 items per row depending on width', () => (
-    <DynamicGrid defaultItems={2} breakpoints={{ 1200: 4, 1000: 3 }}>
+    <AdaptiveGrid defaultItems={2} breakpoints={{ 1200: 4, 1000: 3 }}>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
@@ -31,10 +31,10 @@ storiesOf('Core/DynamicGrid', module)
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
-    </DynamicGrid>
+    </AdaptiveGrid>
   ))
   .add('A grid with 4 items per row and no padding', () => (
-    <DynamicGrid defaultItems={4} noPadding>
+    <AdaptiveGrid defaultItems={4} noPadding>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
@@ -44,5 +44,5 @@ storiesOf('Core/DynamicGrid', module)
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
-    </DynamicGrid>
+    </AdaptiveGrid>
   ));

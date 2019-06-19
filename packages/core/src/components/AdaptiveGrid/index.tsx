@@ -5,31 +5,27 @@ type State = {
   items: number;
 };
 
-export type GridProps = {
+export type AdaptiveGridProps = {
   /** List of width/item pairs, describes how many items to display for windows of at least that width. */
   breakpoints?: { [key: number]: number };
   /** Items per row for screens smaller than the smallest breakpoint. */
-  defaultItems?: number;
+  defaultItemsPerRow?: number;
   /** Removes padding between items. */
   noPadding?: boolean;
 };
 
-type Props = GridProps & WithStylesProps;
+type Props = AdaptiveGridProps & WithStylesProps;
 
-class DynamicGrid extends React.PureComponent<Props, State> {
-  public static defaultProps = {
+class AdaptiveGrid extends React.PureComponent<Props, State> {
+  static defaultProps = {
     breakpoints: {},
     defaultItems: 1,
     noPadding: false,
   };
 
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      items: this.getItems(),
-    };
-  }
+  state = {
+    items: this.getItems(),
+  };
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
@@ -39,9 +35,15 @@ class DynamicGrid extends React.PureComponent<Props, State> {
     window.removeEventListener('resize', this.handleResize);
   }
 
+  private handleResize = () => {
+    this.setState({
+      items: this.getItems(),
+    });
+  };
+
   // Find the largest breakpoint smaller than the current width
-  private getItems(): any {
-    const { breakpoints, defaultItems } = this.props;
+  getItems(): number {
+    const { breakpoints, defaultItemsPerRow } = this.props;
     const width = window.innerWidth;
 
     const max = Object.keys(breakpoints!).reduce((acc, breakpoint) => {
@@ -50,16 +52,10 @@ class DynamicGrid extends React.PureComponent<Props, State> {
       return b < width && b > acc ? b : acc;
     }, -1);
 
-    return max > -1 ? breakpoints![max] : defaultItems;
+    return max > -1 ? breakpoints![max] : defaultItemsPerRow!;
   }
 
-  private handleResize = () => {
-    this.setState({
-      items: this.getItems(),
-    });
-  };
-
-  public render() {
+  render() {
     const { children, cx, noPadding, styles } = this.props;
     const { items } = this.state;
 
@@ -98,4 +94,4 @@ export default withStyles(({ unit }) => ({
     paddingRight: 2 * unit,
     paddingBottom: 2 * unit,
   },
-}))(DynamicGrid);
+}))(AdaptiveGrid);
