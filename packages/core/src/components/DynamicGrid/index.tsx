@@ -72,7 +72,7 @@ class DynamicGrid extends React.PureComponent<Props, State> {
       React.Children.map(children, (child: React.ReactNode, idx: number) => (
         // These items are generic and don't have a guaranteed id or any unique property
         // eslint-disable-next-line react/no-array-index-key
-        <div className={cx(itemStyle, !noPadding && styles.item_padded)} key={idx}>
+        <div className={cx(!noPadding && styles.item_padded)} style={itemStyle} key={idx}>
           {child}
         </div>
       ));
