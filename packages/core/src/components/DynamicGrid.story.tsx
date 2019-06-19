@@ -34,20 +34,7 @@ storiesOf('Core/DynamicGrid', module)
     </DynamicGrid>
   ))
   .add('A grid with 4 items per row and no padding', () => (
-    <DynamicGrid defaultItems={4} padding={0}>
-      <Card>Grid Item</Card>
-      <Card>Grid Item</Card>
-      <Card>Grid Item</Card>
-      <Card>Grid Item</Card>
-      <Card>Grid Item</Card>
-      <Card>Grid Item</Card>
-      <Card>Grid Item</Card>
-      <Card>Grid Item</Card>
-      <Card>Grid Item</Card>
-    </DynamicGrid>
-  ))
-  .add('A grid with 4 items per row and extra padding', () => (
-    <DynamicGrid defaultItems={4} padding={5}>
+    <DynamicGrid defaultItems={4} noPadding>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>
       <Card>Grid Item</Card>

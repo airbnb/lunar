@@ -6,12 +6,12 @@ type State = {
 };
 
 export type GridProps = {
-  // List of width/item pairs, describes how many items to display for windows of at least that width.
+  /** List of width/item pairs, describes how many items to display for windows of at least that width. */
   breakpoints?: { [key: number]: number };
-  // Items per row for screens smaller than the smallest breakpoint.
+  /** Items per row for screens smaller than the smallest breakpoint. */
   defaultItems?: number;
-  // Padding between items in units.
-  padding?: number;
+  /** Removes padding between items. */
+  noPadding?: boolean;
 };
 
 type Props = GridProps & WithStylesProps;
@@ -20,7 +20,7 @@ class DynamicGrid extends React.PureComponent<Props, State> {
   public static defaultProps = {
     breakpoints: {},
     defaultItems: 1,
-    padding: 2,
+    noPadding: false,
   };
 
   constructor(props: Props) {
@@ -60,17 +60,11 @@ class DynamicGrid extends React.PureComponent<Props, State> {
   };
 
   public render() {
-    const { children, cx, padding, styles, theme } = this.props;
+    const { children, cx, noPadding, styles } = this.props;
     const { items } = this.state;
 
     const itemStyle = {
       width: `${100 / items}%`,
-      paddingRight: padding! * theme!.unit,
-      paddingBottom: padding! * theme!.unit,
-    };
-
-    const containerStyle = {
-      marginRight: -padding! * theme!.unit,
     };
 
     const childElements =
@@ -78,24 +72,30 @@ class DynamicGrid extends React.PureComponent<Props, State> {
       React.Children.map(children, (child: React.ReactNode, idx: number) => (
         // These items are generic and don't have a guaranteed id or any unique property
         // eslint-disable-next-line react/no-array-index-key
-        <div style={itemStyle} key={idx}>
+        <div className={cx(itemStyle, !noPadding && styles.item_padded)} key={idx}>
           {child}
         </div>
       ));
 
-    return <div className={cx(styles.container, containerStyle)}>{childElements}</div>;
+    return (
+      <div className={cx(styles.container, !noPadding && styles.container_padded)}>
+        {childElements}
+      </div>
+    );
   }
 }
 
-export default withStyles(
-  () => ({
-    container: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-    },
-  }),
-  {
-    passThemeProp: true,
+export default withStyles(({ unit }) => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
-)(DynamicGrid);
+  container_padded: {
+    marginRight: -2 * unit,
+  },
+  item_padded: {
+    paddingRight: 2 * unit,
+    paddingBottom: 2 * unit,
+  },
+}))(DynamicGrid);
