@@ -47,7 +47,7 @@ describe('<AdaptiveGrid />', () => {
   });
   it('renders an AdaptiveGrid with 4 items per row', () => {
     const wrapper = shallow(
-      <AdaptiveGrid defaultItems={4}>
+      <AdaptiveGrid defaultItemsPerRow={4}>
         <div>Item</div>
         <div>Item</div>
         <div>Item</div>
