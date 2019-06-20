@@ -9,7 +9,7 @@ type WrappingProps = {
   themeName?: string;
 };
 
-function WrappingComponent({
+export function WrappingComponent({
   children,
   dir,
   themeName,
