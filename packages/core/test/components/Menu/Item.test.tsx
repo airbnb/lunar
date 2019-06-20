@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import IconCaretRight from '@airbnb/lunar-icons/lib/interface/IconCaretRight';
 import Menu from '../../../src/components/Menu';
 import Item from '../../../src/components/Menu/Item';
@@ -8,26 +8,26 @@ import DirectionalIcon from '../../../src/components/DirectionalIcon';
 
 describe('<MenuItem />', () => {
   it('renders highlighted', () => {
-    const wrapper = shallow(<Item highlighted>Foo</Item>).dive();
+    const wrapper = shallowWithStyles(<Item highlighted>Foo</Item>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders spacious', () => {
-    const wrapper = shallow(<Item spacious>Foo</Item>).dive();
+    const wrapper = shallowWithStyles(<Item spacious>Foo</Item>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders a list with the correct role', () => {
-    const wrapper = shallow(<Item>Foo</Item>).dive();
+    const wrapper = shallowWithStyles(<Item>Foo</Item>);
 
     expect(wrapper.is('li')).toBe(true);
     expect(wrapper.prop('role')).toBe('none');
   });
 
   it('adds role to button', () => {
-    const wrapper = shallow(<Item>Foo</Item>).dive();
+    const wrapper = shallowWithStyles(<Item>Foo</Item>);
 
     expect(wrapper.find(ButtonOrLink).prop('role')).toBe('menuitem');
 
@@ -39,24 +39,24 @@ describe('<MenuItem />', () => {
   });
 
   it('passes props to underlying button', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Item disabled openInNewWindow href="/" tabIndex={0}>
         Foo
       </Item>,
-    ).dive();
+    );
 
     expect(wrapper.find(ButtonOrLink).prop('disabled')).toBe(true);
   });
 
   it('passes icon to underlying button', () => {
     const icon = <IconCaretRight decorative />;
-    const wrapper = shallow(<Item icon={icon}>Foo</Item>).dive();
+    const wrapper = shallowWithStyles(<Item icon={icon}>Foo</Item>);
 
     expect(wrapper.find(ButtonOrLink).prop('beforeIcon')).toBe(icon);
   });
 
   it('passes tip to underlying button', () => {
-    const wrapper = shallow(<Item>Foo</Item>).dive();
+    const wrapper = shallowWithStyles(<Item>Foo</Item>);
 
     expect(wrapper.find(ButtonOrLink).prop('afterIcon')).toBeNull();
 
@@ -65,7 +65,7 @@ describe('<MenuItem />', () => {
     });
 
     const icon = wrapper.find(ButtonOrLink).prop('afterIcon');
-    const iconWrapper = shallow(icon as any);
+    const iconWrapper = shallowWithStyles(icon as any, true);
 
     expect(icon).not.toBeNull();
     expect(iconWrapper.prop('children')).toBe('Something');
@@ -79,7 +79,7 @@ describe('<MenuItem />', () => {
     );
 
     it('displays a submenu when item is hovered', () => {
-      const wrapper = shallow(<Item submenu={menu}>Parent</Item>).dive();
+      const wrapper = shallowWithStyles(<Item submenu={menu}>Parent</Item>);
 
       expect(wrapper.contains(menu)).toBe(false);
 
@@ -93,7 +93,7 @@ describe('<MenuItem />', () => {
     });
 
     it('sets aria-haspopup', () => {
-      const wrapper = shallow(<Item submenu={menu}>Parent</Item>).dive();
+      const wrapper = shallowWithStyles(<Item submenu={menu}>Parent</Item>);
 
       expect(wrapper.find(ButtonOrLink).prop('aria-haspopup')).toBe(true);
 
@@ -105,7 +105,7 @@ describe('<MenuItem />', () => {
     });
 
     it('sets aria-expanded', () => {
-      const wrapper = shallow(<Item submenu={menu}>Parent</Item>).dive();
+      const wrapper = shallowWithStyles(<Item submenu={menu}>Parent</Item>);
 
       expect(wrapper.find(ButtonOrLink).prop('aria-expanded')).toBe(false);
 
@@ -115,7 +115,7 @@ describe('<MenuItem />', () => {
     });
 
     it('sets after icon when a submenu exists', () => {
-      const wrapper = shallow(<Item>Foo</Item>).dive();
+      const wrapper = shallowWithStyles(<Item>Foo</Item>);
 
       expect(wrapper.find(ButtonOrLink).prop('afterIcon')).toBeNull();
 
@@ -124,7 +124,7 @@ describe('<MenuItem />', () => {
       });
 
       const icon = wrapper.find(ButtonOrLink).prop('afterIcon');
-      const iconWrapper = shallow(icon as any);
+      const iconWrapper = shallowWithStyles(icon as any, true);
 
       expect(icon).not.toBeNull();
       expect(iconWrapper.find(DirectionalIcon)).toHaveLength(1);
