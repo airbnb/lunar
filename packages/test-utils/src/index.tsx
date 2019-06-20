@@ -1,7 +1,43 @@
 /* eslint-disable max-classes-per-file, no-console, no-param-reassign, react/no-multi-comp, import/no-extraneous-dependencies */
 
 import React from 'react';
-import Enzyme, { ShallowWrapper } from 'enzyme';
+import Enzyme, { ShallowWrapper, shallow } from 'enzyme';
+import { DirectionContext, ThemeContext } from 'aesthetic-react';
+
+type WrappingProps = {
+  dir?: 'ltr' | 'rtl';
+  themeName?: string;
+};
+
+function WrappingComponent({
+  children,
+  dir,
+  themeName,
+}: { children: React.ReactNode } & WrappingProps) {
+  const theme = {
+    changeTheme() {},
+    theme: {},
+    themeName: themeName || 'light',
+  };
+
+  return (
+    <DirectionContext.Provider value={dir || 'ltr'}>
+      <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    </DirectionContext.Provider>
+  );
+}
+
+export function shallowWithStyles(element: React.ReactElement<any>, props: WrappingProps = {}) {
+  return shallow(element, {
+    // @ts-ignore Not typed yet
+    wrappingComponent: WrappingComponent,
+    wrappingProps: props,
+  })
+    .dive() // ThemeContext
+    .dive() // DirectionContext
+    .dive() // WithStyles
+    .dive();
+}
 
 export function wrapEnv(env: string, callback: () => any): () => any {
   return () => {
