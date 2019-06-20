@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Layout from '../../src/components/Layout';
 import Aside from '../../src/components/Aside';
 import SplitLayout from '../../src/components/SplitLayout';
@@ -20,9 +20,9 @@ describe('<SplitLayout />', () => {
   // });
 
   it('renders and passes props to `Layout`', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <SplitLayout before={<Aside>Left</Aside>} after={<Aside>Right</Aside>} />,
-    ).dive();
+    );
 
     expect(wrapper.find(Layout).props()).toEqual(
       expect.objectContaining({
@@ -33,9 +33,9 @@ describe('<SplitLayout />', () => {
   });
 
   it('renders before and after content', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <SplitLayout before={<Aside>Left</Aside>} after={<Aside>Right</Aside>} />,
-    ).dive();
+    );
 
     expect(
       wrapper

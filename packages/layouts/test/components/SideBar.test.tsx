@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import { shallow } from 'enzyme';
 import IconAdd from '../../../icons/src/interface/IconAdd';
 import SideBar, { Item } from '../../src/components/SideBar';
@@ -6,7 +7,7 @@ import SideBar, { Item } from '../../src/components/SideBar';
 describe('<SideBar />', () => {
   it('errors for invalid children', () => {
     expect(() => {
-      shallow(
+      shallowWithStyles(
         <SideBar accessibilityLabel="Test">
           <div />
         </SideBar>,
@@ -15,11 +16,11 @@ describe('<SideBar />', () => {
   });
 
   it('renders a nav with accessibility', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <SideBar accessibilityLabel="Test">
         <Item icon={<IconAdd decorative />} />
       </SideBar>,
-    ).dive();
+    );
 
     expect(wrapper.is('nav')).toBe(true);
     expect(wrapper.find('ul').prop('role')).toBe('menubar');
@@ -27,13 +28,13 @@ describe('<SideBar />', () => {
   });
 
   it('renders items', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <SideBar accessibilityLabel="Test">
         <Item icon={<IconAdd decorative />} />
         <Item icon={<IconAdd decorative />} />
         <Item icon={<IconAdd decorative />} />
       </SideBar>,
-    ).dive();
+    );
 
     expect(wrapper.find(Item)).toHaveLength(3);
   });
