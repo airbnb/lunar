@@ -155,7 +155,7 @@ export class FormField extends React.Component<PrivateProps> {
             )}
           >
             <StatusText danger={invalid} muted={disabled} small={compact} bold={!renderLargeLabel}>
-              <span {...css(styles.label_cursor)}>{label}</span>
+              {label}
 
               {optional && !hideOptionalLabel && (
                 <span {...css(styles.optional)}>
@@ -211,10 +211,6 @@ export default withStyles(({ unit }) => ({
     marginBottom: unit,
     display: 'block',
     flexGrow: 0,
-  },
-
-  label_cursor: {
-    cursor: 'pointer',
   },
 
   label_stretch: {
