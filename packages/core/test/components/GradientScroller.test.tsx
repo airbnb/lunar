@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { mockResizeObserver } from '@airbnb/lunar-test-utils';
+import { shallowWithStyles, mockResizeObserver } from '@airbnb/lunar-test-utils';
 import GradientScroller, {
   GradientScroller as BaseGradientScroller,
 } from '../../src/components/GradientScroller';
@@ -17,13 +16,13 @@ describe('<GradientScroller />', () => {
   });
 
   it('has the correct default sizing', () => {
-    const wrapper = shallow(<GradientScroller />).dive();
+    const wrapper = shallowWithStyles(<GradientScroller />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders arrows when `showArrows` is true', () => {
-    const wrapper = shallow(<GradientScroller showArrows />).dive();
+    const wrapper = shallowWithStyles(<GradientScroller showArrows />);
 
     expect(wrapper.find('button')).toHaveLength(2);
 
@@ -36,7 +35,7 @@ describe('<GradientScroller />', () => {
 
   it('triggers scroll when left arrow is clicked', () => {
     const spy = jest.fn();
-    const wrapper = shallow(<GradientScroller showArrows />).dive();
+    const wrapper = shallowWithStyles(<GradientScroller showArrows />);
 
     (wrapper.instance() as BaseGradientScroller).doScroll = spy;
 
@@ -50,7 +49,7 @@ describe('<GradientScroller />', () => {
 
   it('triggers scroll when right arrow is clicked', () => {
     const spy = jest.fn();
-    const wrapper = shallow(<GradientScroller showArrows />).dive();
+    const wrapper = shallowWithStyles(<GradientScroller showArrows />);
 
     (wrapper.instance() as BaseGradientScroller).doScroll = spy;
 
@@ -64,13 +63,13 @@ describe('<GradientScroller />', () => {
 
   describe('calculateAutoScrollIncrement()', () => {
     it('uses prop value', () => {
-      const wrapper = shallow(<GradientScroller autoScrollIncrement={10} />).dive();
+      const wrapper = shallowWithStyles(<GradientScroller autoScrollIncrement={10} />);
 
       expect((wrapper.instance() as BaseGradientScroller).calculateAutoScrollIncrement()).toBe(10);
     });
 
     it('uses ref width', () => {
-      const wrapper = shallow(<GradientScroller />).dive();
+      const wrapper = shallowWithStyles(<GradientScroller />);
       const instance = wrapper.instance() as BaseGradientScroller;
       const ref = document.createElement('div');
 
@@ -84,7 +83,7 @@ describe('<GradientScroller />', () => {
     });
 
     it('uses fallback constant', () => {
-      const wrapper = shallow(<GradientScroller />).dive();
+      const wrapper = shallowWithStyles(<GradientScroller />);
       const instance = wrapper.instance() as BaseGradientScroller;
 
       instance.scrollerRef = null;

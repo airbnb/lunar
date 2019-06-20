@@ -1,9 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import { DirectionContext } from 'aesthetic-react';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import DirectionalIcon from '../../src/components/DirectionalIcon';
-import Core from '../../src';
 
 describe('<DirectionalIcon />', () => {
   it('passes props to underlying icon', () => {
@@ -52,40 +52,36 @@ describe('<DirectionalIcon />', () => {
   });
 
   describe('RTL', () => {
-    beforeEach(() => {
-      Core.settings.rtl = true;
-    });
-
-    afterEach(() => {
-      Core.settings.rtl = false;
-    });
-
     it('renders right icon when direction is left', () => {
-      const wrapper = shallow(
-        <DirectionalIcon
-          direction="left"
-          left={IconChevronLeft}
-          right={IconChevronRight}
-          size="1.5em"
-          decorative
-        />,
+      const wrapper = mount(
+        <DirectionContext.Provider value="rtl">
+          <DirectionalIcon
+            direction="left"
+            left={IconChevronLeft}
+            right={IconChevronRight}
+            size="1.5em"
+            decorative
+          />
+        </DirectionContext.Provider>,
       );
 
-      expect(wrapper.is(IconChevronRight)).toBe(true);
+      expect(wrapper.find(IconChevronRight)).toHaveLength(1);
     });
 
     it('renders left icon when direction is right', () => {
-      const wrapper = shallow(
-        <DirectionalIcon
-          direction="right"
-          left={IconChevronLeft}
-          right={IconChevronRight}
-          size="1.5em"
-          decorative
-        />,
+      const wrapper = mount(
+        <DirectionContext.Provider value="rtl">
+          <DirectionalIcon
+            direction="right"
+            left={IconChevronLeft}
+            right={IconChevronRight}
+            size="1.5em"
+            decorative
+          />
+        </DirectionContext.Provider>,
       );
 
-      expect(wrapper.is(IconChevronLeft)).toBe(true);
+      expect(wrapper.find(IconChevronLeft)).toHaveLength(1);
     });
   });
 });
