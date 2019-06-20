@@ -1,13 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`linkFactory() renders a link 1`] = `
-<Link
+<WithStyles
   baseline={true}
+  dir="ltr"
   href="http://airbnb.com"
   large={false}
   openInNewWindow={false}
   small={false}
+  themeName="light"
 >
   airbnb.com
-</Link>
+</WithStyles>
 `;
