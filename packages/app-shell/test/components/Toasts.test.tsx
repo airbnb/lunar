@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Toast from '@airbnb/lunar/lib/components/Toast';
 import Toasts from '../../src/components/Toasts';
 
@@ -30,13 +30,13 @@ describe('Toasts', () => {
   ];
 
   it('renders all toasts', () => {
-    const wrapper = shallow(<Toasts toasts={data} onRemove={() => {}} />).dive();
+    const wrapper = shallowWithStyles(<Toasts toasts={data} onRemove={() => {}} />);
 
     expect(wrapper.find(Toast)).toHaveLength(3);
   });
 
   it('renders toasts in reverse', () => {
-    const wrapper = shallow(<Toasts toasts={data} onRemove={() => {}} />).dive();
+    const wrapper = shallowWithStyles(<Toasts toasts={data} onRemove={() => {}} />);
 
     expect(
       wrapper
@@ -53,7 +53,7 @@ describe('Toasts', () => {
   });
 
   it('passes props to toast', () => {
-    const wrapper = shallow(<Toasts toasts={data} onRemove={() => {}} />).dive();
+    const wrapper = shallowWithStyles(<Toasts toasts={data} onRemove={() => {}} />);
 
     expect(
       wrapper
@@ -71,7 +71,7 @@ describe('Toasts', () => {
 
   it('passes onRemove prop', () => {
     const spy = jest.fn();
-    const wrapper = shallow(<Toasts toasts={data} onRemove={spy} />).dive();
+    const wrapper = shallowWithStyles(<Toasts toasts={data} onRemove={spy} />);
 
     expect(
       wrapper
