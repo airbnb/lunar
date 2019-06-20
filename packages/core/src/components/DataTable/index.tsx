@@ -1,7 +1,6 @@
 import React from 'react';
 import { AutoSizer, SortDirection, SortDirectionType, Table } from 'react-virtualized';
 import memoize from 'lodash/memoize';
-
 import sortData from './helpers/sortData';
 import expandData from './helpers/expandData';
 import { indexData } from './helpers/indexData';

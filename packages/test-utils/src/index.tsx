@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file, no-console, no-param-reassign, react/no-multi-comp, import/no-extraneous-dependencies */
 
 import React from 'react';
-import Enzyme, { ShallowWrapper, shallow } from 'enzyme';
+import Enzyme, { ShallowWrapper, ReactWrapper, shallow, mount } from 'enzyme';
 import { DirectionContext, ThemeContext } from 'aesthetic-react';
 
 type WrappingProps = {
@@ -27,11 +27,22 @@ export function WrappingComponent({
   );
 }
 
-export function shallowWithStyles(
-  element: React.ReactElement<any>,
+export function mountWithStyles<P = {}, S = {}>(
+  element: React.ReactElement<P>,
+  props: WrappingProps = {},
+): ReactWrapper<P, S> {
+  return mount(element, {
+    // @ts-ignore Not typed yet
+    wrappingComponent: WrappingComponent,
+    wrappingProps: props,
+  });
+}
+
+export function shallowWithStyles<P = {}, S = {}>(
+  element: React.ReactElement<P>,
   self: boolean = false,
   props: WrappingProps = {},
-) {
+): ShallowWrapper<P, S> {
   const wrapper = shallow(element, {
     // @ts-ignore Not typed yet
     wrappingComponent: WrappingComponent,

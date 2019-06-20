@@ -1,49 +1,49 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Button from '../../src/components/Button';
 import Loader from '../../src/components/Loader';
 
 describe('<Button />', () => {
   it('can change `type` of button', () => {
-    const wrapper = shallow(<Button type="submit">Button</Button>).dive();
+    const wrapper = shallowWithStyles(<Button type="submit">Button</Button>);
 
     expect(wrapper.prop('type')).toBe('submit');
   });
 
   it('renders block', () => {
-    const wrapper = shallow(<Button block>Button</Button>).dive();
+    const wrapper = shallowWithStyles(<Button block>Button</Button>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders borderless', () => {
-    const wrapper = shallow(<Button borderless>Button</Button>).dive();
+    const wrapper = shallowWithStyles(<Button borderless>Button</Button>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders disabled', () => {
-    const wrapper = shallow(<Button disabled>Button</Button>).dive();
+    const wrapper = shallowWithStyles(<Button disabled>Button</Button>);
 
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.prop('disabled')).toBe(true);
   });
 
   it('renders inverted', () => {
-    const wrapper = shallow(<Button inverted>Button</Button>).dive();
+    const wrapper = shallowWithStyles(<Button inverted>Button</Button>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders large', () => {
-    const wrapper = shallow(<Button large>Button</Button>).dive();
+    const wrapper = shallowWithStyles(<Button large>Button</Button>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders loading', () => {
     const child = <div>Button</div>;
-    const wrapper = shallow(<Button loading>{child}</Button>).dive();
+    const wrapper = shallowWithStyles(<Button loading>{child}</Button>);
 
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find(Loader)).toHaveLength(1);
@@ -51,7 +51,7 @@ describe('<Button />', () => {
   });
 
   it('renders small', () => {
-    const wrapper = shallow(<Button small>Button</Button>).dive();
+    const wrapper = shallowWithStyles(<Button small>Button</Button>);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -59,11 +59,11 @@ describe('<Button />', () => {
   it('renders loading instead of icons', () => {
     const beforeIcon = <div>Icon</div>;
     const afterIcon = <div>Icon</div>;
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Button loading beforeIcon={beforeIcon} afterIcon={afterIcon}>
         Default
       </Button>,
-    ).dive();
+    );
 
     expect(wrapper.contains(beforeIcon)).toBe(false);
     expect(wrapper.contains(afterIcon)).toBe(false);
@@ -72,7 +72,7 @@ describe('<Button />', () => {
 
   it('calls wrapped `onMouseUp`', () => {
     const spy = jest.fn();
-    const wrapper = shallow(<Button onMouseUp={spy}>Button</Button>).dive();
+    const wrapper = shallowWithStyles(<Button onMouseUp={spy}>Button</Button>);
 
     wrapper.simulate('mouseup', {
       currentTarget: {
