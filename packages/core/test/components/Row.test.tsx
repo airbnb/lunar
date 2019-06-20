@@ -1,40 +1,40 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Row from '../../src/components/Row';
 
 describe('<Row />', () => {
   it('renders with a baseline', () => {
-    const wrapper = shallow(<Row baseline>PRIMARY</Row>).dive();
+    const wrapper = shallowWithStyles(<Row baseline>PRIMARY</Row>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders with a topline', () => {
-    const wrapper = shallow(<Row topline>PRIMARY</Row>).dive();
+    const wrapper = shallowWithStyles(<Row topline>PRIMARY</Row>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders as compact', () => {
-    const wrapper = shallow(<Row compact>PRIMARY</Row>).dive();
+    const wrapper = shallowWithStyles(<Row compact>PRIMARY</Row>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders as spacious', () => {
-    const wrapper = shallow(<Row spacious>PRIMARY</Row>).dive();
+    const wrapper = shallowWithStyles(<Row spacious>PRIMARY</Row>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders in middle', () => {
-    const wrapper = shallow(<Row middleAlign>PRIMARY</Row>).dive();
+    const wrapper = shallowWithStyles(<Row middleAlign>PRIMARY</Row>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   describe('when only primary content is provided', () => {
-    const wrapper = shallow(<Row>PRIMARY</Row>).dive();
+    const wrapper = shallowWithStyles(<Row>PRIMARY</Row>);
 
     it('renders a single div child', () => {
       expect(wrapper.find('div > div')).toHaveLength(1);
@@ -46,8 +46,8 @@ describe('<Row />', () => {
   });
 
   describe('when primary and before or after content is provided', () => {
-    const wrapperWithAfter = shallow(<Row after="after">PRIMARY</Row>).dive();
-    const wrapperWithBefore = shallow(<Row before="before">PRIMARY</Row>).dive();
+    const wrapperWithAfter = shallowWithStyles(<Row after="after">PRIMARY</Row>);
+    const wrapperWithBefore = shallowWithStyles(<Row before="before">PRIMARY</Row>);
 
     it('renders two div children', () => {
       expect(wrapperWithAfter.find('div > div')).toHaveLength(2);
@@ -61,11 +61,11 @@ describe('<Row />', () => {
   });
 
   describe('when primary, before, and after content are all provided', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Row before="before" after="after">
         PRIMARY
       </Row>,
-    ).dive();
+    );
 
     it('renders a single div child', () => {
       expect(wrapper.find('div > div')).toHaveLength(3);
