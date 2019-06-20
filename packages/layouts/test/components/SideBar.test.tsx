@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
-import { shallow } from 'enzyme';
 import IconAdd from '../../../icons/src/interface/IconAdd';
 import SideBar, { Item } from '../../src/components/SideBar';
 
