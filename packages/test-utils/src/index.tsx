@@ -27,16 +27,21 @@ function WrappingComponent({
   );
 }
 
-export function shallowWithStyles(element: React.ReactElement<any>, props: WrappingProps = {}) {
-  return shallow(element, {
+export function shallowWithStyles(
+  element: React.ReactElement<any>,
+  self: boolean = false,
+  props: WrappingProps = {},
+) {
+  const wrapper = shallow(element, {
     // @ts-ignore Not typed yet
     wrappingComponent: WrappingComponent,
     wrappingProps: props,
   })
     .dive() // ThemeContext
     .dive() // DirectionContext
-    .dive() // WithStyles
-    .dive();
+    .dive(); // WithStyles;
+
+  return self ? wrapper : wrapper.dive();
 }
 
 export function wrapEnv(env: string, callback: () => any): () => any {

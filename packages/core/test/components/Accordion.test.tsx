@@ -1,17 +1,12 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import { unwrapHOCs } from '@airbnb/lunar-test-utils';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Accordion from '../../src/components/Accordion';
 import AccordionItem, { Props as AccordionItemProps } from '../../src/components/Accordion/Item';
 import proxyComponent from '../../src/utils/proxyComponent';
 
-function unwrap(element: any): Enzyme.ShallowWrapper {
-  return unwrapHOCs(shallow(element), 'Accordion', {}, { render: true });
-}
-
 describe('<Accordion />', () => {
   it('errors if non-accordion item children are passed', () => {
-    expect(() => unwrap(<Accordion>Foo</Accordion>)).toThrowError();
+    expect(() => shallowWithStyles(<Accordion>Foo</Accordion>)).toThrowError();
   });
 
   it('does not error if a proxyComponent wrapping a AccordionItem is passed', () => {
@@ -20,7 +15,7 @@ describe('<Accordion />', () => {
     ));
 
     expect(() =>
-      unwrap(
+      shallowWithStyles(
         <Accordion>
           <ProxiedAccordionItem id="0" title="Label" />
         </Accordion>,
@@ -33,7 +28,7 @@ describe('<Accordion />', () => {
     const ProxiedNonAccordionItem = proxyComponent(IncompatibleComponent, () => <div />);
 
     expect(() =>
-      unwrap(
+      shallowWithStyles(
         <Accordion>
           <ProxiedNonAccordionItem />
         </Accordion>,
@@ -42,7 +37,7 @@ describe('<Accordion />', () => {
   });
 
   it('renders expected number of accordion items', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Accordion defaultIndex={1}>
         <AccordionItem id="0" title="One" />
         <AccordionItem id="1" title="Two" />
@@ -54,11 +49,11 @@ describe('<Accordion />', () => {
   });
 
   it('renders bordered', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Accordion bordered>
         <AccordionItem id="0" title="Label" />
       </Accordion>,
-    ).dive();
+    );
 
     // id is generated with uuid, need to manually set it for snapshots to match
     wrapper.setState({
@@ -69,7 +64,7 @@ describe('<Accordion />', () => {
   });
 
   it('has accessibility role set', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Accordion defaultIndex={3}>
         <AccordionItem id="0" title="Label" />
       </Accordion>,
@@ -79,7 +74,7 @@ describe('<Accordion />', () => {
   });
 
   it('sets index state using `defaultIndex`', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Accordion defaultIndex={3}>
         <AccordionItem id="0" title="Label" />
       </Accordion>,
@@ -89,7 +84,7 @@ describe('<Accordion />', () => {
   });
 
   it('sets expanded state to accordion item by index', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Accordion defaultIndex={1}>
         <AccordionItem id="0" title="One" />
         <AccordionItem id="1" title="Two" />
@@ -120,7 +115,7 @@ describe('<Accordion />', () => {
   });
 
   it('adds indices to items', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Accordion>
         <AccordionItem id="0" title="One" />
         <AccordionItem id="1" title="Two" />
@@ -151,7 +146,7 @@ describe('<Accordion />', () => {
   });
 
   it('sets expanded state to false for all items if defaultIndex is negative', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Accordion defaultIndex={-1}>
         <AccordionItem id="0" title="One" />
         <AccordionItem id="1" title="Two" />
@@ -182,7 +177,7 @@ describe('<Accordion />', () => {
   });
 
   it('handles falsey items', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Accordion>
         {false && <AccordionItem id="0" title="One" />}
         {null && <AccordionItem id="0" title="Two" />}
@@ -194,7 +189,7 @@ describe('<Accordion />', () => {
   });
 
   it('updates state index when `defaultIndex` changes', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Accordion defaultIndex={3}>
         <AccordionItem id="0" title="Label" />
       </Accordion>,
@@ -210,7 +205,7 @@ describe('<Accordion />', () => {
   });
 
   it('updates index when `handleClick` is triggered', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Accordion defaultIndex={3}>
         <AccordionItem id="0" title="Label" />
       </Accordion>,
@@ -227,7 +222,7 @@ describe('<Accordion />', () => {
   });
 
   it('updates index to -1 when current index is clicked', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Accordion defaultIndex={0}>
         <AccordionItem id="0" title="Label" />
       </Accordion>,
