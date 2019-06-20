@@ -1,5 +1,6 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Proofreader, {
   Props,
   State,
@@ -45,7 +46,7 @@ describe('<Proofreader />', () => {
       value: '',
     };
 
-    wrapper = shallow(<Proofreader {...props} />).dive();
+    wrapper = shallowWithStyles(<Proofreader {...props} />);
     instance = getInstance(wrapper);
   });
 
@@ -58,21 +59,21 @@ describe('<Proofreader />', () => {
   });
 
   it('sets unsupported locale on mount', () => {
-    wrapper = shallow(<Proofreader {...props} locale="foo" />).dive();
+    wrapper = shallowWithStyles(<Proofreader {...props} locale="foo" />);
 
     expect(wrapper.state('selectedLocale')).toBeNull();
     expect(wrapper.state('unsupportedLocale')).toBe('foo');
   });
 
   it('supports noTranslate', () => {
-    wrapper = shallow(<Proofreader {...props} noTranslate />).dive();
+    wrapper = shallowWithStyles(<Proofreader {...props} noTranslate />);
 
     expect(wrapper.find('div.notranslate')).toHaveLength(1);
     expect(wrapper.find(BaseTextArea).prop('noTranslate')).toBe(true);
   });
 
   it('updates text state if value prop changes', () => {
-    wrapper = shallow(<Proofreader {...props} value="foo" />).dive();
+    wrapper = shallowWithStyles(<Proofreader {...props} value="foo" />);
 
     expect(wrapper.state('text')).toBe('foo');
 
@@ -127,7 +128,7 @@ describe('<Proofreader />', () => {
   });
 
   it('checks for errors on mount if value is not empty', () => {
-    wrapper = shallow(<Proofreader {...props} value="Hello" />).dive();
+    wrapper = shallowWithStyles(<Proofreader {...props} value="Hello" />);
     wrapper.instance().componentDidMount!();
 
     expect(props.onCheckText).toHaveBeenCalledWith({
@@ -171,7 +172,7 @@ describe('<Proofreader />', () => {
   });
 
   it('shows unsupported locale message', () => {
-    wrapper = shallow(<Proofreader {...props} locale="ko" />).dive();
+    wrapper = shallowWithStyles(<Proofreader {...props} locale="ko" />);
 
     wrapper.setState({
       selectedLocale: null,
@@ -184,7 +185,7 @@ describe('<Proofreader />', () => {
   });
 
   it('resets error state if value is empty', () => {
-    wrapper = shallow(<Proofreader {...props} value="Hello" />).dive();
+    wrapper = shallowWithStyles(<Proofreader {...props} value="Hello" />);
 
     wrapper.setState({
       errors: [error],
@@ -200,19 +201,19 @@ describe('<Proofreader />', () => {
   });
 
   it('plumbs the important prop through to BaseTextArea', () => {
-    wrapper = shallow(<Proofreader {...props} important />).dive();
+    wrapper = shallowWithStyles(<Proofreader {...props} important />);
 
     expect(wrapper.find(BaseTextArea).prop('important')).toBeTruthy();
   });
 
   describe('checkText()', () => {
     it('sets matches', async () => {
-      wrapper = shallow(
+      wrapper = shallowWithStyles(
         <Proofreader
           {...props}
           onCheckText={() => Promise.resolve({ proofread: { matches: [error] } })}
         />,
-      ).dive();
+      );
 
       wrapper.setState({
         text: 'foo',
@@ -224,7 +225,7 @@ describe('<Proofreader />', () => {
     });
 
     it('does nothing for an unsupported locale', async () => {
-      wrapper = shallow(<Proofreader {...props} locale="ko" />).dive();
+      wrapper = shallowWithStyles(<Proofreader {...props} locale="ko" />);
 
       await getInstance(wrapper).checkText();
 
@@ -233,7 +234,7 @@ describe('<Proofreader />', () => {
     });
 
     it('does nothing for a none locale', async () => {
-      wrapper = shallow(<Proofreader {...props} locale="none" />).dive();
+      wrapper = shallowWithStyles(<Proofreader {...props} locale="none" />);
 
       await getInstance(wrapper).checkText();
 
