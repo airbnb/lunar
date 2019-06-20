@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mountWithStyles, shallowWithStyles } from '@airbnb/lunar-test-utils';
-import { mount, shallow } from 'enzyme';
 import Modal, { Props } from '../../src/components/Modal';
 import ModalImageLayout from '../../src/components/Modal/private/ImageLayout';
 import ModalInner from '../../src/components/Modal/private/Inner';
