@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import { shallow } from 'enzyme';
 import BaseTextArea from '../../../src/components/private/BaseTextArea';

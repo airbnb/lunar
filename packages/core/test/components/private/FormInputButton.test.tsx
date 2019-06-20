@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import FormInputButton from '../../../src/components/private/FormInputButton';
 
 describe('<FormInputButton />', () => {
   it('renders', () => {
-    const wrapper = shallow(<FormInputButton>Child</FormInputButton>).dive();
+    const wrapper = shallowWithStyles(<FormInputButton>Child</FormInputButton>);
 
     expect(wrapper.isEmptyRender()).toBe(false);
   });
