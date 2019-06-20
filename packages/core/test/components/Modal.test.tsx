@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { mountWithStyles, shallowWithStyles } from '@airbnb/lunar-test-utils';
 import { mount, shallow } from 'enzyme';
 import Modal, { Props } from '../../src/components/Modal';
 import ModalImageLayout from '../../src/components/Modal/private/ImageLayout';
@@ -21,7 +22,9 @@ describe('<Modal />', () => {
       ...override,
     };
 
-    const wrapper = isShallow ? shallow(<Modal {...props} />).dive() : mount(<Modal {...props} />);
+    const wrapper = isShallow
+      ? shallowWithStyles(<Modal {...props} />)
+      : mountWithStyles(<Modal {...props} />);
 
     return { wrapper };
   }
@@ -66,7 +69,7 @@ describe('<Modal />', () => {
       eventMap[event] = cb;
     });
 
-    shallow(<ModalInner onClose={closeSpy}>Foo</ModalInner>).dive();
+    shallowWithStyles(<ModalInner onClose={closeSpy}>Foo</ModalInner>);
 
     eventMap.click();
 
@@ -87,7 +90,7 @@ describe('<Modal />', () => {
       eventMap[event] = cb;
     });
 
-    const wrapper = shallow(<ModalInner onClose={closeSpy}>Foo</ModalInner>).dive();
+    const wrapper = shallowWithStyles(<ModalInner onClose={closeSpy}>Foo</ModalInner>);
     const instance = wrapper.instance();
 
     // @ts-ignore
@@ -102,7 +105,7 @@ describe('<Modal />', () => {
     it('adds event listener', () => {
       const eventSpy = jest.spyOn(document, 'addEventListener');
 
-      shallow(<ModalInner onClose={() => {}}>Foo</ModalInner>).dive();
+      shallowWithStyles(<ModalInner onClose={() => {}}>Foo</ModalInner>);
 
       expect(eventSpy).toHaveBeenCalledWith('click', expect.any(Function), true);
 
@@ -114,7 +117,7 @@ describe('<Modal />', () => {
     it('removes event listener', () => {
       const eventSpy = jest.spyOn(document, 'removeEventListener');
 
-      const wrapper = shallow(<ModalInner onClose={() => {}}>Foo</ModalInner>).dive();
+      const wrapper = shallowWithStyles(<ModalInner onClose={() => {}}>Foo</ModalInner>);
 
       // @ts-ignore
       wrapper.instance().componentWillUnmount();
