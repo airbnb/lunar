@@ -4,7 +4,6 @@ import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import DateTimeSelect, {
   DateTimeSelect as BaseDateTimeSelect,
   Props,
-  State,
 } from '../../src/components/DateTimeSelect';
 import FormField from '../../src/components/FormField';
 import BaseSelect from '../../src/components/private/BaseSelect';
@@ -53,25 +52,31 @@ describe('<DateTimeSelect />', () => {
 
   describe('getDayRange()', () => {
     it('returns list of days based on current month', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} value={date} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
+        <DateTimeSelect {...props} value={date} />,
+      );
 
-      expect((wrapper.instance() as BaseDateTimeSelect).getDayRange().length <= 29).toBe(true);
+      expect(wrapper.instance().getDayRange().length <= 29).toBe(true);
 
       wrapper.setProps({
         value: wrapper.state('date').plus({ months: 1 }),
       });
 
-      expect((wrapper.instance() as BaseDateTimeSelect).getDayRange()).toHaveLength(31);
+      expect(wrapper.instance().getDayRange()).toHaveLength(31);
     });
   });
 
   describe('getCurrentValue()', () => {
-    let wrapper: Enzyme.ShallowWrapper<Props, State>;
+    let wrapper: Enzyme.ShallowWrapper<
+      BaseDateTimeSelect['props'],
+      BaseDateTimeSelect['state'],
+      BaseDateTimeSelect
+    >;
     let instance: BaseDateTimeSelect;
 
     beforeEach(() => {
-      wrapper = shallowWithStyles(<DateTimeSelect {...props} value={date} />);
-      instance = wrapper.instance() as BaseDateTimeSelect;
+      wrapper = shallowWithStyles<BaseDateTimeSelect>(<DateTimeSelect {...props} value={date} />);
+      instance = wrapper.instance();
     });
 
     it('returns month', () => {
@@ -155,35 +160,39 @@ describe('<DateTimeSelect />', () => {
 
   describe('getHourRange()', () => {
     it('returns 24 hours by default', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(<DateTimeSelect {...props} />);
 
-      expect((wrapper.instance() as BaseDateTimeSelect).getHourRange()).toHaveLength(24);
+      expect(wrapper.instance().getHourRange()).toHaveLength(24);
     });
 
     it('returns 12 hours', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} enable12HourClock />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
+        <DateTimeSelect {...props} enable12HourClock />,
+      );
 
-      expect((wrapper.instance() as BaseDateTimeSelect).getHourRange()).toHaveLength(12);
+      expect(wrapper.instance().getHourRange()).toHaveLength(12);
     });
   });
 
   describe('getMinuteRange()', () => {
     it('returns 60 minutes', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(<DateTimeSelect {...props} />);
 
-      expect((wrapper.instance() as BaseDateTimeSelect).getMinuteRange()).toHaveLength(12);
+      expect(wrapper.instance().getMinuteRange()).toHaveLength(12);
     });
 
     it('can change step', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} minuteStep={1} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
+        <DateTimeSelect {...props} minuteStep={1} />,
+      );
 
-      expect((wrapper.instance() as BaseDateTimeSelect).getMinuteRange()).toHaveLength(60);
+      expect(wrapper.instance().getMinuteRange()).toHaveLength(60);
     });
 
     it('pads number', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(<DateTimeSelect {...props} />);
 
-      expect((wrapper.instance() as BaseDateTimeSelect).getMinuteRange()[0]).toEqual({
+      expect(wrapper.instance().getMinuteRange()[0]).toEqual({
         label: '00',
         value: '0',
       });
@@ -192,15 +201,15 @@ describe('<DateTimeSelect />', () => {
 
   describe('getMonthRange()', () => {
     it('returns 12 hours by default', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(<DateTimeSelect {...props} />);
 
-      expect((wrapper.instance() as BaseDateTimeSelect).getMonthRange()).toHaveLength(12);
+      expect(wrapper.instance().getMonthRange()).toHaveLength(12);
     });
 
     it('returns localized label', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(<DateTimeSelect {...props} />);
 
-      expect((wrapper.instance() as BaseDateTimeSelect).getMonthRange()[0]).toEqual({
+      expect(wrapper.instance().getMonthRange()[0]).toEqual({
         label: 'January',
         value: '1',
       });
@@ -209,12 +218,12 @@ describe('<DateTimeSelect />', () => {
 
   describe('getYearRange()', () => {
     it('returns current year with buffer', () => {
-      const wrapper = shallowWithStyles(
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
         <DateTimeSelect {...props} yearPastBuffer={1} yearFutureBuffer={1} />,
       );
       const year = new Date().getFullYear();
 
-      expect((wrapper.instance() as BaseDateTimeSelect).getYearRange()).toEqual([
+      expect(wrapper.instance().getYearRange()).toEqual([
         { label: String(year + 1), value: String(year + 1) },
         { label: String(year), value: String(year) },
         { label: String(year - 1), value: String(year - 1) },
@@ -247,7 +256,9 @@ describe('<DateTimeSelect />', () => {
     });
 
     it('sets month', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} value={date} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
+        <DateTimeSelect {...props} value={date} />,
+      );
 
       simulateChange(wrapper, 'month', 10);
 
@@ -255,7 +266,9 @@ describe('<DateTimeSelect />', () => {
     });
 
     it('sets day', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} value={date} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
+        <DateTimeSelect {...props} value={date} />,
+      );
 
       simulateChange(wrapper, 'day', 15);
 
@@ -263,7 +276,9 @@ describe('<DateTimeSelect />', () => {
     });
 
     it('sets year', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} value={date} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
+        <DateTimeSelect {...props} value={date} />,
+      );
 
       simulateChange(wrapper, 'year', 2000);
 
@@ -271,7 +286,9 @@ describe('<DateTimeSelect />', () => {
     });
 
     it('sets hour', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} value={date} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
+        <DateTimeSelect {...props} value={date} />,
+      );
 
       simulateChange(wrapper, 'hour', 11);
 
@@ -279,7 +296,7 @@ describe('<DateTimeSelect />', () => {
     });
 
     it('sets 8pm (12-hour clock)', () => {
-      const wrapper = shallowWithStyles(
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
         <DateTimeSelect {...props} value={date} enable12HourClock />,
       );
 
@@ -293,7 +310,7 @@ describe('<DateTimeSelect />', () => {
     });
 
     it('sets 12pm (12-hour clock)', () => {
-      const wrapper = shallowWithStyles(
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
         <DateTimeSelect {...props} value={date} enable12HourClock />,
       );
 
@@ -307,7 +324,7 @@ describe('<DateTimeSelect />', () => {
     });
 
     it('sets 2am (12-hour clock)', () => {
-      const wrapper = shallowWithStyles(
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
         <DateTimeSelect {...props} value={date} enable12HourClock />,
       );
 
@@ -321,7 +338,7 @@ describe('<DateTimeSelect />', () => {
     });
 
     it('sets 12am (12-hour clock)', () => {
-      const wrapper = shallowWithStyles(
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
         <DateTimeSelect {...props} value={date} enable12HourClock />,
       );
 
@@ -335,7 +352,9 @@ describe('<DateTimeSelect />', () => {
     });
 
     it('sets minute', () => {
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} value={date} />);
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
+        <DateTimeSelect {...props} value={date} />,
+      );
 
       simulateChange(wrapper, 'minute', 55);
 
@@ -353,7 +372,7 @@ describe('<DateTimeSelect />', () => {
     });
 
     it('updates hour when meridiem changes (12-hour clock)', () => {
-      const wrapper = shallowWithStyles(
+      const wrapper = shallowWithStyles<BaseDateTimeSelect>(
         <DateTimeSelect {...props} value={date} enable12HourClock />,
       );
 

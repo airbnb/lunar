@@ -1,7 +1,8 @@
 /* eslint-disable max-classes-per-file, no-console, no-param-reassign, react/no-multi-comp, import/no-extraneous-dependencies */
 
 import React from 'react';
-import Enzyme, { ShallowWrapper, ReactWrapper, shallow, mount } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
+// Assumes Lunar core has been installed
 import { DirectionContext, ThemeContext } from 'aesthetic-react';
 
 type WrappingProps = {
@@ -27,10 +28,10 @@ export function WrappingComponent({
   );
 }
 
-export function mountWithStyles<P = {}, S = {}>(
+export function mountWithStyles<C extends React.Component, P = C['props'], S = C['state']>(
   element: React.ReactElement<P>,
   props: WrappingProps = {},
-): ReactWrapper<P, S> {
+): Enzyme.ReactWrapper<P, S, C> {
   return mount(element, {
     // @ts-ignore Not typed yet
     wrappingComponent: WrappingComponent,
@@ -38,11 +39,11 @@ export function mountWithStyles<P = {}, S = {}>(
   });
 }
 
-export function shallowWithStyles<P = {}, S = {}>(
+export function shallowWithStyles<C extends React.Component, P = C['props'], S = C['state']>(
   element: React.ReactElement<P>,
   self: boolean = false,
   props: WrappingProps = {},
-): ShallowWrapper<P, S> {
+): Enzyme.ShallowWrapper<P, S, C> {
   const wrapper = shallow(element, {
     // @ts-ignore Not typed yet
     wrappingComponent: WrappingComponent,
@@ -50,7 +51,7 @@ export function shallowWithStyles<P = {}, S = {}>(
   })
     .dive() // ThemeContext
     .dive() // DirectionContext
-    .dive(); // WithStyles;
+    .dive(); // WithStyles
 
   return self ? wrapper : wrapper.dive();
 }
@@ -136,7 +137,7 @@ export function unwrapHOCs(
       const child = result.prop('children');
 
       if (typeof child === 'function') {
-        result = new ShallowWrapper((child as any)(context), result, { context });
+        result = new Enzyme.ShallowWrapper((child as any)(context), result, { context });
 
         if (options.exitOnContext) {
           return result.shallow({ context });

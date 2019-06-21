@@ -32,9 +32,8 @@ describe('linkFactory()', () => {
   });
 
   it('doesnt add http:// to URL', () => {
-    // eslint-disable-next-line react/jsx-curly-brace-presence
     const wrapper = shallowWithStyles(
-      <UrlFactory urlParts={urlParts}>{'https://airbnb.com'}</UrlFactory>,
+      <UrlFactory urlParts={urlParts}>https://airbnb.com</UrlFactory>,
       true,
     );
 

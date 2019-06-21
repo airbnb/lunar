@@ -65,7 +65,7 @@ describe('<Interweave />', () => {
   });
 
   it('adds url, email, and emoji global matchers by default', () => {
-    const wrapper = shallow(<Interweave {...props} content="Foo" withEmoticons />, true);
+    const wrapper = shallow(<Interweave {...props} content="Foo" withEmoticons />);
 
     expect(wrapper.prop('matchers')).toHaveLength(3);
   });
