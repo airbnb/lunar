@@ -18,67 +18,31 @@ exports[`<Link /> renders bold 1`] = `
 `;
 
 exports[`<Link /> renders disabled 1`] = `
-<span
-  className="text_8h9m6q-o_O-text_inline_36rlri"
->
-  <ButtonOrLink
-    className="link_vk1gl8-o_O-link_disabled_q28bcx"
-    disabled={true}
-    href="#"
-  >
-    Disabled
-  </ButtonOrLink>
-</span>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`<Link /> renders inverted 1`] = `
-<span
-  className="text_8h9m6q-o_O-text_inline_36rlri"
->
-  <ButtonOrLink
-    className="link_vk1gl8-o_O-link_inverted_1hj4kjb"
-    href="#"
-  >
-    Inverted
-  </ButtonOrLink>
-</span>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`<Link /> renders large 1`] = `
-<span
-  className="text_8h9m6q-o_O-text_inline_36rlri-o_O-text_large_1aiv2f"
->
-  <ButtonOrLink
-    className="link_vk1gl8"
-    href="#"
-  >
-    Large
-  </ButtonOrLink>
-</span>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`<Link /> renders muted 1`] = `
-<span
-  className="text_8h9m6q-o_O-text_inline_36rlri"
->
-  <ButtonOrLink
-    className="link_vk1gl8-o_O-link_muted_74pra7"
-    href="#"
-  >
-    Muted
-  </ButtonOrLink>
-</span>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`<Link /> renders small 1`] = `
-<span
-  className="text_8h9m6q-o_O-text_inline_36rlri-o_O-text_small_krq4jw"
->
-  <ButtonOrLink
-    className="link_vk1gl8"
-    href="#"
-  >
-    Small
-  </ButtonOrLink>
-</span>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;

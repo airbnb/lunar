@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { WrappingComponent } from '@airbnb/lunar-test-utils';
 import Loadable from '../../src/components/Loadable';
 import Loader from '../../src/components/Loader';
 import ErrorMessage from '../../src/components/ErrorMessage';
@@ -55,15 +56,25 @@ describe('<Loadable />', () => {
   });
 
   it('renders an error before loading/component', () => {
-    const wrapper = shallow<Loadable>(<Loadable component={importFunc} />);
+    const wrapper = shallow<Loadable>(
+      <WrappingComponent>
+        <Loadable component={importFunc} />
+      </WrappingComponent>,
+    )
+      .dive()
+      .dive()
+      .dive();
+
+    // @ts-ignore
     const errorSpy = jest.spyOn(wrapper.instance(), 'renderError');
+    // @ts-ignore
     const loadingSpy = jest.spyOn(wrapper.instance(), 'renderLoading');
+    // @ts-ignore
     const compSpy = jest.spyOn(wrapper.instance(), 'renderComponent');
 
     wrapper.setState({
       error: new Error(),
     });
-    wrapper.render();
 
     expect(errorSpy).toHaveBeenCalledTimes(1);
     expect(loadingSpy).toHaveBeenCalledTimes(0);
@@ -114,7 +125,7 @@ describe('<Loadable />', () => {
     it('passes the imported component to function children', () => {
       shallow<Loadable>(
         <Loadable component={importFunc} noLoading customProp={123}>
-          {(Comp, props) => {
+          {(Comp: any, props: any) => {
             expect(Comp).toBe(Foo);
             expect(props).toEqual({ customProp: 123 });
           }}

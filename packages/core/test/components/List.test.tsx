@@ -1,24 +1,19 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import { unwrapHOCs } from '@airbnb/lunar-test-utils';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import List, { Item } from '../../src/components/List';
 import { Props as ItemProps } from '../../src/components/List/Item';
 import proxyComponent from '../../src/utils/proxyComponent';
 
-function unwrap(element: any): Enzyme.ShallowWrapper {
-  return unwrapHOCs(shallow(element), 'List', {}, { render: true });
-}
-
 describe('<List />', () => {
   it('errors if non-List item children are passed', () => {
-    expect(() => unwrap(<List>Foo</List>)).toThrowError();
+    expect(() => shallowWithStyles(<List>Foo</List>)).toThrowError();
   });
 
   it('does not error if a proxyComponent wrapping a Item is passed', () => {
     const ProxiedItem = proxyComponent(Item, (props: ItemProps) => <Item {...props} />);
 
     expect(() =>
-      unwrap(
+      shallowWithStyles(
         <List>
           <ProxiedItem>Item 1</ProxiedItem>
         </List>,
@@ -31,7 +26,7 @@ describe('<List />', () => {
     const ProxiedNonItem = proxyComponent(IncompatibleComponent, () => <div />);
 
     expect(() =>
-      unwrap(
+      shallowWithStyles(
         <List>
           <ProxiedNonItem>Foo</ProxiedNonItem>
         </List>,
@@ -40,7 +35,7 @@ describe('<List />', () => {
   });
 
   it('renders expected number of List items', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <List>
         <Item>Item 1</Item>
         <Item>Item 2</Item>
@@ -52,7 +47,7 @@ describe('<List />', () => {
   });
 
   it('handles falsey items', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <List>
         {false && <Item>Item 1</Item>}
         {null && <Item>Item 2</Item>}
@@ -64,37 +59,37 @@ describe('<List />', () => {
   });
 
   it('renders a <ul /> by default', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <List>
         <Item>Item 1</Item>
       </List>,
-    ).dive();
+    );
 
     expect(wrapper.type()).toEqual('ul');
   });
 
   it('renders a <ol /> with `ordered`', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <List ordered>
         <Item>Item 1</Item>
       </List>,
-    ).dive();
+    );
 
     expect(wrapper.type()).toEqual('ol');
   });
 
   it('renders a horizontal list', () => {
-    const wrapperDefault = shallow(
+    const wrapperDefault = shallowWithStyles(
       <List>
         <Item>Item 1</Item>
       </List>,
-    ).dive();
+    );
 
-    const wrapperHorizontal = shallow(
+    const wrapperHorizontal = shallowWithStyles(
       <List horizontal>
         <Item>Item 1</Item>
       </List>,
-    ).dive();
+    );
 
     expect(wrapperDefault.html() === wrapperHorizontal.html()).toBe(false);
   });

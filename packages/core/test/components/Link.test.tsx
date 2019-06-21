@@ -1,11 +1,11 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Link from '../../src/components/Link';
 
 describe('<Link />', () => {
   it('errors when multiple states are used at once', () => {
     expect(() => {
-      shallow(
+      shallowWithStyles(
         <Link muted inverted href="#">
           Default
         </Link>,
@@ -15,7 +15,7 @@ describe('<Link />', () => {
 
   it('errors when multiple sizes are used at once', () => {
     expect(() => {
-      shallow(
+      shallowWithStyles(
         <Link small large href="#">
           Default
         </Link>,
@@ -24,12 +24,11 @@ describe('<Link />', () => {
   });
 
   it('renders small', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Link small href="#">
         Small
       </Link>,
     )
-      .dive()
       .dive()
       .dive();
 
@@ -37,12 +36,11 @@ describe('<Link />', () => {
   });
 
   it('renders large', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Link large href="#">
         Large
       </Link>,
     )
-      .dive()
       .dive()
       .dive();
 
@@ -50,12 +48,11 @@ describe('<Link />', () => {
   });
 
   it('renders disabled', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Link disabled href="#">
         Disabled
       </Link>,
     )
-      .dive()
       .dive()
       .dive();
 
@@ -63,12 +60,11 @@ describe('<Link />', () => {
   });
 
   it('renders inverted', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Link inverted href="#">
         Inverted
       </Link>,
     )
-      .dive()
       .dive()
       .dive();
 
@@ -76,12 +72,11 @@ describe('<Link />', () => {
   });
 
   it('renders muted', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Link muted href="#">
         Muted
       </Link>,
     )
-      .dive()
       .dive()
       .dive();
 
@@ -89,21 +84,22 @@ describe('<Link />', () => {
   });
 
   it('renders the child component with an inline=false prop when block prop is passed', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Link block href="/foo">
         foo
       </Link>,
+      true,
     );
 
     expect(wrapper.dive().prop('inline')).toBe(false);
   });
 
   it('renders bold', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Link bold href="#">
         Bold
       </Link>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
