@@ -144,7 +144,7 @@ export default withStyles(({ color, font, ui, unit }) => ({
   },
 
   label_bordered: {
-    border: ui.border,
+    borderColor: color.accent.border,
   },
 
   label_compact: {
