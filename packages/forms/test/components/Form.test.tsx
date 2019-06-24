@@ -2,23 +2,15 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import { FORM_ERROR } from 'final-form';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
-import { mockContextProvider } from '@airbnb/lunar-test-utils';
 import Form, { Props, State } from '../../src/components/Form';
-import FormContext from '../../src/components/FormContext';
 
 describe('<Form />', () => {
-  let unmockProvider: () => void;
   let wrapper: Enzyme.ShallowWrapper<Props<any>, State, Form>;
   let instance: Form;
 
   beforeEach(() => {
-    unmockProvider = mockContextProvider(FormContext);
     wrapper = shallow(<Form onSubmit={data => Promise.resolve(data)}>Hello</Form>);
     instance = wrapper.instance();
-  });
-
-  afterEach(() => {
-    unmockProvider();
   });
 
   it('creates a final-form instance', () => {

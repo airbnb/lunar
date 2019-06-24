@@ -1,4 +1,4 @@
-/* eslint-disable max-classes-per-file, no-console, no-param-reassign, react/no-multi-comp, import/no-extraneous-dependencies */
+/* eslint-disable no-console, import/no-extraneous-dependencies */
 
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
@@ -156,40 +156,6 @@ export function unwrapHOCs(
   }
 
   return result;
-}
-
-export function unwrapIntoContext(wrapper: Enzyme.ShallowWrapper<any, any>, context: any) {
-  return unwrapHOCs(wrapper, '_unknown_', context, { exitOnContext: true });
-}
-
-export function mockContextConsumer(context: React.Context<any>, state: any): () => void {
-  const oldConsumer = context.Consumer;
-
-  // @ts-ignore IGNORE
-  context.Consumer = class TempConsumer extends React.Component<React.ConsumerProps<any>> {
-    render() {
-      return this.props.children(state);
-    }
-  };
-
-  return () => {
-    context.Consumer = oldConsumer;
-  };
-}
-
-export function mockContextProvider(context: React.Context<any>): () => void {
-  const oldProvider = context.Provider;
-
-  // @ts-ignore IGNORE
-  context.Provider = class TempProvider extends React.Component<React.ProviderProps<any>> {
-    render() {
-      return this.props.children || null;
-    }
-  };
-
-  return () => {
-    context.Provider = oldProvider;
-  };
 }
 
 export function mockNotification() {

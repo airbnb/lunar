@@ -1,4 +1,5 @@
 import React from 'react';
+import Enzyme from 'enzyme';
 import { AutoSizer, Grid, Table } from 'react-virtualized';
 import { shallowWithStyles, mountWithStyles } from '@airbnb/lunar-test-utils';
 import DataTable from '../../src/components/DataTable';
@@ -245,15 +246,7 @@ const expandRow = (table: any, row: number) => {
     .simulate('click');
 };
 
-const getHeader = (wrapper: any) =>
-  wrapper
-    .find(AutoSizer)
-    .at(0)
-    .dive()
-    .find(TableHeader);
-
 const NAME_COL = 3;
-
 const ROW = 3;
 const PARENT_ROW = 5;
 const CHILD_ROW = 6;
@@ -529,6 +522,17 @@ describe('<DataTable /> renders column labels', () => {
   });
 });
 
+function getHeader(wrapper: Enzyme.ShallowWrapper) {
+  return shallowWithStyles(
+    wrapper
+      .find(AutoSizer)
+      .at(0)
+      .dive()
+      .find(TableHeader)
+      .getElement(),
+  );
+}
+
 describe('<DataTable /> handles edits', () => {
   const props = {
     data,
@@ -543,16 +547,10 @@ describe('<DataTable /> handles edits', () => {
 
   it('should be able to toggle edit mode off', () => {
     const wrapper = shallowWithStyles(<DataTable {...props} />);
-    const editButton = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
+    const editButton = getHeader(wrapper).find(Button);
     editButton.simulate('click');
 
-    const doneButton = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
+    const doneButton = getHeader(wrapper).find(Button);
     doneButton.simulate('click');
 
     expect(wrapper.state('editMode')).toBe(false);
@@ -560,17 +558,11 @@ describe('<DataTable /> handles edits', () => {
 
   it('should enable instant edit mode', () => {
     const wrapper = shallowWithStyles(<DataTable {...props} />);
-    const editButton = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
+    const editButton = getHeader(wrapper).find(Button);
 
     editButton.simulate('click');
 
-    const doneButton = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
+    const doneButton = getHeader(wrapper).find(Button);
 
     expect(wrapper.state('editMode')).toBe(true);
     expect(doneButton.find(Translate).prop('phrase')).toBe('Done');
