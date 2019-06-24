@@ -1,5 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ToggleButtonController from '../../src/components/ToggleButtonController';
 
 describe('<ToggleButtonController />', () => {
@@ -53,7 +54,7 @@ describe('<ToggleButtonController />', () => {
 
   it('does not notify of click that does not cause change', () => {
     const onChange = jest.fn();
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ToggleButtonController {...props} onChange={onChange} value="1">
         {ProxyButton => (
           <div>
@@ -63,9 +64,7 @@ describe('<ToggleButtonController />', () => {
           </div>
         )}
       </ToggleButtonController>,
-    )
-      .dive()
-      .dive();
+    ).dive();
 
     clickButton(wrapper, '1');
 

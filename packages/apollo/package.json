@@ -23,6 +23,7 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
+    "@airbnb/lunar-test-utils": "*",
     "@types/react-test-renderer": "^16.8.1",
     "graphql": "^14.1.0",
     "graphql-tag": "^2.10.0",

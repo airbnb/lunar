@@ -21,6 +21,7 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
+    "@airbnb/lunar-test-utils": "*",
     "react": "^16.8.6"
   },
   "dependencies": {

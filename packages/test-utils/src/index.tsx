@@ -1,7 +1,60 @@
-/* eslint-disable max-classes-per-file, no-console, no-param-reassign, react/no-multi-comp, import/no-extraneous-dependencies */
+/* eslint-disable no-console, import/no-extraneous-dependencies */
 
 import React from 'react';
-import Enzyme, { ShallowWrapper } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
+// Assumes Lunar core has been installed
+import { DirectionContext, ThemeContext } from 'aesthetic-react';
+
+type WrappingProps = {
+  dir?: 'ltr' | 'rtl';
+  themeName?: string;
+};
+
+export function WrappingComponent({
+  children,
+  dir,
+  themeName,
+}: { children: React.ReactNode } & WrappingProps) {
+  const theme = {
+    changeTheme() {},
+    theme: {},
+    themeName: themeName || 'light',
+  };
+
+  return (
+    <DirectionContext.Provider value={dir || 'ltr'}>
+      <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    </DirectionContext.Provider>
+  );
+}
+
+export function mountWithStyles<C extends React.Component, P = C['props'], S = C['state']>(
+  element: React.ReactElement<P>,
+  props: WrappingProps = {},
+): Enzyme.ReactWrapper<P, S, C> {
+  return mount(element, {
+    // @ts-ignore Not typed yet
+    wrappingComponent: WrappingComponent,
+    wrappingProps: props,
+  });
+}
+
+export function shallowWithStyles<C extends React.Component, P = C['props'], S = C['state']>(
+  element: React.ReactElement<P>,
+  self: boolean = false,
+  props: WrappingProps = {},
+): Enzyme.ShallowWrapper<P, S, C> {
+  const wrapper = shallow(element, {
+    // @ts-ignore Not typed yet
+    wrappingComponent: WrappingComponent,
+    wrappingProps: props,
+  })
+    .dive() // ThemeContext
+    .dive() // DirectionContext
+    .dive(); // WithStyles
+
+  return self ? wrapper : wrapper.dive();
+}
 
 export function wrapEnv(env: string, callback: () => any): () => any {
   return () => {
@@ -84,7 +137,7 @@ export function unwrapHOCs(
       const child = result.prop('children');
 
       if (typeof child === 'function') {
-        result = new ShallowWrapper((child as any)(context), result, { context });
+        result = new Enzyme.ShallowWrapper((child as any)(context), result, { context });
 
         if (options.exitOnContext) {
           return result.shallow({ context });
@@ -103,40 +156,6 @@ export function unwrapHOCs(
   }
 
   return result;
-}
-
-export function unwrapIntoContext(wrapper: Enzyme.ShallowWrapper<any, any>, context: any) {
-  return unwrapHOCs(wrapper, '_unknown_', context, { exitOnContext: true });
-}
-
-export function mockContextConsumer(context: React.Context<any>, state: any): () => void {
-  const oldConsumer = context.Consumer;
-
-  // @ts-ignore IGNORE
-  context.Consumer = class TempConsumer extends React.Component<React.ConsumerProps<any>> {
-    render() {
-      return this.props.children(state);
-    }
-  };
-
-  return () => {
-    context.Consumer = oldConsumer;
-  };
-}
-
-export function mockContextProvider(context: React.Context<any>): () => void {
-  const oldProvider = context.Provider;
-
-  // @ts-ignore IGNORE
-  context.Provider = class TempProvider extends React.Component<React.ProviderProps<any>> {
-    render() {
-      return this.props.children || null;
-    }
-  };
-
-  return () => {
-    context.Provider = oldProvider;
-  };
 }
 
 export function mockNotification() {

@@ -18,8 +18,12 @@ exports[`<Link /> renders bold 1`] = `
 `;
 
 exports[`<Link /> renders disabled 1`] = `
-<span
-  className="text_8h9m6q-o_O-text_inline_36rlri"
+<Text
+  baseline={false}
+  bold={false}
+  inline={true}
+  large={false}
+  small={false}
 >
   <ButtonOrLink
     className="link_vk1gl8-o_O-link_disabled_q28bcx"
@@ -28,12 +32,16 @@ exports[`<Link /> renders disabled 1`] = `
   >
     Disabled
   </ButtonOrLink>
-</span>
+</Text>
 `;
 
 exports[`<Link /> renders inverted 1`] = `
-<span
-  className="text_8h9m6q-o_O-text_inline_36rlri"
+<Text
+  baseline={false}
+  bold={false}
+  inline={true}
+  large={false}
+  small={false}
 >
   <ButtonOrLink
     className="link_vk1gl8-o_O-link_inverted_1hj4kjb"
@@ -41,12 +49,16 @@ exports[`<Link /> renders inverted 1`] = `
   >
     Inverted
   </ButtonOrLink>
-</span>
+</Text>
 `;
 
 exports[`<Link /> renders large 1`] = `
-<span
-  className="text_8h9m6q-o_O-text_inline_36rlri-o_O-text_large_1aiv2f"
+<Text
+  baseline={false}
+  bold={false}
+  inline={true}
+  large={true}
+  small={false}
 >
   <ButtonOrLink
     className="link_vk1gl8"
@@ -54,12 +66,16 @@ exports[`<Link /> renders large 1`] = `
   >
     Large
   </ButtonOrLink>
-</span>
+</Text>
 `;
 
 exports[`<Link /> renders muted 1`] = `
-<span
-  className="text_8h9m6q-o_O-text_inline_36rlri"
+<Text
+  baseline={false}
+  bold={false}
+  inline={true}
+  large={false}
+  small={false}
 >
   <ButtonOrLink
     className="link_vk1gl8-o_O-link_muted_74pra7"
@@ -67,12 +83,16 @@ exports[`<Link /> renders muted 1`] = `
   >
     Muted
   </ButtonOrLink>
-</span>
+</Text>
 `;
 
 exports[`<Link /> renders small 1`] = `
-<span
-  className="text_8h9m6q-o_O-text_inline_36rlri-o_O-text_small_krq4jw"
+<Text
+  baseline={false}
+  bold={false}
+  inline={true}
+  large={false}
+  small={true}
 >
   <ButtonOrLink
     className="link_vk1gl8"
@@ -80,5 +100,5 @@ exports[`<Link /> renders small 1`] = `
   >
     Small
   </ButtonOrLink>
-</span>
+</Text>
 `;

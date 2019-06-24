@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import gql from 'graphql-tag';
+import { WrappingComponent } from '@airbnb/lunar-test-utils';
 import Loader from '@airbnb/lunar/lib/components/Loader';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
 import { MockedProvider } from 'react-apollo/test-utils';
@@ -27,7 +28,9 @@ describe('Query', () => {
     it('renders a `Loader` by default', () => {
       const wrapper = renderer.create(
         <MockedProvider mocks={[]} addTypename={false}>
-          <Query query={QUERY}>{() => null}</Query>
+          <WrappingComponent>
+            <Query query={QUERY}>{() => null}</Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -38,9 +41,11 @@ describe('Query', () => {
       const loader = <div>Loading!</div>;
       const wrapper = renderer.create(
         <MockedProvider mocks={[]} addTypename={false}>
-          <Query query={QUERY} loading={loader}>
-            {() => null}
-          </Query>
+          <WrappingComponent>
+            <Query query={QUERY} loading={loader}>
+              {() => null}
+            </Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -80,7 +85,9 @@ describe('Query', () => {
     it('renders an `ErrorMessage` by default', async () => {
       const wrapper = renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Query query={QUERY}>{() => null}</Query>
+          <WrappingComponent>
+            <Query query={QUERY}>{() => null}</Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -100,9 +107,11 @@ describe('Query', () => {
       const error = <div>Failed!</div>;
       const wrapper = renderer.create(
         <MockedProvider mocks={[]} addTypename={false}>
-          <Query query={QUERY} error={error}>
-            {() => null}
-          </Query>
+          <WrappingComponent>
+            <Query query={QUERY} error={error}>
+              {() => null}
+            </Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -116,9 +125,11 @@ describe('Query', () => {
 
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Query query={QUERY} ignoreGraphQLErrors>
-            {spy}
-          </Query>
+          <WrappingComponent>
+            <Query query={QUERY} ignoreGraphQLErrors>
+              {spy}
+            </Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -149,7 +160,9 @@ describe('Query', () => {
 
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Query query={QUERY}>{spy}</Query>
+          <WrappingComponent>
+            <Query query={QUERY}>{spy}</Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -178,14 +191,16 @@ describe('Query', () => {
 
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Query query={QUERY}>
-            {(data, result) => {
-              expect(data).toEqual(mock.result.data);
-              expect(result).toEqual(expect.objectContaining(mock.result));
+          <WrappingComponent>
+            <Query query={QUERY}>
+              {(data, result) => {
+                expect(data).toEqual(mock.result.data);
+                expect(result).toEqual(expect.objectContaining(mock.result));
 
-              return null;
-            }}
-          </Query>
+                return null;
+              }}
+            </Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
     });
@@ -201,13 +216,15 @@ describe('Query', () => {
 
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Query query={QUERY}>
-            {data => {
-              expect(data).toBeNull();
+          <WrappingComponent>
+            <Query query={QUERY}>
+              {data => {
+                expect(data).toBeNull();
 
-              return null;
-            }}
-          </Query>
+                return null;
+              }}
+            </Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 

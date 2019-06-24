@@ -1,17 +1,19 @@
 import React from 'react';
-import { ThemeProvider as BaseThemeProvider, ThemeContext } from 'aesthetic-react';
+import {
+  ThemeProvider as BaseThemeProvider,
+  ThemeProviderProps,
+  ThemeContext,
+} from 'aesthetic-react';
+import { Omit } from 'utility-types';
 import Core from '..';
 
 export { ThemeContext };
 
-export type Props = {
-  children: NonNullable<React.ReactNode>;
-  name?: string;
-};
+export type Props = Omit<ThemeProviderProps, 'aesthetic'>;
 
-export default function ThemeProvider({ children, name }: Props) {
+export default function ThemeProvider({ children, ...props }: Props) {
   return (
-    <BaseThemeProvider aesthetic={Core.aesthetic} name={name}>
+    <BaseThemeProvider aesthetic={Core.aesthetic} {...props}>
       {children}
     </BaseThemeProvider>
   );

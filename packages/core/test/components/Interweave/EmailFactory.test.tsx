@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import EmailFactory from '../../../src/components/Interweave/factories/Email';
 
 describe('linkFactory()', () => {
@@ -9,32 +9,39 @@ describe('linkFactory()', () => {
   };
 
   it('renders a link', () => {
-    const wrapper = shallow(<EmailFactory emailParts={emailParts}>email@airbnb.com</EmailFactory>);
+    const wrapper = shallowWithStyles(
+      <EmailFactory emailParts={emailParts}>email@airbnb.com</EmailFactory>,
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('adds mailto: to emails', () => {
-    const wrapper = shallow(<EmailFactory emailParts={emailParts}>email@airbnb.com</EmailFactory>);
+    const wrapper = shallowWithStyles(
+      <EmailFactory emailParts={emailParts}>email@airbnb.com</EmailFactory>,
+      true,
+    );
 
     expect(wrapper.prop('href')).toBe('mailto:email@airbnb.com');
   });
 
   it('sets open in new window', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <EmailFactory emailParts={emailParts} newWindow>
         email@airbnb.com
       </EmailFactory>,
+      true,
     );
 
     expect(wrapper.prop('openInNewWindow')).toBe(true);
   });
 
   it('sets small prop on link', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <EmailFactory emailParts={emailParts} newWindow small>
         email@airbnb.com
       </EmailFactory>,
+      true,
     );
 
     expect(wrapper.prop('small')).toBe(true);
@@ -42,10 +49,11 @@ describe('linkFactory()', () => {
   });
 
   it('sets large prop on link', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <EmailFactory emailParts={emailParts} newWindow large>
         email@airbnb.com
       </EmailFactory>,
+      true,
     );
 
     expect(wrapper.prop('small')).toBe(false);

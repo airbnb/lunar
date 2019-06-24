@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Button from '../../src/components/Button';
 import IconButton from '../../src/components/IconButton';
 import Dropdown from '../../src/components/Dropdown';
@@ -9,23 +9,23 @@ import IconCheck from '../../../icons/src/interface/IconCheck';
 
 describe('<MenuToggle />', () => {
   it('renders a menu with expected number of children', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle accessibilityLabel="Foo" toggleLabel="Foo">
         <Item>Child</Item>
         {''}
       </MenuToggle>,
-    ).dive();
+    );
 
     expect(wrapper.find(Menu)).toHaveLength(1);
     expect(wrapper.find(Menu).children()).toHaveLength(1);
   });
 
   it('renders arrow icons based on state', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle accessibilityLabel="Foo" toggleLabel="Foo">
         <Item>Child</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     const iconDown = wrapper.find(Button).prop('afterIcon') as React.ReactElement;
 
@@ -42,52 +42,52 @@ describe('<MenuToggle />', () => {
   });
 
   it('renders regular icon size', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle accessibilityLabel="Foo" toggleLabel="Foo">
         <Item>Child</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     expect((wrapper.find(Button).prop('afterIcon') as React.ReactElement).props.size).toBe('1.5em');
   });
 
   it('renders large icon size', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle large accessibilityLabel="Foo" toggleLabel="Foo">
         <Item>Child</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     expect((wrapper.find(Button).prop('afterIcon') as React.ReactElement).props.size).toBe('2em');
   });
 
   it('renders small icon size', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle small accessibilityLabel="Foo" toggleLabel="Foo">
         <Item>Child</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     expect((wrapper.find(Button).prop('afterIcon') as React.ReactElement).props.size).toBe('1em');
   });
 
   it('renders a list with max height', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle accessibilityLabel="Foo" menuProps={{ maxHeight: 200 }} toggleLabel="Foo">
         <Item>Child</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     expect(wrapper.find(Menu).prop('maxHeight')).toBe(200);
   });
 
   it('renders a button with the given label', () => {
     const label = 'Foo';
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle accessibilityLabel="Foo" toggleLabel={label}>
         <Item>Child</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     expect(
       wrapper
@@ -99,7 +99,7 @@ describe('<MenuToggle />', () => {
 
   it('can render an icon button', () => {
     const label = 'Foo';
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle
         accessibilityLabel="Foo"
         toggleIcon={<IconCheck decorative />}
@@ -107,7 +107,7 @@ describe('<MenuToggle />', () => {
       >
         <Item>Child</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     expect(wrapper.find(IconButton)).toHaveLength(1);
     expect(wrapper.find(IconCheck)).toHaveLength(1);
@@ -116,11 +116,11 @@ describe('<MenuToggle />', () => {
 
   it('clicking outside hides dropdown', () => {
     const onHide = jest.fn();
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle accessibilityLabel="Foo" toggleLabel="Foo" onHide={onHide}>
         <Item>Child</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     wrapper.find(Button).simulate('click');
     wrapper.find(Dropdown).simulate('clickOutside');
@@ -130,11 +130,11 @@ describe('<MenuToggle />', () => {
 
   it('calls onClick on an Item', () => {
     const onClick = jest.fn();
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle accessibilityLabel="Foo" toggleLabel="Foo">
         <Item onClick={onClick}>Child</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     wrapper.find(Item).simulate('click');
 
@@ -143,12 +143,12 @@ describe('<MenuToggle />', () => {
 
   it('closes on click when closeOnClick is true', () => {
     const onClick = jest.fn();
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle closeOnClick accessibilityLabel="Foo" toggleLabel="Foo">
         <Item onClick={onClick}>Child 1</Item>
         <Item>Child 2</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     wrapper
       .find(Item)
@@ -161,11 +161,11 @@ describe('<MenuToggle />', () => {
 
   it('calls onShow when opened', () => {
     const onShow = jest.fn();
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle accessibilityLabel="Foo" toggleLabel="Foo" onShow={onShow}>
         <Item>Child</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     wrapper.find(Button).simulate('click');
 
@@ -174,11 +174,11 @@ describe('<MenuToggle />', () => {
 
   it('calls onHide when closed', () => {
     const onHide = jest.fn();
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MenuToggle accessibilityLabel="Foo" toggleLabel="Foo" onHide={onHide}>
         <Item>Child</Item>
       </MenuToggle>,
-    ).dive();
+    );
 
     wrapper.setState({
       opened: true,

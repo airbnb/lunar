@@ -21,6 +21,7 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
+    "@airbnb/lunar-test-utils": "*",
     "react": "^16.8.6"
   },
   "dependencies": {
@@ -30,7 +31,7 @@
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
     "airbnb-prop-types": "^2.12.0",
-    "final-form": "^4.12.0",
+    "final-form": "^4.13.1",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "shallowequal": "^1.1.0",

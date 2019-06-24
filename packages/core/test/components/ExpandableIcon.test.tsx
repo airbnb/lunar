@@ -1,9 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import { DirectionContext } from 'aesthetic-react';
 import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
 import ExpandableIcon from '../../src/components/ExpandableIcon';
 import DirectionalIcon from '../../src/components/DirectionalIcon';
-import Core from '../../src';
 
 describe('<ExpandableIcon />', () => {
   it('renders `DirectionalIcon` when not expanded', () => {
@@ -27,18 +27,14 @@ describe('<ExpandableIcon />', () => {
   });
 
   describe('RTL', () => {
-    beforeEach(() => {
-      Core.settings.rtl = true;
-    });
-
-    afterEach(() => {
-      Core.settings.rtl = false;
-    });
-
     it('swaps RTL direction', () => {
-      const wrapper = shallow(<ExpandableIcon expanded={false} />);
+      const wrapper = mount(
+        <DirectionContext.Provider value="rtl">
+          <ExpandableIcon expanded={false} />
+        </DirectionContext.Provider>,
+      );
 
-      expect(wrapper.prop('direction')).toBe('left');
+      expect(wrapper.find(DirectionalIcon).prop('direction')).toBe('left');
     });
   });
 });

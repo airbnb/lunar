@@ -19,6 +19,9 @@
   "peerDependencies": {
     "@airbnb/lunar": "^1.0.0"
   },
+  "devDependencies": {
+    "@airbnb/lunar-test-utils": "*"
+  },
   "dependencies": {
     "@types/new-relic-browser": "0.1072.1",
     "raven-js": "^3.27.0"

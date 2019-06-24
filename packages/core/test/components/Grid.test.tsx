@@ -1,15 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Grid, { Col } from '../../src/components/Grid';
 
 describe('<Grid />', () => {
   it('renders by default', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Grid>
         <Col span={6}>A</Col>
         <Col span={6}>B</Col>
       </Grid>,
-    ).dive();
+    );
 
     expect(wrapper.find(Col)).toHaveLength(2);
   });
@@ -24,13 +24,13 @@ describe('<Grid />', () => {
     'topAlign',
   ].forEach(type => {
     it(`renders ${type}`, () => {
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Grid {...{ [type]: true }}>
           <Col span={4}>A</Col>
           <Col span={4}>B</Col>
           <Col span={4}>B</Col>
         </Grid>,
-      ).dive();
+      );
 
       expect(wrapper.find(Col)).toHaveLength(3);
     });

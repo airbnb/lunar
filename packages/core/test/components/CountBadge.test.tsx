@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import CountBadge from '../../src/components/CountBadge';
 
 describe('<CountBadge />', () => {
@@ -9,19 +10,19 @@ describe('<CountBadge />', () => {
   };
 
   it('renders default', () => {
-    const wrapper = shallow(<CountBadge {...props} />).dive();
+    const wrapper = shallowWithStyles(<CountBadge {...props} />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('does not render when value is 0', () => {
-    const wrapper = shallow(<CountBadge {...props} value={0} />).dive();
+    const wrapper = shallowWithStyles(<CountBadge {...props} value={0} />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('handles waggle class based on interval setting', () => {
-    const wrapper = shallow(<CountBadge {...props} />).dive();
+    const wrapper = shallowWithStyles(<CountBadge {...props} />);
     const oldClass = wrapper.prop('className');
 
     wrapper.setProps({

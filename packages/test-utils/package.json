@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@airbnb/lunar-test-utils",
   "version": "1.0.3",
   "description": "Utilities for local testing.",
@@ -21,7 +20,7 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
-    "@types/enzyme": "^3.9.1",
+    "@types/enzyme": "^3.9.3",
     "@types/jest": "^24.0.11",
     "@types/react": "^16.8.15"
   }

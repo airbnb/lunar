@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 // @ts-ignore
 import { LocaleUtils } from 'react-day-picker/lib/src/LocaleUtils';
 import DirectionalIcon from '../../../../src/components/DirectionalIcon';
@@ -52,20 +52,20 @@ describe('<DatePicker />', () => {
   };
 
   it('renders next & previous icons', () => {
-    const wrapper = shallow(<NavBar {...props} />).dive();
+    const wrapper = shallowWithStyles(<NavBar {...props} />);
 
     expect(wrapper.find(DirectionalIcon)).toHaveLength(2);
   });
 
   it('renders a reset button', () => {
-    const wrapper = shallow(<NavBar {...props} showResetButton />).dive();
+    const wrapper = shallowWithStyles(<NavBar {...props} showResetButton />);
 
     expect(wrapper.contains('Reset')).toBe(true);
   });
 
   it('call `onPreviousClick` when next button is clicked', () => {
     const spy = jest.fn();
-    const wrapper = shallow(<NavBar {...props} onPreviousClick={spy} />).dive();
+    const wrapper = shallowWithStyles(<NavBar {...props} onPreviousClick={spy} />);
 
     wrapper
       .find(DirectionalIcon)
@@ -78,7 +78,7 @@ describe('<DatePicker />', () => {
 
   it('call `onNextClick` when next button is clicked', () => {
     const spy = jest.fn();
-    const wrapper = shallow(<NavBar {...props} onNextClick={spy} />).dive();
+    const wrapper = shallowWithStyles(<NavBar {...props} onNextClick={spy} />);
 
     wrapper
       .find(DirectionalIcon)
@@ -91,7 +91,7 @@ describe('<DatePicker />', () => {
 
   it('call `onResetClick` when next button is clicked', () => {
     const spy = jest.fn();
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <NavBar
         {...props}
         showResetButton
@@ -99,7 +99,7 @@ describe('<DatePicker />', () => {
         showNextButton={false}
         onResetClick={spy}
       />,
-    ).dive();
+    );
 
     wrapper.find('button').simulate('click');
 
