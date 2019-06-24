@@ -11,7 +11,6 @@ describe('linkFactory()', () => {
   it('renders a link', () => {
     const wrapper = shallowWithStyles(
       <EmailFactory emailParts={emailParts}>email@airbnb.com</EmailFactory>,
-      true,
     );
 
     expect(wrapper).toMatchSnapshot();

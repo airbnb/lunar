@@ -14,10 +14,7 @@ describe('linkFactory()', () => {
   };
 
   it('renders a link', () => {
-    const wrapper = shallowWithStyles(
-      <UrlFactory urlParts={urlParts}>airbnb.com</UrlFactory>,
-      true,
-    );
+    const wrapper = shallowWithStyles(<UrlFactory urlParts={urlParts}>airbnb.com</UrlFactory>);
 
     expect(wrapper).toMatchSnapshot();
   });

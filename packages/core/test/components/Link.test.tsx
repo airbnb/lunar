@@ -28,9 +28,7 @@ describe('<Link />', () => {
       <Link small href="#">
         Small
       </Link>,
-    )
-      .dive()
-      .dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -40,9 +38,7 @@ describe('<Link />', () => {
       <Link large href="#">
         Large
       </Link>,
-    )
-      .dive()
-      .dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -52,9 +48,7 @@ describe('<Link />', () => {
       <Link disabled href="#">
         Disabled
       </Link>,
-    )
-      .dive()
-      .dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -64,9 +58,7 @@ describe('<Link />', () => {
       <Link inverted href="#">
         Inverted
       </Link>,
-    )
-      .dive()
-      .dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -76,9 +68,7 @@ describe('<Link />', () => {
       <Link muted href="#">
         Muted
       </Link>,
-    )
-      .dive()
-      .dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });

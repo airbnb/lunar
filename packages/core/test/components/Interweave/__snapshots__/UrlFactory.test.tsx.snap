@@ -1,15 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`linkFactory() renders a link 1`] = `
-<WithStyles
+<Link
   baseline={true}
-  dir="ltr"
+  cx={[Function]}
   href="http://airbnb.com"
-  large={false}
   openInNewWindow={false}
-  small={false}
-  themeName="light"
+  withStylesClasses={
+    Array [
+      "link",
+      "link_block",
+      "link_baseline",
+      "link_inverted",
+      "link_muted",
+      "link_disabled",
+    ]
+  }
 >
   airbnb.com
-</WithStyles>
+</Link>
 `;
