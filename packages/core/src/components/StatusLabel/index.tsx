@@ -135,6 +135,8 @@ export default withStyles(({ color, font, ui, unit }) => ({
     backgroundColor: color.core.neutral[1],
     color: color.accent.text,
     fontWeight: font.weights.semibold,
+    border: ui.border,
+    borderColor: 'transparent',
   },
 
   label_uppercased: {
@@ -142,7 +144,7 @@ export default withStyles(({ color, font, ui, unit }) => ({
   },
 
   label_bordered: {
-    border: ui.border,
+    borderColor: color.accent.border,
   },
 
   label_compact: {
