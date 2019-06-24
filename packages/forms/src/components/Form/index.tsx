@@ -35,7 +35,7 @@ function mapSubscriptions(subscriptions: string[]): { [sub: string]: boolean } {
 
 export type Props<Data extends object> = {
   /** Form fields that will be registered and managed by the current form instance. */
-  children: NonNullable<React.ReactNode> | ((state: State) => NonNullable<React.ReactNode>);
+  children: NonNullable<React.ReactNode> | ((state: State<Data>) => NonNullable<React.ReactNode>);
   /** @ignore Initial values for form fields. Optional, as default values are injected when fields are rendered. */
   initialValues?: Data;
   /** Type of HTTP method. */
@@ -45,7 +45,7 @@ export type Props<Data extends object> = {
   /** Callback fired when the form data has failed validation. */
   onFailedValidate?: (data: Data, errors: Errors) => void;
   /** Callback fired when the form state updates, including field updates. */
-  onStateUpdate?: (state: State) => void;
+  onStateUpdate?: (state: State<Data>) => void;
   /**
    * Callback fired when the form has passed validation and data is ready to be submitted.
    * Return a `Promise` to automatically handle form error states.
@@ -57,19 +57,22 @@ export type Props<Data extends object> = {
    * Callback fired after validation. Must return true for passed validation,
    * or false for failed validation.
    */
-  onValidate?: (data: Data, errors: Errors, fields: FieldState[]) => boolean;
+  onValidate?: (data: Data, errors: Errors, fields: FieldState<any>[]) => boolean;
   /** A list of `final-form` subscriptions to listen to. */
   subscriptions?: (keyof FormSubscription)[];
 };
 
-export type State = FinalFormState & {
+export type State<Data extends object> = FinalFormState<Data> & {
   id: string;
 };
 
 /**
  * A form manager built on [final-form](https://github.com/final-form/final-form).
  */
-export default class Form<Data extends object = any> extends React.Component<Props<Data>, State> {
+export default class Form<Data extends object = any> extends React.Component<
+  Props<Data>,
+  State<Data>
+> {
   static propTypes = {
     initialValues: PropTypes.object,
     subscriptions: PropTypes.arrayOf(PropTypes.string),
@@ -152,7 +155,7 @@ export default class Form<Data extends object = any> extends React.Component<Pro
   /**
    * Return a list of all field states.
    */
-  getFields = (): FieldState[] => {
+  getFields = (): FieldState<any>[] => {
     if (!this.form) {
       return [];
     }
@@ -173,7 +176,11 @@ export default class Form<Data extends object = any> extends React.Component<Pro
    * Handle form submission once data has been validated.
    * https://github.com/final-form/final-form#onsubmit-values-object-form-formapi-callback-errors-object--void--object--promiseobject--void
    */
-  private handleSubmit = (data: Data, form: FormApi, setErrors?: (errors?: Errors) => void) => {
+  private handleSubmit = (
+    data: Data,
+    form: FormApi<Data>,
+    setErrors?: (errors?: Errors) => void,
+  ) => {
     const preparedData = this.prepareData(data);
     let promise;
 
@@ -226,7 +233,7 @@ export default class Form<Data extends object = any> extends React.Component<Pro
   /**
    * Handle form state changes.
    */
-  private handleStateUpdate = (state: FinalFormState) => {
+  private handleStateUpdate = (state: FinalFormState<Data>) => {
     // This method is immediately called within the constructor,
     // so we need to set the state manually for the first time before mount,
     // and on subsequent updates use `setState`.
@@ -304,7 +311,7 @@ export default class Form<Data extends object = any> extends React.Component<Pro
    * Register a new field and set their default value into the data set.
    * Optionally validate the default value if `validateDefaultValue` is true.
    */
-  registerField = (field: Field, onUpdate: FieldSubscriber) => {
+  registerField = <T extends unknown>(field: Field, onUpdate: FieldSubscriber<T>) => {
     const { name, isEqual, subscriptions = [], validateFields = [] } = field;
     const unregister = this.form.registerField(name, onUpdate, mapSubscriptions(subscriptions), {
       isEqual,
@@ -388,7 +395,7 @@ export default class Form<Data extends object = any> extends React.Component<Pro
   /**
    * Wrap a validator in a closure to correctly handle error states.
    */
-  wrapValidator(validator?: FieldValidator): FieldValidator {
+  wrapValidator(validator?: FieldValidator<any>): FieldValidator<any> {
     return async (value, data) => {
       if (validator) {
         try {

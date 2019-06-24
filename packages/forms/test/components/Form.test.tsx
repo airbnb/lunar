@@ -2,10 +2,10 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import { FORM_ERROR } from 'final-form';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
-import Form, { Props, State } from '../../src/components/Form';
+import Form, { Props } from '../../src/components/Form';
 
 describe('<Form />', () => {
-  let wrapper: Enzyme.ShallowWrapper<Props<any>, State, Form>;
+  let wrapper: Enzyme.ShallowWrapper<Props<any>, any, Form>;
   let instance: Form;
 
   beforeEach(() => {

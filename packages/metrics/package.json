@@ -24,6 +24,6 @@
   },
   "dependencies": {
     "@types/new-relic-browser": "0.1072.1",
-    "raven-js": "^3.27.0"
+    "raven-js": "^3.27.2"
   }
 }
