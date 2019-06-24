@@ -74,7 +74,12 @@ class Core {
     try {
       this.aesthetic
         .registerTheme('light', lightTheme(fontFamily), globals)
-        .registerTheme('dark', darkTheme(fontFamily), globals);
+        .registerTheme('dark', darkTheme(fontFamily), globals)
+
+        // Aesthetic ThemeContext default theme is "default",
+        // so let's register a default theme based on light
+        // so that downstream consumers don't break.
+        .extendTheme('default', 'light', {});
     } catch {
       // Tests trigger an error, so ignore it
     }
