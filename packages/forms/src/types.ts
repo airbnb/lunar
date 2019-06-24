@@ -10,9 +10,9 @@ import {
 
 export type Context = {
   change: (name: string, value: string, batchValues?: object) => void;
-  getFields: () => FieldState[];
-  getState: () => FormState;
-  register: (field: Field, onUpdate: FieldSubscriber) => Unsubscribe;
+  getFields: () => FieldState<any>[];
+  getState: () => FormState<any>;
+  register: (field: Field, onUpdate: FieldSubscriber<any>) => Unsubscribe;
   submit: () => Promise<object | undefined>;
 };
 
@@ -20,11 +20,9 @@ export type Errors = {
   [key: string]: string;
 };
 
-export type State = FormState;
-
 export type Parse = (value: unknown) => unknown;
 
-export type Field = {
+export type Field<T = any> = {
   defaultValue?: boolean | string | number | string[] | number[];
   isEqual?: IsEqual;
   name: string;
@@ -32,5 +30,5 @@ export type Field = {
   subscriptions?: (keyof FieldSubscription)[];
   validateDefaultValue?: boolean;
   validateFields?: string[];
-  validator: FieldValidator;
+  validator: FieldValidator<T>;
 };
