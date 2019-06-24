@@ -20,7 +20,7 @@
     "@airbnb/lunar": "^1.0.0"
   },
   "devDependencies": {
-    "@airbnb/test-utils": "*"
+    "@airbnb/lunar-test-utils": "*"
   },
   "dependencies": {
     "@types/new-relic-browser": "0.1072.1",

@@ -22,7 +22,7 @@
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@airbnb/test-utils": "*",
+    "@airbnb/lunar-test-utils": "*",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
