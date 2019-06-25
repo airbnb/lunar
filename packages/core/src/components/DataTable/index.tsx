@@ -36,15 +36,6 @@ export type State = {
 
 /** A dynamic and responsive table for displaying tabular data. */
 export class DataTable extends React.Component<DataTableProps & WithStylesProps, State> {
-  state = {
-    changeLog: {},
-    expandedRows: new Set(),
-    selectedRows: {},
-    sortBy: this.props.sortByOverride || '',
-    sortDirection: this.props.sortDirectionOverride!,
-    editMode: false,
-  };
-
   static defaultProps: Pick<DataTableProps, DefaultDataTableProps> = {
     columnHeaderHeight: undefined,
     columnLabelCase: '',
@@ -76,6 +67,15 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     tableHeaderLabel: '',
     width: 0,
     zebra: false,
+  };
+
+  state: State = {
+    changeLog: {},
+    expandedRows: new Set(),
+    selectedRows: {},
+    sortBy: this.props.sortByOverride || '',
+    sortDirection: this.props.sortDirectionOverride!,
+    editMode: false,
   };
 
   keys = getKeys(this.props.keys!, this.props.data!);
