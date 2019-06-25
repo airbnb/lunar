@@ -64,7 +64,8 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
     disableAutoFocus: false,
   };
 
-  private handleKeyUp = /* istanbul ignore next */ (event: React.KeyboardEvent<HTMLDivElement>) => {
+  // istanbul ignore next
+  private handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // When the picker wrapper is focused, we need to close on esc
     if (event.key === ESCAPE) {
       this.props.onClosePicker();

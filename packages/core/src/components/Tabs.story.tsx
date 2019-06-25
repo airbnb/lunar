@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import LoremIpsum from ':storybook/components/LoremIpsum';
 import IconAdd from '@airbnb/lunar-icons/lib/interface/IconAddAlt';
 import IconRemove from '@airbnb/lunar-icons/lib/interface/IconRemoveAlt';
+import LoremIpsum from ':storybook/components/LoremIpsum';
 import Text from './Text';
 import Tabs, { Tab } from './Tabs';
 
