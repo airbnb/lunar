@@ -7,7 +7,7 @@
   "types": "./lib/index.d.ts",
   "module": "./esm/index.js",
   "sideEffects": false,
-  "repository": "https://github.com/airbnb/lunar",
+  "repository": "https://github.com/airbnb/lunar/tree/master/packages/metrics",
   "publishConfig": {
     "access": "public"
   },
@@ -17,7 +17,7 @@
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
   },
   "peerDependencies": {
-    "@airbnb/lunar": "^1.0.0"
+    "@airbnb/lunar": "^2.0.0"
   },
   "devDependencies": {
     "@airbnb/lunar-test-utils": "*"
