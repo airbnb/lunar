@@ -125,7 +125,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
 
   inputRef = React.createRef<HTMLInputElement>();
 
-  state = {
+  state: State<T> = {
     error: null,
     highlightedIndex: null,
     id: uuid(),

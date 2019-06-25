@@ -209,8 +209,8 @@ describe('<Form />', () => {
       try {
         // @ts-ignore Allow private access
         await instance.handleSubmit({}, {}, spy);
-      } catch (error2) {
-        expect(error2).toBe(error);
+      } catch (error_) {
+        expect(error_).toBe(error);
       }
 
       expect(spy).toHaveBeenCalled();
@@ -228,8 +228,8 @@ describe('<Form />', () => {
       try {
         // @ts-ignore Allow private access
         await instance.handleSubmit({ foo: 'bar' }, {}, () => {});
-      } catch (error2) {
-        expect(error2).toBe(error);
+      } catch (error_) {
+        expect(error_).toBe(error);
       }
 
       expect(spy).toHaveBeenCalledWith({ foo: 'bar' }, error);
