@@ -57,6 +57,7 @@ export default class Panel extends React.Component {
           )}
         />
       ),
+      items: [],
     }));
 
     if (tabs.length === 1) {
