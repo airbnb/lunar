@@ -64,6 +64,7 @@ export default class ToggleButtonController extends React.Component<Props, State
   };
 
   renderButton = proxyComponent(BaseButton, ({ children, value, ...props }: PropsProvided) => {
+    const { compact } = this.props;
     const { id, value: selectedValue } = this.state;
     const selected = value === selectedValue;
 
@@ -76,6 +77,7 @@ export default class ToggleButtonController extends React.Component<Props, State
         disabled={this.props.disabled}
         inverted={!selected}
         invalid={this.props.invalid}
+        small={compact}
         onClick={this.handleClick}
       >
         {children}

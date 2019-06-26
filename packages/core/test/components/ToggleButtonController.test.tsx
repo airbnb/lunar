@@ -1,6 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import BaseButton from '../../src/componentsButton';
 import ToggleButtonController from '../../src/components/ToggleButtonController';
 
 describe('<ToggleButtonController />', () => {
@@ -42,7 +43,7 @@ describe('<ToggleButtonController />', () => {
   it('passes proxy component and current value to function child', () => {
     shallow(
       <ToggleButtonController {...props}>
-        {(Comp, values) => {
+        {(Comp: BaseButton, values: string) => {
           expect(typeof Comp).toBe('function');
           expect(values).toEqual('foo');
 
@@ -56,7 +57,7 @@ describe('<ToggleButtonController />', () => {
     const onChange = jest.fn();
     const wrapper = shallowWithStyles(
       <ToggleButtonController {...props} onChange={onChange} value="1">
-        {ProxyButton => (
+        {(ProxyButton: BaseButton) => (
           <div>
             <ProxyButton value="1">1</ProxyButton>
             <ProxyButton value="2">2</ProxyButton>
@@ -75,7 +76,7 @@ describe('<ToggleButtonController />', () => {
     const onChange = jest.fn();
     const wrapper = shallow(
       <ToggleButtonController {...props} onChange={onChange}>
-        {ProxyButton => (
+        {(ProxyButton: BaseButton) => (
           <div>
             <ProxyButton value="1">1</ProxyButton>
             <ProxyButton value="2">2</ProxyButton>
@@ -98,7 +99,7 @@ describe('<ToggleButtonController />', () => {
   it('inverts inactive buttons', () => {
     const wrapper = shallow(
       <ToggleButtonController {...props} value="1">
-        {ProxyButton => (
+        {(ProxyButton: BaseButton) => (
           <div>
             <ProxyButton value="1">1</ProxyButton>
             <ProxyButton value="2">2</ProxyButton>
@@ -127,6 +128,41 @@ describe('<ToggleButtonController />', () => {
         .find({ value: '3' })
         .dive()
         .prop('inverted'),
+    ).toBeTruthy();
+  });
+
+  it('`compact` renders `small` buttons', () => {
+    const wrapper = shallow(
+      <ToggleButtonController {...props} compact value="1">
+        {(ProxyButton: BaseButton) => (
+          <div>
+            <ProxyButton value="1">1</ProxyButton>
+            <ProxyButton value="2">2</ProxyButton>
+            <ProxyButton value="3">3</ProxyButton>
+          </div>
+        )}
+      </ToggleButtonController>,
+    );
+
+    expect(
+      wrapper
+        .find({ value: '1' })
+        .dive()
+        .prop('small'),
+    ).toBeTruthy();
+
+    expect(
+      wrapper
+        .find({ value: '2' })
+        .dive()
+        .prop('small'),
+    ).toBeTruthy();
+
+    expect(
+      wrapper
+        .find({ value: '3' })
+        .dive()
+        .prop('small'),
     ).toBeTruthy();
   });
 });
