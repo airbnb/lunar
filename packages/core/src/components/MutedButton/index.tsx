@@ -15,12 +15,14 @@ export const StyledMutedButton = Button.extendStyles(({ color }) => ({
   },
 
   button_inverted: {
-    color: color.core.neutral[4],
+    color: color.core.neutral[5],
+    borderColor: color.core.neutral[4],
     backgroundColor: color.accent.bg,
 
     '@selectors': {
       ':not([disabled]):hover': {
-        color: color.core.neutral[5],
+        color: color.core.neutral[6],
+        borderColor: color.core.neutral[5],
         backgroundColor: color.accent.bgHover,
       },
     },
