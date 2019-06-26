@@ -135,12 +135,12 @@ export default withStyles(
     button_invalid: {},
 
     button_inverted: {
-      color: color.core.primary[3],
+      color: color.core.primary[2],
       backgroundColor: color.accent.bg,
 
       '@selectors': {
         ':not([disabled]):hover': {
-          color: color.core.primary[4],
+          color: color.core.primary[3],
           backgroundColor: color.accent.bgHover,
         },
       },

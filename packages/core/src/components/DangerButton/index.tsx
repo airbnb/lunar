@@ -15,12 +15,12 @@ const StyledDangerButton = Button.extendStyles(({ color }) => ({
   },
 
   button_inverted: {
-    color: color.core.danger[5],
+    color: color.core.danger[4],
     backgroundColor: color.accent.bg,
 
     '@selectors': {
       ':not([disabled]):hover': {
-        color: color.core.danger[6],
+        color: color.core.danger[5],
         backgroundColor: color.accent.bgHover,
       },
     },
