@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 - 2019-06-26
+
+#### 💥 Breaking
+
+- Migrate to Aesthetic v4 (#86) ([1b9b3f6](https://github.com/airbnb/lunar/tree/master/packages/core/commit/1b9b3f6)), closes [#86](https://github.com/airbnb/lunar/tree/master/packages/core/issues/86)
+- **[Autocomplete,Multicomplete]** Rename onLoadOptions to onLoadItems. Add disableCache prop. (#91) ([830d4fe](https://github.com/airbnb/lunar/tree/master/packages/core/commit/830d4fe)), closes [#91](https://github.com/airbnb/lunar/tree/master/packages/core/issues/91)
+- **[BorderedList]** Combine BorderedList into new List component. (#96) ([36eb02c](https://github.com/airbnb/lunar/tree/master/packages/core/commit/36eb02c)), closes [#96](https://github.com/airbnb/lunar/tree/master/packages/core/issues/96)
+- **[Chip]** Add beforeIcon and afterIcon props. Remove icon prop. (#67) ([3d883ff](https://github.com/airbnb/lunar/tree/master/packages/core/commit/3d883ff)), closes [#67](https://github.com/airbnb/lunar/tree/master/packages/core/issues/67)
+- **[Layouts]** Rework layout structuring. Add LayoutShell and Aside components. (#95) ([ed5c47a](https://github.com/airbnb/lunar/tree/master/packages/core/commit/ed5c47a)), closes [#95](https://github.com/airbnb/lunar/tree/master/packages/core/issues/95)
+- **[Tabs]** Rework active state. Add small, beforeIcon, and afterIcon props. (#92) ([44c7aa9](https://github.com/airbnb/lunar/tree/master/packages/core/commit/44c7aa9)), closes [#92](https://github.com/airbnb/lunar/tree/master/packages/core/issues/92)
+- Update peer dependencies to v2. ([536607d](https://github.com/airbnb/lunar/tree/master/packages/core/commit/536607d))
+
+#### 🚀 Updates
+
+- **[RTL]** Support RTL. Add DirectionProvider, DirectionalIcon, and ExpandableIcon components. (#94) ([153a66f](https://github.com/airbnb/lunar/tree/master/packages/core/commit/153a66f)), closes [#94](https://github.com/airbnb/lunar/tree/master/packages/core/issues/94)
+
+#### 🐞 Fixes
+
+- **[DataTable]** Correct sorting in ascending/descending order (#98) ([c1d6154](https://github.com/airbnb/lunar/tree/master/packages/core/commit/c1d6154)), closes [#98](https://github.com/airbnb/lunar/tree/master/packages/core/issues/98)
+- **[StatusLabel]** Add transparent border for height consistency. (#101) ([b1d2e02](https://github.com/airbnb/lunar/tree/master/packages/core/commit/b1d2e02)), closes [#101](https://github.com/airbnb/lunar/tree/master/packages/core/issues/101)
+- Add ExpandableIcon to icon name list. ([15bc361](https://github.com/airbnb/lunar/tree/master/packages/core/commit/15bc361))
+
+#### 📦 Dependencies
+
+- Update dev dependencies to latest. ([8802717](https://github.com/airbnb/lunar/tree/master/packages/core/commit/8802717))
+- Update package dependencies to latest. ([1a07250](https://github.com/airbnb/lunar/tree/master/packages/core/commit/1a07250))
+
+#### 🛠 Internals
+
+- Update npmignore files. ([a2eda3f](https://github.com/airbnb/lunar/tree/master/packages/core/commit/a2eda3f))
+- Update Storybook to v5.1 (#93) ([4ee8f83](https://github.com/airbnb/lunar/tree/master/packages/core/commit/4ee8f83)), closes [#93](https://github.com/airbnb/lunar/tree/master/packages/core/issues/93)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 1.20.0 - 2019-06-12
 
 #### 🚀 Updates
