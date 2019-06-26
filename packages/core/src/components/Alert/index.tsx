@@ -8,7 +8,7 @@ import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
 import IconError from '@airbnb/lunar-icons/lib/interface/IconError';
 import IconInfo from '@airbnb/lunar-icons/lib/interface/IconInfo';
 import IconWarning from '@airbnb/lunar-icons/lib/interface/IconWarning';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Row from '../Row';
 import Spacing from '../Spacing';
 import Text from '../Text';
@@ -64,6 +64,7 @@ export class Alert extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       children,
       danger,
       hideStatusIcon,
@@ -100,7 +101,7 @@ export class Alert extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        {...css(
+        className={cx(
           styles.alert,
           inline && styles.alert_inline,
           !hideStatusIcon && !!StatusIcon && styles.alert_statusIcon,

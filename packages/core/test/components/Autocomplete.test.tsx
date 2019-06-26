@@ -1,5 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import T from '../../src/components/Translate';
 import Autocomplete, { CACHE_DURATION, Props, State } from '../../src/components/Autocomplete';
 import BaseInput from '../../src/components/private/BaseInput';
@@ -17,7 +18,7 @@ describe('<Autocomplete />', () => {
     accessibilityLabel: 'Label',
     maxHeight: 400,
     onChange() {},
-    onLoadOptions: () => Promise.resolve([]),
+    onLoadItems: () => Promise.resolve([]),
   };
 
   let wrapper: Enzyme.ShallowWrapper<Props<any>, State<any>, Autocomplete<any>>;
@@ -504,6 +505,16 @@ describe('<Autocomplete />', () => {
         );
       }));
 
+    it('doesnt cache if `disableCache` is set', () => {
+      wrapper.setProps({
+        disableCache: true,
+      });
+
+      return instance.loadItems('foo').then(() => {
+        expect(instance.cache.foo).toBeUndefined();
+      });
+    });
+
     it('handles success', () =>
       instance.loadItems('foo').then(() => {
         expect(wrapper.state()).toEqual(
@@ -560,13 +571,13 @@ describe('<Autocomplete />', () => {
 
   describe('renderError()', () => {
     it('wraps in a menu `Row`', () => {
-      const row = shallow(instance.renderError(new Error('Oops')));
+      const row = shallowWithStyles(instance.renderError(new Error('Oops')), true);
 
       expect(row.type()).toEqual(MenuRow);
     });
 
     it('renders an error message by default', () => {
-      const row = shallow(instance.renderError(new Error('Oops')));
+      const row = shallowWithStyles(instance.renderError(new Error('Oops')));
 
       expect(row.find(ErrorMessage)).toHaveLength(1);
       expect(row.find(ErrorMessage).prop('error')).toEqual(new Error('Oops'));
@@ -577,10 +588,10 @@ describe('<Autocomplete />', () => {
         renderError: () => <div>Broken!</div>,
       });
 
-      const row = shallow(instance.renderError(new Error('Oops')));
+      const row = shallowWithStyles(instance.renderError(new Error('Oops')));
 
       expect(row.find(ErrorMessage)).toHaveLength(0);
-      expect(row.prop('children')).toEqual(<div>Broken!</div>);
+      expect(shallow(row.prop('children')).contains('Broken!')).toBe(true);
     });
   });
 
@@ -597,12 +608,6 @@ describe('<Autocomplete />', () => {
       expect(item.find(Item).prop('disabled')).toBe(true);
       expect(item.find(Item).prop('highlighted')).toBe(false);
       expect(item.find(Item).prop('href')).toBe('/');
-      expect(
-        item
-          .find(Item)
-          .find(Text)
-          .prop('children'),
-      ).toBe('foo');
     });
 
     it('handles highlighted state', () => {
@@ -624,13 +629,13 @@ describe('<Autocomplete />', () => {
 
   describe('renderLoading()', () => {
     it('wraps in a menu `Row`', () => {
-      const row = shallow(instance.renderLoading());
+      const row = shallowWithStyles(instance.renderLoading(), true);
 
       expect(row.type()).toEqual(MenuRow);
     });
 
     it('renders a loader by default', () => {
-      const row = shallow(instance.renderLoading());
+      const row = shallowWithStyles(instance.renderLoading());
 
       expect(row.find(Loader)).toHaveLength(1);
     });
@@ -640,10 +645,10 @@ describe('<Autocomplete />', () => {
         renderLoading: () => <div>Loading!</div>,
       });
 
-      const row = shallow(instance.renderLoading());
+      const row = shallowWithStyles(instance.renderLoading());
 
       expect(row.find(Loader)).toHaveLength(0);
-      expect(row.prop('children')).toEqual(<div>Loading!</div>);
+      expect(shallow(row.prop('children')).contains('Loading!')).toBe(true);
     });
   });
 
@@ -708,13 +713,13 @@ describe('<Autocomplete />', () => {
 
   describe('renderNoResults()', () => {
     it('wraps in a menu `Row`', () => {
-      const row = shallow(instance.renderNoResults());
+      const row = shallowWithStyles(instance.renderNoResults(), true);
 
       expect(row.type()).toEqual(MenuRow);
     });
 
     it('renders a message by default', () => {
-      const row = shallow(instance.renderNoResults());
+      const row = shallowWithStyles(instance.renderNoResults());
 
       expect(row.find(Text).prop('children')).toEqual(
         <T phrase="No results found." context="No results found for autocomplete search" />,
@@ -726,10 +731,10 @@ describe('<Autocomplete />', () => {
         renderNoResults: () => <div>Empty!</div>,
       });
 
-      const row = shallow(instance.renderNoResults());
+      const row = shallowWithStyles(instance.renderNoResults());
 
       expect(row.find(Text)).toHaveLength(0);
-      expect(row.prop('children')).toEqual(<div>Empty!</div>);
+      expect(shallow(row.prop('children')).contains('Empty!')).toBe(true);
     });
 
     it('can customize no results message', () => {
@@ -737,7 +742,7 @@ describe('<Autocomplete />', () => {
         noResultsText: 'Nothing here...',
       });
 
-      const menu = shallow(instance.renderNoResults());
+      const menu = shallowWithStyles(instance.renderNoResults());
 
       expect(menu.find(Text).prop('children')).toBe('Nothing here...');
     });

@@ -1,8 +1,8 @@
 import React from 'react';
+import { FormState } from 'final-form';
 import { Omit } from 'utility-types';
 import BaseFormActions, { Props as BaseProps } from '@airbnb/lunar/lib/components/FormActions';
 import FormContext from '../FormContext';
-import { State } from '../../types';
 
 export type Props = Omit<BaseProps, 'disabled' | 'processing'>;
 
@@ -14,7 +14,7 @@ export default class FormActions extends React.PureComponent<Props> {
     const props = { ...this.props };
 
     if (this.context) {
-      const { submitting, valid }: State = this.context.getState();
+      const { submitting, valid }: FormState<any> = this.context.getState();
 
       Object.assign(props, {
         disabled: !valid,

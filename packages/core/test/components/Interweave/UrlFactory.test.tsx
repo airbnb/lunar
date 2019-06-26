@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import UrlFactory from '../../../src/components/Interweave/factories/Url';
 
 describe('linkFactory()', () => {
@@ -14,39 +14,46 @@ describe('linkFactory()', () => {
   };
 
   it('renders a link', () => {
-    const wrapper = shallow(<UrlFactory urlParts={urlParts}>airbnb.com</UrlFactory>);
+    const wrapper = shallowWithStyles(<UrlFactory urlParts={urlParts}>airbnb.com</UrlFactory>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('adds http:// to URL', () => {
-    const wrapper = shallow(<UrlFactory urlParts={urlParts}>airbnb.com</UrlFactory>);
+    const wrapper = shallowWithStyles(
+      <UrlFactory urlParts={urlParts}>airbnb.com</UrlFactory>,
+      true,
+    );
 
     expect(wrapper.prop('href')).toBe('http://airbnb.com');
   });
 
   it('doesnt add http:// to URL', () => {
-    // eslint-disable-next-line react/jsx-curly-brace-presence
-    const wrapper = shallow(<UrlFactory urlParts={urlParts}>{'https://airbnb.com'}</UrlFactory>);
+    const wrapper = shallowWithStyles(
+      <UrlFactory urlParts={urlParts}>https://airbnb.com</UrlFactory>,
+      true,
+    );
 
     expect(wrapper.prop('href')).toBe('https://airbnb.com');
   });
 
   it('sets open in new window', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <UrlFactory urlParts={urlParts} newWindow>
         airbnb.com
       </UrlFactory>,
+      true,
     );
 
     expect(wrapper.prop('openInNewWindow')).toBe(true);
   });
 
   it('sets small prop on link', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <UrlFactory urlParts={urlParts} small>
         airbnb.com
       </UrlFactory>,
+      true,
     );
 
     expect(wrapper.prop('small')).toBe(true);
@@ -54,10 +61,11 @@ describe('linkFactory()', () => {
   });
 
   it('sets large prop on link', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <UrlFactory urlParts={urlParts} large>
         airbnb.com
       </UrlFactory>,
+      true,
     );
 
     expect(wrapper.prop('large')).toBe(true);

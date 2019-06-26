@@ -7,7 +7,7 @@
   "types": "./lib/index.d.ts",
   "module": "./esm/index.js",
   "sideEffects": false,
-  "repository": "https://github.com/airbnb/lunar",
+  "repository": "https://github.com/airbnb/lunar/tree/master/packages/forms",
   "publishConfig": {
     "access": "public"
   },
@@ -17,24 +17,25 @@
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
   },
   "peerDependencies": {
-    "@airbnb/lunar": "^1.0.0",
+    "@airbnb/lunar": "^2.0.0",
     "react": "^16.8.0"
   },
   "devDependencies": {
+    "@airbnb/lunar-test-utils": "*",
     "react": "^16.8.6"
   },
   "dependencies": {
-    "@types/airbnb-prop-types": "^2.11.0",
-    "@types/lodash": "^4.14.123",
+    "@types/airbnb-prop-types": "^2.13.1",
+    "@types/lodash": "^4.14.134",
     "@types/prop-types": "^15.7.1",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
-    "airbnb-prop-types": "^2.12.0",
-    "final-form": "^4.12.0",
+    "airbnb-prop-types": "^2.13.2",
+    "final-form": "^4.16.1",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "shallowequal": "^1.1.0",
-    "utility-types": "^3.5.0",
+    "utility-types": "^3.7.0",
     "uuid": "^3.3.2"
   }
 }

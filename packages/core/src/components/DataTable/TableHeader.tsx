@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import Text from '../Text';
@@ -33,6 +33,7 @@ export type Props = {
 
 /** Header for the DataTable that displays a title and Table-level buttons. */
 export function TableHeader({
+  cx,
   editable,
   editMode,
   extraHeaderButtons,
@@ -119,7 +120,7 @@ export function TableHeader({
 
   return (
     <div style={dimensionStyles}>
-      <div {...css(styles.tableHeader_inner)}>
+      <div className={cx(styles.tableHeader_inner)}>
         {label}
         {headerButtons}
       </div>

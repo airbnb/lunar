@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import withBoundary from '../../composers/withBoundary';
 import Cell from './Cell';
 import Row from './Row';
@@ -45,6 +45,7 @@ export class Table extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       bordered,
       children,
       compact,
@@ -59,9 +60,9 @@ export class Table extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <div {...css(styles.responsive_wrapper)}>
+      <div className={cx(styles.responsive_wrapper)}>
         <table
-          {...css(
+          className={cx(
             styles.table,
             middleAlign && styles.content_middle_align,
             fixed && styles.table_fixed,

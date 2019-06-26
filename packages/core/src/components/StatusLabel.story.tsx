@@ -90,4 +90,12 @@ storiesOf('Core/StatusLabel', module)
         Info Inverted
       </StatusLabel>
     </>
+  ))
+  .add('Same height with or without border applied', () => (
+    <>
+      <StatusLabel>Default</StatusLabel>
+      <StatusLabel inverted bordered>
+        Default
+      </StatusLabel>
+    </>
   ));

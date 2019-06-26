@@ -9,7 +9,6 @@ import ColSpanRenderer from ':storybook/components/DataTable/DataTableRenderers/
 import CatRenderer from ':storybook/components/DataTable/DataTableRenderers/CatRenderer';
 import MenuRenderer from ':storybook/components/DataTable/DataTableRenderers/MenuRenderer';
 import EditableTextRenderer from ':storybook/components/DataTable/DataTableRenderers/EditableTextRenderer';
-
 import DataTable from './DataTable';
 import Button from './Button';
 import Input from './Input';
@@ -123,7 +122,8 @@ export class SearchDemo extends React.Component {
 
   render() {
     const { data, search } = this.state;
-
+    // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
+    const filteredData = this.filter(search);
     const button = (
       <Button inline onClick={this.handleNewData}>
         New Data
@@ -144,12 +144,7 @@ export class SearchDemo extends React.Component {
             />
           </Row>
         </Spacing>
-        <DataTable
-          data={data}
-          filterData={this.filter(search)} // eslint-disable-line unicorn/no-fn-reference-in-iterator
-          selectable
-          expandable
-        />
+        <DataTable data={data} filterData={filteredData} selectable expandable />
       </>
     );
   }
@@ -160,6 +155,14 @@ storiesOf('Core/DataTable', module)
     inspectComponents: [DataTable],
   })
   .add('A standard table.', () => <DataTable data={getData()} keys={['name', 'jobTitle']} />)
+  .add('A standard table with initial sorting.', () => (
+    <DataTable
+      data={getData()}
+      keys={['name', 'jobTitle']}
+      sortByOverride="name"
+      sortDirectionOverride="ASC"
+    />
+  ))
   .add('A table with selectable and exandable rows.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"

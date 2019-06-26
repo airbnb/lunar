@@ -15,7 +15,7 @@ storiesOf('Core/Multicomplete', module)
       name="autocomplete"
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadOptions={value =>
+      onLoadItems={value =>
         Promise.resolve(
           [
             { value: 'red', name: 'Red' },
@@ -35,7 +35,7 @@ storiesOf('Core/Multicomplete', module)
       name="autocomplete"
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadOptions={value =>
+      onLoadItems={value =>
         Promise.resolve(
           [
             { value: 'red', name: 'Red' },
@@ -56,7 +56,7 @@ storiesOf('Core/Multicomplete', module)
       name="autocomplete"
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadOptions={value =>
+      onLoadItems={value =>
         Promise.resolve(
           [
             { value: 'red', name: 'Red' },

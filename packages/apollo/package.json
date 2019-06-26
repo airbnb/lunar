@@ -7,7 +7,7 @@
   "types": "./lib/index.d.ts",
   "module": "./esm/index.js",
   "sideEffects": false,
-  "repository": "https://github.com/airbnb/lunar",
+  "repository": "https://github.com/airbnb/lunar/tree/master/packages/apollo",
   "publishConfig": {
     "access": "public"
   },
@@ -17,28 +17,29 @@
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
   },
   "peerDependencies": {
-    "@airbnb/lunar": "^1.0.0",
+    "@airbnb/lunar": "^2.0.0",
     "graphql": "^14.1.0",
     "graphql-tag": "^2.10.0",
     "react": "^16.8.0"
   },
   "devDependencies": {
-    "@types/react-test-renderer": "^16.8.1",
-    "graphql": "^14.1.0",
-    "graphql-tag": "^2.10.0",
+    "@airbnb/lunar-test-utils": "*",
+    "@types/react-test-renderer": "^16.8.2",
+    "graphql": "^14.3.1",
+    "graphql-tag": "^2.10.1",
     "react": "^16.8.6",
     "react-test-renderer": "^16.8.6"
   },
   "dependencies": {
-    "@types/graphql": "^14.2.0",
-    "@types/lodash": "^4.14.123",
-    "apollo-cache-inmemory": "^1.5.1",
-    "apollo-client": "^2.5.1",
-    "apollo-link": "^1.2.11",
-    "apollo-link-error": "^1.1.10",
-    "apollo-link-http": "^1.5.14",
+    "@types/graphql": "^14.2.2",
+    "@types/lodash": "^4.14.134",
+    "apollo-cache-inmemory": "^1.6.2",
+    "apollo-client": "^2.6.3",
+    "apollo-link": "^1.2.12",
+    "apollo-link-error": "^1.1.11",
+    "apollo-link-http": "^1.5.15",
     "lodash": "^4.17.11",
-    "react-apollo": "^2.5.3",
-    "utility-types": "^3.5.0"
+    "react-apollo": "^2.5.8",
+    "utility-types": "^3.7.0"
   }
 }

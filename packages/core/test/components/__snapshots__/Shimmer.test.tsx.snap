@@ -3,7 +3,7 @@
 exports[`<Shimmer /> renders block 1`] = `
 <span
   aria-busy="true"
-  className="shimmer_16ymm3u-o_O-shimmer_block_uhlm2"
+  className="shimmer_kczdt6-o_O-shimmer_block_uhlm2"
   style={
     Object {
       "borderRadius": "0.125em",
@@ -17,7 +17,7 @@ exports[`<Shimmer /> renders block 1`] = `
 exports[`<Shimmer /> renders default 1`] = `
 <span
   aria-busy="true"
-  className="shimmer_16ymm3u"
+  className="shimmer_kczdt6"
   style={
     Object {
       "borderRadius": "0.125em",
@@ -31,7 +31,7 @@ exports[`<Shimmer /> renders default 1`] = `
 exports[`<Shimmer /> renders with custom border radius 1`] = `
 <span
   aria-busy="true"
-  className="shimmer_16ymm3u"
+  className="shimmer_kczdt6"
   style={
     Object {
       "borderRadius": "50%",
@@ -45,7 +45,7 @@ exports[`<Shimmer /> renders with custom border radius 1`] = `
 exports[`<Shimmer /> renders with custom dimensions 1`] = `
 <span
   aria-busy="true"
-  className="shimmer_16ymm3u"
+  className="shimmer_kczdt6"
   style={
     Object {
       "borderRadius": "0.125em",

@@ -41,6 +41,8 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     clearOnSelect?: boolean;
     /** Delay in which to load items. */
     debounce?: number;
+    /** Disable caching of loaded item responses. */
+    disableCache?: boolean;
     /**
      * Value to insert into the input field when an item is selected.
      * Defaults to the item's `value` or `id` property.
@@ -50,7 +52,7 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     isItemSelectable?: (item: T, selected?: boolean) => boolean;
     /** Determine if an item is selected. Will compare values by default if not defined. */
     isItemSelected?: (item: T, value: string) => boolean;
-    /** Whether to invoke onLoadOptions with the current value when focused. */
+    /** Load and show items with the current value when focused. */
     loadItemsOnFocus?: boolean;
     /** Load and show items on mount. */
     loadItemsOnMount?: boolean;
@@ -61,7 +63,7 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     /** Callback fired when the value changes. */
     onChange: (value: string, event: React.SyntheticEvent<any>) => void;
     /** Callback fired to load items. Must return a promise with an array of items. */
-    onLoadOptions: (value: string) => Promise<ItemResponseType<T>>;
+    onLoadItems: (value: string) => Promise<ItemResponseType<T>>;
     /** Callback fired when the display of the menu is toggled. */
     onMenuVisibilityChange?: (open: boolean) => void;
     /**
@@ -102,6 +104,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
     autoFocus: false,
     clearOnSelect: false,
     debounce: 250,
+    disableCache: false,
     getItemValue,
     isItemSelectable() {
       return true;
@@ -122,7 +125,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
 
   inputRef = React.createRef<HTMLInputElement>();
 
-  state = {
+  state: State<T> = {
     error: null,
     highlightedIndex: null,
     id: uuid(),
@@ -447,7 +450,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
       loading: true,
     });
 
-    const { loadItemsOnFocus } = this.props;
+    const { disableCache, loadItemsOnFocus } = this.props;
 
     // Exit early if no value
     if (!value && !force && !loadItemsOnFocus) {
@@ -479,10 +482,12 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
           items = response.results || response.items || [];
         }
 
-        this.cache[input] = {
-          items,
-          time: Date.now(),
-        };
+        if (!disableCache) {
+          this.cache[input] = {
+            items,
+            time: Date.now(),
+          };
+        }
 
         const nextState = {
           items,
@@ -511,7 +516,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   }>(
     /* istanbul ignore next */
     (input: string) =>
-      Promise.resolve(this.props.onLoadOptions(input)).then(response => ({
+      Promise.resolve(this.props.onLoadItems(input)).then(response => ({
         input,
         response,
       })),

@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import FieldAffix from '../../../src/components/private/FieldAffix';
 
 describe('<FieldAffix />', () => {
   it('renders before and after with different classes', () => {
-    const wrapper = shallow(<FieldAffix before>Child</FieldAffix>).dive();
+    const wrapper = shallowWithStyles(<FieldAffix before>Child</FieldAffix>);
     const beforeClass = wrapper.prop('className');
 
     wrapper.setProps({
@@ -16,22 +16,22 @@ describe('<FieldAffix />', () => {
   });
 
   it('renders compact', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <FieldAffix after compact>
         Child
       </FieldAffix>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('errors if both props used', () => {
     expect(() => {
-      shallow(
+      shallowWithStyles(
         <FieldAffix before after>
           Child
         </FieldAffix>,
-      ).dive();
+      );
     }).toThrowError();
   });
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Enzyme, { mount, shallow } from 'enzyme';
+import Enzyme from 'enzyme';
+import { mountWithStyles, shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Overlay, {
   Props as OverlayProps,
   State as OverlayState,
@@ -24,7 +25,7 @@ describe('<Overlay />', () => {
     const portalSpy = jest.spyOn(ReactDOM, 'createPortal');
     const eventSpy = jest.spyOn(window, 'addEventListener');
     const closeSpy = jest.fn();
-    const wrapper = mount(<Overlay onClose={closeSpy}>hello world</Overlay>);
+    const wrapper = mountWithStyles(<Overlay onClose={closeSpy}>hello world</Overlay>);
 
     expect(portalSpy).toHaveBeenCalledWith(null, expect.anything());
 
@@ -47,7 +48,7 @@ describe('<Overlay />', () => {
   });
 
   it('forces an update on resize', () => {
-    const wrapper = mount<Overlay>(
+    const wrapper = mountWithStyles<Overlay>(
       <Overlay {...props} open>
         hello world
       </Overlay>,
@@ -60,7 +61,7 @@ describe('<Overlay />', () => {
   });
 
   it('does not calls addScrollListeners', () => {
-    const wrapper = mount<Overlay>(<Overlay {...props}>hello world</Overlay>);
+    const wrapper = mountWithStyles<Overlay>(<Overlay {...props}>hello world</Overlay>);
     // @ts-ignore Method not being found on class
     const spy = jest.spyOn(wrapper.instance(), 'addScrollListeners');
 
@@ -75,7 +76,7 @@ describe('<Overlay />', () => {
     let wrapper: Enzyme.ReactWrapper<OverlayProps, OverlayState, Overlay>;
 
     beforeEach(() => {
-      wrapper = mount(
+      wrapper = mountWithStyles(
         <Overlay {...props} noBackground>
           hello world
         </Overlay>,
@@ -117,9 +118,9 @@ describe('<Overlay />', () => {
       closeSpy = jest.fn();
       resizeSpy = jest.fn();
 
-      wrapper = shallow(
+      wrapper = shallowWithStyles(
         <Portal {...props} onResize={resizeSpy} onClose={closeSpy} noBackground />,
-      ).dive() as any;
+      ) as any;
       instance = wrapper.instance();
     });
 

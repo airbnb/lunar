@@ -1,31 +1,32 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mountWithStyles, shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Mark from '../../../src/components/TextArea/Proofreader/Mark';
 
 describe('<Mark />', () => {
   it('renders', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Mark selected={false} onSelect={() => {}}>
         Word
       </Mark>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders selected', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Mark selected onSelect={() => {}}>
         Word
       </Mark>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('triggers `onSelect` on mount if selected', () => {
     const spy = jest.fn();
-    mount(
+
+    mountWithStyles(
       <Mark selected onSelect={spy}>
         Word
       </Mark>,
@@ -36,7 +37,8 @@ describe('<Mark />', () => {
 
   it('doesnt trigger `onSelect` on mount if not selected', () => {
     const spy = jest.fn();
-    mount(
+
+    mountWithStyles(
       <Mark selected={false} onSelect={spy}>
         Word
       </Mark>,
@@ -47,7 +49,7 @@ describe('<Mark />', () => {
 
   it('triggers `onSelect` if updated to selected', () => {
     const spy = jest.fn();
-    const wrapper = mount(
+    const wrapper = mountWithStyles(
       <Mark selected={false} onSelect={spy}>
         Word
       </Mark>,
@@ -64,7 +66,7 @@ describe('<Mark />', () => {
 
   it('doesnt trigger `onSelect` if updated from selected', () => {
     const spy = jest.fn();
-    const wrapper = mount(
+    const wrapper = mountWithStyles(
       <Mark selected onSelect={spy}>
         Word
       </Mark>,

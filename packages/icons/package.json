@@ -7,8 +7,7 @@
   "types": "./lib/index.d.ts",
   "module": "./esm/index.js",
   "sideEffects": false,
-  "priority": 100,
-  "repository": "https://github.com/airbnb/lunar",
+  "repository": "https://github.com/airbnb/lunar/tree/master/packages/icons",
   "publishConfig": {
     "access": "public"
   },
@@ -21,9 +20,10 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
+    "@airbnb/lunar-test-utils": "*",
     "react": "^16.8.6"
   },
   "dependencies": {
-    "@types/react": "^16.8.15"
+    "@types/react": "^16.8.22"
   }
 }

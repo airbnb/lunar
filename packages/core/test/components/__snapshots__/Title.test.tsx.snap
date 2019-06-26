@@ -2,7 +2,7 @@
 
 exports[`<Title /> renders inline 1`] = `
 <h1
-  className="title_gfa0uf-o_O-title_level1_1weg1ok-o_O-title_inline_g86r3e"
+  className="title_gfa0uf-o_O-title_level1_17a30zo-o_O-title_inline_g86r3e"
 >
   Inline
 </h1>
@@ -10,7 +10,7 @@ exports[`<Title /> renders inline 1`] = `
 
 exports[`<Title /> renders inverted 1`] = `
 <h1
-  className="title_gfa0uf-o_O-title_level1_1weg1ok-o_O-title_inverted_bd4m75"
+  className="title_gfa0uf-o_O-title_level1_17a30zo-o_O-title_inverted_bd4m75"
 >
   Inverted
 </h1>
@@ -18,7 +18,7 @@ exports[`<Title /> renders inverted 1`] = `
 
 exports[`<Title /> renders level 1 1`] = `
 <h1
-  className="title_gfa0uf-o_O-title_level1_1weg1ok"
+  className="title_gfa0uf-o_O-title_level1_17a30zo"
 >
   Title
 </h1>
@@ -26,7 +26,7 @@ exports[`<Title /> renders level 1 1`] = `
 
 exports[`<Title /> renders level 2 1`] = `
 <h2
-  className="title_gfa0uf-o_O-title_level2_gjjjou"
+  className="title_gfa0uf-o_O-title_level2_1aurm9a"
 >
   Title
 </h2>
@@ -34,7 +34,7 @@ exports[`<Title /> renders level 2 1`] = `
 
 exports[`<Title /> renders level 3 1`] = `
 <h3
-  className="title_gfa0uf-o_O-title_level3_eqlia4"
+  className="title_gfa0uf-o_O-title_level3_1vnvwgc"
 >
   Title
 </h3>
@@ -42,7 +42,7 @@ exports[`<Title /> renders level 3 1`] = `
 
 exports[`<Title /> renders muted 1`] = `
 <h1
-  className="title_gfa0uf-o_O-title_level1_1weg1ok-o_O-title_muted_10k87om"
+  className="title_gfa0uf-o_O-title_level1_17a30zo-o_O-title_muted_10k87om"
 >
   Muted
 </h1>

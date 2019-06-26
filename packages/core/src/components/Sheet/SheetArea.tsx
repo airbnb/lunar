@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import SheetContext from './SheetContext';
 
 export type Props = {
@@ -22,12 +22,12 @@ export class SheetArea extends React.Component<Props & WithStylesProps, State> {
   };
 
   render() {
-    const { styles, children } = this.props;
+    const { cx, styles, children } = this.props;
     const { visible } = this.state;
 
     return (
       <SheetContext.Provider value={this.setSheetVisible}>
-        <div {...css(visible && styles.sheet_visible)}>{children}</div>
+        <div className={cx(visible && styles.sheet_visible)}>{children}</div>
       </SheetContext.Provider>
     );
   }

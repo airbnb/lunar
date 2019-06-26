@@ -1,9 +1,11 @@
 import React from 'react';
+import IconCaretLeft from '@airbnb/lunar-icons/lib/interface/IconCaretLeft';
 import IconCaretRight from '@airbnb/lunar-icons/lib/interface/IconCaretRight';
 import iconComponent from '../../prop-types/iconComponent';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
 import Text from '../Text';
+import DirectionalIcon from '../DirectionalIcon';
 
 export type Props = {
   /** Content within the menu item. */
@@ -73,6 +75,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       children,
       disabled,
       highlighted,
@@ -88,7 +91,17 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
       tip,
     } = this.props;
     const { showSubmenu } = this.state;
-    const after = submenu ? <IconCaretRight decorative size="1.5em" /> : tip;
+    const after = submenu ? (
+      <DirectionalIcon
+        direction="right"
+        left={IconCaretLeft}
+        right={IconCaretRight}
+        size="1.5em"
+        decorative
+      />
+    ) : (
+      tip
+    );
 
     return (
       <li role="none" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
@@ -109,7 +122,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
           tabIndex={tabIndex}
           aria-haspopup={!!submenu}
           aria-expanded={showSubmenu}
-          {...css(
+          className={cx(
             styles.item,
             (showSubmenu || highlighted) && styles.item_highlighted,
             disabled && styles.item_disabled,
@@ -119,7 +132,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
           {children}
         </ButtonOrLink>
 
-        {showSubmenu && <div {...css(styles.submenu)}>{submenu}</div>}
+        {showSubmenu && <div className={cx(styles.submenu)}>{submenu}</div>}
       </li>
     );
   }

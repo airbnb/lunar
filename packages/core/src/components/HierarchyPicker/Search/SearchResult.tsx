@@ -1,6 +1,6 @@
 import React from 'react';
 import groupBy from 'lodash/groupBy';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import Text from '../../Text';
 import Highlight from './Highlight';
 import { ItemShape, FuseMatch } from '../types';
@@ -19,7 +19,7 @@ export class SearchResult extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { styles, item, formattedParents, matches, query } = this.props;
+    const { cx, styles, item, formattedParents, matches, query } = this.props;
     const { description, label, name } = item;
     const mbk = groupBy(matches, 'key');
     const [labelMatch = null] = mbk.label || [];
@@ -28,7 +28,7 @@ export class SearchResult extends React.Component<Props & WithStylesProps> {
     const [longest] = query!.split(/\s{1,}/).sort((a, b) => b.length - a.length);
 
     return (
-      <div {...css(styles.resultItem)}>
+      <div className={cx(styles.resultItem)}>
         <Text bold>
           {formattedParents}
           <Highlight word={longest} match={labelMatch} fallback={label || name} />

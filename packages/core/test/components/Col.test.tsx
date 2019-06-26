@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Col from '../../src/components/Grid/Col';
 
 describe('<Col />', () => {
@@ -7,21 +7,21 @@ describe('<Col />', () => {
 
   range.forEach(span => {
     it(`renders span ${span}`, () => {
-      const wrapper = shallow(<Col span={span as any}>Child</Col>);
+      const wrapper = shallowWithStyles(<Col span={span as any}>Child</Col>);
 
-      expect(wrapper.dive().prop('data-span')).toBe(span);
+      expect(wrapper.prop('data-span')).toBe(span);
     });
 
     const offset = span - 1;
 
     it(`renders offset ${offset}`, () => {
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Col span={span as any} offset={offset as any}>
           Child
         </Col>,
       );
 
-      expect(wrapper.dive().prop('data-offset')).toBe(offset);
+      expect(wrapper.prop('data-offset')).toBe(offset);
     });
   });
 });

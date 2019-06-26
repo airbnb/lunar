@@ -1,36 +1,36 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ProgressBar from '../../src/components/ProgressBar';
 
 describe('<ProgressBar />', () => {
   it('renders a progress bar', () => {
-    const wrapper = shallow(<ProgressBar percent={10}>Button</ProgressBar>).dive();
+    const wrapper = shallowWithStyles(<ProgressBar percent={10}>Button</ProgressBar>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders trailing', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ProgressBar trailing percent={50}>
         Button
       </ProgressBar>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders leading', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ProgressBar leading percent={50}>
         Button
       </ProgressBar>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('can change width with percent prop', () => {
-    const wrapper = shallow(<ProgressBar percent={15}>Button</ProgressBar>).dive();
+    const wrapper = shallowWithStyles(<ProgressBar percent={15}>Button</ProgressBar>);
 
     expect(
       wrapper

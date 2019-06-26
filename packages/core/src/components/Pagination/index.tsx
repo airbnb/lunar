@@ -5,10 +5,11 @@ import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconFirst from '@airbnb/lunar-icons/lib/interface/IconFirst';
 import IconLast from '@airbnb/lunar-icons/lib/interface/IconLast';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import IconButton from '../IconButton';
 import Text from '../Text';
 import T from '../Translate';
+import DirectionalIcon from '../DirectionalIcon';
 
 const alignProp = mutuallyExclusiveTrueProps('centerAlign', 'endAlign', 'startAlign');
 
@@ -67,6 +68,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       centerAlign,
       endAlign,
       fetching,
@@ -91,7 +93,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
 
     const previousPage = (
       <IconButton active={hasPrev} disabled={!hasPrev || fetching} onClick={onPrevious}>
-        <IconChevronLeft
+        <DirectionalIcon
+          direction="left"
+          left={IconChevronLeft}
+          right={IconChevronRight}
           accessibilityLabel={T.phrase(
             'Load previous page',
             {},
@@ -104,7 +109,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
 
     const nextPage = (
       <IconButton active={hasNext} disabled={!hasNext || fetching} onClick={onNext}>
-        <IconChevronRight
+        <DirectionalIcon
+          direction="right"
+          left={IconChevronLeft}
+          right={IconChevronRight}
           accessibilityLabel={T.phrase(
             'Load next page',
             {},
@@ -121,7 +129,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
     if (showBookends && typeof pageCount === 'number') {
       firstPage = (
         <IconButton active={hasPrev} disabled={page === 1 || fetching} onClick={onFirst}>
-          <IconFirst
+          <DirectionalIcon
+            direction="left"
+            left={IconFirst}
+            right={IconLast}
             accessibilityLabel={T.phrase(
               'Load first page',
               {},
@@ -138,7 +149,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
           disabled={pageCount < 2 || pageCount === page || fetching}
           onClick={onLast}
         >
-          <IconLast
+          <DirectionalIcon
+            direction="right"
+            left={IconFirst}
+            right={IconLast}
             accessibilityLabel={T.phrase(
               'Load last page',
               {},
@@ -184,21 +198,21 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        {...css(
+        className={cx(
           styles.wrapper,
           endAlign && styles.wrapper_endAlign,
           centerAlign && styles.wrapper_centerAlign,
           startAlign && styles.wrapper_startAlign,
         )}
       >
-        <div {...css(styles.previous)}>
+        <div className={cx(styles.previous)}>
           {firstPage}
           {previousPage}
         </div>
-        <div {...css(styles.page)}>
+        <div className={cx(styles.page)}>
           <Text muted>{paginationText}</Text>
         </div>
-        <div {...css(styles.next)}>
+        <div className={cx(styles.next)}>
           {nextPage}
           {lastPage}
         </div>
