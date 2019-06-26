@@ -87,13 +87,13 @@ storiesOf('Core/ToggleButtonController', module)
     >
       {ControlledButton => (
         <ButtonGroup>
-          <ControlledButton compact value="red" key="red">
+          <ControlledButton value="red" key="red">
             Red
           </ControlledButton>
-          <ControlledButton compact value="blue" key="blue">
+          <ControlledButton value="blue" key="blue">
             Blue
           </ControlledButton>
-          <ControlledButton compact value="green" key="green">
+          <ControlledButton value="green" key="green">
             Green
           </ControlledButton>
         </ButtonGroup>
