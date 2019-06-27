@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.3 - 2019-06-27
+
+#### 🎨 Styles
+
+- **[CheckBox]** Add focus state (#99) ([5568178](https://github.com/airbnb/lunar/tree/master/packages/core/commit/5568178)), closes [#99](https://github.com/airbnb/lunar/tree/master/packages/core/issues/99)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 2.1.2 - 2019-06-27
+
+#### 🐞 Fixes
+
+- **[BaseRadioButton]** Fix radio button focus state (#100) ([e415402](https://github.com/airbnb/lunar/tree/master/packages/core/commit/e415402)), closes [#100](https://github.com/airbnb/lunar/tree/master/packages/core/issues/100)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 2.1.1 - 2019-06-27
+
+#### 🐞 Fixes
+
+- **[ToggleButtonController]** Fix compact to render small buttons. (#106) ([43d1408](https://github.com/airbnb/lunar/tree/master/packages/core/commit/43d1408)), closes [#106](https://github.com/airbnb/lunar/tree/master/packages/core/issues/106)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.1.0 - 2019-06-26
+
+#### 🚀 Updates
+
+- **[TrackingBoundary]** data attribute on tracking-boundary tags (#103) ([8a09b65](https://github.com/airbnb/lunar/tree/master/packages/core/commit/8a09b65)), closes [#103](https://github.com/airbnb/lunar/tree/master/packages/core/issues/103)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 # 2.0.0 - 2019-06-26
 
 #### 💥 Breaking
