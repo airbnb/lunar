@@ -32,10 +32,11 @@ export default function buildTheme(
     bgHover: color.neutral[0],
     bgError: color.danger[0],
     border: color.neutral[2],
+    borderActive: color.primary[3], // Also focus/selected
     borderHover: color.neutral[3],
     borderError: color.danger[3],
-    borderFocus: color.primary[3], // Also active/selected
     text: color.neutral[5],
+    textActive: color.primary[3],
     textError: color.danger[3],
     ...accents,
   };
@@ -79,7 +80,7 @@ export default function buildTheme(
         cursor: 'normal',
       },
       focused: {
-        borderColor: accent.borderFocus,
+        borderColor: accent.borderActive,
         outline: 'none',
       },
       invalid: {

@@ -5,7 +5,7 @@ exports[`<CountBadge /> does not render when value is 0 1`] = `""`;
 exports[`<CountBadge /> renders default 1`] = `
 <div
   aria-label="5 unread messages"
-  className="badge_lqumip-o_O-animateIn_q9sqz6"
+  className="badge_134snep-o_O-animateIn_q9sqz6"
 >
   5
 </div>

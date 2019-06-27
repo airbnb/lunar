@@ -42,7 +42,7 @@ export default function buildInputStyles({
 
     '@selectors': {
       ':hover, :focus': {
-        borderColor: color.accent.borderFocus,
+        borderColor: color.accent.borderActive,
       },
     },
   };
@@ -67,7 +67,7 @@ export default function buildInputStyles({
 
     '@selectors': {
       ':hover, :focus': {
-        borderColor: color.accent.borderFocus,
+        borderColor: color.accent.borderActive,
       },
     },
   };

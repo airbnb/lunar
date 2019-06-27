@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { mutuallyExclusiveProps } from 'airbnb-prop-types';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 const PositionShape = PropTypes.oneOfType([
   PropTypes.number.isRequired,
@@ -36,7 +37,7 @@ export type Props = {
 };
 
 /** An abstract component for displaing menus and overlays over content. */
-export default class Dropdown extends React.PureComponent<Props> {
+class Dropdown extends React.PureComponent<Props & WithStylesProps> {
   static propTypes = {
     bottom: topBottomProp,
     left: leftRightProp,
@@ -85,6 +86,7 @@ export default class Dropdown extends React.PureComponent<Props> {
 
   render() {
     const {
+      cx,
       children,
       fixed,
       onBlur,
@@ -111,9 +113,11 @@ export default class Dropdown extends React.PureComponent<Props> {
     }
 
     return (
-      <div ref={this.ref} style={style} onBlur={onBlur} onFocus={onFocus}>
+      <div ref={this.ref} className={cx(style as any)} onBlur={onBlur} onFocus={onFocus}>
         {children}
       </div>
     );
   }
 }
+
+export default withStyles(() => ({}))(Dropdown);

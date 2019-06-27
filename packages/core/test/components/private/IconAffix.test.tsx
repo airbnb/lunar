@@ -1,27 +1,27 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import IconAffix from '../../../src/components/private/IconAffix';
 
 describe('<IconAffix />', () => {
   it('renders before', () => {
-    const wrapper = shallow(<IconAffix before>Child</IconAffix>).dive();
+    const wrapper = shallowWithStyles(<IconAffix before>Child</IconAffix>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders after', () => {
-    const wrapper = shallow(<IconAffix after>Child</IconAffix>).dive();
+    const wrapper = shallowWithStyles(<IconAffix after>Child</IconAffix>);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('errors if both props used', () => {
     expect(() => {
-      shallow(
+      shallowWithStyles(
         <IconAffix before after>
           Child
         </IconAffix>,
-      ).dive();
+      );
     }).toThrowError();
   });
 });

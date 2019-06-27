@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ScrollSectionContext, { Context } from './ScrollContext';
 
 export type Props = {
@@ -106,7 +106,7 @@ export class ScrollWrapper extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, styles } = this.props;
+    const { cx, children, styles } = this.props;
 
     if (!this.scrollContext) {
       this.scrollContext = {
@@ -117,7 +117,7 @@ export class ScrollWrapper extends React.Component<Props & WithStylesProps> {
 
     return (
       <ScrollSectionContext.Provider value={this.scrollContext}>
-        <div ref={this.scrollRef} {...css(styles.wrapper)}>
+        <div ref={this.scrollRef} className={cx(styles.wrapper)}>
           {children}
         </div>
       </ScrollSectionContext.Provider>

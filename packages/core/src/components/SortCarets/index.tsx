@@ -1,7 +1,7 @@
 import React from 'react';
 import IconCaretUp from '@airbnb/lunar-icons/lib/interface/IconCaretUp';
 import IconCaretDown from '@airbnb/lunar-icons/lib/interface/IconCaretDown';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Whether or not to display the bottom caret. */
@@ -24,12 +24,12 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
   };
 
   renderCaretUp() {
-    const { down, up, enableUp, styles } = this.props;
+    const { cx, down, up, enableUp, styles } = this.props;
 
     return (
       up && (
         <span
-          {...css(
+          className={cx(
             down && styles.caret_up,
             styles.caret,
             enableUp ? styles.caret_active : styles.caret_inactive,
@@ -42,12 +42,12 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
   }
 
   renderCaretDown() {
-    const { down, up, enableDown, styles } = this.props;
+    const { cx, down, up, enableDown, styles } = this.props;
 
     return (
       down && (
         <span
-          {...css(
+          className={cx(
             up && styles.caret_down,
             styles.caret,
             enableDown ? styles.caret_active : styles.caret_inactive,
@@ -60,10 +60,10 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
   }
 
   render() {
-    const { styles } = this.props;
+    const { cx, styles } = this.props;
 
     return (
-      <span {...css(styles.caret_container)}>
+      <span className={cx(styles.caret_container)}>
         {this.renderCaretUp()}
         {this.renderCaretDown()}
       </span>

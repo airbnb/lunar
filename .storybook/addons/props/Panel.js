@@ -1,6 +1,6 @@
 import React from 'react';
 import { Placeholder } from '@storybook/components';
-import Tabs from '@storybook/addon-a11y/dist/components/Tabs';
+import { Tabs } from '@storybook/addon-a11y/dist/components/Tabs';
 import About from './About';
 
 export default class Panel extends React.Component {
@@ -57,6 +57,7 @@ export default class Panel extends React.Component {
           )}
         />
       ),
+      items: [],
     }));
 
     if (tabs.length === 1) {

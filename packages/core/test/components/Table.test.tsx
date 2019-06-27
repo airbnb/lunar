@@ -4,6 +4,7 @@ import { unwrapHOCs } from '@airbnb/lunar-test-utils';
 import Table from '../../src/components/Table';
 
 function unwrap(element: any): Enzyme.ShallowWrapper {
+  // Dont use shallowWithStyles because of TrackingBoundary
   return unwrapHOCs(shallow(element), 'Table', {}, { render: true });
 }
 

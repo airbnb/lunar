@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ButtonOrLink from '@airbnb/lunar/lib/components/private/ButtonOrLink';
 import IconAdd from '../../../../icons/src/interface/IconAdd';
 import SideBarItem from '../../../src/components/SideBar/Item';
@@ -7,12 +7,12 @@ import SideBarItem from '../../../src/components/SideBar/Item';
 describe('<SideBarItem />', () => {
   it('errors for invalid icon', () => {
     expect(() => {
-      shallow(<SideBarItem icon={<div />} />);
+      shallowWithStyles(<SideBarItem icon={<div />} />);
     }).toThrowError();
   });
 
   it('renders a list item with accessibility', () => {
-    const wrapper = shallow(<SideBarItem icon={<IconAdd decorative />} />).dive();
+    const wrapper = shallowWithStyles(<SideBarItem icon={<IconAdd decorative />} />);
 
     expect(wrapper.is('li')).toBe(true);
     expect(wrapper.prop('role')).toBe('none');
@@ -20,9 +20,9 @@ describe('<SideBarItem />', () => {
   });
 
   it('renders an icon and label', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <SideBarItem icon={<IconAdd decorative />} label={<i>Label</i>} />,
-    ).dive();
+    );
 
     expect(wrapper.find(IconAdd)).toHaveLength(1);
     expect(wrapper.find('i')).toHaveLength(1);
@@ -30,16 +30,16 @@ describe('<SideBarItem />', () => {
 
   it('passes href and onClick', () => {
     const click = jest.fn();
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <SideBarItem icon={<IconAdd decorative />} href="/test" onClick={click} />,
-    ).dive();
+    );
 
     expect(wrapper.find(ButtonOrLink).prop('href')).toBe('/test');
     expect(wrapper.find(ButtonOrLink).prop('onClick')).toBe(click);
   });
 
   it('overrides icon props', () => {
-    const wrapper = shallow(<SideBarItem icon={<IconAdd decorative size="5em" />} />).dive();
+    const wrapper = shallowWithStyles(<SideBarItem icon={<IconAdd decorative size="5em" />} />);
 
     expect(wrapper.find(IconAdd).props()).toEqual(
       expect.objectContaining({

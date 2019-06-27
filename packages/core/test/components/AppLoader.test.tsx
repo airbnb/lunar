@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import AppLoader from '../../src/components/AppLoader';
 import ErrorMessage from '../../src/components/ErrorMessage';
 import Loader from '../../src/components/Loader';
@@ -8,11 +8,11 @@ import Text from '../../src/components/Text';
 
 describe('<AppLoader />', () => {
   it('renders `Loader` and `loadingText` while fetching', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <AppLoader failureText="Failed" loadingText="Loading...">
         Content
       </AppLoader>,
-    ).dive();
+    );
 
     expect(wrapper.find(Loader)).toHaveLength(1);
     expect(wrapper.find(ErrorMessage)).toHaveLength(0);
@@ -21,11 +21,11 @@ describe('<AppLoader />', () => {
 
   it('renders `ErrorMessage` and `failureText` when failed', () => {
     const error = new Error('Oops');
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <AppLoader fetched error={error} failureText="Failed" loadingText="Loading...">
         Content
       </AppLoader>,
-    ).dive();
+    );
 
     expect(wrapper.find(Loader)).toHaveLength(0);
     expect(wrapper.find(ErrorMessage)).toHaveLength(1);
@@ -34,11 +34,11 @@ describe('<AppLoader />', () => {
   });
 
   it('renders content if successful', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <AppLoader fetched failureText="Failed" loadingText="Loading...">
         Content
       </AppLoader>,
-    ).dive();
+    );
 
     expect(wrapper.find(Loader)).toHaveLength(0);
     expect(wrapper.find(ErrorMessage)).toHaveLength(0);
@@ -47,11 +47,11 @@ describe('<AppLoader />', () => {
   });
 
   it('renders centered with subtitle', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <AppLoader centered failureText="Failed" loadingText="Loading...">
         Content
       </AppLoader>,
-    ).dive();
+    );
 
     expect(wrapper.find(Text)).toHaveLength(0);
 
@@ -64,11 +64,11 @@ describe('<AppLoader />', () => {
   });
 
   it('reduces title and subtitle size when `small`', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <AppLoader centered failureText="Failed" loadingText="Loading..." subtitle="Hello">
         Content
       </AppLoader>,
-    ).dive();
+    );
 
     expect(wrapper.find(Title).prop('level')).toBe(1);
     expect(wrapper.find(Text).prop('large')).toBe(true);

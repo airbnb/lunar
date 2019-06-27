@@ -1,7 +1,6 @@
 import React from 'react';
 import { AutoSizer, SortDirection, SortDirectionType, Table } from 'react-virtualized';
 import memoize from 'lodash/memoize';
-
 import sortData from './helpers/sortData';
 import expandData from './helpers/expandData';
 import { indexData } from './helpers/indexData';
@@ -22,7 +21,7 @@ import renderDataColumns from './columns/DataColumns';
 import renderExpandableColumn from './columns/ExpandableColumn';
 import renderSelectableColumn from './columns/SelectableColumn';
 import TableHeader from './TableHeader';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
 
@@ -37,15 +36,6 @@ export type State = {
 
 /** A dynamic and responsive table for displaying tabular data. */
 export class DataTable extends React.Component<DataTableProps & WithStylesProps, State> {
-  state = {
-    changeLog: {},
-    expandedRows: new Set(),
-    selectedRows: {},
-    sortBy: this.props.sortByOverride || '',
-    sortDirection: this.props.sortDirectionOverride!,
-    editMode: false,
-  };
-
   static defaultProps: Pick<DataTableProps, DefaultDataTableProps> = {
     columnHeaderHeight: undefined,
     columnLabelCase: '',
@@ -77,6 +67,15 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     tableHeaderLabel: '',
     width: 0,
     zebra: false,
+  };
+
+  state: State = {
+    changeLog: {},
+    expandedRows: new Set(),
+    selectedRows: {},
+    sortBy: this.props.sortByOverride || '',
+    sortDirection: this.props.sortDirectionOverride!,
+    editMode: false,
   };
 
   keys = getKeys(this.props.keys!, this.props.data!);
@@ -348,6 +347,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   render() {
     const {
+      cx,
       data,
       expandable,
       filterData,
@@ -372,7 +372,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             {({ width }: { width: number }) => this.renderTableHeader(width)}
           </AutoSizer>
         )}
-        <div {...css(styles.table_container)}>
+        <div className={cx(styles.table_container)}>
           <AutoSizer disableHeight>
             {({ width }: { width: number }) => (
               <Table
@@ -390,9 +390,11 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
                 headerRowRenderer={ColumnLabels(this.props)}
                 onRowClick={this.handleRowClick}
               >
-                {expandable && renderExpandableColumn(styles, expandedRows, this.expandRow)}
+                {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
+
                 {selectable &&
                   renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
+
                 {renderDataColumns(this.keys, editMode, this.onEdit, this.props)}
               </Table>
             )}
@@ -404,7 +406,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 }
 
 export default withStyles(
-  (theme: WithStylesProps['theme']) => ({
+  theme => ({
     table_container: {
       overflowX: 'auto',
     },

@@ -1,6 +1,5 @@
 import { SheetMap } from 'aesthetic';
 import { DayPickerProps } from 'react-day-picker';
-import { css } from '../../src/composers/withStyles';
 import { getClassNames, getCustomModifiers } from '../../src/utils/datePicker';
 
 const STYLE: SheetMap<any> = {
@@ -39,6 +38,13 @@ const STYLE: SheetMap<any> = {
   wrapper: { opacity: 0.32 },
 };
 
+function cx(...styles: any[]): string {
+  return styles
+    .filter(Boolean)
+    .map(style => JSON.stringify(style))
+    .join('-');
+}
+
 describe('getClassNames()', () => {
   let mockStyles: SheetMap<any>;
 
@@ -51,15 +57,17 @@ describe('getClassNames()', () => {
   });
 
   it('returns different container class names by type', () => {
-    const inputClassNames = getClassNames('input', mockStyles, {});
-    const calendarClassNames = getClassNames('calendar', mockStyles, {});
+    const inputClassNames = getClassNames('input', mockStyles, { cx, styles: mockStyles });
+    const calendarClassNames = getClassNames('calendar', mockStyles, { cx, styles: mockStyles });
 
     expect(inputClassNames.container !== calendarClassNames.container).toBe(true);
   });
 
   it('returns different class names if `showResetButton` is provided', () => {
-    const defaultClassNames = getClassNames('input', mockStyles, {});
+    const defaultClassNames = getClassNames('input', mockStyles, { cx, styles: mockStyles });
     const showResetButtonClassNames = getClassNames('calendar', mockStyles, {
+      cx,
+      styles: mockStyles,
       showResetButton: true,
     });
 
@@ -69,8 +77,8 @@ describe('getClassNames()', () => {
   });
 
   it('returns `overlayWrapper` and `overlay` class names for type `input`', () => {
-    const inputClassNames = getClassNames('input', mockStyles, {});
-    const calendarClassNames = getClassNames('calendar', mockStyles, {});
+    const inputClassNames = getClassNames('input', mockStyles, { cx, styles: mockStyles });
+    const calendarClassNames = getClassNames('calendar', mockStyles, { cx, styles: mockStyles });
 
     expect(inputClassNames.overlayWrapper).not.toBe('');
     expect(inputClassNames.overlay).not.toBe('');
@@ -95,8 +103,8 @@ describe('getCustomModifiers()', () => {
       start: new Date(Date.UTC(2000, 1, 1)),
     };
 
-    const startStylesClassName = css(mockStyles.modifier_start).className;
-    const customModifiers = getCustomModifiers(modifiers, mockStyles);
+    const startStylesClassName = cx(mockStyles.modifier_start);
+    const customModifiers = getCustomModifiers(modifiers, mockStyles, cx);
 
     expect('start' in customModifiers).toBe(true);
     expect('end' in customModifiers).toBe(false);
@@ -109,12 +117,12 @@ describe('getCustomModifiers()', () => {
       end: new Date(),
     };
 
-    const startWithRangeStylesClassName = css(
+    const startWithRangeStylesClassName = cx(
       mockStyles.modifier_start,
       mockStyles.modifier_startWithRange,
-    ).className;
-    const endStylesClassName = css(mockStyles.modifier_end).className;
-    const customModifiers = getCustomModifiers(modifiers, mockStyles);
+    );
+    const endStylesClassName = cx(mockStyles.modifier_end);
+    const customModifiers = getCustomModifiers(modifiers, mockStyles, cx);
 
     expect('start' in customModifiers).toBe(true);
     expect('end' in customModifiers).toBe(true);
@@ -127,8 +135,8 @@ describe('getCustomModifiers()', () => {
       end: new Date(),
     };
 
-    const endStylesClassName = css(mockStyles.modifier_end).className;
-    const customModifiers = getCustomModifiers(modifiers, mockStyles);
+    const endStylesClassName = cx(mockStyles.modifier_end);
+    const customModifiers = getCustomModifiers(modifiers, mockStyles, cx);
 
     expect('end' in customModifiers).toBe(true);
     expect(endStylesClassName in customModifiers).toBe(false);

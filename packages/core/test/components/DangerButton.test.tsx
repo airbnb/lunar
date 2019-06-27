@@ -1,12 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import DangerButton from '../../src/components/DangerButton';
 
 describe('<DangerButton />', () => {
   it('renders a primary button', () => {
-    const wrapper = shallow(<DangerButton>Button</DangerButton>)
-      .dive()
-      .dive();
+    const wrapper = shallowWithStyles(<DangerButton>Button</DangerButton>).dive();
 
     expect(wrapper).toMatchSnapshot();
   });

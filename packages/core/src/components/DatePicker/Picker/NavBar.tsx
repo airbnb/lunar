@@ -2,8 +2,9 @@ import React from 'react';
 import { NavbarElementProps as NavBarProps } from 'react-day-picker';
 import IconArrowLeft from '@airbnb/lunar-icons/lib/interface/IconArrowLeft';
 import IconArrowRight from '@airbnb/lunar-icons/lib/interface/IconArrowRight';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import datePickerStyles from '../../private/datePickerStyles';
+import DirectionalIcon from '../../DirectionalIcon';
 import IconButton from '../../IconButton';
 import T from '../../Translate';
 
@@ -38,6 +39,7 @@ class NavBar extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       className,
       classNames,
       labels,
@@ -53,7 +55,13 @@ class NavBar extends React.Component<Props & WithStylesProps> {
         {showPreviousButton && (
           <div className={classNames.navButtonPrev}>
             <IconButton tooltip={labels.previousMonth} onClick={this.handlePreviousClick}>
-              <IconArrowLeft size="1.25em" accessibilityLabel={labels.previousMonth} />
+              <DirectionalIcon
+                direction="left"
+                left={IconArrowLeft}
+                right={IconArrowRight}
+                size="1.25em"
+                accessibilityLabel={labels.previousMonth}
+              />
             </IconButton>
           </div>
         )}
@@ -61,14 +69,24 @@ class NavBar extends React.Component<Props & WithStylesProps> {
         {showNextButton && (
           <div className={classNames.navButtonNext}>
             <IconButton tooltip={labels.nextMonth} onClick={this.handleNextClick}>
-              <IconArrowRight size="1.25em" accessibilityLabel={labels.nextMonth} />
+              <DirectionalIcon
+                direction="right"
+                left={IconArrowLeft}
+                right={IconArrowRight}
+                size="1.25em"
+                accessibilityLabel={labels.nextMonth}
+              />
             </IconButton>
           </div>
         )}
 
         {showResetButton && (
-          <div {...css(styles.resetButton, noFooter && styles.resetButton_noFooter)}>
-            <button {...css(styles.todayButton)} type="button" onClick={this.handleResetClick}>
+          <div className={cx(styles.resetButton, noFooter && styles.resetButton_noFooter)}>
+            <button
+              className={cx(styles.todayButton)}
+              type="button"
+              onClick={this.handleResetClick}
+            >
               {T.phrase('Reset', {}, 'Reset selected dates')}
             </button>
           </div>

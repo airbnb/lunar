@@ -2,7 +2,7 @@ import React from 'react';
 import uuid from 'uuid/v4';
 import { DateTime } from 'luxon';
 import { Omit } from 'utility-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import BaseSelect from '../private/BaseSelect';
 import { SelectProps } from '../private/FormInput';
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
@@ -191,6 +191,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
   render() {
     const { fieldProps, inputProps } = partitionFieldProps(this.props);
     const {
+      cx,
       name,
       styles,
       // Omit everything
@@ -207,7 +208,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
 
     return (
       <FormField {...fieldProps} id={id}>
-        <div {...css(styles.selects)}>
+        <div className={cx(styles.selects)}>
           {!hideDate && (
             <>
               <BaseSelect
@@ -225,7 +226,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 ))}
               </BaseSelect>
 
-              <div {...css(styles.spacer)} />
+              <div className={cx(styles.spacer)} />
 
               <BaseSelect
                 {...restProps}
@@ -242,7 +243,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 ))}
               </BaseSelect>
 
-              <div {...css(styles.spacer)} />
+              <div className={cx(styles.spacer)} />
 
               {!hideYear && (
                 <BaseSelect
@@ -263,8 +264,8 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
 
               {!hideTime && (
                 <>
-                  <div {...css(styles.spacer)} />
-                  <div {...css(styles.spacer)} />
+                  <div className={cx(styles.spacer)} />
+                  <div className={cx(styles.spacer)} />
                 </>
               )}
             </>
@@ -287,7 +288,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 ))}
               </BaseSelect>
 
-              <div {...css(styles.spacer)}>:</div>
+              <div className={cx(styles.spacer)}>:</div>
 
               <BaseSelect
                 {...restProps}
@@ -306,7 +307,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
 
               {enable12HourClock && (
                 <>
-                  <div {...css(styles.spacer)} />
+                  <div className={cx(styles.spacer)} />
 
                   <BaseSelect
                     {...restProps}

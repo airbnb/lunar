@@ -1,14 +1,14 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Menu, { Item } from '../../src/components/Menu';
 
 describe('<Menu />', () => {
   it('renders a list with the correct role', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Menu accessibilityLabel="Foo">
         <Item>Child</Item>
       </Menu>,
-    ).dive();
+    );
 
     expect(wrapper.is('ul')).toBe(true);
     expect(wrapper.prop('role')).toBe('menu');
@@ -22,11 +22,11 @@ describe('<Menu />', () => {
   });
 
   it('renders a list with max height', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <Menu accessibilityLabel="Foo" maxHeight={200}>
         <Item>Child</Item>
       </Menu>,
-    ).dive();
+    );
 
     expect(wrapper.isEmptyRender()).toBe(false);
   });

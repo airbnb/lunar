@@ -18,7 +18,7 @@ export default function withBoundary(name?: string) /* infer */ {
       return (
         <TrackingBoundary name={trackingName || name}>
           <ErrorBoundary name={trackingName || name} onCatch={Core.log}>
-            <WrappedComponent {...restProps as any} />
+            <WrappedComponent {...(restProps as any)} />
           </ErrorBoundary>
         </TrackingBoundary>
       );

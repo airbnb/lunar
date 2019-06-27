@@ -1,7 +1,7 @@
 import React from 'react';
 import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
 import IconRemove from '@airbnb/lunar-icons/lib/interface/IconRemove';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import FormInput, { InputProps } from './FormInput';
 import buildInputStyles from '../../themes/buildInputStyles';
 
@@ -30,6 +30,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
 
   renderCheckBox = () => {
     const {
+      cx,
       button,
       checked,
       children,
@@ -43,7 +44,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <label htmlFor={id} {...css(styles.checkbox, hideLabel && styles.checkbox_hideLabel)}>
+      <label htmlFor={id} className={cx(styles.checkbox, hideLabel && styles.checkbox_hideLabel)}>
         <FormInput
           {...restProps}
           checked={checked}
@@ -58,7 +59,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
         />
 
         <span
-          {...css(
+          className={cx(
             styles.input,
             indeterminate && styles.input_indeterminate,
             checked && styles.input_checked,
@@ -67,14 +68,14 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
           )}
         >
           {checked && (
-            <span {...css(styles.checkmark)}>
-              <IconCheck decorative size="1.5em" />
+            <span className={cx(styles.checkmark)}>
+              <IconCheck decorative size="1.65em" />
             </span>
           )}
 
           {indeterminate && (
-            <span {...css(styles.indeterminate)}>
-              <IconRemove decorative size="1.5em" />
+            <span className={cx(styles.indeterminate)}>
+              <IconRemove decorative size="1.65em" />
             </span>
           )}
         </span>
@@ -83,7 +84,17 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { button, checked, children, disabled, id, invalid, indeterminate, styles } = this.props;
+    const {
+      cx,
+      button,
+      checked,
+      children,
+      disabled,
+      id,
+      invalid,
+      indeterminate,
+      styles,
+    } = this.props;
 
     if (!button) {
       return this.renderCheckBox();
@@ -92,7 +103,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
     return (
       <label
         htmlFor={id}
-        {...css(
+        className={cx(
           styles.button,
           indeterminate && styles.input_indeterminate,
           checked && styles.button_checked,
@@ -102,7 +113,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
       >
         {this.renderCheckBox()}
 
-        <div {...css(styles.children)}>{children}</div>
+        <div className={cx(styles.children)}>{children}</div>
       </label>
     );
   }
@@ -137,6 +148,7 @@ export default withStyles(theme => {
       padding: 0,
       display: 'inline-block',
       cursor: 'pointer',
+      position: 'relative',
       // Checkmark
       textAlign: 'center',
       fontSize: 10,
@@ -146,15 +158,15 @@ export default withStyles(theme => {
     },
 
     checkmark: {
-      position: 'relative',
-      top: -1,
-      left: -1,
+      position: 'absolute',
+      top: -1.5,
+      left: -1.5,
     },
 
     indeterminate: {
-      position: 'relative',
-      top: -0.5,
-      left: -0.5,
+      position: 'absolute',
+      top: -1,
+      left: -1,
     },
 
     children: {

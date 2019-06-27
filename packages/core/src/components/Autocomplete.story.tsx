@@ -21,7 +21,7 @@ storiesOf('Core/Autocomplete', module)
       name="autocomplete"
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadOptions={value =>
+      onLoadItems={value =>
         Promise.resolve(
           items.filter(item => item.name.toLowerCase().match(value.toLowerCase())),
         ) as any
@@ -35,7 +35,7 @@ storiesOf('Core/Autocomplete', module)
       name="autocomplete-reject"
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadOptions={value => Promise.reject(new Error('Failed to load.'))}
+      onLoadItems={value => Promise.reject(new Error('Failed to load.'))}
     />
   ))
   .add('With an error message in an invalid state.', () => (
@@ -45,7 +45,7 @@ storiesOf('Core/Autocomplete', module)
       label="Label"
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadOptions={value => Promise.resolve([])}
+      onLoadItems={value => Promise.resolve([])}
       errorMessage="This field is required."
       invalid
     />
@@ -57,9 +57,21 @@ storiesOf('Core/Autocomplete', module)
       label="Label"
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadOptions={value => Promise.resolve([])}
+      onLoadItems={value => Promise.resolve([])}
       labelDescription="This is a small label description."
       disabled
+    />
+  ))
+  .add('Load items on focus.', () => (
+    <Autocomplete
+      accessibilityLabel="Label"
+      name="autocomplete-load-on-focus"
+      label="Label"
+      onChange={action('onChange')}
+      onSelectItem={action('onSelectItem')}
+      onLoadItems={value => Promise.resolve(items) as any}
+      labelDescription="Load some items on focus."
+      loadItemsOnFocus
     />
   ))
   .add('Disable selected items with `isItemSelectable`.', () => (
@@ -69,7 +81,7 @@ storiesOf('Core/Autocomplete', module)
       name="autocomplete"
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadOptions={value =>
+      onLoadItems={value =>
         Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
       }
       isItemSelectable={(item, selected) => !selected}
@@ -83,7 +95,7 @@ storiesOf('Core/Autocomplete', module)
         label="Error"
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
-        onLoadOptions={value => Promise.reject(new Error('Failed to load.'))}
+        onLoadItems={value => Promise.reject(new Error('Failed to load.'))}
         renderError={error => <div>{error.message}</div>}
         loadItemsOnMount
         compact
@@ -95,7 +107,7 @@ storiesOf('Core/Autocomplete', module)
         label="Loading"
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
-        onLoadOptions={value => new Promise(() => {})}
+        onLoadItems={value => new Promise(() => {})}
         renderLoading={() => <div>Loading...</div>}
         loadItemsOnMount
         compact
@@ -107,7 +119,7 @@ storiesOf('Core/Autocomplete', module)
         label="No results"
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
-        onLoadOptions={value => Promise.resolve([])}
+        onLoadItems={value => Promise.resolve([])}
         renderNoResults={() => <div>Nothing to see here!</div>}
         loadItemsOnMount
         compact

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import MessageItem from '../../src/components/MessageItem';
 import IconCheck from '../../../icons/src/interface/IconCheck';
 import ProfilePhoto from '../../src/components/ProfilePhoto';
@@ -11,11 +11,11 @@ describe('<MessageItem>', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem formattedTimestamp={timestamp} imageSrc={url} title={title}>
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -25,11 +25,11 @@ describe('<MessageItem>', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem loadingAuthor formattedTimestamp={timestamp} imageSrc={url} title={title}>
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -39,11 +39,11 @@ describe('<MessageItem>', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem sending formattedTimestamp={timestamp} imageSrc={url} title={title}>
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -53,7 +53,7 @@ describe('<MessageItem>', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem
         email="foo@airbnb.com"
         formattedTimestamp={timestamp}
@@ -62,7 +62,7 @@ describe('<MessageItem>', () => {
       >
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -72,11 +72,11 @@ describe('<MessageItem>', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem formattedTimestamp={timestamp} imageSrc={url} title={title} source="web">
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -87,11 +87,11 @@ describe('<MessageItem>', () => {
     const title = 'title';
     const titleTag = 'CX';
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem formattedTimestamp={timestamp} imageSrc={url} title={title} titleTag={titleTag}>
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -102,7 +102,7 @@ describe('<MessageItem>', () => {
     const title = 'title';
     const onClickTitle = () => {};
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem
         formattedTimestamp={timestamp}
         imageSrc={url}
@@ -111,7 +111,7 @@ describe('<MessageItem>', () => {
       >
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper.find('button')).toHaveLength(1);
     expect(
@@ -128,7 +128,7 @@ describe('<MessageItem>', () => {
     const title = 'title';
     const onClickImage = () => {};
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem
         formattedTimestamp={timestamp}
         imageSrc={url}
@@ -137,7 +137,7 @@ describe('<MessageItem>', () => {
       >
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(
       wrapper
@@ -150,11 +150,11 @@ describe('<MessageItem>', () => {
   it('renders an icon when given', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem formattedTimestamp={timestamp} title={title} icon={<IconCheck decorative />}>
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper.find(IconCheck)).toHaveLength(1);
     expect(wrapper.find(ProfilePhoto)).toHaveLength(0);
@@ -165,11 +165,11 @@ describe('<MessageItem>', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem horizontalSpacing formattedTimestamp={timestamp} imageSrc={url} title={title}>
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -179,11 +179,11 @@ describe('<MessageItem>', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem verticalSpacing formattedTimestamp={timestamp} imageSrc={url} title={title}>
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -193,11 +193,11 @@ describe('<MessageItem>', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem important formattedTimestamp={timestamp} imageSrc={url} title={title}>
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -207,11 +207,11 @@ describe('<MessageItem>', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem info formattedTimestamp={timestamp} imageSrc={url} title={title}>
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -221,11 +221,11 @@ describe('<MessageItem>', () => {
     const timestamp = '11:56 AM';
     const title = 'title';
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <MessageItem warning formattedTimestamp={timestamp} imageSrc={url} title={title}>
         Hello world
       </MessageItem>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });

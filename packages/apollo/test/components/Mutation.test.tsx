@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import gql from 'graphql-tag';
+import { WrappingComponent } from '@airbnb/lunar-test-utils';
 import Loader from '@airbnb/lunar/lib/components/Loader';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
 import { MockedProvider } from 'react-apollo/test-utils';
@@ -49,7 +50,9 @@ describe('Mutation', () => {
     it('renders a `Loader` by default', () => {
       const wrapper = renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Mutation mutation={MUTATION}>{childHandler}</Mutation>
+          <WrappingComponent>
+            <Mutation mutation={MUTATION}>{childHandler}</Mutation>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -62,9 +65,11 @@ describe('Mutation', () => {
       const loader = <div>Loading!</div>;
       const wrapper = renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Mutation mutation={MUTATION} loading={loader}>
-            {childHandler}
-          </Mutation>
+          <WrappingComponent>
+            <Mutation mutation={MUTATION} loading={loader}>
+              {childHandler}
+            </Mutation>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -108,9 +113,11 @@ describe('Mutation', () => {
       try {
         const wrapper = renderer.create(
           <MockedProvider mocks={[mock]} addTypename={false}>
-            <Mutation mutation={MUTATION} variables={mock.request.variables}>
-              {childHandler}
-            </Mutation>
+            <WrappingComponent>
+              <Mutation mutation={MUTATION} variables={mock.request.variables}>
+                {childHandler}
+              </Mutation>
+            </WrappingComponent>
           </MockedProvider>,
         );
 
@@ -136,9 +143,11 @@ describe('Mutation', () => {
         const error = <div>Failed!</div>;
         const wrapper = renderer.create(
           <MockedProvider mocks={[mock]} addTypename={false}>
-            <Mutation mutation={MUTATION} error={error} variables={mock.request.variables}>
-              {childHandler}
-            </Mutation>
+            <WrappingComponent>
+              <Mutation mutation={MUTATION} error={error} variables={mock.request.variables}>
+                {childHandler}
+              </Mutation>
+            </WrappingComponent>
           </MockedProvider>,
         );
 
@@ -157,9 +166,11 @@ describe('Mutation', () => {
 
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Mutation mutation={MUTATION} ignoreGraphQLErrors>
-            {spy}
-          </Mutation>
+          <WrappingComponent>
+            <Mutation mutation={MUTATION} ignoreGraphQLErrors>
+              {spy}
+            </Mutation>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -181,7 +192,9 @@ describe('Mutation', () => {
 
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Mutation mutation={MUTATION}>{spy}</Mutation>
+          <WrappingComponent>
+            <Mutation mutation={MUTATION}>{spy}</Mutation>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -191,19 +204,21 @@ describe('Mutation', () => {
     it('passes mutator and result to child function', () => {
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Mutation mutation={MUTATION}>
-            {(mutator, result) => {
-              expect(typeof mutator).toBe('function');
-              expect(result).toEqual(
-                expect.objectContaining({
-                  called: false,
-                  loading: false,
-                }),
-              );
+          <WrappingComponent>
+            <Mutation mutation={MUTATION}>
+              {(mutator, result) => {
+                expect(typeof mutator).toBe('function');
+                expect(result).toEqual(
+                  expect.objectContaining({
+                    called: false,
+                    loading: false,
+                  }),
+                );
 
-              return null;
-            }}
-          </Mutation>
+                return null;
+              }}
+            </Mutation>
+          </WrappingComponent>
         </MockedProvider>,
       );
     });

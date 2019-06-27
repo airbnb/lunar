@@ -26,4 +26,10 @@ export default withStyles(({ unit, pattern }) => ({
   affix_disabled: {
     ...pattern.disabled,
   },
+
+  affix_flex: {
+    flexShrink: 0,
+    flexGrow: 0,
+    marginTop: 0,
+  },
 }))(BaseAffix);

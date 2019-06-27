@@ -5,7 +5,8 @@
 
 [![Build Status](https://travis-ci.com/airbnb/lunar.svg?branch=master)](https://travis-ci.com/airbnb/lunar)
 
-React toolkit and design language for Airbnb open source and internal projects. It is _not_ for the
-general public.
+React toolkit and design language for Airbnb open source and internal projects.
+
+Lunar is built for Airbnb projects and _not_ the general public.
 
 </div>

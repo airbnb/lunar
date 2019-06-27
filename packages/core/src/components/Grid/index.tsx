@@ -1,6 +1,6 @@
 import React from 'react';
 import { childrenOfType, mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Col from './Col';
 
 const horizontalAlignProp = mutuallyExclusiveTrueProps('centerAlign', 'startAlign', 'endAlign');
@@ -49,6 +49,7 @@ export class Grid extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       bottomAlign,
       centerAlign,
       children,
@@ -62,7 +63,7 @@ export class Grid extends React.Component<Props & WithStylesProps> {
 
     return (
       <section
-        {...css(
+        className={cx(
           styles.grid,
           reversed && styles.grid_reversed,
           bottomAlign && styles.grid_bottom,

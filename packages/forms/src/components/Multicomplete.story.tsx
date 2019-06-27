@@ -27,7 +27,7 @@ storiesOf('Forms/Multicomplete', module)
         name="field"
         label="Label"
         accessibilityLabel="Multicomplete"
-        onLoadOptions={value =>
+        onLoadItems={value =>
           Promise.resolve(
             items.filter(item => item.name.toLowerCase().match(value.toLowerCase())),
           ) as any

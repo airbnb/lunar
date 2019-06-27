@@ -10,7 +10,7 @@ import IconSmile from '@airbnb/lunar-icons/lib/general/IconSmile';
 import IconUtensils from '@airbnb/lunar-icons/lib/general/IconUtensils';
 import IconVideoGame from '@airbnb/lunar-icons/lib/general/IconVideoGame';
 import IconCloseAlt from '@airbnb/lunar-icons/lib/interface/IconCloseAlt';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Core from '../..';
 import { ESCAPE } from '../../keys';
 import T from '../Translate';
@@ -64,7 +64,8 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
     disableAutoFocus: false,
   };
 
-  private handleKeyUp = /* istanbul ignore next */ (event: React.KeyboardEvent<HTMLDivElement>) => {
+  // istanbul ignore next
+  private handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // When the picker wrapper is focused, we need to close on esc
     if (event.key === ESCAPE) {
       this.props.onClosePicker();
@@ -72,33 +73,33 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { styles, disableAutoFocus, ...props } = this.props;
+    const { cx, styles, disableAutoFocus, ...props } = this.props;
     const classNames = {
-      picker: css(styles.picker).className,
-      emoji: css(styles.emoji).className,
-      emojiActive: css(styles.emoji_active).className,
-      emojis: css(styles.emojis).className,
-      emojisSection: css(styles.emojisSection).className,
-      emojisHeader: css(styles.emojisHeader).className,
-      emojisHeaderSticky: css(styles.emojisHeader_sticky).className,
-      emojisBody: css(styles.emojisBody).className,
-      group: css(styles.group).className,
-      groupActive: css(styles.group_active).className,
-      groups: css(styles.groups).className,
-      groupsList: css(styles.list).className,
-      skinTone: css(styles.skinTone).className,
-      skinToneActive: css(styles.skinTone_active).className,
-      skinTones: css(styles.skinTones).className,
-      skinTonesList: css(styles.list).className,
-      noPreview: css(styles.noPreview).className,
-      noResults: css(styles.noResults).className,
-      preview: css(styles.preview).className,
-      previewEmoji: css(styles.previewEmoji).className,
-      previewTitle: css(styles.previewTitle).className,
-      previewSubtitle: css(styles.previewSubtitle).className,
-      search: css(styles.search).className,
-      searchInput: css(styles.searchInput).className,
-      clear: css(styles.clear).className,
+      picker: cx(styles.picker),
+      emoji: cx(styles.emoji),
+      emojiActive: cx(styles.emoji_active),
+      emojis: cx(styles.emojis),
+      emojisSection: cx(styles.emojisSection),
+      emojisHeader: cx(styles.emojisHeader),
+      emojisHeaderSticky: cx(styles.emojisHeader_sticky),
+      emojisBody: cx(styles.emojisBody),
+      group: cx(styles.group),
+      groupActive: cx(styles.group_active),
+      groups: cx(styles.groups),
+      groupsList: cx(styles.list),
+      skinTone: cx(styles.skinTone),
+      skinToneActive: cx(styles.skinTone_active),
+      skinTones: cx(styles.skinTones),
+      skinTonesList: cx(styles.list),
+      noPreview: cx(styles.noPreview),
+      noResults: cx(styles.noResults),
+      preview: cx(styles.preview),
+      previewEmoji: cx(styles.previewEmoji),
+      previewTitle: cx(styles.previewTitle),
+      previewSubtitle: cx(styles.previewSubtitle),
+      search: cx(styles.search),
+      searchInput: cx(styles.searchInput),
+      clear: cx(styles.clear),
     };
 
     const messages = {

@@ -69,6 +69,6 @@ export default class Mutation<Data = any, Vars = OperationVariables> extends Rea
   render() {
     const { children, loading, error, ...props } = this.props;
 
-    return <BaseMutation<Data, Vars> {...props as any}>{this.handleRender}</BaseMutation>;
+    return <BaseMutation<Data, Vars> {...(props as any)}>{this.handleRender}</BaseMutation>;
   }
 }
