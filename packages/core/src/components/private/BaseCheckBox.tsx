@@ -132,8 +132,13 @@ export default withStyles(theme => {
       width: 18,
       height: 18,
       display: 'block',
-      overflow: 'hidden',
       lineHeight: 0,
+      // Add focus styling to the checkbox icons
+      '@selectors': {
+        '> input:focus + span': {
+          boxShadow: `0 0 3px 3px ${theme.color.core.primary[2]}`,
+        },
+      },
     },
 
     checkbox_hideLabel: {
