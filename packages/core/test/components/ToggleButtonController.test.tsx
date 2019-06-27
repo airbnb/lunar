@@ -42,7 +42,7 @@ describe('<ToggleButtonController />', () => {
   it('passes proxy component and current value to function child', () => {
     shallow(
       <ToggleButtonController {...props}>
-        {(Comp, values) => {
+        {(Comp, values: string) => {
           expect(typeof Comp).toBe('function');
           expect(values).toEqual('foo');
 
@@ -127,6 +127,41 @@ describe('<ToggleButtonController />', () => {
         .find({ value: '3' })
         .dive()
         .prop('inverted'),
+    ).toBeTruthy();
+  });
+
+  it('`compact` renders `small` buttons', () => {
+    const wrapper = shallow(
+      <ToggleButtonController {...props} compact value="1">
+        {ProxyButton => (
+          <div>
+            <ProxyButton value="1">1</ProxyButton>
+            <ProxyButton value="2">2</ProxyButton>
+            <ProxyButton value="3">3</ProxyButton>
+          </div>
+        )}
+      </ToggleButtonController>,
+    );
+
+    expect(
+      wrapper
+        .find({ value: '1' })
+        .dive()
+        .prop('small'),
+    ).toBeTruthy();
+
+    expect(
+      wrapper
+        .find({ value: '2' })
+        .dive()
+        .prop('small'),
+    ).toBeTruthy();
+
+    expect(
+      wrapper
+        .find({ value: '3' })
+        .dive()
+        .prop('small'),
     ).toBeTruthy();
   });
 });
