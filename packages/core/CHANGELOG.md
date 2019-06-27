@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.3 - 2019-06-27
+
+#### 🎨 Styles
+
+- **[CheckBox]** Add focus state (#99) ([5568178](https://github.com/airbnb/lunar/tree/master/packages/core/commit/5568178)), closes [#99](https://github.com/airbnb/lunar/tree/master/packages/core/issues/99)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.1.2 - 2019-06-27
 
 #### 🐞 Fixes
