@@ -59,8 +59,8 @@ class AdaptiveGrid extends React.PureComponent<Props, State> {
     const { children, cx, noGutter, styles } = this.props;
     const { items } = this.state;
 
-    const itemStyle = {
-      width: `${100 / items}%`,
+    const containerStyle = {
+      gridTemplateColumns: `repeat(${items}, 1fr);`,
     };
 
     const childElements =
@@ -69,14 +69,14 @@ class AdaptiveGrid extends React.PureComponent<Props, State> {
         child ? (
           // These items are generic and don't have a guaranteed id or any unique property
           // eslint-disable-next-line react/no-array-index-key
-          <div className={cx(!noGutter && styles.item_padded)} style={itemStyle} key={idx}>
+          <div className={cx(!noGutter && styles.item_padded)} key={idx}>
             {child}
           </div>
         ) : null,
       );
 
     return (
-      <div className={cx(styles.container, !noGutter && styles.container_padded)}>
+      <div className={cx(styles.container, !noGutter && styles.container_padded, containerStyle)}>
         {childElements}
       </div>
     );
@@ -85,9 +85,7 @@ class AdaptiveGrid extends React.PureComponent<Props, State> {
 
 export default withStyles(({ unit }) => ({
   container: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    display: 'grid',
   },
   container_padded: {
     marginRight: -2 * unit,
