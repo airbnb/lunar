@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.1 - 2019-06-27
+
+#### 🐞 Fixes
+
+- **[ToggleButtonController]** Fix compact to render small buttons. (#106) ([43d1408](https://github.com/airbnb/lunar/tree/master/packages/core/commit/43d1408)), closes [#106](https://github.com/airbnb/lunar/tree/master/packages/core/issues/106)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.1.0 - 2019-06-26
 
 #### 🚀 Updates
