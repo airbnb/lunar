@@ -94,12 +94,12 @@ storiesOf('Core/Modal', module)
     inspectComponents: [Modal],
   })
   .add('A minimum modal (400px)', () => <ModalDemo />)
-  .add('A medium modal (600px)', () => <ModalDemo showMedium showTitle />)
-  .add('A large modal (800px)', () => <ModalDemo showLarge showTitle />)
+  .add('A medium modal (600px)', () => <ModalDemo showMedium />)
+  .add('A large modal (800px)', () => <ModalDemo showLarge />)
   .add('A fluid modal', () => <ModalDemo showFluid showTitle />)
   .add('With title', () => <ModalDemo showTitle />)
-  .add('With title and footer', () => <ModalDemo showFooter showTitle />)
   .add('With subtitle', () => <ModalDemo showSubtitle showTitle />)
+  .add('With title and footer', () => <ModalDemo showFooter showTitle />)
   .add('Minimum scrollable content', () => <ModalDemo showFooter showTitle showScrollable />)
   .add('Medium scrollable content', () => (
     <ModalDemo showMedium showFooter showTitle showScrollable />

@@ -44,13 +44,7 @@ function ModalInnerContent({
   const withFooter = Boolean(footer);
 
   return (
-    <div
-      className={cx(
-        styles.wrapper,
-        !withHeader && styles.wrapper_paddingTop,
-        !withFooter && styles.wrapper_paddingBottom,
-      )}
-    >
+    <div className={cx(styles.wrapper)}>
       {withHeader && (
         <header className={cx(styles.header, scrollable && styles.header_scrollable)}>
           {title && <Title level={3}>{title}</Title>}
@@ -58,7 +52,7 @@ function ModalInnerContent({
         </header>
       )}
 
-      <div className={cx(styles.close)}>
+      <div className={cx(styles.close, !withHeader && styles.close_float)}>
         <IconButton onClick={onClose}>
           <IconClose
             accessibilityLabel={T.phrase('Close', {}, 'Close a modal popup')}
@@ -71,6 +65,8 @@ function ModalInnerContent({
       <div
         className={cx(
           styles.body,
+          !withHeader && styles.body_paddingTop,
+          !withFooter && styles.body_paddingBottom,
           scrollable && styles.body_scrollable,
           scrollable && (medium || large) && styles.body_scrollableLarge,
         )}
@@ -90,14 +86,6 @@ function ModalInnerContent({
 export default withStyles(({ color, ui, unit }) => ({
   wrapper: {
     position: 'relative',
-  },
-
-  wrapper_paddingBottom: {
-    paddingBottom: unit * 3,
-  },
-
-  wrapper_paddingTop: {
-    paddingTop: unit * 3,
   },
 
   header: {
@@ -124,8 +112,25 @@ export default withStyles(({ color, ui, unit }) => ({
     right: unit * 2,
   },
 
+  close_float: {
+    float: 'right',
+    position: 'static',
+    top: 0,
+    right: 0,
+    marginTop: unit * 2,
+    marginRight: unit * 2,
+  },
+
   body: {
     padding: `0 ${unit * 3}px`,
+  },
+
+  body_paddingBottom: {
+    paddingBottom: unit * 3,
+  },
+
+  body_paddingTop: {
+    paddingTop: unit * 3,
   },
 
   body_scrollable: {
