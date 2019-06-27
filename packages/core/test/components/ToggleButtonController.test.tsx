@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
-import BaseButton from '../../src/componentsButton';
+import BaseButton from '../../src/components/Button';
 import ToggleButtonController from '../../src/components/ToggleButtonController';
 
 describe('<ToggleButtonController />', () => {
