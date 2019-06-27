@@ -4,13 +4,20 @@ import LoremIpsum from ':storybook/components/LoremIpsum';
 import moon from ':storybook/images/moon.png';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
-import Spacing from './Spacing';
-import Tooltip from './Tooltip';
 import Text from './Text';
 import Modal from './Modal';
 
 class ModalDemo extends React.Component<
-  { large?: boolean; noTitle?: boolean; image?: 'center' | 'cover' },
+  {
+    image?: 'center' | 'cover';
+    showFluid?: boolean;
+    showFooter?: boolean;
+    showLarge?: boolean;
+    showMedium?: boolean;
+    showScrollable?: boolean;
+    showSubtitle?: boolean;
+    showTitle?: boolean;
+  },
   { visible: boolean }
 > {
   state = { visible: false };
@@ -21,7 +28,16 @@ class ModalDemo extends React.Component<
 
   render() {
     const { visible } = this.state;
-    const { image, large, noTitle } = this.props;
+    const {
+      image,
+      showFluid,
+      showFooter,
+      showLarge,
+      showMedium,
+      showScrollable,
+      showSubtitle,
+      showTitle,
+    } = this.props;
 
     return (
       <div>
@@ -30,42 +46,42 @@ class ModalDemo extends React.Component<
         <br />
         <br />
 
-        {(image || large) && <Text>(May need to resize your browser to view the example)</Text>}
+        {image && <Text>(May need to resize your browser to view the example)</Text>}
 
         {visible && (
           <Modal
+            fluid={showFluid}
+            footer={
+              showFooter && (
+                <ButtonGroup>
+                  <Button onClick={this.handleToggle}>OK</Button>
+                  <Button inverted onClick={this.handleToggle}>
+                    Cancel
+                  </Button>
+                </ButtonGroup>
+              )
+            }
             image={
               image && {
                 type: image,
                 url: moon,
               }
             }
-            large={large}
-            footer={
-              <ButtonGroup>
-                <Button onClick={this.handleToggle}>OK</Button>
-                <Button inverted onClick={this.handleToggle}>
-                  Cancel
-                </Button>
-              </ButtonGroup>
-            }
+            large={showLarge}
+            medium={showMedium}
+            scrollable={showScrollable}
+            subtitle={showSubtitle ? 'Modal Sub-Title' : undefined}
+            title={showTitle ? 'Modal Title' : undefined}
             onClose={this.handleClose}
-            title={noTitle ? undefined : 'Modal Title'}
           >
-            <div>
-              <Text>
-                <LoremIpsum />
-              </Text>
-
-              <Spacing top={2}>
-                <Tooltip
-                  content="Tooltips are an anti-pattern! Please think carefully about accessibility before using them. Do not use tooltips for content that cannot be discovered by other means."
-                  remainOnMouseDown
-                >
-                  <Button>Hover Me</Button>
-                </Tooltip>
-              </Spacing>
-            </div>
+            <Text>
+              <LoremIpsum />
+              {(showLarge || showMedium) && showScrollable && (
+                <>
+                  <LoremIpsum /> <LoremIpsum />
+                </>
+              )}
+            </Text>
           </Modal>
         )}
       </div>
@@ -77,8 +93,19 @@ storiesOf('Core/Modal', module)
   .addParameters({
     inspectComponents: [Modal],
   })
-  .add('A standard modal.', () => <ModalDemo />)
-  .add('A large modal.', () => <ModalDemo large />)
-  .add('With no title.', () => <ModalDemo noTitle />)
-  .add('With a centered image.', () => <ModalDemo image="center" />)
-  .add('With a right cover image.', () => <ModalDemo image="cover" />);
+  .add('A minimum modal (400px)', () => <ModalDemo />)
+  .add('A medium modal (600px)', () => <ModalDemo showMedium showTitle />)
+  .add('A large modal (800px)', () => <ModalDemo showLarge showTitle />)
+  .add('A fluid modal', () => <ModalDemo showFluid showTitle />)
+  .add('With title', () => <ModalDemo showTitle />)
+  .add('With title and footer', () => <ModalDemo showFooter showTitle />)
+  .add('With subtitle', () => <ModalDemo showSubtitle showTitle />)
+  .add('Minimum scrollable content', () => <ModalDemo showFooter showTitle showScrollable />)
+  .add('Medium scrollable content', () => (
+    <ModalDemo showMedium showFooter showTitle showScrollable />
+  ))
+  .add('Large scrollable content', () => (
+    <ModalDemo showLarge showFooter showTitle showScrollable />
+  ))
+  .add('With a right, centered image.', () => <ModalDemo showFooter showTitle image="center" />)
+  .add('With a right, covered image.', () => <ModalDemo showFooter showTitle image="cover" />);

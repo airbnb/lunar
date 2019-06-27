@@ -1,6 +1,7 @@
 import { Theme } from '../types';
 
 export const breakpoints = {
+  xsmall: 767,
   small: 980,
   medium: 1280,
   large: 1690,

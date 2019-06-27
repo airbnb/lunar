@@ -5,11 +5,15 @@ import focusFirstFocusableChild from '../../../utils/focus/focusFirstFocusableCh
 import ModalImageLayout, { ModalImageConfig } from './ImageLayout';
 import ModalInnerContent, { Props as ModalInnerContentProps } from './InnerContent';
 
-export const MODAL_MAX_WIDTH_SMALL = 568;
+export const MODAL_MAX_WIDTH_SMALL = 400;
+export const MODAL_MAX_WIDTH_MEDIUM = 600;
+export const MODAL_MAX_WIDTH_LARGE = 800;
 
 export type Props = ModalInnerContentProps & {
   /** Image configuration to be used as the right pane in a dual pane layout. If provided, will force the modal to a `large` layout. */
   image?: ModalImageConfig;
+  /** Fluid width, no max width. */
+  fluid?: boolean;
 };
 
 /** A Dialog component with a backdrop and a standardized layout. */
@@ -66,15 +70,31 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { cx, children, footer, image, large, styles, title } = this.props;
-    const showLargeContent = large || !!image;
+    const {
+      cx,
+      children,
+      footer,
+      image,
+      large,
+      medium,
+      fluid,
+      scrollable,
+      styles,
+      subtitle,
+      title,
+    } = this.props;
+
+    const showLargeContent = large || medium || !!image;
 
     const innerContent = (
       <ModalInnerContent
         footer={footer}
         large={showLargeContent}
-        onClose={this.handleClose}
+        medium={medium && !showLargeContent}
+        scrollable={scrollable}
+        subtitle={subtitle}
         title={title}
+        onClose={this.handleClose}
       >
         {children}
       </ModalInnerContent>
@@ -85,7 +105,12 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
         aria-modal
         role="dialog"
         ref={this.dialogRef}
-        className={cx(styles.content, showLargeContent && styles.responsiveContent)}
+        className={cx(
+          styles.content,
+          medium && styles.content_medium,
+          (large || !!image) && styles.content_large,
+          fluid && styles.content_fluid,
+        )}
       >
         <FocusTrap>
           {image ? <ModalImageLayout {...image}>{innerContent}</ModalImageLayout> : innerContent}
@@ -98,23 +123,31 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
 export default withStyles(({ color, responsive, ui }) => ({
   content: {
     backgroundColor: color.accent.bg,
+    borderRadius: ui.borderRadius,
+    boxShadow: ui.boxShadowLarge,
     maxWidth: MODAL_MAX_WIDTH_SMALL,
     position: 'relative',
     width: '100%',
-    boxShadow: ui.boxShadowLarge,
-    borderRadius: ui.borderRadius,
 
     ':focus': {
       outline: 'none',
     },
   },
 
-  responsiveContent: {
+  content_medium: {
+    maxWidth: MODAL_MAX_WIDTH_MEDIUM,
+  },
+
+  content_large: {
+    maxWidth: MODAL_MAX_WIDTH_LARGE,
+  },
+
+  content_fluid: {
     maxWidth: '70%',
 
     '@media': {
       [responsive.small]: {
-        maxWidth: MODAL_MAX_WIDTH_SMALL,
+        maxWidth: '85%',
       },
     },
   },
