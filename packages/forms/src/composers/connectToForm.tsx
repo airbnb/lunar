@@ -46,7 +46,7 @@ export interface ConnectToFormProps {
   name: string;
   invalid?: boolean;
   errorMessage?: string;
-  field?: Partial<FieldState>;
+  field?: Partial<FieldState<any>>;
   onBlur?: (event: React.FocusEvent) => void;
   onChange?: (...args: any[]) => void;
   onFocus?: (event: React.FocusEvent) => void;
@@ -58,11 +58,11 @@ export interface ConnectToFormWrapperProps extends Field {
   onBatchChange?: (value: string | boolean) => object | undefined;
   onBlur?: (event: React.FocusEvent) => void;
   onFocus?: (event: React.FocusEvent) => void;
-  onStateUpdate?: (state: FieldState) => void;
+  onStateUpdate?: (state: FieldState<any>) => void;
   unregisterOnUnmount?: boolean;
 }
 
-export interface ConnectToFormState extends Partial<FieldState> {
+export interface ConnectToFormState extends Partial<FieldState<any>> {
   name: string;
 }
 
@@ -202,7 +202,7 @@ export default function connectToForm(options: Options = {}) /* infer */ {
         }
       };
 
-      private handleUpdate = (state: FieldState) => {
+      private handleUpdate = (state: FieldState<any>) => {
         if (!this.mounted) {
           return;
         }
@@ -244,7 +244,7 @@ export default function connectToForm(options: Options = {}) /* infer */ {
     function ConnectToFormWrapper(props: OwnProps) {
       return (
         <FormContext.Consumer>
-          {form => form && <ConnectToForm {...props as any} form={form} />}
+          {form => form && <ConnectToForm {...(props as any)} form={form} />}
         </FormContext.Consumer>
       );
     }

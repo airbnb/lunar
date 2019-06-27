@@ -1,11 +1,10 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
-import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
-import IconChevronUp from '@airbnb/lunar-icons/lib/interface/IconChevronUp';
 import iconComponent from '../../prop-types/iconComponent';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Button from '../Button';
 import IconButton from '../IconButton';
+import ExpandableIcon from '../ExpandableIcon';
 import Dropdown, { Props as DropdownProps } from '../Dropdown';
 import Menu, { Item, Separator, Props as MenuProps } from '../Menu';
 
@@ -120,6 +119,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
   render() {
     const { opened } = this.state;
     const {
+      cx,
       accessibilityLabel,
       children,
       closeOnClick,
@@ -142,20 +142,14 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
     }
 
     return (
-      <div {...css(styles.container)} ref={this.ref}>
+      <div className={cx(styles.container)} ref={this.ref}>
         {toggleIcon ? (
           <IconButton aria-label={accessibilityLabel} onClick={this.handleToggleMenu}>
             {toggleIcon}
           </IconButton>
         ) : (
           <Button
-            afterIcon={
-              opened ? (
-                <IconChevronUp decorative size={iconSize} />
-              ) : (
-                <IconChevronDown decorative size={iconSize} />
-              )
-            }
+            afterIcon={<ExpandableIcon expanded={opened} size={iconSize} />}
             inverted={inverted}
             large={large}
             small={small}
@@ -166,11 +160,11 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
         )}
 
         <div
-          {...css(styles.dropdown, !opened && styles.dropdown_hidden, { zIndex })}
+          className={cx(styles.dropdown, !opened && styles.dropdown_hidden, { zIndex })}
           aria-expanded={opened}
         >
           <Dropdown {...dropdownProps} onClickOutside={this.handleClickOutside} visible={opened}>
-            <div {...css(styles.menu)}>
+            <div className={cx(styles.menu)}>
               <Menu
                 minWidth={250}
                 maxHeight={300}

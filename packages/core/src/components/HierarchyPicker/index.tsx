@@ -6,7 +6,7 @@ import { SPACE, ENTER } from '../../keys';
 import T from '../Translate';
 import Text from '../Text';
 import Picker from './Picker';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import buildInputStyles from '../../themes/buildInputStyles';
 
 import {
@@ -157,6 +157,7 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
 
   render() {
     const {
+      cx,
       children,
       disabled,
       invalid,
@@ -171,7 +172,7 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
     return (
       <div>
         <div
-          {...css(
+          className={cx(
             styles.selectlike,
             !disabled && styles.selectlike_enabled,
             styles.input,
@@ -187,7 +188,7 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
         >
           {children || <Text>{this.boundFormatter(chosen || [])}</Text>}
 
-          <span {...css(styles.arrow)}>
+          <span className={cx(styles.arrow)}>
             <IconCaretDown decorative size="1.5em" />
           </span>
         </div>

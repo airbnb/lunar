@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
 import Loader from '../Loader';
 
@@ -43,6 +43,7 @@ export class Button extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       block,
       borderless,
       children,
@@ -62,7 +63,7 @@ export class Button extends React.Component<Props & WithStylesProps> {
         aria-busy={loading}
         disabled={disabled}
         loading={loading}
-        {...css(
+        className={cx(
           styles.button,
           large && styles.button_large,
           small && styles.button_small,

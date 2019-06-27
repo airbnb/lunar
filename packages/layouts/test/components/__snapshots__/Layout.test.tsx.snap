@@ -1,6 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Layout /> errors if invalid \`sideBar\` is passed 1`] = `
-"Warning: Failed prop type: Invalid prop \`sideBar\` of type \`string\` supplied to \`Layout\`, expected a single ReactElement.
-    in Layout"
-`;

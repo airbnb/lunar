@@ -2,7 +2,7 @@
 
 exports[`<FormInput /> renders compact 1`] = `
 <input
-  className="input_1spld4k-o_O-input_compact_zooi1o"
+  className="input_1st4d84-o_O-input_compact_19gkl4s"
   data-enable-grammarly="false"
   data-gramm="false"
   disabled={false}
@@ -16,7 +16,7 @@ exports[`<FormInput /> renders compact 1`] = `
 
 exports[`<FormInput /> renders important 1`] = `
 <input
-  className="input_1spld4k-o_O-input_important_7iy6bw"
+  className="input_1st4d84-o_O-input_important_7iy6bw"
   data-enable-grammarly="false"
   data-gramm="false"
   disabled={false}
@@ -30,7 +30,7 @@ exports[`<FormInput /> renders important 1`] = `
 
 exports[`<FormInput /> renders select compact 1`] = `
 <select
-  className="input_1spld4k-o_O-input_compact_zooi1o-o_O-select_173na0f-o_O-select_compact_1lll1pq"
+  className="input_1st4d84-o_O-input_compact_19gkl4s-o_O-select_173na0f-o_O-select_compact_1lll1pq"
   data-enable-grammarly="false"
   data-gramm="false"
   disabled={false}
@@ -44,7 +44,7 @@ exports[`<FormInput /> renders select compact 1`] = `
 
 exports[`<FormInput /> sets hidden 1`] = `
 <input
-  className="input_1spld4k-o_O-input_hidden_i17vo6"
+  className="input_1st4d84-o_O-input_hidden_i17vo6"
   data-enable-grammarly="false"
   data-gramm="false"
   disabled={false}
@@ -58,7 +58,7 @@ exports[`<FormInput /> sets hidden 1`] = `
 
 exports[`<FormInput /> supports prefixes 1`] = `
 <input
-  className="input_1spld4k-o_O-input_hasPrefix_omi9gr"
+  className="input_1st4d84-o_O-input_hasPrefix_omi9gr"
   data-enable-grammarly="false"
   data-gramm="false"
   disabled={false}
@@ -72,7 +72,7 @@ exports[`<FormInput /> supports prefixes 1`] = `
 
 exports[`<FormInput /> supports suffixes 1`] = `
 <input
-  className="input_1spld4k-o_O-input_hasSuffix_1mimzu3"
+  className="input_1st4d84-o_O-input_hasSuffix_1mimzu3"
   data-enable-grammarly="false"
   data-gramm="false"
   disabled={false}

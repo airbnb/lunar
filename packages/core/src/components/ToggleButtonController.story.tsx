@@ -33,11 +33,11 @@ storiesOf('Core/ToggleButtonController', module)
   ))
   .add('Handles invalid state.', () => (
     <ToggleButtonController
+      invalid
       value="red"
       name="button-group-controller"
       label="Favorite color?"
       onChange={action('onChange')}
-      invalid
     >
       {ControlledButton => (
         <ButtonGroup>
@@ -56,11 +56,57 @@ storiesOf('Core/ToggleButtonController', module)
   ))
   .add('Handles disabled state.', () => (
     <ToggleButtonController
+      disabled
       value="red"
       name="button-group-controller"
       label="Favorite color?"
       onChange={action('onChange')}
-      disabled
+    >
+      {ControlledButton => (
+        <ButtonGroup>
+          <ControlledButton value="red" key="red">
+            Red
+          </ControlledButton>
+          <ControlledButton value="blue" key="blue">
+            Blue
+          </ControlledButton>
+          <ControlledButton value="green" key="green">
+            Green
+          </ControlledButton>
+        </ButtonGroup>
+      )}
+    </ToggleButtonController>
+  ))
+  .add('With `compact`', () => (
+    <ToggleButtonController
+      compact
+      value="red"
+      name="button-group-controller"
+      label="Favorite color?"
+      onChange={action('onChange')}
+    >
+      {ControlledButton => (
+        <ButtonGroup>
+          <ControlledButton value="red" key="red">
+            Red
+          </ControlledButton>
+          <ControlledButton value="blue" key="blue">
+            Blue
+          </ControlledButton>
+          <ControlledButton value="green" key="green">
+            Green
+          </ControlledButton>
+        </ButtonGroup>
+      )}
+    </ToggleButtonController>
+  ))
+  .add('With `inline`', () => (
+    <ToggleButtonController
+      inline
+      value="red"
+      name="button-group-controller"
+      label="Favorite color?"
+      onChange={action('onChange')}
     >
       {ControlledButton => (
         <ButtonGroup>

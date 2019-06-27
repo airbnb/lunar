@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 - 2019-06-26
+
+#### 💥 Breaking
+
+- Migrate to Aesthetic v4 (#86) ([1b9b3f6](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/1b9b3f6)), closes [#86](https://github.com/airbnb/lunar/tree/master/packages/app-shell/issues/86)
+- Update peer dependencies to v2. ([536607d](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/536607d))
+
+#### 🛠 Internals
+
+- Update npmignore files. ([a2eda3f](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/a2eda3f))
+- Update Storybook to v5.1 (#93) ([4ee8f83](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/4ee8f83)), closes [#93](https://github.com/airbnb/lunar/tree/master/packages/app-shell/issues/93)
+
+**Note:** Version bump only for package @airbnb/lunar-app-shell
+
+
+
+
+
 ### 1.0.6 - 2019-05-21
 
 #### 🐞 Fixes

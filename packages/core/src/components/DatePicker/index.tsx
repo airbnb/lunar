@@ -64,6 +64,7 @@ export class DatePicker extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       disabledDays,
       firstDayOfWeek,
       fromMonth,
@@ -96,7 +97,7 @@ export class DatePicker extends React.Component<Props & WithStylesProps> {
         fromMonth={fromMonth}
         initialMonth={initialMonth}
         locale={locale}
-        modifiers={getCustomModifiers(modifiers, styles)}
+        modifiers={getCustomModifiers(modifiers, styles, cx)}
         month={month}
         months={getMonths()}
         navbarElement={props => (

@@ -41,6 +41,8 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     clearOnSelect?: boolean;
     /** Delay in which to load items. */
     debounce?: number;
+    /** Disable caching of loaded item responses. */
+    disableCache?: boolean;
     /**
      * Value to insert into the input field when an item is selected.
      * Defaults to the item's `value` or `id` property.
@@ -50,6 +52,8 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     isItemSelectable?: (item: T, selected?: boolean) => boolean;
     /** Determine if an item is selected. Will compare values by default if not defined. */
     isItemSelected?: (item: T, value: string) => boolean;
+    /** Load and show items with the current value when focused. */
+    loadItemsOnFocus?: boolean;
     /** Load and show items on mount. */
     loadItemsOnMount?: boolean;
     /** Max height of the results dropdown menu. */
@@ -59,7 +63,7 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     /** Callback fired when the value changes. */
     onChange: (value: string, event: React.SyntheticEvent<any>) => void;
     /** Callback fired to load items. Must return a promise with an array of items. */
-    onLoadOptions: (value: string) => Promise<ItemResponseType<T>>;
+    onLoadItems: (value: string) => Promise<ItemResponseType<T>>;
     /** Callback fired when the display of the menu is toggled. */
     onMenuVisibilityChange?: (open: boolean) => void;
     /**
@@ -100,11 +104,13 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
     autoFocus: false,
     clearOnSelect: false,
     debounce: 250,
+    disableCache: false,
     getItemValue,
     isItemSelectable() {
       return true;
     },
     isItemSelected() {},
+    loadItemsOnFocus: false,
     loadItemsOnMount: false,
     onMenuVisibilityChange() {},
     onSelectItem() {},
@@ -119,7 +125,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
 
   inputRef = React.createRef<HTMLInputElement>();
 
-  state = {
+  state: State<T> = {
     error: null,
     highlightedIndex: null,
     id: uuid(),
@@ -215,8 +221,14 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   };
 
   private handleInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { value } = this.state;
+
     if (this.props.onFocus) {
       this.props.onFocus(event);
+    }
+
+    if (this.props.loadItemsOnFocus) {
+      this.loadItems(value);
     }
 
     this.setState({
@@ -438,8 +450,10 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
       loading: true,
     });
 
+    const { disableCache, loadItemsOnFocus } = this.props;
+
     // Exit early if no value
-    if (!value && !force) {
+    if (!value && !force && !loadItemsOnFocus) {
       this.props.onSelectItem!('', null);
 
       return Promise.resolve([]);
@@ -468,10 +482,12 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
           items = response.results || response.items || [];
         }
 
-        this.cache[input] = {
-          items,
-          time: Date.now(),
-        };
+        if (!disableCache) {
+          this.cache[input] = {
+            items,
+            time: Date.now(),
+          };
+        }
 
         const nextState = {
           items,
@@ -500,7 +516,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   }>(
     /* istanbul ignore next */
     (input: string) =>
-      Promise.resolve(this.props.onLoadOptions(input)).then(response => ({
+      Promise.resolve(this.props.onLoadItems(input)).then(response => ({
         input,
         response,
       })),
@@ -600,7 +616,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
     const { error, loading, value } = this.state;
     const items = this.renderItems();
 
-    if (!value && items.length === 0) {
+    if (!loading && !value && items.length === 0) {
       return <div />;
     }
 

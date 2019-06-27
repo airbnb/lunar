@@ -1,5 +1,6 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import HierarchyPicker, {
   HierarchyPicker as BaseHierarchyPicker,
   Props as HierarchyPickerProps,
@@ -32,7 +33,7 @@ const props = {
 describe('<HierarchyPicker />', () => {
   describe('formatter', () => {
     it('default works', () => {
-      const wrapper = shallow(<HierarchyPicker {...props} />).dive();
+      const wrapper = shallowWithStyles(<HierarchyPicker {...props} />);
       const instance = wrapper.instance() as BaseHierarchyPicker;
 
       expect(instance.boundFormatter(['foo'])).toBe('Foo');
@@ -43,7 +44,7 @@ describe('<HierarchyPicker />', () => {
 
     it('custom works', () => {
       const formatter = jest.fn(() => 'test');
-      const wrapper = shallow(<HierarchyPicker {...props} formatter={formatter} />).dive();
+      const wrapper = shallowWithStyles(<HierarchyPicker {...props} formatter={formatter} />);
       const instance = wrapper.instance() as BaseHierarchyPicker;
 
       expect(instance.boundFormatter([])).toBe('test');
@@ -59,7 +60,7 @@ describe('<HierarchyPicker />', () => {
 
     beforeEach(() => {
       handleToggle = jest.fn();
-      wrapper = shallow(<HierarchyPicker {...props} onPickerToggle={handleToggle} />).dive();
+      wrapper = shallowWithStyles(<HierarchyPicker {...props} onPickerToggle={handleToggle} />);
       instance = wrapper.instance() as BaseHierarchyPicker;
       button = wrapper.find('div[role="button"]');
     });
@@ -132,12 +133,12 @@ describe('<HierarchyPicker />', () => {
 
   describe('<Picker />', () => {
     it('renders a Picker', () => {
-      const wrapper = shallow(<HierarchyPicker {...props} />).dive();
+      const wrapper = shallowWithStyles(<HierarchyPicker {...props} />);
       expect(wrapper.find(Picker)).toHaveLength(1);
     });
 
     it('passes through relevant props', () => {
-      const wrapper = shallow(<HierarchyPicker {...props} />).dive();
+      const wrapper = shallowWithStyles(<HierarchyPicker {...props} />);
       const pickerProps = wrapper.find(Picker).props() as PickerProps;
       expect(pickerProps.chosen).toBe(props.chosen);
       expect(pickerProps.hierarchyMaxHeight).toBe(props.hierarchyMaxHeight);
@@ -156,7 +157,7 @@ describe('<HierarchyPicker />', () => {
 
   it('accepts invalid prop', () => {
     const emptyItems = { ...props, items: [] };
-    const wrapper = shallow(<HierarchyPicker {...emptyItems} />).dive();
+    const wrapper = shallowWithStyles(<HierarchyPicker {...emptyItems} />);
     const markupValid = wrapper.html();
     wrapper.setProps({ invalid: true });
     expect(wrapper.html()).not.toEqual(markupValid);

@@ -1,34 +1,34 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Shimmer, { Shimmer as BaseShimmer } from '../../src/components/Shimmer';
 
 describe('<Shimmer />', () => {
   it('renders default', () => {
-    const wrapper = shallow(<Shimmer />).dive();
+    const wrapper = shallowWithStyles(<Shimmer />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders block', () => {
-    const wrapper = shallow(<Shimmer block />).dive();
+    const wrapper = shallowWithStyles(<Shimmer block />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders with custom dimensions', () => {
-    const wrapper = shallow(<Shimmer width={100} height="1em" />).dive();
+    const wrapper = shallowWithStyles(<Shimmer width={100} height="1em" />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders with custom border radius', () => {
-    const wrapper = shallow(<Shimmer radius="50%" />).dive();
+    const wrapper = shallowWithStyles(<Shimmer radius="50%" />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('doesnt change random width between renders', () => {
-    const wrapper = shallow(<Shimmer width="random" />).dive();
+    const wrapper = shallowWithStyles(<Shimmer width="random" />);
     const width = (wrapper.instance() as BaseShimmer).randomWidth;
 
     wrapper.update();

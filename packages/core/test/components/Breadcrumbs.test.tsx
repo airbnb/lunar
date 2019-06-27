@@ -1,22 +1,17 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import { unwrapHOCs } from '@airbnb/lunar-test-utils';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Breadcrumbs from '../../src/components/Breadcrumbs';
 import Breadcrumb from '../../src/components/Breadcrumbs/Breadcrumb';
-
-function unwrap(element: any): Enzyme.ShallowWrapper {
-  return unwrapHOCs(shallow(element), 'Breadcrumbs', {}, { render: true });
-}
 
 describe('<Breadcrumbs/>', () => {
   it('errors if non-breadcrumb children are passed', () => {
     expect(() =>
-      unwrap(<Breadcrumbs accessibilityLabel="Breadcrumb">Foo</Breadcrumbs>),
+      shallowWithStyles(<Breadcrumbs accessibilityLabel="Breadcrumb">Foo</Breadcrumbs>),
     ).toThrowError();
   });
 
   it('it renders a nav', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Breadcrumbs accessibilityLabel="Breadcrumb">
         <Breadcrumb label="Label" />
       </Breadcrumbs>,
@@ -26,7 +21,7 @@ describe('<Breadcrumbs/>', () => {
   });
 
   it('handles falsey breadcrumbs', () => {
-    const wrapper = unwrap(
+    const wrapper = shallowWithStyles(
       <Breadcrumbs accessibilityLabel="Breadcrumb">
         {false && <Breadcrumb label="One" />}
         {null && <Breadcrumb label="Two" />}

@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Layout from '../../src/components/Layout';
 
 describe('Layout', () => {
   it('renders all toasts', () => {
-    const wrapper = shallow(<Layout>Child</Layout>).dive();
+    const wrapper = shallowWithStyles(<Layout>Child</Layout>);
 
     expect(wrapper).toMatchSnapshot();
   });

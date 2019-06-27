@@ -40,8 +40,10 @@ storiesOf('Core/Pagination', module)
     <Pagination
       hasPrev
       hasNext
-      pageLabel=""
+      showBookends
       page={2}
+      pageLabel=""
+      pageCount={3}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
     />

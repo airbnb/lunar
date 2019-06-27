@@ -8,6 +8,7 @@ lerna.json
 package.json
 package-lock.json
 tsconfig.json
+tsconfig.options.json
 *.d.ts
 CHANGELOG.md
 PULL_REQUEST_TEMPLATE.md

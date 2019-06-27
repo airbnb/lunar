@@ -27,7 +27,7 @@ storiesOf('Forms/Autocomplete', module)
         name="field"
         label="Label"
         accessibilityLabel="Autocomplete"
-        onLoadOptions={value =>
+        onLoadItems={value =>
           Promise.resolve(
             items.filter(item => item.name.toLowerCase().match(value.toLowerCase())),
           ) as any

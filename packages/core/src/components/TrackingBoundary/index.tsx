@@ -42,7 +42,11 @@ export default class TrackingBoundary extends React.Component<Props> {
     }
 
     return (
-      <tracking-boundary onClick={this.handleTrackContext} onKeyDown={this.handleTrackContext}>
+      <tracking-boundary
+        onClick={this.handleTrackContext}
+        onKeyDown={this.handleTrackContext}
+        data-tracking-name={name}
+      >
         {children}
       </tracking-boundary>
     );
