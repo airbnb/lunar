@@ -131,8 +131,13 @@ export default withStyles(theme => {
       height: 18,
       display: 'block',
       position: 'relative',
-      overflow: 'hidden',
       lineHeight: 0,
+      // Add focus styling to the radio icons
+      '@selectors': {
+        '> input:focus + span': {
+          boxShadow: `0 0 3px 3px ${theme.color.core.primary[2]}`,
+        },
+      },
     },
 
     radio_hideLabel: {
