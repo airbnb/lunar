@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.2 - 2019-06-27
+
+#### 🐞 Fixes
+
+- **[BaseRadioButton]** Fix radio button focus state (#100) ([e415402](https://github.com/airbnb/lunar/tree/master/packages/core/commit/e415402)), closes [#100](https://github.com/airbnb/lunar/tree/master/packages/core/issues/100)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.1.1 - 2019-06-27
 
 #### 🐞 Fixes
