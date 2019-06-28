@@ -2,7 +2,7 @@
 
 exports[`<StatusLabel /> statuses renders bordered 1`] = `
 <span
-  className="label_159vdge-o_O-label_bordered_1urjdog-o_O-label_notice_h3lmxn"
+  className="label_xffcmo-o_O-label_bordered_1f3aaih-o_O-label_notice_h3lmxn"
 >
   <span>
     notice
@@ -12,7 +12,7 @@ exports[`<StatusLabel /> statuses renders bordered 1`] = `
 
 exports[`<StatusLabel /> statuses renders bordered 2`] = `
 <span
-  className="label_159vdge-o_O-label_bordered_1urjdog-o_O-label_info_5ni0mj"
+  className="label_xffcmo-o_O-label_bordered_1f3aaih-o_O-label_info_5ni0mj"
 >
   <span>
     info
@@ -22,7 +22,7 @@ exports[`<StatusLabel /> statuses renders bordered 2`] = `
 
 exports[`<StatusLabel /> statuses renders bordered 3`] = `
 <span
-  className="label_159vdge-o_O-label_bordered_1urjdog-o_O-label_success_9ngehh"
+  className="label_xffcmo-o_O-label_bordered_1f3aaih-o_O-label_success_9ngehh"
 >
   <span>
     success
@@ -32,7 +32,7 @@ exports[`<StatusLabel /> statuses renders bordered 3`] = `
 
 exports[`<StatusLabel /> statuses renders bordered 4`] = `
 <span
-  className="label_159vdge-o_O-label_bordered_1urjdog-o_O-label_warning_kas06q"
+  className="label_xffcmo-o_O-label_bordered_1f3aaih-o_O-label_warning_kas06q"
 >
   <span>
     warning
@@ -42,7 +42,7 @@ exports[`<StatusLabel /> statuses renders bordered 4`] = `
 
 exports[`<StatusLabel /> statuses renders bordered 5`] = `
 <span
-  className="label_159vdge-o_O-label_bordered_1urjdog-o_O-label_danger_p8x1nu"
+  className="label_xffcmo-o_O-label_bordered_1f3aaih-o_O-label_danger_p8x1nu"
 >
   <span>
     danger
@@ -52,7 +52,7 @@ exports[`<StatusLabel /> statuses renders bordered 5`] = `
 
 exports[`<StatusLabel /> statuses renders bordered 6`] = `
 <span
-  className="label_159vdge-o_O-label_bordered_1urjdog-o_O-label_muted_s1bxkr"
+  className="label_xffcmo-o_O-label_bordered_1f3aaih-o_O-label_muted_s1bxkr"
 >
   <span>
     muted
@@ -62,7 +62,7 @@ exports[`<StatusLabel /> statuses renders bordered 6`] = `
 
 exports[`<StatusLabel /> statuses renders bordered 7`] = `
 <span
-  className="label_159vdge-o_O-label_bordered_1urjdog-o_O-label_luxury_1ue0q2o"
+  className="label_xffcmo-o_O-label_bordered_1f3aaih-o_O-label_luxury_1ue0q2o"
 >
   <span>
     luxury
@@ -72,7 +72,7 @@ exports[`<StatusLabel /> statuses renders bordered 7`] = `
 
 exports[`<StatusLabel /> statuses renders bordered 8`] = `
 <span
-  className="label_159vdge-o_O-label_bordered_1urjdog-o_O-label_plus_ncs1rt"
+  className="label_xffcmo-o_O-label_bordered_1f3aaih-o_O-label_plus_ncs1rt"
 >
   <span>
     plus
@@ -82,7 +82,7 @@ exports[`<StatusLabel /> statuses renders bordered 8`] = `
 
 exports[`<StatusLabel /> statuses renders inverted state 1`] = `
 <span
-  className="label_159vdge-o_O-label_inverted_1jg2760-o_O-label_inverted_notice_a0aok"
+  className="label_xffcmo-o_O-label_inverted_1jg2760-o_O-label_inverted_notice_a0aok"
 >
   <span>
     notice
@@ -92,7 +92,7 @@ exports[`<StatusLabel /> statuses renders inverted state 1`] = `
 
 exports[`<StatusLabel /> statuses renders inverted state 2`] = `
 <span
-  className="label_159vdge-o_O-label_inverted_1jg2760-o_O-label_inverted_info_13z9huf"
+  className="label_xffcmo-o_O-label_inverted_1jg2760-o_O-label_inverted_info_13z9huf"
 >
   <span>
     info
@@ -102,7 +102,7 @@ exports[`<StatusLabel /> statuses renders inverted state 2`] = `
 
 exports[`<StatusLabel /> statuses renders inverted state 3`] = `
 <span
-  className="label_159vdge-o_O-label_inverted_1jg2760-o_O-label_inverted_success_1dekfjx"
+  className="label_xffcmo-o_O-label_inverted_1jg2760-o_O-label_inverted_success_1dekfjx"
 >
   <span>
     success
@@ -112,7 +112,7 @@ exports[`<StatusLabel /> statuses renders inverted state 3`] = `
 
 exports[`<StatusLabel /> statuses renders inverted state 4`] = `
 <span
-  className="label_159vdge-o_O-label_inverted_1jg2760-o_O-label_inverted_warning_sew9to"
+  className="label_xffcmo-o_O-label_inverted_1jg2760-o_O-label_inverted_warning_sew9to"
 >
   <span>
     warning
@@ -122,7 +122,7 @@ exports[`<StatusLabel /> statuses renders inverted state 4`] = `
 
 exports[`<StatusLabel /> statuses renders inverted state 5`] = `
 <span
-  className="label_159vdge-o_O-label_inverted_1jg2760-o_O-label_inverted_danger_15o6i4l"
+  className="label_xffcmo-o_O-label_inverted_1jg2760-o_O-label_inverted_danger_15o6i4l"
 >
   <span>
     danger
@@ -132,7 +132,7 @@ exports[`<StatusLabel /> statuses renders inverted state 5`] = `
 
 exports[`<StatusLabel /> statuses renders inverted state 6`] = `
 <span
-  className="label_159vdge-o_O-label_inverted_1jg2760-o_O-label_inverted_muted_q8d046"
+  className="label_xffcmo-o_O-label_inverted_1jg2760-o_O-label_inverted_muted_q8d046"
 >
   <span>
     muted
@@ -142,7 +142,7 @@ exports[`<StatusLabel /> statuses renders inverted state 6`] = `
 
 exports[`<StatusLabel /> statuses renders inverted state 7`] = `
 <span
-  className="label_159vdge-o_O-label_inverted_1jg2760-o_O-label_inverted_luxury_1tvijvk"
+  className="label_xffcmo-o_O-label_inverted_1jg2760-o_O-label_inverted_luxury_1tvijvk"
 >
   <span>
     luxury
@@ -152,7 +152,7 @@ exports[`<StatusLabel /> statuses renders inverted state 7`] = `
 
 exports[`<StatusLabel /> statuses renders inverted state 8`] = `
 <span
-  className="label_159vdge-o_O-label_inverted_1jg2760-o_O-label_inverted_plus_1l928rd"
+  className="label_xffcmo-o_O-label_inverted_1jg2760-o_O-label_inverted_plus_1l928rd"
 >
   <span>
     plus
@@ -162,7 +162,7 @@ exports[`<StatusLabel /> statuses renders inverted state 8`] = `
 
 exports[`<StatusLabel /> statuses renders label 1`] = `
 <span
-  className="label_159vdge-o_O-label_notice_h3lmxn"
+  className="label_xffcmo-o_O-label_notice_h3lmxn"
 >
   <span>
     notice
@@ -172,7 +172,7 @@ exports[`<StatusLabel /> statuses renders label 1`] = `
 
 exports[`<StatusLabel /> statuses renders label 2`] = `
 <span
-  className="label_159vdge-o_O-label_info_5ni0mj"
+  className="label_xffcmo-o_O-label_info_5ni0mj"
 >
   <span>
     info
@@ -182,7 +182,7 @@ exports[`<StatusLabel /> statuses renders label 2`] = `
 
 exports[`<StatusLabel /> statuses renders label 3`] = `
 <span
-  className="label_159vdge-o_O-label_success_9ngehh"
+  className="label_xffcmo-o_O-label_success_9ngehh"
 >
   <span>
     success
@@ -192,7 +192,7 @@ exports[`<StatusLabel /> statuses renders label 3`] = `
 
 exports[`<StatusLabel /> statuses renders label 4`] = `
 <span
-  className="label_159vdge-o_O-label_warning_kas06q"
+  className="label_xffcmo-o_O-label_warning_kas06q"
 >
   <span>
     warning
@@ -202,7 +202,7 @@ exports[`<StatusLabel /> statuses renders label 4`] = `
 
 exports[`<StatusLabel /> statuses renders label 5`] = `
 <span
-  className="label_159vdge-o_O-label_danger_p8x1nu"
+  className="label_xffcmo-o_O-label_danger_p8x1nu"
 >
   <span>
     danger
@@ -212,7 +212,7 @@ exports[`<StatusLabel /> statuses renders label 5`] = `
 
 exports[`<StatusLabel /> statuses renders label 6`] = `
 <span
-  className="label_159vdge-o_O-label_muted_s1bxkr"
+  className="label_xffcmo-o_O-label_muted_s1bxkr"
 >
   <span>
     muted
@@ -222,7 +222,7 @@ exports[`<StatusLabel /> statuses renders label 6`] = `
 
 exports[`<StatusLabel /> statuses renders label 7`] = `
 <span
-  className="label_159vdge-o_O-label_luxury_1ue0q2o"
+  className="label_xffcmo-o_O-label_luxury_1ue0q2o"
 >
   <span>
     luxury
@@ -232,7 +232,7 @@ exports[`<StatusLabel /> statuses renders label 7`] = `
 
 exports[`<StatusLabel /> statuses renders label 8`] = `
 <span
-  className="label_159vdge-o_O-label_plus_ncs1rt"
+  className="label_xffcmo-o_O-label_plus_ncs1rt"
 >
   <span>
     plus
@@ -242,7 +242,7 @@ exports[`<StatusLabel /> statuses renders label 8`] = `
 
 exports[`<StatusLabel /> statuses renders uppercased state 1`] = `
 <span
-  className="label_159vdge-o_O-label_uppercased_4efw5a-o_O-label_notice_h3lmxn"
+  className="label_xffcmo-o_O-label_uppercased_4efw5a-o_O-label_notice_h3lmxn"
 >
   <span>
     notice
@@ -252,7 +252,7 @@ exports[`<StatusLabel /> statuses renders uppercased state 1`] = `
 
 exports[`<StatusLabel /> statuses renders uppercased state 2`] = `
 <span
-  className="label_159vdge-o_O-label_uppercased_4efw5a-o_O-label_info_5ni0mj"
+  className="label_xffcmo-o_O-label_uppercased_4efw5a-o_O-label_info_5ni0mj"
 >
   <span>
     info
@@ -262,7 +262,7 @@ exports[`<StatusLabel /> statuses renders uppercased state 2`] = `
 
 exports[`<StatusLabel /> statuses renders uppercased state 3`] = `
 <span
-  className="label_159vdge-o_O-label_uppercased_4efw5a-o_O-label_success_9ngehh"
+  className="label_xffcmo-o_O-label_uppercased_4efw5a-o_O-label_success_9ngehh"
 >
   <span>
     success
@@ -272,7 +272,7 @@ exports[`<StatusLabel /> statuses renders uppercased state 3`] = `
 
 exports[`<StatusLabel /> statuses renders uppercased state 4`] = `
 <span
-  className="label_159vdge-o_O-label_uppercased_4efw5a-o_O-label_warning_kas06q"
+  className="label_xffcmo-o_O-label_uppercased_4efw5a-o_O-label_warning_kas06q"
 >
   <span>
     warning
@@ -282,7 +282,7 @@ exports[`<StatusLabel /> statuses renders uppercased state 4`] = `
 
 exports[`<StatusLabel /> statuses renders uppercased state 5`] = `
 <span
-  className="label_159vdge-o_O-label_uppercased_4efw5a-o_O-label_danger_p8x1nu"
+  className="label_xffcmo-o_O-label_uppercased_4efw5a-o_O-label_danger_p8x1nu"
 >
   <span>
     danger
@@ -292,7 +292,7 @@ exports[`<StatusLabel /> statuses renders uppercased state 5`] = `
 
 exports[`<StatusLabel /> statuses renders uppercased state 6`] = `
 <span
-  className="label_159vdge-o_O-label_uppercased_4efw5a-o_O-label_muted_s1bxkr"
+  className="label_xffcmo-o_O-label_uppercased_4efw5a-o_O-label_muted_s1bxkr"
 >
   <span>
     muted
@@ -302,7 +302,7 @@ exports[`<StatusLabel /> statuses renders uppercased state 6`] = `
 
 exports[`<StatusLabel /> statuses renders uppercased state 7`] = `
 <span
-  className="label_159vdge-o_O-label_uppercased_4efw5a-o_O-label_luxury_1ue0q2o"
+  className="label_xffcmo-o_O-label_uppercased_4efw5a-o_O-label_luxury_1ue0q2o"
 >
   <span>
     luxury
@@ -312,7 +312,7 @@ exports[`<StatusLabel /> statuses renders uppercased state 7`] = `
 
 exports[`<StatusLabel /> statuses renders uppercased state 8`] = `
 <span
-  className="label_159vdge-o_O-label_uppercased_4efw5a-o_O-label_plus_ncs1rt"
+  className="label_xffcmo-o_O-label_uppercased_4efw5a-o_O-label_plus_ncs1rt"
 >
   <span>
     plus

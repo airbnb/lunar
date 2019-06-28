@@ -5,7 +5,7 @@ import uuid from 'uuid/v4';
 import Overlay from '../Overlay';
 import NotchedBox, { NOTCH_SIZE, NOTCH_SPACING } from '../NotchedBox';
 import Text from '../Text';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Width of the tooltip in units. */
@@ -151,6 +151,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
 
   render() {
     const {
+      cx,
       styles,
       theme,
       width: widthProp,
@@ -177,25 +178,25 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     const distance = halfNotch + 1;
 
     return (
-      <span {...css(styles.container)} ref={this.containerRef}>
+      <span className={cx(styles.container)} ref={this.containerRef}>
         <div
           aria-labelledby={labelID}
           onMouseEnter={this.handleEnter}
           onMouseLeave={this.handleClose}
           onMouseDown={this.handleMouseDown}
-          {...css(!disabled && underlined && styles.underlined)}
+          className={cx(!disabled && underlined && styles.underlined)}
         >
           {children}
         </div>
 
-        <div id={labelID} {...css(styles.offscreen)}>
+        <div id={labelID} className={cx(styles.offscreen)}>
           {content}
         </div>
 
         <Overlay open={open} onClose={this.handleClose} noBackground>
           <div
             role="tooltip"
-            {...css(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
+            className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
               width,
               marginLeft: marginLeft[align as keyof StyleStruct],
               marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
@@ -203,7 +204,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
             })}
             ref={this.handleTooltipRef}
           >
-            <div {...css(styles.shadow)}>
+            <div className={cx(styles.shadow)}>
               <NotchedBox
                 inverted={!inverted}
                 notchOffset={notchOffset[align as keyof StyleStruct]}

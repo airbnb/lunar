@@ -1,20 +1,21 @@
 import { DayPickerProps } from 'react-day-picker';
-import { css, WithStylesProps } from '../composers/withStyles';
+import { WithStylesProps } from '../composers/withStyles';
 import { Props } from '../components/DatePicker';
 
 export function getCustomModifiers(
   modifiers: DayPickerProps['modifiers'],
   styles: WithStylesProps['styles'],
+  cx: WithStylesProps['cx'],
 ) {
   const customModifiers = modifiers || {};
   if (customModifiers.start && customModifiers.end) {
     if (String(customModifiers.start) !== String(customModifiers.end)) {
-      customModifiers[css(styles.modifier_start, styles.modifier_startWithRange).className] =
+      customModifiers[cx(styles.modifier_start, styles.modifier_startWithRange)] =
         customModifiers.start;
-      customModifiers[css(styles.modifier_end).className] = customModifiers.end;
+      customModifiers[cx(styles.modifier_end)] = customModifiers.end;
     }
   } else if (customModifiers.start && !customModifiers.end) {
-    customModifiers[css(styles.modifier_start).className] = customModifiers.start;
+    customModifiers[cx(styles.modifier_start)] = customModifiers.start;
   }
 
   return customModifiers;
@@ -23,33 +24,31 @@ export function getCustomModifiers(
 export function getClassNames(
   type: 'input' | 'calendar',
   styles: WithStylesProps['styles'],
-  props: Props,
+  props: Props & WithStylesProps,
 ) {
-  const { showResetButton, todayButton } = props;
+  const { cx, showResetButton, todayButton } = props;
   const baseClassNames = {
-    interactionDisabled: css(styles.interactionDisabled).className,
-    wrapper: css(styles.wrapper).className,
-    months: css(styles.months, showResetButton && !todayButton && styles.months_withResetButton)
-      .className,
-    month: css(styles.month).className,
-    navBar: css(styles.navBar).className,
-    navButtonPrev: css(styles.navButtonPrev).className,
-    navButtonNext: css(styles.navButtonNext).className,
-    navButtonInteractionDisabled: css(styles.navButtonInteractionDisabled).className,
-    caption: css(styles.caption).className,
-    weekdays: css(styles.weekdays).className,
-    weekdaysRow: css(styles.weekdaysRow).className,
-    weekday: css(styles.weekday).className,
-    body: css(styles.body).className,
-    week: css(styles.week).className,
-    day: css(styles.day).className,
-    footer: css(styles.footer, showResetButton && styles.footer_withResetButton).className,
-    todayButton: css(styles.todayButton, showResetButton && styles.todayButton_withResetButton)
-      .className,
-    today: css(styles.modifier_today).className,
-    selected: css(styles.modifier_selected).className,
-    disabled: css(styles.modifier_disabled).className,
-    outside: css(styles.modifier_outside).className,
+    interactionDisabled: cx(styles.interactionDisabled),
+    wrapper: cx(styles.wrapper),
+    months: cx(styles.months, showResetButton && !todayButton && styles.months_withResetButton),
+    month: cx(styles.month),
+    navBar: cx(styles.navBar),
+    navButtonPrev: cx(styles.navButtonPrev),
+    navButtonNext: cx(styles.navButtonNext),
+    navButtonInteractionDisabled: cx(styles.navButtonInteractionDisabled),
+    caption: cx(styles.caption),
+    weekdays: cx(styles.weekdays),
+    weekdaysRow: cx(styles.weekdaysRow),
+    weekday: cx(styles.weekday),
+    body: cx(styles.body),
+    week: cx(styles.week),
+    day: cx(styles.day),
+    footer: cx(styles.footer, showResetButton && styles.footer_withResetButton),
+    todayButton: cx(styles.todayButton, showResetButton && styles.todayButton_withResetButton),
+    today: cx(styles.modifier_today),
+    selected: cx(styles.modifier_selected),
+    disabled: cx(styles.modifier_disabled),
+    outside: cx(styles.modifier_outside),
 
     // No styles yet
     weekNumber: '',
@@ -61,15 +60,15 @@ export function getClassNames(
   if (type === 'input') {
     return {
       ...baseClassNames,
-      overlayWrapper: css(styles.overlayWrapper).className,
-      overlay: css(styles.overlay).className,
-      container: css(styles.inputContainer).className,
+      overlayWrapper: cx(styles.overlayWrapper),
+      overlay: cx(styles.overlay),
+      container: cx(styles.inputContainer),
     };
   }
 
   // type === 'calendar'
   return {
     ...baseClassNames,
-    container: css(styles.calendarContainer).className,
+    container: cx(styles.calendarContainer),
   };
 }

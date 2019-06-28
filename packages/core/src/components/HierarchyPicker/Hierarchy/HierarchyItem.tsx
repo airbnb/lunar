@@ -1,8 +1,10 @@
 import React from 'react';
+import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconCheckmark from '@airbnb/lunar-icons/lib/interface/IconCheck';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import { ENTER, SPACE, ARROW_RIGHT, ARROW_LEFT } from '../../../keys';
+import DirectionalIcon from '../../DirectionalIcon';
 import Text from '../../Text';
 import {
   ItemPickedHandler,
@@ -86,38 +88,53 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
   };
 
   renderItem = () => {
-    const { focused, item, styles, selected, renderItem, theme } = this.props;
+    const { cx, focused, item, styles, selected, renderItem, theme } = this.props;
 
     return renderItem ? (
       renderItem(item, selected, focused)
     ) : (
       <>
         {selected && (
-          <span {...css(styles.checkmark)}>
+          <span className={cx(styles.checkmark)}>
             <IconCheckmark decorative color={theme!.color.core.primary[3]} size={ICON_SIZE} />
           </span>
         )}
 
-        <span {...css(styles.label)}>{<Text>{item.label || item.name}</Text>}</span>
+        <span className={cx(styles.label)}>{<Text>{item.label || item.name}</Text>}</span>
       </>
     );
   };
 
   render() {
-    const { focused, item, styles, selected } = this.props;
+    const { cx, focused, item, styles, selected } = this.props;
 
     return (
       <div
-        {...css(styles.item, focused && styles.item_focused, item.readonly && styles.item_readonly)}
+        className={cx(
+          styles.item,
+          focused && styles.item_focused,
+          item.readonly && styles.item_readonly,
+        )}
         role="option"
         aria-selected={selected}
         onMouseMove={this.handleMouseMove}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
-        tabIndex={focused ? 1 : 0} // this is needed to find a focused parent item in a vertically aligned list
+        // this is needed to find a focused parent item in a vertically aligned list
+        tabIndex={focused ? 1 : 0}
       >
         {this.renderItem()}
-        {item.items && <IconChevronRight decorative inline size="1.4em" />}
+
+        {item.items && (
+          <DirectionalIcon
+            direction="right"
+            left={IconChevronLeft}
+            right={IconChevronRight}
+            size="1.4em"
+            decorative
+            inline
+          />
+        )}
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
+import Enzyme from 'enzyme';
+import { mountWithStyles, shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Picker, {
   Picker as BasePicker,
   Props as PickerProps,
@@ -24,12 +25,12 @@ const props = {
 
 describe('<Picker />', () => {
   it('renders a Search', () => {
-    const wrapper = shallow(<Picker {...props} />).dive();
+    const wrapper = shallowWithStyles(<Picker {...props} />);
     expect(wrapper.find(Search)).toHaveLength(1);
   });
 
   it('renders a Hierarchy when Search is empty', () => {
-    const wrapper = shallow(<Picker {...props} />).dive();
+    const wrapper = shallowWithStyles(<Picker {...props} />);
     expect(wrapper.find(Hierarchy)).toHaveLength(1);
     wrapper.setState({ searchQuery: 'search ' });
     expect(wrapper.find(Hierarchy)).toHaveLength(0);
@@ -51,15 +52,13 @@ describe('<Picker />', () => {
     });
 
     it('calls scrollTo on mount', () => {
-      mount(<Picker {...props} />);
+      mountWithStyles(<Picker {...props} />);
       expect(window.scrollTo).toHaveBeenCalled();
     });
 
     describe('focusables', () => {
       it('has getFocusables() fn', () => {
-        const instance = shallow(<Picker {...props} />)
-          .dive()
-          .instance();
+        const instance = shallowWithStyles(<Picker {...props} />).instance();
         expect(() => (instance as BasePicker).getFocusables()).not.toThrow();
       });
 
@@ -72,9 +71,7 @@ describe('<Picker />', () => {
         const mockGetFocusables = jest.fn(() => mockFocusables);
         BasePicker.prototype.getFocusables = mockGetFocusables;
 
-        const instance = shallow(<Picker {...props} />)
-          .dive()
-          .instance();
+        const instance = shallowWithStyles(<Picker {...props} />).instance();
 
         // @ts-ignore private invocation
         instance.focusNext();
@@ -93,7 +90,7 @@ describe('<Picker />', () => {
     let instance: BasePicker;
 
     beforeEach(() => {
-      wrapper = shallow(<Picker {...props} />).dive();
+      wrapper = shallowWithStyles(<Picker {...props} />);
       instance = wrapper.instance() as BasePicker;
     });
 
@@ -112,7 +109,7 @@ describe('<Picker />', () => {
 
     beforeEach(() => {
       myProps = { ...props, onItemPicked: jest.fn(), onClose: jest.fn() };
-      wrapper = shallow(<Picker {...myProps} />).dive();
+      wrapper = shallowWithStyles(<Picker {...myProps} />);
     });
 
     describe('handleItemPicked', () => {

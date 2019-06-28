@@ -67,6 +67,6 @@ export default class Query<Data = any, Vars = OperationVariables> extends React.
   render() {
     const { children, loading, error, ...props } = this.props;
 
-    return <BaseQuery<Data, Vars> {...props as any}>{this.handleRender}</BaseQuery>;
+    return <BaseQuery<Data, Vars> {...(props as any)}>{this.handleRender}</BaseQuery>;
   }
 }

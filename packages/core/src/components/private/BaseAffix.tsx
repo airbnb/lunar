@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import { css, WithStylesProps } from '../../composers/withStyles';
+import { WithStylesProps } from '../../composers/withStyles';
 
 const dirProp = mutuallyExclusiveTrueProps('after', 'before');
 
@@ -15,6 +15,8 @@ export type Props = {
   compact?: boolean;
   /** Mark the affix as disabled. */
   disabled?: boolean;
+  /** Align using flexbox. */
+  flex?: boolean;
 };
 
 export default class BaseAffix extends React.PureComponent<Props & WithStylesProps> {
@@ -28,19 +30,21 @@ export default class BaseAffix extends React.PureComponent<Props & WithStylesPro
     before: false,
     compact: false,
     disabled: false,
+    flex: false,
   };
 
   render() {
-    const { after, before, children, compact, disabled, styles } = this.props;
+    const { cx, after, before, children, compact, disabled, flex, styles } = this.props;
 
     return (
       <div
-        {...css(
+        className={cx(
           styles.affix,
           compact && styles.affix_compact,
           before && styles.affix_before,
           after && styles.affix_after,
           disabled && styles.affix_disabled,
+          flex && styles.affix_flex,
         )}
       >
         {children}

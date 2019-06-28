@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Display in the center horizontally. */
@@ -31,6 +31,7 @@ export class TableCell extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       centerAlign,
       children,
       header,
@@ -46,7 +47,7 @@ export class TableCell extends React.Component<Props & WithStylesProps> {
     return (
       <Tag
         {...props}
-        {...css(
+        className={cx(
           truncate && styles.cell_truncate,
           startAlign && styles.cell_left,
           centerAlign && styles.cell_center,

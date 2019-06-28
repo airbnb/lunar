@@ -1,5 +1,6 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Autocomplete from '../../../src/components/Autocomplete';
 import Search, {
   Search as BaseSearch,
@@ -29,7 +30,7 @@ describe('<Search />', () => {
 
   beforeEach(() => {
     handlePicked = jest.fn();
-    wrapper = shallow(<Search {...props} onItemPicked={handlePicked} />).dive();
+    wrapper = shallowWithStyles(<Search {...props} onItemPicked={handlePicked} />);
     instance = wrapper.instance() as BaseSearch;
   });
 
@@ -40,11 +41,12 @@ describe('<Search />', () => {
 
     it('renderItem renders SearchResults', () => {
       const auto = wrapper.find(Autocomplete);
-      const item = shallow(
+      const item = shallowWithStyles(
         auto.prop('renderItem')({
           item: { definition: ['foo'], label: '', formattedParents: '', name: '' },
           matches: [],
         }),
+        true,
       );
 
       expect(item.type()).toBe(SearchResult);
@@ -120,7 +122,7 @@ describe('<Search />', () => {
     });
 
     it('when true, should match items against formattedParents', () => {
-      wrapper = shallow(<Search {...props} indexParentPath />).dive();
+      wrapper = shallowWithStyles(<Search {...props} indexParentPath />);
       instance = wrapper.instance() as BaseSearch;
       expect(instance.handleSearch('foo bar')).toHaveLength(2); // 'foo > bar >' has 2 children
     });
@@ -128,7 +130,7 @@ describe('<Search />', () => {
 
   describe('overriding fuse options with no keys', () => {
     it('shows no results', () => {
-      wrapper = shallow(<Search {...props} fuseOptions={{ keys: [] }} />).dive();
+      wrapper = shallowWithStyles(<Search {...props} fuseOptions={{ keys: [] }} />);
       instance = wrapper.instance() as BaseSearch;
       expect(instance.handleSearch('coverage')).toHaveLength(0);
     });

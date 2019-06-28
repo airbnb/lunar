@@ -1,12 +1,13 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Highlight, { Props } from '../../../src/components/HierarchyPicker/Search/Highlight';
 
 describe('<Highlight />', () => {
   let wrapper: Enzyme.ShallowWrapper<Props>;
 
   beforeEach(() => {
-    wrapper = shallow(<Highlight fallback="fallback" />).dive();
+    wrapper = shallowWithStyles(<Highlight fallback="fallback" />);
   });
 
   it('shows fallback by default', () => {

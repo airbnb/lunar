@@ -40,8 +40,10 @@ storiesOf('Core/Pagination', module)
     <Pagination
       hasPrev
       hasNext
-      pageLabel=""
+      showBookends
       page={2}
+      pageLabel=""
+      pageCount={3}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
     />
@@ -72,6 +74,48 @@ storiesOf('Core/Pagination', module)
   ))
   .add('Bookends, middle page.', () => (
     <Pagination
+      hasNext
+      hasPrev
+      showBookends
+      onFirst={action('onFirst')}
+      onLast={action('onLast')}
+      onNext={action('onNext')}
+      onPrevious={action('onPrevious')}
+      page={2}
+      pageCount={3}
+    />
+  ))
+  .add('Align arrows at the start', () => (
+    <Pagination
+      hasNext
+      hasPrev
+      showBookends
+      startAlign
+      onFirst={action('onFirst')}
+      onLast={action('onLast')}
+      onNext={action('onNext')}
+      onPrevious={action('onPrevious')}
+      page={2}
+      pageCount={3}
+    />
+  ))
+  .add('Align arrows in the center', () => (
+    <Pagination
+      centerAlign
+      hasNext
+      hasPrev
+      showBookends
+      onFirst={action('onFirst')}
+      onLast={action('onLast')}
+      onNext={action('onNext')}
+      onPrevious={action('onPrevious')}
+      page={2}
+      pageCount={3}
+    />
+  ))
+  .add('Align arrows at the end', () => (
+    <Pagination
+      endAlign
       hasNext
       hasPrev
       showBookends

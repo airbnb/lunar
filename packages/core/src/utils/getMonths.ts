@@ -13,7 +13,7 @@ export type Months = [
   string,
   string,
   string,
-  string
+  string,
 ];
 
 export default function getMonths(type?: UnitLength): Months {

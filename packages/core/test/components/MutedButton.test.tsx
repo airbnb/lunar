@@ -1,12 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import MutedButton from '../../src/components/MutedButton';
 
 describe('<MutedButton />', () => {
   it('renders a secondary button', () => {
-    const wrapper = shallow(<MutedButton>Button</MutedButton>)
-      .dive()
-      .dive();
+    const wrapper = shallowWithStyles(<MutedButton>Button</MutedButton>).dive();
 
     expect(wrapper).toMatchSnapshot();
   });

@@ -1,19 +1,19 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import T from '../../src/components/Translate';
 import LabeledDivider from '../../src/components/LabeledDivider';
 
 describe('<LabeledDivider />', () => {
   it('renders a string as expected', () => {
-    const wrapper = shallow(<LabeledDivider label="Lorum ipsum" />).dive();
+    const wrapper = shallowWithStyles(<LabeledDivider label="Lorum ipsum" />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders a translation node as expected', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <LabeledDivider label={<T phrase="Lorum ipsum" context="Foo" />} />,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });

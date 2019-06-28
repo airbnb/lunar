@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ErrorMessage from '../ErrorMessage';
 import Loader from '../Loader';
 import Title from '../Title';
@@ -37,6 +37,7 @@ export class AppLoader extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       centered,
       children,
       error,
@@ -54,16 +55,16 @@ export class AppLoader extends React.Component<Props & WithStylesProps> {
     }
 
     return (
-      <div {...css(styles.appLoader, centered && styles.appLoader_centered)}>
+      <div className={cx(styles.appLoader, centered && styles.appLoader_centered)}>
         <Title level={small ? 3 : 1}>{error ? failureText : loadingText}</Title>
 
         {subtitle && (
-          <div {...css(styles.subtitle)}>
+          <div className={cx(styles.subtitle)}>
             <Text large={!small}>{subtitle}</Text>
           </div>
         )}
 
-        <div {...css(styles.errorOrLoader)}>
+        <div className={cx(styles.errorOrLoader)}>
           {error ? <ErrorMessage error={error} title={errorTitle} /> : <Loader inline />}
         </div>
       </div>

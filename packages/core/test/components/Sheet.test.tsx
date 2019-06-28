@@ -1,34 +1,39 @@
-import Enzyme, { mount, shallow } from 'enzyme';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { mockContextConsumer, unwrapHOCs } from '@airbnb/lunar-test-utils';
-import Row from '../../src/components/Row';
+import { mount } from 'enzyme';
+import IconButton from '../../src/components/IconButton';
 import Sheet from '../../src/components/Sheet';
 import SheetContext from '../../src/components/Sheet/SheetContext';
+import DirectionProvider from '../../src/providers/DirectionProvider';
+import ThemeProvider from '../../src/providers/ThemeProvider';
 import { ESCAPE } from '../../src/keys';
 
 describe('<Sheet />', () => {
   let contextSpy: jest.Mock;
-  let unmockConsumer: () => void;
 
-  function unwrap(element: any): Enzyme.ShallowWrapper {
-    return unwrapHOCs(shallow(element), 'BaseSheet', contextSpy, { render: true });
+  function WrappingComponent({ children }: { children: NonNullable<React.ReactNode> }) {
+    return (
+      <SheetContext.Provider value={contextSpy}>
+        <DirectionProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </DirectionProvider>
+      </SheetContext.Provider>
+    );
   }
 
   beforeEach(() => {
     contextSpy = jest.fn();
-    unmockConsumer = mockContextConsumer(SheetContext, contextSpy);
-  });
-
-  afterEach(() => {
-    unmockConsumer();
   });
 
   it('invokes the context method', () => {
-    const wrapper = unwrap(
+    const wrapper = mount(
       <Sheet onClose={jest.fn()} visible>
         sheet content
       </Sheet>,
+      {
+        // @ts-ignore Not typed yet
+        wrappingComponent: WrappingComponent,
+      },
     );
 
     expect(contextSpy).toHaveBeenCalledWith(true);
@@ -36,20 +41,24 @@ describe('<Sheet />', () => {
     wrapper.setProps({ visible: false });
     wrapper.update();
     // Simulate the end of the animation:
-    wrapper.simulate('animationEnd', { target: null });
+    wrapper.simulate('animationEnd', { target: wrapper.getDOMNode() });
 
     expect(contextSpy).toHaveBeenCalledWith(false);
   });
 
   it('calls onClose when the close button is pressed', () => {
     const close = jest.fn();
-    const wrapper = unwrap(
+    const wrapper = mount(
       <Sheet onClose={close} visible>
         sheet content
       </Sheet>,
+      {
+        // @ts-ignore Not typed yet
+        wrappingComponent: WrappingComponent,
+      },
     );
 
-    shallow(wrapper.find(Row).prop('before') as React.ReactElement).simulate('click');
+    wrapper.find(IconButton).simulate('click');
 
     expect(close).toHaveBeenCalled();
   });
@@ -57,10 +66,14 @@ describe('<Sheet />', () => {
   describe('gap', () => {
     it('calls onClose when the gap button is pressed', () => {
       const close = jest.fn();
-      const wrapper = unwrap(
+      const wrapper = mount(
         <Sheet onClose={close} gap visible>
           sheet content
         </Sheet>,
+        {
+          // @ts-ignore Not typed yet
+          wrappingComponent: WrappingComponent,
+        },
       );
 
       wrapper.find('button[aria-label="Close"]').simulate('click');
@@ -74,11 +87,15 @@ describe('<Sheet />', () => {
       const portalSpy = jest.spyOn(ReactDOM, 'createPortal');
       const eventSpy = jest.spyOn(document, 'addEventListener');
 
-      unwrap(
+      mount(
         <Sheet onClose={jest.fn()} visible portal>
           sheet content
         </Sheet>,
-      ).shallow();
+        {
+          // @ts-ignore Not typed yet
+          wrappingComponent: WrappingComponent,
+        },
+      );
 
       expect(portalSpy).toHaveBeenCalled();
       expect(eventSpy).toHaveBeenCalledWith('keydown', expect.any(Function));
@@ -98,6 +115,10 @@ describe('<Sheet />', () => {
         <Sheet onClose={jest.fn()} visible portal>
           sheet content
         </Sheet>,
+        {
+          // @ts-ignore Not typed yet
+          wrappingComponent: WrappingComponent,
+        },
       );
 
       jest.runAllTimers();
@@ -117,6 +138,10 @@ describe('<Sheet />', () => {
         <Sheet onClose={close} visible portal>
           sheet content
         </Sheet>,
+        {
+          // @ts-ignore Not typed yet
+          wrappingComponent: WrappingComponent,
+        },
       );
 
       // Dispatch a keydown event for the escape button:

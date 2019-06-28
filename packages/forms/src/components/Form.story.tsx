@@ -192,7 +192,7 @@ storiesOf('Forms/Form', module)
         name="autocomplete"
         defaultValue="black"
         onChange={action('onChange')}
-        onLoadOptions={value =>
+        onLoadItems={value =>
           Promise.resolve(items.filter(item => item.name.toLowerCase().match(value))) as any
         }
         validator={isRequired}
@@ -206,7 +206,7 @@ storiesOf('Forms/Form', module)
         name="multicomplete"
         // defaultValue={['blue', 'red']}
         onChange={action('onChange')}
-        onLoadOptions={value =>
+        onLoadItems={value =>
           Promise.resolve(items.filter(item => item.name.toLowerCase().match(value))) as any
         }
         renderItem={(item: any, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}

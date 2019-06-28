@@ -94,7 +94,7 @@ export default class PrivatePickerInput extends DayPickerInput {
       >
         <DatePicker
           ref={this.handlePickerRef}
-          {...dayPickerProps as any}
+          {...(dayPickerProps as any)}
           month={this.state.month}
           selectedDays={selectedDay}
           onDayClick={this.handleDayClick}

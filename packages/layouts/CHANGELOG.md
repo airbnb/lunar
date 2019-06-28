@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 - 2019-06-26
+
+#### 💥 Breaking
+
+- Migrate to Aesthetic v4 (#86) ([1b9b3f6](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/1b9b3f6)), closes [#86](https://github.com/airbnb/lunar/tree/master/packages/layouts/issues/86)
+- **[Layouts]** Rework layout structuring. Add LayoutShell and Aside components. (#95) ([ed5c47a](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/ed5c47a)), closes [#95](https://github.com/airbnb/lunar/tree/master/packages/layouts/issues/95)
+- Update peer dependencies to v2. ([536607d](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/536607d))
+
+#### 🚀 Updates
+
+- **[RTL]** Support RTL. Add DirectionProvider, DirectionalIcon, and ExpandableIcon components. (#94) ([153a66f](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/153a66f)), closes [#94](https://github.com/airbnb/lunar/tree/master/packages/layouts/issues/94)
+
+#### 📦 Dependencies
+
+- Update package dependencies to latest. ([1a07250](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/1a07250))
+
+#### 🛠 Internals
+
+- Update npmignore files. ([a2eda3f](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/a2eda3f))
+- Update Storybook to v5.1 (#93) ([4ee8f83](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/4ee8f83)), closes [#93](https://github.com/airbnb/lunar/tree/master/packages/layouts/issues/93)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
 ## 1.1.0 - 2019-06-07
 
 #### 🚀 Updates
