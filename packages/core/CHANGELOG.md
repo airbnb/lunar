@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.0 - 2019-06-28
+
+#### 🚀 Updates
+
+- **[Proofreader]** Handle delete replacement (#83) ([1994212](https://github.com/airbnb/lunar/tree/master/packages/core/commit/1994212)), closes [#83](https://github.com/airbnb/lunar/tree/master/packages/core/issues/83)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.1.3 - 2019-06-27
 
 #### 🎨 Styles
