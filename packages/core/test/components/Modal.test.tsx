@@ -210,11 +210,7 @@ describe('<Modal />', () => {
       false /* isShallow */,
     );
 
-    const headerWrapper = wrapper
-      .find(Spacing)
-      .find({ tag: 'header' })
-      .first();
-    expect(headerWrapper.prop('bottom')).toEqual(3);
+    expect(wrapper.find('header')).toHaveLength(1);
 
     const titleWrapper = wrapper.find(Title);
     expect(titleWrapper.prop('level')).toEqual(3);
@@ -229,11 +225,7 @@ describe('<Modal />', () => {
       false /* isShallow */,
     );
 
-    const headerWrapper = wrapper
-      .find(Spacing)
-      .find({ tag: 'header' })
-      .first();
-    expect(headerWrapper.prop('bottom')).toEqual(0);
+    expect(wrapper.find('header')).toHaveLength(0);
   });
 
   it('renders a footer, if provided', () => {
