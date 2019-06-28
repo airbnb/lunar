@@ -52,7 +52,7 @@ class ModalImageLayout extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(({ breakpoints, ui, unit }) => ({
+export default withStyles(({ responsive, ui, unit }) => ({
   splitContent: {
     display: 'flex',
   },
@@ -70,7 +70,7 @@ export default withStyles(({ breakpoints, ui, unit }) => ({
     position: 'relative',
 
     '@media': {
-      [`(max-width: ${breakpoints.xsmall}px)`]: {
+      [responsive.xsmall]: {
         display: 'none',
       },
     },

@@ -8,6 +8,7 @@ export const breakpoints = {
 };
 
 export const responsive: Theme['responsive'] = {
+  xsmall: `(max-width: ${breakpoints.xsmall}px)`,
   small: `(max-width: ${breakpoints.medium - 1}px)`,
   medium: `(min-width: ${breakpoints.medium}px)`,
   large: `(min-width: ${breakpoints.large}px)`,

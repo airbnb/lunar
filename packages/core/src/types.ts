@@ -152,6 +152,7 @@ export type Theme = {
     large: string;
     medium: string;
     small: string;
+    xsmall: string;
   };
   transition: {
     box: StyleBlock;
