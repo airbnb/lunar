@@ -6,6 +6,7 @@ import Title from '../../Title';
 import IconButton from '../../IconButton';
 import T from '../../Translate';
 import useTheme from '../../../hooks/useTheme';
+import toRGBA from '../../../utils/toRGBA';
 
 export type Props = {
   /** Dialog content. */
@@ -14,10 +15,10 @@ export type Props = {
   footer?: React.ReactNode;
   /** Show the large version of the Dialog. */
   large?: boolean;
-  /** Show the medium version of the Dialog. */
-  medium?: boolean;
   /** Modal content height becomes scrollable. */
   scrollable?: boolean;
+  /** Show the small version of the Dialog. */
+  small?: boolean;
   /** Dialog header subtitle. */
   subtitle?: React.ReactNode;
   /** Dialog header title. */
@@ -32,7 +33,7 @@ function ModalInnerContent({
   cx,
   footer,
   large,
-  medium,
+  small,
   onClose,
   scrollable,
   styles,
@@ -68,7 +69,7 @@ function ModalInnerContent({
           !withHeader && styles.body_paddingTop,
           !withFooter && styles.body_paddingBottom,
           scrollable && styles.body_scrollable,
-          scrollable && (medium || large) && styles.body_scrollableLarge,
+          scrollable && (!small || large) && styles.body_scrollableLarge,
         )}
       >
         {children}
@@ -102,7 +103,10 @@ export default withStyles(({ color, ui, unit }) => ({
       left: 0,
       right: 0,
       height: unit / 2,
-      background: 'linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, 0))',
+      background: `linear-gradient(${toRGBA(color.core.neutral[6], 15)}, ${toRGBA(
+        color.core.neutral[6],
+        0,
+      )})`,
     },
   },
 

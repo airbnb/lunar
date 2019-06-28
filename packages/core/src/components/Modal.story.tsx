@@ -13,7 +13,7 @@ class ModalDemo extends React.Component<
     showFluid?: boolean;
     showFooter?: boolean;
     showLarge?: boolean;
-    showMedium?: boolean;
+    showSmall?: boolean;
     showScrollable?: boolean;
     showSubtitle?: boolean;
     showTitle?: boolean;
@@ -33,7 +33,7 @@ class ModalDemo extends React.Component<
       showFluid,
       showFooter,
       showLarge,
-      showMedium,
+      showSmall,
       showScrollable,
       showSubtitle,
       showTitle,
@@ -68,15 +68,15 @@ class ModalDemo extends React.Component<
               }
             }
             large={showLarge}
-            medium={showMedium}
             scrollable={showScrollable}
+            small={showSmall}
             subtitle={showSubtitle ? 'Modal Sub-Title' : undefined}
             title={showTitle ? 'Modal Title' : undefined}
             onClose={this.handleClose}
           >
             <Text>
               <LoremIpsum />
-              {(showLarge || showMedium) && showScrollable && (
+              {(showLarge || !showSmall) && showScrollable && (
                 <>
                   <LoremIpsum /> <LoremIpsum />
                 </>
@@ -93,16 +93,16 @@ storiesOf('Core/Modal', module)
   .addParameters({
     inspectComponents: [Modal],
   })
-  .add('A minimum modal (400px)', () => <ModalDemo />)
-  .add('A medium modal (600px)', () => <ModalDemo showMedium />)
-  .add('A large modal (800px)', () => <ModalDemo showLarge />)
-  .add('A fluid modal', () => <ModalDemo showFluid showTitle />)
+  .add('Default modal (600px)', () => <ModalDemo />)
+  .add('Small modal (400px)', () => <ModalDemo showSmall />)
+  .add('Large modal (800px)', () => <ModalDemo showLarge />)
+  .add('Fluid modal', () => <ModalDemo showFluid showTitle />)
   .add('With title', () => <ModalDemo showTitle />)
   .add('With subtitle', () => <ModalDemo showSubtitle showTitle />)
   .add('With title and footer', () => <ModalDemo showFooter showTitle />)
-  .add('Minimum scrollable content', () => <ModalDemo showFooter showTitle showScrollable />)
-  .add('Medium scrollable content', () => (
-    <ModalDemo showMedium showFooter showTitle showScrollable />
+  .add('Scrollable content', () => <ModalDemo showFooter showTitle showScrollable />)
+  .add('Small scrollable content', () => (
+    <ModalDemo showSmall showFooter showTitle showScrollable />
   ))
   .add('Large scrollable content', () => (
     <ModalDemo showLarge showFooter showTitle showScrollable />

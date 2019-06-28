@@ -76,7 +76,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
       footer,
       image,
       large,
-      medium,
+      small,
       fluid,
       scrollable,
       styles,
@@ -84,13 +84,13 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
       title,
     } = this.props;
 
-    const showLargeContent = large || medium || !!image;
+    const showLargeContent = large || !small || !!image;
 
     const innerContent = (
       <ModalInnerContent
         footer={footer}
         large={showLargeContent}
-        medium={medium && !showLargeContent}
+        small={small}
         scrollable={scrollable}
         subtitle={subtitle}
         title={title}
@@ -107,7 +107,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
         ref={this.dialogRef}
         className={cx(
           styles.content,
-          medium && styles.content_medium,
+          small && styles.content_small,
           (large || !!image) && styles.content_large,
           fluid && styles.content_fluid,
         )}
@@ -125,7 +125,7 @@ export default withStyles(({ color, responsive, ui }) => ({
     backgroundColor: color.accent.bg,
     borderRadius: ui.borderRadius,
     boxShadow: ui.boxShadowLarge,
-    maxWidth: MODAL_MAX_WIDTH_SMALL,
+    maxWidth: MODAL_MAX_WIDTH_MEDIUM,
     position: 'relative',
     width: '100%',
 
@@ -134,8 +134,8 @@ export default withStyles(({ color, responsive, ui }) => ({
     },
   },
 
-  content_medium: {
-    maxWidth: MODAL_MAX_WIDTH_MEDIUM,
+  content_small: {
+    maxWidth: MODAL_MAX_WIDTH_SMALL,
   },
 
   content_large: {
