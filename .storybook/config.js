@@ -1,3 +1,4 @@
+import 'airbnb-js-shims';
 import React from 'react';
 import { stripHexcode } from 'emojibase';
 import { addDecorator, addParameters, configure } from '@storybook/react';
@@ -5,6 +6,7 @@ import { withContexts } from '@storybook/addon-contexts/react';
 import { withA11y } from '@storybook/addon-a11y';
 import Lunar from '@airbnb/lunar';
 import { withProps } from './addons/props';
+import { withStory } from './addons/story';
 import contexts from './contexts';
 
 Lunar.initialize({
@@ -19,6 +21,7 @@ Lunar.initialize({
 
 addDecorator(withA11y);
 addDecorator(withProps);
+addDecorator(withStory);
 addDecorator(withContexts(contexts));
 addDecorator(story => (
   <div style={{ padding: 20, fontSize: 15, fontFamily: Lunar.settings.fontFamily }}>{story()}</div>
