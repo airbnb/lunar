@@ -117,8 +117,7 @@ export default withStyles(({ color, ui, unit }) => ({
     position: 'static',
     top: 0,
     right: 0,
-    marginTop: unit * 2,
-    marginRight: unit * 2,
+    margin: `${unit * 2}px ${unit * 2}px ${unit / 2}px ${unit / 2}px`,
   },
 
   body: {
