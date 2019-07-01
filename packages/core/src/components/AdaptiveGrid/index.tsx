@@ -1,13 +1,9 @@
 import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
-type State = {
-  items: number;
-};
-
 export type AdaptiveGridProps = {
   /** List of width/item pairs, describes how many items to display for windows of at least that width. */
-  breakpoints?: { [key: number]: number };
+  breakpoints?: { [key: string]: number };
   /** Items per row for screens smaller than the smallest breakpoint. */
   defaultItemsPerRow?: number;
   /** Removes padding between items. */
@@ -16,52 +12,15 @@ export type AdaptiveGridProps = {
 
 type Props = AdaptiveGridProps & WithStylesProps;
 
-class AdaptiveGrid extends React.PureComponent<Props, State> {
+class AdaptiveGrid extends React.PureComponent<Props> {
   static defaultProps = {
     breakpoints: {},
     defaultItemsPerRow: 1,
     noGutter: false,
   };
 
-  state = {
-    items: this.getItems(),
-  };
-
-  componentDidMount() {
-    window.addEventListener('resize', this.handleResize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
-  }
-
-  private handleResize = () => {
-    this.setState({
-      items: this.getItems(),
-    });
-  };
-
-  // Find the largest breakpoint smaller than the current width
-  getItems(): number {
-    const { breakpoints, defaultItemsPerRow } = this.props;
-    const width = window.innerWidth;
-
-    const max = Object.keys(breakpoints!).reduce((acc, breakpoint) => {
-      const b = parseInt(breakpoint, 10);
-
-      return b < width && b > acc ? b : acc;
-    }, -1);
-
-    return max > -1 ? breakpoints![max] : defaultItemsPerRow!;
-  }
-
   render() {
-    const { children, cx, noGutter, styles } = this.props;
-    const { items } = this.state;
-
-    const containerStyle = {
-      gridTemplateColumns: `repeat(${items}, 1fr);`,
-    };
+    const { breakpoints, children, cx, defaultItemsPerRow, noGutter, styles } = this.props;
 
     const childElements =
       children &&
@@ -75,15 +34,37 @@ class AdaptiveGrid extends React.PureComponent<Props, State> {
         ) : null,
       );
 
+    const breakpointStyles: { [key: string]: { [key: string]: string } } = {};
+    const breakpointKeys = Object.keys(breakpoints!);
+    const smallestBreakpoint = breakpointKeys.reduce(
+      (min, key) => Math.min(min, parseInt(key, 10)),
+      10000,
+    );
+
+    breakpointKeys.forEach(breakpoint => {
+      breakpointStyles[`@media (min-width: ${breakpoint}px)`] = {
+        gridTemplateColumns: `repeat(${breakpoints![breakpoint]}, 1fr)`,
+      };
+    });
+
+    breakpointStyles[
+      breakpointKeys.length
+        ? `@media (max-width: ${smallestBreakpoint}px)`
+        : `@media (min-width: 0px)`
+    ] = {
+      gridTemplateColumns: `repeat(${defaultItemsPerRow}, 1fr)`,
+    };
+
+    console.log('rendering');
+
     return (
-      <div className={cx(styles.container, !noGutter && styles.container_padded, containerStyle)}>
+      <div className={cx(styles.container, !noGutter && styles.container_padded, breakpointStyles)}>
         {childElements}
       </div>
     );
   }
 }
-
-export default withStyles(({ unit }) => ({
+export default withStyles(({ unit, responsive }) => ({
   container: {
     display: 'grid',
   },
