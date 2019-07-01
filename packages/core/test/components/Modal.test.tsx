@@ -151,7 +151,13 @@ describe('<Modal />', () => {
 
   it('same class for image as large size', () => {
     const wrapper = shallowWithStyles(
-      <ModalInner image="foo.jpg" onClose={jest.fn()}>
+      <ModalInner
+        image={{
+          type: 'center',
+          url: 'some_image',
+        }}
+        onClose={jest.fn()}
+      >
         Foo
       </ModalInner>,
     );
