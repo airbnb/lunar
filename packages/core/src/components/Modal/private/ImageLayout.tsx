@@ -30,13 +30,14 @@ class ModalImageLayout extends React.Component<Props & WithStylesProps> {
         <div className={cx(styles.splitContentPane, styles.splitContentImagePane)}>
           {type === 'center' && (
             <img
-              className={cx(styles.image, styles.imageMaxHeight, styles.imageCentered)}
+              className={cx(styles.image)}
               src={url}
               srcSet={srcSet && srcSet.join(',')}
               sizes={sizes && sizes.join(',')}
               alt=""
             />
           )}
+
           {type === 'cover' && (
             <img
               className={cx(styles.image, styles.imageCover)}
@@ -51,7 +52,7 @@ class ModalImageLayout extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(({ responsive }) => ({
+export default withStyles(({ responsive, ui, unit }) => ({
   splitContent: {
     display: 'flex',
   },
@@ -61,6 +62,7 @@ export default withStyles(({ responsive }) => ({
   },
 
   splitContentImagePane: {
+    borderLeft: ui.border,
     alignItems: 'center',
     display: 'flex',
     justifyContent: 'center',
@@ -68,7 +70,7 @@ export default withStyles(({ responsive }) => ({
     position: 'relative',
 
     '@media': {
-      [responsive.small]: {
+      [responsive.xsmall]: {
         display: 'none',
       },
     },
@@ -76,32 +78,16 @@ export default withStyles(({ responsive }) => ({
 
   image: {
     display: 'block',
+    objectFit: 'contain',
     maxWidth: '100%',
-
-    '@media': {
-      [responsive.small]: {
-        maxHeight: MAX_HEIGHT_IMAGE_SMALL,
-      },
-    },
-  },
-
-  imageMaxHeight: {
-    maxHeight: MAX_HEIGHT_IMAGE,
-  },
-
-  imageCentered: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    maxHeight: '100%',
+    margin: unit * 3,
   },
 
   imageCover: {
+    objectFit: 'cover',
     height: '100%',
-    minWidth: '100%',
-    width: 'auto',
-    maxWidth: 'none',
-    position: 'absolute',
-    left: '50%',
-    top: '50%',
-    transform: 'translateX(-50%) translateY(-50%)',
+    width: '100%',
+    margin: 0,
   },
 }))(ModalImageLayout);

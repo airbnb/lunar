@@ -5,7 +5,7 @@ import Modal, { Props } from '../../src/components/Modal';
 import ModalImageLayout from '../../src/components/Modal/private/ImageLayout';
 import ModalInner from '../../src/components/Modal/private/Inner';
 import ModalInnerContent from '../../src/components/Modal/private/InnerContent';
-import Spacing from '../../src/components/Spacing';
+import Text from '../../src/components/Text';
 import Title from '../../src/components/Title';
 import { ESCAPE } from '../../src/keys';
 import focusFirstFocusableChild from '../../src/utils/focus/focusFirstFocusableChild';
@@ -127,6 +127,60 @@ describe('<Modal />', () => {
     });
   });
 
+  it('different class for small size', () => {
+    const wrapper = shallowWithStyles(<ModalInner onClose={jest.fn()}>Foo</ModalInner>);
+    const small = shallowWithStyles(
+      <ModalInner small onClose={jest.fn()}>
+        Foo
+      </ModalInner>,
+    );
+
+    expect(wrapper.prop('className')).not.toBe(small.prop('className'));
+  });
+
+  it('different class for large size', () => {
+    const wrapper = shallowWithStyles(<ModalInner onClose={jest.fn()}>Foo</ModalInner>);
+    const large = shallowWithStyles(
+      <ModalInner large onClose={jest.fn()}>
+        Foo
+      </ModalInner>,
+    );
+
+    expect(wrapper.prop('className')).not.toBe(large.prop('className'));
+  });
+
+  it('same class for image as large size', () => {
+    const wrapper = shallowWithStyles(
+      <ModalInner
+        image={{
+          type: 'center',
+          url: 'some_image',
+        }}
+        onClose={jest.fn()}
+      >
+        Foo
+      </ModalInner>,
+    );
+    const large = shallowWithStyles(
+      <ModalInner large onClose={jest.fn()}>
+        Foo
+      </ModalInner>,
+    );
+
+    expect(wrapper.prop('className')).toBe(large.prop('className'));
+  });
+
+  it('different class for fluid size', () => {
+    const wrapper = shallowWithStyles(<ModalInner onClose={jest.fn()}>Foo</ModalInner>);
+    const fluid = shallowWithStyles(
+      <ModalInner fluid onClose={jest.fn()}>
+        Foo
+      </ModalInner>,
+    );
+
+    expect(wrapper.prop('className')).not.toBe(fluid.prop('className'));
+  });
+
   it('focuses the first element on open', () => {
     jest.useFakeTimers();
     setup({}, false /* isShallow */);
@@ -210,18 +264,33 @@ describe('<Modal />', () => {
       false /* isShallow */,
     );
 
-    const headerWrapper = wrapper
-      .find(Spacing)
-      .find({ tag: 'header' })
-      .first();
-    expect(headerWrapper.prop('bottom')).toEqual(3);
+    expect(wrapper.find('header')).toHaveLength(1);
 
     const titleWrapper = wrapper.find(Title);
     expect(titleWrapper.prop('level')).toEqual(3);
     expect(titleWrapper.prop('children')).toBe('Title wave');
   });
 
-  it('adjusts header spacing if no title is provided', () => {
+  it('renders a subtitle', () => {
+    const { wrapper } = setup(
+      {
+        title: 'Title wave',
+        subtitle: 'Subtitle',
+      },
+      false /* isShallow */,
+    );
+
+    expect(wrapper.find('header')).toHaveLength(1);
+
+    expect(
+      wrapper
+        .find('header')
+        .find(Text)
+        .prop('children'),
+    ).toBe('Subtitle');
+  });
+
+  it('no header if no title is provided', () => {
     const { wrapper } = setup(
       {
         title: null,
@@ -229,11 +298,19 @@ describe('<Modal />', () => {
       false /* isShallow */,
     );
 
-    const headerWrapper = wrapper
-      .find(Spacing)
-      .find({ tag: 'header' })
-      .first();
-    expect(headerWrapper.prop('bottom')).toEqual(0);
+    expect(wrapper.find('header')).toHaveLength(0);
+  });
+
+  it('no header if no title or subtitle are provided', () => {
+    const { wrapper } = setup(
+      {
+        title: null,
+        subtitle: null,
+      },
+      false /* isShallow */,
+    );
+
+    expect(wrapper.find('header')).toHaveLength(0);
   });
 
   it('renders a footer, if provided', () => {

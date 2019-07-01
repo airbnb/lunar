@@ -60,7 +60,7 @@ export default withStyles(({ color, unit }) => ({
     display: 'flex',
     justifyContent: 'center',
     minHeight: '100%',
-    padding: unit * 8,
+    padding: unit * 2,
     width: '100%',
   },
 }))(Modal);
