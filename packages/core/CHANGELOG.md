@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.0 - 2019-07-01
+
+#### 🚀 Updates
+
+- **[Modal]** Update padding, widths, scrollable content, and layout. (#108) ([aa1d17b](https://github.com/airbnb/lunar/tree/master/packages/core/commit/aa1d17b)), closes [#108](https://github.com/airbnb/lunar/tree/master/packages/core/issues/108)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.2.0 - 2019-06-28
 
 #### 🚀 Updates
