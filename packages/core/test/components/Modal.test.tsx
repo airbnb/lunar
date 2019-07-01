@@ -127,6 +127,34 @@ describe('<Modal />', () => {
     });
   });
 
+  it('different class for small size', () => {
+    const wrapper = shallowWithStyles(<ModalInner>Foo</ModalInner>);
+    const small = shallowWithStyles(<ModalInner small>Foo</ModalInner>);
+
+    expect(wrapper.prop('className')).not.toBe(small.prop('className'));
+  });
+
+  it('different class for large size', () => {
+    const wrapper = shallowWithStyles(<ModalInner>Foo</ModalInner>);
+    const large = shallowWithStyles(<ModalInner large>Foo</ModalInner>);
+
+    expect(wrapper.prop('className')).not.toBe(large.prop('className'));
+  });
+
+  it('same class for image as large size', () => {
+    const wrapper = shallowWithStyles(<ModalInner image="foo.jpg">Foo</ModalInner>);
+    const large = shallowWithStyles(<ModalInner large>Foo</ModalInner>);
+
+    expect(wrapper.prop('className')).toBe(large.prop('className'));
+  });
+
+  it('different class for fluid size', () => {
+    const wrapper = shallowWithStyles(<ModalInner>Foo</ModalInner>);
+    const fluid = shallowWithStyles(<ModalInner fluid>Foo</ModalInner>);
+
+    expect(wrapper.prop('className')).not.toBe(fluid.prop('className'));
+  });
+
   it('focuses the first element on open', () => {
     jest.useFakeTimers();
     setup({}, false /* isShallow */);
