@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import AdaptiveGrid from './AdaptiveGrid';
-import Card, { Content } from './Card';
 
 const gridItem = (
   <div style={{ height: '100%', border: '1px solid black', padding: '16px' }}>Grid Item</div>
