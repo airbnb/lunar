@@ -22,7 +22,7 @@ export type Props = {
  * An abstract layout to use as a base for cards.
  */
 function Card({ children }: Props) {
-  const [styles, cx] = useStyles(styleSheet, 'Card');
+  const [styles, cx] = useStyles(styleSheet);
 
   return <div className={cx(styles.card)}>{children}</div>;
 }
