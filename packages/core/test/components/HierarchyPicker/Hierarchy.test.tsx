@@ -136,7 +136,7 @@ describe('<Hierarchy />', () => {
         wrapper.setProps({ focus: ['foo', 'coverage is hard'] });
         const nestedList = wrapper.find(BaseHierarchyList).dive();
         const description = nestedList.find(ItemDescription);
-        expect(description.html()).toMatch('very hard');
+        expect(description.prop('item').description).toMatch('very hard');
       });
 
       it('Clicking description invokes onItemPicked', () => {

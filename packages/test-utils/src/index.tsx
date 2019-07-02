@@ -41,10 +41,7 @@ export function shallowWithStyles<C extends React.Component, P = C['props'], S =
     // @ts-ignore Not typed yet
     wrappingComponent: WrappingComponent,
     wrappingProps: props,
-  })
-    .dive() // ThemeContext
-    .dive() // DirectionContext
-    .dive(); // WithStyles
+  });
 
   return self ? wrapper : wrapper.dive();
 }

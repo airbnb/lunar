@@ -25,9 +25,6 @@ describe('<DatePicker />', () => {
         .dive()
         .dive()
         .dive()
-        .dive()
-        .dive()
-        .dive()
         .contains('Reset'),
     ).toBe(true);
   });

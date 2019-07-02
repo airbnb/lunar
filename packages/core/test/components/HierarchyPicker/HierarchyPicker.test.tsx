@@ -154,12 +154,4 @@ describe('<HierarchyPicker />', () => {
       expect(pickerProps.verticallyAlign).toBe(props.verticallyAlign);
     });
   });
-
-  it('accepts invalid prop', () => {
-    const emptyItems = { ...props, items: [] };
-    const wrapper = shallowWithStyles(<HierarchyPicker {...emptyItems} />);
-    const markupValid = wrapper.html();
-    wrapper.setProps({ invalid: true });
-    expect(wrapper.html()).not.toEqual(markupValid);
-  });
 });
