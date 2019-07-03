@@ -65,8 +65,9 @@ class AdaptiveGrid extends React.PureComponent<Props> {
 export default withStyles(({ unit, responsive }) => ({
   container: {
     display: 'grid',
+    gridGap: 2 * unit,
   },
   container_noGutter: {
-    gridGap: 2 * unit,
+    gridGap: 0,
   },
 }))(AdaptiveGrid);
