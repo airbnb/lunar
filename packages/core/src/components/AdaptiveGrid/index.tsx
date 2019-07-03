@@ -54,7 +54,9 @@ class AdaptiveGrid extends React.PureComponent<Props> {
     };
 
     return (
-      <div className={cx(styles.container, !noGutter && styles.container_padded, breakpointStyles)}>
+      <div
+        className={cx(styles.container, noGutter && styles.container_noGutter, breakpointStyles)}
+      >
         {childElements}
       </div>
     );
@@ -64,7 +66,7 @@ export default withStyles(({ unit, responsive }) => ({
   container: {
     display: 'grid',
   },
-  container_padded: {
+  container_noGutter: {
     gridGap: 2 * unit,
   },
 }))(AdaptiveGrid);
