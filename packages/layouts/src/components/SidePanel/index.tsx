@@ -58,8 +58,8 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
     buttonTop: 16,
     collapsible: true,
     compact: true,
-    iconColor: '#484848', // core.neutral[5]
     iconClosed: IconChevronRight,
+    iconColor: '#484848', // core.neutral[5]
     iconOpen: IconChevronLeft,
     iconSize: '1.1rem',
     maxWidth: Infinity,

@@ -1,8 +1,8 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import LoremIpsum from ':storybook/components/LoremIpsum';
 import Aside from './Aside';
 import SplitLayout from './SplitLayout';
+import LoremIpsum from ':storybook/components/LoremIpsum';
+import { storiesOf } from '@storybook/react';
 
 storiesOf('Layouts/SplitLayout', module)
   .addParameters({

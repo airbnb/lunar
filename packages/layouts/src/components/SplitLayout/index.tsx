@@ -1,8 +1,8 @@
 import React from 'react';
-import { elementType } from 'airbnb-prop-types';
-import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import Aside from '../Aside';
 import Layout, { Props as LayoutProps, AsideProps } from '../Layout';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import { elementType } from 'airbnb-prop-types';
 
 export type Props = Required<AsideProps> & Pick<LayoutProps, 'fluid'>;
 
