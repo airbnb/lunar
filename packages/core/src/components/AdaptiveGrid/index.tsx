@@ -28,9 +28,7 @@ class AdaptiveGrid extends React.PureComponent<Props> {
         child ? (
           // These items are generic and don't have a guaranteed id or any unique property
           // eslint-disable-next-line react/no-array-index-key
-          <div className={cx(!noGutter && styles.item_padded)} key={idx}>
-            {child}
-          </div>
+          <div key={idx}>{child}</div>
         ) : null,
       );
 
