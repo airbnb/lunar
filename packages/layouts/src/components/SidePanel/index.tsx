@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import PropTypes from 'prop-types';
 import { mutuallyExclusiveProps } from 'airbnb-prop-types';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
@@ -87,6 +87,7 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
       buttonTop,
       collapsible,
       compact,
+      cx,
       iconColor,
       iconClosed,
       iconOpen,
@@ -137,7 +138,7 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
     const collapseButton = (
       <button
         type="button"
-        {...css(
+        className={cx(
           collapseButtonStyle,
           styles.collapseButton,
           collapsed && !rightSide && styles.collapseButtonHiddenLeft,
@@ -156,10 +157,10 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
     );
 
     return (
-      <div {...css(styles.splitPane)}>
-        {rightSide && <div {...css(styles.mainPanel, mainPanelColorStyle)}>{mainPane}</div>}
+      <div className={cx(styles.splitPane)}>
+        {rightSide && <div className={cx(styles.mainPanel, mainPanelColorStyle)}>{mainPane}</div>}
         <div
-          {...css(
+          className={cx(
             styles.sidePanel,
             rightSide && styles.sidePanelRight,
             !rightSide && styles.sidePanelLeft,
@@ -167,9 +168,9 @@ class SidePanel extends React.Component<SplitPaneProps & WithStylesProps, SplitP
           )}
         >
           {collapsible && collapseButton}
-          <div {...css(styles.sidePanelInner)}>{!collapsed && sidePane}</div>
+          <div className={cx(styles.sidePanelInner)}>{!collapsed && sidePane}</div>
         </div>
-        {!rightSide && <div {...css(styles.mainPanel, mainPanelColorStyle)}>{mainPane}</div>}
+        {!rightSide && <div className={cx(styles.mainPanel, mainPanelColorStyle)}>{mainPane}</div>}
       </div>
     );
   }
