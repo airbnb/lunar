@@ -67,10 +67,6 @@ export default withStyles(({ unit, responsive }) => ({
     display: 'grid',
   },
   container_padded: {
-    marginRight: -2 * unit,
-  },
-  item_padded: {
-    paddingRight: 2 * unit,
-    paddingBottom: 2 * unit,
+    gridGap: 2 * unit,
   },
 }))(AdaptiveGrid);
