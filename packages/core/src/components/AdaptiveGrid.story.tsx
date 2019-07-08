@@ -1,14 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import AdaptiveGrid from './AdaptiveGrid';
+import LoremIpsum from ':storybook/components/LoremIpsum';
 
 const gridItem = (
   <div style={{ height: '100%', border: '1px solid black', padding: '16px' }}>Grid Item</div>
 );
 const bigGridItem = (
   <div style={{ height: '100%', border: '1px solid black', padding: '16px' }}>
-    Very Big Grid Item Very Big Grid Item Very Big Grid Item Very Big Grid Item Very Big Grid Item
-    Very Big Grid Item Very Big Grid Item Very Big Grid Item Very Big Grid Item Very Big Grid Item
+    <LoremIpsum />
   </div>
 );
 
