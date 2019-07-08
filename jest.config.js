@@ -17,6 +17,7 @@ module.exports = {
     'test-utils/src',
     // Quite difficult to test
     'core/src/components/GradientScroller',
+    'core/src/components/HierarchyPicker',
     'core/src/components/ResponsiveImage',
     // Requires context support in Enzyme to test correctly
     'forms/src/components/FormActions',
