@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.0 - 2019-07-08
+
+#### 🚀 Updates
+
+- Export LayoutShell from the index (#111) ([a5d7839](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/a5d7839)), closes [#111](https://github.com/airbnb/lunar/tree/master/packages/layouts/issues/111)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
 ### 2.0.1 - 2019-07-08
 
 **Note:** Version bump only for package @airbnb/lunar-layouts
