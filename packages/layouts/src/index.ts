@@ -1,1 +1,3 @@
-// Empty on purpose to resolve TypeScript declarations
+import LayoutShell from './components/LayoutShell';
+
+export default LayoutShell;
