@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.1 - 2019-07-08
+
+#### 🐞 Fixes
+
+- Migrate to Aesthetic v4 official (#110) ([19e73dd](https://github.com/airbnb/lunar/tree/master/packages/core/commit/19e73dd)), closes [#110](https://github.com/airbnb/lunar/tree/master/packages/core/issues/110)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.3.0 - 2019-07-01
 
 #### 🚀 Updates
