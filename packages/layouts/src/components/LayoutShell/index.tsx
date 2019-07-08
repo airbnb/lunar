@@ -17,6 +17,10 @@ const styleSheet: StyleSheet = ({ color }) => ({
     flexShrink: 0,
     width: 'auto',
   },
+
+  mainContent: {
+    flexGrow: 1,
+  },
 });
 
 export type Props = {
@@ -36,7 +40,7 @@ function LayoutShell({ children, sideBar }: Props) {
     <div className={cx(styles.shell)}>
       {sideBar && <aside className={cx(styles.sideBar)}>{sideBar}</aside>}
 
-      <div>{children}</div>
+      <div className={cx(styles.mainContent)}>{children}</div>
     </div>
   );
 }
