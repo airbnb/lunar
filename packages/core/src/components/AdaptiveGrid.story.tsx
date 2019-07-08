@@ -4,7 +4,9 @@ import AdaptiveGrid from './AdaptiveGrid';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 
 const gridItem = (
-  <div style={{ height: '100%', border: '1px solid black', padding: '16px' }}>Grid Item</div>
+  <div style={{ height: '100%', border: '1px solid black', padding: '16px' }}>
+    <LoremIpsum short />
+  </div>
 );
 const bigGridItem = (
   <div style={{ height: '100%', border: '1px solid black', padding: '16px' }}>
