@@ -48,7 +48,7 @@ class AdaptiveGrid extends React.PureComponent<Props> {
     breakpointStyles[
       breakpointKeys.length > 0
         ? `@media (max-width: ${smallestBreakpoint}px)`
-        : `@media (min-width: 0px)`
+        : '@media (min-width: 0px)'
     ] = {
       gridTemplateColumns: `repeat(${defaultItemsPerRow}, 1fr)`,
     };
