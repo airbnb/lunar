@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Content from '../../../src/components/Card/Content';
 import Row from '../../../src/components/Row';
@@ -16,12 +17,10 @@ describe('<Card />', () => {
     const wrapper = shallowWithStyles(<Content beforeImageSrc={imageUrl}>Sup</Content>);
 
     expect(
-      wrapper
-        .find(Row)
-        .dive()
-        .html()
-        .includes(imageUrl),
-    ).toBe(true);
+      shallow(wrapper.find(Row).prop('before') as any)
+        .find('img')
+        .prop('src'),
+    ).toBe(imageUrl);
   });
 
   it('renders a right image', () => {
@@ -29,12 +28,10 @@ describe('<Card />', () => {
     const wrapper = shallowWithStyles(<Content afterImageSrc={imageUrl}>Sup</Content>);
 
     expect(
-      wrapper
-        .find(Row)
-        .dive()
-        .html()
-        .includes(imageUrl),
-    ).toBe(true);
+      shallow(wrapper.find(Row).prop('after') as any)
+        .find('img')
+        .prop('src'),
+    ).toBe(imageUrl);
   });
 
   it('renders a button if `onClick` is provided', () => {
@@ -48,26 +45,14 @@ describe('<Card />', () => {
     const after = '~~After~~';
     const wrapper = shallowWithStyles(<Content after={after}>Sup</Content>);
 
-    expect(
-      wrapper
-        .find(Row)
-        .dive()
-        .html()
-        .includes(after),
-    ).toBe(true);
+    expect(shallow(wrapper.find(Row).prop('after') as any).contains(after)).toBe(true);
   });
 
   it('renders before content', () => {
     const before = '~*Before*~';
     const wrapper = shallowWithStyles(<Content before={before}>Sup</Content>);
 
-    expect(
-      wrapper
-        .find(Row)
-        .dive()
-        .html()
-        .includes(before),
-    ).toBe(true);
+    expect(shallow(wrapper.find(Row).prop('before') as any).contains(before)).toBe(true);
   });
 
   it('renders before and after content', () => {
@@ -79,12 +64,7 @@ describe('<Card />', () => {
       </Content>,
     );
 
-    const rowHtml = wrapper
-      .find(Row)
-      .dive()
-      .html();
-
-    expect(rowHtml.includes(after)).toBe(true);
-    expect(rowHtml.includes(before)).toBe(true);
+    expect(shallow(wrapper.find(Row).prop('after') as any).contains(after)).toBe(true);
+    expect(shallow(wrapper.find(Row).prop('before') as any).contains(before)).toBe(true);
   });
 });

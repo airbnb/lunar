@@ -53,7 +53,6 @@ class Core {
   readonly aesthetic = new AphroditeAesthetic<Theme>([], {
     theme: 'light',
     passThemeProp: false,
-    pure: true,
   });
 
   initialize(settings: Settings) {

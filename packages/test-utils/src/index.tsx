@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
-// Assumes Lunar core has been installed
 import { DirectionContext, ThemeContext } from 'aesthetic-react';
 
 type WrappingProps = {
@@ -15,15 +14,9 @@ export function WrappingComponent({
   dir,
   themeName,
 }: { children: React.ReactNode } & WrappingProps) {
-  const theme = {
-    changeTheme() {},
-    theme: {},
-    themeName: themeName || 'light',
-  };
-
   return (
     <DirectionContext.Provider value={dir || 'ltr'}>
-      <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+      <ThemeContext.Provider value={themeName || 'light'}>{children}</ThemeContext.Provider>
     </DirectionContext.Provider>
   );
 }
@@ -48,10 +41,7 @@ export function shallowWithStyles<C extends React.Component, P = C['props'], S =
     // @ts-ignore Not typed yet
     wrappingComponent: WrappingComponent,
     wrappingProps: props,
-  })
-    .dive() // ThemeContext
-    .dive() // DirectionContext
-    .dive(); // WithStyles
+  });
 
   return self ? wrapper : wrapper.dive();
 }

@@ -91,6 +91,6 @@ describe('<List />', () => {
       </List>,
     );
 
-    expect(wrapperDefault.html() === wrapperHorizontal.html()).toBe(false);
+    expect(wrapperDefault.prop('className') === wrapperHorizontal.prop('className')).toBe(false);
   });
 });
