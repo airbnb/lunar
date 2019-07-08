@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.0 - 2019-07-08
+
+#### 🚀 Updates
+
+- **[AdaptiveGrid]** Add new AdaptiveGrid (#88) ([f47bc07](https://github.com/airbnb/lunar/tree/master/packages/core/commit/f47bc07)), closes [#88](https://github.com/airbnb/lunar/tree/master/packages/core/issues/88)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.3.1 - 2019-07-08
 
 #### 🐞 Fixes
