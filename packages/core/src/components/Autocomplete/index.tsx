@@ -569,11 +569,13 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   };
 
   renderError = (error: Error) => (
-    <MenuItem>
-      {renderElementOrFunction(this.props.renderError, error) || (
-        <ErrorMessage error={error} inline />
-      )}
-    </MenuItem>
+    <MenuRow>
+      <Spacing horizontal={1}>
+        {renderElementOrFunction(this.props.renderError, error) || (
+          <ErrorMessage error={error} inline />
+        )}
+      </Spacing>
+    </MenuRow>
   );
 
   renderItem = (
@@ -659,17 +661,19 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
 
   renderNoResults = () => (
     <MenuItem>
-      {renderElementOrFunction(this.props.renderNoResults) || (
-        <Text>
-          {this.props.noResultsText || (
-            <T
-              k="lunar.common.noResults"
-              phrase="No results found."
-              context="No results found for autocomplete search"
-            />
-          )}
-        </Text>
-      )}
+      <Spacing horizontal={1}>
+        {renderElementOrFunction(this.props.renderNoResults) || (
+          <Text>
+            {this.props.noResultsText || (
+              <T
+                k="lunar.common.noResults"
+                phrase="No results found."
+                context="No results found for autocomplete search"
+              />
+            )}
+          </Text>
+        )}
+      </Spacing>
     </MenuItem>
   );
 

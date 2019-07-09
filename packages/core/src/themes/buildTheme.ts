@@ -46,7 +46,7 @@ export default function buildTheme(
 
   const ui = {
     border: `${borderWidth}px solid ${accent.border}`,
-    borderThick: `$${borderWidthThick}px solid ${accent.border}`,
+    borderThick: `${borderWidthThick}px solid ${accent.border}`,
     borderRadius,
     borderRadiusThick: borderRadius * 2,
     borderWidth,
