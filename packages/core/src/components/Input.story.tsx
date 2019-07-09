@@ -15,7 +15,7 @@ storiesOf('Core/Input', module)
       onChange={action('onChange')}
     />
   ))
-  .add('With a compact smaller view.', () => (
+  .add('With a compact smaller view or expanded larger view .', () => (
     <>
       <Input
         name="input-compact"
@@ -29,6 +29,13 @@ storiesOf('Core/Input', module)
         label="Regular"
         placeholder="Placeholder"
         onChange={action('onChange')}
+      />
+      <Input
+        name="input-large"
+        label="Large"
+        placeholder="Placeholder"
+        onChange={action('onChange')}
+        large
       />
     </>
   ))

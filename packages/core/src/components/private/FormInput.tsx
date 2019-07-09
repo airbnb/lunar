@@ -1,7 +1,10 @@
 import React from 'react';
+import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import { Omit } from 'utility-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import buildInputStyles from '../../themes/buildInputStyles';
+
+const sizingProp = mutuallyExclusiveTrueProps('compact', 'large');
 
 export type IgnoreAttributes =
   | 'children'
@@ -26,12 +29,14 @@ export type IgnoreAttributes =
   | 'security';
 
 export type Props<T = any> = {
-  /** Decrease font size and padding. */
+  /** Decrease font size and padding to small. */
   compact?: boolean;
   /** Mark the field as important. */
   important?: boolean;
   /** Mark the field as invalid. */
   invalid?: boolean;
+  /** Increase font size and padding to large. */
+  large?: boolean;
   /** Add "notranslate" className to prevent Google Chrome translation. */
   noTranslate?: boolean;
   /** Mark the field as optional. */
@@ -78,6 +83,7 @@ class FormInput extends React.Component<PrivateProps> {
     hidden: false,
     important: false,
     invalid: false,
+    large: false,
     noTranslate: false,
     optional: false,
     value: '',
@@ -95,6 +101,7 @@ class FormInput extends React.Component<PrivateProps> {
       id,
       important,
       invalid,
+      large,
       noTranslate,
       optional,
       propagateRef,
@@ -107,15 +114,16 @@ class FormInput extends React.Component<PrivateProps> {
       ...restProps,
       className: cx(
         styles.input,
-        important && styles.input_important,
         compact && styles.input_compact,
-        invalid && styles.input_invalid,
         disabled && styles.input_disabled,
-        hidden && styles.input_hidden,
-        isSelect && styles.select,
-        isSelect && compact && styles.select_compact,
         hasPrefix && styles.input_hasPrefix,
         hasSuffix && styles.input_hasSuffix,
+        hidden && styles.input_hidden,
+        important && styles.input_important,
+        invalid && styles.input_invalid,
+        isSelect && styles.select,
+        isSelect && compact && styles.select_compact,
+        large && styles.input_large,
       ),
       disabled,
       id,

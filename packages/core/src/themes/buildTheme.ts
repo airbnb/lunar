@@ -118,7 +118,7 @@ export default function buildTheme(
       },
       largeButton: {
         ...font.textLarge,
-        padding: `${unit * 1.5}px ${unit * 2.5}px`,
+        padding: `${unit * 1.5}px ${unit * 2}px`,
       },
     },
     breakpoints,
