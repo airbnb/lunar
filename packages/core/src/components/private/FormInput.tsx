@@ -74,6 +74,11 @@ export type PrivateProps = Props &
   };
 
 class FormInput extends React.Component<PrivateProps> {
+  static propTypes = {
+    compact: sizingProp,
+    large: sizingProp,
+  };
+
   static defaultProps = {
     children: null,
     compact: false,
