@@ -91,7 +91,7 @@ export default withStyles(
       position: 'relative',
       color: color.base,
       backgroundColor: color.core.primary[3],
-      border: `2px solid ${color.core.primary[3]}`,
+      border: `${ui.borderWidthThick}px solid ${color.core.primary[3]}`,
       borderRadius: ui.borderRadius,
       textAlign: 'center',
 
