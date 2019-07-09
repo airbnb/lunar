@@ -8,6 +8,7 @@ import ErrorMessage from '../ErrorMessage';
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
 import Loader from '../Loader';
 import Menu, { Item as MenuItem, Row as MenuRow } from '../Menu';
+import Spacing from '../Spacing';
 import T from '../Translate';
 import Text from '../Text';
 import renderElementOrFunction, { RenderableProp } from '../../utils/renderElementOrFunction';
@@ -568,11 +569,11 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   };
 
   renderError = (error: Error) => (
-    <MenuRow>
+    <MenuItem>
       {renderElementOrFunction(this.props.renderError, error) || (
         <ErrorMessage error={error} inline />
       )}
-    </MenuRow>
+    </MenuItem>
   );
 
   renderItem = (
@@ -616,7 +617,11 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   };
 
   renderLoading = () => (
-    <MenuRow>{renderElementOrFunction(this.props.renderLoading) || <Loader inline />}</MenuRow>
+    <MenuRow>
+      <Spacing horizontal={1}>
+        {renderElementOrFunction(this.props.renderLoading) || <Loader inline />}
+      </Spacing>
+    </MenuRow>
   );
 
   renderMenu = () => {
@@ -653,7 +658,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   };
 
   renderNoResults = () => (
-    <MenuRow>
+    <MenuItem>
       {renderElementOrFunction(this.props.renderNoResults) || (
         <Text>
           {this.props.noResultsText || (
@@ -665,7 +670,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
           )}
         </Text>
       )}
-    </MenuRow>
+    </MenuItem>
   );
 
   render() {

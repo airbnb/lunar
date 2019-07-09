@@ -110,7 +110,7 @@ export default function buildTheme(
       },
       smallButton: {
         ...font.textSmall,
-        padding: `${unit * 0.75}px ${unit * 1.25}px`,
+        padding: `${unit * 1}px ${unit * 1.5}px`,
       },
       regularButton: {
         ...font.textRegular,
