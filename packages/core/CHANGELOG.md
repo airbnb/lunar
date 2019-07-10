@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.5.0 - 2019-07-10
+
+#### 🚀 Updates
+
+- **[AccordionItem]** Change title to node instead of string (#114) ([09c0aac](https://github.com/airbnb/lunar/tree/master/packages/core/commit/09c0aac)), closes [#114](https://github.com/airbnb/lunar/tree/master/packages/core/issues/114)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.4.0 - 2019-07-08
 
 #### 🚀 Updates
