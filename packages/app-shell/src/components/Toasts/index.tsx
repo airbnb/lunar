@@ -4,7 +4,10 @@ import React, { useContext } from 'react';
 import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 import Toast from '@airbnb/lunar/lib/components/Toast';
 import { Z_INDEX_TOAST } from '@airbnb/lunar/lib/constants';
+import PopToast from './PopToast';
 import AppContext from '../AppContext';
+
+export { PopToast };
 
 export const styleSheet: StyleSheet = ({ unit }) => ({
   toasts: {

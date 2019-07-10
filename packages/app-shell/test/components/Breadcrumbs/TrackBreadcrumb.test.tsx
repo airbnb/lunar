@@ -9,7 +9,7 @@ describe('TrackBreadcrumb', () => {
 
   beforeEach(() => {
     context = {
-      addBreadcrumb: jest.fn(() => 123),
+      addBreadcrumb: jest.fn(() => '123'),
       removeBreadcrumb: jest.fn(),
     };
   });
@@ -31,7 +31,7 @@ describe('TrackBreadcrumb', () => {
 
     unmount();
 
-    expect(context.removeBreadcrumb).toHaveBeenCalledWith(123);
+    expect(context.removeBreadcrumb).toHaveBeenCalledWith('123');
   });
 
   it('only adds the crumb once', () => {
