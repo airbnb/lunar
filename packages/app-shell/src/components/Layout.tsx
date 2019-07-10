@@ -1,20 +1,20 @@
 import React from 'react';
-import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
+
+export const styleSheet: StyleSheet = () => ({
+  layout: {
+    minHeight: '100vh',
+  },
+});
 
 export type Props = {
   children: NonNullable<React.ReactNode>;
 };
 
-export class ShellLayout extends React.Component<Props & WithStylesProps> {
-  render() {
-    const { cx, children, styles } = this.props;
+function ShellLayout({ children }: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-    return <div className={cx(styles.layout)}>{children}</div>;
-  }
+  return <div className={cx(styles.layout)}>{children}</div>;
 }
 
-export default withStyles(() => ({
-  layout: {
-    height: '100vh',
-  },
-}))(ShellLayout);
+export default React.memo(ShellLayout);
