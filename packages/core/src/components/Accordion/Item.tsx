@@ -14,7 +14,7 @@ export type Props = {
   /** Index amongst a collection of accordion items. */
   index?: number;
   /** Title of the accordion item. */
-  title?: string;
+  title?: React.ReactNode;
   /** Callback fired when the accordion item is clicked. */
   onClick?: (index: number) => void;
 };

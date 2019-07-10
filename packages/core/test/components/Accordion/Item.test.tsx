@@ -19,6 +19,26 @@ describe('<AccordionItem />', () => {
     expect(wrapper.find('section')).toHaveLength(1);
   });
 
+  it('renders the title as a string', () => {
+    const wrapper = shallowWithStyles(
+      <AccordionItem id=".0" index={0} title="unique string" onClick={() => {}} />,
+    );
+
+    expect(wrapper.find('button').html()).toMatch('unique string');
+  });
+
+  it('renders the title as a component', () => {
+    function CustomTitleComponent() {
+      return null;
+    }
+
+    const wrapper = shallowWithStyles(
+      <AccordionItem id=".0" index={0} title={<CustomTitleComponent />} onClick={() => {}} />,
+    );
+
+    expect(wrapper.find(CustomTitleComponent)).toHaveLength(1);
+  });
+
   it('renders children', () => {
     const child = <div>Foo</div>;
 
