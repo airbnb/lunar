@@ -53,4 +53,28 @@ describe('PopToast', () => {
 
     expect(context.addFailureToast).toHaveBeenCalledWith(error, {});
   });
+
+  it('only adds the toast once', () => {
+    const { rerender } = render(<PopToast message="Hi" />, { wrapper: WrappingComponent });
+
+    rerender(<PopToast message="Hi" />);
+    rerender(<PopToast message="Hi" />);
+
+    expect(context.addInfoToast).toHaveBeenCalledTimes(1);
+  });
+
+  it('adds another toast if the message changes', () => {
+    const { rerender } = render(<PopToast message="Hi" />, { wrapper: WrappingComponent });
+
+    rerender(<PopToast message="Hi" />);
+    rerender(<PopToast message="Hello" />);
+
+    expect(context.addInfoToast).toHaveBeenCalledTimes(2);
+  });
+
+  it('doesnt add a toast if no context', () => {
+    render(<PopToast message="Hi" />);
+
+    expect(context.addInfoToast).not.toHaveBeenCalled();
+  });
 });
