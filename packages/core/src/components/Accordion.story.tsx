@@ -37,4 +37,21 @@ storiesOf('Core/Accordion', module)
         </Text>
       </Item>
     </Accordion>
+  ))
+  .add('Custom title component.', () => (
+    <Accordion bordered>
+      <Item
+        title={
+          <header>
+            <div>Main Title</div>
+            <small>Subtitle</small>
+          </header>
+        }
+        id="one"
+      >
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Item>
+    </Accordion>
   ));
