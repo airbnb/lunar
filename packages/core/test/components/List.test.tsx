@@ -5,10 +5,6 @@ import { Props as ItemProps } from '../../src/components/List/Item';
 import proxyComponent from '../../src/utils/proxyComponent';
 
 describe('<List />', () => {
-  it('errors if non-List item children are passed', () => {
-    expect(() => shallowWithStyles(<List>Foo</List>)).toThrowError();
-  });
-
   it('does not error if a proxyComponent wrapping a Item is passed', () => {
     const ProxiedItem = proxyComponent(Item, (props: ItemProps) => <Item {...props} />);
 
@@ -19,19 +15,6 @@ describe('<List />', () => {
         </List>,
       ),
     ).not.toThrowError();
-  });
-
-  it('errors if proxyComponent wrapping a non-Item is passed', () => {
-    const IncompatibleComponent = () => <div />;
-    const ProxiedNonItem = proxyComponent(IncompatibleComponent, () => <div />);
-
-    expect(() =>
-      shallowWithStyles(
-        <List>
-          <ProxiedNonItem>Foo</ProxiedNonItem>
-        </List>,
-      ),
-    ).toThrowError();
   });
 
   it('renders expected number of List items', () => {

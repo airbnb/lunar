@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-handler-names */
-
 import React from 'react';
 import uuid from 'uuid/v4';
 import Core from '@airbnb/lunar';
