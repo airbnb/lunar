@@ -5,16 +5,12 @@ import AppContext from '../AppContext';
 export default function Breadcrumbs(props: Props) {
   const context = useContext(AppContext);
 
-  if (!context) {
+  if (!context || context.breadcrumbs.length === 0) {
     return null;
   }
 
   const { breadcrumbs } = context;
   const lastIndex = breadcrumbs.length - 1;
-
-  if (breadcrumbs.length === 0) {
-    return null;
-  }
 
   return (
     <BaseBreadcrumbs {...props}>

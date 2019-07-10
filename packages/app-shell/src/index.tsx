@@ -143,8 +143,7 @@ export class AppShell extends React.Component<Props, State> {
     return (
       <AppContext.Provider value={context}>
         <Layout>{children}</Layout>
-
-        <Toasts toasts={context.toasts} onRemove={this.removeToast} />
+        <Toasts />
       </AppContext.Provider>
     );
   }

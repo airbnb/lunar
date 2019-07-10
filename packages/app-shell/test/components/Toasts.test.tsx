@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
-import Toast from '@airbnb/lunar/lib/components/Toast';
+import { render, queryByText } from '@testing-library/react';
 import Toasts from '../../src/components/Toasts';
+import AppContext from '../../src/components/AppContext';
 
 describe('Toasts', () => {
-  const data = [
+  const toasts = [
     {
       id: '1',
       message: 'Foo',
@@ -29,55 +29,24 @@ describe('Toasts', () => {
     },
   ];
 
-  it('renders all toasts', () => {
-    const wrapper = shallowWithStyles(<Toasts toasts={data} onRemove={() => {}} />);
+  function WrappingComponent({ children }: { children?: React.ReactNode }) {
+    return (
+      <AppContext.Provider value={{ toasts, onRemove() {} } as any}>{children}</AppContext.Provider>
+    );
+  }
 
-    expect(wrapper.find(Toast)).toHaveLength(3);
+  it('renders all toasts', () => {
+    const { getAllByRole } = render(<Toasts />, { wrapper: WrappingComponent });
+
+    expect(getAllByRole('status')).toHaveLength(3);
   });
 
   it('renders toasts in reverse', () => {
-    const wrapper = shallowWithStyles(<Toasts toasts={data} onRemove={() => {}} />);
+    const { getAllByRole } = render(<Toasts />, { wrapper: WrappingComponent });
+    const rows = getAllByRole('status');
 
-    expect(
-      wrapper
-        .find(Toast)
-        .at(0)
-        .prop('id'),
-    ).toBe('3');
-    expect(
-      wrapper
-        .find(Toast)
-        .at(2)
-        .prop('id'),
-    ).toBe('1');
-  });
-
-  it('passes props to toast', () => {
-    const wrapper = shallowWithStyles(<Toasts toasts={data} onRemove={() => {}} />);
-
-    expect(
-      wrapper
-        .find(Toast)
-        .at(0)
-        .prop('duration'),
-    ).toBe(0);
-    expect(
-      wrapper
-        .find(Toast)
-        .at(0)
-        .prop('refresh'),
-    ).toBe(true);
-  });
-
-  it('passes onRemove prop', () => {
-    const spy = jest.fn();
-    const wrapper = shallowWithStyles(<Toasts toasts={data} onRemove={spy} />);
-
-    expect(
-      wrapper
-        .find(Toast)
-        .at(0)
-        .prop('onRemove'),
-    ).toBe(spy);
+    expect(queryByText(rows[0], 'Baz')).not.toBeNull();
+    expect(queryByText(rows[1], 'Bar')).not.toBeNull();
+    expect(queryByText(rows[2], 'Foo')).not.toBeNull();
   });
 });
