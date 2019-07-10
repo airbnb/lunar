@@ -44,11 +44,14 @@ export class AppShell extends React.Component<Props, State> {
     const id = uuid();
 
     this.setState(prevState => ({
-      breadcrumbs: prevState.breadcrumbs.concat({
-        id,
-        label,
-        props,
-      }),
+      breadcrumbs: [
+        ...prevState.breadcrumbs.filter(crumb => crumb.id !== id),
+        {
+          id,
+          label,
+          props,
+        },
+      ],
     }));
 
     return id;

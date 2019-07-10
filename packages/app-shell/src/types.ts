@@ -19,7 +19,7 @@ export type Context = {
   addBreadcrumb: (label: string, props?: Breadcrumb['props']) => string;
   addPageData: (data: object, customID?: string) => string;
   addInfoToast: (message: string, props?: Toast['props']) => string;
-  addFailureToast: (message: string, props?: Toast['props']) => string;
+  addFailureToast: (message: string | Error, props?: Toast['props']) => string;
   addSuccessToast: (message: string, props?: Toast['props']) => string;
   addRefreshToast: (message: string, props?: Toast['props']) => string;
   breadcrumbs: Breadcrumb[];
