@@ -12,6 +12,10 @@ export default function Breadcrumbs(props: Props) {
   const { breadcrumbs } = context;
   const lastIndex = breadcrumbs.length - 1;
 
+  if (breadcrumbs.length === 0) {
+    return null;
+  }
+
   return (
     <BaseBreadcrumbs {...props}>
       {breadcrumbs.map((crumb, index) => (
