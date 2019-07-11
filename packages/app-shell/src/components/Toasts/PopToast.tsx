@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { Props as BaseProps } from '@airbnb/lunar/lib/components/Toast';
 import { Omit } from 'utility-types';
 import AppContext from '../AppContext';
@@ -7,6 +7,8 @@ export type Props = Omit<BaseProps, 'id' | 'onRemove'>;
 
 export default function PopToast({ message, ...props }: Props) {
   const context = useContext(AppContext);
+  const ref = useRef<boolean>();
+  ref.current = true;
 
   if (!context) {
     return null;
@@ -22,7 +24,7 @@ export default function PopToast({ message, ...props }: Props) {
     } else {
       context.addInfoToast(message, props);
     }
-  }, [message]);
+  }, [ref.current]);
 
   return null;
 }

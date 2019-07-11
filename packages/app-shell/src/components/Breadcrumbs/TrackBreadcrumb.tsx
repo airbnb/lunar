@@ -1,9 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { Props } from '@airbnb/lunar/lib/components/Breadcrumbs/Breadcrumb';
 import AppContext from '../AppContext';
 
 export default function TrackBreadcrumb({ label, ...props }: Props) {
   const context = useContext(AppContext);
+  const ref = useRef<boolean>();
+  ref.current = true;
 
   if (!context) {
     return null;
@@ -15,7 +17,7 @@ export default function TrackBreadcrumb({ label, ...props }: Props) {
     return () => {
       context.removeBreadcrumb(id);
     };
-  }, [label]);
+  }, [ref.current]);
 
   return null;
 }

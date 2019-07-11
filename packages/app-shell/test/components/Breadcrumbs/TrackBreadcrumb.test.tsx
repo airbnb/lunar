@@ -39,17 +39,9 @@ describe('TrackBreadcrumb', () => {
 
     rerender(<TrackBreadcrumb label="Foo" />);
     rerender(<TrackBreadcrumb label="Foo" />);
+    rerender(<TrackBreadcrumb label="Foo" />);
 
     expect(context.addBreadcrumb).toHaveBeenCalledTimes(1);
-  });
-
-  it('adds another crumb if the label changes', () => {
-    const { rerender } = render(<TrackBreadcrumb label="Foo" />, { wrapper: WrappingComponent });
-
-    rerender(<TrackBreadcrumb label="Foo" />);
-    rerender(<TrackBreadcrumb label="Bar" />);
-
-    expect(context.addBreadcrumb).toHaveBeenCalledTimes(2);
   });
 
   it('doesnt add a crumb if no context', () => {

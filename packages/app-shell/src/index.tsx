@@ -43,7 +43,7 @@ export class AppShell extends React.Component<Props, State> {
 
     this.setState(prevState => ({
       breadcrumbs: [
-        ...prevState.breadcrumbs.filter(crumb => crumb.id !== id),
+        ...prevState.breadcrumbs,
         {
           id,
           label,
