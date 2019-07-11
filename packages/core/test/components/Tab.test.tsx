@@ -9,7 +9,7 @@ describe('<Tab/>', () => {
   it('renders a button', () => {
     const wrapper = shallowWithStyles(<Tab keyName="default" label="Tab" onClick={() => {}} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toBe('tab');
   });
 
   it('renders a before icon', () => {
@@ -35,7 +35,7 @@ describe('<Tab/>', () => {
       <Tab keyName="default" label="Tab" onClick={() => {}} disabled />,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('tab_disabled');
   });
 
   it('renders selected', () => {
@@ -43,7 +43,7 @@ describe('<Tab/>', () => {
       <Tab keyName="default" label="Tab" onClick={() => {}} selected />,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('tab_selected');
   });
 
   it('renders stretched', () => {
@@ -51,7 +51,7 @@ describe('<Tab/>', () => {
       <Tab keyName="default" label="Tab" onClick={() => {}} stretched />,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('tab_stretched');
   });
 
   it('doesnt render children', () => {

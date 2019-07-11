@@ -6,31 +6,31 @@ describe('<Row />', () => {
   it('renders with a baseline', () => {
     const wrapper = shallowWithStyles(<Row baseline>PRIMARY</Row>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('row_baseline');
   });
 
   it('renders with a topline', () => {
     const wrapper = shallowWithStyles(<Row topline>PRIMARY</Row>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('row_topline');
   });
 
   it('renders as compact', () => {
     const wrapper = shallowWithStyles(<Row compact>PRIMARY</Row>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('row_compact');
   });
 
   it('renders as spacious', () => {
     const wrapper = shallowWithStyles(<Row spacious>PRIMARY</Row>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('row_spacious');
   });
 
   it('renders in middle', () => {
     const wrapper = shallowWithStyles(<Row middleAlign>PRIMARY</Row>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('row_middleAlign');
   });
 
   describe('when only primary content is provided', () => {

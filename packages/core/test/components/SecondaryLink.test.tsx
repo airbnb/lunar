@@ -2,11 +2,12 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import SecondaryLink from '../../src/components/SecondaryLink';
+import ButtonOrLink from '../../lib/components/private/ButtonOrLink';
 
 describe('<SecondaryLink />', () => {
   it('renders a secondary link', () => {
     const wrapper = shallowWithStyles(shallow(<SecondaryLink>Link</SecondaryLink>).getElement());
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(ButtonOrLink)).toHaveLength(1);
   });
 });

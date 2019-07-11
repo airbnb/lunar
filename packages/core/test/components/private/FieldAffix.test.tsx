@@ -22,7 +22,7 @@ describe('<FieldAffix />', () => {
       </FieldAffix>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('affix_compact');
   });
 
   it('errors if both props used', () => {

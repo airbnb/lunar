@@ -112,7 +112,7 @@ describe('<FormField />', () => {
       </FormField>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('label').prop('className')).toMatch('label_hidden');
   });
 
   it('shows error if invalid', () => {
@@ -138,7 +138,7 @@ describe('<FormField />', () => {
       </FormField>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Prefix)).toHaveLength(1);
   });
 
   it('supports a suffix', () => {
@@ -148,6 +148,6 @@ describe('<FormField />', () => {
       </FormField>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Suffix)).toHaveLength(1);
   });
 });

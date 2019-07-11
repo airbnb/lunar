@@ -7,14 +7,13 @@ describe('<LabeledDivider />', () => {
   it('renders a string as expected', () => {
     const wrapper = shallowWithStyles(<LabeledDivider label="Lorum ipsum" />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.contains('Lorem ipsum')).toBe(true);
   });
 
   it('renders a translation node as expected', () => {
-    const wrapper = shallowWithStyles(
-      <LabeledDivider label={<T phrase="Lorum ipsum" context="Foo" />} />,
-    );
+    const t = <T phrase="Lorum ipsum" context="Foo" />;
+    const wrapper = shallowWithStyles(<LabeledDivider label={t} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.contains(t)).toBe(true);
   });
 });

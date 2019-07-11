@@ -3,9 +3,9 @@ import { shallow } from 'enzyme';
 import Layout from '../../src/components/Layout';
 
 describe('Layout', () => {
-  it('renders all toasts', () => {
-    const wrapper = shallow(<Layout>Child</Layout>);
+  it('renderss', () => {
+    const wrapper = shallowWithStyles(<Layout>Child</Layout>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.isEmptyRender()).toBe(false);
   });
 });

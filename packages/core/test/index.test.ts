@@ -1,4 +1,4 @@
-import Aesthetic from 'aesthetic-adapter-aphrodite';
+import { TestAesthetic } from 'aesthetic/lib/testUtils';
 import { Settings as LuxonSettings } from 'luxon';
 import Core, { Settings } from '../src';
 
@@ -47,7 +47,7 @@ describe('Core', () => {
     it('creates an aesthetic instance', () => {
       Core.bootstrapAesthetic();
 
-      expect(Core.aesthetic).toBeInstanceOf(Aesthetic);
+      expect(Core.aesthetic).toBeInstanceOf(TestAesthetic);
     });
   });
 

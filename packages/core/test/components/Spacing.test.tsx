@@ -6,7 +6,7 @@ describe('<Spacing />', () => {
   it('renders with a side', () => {
     const wrapper = shallowWithStyles(<Spacing top={1}>Content</Spacing>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toBe('outerTop_1');
   });
 
   it('renders with many sides', () => {
@@ -16,7 +16,7 @@ describe('<Spacing />', () => {
       </Spacing>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toBe('outerTop_1 outerBottom_3 outerLeft_2 outerRight_4');
   });
 
   it('renders as inline', () => {
@@ -26,7 +26,7 @@ describe('<Spacing />', () => {
       </Spacing>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('spacing_inline');
   });
 
   it('renders with padding', () => {
@@ -36,7 +36,7 @@ describe('<Spacing />', () => {
       </Spacing>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toBe('innerTop_2 innerRight_2 innerBottom_2 innerLeft_2');
   });
 
   it('renders a <div /> by default', () => {

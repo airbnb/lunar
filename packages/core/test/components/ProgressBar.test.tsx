@@ -6,7 +6,7 @@ describe('<ProgressBar />', () => {
   it('renders a progress bar', () => {
     const wrapper = shallowWithStyles(<ProgressBar percent={10}>Button</ProgressBar>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.isEmptyRender()).toBe(false);
   });
 
   it('renders trailing', () => {
@@ -16,7 +16,12 @@ describe('<ProgressBar />', () => {
       </ProgressBar>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(
+      wrapper
+        .find('div')
+        .at(1)
+        .prop('className'),
+    ).toMatch('bar_leading');
   });
 
   it('renders leading', () => {
@@ -26,7 +31,12 @@ describe('<ProgressBar />', () => {
       </ProgressBar>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(
+      wrapper
+        .find('div')
+        .at(1)
+        .prop('className'),
+    ).toMatch('bar_trailing');
   });
 
   it('can change width with percent prop', () => {
