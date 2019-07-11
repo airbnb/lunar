@@ -74,13 +74,13 @@ export default withStyles(({ color, ui, pattern, unit }) => ({
 
       // These are jank. Better way?
       '> li:first-child > *': {
-        borderTop: `${unit}px solid transparent`,
+        borderTop: `${unit}px solid ${color.accent.bg}`,
         borderTopLeftRadius: ui.borderRadius,
         borderTopRightRadius: ui.borderRadius,
       },
 
       '> li:last-child > *': {
-        borderBottom: `${unit}px solid transparent`,
+        borderBottom: `${unit}px solid ${color.accent.bg}`,
         borderBottomLeftRadius: ui.borderRadius,
         borderBottomRightRadius: ui.borderRadius,
       },

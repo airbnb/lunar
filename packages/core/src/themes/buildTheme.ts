@@ -23,7 +23,7 @@ export default function buildTheme(
 ): Theme {
   const {
     base,
-    borderRadius = 3,
+    borderRadius = 4,
     boxShadow = [2, 3],
     brand,
     color,

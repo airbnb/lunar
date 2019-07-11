@@ -570,7 +570,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
 
   renderError = (error: Error) => (
     <MenuRow>
-      <Spacing horizontal={1}>
+      <Spacing horizontal={0.5}>
         {renderElementOrFunction(this.props.renderError, error) || (
           <ErrorMessage error={error} inline />
         )}
