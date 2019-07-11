@@ -84,6 +84,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@testing-library/react": "^8.0.4",
     "@types/enzyme": "^3.9.4",
     "@types/google.analytics": "0.0.40",
     "@types/jest": "^24.0.15",

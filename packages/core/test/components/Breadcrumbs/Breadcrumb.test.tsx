@@ -5,13 +5,17 @@ import ButtonOrLink from '../../../src/components/private/ButtonOrLink';
 
 describe('<Breadcrumb/>', () => {
   it('renders a button', () => {
-    const wrapper = shallowWithStyles(<Breadcrumb onClick={() => {}} label="Breadcrumb" />).dive();
+    const wrapper = shallowWithStyles(<Breadcrumb onClick={() => {}} label="Breadcrumb" />)
+      .find(ButtonOrLink)
+      .dive();
 
     expect(wrapper.find('button')).toHaveLength(1);
   });
 
   it('renders a link', () => {
-    const wrapper = shallowWithStyles(<Breadcrumb href="#foo" label="Breadcrumb" />).dive();
+    const wrapper = shallowWithStyles(<Breadcrumb href="#foo" label="Breadcrumb" />)
+      .find(ButtonOrLink)
+      .dive();
 
     expect(wrapper.find('a')).toHaveLength(1);
   });
@@ -19,17 +23,17 @@ describe('<Breadcrumb/>', () => {
   it('renders selected with `aria-current` attribute', () => {
     const wrapper = shallowWithStyles(
       <Breadcrumb selected onClick={() => {}} label="Breadcrumb" />,
-    ).dive();
+    );
 
-    expect(wrapper.find('button').prop('aria-current')).toBe('page');
+    expect(wrapper.find(ButtonOrLink).prop('aria-current')).toBe('page');
   });
 
   it('renders disabled', () => {
     const wrapper = shallowWithStyles(
       <Breadcrumb disabled onClick={() => {}} label="Breadcrumb" />,
-    ).dive();
+    );
 
-    expect(wrapper.find('button').prop('disabled')).toBeTruthy();
+    expect(wrapper.find(ButtonOrLink).prop('disabled')).toBeTruthy();
   });
 
   it('renders an icon', () => {

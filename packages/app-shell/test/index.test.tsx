@@ -11,6 +11,22 @@ describe('AppShell', () => {
     instance = wrapper.instance();
   });
 
+  describe('addBreadcrumb()', () => {
+    it('adds a breadcrumb with a UUID', () => {
+      expect(wrapper.state('breadcrumbs')).toEqual([]);
+
+      instance.addBreadcrumb('Page Name', { href: '/foo' });
+
+      expect(wrapper.state('breadcrumbs')).toEqual([
+        {
+          id: expect.anything(),
+          label: 'Page Name',
+          props: { href: '/foo' },
+        },
+      ]);
+    });
+  });
+
   describe('addPageData()', () => {
     it('adds page data with a UUID', () => {
       expect(wrapper.state('data')).toEqual({});
@@ -128,6 +144,20 @@ describe('AppShell', () => {
           props: { danger: true },
         },
       ]);
+    });
+  });
+
+  describe('removeBreadcrumb()', () => {
+    it('it removes a toast', () => {
+      expect(wrapper.state('breadcrumbs')).toHaveLength(0);
+
+      const id = instance.addBreadcrumb('Page Name');
+
+      expect(wrapper.state('breadcrumbs')).toHaveLength(1);
+
+      instance.removeBreadcrumb(id);
+
+      expect(wrapper.state('breadcrumbs')).toHaveLength(0);
     });
   });
 
