@@ -3,11 +3,8 @@ import withIcon, { Props } from '../withIcon';
 
 function IconSnooze(props: Props) {
   return (
-    <svg {...props} viewBox="0 0 24 24" >
-      <path
-        d="M17.093 8.262l3.904.015L20.683 10H14l.253-1.412 4.616-4.843-3.636-.015.313-1.73H22l-.245 1.368-4.662 4.894z"
-        fill="black"
-      />
+    <svg {...props} viewBox="0 0 24 24">
+      <path d="M17.093 8.262l3.904.015L20.683 10H14l.253-1.412 4.616-4.843-3.636-.015.313-1.73H22l-.245 1.368-4.662 4.894z" />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
