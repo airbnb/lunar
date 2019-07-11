@@ -115,7 +115,7 @@ export default function buildTheme(
       },
       smallButton: {
         ...font.textSmall,
-        padding: `${unit * 1 - borderWidthThick}px ${unit * 1.5 - borderWidthThick}px`,
+        padding: `${unit - borderWidthThick}px ${unit * 1.5 - borderWidthThick}px`,
       },
       regularButton: {
         ...font.textRegular,
