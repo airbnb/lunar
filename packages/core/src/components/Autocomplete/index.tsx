@@ -424,7 +424,17 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   }
 
   getInputProps(props: Props<T>) {
-    const { compact, disabled, invalid, name, optional, placeholder, onBlur, onFocus } = props;
+    const {
+      compact,
+      disabled,
+      invalid,
+      name,
+      optional,
+      placeholder,
+      onBlur,
+      onFocus,
+      small,
+    } = props;
     const { id } = this.state;
 
     // Should match the props passed within `Input`
@@ -680,6 +690,12 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   render() {
     const { id, open, value } = this.state;
     const { children, fieldProps, inputProps } = partitionFieldProps(this.props);
+
+    if (__DEV__) {
+      if (inputProps.compact) {
+        console.log('Autocomplete: `compact` prop is deprecated, please use `small` instead.');
+      }
+    }
 
     return (
       <FormField {...fieldProps} id={id}>

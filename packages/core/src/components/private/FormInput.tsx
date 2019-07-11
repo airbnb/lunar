@@ -43,6 +43,8 @@ export type Props<T = any> = {
   optional?: boolean;
   /** Reference to access the underlying input DOM element. */
   propagateRef?: React.Ref<T>;
+  /** Decrease font size and padding to small. */
+  small?: boolean;
   /** Current value. */
   value?: string;
 };
@@ -77,6 +79,7 @@ class FormInput extends React.Component<PrivateProps> {
   static propTypes = {
     compact: sizingProp,
     large: sizingProp,
+    small: sizingProp,
   };
 
   static defaultProps = {
@@ -91,6 +94,7 @@ class FormInput extends React.Component<PrivateProps> {
     large: false,
     noTranslate: false,
     optional: false,
+    small: false,
     value: '',
   };
 
@@ -110,6 +114,7 @@ class FormInput extends React.Component<PrivateProps> {
       noTranslate,
       optional,
       propagateRef,
+      small,
       styles,
       tagName: Tag,
       ...restProps
@@ -119,7 +124,7 @@ class FormInput extends React.Component<PrivateProps> {
       ...restProps,
       className: cx(
         styles.input,
-        compact && styles.input_compact,
+        (compact || small) && styles.input_compact,
         disabled && styles.input_disabled,
         hasPrefix && styles.input_hasPrefix,
         hasSuffix && styles.input_hasSuffix,
@@ -134,6 +139,12 @@ class FormInput extends React.Component<PrivateProps> {
       id,
       required: !optional,
     };
+
+    if (__DEV__) {
+      if (compact) {
+        console.log('Input: `compact` prop is deprecated, please use `small` instead.');
+      }
+    }
 
     // Only populate when invalid, otherwise it will break some CSS selectors
     if (invalid) {
