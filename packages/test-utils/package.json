@@ -20,7 +20,7 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "aesthetic": "^4.0.0",
+    "aesthetic": "^4.1.0",
     "aesthetic-react": "^1.1.0"
   },
   "devDependencies": {
