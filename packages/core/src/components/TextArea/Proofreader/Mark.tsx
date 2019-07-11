@@ -7,15 +7,17 @@ export type Props = {
   onSelect: (top: number, left: number) => void;
 };
 
-class Mark extends React.Component<Props & WithStylesProps> {
+class Mark extends React.PureComponent<Props & WithStylesProps> {
   ref = React.createRef<HTMLSpanElement>();
 
   componentDidMount() {
     this.handleSelect();
   }
 
-  componentDidUpdate() {
-    this.handleSelect();
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.selected !== prevProps.selected) {
+      this.handleSelect();
+    }
   }
 
   private handleSelect = () => {

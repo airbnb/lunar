@@ -50,13 +50,16 @@ describe('connectToApp()', () => {
   beforeEach(() => {
     context = {
       name: 'Lunar',
+      breadcrumbs: [],
       data: {},
       toasts: [],
+      addBreadcrumb: jest.fn(),
       addPageData: jest.fn(),
       addInfoToast: jest.fn(),
       addFailureToast: jest.fn(),
       addSuccessToast: jest.fn(),
       addRefreshToast: jest.fn(),
+      removeBreadcrumb: jest.fn(),
       removePageData: jest.fn(),
       removeToast: jest.fn(),
     };

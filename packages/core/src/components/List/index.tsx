@@ -1,5 +1,4 @@
 import React from 'react';
-import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Item, { Props as ItemProps } from './Item';
 
@@ -17,10 +16,6 @@ export type Props = {
 };
 
 class List extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    children: childrenWithComponentName('ListItem|li').isRequired,
-  };
-
   render() {
     const { children, cx, horizontal, ordered, styles, wrap } = this.props;
     const Tag = ordered ? 'ol' : 'ul';

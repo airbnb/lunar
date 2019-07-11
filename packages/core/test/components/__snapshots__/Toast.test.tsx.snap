@@ -3,6 +3,7 @@
 exports[`<Toast /> renders error 1`] = `
 <div
   className="container_ox9dw2-o_O-container_danger_qr3yx7"
+  role="status"
 >
   <div>
     <Text
@@ -30,6 +31,7 @@ exports[`<Toast /> renders error 1`] = `
 exports[`<Toast /> renders message 1`] = `
 <div
   className="container_ox9dw2"
+  role="status"
 >
   <div>
     <Text
@@ -57,6 +59,7 @@ exports[`<Toast /> renders message 1`] = `
 exports[`<Toast /> renders refresh 1`] = `
 <div
   className="container_ox9dw2"
+  role="status"
 >
   <div>
     <Text
@@ -98,6 +101,7 @@ exports[`<Toast /> renders refresh 1`] = `
 exports[`<Toast /> sets failed class 1`] = `
 <div
   className="container_ox9dw2-o_O-container_danger_qr3yx7"
+  role="status"
 >
   <div>
     <Text
@@ -125,6 +129,7 @@ exports[`<Toast /> sets failed class 1`] = `
 exports[`<Toast /> sets failed class if an \`Error\` 1`] = `
 <div
   className="container_ox9dw2-o_O-container_danger_qr3yx7"
+  role="status"
 >
   <div>
     <Text
@@ -152,6 +157,7 @@ exports[`<Toast /> sets failed class if an \`Error\` 1`] = `
 exports[`<Toast /> sets success class 1`] = `
 <div
   className="container_ox9dw2-o_O-container_success_1e8jx2r"
+  role="status"
 >
   <div>
     <Text

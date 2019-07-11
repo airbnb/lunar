@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.6.1 - 2019-07-11
+
+#### 🐞 Fixes
+
+- **[Proofreader]** Reduce calls in componentDidUpdate. (#119) ([1c50f86](https://github.com/airbnb/lunar/tree/master/packages/core/commit/1c50f86)), closes [#119](https://github.com/airbnb/lunar/tree/master/packages/core/issues/119)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.6.0 - 2019-07-11
+
+#### 🚀 Updates
+
+- **[AppShell]** Add breadcrumbs support to AppContext (#115) ([1e19e41](https://github.com/airbnb/lunar/tree/master/packages/core/commit/1e19e41)), closes [#115](https://github.com/airbnb/lunar/tree/master/packages/core/issues/115)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.5.0 - 2019-07-10
+
+#### 🚀 Updates
+
+- **[AccordionItem]** Change title to node instead of string (#114) ([09c0aac](https://github.com/airbnb/lunar/tree/master/packages/core/commit/09c0aac)), closes [#114](https://github.com/airbnb/lunar/tree/master/packages/core/issues/114)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.4.0 - 2019-07-08
 
 #### 🚀 Updates

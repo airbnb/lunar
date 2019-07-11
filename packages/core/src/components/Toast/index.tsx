@@ -135,6 +135,7 @@ export class Toast extends React.Component<Props & WithStylesProps> {
           failed && styles.container_danger,
           success && styles.container_success,
         )}
+        role="status"
       >
         {refresh ? (
           <div>
