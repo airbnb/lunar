@@ -87,7 +87,7 @@ storiesOf('Core/Autocomplete', module)
       isItemSelectable={(item, selected) => !selected}
     />
   ))
-  .add('With custom states in a smallt form.', () => (
+  .add('With custom states in a small form.', () => (
     <>
       <Autocomplete
         accessibilityLabel="Label"
