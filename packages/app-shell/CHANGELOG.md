@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.0 - 2019-07-11
+
+#### 🚀 Updates
+
+- **[AppShell]** Add breadcrumbs support to AppContext (#115) ([1e19e41](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/1e19e41)), closes [#115](https://github.com/airbnb/lunar/tree/master/packages/app-shell/issues/115)
+
+**Note:** Version bump only for package @airbnb/lunar-app-shell
+
+
+
+
+
 ### 2.0.1 - 2019-07-08
 
 **Note:** Version bump only for package @airbnb/lunar-app-shell
