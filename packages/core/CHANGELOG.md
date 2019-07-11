@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.6.1 - 2019-07-11
+
+#### 🐞 Fixes
+
+- **[Proofreader]** Reduce calls in componentDidUpdate. (#119) ([1c50f86](https://github.com/airbnb/lunar/tree/master/packages/core/commit/1c50f86)), closes [#119](https://github.com/airbnb/lunar/tree/master/packages/core/issues/119)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.6.0 - 2019-07-11
 
 #### 🚀 Updates
