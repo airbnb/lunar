@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ButtonGroup from '../../src/components/ButtonGroup';
 import Button from '../../src/components/Button';
 import Loader from '../../src/components/Loader';
@@ -8,68 +8,68 @@ import Tooltip from '../../src/components/Tooltip';
 describe('<ButtonGroup />', () => {
   it('errors when a non-button is passed', () => {
     expect(() => {
-      shallow(
+      shallowWithStyles(
         <ButtonGroup>
           <Loader />
         </ButtonGroup>,
-      ).dive();
+      );
     }).toThrowErrorMatchingSnapshot();
   });
 
   it('doesnt error when `Tooltip` is wrapping', () => {
     expect(() => {
-      shallow(
+      shallowWithStyles(
         <ButtonGroup>
           <Tooltip content="">
             <Button>One</Button>
           </Tooltip>
         </ButtonGroup>,
-      ).dive();
+      );
     }).not.toThrowError();
   });
 
   it('renders buttons', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ButtonGroup>
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders buttons stacked', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ButtonGroup stacked>
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders a single button', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ButtonGroup>
         <Button>One</Button>
       </ButtonGroup>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('handles buttons that return falsy values', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ButtonGroup stacked>
         {false && <Button>One</Button>}
         {true && <Button>Two</Button>}
         {null && <Button>Three</Button>}
       </ButtonGroup>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -79,11 +79,11 @@ describe('<ButtonGroup />', () => {
       return null;
     }
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ButtonGroup stacked>
         <FakeButton />
       </ButtonGroup>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });

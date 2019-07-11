@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Layout from '../../src/components/Layout';
+import Aside from '../../src/components/Aside';
 import TwoColumnLayout from '../../src/components/TwoColumnLayout';
 
 describe('<TwoColumnLayout />', () => {
@@ -15,7 +16,7 @@ describe('<TwoColumnLayout />', () => {
   it('errors if `before` and `after` are used at the same time', () => {
     expect(() => {
       shallow(
-        <TwoColumnLayout before after aside="Sidebar">
+        <TwoColumnLayout before after aside={<Aside>Sidebar</Aside>}>
           Child
         </TwoColumnLayout>,
       );
@@ -24,7 +25,7 @@ describe('<TwoColumnLayout />', () => {
 
   it('renders before and passes props to `Layout`', () => {
     const wrapper = shallow(
-      <TwoColumnLayout fluid before aside="Sidebar">
+      <TwoColumnLayout fluid before aside={<Aside>Sidebar</Aside>}>
         Child
       </TwoColumnLayout>,
     );
@@ -32,7 +33,7 @@ describe('<TwoColumnLayout />', () => {
     expect(wrapper.find(Layout).props()).toEqual(
       expect.objectContaining({
         children: 'Child',
-        before: 'Sidebar',
+        before: <Aside>Sidebar</Aside>,
         after: null,
         fluid: true,
       }),
@@ -41,7 +42,7 @@ describe('<TwoColumnLayout />', () => {
 
   it('renders after and passes props to `Layout`', () => {
     const wrapper = shallow(
-      <TwoColumnLayout fluid after aside="Sidebar">
+      <TwoColumnLayout fluid after aside={<Aside>Sidebar</Aside>}>
         Child
       </TwoColumnLayout>,
     );
@@ -49,7 +50,7 @@ describe('<TwoColumnLayout />', () => {
     expect(wrapper.find(Layout).props()).toEqual(
       expect.objectContaining({
         children: 'Child',
-        after: 'Sidebar',
+        after: <Aside>Sidebar</Aside>,
         before: null,
         fluid: true,
       }),

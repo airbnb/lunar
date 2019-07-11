@@ -1,5 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Hierarchy from '../../../src/components/HierarchyPicker/Hierarchy';
 import HierarchyList, {
   HierarchyList as BaseHierarchyList,
@@ -69,7 +70,7 @@ describe('<Hierarchy />', () => {
     let instance: BaseHierarchyList;
 
     beforeEach(() => {
-      wrapper = shallow(<HierarchyList {...props} focus={['foo']} />).dive();
+      wrapper = shallowWithStyles(<HierarchyList {...props} focus={['foo']} />);
       instance = wrapper.instance() as BaseHierarchyList;
     });
 
@@ -135,7 +136,7 @@ describe('<Hierarchy />', () => {
         wrapper.setProps({ focus: ['foo', 'coverage is hard'] });
         const nestedList = wrapper.find(BaseHierarchyList).dive();
         const description = nestedList.find(ItemDescription);
-        expect(description.html()).toMatch('very hard');
+        expect(description.prop('item').description).toMatch('very hard');
       });
 
       it('Clicking description invokes onItemPicked', () => {
@@ -165,7 +166,7 @@ describe('<Hierarchy />', () => {
         onDomFocusShallower: jest.fn(),
         renderItem: jest.fn(),
       };
-      wrapper = shallow(<HierarchyItem {...itemProps} />).dive();
+      wrapper = shallowWithStyles(<HierarchyItem {...itemProps} />);
     });
 
     it('calls onDomFocusDeeper on key right', () => {

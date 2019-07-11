@@ -42,14 +42,18 @@ export default class Overlay extends React.PureComponent<Props, State> {
     /* istanbul ignore next: refs are hard */
     if (current) {
       const { x, y } = current.getBoundingClientRect() as DOMRect;
+
       if (x !== this.state.x) {
         this.setState({ x });
       }
+
       if (y !== this.state.y) {
         this.setState({ y });
       }
     }
+
     this.removeScrollListeners();
+
     if (this.props.open && this.props.noBackground) {
       this.addScrollListeners();
     }
@@ -61,6 +65,7 @@ export default class Overlay extends React.PureComponent<Props, State> {
 
   private addScrollListeners = debounce(() => {
     const { current } = this.ref;
+
     this.removeScrollListeners();
 
     /* istanbul ignore next: refs are hard */

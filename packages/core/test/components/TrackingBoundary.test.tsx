@@ -9,6 +9,12 @@ describe('<TrackingBoundary />', () => {
     expect(wrapper.type()).toBe('tracking-boundary');
   });
 
+  it('adds data tag to HTML tag', () => {
+    const wrapper = shallow(<TrackingBoundary name="Foo">Foo</TrackingBoundary>);
+
+    expect(wrapper.find('[data-tracking-name="Foo"]')).toHaveLength(1);
+  });
+
   it('renders children if no `name`', () => {
     const child = 'Foo';
     const wrapper = shallow(<TrackingBoundary>{child}</TrackingBoundary>);

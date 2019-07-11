@@ -6,7 +6,7 @@ import Text from '../../Text';
 import Link from '../../Link';
 import Loader from '../../Loader';
 import Dropdown from '../../Dropdown';
-import withStyles, { css, WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import buildInputStyles from '../../../themes/buildInputStyles';
 import { LT_LOCALES } from '../../../constants';
 import { ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT } from '../../../keys';
@@ -14,6 +14,7 @@ import Mark from './Mark';
 import ErrorMenu from './ErrorMenu';
 import LocaleMenu from './LocaleMenu';
 import { ProofreadRuleMatch, ProofreaderResponse, DefinitionShape } from './types';
+import { Props as FormInputProps } from '../../private/FormInput';
 
 const AIRBNB_REGEX = /\b(((air|ari|iar)[bn]{3})(?!\.com))\b/gi;
 const NON_WORD_REGEX = /\W/;
@@ -36,7 +37,7 @@ export type Position = {
   top: number;
 };
 
-export type Props = {
+export type Props = Pick<FormInputProps, 'important'> & {
   locale?: string;
   name: string;
   id: string;
@@ -580,7 +581,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   }
 
   render() {
-    const { children, styles, onCheckText, theme, ...props } = this.props;
+    const { cx, children, styles, onCheckText, theme, important, ...props } = this.props;
     const {
       position,
       errors,
@@ -593,23 +594,23 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     } = this.state;
     const caretPosition =
       (this.textareaRef.current && this.textareaRef.current.selectionStart) || 0;
-
     const highlightsProps = {
-      ...css(styles.highlights),
+      className: cx(styles.highlights, important && styles.highlights_important),
       ref: this.shadowRef,
     };
+
     if (this.props.noTranslate) {
       highlightsProps.className += ' notranslate';
     }
 
     return (
-      <div {...css(styles.proofread)}>
+      <div className={cx(styles.proofread)}>
         {/* Shadow text for displaying underlined words. */}
         <div {...highlightsProps}>{this.renderTextWithMarks()}</div>
 
         {/* Track the top/left offset of the caret within the textarea. */}
         {caretPosition > 0 && (
-          <div {...css(styles.caret)} ref={this.caretRef}>
+          <div className={cx(styles.caret)} ref={this.caretRef}>
             <span>{text.slice(0, caretPosition)}</span>
             <span>{text.slice(caretPosition)}.</span>
           </div>
@@ -624,6 +625,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           onScroll={this.handleScroll}
           onInput={this.handleInput}
           propagateRef={this.textareaRef}
+          important={important}
         />
 
         {position && selectedError && (
@@ -632,8 +634,11 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           </Dropdown>
         )}
 
-        <div {...css(styles.controls)} ref={this.controlsRef}>
-          <span {...css(styles.cell, { pointerEvents: 'initial' })}>
+        <div
+          className={cx(styles.controls, important && styles.controls_important)}
+          ref={this.controlsRef}
+        >
+          <span className={cx(styles.cell, { pointerEvents: 'initial' })}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link small onClick={this.handleToggleLocaleMenu}>
               {selectedLocale ? (
@@ -666,7 +671,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           </span>
 
           {errors.length > 0 && (
-            <span {...css(styles.cell)}>
+            <span className={cx(styles.cell)}>
               <Text small muted>
                 <T
                   phrase="%{smartCount} issue||||%{smartCount} issues"
@@ -678,7 +683,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           )}
 
           {loading && (
-            <span {...css(styles.cell)}>
+            <span className={cx(styles.cell)}>
               <Loader inline />
             </span>
           )}
@@ -690,12 +695,14 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
 
 export default withStyles(
   theme => {
-    const { input } = buildInputStyles(theme);
+    const { input, input_important: inputImportant } = buildInputStyles(theme);
     const { unit } = theme;
 
     // Add space for controls
     const inputPadding = unit * 2; // pattern.regularButton horizontal padding
     const paddingBottom = inputPadding + unit * 4;
+
+    const { backgroundColor: colorImportant } = inputImportant;
 
     return {
       proofread: {
@@ -725,6 +732,10 @@ export default withStyles(
         whiteSpace: 'pre-wrap',
         wordWrap: 'break-word',
         paddingBottom,
+      },
+
+      highlights_important: {
+        backgroundColor: colorImportant,
       },
 
       caret: {
@@ -759,9 +770,17 @@ export default withStyles(
           right: 0,
           height: 1,
           position: 'absolute',
-          background: `linear-gradient(to right, ${theme.color.accent.border}, ${
-            theme.color.base
-          })`,
+          background:
+            // prettier-ignore
+            `linear-gradient(to right, ${theme.color.accent.border}, ${theme.color.base})`,
+        },
+      },
+
+      controls_important: {
+        background: colorImportant,
+        boxShadow: `2px -2px 2px 0px ${colorImportant}`,
+        '::after': {
+          background: `linear-gradient(to right, ${theme.color.accent.border}, ${colorImportant})`,
         },
       },
 

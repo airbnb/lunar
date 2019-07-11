@@ -2,23 +2,15 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import { FORM_ERROR } from 'final-form';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
-import { mockContextProvider } from '@airbnb/lunar-test-utils';
-import Form, { Props, State } from '../../src/components/Form';
-import FormContext from '../../src/components/FormContext';
+import Form, { Props } from '../../src/components/Form';
 
 describe('<Form />', () => {
-  let unmockProvider: () => void;
-  let wrapper: Enzyme.ShallowWrapper<Props<any>, State, Form>;
+  let wrapper: Enzyme.ShallowWrapper<Props<any>, any, Form>;
   let instance: Form;
 
   beforeEach(() => {
-    unmockProvider = mockContextProvider(FormContext);
     wrapper = shallow(<Form onSubmit={data => Promise.resolve(data)}>Hello</Form>);
     instance = wrapper.instance();
-  });
-
-  afterEach(() => {
-    unmockProvider();
   });
 
   it('creates a final-form instance', () => {
@@ -217,8 +209,8 @@ describe('<Form />', () => {
       try {
         // @ts-ignore Allow private access
         await instance.handleSubmit({}, {}, spy);
-      } catch (error2) {
-        expect(error2).toBe(error);
+      } catch (error_) {
+        expect(error_).toBe(error);
       }
 
       expect(spy).toHaveBeenCalled();
@@ -236,8 +228,8 @@ describe('<Form />', () => {
       try {
         // @ts-ignore Allow private access
         await instance.handleSubmit({ foo: 'bar' }, {}, () => {});
-      } catch (error2) {
-        expect(error2).toBe(error);
+      } catch (error_) {
+        expect(error_).toBe(error);
       }
 
       expect(spy).toHaveBeenCalledWith({ foo: 'bar' }, error);

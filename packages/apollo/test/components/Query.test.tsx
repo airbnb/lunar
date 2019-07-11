@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import gql from 'graphql-tag';
+import { WrappingComponent } from '@airbnb/lunar-test-utils';
 import Loader from '@airbnb/lunar/lib/components/Loader';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
 import { MockedProvider } from 'react-apollo/test-utils';
@@ -27,7 +28,9 @@ describe('Query', () => {
     it('renders a `Loader` by default', () => {
       const wrapper = renderer.create(
         <MockedProvider mocks={[]} addTypename={false}>
-          <Query query={QUERY}>{() => null}</Query>
+          <WrappingComponent>
+            <Query query={QUERY}>{() => null}</Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -38,9 +41,11 @@ describe('Query', () => {
       const loader = <div>Loading!</div>;
       const wrapper = renderer.create(
         <MockedProvider mocks={[]} addTypename={false}>
-          <Query query={QUERY} loading={loader}>
-            {() => null}
-          </Query>
+          <WrappingComponent>
+            <Query query={QUERY} loading={loader}>
+              {() => null}
+            </Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -54,13 +59,35 @@ describe('Query', () => {
         query: QUERY,
         variables: {},
       },
-      error: new Error('404'),
+      result: {
+        errors: [
+          {
+            message: 'Error!',
+            locations: undefined,
+            path: undefined,
+            nodes: undefined,
+            source: undefined,
+            positions: undefined,
+            originalError: undefined,
+            extensions: undefined,
+            name: '',
+          },
+        ],
+        data: {
+          something: {
+            id: 123,
+            name: 'Something',
+          },
+        },
+      },
     };
 
     it('renders an `ErrorMessage` by default', async () => {
       const wrapper = renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Query query={QUERY}>{() => null}</Query>
+          <WrappingComponent>
+            <Query query={QUERY}>{() => null}</Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -71,7 +98,7 @@ describe('Query', () => {
       expect(error).toBeDefined();
       expect(error.props).toEqual(
         expect.objectContaining({
-          error: new Error('Network error: 404'),
+          error: new Error('GraphQL error: Error!'),
         }),
       );
     });
@@ -80,15 +107,35 @@ describe('Query', () => {
       const error = <div>Failed!</div>;
       const wrapper = renderer.create(
         <MockedProvider mocks={[]} addTypename={false}>
-          <Query query={QUERY} error={error}>
-            {() => null}
-          </Query>
+          <WrappingComponent>
+            <Query query={QUERY} error={error}>
+              {() => null}
+            </Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
       await wait();
 
       expect(wrapper.root.findByType('div').children).toEqual(['Failed!']);
+    });
+
+    it('will ignore graphQLErrors via `ignoreGraphQLErrors` prop', async () => {
+      const spy = jest.fn(() => null);
+
+      renderer.create(
+        <MockedProvider mocks={[mock]} addTypename={false}>
+          <WrappingComponent>
+            <Query query={QUERY} ignoreGraphQLErrors>
+              {spy}
+            </Query>
+          </WrappingComponent>
+        </MockedProvider>,
+      );
+
+      await wait();
+
+      expect(spy).toHaveBeenCalled();
     });
   });
 
@@ -113,7 +160,9 @@ describe('Query', () => {
 
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Query query={QUERY}>{spy}</Query>
+          <WrappingComponent>
+            <Query query={QUERY}>{spy}</Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 
@@ -142,14 +191,16 @@ describe('Query', () => {
 
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Query query={QUERY}>
-            {(data, result) => {
-              expect(data).toEqual(mock.result.data);
-              expect(result).toEqual(expect.objectContaining(mock.result));
+          <WrappingComponent>
+            <Query query={QUERY}>
+              {(data, result) => {
+                expect(data).toEqual(mock.result.data);
+                expect(result).toEqual(expect.objectContaining(mock.result));
 
-              return null;
-            }}
-          </Query>
+                return null;
+              }}
+            </Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
     });
@@ -165,13 +216,15 @@ describe('Query', () => {
 
       renderer.create(
         <MockedProvider mocks={[mock]} addTypename={false}>
-          <Query query={QUERY}>
-            {data => {
-              expect(data).toBeNull();
+          <WrappingComponent>
+            <Query query={QUERY}>
+              {data => {
+                expect(data).toBeNull();
 
-              return null;
-            }}
-          </Query>
+                return null;
+              }}
+            </Query>
+          </WrappingComponent>
         </MockedProvider>,
       );
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import Text from '../Text';
@@ -11,10 +11,10 @@ export type Props = {
   editable?: boolean;
   /** Determines which set of header buttons to render. */
   editMode: boolean;
-  /** Without instantEdit the header renders Cancel and Apply, otherwise it just renders Done. */
-  instantEdit?: boolean;
   /** Height of the TableHeader, falls back to RowHeight if not specified. */
   height: number;
+  /** If instantEdit is disabled, header will render Cancel and Apply buttons during edit mode. */
+  instantEdit: boolean;
   /** Label to display in the top left side. */
   tableHeaderLabel?: string;
   /** Width of the header. */
@@ -23,9 +23,7 @@ export type Props = {
   onEnableEditMode: () => void;
   /** Callback for toggling editMode. */
   onDisableEditMode: () => void;
-  /** Undos edits if instantEdit is disabled. */
-  onCancelEditMode: () => void;
-  /** Applys edits if instantEdit is enabled. */
+  /** Applies edits if instantEdit is disabled. */
   onEnactEdits: () => void;
   /** Extra buttons to render in the header. */
   extraHeaderButtons?: HeaderButton[];
@@ -35,15 +33,15 @@ export type Props = {
 
 /** Header for the DataTable that displays a title and Table-level buttons. */
 export function TableHeader({
+  cx,
   editable,
   editMode,
   extraHeaderButtons,
   height,
+  instantEdit,
+  onEnactEdits,
   onEnableEditMode,
   onDisableEditMode,
-  onCancelEditMode,
-  onEnactEdits,
-  instantEdit,
   selectedRows,
   styles,
   tableHeaderLabel,
@@ -79,23 +77,23 @@ export function TableHeader({
 
   const extraButtons = editMode ? extraEditButtons : extraNonEditButtons;
 
-  const editModeButtons = instantEdit
-    ? [
-        <Button small onClick={onDisableEditMode} key="Done">
-          <Translate phrase="Done" context="This button exits edit mode." />
-        </Button>,
-      ]
-    : [
-        <Button small inverted onClick={onCancelEditMode} key="Cancel">
-          <Translate
-            phrase="Cancel"
-            context="This button cancels out of edit mode without applying changes."
-          />
-        </Button>,
-        <Button small onClick={onEnactEdits} key="Apply">
-          <Translate phrase="Apply" context="This button applies all live edits." />
-        </Button>,
-      ];
+  const editModeButtons = instantEdit ? (
+    <Button small onClick={onDisableEditMode} key="Done">
+      <Translate phrase="Done" context="This button exits edit mode." />
+    </Button>
+  ) : (
+    [
+      <Button small inverted onClick={onDisableEditMode} key="Cancel">
+        <Translate
+          phrase="Cancel"
+          context="This button cancels out of edit mode without applying changes."
+        />
+      </Button>,
+      <Button small onClick={onEnactEdits} key="Apply">
+        <Translate phrase="Apply" context="This button applies all live edits." />
+      </Button>,
+    ]
+  );
 
   const modeButtons = editMode ? (
     editModeButtons
@@ -122,7 +120,7 @@ export function TableHeader({
 
   return (
     <div style={dimensionStyles}>
-      <div {...css(styles.tableHeader_inner)}>
+      <div className={cx(styles.tableHeader_inner)}>
         {label}
         {headerButtons}
       </div>

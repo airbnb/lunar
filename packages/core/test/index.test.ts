@@ -6,7 +6,7 @@ describe('Core', () => {
   let oldSettings: Required<Settings>;
 
   beforeEach(() => {
-    oldSettings = Core.settings;
+    oldSettings = { ...Core.settings };
   });
 
   afterEach(() => {
@@ -47,7 +47,7 @@ describe('Core', () => {
     it('creates an aesthetic instance', () => {
       Core.bootstrapAesthetic();
 
-      expect(Core.getAesthetic()).toBeInstanceOf(Aesthetic);
+      expect(Core.aesthetic).toBeInstanceOf(Aesthetic);
     });
   });
 
@@ -62,6 +62,32 @@ describe('Core', () => {
 
       LuxonSettings.defaultLocale = 'en';
       LuxonSettings.defaultZoneName = 'UTC';
+    });
+  });
+
+  describe('fontFamily()', () => {
+    it('returns Japanese font family', () => {
+      Core.settings.defaultLocale = 'ja';
+
+      expect(Core.fontFamily()).toContain('ヒラギノ角ゴ Pro');
+    });
+
+    it('returns Korean font family', () => {
+      Core.settings.defaultLocale = 'ko';
+
+      expect(Core.fontFamily()).toContain('나눔 고딕');
+    });
+
+    it('returns Chinese font family', () => {
+      Core.settings.defaultLocale = 'zh';
+
+      expect(Core.fontFamily()).toContain('华文细黑');
+    });
+
+    it('returns default font family', () => {
+      Core.settings.defaultLocale = 'en';
+
+      expect(Core.fontFamily()).toContain('-apple-system');
     });
   });
 
@@ -136,7 +162,9 @@ describe('Core', () => {
             },
             '',
           ),
-        ).toBe('Normal 123 underscore abc camel case ab12 with numbers 456.7 and undefined ');
+        ).toBe(
+          'Normal 123 underscore abc camel case ab12 with numbers 456.7 and undefined undefined',
+        );
       });
 
       it('handles singular and places', () => {

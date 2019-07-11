@@ -17,6 +17,7 @@ module.exports = {
     'test-utils/src',
     // Quite difficult to test
     'core/src/components/GradientScroller',
+    'core/src/components/HierarchyPicker',
     'core/src/components/ResponsiveImage',
     // Requires context support in Enzyme to test correctly
     'forms/src/components/FormActions',
@@ -45,7 +46,7 @@ module.exports = {
   },
   roots: ['<rootDir>/packages'],
   setupFiles: ['./test/setup.js'],
-  setupFilesAfterEnv: ['./test/setupAfterEnv.js'],
+  setupFilesAfterEnv: ['./test/setupAfterEnv.js', '@testing-library/react/cleanup-after-each'],
   testEnvironment: './test/environment.js',
   testURL: 'http://localhost',
   verbose: false,

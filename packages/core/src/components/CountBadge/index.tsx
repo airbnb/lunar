@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Accessibility label. */
@@ -42,7 +42,7 @@ export class CountBadge extends React.Component<Props & WithStylesProps> {
   }
 
   render() {
-    const { accessibilityLabel, styles, value, waggle } = this.props;
+    const { cx, accessibilityLabel, styles, value, waggle } = this.props;
 
     if (!value) {
       return null;
@@ -50,7 +50,7 @@ export class CountBadge extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        {...css(styles.badge, waggle ? styles.animateInAndWaggle : styles.animateIn)}
+        className={cx(styles.badge, waggle ? styles.animateInAndWaggle : styles.animateIn)}
         ref={this.badgeRef}
         aria-label={accessibilityLabel}
       >

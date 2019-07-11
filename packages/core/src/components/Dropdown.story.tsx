@@ -42,6 +42,7 @@ storiesOf('Core/Dropdown', module)
   .addParameters({
     inspectComponents: [Dropdown],
   })
+  .addDecorator(story => <div style={{ padding: 50, margin: 'auto' }}>{story()}</div>)
   .add('Bottom-left dropdown.', () => <DropdownDemo>Toggle bottom-left (default)</DropdownDemo>)
   .add('Top-right dropdown.', () => (
     <DropdownDemo right="0" bottom="100%">

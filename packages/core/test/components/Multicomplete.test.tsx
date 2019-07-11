@@ -12,7 +12,7 @@ describe('<Multicomplete />', () => {
     accessibilityLabel: 'Label',
     maxHeight: 400,
     onChange() {},
-    onLoadOptions: () => Promise.resolve([]),
+    onLoadItems: () => Promise.resolve([]),
   };
 
   const event = {

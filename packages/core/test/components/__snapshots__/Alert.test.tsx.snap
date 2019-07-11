@@ -12,6 +12,8 @@ exports[`<Alert /> renders close button 1`] = `
         <IconClose
           accessibilityLabel="Close"
           color="currentColor"
+          flip={false}
+          flipVertical={false}
           inline={false}
           size={24}
         />
@@ -55,6 +57,8 @@ exports[`<Alert /> renders statuses renders danger alert 1`] = `
       <IconError
         color="#DF2323"
         decorative={true}
+        flip={false}
+        flipVertical={false}
         inline={false}
         size={24}
       />
@@ -79,6 +83,8 @@ exports[`<Alert /> renders statuses renders info alert 1`] = `
       <IconInfo
         color="#6f44ff"
         decorative={true}
+        flip={false}
+        flipVertical={false}
         inline={false}
         size={24}
       />
@@ -120,6 +126,8 @@ exports[`<Alert /> renders statuses renders notice alert 1`] = `
       <IconFlag
         color="#1561B2"
         decorative={true}
+        flip={false}
+        flipVertical={false}
         inline={false}
         size={24}
       />
@@ -144,6 +152,8 @@ exports[`<Alert /> renders statuses renders success alert 1`] = `
       <IconCheckAlt
         color="#4AA83E"
         decorative={true}
+        flip={false}
+        flipVertical={false}
         inline={false}
         size={24}
       />
@@ -168,6 +178,8 @@ exports[`<Alert /> renders statuses renders warning alert 1`] = `
       <IconWarning
         color="#FFB400"
         decorative={true}
+        flip={false}
+        flipVertical={false}
         inline={false}
         size={24}
       />

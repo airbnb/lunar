@@ -1,7 +1,9 @@
 import React from 'react';
+import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
+import DirectionalIcon from '../DirectionalIcon';
 
 export type Props = {
   /** Mark the breadcrumb as disabled. */
@@ -10,6 +12,8 @@ export type Props = {
   hideIcon?: boolean;
   /** Mark the breadcrumb as highlighted. */
   highlighted?: boolean;
+  /** @ignore */
+  horizontal?: boolean;
   /** Content to within the Breadcrumb. */
   label: string;
   /** Render an anchor link with a URL instead of a button. */
@@ -39,33 +43,55 @@ class Breadcrumb extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { disabled, hideIcon, highlighted, label, href, onClick, selected, styles } = this.props;
+    const {
+      cx,
+      disabled,
+      hideIcon,
+      highlighted,
+      label,
+      href,
+      onClick,
+      selected,
+      styles,
+    } = this.props;
     const clickable = !disabled && (!!href || !!onClick);
     const aria = selected ? { 'aria-current': 'page' } : {};
 
     return (
-      <ButtonOrLink
-        {...aria}
-        {...css(
-          styles.breadcrumb,
-          clickable && styles.breadcrumb_clickable,
-          highlighted && styles.breadcrumb_highlighted,
-          clickable && highlighted && styles.breadcrumb_highlighted_clickable,
-          selected && styles.breadcrumb_selected,
-          disabled && styles.breadcrumb_disabled,
-        )}
-        afterIcon={hideIcon ? null : <IconChevronRight decorative size={24} />}
-        disabled={disabled}
-        href={href}
-        onClick={this.handleClick}
-      >
-        {label}
-      </ButtonOrLink>
+      <li className={cx(styles.li)}>
+        <ButtonOrLink
+          {...aria}
+          className={cx(
+            styles.breadcrumb,
+            clickable && styles.breadcrumb_clickable,
+            highlighted && styles.breadcrumb_highlighted,
+            clickable && highlighted && styles.breadcrumb_highlighted_clickable,
+            selected && styles.breadcrumb_selected,
+            disabled && styles.breadcrumb_disabled,
+          )}
+          afterIcon={
+            hideIcon ? null : (
+              <DirectionalIcon
+                direction="right"
+                left={IconChevronLeft}
+                right={IconChevronRight}
+                size={24}
+                decorative
+              />
+            )
+          }
+          disabled={disabled}
+          href={href}
+          onClick={this.handleClick}
+        >
+          {label}
+        </ButtonOrLink>
+      </li>
     );
   }
 }
 
-export default withStyles(({ color, font, pattern, transition }) => ({
+export default withStyles(({ color, font, pattern, transition, unit }) => ({
   breadcrumb: {
     ...pattern.resetButton,
     ...font.textRegular,
@@ -103,5 +129,13 @@ export default withStyles(({ color, font, pattern, transition }) => ({
 
   breadcrumb_selected: {
     fontWeight: font.weights.semibold,
+  },
+
+  li: {
+    marginRight: unit,
+
+    ':last-child': {
+      marginRight: 0,
+    },
   },
 }))(Breadcrumb);

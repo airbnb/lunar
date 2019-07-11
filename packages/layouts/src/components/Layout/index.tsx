@@ -1,11 +1,7 @@
 import React from 'react';
-import { elementType } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
-import SideBar from '../SideBar';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 
 export type Props = {
-  /** Width of the aside columns. */
-  asideWidth?: number;
   /** The primary main content. */
   children: NonNullable<React.ReactNode>;
   /** Expand main content to full width of viewport. */
@@ -14,10 +10,6 @@ export type Props = {
   noBackground?: boolean;
   /** Remove padding from main content. */
   noPadding?: boolean;
-  /** Navigation side bar to display before the content. */
-  sideBar?: React.ReactNode;
-  /** Navigation top bar to display above the content. */
-  topBar?: React.ReactNode; // TODO
 };
 
 export type AsideProps = {
@@ -30,51 +22,30 @@ export type AsideProps = {
 /** Abstract layout manager that all other layouts extend from. */
 export class Layout extends React.Component<Props & AsideProps & WithStylesProps> {
   static defaultProps = {
-    asideWidth: 300,
     fluid: false,
     noBackground: false,
     noPadding: false,
   };
 
-  static propTypes = {
-    sideBar: elementType(SideBar),
-  };
-
   render() {
-    const {
-      after,
-      asideWidth,
-      before,
-      children,
-      fluid,
-      noBackground,
-      noPadding,
-      sideBar,
-      styles,
-    } = this.props;
+    const { cx, after, before, children, fluid, noBackground, noPadding, styles } = this.props;
 
     return (
-      <div {...css(styles.layout)}>
-        {sideBar && <aside {...css(styles.aside)}>{sideBar}</aside>}
-
-        {before && (
-          <aside {...css(styles.aside, styles.aside_before, { width: asideWidth })}>{before}</aside>
-        )}
+      <div className={cx(styles.layout)}>
+        {before}
 
         <main
           role="main"
-          {...css(
+          className={cx(
             styles.main,
             noBackground && styles.main_noBackground,
             noPadding && styles.main_noPadding,
           )}
         >
-          <div {...css(!fluid && styles.mainContent)}>{children}</div>
+          <div className={cx(!fluid && styles.mainContent)}>{children}</div>
         </main>
 
-        {after && (
-          <aside {...css(styles.aside, styles.aside_after, { width: asideWidth })}>{after}</aside>
-        )}
+        {after}
       </div>
     );
   }
@@ -85,7 +56,6 @@ export default withStyles(({ breakpoints, color, unit }) => ({
     display: 'flex',
     width: '100%',
     minHeight: '100vh',
-    background: color.accent.bg,
     justifyContent: 'space-between',
   },
 
@@ -105,20 +75,5 @@ export default withStyles(({ breakpoints, color, unit }) => ({
 
   mainContent: {
     maxWidth: breakpoints.medium,
-  },
-
-  aside: {
-    flexGrow: 0,
-    flexShrink: 0,
-  },
-
-  aside_after: {
-    padding: unit * 2,
-    // borderLeft: ui.border,
-  },
-
-  aside_before: {
-    padding: unit * 2,
-    // borderRight: ui.border,
   },
 }))(Layout);

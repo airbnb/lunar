@@ -6,8 +6,9 @@ import T from '@airbnb/lunar/lib/components/Translate';
 import Button from '@airbnb/lunar/lib/components/Button';
 import Dropdown, { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
 import Menu, { Props as MenuProps } from '@airbnb/lunar/lib/components/Menu';
+import ExpandableIcon from '@airbnb/lunar/lib/components/ExpandableIcon';
 import Link from '@airbnb/lunar/lib/components/Link';
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import Row from './private/Row';
 
 export type Props = {
@@ -122,6 +123,7 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
 
   render() {
     const {
+      cx,
       accessibilityLabel,
       activeCount,
       children,
@@ -148,17 +150,23 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
     );
 
     return (
-      <div {...css(styles.container)} ref={this.ref}>
-        <Button inverted large={large} small={small} onClick={this.handleToggleFilters}>
+      <div className={cx(styles.container)} ref={this.ref}>
+        <Button
+          inverted
+          large={large}
+          small={small}
+          onClick={this.handleToggleFilters}
+          afterIcon={<ExpandableIcon expanded={opened} size="1.25em" />}
+        >
           {activeCountLabel || toggleLabel}
         </Button>
 
         <div
-          {...css(styles.form, !opened && styles.form_hidden, { zIndex })}
+          className={cx(styles.form, !opened && styles.form_hidden, { zIndex })}
           aria-expanded={opened}
         >
           <Dropdown {...dropdownProps} onClickOutside={this.handleClickOutside} visible={opened}>
-            <div {...css(styles.menu)}>
+            <div className={cx(styles.menu)}>
               <Menu
                 minWidth={250}
                 maxHeight={300}
@@ -168,7 +176,7 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
                 {children}
 
                 <Row>
-                  <section {...css(styles.controls)}>
+                  <section className={cx(styles.controls)}>
                     <Link type="submit" onClick={this.handleApply}>
                       <T phrase="Apply" context="Apply filters button label" />
                     </Link>

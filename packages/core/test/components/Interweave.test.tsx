@@ -1,5 +1,6 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import { mountWithStyles } from '@airbnb/lunar-test-utils';
 import { UrlMatcher } from 'interweave-autolink';
 import { EmojiDataManager } from 'interweave-emoji';
 import { Interweave } from '../../src/components/Interweave';
@@ -30,7 +31,7 @@ describe('<Interweave />', () => {
   });
 
   it('set large size prop if urls and emails are present', () => {
-    const wrapper = mount(
+    const wrapper = mountWithStyles(
       <Interweave {...props} content="Foo http://test.com bar with an email@email.com" large />,
     );
 
@@ -41,7 +42,7 @@ describe('<Interweave />', () => {
   });
 
   it('set small size prop if urls and emails are present', () => {
-    const wrapper = mount(
+    const wrapper = mountWithStyles(
       <Interweave {...props} content="Foo http://test.com bar with an email@email.com" small />,
     );
 

@@ -1,15 +1,12 @@
-/* eslint-disable react/jsx-handler-names */
-
 import React from 'react';
 import uuid from 'uuid/v4';
 import Core from '@airbnb/lunar';
-import { Props as ToastProps } from '@airbnb/lunar/lib/components/Toast';
 import withBoundary from '@airbnb/lunar/lib/composers/withBoundary';
 import componentName from '@airbnb/lunar/lib/prop-types/componentName';
 import Layout from './components/Layout';
 import Toasts from './components/Toasts';
 import AppContext from './components/AppContext';
-import { ToastType, Toast } from './types';
+import { Breadcrumb, ToastType, Toast } from './types';
 
 export type Props = {
   /** Application to render. */
@@ -19,6 +16,7 @@ export type Props = {
 };
 
 export type State = {
+  breadcrumbs: Breadcrumb[];
   data: { [id: string]: object };
   toasts: Toast[];
 };
@@ -35,8 +33,26 @@ export class AppShell extends React.Component<Props, State> {
   };
 
   state = {
+    breadcrumbs: [],
     data: {},
     toasts: [],
+  };
+
+  addBreadcrumb = (label: string, props: Breadcrumb['props'] = {}) => {
+    const id = uuid();
+
+    this.setState(prevState => ({
+      breadcrumbs: [
+        ...prevState.breadcrumbs,
+        {
+          id,
+          label,
+          props,
+        },
+      ],
+    }));
+
+    return id;
   };
 
   addPageData = (data: object, customID: string = '') => {
@@ -52,7 +68,7 @@ export class AppShell extends React.Component<Props, State> {
     return id;
   };
 
-  addToast = (message: string | Error, type: ToastType, props: Partial<ToastProps> = {}) => {
+  addToast = (message: string | Error, type: ToastType, props: Toast['props'] = {}) => {
     const id = props.id || uuid();
 
     this.setState(prevState => ({
@@ -74,14 +90,19 @@ export class AppShell extends React.Component<Props, State> {
 
   addRefreshToast = (message: string) => this.addToast(message, 'refresh', { duration: 0 });
 
-  addInfoToast = (message: string, props?: Partial<ToastProps>) =>
-    this.addToast(message, 'info', props);
+  addInfoToast = (message: string, props?: Toast['props']) => this.addToast(message, 'info', props);
 
-  addSuccessToast = (message: string, props?: Partial<ToastProps>) =>
+  addSuccessToast = (message: string, props?: Toast['props']) =>
     this.addToast(message, 'success', props);
 
-  addFailureToast = (message: string | Error, props?: Partial<ToastProps>) =>
+  addFailureToast = (message: string | Error, props?: Toast['props']) =>
     this.addToast(message, 'danger', props);
+
+  removeBreadcrumb = (id: string) => {
+    this.setState(prevState => ({
+      breadcrumbs: prevState.breadcrumbs.filter(crumb => crumb.id !== id),
+    }));
+  };
 
   removePageData = (id: string) => {
     this.setState(prevState => {
@@ -102,13 +123,16 @@ export class AppShell extends React.Component<Props, State> {
   render() {
     const { children } = this.props;
     const context = {
+      addBreadcrumb: this.addBreadcrumb,
       addPageData: this.addPageData,
       addInfoToast: this.addInfoToast,
       addFailureToast: this.addFailureToast,
       addSuccessToast: this.addSuccessToast,
       addRefreshToast: this.addRefreshToast,
+      breadcrumbs: this.state.breadcrumbs,
       data: this.state.data,
       name: this.props.name,
+      removeBreadcrumb: this.removeBreadcrumb,
       removePageData: this.removePageData,
       removeToast: this.removeToast,
       toasts: this.state.toasts,
@@ -117,8 +141,7 @@ export class AppShell extends React.Component<Props, State> {
     return (
       <AppContext.Provider value={context}>
         <Layout>{children}</Layout>
-
-        <Toasts toasts={context.toasts} onRemove={this.removeToast} />
+        <Toasts />
       </AppContext.Provider>
     );
   }

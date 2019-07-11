@@ -1,28 +1,33 @@
 import React from 'react';
-import { Omit } from 'utility-types';
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import { elementType } from 'airbnb-prop-types';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import Aside from '../Aside';
 import Layout, { Props as LayoutProps, AsideProps } from '../Layout';
 
-export type Props = Required<AsideProps> &
-  Omit<LayoutProps, 'children' | 'fluid' | 'noBackground' | 'noPadding'>;
+export type Props = Required<AsideProps> & Pick<LayoutProps, 'fluid'>;
 
-/** A symmetrical two-column layout with optional top and side navigation. */
+/** A symmetrical two-column layout. */
 export class SplitLayout extends React.Component<Props & WithStylesProps> {
+  static propTypes = {
+    after: elementType(Aside).isRequired,
+    before: elementType(Aside).isRequired,
+  };
+
   render() {
-    const { before, after, styles, ...props } = this.props;
+    const { after, before, cx, fluid, styles } = this.props;
 
     return (
-      <Layout {...props} noBackground noPadding>
-        <div {...css(styles.wrapper)}>
-          <div {...css(styles.column)}>{before}</div>
-          <div {...css(styles.column, styles.column_after)}>{after}</div>
+      <Layout noBackground noPadding fluid={fluid}>
+        <div className={cx(styles.wrapper)}>
+          <div className={cx(styles.column)}>{before}</div>
+          <div className={cx(styles.column)}>{after}</div>
         </div>
       </Layout>
     );
   }
 }
 
-export default withStyles(({ unit }) => ({
+export default withStyles(() => ({
   wrapper: {
     display: 'flex',
     height: '100%',
@@ -30,12 +35,5 @@ export default withStyles(({ unit }) => ({
 
   column: {
     width: '50%',
-    flexGrow: 0,
-    flexShrink: 0,
-    padding: unit * 2,
-  },
-
-  column_after: {
-    // borderLeft: ui.border,
   },
 }))(SplitLayout);

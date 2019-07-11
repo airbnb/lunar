@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { and, mutuallyExclusiveProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 const mutuallyExclusiveSizePropType = mutuallyExclusiveProps(
   PropTypes.any,
@@ -50,6 +50,7 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       imageSrc,
       inline,
       macro,
@@ -65,7 +66,7 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        {...css(
+        className={cx(
           inline && styles.inline,
           styles.regular,
           macro && styles.macro,
@@ -81,7 +82,7 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
         )}
       >
         <img
-          {...css(
+          className={cx(
             styles.image,
             styles.regular,
             !square && styles.roundedImage,

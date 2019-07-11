@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Display inline instead of absolutely positioned. */
@@ -22,11 +22,11 @@ export class Loader extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { styles, inline, inverted, large, static: isStatic } = this.props;
+    const { cx, styles, inline, inverted, large, static: isStatic } = this.props;
 
     return (
       <div
-        {...css(
+        className={cx(
           styles.loader,
           inline && styles.loader_inline,
           !isStatic && !inline && styles.loader_absolute,
@@ -35,7 +35,7 @@ export class Loader extends React.Component<Props & WithStylesProps> {
         {[1, 2, 3].map(no => (
           <span
             key={no}
-            {...css(
+            className={cx(
               styles.dot,
               styles[`dot_${no}`],
               large && styles.dot_large,

@@ -9,7 +9,8 @@ exports[`<Tab/> renders a button 1`] = `
   >
     <ButtonOrLink
       aria-selected={false}
-      className="tabButton_17c4m1l"
+      className="tabButton_1yhh4o0"
+      flexAlign={true}
       onClick={[Function]}
       role="tab"
     >
@@ -28,8 +29,9 @@ exports[`<Tab/> renders disabled 1`] = `
   >
     <ButtonOrLink
       aria-selected={false}
-      className="tabButton_17c4m1l"
+      className="tabButton_1yhh4o0"
       disabled={true}
+      flexAlign={true}
       role="tab"
     >
       Tab
@@ -47,7 +49,8 @@ exports[`<Tab/> renders selected 1`] = `
   >
     <ButtonOrLink
       aria-selected={true}
-      className="tabButton_17c4m1l"
+      className="tabButton_1yhh4o0-o_O-tabButton_active_13z9huf"
+      flexAlign={true}
       onClick={[Function]}
       role="tab"
     >
@@ -66,7 +69,8 @@ exports[`<Tab/> renders stretched 1`] = `
   >
     <ButtonOrLink
       aria-selected={false}
-      className="tabButton_17c4m1l"
+      className="tabButton_1yhh4o0"
+      flexAlign={true}
       onClick={[Function]}
       role="tab"
     >

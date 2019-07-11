@@ -3,7 +3,7 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
 import withBoundary from '../../composers/withBoundary';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import GradientScroller from '../GradientScroller';
 import Tab, { Props as TabProps } from './Tab';
 
@@ -90,13 +90,13 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
   };
 
   render() {
-    const { borderless, children, scrollable, stretched, styles } = this.props;
+    const { cx, borderless, children, scrollable, stretched, styles } = this.props;
     const { selectedKey } = this.state;
 
     // Generate content
     let content = null;
     const nav = (
-      <nav role="tablist" {...css(styles.nav, borderless && styles.nav_borderless)}>
+      <nav role="tablist" className={cx(styles.nav, borderless && styles.nav_borderless)}>
         {React.Children.map(children, (child, i) => {
           if (!child) {
             return null;
@@ -135,7 +135,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
         )}
 
         {content && (
-          <section role="tabpanel" {...css(styles.panel)}>
+          <section role="tabpanel" className={cx(styles.panel)}>
             {content}
           </section>
         )}

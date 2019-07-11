@@ -1,6 +1,6 @@
 import React from 'react';
 import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** List of components to group. */
@@ -20,12 +20,14 @@ export class ButtonGroup extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, stacked, styles } = this.props;
+    const { cx, children, stacked, styles } = this.props;
 
     return (
-      <div {...css(styles.buttonGroup, stacked && styles.buttonGroup_stacked)}>
+      <div className={cx(styles.buttonGroup, stacked && styles.buttonGroup_stacked)}>
         {React.Children.map(children, child =>
-          child ? <div {...css(stacked ? styles.cell_stacked : styles.cell)}>{child}</div> : null,
+          child ? (
+            <div className={cx(stacked ? styles.cell_stacked : styles.cell)}>{child}</div>
+          ) : null,
         )}
       </div>
     );

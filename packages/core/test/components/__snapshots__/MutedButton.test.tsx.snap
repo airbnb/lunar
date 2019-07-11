@@ -3,7 +3,7 @@
 exports[`<MutedButton /> renders a secondary button 1`] = `
 <ButtonOrLink
   aria-busy={false}
-  className="button_zv9584-o_O-button_regular_jprlrd"
+  className="button_zv9584-o_O-button_regular_un5ukp"
 >
   Button
 </ButtonOrLink>

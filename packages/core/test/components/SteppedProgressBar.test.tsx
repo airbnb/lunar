@@ -1,28 +1,28 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import SteppedProgressBar, { Step } from '../../src/components/SteppedProgressBar';
 
 describe('<SteppedProgressBar />', () => {
   it('renders steps', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <SteppedProgressBar>
         <Step />
         <Step />
         <Step />
       </SteppedProgressBar>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('sets first and last', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <SteppedProgressBar>
         <Step />
         <Step />
         <Step />
       </SteppedProgressBar>,
-    ).dive();
+    );
     const steps = wrapper.find(Step);
 
     expect(steps.at(0).prop('first')).toBe(true);
@@ -37,7 +37,7 @@ describe('<SteppedProgressBar />', () => {
 
   it('errors if child is not a `Step`', () => {
     expect(() => {
-      shallow(<SteppedProgressBar>Foo</SteppedProgressBar>).dive();
+      shallowWithStyles(<SteppedProgressBar>Foo</SteppedProgressBar>);
     }).toThrowError();
   });
 });

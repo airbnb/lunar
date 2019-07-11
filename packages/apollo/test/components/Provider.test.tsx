@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mountWithStyles, WrappingComponent } from '@airbnb/lunar-test-utils';
 import { ApolloProvider } from 'react-apollo';
 import Apollo from '../../src';
 import Provider from '../../src/components/Provider';
@@ -10,7 +10,11 @@ describe('Provider', () => {
   });
 
   it('renders an `ApolloProvider`', () => {
-    const wrapper = shallow(<Provider>Foo</Provider>);
+    const wrapper = mountWithStyles(
+      <WrappingComponent>
+        <Provider>Foo</Provider>
+      </WrappingComponent>,
+    );
 
     expect(wrapper.find(ApolloProvider)).toHaveLength(1);
   });

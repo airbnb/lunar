@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleBlock } from 'aesthetic';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type SpacingRange =
   | 0
@@ -74,6 +74,7 @@ export class Spacing extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       all,
       bottom,
       children,
@@ -130,7 +131,9 @@ export class Spacing extends React.Component<Props & WithStylesProps> {
       }
     }
 
-    return <TagProp {...css(...classes, inline && styles.spacing_inline)}>{children}</TagProp>;
+    return (
+      <TagProp className={cx(...classes, inline && styles.spacing_inline)}>{children}</TagProp>
+    );
   }
 }
 
