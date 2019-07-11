@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.7.0 - 2019-07-11
+
+#### 🚀 Updates
+
+- **[Card]** Add overflow prop for overflow visible. (#116) ([3da4af7](https://github.com/airbnb/lunar/tree/master/packages/core/commit/3da4af7)), closes [#116](https://github.com/airbnb/lunar/tree/master/packages/core/issues/116)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.6.1 - 2019-07-11
 
 #### 🐞 Fixes
