@@ -2,32 +2,8 @@ import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ButtonGroup from '../../src/components/ButtonGroup';
 import Button from '../../src/components/Button';
-import Loader from '../../src/components/Loader';
-import Tooltip from '../../src/components/Tooltip';
 
 describe('<ButtonGroup />', () => {
-  it('errors when a non-button is passed', () => {
-    expect(() => {
-      shallowWithStyles(
-        <ButtonGroup>
-          <Loader />
-        </ButtonGroup>,
-      );
-    }).toThrowErrorMatchingSnapshot();
-  });
-
-  it('doesnt error when `Tooltip` is wrapping', () => {
-    expect(() => {
-      shallowWithStyles(
-        <ButtonGroup>
-          <Tooltip content="">
-            <Button>One</Button>
-          </Tooltip>
-        </ButtonGroup>,
-      );
-    }).not.toThrowError();
-  });
-
   it('renders buttons', () => {
     const wrapper = shallowWithStyles(
       <ButtonGroup>

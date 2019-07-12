@@ -3,12 +3,6 @@ import { shallow } from 'enzyme';
 import Card, { Content } from '../../src/components/Card';
 
 describe('<Card />', () => {
-  it('errors if `Content` child is not passed', () => {
-    expect(() => {
-      shallow(<Card>Invalid</Card>);
-    }).toThrowError();
-  });
-
   it('it renders different styles for `overflow`', () => {
     const withoutOverflow = shallow(
       <Card>

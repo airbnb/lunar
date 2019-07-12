@@ -4,16 +4,6 @@ import IconAdd from '../../../icons/src/interface/IconAdd';
 import SideBar, { Item } from '../../src/components/SideBar';
 
 describe('<SideBar />', () => {
-  it('errors for invalid children', () => {
-    expect(() => {
-      shallowWithStyles(
-        <SideBar accessibilityLabel="Test">
-          <div />
-        </SideBar>,
-      );
-    }).toThrowError();
-  });
-
   it('renders a nav with accessibility', () => {
     const wrapper = shallowWithStyles(
       <SideBar accessibilityLabel="Test">

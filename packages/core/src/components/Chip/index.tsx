@@ -31,7 +31,7 @@ export type Props = {
 export class Chip extends React.Component<Props & WithStylesProps> {
   static propTypes = {
     afterIcon: requiredBy('onIconClick', iconComponent),
-    beforeIcon: mutuallyExclusiveProps(iconComponent, 'beforeIcon', 'profileImageSrc'),
+    beforeIcon: mutuallyExclusiveProps(PropTypes.node, 'beforeIcon', 'profileImageSrc'),
     onClick: mutuallyExclusiveProps(PropTypes.func, 'onIconClick'),
     profileImageSrc: mutuallyExclusiveProps(
       PropTypes.any,

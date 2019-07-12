@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.0 - 2019-07-12
+
+#### 🚀 Updates
+
+- Use `React.memo` under the hood. Remove children/node prop type checks. (#120) ([30881c6](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/30881c6)), closes [#120](https://github.com/airbnb/lunar/tree/master/packages/layouts/issues/120)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
 ## 2.1.0 - 2019-07-08
 
 #### 🚀 Updates

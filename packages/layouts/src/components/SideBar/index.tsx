@@ -1,5 +1,4 @@
 import React from 'react';
-import { childrenOfType } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import Item from './Item';
 
@@ -12,10 +11,6 @@ export type Props = {
 
 /** A vertical sidebar navigation menu. Primarily aligned on the left viewport. */
 export class SideBar extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    children: childrenOfType(Item).isRequired,
-  };
-
   render() {
     const { cx, accessibilityLabel, children, styles } = this.props;
 

@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-test-utils",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Utilities for local testing.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "aesthetic": "^4.0.0",
-    "aesthetic-react": "^1.0.0"
+    "aesthetic-react": "^1.1.0"
   },
   "devDependencies": {
     "@types/enzyme": "^3.9.4",

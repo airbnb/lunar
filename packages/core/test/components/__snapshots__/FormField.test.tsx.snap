@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FormField /> errors for invalid prefix 1`] = `
-"Warning: Failed prop type: \`FormField\` only accepts children of type Prefix
-    in FormField"
-`;
-
-exports[`<FormField /> errors for invalid suffix 1`] = `
-"Warning: Failed prop type: \`FormField\` only accepts children of type Suffix
-    in FormField"
-`;
-
 exports[`<FormField /> hides the label 1`] = `
 <section
   className="field_k3wq0g"
