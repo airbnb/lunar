@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import gql from 'graphql-tag';
 import { WrappingComponent } from '@airbnb/lunar-test-utils';
-import Loader from '@airbnb/lunar/lib/components/Loader';
+// import Loader from '@airbnb/lunar/lib/components/Loader';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
 import { MockedProvider } from 'react-apollo/test-utils';
 import Query from '../../src/components/Query';
