@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.0.2 - 2019-07-12
+
+**Note:** Version bump only for package @airbnb/lunar-metrics
+
+
+
+
+
 ### 2.0.1 - 2019-07-08
 
 **Note:** Version bump only for package @airbnb/lunar-metrics

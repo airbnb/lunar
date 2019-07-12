@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.8.0 - 2019-07-12
+
+#### 🚀 Updates
+
+- Use `React.memo` under the hood. Remove children/node prop type checks. (#120) ([30881c6](https://github.com/airbnb/lunar/tree/master/packages/core/commit/30881c6)), closes [#120](https://github.com/airbnb/lunar/tree/master/packages/core/issues/120)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.7.0 - 2019-07-11
 
 #### 🚀 Updates
