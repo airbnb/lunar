@@ -785,33 +785,33 @@ describe('<Proofreader />', () => {
       ]);
     });
 
-    // it('orders by offset', () => {
-    //   wrapper.setState({
-    //     errors: [
-    //       error,
-    //       {
-    //         message: 'Uncapitalized',
-    //         short_message: 'Uncapitalized',
-    //         offset: 0,
-    //         length: 9,
-    //         replacements: ['Something'],
-    //       },
-    //     ],
-    //     selectedError: error,
-    //   });
+    it('orders by offset', () => {
+      wrapper.setState({
+        errors: [
+          error,
+          {
+            message: 'Uncapitalized',
+            short_message: 'Uncapitalized',
+            offset: 0,
+            length: 9,
+            replacements: ['Something'],
+          },
+        ],
+        selectedError: error,
+      });
 
-    //   expect(instance.renderTextWithMarks()).toEqual([
-    //     '',
-    //     <Mark key="something-0" selected={false} onSelect={expect.anything()}>
-    //       something
-    //     </Mark>,
-    //     ' ',
-    //     <Mark key="foobar-10" selected onSelect={expect.anything()}>
-    //       foobar
-    //     </Mark>,
-    //     '',
-    //     '.',
-    //   ]);
+      expect(instance.renderTextWithMarks()).toEqual([
+        '',
+        <Mark key="something-0" selected={false} onSelect={expect.anything()}>
+          something
+        </Mark>,
+        ' ',
+        <Mark key="foobar-10" selected onSelect={expect.anything()}>
+          foobar
+        </Mark>,
+        '',
+        '.',
+      ]);
     });
   });
 });
