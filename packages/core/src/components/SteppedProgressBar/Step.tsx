@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ProgressBar from '../ProgressBar';
 import Tooltip from '../Tooltip';
 
@@ -24,7 +24,7 @@ export class Step extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { complete, first, last, label, styles } = this.props;
+    const { cx, complete, first, last, label, styles } = this.props;
     const bar = (
       <ProgressBar
         leading={first || (!first && !last)}
@@ -34,7 +34,9 @@ export class Step extends React.Component<Props & WithStylesProps> {
     );
 
     return (
-      <div {...css(styles.step)}>{label ? <Tooltip content={label}>{bar}</Tooltip> : bar}</div>
+      <div className={cx(styles.step)}>
+        {label ? <Tooltip content={label}>{bar}</Tooltip> : bar}
+      </div>
     );
   }
 }

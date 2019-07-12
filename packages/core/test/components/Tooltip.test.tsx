@@ -1,5 +1,6 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Tooltip, { Tooltip as BaseTooltip, Props, State } from '../../src/components/Tooltip';
 
 jest.mock('uuid/v4', () => () => 'uuid-test-mock');
@@ -9,11 +10,11 @@ describe('<Tooltip />', () => {
   let childContainer: Enzyme.ShallowWrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
+    wrapper = shallowWithStyles(
       <Tooltip content="test">
         <a href="#">hello world</a>
       </Tooltip>,
-    ).dive() as any;
+    );
     childContainer = wrapper.find('div[aria-labelledby]');
   });
 

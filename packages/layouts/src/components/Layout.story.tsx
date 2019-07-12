@@ -1,8 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import IconSettings from '@airbnb/lunar-icons/lib/interface/IconSettings';
 import LoremIpsum from ':storybook/components/LoremIpsum';
-import SideBar, { Item } from './SideBar';
+import Aside from './Aside';
 import Layout from './Layout';
 
 storiesOf('Layouts/Layout', module)
@@ -14,20 +13,41 @@ storiesOf('Layouts/Layout', module)
       <LoremIpsum />
     </Layout>
   ))
-  .add('With asides.', () => (
-    <Layout before={<LoremIpsum />} after={<LoremIpsum />}>
+  .add('With left aside, and no main padding.', () => (
+    <Layout
+      before={
+        <Aside width={300}>
+          <LoremIpsum />
+        </Aside>
+      }
+      noPadding
+    >
       <LoremIpsum />
     </Layout>
   ))
-  .add('With side bar and no background color.', () => (
+  .add('With right aside, and no main background color.', () => (
     <Layout
+      after={
+        <Aside width={300}>
+          <LoremIpsum />
+        </Aside>
+      }
       noBackground
-      before={<LoremIpsum />}
-      after={<LoremIpsum />}
-      sideBar={
-        <SideBar accessibilityLabel="Nav">
-          <Item icon={<IconSettings accessibilityLabel="Settings" />} />
-        </SideBar>
+    >
+      <LoremIpsum />
+    </Layout>
+  ))
+  .add('With both sides.', () => (
+    <Layout
+      before={
+        <Aside width={300}>
+          <LoremIpsum />
+        </Aside>
+      }
+      after={
+        <Aside width={300}>
+          <LoremIpsum />
+        </Aside>
       }
     >
       <LoremIpsum />

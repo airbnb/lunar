@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Spacing, { SpacingRange } from '../Spacing';
 
 export type Props = {
@@ -17,11 +17,11 @@ export class Divider extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { styles, bottom, top } = this.props;
+    const { cx, styles, bottom, top } = this.props;
 
     return (
       <Spacing bottom={bottom} top={top}>
-        <div {...css(styles.divider)} />
+        <div className={cx(styles.divider)} />
       </Spacing>
     );
   }

@@ -1,8 +1,16 @@
 import startCase from 'lodash/startCase';
+import memoize from 'lodash/memoize';
 
 import { WithStylesProps } from '../../composers/withStyles';
 import { STATUS_OPTIONS, HEIGHT_TO_PX } from './constants';
-import { ColumnLabelCase, HeightOptions, ExpandedRow, RowHeightOptions, Status } from './types';
+import {
+  ColumnLabelCase,
+  HeightOptions,
+  ExpandedRow,
+  ParentRow,
+  RowHeightOptions,
+  Status,
+} from './types';
 
 export function caseColumnLabel(label: string, casing: ColumnLabelCase) {
   if (casing === 'title') {
@@ -58,3 +66,20 @@ export function getHeight(defaultHeight?: RowHeightOptions, overrideHeight?: Hei
 
   return defaultHeight ? HEIGHT_TO_PX[defaultHeight] : 0;
 }
+
+// Infers keys from data if they aren't explicitly defined
+export const getKeys = memoize((keys: string[], data: ParentRow[]) => {
+  return keys.length > 0
+    ? keys
+    : Array.from(
+        data!.reduce((keySet: Set<string>, row: ParentRow) => {
+          Object.keys(row.data).forEach(key => {
+            if (row.metadata === undefined || row.metadata.colSpanKey !== key) {
+              keySet.add(key);
+            }
+          });
+
+          return keySet;
+        }, new Set()),
+      );
+});

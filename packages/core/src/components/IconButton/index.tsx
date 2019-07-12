@@ -1,6 +1,6 @@
 import React from 'react';
 import iconComponent from '../../prop-types/iconComponent';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
 import Tooltip from '../Tooltip';
 
@@ -31,12 +31,12 @@ export class IconButton extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, active, disabled, inverted, tooltip, styles, ...restProps } = this.props;
+    const { cx, children, active, disabled, inverted, tooltip, styles, ...restProps } = this.props;
     const button = (
       <ButtonOrLink
         {...restProps}
         disabled={disabled}
-        {...css(
+        className={cx(
           styles.button,
           active && styles.button_active,
           inverted && styles.button_inverted,

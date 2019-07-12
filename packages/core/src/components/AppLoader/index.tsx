@@ -1,9 +1,10 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ErrorMessage from '../ErrorMessage';
 import Loader from '../Loader';
 import Title from '../Title';
 import Text from '../Text';
+import { ErrorType } from '../../types';
 
 export type Props = {
   /** Center the loader and content. */
@@ -11,7 +12,9 @@ export type Props = {
   /** Content to be rendered on a successful request. */
   children: NonNullable<React.ReactNode>;
   /** Request error. */
-  error?: Error | null;
+  error?: ErrorType | null;
+  /** Title to display on error message. */
+  errorTitle?: React.ReactNode;
   /** Text to display on a failed request. */
   failureText: NonNullable<React.ReactNode>;
   /** Whether a request is fetched. */
@@ -34,9 +37,11 @@ export class AppLoader extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       centered,
       children,
       error,
+      errorTitle,
       failureText,
       fetched,
       loadingText,
@@ -50,17 +55,17 @@ export class AppLoader extends React.Component<Props & WithStylesProps> {
     }
 
     return (
-      <div {...css(styles.appLoader, centered && styles.appLoader_centered)}>
+      <div className={cx(styles.appLoader, centered && styles.appLoader_centered)}>
         <Title level={small ? 3 : 1}>{error ? failureText : loadingText}</Title>
 
         {subtitle && (
-          <div {...css(styles.subtitle)}>
+          <div className={cx(styles.subtitle)}>
             <Text large={!small}>{subtitle}</Text>
           </div>
         )}
 
-        <div {...css(styles.errorOrLoader)}>
-          {error ? <ErrorMessage error={error} /> : <Loader inline />}
+        <div className={cx(styles.errorOrLoader)}>
+          {error ? <ErrorMessage error={error} title={errorTitle} /> : <Loader inline />}
         </div>
       </div>
     );

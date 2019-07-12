@@ -4,7 +4,7 @@ import Layout from '../../src/components/Layout';
 
 describe('Layout', () => {
   it('renders all toasts', () => {
-    const wrapper = shallow(<Layout>Child</Layout>).dive();
+    const wrapper = shallow(<Layout>Child</Layout>);
 
     expect(wrapper).toMatchSnapshot();
   });

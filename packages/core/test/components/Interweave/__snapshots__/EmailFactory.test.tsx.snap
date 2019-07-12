@@ -3,10 +3,19 @@
 exports[`linkFactory() renders a link 1`] = `
 <Link
   baseline={true}
+  cx={[Function]}
   href="mailto:email@airbnb.com"
-  large={false}
   openInNewWindow={false}
-  small={false}
+  withStylesClasses={
+    Array [
+      "link",
+      "link_block",
+      "link_baseline",
+      "link_inverted",
+      "link_muted",
+      "link_disabled",
+    ]
+  }
 >
   email@airbnb.com
 </Link>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ProfilePhotoGroup from '../../src/components/ProfilePhotoGroup';
 import ProfilePhoto from '../../src/components/ProfilePhoto';
 import Loader from '../../src/components/Loader';
@@ -13,80 +13,80 @@ describe('<ProfilePhotoGroup />', () => {
 
   it('errors when a non-button is passed', () => {
     expect(() => {
-      shallow(
+      shallowWithStyles(
         <ProfilePhotoGroup>
           <Loader />
         </ProfilePhotoGroup>,
-      ).dive();
+      );
     }).toThrowErrorMatchingSnapshot();
   });
 
   it('doesnt error when `Tooltip` is wrapping', () => {
     expect(() => {
-      shallow(
+      shallowWithStyles(
         <ProfilePhotoGroup>
           <Tooltip content="">
             <ProfilePhoto {...props} />
           </Tooltip>
         </ProfilePhotoGroup>,
-      ).dive();
+      );
     }).not.toThrowError();
   });
 
   it('renders photos', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ProfilePhotoGroup>
         <ProfilePhoto {...props} />
         <ProfilePhoto {...props} />
         <ProfilePhoto {...props} />
       </ProfilePhotoGroup>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders a single photo', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ProfilePhotoGroup>
         <ProfilePhoto {...props} />
       </ProfilePhotoGroup>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders a remainder cell when the max is met', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ProfilePhotoGroup max={1}>
         <ProfilePhoto {...props} />
         <ProfilePhoto {...props} />
         <ProfilePhoto {...props} />
       </ProfilePhotoGroup>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('supports custom sizes', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ProfilePhotoGroup size={5}>
         <ProfilePhoto {...props} />
         <ProfilePhoto {...props} />
         <ProfilePhoto {...props} />
       </ProfilePhotoGroup>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('handles photos that return falsy values', () => {
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ProfilePhotoGroup>
         {false && <ProfilePhoto {...props} />}
         {true && <ProfilePhoto {...props} />}
         {null && <ProfilePhoto {...props} />}
       </ProfilePhotoGroup>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -96,11 +96,11 @@ describe('<ProfilePhotoGroup />', () => {
       return null;
     }
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ProfilePhotoGroup>
         <FakePhoto />
       </ProfilePhotoGroup>,
-    ).dive();
+    );
 
     expect(wrapper).toMatchSnapshot();
   });

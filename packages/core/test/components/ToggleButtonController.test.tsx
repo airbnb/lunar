@@ -1,5 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ToggleButtonController from '../../src/components/ToggleButtonController';
 
 describe('<ToggleButtonController />', () => {
@@ -41,7 +42,7 @@ describe('<ToggleButtonController />', () => {
   it('passes proxy component and current value to function child', () => {
     shallow(
       <ToggleButtonController {...props}>
-        {(Comp, values) => {
+        {(Comp, values: string) => {
           expect(typeof Comp).toBe('function');
           expect(values).toEqual('foo');
 
@@ -53,7 +54,7 @@ describe('<ToggleButtonController />', () => {
 
   it('does not notify of click that does not cause change', () => {
     const onChange = jest.fn();
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <ToggleButtonController {...props} onChange={onChange} value="1">
         {ProxyButton => (
           <div>
@@ -63,9 +64,7 @@ describe('<ToggleButtonController />', () => {
           </div>
         )}
       </ToggleButtonController>,
-    )
-      .dive()
-      .dive();
+    ).dive();
 
     clickButton(wrapper, '1');
 
@@ -128,6 +127,41 @@ describe('<ToggleButtonController />', () => {
         .find({ value: '3' })
         .dive()
         .prop('inverted'),
+    ).toBeTruthy();
+  });
+
+  it('`compact` renders `small` buttons', () => {
+    const wrapper = shallow(
+      <ToggleButtonController {...props} compact value="1">
+        {ProxyButton => (
+          <div>
+            <ProxyButton value="1">1</ProxyButton>
+            <ProxyButton value="2">2</ProxyButton>
+            <ProxyButton value="3">3</ProxyButton>
+          </div>
+        )}
+      </ToggleButtonController>,
+    );
+
+    expect(
+      wrapper
+        .find({ value: '1' })
+        .dive()
+        .prop('small'),
+    ).toBeTruthy();
+
+    expect(
+      wrapper
+        .find({ value: '2' })
+        .dive()
+        .prop('small'),
+    ).toBeTruthy();
+
+    expect(
+      wrapper
+        .find({ value: '3' })
+        .dive()
+        .prop('small'),
     ).toBeTruthy();
   });
 });

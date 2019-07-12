@@ -1,6 +1,6 @@
 import React from 'react';
 import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { Z_INDEX_PORTAL } from '../../constants';
 import { ESCAPE } from '../../keys';
 import focusableSelector from '../../utils/focusableSelector';
@@ -168,6 +168,7 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
   render() {
     const { animating } = this.state;
     const {
+      cx,
       gap,
       theme,
       styles,
@@ -196,7 +197,7 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
         role="dialog"
         ref={this.sheetRef}
         onAnimationEnd={this.handleAnimationEnd}
-        {...css(
+        className={cx(
           styles.sheet,
           portal && styles.sheet_portal,
           !gap && animating && styles.sheet_animating,
@@ -206,7 +207,7 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
       >
         <FocusTrap disabled={!portal}>
           <div
-            {...css(
+            className={cx(
               styles.container,
               gap && styles.container_gap,
               portal && animating && styles.container_animating,
@@ -214,7 +215,7 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
           >
             {gap && (
               <button
-                {...css(styles.gap)}
+                className={cx(styles.gap)}
                 aria-label={closeText}
                 type="button"
                 onClick={this.handleClose}
@@ -224,7 +225,7 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
             <div
               ref={this.wrapperRef}
               onAnimationEnd={this.handleAnimationEnd}
-              {...css(
+              className={cx(
                 styles.wrapper,
                 gap && styles.wrapper_gap,
                 gap && animating && styles.sheet_animating,
@@ -232,7 +233,7 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
                 gap && animating && visible && styles.sheet_slide_in,
               )}
             >
-              <div {...css(headerShadow && styles.headerShadow)}>
+              <div className={cx(headerShadow && styles.headerShadow)}>
                 <Spacing all={compact ? 1 : 4} bottom={0}>
                   <Row middleAlign before={!gap && closeIcon} after={gap && closeIcon}>
                     {header || ''}
@@ -240,7 +241,9 @@ class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, 
                 </Spacing>
               </div>
 
-              <div {...css(styles.content, compact && styles.content_compact)}>{children}</div>
+              <div className={cx(styles.content, compact && styles.content_compact)}>
+                {children}
+              </div>
             </div>
           </div>
         </FocusTrap>

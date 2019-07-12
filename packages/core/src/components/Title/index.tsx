@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 const stateProp = mutuallyExclusiveTrueProps('muted', 'inverted', 'primary');
 const alignProp = mutuallyExclusiveTrueProps('centerAlign', 'endAlign');
@@ -46,6 +46,7 @@ export class Title extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       centerAlign,
       children,
       endAlign,
@@ -60,7 +61,7 @@ export class Title extends React.Component<Props & WithStylesProps> {
 
     return (
       <Tag
-        {...css(
+        className={cx(
           styles.title,
           level === 1 && styles.title_level1,
           level === 2 && styles.title_level2,

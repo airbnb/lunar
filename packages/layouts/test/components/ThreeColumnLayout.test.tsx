@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Layout from '../../src/components/Layout';
+import Aside from '../../src/components/Aside';
 import ThreeColumnLayout from '../../src/components/ThreeColumnLayout';
 
 describe('<ThreeColumnLayout />', () => {
@@ -20,7 +21,7 @@ describe('<ThreeColumnLayout />', () => {
 
   it('renders and passes props to `Layout`', () => {
     const wrapper = shallow(
-      <ThreeColumnLayout fluid asideWidth={100} before="Left" after="Right">
+      <ThreeColumnLayout fluid before={<Aside>Left</Aside>} after={<Aside>Right</Aside>}>
         Child
       </ThreeColumnLayout>,
     );
@@ -28,10 +29,9 @@ describe('<ThreeColumnLayout />', () => {
     expect(wrapper.find(Layout).props()).toEqual(
       expect.objectContaining({
         children: 'Child',
-        before: 'Left',
-        after: 'Right',
+        before: <Aside>Left</Aside>,
+        after: <Aside>Right</Aside>,
         fluid: true,
-        asideWidth: 100,
       }),
     );
   });

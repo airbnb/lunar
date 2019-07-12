@@ -1,31 +1,36 @@
 import React from 'react';
 import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
 import Content from './Content';
-import useStyles from '../../hooks/useStyles';
-import { Theme } from '../../types';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export { Content };
 
-const styleSheet = ({ color, pattern }: Theme) => ({
+const styleSheet: StyleSheet = ({ color, pattern }) => ({
   card: {
     ...pattern.box,
     background: color.accent.bg,
     overflow: 'hidden',
+  },
+
+  card_overflow: {
+    overflow: 'visible',
   },
 });
 
 export type Props = {
   /** List of `Content`s blocks to contain content. */
   children: NonNullable<React.ReactNode>;
+  /** Set overflow to be visible. */
+  overflow?: boolean;
 };
 
 /**
  * An abstract layout to use as a base for cards.
  */
-function Card({ children }: Props) {
-  const [styles, cx] = useStyles(styleSheet, 'Card');
+function Card({ children, overflow }: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  return <div className={cx(styles.card)}>{children}</div>;
+  return <div className={cx(styles.card, overflow && styles.card_overflow)}>{children}</div>;
 }
 
 Card.propTypes = {

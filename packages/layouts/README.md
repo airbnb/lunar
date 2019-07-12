@@ -9,13 +9,18 @@ npm install @airbnb/lunar-layouts --save
 ## Usage
 
 This packages provides a handful of components for common page layout scenarios, for example, three
-column layouts, two columns layouts, split layouts, so on and so forth. To use, import the desired
-layout and render near the root of the application.
+column layouts, two columns layouts, split layouts, so on and so forth.
+
+To use, import the `LayoutShell` and render near the root of the application. Column based layouts
+may then be rendered as children of the shell.
 
 ```jsx static
+import LayoutShell from '@airbnb/lunar-layouts';
 import ThreeColumnLayout from '@airbnb/lunar-layouts/lib/components/ThreeColumnLayout';
 
-<ThreeColumnLayout fluid before={<LeftSideBar />} after={<RightSideBar />}>
-  <App />
-</ThreeColumnLayout>;
+<LayoutShell sideBar={<SideBar />}>
+  <ThreeColumnLayout fluid before={<LeftColumn />} after={<RightColumn />}>
+    <Content />
+  </ThreeColumnLayout>
+</LayoutShell>;
 ```

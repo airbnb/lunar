@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import removeFocusOnMouseUp from '../../utils/removeFocusOnMouseUp';
 import ProfilePhoto from '../ProfilePhoto';
 import Shimmer from '../Shimmer';
@@ -84,6 +84,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       children,
       disableTitleTranslation,
       email,
@@ -116,7 +117,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
       : formattedTimestamp;
 
     const striped = !!(important || info || warning);
-    const containerStyles = css(
+    const containerStyles = cx(
       styles.container,
       horizontalSpacing && styles.container_horizontalSpacing,
       verticalSpacing && styles.container_verticalSpacing,
@@ -134,12 +135,12 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
 
     if (loadingAuthor) {
       return (
-        <div {...containerStyles}>
-          <div {...css(styles.profilePhoto, styles.tableCell)}>
+        <div className={containerStyles}>
+          <div className={cx(styles.profilePhoto, styles.tableCell)}>
             <Shimmer width={32} height={32} radius="50%" />
           </div>
 
-          <div {...css(styles.messageBody, styles.tableCell)}>
+          <div className={cx(styles.messageBody, styles.tableCell)}>
             <Spacing bottom={0.5}>
               <Spacing right={1} inline>
                 <Shimmer width={175} height={14} />
@@ -155,7 +156,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
             {children}
           </div>
 
-          {sending && <div {...css(styles.sendingOverlay)} />}
+          {sending && <div className={cx(styles.sendingOverlay)} />}
         </div>
       );
     }
@@ -178,7 +179,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
       <div>
         {profilePhoto}
 
-        <div {...css(styles.profileBadge)}>
+        <div className={cx(styles.profileBadge)}>
           <ProfilePhoto
             inline
             imageSrc={imageBadgeSrc}
@@ -196,12 +197,12 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
     );
 
     return (
-      <div {...containerStyles}>
-        <div {...css(styles.table)}>
-          <div {...css(styles.profilePhoto, styles.tableCell)}>
+      <div className={containerStyles}>
+        <div className={cx(styles.table)}>
+          <div className={cx(styles.profilePhoto, styles.tableCell)}>
             {onClickImage ? (
               <button
-                {...css(styles.resetButton)}
+                className={cx(styles.resetButton)}
                 type="button"
                 title={imageDescription || title}
                 onClick={onClickImage}
@@ -214,12 +215,12 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
             )}
           </div>
 
-          <div {...css(styles.messageBody, styles.tableCell)}>
+          <div className={cx(styles.messageBody, styles.tableCell)}>
             <Spacing bottom={0.5}>
-              <span {...css(styles.messageTitle)}>
+              <span className={cx(styles.messageTitle)}>
                 {onClickTitle ? (
                   <button
-                    {...css(styles.resetButton)}
+                    className={cx(styles.resetButton)}
                     type="button"
                     title={titleClickDescription || title}
                     onClick={onClickTitle}
@@ -237,7 +238,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
               </span>
 
               {titleTag && (
-                <span {...css(styles.tag)}>
+                <span className={cx(styles.tag)}>
                   <Text inline micro muted>
                     {titleTag}
                   </Text>
@@ -255,11 +256,11 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
               )}
             </Spacing>
 
-            <div {...css(styles.messageBodyContent)}>{children}</div>
+            <div className={cx(styles.messageBodyContent)}>{children}</div>
           </div>
         </div>
 
-        {sending && <div {...css(styles.sendingOverlay)} />}
+        {sending && <div className={cx(styles.sendingOverlay)} />}
       </div>
     );
   }

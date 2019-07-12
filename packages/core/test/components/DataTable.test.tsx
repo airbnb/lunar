@@ -1,17 +1,87 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import Enzyme from 'enzyme';
 import { AutoSizer, Grid, Table } from 'react-virtualized';
-
+import { shallowWithStyles, mountWithStyles } from '@airbnb/lunar-test-utils';
 import DataTable from '../../src/components/DataTable';
+import Input from '../../src/components/Input';
+import FormInput from '../../src/components/private/FormInput';
 import TableHeader from '../../src/components/DataTable/TableHeader';
 import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
-import Input from '../../src/components/Input';
-import FormInput from '../../src/components/private/FormInput';
 import Button from '../../src/components/Button';
 import Checkbox from '../../src/components/CheckBox';
-import { ParentRow } from '../../src/components/DataTable/types';
+import { OnEdit, ParentRow, TableRow } from '../../src/components/DataTable/types';
 import { STATUS_OPTIONS } from '../../src/components/DataTable/constants';
+
+type EditableTextRendererProps = {
+  row: TableRow;
+  keyName: string;
+  onEdit: OnEdit;
+  value: string;
+  editMode: boolean;
+};
+type EditableTextRendererState = {
+  value: string;
+};
+class EditableTextRenderer extends React.Component<
+  EditableTextRendererProps,
+  EditableTextRendererState
+> {
+  state = {
+    value: this.props.value,
+  };
+
+  onEdit = (row: TableRow, keyName: string) => (
+    newVal: string,
+    event: React.SyntheticEvent<EventTarget>,
+  ) => {
+    const { onEdit } = this.props;
+    onEdit(row, keyName, newVal, event);
+
+    this.setState({
+      value: newVal,
+    });
+  };
+
+  render() {
+    const { editMode, row, keyName } = this.props;
+    const { value } = this.state;
+
+    return editMode ? (
+      <Input
+        hideLabel
+        label="Edit row"
+        name=""
+        value={value}
+        onChange={this.onEdit(row, keyName)}
+      />
+    ) : (
+      <Text>{value}</Text>
+    );
+  }
+}
+
+export default function editableTextRenderer({
+  row,
+  key,
+  editMode,
+  onEdit,
+}: {
+  row: TableRow;
+  key: string;
+  editMode: boolean;
+  onEdit: OnEdit;
+}) {
+  return (
+    <EditableTextRenderer
+      editMode={editMode}
+      onEdit={onEdit}
+      value={row.rowData.data[key]}
+      row={row}
+      keyName={key}
+    />
+  );
+}
 
 const data: ParentRow[] = [
   {
@@ -176,29 +246,30 @@ const expandRow = (table: any, row: number) => {
     .simulate('click');
 };
 
-const getHeader = (wrapper: any) =>
-  wrapper
-    .find(AutoSizer)
-    .at(0)
-    .dive()
-    .find(TableHeader);
-
 const NAME_COL = 3;
-
 const ROW = 3;
 const PARENT_ROW = 5;
 const CHILD_ROW = 6;
 
 describe('<DataTable /> rows can be selected', () => {
   it('should be selectable', () => {
-    const table = mount(<DataTable {...simpleProps} />);
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
 
     selectRow(table, ROW);
     expect(getCheckbox(table, ROW).props().checked).toBe(true);
   });
 
+  it('should be unselectable', () => {
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
+
+    selectRow(table, ROW);
+    selectRow(table, ROW);
+
+    expect(getCheckbox(table, ROW).props().checked).toBe(false);
+  });
+
   it('should be selectable by row click', () => {
-    const table = mount(<DataTable {...simpleProps} selectOnRowClick />);
+    const table = mountWithStyles(<DataTable {...simpleProps} selectOnRowClick />);
 
     getRow(table, ROW).simulate('click');
     table.update();
@@ -207,7 +278,7 @@ describe('<DataTable /> rows can be selected', () => {
   });
 
   it('should be expandable', () => {
-    const table = mount(<DataTable {...simpleProps} />);
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
 
     expandRow(table, PARENT_ROW);
 
@@ -219,7 +290,7 @@ describe('<DataTable /> rows can be selected', () => {
   });
 
   it('should be unexpandable', () => {
-    const table = mount(<DataTable {...simpleProps} />);
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
 
     expandRow(table, PARENT_ROW);
     expandRow(table, PARENT_ROW);
@@ -232,7 +303,7 @@ describe('<DataTable /> rows can be selected', () => {
   });
 
   it('should have selectable children', () => {
-    const table = mount(<DataTable {...simpleProps} />);
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
 
     expandRow(table, PARENT_ROW);
     selectRow(table, CHILD_ROW);
@@ -241,7 +312,7 @@ describe('<DataTable /> rows can be selected', () => {
   });
 
   it('selecting the parent should select the children', () => {
-    const table = mount(<DataTable {...simpleProps} />);
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
 
     expandRow(table, PARENT_ROW);
     selectRow(table, PARENT_ROW);
@@ -249,8 +320,18 @@ describe('<DataTable /> rows can be selected', () => {
     expect(getCheckbox(table, CHILD_ROW).props().checked).toBe(true);
   });
 
+  it('selecting both children should select the parent', () => {
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
+
+    expandRow(table, PARENT_ROW);
+    selectRow(table, CHILD_ROW);
+    selectRow(table, CHILD_ROW + 1);
+
+    expect(getCheckbox(table, PARENT_ROW).props().checked).toBe(true);
+  });
+
   it('selecting the parent then deselecting child should deselect child', () => {
-    const table = mount(<DataTable {...simpleProps} />);
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
 
     expandRow(table, PARENT_ROW);
     selectRow(table, PARENT_ROW);
@@ -260,7 +341,7 @@ describe('<DataTable /> rows can be selected', () => {
   });
 
   it('Selecting the parent then deselecting both children should deselect the parent', () => {
-    const table = mount(<DataTable {...simpleProps} />);
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
 
     expandRow(table, PARENT_ROW);
     selectRow(table, PARENT_ROW);
@@ -273,7 +354,7 @@ describe('<DataTable /> rows can be selected', () => {
 
 describe('<DataTable /> renders and sorts data', () => {
   it('should render data', () => {
-    const table = mount(<DataTable {...simpleProps} />);
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
     const text = getCell(table, 1, NAME_COL)
       .find(Text)
       .text();
@@ -281,12 +362,12 @@ describe('<DataTable /> renders and sorts data', () => {
     expect(text).toBe(data[0].data.name);
   });
 
-  it('should sort data in Descending Order', () => {
-    const table = mount(<DataTable {...simpleProps} />);
+  it('should sort data in Descending order', () => {
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
 
     const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
     nameHeader.simulate('click');
-
+    nameHeader.simulate('click');
     const text = getCell(table, 1, NAME_COL)
       .find(Text)
       .text();
@@ -294,11 +375,10 @@ describe('<DataTable /> renders and sorts data', () => {
     expect(text).toBe('Product Percy');
   });
 
-  it('should sort data in Ascending Order', () => {
-    const table = mount(<DataTable {...simpleProps} />);
+  it('should sort data in Ascending order', () => {
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
 
-    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(NAME_COL);
-    nameHeader.simulate('click');
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(NAME_COL - 1);
     nameHeader.simulate('click');
     table.update();
 
@@ -308,11 +388,37 @@ describe('<DataTable /> renders and sorts data', () => {
 
     expect(text).toBe('Dev Ops Danny');
   });
+
+  it('should sort data in Ascending order through props', () => {
+    const table = mountWithStyles(
+      <DataTable {...simpleProps} sortByOverride="name" sortDirectionOverride="ASC" />,
+    );
+
+    const text = getCell(table, 1, NAME_COL)
+      .find(Text)
+      .text();
+
+    expect(text).toBe('Dev Ops Danny');
+  });
+
+  it('should sort data in Descending order through props', () => {
+    const table = mountWithStyles(
+      <DataTable {...simpleProps} sortByOverride="name" sortDirectionOverride="DESC" />,
+    );
+
+    const text = getCell(table, 1, NAME_COL)
+      .find(Text)
+      .text();
+
+    expect(text).toBe('Product Percy');
+  });
 });
 
 describe('<DataTable /> renders column labels', () => {
   it('should render the correct column labels in sentence case', () => {
-    const wrapper = shallow(<DataTable data={data} editable columnLabelCase="sentence" />).dive();
+    const wrapper = shallowWithStyles(
+      <DataTable data={data} editable columnLabelCase="sentence" />,
+    );
     const table = wrapper
       .find(AutoSizer)
       .at(1)
@@ -323,17 +429,12 @@ describe('<DataTable /> renders column labels', () => {
     const labels = ['Name', 'Job title', 'Tenure days', 'Menu', 'Cats', 'Log', 'Colspan'];
 
     columnLabels.find(Text).forEach((node, idx) => {
-      expect(
-        node
-          .dive()
-          .dive()
-          .text(),
-      ).toBe(labels[idx]);
+      expect(node.prop('children')).toBe(labels[idx]);
     });
   });
 
   it('should not format labels by default', () => {
-    const wrapper = shallow(<DataTable data={data} editable />).dive();
+    const wrapper = shallowWithStyles(<DataTable data={data} editable />);
     const table = wrapper
       .find(AutoSizer)
       .at(1)
@@ -344,17 +445,14 @@ describe('<DataTable /> renders column labels', () => {
     const labels = ['name', 'jobTitle', 'tenureDays', 'menu', 'cats', 'log', 'colspan'];
 
     columnLabels.find(Text).forEach((node, idx) => {
-      expect(
-        node
-          .dive()
-          .dive()
-          .text(),
-      ).toBe(labels[idx]);
+      expect(node.prop('children')).toBe(labels[idx]);
     });
   });
 
   it('should render the correct column labels in uppercase', () => {
-    const wrapper = shallow(<DataTable data={data} editable columnLabelCase="uppercase" />).dive();
+    const wrapper = shallowWithStyles(
+      <DataTable data={data} editable columnLabelCase="uppercase" />,
+    );
     const table = wrapper
       .find(AutoSizer)
       .at(1)
@@ -365,17 +463,12 @@ describe('<DataTable /> renders column labels', () => {
     const labels = ['NAME', 'JOB TITLE', 'TENURE DAYS', 'MENU', 'CATS', 'LOG', 'COLSPAN'];
 
     columnLabels.find(Text).forEach((node, idx) => {
-      expect(
-        node
-          .dive()
-          .dive()
-          .text(),
-      ).toBe(labels[idx]);
+      expect(node.prop('children')).toBe(labels[idx]);
     });
   });
 
   it('should render the correct column labels in title case', () => {
-    const wrapper = shallow(<DataTable data={data} editable columnLabelCase="title" />).dive();
+    const wrapper = shallowWithStyles(<DataTable data={data} editable columnLabelCase="title" />);
     const table = wrapper
       .find(AutoSizer)
       .at(1)
@@ -386,12 +479,7 @@ describe('<DataTable /> renders column labels', () => {
     const labels = ['Name', 'Job Title', 'Tenure Days', 'Menu', 'Cats', 'Log', 'Colspan'];
 
     columnLabels.find(Text).forEach((node, idx) => {
-      expect(
-        node
-          .dive()
-          .dive()
-          .text(),
-      ).toBe(labels[idx]);
+      expect(node.prop('children')).toBe(labels[idx]);
     });
   });
 
@@ -406,7 +494,7 @@ describe('<DataTable /> renders column labels', () => {
       'CUSTOM COLSPAN',
     ];
 
-    const wrapper = shallow(
+    const wrapper = shallowWithStyles(
       <DataTable
         data={data}
         columnToLabel={{
@@ -419,7 +507,7 @@ describe('<DataTable /> renders column labels', () => {
           colspan: labels[6],
         }}
       />,
-    ).dive();
+    );
     const table = wrapper
       .find(AutoSizer)
       .at(0)
@@ -429,15 +517,21 @@ describe('<DataTable /> renders column labels', () => {
     const columnLabels = table.childAt(0);
 
     columnLabels.find(Text).forEach((node, idx) => {
-      expect(
-        node
-          .dive()
-          .dive()
-          .text(),
-      ).toBe(labels[idx]);
+      expect(node.prop('children')).toBe(labels[idx]);
     });
   });
 });
+
+function getHeader(wrapper: Enzyme.ShallowWrapper) {
+  return shallowWithStyles(
+    wrapper
+      .find(AutoSizer)
+      .at(0)
+      .dive()
+      .find(TableHeader)
+      .getElement(),
+  );
+}
 
 describe('<DataTable /> handles edits', () => {
   const props = {
@@ -446,84 +540,37 @@ describe('<DataTable /> handles edits', () => {
     tableHeaderLabel: 'My Table',
     editable: true,
     editCallbacks,
+    renderers: {
+      name: editableTextRenderer,
+    },
   };
 
   it('should be able to toggle edit mode off', () => {
-    const wrapper = shallow(<DataTable {...props} instantEdit />).dive();
-    const editButton = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
+    const wrapper = shallowWithStyles(<DataTable {...props} />);
+    const editButton = getHeader(wrapper).find(Button);
     editButton.simulate('click');
 
-    const doneButton = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
+    const doneButton = getHeader(wrapper).find(Button);
     doneButton.simulate('click');
 
     expect(wrapper.state('editMode')).toBe(false);
   });
 
   it('should enable instant edit mode', () => {
-    const wrapper = shallow(<DataTable {...props} instantEdit />).dive();
-    const editButton = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
+    const wrapper = shallowWithStyles(<DataTable {...props} />);
+    const editButton = getHeader(wrapper).find(Button);
 
     editButton.simulate('click');
 
-    const doneButton = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
+    const doneButton = getHeader(wrapper).find(Button);
 
     expect(wrapper.state('editMode')).toBe(true);
     expect(doneButton.find(Translate).prop('phrase')).toBe('Done');
   });
 
-  it('should enable edit mode and handle edit cancelation', () => {
-    // @ts-ignore
-    const wrapper = shallow(<DataTable {...props} instantEdit={false} />).dive();
-    const editButton = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
-    editButton.simulate('click');
-
-    const buttons = getHeader(wrapper)
-      .dive()
-      .dive()
-      .find(Button);
-    const cancelButton = buttons.at(0);
-    const applyButton = buttons.at(1);
-
-    cancelButton.simulate('click');
-    editButton.simulate('click');
-    applyButton.simulate('click');
-    editButton.simulate('click');
-
-    expect(wrapper.state('editMode')).toBe(true);
-    expect(cancelButton.find(Translate).prop('phrase')).toBe('Cancel');
-    expect(applyButton.find(Translate).prop('phrase')).toBe('Apply');
-  });
-
-  it('should replace text with inputs', () => {
-    // @ts-ignore
-    const wrapper = mount(<DataTable {...props} />);
-    const button = wrapper.find(TableHeader).find(Button);
-    button.simulate('click');
-    const grid = wrapper.find(Grid);
-    const row = grid.find('[aria-rowindex=1]');
-    const col = row.find('[aria-colindex=1]');
-    const input = col.find(Input);
-    expect(input.prop('value')).toBe(data[0].data.name);
-  });
-
   it('should be editable', () => {
     // @ts-ignore
-    const wrapper = mount(<DataTable {...props} />);
+    const wrapper = mountWithStyles(<DataTable {...props} />);
     const button = wrapper.find(TableHeader).find(Button);
     button.simulate('click');
     const grid = wrapper.find(Grid);
@@ -550,20 +597,33 @@ describe('<DataTable /> handles edits', () => {
     ).toBe(data[0].data.name);
   });
 
-  it('children should be editable', () => {
-    const table = mount(<DataTable {...props} expandable />);
+  it('should be editable without instant edit', () => {
+    // @ts-ignore
+    const wrapper = mountWithStyles(<DataTable {...props} instantEdit={false} />);
+    const button = wrapper.find(TableHeader).find(Button);
+    button.simulate('click');
+    const grid = wrapper.find(Grid);
+    const row = grid.find('[aria-rowindex=1]');
+    const col = row.find('[aria-colindex=1]');
+    const input = col.find(Input).find(FormInput);
 
-    const expandCaret = getCell(table, 5, 1).childAt(0);
-    expandCaret.simulate('click');
+    const event = {
+      currentTarget: {
+        value: 'foo',
+      },
+    };
+
+    input.simulate('change', event);
+    input.simulate('click');
 
     expect(
-      getCell(table, 6, 2)
-        .find(Text)
-        .text(),
-    ).toBe(data[4].metadata!.children![0].data.name);
-
-    const button = table.find(TableHeader).find(Button);
-    button.simulate('click');
+      wrapper
+        .find(Grid)
+        .find('[aria-rowindex=1]')
+        .find('[aria-colindex=1]')
+        .find(Input)
+        .prop('value'),
+    ).toBe(data[0].data.name);
   });
 });
 
@@ -588,7 +648,7 @@ describe('<DataTable /> does not break with weird props', () => {
   };
 
   it('should render with a lot of props', () => {
-    const table = mount(<DataTable {...props} />);
+    const table = mountWithStyles(<DataTable {...props} />);
     const text = getCell(table, 1, NAME_COL)
       .find(Text)
       .text();
@@ -597,7 +657,7 @@ describe('<DataTable /> does not break with weird props', () => {
   });
 
   it('should render with no props', () => {
-    const table = mount(<DataTable />);
+    const table = mountWithStyles(<DataTable />);
 
     expect(!!table).toBe(true);
   });
@@ -606,7 +666,7 @@ describe('<DataTable /> does not break with weird props', () => {
 describe('<DataTable />', () => {
   it('Auto-computes height when showAllRows is `true`', () => {
     const height = 50;
-    const wrapper = shallow(<DataTable data={data} height={height} />).dive();
+    const wrapper = shallowWithStyles(<DataTable data={data} height={height} />);
     let table = wrapper
       .find(AutoSizer)
       .at(0)
@@ -628,7 +688,7 @@ describe('<DataTable />', () => {
 
   it('Propagates a ref to the underlying Table', () => {
     const ref = React.createRef<Table>();
-    mount(<DataTable data={data} propagateRef={ref} />);
+    mountWithStyles(<DataTable data={data} propagateRef={ref} />);
 
     expect(ref.current).toBeDefined();
   });

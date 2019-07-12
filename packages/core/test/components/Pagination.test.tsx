@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import T from '../../src/components/Translate';
 import IconButton from '../../src/components/IconButton';
 import Pagination from '../../src/components/Pagination';
@@ -15,9 +15,9 @@ describe('<Pagination />', () => {
 
   describe('the pagination component', () => {
     it('is not displayed if there is a not a next page or previous page of results', () => {
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Pagination {...baseRequest} onNext={noop} onPrevious={noop} />,
-      ).dive();
+      );
 
       expect(wrapper.type()).toBeNull();
     });
@@ -28,10 +28,9 @@ describe('<Pagination />', () => {
         hasNext: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles;
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} />,
+      );
 
       expect(wrapper.find(IconButton)).toHaveLength(2);
     });
@@ -43,10 +42,9 @@ describe('<Pagination />', () => {
         page: 2,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles;
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} />,
+      );
 
       expect(wrapper.find(IconButton)).toHaveLength(2);
     });
@@ -58,10 +56,9 @@ describe('<Pagination />', () => {
         page: 3,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles;
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} />,
+      );
 
       expect(wrapper.find(T).prop('pageNumber')).toBe(request.page);
     });
@@ -75,7 +72,7 @@ describe('<Pagination />', () => {
 
       const pageCount = 5;
 
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Pagination
           {...request}
           onNext={noop}
@@ -85,13 +82,24 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles;
-        .dive() // Row
-        .dive();
+      );
 
       expect(wrapper.find(T).prop('pageNumber')).toBe(request.page);
       expect(wrapper.find(T).prop('pageCount')).toBe(pageCount);
+    });
+
+    it('displays the page label', () => {
+      const request = {
+        ...baseRequest,
+        hasNext: true,
+        page: 3,
+      };
+
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} pageLabel="Photo" />,
+      );
+
+      expect(wrapper.find(T).prop('pageLabel')).toBe('Photo');
     });
   });
 
@@ -103,10 +111,9 @@ describe('<Pagination />', () => {
         page: 1,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} />,
+      );
 
       expect(
         wrapper
@@ -124,10 +131,9 @@ describe('<Pagination />', () => {
         fetching: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} />,
+      );
 
       expect(
         wrapper
@@ -144,10 +150,9 @@ describe('<Pagination />', () => {
       };
 
       const onPrevious = jest.fn();
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={onPrevious} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={onPrevious} />,
+      );
 
       wrapper
         .find(IconButton)
@@ -164,10 +169,9 @@ describe('<Pagination />', () => {
         hasPrev: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} />,
+      );
 
       expect(
         wrapper
@@ -186,10 +190,9 @@ describe('<Pagination />', () => {
         hasPrev: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} />,
+      );
 
       expect(
         wrapper
@@ -207,10 +210,9 @@ describe('<Pagination />', () => {
         fetching: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} />,
+      );
 
       expect(
         wrapper
@@ -226,10 +228,9 @@ describe('<Pagination />', () => {
         hasNext: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} />,
+      );
 
       expect(
         wrapper
@@ -246,10 +247,9 @@ describe('<Pagination />', () => {
       };
 
       const onNext = jest.fn();
-      const wrapper = shallow(<Pagination {...request} onNext={onNext} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={onNext} onPrevious={noop} />,
+      );
 
       wrapper
         .find(IconButton)
@@ -267,10 +267,9 @@ describe('<Pagination />', () => {
         hasNext: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} />,
+      );
 
       expect(wrapper.find(IconButton)).toHaveLength(2);
     });
@@ -283,7 +282,7 @@ describe('<Pagination />', () => {
 
       const pageCount = 5;
 
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Pagination
           {...request}
           onNext={noop}
@@ -293,10 +292,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      );
 
       expect(
         wrapper
@@ -316,7 +312,7 @@ describe('<Pagination />', () => {
 
       const pageCount = 5;
 
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Pagination
           {...request}
           onNext={noop}
@@ -326,10 +322,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      );
 
       expect(
         wrapper
@@ -348,7 +341,7 @@ describe('<Pagination />', () => {
       const pageCount = 5;
 
       const onFirst = jest.fn();
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Pagination
           {...request}
           onNext={noop}
@@ -358,10 +351,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      );
 
       wrapper
         .find(IconButton)
@@ -381,7 +371,7 @@ describe('<Pagination />', () => {
 
       const pageCount = 5;
 
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Pagination
           {...request}
           onNext={noop}
@@ -391,10 +381,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      );
 
       expect(
         wrapper
@@ -412,10 +399,9 @@ describe('<Pagination />', () => {
         hasNext: true,
       };
 
-      const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />)
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      const wrapper = shallowWithStyles(
+        <Pagination {...request} onNext={noop} onPrevious={noop} />,
+      );
 
       expect(wrapper.find(IconButton)).toHaveLength(2);
     });
@@ -428,7 +414,7 @@ describe('<Pagination />', () => {
         page: pageCount,
       };
 
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Pagination
           {...request}
           onNext={noop}
@@ -438,10 +424,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      );
 
       expect(
         wrapper
@@ -461,7 +444,7 @@ describe('<Pagination />', () => {
 
       const pageCount = 5;
 
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Pagination
           {...request}
           onNext={noop}
@@ -471,10 +454,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      );
 
       expect(
         wrapper
@@ -493,7 +473,7 @@ describe('<Pagination />', () => {
       const pageCount = 5;
 
       const onLast = jest.fn();
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Pagination
           {...request}
           onNext={noop}
@@ -503,10 +483,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      );
 
       wrapper
         .find(IconButton)
@@ -525,7 +502,7 @@ describe('<Pagination />', () => {
 
       const pageCount = 5;
 
-      const wrapper = shallow(
+      const wrapper = shallowWithStyles(
         <Pagination
           {...request}
           onNext={noop}
@@ -535,10 +512,7 @@ describe('<Pagination />', () => {
           pageCount={pageCount}
           showBookends
         />,
-      )
-        .dive() // withStyles
-        .dive() // Row
-        .dive();
+      );
 
       expect(
         wrapper

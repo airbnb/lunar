@@ -16,13 +16,38 @@ describe('withIcon()', () => {
 
   it('passes through props', () => {
     const Hoc = withIcon('IconTest')(Foo);
-    const wrapper = shallow(<Hoc size={16} color="white" inline />);
+    const wrapper = shallow(<Hoc decorative inline size={16} color="white" />);
     const style: React.CSSProperties = wrapper.find(Foo).prop('style');
 
     expect(style.width).toBe(16);
     expect(style.height).toBe(16);
     expect(style.fill).toBe('white');
     expect(style.display).toBe('inline');
+    expect(style.transform).toBe('scale(1)');
+  });
+
+  it('flips horizontally', () => {
+    const Hoc = withIcon('IconTest')(Foo);
+    const wrapper = shallow(<Hoc decorative flip />);
+    const style: React.CSSProperties = wrapper.find(Foo).prop('style');
+
+    expect(style.transform).toBe('scale(-1, 1)');
+  });
+
+  it('flips vertically', () => {
+    const Hoc = withIcon('IconTest')(Foo);
+    const wrapper = shallow(<Hoc decorative flipVertical />);
+    const style: React.CSSProperties = wrapper.find(Foo).prop('style');
+
+    expect(style.transform).toBe('scale(1, -1)');
+  });
+
+  it('flips horizontally & vertically', () => {
+    const Hoc = withIcon('IconTest')(Foo);
+    const wrapper = shallow(<Hoc decorative flip flipVertical />);
+    const style: React.CSSProperties = wrapper.find(Foo).prop('style');
+
+    expect(style.transform).toBe('scale(-1, -1)');
   });
 
   it('passes through a11y props', () => {
@@ -35,5 +60,19 @@ describe('withIcon()', () => {
 
     expect(wrapperWithLabel.find(Foo).prop('role')).toBe('img');
     expect(wrapperWithLabel.find(Foo).prop('aria-label')).toBe('foobar');
+  });
+
+  it('errors when an a11y prop is missing', () => {
+    expect(() => {
+      const Hoc = withIcon('IconTest')(Foo);
+      shallow(<Hoc />);
+    }).toThrowError('Missing `accessibilityLabel` or `decorative` for accessibility.');
+  });
+
+  it('errors when both a11y props are added', () => {
+    expect(() => {
+      const Hoc = withIcon('IconTest')(Foo);
+      shallow(<Hoc decorative accessibilityLabel="foobar" />);
+    }).toThrowError('Only one of `accessibilityLabel` or `decorative` may be used.');
   });
 });

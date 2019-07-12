@@ -2,6 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Button from '@airbnb/lunar/lib/components/Button';
 import Input from '@airbnb/lunar/lib/components/Input';
+import Breadcrumbs, { TrackBreadcrumb } from './components/Breadcrumbs';
+import { PopToast } from './components/Toasts';
 import AppContext from './components/AppContext';
 import AppShell from '.';
 
@@ -64,6 +66,22 @@ storiesOf('AppShell', module)
           </div>
         )}
       </AppContext.Consumer>
+    </AppShell>
+  ))
+  .add('Displays a toast using a component.', () => (
+    <AppShell name="Lunar">
+      <PopToast
+        message="This message is displayed by rendering a component and not using context!"
+        duration={0}
+      />
+    </AppShell>
+  ))
+  .add('Displays a trail of breadcrumbs using components.', () => (
+    <AppShell name="Lunar">
+      <TrackBreadcrumb label="Countries" href="/countries" />
+      <TrackBreadcrumb label="America" href="/countries/usa" />
+      <TrackBreadcrumb label="California" href="/countries/usa/ca" />
+      <Breadcrumbs accessibilityLabel="Navigation" />
     </AppShell>
   ))
   .add('Supports page data.', () => (

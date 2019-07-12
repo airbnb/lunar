@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { css, WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import ButtonOrLink, { ButtonOrLinkTypes } from '@airbnb/lunar/lib/components/private/ButtonOrLink';
 import iconComponent from '@airbnb/lunar/lib/prop-types/iconComponent';
 import Text from '@airbnb/lunar/lib/components/Text';
@@ -29,7 +29,7 @@ export class SideBarItem extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { active, label, href, icon, onClick, styles } = this.props;
+    const { cx, active, label, href, icon, onClick, styles } = this.props;
 
     return (
       <li role="none">
@@ -37,12 +37,12 @@ export class SideBarItem extends React.Component<Props & WithStylesProps> {
           role="menuitem"
           href={href}
           onClick={onClick}
-          {...css(styles.item, active && styles.item_active)}
+          className={cx(styles.item, active && styles.item_active)}
         >
-          <span {...css(styles.icon)}>{React.cloneElement(icon, { size: '2em' })}</span>
+          <span className={cx(styles.icon)}>{React.cloneElement(icon, { size: '2em' })}</span>
 
           {label && (
-            <span {...css(styles.label)}>
+            <span className={cx(styles.label)}>
               <Text micro bold uppercased inverted>
                 {label}
               </Text>
@@ -83,6 +83,7 @@ export default withStyles(({ unit, color, pattern, transition }) => ({
     '@selectors': {
       '> svg': {
         display: 'inline-block',
+        margin: 'auto',
       },
     },
   },

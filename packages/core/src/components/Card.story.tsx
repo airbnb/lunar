@@ -23,6 +23,26 @@ storiesOf('Core/Card', module)
       </Content>
     </Card>
   ))
+  .add('A card with overflow visible.', () => (
+    <Card overflow>
+      <Content>
+        <div
+          style={{
+            position: 'relative',
+            top: '-50px',
+            background: '#ebebeb',
+            padding: '16px',
+          }}
+        >
+          <Text>
+            <Text>
+              <LoremIpsum />
+            </Text>
+          </Text>
+        </div>
+      </Content>
+    </Card>
+  ))
   .add('A card with multiple blocks of content.', () => (
     <Card>
       <Content>

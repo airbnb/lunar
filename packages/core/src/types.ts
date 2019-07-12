@@ -92,10 +92,11 @@ export type Theme = {
       bgHover: Hexcode;
       bgError: Hexcode;
       border: Hexcode;
+      borderActive: Hexcode;
       borderHover: Hexcode;
       borderError: Hexcode;
-      borderFocus: Hexcode;
       text: Hexcode;
+      textActive: Hexcode;
       textError: Hexcode;
     };
     base: Hexcode;
@@ -151,6 +152,7 @@ export type Theme = {
     large: string;
     medium: string;
     small: string;
+    xsmall: string;
   };
   transition: {
     box: StyleBlock;

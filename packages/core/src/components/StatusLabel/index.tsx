@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import IconAffix from '../private/IconAffix';
 import { STATUSES, BRANDS } from '../../constants';
 
@@ -71,6 +71,7 @@ export class StatusLabel extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       afterIcon,
       beforeIcon,
       bordered,
@@ -91,7 +92,7 @@ export class StatusLabel extends React.Component<Props & WithStylesProps> {
 
     return (
       <span
-        {...css(
+        className={cx(
           styles.label,
           uppercased && styles.label_uppercased,
           inverted && styles.label_inverted,
@@ -134,6 +135,8 @@ export default withStyles(({ color, font, ui, unit }) => ({
     backgroundColor: color.core.neutral[1],
     color: color.accent.text,
     fontWeight: font.weights.semibold,
+    border: ui.border,
+    borderColor: 'transparent',
   },
 
   label_uppercased: {
@@ -141,7 +144,7 @@ export default withStyles(({ color, font, ui, unit }) => ({
   },
 
   label_bordered: {
-    border: ui.border,
+    borderColor: color.accent.border,
   },
 
   label_compact: {

@@ -56,7 +56,7 @@ export default class Copy extends React.Component<Props, State> {
     const element = children || (
       // eslint-disable-next-line jsx-a11y/anchor-is-valid
       <Link>
-        <IconCopy />
+        <IconCopy decorative />
       </Link>
     );
 

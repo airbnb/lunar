@@ -1,39 +1,32 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import { mockContextProvider } from '@airbnb/lunar-test-utils';
+import Enzyme from 'enzyme';
+import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ScrollWrapper, {
   ScrollWrapper as BaseScrollWrapper,
   Props,
 } from '../../../src/components/ScrollSection/ScrollWrapper';
-import ScrollContext from '../../../src/components/ScrollSection/ScrollContext';
 
 describe('<ScrollWrapper />', () => {
   const anchor = document.createElement('a');
   const savedIntersectionObserver = global.IntersectionObserver;
-  let unmockProvider: () => void;
   let wrapper: Enzyme.ShallowWrapper<Props, any, BaseScrollWrapper>;
   let activeScrollSectionHandler: jest.Mock<any>;
   let hideScrollSectionHandler: jest.Mock<any>;
 
   beforeEach(() => {
-    unmockProvider = mockContextProvider(ScrollContext);
     activeScrollSectionHandler = jest.fn();
     hideScrollSectionHandler = jest.fn();
-    wrapper = shallow(
+    wrapper = shallowWithStyles(
       <ScrollWrapper
         onChangeActiveScrollSection={activeScrollSectionHandler}
         onHideScrollSection={hideScrollSectionHandler}
       >
         <footer>Footer Text</footer>
       </ScrollWrapper>,
-    ).dive() as any;
+    );
 
     wrapper.instance().scrollRef = { current: document.createElement('div') };
     wrapper.instance().setupObserver();
-  });
-
-  afterEach(() => {
-    unmockProvider();
   });
 
   beforeAll(() => {

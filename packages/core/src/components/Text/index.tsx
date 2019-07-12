@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 const sizingProp = mutuallyExclusiveTrueProps('micro', 'small', 'large');
 const emphasisProp = mutuallyExclusiveTrueProps('bold', 'light');
@@ -32,6 +32,8 @@ export type Props = {
   micro?: boolean;
   /** Mark the text as muted. */
   muted?: boolean;
+  /** Disable text and white space wrapping. */
+  noWrap?: boolean;
   /** Preserve whitespace at the beginning and end of children. */
   preserveWhitespace?: boolean;
   /** Decrease font size to small. */
@@ -73,6 +75,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
     light: false,
     micro: false,
     muted: false,
+    noWrap: false,
     preserveWhitespace: false,
     small: false,
     startAlign: false,
@@ -82,6 +85,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
+      cx,
       baseline,
       bold,
       centerAlign,
@@ -94,6 +98,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
       light,
       micro,
       muted,
+      noWrap,
       preserveWhitespace,
       small,
       startAlign,
@@ -113,7 +118,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
 
     return (
       <Tag
-        {...css(
+        className={cx(
           styles.text,
           bold && styles.text_bold,
           disabled && styles.text_disabled,
@@ -131,6 +136,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
           centerAlign && styles.text_center,
           endAlign && styles.text_end,
           startAlign && styles.text_start,
+          noWrap && styles.text_noWrap,
         )}
       >
         {children}
@@ -216,5 +222,9 @@ export default withStyles(({ color, font, pattern }) => ({
 
   text_start: {
     textAlign: 'left',
+  },
+
+  text_noWrap: {
+    whiteSpace: 'nowrap',
   },
 }))(Text);

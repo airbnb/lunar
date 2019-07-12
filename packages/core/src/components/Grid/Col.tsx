@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleBlock } from 'aesthetic';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Content to display in a column. */
@@ -18,13 +18,13 @@ export class Col extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { children, offset, span, styles } = this.props;
+    const { cx, children, offset, span, styles } = this.props;
 
     return (
       <div
         data-span={span}
         data-offset={offset}
-        {...css(styles.col, styles[`span${span}`], styles[`offset${offset}`])}
+        className={cx(styles.col, styles[`span${span}`], styles[`offset${offset}`])}
       >
         {children}
       </div>

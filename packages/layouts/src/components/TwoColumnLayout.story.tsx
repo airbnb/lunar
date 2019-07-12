@@ -1,8 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import IconSettings from '@airbnb/lunar-icons/lib/interface/IconSettings';
 import LoremIpsum from ':storybook/components/LoremIpsum';
-import SideBar, { Item } from './SideBar';
+import Aside from './Aside';
 import TwoColumnLayout from './TwoColumnLayout';
 
 storiesOf('Layouts/TwoColumnLayout', module)
@@ -10,22 +9,28 @@ storiesOf('Layouts/TwoColumnLayout', module)
     inspectComponents: [TwoColumnLayout],
   })
   .add('A two column layout with before (left) aside.', () => (
-    <TwoColumnLayout aside={<LoremIpsum />} before>
+    <TwoColumnLayout
+      aside={
+        <Aside width={300}>
+          <LoremIpsum />
+        </Aside>
+      }
+      before
+    >
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
     </TwoColumnLayout>
   ))
-  .add('A two column layout with after (right) aside and a side navigation.', () => (
+  .add('A two column layout with after (right) aside.', () => (
     <TwoColumnLayout
-      after
-      aside={<LoremIpsum />}
-      sideBar={
-        <SideBar accessibilityLabel="Nav">
-          <Item icon={<IconSettings accessibilityLabel="Settings" />} />
-        </SideBar>
+      aside={
+        <Aside width={300}>
+          <LoremIpsum />
+        </Aside>
       }
+      after
     >
       <LoremIpsum />
       <LoremIpsum />

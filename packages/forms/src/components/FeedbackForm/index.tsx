@@ -1,11 +1,11 @@
 import React from 'react';
+import { FormState } from 'final-form';
 import T from '@airbnb/lunar/lib/components/Translate';
 import FormActions from '@airbnb/lunar/lib/components/FormActions';
 import Form from '../Form';
 import TextArea from '../Form/TextArea';
 import Select from '../Form/Select';
 import RadioButtonController from '../Form/RadioButtonController';
-import { State as FormState } from '../../types';
 
 export type Data = {
   category: string;
@@ -68,7 +68,7 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
     });
   };
 
-  private handleStateUpdate = (state: FormState) => {
+  private handleStateUpdate = (state: FormState<Data>) => {
     this.setState({
       data: state.values as Data,
     });

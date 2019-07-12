@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
-import { unwrapHOCs, mockContextConsumer } from '@airbnb/lunar-test-utils';
+import { unwrapHOCs } from '@airbnb/lunar-test-utils';
 import connectToApp, { ConnectToAppProps } from '../../src/composers/connectToApp';
 import AppContext from '../../src/components/AppContext';
 import { Context } from '../../src/types';
@@ -13,6 +13,9 @@ function unwrap(element: any): Enzyme.ShallowWrapper {
 
 describe('connectToApp()', () => {
   let modifyPageData = false;
+  let context: Context;
+  let wrapper: Enzyme.ReactWrapper;
+  let Hoc: any;
 
   class HasData extends React.Component<ConnectToAppProps> {
     registerPageData() {
@@ -40,33 +43,32 @@ describe('connectToApp()', () => {
     }
   }
 
-  let context: Context;
-  let unmockConsumer: () => void;
-  let wrapper: Enzyme.ReactWrapper;
-  let Hoc: any;
+  function WrappingComponent({ children }: { children: React.ReactNode }) {
+    return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
+  }
 
   beforeEach(() => {
     context = {
       name: 'Lunar',
+      breadcrumbs: [],
       data: {},
       toasts: [],
+      addBreadcrumb: jest.fn(),
       addPageData: jest.fn(),
       addInfoToast: jest.fn(),
       addFailureToast: jest.fn(),
       addSuccessToast: jest.fn(),
       addRefreshToast: jest.fn(),
+      removeBreadcrumb: jest.fn(),
       removePageData: jest.fn(),
       removeToast: jest.fn(),
     };
 
-    unmockConsumer = mockContextConsumer(AppContext, context);
-
     Hoc = connectToApp('HasData')(HasData);
-    wrapper = mount(<Hoc>Child</Hoc>);
-  });
-
-  afterEach(() => {
-    unmockConsumer();
+    wrapper = mount(<Hoc>Child</Hoc>, {
+      // @ts-ignore Not typed yet
+      wrappingComponent: WrappingComponent,
+    });
   });
 
   it('errors if name is missing', () => {
@@ -96,7 +98,10 @@ describe('connectToApp()', () => {
 
     it('sets data when component doesnt define data', () => {
       Hoc = connectToApp('NoData')(NoData);
-      wrapper = mount(<Hoc>Child</Hoc>);
+      wrapper = mount(<Hoc>Child</Hoc>, {
+        // @ts-ignore Not typed yet
+        wrappingComponent: WrappingComponent,
+      });
 
       expect(context.addPageData).toHaveBeenCalledWith({
         app_name: 'Lunar',

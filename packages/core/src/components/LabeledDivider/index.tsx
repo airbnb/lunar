@@ -1,6 +1,6 @@
 import React from 'react';
 import Text from '../Text';
-import withStyles, { css, WithStylesProps } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** A label for the divider. Typically a string or i18n T node. */
@@ -10,10 +10,10 @@ export type Props = {
 /** A horizontal divider with a label. */
 export class LabeledDivider extends React.Component<Props & WithStylesProps> {
   render() {
-    const { styles, label } = this.props;
+    const { cx, styles, label } = this.props;
 
     return (
-      <div {...css(styles.rule)}>
+      <div className={cx(styles.rule)}>
         <Text small bold inline>
           {label}
         </Text>
