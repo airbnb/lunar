@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
-import { childrenOfType } from 'airbnb-prop-types';
 import T from '@airbnb/lunar/lib/components/Translate';
 import Button from '@airbnb/lunar/lib/components/Button';
 import Dropdown, { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
@@ -48,10 +47,6 @@ export type State = {
 
 /** A button that opens a dropdown that shows filter options for a table or similar component. */
 export class FilterMenu extends React.Component<Props & WithStylesProps, State> {
-  static propTypes = {
-    children: childrenOfType(Row, 'li'),
-  };
-
   static defaultProps = {
     children: null,
     ignoreClickOutside: false,

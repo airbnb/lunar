@@ -1,6 +1,7 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import iconComponent from '../../prop-types/iconComponent';
 import IconAffix from '../private/IconAffix';
 import { STATUSES, BRANDS } from '../../constants';
 
@@ -42,6 +43,8 @@ export type Props = {
 /** Classify content through the use of tiny colorful status labels. */
 export class StatusLabel extends React.Component<Props & WithStylesProps> {
   static propTypes = {
+    afterIcon: iconComponent,
+    beforeIcon: iconComponent,
     danger: statusPropType,
     info: statusPropType,
     luxury: statusPropType,

@@ -1,5 +1,4 @@
 import React from 'react';
-import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
@@ -11,10 +10,6 @@ export type Props = {
 
 /** Horizontally align `Button`s with a consistent gutter between each. */
 export class ButtonGroup extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    children: childrenWithComponentName('Buttons?|Links?').isRequired,
-  };
-
   static defaultProps = {
     stacked: false,
   };

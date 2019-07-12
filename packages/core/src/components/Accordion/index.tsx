@@ -1,6 +1,5 @@
 import React from 'react';
 import uuid from 'uuid/v4';
-import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Item, { Props as AccordionItemProps } from './Item';
 
@@ -22,10 +21,6 @@ export type State = {
 
 /** A controller for multiple accordion items. */
 export class Accordion extends React.Component<Props & WithStylesProps, State> {
-  static propTypes = {
-    children: childrenWithComponentName('AccordionItem').isRequired,
-  };
-
   static defaultProps = {
     bordered: false,
     defaultIndex: 0,

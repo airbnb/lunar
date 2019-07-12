@@ -21,6 +21,8 @@ module.exports = {
     'core/src/components/ResponsiveImage',
     // Requires context support in Enzyme to test correctly
     'forms/src/components/FormActions',
+    // Deprecated, remove in next major
+    'childrenWithComponentName',
   ],
   coverageReporters: ['lcov', 'json-summary', 'html'],
   coverageThreshold: {

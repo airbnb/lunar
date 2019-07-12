@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import gql from 'graphql-tag';
 import { WrappingComponent } from '@airbnb/lunar-test-utils';
-import Loader from '@airbnb/lunar/lib/components/Loader';
+// import Loader from '@airbnb/lunar/lib/components/Loader';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
 import { MockedProvider } from 'react-apollo/test-utils';
 import Query from '../../src/components/Query';
@@ -25,17 +25,17 @@ function wait() {
 
 describe('Query', () => {
   describe('loading', () => {
-    it('renders a `Loader` by default', () => {
-      const wrapper = renderer.create(
-        <MockedProvider mocks={[]} addTypename={false}>
-          <WrappingComponent>
-            <Query query={QUERY}>{() => null}</Query>
-          </WrappingComponent>
-        </MockedProvider>,
-      );
+    // it('renders a `Loader` by default', () => {
+    //   const wrapper = renderer.create(
+    //     <MockedProvider mocks={[]} addTypename={false}>
+    //       <WrappingComponent>
+    //         <Query query={QUERY}>{() => null}</Query>
+    //       </WrappingComponent>
+    //     </MockedProvider>,
+    //   );
 
-      expect(wrapper.root.findByType(Loader)).toBeDefined();
-    });
+    //   expect(wrapper.root.findByType(Loader)).toBeDefined();
+    // });
 
     it('can pass a custom loading element with `loading` prop', () => {
       const loader = <div>Loading!</div>;

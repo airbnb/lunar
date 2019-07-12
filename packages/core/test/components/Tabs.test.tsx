@@ -11,10 +11,6 @@ function unwrap(element: any): Enzyme.ShallowWrapper {
 }
 
 describe('<Tabs/>', () => {
-  it('errors if non-tab children are passed', () => {
-    expect(() => unwrap(<Tabs>Foo</Tabs>)).toThrowErrorMatchingSnapshot();
-  });
-
   it('errors if a tab does not have a `key`', () => {
     expect(() =>
       unwrap(

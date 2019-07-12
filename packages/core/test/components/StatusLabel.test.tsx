@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
 import StatusLabel from '../../src/components/StatusLabel';
 import { STATUSES as BASE_STATUSES } from '../../src/constants';
 
@@ -17,22 +18,22 @@ describe('<StatusLabel />', () => {
   });
 
   it('renders a before icon', () => {
-    const icon = <div>Icon</div>;
+    const icon = <IconCheck decorative />;
     const wrapper = shallowWithStyles(<StatusLabel beforeIcon={icon}>Default</StatusLabel>);
 
     expect(wrapper.contains(icon)).toBe(true);
   });
 
   it('renders a after icon', () => {
-    const icon = <div>Icon</div>;
+    const icon = <IconCheck decorative />;
     const wrapper = shallowWithStyles(<StatusLabel afterIcon={icon}>Default</StatusLabel>);
 
     expect(wrapper.contains(icon)).toBe(true);
   });
 
   it('renders both icons', () => {
-    const beforeIcon = <div>Icon</div>;
-    const afterIcon = <div>Icon</div>;
+    const beforeIcon = <IconCheck decorative />;
+    const afterIcon = <IconCheck decorative />;
     const wrapper = shallowWithStyles(
       <StatusLabel beforeIcon={beforeIcon} afterIcon={afterIcon}>
         Default
