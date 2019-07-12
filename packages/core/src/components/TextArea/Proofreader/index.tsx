@@ -119,7 +119,6 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     } else {
       this.setState(
         {
-          // text: value,
           errors: [],
           selectedError: null,
         },
