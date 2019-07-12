@@ -1,10 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ButtonGroup /> errors when a non-button is passed 1`] = `
-"Warning: Failed prop type: \`ButtonGroup.children\` only accepts components matching the regular expression /(?:Tooltip|Permission|Trebuchet|ERF)|(?:Buttons?|Links?)$/
-    in ButtonGroup"
-`;
-
 exports[`<ButtonGroup /> handles buttons that return falsy values 1`] = `
 <div
   className="buttonGroup_5kaapu-o_O-buttonGroup_stacked_ohgw5r"

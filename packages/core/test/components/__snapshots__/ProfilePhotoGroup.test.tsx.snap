@@ -1,10 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ProfilePhotoGroup /> errors when a non-button is passed 1`] = `
-"Warning: Failed prop type: \`ProfilePhotoGroup.children\` only accepts components matching the regular expression /(?:Tooltip|Permission|Trebuchet|ERF)|(?:ProfilePhoto)$/
-    in ProfilePhotoGroup"
-`;
-
 exports[`<ProfilePhotoGroup /> handles components that return a falsy value 1`] = `
 <div
   className="group_1yr212"

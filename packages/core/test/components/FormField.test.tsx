@@ -141,16 +141,6 @@ describe('<FormField />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('errors for invalid prefix', () => {
-    expect(() => {
-      shallowWithStyles(
-        <FormField id="foo" label="Label" prefix={<div />}>
-          Foo
-        </FormField>,
-      );
-    }).toThrowErrorMatchingSnapshot();
-  });
-
   it('supports a suffix', () => {
     const wrapper = shallowWithStyles(
       <FormField id="foo" label="Label" suffix={<Suffix>Foo</Suffix>}>
@@ -159,15 +149,5 @@ describe('<FormField />', () => {
     );
 
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it('errors for invalid suffix', () => {
-    expect(() => {
-      shallowWithStyles(
-        <FormField id="foo" label="Label" suffix={<div />}>
-          Foo
-        </FormField>,
-      );
-    }).toThrowErrorMatchingSnapshot();
   });
 });

@@ -124,5 +124,5 @@ export const EMOJI_WHITELIST = [
 ];
 
 // REACT
-export const PASSTHROUGH_WRAPPER_NAMES = ['Tooltip', 'Permission', 'Trebuchet', 'ERF'];
-export const STRIP_HOC_NAMES = ['Proxy', 'withAesthetic', 'withStyles', 'withTheme', 'connect'];
+export const PASSTHROUGH_WRAPPER_NAMES = ['Tooltip', 'Permission', 'Trebuchet', 'ERF', 'Memo'];
+export const STRIP_HOC_NAMES = ['Memo', 'Proxy', 'withStyles', 'withTheme', 'connect'];

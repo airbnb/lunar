@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
 import Button from '../../src/components/Button';
 import Loader from '../../src/components/Loader';
 
@@ -57,8 +58,8 @@ describe('<Button />', () => {
   });
 
   it('renders loading instead of icons', () => {
-    const beforeIcon = <div>Icon</div>;
-    const afterIcon = <div>Icon</div>;
+    const beforeIcon = <IconCheck decorative />;
+    const afterIcon = <IconCheck decorative />;
     const wrapper = shallowWithStyles(
       <Button loading beforeIcon={beforeIcon} afterIcon={afterIcon}>
         Default

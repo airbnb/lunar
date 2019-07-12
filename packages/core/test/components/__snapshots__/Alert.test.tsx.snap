@@ -6,7 +6,7 @@ exports[`<Alert /> renders close button 1`] = `
 >
   <Row
     after={
-      <withStyles(IconButton)
+      <Memo(WithStyles)
         onClick={[Function]}
       >
         <IconClose
@@ -17,7 +17,7 @@ exports[`<Alert /> renders close button 1`] = `
           inline={false}
           size={24}
         />
-      </withStyles(IconButton)>
+      </Memo(WithStyles)>
     }
     before={null}
     middleAlign={true}

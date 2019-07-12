@@ -5,10 +5,6 @@ import AccordionItem, { Props as AccordionItemProps } from '../../src/components
 import proxyComponent from '../../src/utils/proxyComponent';
 
 describe('<Accordion />', () => {
-  it('errors if non-accordion item children are passed', () => {
-    expect(() => shallowWithStyles(<Accordion>Foo</Accordion>)).toThrowError();
-  });
-
   it('does not error if a proxyComponent wrapping a AccordionItem is passed', () => {
     const ProxiedAccordionItem = proxyComponent(AccordionItem, (props: AccordionItemProps) => (
       <AccordionItem {...props} />
@@ -21,19 +17,6 @@ describe('<Accordion />', () => {
         </Accordion>,
       ),
     ).not.toThrowError();
-  });
-
-  it('errors if proxyComponent wrapping a non-AccordionItem is passed', () => {
-    const IncompatibleComponent = () => <div />;
-    const ProxiedNonAccordionItem = proxyComponent(IncompatibleComponent, () => <div />);
-
-    expect(() =>
-      shallowWithStyles(
-        <Accordion>
-          <ProxiedNonAccordionItem />
-        </Accordion>,
-      ),
-    ).toThrowError();
   });
 
   it('renders expected number of accordion items', () => {

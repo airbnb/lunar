@@ -47,7 +47,7 @@ export type State = {
 };
 
 /** @ignore */
-class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, State> {
+export class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, State> {
   static defaultProps = {
     gap: false,
     noAnimation: false,

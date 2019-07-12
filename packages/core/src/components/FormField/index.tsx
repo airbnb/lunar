@@ -1,5 +1,4 @@
 import React from 'react';
-import { childrenOfType } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import T from '../Translate';
 import Text from '../Text';
@@ -64,11 +63,6 @@ export { partitionFieldProps, Prefix, Suffix };
 
 /** A abstract form field wrapper that handles labels, affixes, errors, states, and more. */
 export class FormField extends React.Component<PrivateProps> {
-  static propTypes = {
-    prefix: childrenOfType(Prefix),
-    suffix: childrenOfType(Suffix),
-  };
-
   static defaultProps = {
     compact: false,
     compactSpacing: false,

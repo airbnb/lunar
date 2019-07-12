@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 
 import React from 'react';
-import { childrenOfType } from 'airbnb-prop-types';
 import withBoundary from '../../composers/withBoundary';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import GradientScroller from '../GradientScroller';
@@ -34,10 +33,6 @@ export type State = {
 
 /** A controller for multiple tabs. */
 export class Tabs extends React.Component<Props & WithStylesProps, State> {
-  static propTypes = {
-    children: childrenOfType(Tab).isRequired,
-  };
-
   static defaultProps = {
     borderless: false,
     defaultKey: '',

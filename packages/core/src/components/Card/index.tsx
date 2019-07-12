@@ -1,5 +1,4 @@
 import React from 'react';
-import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
 import Content from './Content';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
@@ -27,14 +26,8 @@ export type Props = {
 /**
  * An abstract layout to use as a base for cards.
  */
-function Card({ children, overflow }: Props) {
+export default function Card({ children, overflow }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return <div className={cx(styles.card, overflow && styles.card_overflow)}>{children}</div>;
 }
-
-Card.propTypes = {
-  children: childrenWithComponentName('CardContent').isRequired,
-};
-
-export default Card;

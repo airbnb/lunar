@@ -1,5 +1,4 @@
 import React from 'react';
-import childrenWithComponentName from '../../prop-types/childrenWithComponentName';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { Props as ProfilePhotoProps } from '../ProfilePhoto';
 
@@ -16,10 +15,6 @@ export type Props = {
 
 /** Horizontally align `ProfilePhoto`s in a stacked fashion. */
 export class ProfilePhotoGroup extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    children: childrenWithComponentName('ProfilePhoto').isRequired,
-  };
-
   static defaultProps = {
     max: 3,
     size: 5,

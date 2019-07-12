@@ -2,36 +2,12 @@ import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ProfilePhotoGroup from '../../src/components/ProfilePhotoGroup';
 import ProfilePhoto from '../../src/components/ProfilePhoto';
-import Loader from '../../src/components/Loader';
-import Tooltip from '../../src/components/Tooltip';
 
 describe('<ProfilePhotoGroup />', () => {
   const props = {
     imageSrc: 'https://domain.com/some/file.jpg',
     title: 'Name',
   };
-
-  it('errors when a non-button is passed', () => {
-    expect(() => {
-      shallowWithStyles(
-        <ProfilePhotoGroup>
-          <Loader />
-        </ProfilePhotoGroup>,
-      );
-    }).toThrowErrorMatchingSnapshot();
-  });
-
-  it('doesnt error when `Tooltip` is wrapping', () => {
-    expect(() => {
-      shallowWithStyles(
-        <ProfilePhotoGroup>
-          <Tooltip content="">
-            <ProfilePhoto {...props} />
-          </Tooltip>
-        </ProfilePhotoGroup>,
-      );
-    }).not.toThrowError();
-  });
 
   it('renders photos', () => {
     const wrapper = shallowWithStyles(

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
 import IconButton from '../../src/components/IconButton';
-import Sheet from '../../src/components/Sheet';
+import Sheet, { BaseSheet } from '../../src/components/Sheet';
 import SheetContext from '../../src/components/Sheet/SheetContext';
 import DirectionProvider from '../../src/providers/DirectionProvider';
 import ThemeProvider from '../../src/providers/ThemeProvider';
@@ -41,7 +41,7 @@ describe('<Sheet />', () => {
     wrapper.setProps({ visible: false });
     wrapper.update();
     // Simulate the end of the animation:
-    wrapper.simulate('animationEnd', { target: wrapper.getDOMNode() });
+    wrapper.simulate('animationEnd', { target: wrapper.find(BaseSheet).getDOMNode() });
 
     expect(contextSpy).toHaveBeenCalledWith(false);
   });
@@ -124,7 +124,12 @@ describe('<Sheet />', () => {
       jest.runAllTimers();
       jest.useRealTimers();
 
-      expect(wrapper.getDOMNode().contains(document.activeElement)).toBe(true);
+      expect(
+        wrapper
+          .find(BaseSheet)
+          .getDOMNode()
+          .contains(document.activeElement),
+      ).toBe(true);
 
       wrapper.setProps({ visible: false });
 

@@ -2,11 +2,6 @@
 
 exports[`<Tabs/> errors if a tab does not have a \`key\` 1`] = `"Tab components require a unique \`key\`."`;
 
-exports[`<Tabs/> errors if non-tab children are passed 1`] = `
-"Warning: Failed prop type: \`Tabs\` only accepts children of type withStyles(Tab)
-    in Tabs"
-`;
-
 exports[`<Tabs/> it renders a stretched nav 1`] = `
 <div>
   <nav
