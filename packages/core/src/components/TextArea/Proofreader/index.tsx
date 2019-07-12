@@ -54,7 +54,6 @@ export type State = {
   selectedError: ProofreadRuleMatch | null;
   selectedLocale: string | null;
   showLocaleMenu: boolean;
-  text: string;
   unsupportedLocale: string | null;
 };
 
@@ -89,7 +88,6 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     selectedError: null,
     selectedLocale: null,
     showLocaleMenu: false,
-    text: this.props.value,
     unsupportedLocale: null,
   };
 
@@ -121,7 +119,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     } else {
       this.setState(
         {
-          text: value,
+          // text: value,
           errors: [],
           selectedError: null,
         },
@@ -168,7 +166,8 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   }
 
   checkText(): Promise<void> {
-    const { text, selectedLocale } = this.state;
+    const text = this.props.value;
+    const { selectedLocale } = this.state;
 
     this.setState({
       loading: true,
@@ -437,17 +436,17 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
    * new word at the define error offsets.
    */
   private handleReplaceText = (error: ProofreadRuleMatch, replacement: string) => {
+    const text = this.props.value;
     const { offset = 0 } = error;
-    const { errors, text } = this.state;
-    let newText = '';
+    const { errors } = this.state;
 
+    let newText = '';
     newText += text.slice(0, offset);
     newText += replacement;
     newText += text.slice(offset + error.length!);
 
     this.setState(
       {
-        text: newText,
         // Filter out this error
         errors: errors.filter(e => e !== error),
         // Close the error menu
@@ -530,7 +529,8 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   };
 
   renderTextWithMarks() {
-    const { errors, selectedError, text } = this.state;
+    const text = this.props.value;
+    const { errors, selectedError } = this.state;
 
     if (errors.length === 0) {
       return text;
@@ -590,10 +590,13 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       selectedLocale,
       showLocaleMenu,
       unsupportedLocale,
-      text,
     } = this.state;
+
+    const text = this.props.value;
+
     const caretPosition =
       (this.textareaRef.current && this.textareaRef.current.selectionStart) || 0;
+
     const highlightsProps = {
       className: cx(styles.highlights, important && styles.highlights_important),
       ref: this.shadowRef,
@@ -619,7 +622,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         <BaseTextArea
           {...props}
           spellCheck={false}
-          value={this.state.text}
+          value={text}
           onClick={this.handleTextAreaClick}
           onKeyDown={this.handleTextAreaKeyDown}
           onScroll={this.handleScroll}
