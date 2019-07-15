@@ -48,7 +48,7 @@ describe('<FormInput />', () => {
   it('renders important', () => {
     const wrapper = shallowWithStyles(<FormInput tagName="input" important {...props} />);
 
-    expect(wrapper.prop('className')).toMatch('input_hasPrefix');
+    expect(wrapper.prop('className')).toMatch('input_important');
   });
 
   it('renders children in `select` tag as options', () => {

@@ -56,7 +56,7 @@ describe('<AccordionItem />', () => {
       <AccordionItem bordered id=".0" index={0} title="Title" onClick={() => {}} />,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('item_bordered');
   });
 
   it('renders expanded', () => {
@@ -64,7 +64,7 @@ describe('<AccordionItem />', () => {
       <AccordionItem expanded id=".0" index={0} title="Title" onClick={() => {}} />,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('section').prop('className')).toMatch('body_expanded');
   });
 
   it('triggers `onClick` when clicked', () => {

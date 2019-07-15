@@ -12,7 +12,7 @@ describe('<SteppedProgressBar />', () => {
       </SteppedProgressBar>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Step)).toHaveLength(3);
   });
 
   it('sets first and last', () => {

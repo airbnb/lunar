@@ -19,7 +19,7 @@ describe('<TableRow />', () => {
       it('renders row', () => {
         const wrapper = shallowWithStyles(<TableRow {...{ [status]: true }}>{status}</TableRow>);
 
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.prop('className')).toMatch(`row_${status}`);
       });
     });
   });

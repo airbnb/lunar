@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Link from '../../src/components/Link';
+import ButtonOrLink from '../../src/components/private/ButtonOrLink';
 
 describe('<Link />', () => {
   it('errors when multiple states are used at once', () => {
@@ -23,24 +24,24 @@ describe('<Link />', () => {
     }).toThrowError();
   });
 
-  it('renders small', () => {
+  it('renders small (passes to `Text`)', () => {
     const wrapper = shallowWithStyles(
       <Link small href="#">
         Small
       </Link>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('small')).toBe(true);
   });
 
-  it('renders large', () => {
+  it('renders large (passes to `Text`)', () => {
     const wrapper = shallowWithStyles(
       <Link large href="#">
         Large
       </Link>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('large')).toBe(true);
   });
 
   it('renders disabled', () => {
@@ -50,7 +51,7 @@ describe('<Link />', () => {
       </Link>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(ButtonOrLink).prop('className')).toMatch('link_disabled');
   });
 
   it('renders inverted', () => {
@@ -60,7 +61,7 @@ describe('<Link />', () => {
       </Link>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(ButtonOrLink).prop('className')).toMatch('link_inverted');
   });
 
   it('renders muted', () => {
@@ -70,7 +71,7 @@ describe('<Link />', () => {
       </Link>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(ButtonOrLink).prop('className')).toMatch('link_muted');
   });
 
   it('renders the child component with an inline=false prop when block prop is passed', () => {
@@ -84,13 +85,13 @@ describe('<Link />', () => {
     expect(wrapper.dive().prop('inline')).toBe(false);
   });
 
-  it('renders bold', () => {
+  it('renders bold (passes to `Text`)', () => {
     const wrapper = shallowWithStyles(
       <Link bold href="#">
         Bold
       </Link>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('bold')).toBe(true);
   });
 });

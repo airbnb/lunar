@@ -14,39 +14,39 @@ describe('<Button />', () => {
   it('renders block', () => {
     const wrapper = shallowWithStyles(<Button block>Button</Button>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('button_block');
   });
 
   it('renders borderless', () => {
     const wrapper = shallowWithStyles(<Button borderless>Button</Button>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('button_borderless');
   });
 
   it('renders disabled', () => {
     const wrapper = shallowWithStyles(<Button disabled>Button</Button>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('button_disabled');
     expect(wrapper.prop('disabled')).toBe(true);
   });
 
   it('renders inverted', () => {
     const wrapper = shallowWithStyles(<Button inverted>Button</Button>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('button_inverted');
   });
 
   it('renders large', () => {
     const wrapper = shallowWithStyles(<Button large>Button</Button>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('button_large');
   });
 
   it('renders loading', () => {
     const child = <div>Button</div>;
     const wrapper = shallowWithStyles(<Button loading>{child}</Button>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('button_disabled button_loading');
     expect(wrapper.find(Loader)).toHaveLength(1);
     expect(wrapper.contains(child)).toBe(false);
   });
@@ -54,7 +54,7 @@ describe('<Button />', () => {
   it('renders small', () => {
     const wrapper = shallowWithStyles(<Button small>Button</Button>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('button_small');
   });
 
   it('renders loading instead of icons', () => {

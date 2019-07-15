@@ -48,7 +48,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
 
-    expect(wrapper.find(Button)).toHaveLength(0);
+    expect(wrapper.find(Button)).toHaveLength(1);
   });
 
   it('handles components that return a falsy value', () => {

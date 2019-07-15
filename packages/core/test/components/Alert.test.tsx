@@ -1,8 +1,9 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallowWithStyles, mountWithStyles } from '@airbnb/lunar-test-utils';
 import Alert from '../../src/components/Alert';
 import Spacing from '../../src/components/Spacing';
 import { STATUSES as BASE_STATUSES } from '../../src/constants';
+import { IconButton } from '../../src/components/IconButton';
 
 const STATUSES = [...BASE_STATUSES];
 
@@ -15,15 +16,15 @@ describe('<Alert />', () => {
   });
 
   it('renders close button', () => {
-    const wrapper = shallowWithStyles(<Alert title="Title" onClose={() => {}} />);
+    const wrapper = mountWithStyles(<Alert title="Title" onClose={() => {}} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(IconButton)).toHaveLength(1);
   });
 
   it('renders inline', () => {
     const wrapper = shallowWithStyles(<Alert inline title="Title" />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('alert_inline');
   });
 
   it('renders space between the title and content', () => {
@@ -40,7 +41,11 @@ describe('<Alert />', () => {
       it(`renders ${status} alert`, () => {
         const wrapper = shallowWithStyles(<Alert {...{ [status]: true }} title={status} />);
 
-        expect(wrapper).toMatchSnapshot();
+        if (status === 'muted') {
+          expect(wrapper.prop('className')).toBe('alert');
+        } else {
+          expect(wrapper.prop('className')).toMatch(`alert_${status}`);
+        }
       });
     });
   });

@@ -31,7 +31,7 @@ describe('<Shimmer />', () => {
 
     expect(wrapper.prop('style')).toEqual(
       expect.objectContaining({
-        borderRadius: '0.125em',
+        borderRadius: '50%',
       }),
     );
   });

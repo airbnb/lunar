@@ -2,11 +2,11 @@
 
 exports[`<Tooltip /> can underline  1`] = `
 <span
-  className="container_36rlri"
+  className="container"
 >
   <div
     aria-labelledby="uuid-test-mock"
-    className="underlined_h2mklz"
+    className="underlined"
     onMouseDown={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
@@ -18,7 +18,7 @@ exports[`<Tooltip /> can underline  1`] = `
     </a>
   </div>
   <div
-    className="offscreen_rzqoz2"
+    className="offscreen"
     id="uuid-test-mock"
   >
     test
@@ -28,11 +28,11 @@ exports[`<Tooltip /> can underline  1`] = `
     onClose={[Function]}
   >
     <div
-      className="tooltip_zyobsu-o_O-tooltip_below_107f6ui-o_O-inline-0_1e0uzxh"
+      className="tooltip tooltip_below inline-0"
       role="tooltip"
     >
       <div
-        className="shadow_4pyz3e"
+        className="shadow"
       >
         <NotchedBox
           inverted={true}
@@ -52,7 +52,7 @@ exports[`<Tooltip /> can underline  1`] = `
 
 exports[`<Tooltip /> disabled does not underline 1`] = `
 <span
-  className="container_36rlri"
+  className="container"
 >
   <div
     aria-labelledby="uuid-test-mock"
@@ -68,7 +68,7 @@ exports[`<Tooltip /> disabled does not underline 1`] = `
     </a>
   </div>
   <div
-    className="offscreen_rzqoz2"
+    className="offscreen"
     id="uuid-test-mock"
   >
     test
@@ -78,11 +78,11 @@ exports[`<Tooltip /> disabled does not underline 1`] = `
     onClose={[Function]}
   >
     <div
-      className="tooltip_zyobsu-o_O-tooltip_below_107f6ui-o_O-inline-0_1e0uzxh"
+      className="tooltip tooltip_below inline-0"
       role="tooltip"
     >
       <div
-        className="shadow_4pyz3e"
+        className="shadow"
       >
         <NotchedBox
           inverted={true}
@@ -102,7 +102,7 @@ exports[`<Tooltip /> disabled does not underline 1`] = `
 
 exports[`<Tooltip /> disabled does not up when hovered 1`] = `
 <span
-  className="container_36rlri"
+  className="container"
 >
   <div
     aria-labelledby="uuid-test-mock"
@@ -118,7 +118,7 @@ exports[`<Tooltip /> disabled does not up when hovered 1`] = `
     </a>
   </div>
   <div
-    className="offscreen_rzqoz2"
+    className="offscreen"
     id="uuid-test-mock"
   >
     test
@@ -128,11 +128,11 @@ exports[`<Tooltip /> disabled does not up when hovered 1`] = `
     onClose={[Function]}
   >
     <div
-      className="tooltip_zyobsu-o_O-tooltip_below_107f6ui-o_O-inline-0_1e0uzxh"
+      className="tooltip tooltip_below inline-0"
       role="tooltip"
     >
       <div
-        className="shadow_4pyz3e"
+        className="shadow"
       >
         <NotchedBox
           inverted={true}
@@ -152,7 +152,7 @@ exports[`<Tooltip /> disabled does not up when hovered 1`] = `
 
 exports[`<Tooltip /> once open supports changing content 1`] = `
 <span
-  className="container_36rlri"
+  className="container"
 >
   <div
     aria-labelledby="uuid-test-mock"
@@ -168,7 +168,7 @@ exports[`<Tooltip /> once open supports changing content 1`] = `
     </a>
   </div>
   <div
-    className="offscreen_rzqoz2"
+    className="offscreen"
     id="uuid-test-mock"
   >
     whatever
@@ -179,11 +179,11 @@ exports[`<Tooltip /> once open supports changing content 1`] = `
     open={true}
   >
     <div
-      className="tooltip_zyobsu-o_O-tooltip_below_107f6ui-o_O-inline-0_1e0uzxh"
+      className="tooltip tooltip_below inline-0"
       role="tooltip"
     >
       <div
-        className="shadow_4pyz3e"
+        className="shadow"
       >
         <NotchedBox
           inverted={true}
@@ -203,7 +203,7 @@ exports[`<Tooltip /> once open supports changing content 1`] = `
 
 exports[`<Tooltip /> opens up when hovered 1`] = `
 <span
-  className="container_36rlri"
+  className="container"
 >
   <div
     aria-labelledby="uuid-test-mock"
@@ -219,7 +219,7 @@ exports[`<Tooltip /> opens up when hovered 1`] = `
     </a>
   </div>
   <div
-    className="offscreen_rzqoz2"
+    className="offscreen"
     id="uuid-test-mock"
   >
     test
@@ -230,11 +230,11 @@ exports[`<Tooltip /> opens up when hovered 1`] = `
     open={true}
   >
     <div
-      className="tooltip_zyobsu-o_O-tooltip_below_107f6ui-o_O-inline-0_1e0uzxh"
+      className="tooltip tooltip_below inline-0"
       role="tooltip"
     >
       <div
-        className="shadow_4pyz3e"
+        className="shadow"
       >
         <NotchedBox
           inverted={true}

@@ -4,36 +4,37 @@ import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
 import IconStarFull from '@airbnb/lunar-icons/lib/interface/IconStarFull';
 import IconStarHalf from '@airbnb/lunar-icons/lib/interface/IconStarHalf';
 import Rating from '../../src/components/Rating';
+import Spacing from '../../src/components/Spacing';
 
 describe('<Rating />', () => {
   it('renders default', () => {
     const wrapper = shallowWithStyles(<Rating rating={0} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('div').prop('className')).toBe('ratingContainer');
   });
 
   it('renders micro', () => {
     const wrapper = shallowWithStyles(<Rating micro rating={0} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('div').prop('className')).toMatch('ratingContainer_micro');
   });
 
   it('renders small', () => {
     const wrapper = shallowWithStyles(<Rating small rating={0} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('div').prop('className')).toMatch('ratingContainer_small');
   });
 
   it('renders large', () => {
     const wrapper = shallowWithStyles(<Rating large rating={0} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('div').prop('className')).toMatch('ratingContainer_large');
   });
 
   it('renders reviews', () => {
     const wrapper = shallowWithStyles(<Rating reviews="100" />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Spacing).prop('children')).toBe('100');
   });
 
   it('renders all empty stars for a rating of 0', () => {
