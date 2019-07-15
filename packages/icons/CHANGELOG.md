@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.0 - 2019-07-15
+
+#### 🚀 Updates
+
+- **[Icon]** Add IconSnooze (#112) ([2f69c92](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/2f69c92)), closes [#112](https://github.com/airbnb/lunar/tree/master/packages/icons/issues/112)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ### 2.0.2 - 2019-07-12
 
 **Note:** Version bump only for package @airbnb/lunar-icons
