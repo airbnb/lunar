@@ -12,7 +12,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "npm run build:cjs && npm run build:esm",
+    "build": "yarn run build:cjs && yarn run build:esm",
     "build:cjs": "BUILD=cjs babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./lib",
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
   },

@@ -3,7 +3,7 @@
 Provides pre-defined page layouts that support top and side navigation bars.
 
 ```bash static
-npm install @airbnb/lunar-layouts --save
+yarn add @airbnb/lunar-layouts
 ```
 
 ## Usage

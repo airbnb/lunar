@@ -3,7 +3,7 @@
 A root component that should wrap your entire application.
 
 ```bash static
-npm install @airbnb/lunar-app-shell --save
+yarn add @airbnb/lunar-app-shell
 ```
 
 ## Usage

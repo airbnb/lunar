@@ -313,7 +313,7 @@ describe('<Form />', () => {
       // @ts-ignore Allow private access
       await instance.handleValidate({ foo: 'foo' });
 
-      expect(spy).toHaveBeenCalledWith({ foo: 'foo' }, {}, instance.getFields());
+      expect(spy).toHaveBeenCalledWith({ foo: 'foo' }, {}, expect.anything());
     });
 
     it('can fail using `onValidate`', async () => {

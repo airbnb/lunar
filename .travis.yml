@@ -1,8 +1,12 @@
 language: node_js
-node_js: '10'
+node_js: '12'
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+install:
+  - yarn install --frozen-lockfile --ignore-engines
 before_script:
-  - npm run bootstrap
-  - npm run build
+  - yarn run build
 script:
   - echo "Skip"
 matrix:
@@ -11,33 +15,39 @@ jobs:
   include:
     - stage: Tests
       name: Danger
-      script: npx danger ci --use-github-checks
-      node_js: '10'
+      script: yarn danger ci --use-github-checks
+      node_js: '12'
     - name: Test @ 8
-      script: npm run jest:coverage -- -w 4
+      script: yarn run jest:coverage -w 4
       node_js: '8'
     - name: Test @ 10
-      script: npm run jest:coverage -- -w 4
+      script: yarn run jest:coverage -w 4
       node_js: '10'
+    - name: Test @ 12
+      script: yarn run jest:coverage -w 4
+      node_js: '12'
     - name: Lint @ 8
-      script: npm run lint:errors
+      script: yarn run lint:errors
       node_js: '8'
     - name: Lint @ 10
-      script: npm run lint:errors
+      script: yarn run lint:errors
       node_js: '10'
+    - name: Lint @ 12
+      script: yarn run lint:errors
+      node_js: '12'
     - stage: Publish Storybook
       script: skip
-      node_js: '10'
+      node_js: '12'
       if: branch = master
       deploy:
         provider: script
-        script: npm run deploy:ghp
+        script: yarn run deploy:ghp
         skip_cleanup: true
         on:
           branch: master
     - stage: Release Packages
       script: skip
-      node_js: '10'
+      node_js: '12'
       if: branch = master
       before_deploy:
         - git config --global user.name ${GITHUB_USER}
@@ -48,7 +58,9 @@ jobs:
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
       deploy:
         provider: script
-        script: npm run deploy:release
+        script: yarn run deploy:release
         skip_cleanup: true
         on:
           branch: master
+cache:
+  yarn: true

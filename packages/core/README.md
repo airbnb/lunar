@@ -4,7 +4,7 @@ Provides core React building blocks that all other consuming packages are built 
 includes components, composers, themes, and more.
 
 ```bash static
-npm install @airbnb/lunar --save
+yarn add @airbnb/lunar
 ```
 
 ## Setup

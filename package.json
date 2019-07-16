@@ -5,29 +5,27 @@
   "description": "React toolkit and design language for Airbnb open source and internal projects.",
   "license": "MIT",
   "scripts": {
-    "setup": "npm run bootstrap && npm run build",
-    "bootstrap": "lerna bootstrap --hoist && bash ./scripts/symlinkPackages.sh",
-    "build": "npm run clean && lerna run build && npm run type",
+    "build": "yarn run clean && yarn workspaces run build --ignore-engines && yarn run type",
     "clean": "rimraf './packages/*/{lib,esm}'",
-    "clean:hard": "npm run clean && rimraf './packages/**/*.tsbuildinfo'",
+    "clean:hard": "yarn run clean && rimraf './packages/**/*.tsbuildinfo'",
     "clean:story": "rimraf './packages/**/*.story.d.ts' './packages/**/*.story.d.ts.map'",
-    "deploy:ghp": "npm run storybook:build && node ./scripts/publishGitHubPages",
-    "deploy:release": "npm run release:version && npm run release:publish",
+    "deploy:ghp": "yarn run storybook:build && node ./scripts/publishGitHubPages",
+    "deploy:release": "yarn run release:version && yarn run release:publish",
     "gen:icon": "node ./scripts/generateIcon",
-    "jest:coverage": "npm run jest -- --coverage",
+    "jest:coverage": "yarn run jest --coverage",
     "jest": "NODE_ICU_DATA=$(npx node-full-icu-path) NODE_ENV=test TZ=UTC jest --colors --logHeapUsage",
-    "lint:errors": "npm run lint -- --quiet",
+    "lint:errors": "yarn run lint --quiet",
     "lint:in": "eslint --color --ext .ts,.tsx,.js,.jsx --report-unused-disable-directives",
-    "lint": "npm run lint:in ./packages/*/src ./packages/*/test",
-    "posttest": "npm run lint",
-    "pretest": "npm run type",
+    "lint": "yarn run lint:in ./packages/*/src ./packages/*/test",
+    "posttest": "yarn run lint",
+    "pretest": "yarn run type",
     "prettier": "prettier --write ./*.{md,json} \"./packages/*/{src,test}/**/*.{ts,tsx,js,jsx,gql,graphql,yml,yaml,md}\"",
-    "release": "npm run build && lerna publish",
+    "release": "yarn run build && lerna publish",
     "release:publish": "lerna publish from-git --yes",
     "release:version": "lerna version --yes --conventional-commits --changelog-preset conventional-changelog-beemo --create-release github --push",
-    "sg": "NODE_ENV=development npm run storybook",
-    "test": "npm run jest:coverage",
-    "type": "tsc --build && npm run clean:story",
+    "sg": "NODE_ENV=development yarn run storybook",
+    "test": "yarn run jest:coverage",
+    "type": "tsc --build && yarn run clean:story",
     "storybook": "STORYBOOK=true start-storybook -p 6006",
     "storybook:build": "STORYBOOK=true build-storybook"
   },
@@ -36,8 +34,9 @@
     "url": "git+https://github.com/airbnb/lunar.git"
   },
   "engines": {
-    "node": ">=10.10.0",
-    "npm": ">=6.8.0"
+    "node": ">=8.9.0",
+    "npm": ">=6.8.0",
+    "yarn": ">=1.16.0"
   },
   "browserslist": [
     "last 3 chrome versions",
@@ -62,6 +61,9 @@
       "name": "Aleck Landgraf",
       "url": "https://github.com/alecklandgraf"
     }
+  ],
+  "workspaces": [
+    "./packages/*"
   ],
   "dependencies": {
     "@storybook/addon-a11y": "^5.1.9",
