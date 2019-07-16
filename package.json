@@ -62,6 +62,9 @@
       "url": "https://github.com/alecklandgraf"
     }
   ],
+  "workspaces": [
+    "./packages/*"
+  ],
   "dependencies": {
     "@storybook/addon-a11y": "^5.1.9",
     "@storybook/addon-actions": "^5.1.9",
