@@ -34,7 +34,7 @@
     "url": "git+https://github.com/airbnb/lunar.git"
   },
   "engines": {
-    "node": ">=10.10.0",
+    "node": ">=8.9.0",
     "npm": ">=6.8.0",
     "yarn": ">=1.16.0"
   },
