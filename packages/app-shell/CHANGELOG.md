@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.3 - 2019-07-16
+
+#### 🛠 Internals
+
+- Migrate to Yarn from NPM (#122) ([60c62c7](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/60c62c7)), closes [#122](https://github.com/airbnb/lunar/tree/master/packages/app-shell/issues/122)
+
+**Note:** Version bump only for package @airbnb/lunar-app-shell
+
+
+
+
+
 ### 2.1.2 - 2019-07-16
 
 #### 🛠 Internals

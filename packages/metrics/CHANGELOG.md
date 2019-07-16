@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.0.4 - 2019-07-16
+
+#### 🛠 Internals
+
+- Migrate to Yarn from NPM (#122) ([60c62c7](https://github.com/airbnb/lunar/tree/master/packages/metrics/commit/60c62c7)), closes [#122](https://github.com/airbnb/lunar/tree/master/packages/metrics/issues/122)
+
+**Note:** Version bump only for package @airbnb/lunar-metrics
+
+
+
+
+
 ### 2.0.3 - 2019-07-16
 
 **Note:** Version bump only for package @airbnb/lunar-metrics
