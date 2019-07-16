@@ -5,7 +5,7 @@
   "description": "React toolkit and design language for Airbnb open source and internal projects.",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run clean && yarn workspaces run build && yarn run type",
+    "build": "yarn run clean && yarn workspaces run build --ignore-engines && yarn run type",
     "clean": "rimraf './packages/*/{lib,esm}'",
     "clean:hard": "yarn run clean && rimraf './packages/**/*.tsbuildinfo'",
     "clean:story": "rimraf './packages/**/*.story.d.ts' './packages/**/*.story.d.ts.map'",
