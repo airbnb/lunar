@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.2 - 2019-07-16
+
+#### 🛠 Internals
+
+- Integrate `TestAesthetic` for easier class name testing (#117) ([8aa1019](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/8aa1019)), closes [#117](https://github.com/airbnb/lunar/tree/master/packages/app-shell/issues/117)
+
+**Note:** Version bump only for package @airbnb/lunar-app-shell
+
+
+
+
+
 ### 2.1.1 - 2019-07-12
 
 **Note:** Version bump only for package @airbnb/lunar-app-shell
