@@ -36,7 +36,7 @@ class BaseSelect extends React.Component<Props & WithStylesProps> {
           {children}
         </FormInput>
 
-        <i
+        <span
           className={cx(
             styles.arrow,
             restProps.disabled && styles.arrow_disabled,
@@ -45,7 +45,7 @@ class BaseSelect extends React.Component<Props & WithStylesProps> {
           )}
         >
           <IconCaretDown decorative size="2em" />
-        </i>
+        </span>
       </div>
     );
   }

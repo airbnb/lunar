@@ -21,7 +21,7 @@ describe('<BaseSelect />', () => {
       </BaseSelect>,
     );
 
-    expect(wrapper.find('i').prop('className')).toMatch('arrow_disabled');
+    expect(wrapper.find('span').prop('className')).toMatch('arrow_disabled');
   });
 
   it('renders invalid', () => {
@@ -31,7 +31,7 @@ describe('<BaseSelect />', () => {
       </BaseSelect>,
     );
 
-    expect(wrapper.find('i').prop('className')).toMatch('arrow_invalid');
+    expect(wrapper.find('span').prop('className')).toMatch('arrow_invalid');
   });
 
   it('renders compact', () => {
@@ -41,7 +41,7 @@ describe('<BaseSelect />', () => {
       </BaseSelect>,
     );
 
-    expect(wrapper.find('i').prop('className')).toMatch('arrow_compact');
+    expect(wrapper.find('span').prop('className')).toMatch('arrow_compact');
   });
 
   it('renders options via children', () => {
