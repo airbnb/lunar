@@ -132,7 +132,12 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(
+      wrapper
+        .find(Tab)
+        .at(0)
+        .prop('stretched'),
+    ).toBe(true);
   });
 
   it('it renders a section when a tab is active and has children', () => {

@@ -43,7 +43,7 @@ describe('<Accordion />', () => {
       id: 0,
     });
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('container_bordered');
   });
 
   it('has accessibility role set', () => {

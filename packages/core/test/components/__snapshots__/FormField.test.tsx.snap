@@ -1,47 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FormField /> hides the label 1`] = `
-<section
-  className="field_k3wq0g"
->
-  <div
-    className=""
-  >
-    <label
-      className="label_2s5uhd-o_O-label_hidden_1u9fru1"
-      htmlFor="foo"
-    >
-      <StatusText
-        bold={true}
-        danger={false}
-        muted={false}
-        small={false}
-      >
-        Label
-      </StatusText>
-    </label>
-    <div
-      className="input_nv7oj6-o_O-input_hideLabel_16pg94n"
-    >
-      <div
-        className="anchor_t0tx82"
-      >
-        Foo
-      </div>
-    </div>
-  </div>
-</section>
-`;
-
 exports[`<FormField /> renders input after the label 1`] = `
 <section
-  className="field_k3wq0g"
+  className="field"
 >
   <div
     className=""
   >
     <label
-      className="label_2s5uhd"
+      className="label"
       htmlFor="foo"
     >
       <StatusText
@@ -54,10 +21,10 @@ exports[`<FormField /> renders input after the label 1`] = `
       </StatusText>
     </label>
     <div
-      className="input_nv7oj6"
+      className="input"
     >
       <div
-        className="anchor_t0tx82"
+        className="anchor"
       >
         Foo
       </div>
@@ -68,13 +35,13 @@ exports[`<FormField /> renders input after the label 1`] = `
 
 exports[`<FormField /> renders input after the label 2`] = `
 <section
-  className="field_k3wq0g"
+  className="field"
 >
   <div
-    className="content_inline_5kaapu"
+    className="content_inline"
   >
     <label
-      className="label_2s5uhd-o_O-label_noSpacing_16pg94n"
+      className="label label_noSpacing"
       htmlFor="foo"
     >
       <StatusText
@@ -87,10 +54,10 @@ exports[`<FormField /> renders input after the label 2`] = `
       </StatusText>
     </label>
     <div
-      className="input_nv7oj6-o_O-input_afterInline_pog3hg"
+      className="input input_afterInline"
     >
       <div
-        className="anchor_t0tx82"
+        className="anchor"
       >
         Foo
       </div>
@@ -101,22 +68,22 @@ exports[`<FormField /> renders input after the label 2`] = `
 
 exports[`<FormField /> renders input before the label 1`] = `
 <section
-  className="field_k3wq0g"
+  className="field"
 >
   <div
     className=""
   >
     <div
-      className="input_nv7oj6"
+      className="input"
     >
       <div
-        className="anchor_t0tx82"
+        className="anchor"
       >
         Foo
       </div>
     </div>
     <label
-      className="label_2s5uhd-o_O-label_noSpacing_16pg94n"
+      className="label label_noSpacing"
       htmlFor="foo"
     >
       <StatusText
@@ -134,22 +101,22 @@ exports[`<FormField /> renders input before the label 1`] = `
 
 exports[`<FormField /> renders input before the label 2`] = `
 <section
-  className="field_k3wq0g"
+  className="field"
 >
   <div
-    className="content_inline_5kaapu"
+    className="content_inline"
   >
     <div
-      className="input_nv7oj6-o_O-input_beforeInline_14tkmhr"
+      className="input input_beforeInline"
     >
       <div
-        className="anchor_t0tx82"
+        className="anchor"
       >
         Foo
       </div>
     </div>
     <label
-      className="label_2s5uhd-o_O-label_noSpacing_16pg94n"
+      className="label label_noSpacing"
       htmlFor="foo"
     >
       <StatusText
@@ -161,86 +128,6 @@ exports[`<FormField /> renders input before the label 2`] = `
         Label
       </StatusText>
     </label>
-  </div>
-</section>
-`;
-
-exports[`<FormField /> supports a prefix 1`] = `
-<section
-  className="field_k3wq0g"
->
-  <div
-    className=""
-  >
-    <label
-      className="label_2s5uhd"
-      htmlFor="foo"
-    >
-      <StatusText
-        bold={true}
-        danger={false}
-        muted={false}
-        small={false}
-      >
-        Label
-      </StatusText>
-    </label>
-    <div
-      className="input_nv7oj6"
-    >
-      <div
-        className="affix_1n0jrn7"
-      >
-        <Prefix>
-          Foo
-        </Prefix>
-      </div>
-      <div
-        className="anchor_t0tx82"
-      >
-        Foo
-      </div>
-    </div>
-  </div>
-</section>
-`;
-
-exports[`<FormField /> supports a suffix 1`] = `
-<section
-  className="field_k3wq0g"
->
-  <div
-    className=""
-  >
-    <label
-      className="label_2s5uhd"
-      htmlFor="foo"
-    >
-      <StatusText
-        bold={true}
-        danger={false}
-        muted={false}
-        small={false}
-      >
-        Label
-      </StatusText>
-    </label>
-    <div
-      className="input_nv7oj6"
-    >
-      <div
-        className="anchor_t0tx82"
-      >
-        Foo
-      </div>
-      <div
-        className="affix_1n0jrn7"
-      >
-        <Suffix>
-          Foo
-        </Suffix>
-      </div>
-    </div>
   </div>
 </section>
 `;

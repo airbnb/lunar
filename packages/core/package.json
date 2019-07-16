@@ -36,7 +36,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
-    "aesthetic": "^4.0.0",
+    "aesthetic": "^4.1.0",
     "aesthetic-adapter-aphrodite": "^4.0.0",
     "aesthetic-react": "^1.1.0",
     "airbnb-prop-types": "^2.13.2",

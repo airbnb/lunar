@@ -18,25 +18,25 @@ describe('<Cell />', () => {
   it('renders left', () => {
     const wrapper = shallowWithStyles(<Cell startAlign>Left</Cell>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('cell_left');
   });
 
   it('renders center', () => {
     const wrapper = shallowWithStyles(<Cell centerAlign>Center</Cell>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('cell_center');
   });
 
   it('renders right', () => {
     const wrapper = shallowWithStyles(<Cell endAlign>Right</Cell>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('cell_right');
   });
 
   it('renders truncate', () => {
     const wrapper = shallowWithStyles(<Cell truncate>Truncate</Cell>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('cell_truncate');
   });
 
   it('supports col span', () => {

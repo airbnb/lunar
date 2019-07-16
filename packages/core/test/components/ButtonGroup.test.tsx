@@ -13,7 +13,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Button)).toHaveLength(3);
   });
 
   it('renders buttons stacked', () => {
@@ -25,7 +25,8 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('buttonGroup_stacked');
+    expect(wrapper.find(Button)).toHaveLength(3);
   });
 
   it('renders a single button', () => {
@@ -35,7 +36,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Button)).toHaveLength(1);
   });
 
   it('handles buttons that return falsy values', () => {
@@ -47,7 +48,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Button)).toHaveLength(1);
   });
 
   it('handles components that return a falsy value', () => {

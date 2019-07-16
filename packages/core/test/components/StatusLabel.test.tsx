@@ -51,7 +51,7 @@ describe('<StatusLabel />', () => {
           <StatusLabel {...{ [status]: true }}>{status}</StatusLabel>,
         );
 
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.prop('className')).toMatch('label');
       });
 
       it('renders bordered', () => {
@@ -61,7 +61,7 @@ describe('<StatusLabel />', () => {
           </StatusLabel>,
         );
 
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.prop('className')).toMatch('label_bordered');
       });
 
       it('renders inverted state', () => {
@@ -71,7 +71,7 @@ describe('<StatusLabel />', () => {
           </StatusLabel>,
         );
 
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.prop('className')).toMatch('label_inverted');
       });
 
       it('renders uppercased state', () => {
@@ -81,7 +81,7 @@ describe('<StatusLabel />', () => {
           </StatusLabel>,
         );
 
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.prop('className')).toMatch('label_uppercased');
       });
     });
   });

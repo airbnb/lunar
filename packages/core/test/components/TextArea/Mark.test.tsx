@@ -10,7 +10,7 @@ describe('<Mark />', () => {
       </Mark>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toBe('mark');
   });
 
   it('renders selected', () => {
@@ -20,7 +20,7 @@ describe('<Mark />', () => {
       </Mark>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('mark_selected');
   });
 
   it('triggers `onSelect` on mount if selected', () => {

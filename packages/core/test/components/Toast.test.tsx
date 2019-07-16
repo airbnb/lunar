@@ -2,37 +2,39 @@ import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Toast, { Toast as BaseToast } from '../../src/components/Toast';
 import IconButton from '../../src/components/IconButton';
+import Button from '../../src/components/Button';
+import Text from '../../src/components/Text';
 import crosstab from '../../src/crosstab';
 
 describe('<Toast />', () => {
   it('sets failed class', () => {
     const wrapper = shallowWithStyles(<Toast id="1" message="Hi" danger />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('container_danger');
   });
 
   it('sets failed class if an `Error`', () => {
     const wrapper = shallowWithStyles(<Toast id="1" message={new Error('Hi')} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('container_danger');
   });
 
   it('sets success class', () => {
     const wrapper = shallowWithStyles(<Toast id="1" message="Hi" success />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('container_success');
   });
 
   it('renders message', () => {
     const wrapper = shallowWithStyles(<Toast id="1" message="Hi" />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Text).prop('children')).toBe('Hi');
   });
 
   it('renders error', () => {
     const wrapper = shallowWithStyles(<Toast id="1" message={new Error('Error')} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('container_danger');
   });
 
   it('renders refresh', () => {
@@ -40,7 +42,7 @@ describe('<Toast />', () => {
       <Toast id="1" message="A new version is available" refresh />,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Button)).toHaveLength(1);
   });
 
   it('shows the toast', () => {

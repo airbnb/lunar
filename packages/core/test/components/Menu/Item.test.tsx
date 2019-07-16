@@ -10,13 +10,13 @@ describe('<MenuItem />', () => {
   it('renders highlighted', () => {
     const wrapper = shallowWithStyles(<Item highlighted>Foo</Item>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(ButtonOrLink).prop('className')).toMatch('item_highlighted');
   });
 
   it('renders spacious', () => {
     const wrapper = shallowWithStyles(<Item spacious>Foo</Item>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(ButtonOrLink).prop('className')).toMatch('item_spacious');
   });
 
   it('renders a list with the correct role', () => {

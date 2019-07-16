@@ -2,10 +2,10 @@
 
 exports[`<ProfilePhotoGroup /> handles components that return a falsy value 1`] = `
 <div
-  className="group_1yr212"
+  className="group"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell inline-0"
     key="0"
   >
     <FakePhoto
@@ -20,10 +20,10 @@ exports[`<ProfilePhotoGroup /> handles components that return a falsy value 1`] 
 
 exports[`<ProfilePhotoGroup /> handles photos that return falsy values 1`] = `
 <div
-  className="group_1yr212"
+  className="group"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell inline-0"
     key="0"
   >
     <ProfilePhoto
@@ -40,10 +40,10 @@ exports[`<ProfilePhotoGroup /> handles photos that return falsy values 1`] = `
 
 exports[`<ProfilePhotoGroup /> renders a remainder cell when the max is met 1`] = `
 <div
-  className="group_1yr212"
+  className="group"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell inline-0"
     key="0"
   >
     <ProfilePhoto
@@ -56,14 +56,14 @@ exports[`<ProfilePhotoGroup /> renders a remainder cell when the max is met 1`] 
     />
   </div>
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell inline-0"
     key="remainder"
   >
     <div
-      className="remainder_15l21mp-o_O-inline-0_ksaxgv"
+      className="remainder inline-0"
     >
       <span
-        className="remainderNumber_d1qlh4"
+        className="remainderNumber"
       >
         +2
       </span>
@@ -74,10 +74,10 @@ exports[`<ProfilePhotoGroup /> renders a remainder cell when the max is met 1`] 
 
 exports[`<ProfilePhotoGroup /> renders a single photo 1`] = `
 <div
-  className="group_1yr212"
+  className="group"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell inline-0"
     key="0"
   >
     <ProfilePhoto
@@ -94,10 +94,10 @@ exports[`<ProfilePhotoGroup /> renders a single photo 1`] = `
 
 exports[`<ProfilePhotoGroup /> renders photos 1`] = `
 <div
-  className="group_1yr212"
+  className="group"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell inline-0"
     key="0"
   >
     <ProfilePhoto
@@ -110,7 +110,7 @@ exports[`<ProfilePhotoGroup /> renders photos 1`] = `
     />
   </div>
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell inline-0"
     key="1"
   >
     <ProfilePhoto
@@ -123,7 +123,7 @@ exports[`<ProfilePhotoGroup /> renders photos 1`] = `
     />
   </div>
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell inline-0"
     key="2"
   >
     <ProfilePhoto
@@ -140,10 +140,10 @@ exports[`<ProfilePhotoGroup /> renders photos 1`] = `
 
 exports[`<ProfilePhotoGroup /> supports custom sizes 1`] = `
 <div
-  className="group_1yr212"
+  className="group"
 >
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell inline-0"
     key="0"
   >
     <ProfilePhoto
@@ -156,7 +156,7 @@ exports[`<ProfilePhotoGroup /> supports custom sizes 1`] = `
     />
   </div>
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell inline-0"
     key="1"
   >
     <ProfilePhoto
@@ -169,7 +169,7 @@ exports[`<ProfilePhotoGroup /> supports custom sizes 1`] = `
     />
   </div>
   <div
-    className="cell_z0wimt-o_O-inline-0_1j63ti"
+    className="cell inline-0"
     key="2"
   >
     <ProfilePhoto

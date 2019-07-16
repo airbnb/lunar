@@ -50,10 +50,7 @@ class Core {
     translatorComponent: null,
   };
 
-  readonly aesthetic = new AphroditeAesthetic<Theme>([], {
-    theme: 'light',
-    passThemeProp: false,
-  });
+  readonly aesthetic = new AphroditeAesthetic<Theme>([], { theme: 'light' });
 
   initialize(settings: Settings) {
     this.settings = {
@@ -75,7 +72,7 @@ class Core {
         .registerTheme('light', lightTheme(fontFamily), globals)
         .registerTheme('dark', darkTheme(fontFamily), globals)
 
-        // Aesthetic ThemeContext default theme is "default",
+        // Aesthetic's ThemeContext default theme is "default",
         // so let's register a default theme based on light
         // so that downstream consumers don't break.
         .extendTheme('default', 'light', {});
@@ -157,4 +154,14 @@ class Core {
   };
 }
 
-export default new Core();
+const instance = new Core();
+
+if (process.env.NODE_ENV === 'test') {
+  // eslint-disable-next-line
+  const { TestAesthetic } = require('aesthetic/lib/testUtils');
+
+  // @ts-ignore Allow mutation of readonly for testing
+  instance.aesthetic = new TestAesthetic({ theme: 'light' });
+}
+
+export default instance;

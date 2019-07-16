@@ -2,13 +2,13 @@
 
 exports[`<NotchedBox /> can be below 1`] = `
 <div
-  className="box_1pswgv9-o_O-border_1urjdog"
+  className="box border"
 >
   <div
-    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-notch_below_9egivs-o_O-border_1urjdog"
+    className="notch notch_position notch_below border"
   />
   <div
-    className="content_15unt15"
+    className="content"
   >
     hello world
   </div>
@@ -17,13 +17,13 @@ exports[`<NotchedBox /> can be below 1`] = `
 
 exports[`<NotchedBox /> can be inline 1`] = `
 <div
-  className="box_1pswgv9-o_O-border_1urjdog-o_O-box_inline_36rlri"
+  className="box border box_inline"
 >
   <div
-    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-border_1urjdog"
+    className="notch notch_position border"
   />
   <div
-    className="content_15unt15"
+    className="content"
   >
     hello world
   </div>
@@ -32,13 +32,13 @@ exports[`<NotchedBox /> can be inline 1`] = `
 
 exports[`<NotchedBox /> can be inverted 1`] = `
 <div
-  className="box_1pswgv9"
+  className="box"
 >
   <div
-    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-inverted_1liwe23"
+    className="notch notch_position inverted"
   />
   <div
-    className="content_15unt15-o_O-inverted_1liwe23"
+    className="content inverted"
   >
     hello world
   </div>
@@ -47,13 +47,13 @@ exports[`<NotchedBox /> can be inverted 1`] = `
 
 exports[`<NotchedBox /> can have a negative offet 1`] = `
 <div
-  className="box_1pswgv9-o_O-border_1urjdog"
+  className="box border"
 >
   <div
-    className="notch_1nwxvyt-o_O-border_1urjdog-o_O-inline-0_14d28p4"
+    className="notch border inline-0"
   />
   <div
-    className="content_15unt15"
+    className="content"
   >
     hello world
   </div>
@@ -62,13 +62,13 @@ exports[`<NotchedBox /> can have a negative offet 1`] = `
 
 exports[`<NotchedBox /> can have an offet of 0 1`] = `
 <div
-  className="box_1pswgv9-o_O-border_1urjdog"
+  className="box border"
 >
   <div
-    className="notch_1nwxvyt-o_O-notch_position_shori3-o_O-border_1urjdog"
+    className="notch notch_position border"
   />
   <div
-    className="content_15unt15"
+    className="content"
   >
     hello world
   </div>

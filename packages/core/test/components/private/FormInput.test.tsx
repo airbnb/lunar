@@ -21,7 +21,7 @@ describe('<FormInput />', () => {
     expect(wrapper.is('textarea')).toBe(true);
   });
 
-  it('renders noTranslate className', () => {
+  it('renders `noTranslate` className', () => {
     const wrapper = shallowWithStyles(<FormInput tagName="textarea" {...props} noTranslate />);
 
     expect(wrapper.prop('className')).toContain('notranslate');
@@ -36,19 +36,19 @@ describe('<FormInput />', () => {
   it('renders compact', () => {
     const wrapper = shallowWithStyles(<FormInput tagName="input" compact {...props} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('input_compact');
   });
 
   it('renders select compact', () => {
     const wrapper = shallowWithStyles(<FormInput tagName="select" compact {...props} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('select select_compact');
   });
 
   it('renders important', () => {
     const wrapper = shallowWithStyles(<FormInput tagName="input" important {...props} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('input_important');
   });
 
   it('renders children in `select` tag as options', () => {
@@ -98,7 +98,7 @@ describe('<FormInput />', () => {
   it('sets hidden', () => {
     const wrapper = shallowWithStyles(<FormInput tagName="input" hidden {...props} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('input_hidden');
   });
 
   it('sets id', () => {
@@ -154,13 +154,13 @@ describe('<FormInput />', () => {
   it('supports prefixes', () => {
     const wrapper = shallowWithStyles(<FormInput tagName="input" hasPrefix {...props} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('input_hasPrefix');
   });
 
   it('supports suffixes', () => {
     const wrapper = shallowWithStyles(<FormInput tagName="input" hasSuffix {...props} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('input_hasSuffix');
   });
 
   it('sets maxLength', () => {

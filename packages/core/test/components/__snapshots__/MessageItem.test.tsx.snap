@@ -2,10 +2,10 @@
 
 exports[`<MessageItem> renders a loading author 1`] = `
 <div
-  className="container_gxo12q"
+  className="container"
 >
   <div
-    className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+    className="profilePhoto tableCell"
   >
     <Shimmer
       height={32}
@@ -14,7 +14,7 @@ exports[`<MessageItem> renders a loading author 1`] = `
     />
   </div>
   <div
-    className="messageBody_14846yz-o_O-tableCell_6x7qes"
+    className="messageBody tableCell"
   >
     <Spacing
       bottom={0.5}
@@ -43,13 +43,13 @@ exports[`<MessageItem> renders a loading author 1`] = `
 
 exports[`<MessageItem> renders a message item 1`] = `
 <div
-  className="container_gxo12q"
+  className="container"
 >
   <div
-    className="table_cv8yzh"
+    className="table"
   >
     <div
-      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -58,13 +58,13 @@ exports[`<MessageItem> renders a message item 1`] = `
       />
     </div>
     <div
-      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+      className="messageBody tableCell"
     >
       <Spacing
         bottom={0.5}
       >
         <span
-          className="messageTitle_ft2sf8"
+          className="messageTitle"
         >
           <Text
             bold={true}
@@ -82,7 +82,7 @@ exports[`<MessageItem> renders a message item 1`] = `
         </Text>
       </Spacing>
       <div
-        className="messageBodyContent_1dcp06s"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -93,13 +93,13 @@ exports[`<MessageItem> renders a message item 1`] = `
 
 exports[`<MessageItem> renders a message item with \`horizontalSpacing\` 1`] = `
 <div
-  className="container_gxo12q-o_O-container_horizontalSpacing_kelmes"
+  className="container container_horizontalSpacing"
 >
   <div
-    className="table_cv8yzh"
+    className="table"
   >
     <div
-      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -108,13 +108,13 @@ exports[`<MessageItem> renders a message item with \`horizontalSpacing\` 1`] = `
       />
     </div>
     <div
-      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+      className="messageBody tableCell"
     >
       <Spacing
         bottom={0.5}
       >
         <span
-          className="messageTitle_ft2sf8"
+          className="messageTitle"
         >
           <Text
             bold={true}
@@ -132,7 +132,7 @@ exports[`<MessageItem> renders a message item with \`horizontalSpacing\` 1`] = `
         </Text>
       </Spacing>
       <div
-        className="messageBodyContent_1dcp06s"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -143,13 +143,13 @@ exports[`<MessageItem> renders a message item with \`horizontalSpacing\` 1`] = `
 
 exports[`<MessageItem> renders a message item with \`important\` 1`] = `
 <div
-  className="container_gxo12q-o_O-container_withStripe_3ecezm-o_O-container_important_zh0amp"
+  className="container container_withStripe container_important"
 >
   <div
-    className="table_cv8yzh"
+    className="table"
   >
     <div
-      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -158,13 +158,13 @@ exports[`<MessageItem> renders a message item with \`important\` 1`] = `
       />
     </div>
     <div
-      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+      className="messageBody tableCell"
     >
       <Spacing
         bottom={0.5}
       >
         <span
-          className="messageTitle_ft2sf8"
+          className="messageTitle"
         >
           <Text
             bold={true}
@@ -182,7 +182,7 @@ exports[`<MessageItem> renders a message item with \`important\` 1`] = `
         </Text>
       </Spacing>
       <div
-        className="messageBodyContent_1dcp06s"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -193,13 +193,13 @@ exports[`<MessageItem> renders a message item with \`important\` 1`] = `
 
 exports[`<MessageItem> renders a message item with \`info\` stripe 1`] = `
 <div
-  className="container_gxo12q-o_O-container_withStripe_3ecezm-o_O-container_info_1jxyydc"
+  className="container container_withStripe container_info"
 >
   <div
-    className="table_cv8yzh"
+    className="table"
   >
     <div
-      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -208,13 +208,13 @@ exports[`<MessageItem> renders a message item with \`info\` stripe 1`] = `
       />
     </div>
     <div
-      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+      className="messageBody tableCell"
     >
       <Spacing
         bottom={0.5}
       >
         <span
-          className="messageTitle_ft2sf8"
+          className="messageTitle"
         >
           <Text
             bold={true}
@@ -232,7 +232,7 @@ exports[`<MessageItem> renders a message item with \`info\` stripe 1`] = `
         </Text>
       </Spacing>
       <div
-        className="messageBodyContent_1dcp06s"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -243,13 +243,13 @@ exports[`<MessageItem> renders a message item with \`info\` stripe 1`] = `
 
 exports[`<MessageItem> renders a message item with \`verticalSpacing\` 1`] = `
 <div
-  className="container_gxo12q-o_O-container_verticalSpacing_170i3mz"
+  className="container container_verticalSpacing"
 >
   <div
-    className="table_cv8yzh"
+    className="table"
   >
     <div
-      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -258,13 +258,13 @@ exports[`<MessageItem> renders a message item with \`verticalSpacing\` 1`] = `
       />
     </div>
     <div
-      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+      className="messageBody tableCell"
     >
       <Spacing
         bottom={0.5}
       >
         <span
-          className="messageTitle_ft2sf8"
+          className="messageTitle"
         >
           <Text
             bold={true}
@@ -282,7 +282,7 @@ exports[`<MessageItem> renders a message item with \`verticalSpacing\` 1`] = `
         </Text>
       </Spacing>
       <div
-        className="messageBodyContent_1dcp06s"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -293,13 +293,13 @@ exports[`<MessageItem> renders a message item with \`verticalSpacing\` 1`] = `
 
 exports[`<MessageItem> renders a message item with \`warning\` stripe 1`] = `
 <div
-  className="container_gxo12q-o_O-container_withStripe_3ecezm-o_O-container_warning_ver4t1"
+  className="container container_withStripe container_warning"
 >
   <div
-    className="table_cv8yzh"
+    className="table"
   >
     <div
-      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -308,13 +308,13 @@ exports[`<MessageItem> renders a message item with \`warning\` stripe 1`] = `
       />
     </div>
     <div
-      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+      className="messageBody tableCell"
     >
       <Spacing
         bottom={0.5}
       >
         <span
-          className="messageTitle_ft2sf8"
+          className="messageTitle"
         >
           <Text
             bold={true}
@@ -332,7 +332,7 @@ exports[`<MessageItem> renders a message item with \`warning\` stripe 1`] = `
         </Text>
       </Spacing>
       <div
-        className="messageBodyContent_1dcp06s"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -343,13 +343,13 @@ exports[`<MessageItem> renders a message item with \`warning\` stripe 1`] = `
 
 exports[`<MessageItem> renders a sending overlay when message is sending 1`] = `
 <div
-  className="container_gxo12q"
+  className="container"
 >
   <div
-    className="table_cv8yzh"
+    className="table"
   >
     <div
-      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -358,13 +358,13 @@ exports[`<MessageItem> renders a sending overlay when message is sending 1`] = `
       />
     </div>
     <div
-      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+      className="messageBody tableCell"
     >
       <Spacing
         bottom={0.5}
       >
         <span
-          className="messageTitle_ft2sf8"
+          className="messageTitle"
         >
           <Text
             bold={true}
@@ -382,27 +382,27 @@ exports[`<MessageItem> renders a sending overlay when message is sending 1`] = `
         </Text>
       </Spacing>
       <div
-        className="messageBodyContent_1dcp06s"
+        className="messageBodyContent"
       >
         Hello world
       </div>
     </div>
   </div>
   <div
-    className="sendingOverlay_f0q3k7"
+    className="sendingOverlay"
   />
 </div>
 `;
 
 exports[`<MessageItem> renders a source when given 1`] = `
 <div
-  className="container_gxo12q"
+  className="container"
 >
   <div
-    className="table_cv8yzh"
+    className="table"
   >
     <div
-      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -411,13 +411,13 @@ exports[`<MessageItem> renders a source when given 1`] = `
       />
     </div>
     <div
-      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+      className="messageBody tableCell"
     >
       <Spacing
         bottom={0.5}
       >
         <span
-          className="messageTitle_ft2sf8"
+          className="messageTitle"
         >
           <Text
             bold={true}
@@ -435,7 +435,7 @@ exports[`<MessageItem> renders a source when given 1`] = `
         </Text>
       </Spacing>
       <div
-        className="messageBodyContent_1dcp06s"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -446,13 +446,13 @@ exports[`<MessageItem> renders a source when given 1`] = `
 
 exports[`<MessageItem> renders a title tag when given 1`] = `
 <div
-  className="container_gxo12q"
+  className="container"
 >
   <div
-    className="table_cv8yzh"
+    className="table"
   >
     <div
-      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -461,13 +461,13 @@ exports[`<MessageItem> renders a title tag when given 1`] = `
       />
     </div>
     <div
-      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+      className="messageBody tableCell"
     >
       <Spacing
         bottom={0.5}
       >
         <span
-          className="messageTitle_ft2sf8"
+          className="messageTitle"
         >
           <Text
             bold={true}
@@ -477,7 +477,7 @@ exports[`<MessageItem> renders a title tag when given 1`] = `
           </Text>
         </span>
         <span
-          className="tag_5ns9qb"
+          className="tag"
         >
           <Text
             inline={true}
@@ -496,7 +496,7 @@ exports[`<MessageItem> renders a title tag when given 1`] = `
         </Text>
       </Spacing>
       <div
-        className="messageBodyContent_1dcp06s"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -507,13 +507,13 @@ exports[`<MessageItem> renders a title tag when given 1`] = `
 
 exports[`<MessageItem> renders an email when given 1`] = `
 <div
-  className="container_gxo12q"
+  className="container"
 >
   <div
-    className="table_cv8yzh"
+    className="table"
   >
     <div
-      className="profilePhoto_h9am9q-o_O-tableCell_6x7qes"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -522,13 +522,13 @@ exports[`<MessageItem> renders an email when given 1`] = `
       />
     </div>
     <div
-      className="messageBody_14846yz-o_O-tableCell_6x7qes"
+      className="messageBody tableCell"
     >
       <Spacing
         bottom={0.5}
       >
         <span
-          className="messageTitle_ft2sf8"
+          className="messageTitle"
         >
           <Text
             bold={true}
@@ -557,7 +557,7 @@ exports[`<MessageItem> renders an email when given 1`] = `
         </Text>
       </Spacing>
       <div
-        className="messageBodyContent_1dcp06s"
+        className="messageBodyContent"
       >
         Hello world
       </div>

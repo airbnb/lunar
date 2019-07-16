@@ -16,25 +16,30 @@ describe('<ResponsiveImage />', () => {
 
     it('renders the shimmer component while the image is loading', () => {
       const wrapper = shallowWithStyles(<ResponsiveImage shimmer={shimmer} {...props} />);
-      expect(wrapper).toMatchSnapshot();
+
+      expect(wrapper.find(Shimmer)).toHaveLength(1);
     });
 
     it('renders the image with state={ imageLoaded: true }', () => {
       const wrapper = shallowWithStyles(<ResponsiveImage shimmer={shimmer} {...props} />);
+
       wrapper.setState({ imageLoaded: true });
-      expect(wrapper).toMatchSnapshot();
+
+      expect(wrapper.find(Shimmer)).toHaveLength(0);
     });
   });
 
   describe('without a shimmer prop', () => {
     it('renders the image element while the image is loading', () => {
       const wrapper = shallowWithStyles(<ResponsiveImage {...props} />);
-      expect(wrapper).toMatchSnapshot();
+
+      expect(wrapper.find('img')).toHaveLength(1);
     });
 
     it('renders the image element with state={ imageLoaded: true }', () => {
       const wrapper = shallowWithStyles(<ResponsiveImage {...props} />);
-      expect(wrapper).toMatchSnapshot();
+
+      expect(wrapper.find('img')).toHaveLength(1);
     });
   });
 });

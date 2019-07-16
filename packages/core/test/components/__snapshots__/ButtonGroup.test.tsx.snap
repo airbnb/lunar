@@ -1,106 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ButtonGroup /> handles buttons that return falsy values 1`] = `
-<div
-  className="buttonGroup_5kaapu-o_O-buttonGroup_stacked_ohgw5r"
->
-  <div
-    className="cell_stacked_123jc7u"
-    key=".1"
-  >
-    <Button>
-      Two
-    </Button>
-  </div>
-</div>
-`;
-
 exports[`<ButtonGroup /> handles components that return a falsy value 1`] = `
 <div
-  className="buttonGroup_5kaapu-o_O-buttonGroup_stacked_ohgw5r"
+  className="buttonGroup buttonGroup_stacked"
 >
   <div
-    className="cell_stacked_123jc7u"
+    className="cell_stacked"
     key=".0"
   >
     <FakeButton />
-  </div>
-</div>
-`;
-
-exports[`<ButtonGroup /> renders a single button 1`] = `
-<div
-  className="buttonGroup_5kaapu"
->
-  <div
-    className="cell_1cks6un"
-    key=".0"
-  >
-    <Button>
-      One
-    </Button>
-  </div>
-</div>
-`;
-
-exports[`<ButtonGroup /> renders buttons 1`] = `
-<div
-  className="buttonGroup_5kaapu"
->
-  <div
-    className="cell_1cks6un"
-    key=".0"
-  >
-    <Button>
-      One
-    </Button>
-  </div>
-  <div
-    className="cell_1cks6un"
-    key=".1"
-  >
-    <Button>
-      Two
-    </Button>
-  </div>
-  <div
-    className="cell_1cks6un"
-    key=".2"
-  >
-    <Button>
-      Three
-    </Button>
-  </div>
-</div>
-`;
-
-exports[`<ButtonGroup /> renders buttons stacked 1`] = `
-<div
-  className="buttonGroup_5kaapu-o_O-buttonGroup_stacked_ohgw5r"
->
-  <div
-    className="cell_stacked_123jc7u"
-    key=".0"
-  >
-    <Button>
-      One
-    </Button>
-  </div>
-  <div
-    className="cell_stacked_123jc7u"
-    key=".1"
-  >
-    <Button>
-      Two
-    </Button>
-  </div>
-  <div
-    className="cell_stacked_123jc7u"
-    key=".2"
-  >
-    <Button>
-      Three
-    </Button>
   </div>
 </div>
 `;

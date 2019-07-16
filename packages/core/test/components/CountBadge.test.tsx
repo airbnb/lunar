@@ -12,13 +12,13 @@ describe('<CountBadge />', () => {
   it('renders default', () => {
     const wrapper = shallowWithStyles(<CountBadge {...props} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.isEmptyRender()).toBe(false);
   });
 
   it('does not render when value is 0', () => {
     const wrapper = shallowWithStyles(<CountBadge {...props} value={0} />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.isEmptyRender()).toBe(true);
   });
 
   it('handles waggle class based on interval setting', () => {

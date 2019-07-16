@@ -1,11 +1,12 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { mountWithStyles } from '@airbnb/lunar-test-utils';
 import DangerButton from '../../src/components/DangerButton';
+import ButtonOrLink from '../../src/components/private/ButtonOrLink';
 
 describe('<DangerButton />', () => {
   it('renders a primary button', () => {
-    const wrapper = shallowWithStyles(<DangerButton>Button</DangerButton>).dive();
+    const wrapper = mountWithStyles(<DangerButton>Button</DangerButton>);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(ButtonOrLink)).toHaveLength(1);
   });
 });

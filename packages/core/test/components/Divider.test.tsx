@@ -6,7 +6,7 @@ describe('<Divider />', () => {
   it('renders a divider', () => {
     const wrapper = shallowWithStyles(<Divider />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('div').prop('className')).toBe('divider');
   });
 
   it('can pass top and bottom to spacing', () => {
