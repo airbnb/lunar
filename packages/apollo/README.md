@@ -3,13 +3,13 @@
 Provides out of the box support for GraphQL, powered by [Apollo](https://www.apollographql.com).
 
 ```bash static
-npm install @airbnb/lunar-apollo --save
+yarn add @airbnb/lunar-apollo
 ```
 
 This package relies on GraphQL related packages to also be installed.
 
 ```bash static
-npm install graphql graphql-tag --save
+yarn add graphql graphql-tag
 ```
 
 ## Setup

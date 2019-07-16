@@ -3,11 +3,11 @@
 Provides integrated [NewRelic](https://newrelic.com/) and [Sentry](https://sentry.io/welcome/)
 insights and metrics logging.
 
-This will also set the Google Analytics `userId` if `ga` is global and `userID` is passed to 
+This will also set the Google Analytics `userId` if `ga` is global and `userID` is passed to
 `Metrics.initialize`.
 
 ```bash static
-npm install @airbnb/lunar-metrics --save
+yarn add @airbnb/lunar-metrics
 ```
 
 ## Setup

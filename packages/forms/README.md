@@ -4,7 +4,7 @@ Provides a robust form management layer powered by
 [final-form](https://github.com/final-form/final-form).
 
 ```bash static
-npm install @airbnb/lunar-forms --save
+yarn add @airbnb/lunar-forms
 ```
 
 ## Usage

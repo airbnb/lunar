@@ -2,17 +2,16 @@
 
 ## 🛠 Developing
 
-Lunar at minimum requires Node v8.9 and NPM v6.8. To begin, run `npm install` and
-`npm run bootstrap`.
+Lunar at minimum requires Node v8.9 and Yarn v1.16. To begin, run `yarn install`.
 
-- Builds can be ran with `npm run build`.
-- Testing can be ran with `npm run jest`.
-- Linting can be ran with `npm run lint`.
-- Type checking can be ran with `npm run type`.
-- To run the 3 previous tasks, use `npm run test`.
-- Styleguide can be previewed with `npm run sg` (it spins up a localhost server).
+- Builds can be ran with `yarn run build`.
+- Testing can be ran with `yarn run jest`.
+- Linting can be ran with `yarn run lint`.
+- Type checking can be ran with `yarn run type`.
+- To run the 3 previous tasks, use `yarn run test`.
+- Styleguide can be previewed with `yarn run sg` (it spins up a localhost server).
 
-All code is formatted using Prettier with `npm run prettier`.
+All code is formatted using Prettier with `yarn run prettier`.
 
 ## 📄 Pull Request Titles
 
@@ -67,7 +66,7 @@ you'll encounter what's called "dependency hell" within NPM/Yarn. One or all of 
 outcomes may happen:
 
 - NPM has a difficult time resolving the dependency graph correctly, resulting in failed
-  `npm install`s and builds.
+  `yarn install`s and builds.
 - When peer dependencies are involved, the consuming application is blocked from updating their own
   dependencies until all packages are on the same major version. This requires upstream work and a
   heavier migration cost.
@@ -82,7 +81,7 @@ resource allocation.
 ## 📈 Code Coverage
 
 All files require tests, and all tests must pass a minimum of _85%_ code coverage, and a global test
-suite coverage of _85%_. To verify code coverage status, simply run `npm run jest`, which collects
+suite coverage of _85%_. To verify code coverage status, simply run `yarn run jest`, which collects
 coverage automatically. You'll see a summary like the following when the process is complete.
 
 ```
@@ -123,7 +122,7 @@ documenting of components to properly infer prop types.
   HOC).
 - Stories must be placed within a `<component>.story.tsx` file, in the root of the components
   folder.
-- When running `npm run sg`, there should be _no_ errors/warnings in your terminal or browser
+- When running `yarn run sg`, there should be _no_ errors/warnings in your terminal or browser
   console.
 - All comments, descriptions, and example text must be in sentence case with proper capitalization
   and punctuation (please end with a period).

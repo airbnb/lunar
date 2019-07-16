@@ -3,7 +3,7 @@
 Collection of Material design UI icons.
 
 ```bash static
-npm install @airbnb/lunar-icons --save
+yarn add @airbnb/lunar-icons
 ```
 
 ## Usage
