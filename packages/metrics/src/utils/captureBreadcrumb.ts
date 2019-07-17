@@ -1,5 +1,3 @@
-import Raven from 'raven-js';
+import { addBreadcrumb } from '@sentry/browser';
 
-export default function captureBreadcrumb(options: Raven.Breadcrumb) {
-  Raven.captureBreadcrumb(options);
-}
+export default addBreadcrumb;

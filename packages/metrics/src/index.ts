@@ -1,4 +1,4 @@
-import Raven from 'raven-js';
+import { init as initSentry, configureScope, Scope } from '@sentry/browser';
 import hasNewRelic from './utils/hasNewRelic';
 import hasGoogleAnalytics from './utils/hasGoogleAnalytics';
 
@@ -10,6 +10,7 @@ export type Settings = {
   sentryKey?: string;
   sentryProject?: string;
   userID?: number | null;
+  onSentryScope?: ((scope: Scope) => void) | null;
 };
 
 class Metrics {
@@ -19,6 +20,7 @@ class Metrics {
     sentryKey: '',
     sentryProject: '',
     userID: null,
+    onSentryScope: null,
   };
 
   initialize(settings?: Settings) {
@@ -62,27 +64,37 @@ class Metrics {
   }
 
   bootstrapSentry() {
-    const { context, ignoreErrors, sentryKey, sentryProject, userID } = this.settings;
+    const {
+      context,
+      ignoreErrors,
+      sentryKey,
+      sentryProject,
+      userID,
+      onSentryScope,
+    } = this.settings;
+    const { host, protocol } = global.location;
 
     if (!sentryKey || !sentryProject) {
       return;
     }
 
-    const ravenHost = `${global.location.protocol}//${sentryKey}@${global.location.host}`;
-    const ravenPath = `/proxy/sentry/${sentryProject}`;
-
-    Raven.config(`${ravenHost}${ravenPath}`, {
+    initSentry({
+      dsn: `${protocol}//${sentryKey}@${host}/proxy/sentry/${sentryProject}`,
+      enabled: true,
+      environment: process.env.NODE_ENV,
       ignoreErrors,
       release: process.env.SENTRY_RELEASE,
-      environment: process.env.NODE_ENV,
-    })
-      .setUserContext({
-        browserLocale: global.navigator.language,
-        userAgent: global.navigator.userAgent,
-        userID: userID || 'N/A',
-        ...context,
-      })
-      .install();
+    });
+
+    configureScope(scope => {
+      scope.setUser({ id: userID ? String(userID) : 'N/A' });
+      scope.setTag('browser.locale', global.navigator.language);
+      scope.setExtras(context);
+
+      if (onSentryScope) {
+        onSentryScope(scope);
+      }
+    });
   }
 
   bootstrapGoogleAnalyticsUser() {

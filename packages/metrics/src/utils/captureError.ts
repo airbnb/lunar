@@ -1,10 +1,7 @@
-import Raven from 'raven-js';
+import { captureException } from '@sentry/browser';
 import hasNewRelic from './hasNewRelic';
 
-export default function captureError(
-  error?: string | Event | Error | null,
-  options: Raven.RavenOptions = {},
-) {
+export default function captureError(error?: string | Event | Error | null) {
   if (!error) {
     return;
   }
@@ -23,5 +20,5 @@ export default function captureError(
     newrelic.noticeError(errorInstance);
   }
 
-  Raven.captureException(errorInstance, options);
+  captureException(errorInstance);
 }
