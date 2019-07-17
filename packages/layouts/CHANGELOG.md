@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.2.3 - 2019-07-17
+
+#### 🐞 Fixes
+
+- Remove `elementType` prop type usage. (#124) ([95572bd](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/95572bd)), closes [#124](https://github.com/airbnb/lunar/tree/master/packages/layouts/issues/124)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
 ### 2.2.2 - 2019-07-16
 
 #### 🛠 Internals
