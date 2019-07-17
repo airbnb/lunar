@@ -31,13 +31,13 @@ class Metrics {
 
     this.bootstrapNewRelic();
     this.bootstrapSentry();
-    this.bootstrapGoogleAnalyticsUser();
+    this.bootstrapGoogleAnalytics();
   }
 
   bootstrapNewRelic() {
     const { context, ignoreErrors, userID } = this.settings;
 
-    if (!hasNewRelic()) {
+    if (!this.isNewRelicEnabled()) {
       return;
     }
 
@@ -67,7 +67,7 @@ class Metrics {
     const { context, ignoreErrors, sentry, sentryKey, sentryProject, userID } = this.settings;
     const { host, protocol } = global.location;
 
-    if (!(sentry && sentry.dsn) && !(sentryKey && sentryProject)) {
+    if (!this.isSentryEnabled()) {
       return;
     }
 
@@ -87,10 +87,28 @@ class Metrics {
     });
   }
 
-  bootstrapGoogleAnalyticsUser() {
-    if (hasGoogleAnalytics() && this.settings.userID) {
+  bootstrapGoogleAnalytics() {
+    if (!this.isGoogleAnalyticsEnabled()) {
+      return;
+    }
+
+    if (this.settings.userID) {
       ga('set', 'userId', `${this.settings.userID}`);
     }
+  }
+
+  isGoogleAnalyticsEnabled() {
+    return hasGoogleAnalytics();
+  }
+
+  isNewRelicEnabled() {
+    return hasNewRelic();
+  }
+
+  isSentryEnabled() {
+    const { sentry, sentryKey, sentryProject } = this.settings;
+
+    return (sentry && sentry.dsn) || (sentryKey && sentryProject);
   }
 }
 

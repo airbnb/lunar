@@ -1,3 +1,8 @@
-import { addBreadcrumb } from '@sentry/browser';
+import { addBreadcrumb, Breadcrumb } from '@sentry/browser';
+import Metrics from '..';
 
-export default addBreadcrumb;
+export default function captureBreadcrumb(crumb: Breadcrumb) {
+  if (Metrics.isSentryEnabled()) {
+    addBreadcrumb(crumb);
+  }
+}

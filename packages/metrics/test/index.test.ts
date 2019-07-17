@@ -1,21 +1,11 @@
 import { init, configureScope } from '@sentry/browser';
-import Metrics, { Settings } from '../src';
+import Metrics from '../src';
+import { settings } from './setup';
 
 jest.mock('@sentry/browser');
 
-const settings: Required<Settings> = {
-  context: {},
-  ignoreErrors: [],
-  sentry: {},
-  sentryKey: '',
-  sentryProject: '',
-  userID: null,
-};
-
 describe('Metrics', () => {
   beforeEach(() => {
-    Metrics.settings = { ...settings };
-
     (init as jest.Mock).mockClear();
     (configureScope as jest.Mock).mockClear();
 
@@ -23,10 +13,6 @@ describe('Metrics', () => {
     global.newrelic.setErrorHandler = jest.fn();
 
     global.ga = (jest.fn() as unknown) as UniversalAnalytics.ga;
-  });
-
-  afterEach(() => {
-    Metrics.settings = { ...settings };
   });
 
   describe('initialize()', () => {
@@ -41,7 +27,7 @@ describe('Metrics', () => {
         ignoreErrors: [],
         sentry: {},
         sentryKey: 'abc',
-        sentryProject: '',
+        sentryProject: 'lunar',
         userID: null,
       });
     });
@@ -49,17 +35,17 @@ describe('Metrics', () => {
     it('calls boostrap functions', () => {
       const nrBoot = jest.spyOn(Metrics, 'bootstrapNewRelic');
       const sentryBoot = jest.spyOn(Metrics, 'bootstrapSentry');
-      const bootstrapGoogleAnalyticsUser = jest.spyOn(Metrics, 'bootstrapGoogleAnalyticsUser');
+      const bootstrapGoogleAnalytics = jest.spyOn(Metrics, 'bootstrapGoogleAnalytics');
 
       Metrics.initialize();
 
       expect(nrBoot).toHaveBeenCalled();
       expect(sentryBoot).toHaveBeenCalled();
-      expect(bootstrapGoogleAnalyticsUser).toHaveBeenCalled();
+      expect(bootstrapGoogleAnalytics).toHaveBeenCalled();
 
       nrBoot.mockRestore();
       sentryBoot.mockRestore();
-      bootstrapGoogleAnalyticsUser.mockRestore();
+      bootstrapGoogleAnalytics.mockRestore();
     });
   });
 
@@ -172,10 +158,10 @@ describe('Metrics', () => {
     });
   });
 
-  describe('bootstrapGoogleAnalyticsUser', () => {
+  describe('bootstrapGoogleAnalytics', () => {
     it('sets the google analytics user if present', () => {
       Metrics.settings.userID = 12355;
-      Metrics.bootstrapGoogleAnalyticsUser();
+      Metrics.bootstrapGoogleAnalytics();
 
       expect(global.ga).toBeCalledTimes(1);
       expect(global.ga).toBeCalledWith('set', 'userId', '12355');
@@ -183,7 +169,7 @@ describe('Metrics', () => {
 
     it('does not attempt to set the google analytics user if the user ID is not present', () => {
       Metrics.settings.userID = null;
-      Metrics.bootstrapGoogleAnalyticsUser();
+      Metrics.bootstrapGoogleAnalytics();
 
       expect(global.ga).not.toHaveBeenCalled();
     });
@@ -193,7 +179,7 @@ describe('Metrics', () => {
       global.ga = undefined;
 
       expect(() => {
-        Metrics.bootstrapGoogleAnalyticsUser();
+        Metrics.bootstrapGoogleAnalytics();
       }).not.toThrow();
     });
   });

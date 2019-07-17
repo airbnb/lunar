@@ -1,14 +1,10 @@
 import { captureException, withScope } from '@sentry/browser';
-import hasNewRelic from './hasNewRelic';
-
-type Params = { [key: string]: unknown };
+import { CaptureOptions } from '../types';
+import Metrics from '..';
 
 export default function captureError(
   error?: string | Event | Error | null,
-  options: {
-    context?: Params;
-    extra?: Params;
-  } = {},
+  options: CaptureOptions = {},
 ) {
   if (!error) {
     return;
@@ -24,19 +20,31 @@ export default function captureError(
     errorInstance = error;
   }
 
-  if (hasNewRelic()) {
+  if (Metrics.isNewRelicEnabled()) {
     newrelic.noticeError(errorInstance);
   }
 
-  withScope(scope => {
-    if (options.context) {
-      scope.setContext(errorInstance.name, options.context);
-    }
+  if (Metrics.isSentryEnabled()) {
+    withScope(scope => {
+      if (options.contexts) {
+        Object.keys(options.contexts).forEach(key => {
+          scope.setContext(key, options.contexts![key]);
+        });
+      }
 
-    if (options.extra) {
-      scope.setExtras(options.extra);
-    }
+      if (options.extra) {
+        scope.setExtras(options.extra);
+      }
 
-    captureException(errorInstance);
-  });
+      if (options.fingerprint) {
+        scope.setFingerprint(options.fingerprint);
+      }
+
+      if (options.tags) {
+        scope.setTags(options.tags);
+      }
+
+      captureException(errorInstance);
+    });
+  }
 }

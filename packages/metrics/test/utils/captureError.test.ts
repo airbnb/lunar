@@ -1,5 +1,6 @@
 import { captureException, withScope } from '@sentry/browser';
 import captureError from '../../src/utils/captureError';
+import '../setup';
 
 jest.mock('@sentry/browser');
 
@@ -10,6 +11,8 @@ describe('captureError()', () => {
     scope = {
       setContext: jest.fn(),
       setExtras: jest.fn(),
+      setFingerprint: jest.fn(),
+      setTags: jest.fn(),
     };
 
     global.newrelic.noticeError = jest.fn();
@@ -51,15 +54,27 @@ describe('captureError()', () => {
     expect(global.newrelic.noticeError).toHaveBeenCalledWith(new Error('Hi'));
   });
 
-  it('logs `context` information', () => {
-    captureError('Hi', { context: { foo: 'bar' } });
+  it('logs `contexts` information', () => {
+    captureError('Hi', { contexts: { name: { foo: 'bar' } } });
 
-    expect(scope.setContext).toHaveBeenCalledWith('Error', { foo: 'bar' });
+    expect(scope.setContext).toHaveBeenCalledWith('name', { foo: 'bar' });
   });
 
   it('logs `extra` information', () => {
     captureError('Hi', { extra: { foo: 'bar' } });
 
     expect(scope.setExtras).toHaveBeenCalledWith({ foo: 'bar' });
+  });
+
+  it('logs `fingerprint` information', () => {
+    captureError('Hi', { fingerprint: ['foo'] });
+
+    expect(scope.setFingerprint).toHaveBeenCalledWith(['foo']);
+  });
+
+  it('logs `tags` information', () => {
+    captureError('Hi', { tags: { foo: 'bar' } });
+
+    expect(scope.setTags).toHaveBeenCalledWith({ foo: 'bar' });
   });
 });
