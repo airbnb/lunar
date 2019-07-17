@@ -1,6 +1,5 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
-import SideBar from '../SideBar';
 
 const styleSheet: StyleSheet = ({ color }) => ({
   shell: {
