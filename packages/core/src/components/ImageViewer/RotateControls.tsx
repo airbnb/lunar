@@ -14,16 +14,16 @@ export type Props = {
 export default function RotateControls(props: Props) {
   const { onSetRotation, rotation = 0 } = props;
 
-  const rotateLeft = () => onSetRotation(rotation - 90 < 0 ? 270 : rotation - 90);
-  const rotateRight = () => onSetRotation((rotation + 90) % 360);
+  const handleRotateLeft = () => onSetRotation(rotation - 90 < 0 ? 270 : rotation - 90);
+  const handleRotateRight = () => onSetRotation((rotation + 90) % 360);
 
   return (
     <div>
       <ButtonGroup>
-        <IconButton onClick={rotateLeft}>
+        <IconButton onClick={handleRotateLeft}>
           <IconRotateLeft accessibilityLabel="Rotate counter clockwise" size="2em" />
         </IconButton>
-        <IconButton onClick={rotateRight}>
+        <IconButton onClick={handleRotateRight}>
           <IconRotateRight accessibilityLabel="Rotate clockwise" size="2em" />
         </IconButton>
       </ButtonGroup>
