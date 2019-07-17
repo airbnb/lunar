@@ -1,7 +1,7 @@
-import Raven from 'raven-js';
+import { captureException } from '@sentry/browser';
 import captureError from '../../src/utils/captureError';
 
-jest.mock('raven-js');
+jest.mock('@sentry/browser');
 
 describe('captureError()', () => {
   beforeEach(() => {
@@ -11,7 +11,7 @@ describe('captureError()', () => {
   it('does nothing if no error', () => {
     captureError(null);
 
-    expect(Raven.captureException).not.toHaveBeenCalled();
+    expect(captureException).not.toHaveBeenCalled();
     expect(global.newrelic.noticeError).not.toHaveBeenCalled();
   });
 
@@ -20,7 +20,7 @@ describe('captureError()', () => {
 
     captureError(error);
 
-    expect(Raven.captureException).toHaveBeenCalledWith(error, {});
+    expect(captureException).toHaveBeenCalledWith(error);
     expect(global.newrelic.noticeError).toHaveBeenCalledWith(error);
   });
 
@@ -31,14 +31,14 @@ describe('captureError()', () => {
 
     const error = new Error(`Captured an event: ${String(event)}`);
 
-    expect(Raven.captureException).toHaveBeenCalledWith(error, {});
+    expect(captureException).toHaveBeenCalledWith(error);
     expect(global.newrelic.noticeError).toHaveBeenCalledWith(error);
   });
 
   it('works with an error message', () => {
     captureError('Hi');
 
-    expect(Raven.captureException).toHaveBeenCalledWith(new Error('Hi'), {});
+    expect(captureException).toHaveBeenCalledWith(new Error('Hi'));
     expect(global.newrelic.noticeError).toHaveBeenCalledWith(new Error('Hi'));
   });
 });

@@ -1,18 +1,20 @@
-import Raven from 'raven-js';
+import { init, configureScope } from '@sentry/browser';
 import Metrics, { Settings } from '../src';
 
-jest.mock('raven-js', () => {
-  const ravenClass: any = {
-    captureBreadcrumb: jest.fn(),
-    captureException: jest.fn(),
-  };
+jest.mock('@sentry/browser');
 
-  ravenClass.config = jest.fn().mockReturnValue(ravenClass);
-  ravenClass.setUserContext = jest.fn().mockReturnValue(ravenClass);
-  ravenClass.install = jest.fn().mockReturnValue(ravenClass);
+// jest.mock('raven-js', () => {
+//   const ravenClass: any = {
+//     captureBreadcrumb: jest.fn(),
+//     captureException: jest.fn(),
+//   };
 
-  return ravenClass;
-});
+//   ravenClass.config = jest.fn().mockReturnValue(ravenClass);
+//   ravenClass.setUserContext = jest.fn().mockReturnValue(ravenClass);
+//   ravenClass.install = jest.fn().mockReturnValue(ravenClass);
+
+//   return ravenClass;
+// });
 
 const settings: Required<Settings> = {
   context: {},
@@ -26,8 +28,7 @@ describe('Metrics', () => {
   beforeEach(() => {
     Metrics.settings = { ...settings };
 
-    (Raven.config as jest.Mock).mockClear();
-    (Raven.setUserContext as jest.Mock).mockClear();
+    (init as jest.Mock).mockClear();
 
     global.newrelic.setCustomAttribute = jest.fn();
     global.newrelic.setErrorHandler = jest.fn();
@@ -105,7 +106,17 @@ describe('Metrics', () => {
   });
 
   describe('bootstrapSentry()', () => {
+    let scope: any;
+
     beforeEach(() => {
+      scope = {
+        setUser: jest.fn(),
+        setTag: jest.fn(),
+        setExtras: jest.fn(),
+      };
+
+      (configureScope as jest.Mock).mockImplementation((cb: any) => cb(scope));
+
       Metrics.settings = {
         ...settings,
         sentryKey: '123456',
@@ -117,44 +128,51 @@ describe('Metrics', () => {
     it('configures sentry', () => {
       Metrics.bootstrapSentry();
 
-      expect(Raven.config).toHaveBeenCalledWith(
-        'http://123456@localhost/proxy/sentry/lunar',
+      expect(init).toHaveBeenCalledWith(
         expect.objectContaining({
+          dsn: 'http://123456@localhost/proxy/sentry/lunar',
           environment: 'test',
           ignoreErrors: ['APIError'],
         }),
       );
-      expect(Raven.install).toHaveBeenCalled();
     });
 
     it('doesnt configure if missing key', () => {
       Metrics.settings.sentryKey = '';
       Metrics.bootstrapSentry();
 
-      expect(Raven.config).not.toHaveBeenCalled();
+      expect(init).not.toHaveBeenCalled();
     });
 
     it('sets sentry attributes', () => {
       Metrics.bootstrapSentry();
 
-      expect(Raven.setUserContext).toHaveBeenCalledWith(
-        expect.objectContaining({
-          userID: 'N/A',
-          browserLocale: 'en-US',
-        }),
-      );
+      expect(scope.setUser).toHaveBeenCalledWith({
+        id: 'N/A',
+      });
+
+      expect(scope.setTag).toHaveBeenCalledWith('browser.locale', 'en-US');
     });
 
     it('sets sentry attributes from context', () => {
       Metrics.settings.context = { foo: 'bar', camelCase: 'value' };
       Metrics.bootstrapSentry();
 
-      expect(Raven.setUserContext).toHaveBeenCalledWith(
+      expect(scope.setExtras).toHaveBeenCalledWith(
         expect.objectContaining({
           foo: 'bar',
           camelCase: 'value',
         }),
       );
+    });
+
+    it('calls `onSentryScope`', () => {
+      const spy = jest.fn();
+
+      Metrics.settings.onSentryScope = spy;
+      Metrics.bootstrapSentry();
+
+      expect(spy).toHaveBeenCalledWith(scope);
     });
   });
 

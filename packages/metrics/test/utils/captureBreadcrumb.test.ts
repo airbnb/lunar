@@ -1,14 +1,14 @@
-import Raven from 'raven-js';
+import { addBreadcrumb } from '@sentry/browser';
 import captureBreadcrumb from '../../src/utils/captureBreadcrumb';
 
-jest.mock('raven-js');
+jest.mock('@sentry/browser');
 
 describe('captureBreadcrumb()', () => {
-  it('passes to raven', () => {
+  it('passes to sentry', () => {
     const options = { message: 'bar' };
 
     captureBreadcrumb(options);
 
-    expect(Raven.captureBreadcrumb).toHaveBeenCalledWith(options);
+    expect(addBreadcrumb).toHaveBeenCalledWith(options);
   });
 });
