@@ -26,7 +26,7 @@ describe('<ImageViewer />', () => {
       wrapper.simulate('mousedown', mouseEvent);
 
       expect(wrapper.state('dragging')).toBe(true);
-      expect(wrapper.state('lastMouseLocation')).toBe({ x: 10, y: 10 });
+      expect(wrapper.state('lastMouseLocation')).toMatchObject({ x: 10, y: 10 });
     });
   });
 
@@ -36,7 +36,7 @@ describe('<ImageViewer />', () => {
       wrapper.simulate('mouseup', mouseEvent);
 
       expect(wrapper.state('dragging')).toBe(false);
-      expect(wrapper.state('lastMouseLocation')).toBe({ x: 0, y: 0 });
+      expect(wrapper.state('lastMouseLocation')).toMatchObject({ x: 0, y: 0 });
     });
   });
 
@@ -46,16 +46,24 @@ describe('<ImageViewer />', () => {
       wrapper.simulate('mousemove', mouseEvent);
 
       expect(wrapper.state('dragging')).toBe(false);
-      expect(wrapper.state('lastMouseLocation')).toBe({ x: 0, y: 0 });
+      expect(wrapper.state('lastMouseLocation')).toMatchObject({ x: 0, y: 0 });
     });
 
     it('sets state if dragging', () => {
-      const wrapper = shallowWithStyles(<ImageViewer {...props} />);
-      wrapper.simulate('mousemove', mouseEvent);
+      const eventMap = {
+        mousedown: null,
+      } as any;
 
-      expect(wrapper.state('dragging')).toBe(false);
-      expect(wrapper.state('lastMouseLocation')).toBe({ x: 10, y: 10 });
-      expect(wrapper.state('imageLocation')).toBe({ x: -10, y: -10 });
+      document.addEventListener = jest.fn((event, cb) => {
+        eventMap[event] = cb;
+      });
+
+      const wrapper = shallowWithStyles(<ImageViewer {...props} />);
+      wrapper.simulate('mousedown', mouseEvent);
+      eventMap.mousemove({ ...mouseEvent, pageX: 20, pageY: 20 });
+
+      expect(wrapper.state('lastMouseLocation')).toMatchObject({ x: 20, y: 20 });
+      expect(wrapper.state('imageLocation')).toMatchObject({ x: 10, y: 10 });
     });
   });
 });

@@ -19,15 +19,17 @@ describe('<ZoomControls />', () => {
 
     it('zoom out is disabled when scale is 1', () => {
       const wrapper = shallowWithStyles(<ZoomControls {...props} />);
-      const buttons = wrapper.find(IconButton);
+      const button = wrapper.find(IconButton).at(0);
 
-      expect(buttons[0].prop('disabled')).toBe(true);
+      expect(button.prop('disabled')).toBe(true);
     });
 
     it('zooms out', () => {
       const wrapper = shallowWithStyles(<ZoomControls {...props} scale={1.5} />);
-      const buttons = wrapper.find(IconButton);
-      buttons[0].simulate('click');
+      wrapper
+        .find(IconButton)
+        .at(0)
+        .simulate('click');
 
       expect(setScaleSpy).toHaveBeenCalled();
       expect(setScaleSpy).toHaveBeenCalledWith(1);
@@ -35,29 +37,13 @@ describe('<ZoomControls />', () => {
 
     it('zooms in', () => {
       const wrapper = shallowWithStyles(<ZoomControls {...props} />);
-      const buttons = wrapper.find(IconButton);
-      buttons[1].simulate('click');
+      wrapper
+        .find(IconButton)
+        .at(1)
+        .simulate('click');
 
       expect(setScaleSpy).toHaveBeenCalled();
       expect(setScaleSpy).toHaveBeenCalledWith(1.5);
-    });
-  });
-
-  describe('zoom menu', () => {
-    it('renders a Menu when visible is set to true', () => {
-      const wrapper = shallowWithStyles(<ZoomControls {...props} />);
-      wrapper.setState({ visible: true });
-      expect(wrapper.find(Menu)).toHaveLength(1);
-    });
-
-    it('sets zoom when menu item is clicked', () => {
-      const wrapper = shallowWithStyles(<ZoomControls {...props} />);
-      wrapper.setState({ visible: true });
-      const items = wrapper.find(Item);
-
-      items[0].simulate('click');
-      expect(setScaleSpy).toHaveBeenCalled();
-      expect(setScaleSpy).toHaveBeenCalledWith(1);
     });
   });
 });

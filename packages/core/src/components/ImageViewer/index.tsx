@@ -78,6 +78,7 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
   };
 
   handleMouseMove = (event: MouseEvent) => {
+    console.log('handleMouseMove');
     event.preventDefault();
     this.setState(({ dragging, imageLocation, lastMouseLocation }) => {
       if (dragging) {
