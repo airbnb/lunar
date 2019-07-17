@@ -5,8 +5,8 @@ import space from ':storybook/images/space.jpg';
 import ImageViewer, { ZoomControls, RotateControls } from './ImageViewer';
 
 type ImageViewerDemoProps = {
-  width: string;
-  height: string;
+  width?: string;
+  height?: string;
 };
 
 function ImageViewerDemo({ width, height }: ImageViewerDemoProps) {
@@ -15,8 +15,8 @@ function ImageViewerDemo({ width, height }: ImageViewerDemoProps) {
 
   return (
     <>
-      <RotateControls onSetRotation={value => setRotation(value)} rotation={rotation} />
-      <ZoomControls onSetScale={value => setScale(value)} scale={scale} step={0.5} />
+      <RotateControls onSetRotation={(value: number) => setRotation(value)} rotation={rotation} />
+      <ZoomControls onSetScale={(value: number) => setScale(value)} scale={scale} />
       <ImageViewer
         alt="Testing"
         scale={scale}

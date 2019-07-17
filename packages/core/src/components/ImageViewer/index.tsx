@@ -4,6 +4,9 @@ import ZoomControls from './ZoomControls';
 import RotateControls from './RotateControls';
 // import ResponsiveImage from '../ResponsiveImage';
 
+const SCALE = 1;
+const ROTATION = 0;
+
 export type Props = {
   /** An accessible label. */
   alt: string;
@@ -33,17 +36,18 @@ type Position = {
 };
 
 /** Display a string of text as a heading and or section title. */
-export class ImageViewer extends React.Component<Props & WithStylesProps> {
+export class ImageViewer extends React.Component<Props & WithStylesProps, State> {
   static defaultProps = {
     height: 'none',
-    rotation: 0,
-    scale: 1,
+    rotation: ROTATION,
+    scale: SCALE,
     width: 'none',
   };
 
   state = {
     dragging: false,
     imageLocation: { x: 0, y: 0 },
+    lastMouseLocation: { x: 0, y: 0 },
   };
 
   componentDidMount() {
@@ -54,31 +58,31 @@ export class ImageViewer extends React.Component<Props & WithStylesProps> {
     document.removeEventListener('mousemove', this.handleMouseMove, false);
   }
 
-  handleMouseDown = e => {
-    e.preventDefault();
+  handleMouseDown = (event: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.preventDefault();
     this.setState({
       dragging: true,
       lastMouseLocation: {
-        x: e.pageX,
-        y: e.pageY,
+        x: event.pageX,
+        y: event.pageY,
       },
     });
   };
 
-  handleMouseUp = e => {
-    e.preventDefault();
+  handleMouseUp = (event: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.preventDefault();
     this.setState({
       dragging: false,
-      lastMouseLocation: {},
+      lastMouseLocation: { x: 0, y: 0 },
     });
   };
 
-  handleMouseMove = e => {
-    e.preventDefault();
+  handleMouseMove = (event: MouseEvent) => {
+    event.preventDefault();
     this.setState(({ dragging, imageLocation, lastMouseLocation }) => {
       if (dragging) {
-        const xDiff = lastMouseLocation.x - e.pageX;
-        const yDiff = lastMouseLocation.y - e.pageY;
+        const xDiff = lastMouseLocation.x - event.pageX;
+        const yDiff = lastMouseLocation.y - event.pageY;
 
         return {
           imageLocation: {
@@ -86,13 +90,13 @@ export class ImageViewer extends React.Component<Props & WithStylesProps> {
             y: imageLocation.y - yDiff,
           },
           lastMouseLocation: {
-            x: e.pageX,
-            y: e.pageY,
+            x: event.pageX,
+            y: event.pageY,
           },
         };
       }
 
-      return {};
+      return null;
     });
   };
 
@@ -100,7 +104,7 @@ export class ImageViewer extends React.Component<Props & WithStylesProps> {
     const {
       imageLocation: { x, y },
     } = this.state;
-    const { scale, rotation } = this.props;
+    const { scale = SCALE, rotation = ROTATION } = this.props;
 
     const radian = (rotation / 180) * Math.PI;
     const sinRotation = Math.sin(radian);
@@ -124,26 +128,7 @@ export class ImageViewer extends React.Component<Props & WithStylesProps> {
         onMouseUp={this.handleMouseUp}
         style={{ width, height }}
       >
-        {/* <div style={{ width, height, ...this.getTransformation() }}>
-          <ResponsiveImage
-            contain
-            src={src}
-            alt={alt}
-            borderRadius={0}
-            maxWidth="100%"
-            maxHeight="100%"
-          />
-        </div> */}
-        <img
-          style={{
-            objectFit: 'contain',
-            maxWidth: '100%',
-            maxHeight: '100%',
-            ...this.getTransformation(),
-          }}
-          src={src}
-          alt={alt}
-        />
+        <img className={cx(styles.image)} style={this.getTransformation()} src={src} alt={alt} />
       </div>
     );
   }
@@ -157,12 +142,18 @@ export default withStyles(({ color, font }) => ({
     cursor: 'move',
     display: 'flex',
     align: 'center',
-    alignItems: 'center', // 'flex-start',
+    alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
   },
 
   container_borderless: {
     borderColor: 'transparent',
+  },
+
+  image: {
+    objectFit: 'contain',
+    maxWidth: '100%',
+    maxHeight: '100%',
   },
 }))(ImageViewer);

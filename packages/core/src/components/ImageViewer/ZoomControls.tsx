@@ -32,18 +32,18 @@ export type Props = {
   /** The current scale / zoom level. 1 by default. */
   scale?: number;
   /** Callback when scale / zoom changes */
-  onSetScale: (scale?: number) => void;
+  onSetScale: (scale: number) => void;
 };
 
 export function ZoomControls(props: Props & WithStylesProps) {
   const [visible, setVisible] = useState(false);
   const { onSetScale, scale = 1, cx, styles } = props;
 
-  function getItemOnClick(zoom) {
-    return () => onSetScale(zoom);
+  function getItemOnClick(value: number) {
+    return () => onSetScale(value);
   }
 
-  const zoomOptions = ZOOM_OPTIONS.map(zoom => ({
+  const zoomOptions = ZOOM_OPTIONS.map((zoom: { label: string; scale: number }) => ({
     ...zoom,
     handleOnClick: getItemOnClick(zoom.scale),
   }));

@@ -8,7 +8,7 @@ export type Props = {
   /** The current rotation. 0 by default. */
   rotation?: number;
   /** Callback when rotation changes */
-  onSetRotation: (rotation?: number) => void;
+  onSetRotation: (rotation: number) => void;
 };
 
 export default function RotateControls(props: Props) {
