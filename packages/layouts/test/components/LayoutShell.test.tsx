@@ -4,12 +4,6 @@ import SideBar from '../../src/components/SideBar';
 import LayoutShell from '../../src/components/LayoutShell';
 
 describe('<LayoutShell />', () => {
-  it('errors if invalid `sideBar` is passed', () => {
-    expect(() => {
-      shallow(<LayoutShell sideBar="Sidebar">Child</LayoutShell>);
-    }).toThrowError();
-  });
-
   it('renders with content', () => {
     const wrapper = shallow(<LayoutShell>Child</LayoutShell>);
 
