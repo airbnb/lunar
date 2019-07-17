@@ -1,11 +1,20 @@
-import { captureException } from '@sentry/browser';
+import { captureException, withScope } from '@sentry/browser';
 import captureError from '../../src/utils/captureError';
 
 jest.mock('@sentry/browser');
 
 describe('captureError()', () => {
+  let scope: any;
+
   beforeEach(() => {
+    scope = {
+      setContext: jest.fn(),
+      setExtras: jest.fn(),
+    };
+
     global.newrelic.noticeError = jest.fn();
+
+    (withScope as jest.Mock).mockImplementation(cb => cb(scope));
   });
 
   it('does nothing if no error', () => {
@@ -40,5 +49,17 @@ describe('captureError()', () => {
 
     expect(captureException).toHaveBeenCalledWith(new Error('Hi'));
     expect(global.newrelic.noticeError).toHaveBeenCalledWith(new Error('Hi'));
+  });
+
+  it('logs `context` information', () => {
+    captureError('Hi', { context: { foo: 'bar' } });
+
+    expect(scope.setContext).toHaveBeenCalledWith('Error', { foo: 'bar' });
+  });
+
+  it('logs `extra` information', () => {
+    captureError('Hi', { extra: { foo: 'bar' } });
+
+    expect(scope.setExtras).toHaveBeenCalledWith({ foo: 'bar' });
   });
 });

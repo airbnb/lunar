@@ -1,7 +1,15 @@
-import { captureException } from '@sentry/browser';
+import { captureException, withScope } from '@sentry/browser';
 import hasNewRelic from './hasNewRelic';
 
-export default function captureError(error?: string | Event | Error | null) {
+type Params = { [key: string]: unknown };
+
+export default function captureError(
+  error?: string | Event | Error | null,
+  options: {
+    context?: Params;
+    extra?: Params;
+  } = {},
+) {
   if (!error) {
     return;
   }
@@ -20,5 +28,15 @@ export default function captureError(error?: string | Event | Error | null) {
     newrelic.noticeError(errorInstance);
   }
 
-  captureException(errorInstance);
+  withScope(scope => {
+    if (options.context) {
+      scope.setContext(errorInstance.name, options.context);
+    }
+
+    if (options.extra) {
+      scope.setExtras(options.extra);
+    }
+
+    captureException(errorInstance);
+  });
 }

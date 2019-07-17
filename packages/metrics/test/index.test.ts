@@ -6,11 +6,10 @@ jest.mock('@sentry/browser');
 const settings: Required<Settings> = {
   context: {},
   ignoreErrors: [],
-  sentryDSN: '',
+  sentry: {},
   sentryKey: '',
   sentryProject: '',
   userID: null,
-  onSentryScope: null,
 };
 
 describe('Metrics', () => {
@@ -40,11 +39,10 @@ describe('Metrics', () => {
       expect(Metrics.settings).toEqual({
         context: { foo: 'bar' },
         ignoreErrors: [],
-        sentryDSN: '',
+        sentry: {},
         sentryKey: 'abc',
         sentryProject: '',
         userID: null,
-        onSentryScope: null,
       });
     });
 
@@ -129,13 +127,17 @@ describe('Metrics', () => {
       );
     });
 
-    it('configures sentry with a custom DSN', () => {
-      Metrics.settings.sentryDSN = 'http://123456@localhost/proxy/sentry/lunar';
+    it('configures sentry with a custom DSN and options', () => {
+      Metrics.settings.sentry = {
+        dsn: 'http://123456@localhost/proxy/sentry/lunar',
+        sampleRate: 0,
+      };
       Metrics.bootstrapSentry();
 
       expect(init).toHaveBeenCalledWith(
         expect.objectContaining({
           dsn: 'http://123456@localhost/proxy/sentry/lunar',
+          sampleRate: 0,
         }),
       );
     });
@@ -167,15 +169,6 @@ describe('Metrics', () => {
           camelCase: 'value',
         }),
       );
-    });
-
-    it('calls `onSentryScope`', () => {
-      const spy = jest.fn();
-
-      Metrics.settings.onSentryScope = spy;
-      Metrics.bootstrapSentry();
-
-      expect(spy).toHaveBeenCalledWith(scope);
     });
   });
 

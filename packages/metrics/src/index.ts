@@ -1,4 +1,4 @@
-import { init as initSentry, configureScope, Scope } from '@sentry/browser';
+import { init as initSentry, configureScope, BrowserOptions } from '@sentry/browser';
 import hasNewRelic from './utils/hasNewRelic';
 import hasGoogleAnalytics from './utils/hasGoogleAnalytics';
 
@@ -7,22 +7,20 @@ export type IgnoreError = string | RegExp;
 export type Settings = {
   context?: { [key: string]: unknown };
   ignoreErrors?: IgnoreError[];
-  sentryDSN?: string;
+  sentry?: BrowserOptions;
   sentryKey?: string;
   sentryProject?: string;
   userID?: number | null;
-  onSentryScope?: ((scope: Scope) => void) | null;
 };
 
 class Metrics {
   settings: Required<Settings> = {
     context: {},
     ignoreErrors: [],
-    sentryDSN: '',
+    sentry: {},
     sentryKey: '',
     sentryProject: '',
     userID: null,
-    onSentryScope: null,
   };
 
   initialize(settings?: Settings) {
@@ -66,37 +64,26 @@ class Metrics {
   }
 
   bootstrapSentry() {
-    const {
-      context,
-      ignoreErrors,
-      sentryDSN,
-      sentryKey,
-      sentryProject,
-      userID,
-      onSentryScope,
-    } = this.settings;
+    const { context, ignoreErrors, sentry, sentryKey, sentryProject, userID } = this.settings;
     const { host, protocol } = global.location;
 
-    if (!sentryDSN && (!sentryKey || !sentryProject)) {
+    if (!(sentry && sentry.dsn) && !(sentryKey && sentryProject)) {
       return;
     }
 
     initSentry({
-      dsn: sentryDSN || `${protocol}//${sentryKey}@${host}/${sentryProject}`,
+      dsn: `${protocol}//${sentryKey}@${host}/${sentryProject}`,
       enabled: true,
       environment: process.env.NODE_ENV,
       ignoreErrors,
       release: process.env.SENTRY_RELEASE,
+      ...sentry,
     });
 
     configureScope(scope => {
       scope.setUser({ id: userID ? String(userID) : 'N/A' });
       scope.setTag('browser.locale', global.navigator.language);
       scope.setExtras(context);
-
-      if (onSentryScope) {
-        onSentryScope(scope);
-      }
     });
   }
 
