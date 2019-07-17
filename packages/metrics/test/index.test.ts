@@ -3,25 +3,14 @@ import Metrics, { Settings } from '../src';
 
 jest.mock('@sentry/browser');
 
-// jest.mock('raven-js', () => {
-//   const ravenClass: any = {
-//     captureBreadcrumb: jest.fn(),
-//     captureException: jest.fn(),
-//   };
-
-//   ravenClass.config = jest.fn().mockReturnValue(ravenClass);
-//   ravenClass.setUserContext = jest.fn().mockReturnValue(ravenClass);
-//   ravenClass.install = jest.fn().mockReturnValue(ravenClass);
-
-//   return ravenClass;
-// });
-
 const settings: Required<Settings> = {
   context: {},
   ignoreErrors: [],
+  sentryDSN: '',
   sentryKey: '',
   sentryProject: '',
   userID: null,
+  onSentryScope: null,
 };
 
 describe('Metrics', () => {
@@ -29,6 +18,7 @@ describe('Metrics', () => {
     Metrics.settings = { ...settings };
 
     (init as jest.Mock).mockClear();
+    (configureScope as jest.Mock).mockClear();
 
     global.newrelic.setCustomAttribute = jest.fn();
     global.newrelic.setErrorHandler = jest.fn();
@@ -50,9 +40,11 @@ describe('Metrics', () => {
       expect(Metrics.settings).toEqual({
         context: { foo: 'bar' },
         ignoreErrors: [],
+        sentryDSN: '',
         sentryKey: 'abc',
         sentryProject: '',
         userID: null,
+        onSentryScope: null,
       });
     });
 
@@ -130,9 +122,20 @@ describe('Metrics', () => {
 
       expect(init).toHaveBeenCalledWith(
         expect.objectContaining({
-          dsn: 'http://123456@localhost/proxy/sentry/lunar',
+          dsn: 'http://123456@localhost/lunar',
           environment: 'test',
           ignoreErrors: ['APIError'],
+        }),
+      );
+    });
+
+    it('configures sentry with a custom DSN', () => {
+      Metrics.settings.sentryDSN = 'http://123456@localhost/proxy/sentry/lunar';
+      Metrics.bootstrapSentry();
+
+      expect(init).toHaveBeenCalledWith(
+        expect.objectContaining({
+          dsn: 'http://123456@localhost/proxy/sentry/lunar',
         }),
       );
     });

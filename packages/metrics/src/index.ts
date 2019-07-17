@@ -7,6 +7,7 @@ export type IgnoreError = string | RegExp;
 export type Settings = {
   context?: { [key: string]: unknown };
   ignoreErrors?: IgnoreError[];
+  sentryDSN?: string;
   sentryKey?: string;
   sentryProject?: string;
   userID?: number | null;
@@ -17,6 +18,7 @@ class Metrics {
   settings: Required<Settings> = {
     context: {},
     ignoreErrors: [],
+    sentryDSN: '',
     sentryKey: '',
     sentryProject: '',
     userID: null,
@@ -67,6 +69,7 @@ class Metrics {
     const {
       context,
       ignoreErrors,
+      sentryDSN,
       sentryKey,
       sentryProject,
       userID,
@@ -74,12 +77,12 @@ class Metrics {
     } = this.settings;
     const { host, protocol } = global.location;
 
-    if (!sentryKey || !sentryProject) {
+    if (!sentryDSN && (!sentryKey || !sentryProject)) {
       return;
     }
 
     initSentry({
-      dsn: `${protocol}//${sentryKey}@${host}/proxy/sentry/${sentryProject}`,
+      dsn: sentryDSN || `${protocol}//${sentryKey}@${host}/${sentryProject}`,
       enabled: true,
       environment: process.env.NODE_ENV,
       ignoreErrors,
