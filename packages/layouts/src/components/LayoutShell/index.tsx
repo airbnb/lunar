@@ -1,7 +1,5 @@
 import React from 'react';
-import { elementType } from 'airbnb-prop-types';
 import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
-import SideBar from '../SideBar';
 
 const styleSheet: StyleSheet = ({ color }) => ({
   shell: {
@@ -33,7 +31,7 @@ export type Props = {
 };
 
 /** Layout shell that wraps an entire application, providing optional side and top nav bars. */
-function LayoutShell({ children, sideBar }: Props) {
+export default function LayoutShell({ children, sideBar }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
@@ -44,9 +42,3 @@ function LayoutShell({ children, sideBar }: Props) {
     </div>
   );
 }
-
-LayoutShell.propTypes = {
-  sideBar: elementType(SideBar),
-};
-
-export default LayoutShell;

@@ -1,7 +1,6 @@
 import React from 'react';
-import { elementType, mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
+import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import Layout, { Props as LayoutProps } from '../Layout';
-import Aside from '../Aside';
 
 const asidePropType = mutuallyExclusiveTrueProps('after', 'before');
 
@@ -18,7 +17,6 @@ export type Props = LayoutProps & {
 export default class TwoColumnLayout extends React.Component<Props> {
   static propTypes = {
     after: asidePropType,
-    aside: elementType(Aside).isRequired,
     before: asidePropType,
   };
 
