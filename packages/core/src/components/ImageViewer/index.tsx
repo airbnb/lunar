@@ -2,7 +2,6 @@ import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ZoomControls from './ZoomControls';
 import RotateControls from './RotateControls';
-// import ResponsiveImage from '../ResponsiveImage';
 
 const SCALE = 1;
 const ROTATION = 0;
@@ -35,7 +34,7 @@ type Position = {
   y: number;
 };
 
-/** Display a string of text as a heading and or section title. */
+/** An image viewer that can zoom, drag, and rotate an image. */
 export class ImageViewer extends React.Component<Props & WithStylesProps, State> {
   static defaultProps = {
     height: 'none',

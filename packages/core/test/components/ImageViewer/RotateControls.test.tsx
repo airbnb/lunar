@@ -6,10 +6,10 @@ import RotateControls from '../../../src/components/ImageViewer/RotateControls';
 describe('<RotateControls />', () => {
   const rotateSpy = jest.fn();
   const props = {
-    onSetRotation: rotateSpy,
+    onRotation: rotateSpy,
     rotation: 0,
   };
-  let wrapper;
+  let wrapper: Enzyme.ReactWrapper;
 
   beforeEach(() => {
     wrapper = shallow(<RotateControls {...props} />);

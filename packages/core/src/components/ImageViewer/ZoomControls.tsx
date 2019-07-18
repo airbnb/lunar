@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import IconAdd from '@airbnb/lunar-icons/src/interface/IconAdd';
 import IconRemove from '@airbnb/lunar-icons/src/interface/IconRemove';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Button from '../Button';
 import IconButton from '../IconButton';
 import ButtonGroup from '../ButtonGroup';
 import Dropdown from '../Dropdown';
 import Menu, { Item } from '../Menu';
+import T from '../Translate';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+
+const styleSheet: StyleSheet = () => ({
+  controls: {
+    position: 'relative',
+    display: 'inline-block',
+  },
+});
 
 const ZOOM_FACTOR = 0.5;
 const ZOOM_OPTIONS = [
@@ -32,15 +40,20 @@ export type Props = {
   /** The current scale / zoom level. 1 by default. */
   scale?: number;
   /** Callback when scale / zoom changes */
-  onSetScale: (scale: number) => void;
+  onScale: (scale: number) => void;
 };
 
-export function ZoomControls(props: Props & WithStylesProps) {
+/** Zoom controls that can be used with an image viewer component */
+export default function ZoomControls(props: Props) {
+  const [styles, cx] = useStyles(styleSheet);
   const [visible, setVisible] = useState(false);
-  const { onSetScale, scale = 1, cx, styles } = props;
+  const { onScale, scale = 1 } = props;
 
   function getItemOnClick(value: number) {
-    return () => onSetScale(value);
+    return useCallback(() => {
+      onScale(value);
+      setVisible(false);
+    }, []);
   }
 
   const zoomOptions = ZOOM_OPTIONS.map((zoom: { label: string; scale: number }) => ({
@@ -48,26 +61,41 @@ export function ZoomControls(props: Props & WithStylesProps) {
     handleOnClick: getItemOnClick(zoom.scale),
   }));
 
-  const zoomOut = () => onSetScale(scale - ZOOM_FACTOR);
-  const zoomIn = () => onSetScale(scale + ZOOM_FACTOR);
-  const toggleZoomMenu = () => setVisible(!visible);
+  const handleZoomOut = useCallback(
+    () => onScale(scale - ZOOM_FACTOR < 1 ? 1 : scale - ZOOM_FACTOR),
+    [scale],
+  );
+  const handleZoomIn = useCallback(
+    () => onScale(scale + ZOOM_FACTOR),
+    [scale],
+  );
+  const toggleZoomMenu = useCallback(
+    () => setVisible(!visible),
+    [visible],
+  );
 
   return (
     <div className={cx(styles.controls)}>
       <ButtonGroup>
-        <IconButton onClick={zoomOut} disabled={scale === 1}>
-          <IconRemove accessibilityLabel="Zoom out" size="2em" />
+        <IconButton onClick={handleZoomOut} disabled={scale === 1}>
+          <IconRemove
+            accessibilityLabel={T.phrase('Zoom out', {}, 'Label for zoom out button')}
+            size="2em"
+          />
         </IconButton>
         <Button borderless onClick={toggleZoomMenu}>
           {scale * 100}%
         </Button>
-        <IconButton onClick={zoomIn}>
-          <IconAdd accessibilityLabel="Zoom in" size="2em" />
+        <IconButton onClick={handleZoomIn}>
+          <IconAdd
+            accessibilityLabel={T.phrase('Zoom in', {}, 'Label for zoom in button')}
+            size="2em"
+          />
         </IconButton>
       </ButtonGroup>
       {visible && (
-        <Dropdown visible left="0" onClickOutside={toggleZoomMenu} zIndex={5}>
-          <Menu accessibilityLabel="Zoom dropdown menu">
+        <Dropdown visible={visible} left="0" onClickOutside={toggleZoomMenu} zIndex={5}>
+          <Menu accessibilityLabel={T.phrase('Zoom dropdown menu', {}, 'Label for dropdown menu with zoom options')}>
             {zoomOptions.map(zoom => (
               <Item key={zoom.scale} onClick={zoom.handleOnClick}>
                 {zoom.label}
@@ -79,10 +107,3 @@ export function ZoomControls(props: Props & WithStylesProps) {
     </div>
   );
 }
-
-export default withStyles(() => ({
-  controls: {
-    position: 'relative',
-    display: 'inline-block',
-  },
-}))(ZoomControls);

@@ -15,8 +15,8 @@ function ImageViewerDemo({ width, height }: ImageViewerDemoProps) {
 
   return (
     <>
-      <RotateControls onSetRotation={(value: number) => setRotation(value)} rotation={rotation} />
-      <ZoomControls onSetScale={(value: number) => setScale(value)} scale={scale} />
+      <RotateControls onRotation={(value: number) => setRotation(value)} rotation={rotation} />
+      <ZoomControls onScale={(value: number) => setScale(value)} scale={scale} />
       <ImageViewer
         alt="Testing"
         scale={scale}
