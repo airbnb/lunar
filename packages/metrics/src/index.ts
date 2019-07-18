@@ -1,13 +1,15 @@
-import { init as initSentry, configureScope, BrowserOptions } from '@sentry/browser';
+import * as Sentry from '@sentry/browser';
 import hasNewRelic from './utils/hasNewRelic';
 import hasGoogleAnalytics from './utils/hasGoogleAnalytics';
+
+export { Sentry };
 
 export type IgnoreError = string | RegExp;
 
 export type Settings = {
   context?: { [key: string]: unknown };
   ignoreErrors?: IgnoreError[];
-  sentry?: BrowserOptions;
+  sentry?: Sentry.BrowserOptions;
   sentryKey?: string;
   sentryProject?: string;
   userID?: number | null;
@@ -71,7 +73,7 @@ class Metrics {
       return;
     }
 
-    initSentry({
+    Sentry.init({
       dsn: `${protocol}//${sentryKey}@${host}/${sentryProject}`,
       enabled: true,
       environment: process.env.NODE_ENV,
@@ -80,7 +82,7 @@ class Metrics {
       ...sentry,
     });
 
-    configureScope(scope => {
+    Sentry.configureScope(scope => {
       scope.setUser({ id: userID ? String(userID) : 'N/A' });
       scope.setTag('browser.locale', global.navigator.language);
       scope.setExtras(context);
