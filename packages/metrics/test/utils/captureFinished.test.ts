@@ -1,4 +1,8 @@
+import { captureEvent } from '@sentry/browser';
 import captureFinished from '../../src/utils/captureFinished';
+import '../setup';
+
+jest.mock('@sentry/browser');
 
 describe('captureFinished()', () => {
   let spy: jest.Mock;
@@ -12,6 +16,17 @@ describe('captureFinished()', () => {
     captureFinished();
 
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('passes to sentry', () => {
+    captureFinished({ tags: { foo: 'bar' } });
+
+    expect(captureEvent).toHaveBeenCalledWith(
+      expect.objectContaining({
+        event_id: 'finished',
+        tags: { foo: 'bar' },
+      }),
+    );
   });
 
   it('doesnt call if newrelic is not found', () => {
