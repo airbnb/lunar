@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import IconButton from '../../../src/components/IconButton';
-import RotateControls from '../../../src/components/ImageViewer/RotateControls';
+import RotateControls, { Props } from '../../../src/components/ImageViewer/RotateControls';
 
 describe('<RotateControls />', () => {
   const rotateSpy = jest.fn();
@@ -9,7 +9,7 @@ describe('<RotateControls />', () => {
     onRotation: rotateSpy,
     rotation: 0,
   };
-  let wrapper: Enzyme.ReactWrapper;
+  let wrapper: Enzyme.ReactWrapper<Props, any, RotateControls>;
 
   beforeEach(() => {
     wrapper = shallow(<RotateControls {...props} />);
