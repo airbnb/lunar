@@ -2,6 +2,7 @@ import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ZoomControls from './ZoomControls';
 import RotateControls from './RotateControls';
+import ResponsiveImage from '../ResponsiveImage';
 
 const SCALE = 1;
 const ROTATION = 0;
@@ -127,7 +128,17 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
         onMouseUp={this.handleMouseUp}
         style={{ width, height }}
       >
-        <img className={cx(styles.image)} style={this.getTransformation()} src={src} alt={alt} />
+        <div className={cx(styles.image)} style={this.getTransformation()}>
+          <ResponsiveImage
+            contain
+            noShadow
+            alt={alt}
+            borderRadius={0}
+            maxWidth={width}
+            maxHeight={height}
+            src={src}
+          />
+        </div>
       </div>
     );
   }
@@ -151,8 +162,6 @@ export default withStyles(({ color, font }) => ({
   },
 
   image: {
-    objectFit: 'contain',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
+    display: 'inline-block',
+  }
 }))(ImageViewer);

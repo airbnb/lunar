@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ImageViewer from '../../../src/components/ImageViewer';
+import ResponsiveImage from '../../../src/components/ResponsiveImage';
 
 describe('<ImageViewer />', () => {
   const spy = jest.fn();
@@ -17,7 +18,7 @@ describe('<ImageViewer />', () => {
   it('renders an img', () => {
     const wrapper = shallowWithStyles(<ImageViewer {...props} />);
 
-    expect(wrapper.find('img')).toHaveLength(1);
+    expect(wrapper.find(ResponsiveImage)).toHaveLength(1);
   });
 
   describe('handleMouseDown()', () => {
