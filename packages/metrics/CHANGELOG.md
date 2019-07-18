@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.1.0 - 2019-07-18
+
+#### 🚀 Updates
+
+- Migrate from `raven-js` to `@sentry/browser` (#125) ([d296377](https://github.com/airbnb/lunar/tree/master/packages/metrics/commit/d296377)), closes [#125](https://github.com/airbnb/lunar/tree/master/packages/metrics/issues/125)
+
+**Note:** Version bump only for package @airbnb/lunar-metrics
+
+
+
+
+
 ### 2.0.4 - 2019-07-16
 
 #### 🛠 Internals
