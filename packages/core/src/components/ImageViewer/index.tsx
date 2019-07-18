@@ -100,7 +100,7 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
     });
   };
 
-  getTransformation() {
+  getTransformStyle() {
     const {
       imageLocation: { x, y },
     } = this.state;
@@ -128,7 +128,7 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
         onMouseUp={this.handleMouseUp}
         style={{ width, height }}
       >
-        <div className={cx(styles.image)} style={this.getTransformation()}>
+        <div className={cx(styles.image)} style={this.getTransformStyle()}>
           <ResponsiveImage
             contain
             noShadow
@@ -146,9 +146,9 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
 
 export { ZoomControls, RotateControls };
 
-export default withStyles(({ color, font }) => ({
+export default withStyles(({ ui }) => ({
   container: {
-    border: `1px solid ${color.core.neutral[2]}`,
+    border: `1px solid ${ui.border}`,
     cursor: 'move',
     display: 'flex',
     align: 'center',
