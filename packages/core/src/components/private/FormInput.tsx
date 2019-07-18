@@ -4,7 +4,7 @@ import { Omit } from 'utility-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import buildInputStyles from '../../themes/buildInputStyles';
 
-const sizingProp = mutuallyExclusiveTrueProps('compact', 'large');
+const sizingProp = mutuallyExclusiveTrueProps('small', 'compact', 'large');
 
 export type IgnoreAttributes =
   | 'children'
@@ -29,7 +29,7 @@ export type IgnoreAttributes =
   | 'security';
 
 export type Props<T = any> = {
-  /** Decrease font size and padding to small. */
+  /** @deprecated decrease font size and padding to small. */
   compact?: boolean;
   /** Mark the field as important. */
   important?: boolean;
