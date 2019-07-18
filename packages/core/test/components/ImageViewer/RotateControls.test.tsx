@@ -9,7 +9,7 @@ describe('<RotateControls />', () => {
     onRotation: rotateSpy,
     rotation: 0,
   };
-  let wrapper: Enzyme.ShallowWrapper<Props, any, RotateControls>;
+  let wrapper: Enzyme.ShallowWrapper<Props>;
 
   beforeEach(() => {
     wrapper = shallow(<RotateControls {...props} />);
