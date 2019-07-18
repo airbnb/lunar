@@ -163,5 +163,5 @@ export default withStyles(({ color, font }) => ({
 
   image: {
     display: 'inline-block',
-  }
+  },
 }))(ImageViewer);

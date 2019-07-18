@@ -16,26 +16,30 @@ export type Props = {
 export default function RotateControls(props: Props) {
   const { onRotation, rotation = 0 } = props;
 
-  const handleRotateLeft = useCallback(
-    () => onRotation(rotation - 90 < 0 ? 270 : rotation - 90),
-    [rotation],
-  );
-  const handleRotateRight = useCallback(
-    () => onRotation((rotation + 90) % 360),
-    [rotation],
-  );
+  const handleRotateLeft = useCallback(() => onRotation(rotation - 90 < 0 ? 270 : rotation - 90), [
+    rotation,
+  ]);
+  const handleRotateRight = useCallback(() => onRotation((rotation + 90) % 360), [rotation]);
 
   return (
     <ButtonGroup>
       <IconButton onClick={handleRotateLeft}>
         <IconRotateLeft
-          accessibilityLabel={T.phrase('Rotate counter clockwise', {}, 'Label for button that rotates an image counter clockwise')}
+          accessibilityLabel={T.phrase(
+            'Rotate counter clockwise',
+            {},
+            'Label for button that rotates an image counter clockwise',
+          )}
           size="2em"
         />
       </IconButton>
       <IconButton onClick={handleRotateRight}>
         <IconRotateRight
-          accessibilityLabel={T.phrase('Rotate clockwise', {}, 'Label for button that rotates an image clockwise')}
+          accessibilityLabel={T.phrase(
+            'Rotate clockwise',
+            {},
+            'Label for button that rotates an image clockwise',
+          )}
           size="2em"
         />
       </IconButton>
