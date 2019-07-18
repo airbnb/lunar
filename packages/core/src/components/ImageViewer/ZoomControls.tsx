@@ -17,7 +17,7 @@ const styleSheet: StyleSheet = () => ({
 });
 
 const ZOOM_FACTOR = 0.5;
-const ZOOM_OPTIONS = [
+export const ZOOM_OPTIONS = [
   {
     label: '100%',
     scale: 1,

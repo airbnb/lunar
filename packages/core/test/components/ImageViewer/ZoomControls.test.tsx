@@ -1,7 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
+import Button from '../../../src/components/Button';
 import IconButton from '../../../src/components/IconButton';
-import ZoomControls from '../../../src/components/ImageViewer/ZoomControls';
+import ZoomControls, {
+  Props,
+  ZOOM_OPTIONS,
+} from '../../../src/components/ImageViewer/ZoomControls';
+import Menu, { Item } from '../../../src/components/Menu';
 
 describe('<ZoomControls />', () => {
   const setScaleSpy = jest.fn();
@@ -30,7 +35,6 @@ describe('<ZoomControls />', () => {
         .at(0)
         .simulate('click');
 
-      expect(setScaleSpy).toHaveBeenCalled();
       expect(setScaleSpy).toHaveBeenCalledWith(1);
     });
 
@@ -41,8 +45,33 @@ describe('<ZoomControls />', () => {
         .at(1)
         .simulate('click');
 
-      expect(setScaleSpy).toHaveBeenCalled();
       expect(setScaleSpy).toHaveBeenCalledWith(1.5);
+    });
+  });
+
+  describe('zoom menu', () => {
+    let wrapper: Enzyme.ReactWrapper<Props>;
+
+    beforeEach(() => {
+      wrapper = mount(<ZoomControls {...props} />);
+      wrapper
+        .find(Button)
+        .at(0)
+        .simulate('click');
+    });
+
+    it('renders options', () => {
+      expect(wrapper.find(Menu)).toHaveLength(1);
+      expect(wrapper.find(Item)).toHaveLength(ZOOM_OPTIONS.length);
+    });
+
+    it('sets the zoom level when clicked', () => {
+      wrapper
+        .find(Item)
+        .at(0)
+        .simulate('click');
+
+      expect(setScaleSpy).toHaveBeenCalledWith(ZOOM_OPTIONS[0].scale);
     });
   });
 });
