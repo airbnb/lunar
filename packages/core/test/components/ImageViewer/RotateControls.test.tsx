@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import IconButton from '../../../src/components/IconButton';
 import RotateControls from '../../../src/components/ImageViewer/RotateControls';
 

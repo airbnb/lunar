@@ -13,14 +13,14 @@ export type Props = {
   borderless?: boolean;
   /** Render height. Unconstrained (css value 'none') by default. */
   height?: number | string;
-  /** Render width. Unconstrained (css value 'none') by default. */
-  width?: number | string;
+  /** The current rotation. 0 by default. */
+  rotation?: number;
   /** The source of the image. Typically a URL. */
   src: string;
   /** The current scale / zoom level. 1 by default. */
   scale?: number;
-  /** The current rotation. 0 by default. */
-  rotation?: number;
+  /** Render width. Unconstrained (css value 'none') by default. */
+  width?: number | string;
 };
 
 export type State = {
@@ -77,7 +77,6 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
   };
 
   handleMouseMove = (event: MouseEvent) => {
-    console.log('handleMouseMove');
     event.preventDefault();
     this.setState(({ dragging, imageLocation, lastMouseLocation }) => {
       if (dragging) {
