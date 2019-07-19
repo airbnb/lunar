@@ -25,7 +25,7 @@ describe('<DatePicker />', () => {
         .dive()
         .dive()
         .dive()
-        .contains('Reset'),
-    ).toBe(true);
+        .find('button'),
+    ).toHaveLength(1);
   });
 });

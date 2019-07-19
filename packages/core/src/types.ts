@@ -31,24 +31,24 @@ export type BrandType = 'luxury' | 'plus';
 
 export type TranslateParams = { [param: string]: string | number | undefined };
 
-export type TranslateProps = {
-  [param: string]: TranslateParams | boolean | React.ReactNode;
+export type TranslateOptions = {
   /** Integration context in which to provide writes & editors. */
   context?: string;
-  /** Unique phrase key. */
-  k?: string;
   /** Phrase message contains HTML. */
   html?: boolean;
+  /** Unique phrase key. */
+  key?: string;
+};
+
+export type TranslateProps = {
+  [param: string]: string | number | boolean | undefined | React.ReactNode;
+  /** Unique phrase key. */
+  k?: string;
   /** Default phrase to translate. */
   phrase: string;
   /** Handle counts using a smart number. */
   smartCount?: number;
-};
-
-export type TranslateOptions = {
-  key?: string;
-  context?: string;
-};
+} & Omit<TranslateOptions, 'key'>;
 
 // MONEY
 
