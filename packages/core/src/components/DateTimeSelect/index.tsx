@@ -342,7 +342,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                       {},
                       {
                         context: 'Meridiem (AM/PM) dropdown in a form datetime field',
-                        key: 'lunar.common.meridiemPM',
+                        key: 'lunar.common.meridiem',
                       },
                     )}
                     onChange={this.handleChange}

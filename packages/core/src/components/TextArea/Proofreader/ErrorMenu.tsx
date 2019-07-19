@@ -24,7 +24,7 @@ export default class ErrorMenu extends React.Component<Props> {
           {},
           {
             context: 'Represents a space character within the spell checker',
-            key: 'lunar.proofreader.space',
+            key: 'lunar.proofreader.whiteSpace',
           },
         );
       case '':
@@ -33,7 +33,7 @@ export default class ErrorMenu extends React.Component<Props> {
           {},
           {
             context: 'Represents deleting within the spell checker',
-            key: 'lunar.proofreader.space',
+            key: 'lunar.proofreader.delete',
           },
         );
       default:
