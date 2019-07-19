@@ -58,6 +58,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     rowHeight: 'regular',
     selectable: false,
     selectCallback: (rowData: ExpandedRow, selectedRows: SelectedRows) => () => {},
+    selectedRowsFirst: false,
     selectOnRowClick: false,
     showAllRows: false,
     showColumnDividers: false,
@@ -103,9 +104,22 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   });
 
   private getData = memoize(
-    (data: ParentRow[], sortBy: string, sortDirection: SortDirectionType): IndexedParentRow[] => {
+    (
+      data: ParentRow[],
+      sortBy: string,
+      sortDirection: SortDirectionType,
+      selectedRows: SelectedRows,
+    ): IndexedParentRow[] => {
+      const { selectedRowsFirst } = this.props;
       const indexedData = indexData(data);
-      const sortedData = sortData(indexedData, this.keys, sortBy, sortDirection);
+      const sortedData = sortData(
+        indexedData,
+        this.keys,
+        selectedRows,
+        selectedRowsFirst!,
+        sortBy,
+        sortDirection,
+      );
 
       return sortedData;
     },
@@ -243,7 +257,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       sortDirection: SortDirectionType;
     } = this.state;
 
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection);
+    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
 
     const { parentOriginalIndex, parentIndex, originalIndex } = row.metadata;
 
@@ -363,7 +377,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     const { expandedRows, sortBy, sortDirection, editMode, selectedRows } = this.state;
 
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection);
+    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
 
     const filteredData = filterData!(sortedData);
 

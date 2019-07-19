@@ -79,6 +79,8 @@ export interface DataTableProps {
   selectable?: boolean;
   /** Function that gets called on row selection. */
   selectCallback?: (rowData: ExpandedRow, selectedRows: SelectedRows) => () => void;
+  /** Display selected rows above everything else, regardless of sort order. */
+  selectedRowsFirst?: boolean;
   /** If enabled, clicking the row triggers the same function as click the selection checkbox. */
   selectOnRowClick?: boolean;
   /**
