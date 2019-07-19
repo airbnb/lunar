@@ -1,6 +1,6 @@
 import React from 'react';
 import Core from '../..';
-import { TranslateParams, TranslateProps } from '../../types';
+import { TranslateParams, TranslateProps, TranslateOptions } from '../../types';
 
 export type Props = TranslateProps;
 
@@ -10,18 +10,23 @@ export default class Translate extends React.PureComponent<Props> {
     html: false,
   };
 
-  static phrase(phrase: string, params: TranslateParams, context: string): string {
-    return Core.translate(phrase, params, context);
+  static phrase(
+    phrase: string,
+    params: TranslateParams,
+    options?: string | TranslateOptions,
+  ): string {
+    return Core.translate(phrase, params, options);
   }
 
   render() {
     const { translatorComponent: Translator } = Core.settings;
-    const { children, phrase, context, ...params } = this.props;
+    const { children, k: key, phrase, context, ...params } = this.props;
+    const options: TranslateOptions = { context, key };
 
     if (!Translator) {
-      return <span>{Core.translate(phrase, params as any, context)}</span>;
+      return <span>{Core.translate(phrase, params as any, options)}</span>;
     }
 
-    return <Translator phrase={phrase} context={context} {...(params as any)} />;
+    return <Translator k={key} phrase={phrase} context={context} {...(params as any)} />;
   }
 }

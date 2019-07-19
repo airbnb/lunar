@@ -16,6 +16,7 @@ import {
   TranslateParams,
   TranslateProps,
   Theme,
+  TranslateOptions,
 } from './types';
 
 export type Settings = {
@@ -133,11 +134,11 @@ class Core {
     return this.settings.defaultTimezone || DEFAULT_TIMEZONE;
   }
 
-  translate = (phrase: string, params: TranslateParams, context: string) => {
+  translate = (phrase: string, params: TranslateParams, options?: string | TranslateOptions) => {
     const { translator } = this.settings;
 
     if (translator) {
-      return translator(phrase, params, context);
+      return translator(phrase, params, options);
     }
 
     let message = phrase;
