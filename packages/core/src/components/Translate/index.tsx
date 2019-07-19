@@ -12,7 +12,7 @@ export default class Translate extends React.PureComponent<Props> {
 
   static phrase(
     phrase: string,
-    params: TranslateParams,
+    params: TranslateParams | null = null,
     options?: string | TranslateOptions,
   ): string {
     return Core.translate(phrase, params, options);

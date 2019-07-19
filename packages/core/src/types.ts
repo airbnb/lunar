@@ -8,7 +8,7 @@ export type Logger = (error: Error, extra: object) => void;
 
 export type Translator = (
   phrase: string,
-  params: TranslateParams,
+  params?: TranslateParams | null,
   options?: string | TranslateOptions,
 ) => string;
 

@@ -134,13 +134,18 @@ class Core {
     return this.settings.defaultTimezone || DEFAULT_TIMEZONE;
   }
 
-  translate = (phrase: string, params: TranslateParams, options?: string | TranslateOptions) => {
+  translate = (
+    phrase: string,
+    baseParams?: TranslateParams | null,
+    options?: string | TranslateOptions,
+  ) => {
     const { translator } = this.settings;
 
     if (translator) {
-      return translator(phrase, params, options);
+      return translator(phrase, baseParams, options);
     }
 
+    const params = baseParams || {};
     let message = phrase;
 
     if (phrase.includes('||||')) {
