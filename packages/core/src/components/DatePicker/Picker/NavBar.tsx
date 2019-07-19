@@ -87,7 +87,7 @@ class NavBar extends React.Component<Props & WithStylesProps> {
               type="button"
               onClick={this.handleResetClick}
             >
-              {T.phrase('Reset', {}, 'Reset selected dates')}
+              <T k="lunar.common.reset" phrase="Reset" context="Reset selected dates" />
             </button>
           </div>
         )}

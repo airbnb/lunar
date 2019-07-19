@@ -30,7 +30,10 @@ export default class LocaleMenu extends React.Component<Props> {
           accessibilityLabel={T.phrase(
             'Language selector',
             {},
-            'Language selector for proofreader (spelling and grammer checker)',
+            {
+              context: 'Language selector for proofreader (spelling and grammer checker)',
+              key: 'lunar.proofreader.languageSelector',
+            },
           )}
         >
           <Row>

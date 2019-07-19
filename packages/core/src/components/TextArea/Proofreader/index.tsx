@@ -242,7 +242,10 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           message: T.phrase(
             'Improper company spelling or casing',
             {},
-            'Error message when Airbnb is used incorrectly',
+            {
+              context: 'Error message when Airbnb is used incorrectly',
+              key: 'lunar.proofreader.misspellingLabel',
+            },
           ),
           offset: AIRBNB_REGEX.lastIndex - match[0].length,
           length: match[0].length,
@@ -264,7 +267,10 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         label: T.phrase(
           'No language selected',
           {},
-          'No language selected for spell and grammar checking',
+          {
+            context: 'No language selected for spell and grammar checking',
+            key: 'lunar.proofreader.noLanguageSelected',
+          },
         ),
       };
     }
@@ -275,7 +281,10 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         label: T.phrase(
           'Auto-detect language',
           {},
-          'Auto-detect language for spell and grammar checking',
+          {
+            context: 'Auto-detect language for spell and grammar checking',
+            key: 'lunar.proofreader.autoDetectLanguage',
+          },
         ),
       };
     }

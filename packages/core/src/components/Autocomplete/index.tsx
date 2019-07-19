@@ -437,7 +437,15 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
       onFocus,
       optional,
       placeholder:
-        placeholder || T.phrase('Search', {}, 'Search field within an autocomplete input field'),
+        placeholder ||
+        T.phrase(
+          'Search',
+          {},
+          {
+            context: 'Search field within an autocomplete input field',
+            key: 'lunar.common.search',
+          },
+        ),
       type: 'text',
     };
   }

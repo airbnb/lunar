@@ -51,7 +51,14 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
   validate(value: string) {
     if (!value) {
       throw new Error(
-        T.phrase('This field is required.', {}, 'Generic error when a form field is required'),
+        T.phrase(
+          'This field is required.',
+          {},
+          {
+            context: 'Generic error when a form field is required',
+            key: 'lunar.form.fieldRequired',
+          },
+        ),
       );
     }
   }
@@ -135,7 +142,10 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
           placeholder={T.phrase(
             'Select a feature',
             {},
-            'Selecting a feature within the feedback form',
+            {
+              context: 'Selecting a feature within the feedback form',
+              key: 'lunar.feedback.selectFeature',
+            },
           )}
           validator={this.validate}
         >
@@ -160,12 +170,20 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
               ? T.phrase(
                   'What happened? Sharing steps to reproduce the problem you experienced can be helpful.',
                   {},
-                  'Default description in the feedback form when submitting a bug report',
+                  {
+                    context:
+                      'Default description in the feedback form when submitting a bug report',
+                    key: 'lunar.feedback.moreBug',
+                  },
                 )
               : T.phrase(
                   'Share your experience with us. What went well? What could have gone better?',
                   {},
-                  'Default description in the feedback form when submitting general feedback',
+                  {
+                    context:
+                      'Default description in the feedback form when submitting general feedback',
+                    key: 'lunar.feedback.moreFeedback',
+                  },
                 )
           }
           validator={this.validate}
