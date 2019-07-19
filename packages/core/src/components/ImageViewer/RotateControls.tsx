@@ -33,6 +33,7 @@ export default function RotateControls(props: Props) {
           size="2em"
         />
       </IconButton>
+
       <IconButton onClick={handleRotateRight}>
         <IconRotateRight
           accessibilityLabel={T.phrase(

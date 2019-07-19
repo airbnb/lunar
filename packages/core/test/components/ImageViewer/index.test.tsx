@@ -21,6 +21,23 @@ describe('<ImageViewer />', () => {
     expect(wrapper.find(ResponsiveImage)).toHaveLength(1);
   });
 
+  it('renders borderless', () => {
+    const wrapper = shallowWithStyles(<ImageViewer borderless {...props} />);
+
+    expect(wrapper.prop('className')).toMatch('container_borderless');
+  });
+
+  describe('componentWillUnmount()', () => {
+    it('removes event listener for mousemove on umount', () => {
+      const eventSpy = jest.spyOn(document, 'removeEventListener');
+
+      const wrapper = shallowWithStyles(<ImageViewer {...props} />);
+      wrapper.instance().componentWillUnmount();
+
+      expect(eventSpy).toHaveBeenCalled();
+    });
+  });
+
   describe('handleMouseDown()', () => {
     it('sets the dragging and lastMouseLocation state', () => {
       const wrapper = shallowWithStyles(<ImageViewer {...props} />);
@@ -42,12 +59,14 @@ describe('<ImageViewer />', () => {
   });
 
   describe('handleMouseMove()', () => {
-    it('does not change the state if not dragging', () => {
+    it('does not set state if not dragging', () => {
       const wrapper = shallowWithStyles(<ImageViewer {...props} />);
-      wrapper.simulate('mousemove', mouseEvent);
+      const lastMouseLocation = wrapper.state('lastMouseLocation');
+      // Run handleMouseMove on the instance for test coverage
+      wrapper.instance().handleMouseMove(mouseEvent);
 
       expect(wrapper.state('dragging')).toBe(false);
-      expect(wrapper.state('lastMouseLocation')).toMatchObject({ x: 0, y: 0 });
+      expect(wrapper.state('lastMouseLocation')).toStrictEqual(lastMouseLocation);
     });
 
     it('sets state if dragging', () => {

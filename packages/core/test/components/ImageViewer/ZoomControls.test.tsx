@@ -38,6 +38,16 @@ describe('<ZoomControls />', () => {
       expect(setScaleSpy).toHaveBeenCalledWith(1);
     });
 
+    it('zooms out to 1', () => {
+      const wrapper = shallow(<ZoomControls {...props} scale={1.25} />);
+      wrapper
+        .find(IconButton)
+        .at(0)
+        .simulate('click');
+
+      expect(setScaleSpy).toHaveBeenCalledWith(1);
+    });
+
     it('zooms in', () => {
       const wrapper = shallow(<ZoomControls {...props} />);
       wrapper

@@ -3,6 +3,8 @@ import { storiesOf } from '@storybook/react';
 
 import space from ':storybook/images/space.jpg';
 import ImageViewer, { ZoomControls, RotateControls } from './ImageViewer';
+import Modal from './Modal';
+import Row from './Row';
 
 type ImageViewerDemoProps = {
   width?: string;
@@ -15,8 +17,13 @@ function ImageViewerDemo({ width, height }: ImageViewerDemoProps) {
 
   return (
     <>
-      <RotateControls onRotation={(value: number) => setRotation(value)} rotation={rotation} />
-      <ZoomControls onScale={(value: number) => setScale(value)} scale={scale} />
+      <Row
+        before={
+          <RotateControls onRotation={(value: number) => setRotation(value)} rotation={rotation} />
+        }
+      >
+        <ZoomControls onScale={(value: number) => setScale(value)} scale={scale} />
+      </Row>
       <ImageViewer
         alt="Testing"
         scale={scale}
@@ -34,6 +41,11 @@ storiesOf('Core/ImageViewer', module)
     inspectComponents: [ImageViewer, ZoomControls, RotateControls],
   })
   .add('ImageViewer', () => <ImageViewerDemo />)
+  .add('In a Modal', () => (
+    <Modal title="Modal title">
+      <ImageViewerDemo />
+    </Modal>
+  ))
   .add('With set width and height, landscape.', () => (
     <ImageViewerDemo height="200px" width="400px" />
   ))

@@ -49,16 +49,12 @@ export default function ZoomControls(props: Props) {
   const [visible, setVisible] = useState(false);
   const { onScale, scale = 1 } = props;
 
-  function getItemOnClick(value: number) {
-    return useCallback(() => {
-      onScale(value);
-      setVisible(false);
-    }, []);
-  }
-
   const zoomOptions = ZOOM_OPTIONS.map((zoom: { label: string; scale: number }) => ({
     ...zoom,
-    handleOnClick: getItemOnClick(zoom.scale),
+    handleOnClick: useCallback(() => {
+      onScale(zoom.scale);
+      setVisible(false);
+    }, []),
   }));
 
   const handleZoomOut = useCallback(
@@ -77,9 +73,11 @@ export default function ZoomControls(props: Props) {
             size="2em"
           />
         </IconButton>
+
         <Button borderless onClick={toggleZoomMenu}>
           {scale * 100}%
         </Button>
+
         <IconButton onClick={handleZoomIn}>
           <IconAdd
             accessibilityLabel={T.phrase('Zoom in', {}, 'Label for zoom in button')}

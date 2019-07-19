@@ -4,9 +4,6 @@ import ZoomControls from './ZoomControls';
 import RotateControls from './RotateControls';
 import ResponsiveImage from '../ResponsiveImage';
 
-const SCALE = 1;
-const ROTATION = 0;
-
 export type Props = {
   /** An accessible label. */
   alt: string;
@@ -39,8 +36,8 @@ type Position = {
 export class ImageViewer extends React.Component<Props & WithStylesProps, State> {
   static defaultProps = {
     height: 'none',
-    rotation: ROTATION,
-    scale: SCALE,
+    rotation: 0,
+    scale: 1,
     width: 'none',
   };
 
@@ -79,8 +76,8 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
 
   handleMouseMove = (event: MouseEvent) => {
     event.preventDefault();
-    this.setState(({ dragging, imageLocation, lastMouseLocation }) => {
-      if (dragging) {
+    if (this.state.dragging) {
+      this.setState(({ dragging, imageLocation, lastMouseLocation }) => {
         const xDiff = lastMouseLocation.x - event.pageX;
         const yDiff = lastMouseLocation.y - event.pageY;
 
@@ -94,23 +91,22 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
             y: event.pageY,
           },
         };
-      }
-
-      return null;
-    });
+      });
+    }
   };
 
   getTransformStyle() {
     const {
       imageLocation: { x, y },
     } = this.state;
-    const { scale = SCALE, rotation = ROTATION } = this.props;
+    const { scale, rotation } = this.props;
 
-    const radian = (rotation / 180) * Math.PI;
+    // rotation and scale have defaultProp values
+    const radian = (rotation! / 180) * Math.PI;
     const sinRotation = Math.sin(radian);
     const cosRotation = Math.cos(radian);
-    const translateX = (y * sinRotation + x * cosRotation) / scale;
-    const translateY = (y * cosRotation - x * sinRotation) / scale;
+    const translateX = (y * sinRotation + x * cosRotation) / scale!;
+    const translateY = (y * cosRotation - x * sinRotation) / scale!;
 
     return {
       transform: `scale(${scale}) rotate(${rotation}deg) translateY(${translateY}px) translateX(${translateX}px)`,
@@ -148,7 +144,7 @@ export { ZoomControls, RotateControls };
 
 export default withStyles(({ ui }) => ({
   container: {
-    border: `1px solid ${ui.border}`,
+    border: ui.border,
     cursor: 'move',
     display: 'flex',
     align: 'center',
