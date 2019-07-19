@@ -55,7 +55,7 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
     document.removeEventListener('mousemove', this.handleMouseMove, false);
   }
 
-  handleMouseDown = (event: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  private handleMouseDown = (event: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.preventDefault();
     this.setState({
       dragging: true,
@@ -66,7 +66,7 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
     });
   };
 
-  handleMouseUp = (event: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  private handleMouseUp = (event: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.preventDefault();
     this.setState({
       dragging: false,
@@ -74,7 +74,7 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
     });
   };
 
-  handleMouseMove = (event: MouseEvent) => {
+  private handleMouseMove = (event: MouseEvent) => {
     event.preventDefault();
     if (this.state.dragging) {
       this.setState(({ dragging, imageLocation, lastMouseLocation }) => {

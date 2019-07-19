@@ -51,10 +51,10 @@ export default function ZoomControls(props: Props) {
 
   const zoomOptions = ZOOM_OPTIONS.map((zoom: { label: string; scale: number }) => ({
     ...zoom,
-    handleOnClick: useCallback(() => {
+    handleOnClick: () => {
       onScale(zoom.scale);
       setVisible(false);
-    }, []),
+    },
   }));
 
   const handleZoomOut = useCallback(
