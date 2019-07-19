@@ -64,10 +64,15 @@ export default class Copy extends React.Component<Props, State> {
       <Tooltip
         content={
           this.state.copied ? (
-            <T phrase="Copied!" context="Text has been copied to a clipboard" />
+            <T
+              k="lunar.copy.copied"
+              phrase="Copied!"
+              context="Text has been copied to a clipboard"
+            />
           ) : (
             prompt || (
               <T
+                k="lunar.copy.copyToClipboard"
                 phrase="Copy to clipboard"
                 context="Message informing user to copy test to a clipboard"
               />

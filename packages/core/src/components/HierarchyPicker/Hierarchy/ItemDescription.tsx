@@ -15,7 +15,7 @@ export class ItemDescription extends React.Component<Props & WithStylesProps> {
     return (
       <div>
         <Text bold>
-          <T phrase="Description" context="Description of item" />
+          <T k="lunar.common.description" phrase="Description" context="Description of item" />
         </Text>
 
         <div className={cx(styles.description)}>

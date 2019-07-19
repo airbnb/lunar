@@ -145,7 +145,11 @@ export class Toast extends React.Component<Props & WithStylesProps> {
 
             <Spacing top={0.5}>
               <Button small onClick={this.handleRefreshPress}>
-                <T phrase="Refresh" context="Refresh the page that was triggerd by a toast" />
+                <T
+                  k="lunar.common.refresh"
+                  phrase="Refresh"
+                  context="Refresh the page that was triggerd by a toast"
+                />
               </Button>
             </Spacing>
           </div>

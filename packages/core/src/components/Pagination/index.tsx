@@ -167,6 +167,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
     let paginationText =
       showBookends && pageCount ? (
         <T
+          k="lunar.pagination.pageCount"
           phrase={'%{pageNumber} of %{pageCount}'}
           pageCount={pageCount}
           pageNumber={page}
@@ -180,6 +181,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       paginationText =
         showBookends && pageCount ? (
           <T
+            k="lunar.pagination.pageCountLabeled"
             phrase={'%{pageLabel} %{pageNumber} of %{pageCount}'}
             pageLabel={pageLabel}
             pageCount={pageCount}
@@ -188,6 +190,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
           />
         ) : (
           <T
+            k="lunar.pagination.pageNumberLabeled"
             phrase={'%{pageLabel} %{pageNumber}'}
             pageLabel={pageLabel}
             pageNumber={page}

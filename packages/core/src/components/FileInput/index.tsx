@@ -146,6 +146,7 @@ export default class FileInput extends React.Component<Props, State> {
           afterIcon={<Icon size="1.25em" decorative />}
         >
           <T
+            k="lunar.form.chooseFile"
             phrase="Choose file||||Choose files"
             context="Label when uploading multiple files"
             smartCount={props.multiple ? 0 : 1}

@@ -75,20 +75,34 @@ export default class FormActions extends React.PureComponent<Props> {
         >
           {processing
             ? processingText || (
-                <T phrase="Saving" context="Button label when a form is submitting" />
+                <T
+                  k="lunar.common.saving"
+                  phrase="Saving"
+                  context="Button label when a form is submitting"
+                />
               )
-            : continueText || <T phrase="Save" context="Button label to submit a form" />}
+            : continueText || (
+                <T k="lunar.common.save" phrase="Save" context="Button label to submit a form" />
+              )}
         </Button>
 
         {!hideCancel && (
           <MutedButton inverted onClick={onCancel} small={small} disabled={processing}>
-            {cancelText || <T phrase="Cancel" context="Button label to cancel a form action" />}
+            {cancelText || (
+              <T
+                k="lunar.common.cancel"
+                phrase="Cancel"
+                context="Button label to cancel a form action"
+              />
+            )}
           </MutedButton>
         )}
 
         {showReset && (
           <MutedButton type="reset" inverted small={small} disabled={processing}>
-            {resetText || <T phrase="Reset" context="Button label to reset a form" />}
+            {resetText || (
+              <T k="lunar.common.reset" phrase="Reset" context="Button label to reset a form" />
+            )}
           </MutedButton>
         )}
       </ButtonGroup>

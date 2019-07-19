@@ -35,7 +35,11 @@ export default class LocaleMenu extends React.Component<Props> {
         >
           <Row>
             <Text small muted bold>
-              <T phrase="Select a language" context="Select a language to run spelling checks" />
+              <T
+                k="lunar.proofreader.selectLanguage"
+                phrase="Select a language"
+                context="Select a language to run spelling checks"
+              />
             </Text>
           </Row>
 
