@@ -27,7 +27,17 @@ describe('<Mark />', () => {
       </Mark>,
     );
 
-    expect(wrapper.prop('className')).toMatch('mark_selected');
+    expect(wrapper.prop('className')).toMatch('mark_highlight');
+  });
+
+  it('renders highlighted', () => {
+    const wrapper = shallowWithStyles(
+      <Mark {...props} alwaysHighlight onSelect={() => {}}>
+        Word
+      </Mark>,
+    );
+
+    expect(wrapper.prop('className')).toMatch('mark_highlight');
   });
 
   it('triggers `onSelect` on mount if selected', () => {
