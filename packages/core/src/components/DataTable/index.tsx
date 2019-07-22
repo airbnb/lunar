@@ -39,6 +39,7 @@ export type State = {
 /** A dynamic and responsive table for displaying tabular data. */
 export class DataTable extends React.Component<DataTableProps & WithStylesProps, State> {
   static defaultProps: Pick<DataTableProps, DefaultDataTableProps> = {
+    autoHeight: false,
     columnHeaderHeight: undefined,
     columnLabelCase: '',
     columnMetadata: {},
@@ -137,12 +138,18 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     }
   }
 
-  private getTableHeight = (expandedDataList: ExpandedRow[]) => {
-    const { height, rowHeight, showAllRows } = this.props;
+  private getTableHeight = (expandedDataList: ExpandedRow[], parentHeight: number) => {
+    const { autoHeight, height, rowHeight, showAllRows } = this.props;
 
-    return showAllRows
-      ? expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight()
-      : height || 0;
+    if (autoHeight) {
+      return parentHeight;
+    }
+
+    if (showAllRows) {
+      return expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight();
+    }
+
+    return height;
   };
 
   private getColumnHeaderHeight = () => {
@@ -400,10 +407,10 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
           </AutoSizer>
         )}
         <div className={cx(styles.table_container)}>
-          <AutoSizer disableHeight>
-            {({ width }: { width: number }) => (
+          <AutoSizer>
+            {({ width, height }: { width: number; height: number }) => (
               <Table
-                height={this.getTableHeight(expandedData)}
+                height={400}
                 width={this.props.width || width}
                 headerHeight={this.getColumnHeaderHeight()}
                 ref={propagateRef}
