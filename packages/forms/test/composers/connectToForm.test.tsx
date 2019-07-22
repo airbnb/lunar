@@ -3,7 +3,8 @@ import Enzyme, { shallow } from 'enzyme';
 import { unwrapHOCs } from '@airbnb/lunar-test-utils';
 import connectToForm, { PROP_NAMES } from '../../src/composers/connectToForm';
 import { Context } from '../../src/types';
-import { toString, toNumber } from '../../lib/helpers';
+import { toString, toNumber } from '../../src/helpers';
+import Form from '../../src';
 
 describe('connectToForm()', () => {
   function Foo() {
@@ -47,8 +48,18 @@ describe('connectToForm()', () => {
     };
   });
 
+  function WrappingComponent({ children }: { children: NonNullable<React.ReactNode> }) {
+    return <Form onSubmit={() => Promise.resolve()}>{children}</Form>;
+  }
+
   function unwrap(element: any): Enzyme.ShallowWrapper {
-    return unwrapHOCs(shallow(element), 'Foo', form);
+    return unwrapHOCs(
+      shallow(element, {
+        wrappingComponent: WrappingComponent,
+      }),
+      'Foo',
+      form,
+    );
   }
 
   it('returns an HOC', () => {
