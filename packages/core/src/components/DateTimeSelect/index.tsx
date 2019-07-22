@@ -216,7 +216,11 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 id={`${id}_month`}
                 name={`${name}[month]`}
                 value={this.getCurrentValue(date, 'month')}
-                placeholder={T.phrase('Month', {}, 'Month dropdown in a form datetime field')}
+                placeholder={T.phrase(
+                  'Month',
+                  {},
+                  { context: 'Month dropdown in a form datetime field', key: 'lunar.common.month' },
+                )}
                 onChange={this.handleChange}
               >
                 {this.getMonthRange().map(month => (
@@ -233,7 +237,11 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 id={`${id}_day`}
                 name={`${name}[day]`}
                 value={this.getCurrentValue(date, 'day')}
-                placeholder={T.phrase('Day', {}, 'Day dropdown in a form datetime field')}
+                placeholder={T.phrase(
+                  'Day',
+                  {},
+                  { context: 'Day dropdown in a form datetime field', key: 'lunar.common.day' },
+                )}
                 onChange={this.handleChange}
               >
                 {this.getDayRange().map(day => (
@@ -251,7 +259,11 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                   id={`${id}_year`}
                   name={`${name}[year]`}
                   value={this.getCurrentValue(date, 'year')}
-                  placeholder={T.phrase('Year', {}, 'Year dropdown in a form datetime field')}
+                  placeholder={T.phrase(
+                    'Year',
+                    {},
+                    { context: 'Year dropdown in a form datetime field', key: 'lunar.common.year' },
+                  )}
                   onChange={this.handleChange}
                 >
                   {this.getYearRange().map(year => (
@@ -278,7 +290,11 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 id={`${id}_hour`}
                 name={`${name}[hour]`}
                 value={this.getCurrentValue(date, 'hour')}
-                placeholder={T.phrase('Hour', {}, 'Hour dropdown in a form datetime field')}
+                placeholder={T.phrase(
+                  'Hour',
+                  {},
+                  { context: 'Hour dropdown in a form datetime field', key: 'lunar.common.hour' },
+                )}
                 onChange={this.handleChange}
               >
                 {this.getHourRange().map(hour => (
@@ -295,7 +311,14 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 id={`${id}_minute`}
                 name={`${name}[minute]`}
                 value={this.getCurrentValue(date, 'minute')}
-                placeholder={T.phrase('Minute', {}, 'Minute dropdown in a form datetime field')}
+                placeholder={T.phrase(
+                  'Minute',
+                  {},
+                  {
+                    context: 'Minute dropdown in a form datetime field',
+                    key: 'lunar.common.minute',
+                  },
+                )}
                 onChange={this.handleChange}
               >
                 {this.getMinuteRange().map(minute => (
@@ -317,12 +340,27 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                     placeholder={T.phrase(
                       'Meridiem',
                       {},
-                      'Meridiem (AM/PM) dropdown in a form datetime field',
+                      {
+                        context: 'Meridiem (AM/PM) dropdown in a form datetime field',
+                        key: 'lunar.common.meridiem',
+                      },
                     )}
                     onChange={this.handleChange}
                   >
-                    <option value="am">{T.phrase('AM', {}, 'Meridiem for timestamps')}</option>
-                    <option value="pm">{T.phrase('PM', {}, 'Meridiem for timestamps')}</option>
+                    <option value="am">
+                      {T.phrase(
+                        'AM',
+                        {},
+                        { context: 'Meridiem for timestamps', key: 'lunar.common.meridiemAM' },
+                      )}
+                    </option>
+                    <option value="pm">
+                      {T.phrase(
+                        'PM',
+                        {},
+                        { context: 'Meridiem for timestamps', key: 'lunar.common.meridiemPM' },
+                      )}
+                    </option>
                   </BaseSelect>
                 </>
               )}

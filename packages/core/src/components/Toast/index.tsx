@@ -145,7 +145,11 @@ export class Toast extends React.Component<Props & WithStylesProps> {
 
             <Spacing top={0.5}>
               <Button small onClick={this.handleRefreshPress}>
-                <T phrase="Refresh" context="Refresh the page that was triggerd by a toast" />
+                <T
+                  k="lunar.common.refresh"
+                  phrase="Refresh"
+                  context="Refresh the page that was triggerd by a toast"
+                />
               </Button>
             </Spacing>
           </div>
@@ -165,7 +169,11 @@ export class Toast extends React.Component<Props & WithStylesProps> {
           <IconButton inverted onClick={this.handleClosePress}>
             <IconClose
               size="1.5em"
-              accessibilityLabel={T.phrase('Close', {}, 'Close a toast popup')}
+              accessibilityLabel={T.phrase(
+                'Close',
+                {},
+                { context: 'Close a toast popup', key: 'lunar.common.close' },
+              )}
             />
           </IconButton>
         </div>

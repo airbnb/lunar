@@ -242,7 +242,10 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           message: T.phrase(
             'Improper company spelling or casing',
             {},
-            'Error message when Airbnb is used incorrectly',
+            {
+              context: 'Error message when Airbnb is used incorrectly',
+              key: 'lunar.proofreader.misspellingLabel',
+            },
           ),
           offset: AIRBNB_REGEX.lastIndex - match[0].length,
           length: match[0].length,
@@ -264,7 +267,10 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         label: T.phrase(
           'No language selected',
           {},
-          'No language selected for spell and grammar checking',
+          {
+            context: 'No language selected for spell and grammar checking',
+            key: 'lunar.proofreader.noLanguageSelected',
+          },
         ),
       };
     }
@@ -275,7 +281,10 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         label: T.phrase(
           'Auto-detect language',
           {},
-          'Auto-detect language for spell and grammar checking',
+          {
+            context: 'Auto-detect language for spell and grammar checking',
+            key: 'lunar.proofreader.autoDetectLanguage',
+          },
         ),
       };
     }
@@ -645,6 +654,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
                 this.getLocaleDefinition(selectedLocale).label
               ) : (
                 <T
+                  k="lunar.proofreader.unsupportedLanguage"
                   phrase="Unsupported language %{locale}"
                   locale={unsupportedLocale || 'unknown'}
                   context="Language is not supported for spelling detection"
@@ -674,6 +684,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
             <span className={cx(styles.cell)}>
               <Text small muted>
                 <T
+                  k="lunar.proofreader.totalIssues"
                   phrase="%{smartCount} issue||||%{smartCount} issues"
                   smartCount={errors.length}
                   context="Showing the number of misspellings in a paragraph of text"

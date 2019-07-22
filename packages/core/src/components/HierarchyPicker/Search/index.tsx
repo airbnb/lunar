@@ -171,7 +171,10 @@ export class Search extends React.Component<Props & WithStylesProps> {
           accessibilityLabel={T.phrase(
             'Hierarchy item search',
             {},
-            'Search functionality to find items within the hierarchy menu.',
+            {
+              context: 'Search functionality to find items within the hierarchy menu.',
+              key: 'lunar.picker.searchLabel',
+            },
           )}
           hideLabel
           label=""

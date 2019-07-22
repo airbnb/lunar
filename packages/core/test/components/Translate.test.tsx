@@ -28,6 +28,12 @@ describe('<Translate />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('renders with a `k` prop', () => {
+    const wrapper = shallow(<Translate k="foo" phrase="Foo" bar={123} context="Baz" />);
+
+    expect(wrapper.find(T).prop('k')).toBe('foo');
+  });
+
   it('renders without translator component', () => {
     Core.settings.translatorComponent = null;
 
@@ -42,6 +48,16 @@ describe('<Translate />', () => {
       Translate.phrase('Foo', { bar: 123 }, 'Baz');
 
       expect(Core.settings.translator).toHaveBeenCalledWith('Foo', { bar: 123 }, 'Baz');
+    });
+
+    it('supports object options', () => {
+      Translate.phrase('Foo', { bar: 123 }, { context: 'Baz', key: 'foo' });
+
+      expect(Core.settings.translator).toHaveBeenCalledWith(
+        'Foo',
+        { bar: 123 },
+        { context: 'Baz', key: 'foo' },
+      );
     });
   });
 });
