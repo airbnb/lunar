@@ -27,7 +27,7 @@ export type State = {
   lastMouseLocation: Position;
 };
 
-type Position = {
+export type Position = {
   x: number;
   y: number;
 };

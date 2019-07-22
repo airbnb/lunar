@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
-import ImageViewer from '../../../src/components/ImageViewer';
+import ImageViewer, { Position } from '../../../src/components/ImageViewer';
 import ResponsiveImage from '../../../src/components/ResponsiveImage';
 
 describe('<ImageViewer />', () => {
@@ -32,6 +32,7 @@ describe('<ImageViewer />', () => {
       const eventSpy = jest.spyOn(document, 'removeEventListener');
 
       const wrapper = shallowWithStyles(<ImageViewer {...props} />);
+      // @ts-ignore
       wrapper.instance().componentWillUnmount();
 
       expect(eventSpy).toHaveBeenCalled();
@@ -61,9 +62,8 @@ describe('<ImageViewer />', () => {
   describe('handleMouseMove()', () => {
     it('does not set state if not dragging', () => {
       const wrapper = shallowWithStyles(<ImageViewer {...props} />);
-      const lastMouseLocation = wrapper.state('lastMouseLocation');
-      // Run handleMouseMove on the instance for test coverage
-      wrapper.instance().handleMouseMove(mouseEvent);
+      const lastMouseLocation: Position = wrapper.state('lastMouseLocation');
+      wrapper.simulate('mousemove', mouseEvent);
 
       expect(wrapper.state('dragging')).toBe(false);
       expect(wrapper.state('lastMouseLocation')).toStrictEqual(lastMouseLocation);
