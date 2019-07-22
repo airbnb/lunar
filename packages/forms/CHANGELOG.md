@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.0 - 2019-07-22
+
+#### 🚀 Updates
+
+- **[Translate]** Add key support. Make params and context optional. (#129) ([6338326](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/6338326)), closes [#129](https://github.com/airbnb/lunar/tree/master/packages/forms/issues/129)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 2.1.2 - 2019-07-16
 
 #### 🛠 Internals
