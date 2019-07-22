@@ -155,7 +155,11 @@ export class FormField extends React.Component<PrivateProps> {
               {optional && !hideOptionalLabel && (
                 <span className={cx(styles.optional)}>
                   <Text inline small muted>
-                    <T phrase="(optional)" context="A form field is marked as optional" />
+                    <T
+                      k="lunar.form.optional"
+                      phrase="(optional)"
+                      context="A form field is marked as optional"
+                    />
                   </Text>
                 </span>
               )}

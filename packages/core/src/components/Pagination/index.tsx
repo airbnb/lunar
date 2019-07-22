@@ -52,7 +52,6 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
     fetching: false,
     hasNext: false,
     hasPrev: false,
-    pageLabel: T.phrase('Page', {}, 'Label for pages'),
     showBookends: false,
     startAlign: false,
   };
@@ -76,7 +75,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       hasPrev,
       showBookends,
       startAlign,
-      pageLabel,
+      pageLabel = T.phrase('Page', {}, { context: 'Label for pages', key: 'lunar.common.page' }),
       onFirst,
       onLast,
       onNext,
@@ -100,7 +99,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
           accessibilityLabel={T.phrase(
             'Load previous page',
             {},
-            'Load previous page when paginating sets of data',
+            {
+              context: 'Load previous page when paginating sets of data',
+              key: 'lunar.pagination.loadPrevious',
+            },
           )}
           size={4 * theme!.unit}
         />
@@ -116,7 +118,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
           accessibilityLabel={T.phrase(
             'Load next page',
             {},
-            'Load next page when paginating sets of data',
+            {
+              context: 'Load next page when paginating sets of data',
+              key: 'lunar.pagination.loadNext',
+            },
           )}
           size={4 * theme!.unit}
         />
@@ -136,7 +141,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
             accessibilityLabel={T.phrase(
               'Load first page',
               {},
-              'Load first page when paginating sets of data',
+              {
+                context: 'Load first page when paginating sets of data',
+                key: 'lunar.pagination.loadFirst',
+              },
             )}
             size={4 * theme!.unit}
           />
@@ -156,7 +164,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
             accessibilityLabel={T.phrase(
               'Load last page',
               {},
-              'Load last page when paginating sets of data',
+              {
+                context: 'Load last page when paginating sets of data',
+                key: 'lunar.pagination.loadLast',
+              },
             )}
             size={4 * theme!.unit}
           />
@@ -167,6 +178,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
     let paginationText =
       showBookends && pageCount ? (
         <T
+          k="lunar.pagination.pageCount"
           phrase={'%{pageNumber} of %{pageCount}'}
           pageCount={pageCount}
           pageNumber={page}
@@ -180,6 +192,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       paginationText =
         showBookends && pageCount ? (
           <T
+            k="lunar.pagination.pageCountLabeled"
             phrase={'%{pageLabel} %{pageNumber} of %{pageCount}'}
             pageLabel={pageLabel}
             pageCount={pageCount}
@@ -188,6 +201,7 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
           />
         ) : (
           <T
+            k="lunar.pagination.pageNumberLabeled"
             phrase={'%{pageLabel} %{pageNumber}'}
             pageLabel={pageLabel}
             pageNumber={page}

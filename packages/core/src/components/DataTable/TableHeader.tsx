@@ -79,18 +79,23 @@ export function TableHeader({
 
   const editModeButtons = instantEdit ? (
     <Button small onClick={onDisableEditMode} key="Done">
-      <Translate phrase="Done" context="This button exits edit mode." />
+      <Translate k="lunar.common.done" phrase="Done" context="This button exits edit mode." />
     </Button>
   ) : (
     [
       <Button small inverted onClick={onDisableEditMode} key="Cancel">
         <Translate
+          k="lunar.common.cancel"
           phrase="Cancel"
           context="This button cancels out of edit mode without applying changes."
         />
       </Button>,
       <Button small onClick={onEnactEdits} key="Apply">
-        <Translate phrase="Apply" context="This button applies all live edits." />
+        <Translate
+          k="lunar.common.apply"
+          phrase="Apply"
+          context="This button applies all live edits."
+        />
       </Button>,
     ]
   );
@@ -99,7 +104,7 @@ export function TableHeader({
     editModeButtons
   ) : (
     <Button inverted small onClick={onEnableEditMode}>
-      <Translate phrase="Edit" context="This button enables edit mode." />
+      <Translate k="lunar.common.edit" phrase="Edit" context="This button enables edit mode." />
     </Button>
   );
 

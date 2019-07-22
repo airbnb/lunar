@@ -146,6 +146,7 @@ export default class FileInput extends React.Component<Props, State> {
           afterIcon={<Icon size="1.25em" decorative />}
         >
           <T
+            k="lunar.form.chooseFile"
             phrase="Choose file||||Choose files"
             context="Label when uploading multiple files"
             smartCount={props.multiple ? 0 : 1}
@@ -183,7 +184,10 @@ export default class FileInput extends React.Component<Props, State> {
                             accessibilityLabel={T.phrase(
                               'Remove chosen file',
                               {},
-                              'Label when removing a chosen file to upload',
+                              {
+                                context: 'Label when removing a chosen file to upload',
+                                key: 'lunar.form.removeFile',
+                              },
                             )}
                           />
                         </IconButton>

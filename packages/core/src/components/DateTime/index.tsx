@@ -192,15 +192,26 @@ export default class DateTime extends React.PureComponent<Props> {
     const diff = DateTime.diff(relative, options.base);
     const fewPhrase =
       options.style === 'narrow'
-        ? T.phrase('a few sec.', {}, 'Relative time within a minute')
-        : T.phrase('a few seconds', {}, 'Relative time within a minute');
+        ? T.phrase(
+            'a few sec.',
+            {},
+            { context: 'Relative time within a minute', key: 'lunar.datetime.secsAgoNarrow' },
+          )
+        : T.phrase(
+            'a few seconds',
+            {},
+            { context: 'Relative time within a minute', key: 'lunar.datetime.secsAgo' },
+          );
 
     if (diff > 0 && diff < MINUTE_THRESHOLD) {
       if (!options.style || options.style === 'long') {
         return T.phrase(
           'in %{time}',
           { time: fewPhrase },
-          'Relative time explaining something will happen soon',
+          {
+            context: 'Relative time explaining something will happen soon',
+            key: 'lunar.datetime.in',
+          },
         );
       }
 
@@ -212,7 +223,10 @@ export default class DateTime extends React.PureComponent<Props> {
         return T.phrase(
           '%{time} ago',
           { time: fewPhrase },
-          'Relative time explaining something recently happened',
+          {
+            context: 'Relative time explaining something recently happened',
+            key: 'lunar.datetime.ago',
+          },
         );
       }
 

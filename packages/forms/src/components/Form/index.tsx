@@ -202,7 +202,10 @@ export default class Form<Data extends object = any> extends React.Component<
             {
               error: getErrorMessage(error),
             },
-            'A generic error when a form failed to submit',
+            {
+              context: 'A generic error when a form failed to submit',
+              key: 'lunar.form.submitFailed',
+            },
           ),
         });
       }
@@ -270,7 +273,10 @@ export default class Form<Data extends object = any> extends React.Component<
       errors[FORM_ERROR] = T.phrase(
         'Failed to validate form. Please try again.',
         {},
-        'A generic error when a form failed validation in any way',
+        {
+          context: 'A generic error when a form failed validation in any way',
+          key: 'lunar.form.validateFailed',
+        },
       );
       errorCount += 1;
     }

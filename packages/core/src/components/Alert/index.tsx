@@ -118,7 +118,11 @@ export class Alert extends React.Component<Props & WithStylesProps> {
             onClose && (
               <IconButton onClick={onClose}>
                 <IconClose
-                  accessibilityLabel={T.phrase('Close', {}, 'Close the alert')}
+                  accessibilityLabel={T.phrase(
+                    'Close',
+                    {},
+                    { context: 'Close the alert', key: 'lunar.common.close' },
+                  )}
                   size={unit * 3}
                 />
               </IconButton>

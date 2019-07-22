@@ -60,7 +60,7 @@ describe('<DatePicker />', () => {
   it('renders a reset button', () => {
     const wrapper = shallowWithStyles(<NavBar {...props} showResetButton />);
 
-    expect(wrapper.contains('Reset')).toBe(true);
+    expect(wrapper.find('button')).toHaveLength(1);
   });
 
   it('call `onPreviousClick` when next button is clicked', () => {
