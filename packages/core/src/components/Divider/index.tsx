@@ -5,10 +5,10 @@ import Spacing, { SpacingRange } from '../Spacing';
 export type Props = {
   /** Spacing on the bottom. */
   bottom?: SpacingRange;
-  /** Spacing on the top. */
-  top?: SpacingRange;
   /** Render the divider with a short width. */
   short?: boolean;
+  /** Spacing on the top. */
+  top?: SpacingRange;
 };
 
 /** A horizontal divider. */
