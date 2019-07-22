@@ -17,7 +17,7 @@ export const CACHE_DURATION = toMilliseconds('5 minutes');
 
 function getItemValue(item: any): string {
   return String(item.value || item.id);
-},
+}
 
 function renderItem(item: any): NonNullable<React.ReactNode> {
   return <Text>{item.name || item.title || item.value}</Text>;
