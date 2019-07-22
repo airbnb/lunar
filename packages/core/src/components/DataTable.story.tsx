@@ -223,7 +223,7 @@ storiesOf('Core/DataTable', module)
       renderers={renderers}
     />
   ))
-  .add('An table with zebra coloring, a colspan, infered keys and renderers.', () => (
+  .add('A table with zebra coloring, a colspan, infered keys and renderers.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"
       data={getData()}
@@ -234,7 +234,7 @@ storiesOf('Core/DataTable', module)
       renderers={renderers}
     />
   ))
-  .add('An table with different row, column header and table header heights.', () => (
+  .add('A table with different row, column header and table header heights.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"
       data={getData()}
@@ -248,7 +248,7 @@ storiesOf('Core/DataTable', module)
       tableHeaderHeight="large"
     />
   ))
-  .add('An table that logs custom edit callbacks and select callback.', () => (
+  .add('A table that logs custom edit callbacks and select callback.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"
       data={getData()}
