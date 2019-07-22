@@ -1,9 +1,10 @@
-import Raven from 'raven-js';
-import hasNewRelic from './hasNewRelic';
+import { captureException, withScope } from '@sentry/browser';
+import { CaptureOptions } from '../types';
+import Metrics from '..';
 
 export default function captureError(
   error?: string | Event | Error | null,
-  options: Raven.RavenOptions = {},
+  options: CaptureOptions = {},
 ) {
   if (!error) {
     return;
@@ -19,9 +20,31 @@ export default function captureError(
     errorInstance = error;
   }
 
-  if (hasNewRelic()) {
+  if (Metrics.isNewRelicEnabled()) {
     newrelic.noticeError(errorInstance);
   }
 
-  Raven.captureException(errorInstance, options);
+  if (Metrics.isSentryEnabled()) {
+    withScope(scope => {
+      if (options.contexts) {
+        Object.keys(options.contexts).forEach(key => {
+          scope.setContext(key, options.contexts![key]);
+        });
+      }
+
+      if (options.extra) {
+        scope.setExtras(options.extra);
+      }
+
+      if (options.fingerprint) {
+        scope.setFingerprint(options.fingerprint);
+      }
+
+      if (options.tags) {
+        scope.setTags(options.tags);
+      }
+
+      captureException(errorInstance);
+    });
+  }
 }

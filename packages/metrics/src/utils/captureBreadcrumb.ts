@@ -1,5 +1,8 @@
-import Raven from 'raven-js';
+import { addBreadcrumb, Breadcrumb } from '@sentry/browser';
+import Metrics from '..';
 
-export default function captureBreadcrumb(options: Raven.Breadcrumb) {
-  Raven.captureBreadcrumb(options);
+export default function captureBreadcrumb(crumb: Breadcrumb) {
+  if (Metrics.isSentryEnabled()) {
+    addBreadcrumb(crumb);
+  }
 }

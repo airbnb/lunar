@@ -1,17 +1,29 @@
-import Raven from 'raven-js';
+import { captureException, withScope } from '@sentry/browser';
 import captureError from '../../src/utils/captureError';
+import '../setup';
 
-jest.mock('raven-js');
+jest.mock('@sentry/browser');
 
 describe('captureError()', () => {
+  let scope: any;
+
   beforeEach(() => {
+    scope = {
+      setContext: jest.fn(),
+      setExtras: jest.fn(),
+      setFingerprint: jest.fn(),
+      setTags: jest.fn(),
+    };
+
     global.newrelic.noticeError = jest.fn();
+
+    (withScope as jest.Mock).mockImplementation(cb => cb(scope));
   });
 
   it('does nothing if no error', () => {
     captureError(null);
 
-    expect(Raven.captureException).not.toHaveBeenCalled();
+    expect(captureException).not.toHaveBeenCalled();
     expect(global.newrelic.noticeError).not.toHaveBeenCalled();
   });
 
@@ -20,7 +32,7 @@ describe('captureError()', () => {
 
     captureError(error);
 
-    expect(Raven.captureException).toHaveBeenCalledWith(error, {});
+    expect(captureException).toHaveBeenCalledWith(error);
     expect(global.newrelic.noticeError).toHaveBeenCalledWith(error);
   });
 
@@ -31,14 +43,38 @@ describe('captureError()', () => {
 
     const error = new Error(`Captured an event: ${String(event)}`);
 
-    expect(Raven.captureException).toHaveBeenCalledWith(error, {});
+    expect(captureException).toHaveBeenCalledWith(error);
     expect(global.newrelic.noticeError).toHaveBeenCalledWith(error);
   });
 
   it('works with an error message', () => {
     captureError('Hi');
 
-    expect(Raven.captureException).toHaveBeenCalledWith(new Error('Hi'), {});
+    expect(captureException).toHaveBeenCalledWith(new Error('Hi'));
     expect(global.newrelic.noticeError).toHaveBeenCalledWith(new Error('Hi'));
+  });
+
+  it('logs `contexts` information', () => {
+    captureError('Hi', { contexts: { name: { foo: 'bar' } } });
+
+    expect(scope.setContext).toHaveBeenCalledWith('name', { foo: 'bar' });
+  });
+
+  it('logs `extra` information', () => {
+    captureError('Hi', { extra: { foo: 'bar' } });
+
+    expect(scope.setExtras).toHaveBeenCalledWith({ foo: 'bar' });
+  });
+
+  it('logs `fingerprint` information', () => {
+    captureError('Hi', { fingerprint: ['foo'] });
+
+    expect(scope.setFingerprint).toHaveBeenCalledWith(['foo']);
+  });
+
+  it('logs `tags` information', () => {
+    captureError('Hi', { tags: { foo: 'bar' } });
+
+    expect(scope.setTags).toHaveBeenCalledWith({ foo: 'bar' });
   });
 });

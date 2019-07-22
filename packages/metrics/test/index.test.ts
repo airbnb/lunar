@@ -1,42 +1,18 @@
-import Raven from 'raven-js';
-import Metrics, { Settings } from '../src';
+import { init, configureScope } from '@sentry/browser';
+import Metrics from '../src';
+import { settings } from './setup';
 
-jest.mock('raven-js', () => {
-  const ravenClass: any = {
-    captureBreadcrumb: jest.fn(),
-    captureException: jest.fn(),
-  };
-
-  ravenClass.config = jest.fn().mockReturnValue(ravenClass);
-  ravenClass.setUserContext = jest.fn().mockReturnValue(ravenClass);
-  ravenClass.install = jest.fn().mockReturnValue(ravenClass);
-
-  return ravenClass;
-});
-
-const settings: Required<Settings> = {
-  context: {},
-  ignoreErrors: [],
-  sentryKey: '',
-  sentryProject: '',
-  userID: null,
-};
+jest.mock('@sentry/browser');
 
 describe('Metrics', () => {
   beforeEach(() => {
-    Metrics.settings = { ...settings };
-
-    (Raven.config as jest.Mock).mockClear();
-    (Raven.setUserContext as jest.Mock).mockClear();
+    (init as jest.Mock).mockClear();
+    (configureScope as jest.Mock).mockClear();
 
     global.newrelic.setCustomAttribute = jest.fn();
     global.newrelic.setErrorHandler = jest.fn();
 
     global.ga = (jest.fn() as unknown) as UniversalAnalytics.ga;
-  });
-
-  afterEach(() => {
-    Metrics.settings = { ...settings };
   });
 
   describe('initialize()', () => {
@@ -49,8 +25,9 @@ describe('Metrics', () => {
       expect(Metrics.settings).toEqual({
         context: { foo: 'bar' },
         ignoreErrors: [],
+        sentry: {},
         sentryKey: 'abc',
-        sentryProject: '',
+        sentryProject: 'lunar',
         userID: null,
       });
     });
@@ -58,17 +35,17 @@ describe('Metrics', () => {
     it('calls boostrap functions', () => {
       const nrBoot = jest.spyOn(Metrics, 'bootstrapNewRelic');
       const sentryBoot = jest.spyOn(Metrics, 'bootstrapSentry');
-      const bootstrapGoogleAnalyticsUser = jest.spyOn(Metrics, 'bootstrapGoogleAnalyticsUser');
+      const bootstrapGoogleAnalytics = jest.spyOn(Metrics, 'bootstrapGoogleAnalytics');
 
       Metrics.initialize();
 
       expect(nrBoot).toHaveBeenCalled();
       expect(sentryBoot).toHaveBeenCalled();
-      expect(bootstrapGoogleAnalyticsUser).toHaveBeenCalled();
+      expect(bootstrapGoogleAnalytics).toHaveBeenCalled();
 
       nrBoot.mockRestore();
       sentryBoot.mockRestore();
-      bootstrapGoogleAnalyticsUser.mockRestore();
+      bootstrapGoogleAnalytics.mockRestore();
     });
   });
 
@@ -105,7 +82,17 @@ describe('Metrics', () => {
   });
 
   describe('bootstrapSentry()', () => {
+    let scope: any;
+
     beforeEach(() => {
+      scope = {
+        setUser: jest.fn(),
+        setTag: jest.fn(),
+        setExtras: jest.fn(),
+      };
+
+      (configureScope as jest.Mock).mockImplementation((cb: any) => cb(scope));
+
       Metrics.settings = {
         ...settings,
         sentryKey: '123456',
@@ -117,39 +104,52 @@ describe('Metrics', () => {
     it('configures sentry', () => {
       Metrics.bootstrapSentry();
 
-      expect(Raven.config).toHaveBeenCalledWith(
-        'http://123456@localhost/proxy/sentry/lunar',
+      expect(init).toHaveBeenCalledWith(
         expect.objectContaining({
+          dsn: 'http://123456@localhost/lunar',
           environment: 'test',
           ignoreErrors: ['APIError'],
         }),
       );
-      expect(Raven.install).toHaveBeenCalled();
+    });
+
+    it('configures sentry with a custom DSN and options', () => {
+      Metrics.settings.sentry = {
+        dsn: 'http://123456@localhost/proxy/sentry/lunar',
+        sampleRate: 0,
+      };
+      Metrics.bootstrapSentry();
+
+      expect(init).toHaveBeenCalledWith(
+        expect.objectContaining({
+          dsn: 'http://123456@localhost/proxy/sentry/lunar',
+          sampleRate: 0,
+        }),
+      );
     });
 
     it('doesnt configure if missing key', () => {
       Metrics.settings.sentryKey = '';
       Metrics.bootstrapSentry();
 
-      expect(Raven.config).not.toHaveBeenCalled();
+      expect(init).not.toHaveBeenCalled();
     });
 
     it('sets sentry attributes', () => {
       Metrics.bootstrapSentry();
 
-      expect(Raven.setUserContext).toHaveBeenCalledWith(
-        expect.objectContaining({
-          userID: 'N/A',
-          browserLocale: 'en-US',
-        }),
-      );
+      expect(scope.setUser).toHaveBeenCalledWith({
+        id: 'N/A',
+      });
+
+      expect(scope.setTag).toHaveBeenCalledWith('browser.locale', 'en-US');
     });
 
     it('sets sentry attributes from context', () => {
       Metrics.settings.context = { foo: 'bar', camelCase: 'value' };
       Metrics.bootstrapSentry();
 
-      expect(Raven.setUserContext).toHaveBeenCalledWith(
+      expect(scope.setExtras).toHaveBeenCalledWith(
         expect.objectContaining({
           foo: 'bar',
           camelCase: 'value',
@@ -158,10 +158,10 @@ describe('Metrics', () => {
     });
   });
 
-  describe('bootstrapGoogleAnalyticsUser', () => {
+  describe('bootstrapGoogleAnalytics', () => {
     it('sets the google analytics user if present', () => {
       Metrics.settings.userID = 12355;
-      Metrics.bootstrapGoogleAnalyticsUser();
+      Metrics.bootstrapGoogleAnalytics();
 
       expect(global.ga).toBeCalledTimes(1);
       expect(global.ga).toBeCalledWith('set', 'userId', '12355');
@@ -169,7 +169,7 @@ describe('Metrics', () => {
 
     it('does not attempt to set the google analytics user if the user ID is not present', () => {
       Metrics.settings.userID = null;
-      Metrics.bootstrapGoogleAnalyticsUser();
+      Metrics.bootstrapGoogleAnalytics();
 
       expect(global.ga).not.toHaveBeenCalled();
     });
@@ -179,7 +179,7 @@ describe('Metrics', () => {
       global.ga = undefined;
 
       expect(() => {
-        Metrics.bootstrapGoogleAnalyticsUser();
+        Metrics.bootstrapGoogleAnalytics();
       }).not.toThrow();
     });
   });

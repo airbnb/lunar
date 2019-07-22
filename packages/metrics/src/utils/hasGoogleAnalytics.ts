@@ -1,3 +1,3 @@
 export default function hasGoogleAnalytics() {
-  return typeof ga === 'function';
+  return typeof global.ga === 'function';
 }
