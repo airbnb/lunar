@@ -9,6 +9,7 @@ describe('isPrimitive()', () => {
 
   it('returns false otherwise', () => {
     expect(isPrimitive(null)).toBe(false);
+    // @ts-ignore Allow invalid type
     expect(isPrimitive({})).toBe(false);
     expect(isPrimitive([])).toBe(false);
   });
@@ -23,6 +24,7 @@ describe('toString()', () => {
 
   it('returns an empty string for non-primitives', () => {
     expect(toString(null)).toBe('');
+    // @ts-ignore Allow invalid type
     expect(toString({})).toBe('');
     expect(toString([])).toBe('');
   });
@@ -43,6 +45,7 @@ describe('toBool()', () => {
 
   it('returns false for non-primitives', () => {
     expect(toBool(null)).toBe(false);
+    // @ts-ignore Allow invalid type
     expect(toBool({})).toBe(false);
     expect(toBool([])).toBe(false);
   });
@@ -61,6 +64,7 @@ describe('toNumber()', () => {
 
   it('returns 0 for non-primitives', () => {
     expect(toNumber(null)).toBe(0);
+    // @ts-ignore Allow invalid type
     expect(toNumber({})).toBe(0);
     expect(toNumber([])).toBe(0);
   });

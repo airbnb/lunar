@@ -19,7 +19,7 @@ import T from '@airbnb/lunar/lib/components/Translate';
 import { getErrorMessage } from '@airbnb/lunar/lib/components/ErrorMessage';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
 import FormContext from '../FormContext';
-import { Context, Errors, Parse, Field, FieldInput, FieldOutput } from '../../types';
+import { Context, Errors, Parse, Field, DefaultValue } from '../../types';
 import { throttleToSinglePromise } from '../../helpers';
 
 function mapSubscriptions(subscriptions: string[]): { [sub: string]: boolean } {
@@ -56,7 +56,7 @@ export type Props<Data extends object> = {
    * Callback fired after validation. Must return true for passed validation,
    * or false for failed validation.
    */
-  onValidate?: (data: Data, errors: Errors, fields: FieldState<FieldInput>[]) => boolean;
+  onValidate?: (data: Data, errors: Errors, fields: FieldState<any>[]) => boolean;
   /** A list of `final-form` subscriptions to listen to. */
   subscriptions?: (keyof FormSubscription)[];
 };
@@ -124,7 +124,7 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Cast a value using the fields `parse` function.
    */
-  castValue(value: FieldInput, parse: Parse): FieldOutput {
+  castValue(value: DefaultValue, parse: Parse<any>): any {
     if (value === null || value === undefined) {
       return '';
     }
@@ -164,7 +164,7 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Return a list of all field states.
    */
-  getFields = (): FieldState<FieldInput>[] => {
+  getFields = (): FieldState<any>[] => {
     if (!this.form) {
       return [];
     }
@@ -326,7 +326,7 @@ export default class Form<Data extends object = any> extends React.Component<
    * Register a new field and set their default value into the data set.
    * Optionally validate the default value if `validateDefaultValue` is true.
    */
-  registerField = <T extends unknown>(field: Field, onUpdate: FieldSubscriber<T>) => {
+  registerField = <T extends unknown>(field: Field<any>, onUpdate: FieldSubscriber<T>) => {
     const { name, isEqual, subscriptions = [], validateFields = [] } = field;
     const unregister = this.form.registerField(name, onUpdate, mapSubscriptions(subscriptions), {
       isEqual,
@@ -352,7 +352,7 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Form mutator to manually set a fields configuration and value.
    */
-  setFieldConfig([name, config]: [string, Field], { fields, formState }: any) {
+  setFieldConfig([name, config]: [string, Field<any>], { fields, formState }: any) {
     const field = fields[name];
     const initial = getIn(formState.initialValues, name);
     const value = typeof initial === 'undefined' ? config.defaultValue : initial;
@@ -410,7 +410,7 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Wrap a validator in a closure to correctly handle error states.
    */
-  wrapValidator(validator?: FieldValidator<FieldInput>): FieldValidator<FieldInput> {
+  wrapValidator(validator?: FieldValidator<any>): FieldValidator<any> {
     return async (value, data) => {
       if (validator) {
         try {

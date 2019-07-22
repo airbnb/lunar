@@ -23,7 +23,7 @@ export type Context = {
   change: (name: string, value: any, batchValues?: object) => void;
   getFields: () => FieldState<any>[];
   getState: () => FormState<any>;
-  register: (field: Field, onUpdate: FieldSubscriber<any>) => Unsubscribe;
+  register: (field: Field<any>, onUpdate: FieldSubscriber<any>) => Unsubscribe;
   submit: () => Promise<object | undefined>;
 };
 
@@ -31,22 +31,19 @@ export type Errors = {
   [key: string]: string;
 };
 
-export type Parse = (value: FieldInput) => string | boolean;
+export type UnboxParsedValue<T> = T extends (infer U)[] ? U : T;
 
-// Value coming in via `defaultValue`
-export type FieldInput = boolean | string | number | string[] | number[] | null | undefined;
+export type Parse<T> = (value: ParseValue) => UnboxParsedValue<T>;
 
-// Value passed down to `value`
-export type FieldOutput = string | string[] | boolean;
+export type ParseValue = boolean | string | number | null | undefined;
 
-// Value passed as the 1st argument to `onChange`
-export type OnChangeValue = string | string[] | boolean | File[];
+export type DefaultValue = boolean | string | number | string[] | number[] | null | undefined;
 
-export type Field<T = FieldInput> = {
-  defaultValue?: T;
+export type Field<T> = {
+  defaultValue?: DefaultValue;
   isEqual?: IsEqual;
   name: string;
-  parse?: Parse;
+  parse?: Parse<T>;
   subscriptions?: (keyof FieldSubscription)[];
   validateDefaultValue?: boolean;
   validateFields?: string[];

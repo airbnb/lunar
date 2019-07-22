@@ -3,16 +3,31 @@ import Enzyme, { shallow } from 'enzyme';
 import { unwrapHOCs } from '@airbnb/lunar-test-utils';
 import connectToForm, { PROP_NAMES } from '../../src/composers/connectToForm';
 import { Context } from '../../src/types';
+import { toString, toNumber } from '../../lib/helpers';
 
 describe('connectToForm()', () => {
   function Foo() {
     return <div />;
   }
 
-  const Hoc = connectToForm()(Foo);
-  const HocMultiple = connectToForm({ multiple: true })(Foo);
-  const HocChecked = connectToForm({ valueProp: 'checked', parse: Boolean })(Foo);
-  const HocInitialValue = connectToForm({ initialValue: 123 })(Foo);
+  const Hoc = connectToForm<string>({
+    initialValue: '',
+    parse: toString,
+  })(Foo);
+
+  const HocMultiple = connectToForm<string>({
+    initialValue: '',
+    parse: toString,
+    multiple: true,
+  })(Foo);
+
+  const HocChecked = connectToForm<boolean>({
+    initialValue: false,
+    valueProp: 'checked',
+    parse: Boolean,
+  })(Foo);
+
+  const HocInitialValue = connectToForm<number>({ initialValue: 123, parse: toNumber })(Foo);
 
   const props = {
     name: 'foo',
@@ -186,21 +201,21 @@ describe('connectToForm()', () => {
 
   describe('formatValue()', () => {
     it('casts value using `parse` prop', () => {
-      const wrapper = unwrap(<Hoc {...props} parse={Number} />);
+      const wrapper = unwrap(<Hoc {...props} parse={toString} />);
       const formatValue = (wrapper.instance() as any).formatValue.bind(wrapper.instance());
 
       expect(formatValue(1)).toBe(1);
       expect(formatValue('1')).toBe(1);
-      expect(formatValue([1, '2', '3.5'])).toEqual([1, 2, 3.5]);
+      expect(formatValue([1, '2', 3.5])).toEqual(['1', '2', '3.5']);
     });
 
     it('converts to an array if requires multiple', () => {
-      const wrapper = unwrap(<HocMultiple {...props} parse={Number} />);
+      const wrapper = unwrap(<HocMultiple {...props} parse={toString} />);
       const formatValue = (wrapper.instance() as any).formatValue.bind(wrapper.instance());
 
       expect(formatValue(1)).toEqual([1]);
       expect(formatValue('1')).toEqual([1]);
-      expect(formatValue([1, '2', '3.5'])).toEqual([1, 2, 3.5]);
+      expect(formatValue([1, '2', 3.5])).toEqual(['1', '2', '3.5']);
     });
   });
 
