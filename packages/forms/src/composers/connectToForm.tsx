@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import omit from 'lodash/omit';
 import { Omit } from 'utility-types';
 import { fieldSubscriptionItems, FieldState, Unsubscribe } from 'final-form';
@@ -42,12 +42,12 @@ export type Options<T> = {
 
 export interface ConnectToFormProps<T> {
   name: string;
-  invalid?: boolean;
-  errorMessage?: string;
-  field?: Partial<FieldState<T>>;
-  onBlur?: (event: React.FocusEvent) => void;
-  onChange?: (value: T, ...args: any[]) => void;
-  onFocus?: (event: React.FocusEvent) => void;
+  invalid: boolean;
+  errorMessage: string;
+  field: FieldState<T>;
+  onBlur: (event: React.FocusEvent) => void;
+  onChange: (value: T, ...args: any[]) => void;
+  onFocus: (event: React.FocusEvent) => void;
   value?: T;
   checked?: boolean;
 }
@@ -78,10 +78,8 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
   ): React.ComponentType<OptionalOnChange<Props> & ConnectToFormWrapperProps<T>> {
     type OwnProps = OptionalOnChange<Props> & ConnectToFormWrapperProps<T>;
 
-    class ConnectToForm extends React.Component<OwnProps, ConnectToFormState> {
-      static contextType = FormContext;
-
-      static defaultProps: any = {
+    class ConnectToForm extends React.Component<OwnProps & { form: Context }, ConnectToFormState> {
+      static defaultProps = {
         defaultValue: initialValue,
         parse,
         subscriptions: fieldSubscriptionItems,
@@ -90,11 +88,9 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         validateFields: [],
       };
 
-      // @ts-ignore Only for typing the property
-      context: Context;
-
       // https://github.com/final-form/final-form#fieldstate
-      state: any = {
+      // @ts-ignore All other non-critical fields get set on mount
+      state: ConnectToFormState = {
         blur() {},
         error: '',
         focus() {},
@@ -114,7 +110,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         // Register the form after the mounted boolean above is set.
         // Otherwise form data will be lost in `handleUpdate` when the
         // component is unmounted and mounted again.
-        this.unregister = this.context.register(this.props, this.handleUpdate);
+        this.unregister = this.props.form.register(this.props, this.handleUpdate);
       }
 
       componentDidUpdate(prevProps: OwnProps & { form: Context }) {
@@ -122,7 +118,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         // If this is causing issues in userland, add a unique key prop to each field.
         if (this.props.name !== prevProps.name && this.unregister) {
           this.unregister();
-          this.unregister = this.context.register(this.props, this.handleUpdate);
+          this.unregister = this.props.form.register(this.props, this.handleUpdate);
 
           return;
         }
@@ -134,7 +130,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
             },
             () => {
               if (typeof this.props.defaultValue === 'string') {
-                this.context.change(this.props.name, this.props.defaultValue, {});
+                this.props.form.change(this.props.name, this.props.defaultValue, {});
               }
             },
           );
@@ -178,7 +174,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
       }
 
       private handleBlur = (event: React.FocusEvent) => {
-        this.state.blur!();
+        this.state.blur();
 
         if (this.props.onBlur) {
           this.props.onBlur(event);
@@ -187,10 +183,10 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
 
       private handleChange = (
         checkedOrValue: T,
-        valueOrEvent: string | React.ChangeEvent<any>,
+        valueOrEvent: T | React.ChangeEvent<any>,
         event?: React.ChangeEvent,
       ) => {
-        this.context.change(
+        this.props.form.change(
           this.props.name,
           checkedOrValue,
           this.props.onBatchChange ? this.props.onBatchChange(checkedOrValue) : {},
@@ -202,7 +198,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
       };
 
       private handleFocus = (event: React.FocusEvent) => {
-        this.state.focus!();
+        this.state.focus();
 
         if (this.props.onFocus) {
           this.props.onFocus(event);
@@ -229,25 +225,30 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
 
       render() {
         const { error, invalid, touched, name, value } = this.state;
-        const props = {
+        const props: ConnectToFormProps<T> = {
           name,
           invalid: touched ? invalid : false,
           errorMessage: touched ? this.formatError(error) : '',
+          field: this.state,
           onBlur: this.handleBlur,
           onChange: this.handleChange,
           onFocus: this.handleFocus,
         };
 
         if (!ignoreValue) {
-          (props as any)[valueProp] = this.formatValue(value);
+          props[valueProp as 'value'] = this.formatValue(value);
         }
 
-        return (
-          <WrappedComponent {...this.omitFormProps(this.props)} {...props} field={this.state} />
-        );
+        return <WrappedComponent {...this.omitFormProps(this.props)} {...props} />;
       }
     }
 
-    return finishHOC('connectToForm', ConnectToForm, WrappedComponent);
+    function ConnectToFormWrapper(props: OwnProps) {
+      const form = useContext(FormContext);
+
+      return form ? <ConnectToForm {...(props as any)} form={form!} /> : null;
+    }
+
+    return finishHOC('connectToForm', ConnectToFormWrapper, WrappedComponent);
   };
 }

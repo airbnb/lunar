@@ -17,7 +17,7 @@ import {
 // string - Autocomplete, DatePickerInput, DateTimeSelect, Input, RadioButtonController, Select, TextArea, ToggleButtonController
 // string[] - CheckBoxController, Multicomplete
 // boolean - CheckBox, RadioButton, Switch
-// File[] - FileInput3
+// File[] - FileInput
 
 export type Context = {
   change: (name: string, value: any, batchValues?: object) => void;
