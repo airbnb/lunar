@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.9.0 - 2019-07-22
+
+#### 🚀 Updates
+
+- **[Translate]** Add key support. Make params and context optional. (#129) ([6338326](https://github.com/airbnb/lunar/tree/master/packages/core/commit/6338326)), closes [#129](https://github.com/airbnb/lunar/tree/master/packages/core/issues/129)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.8.2 - 2019-07-16
 
 #### 🛠 Internals
