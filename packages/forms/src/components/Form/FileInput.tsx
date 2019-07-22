@@ -9,5 +9,4 @@ export function FormFileInput(props: Props & ConnectToFormProps) {
 
 export default connectToForm({
   ignoreValue: true,
-  parse: files => files,
 })(FormFileInput);

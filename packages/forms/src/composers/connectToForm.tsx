@@ -5,7 +5,7 @@ import { fieldSubscriptionItems, FieldState, Unsubscribe } from 'final-form';
 import finishHOC from '@airbnb/lunar/lib/utils/finishHOC';
 import FormContext from '../components/FormContext';
 import { toString } from '../helpers';
-import { Context, Parse, Field } from '../types';
+import { Context, Parse, Field, FieldInput, FieldOutput, OnChangeValue } from '../types';
 
 // Keep in sync with props!
 export const PROP_NAMES = [
@@ -36,7 +36,7 @@ export type OptionalOnChange<T> = T extends { onChange: OnChangeHandler }
 
 export type Options = {
   ignoreValue?: boolean;
-  initialValue?: any;
+  initialValue?: FieldInput;
   multiple?: boolean;
   parse?: Parse;
   valueProp?: 'value' | 'checked';
@@ -46,7 +46,7 @@ export interface ConnectToFormProps {
   name: string;
   invalid?: boolean;
   errorMessage?: string;
-  field?: Partial<FieldState<any>>;
+  field?: Partial<FieldState<FieldInput>>;
   onBlur?: (event: React.FocusEvent) => void;
   onChange?: (...args: any[]) => void;
   onFocus?: (event: React.FocusEvent) => void;
@@ -55,14 +55,14 @@ export interface ConnectToFormProps {
 }
 
 export interface ConnectToFormWrapperProps extends Field {
-  onBatchChange?: (value: string | boolean) => object | undefined;
+  onBatchChange?: (value: OnChangeValue) => object | undefined;
   onBlur?: (event: React.FocusEvent) => void;
   onFocus?: (event: React.FocusEvent) => void;
-  onStateUpdate?: (state: FieldState<any>) => void;
+  onStateUpdate?: (state: FieldState<FieldInput>) => void;
   unregisterOnUnmount?: boolean;
 }
 
-export interface ConnectToFormState extends Partial<FieldState<any>> {
+export interface ConnectToFormState extends Partial<FieldState<FieldInput>> {
   name: string;
 }
 
@@ -82,7 +82,7 @@ export default function connectToForm(options: Options = {}) /* infer */ {
 
     class ConnectToForm extends React.Component<OwnProps & { form: Context }, ConnectToFormState> {
       static defaultProps = {
-        defaultValue: parse(initialValue),
+        defaultValue: initialValue,
         isEqual: null,
         parse,
         subscriptions: fieldSubscriptionItems,
@@ -155,15 +155,28 @@ export default function connectToForm(options: Options = {}) /* infer */ {
         return error instanceof Error ? error.message : String(error);
       }
 
-      formatValue(defaultValue: any): any {
+      formatValue(defaultValue: FieldInput): FieldOutput {
         const cast = this.props.parse as Parse;
-        let value = defaultValue;
+        let value: any = defaultValue;
 
-        if (multiple && !Array.isArray(value)) {
-          value = value ? [value] : [];
+        if (value === null || value === undefined) {
+          return '';
         }
 
-        return Array.isArray(value) ? value.map(v => cast(v)) : cast(value);
+        if (typeof value === 'boolean') {
+          return value;
+        }
+
+        if (multiple && !Array.isArray(value)) {
+          value = [value];
+        }
+
+        if (Array.isArray(value)) {
+          // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
+          return (value as any).map(cast);
+        }
+
+        return cast(value);
       }
 
       omitFormProps(props: Partial<OwnProps>): Props {
@@ -179,8 +192,8 @@ export default function connectToForm(options: Options = {}) /* infer */ {
       };
 
       private handleChange = (
-        checkedOrValue: any,
-        valueOrEvent: any,
+        checkedOrValue: OnChangeValue,
+        valueOrEvent: string | React.ChangeEvent<any>,
         event?: React.ChangeEvent,
       ) => {
         this.props.form!.change(

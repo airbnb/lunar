@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import shallowEqual from 'shallowequal';
 import uuid from 'uuid/v4';
 import {
@@ -20,7 +19,7 @@ import T from '@airbnb/lunar/lib/components/Translate';
 import { getErrorMessage } from '@airbnb/lunar/lib/components/ErrorMessage';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
 import FormContext from '../FormContext';
-import { Errors, Parse, Field } from '../../types';
+import { Context, Errors, Parse, Field, FieldInput, FieldOutput } from '../../types';
 import { throttleToSinglePromise } from '../../helpers';
 
 function mapSubscriptions(subscriptions: string[]): { [sub: string]: boolean } {
@@ -57,7 +56,7 @@ export type Props<Data extends object> = {
    * Callback fired after validation. Must return true for passed validation,
    * or false for failed validation.
    */
-  onValidate?: (data: Data, errors: Errors, fields: FieldState<any>[]) => boolean;
+  onValidate?: (data: Data, errors: Errors, fields: FieldState<FieldInput>[]) => boolean;
   /** A list of `final-form` subscriptions to listen to. */
   subscriptions?: (keyof FormSubscription)[];
 };
@@ -73,11 +72,6 @@ export default class Form<Data extends object = any> extends React.Component<
   Props<Data>,
   State<Data>
 > {
-  static propTypes = {
-    initialValues: PropTypes.object,
-    subscriptions: PropTypes.arrayOf(PropTypes.string),
-  };
-
   static defaultProps = {
     initialValues: {},
     method: 'post',
@@ -90,6 +84,8 @@ export default class Form<Data extends object = any> extends React.Component<
   };
 
   form: FormApi<Data>;
+
+  formContext?: Context;
 
   registeredFields: { [name: string]: Unsubscribe } = {};
 
@@ -128,8 +124,21 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Cast a value using the fields `parse` function.
    */
-  castValue(value: any, parse: Parse): any {
-    return Array.isArray(value) ? value.map(v => parse(v)) : parse(value);
+  castValue(value: FieldInput, parse: Parse): FieldOutput {
+    if (value === null || value === undefined) {
+      return '';
+    }
+
+    if (typeof value === 'boolean') {
+      return value;
+    }
+
+    if (Array.isArray(value)) {
+      // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
+      return (value as any).map(parse);
+    }
+
+    return parse(value);
   }
 
   /**
@@ -155,7 +164,7 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Return a list of all field states.
    */
-  getFields = (): FieldState<any>[] => {
+  getFields = (): FieldState<FieldInput>[] => {
     if (!this.form) {
       return [];
     }
@@ -401,7 +410,7 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Wrap a validator in a closure to correctly handle error states.
    */
-  wrapValidator(validator?: FieldValidator<any>): FieldValidator<any> {
+  wrapValidator(validator?: FieldValidator<FieldInput>): FieldValidator<FieldInput> {
     return async (value, data) => {
       if (validator) {
         try {
@@ -421,16 +430,18 @@ export default class Form<Data extends object = any> extends React.Component<
     // @ts-ignore Bug: https://github.com/Microsoft/TypeScript/issues/26970
     const content = typeof children === 'function' ? children(this.state!) : children;
 
+    if (!this.formContext) {
+      this.formContext = {
+        change: this.changeValue,
+        getFields: this.getFields,
+        getState: this.getState,
+        register: this.registerField,
+        submit: this.submitForm,
+      };
+    }
+
     return (
-      <FormContext.Provider
-        value={{
-          change: this.changeValue,
-          getFields: this.getFields,
-          getState: this.getState,
-          register: this.registerField,
-          submit: this.submitForm,
-        }}
-      >
+      <FormContext.Provider value={this.formContext}>
         <form
           id={id}
           method={method}
