@@ -20,7 +20,7 @@ describe('<Tooltip />', () => {
 
   it('opens up when hovered', () => {
     childContainer.simulate('mouseenter');
-    expect(wrapper.state('open')).toBeTruthy();
+    expect(wrapper.state('hoveringTarget')).toBeTruthy();
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -43,7 +43,8 @@ describe('<Tooltip />', () => {
 
     it('does not up when hovered', () => {
       childContainer.simulate('mouseenter');
-      expect(wrapper.state('open')).not.toBeTruthy();
+      expect(wrapper.state('hoveringTarget')).not.toBeTruthy();
+      expect(wrapper.state('hoveringTooltip')).not.toBeTruthy();
       expect(wrapper).toMatchSnapshot();
     });
 
@@ -60,17 +61,19 @@ describe('<Tooltip />', () => {
 
     it('closes when child exited', () => {
       childContainer.simulate('mouseleave');
-      expect(wrapper.state('open')).not.toBeTruthy();
+      expect(wrapper.state('hoveringTarget')).not.toBeTruthy();
+      expect(wrapper.state('hoveringTooltip')).not.toBeTruthy();
     });
 
     it('closes when child mousedowned', () => {
       childContainer.simulate('mousedown');
-      expect(wrapper.state('open')).not.toBeTruthy();
+      expect(wrapper.state('hoveringTarget')).not.toBeTruthy();
+      expect(wrapper.state('hoveringTooltip')).not.toBeTruthy();
     });
 
     it('supports changing content', () => {
       wrapper.setProps({ content: 'whatever' });
-      expect(wrapper.state('open')).toBeTruthy();
+      expect(wrapper.state('hoveringTarget')).toBeTruthy();
       expect(wrapper).toMatchSnapshot();
     });
 
@@ -81,7 +84,7 @@ describe('<Tooltip />', () => {
 
       it('does not close when child mousedowned', () => {
         childContainer.simulate('mousedown');
-        expect(wrapper.state('open')).toBeTruthy();
+        expect(wrapper.state('hoveringTarget')).toBeTruthy();
       });
     });
   });
