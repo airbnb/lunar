@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import DataItem from './DataItem';
 import Link from './Link';
 import Spacing from './Spacing';
+
 import Card, { Content } from './Card';
 
 storiesOf('Core/DataItem', module)
@@ -60,12 +61,12 @@ storiesOf('Core/DataItem', module)
     <div style={{ width: 600 }}>
       <Card>
         <Content>
-          <Spacing inline right={4}>
+          <Spacing inline right={6}>
             <DataItem label="Pending tickets">8</DataItem>
           </Spacing>
-          <DataItem inline label="Resolved tickets">
-            20
-          </DataItem>
+          <Spacing inline>
+            <DataItem label="Resolved tickets">20</DataItem>
+          </Spacing>
         </Content>
       </Card>
     </div>
