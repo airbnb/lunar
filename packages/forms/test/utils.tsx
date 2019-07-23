@@ -4,13 +4,17 @@ import React from 'react';
 import FormContext from '../src/components/FormContext';
 import { Context } from '../src/types';
 
-export function createFormContext(): Context {
+// istanbul ignore next
+export function createFormContext(): Context & { unregister: () => void } {
+  const unregister = jest.fn();
+
   return {
     change: jest.fn(),
     getFields: () => [],
     getState: () => ({} as any),
-    register: jest.fn(),
+    register: jest.fn(() => unregister),
     submit: jest.fn(() => Promise.resolve({})),
+    unregister,
   };
 }
 

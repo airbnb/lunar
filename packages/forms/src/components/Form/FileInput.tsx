@@ -10,7 +10,4 @@ export function FormFileInput(props: Props & ConnectToFormProps<File[]>) {
 export default connectToForm<File[]>({
   initialValue: [],
   ignoreValue: true,
-  // This isn't used since we ignore the value,
-  // but is required by the types.
-  parse: value => value as any,
 })(FormFileInput);

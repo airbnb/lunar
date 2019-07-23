@@ -37,7 +37,7 @@ export type Options<T> = {
   ignoreValue?: boolean;
   initialValue: T;
   multiple?: boolean;
-  parse: Parse<T>;
+  parse?: Parse<T>;
   valueProp?: 'value' | 'checked';
 };
 
@@ -155,8 +155,12 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
       }
 
       formatValue(defaultValue: DefaultValue) {
-        const cast = this.props.parse as Parse<T>;
+        const cast = this.props.parse;
         let value = defaultValue;
+
+        if (!cast) {
+          return value;
+        }
 
         if (multiple && !Array.isArray(value)) {
           value = [value] as string[];
@@ -164,7 +168,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
 
         if (Array.isArray(value)) {
           // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
-          return value.map(cast);
+          return value.map(cast!);
         }
 
         return cast(value);
@@ -206,7 +210,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         }
       };
 
-      private handleUpdate = (state: FieldState<any>) => {
+      private handleUpdate = /* istanbul ignore next */ (state: FieldState<any>) => {
         if (!this.mounted) {
           return;
         }
