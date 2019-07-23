@@ -1,6 +1,7 @@
 import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
+import Spacing from '../Spacing';
 import Text from '../Text';
 
 function DataItem({
