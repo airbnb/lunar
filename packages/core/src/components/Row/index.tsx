@@ -12,6 +12,8 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** Render with reduced vertical padding. */
   compact?: boolean;
+  /** Render as an inline element. */
+  inline?: boolean;
   /** Max height of row. */
   maxHeight?: number | string;
   /** Align contents in the middle vertically. */
@@ -32,6 +34,7 @@ export class Row extends React.Component<Props & WithStylesProps> {
     before: null,
     compact: false,
     flat: false,
+    inline: false,
     middleAlign: false,
     topline: false,
     truncated: false,
@@ -45,6 +48,7 @@ export class Row extends React.Component<Props & WithStylesProps> {
       before,
       children,
       compact,
+      inline,
       maxHeight,
       middleAlign,
       spacious,
@@ -58,6 +62,7 @@ export class Row extends React.Component<Props & WithStylesProps> {
         className={cx(
           styles.row,
           { maxHeight },
+          inline && styles.row_inline,
           compact && styles.row_compact,
           spacious && styles.row_spacious,
           middleAlign && styles.row_middleAlign,
@@ -80,6 +85,10 @@ export class Row extends React.Component<Props & WithStylesProps> {
 export default withStyles(({ ui, unit }) => ({
   row: {
     display: 'flex',
+  },
+
+  row_inline: {
+    display: 'inline-flex',
   },
 
   row_compact: {
