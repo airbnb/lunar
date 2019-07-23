@@ -1,38 +1,39 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import BaseMulticomplete from '@airbnb/lunar/lib/components/Multicomplete';
-import { unwrapHOCs } from '@airbnb/lunar-test-utils';
 import Multicomplete from '../../../src/components/Form/Multicomplete';
 import { toString } from '../../../src/helpers';
+import { Context } from '../../../src/types';
+import { WrappingFormComponent, createFormContext } from '../../utils';
 
 describe('<Multicomplete />', () => {
-  const form = {
-    change() {},
-    getState: () => ({} as any),
-    register: jest.fn(),
-  };
+  let context: Context;
+
+  beforeEach(() => {
+    context = createFormContext();
+  });
 
   it('connects to the form', () => {
-    const wrapper = unwrapHOCs(
-      shallow(
-        <Multicomplete
-          label="Label"
-          accessibilityLabel="Label"
-          name="foo"
-          defaultValue="bar"
-          onLoadItems={() => Promise.resolve([])}
-          validator={() => {}}
-        />,
-      ),
-      'FormMulticomplete',
-      form,
+    const wrapper = mount(
+      <Multicomplete
+        label="Label"
+        accessibilityLabel="Label"
+        name="foo"
+        defaultValue="bar"
+        onLoadItems={() => Promise.resolve([])}
+        validator={() => {}}
+      />,
+      {
+        wrappingComponent: WrappingFormComponent,
+        wrappingComponentProps: { context },
+      },
     );
 
-    expect(form.register).toHaveBeenCalledWith(
+    expect(context.register).toHaveBeenCalledWith(
       expect.objectContaining({ name: 'foo', defaultValue: 'bar', parse: toString }),
       expect.anything(),
     );
 
-    expect(wrapper.shallow().find(BaseMulticomplete)).toHaveLength(1);
+    expect(wrapper.find(BaseMulticomplete)).toHaveLength(1);
   });
 });

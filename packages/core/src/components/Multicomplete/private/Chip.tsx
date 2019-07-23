@@ -18,7 +18,7 @@ export default class MulticompleteChip extends React.Component<Props> {
     const { value } = this.props;
 
     return (
-      <Chip afterIcon={<IconCloseAlt size="2em" />} onIconClick={this.handleClick}>
+      <Chip afterIcon={<IconCloseAlt decorative size="2em" />} onIconClick={this.handleClick}>
         {value}
       </Chip>
     );

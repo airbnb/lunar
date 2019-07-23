@@ -1,34 +1,36 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import { unwrapHOCs } from '@airbnb/lunar-test-utils';
+import Enzyme, { mount } from 'enzyme';
 import connectToForm, { PROP_NAMES } from '../../src/composers/connectToForm';
 import { Context } from '../../src/types';
-import { toString, toNumber } from '../../src/helpers';
-import Form from '../../src';
+import { toString, toNumber, toBool } from '../../src/helpers';
+import { createFormContext, WrappingFormComponent } from '../utils';
 
 describe('connectToForm()', () => {
-  function Foo() {
+  function BaseField() {
     return <div />;
   }
 
   const Hoc = connectToForm<string>({
     initialValue: '',
     parse: toString,
-  })(Foo);
+  })(BaseField);
 
   const HocMultiple = connectToForm<string>({
     initialValue: '',
     parse: toString,
     multiple: true,
-  })(Foo);
+  })(BaseField);
 
   const HocChecked = connectToForm<boolean>({
     initialValue: false,
     valueProp: 'checked',
-    parse: Boolean,
-  })(Foo);
+    parse: toBool,
+  })(BaseField);
 
-  const HocInitialValue = connectToForm<number>({ initialValue: 123, parse: toNumber })(Foo);
+  const HocInitialValue = connectToForm<number>({
+    initialValue: 123,
+    parse: toNumber,
+  })(BaseField);
 
   const props = {
     name: 'foo',
@@ -39,46 +41,33 @@ describe('connectToForm()', () => {
   let form: Context;
 
   beforeEach(() => {
-    form = {
-      change: jest.fn(),
-      getFields: jest.fn(),
-      getState: jest.fn(),
-      register: jest.fn(() => jest.fn()),
-      submit: jest.fn(),
-    };
+    form = createFormContext();
   });
 
-  function WrappingComponent({ children }: { children: NonNullable<React.ReactNode> }) {
-    return <Form onSubmit={() => Promise.resolve()}>{children}</Form>;
-  }
-
-  function unwrap(element: any): Enzyme.ShallowWrapper {
-    return unwrapHOCs(
-      shallow(element, {
-        wrappingComponent: WrappingComponent,
-      }),
-      'Foo',
-      form,
-    );
+  function unwrap(element: any): Enzyme.ReactWrapper {
+    return mount(element, {
+      wrappingComponent: WrappingFormComponent,
+      wrappingComponentProps: { context: form },
+    });
   }
 
   it('returns an HOC', () => {
-    expect(Hoc.displayName).toBe('connectToForm(Foo)');
-    expect((Hoc as any).WrappedComponent).toBe(Foo);
+    expect(Hoc.displayName).toBe('connectToForm(BaseField)');
+    expect((Hoc as any).WrappedComponent).toBe(BaseField);
   });
 
-  it('sets `defaultValue` from `initialValue` option', () => {
+  it.only('sets `defaultValue` from `initialValue` option', () => {
     const wrapper = unwrap(<HocInitialValue name="foo" validator={() => {}} />);
 
-    expect(wrapper.prop('value')).toBe('123');
+    expect(wrapper.find(BaseField).prop('value')).toBe(123);
   });
 
-  it('doesnt pass field props to wrapped component', () => {
+  it.only('doesnt pass field props to wrapped component', () => {
     const wrapper = unwrap(<Hoc {...props} />);
 
     PROP_NAMES.forEach(name => {
       if (name !== 'name' && name.slice(0, 2) !== 'on') {
-        expect(wrapper.prop(name)).toBeUndefined();
+        expect(wrapper.find(BaseField).prop(name)).toBeUndefined();
       }
     });
   });
