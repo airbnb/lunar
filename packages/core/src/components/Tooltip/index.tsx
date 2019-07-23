@@ -28,7 +28,8 @@ export type Props = {
 
 export type State = {
   labelID: string;
-  open: boolean;
+  hoveringButton: boolean;
+  hoveringTooltip: boolean;
   tooltipHeight: number;
   targetRect: ClientRect;
 };
@@ -56,7 +57,8 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
 
   state = {
     labelID: uuid(),
-    open: false,
+    hoveringButton: false,
+    hoveringTooltip: false,
     tooltipHeight: 0,
     targetRect: document.body.getBoundingClientRect(),
   };
@@ -70,7 +72,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   static getDerivedStateFromProps({ disabled }: Props) {
     if (disabled) {
       return {
-        open: false,
+        hoveringButton: false,
       };
     }
 
@@ -125,17 +127,22 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     this.updateTooltipHeight();
   };
 
-  private handleEnter = () => {
+  private handleEnter = (element: string) => () => {
     const { current } = this.containerRef;
+    const { disabled, onShow } = this.props;
+    const { hoveringTooltip, hoveringButton } = this.state;
 
     /* istanbul ignore if: refs are hard */
     if (current) {
       this.setState({ targetRect: current.getBoundingClientRect() });
     }
 
-    if (!this.props.disabled && !this.state.open) {
-      this.setState({ open: true });
-      this.props.onShow!();
+    const open = hoveringTooltip || hoveringButton;
+    if (!disabled && !open) {
+      this.setState({
+        [`hovering${element}`]: true,
+      });
+      onShow!();
     }
   };
 
@@ -145,8 +152,8 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     }
   };
 
-  private handleClose = () => {
-    this.setState({ open: false });
+  private handleClose = (element: string) => () => {
+    this.setState({ [`hovering${element}`]: false });
   };
 
   render() {
@@ -161,7 +168,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
       underlined,
       inverted,
     } = this.props;
-    const { open, targetRect, tooltipHeight, labelID } = this.state;
+    const { hoveringButton, hoveringTooltip, targetRect, tooltipHeight, labelID } = this.state;
     const { unit } = theme!;
     const width = widthProp! * unit;
     const { align, above } = this.bestPosition(targetRect);
@@ -177,15 +184,17 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     };
     const distance = halfNotch + 1;
 
+    const open = hoveringButton || hoveringTooltip;
+
     return (
-      <span className={cx(styles.container)} ref={this.containerRef}>
-        <div
-          aria-labelledby={labelID}
-          onMouseEnter={this.handleEnter}
-          onMouseLeave={this.handleClose}
-          onMouseDown={this.handleMouseDown}
-          className={cx(!disabled && underlined && styles.underlined)}
-        >
+      <span
+        className={cx(styles.container)}
+        ref={this.containerRef}
+        onMouseEnter={this.handleEnter('Button')}
+        onMouseLeave={this.handleClose('Button')}
+        onMouseDown={this.handleMouseDown}
+      >
+        <div aria-labelledby={labelID} className={cx(!disabled && underlined && styles.underlined)}>
           {children}
         </div>
 
@@ -193,9 +202,11 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
           {content}
         </div>
 
-        <Overlay open={open} onClose={this.handleClose} noBackground>
+        {open && (
           <div
             role="tooltip"
+            onMouseEnter={this.handleEnter('Tooltip')}
+            onMouseLeave={this.handleClose('Tooltip')}
             className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
               width,
               marginLeft: marginLeft[align as keyof StyleStruct],
@@ -214,7 +225,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
               </NotchedBox>
             </div>
           </div>
-        </Overlay>
+        )}
       </span>
     );
   }
@@ -238,14 +249,17 @@ export default withStyles(
     tooltip: {
       animationDuration: '200ms',
       animationTimingFunction: 'ease-out',
+      border: `${1.5 * unit}px solid transparent`,
+      position: 'absolute',
     },
 
     tooltip_above: {
+      transform: `translateY(${unit * 1.5}px)`,
       animationName: {
         name: 'fadeDown',
         from: {
           opacity: 0,
-          transform: `translateY(${unit * 1.5}px)`,
+          transform: `translateY(${unit * 3}px)`,
         },
         to: {
           opacity: 1,
@@ -254,11 +268,12 @@ export default withStyles(
     },
 
     tooltip_below: {
+      transform: `translateY(-${unit * 1.5}px)`,
       animationName: {
         name: 'fadeUp',
         from: {
           opacity: 0,
-          transform: `translateY(-${unit * 1.5}px)`,
+          transform: `translateY(-${unit * 3}px)`,
         },
         to: {
           opacity: 1,
