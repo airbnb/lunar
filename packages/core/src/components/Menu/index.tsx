@@ -63,7 +63,7 @@ export default withStyles(({ color, ui, pattern, unit }) => ({
   menu: {
     ...pattern.box,
     margin: 0,
-    padding: 0,
+    padding: `${unit}px 0`,
     backgroundColor: color.accent.bg,
     listStyle: 'none',
 
@@ -74,13 +74,11 @@ export default withStyles(({ color, ui, pattern, unit }) => ({
 
       // These are jank. Better way?
       '> li:first-child > *': {
-        borderTop: `${unit}px solid ${color.accent.bg}`,
         borderTopLeftRadius: ui.borderRadius,
         borderTopRightRadius: ui.borderRadius,
       },
 
       '> li:last-child > *': {
-        borderBottom: `${unit}px solid ${color.accent.bg}`,
         borderBottomLeftRadius: ui.borderRadius,
         borderBottomRightRadius: ui.borderRadius,
       },
