@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.12.0 - 2019-07-23
+
+#### 🚀 Updates
+
+- **[Divider]** Add short prop (#131) ([1f45ee9](https://github.com/airbnb/lunar/tree/master/packages/core/commit/1f45ee9)), closes [#131](https://github.com/airbnb/lunar/tree/master/packages/core/issues/131)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.11.0 - 2019-07-23
 
 #### 🚀 Updates
