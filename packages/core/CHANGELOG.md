@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.11.0 - 2019-07-23
+
+#### 🚀 Updates
+
+- **[ImageViewer]** Add new ImageViewer component with zoom, drag, and rotate features (#123) ([bb9bea2](https://github.com/airbnb/lunar/tree/master/packages/core/commit/bb9bea2)), closes [#123](https://github.com/airbnb/lunar/tree/master/packages/core/issues/123)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.10.0 - 2019-07-22
+
+#### 🚀 Updates
+
+- **[Modal]** Add z-index to close button. (#130) ([16b7945](https://github.com/airbnb/lunar/tree/master/packages/core/commit/16b7945)), closes [#130](https://github.com/airbnb/lunar/tree/master/packages/core/issues/130)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.9.0 - 2019-07-22
 
 #### 🚀 Updates
