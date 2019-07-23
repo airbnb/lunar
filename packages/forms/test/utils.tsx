@@ -20,10 +20,10 @@ export function createFormContext(): Context & { unregister: () => void } {
 
 export function WrappingFormComponent({
   children,
-  context = null,
+  context,
 }: {
   children: React.ReactNode;
-  context?: Context | null;
+  context: Context;
 }) {
   return <FormContext.Provider value={context}>{children}</FormContext.Provider>;
 }

@@ -155,9 +155,10 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
       }
 
       formatValue(defaultValue: DefaultValue) {
-        const cast = this.props.parse;
+        const cast = this.props.parse as Parse<T> | undefined;
         let value = defaultValue;
 
+        // Some fields dont use the value, so wont have a parser
         if (!cast) {
           return value;
         }
@@ -168,7 +169,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
 
         if (Array.isArray(value)) {
           // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
-          return value.map(cast!);
+          return value.map(cast);
         }
 
         return cast(value);
@@ -210,7 +211,8 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         }
       };
 
-      private handleUpdate = /* istanbul ignore next */ (state: FieldState<any>) => {
+      // istanbul ignore next
+      private handleUpdate = (state: FieldState<any>) => {
         if (!this.mounted) {
           return;
         }
