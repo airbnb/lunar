@@ -671,7 +671,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   };
 
   renderNoResults = () => (
-    <MenuItem>
+    <MenuRow>
       <Spacing horizontal={1}>
         {renderElementOrFunction(this.props.renderNoResults) || (
           <Text>
@@ -685,7 +685,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
           </Text>
         )}
       </Spacing>
-    </MenuItem>
+    </MenuRow>
   );
 
   render() {
