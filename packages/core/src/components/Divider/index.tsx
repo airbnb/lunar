@@ -1,6 +1,6 @@
 import React from 'react';
-import Spacing, { SpacingRange } from '../Spacing';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import Spacing, { SpacingRange } from '../Spacing';
 
 export type Props = {
   /** Spacing on the bottom. */
@@ -15,8 +15,8 @@ export type Props = {
 export class Divider extends React.Component<Props & WithStylesProps> {
   static defaultProps: Props = {
     bottom: 2,
-    top: 2,
     short: false,
+    top: 2,
   };
 
   render() {
