@@ -1,11 +1,9 @@
-import { DefaultValue } from './types';
-
 export { getIn, setIn } from 'final-form';
 
 /**
  * Return true if the value is primitive.
  */
-export function isPrimitive(value: DefaultValue): boolean {
+export function isPrimitive(value: unknown): boolean {
   switch (typeof value) {
     case 'string':
     case 'number':
@@ -20,7 +18,7 @@ export function isPrimitive(value: DefaultValue): boolean {
 /**
  * Return an empty string for non-primitives, otherwise cast to a string.
  */
-export function toString(value: DefaultValue): string {
+export function toString(value: unknown): string {
   return isPrimitive(value) ? String(value) : '';
 }
 
@@ -28,7 +26,7 @@ export function toString(value: DefaultValue): string {
  * Return false for non-primitives, otherwise cast to a boolean.
  * Support "true", "on", and "1" (recommended) strings as true boolean values.
  */
-export function toBool(value: DefaultValue): boolean {
+export function toBool(value: unknown): boolean {
   if (!isPrimitive(value)) {
     return false;
   }
@@ -43,7 +41,7 @@ export function toBool(value: DefaultValue): boolean {
 /**
  * Return 0 for non-primitive, falsy, or NaN values, otherwise cast to a number.
  */
-export function toNumber(value: DefaultValue): number {
+export function toNumber(value: unknown): number {
   if (!value || !isPrimitive(value)) {
     return 0;
   }
@@ -57,7 +55,7 @@ export function toNumber(value: DefaultValue): number {
  * Return "1" for a truthy value and "" for a falsy one.
  * If the value is undefined, return the initial checked state.
  */
-export function fromBool(value: DefaultValue, checked: boolean = true): string {
+export function fromBool(value: unknown, checked: boolean = true): string {
   if (typeof value === 'undefined') {
     return checked ? '1' : '';
   }

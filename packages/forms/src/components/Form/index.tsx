@@ -19,7 +19,7 @@ import T from '@airbnb/lunar/lib/components/Translate';
 import { getErrorMessage } from '@airbnb/lunar/lib/components/ErrorMessage';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
 import FormContext from '../FormContext';
-import { Context, Errors, Parse, Field, DefaultValue } from '../../types';
+import { Context, Errors, Parse, Field } from '../../types';
 import { throttleToSinglePromise } from '../../helpers';
 
 function mapSubscriptions(subscriptions: string[]): { [sub: string]: boolean } {
@@ -124,18 +124,10 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Cast a value using the fields `parse` function.
    */
-  castValue(value: DefaultValue, parse: Parse<any>): any {
-    if (value === null || value === undefined) {
-      return '';
-    }
-
-    if (typeof value === 'boolean') {
-      return value;
-    }
-
+  castValue(value: any, parse: Parse<any>) {
     if (Array.isArray(value)) {
       // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
-      return (value as any).map(parse);
+      return value.map(parse);
     }
 
     return parse(value);

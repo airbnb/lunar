@@ -31,13 +31,13 @@ export type Errors = {
   [key: string]: string;
 };
 
+export type DefaultValue = boolean | string | string[] | null | undefined;
+
+export type ParseValue = boolean | string | null | undefined;
+
 export type UnboxParsedValue<T> = T extends (infer U)[] ? U : T;
 
 export type Parse<T> = (value: ParseValue) => UnboxParsedValue<T>;
-
-export type ParseValue = boolean | string | number | null | undefined;
-
-export type DefaultValue = boolean | string | number | string[] | number[] | null | undefined;
 
 export type Field<T> = {
   defaultValue?: DefaultValue;
@@ -47,5 +47,5 @@ export type Field<T> = {
   subscriptions?: (keyof FieldSubscription)[];
   validateDefaultValue?: boolean;
   validateFields?: string[];
-  validator: FieldValidator<any>;
+  validator: FieldValidator<T>;
 };

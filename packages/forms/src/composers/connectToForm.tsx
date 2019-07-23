@@ -9,6 +9,7 @@ import { Context, Parse, Field, DefaultValue } from '../types';
 // Keep in sync with props!
 export const PROP_NAMES = [
   'defaultValue',
+  'form',
   'isEqual',
   'name',
   'onBatchChange',
@@ -89,7 +90,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
       };
 
       // https://github.com/final-form/final-form#fieldstate
-      // @ts-ignore All other non-critical fields get set on mount
+      // @ts-ignore Other non-critical fields get set on mount
       state: ConnectToFormState = {
         blur() {},
         error: '',
@@ -153,20 +154,20 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         return error instanceof Error ? error.message : String(error);
       }
 
-      formatValue(defaultValue: DefaultValue): T {
+      formatValue(defaultValue: DefaultValue) {
         const cast = this.props.parse as Parse<T>;
-        let value: any = defaultValue;
+        let value = defaultValue;
 
         if (multiple && !Array.isArray(value)) {
-          value = [value];
+          value = [value] as string[];
         }
 
         if (Array.isArray(value)) {
           // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
-          return (value as any).map(cast);
+          return value.map(cast);
         }
 
-        return cast(value) as any;
+        return cast(value);
       }
 
       omitFormProps(props: Partial<OwnProps>): Props {
@@ -236,7 +237,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         };
 
         if (!ignoreValue) {
-          props[valueProp as 'value'] = this.formatValue(value);
+          props[valueProp as 'value'] = this.formatValue(value) as T;
         }
 
         return <WrappedComponent {...this.omitFormProps(this.props)} {...props} />;
@@ -246,7 +247,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
     function ConnectToFormWrapper(props: OwnProps) {
       const form = useContext(FormContext);
 
-      return form ? <ConnectToForm {...(props as any)} form={form!} /> : null;
+      return form ? <ConnectToForm {...(props as any)} form={form} /> : null;
     }
 
     return finishHOC('connectToForm', ConnectToFormWrapper, WrappedComponent);
