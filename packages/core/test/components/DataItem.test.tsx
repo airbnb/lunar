@@ -11,7 +11,7 @@ describe('<DataItem />', () => {
       </DataItem>,
     );
 
-    expect(wrapper.prop('className')).toMatch('data_item_inline');
+    expect(wrapper.prop('className')).toMatch('inline');
   });
   it('renders link', () => {
     const wrapper = shallowWithStyles(
