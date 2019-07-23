@@ -1,6 +1,6 @@
 import React from 'react';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Spacing, { SpacingRange } from '../Spacing';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Spacing on the bottom. */
