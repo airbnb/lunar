@@ -28,7 +28,7 @@ export type Props = {
 
 export type State = {
   labelID: string;
-  hoveringButton: boolean;
+  hoveringTarget: boolean;
   hoveringTooltip: boolean;
   tooltipHeight: number;
   targetRect: ClientRect;
@@ -57,7 +57,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
 
   state = {
     labelID: uuid(),
-    hoveringButton: false,
+    hoveringTarget: false,
     hoveringTooltip: false,
     tooltipHeight: 0,
     targetRect: document.body.getBoundingClientRect(),
@@ -72,7 +72,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   static getDerivedStateFromProps({ disabled }: Props) {
     if (disabled) {
       return {
-        hoveringButton: false,
+        hoveringTarget: false,
       };
     }
 
@@ -130,14 +130,14 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   private handleEnter = (element: string) => () => {
     const { current } = this.containerRef;
     const { disabled, onShow } = this.props;
-    const { hoveringTooltip, hoveringButton } = this.state;
+    const { hoveringTooltip, hoveringTarget } = this.state;
 
     /* istanbul ignore if: refs are hard */
     if (current) {
       this.setState({ targetRect: current.getBoundingClientRect() });
     }
 
-    const open = hoveringTooltip || hoveringButton;
+    const open = hoveringTooltip || hoveringTarget;
     if (!disabled && !open) {
       this.setState({
         [`hovering${element}`]: true,
@@ -168,7 +168,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
       underlined,
       inverted,
     } = this.props;
-    const { hoveringButton, hoveringTooltip, targetRect, tooltipHeight, labelID } = this.state;
+    const { hoveringTarget, hoveringTooltip, targetRect, tooltipHeight, labelID } = this.state;
     const { unit } = theme!;
     const width = widthProp! * unit;
     const { align, above } = this.bestPosition(targetRect);
@@ -184,14 +184,14 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     };
     const distance = halfNotch + 1;
 
-    const open = hoveringButton || hoveringTooltip;
+    const open = hoveringTarget || hoveringTooltip;
 
     return (
       <span
         className={cx(styles.container)}
         ref={this.containerRef}
-        onMouseEnter={this.handleEnter('Button')}
-        onMouseLeave={this.handleClose('Button')}
+        onMouseEnter={this.handleEnter('Target')}
+        onMouseLeave={this.handleClose('Target')}
         onMouseDown={this.handleMouseDown}
       >
         <div aria-labelledby={labelID} className={cx(!disabled && underlined && styles.underlined)}>
