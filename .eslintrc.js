@@ -5,7 +5,7 @@ module.exports = {
 
   extends: ['airbnb', 'plugin:jsx-a11y/recommended', 'prettier', 'prettier/react'],
 
-  plugins: ['import', 'react', 'compat', 'unicorn', 'prettier'],
+  plugins: ['import', 'react', 'compat', 'unicorn', 'prettier', 'react-hooks'],
 
   globals: {
     __DEV__: true,
@@ -116,6 +116,10 @@ module.exports = {
         },
       },
     ],
+
+    // REACT HOOKS
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
 
     // UNICORN
     'unicorn/catch-error-name': 'error',
