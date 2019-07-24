@@ -10,11 +10,10 @@ export default function PopToast({ message, ...props }: Props) {
   const ref = useRef<boolean>();
   ref.current = true;
 
-  if (!context) {
-    return null;
-  }
-
   useEffect(() => {
+    if (!context) {
+      return undefined;
+    }
     if (props.danger || message instanceof Error) {
       context.addFailureToast(message, props);
     } else if (props.refresh) {
@@ -24,6 +23,9 @@ export default function PopToast({ message, ...props }: Props) {
     } else {
       context.addInfoToast(message, props);
     }
+
+    return undefined;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref.current]);
 
   return null;

@@ -7,16 +7,17 @@ export default function TrackBreadcrumb({ label, ...props }: Props) {
   const ref = useRef<boolean>();
   ref.current = true;
 
-  if (!context) {
-    return null;
-  }
-
   useEffect(() => {
+    if (!context) {
+      return undefined;
+    }
+
     const id = context.addBreadcrumb(label, props);
 
     return () => {
       context.removeBreadcrumb(id);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref.current]);
 
   return null;
