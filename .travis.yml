@@ -17,6 +17,9 @@ jobs:
       name: Danger
       script: yarn danger ci --use-github-checks
       node_js: '12'
+    - name: Happo
+      script: yarn run happo:ci
+      node_js: '12'
     - name: Test @ 8
       script: yarn run jest:coverage -w 4
       node_js: '8'
