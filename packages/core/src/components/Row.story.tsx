@@ -35,7 +35,12 @@ storiesOf('Core/Row', module)
     </Row>
   ))
   .add('With inline.', () => (
-    <Row inline middleAlign after={<IconAddAlt decorative />}>
+    <Row
+      inline
+      middleAlign
+      before={<img src="http://via.placeholder.com/50x50" alt="" />}
+      after={<IconAddAlt decorative />}
+    >
       <Text>Inline row with after content, middle aligned.</Text>
     </Row>
   ))
