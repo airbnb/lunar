@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.12.1 - 2019-07-24
+
+#### 🐞 Fixes
+
+- **[Tooltip]** Fix cannot read property getBoundingClientRect of null. (#133) ([196582b](https://github.com/airbnb/lunar/tree/master/packages/core/commit/196582b)), closes [#133](https://github.com/airbnb/lunar/tree/master/packages/core/issues/133)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.12.0 - 2019-07-23
 
 #### 🚀 Updates
