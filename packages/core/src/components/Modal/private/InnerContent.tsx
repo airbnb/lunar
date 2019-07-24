@@ -74,7 +74,8 @@ function ModalInnerContent({
           !withHeader && styles.body_paddingTop,
           !withFooter && styles.body_paddingBottom,
           scrollable && styles.body_scrollable,
-          scrollable && (!small || large) && styles.body_scrollableLarge,
+          scrollable && small && styles.body_scrollableSmall,
+          scrollable && large && styles.body_scrollableLarge,
         )}
       >
         {children}
@@ -156,6 +157,10 @@ export default withStyles(({ color, ui, unit }) => ({
       height: unit / 2,
       background: color.accent.bg,
     },
+  },
+
+  body_scrollableSmall: {
+    maxHeight: 160,
   },
 
   body_scrollableLarge: {

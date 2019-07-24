@@ -76,6 +76,7 @@ class ModalDemo extends React.Component<
           >
             <Text>
               <LoremIpsum />
+              <LoremIpsum />
               {(showLarge || !showSmall) && showScrollable && (
                 <>
                   <LoremIpsum /> <LoremIpsum />
