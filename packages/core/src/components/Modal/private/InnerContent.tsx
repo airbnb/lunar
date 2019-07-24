@@ -74,8 +74,8 @@ function ModalInnerContent({
           !withHeader && styles.body_paddingTop,
           !withFooter && styles.body_paddingBottom,
           scrollable && styles.body_scrollable,
-          scrollable && small && styles.body_scrollableSmall,
-          scrollable && large && styles.body_scrollableLarge,
+          small && scrollable && styles.body_scrollableSmall,
+          large && scrollable && styles.body_scrollableLarge,
         )}
       >
         {children}
