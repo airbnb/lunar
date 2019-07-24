@@ -1,7 +1,7 @@
 import React from 'react';
+import IconAddAlt from '@airbnb/lunar-icons/lib/interface/IconAddAlt';
 import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
-import IconAddAlt from '@airbnb/lunar-icons/lib/interface/IconAddAlt';
 import Text from './Text';
 import Button from './Button';
 import Row from './Row';
