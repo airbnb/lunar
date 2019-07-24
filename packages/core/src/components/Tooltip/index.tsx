@@ -7,6 +7,15 @@ import NotchedBox, { NOTCH_SIZE, NOTCH_SPACING } from '../NotchedBox';
 import Text from '../Text';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
+const EMPTY_TARGET_RECT: ClientRect = {
+  bottom: 0,
+  height: 0,
+  left: 0,
+  right: 0,
+  top: 0,
+  width: 0,
+};
+
 export type Props = {
   /** Width of the tooltip in units. */
   width?: number;
@@ -58,7 +67,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     labelID: uuid(),
     open: false,
     tooltipHeight: 0,
-    targetRect: document.body.getBoundingClientRect(),
+    targetRect: EMPTY_TARGET_RECT,
   };
 
   containerRef = React.createRef<HTMLSpanElement>();
@@ -75,6 +84,13 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     }
 
     return null;
+  }
+
+  componentDidMount() {
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({
+      targetRect: document.body.getBoundingClientRect(),
+    });
   }
 
   componentDidUpdate(prevProps: Props) {
