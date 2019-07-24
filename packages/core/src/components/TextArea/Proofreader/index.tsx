@@ -253,7 +253,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           length: match[0].length,
           found: match[0],
           replacements: ['Airbnb'],
-          rule_id: 'MORFOLOGIK_RULE_EN_US',
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         });
       }
 

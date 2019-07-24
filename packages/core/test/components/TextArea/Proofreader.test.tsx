@@ -267,7 +267,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'AirBnB',
           replacements: ['Airbnb'],
-          rule_id: 'MORFOLOGIK_RULE_EN_US',
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -276,7 +276,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'AIRbnb',
           replacements: ['Airbnb'],
-          rule_id: 'MORFOLOGIK_RULE_EN_US',
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -285,7 +285,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'AirBnb',
           replacements: ['Airbnb'],
-          rule_id: 'MORFOLOGIK_RULE_EN_US',
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -294,7 +294,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'airbnb',
           replacements: ['Airbnb'],
-          rule_id: 'MORFOLOGIK_RULE_EN_US',
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
       ]);
     });
@@ -312,7 +312,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'Aribnb',
           replacements: ['Airbnb'],
-          rule_id: 'MORFOLOGIK_RULE_EN_US',
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -321,7 +321,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'Airbbn',
           replacements: ['Airbnb'],
-          rule_id: 'MORFOLOGIK_RULE_EN_US',
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -330,7 +330,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'airnbb',
           replacements: ['Airbnb'],
-          rule_id: 'MORFOLOGIK_RULE_EN_US',
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -339,7 +339,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'iarbnb',
           replacements: ['Airbnb'],
-          rule_id: 'MORFOLOGIK_RULE_EN_US',
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
       ]);
     });
@@ -872,7 +872,7 @@ describe('<Proofreader />', () => {
             offset: 0,
             length: 9,
             replacements: ['Something'],
-            rule_id: 'MORFOLOGIK_RULE_EN_US',
+            rule_id: 'UPPERCASE_SENTENCE_START',
           },
         ],
         selectedError: error,
