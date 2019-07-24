@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.0 - 2019-07-24
+
+#### 🚀 Updates
+
+- Add useQuery, useMutation, and more hooks (#138) ([ef7cd21](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/ef7cd21)), closes [#138](https://github.com/airbnb/lunar/tree/master/packages/apollo/issues/138)
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
 ### 2.1.2 - 2019-07-16
 
 #### 🛠 Internals
