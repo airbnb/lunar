@@ -36,7 +36,6 @@ export default function buildFont(fontFamily: string): Theme['font'] {
 
     textLarge: {
       fontFamily,
-      fontWeight: 'normal',
       fontSize: 18,
       lineHeight: 26 / 18,
       letterSpacing: -0.2,
@@ -44,7 +43,6 @@ export default function buildFont(fontFamily: string): Theme['font'] {
 
     textRegular: {
       fontFamily,
-      fontWeight: 'normal',
       fontSize: 15,
       lineHeight: 20 / 15,
       letterSpacing: 0.1,
@@ -52,7 +50,6 @@ export default function buildFont(fontFamily: string): Theme['font'] {
 
     textSmall: {
       fontFamily,
-      fontWeight: 'normal',
       fontSize: 12,
       lineHeight: 18 / 12,
       letterSpacing: 0.2,
@@ -60,7 +57,6 @@ export default function buildFont(fontFamily: string): Theme['font'] {
 
     textMicro: {
       fontFamily,
-      fontWeight: 'normal',
       fontSize: 11,
       lineHeight: 15 / 11,
       letterSpacing: 0.3,
