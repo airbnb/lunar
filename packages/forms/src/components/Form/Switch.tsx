@@ -4,11 +4,12 @@ import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm
 import { toBool } from '../../helpers';
 
 /** `Switch` automatically connected to the parent `Form`.  */
-export function FormSwitch(props: Props & ConnectToFormProps) {
+export function FormSwitch(props: Props & ConnectToFormProps<boolean>) {
   return <BaseSwitch {...props} />;
 }
 
-export default connectToForm({
+export default connectToForm<boolean>({
+  initialValue: false,
   parse: toBool,
   valueProp: 'checked',
 })(FormSwitch);

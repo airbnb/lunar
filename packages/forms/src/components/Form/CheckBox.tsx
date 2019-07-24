@@ -4,11 +4,12 @@ import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm
 import { toBool } from '../../helpers';
 
 /** `CheckBox` automatically connected to the parent `Form`.  */
-export function FormCheckBox(props: Props & ConnectToFormProps) {
+export function FormCheckBox(props: Props & ConnectToFormProps<boolean>) {
   return <BaseCheckBox {...props} />;
 }
 
-export default connectToForm({
+export default connectToForm<boolean>({
+  initialValue: false,
   parse: toBool,
   valueProp: 'checked',
 })(FormCheckBox);

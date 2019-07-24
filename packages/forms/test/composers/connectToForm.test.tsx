@@ -1,18 +1,39 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import { unwrapHOCs } from '@airbnb/lunar-test-utils';
-import connectToForm, { PROP_NAMES } from '../../src/composers/connectToForm';
+import Enzyme, { mount } from 'enzyme';
+import connectToForm, {
+  PROP_NAMES,
+  ConnectToFormWrapperProps,
+  ConnectToFormProps,
+} from '../../src/composers/connectToForm';
 import { Context } from '../../src/types';
+import { toString, toNumber, toBool } from '../../src/helpers';
+import { createFormContext, WrappingFormComponent } from '../utils';
 
 describe('connectToForm()', () => {
-  function Foo() {
+  function BaseField() {
     return <div />;
   }
 
-  const Hoc = connectToForm()(Foo);
-  const HocMultiple = connectToForm({ multiple: true })(Foo);
-  const HocChecked = connectToForm({ valueProp: 'checked', parse: Boolean })(Foo);
-  const HocInitialValue = connectToForm({ initialValue: 123 })(Foo);
+  const Hoc = connectToForm<string>({
+    initialValue: '',
+    parse: toString,
+  })(BaseField);
+
+  const HocChecked = connectToForm<boolean>({
+    initialValue: false,
+    valueProp: 'checked',
+    parse: toBool,
+  })(BaseField);
+
+  const HocInitialValue = connectToForm<number>({
+    initialValue: 123,
+    parse: toNumber,
+  })(BaseField);
+
+  const HocInvalid = connectToForm<string>({
+    initialValue: '',
+    parse: toString,
+  })(BaseField);
 
   const props = {
     name: 'foo',
@@ -23,28 +44,33 @@ describe('connectToForm()', () => {
   let form: Context;
 
   beforeEach(() => {
-    form = {
-      change: jest.fn(),
-      getFields: jest.fn(),
-      getState: jest.fn(),
-      register: jest.fn(() => jest.fn()),
-      submit: jest.fn(),
-    };
+    form = createFormContext();
   });
 
-  function unwrap(element: any): Enzyme.ShallowWrapper {
-    return unwrapHOCs(shallow(element), 'Foo', form);
+  function unwrap(
+    element: React.ReactElement<any>,
+  ): Enzyme.ReactWrapper<ConnectToFormWrapperProps<any>> {
+    return mount(element, {
+      wrappingComponent: WrappingFormComponent,
+      wrappingComponentProps: { context: form },
+    });
+  }
+
+  function findField(
+    wrapper: Enzyme.ReactWrapper<any, any, any>,
+  ): Enzyme.ReactWrapper<ConnectToFormProps<any>> {
+    return wrapper.find(BaseField);
   }
 
   it('returns an HOC', () => {
-    expect(Hoc.displayName).toBe('connectToForm(Foo)');
-    expect((Hoc as any).WrappedComponent).toBe(Foo);
+    expect(Hoc.displayName).toBe('connectToForm(BaseField)');
+    expect((Hoc as any).WrappedComponent).toBe(BaseField);
   });
 
   it('sets `defaultValue` from `initialValue` option', () => {
     const wrapper = unwrap(<HocInitialValue name="foo" validator={() => {}} />);
 
-    expect(wrapper.prop('value')).toBe('123');
+    expect(wrapper.find(BaseField).prop('value')).toBe(123);
   });
 
   it('doesnt pass field props to wrapped component', () => {
@@ -52,7 +78,7 @@ describe('connectToForm()', () => {
 
     PROP_NAMES.forEach(name => {
       if (name !== 'name' && name.slice(0, 2) !== 'on') {
-        expect(wrapper.prop(name)).toBeUndefined();
+        expect(wrapper.find(BaseField).prop(name)).toBeUndefined();
       }
     });
   });
@@ -61,7 +87,7 @@ describe('connectToForm()', () => {
     it('sets name and default value into state', () => {
       const wrapper = unwrap(<Hoc {...props} />);
 
-      expect(wrapper.state()).toEqual(
+      expect(wrapper.find('ConnectToForm').state()).toEqual(
         expect.objectContaining({
           error: '',
           invalid: false,
@@ -73,7 +99,8 @@ describe('connectToForm()', () => {
 
     it('registers field on mount', () => {
       const spy = jest.fn();
-      const wrapper = unwrap(<Hoc {...props} unregisterOnUnmount validator={spy} />);
+
+      unwrap(<Hoc {...props} unregisterOnUnmount validator={spy} />);
 
       expect(form.register).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -84,27 +111,18 @@ describe('connectToForm()', () => {
         }),
         expect.anything(),
       );
-
-      expect(typeof (wrapper.instance() as any).unregister).toBe('function');
-    });
-
-    it('sets boolean flag on mount', () => {
-      const wrapper = unwrap(<Hoc {...props} unregisterOnUnmount />);
-
-      expect((wrapper.instance() as any).mounted).toBe(true);
     });
   });
 
   describe('componentDidUpdate()', () => {
     it('re-registers field if name changes', () => {
       const wrapper = unwrap(<Hoc {...props} />);
-      const spy = (wrapper.instance() as any).unregister;
 
       wrapper.setProps({
         name: 'bar',
       });
 
-      expect(spy).toHaveBeenCalled();
+      expect((form as any).unregister).toHaveBeenCalled();
       expect(form.register).toHaveBeenCalledWith(
         expect.objectContaining({
           name: 'foo',
@@ -121,12 +139,6 @@ describe('connectToForm()', () => {
         defaultValue: 'bar',
       });
 
-      expect(wrapper.state()).toEqual(
-        expect.objectContaining({
-          value: 'bar',
-        }),
-      );
-
       expect(form.change).toHaveBeenCalledWith('foo', 'bar', {});
     });
   });
@@ -134,101 +146,40 @@ describe('connectToForm()', () => {
   describe('componentWillUnmount()', () => {
     it('unregisters field if `unregisterOnMount` is set', () => {
       const wrapper = unwrap(<Hoc {...props} unregisterOnUnmount />);
-      const spy = (wrapper.instance() as any).unregister;
 
-      wrapper.instance().componentWillUnmount!();
+      wrapper.unmount();
 
-      expect(spy).toHaveBeenCalled();
+      expect((form as any).unregister).toHaveBeenCalled();
     });
 
     it('doesnt unregister field if `unregisterOnMount` is not set', () => {
       const wrapper = unwrap(<Hoc {...props} />);
-      const spy = (wrapper.instance() as any).unregister;
 
-      wrapper.instance().componentWillUnmount!();
+      wrapper.unmount();
 
-      expect(spy).not.toHaveBeenCalled();
-    });
-
-    it('sets mounted boolean to false', () => {
-      const wrapper = unwrap(<Hoc {...props} />);
-
-      wrapper.instance().componentWillUnmount!();
-
-      expect((wrapper.instance() as any).mounted).toBe(false);
-    });
-  });
-
-  describe('formatError()', () => {
-    let formatError: any;
-
-    beforeEach(() => {
-      const wrapper = unwrap(<Hoc {...props} />);
-
-      ({ formatError } = wrapper.instance() as any);
-    });
-
-    it('returns an empty string for falsy', () => {
-      expect(formatError()).toBe('');
-      expect(formatError(null)).toBe('');
-      expect(formatError(false)).toBe('');
-    });
-
-    it('casts truthy value to string', () => {
-      expect(formatError('hi')).toBe('hi');
-      expect(formatError(123)).toBe('123');
-    });
-
-    it('supports `Error` objects', () => {
-      expect(formatError(new Error('hi'))).toBe('hi');
-    });
-  });
-
-  describe('formatValue()', () => {
-    it('casts value using `parse` prop', () => {
-      const wrapper = unwrap(<Hoc {...props} parse={Number} />);
-      const formatValue = (wrapper.instance() as any).formatValue.bind(wrapper.instance());
-
-      expect(formatValue(1)).toBe(1);
-      expect(formatValue('1')).toBe(1);
-      expect(formatValue([1, '2', '3.5'])).toEqual([1, 2, 3.5]);
-    });
-
-    it('converts to an array if requires multiple', () => {
-      const wrapper = unwrap(<HocMultiple {...props} parse={Number} />);
-      const formatValue = (wrapper.instance() as any).formatValue.bind(wrapper.instance());
-
-      expect(formatValue(1)).toEqual([1]);
-      expect(formatValue('1')).toEqual([1]);
-      expect(formatValue([1, '2', '3.5'])).toEqual([1, 2, 3.5]);
+      expect((form as any).unregister).not.toHaveBeenCalled();
     });
   });
 
   describe('handleBlur()', () => {
-    it('calls state and props blur', () => {
+    it('calls `onBlur`', () => {
       const spy = jest.fn();
-      const spyProp = jest.fn();
-      const wrapper = unwrap(<Hoc {...props} onBlur={spyProp} />);
-      const event = { type: 'blur' };
+      const wrapper = unwrap(<Hoc {...props} onBlur={spy} />);
+      const event = { type: 'blur' } as React.FocusEvent;
 
-      wrapper.setState({
-        blur: spy,
-      });
+      findField(wrapper).invoke('onBlur')(event);
 
-      wrapper.simulate('blur', event);
-
-      expect(spy).toHaveBeenCalled();
-      expect(spyProp).toHaveBeenCalledWith(event);
+      expect(spy).toHaveBeenCalledWith(event);
     });
   });
 
   describe('handleChange()', () => {
-    it('calls context and props change', () => {
+    it('calls context `change` and `onChange`', () => {
       const spy = jest.fn();
       const wrapper = unwrap(<Hoc {...props} onChange={spy} />);
       const event = { type: 'change' };
 
-      wrapper.simulate('change', 'new value', event);
+      findField(wrapper).invoke('onChange')('new value', event);
 
       expect(spy).toHaveBeenCalledWith('new value', event, undefined);
       expect(form.change).toHaveBeenCalledWith('foo', 'new value', {});
@@ -236,106 +187,39 @@ describe('connectToForm()', () => {
 
     it('can pass batch values using `onBatchChange`', () => {
       const wrapper = unwrap(<Hoc {...props} onBatchChange={() => ({ bar: 'other value' })} />);
+      const event = { type: 'change' };
 
-      wrapper.simulate('change', 'new value');
+      findField(wrapper).invoke('onChange')('new value', event);
 
       expect(form.change).toHaveBeenCalledWith('foo', 'new value', { bar: 'other value' });
     });
   });
 
   describe('handleFocus()', () => {
-    it('calls state and props focus', () => {
+    it('calls `onFocus`', () => {
       const spy = jest.fn();
-      const spyProp = jest.fn();
-      const wrapper = unwrap(<Hoc {...props} onFocus={spyProp} />);
-      const event = { type: 'focus' };
+      const wrapper = unwrap(<Hoc {...props} onFocus={spy} />);
+      const event = { type: 'focus' } as React.FocusEvent;
 
-      wrapper.setState({
-        focus: spy,
-      });
+      findField(wrapper).invoke('onFocus')(event);
 
-      wrapper.simulate('focus', event);
-
-      expect(spy).toHaveBeenCalled();
-      expect(spyProp).toHaveBeenCalledWith(event);
-    });
-  });
-
-  describe('handleUpdate()', () => {
-    it('merges with previous state', () => {
-      const wrapper = unwrap(<Hoc {...props} />);
-
-      expect(wrapper.state()).toEqual(
-        expect.objectContaining({
-          error: '',
-          invalid: false,
-          name: 'foo',
-          value: 'baz',
-        }),
-      );
-
-      // @ts-ignore Allow private access
-      wrapper.instance().handleUpdate({
-        name: 'foofoo',
-        value: 'barbar',
-      });
-
-      expect(wrapper.state()).toEqual(
-        expect.objectContaining({
-          error: '',
-          invalid: false,
-          name: 'foofoo',
-          value: 'barbar',
-        }),
-      );
-    });
-
-    it('calls `onStateUpdate` with changed state', () => {
-      const spy = jest.fn();
-      const wrapper = unwrap(<Hoc {...props} onStateUpdate={spy} />);
-
-      // @ts-ignore Allow private access
-      wrapper.instance().handleUpdate({
-        name: 'foofoo',
-        value: 'barbar',
-      });
-
-      expect(spy).toHaveBeenCalledWith({
-        name: 'foofoo',
-        value: 'barbar',
-      });
-    });
-
-    it('does nothing if component is not mounted', () => {
-      const spy = jest.fn();
-      const wrapper = unwrap(<Hoc {...props} onStateUpdate={spy} />);
-
-      (wrapper.instance() as any).mounted = false;
-
-      // @ts-ignore Allow private access
-      wrapper.instance().handleUpdate({
-        name: 'foofoo',
-        value: 'barbar',
-      });
-
-      expect(spy).not.toHaveBeenCalled();
+      expect(spy).toHaveBeenCalledWith(event);
     });
   });
 
   describe('render()', () => {
     it('passes form and handler props down', () => {
       const wrapper = unwrap(<Hoc {...props} />);
-      const instance: any = wrapper.instance();
 
-      expect(wrapper.props()).toEqual(
+      expect(wrapper.find(BaseField).props()).toEqual(
         expect.objectContaining({
           errorMessage: '',
           invalid: false,
           name: 'foo',
           value: 'baz',
-          onBlur: instance.handleBlur,
-          onChange: instance.handleChange,
-          onFocus: instance.handleFocus,
+          onBlur: expect.any(Function),
+          onChange: expect.any(Function),
+          onFocus: expect.any(Function),
         }),
       );
     });
@@ -343,21 +227,43 @@ describe('connectToForm()', () => {
     it('passes custom props down', () => {
       const wrapper = unwrap(<Hoc {...props} aria-hidden="true" />);
 
-      expect(wrapper.prop('aria-hidden')).toBe('true');
+      expect(wrapper.find(BaseField).prop('aria-hidden')).toBe('true');
     });
 
     it('doesnt pass connect props down', () => {
       const wrapper = unwrap(<Hoc {...props} />);
 
-      expect(wrapper.prop('unregisterOnMount')).toBeUndefined();
-      expect(wrapper.prop('validator')).toBeUndefined();
+      expect(wrapper.find(BaseField).prop('unregisterOnMount')).toBeUndefined();
+      expect(wrapper.find(BaseField).prop('validator')).toBeUndefined();
     });
 
     it('can change value prop used', () => {
-      const wrapper = unwrap(<HocChecked {...props} />);
+      const wrapper = unwrap(<HocChecked {...props} defaultValue />);
 
-      expect(wrapper.prop('value')).toBeUndefined();
-      expect(wrapper.prop('checked')).toBe(true);
+      expect(wrapper.find(BaseField).prop('value')).toBeUndefined();
+      expect(wrapper.find(BaseField).prop('checked')).toBe(true);
+    });
+
+    it('passes down error messages and invalid state', () => {
+      const wrapper = unwrap(
+        <HocInvalid
+          {...props}
+          validator={() => {
+            throw new Error('Oops');
+          }}
+        />,
+      );
+
+      wrapper.find('ConnectToForm').setState({
+        error: new Error('Oops'),
+        invalid: true,
+        touched: true,
+      });
+
+      wrapper.update();
+
+      expect(wrapper.find(BaseField).prop('invalid')).toBe(true);
+      expect(wrapper.find(BaseField).prop('errorMessage')).toBe('Oops');
     });
   });
 });

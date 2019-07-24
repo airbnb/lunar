@@ -530,7 +530,12 @@ describe('<Form />', () => {
 
   describe('setFieldConfig()', () => {
     it('sets all the correct values', () => {
-      const config = { name: 'foo', defaultValue: 123, validateDefaultValue: true, validator() {} };
+      const config = {
+        name: 'foo',
+        defaultValue: '123',
+        validateDefaultValue: true,
+        validator() {},
+      };
       const fields = { foo: { data: {} } };
       const formState = { initialValues: {}, values: {} };
 
@@ -539,18 +544,18 @@ describe('<Form />', () => {
       expect(fields).toEqual({
         foo: {
           data: { config },
-          initial: 123,
-          value: 123,
+          initial: '123',
+          value: '123',
           touched: true,
         },
       });
 
       expect(formState).toEqual({
         initialValues: {
-          foo: 123,
+          foo: '123',
         },
         values: {
-          foo: 123,
+          foo: '123',
         },
       });
     });

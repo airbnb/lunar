@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import shallowEqual from 'shallowequal';
 import uuid from 'uuid/v4';
 import {
@@ -20,7 +19,7 @@ import T from '@airbnb/lunar/lib/components/Translate';
 import { getErrorMessage } from '@airbnb/lunar/lib/components/ErrorMessage';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
 import FormContext from '../FormContext';
-import { Errors, Parse, Field } from '../../types';
+import { Context, Errors, Parse, Field } from '../../types';
 import { throttleToSinglePromise } from '../../helpers';
 
 function mapSubscriptions(subscriptions: string[]): { [sub: string]: boolean } {
@@ -73,11 +72,6 @@ export default class Form<Data extends object = any> extends React.Component<
   Props<Data>,
   State<Data>
 > {
-  static propTypes = {
-    initialValues: PropTypes.object,
-    subscriptions: PropTypes.arrayOf(PropTypes.string),
-  };
-
   static defaultProps = {
     initialValues: {},
     method: 'post',
@@ -90,6 +84,8 @@ export default class Form<Data extends object = any> extends React.Component<
   };
 
   form: FormApi<Data>;
+
+  formContext?: Context;
 
   registeredFields: { [name: string]: Unsubscribe } = {};
 
@@ -128,8 +124,13 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Cast a value using the fields `parse` function.
    */
-  castValue(value: any, parse: Parse): any {
-    return Array.isArray(value) ? value.map(v => parse(v)) : parse(value);
+  castValue(value: any, parse: Parse<any>) {
+    if (Array.isArray(value)) {
+      // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
+      return value.map(parse);
+    }
+
+    return parse(value);
   }
 
   /**
@@ -317,7 +318,7 @@ export default class Form<Data extends object = any> extends React.Component<
    * Register a new field and set their default value into the data set.
    * Optionally validate the default value if `validateDefaultValue` is true.
    */
-  registerField = <T extends unknown>(field: Field, onUpdate: FieldSubscriber<T>) => {
+  registerField = <T extends unknown>(field: Field<any>, onUpdate: FieldSubscriber<T>) => {
     const { name, isEqual, subscriptions = [], validateFields = [] } = field;
     const unregister = this.form.registerField(name, onUpdate, mapSubscriptions(subscriptions), {
       isEqual,
@@ -343,7 +344,7 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Form mutator to manually set a fields configuration and value.
    */
-  setFieldConfig([name, config]: [string, Field], { fields, formState }: any) {
+  setFieldConfig([name, config]: [string, Field<any>], { fields, formState }: any) {
     const field = fields[name];
     const initial = getIn(formState.initialValues, name);
     const value = typeof initial === 'undefined' ? config.defaultValue : initial;
@@ -421,16 +422,18 @@ export default class Form<Data extends object = any> extends React.Component<
     // @ts-ignore Bug: https://github.com/Microsoft/TypeScript/issues/26970
     const content = typeof children === 'function' ? children(this.state!) : children;
 
+    if (!this.formContext) {
+      this.formContext = {
+        change: this.changeValue,
+        getFields: this.getFields,
+        getState: this.getState,
+        register: this.registerField,
+        submit: this.submitForm,
+      };
+    }
+
     return (
-      <FormContext.Provider
-        value={{
-          change: this.changeValue,
-          getFields: this.getFields,
-          getState: this.getState,
-          register: this.registerField,
-          submit: this.submitForm,
-        }}
-      >
+      <FormContext.Provider value={this.formContext}>
         <form
           id={id}
           method={method}

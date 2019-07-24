@@ -1,10 +1,14 @@
 import React from 'react';
-import BaseAutocomplete, { Props, Item } from '@airbnb/lunar/lib/components/Autocomplete';
+import BaseAutocomplete, { Props } from '@airbnb/lunar/lib/components/Autocomplete';
 import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm';
+import { toString } from '../../helpers';
 
 /** `Autocomplete` automatically connected to the parent `Form`. */
-export function FormAutocomplete<T extends Item>(props: Props<T> & ConnectToFormProps) {
-  return <BaseAutocomplete<T> {...props} />;
+export function FormAutocomplete(props: Props<any> & ConnectToFormProps<string>) {
+  return <BaseAutocomplete {...props} />;
 }
 
-export default connectToForm()(FormAutocomplete);
+export default connectToForm<string>({
+  initialValue: '',
+  parse: toString,
+})(FormAutocomplete);

@@ -26,9 +26,8 @@ export function mountWithStyles<C extends React.Component, P = C['props'], S = C
   props: WrappingProps = {},
 ): Enzyme.ReactWrapper<P, S, C> {
   return mount(element, {
-    // @ts-ignore Not typed yet
     wrappingComponent: WrappingComponent,
-    wrappingProps: props,
+    wrappingComponentProps: props,
   });
 }
 
@@ -38,12 +37,11 @@ export function shallowWithStyles<C extends React.Component, P = C['props'], S =
   props: WrappingProps = {},
 ): Enzyme.ShallowWrapper<P, S, C> {
   const wrapper = shallow(element, {
-    // @ts-ignore Not typed yet
     wrappingComponent: WrappingComponent,
-    wrappingProps: props,
+    wrappingComponentProps: props,
   });
 
-  return self ? wrapper : wrapper.dive();
+  return self ? wrapper : (wrapper.dive() as any);
 }
 
 export function wrapEnv(env: string, callback: () => any): () => any {
