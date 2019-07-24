@@ -144,7 +144,7 @@ export default withStyles(({ color, ui, unit }) => ({
 
   body_scrollable: {
     paddingBottom: unit * 3,
-    maxHeight: 160,
+    maxHeight: 300,
     overflow: 'auto',
 
     ':before': {
@@ -159,7 +159,7 @@ export default withStyles(({ color, ui, unit }) => ({
   },
 
   body_scrollableLarge: {
-    maxHeight: 300,
+    maxHeight: 500,
   },
 
   footer: {
