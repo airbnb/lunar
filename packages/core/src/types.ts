@@ -6,21 +6,11 @@ import { StyleBlock } from 'aesthetic';
 
 export type Logger = (error: Error, extra: object) => void;
 
-export type TranslateParams = { [param: string]: string | number | undefined };
-
-export type TranslateProps = {
-  [param: string]: TranslateParams | boolean | React.ReactNode;
-  /** Integration context in which to provide writes & editors. */
-  context: string;
-  /** Phrase message contains HTML. */
-  html?: boolean;
-  /** Phrase to translate. */
-  phrase: string;
-  /** Handle counts using a smart number. */
-  smartCount?: number;
-};
-
-export type Translator = (phrase: string, params: TranslateParams, context: string) => string;
+export type Translator = (
+  phrase: string,
+  params?: TranslateParams | null,
+  options?: string | TranslateOptions,
+) => string;
 
 export type ErrorType =
   | {
@@ -36,6 +26,29 @@ export type ErrorType =
 export type StatusType = 'notice' | 'info' | 'success' | 'warning' | 'danger' | 'muted';
 
 export type BrandType = 'luxury' | 'plus';
+
+// I18N
+
+export type TranslateParams = { [param: string]: string | number | undefined };
+
+export type TranslateOptions = {
+  /** Integration context in which to provide writes & editors. */
+  context?: string;
+  /** Phrase message contains HTML. */
+  html?: boolean;
+  /** Unique phrase key. */
+  key?: string;
+};
+
+export type TranslateProps = {
+  [param: string]: string | number | boolean | undefined | React.ReactNode;
+  /** Unique phrase key. */
+  k?: string;
+  /** Default phrase to translate. */
+  phrase: string;
+  /** Handle counts using a smart number. */
+  smartCount?: number;
+} & Omit<TranslateOptions, 'key'>;
 
 // MONEY
 

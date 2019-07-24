@@ -8,11 +8,22 @@ import {
   Unsubscribe,
 } from 'final-form';
 
+// value:
+// string - Autocomplete, DatePickerInput, DateTimeSelect, FileInput, Input, RadioButton, RadioButtonController, Select, TextArea, ToggleButtonController
+// string[] - CheckBoxController, Multicomplete
+// boolean - CheckBox, Switch
+
+// onChange:
+// string - Autocomplete, DatePickerInput, DateTimeSelect, Input, RadioButtonController, Select, TextArea, ToggleButtonController
+// string[] - CheckBoxController, Multicomplete
+// boolean - CheckBox, RadioButton, Switch
+// File[] - FileInput
+
 export type Context = {
-  change: (name: string, value: string, batchValues?: object) => void;
+  change: (name: string, value: any, batchValues?: object) => void;
   getFields: () => FieldState<any>[];
   getState: () => FormState<any>;
-  register: (field: Field, onUpdate: FieldSubscriber<any>) => Unsubscribe;
+  register: (field: Field<any>, onUpdate: FieldSubscriber<any>) => Unsubscribe;
   submit: () => Promise<object | undefined>;
 };
 
@@ -20,13 +31,19 @@ export type Errors = {
   [key: string]: string;
 };
 
-export type Parse = (value: unknown) => unknown;
+export type DefaultValue = boolean | string | string[] | null | undefined;
 
-export type Field<T = any> = {
-  defaultValue?: boolean | string | number | string[] | number[];
+export type ParseValue = boolean | string | null | undefined;
+
+export type UnboxParsedValue<T> = T extends (infer U)[] ? U : T;
+
+export type Parse<T> = (value: ParseValue) => UnboxParsedValue<T>;
+
+export type Field<T> = {
+  defaultValue?: DefaultValue;
   isEqual?: IsEqual;
   name: string;
-  parse?: Parse;
+  parse?: Parse<T>;
   subscriptions?: (keyof FieldSubscription)[];
   validateDefaultValue?: boolean;
   validateFields?: string[];

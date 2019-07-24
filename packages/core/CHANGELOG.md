@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.13.0 - 2019-07-24
+
+#### 🚀 Updates
+
+- Refine and use explicit value types. Allow null and undefined default values. (#132) ([ecede51](https://github.com/airbnb/lunar/tree/master/packages/core/commit/ecede51)), closes [#132](https://github.com/airbnb/lunar/tree/master/packages/core/issues/132)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 2.12.1 - 2019-07-24
+
+#### 🐞 Fixes
+
+- **[Tooltip]** Fix cannot read property getBoundingClientRect of null. (#133) ([196582b](https://github.com/airbnb/lunar/tree/master/packages/core/commit/196582b)), closes [#133](https://github.com/airbnb/lunar/tree/master/packages/core/issues/133)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.12.0 - 2019-07-23
+
+#### 🚀 Updates
+
+- **[Divider]** Add short prop (#131) ([1f45ee9](https://github.com/airbnb/lunar/tree/master/packages/core/commit/1f45ee9)), closes [#131](https://github.com/airbnb/lunar/tree/master/packages/core/issues/131)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.11.0 - 2019-07-23
+
+#### 🚀 Updates
+
+- **[ImageViewer]** Add new ImageViewer component with zoom, drag, and rotate features (#123) ([bb9bea2](https://github.com/airbnb/lunar/tree/master/packages/core/commit/bb9bea2)), closes [#123](https://github.com/airbnb/lunar/tree/master/packages/core/issues/123)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.10.0 - 2019-07-22
+
+#### 🚀 Updates
+
+- **[Modal]** Add z-index to close button. (#130) ([16b7945](https://github.com/airbnb/lunar/tree/master/packages/core/commit/16b7945)), closes [#130](https://github.com/airbnb/lunar/tree/master/packages/core/issues/130)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.9.0 - 2019-07-22
+
+#### 🚀 Updates
+
+- **[Translate]** Add key support. Make params and context optional. (#129) ([6338326](https://github.com/airbnb/lunar/tree/master/packages/core/commit/6338326)), closes [#129](https://github.com/airbnb/lunar/tree/master/packages/core/issues/129)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.8.2 - 2019-07-16
 
 #### 🛠 Internals

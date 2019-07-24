@@ -552,6 +552,7 @@ exports[`<MessageItem> renders an email when given 1`] = `
             context="Who the message is from"
             email="foo@airbnb.com"
             html={true}
+            k="lunar.message.fromUser"
             phrase="From: %{email}"
           />
         </Text>

@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import omit from 'lodash/omit';
 import { Omit } from 'utility-types';
 import { fieldSubscriptionItems, FieldState, Unsubscribe } from 'final-form';
 import finishHOC from '@airbnb/lunar/lib/utils/finishHOC';
 import FormContext from '../components/FormContext';
-import { toString } from '../helpers';
-import { Context, Parse, Field } from '../types';
+import { Context, Parse, Field, DefaultValue } from '../types';
 
 // Keep in sync with props!
 export const PROP_NAMES = [
@@ -34,56 +33,55 @@ export type OptionalOnChange<T> = T extends { onChange: OnChangeHandler }
   ? Omit<T, 'onChange'> & Partial<Pick<T, 'onChange'>>
   : T & { onChange?: OnChangeHandler };
 
-export type Options = {
+export type Options<T> = {
   ignoreValue?: boolean;
-  initialValue?: any;
+  initialValue: T;
   multiple?: boolean;
-  parse?: Parse;
+  parse?: Parse<T>;
   valueProp?: 'value' | 'checked';
 };
 
-export interface ConnectToFormProps {
+export interface ConnectToFormProps<T> {
   name: string;
-  invalid?: boolean;
-  errorMessage?: string;
-  field?: Partial<FieldState<any>>;
-  onBlur?: (event: React.FocusEvent) => void;
-  onChange?: (...args: any[]) => void;
-  onFocus?: (event: React.FocusEvent) => void;
-  value?: any;
+  invalid: boolean;
+  errorMessage: string;
+  field: FieldState<T>;
+  onBlur: (event: React.FocusEvent) => void;
+  onChange: (value: T, ...args: any[]) => void;
+  onFocus: (event: React.FocusEvent) => void;
+  value?: T;
   checked?: boolean;
 }
 
-export interface ConnectToFormWrapperProps extends Field {
-  onBatchChange?: (value: string | boolean) => object | undefined;
+export interface ConnectToFormWrapperProps<T> extends Field<T> {
+  onBatchChange?: (value: T) => object | undefined;
   onBlur?: (event: React.FocusEvent) => void;
   onFocus?: (event: React.FocusEvent) => void;
-  onStateUpdate?: (state: FieldState<any>) => void;
+  onStateUpdate?: (state: FieldState<T>) => void;
   unregisterOnUnmount?: boolean;
 }
 
-export interface ConnectToFormState extends Partial<FieldState<any>> {
+export interface ConnectToFormState extends Required<FieldState<any>> {
   name: string;
 }
 
-export default function connectToForm(options: Options = {}) /* infer */ {
+export default function connectToForm<T>(options: Options<T>) /* infer */ {
   const {
     ignoreValue = false,
-    initialValue = '',
+    initialValue,
     multiple = false,
-    parse = toString,
+    parse,
     valueProp = 'value',
   } = options;
 
   return function connectToFormFactory<Props extends object = {}>(
-    WrappedComponent: React.ComponentType<Props & ConnectToFormProps>,
-  ): React.ComponentType<OptionalOnChange<Props> & ConnectToFormWrapperProps> {
-    type OwnProps = OptionalOnChange<Props> & ConnectToFormWrapperProps;
+    WrappedComponent: React.ComponentType<Props & ConnectToFormProps<T>>,
+  ): React.ComponentType<OptionalOnChange<Props> & ConnectToFormWrapperProps<T>> {
+    type OwnProps = OptionalOnChange<Props> & ConnectToFormWrapperProps<T>;
 
     class ConnectToForm extends React.Component<OwnProps & { form: Context }, ConnectToFormState> {
       static defaultProps = {
-        defaultValue: parse(initialValue),
-        isEqual: null,
+        defaultValue: initialValue,
         parse,
         subscriptions: fieldSubscriptionItems,
         unregisterOnUnmount: false,
@@ -92,7 +90,8 @@ export default function connectToForm(options: Options = {}) /* infer */ {
       };
 
       // https://github.com/final-form/final-form#fieldstate
-      state = {
+      // @ts-ignore Other non-critical fields get set on mount
+      state: ConnectToFormState = {
         blur() {},
         error: '',
         focus() {},
@@ -112,7 +111,7 @@ export default function connectToForm(options: Options = {}) /* infer */ {
         // Register the form after the mounted boolean above is set.
         // Otherwise form data will be lost in `handleUpdate` when the
         // component is unmounted and mounted again.
-        this.unregister = this.props.form!.register(this.props, this.handleUpdate);
+        this.unregister = this.props.form.register(this.props, this.handleUpdate);
       }
 
       componentDidUpdate(prevProps: OwnProps & { form: Context }) {
@@ -120,7 +119,7 @@ export default function connectToForm(options: Options = {}) /* infer */ {
         // If this is causing issues in userland, add a unique key prop to each field.
         if (this.props.name !== prevProps.name && this.unregister) {
           this.unregister();
-          this.unregister = this.props.form!.register(this.props, this.handleUpdate);
+          this.unregister = this.props.form.register(this.props, this.handleUpdate);
 
           return;
         }
@@ -132,7 +131,7 @@ export default function connectToForm(options: Options = {}) /* infer */ {
             },
             () => {
               if (typeof this.props.defaultValue === 'string') {
-                this.props.form!.change(this.props.name, this.props.defaultValue, {});
+                this.props.form.change(this.props.name, this.props.defaultValue, {});
               }
             },
           );
@@ -155,15 +154,25 @@ export default function connectToForm(options: Options = {}) /* infer */ {
         return error instanceof Error ? error.message : String(error);
       }
 
-      formatValue(defaultValue: any): any {
-        const cast = this.props.parse as Parse;
+      formatValue(defaultValue: DefaultValue) {
+        const cast = this.props.parse as Parse<T> | undefined;
         let value = defaultValue;
 
-        if (multiple && !Array.isArray(value)) {
-          value = value ? [value] : [];
+        // Some fields dont use the value, so wont have a parser
+        if (!cast) {
+          return value;
         }
 
-        return Array.isArray(value) ? value.map(v => cast(v)) : cast(value);
+        if (multiple && !Array.isArray(value)) {
+          value = [value] as string[];
+        }
+
+        if (Array.isArray(value)) {
+          // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
+          return value.map(cast);
+        }
+
+        return cast(value);
       }
 
       omitFormProps(props: Partial<OwnProps>): Props {
@@ -179,11 +188,11 @@ export default function connectToForm(options: Options = {}) /* infer */ {
       };
 
       private handleChange = (
-        checkedOrValue: any,
-        valueOrEvent: any,
+        checkedOrValue: T,
+        valueOrEvent: T | React.ChangeEvent<any>,
         event?: React.ChangeEvent,
       ) => {
-        this.props.form!.change(
+        this.props.form.change(
           this.props.name,
           checkedOrValue,
           this.props.onBatchChange ? this.props.onBatchChange(checkedOrValue) : {},
@@ -202,6 +211,7 @@ export default function connectToForm(options: Options = {}) /* infer */ {
         }
       };
 
+      // istanbul ignore next
       private handleUpdate = (state: FieldState<any>) => {
         if (!this.mounted) {
           return;
@@ -222,31 +232,28 @@ export default function connectToForm(options: Options = {}) /* infer */ {
 
       render() {
         const { error, invalid, touched, name, value } = this.state;
-        const props = {
+        const props: ConnectToFormProps<T> = {
           name,
           invalid: touched ? invalid : false,
           errorMessage: touched ? this.formatError(error) : '',
+          field: this.state,
           onBlur: this.handleBlur,
           onChange: this.handleChange,
           onFocus: this.handleFocus,
         };
 
         if (!ignoreValue) {
-          (props as any)[valueProp] = this.formatValue(value);
+          props[valueProp as 'value'] = this.formatValue(value) as T;
         }
 
-        return (
-          <WrappedComponent {...this.omitFormProps(this.props)} {...props} field={this.state} />
-        );
+        return <WrappedComponent {...this.omitFormProps(this.props)} {...props} />;
       }
     }
 
     function ConnectToFormWrapper(props: OwnProps) {
-      return (
-        <FormContext.Consumer>
-          {form => form && <ConnectToForm {...(props as any)} form={form} />}
-        </FormContext.Consumer>
-      );
+      const form = useContext(FormContext);
+
+      return form ? <ConnectToForm {...(props as any)} form={form} /> : null;
     }
 
     return finishHOC('connectToForm', ConnectToFormWrapper, WrappedComponent);

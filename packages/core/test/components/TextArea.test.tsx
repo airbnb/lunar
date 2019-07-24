@@ -19,7 +19,7 @@ describe('<TextArea />', () => {
     expect(wrapper.find(FormField).prop('id')).toBe(wrapper.find(BaseTextArea).prop('id'));
   });
 
-  it('can set noTranslate', () => {
+  it('can set `noTranslate`', () => {
     const wrapper = shallow(<TextArea name="foo" label="Label" onChange={() => {}} noTranslate />);
 
     expect(wrapper.find(BaseTextArea).prop('noTranslate')).toBe(true);
@@ -78,6 +78,7 @@ describe('<TextArea />', () => {
 
     expect(wrapper.find(BaseTextArea).prop('maxLength')).toBe(1000);
     expect((wrapper.find(FormField).prop('labelDescription') as React.ReactElement).props).toEqual({
+      k: 'lunar.form.charsUsed',
       phrase: '%{current}/%{max} characters used',
       current: '5',
       max: '1,000',

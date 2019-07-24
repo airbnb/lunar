@@ -98,7 +98,11 @@ describe('<ErrorMessage />', () => {
 
     expect(alert).toHaveLength(1);
     expect(alert.prop('title')).toEqual(
-      <T phrase="Unknown error" context="Title for an unknown error occurred" />,
+      <T
+        k="lunar.error.unknown"
+        phrase="Unknown error"
+        context="Title for an unknown error occurred"
+      />,
     );
     expect(alert.contains('Failure')).toBe(true);
   });
@@ -163,7 +167,11 @@ describe('<ErrorMessage />', () => {
         .find(Alert)
         .find(MutedButton)
         .contains(
-          <T phrase="View error details" context="Button label to view details about an error" />,
+          <T
+            k="lunar.error.viewDetails"
+            phrase="View error details"
+            context="Button label to view details about an error"
+          />,
         ),
     ).toBe(false);
 
@@ -179,7 +187,11 @@ describe('<ErrorMessage />', () => {
         .find(Alert)
         .find(MutedButton)
         .contains(
-          <T phrase="View error details" context="Button label to view details about an error" />,
+          <T
+            k="lunar.error.viewDetails"
+            phrase="View error details"
+            context="Button label to view details about an error"
+          />,
         ),
     ).toBe(true);
     expect(

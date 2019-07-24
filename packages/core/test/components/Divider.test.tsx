@@ -15,4 +15,10 @@ describe('<Divider />', () => {
     expect(wrapper.prop('bottom')).toBe(4);
     expect(wrapper.prop('top')).toBe(2);
   });
+
+  it('renders a short divider', () => {
+    const wrapper = shallowWithStyles(<Divider short />);
+
+    expect(wrapper.find('div').prop('className')).toMatch('divider_short');
+  });
 });

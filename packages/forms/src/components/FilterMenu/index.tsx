@@ -133,15 +133,16 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
     const activeCountLabel =
       activeCount && activeCount > 0 ? (
         <T
+          k="lunar.filter.filterCount"
           phrase="%{smartCount} Filter||||%{smartCount} Filters"
           smartCount={activeCount}
           context="Number of filters applied within a form"
         />
       ) : null;
     const toggleLabel = opened ? (
-      <T phrase="Close filters" context="Filter menu toggle button label" />
+      <T k="lunar.filter.close" phrase="Close filters" context="Filter menu toggle button label" />
     ) : (
-      <T phrase="Open filters" context="Filter menu toggle button label" />
+      <T k="lunar.filter.open" phrase="Open filters" context="Filter menu toggle button label" />
     );
 
     return (
@@ -173,11 +174,19 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
                 <Row>
                   <section className={cx(styles.controls)}>
                     <Link type="submit" onClick={this.handleApply}>
-                      <T phrase="Apply" context="Apply filters button label" />
+                      <T
+                        k="lunar.common.apply"
+                        phrase="Apply"
+                        context="Apply filters button label"
+                      />
                     </Link>
 
                     <Link muted type="reset" onClick={this.handleClear}>
-                      <T phrase="Reset" context="Button label to reset a form" />
+                      <T
+                        k="lunar.common.reset"
+                        phrase="Reset"
+                        context="Button label to reset a form"
+                      />
                     </Link>
                   </section>
                 </Row>

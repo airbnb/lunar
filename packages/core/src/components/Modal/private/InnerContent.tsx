@@ -6,6 +6,7 @@ import Title from '../../Title';
 import IconButton from '../../IconButton';
 import T from '../../Translate';
 import useTheme from '../../../hooks/useTheme';
+import { Z_INDEX_MODAL } from '../../../constants';
 import toRGBA from '../../../utils/toRGBA';
 
 export type Props = {
@@ -56,7 +57,11 @@ function ModalInnerContent({
       <div className={cx(styles.close, !withHeader && styles.close_float)}>
         <IconButton onClick={onClose}>
           <IconClose
-            accessibilityLabel={T.phrase('Close', {}, 'Close a modal popup')}
+            accessibilityLabel={T.phrase(
+              'Close',
+              {},
+              { context: 'Close a modal popup', key: 'lunar.common.close' },
+            )}
             color={theme.color.muted}
             size={theme.unit * 3}
           />
@@ -114,11 +119,12 @@ export default withStyles(({ color, ui, unit }) => ({
     position: 'absolute',
     top: unit * 2,
     right: unit * 2,
+    zIndex: Z_INDEX_MODAL,
   },
 
   close_float: {
     float: 'right',
-    position: 'static',
+    position: 'relative',
     top: 0,
     right: 0,
     margin: `${unit * 2}px ${unit * 2}px ${unit / 2}px ${unit / 2}px`,

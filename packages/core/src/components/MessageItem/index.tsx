@@ -112,7 +112,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
       ? T.phrase(
           '%{time} via %{source}',
           { time: formattedTimestamp, source },
-          'Timestamp and source within a message bubble',
+          { context: 'Timestamp and source within a message bubble', key: 'lunar.message.source' },
         )
       : formattedTimestamp;
 
@@ -187,7 +187,10 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
             title={T.phrase(
               'Profile photo badge',
               {},
-              'Profile photo descriptive image text within a message bubble',
+              {
+                context: 'Profile photo descriptive image text within a message bubble',
+                key: 'lunar.message.photoLabel',
+              },
             )}
           />
         </div>
@@ -251,7 +254,13 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
 
               {email && (
                 <Text small muted>
-                  <T phrase="From: %{email}" email={email} context="Who the message is from" html />
+                  <T
+                    k="lunar.message.fromUser"
+                    phrase="From: %{email}"
+                    email={email}
+                    context="Who the message is from"
+                    html
+                  />
                 </Text>
               )}
             </Spacing>

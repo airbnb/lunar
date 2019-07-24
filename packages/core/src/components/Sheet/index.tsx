@@ -184,7 +184,11 @@ export class BaseSheet extends React.Component<Props & PrivateProps & WithStyles
       return null;
     }
 
-    const closeText = T.phrase('Close', {}, 'Close a sheet popup');
+    const closeText = T.phrase(
+      'Close',
+      {},
+      { context: 'Close a sheet popup', key: 'lunar.common.close' },
+    );
     const closeIcon = (
       <IconButton onClick={this.handleClose}>
         <IconClose accessibilityLabel={closeText} size={3 * theme!.unit} />
