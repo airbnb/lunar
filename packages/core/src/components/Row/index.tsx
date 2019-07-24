@@ -1,6 +1,5 @@
 import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import { AutoSizer } from 'react-virtualized';
 
 export type Props = {
   /** The contents following the primary contents. */
@@ -13,7 +12,7 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** Render with reduced vertical padding. */
   compact?: boolean;
-  /** Render as an inline element. */
+  /** Render content as inline. */
   inline?: boolean;
   /** Max height of row. */
   maxHeight?: number | string;
