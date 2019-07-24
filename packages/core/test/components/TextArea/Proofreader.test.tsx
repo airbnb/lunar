@@ -33,6 +33,7 @@ describe('<Proofreader />', () => {
     offset: 10,
     length: 6,
     replacements: ['foo'],
+    rule_id: 'MORFOLOGIK_RULE_EN_US',
   };
 
   beforeEach(() => {
@@ -266,6 +267,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'AirBnB',
           replacements: ['Airbnb'],
+          rule_id: 'MORFOLOGIK_RULE_EN_US',
         },
         {
           short_message: '',
@@ -274,6 +276,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'AIRbnb',
           replacements: ['Airbnb'],
+          rule_id: 'MORFOLOGIK_RULE_EN_US',
         },
         {
           short_message: '',
@@ -282,6 +285,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'AirBnb',
           replacements: ['Airbnb'],
+          rule_id: 'MORFOLOGIK_RULE_EN_US',
         },
         {
           short_message: '',
@@ -290,6 +294,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'airbnb',
           replacements: ['Airbnb'],
+          rule_id: 'MORFOLOGIK_RULE_EN_US',
         },
       ]);
     });
@@ -307,6 +312,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'Aribnb',
           replacements: ['Airbnb'],
+          rule_id: 'MORFOLOGIK_RULE_EN_US',
         },
         {
           short_message: '',
@@ -315,6 +321,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'Airbbn',
           replacements: ['Airbnb'],
+          rule_id: 'MORFOLOGIK_RULE_EN_US',
         },
         {
           short_message: '',
@@ -323,6 +330,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'airnbb',
           replacements: ['Airbnb'],
+          rule_id: 'MORFOLOGIK_RULE_EN_US',
         },
         {
           short_message: '',
@@ -331,6 +339,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'iarbnb',
           replacements: ['Airbnb'],
+          rule_id: 'MORFOLOGIK_RULE_EN_US',
         },
       ]);
     });
@@ -819,19 +828,15 @@ describe('<Proofreader />', () => {
       ]);
     });
 
-    it('wraps errors in a secondary mark if secondaryMark prop is true', () => {
-      wrapper.setProps({
-        secondaryMark: true,
-      });
-
+    it('wraps errors in a secondary mark if matching rule', () => {
       wrapper.setState({
         text: 'Something foobar',
-        errors: [error],
+        errors: [{ ...error, rule_id: 'AGENT_TOOLS_UNNECESSARY_ADMIN_NOTE_RULE' }],
       });
 
       expect(instance.renderTextWithMarks()).toEqual([
         'Something ',
-        <SecondaryMark {...markProps} key="foobar-10">
+        <SecondaryMark {...markProps} alwaysHighlight key="foobar-10">
           foobar
         </SecondaryMark>,
         '',
@@ -867,6 +872,7 @@ describe('<Proofreader />', () => {
             offset: 0,
             length: 9,
             replacements: ['Something'],
+            rule_id: 'MORFOLOGIK_RULE_EN_US',
           },
         ],
         selectedError: error,

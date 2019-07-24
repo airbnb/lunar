@@ -7,6 +7,7 @@ export type ProofreadRuleMatch = {
   length?: number;
   found?: string;
   replacements?: Array<string>;
+  rule_id?: string;
 };
 
 export type ProofreaderResponse = {

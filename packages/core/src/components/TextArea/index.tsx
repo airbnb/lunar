@@ -7,12 +7,10 @@ import BaseTextArea, { Props as BaseTextAreaProps } from '../private/BaseTextAre
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
 import T from '../Translate';
 import Proofreader, { Props as ProofreaderProps } from './Proofreader';
-import { Props as MarkProps } from './Proofreader/Mark';
 
 export type Props = Omit<BaseTextAreaProps, 'id'> &
   FormFieldProps &
-  Partial<Pick<ProofreaderProps, 'locale' | 'onCheckText' | 'secondaryMark'>> &
-  Partial<Pick<MarkProps, 'alwaysHighlight'>> & {
+  Partial<Pick<ProofreaderProps, 'locale' | 'onCheckText'>> & {
     /** Max characters allowed in this field. Will populate `labelDescription` with the current usage. */
     maxLength?: number;
     /** Add "notranslate" className to prevent Google Chrome translation. */
@@ -32,11 +30,9 @@ export default class TextArea extends React.Component<Props, State> {
   };
 
   static defaultProps = {
-    alwaysHighlight: false,
     locale: 'none',
     noTranslate: false,
     proofread: false,
-    secondaryMark: false,
   };
 
   state = {
@@ -45,7 +41,7 @@ export default class TextArea extends React.Component<Props, State> {
 
   render() {
     const { fieldProps, inputProps } = partitionFieldProps(this.props);
-    const { locale, proofread, alwaysHighlight, secondaryMark, ...textareaProps } = inputProps;
+    const { locale, proofread, ...textareaProps } = inputProps;
     const { id } = this.state;
     const description =
       fieldProps.labelDescription ||
@@ -62,13 +58,7 @@ export default class TextArea extends React.Component<Props, State> {
     return (
       <FormField {...fieldProps} id={id} labelDescription={description}>
         {proofread ? (
-          <Proofreader
-            {...(textareaProps as any)}
-            id={id}
-            locale={locale}
-            alwaysHighlight={alwaysHighlight}
-            secondaryMark={secondaryMark}
-          />
+          <Proofreader {...(textareaProps as any)} id={id} locale={locale} />
         ) : (
           <BaseTextArea {...textareaProps} id={id} />
         )}

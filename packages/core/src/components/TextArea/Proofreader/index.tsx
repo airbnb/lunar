@@ -10,12 +10,13 @@ import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import buildInputStyles from '../../../themes/buildInputStyles';
 import { LT_LOCALES } from '../../../constants';
 import { ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT } from '../../../keys';
-import Mark, { Props as MarkProps } from './Mark';
+import Mark from './Mark';
 import SecondaryMark from './SecondaryMark';
 import ErrorMenu from './ErrorMenu';
 import LocaleMenu from './LocaleMenu';
 import { ProofreadRuleMatch, ProofreaderResponse, DefinitionShape } from './types';
 import { Props as FormInputProps } from '../../private/FormInput';
+import { LANGUAGE_RULES } from '../constants';
 
 const AIRBNB_REGEX = /\b(((air|ari|iar)[bn]{3})(?!\.com))\b/gi;
 const NON_WORD_REGEX = /\W/;
@@ -38,17 +39,15 @@ export type Position = {
   top: number;
 };
 
-export type Props = Pick<FormInputProps, 'important'> &
-  Partial<Pick<MarkProps, 'alwaysHighlight'>> & {
-    locale?: string;
-    name: string;
-    id: string;
-    noTranslate?: boolean;
-    onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    onCheckText: (params: any) => Promise<ProofreaderResponse>;
-    value: string;
-    secondaryMark?: boolean;
-  };
+export type Props = Pick<FormInputProps, 'important'> & {
+  locale?: string;
+  name: string;
+  id: string;
+  noTranslate?: boolean;
+  onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onCheckText: (params: any) => Promise<ProofreaderResponse>;
+  value: string;
+};
 
 export type State = {
   errors: ProofreadRuleMatch[];
@@ -254,6 +253,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           length: match[0].length,
           found: match[0],
           replacements: ['Airbnb'],
+          rule_id: 'MORFOLOGIK_RULE_EN_US',
         });
       }
 
@@ -388,6 +388,26 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       shadow.style.minHeight = textarea.style.minHeight;
       shadow.style.height = textarea.style.height;
       shadow.scrollTop = textarea.scrollTop;
+    }
+  };
+
+  useSecondaryMark = (error: ProofreadRuleMatch) => {
+    const { rule_id: ruleID } = error;
+    switch (ruleID) {
+      case LANGUAGE_RULES.UNNECESSARY_ADMIN_NOTE_RULE:
+        return true;
+      default:
+        return false;
+    }
+  };
+
+  alwaysHighlight = (error: ProofreadRuleMatch) => {
+    const { rule_id: ruleID } = error;
+    switch (ruleID) {
+      case LANGUAGE_RULES.UNNECESSARY_ADMIN_NOTE_RULE:
+        return true;
+      default:
+        return false;
     }
   };
 
@@ -543,7 +563,6 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
 
   renderTextWithMarks() {
     const { errors, selectedError, text } = this.state;
-    const { alwaysHighlight, secondaryMark } = this.props;
 
     if (errors.length === 0) {
       return text;
@@ -572,13 +591,13 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       // Extract match and wrap in a component
       const word = text.slice(offset, lastIndex);
 
-      const MarkComponent = secondaryMark ? SecondaryMark : Mark;
+      const MarkComponent = this.useSecondaryMark(error) ? SecondaryMark : Mark;
       content.push(
         <MarkComponent
           key={`${word}-${offset}`}
           selected={error === selectedError}
           onSelect={this.handleOpenErrorMenu}
-          alwaysHighlight={!!alwaysHighlight}
+          alwaysHighlight={this.alwaysHighlight(error)}
         >
           {word}
         </MarkComponent>,
@@ -596,17 +615,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   }
 
   render() {
-    const {
-      cx,
-      children,
-      styles,
-      onCheckText,
-      theme,
-      important,
-      alwaysHighlight,
-      secondaryMark,
-      ...props
-    } = this.props;
+    const { cx, children, styles, onCheckText, theme, important, ...props } = this.props;
     const {
       position,
       errors,
