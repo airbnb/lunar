@@ -59,9 +59,9 @@ export default function ZoomControls(props: Props) {
 
   const handleZoomOut = useCallback(
     () => onScale(scale - ZOOM_FACTOR < 1 ? 1 : scale - ZOOM_FACTOR),
-    [scale],
+    [scale, onScale],
   );
-  const handleZoomIn = useCallback(() => onScale(scale + ZOOM_FACTOR), [scale]);
+  const handleZoomIn = useCallback(() => onScale(scale + ZOOM_FACTOR), [scale, onScale]);
   const toggleZoomMenu = useCallback(() => setVisible(!visible), [visible]);
 
   return (
