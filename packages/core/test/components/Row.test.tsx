@@ -18,7 +18,7 @@ describe('<Row />', () => {
   it('renders as inline', () => {
     const wrapper = shallowWithStyles(<Row inline>PRIMARY</Row>);
 
-    expect(wrapper.prop('className')).toMatch('row_inline');
+    expect(wrapper.find('div > div').prop('className')).toMatch('inline');
   });
 
   it('renders as compact', () => {

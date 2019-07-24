@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
+import IconAddAlt from '@airbnb/lunar-icons/lib/interface/IconAddAlt';
 import Text from './Text';
 import Button from './Button';
 import Row from './Row';
@@ -34,7 +35,7 @@ storiesOf('Core/Row', module)
     </Row>
   ))
   .add('With inline.', () => (
-    <Row inline middleAlign after={<img src="http://via.placeholder.com/50x50" alt="" />}>
+    <Row inline middleAlign after={<IconAddAlt decorative />}>
       <Text>Inline row with after content, middle aligned.</Text>
     </Row>
   ))

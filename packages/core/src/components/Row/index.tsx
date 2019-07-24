@@ -1,5 +1,6 @@
 import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import { AutoSizer } from 'react-virtualized';
 
 export type Props = {
   /** The contents following the primary contents. */
@@ -62,7 +63,6 @@ export class Row extends React.Component<Props & WithStylesProps> {
         className={cx(
           styles.row,
           { maxHeight },
-          inline && styles.row_inline,
           compact && styles.row_compact,
           spacious && styles.row_spacious,
           middleAlign && styles.row_middleAlign,
@@ -70,13 +70,18 @@ export class Row extends React.Component<Props & WithStylesProps> {
           topline && styles.row_topline,
         )}
       >
-        {before && (
-          <div className={cx(compact ? styles.before_compact : styles.before)}>{before}</div>
-        )}
+        {before && <div className={cx(styles.before, inline && styles.inline)}>{before}</div>}
 
-        <div className={cx(styles.primary, truncated && styles.primary_truncated)}>{children}</div>
+        <div
+          className={cx(
+            inline ? styles.inline : styles.primary,
+            truncated && styles.primary_truncated,
+          )}
+        >
+          {children}
+        </div>
 
-        {after && <div className={cx(compact ? styles.after_compact : styles.after)}>{after}</div>}
+        {after && <div className={cx(styles.after, inline && styles.inline)}>{after}</div>}
       </div>
     );
   }
@@ -85,10 +90,6 @@ export class Row extends React.Component<Props & WithStylesProps> {
 export default withStyles(({ ui, unit }) => ({
   row: {
     display: 'flex',
-  },
-
-  row_inline: {
-    display: 'inline-flex',
   },
 
   row_compact: {
@@ -114,21 +115,13 @@ export default withStyles(({ ui, unit }) => ({
   },
 
   after: {
-    paddingLeft: unit * 2,
-    flexShrink: 0,
-  },
-
-  after_compact: {
     paddingLeft: unit,
+    flexShrink: 0,
   },
 
   before: {
-    paddingRight: unit * 2,
-    flexShrink: 0,
-  },
-
-  before_compact: {
     paddingRight: unit,
+    flexShrink: 0,
   },
 
   primary: {
@@ -138,5 +131,10 @@ export default withStyles(({ ui, unit }) => ({
 
   primary_truncated: {
     overflow: 'hidden',
+  },
+
+  inline: {
+    display: 'inline-flex',
+    alignSelf: 'initial',
   },
 }))(Row);
