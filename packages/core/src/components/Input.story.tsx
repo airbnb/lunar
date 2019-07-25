@@ -15,20 +15,27 @@ storiesOf('Core/Input', module)
       onChange={action('onChange')}
     />
   ))
-  .add('With a compact smaller view.', () => (
+  .add('With different sizing: small, default or large.', () => (
     <>
       <Input
-        name="input-compact"
-        label="Compact"
+        name="input-small"
+        label="Small"
         placeholder="Placeholder"
         onChange={action('onChange')}
-        compact
+        small
       />
       <Input
         name="input-regular"
         label="Regular"
         placeholder="Placeholder"
         onChange={action('onChange')}
+      />
+      <Input
+        name="input-large"
+        label="Large"
+        placeholder="Placeholder"
+        onChange={action('onChange')}
+        large
       />
     </>
   ))

@@ -176,6 +176,8 @@ export type Theme = {
     borderThick: string;
     borderRadius: number;
     borderRadiusThick: number;
+    borderWidth: number;
+    borderWidthThick: number;
     boxShadow: string;
     boxShadowMedium: string;
     boxShadowLarge: string;
