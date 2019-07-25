@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-layouts",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "Pre-defined page layouts for Lunar.",
   "license": "MIT",
   "main": "./lib/index.js",
