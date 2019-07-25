@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.3.0 - 2019-07-24
+
+#### 🚀 Updates
+
+- Refine and use explicit value types. Allow null and undefined default values. (#132) ([ecede51](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/ecede51)), closes [#132](https://github.com/airbnb/lunar/tree/master/packages/forms/issues/132)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ## 2.2.0 - 2019-07-22
 
 #### 🚀 Updates

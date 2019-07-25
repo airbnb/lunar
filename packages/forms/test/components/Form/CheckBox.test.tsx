@@ -1,39 +1,44 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import BaseCheckBox from '@airbnb/lunar/lib/components/CheckBox';
-import { unwrapHOCs } from '@airbnb/lunar-test-utils';
 import CheckBox from '../../../src/components/Form/CheckBox';
 import { toBool } from '../../../src/helpers';
+import { Context } from '../../../src/types';
+import { WrappingFormComponent, createFormContext } from '../../utils';
 
 describe('<CheckBox />', () => {
-  const form = {
-    change() {},
-    getState: () => ({} as any),
-    register: jest.fn(),
-  };
+  let context: Context;
+
+  beforeEach(() => {
+    context = createFormContext();
+  });
 
   it('connects to the form', () => {
-    const wrapper = unwrapHOCs(
-      shallow(<CheckBox label="Label" name="foo" defaultValue="1" validator={() => {}} />),
-      'FormCheckBox',
-      form,
+    const wrapper = mount(
+      <CheckBox label="Label" name="foo" defaultValue="1" validator={() => {}} />,
+      {
+        wrappingComponent: WrappingFormComponent,
+        wrappingComponentProps: { context },
+      },
     );
 
-    expect(form.register).toHaveBeenCalledWith(
+    expect(context.register).toHaveBeenCalledWith(
       expect.objectContaining({ name: 'foo', defaultValue: '1', parse: toBool }),
       expect.anything(),
     );
 
-    expect(wrapper.shallow().find(BaseCheckBox)).toHaveLength(1);
+    expect(wrapper.find(BaseCheckBox)).toHaveLength(1);
   });
 
   it('sets checked prop', () => {
-    const wrapper = unwrapHOCs(
-      shallow(<CheckBox label="Label" name="foo" defaultValue="1" validator={() => {}} />),
-      'FormCheckBox',
-      form,
+    const wrapper = mount(
+      <CheckBox label="Label" name="foo" defaultValue="1" validator={() => {}} />,
+      {
+        wrappingComponent: WrappingFormComponent,
+        wrappingComponentProps: { context },
+      },
     );
 
-    expect(wrapper.prop('checked')).toBe(true);
+    expect(wrapper.find(BaseCheckBox).prop('checked')).toBe(true);
   });
 });

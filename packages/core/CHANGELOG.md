@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.13.0 - 2019-07-24
+
+#### 🚀 Updates
+
+- Refine and use explicit value types. Allow null and undefined default values. (#132) ([ecede51](https://github.com/airbnb/lunar/tree/master/packages/core/commit/ecede51)), closes [#132](https://github.com/airbnb/lunar/tree/master/packages/core/issues/132)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 2.12.1 - 2019-07-24
+
+#### 🐞 Fixes
+
+- **[Tooltip]** Fix cannot read property getBoundingClientRect of null. (#133) ([196582b](https://github.com/airbnb/lunar/tree/master/packages/core/commit/196582b)), closes [#133](https://github.com/airbnb/lunar/tree/master/packages/core/issues/133)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.12.0 - 2019-07-23
+
+#### 🚀 Updates
+
+- **[Divider]** Add short prop (#131) ([1f45ee9](https://github.com/airbnb/lunar/tree/master/packages/core/commit/1f45ee9)), closes [#131](https://github.com/airbnb/lunar/tree/master/packages/core/issues/131)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.11.0 - 2019-07-23
 
 #### 🚀 Updates
