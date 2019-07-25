@@ -59,11 +59,11 @@ export class Menu extends React.Component<Props & WithStylesProps> {
 
 export { Item, Separator, Row };
 
-export default withStyles(({ color, ui, pattern }) => ({
+export default withStyles(({ color, ui, pattern, unit }) => ({
   menu: {
     ...pattern.box,
     margin: 0,
-    padding: 0,
+    padding: `${unit}px 0`,
     backgroundColor: color.accent.bg,
     listStyle: 'none',
 

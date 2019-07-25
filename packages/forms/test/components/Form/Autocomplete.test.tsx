@@ -1,38 +1,39 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import BaseAutocomplete from '@airbnb/lunar/lib/components/Autocomplete';
-import { unwrapHOCs } from '@airbnb/lunar-test-utils';
 import Autocomplete from '../../../src/components/Form/Autocomplete';
 import { toString } from '../../../src/helpers';
+import { Context } from '../../../src/types';
+import { WrappingFormComponent, createFormContext } from '../../utils';
 
 describe('<Autocomplete />', () => {
-  const form = {
-    change() {},
-    getState: () => ({} as any),
-    register: jest.fn(),
-  };
+  let context: Context;
+
+  beforeEach(() => {
+    context = createFormContext();
+  });
 
   it('connects to the form', () => {
-    const wrapper = unwrapHOCs(
-      shallow(
-        <Autocomplete
-          label="Label"
-          accessibilityLabel="Label"
-          name="foo"
-          defaultValue="bar"
-          onLoadItems={() => Promise.resolve([])}
-          validator={() => {}}
-        />,
-      ),
-      'FormAutocomplete',
-      form,
+    const wrapper = mount(
+      <Autocomplete
+        label="Label"
+        accessibilityLabel="Label"
+        name="foo"
+        defaultValue="bar"
+        onLoadItems={() => Promise.resolve([])}
+        validator={() => {}}
+      />,
+      {
+        wrappingComponent: WrappingFormComponent,
+        wrappingComponentProps: { context },
+      },
     );
 
-    expect(form.register).toHaveBeenCalledWith(
+    expect(context.register).toHaveBeenCalledWith(
       expect.objectContaining({ name: 'foo', defaultValue: 'bar', parse: toString }),
       expect.anything(),
     );
 
-    expect(wrapper.shallow().find(BaseAutocomplete)).toHaveLength(1);
+    expect(wrapper.find(BaseAutocomplete)).toHaveLength(1);
   });
 });

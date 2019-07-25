@@ -7,7 +7,7 @@ const styleSheet: StyleSheet = ({ color }) => ({
     width: '100%',
     minHeight: '100vh',
     background: color.accent.bg,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
 
   sideBar: {

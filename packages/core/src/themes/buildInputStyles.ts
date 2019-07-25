@@ -152,6 +152,10 @@ export default function buildInputStyles({
       borderBottomRightRadius: 0,
     },
 
+    input_large: {
+      ...pattern.largeButton,
+    },
+
     select: {
       appearance: 'none',
       paddingRight: unit * 4.5,

@@ -17,9 +17,9 @@ export type Props = ButtonOrLinkProps & {
   invalid?: boolean;
   /** Invert text colors. */
   inverted?: boolean;
-  /** Increase font size to large. */
+  /** Increase font size and padding to large. */
   large?: boolean;
-  /** Decrease font size to small. */
+  /** Decrease font size and padding to small. */
   small?: boolean;
 };
 
@@ -91,7 +91,7 @@ export default withStyles(
       position: 'relative',
       color: color.base,
       backgroundColor: color.core.primary[3],
-      border: `2px solid ${color.core.primary[3]}`,
+      border: `${ui.borderWidthThick}px solid ${color.core.primary[3]}`,
       borderRadius: ui.borderRadius,
       textAlign: 'center',
 

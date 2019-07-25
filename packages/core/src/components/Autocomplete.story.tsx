@@ -87,7 +87,7 @@ storiesOf('Core/Autocomplete', module)
       isItemSelectable={(item, selected) => !selected}
     />
   ))
-  .add('With custom states in a compact form.', () => (
+  .add('With custom states in a small form.', () => (
     <>
       <Autocomplete
         accessibilityLabel="Label"
@@ -98,7 +98,7 @@ storiesOf('Core/Autocomplete', module)
         onLoadItems={value => Promise.reject(new Error('Failed to load.'))}
         renderError={error => <div>{error.message}</div>}
         loadItemsOnMount
-        compact
+        small
       />
 
       <Autocomplete
@@ -110,7 +110,7 @@ storiesOf('Core/Autocomplete', module)
         onLoadItems={value => new Promise(() => {})}
         renderLoading={() => <div>Loading...</div>}
         loadItemsOnMount
-        compact
+        small
       />
 
       <Autocomplete
@@ -122,7 +122,7 @@ storiesOf('Core/Autocomplete', module)
         onLoadItems={value => Promise.resolve([])}
         renderNoResults={() => <div>Nothing to see here!</div>}
         loadItemsOnMount
-        compact
+        small
       />
     </>
   ));

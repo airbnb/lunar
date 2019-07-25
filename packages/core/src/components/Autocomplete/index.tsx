@@ -8,6 +8,7 @@ import ErrorMessage from '../ErrorMessage';
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
 import Loader from '../Loader';
 import Menu, { Item as MenuItem, Row as MenuRow } from '../Menu';
+import Spacing from '../Spacing';
 import T from '../Translate';
 import Text from '../Text';
 import renderElementOrFunction, { RenderableProp } from '../../utils/renderElementOrFunction';
@@ -423,7 +424,17 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   }
 
   getInputProps(props: Props<T>) {
-    const { compact, disabled, invalid, name, optional, placeholder, onBlur, onFocus } = props;
+    const {
+      compact,
+      disabled,
+      invalid,
+      name,
+      optional,
+      placeholder,
+      onBlur,
+      onFocus,
+      small,
+    } = props;
     const { id } = this.state;
 
     // Should match the props passed within `Input`
@@ -446,6 +457,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
             key: 'lunar.common.search',
           },
         ),
+      small,
       type: 'text',
     };
   }
@@ -569,9 +581,11 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
 
   renderError = (error: Error) => (
     <MenuRow>
-      {renderElementOrFunction(this.props.renderError, error) || (
-        <ErrorMessage error={error} inline />
-      )}
+      <Spacing horizontal={0.5}>
+        {renderElementOrFunction(this.props.renderError, error) || (
+          <ErrorMessage error={error} inline />
+        )}
+      </Spacing>
     </MenuRow>
   );
 
@@ -616,7 +630,11 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
   };
 
   renderLoading = () => (
-    <MenuRow>{renderElementOrFunction(this.props.renderLoading) || <Loader inline />}</MenuRow>
+    <MenuRow>
+      <Spacing horizontal={1}>
+        {renderElementOrFunction(this.props.renderLoading) || <Loader inline />}
+      </Spacing>
+    </MenuRow>
   );
 
   renderMenu = () => {
@@ -654,23 +672,31 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
 
   renderNoResults = () => (
     <MenuRow>
-      {renderElementOrFunction(this.props.renderNoResults) || (
-        <Text>
-          {this.props.noResultsText || (
-            <T
-              k="lunar.common.noResults"
-              phrase="No results found."
-              context="No results found for autocomplete search"
-            />
-          )}
-        </Text>
-      )}
+      <Spacing horizontal={1}>
+        {renderElementOrFunction(this.props.renderNoResults) || (
+          <Text>
+            {this.props.noResultsText || (
+              <T
+                k="lunar.common.noResults"
+                phrase="No results found."
+                context="No results found for autocomplete search"
+              />
+            )}
+          </Text>
+        )}
+      </Spacing>
     </MenuRow>
   );
 
   render() {
     const { id, open, value } = this.state;
     const { children, fieldProps, inputProps } = partitionFieldProps(this.props);
+
+    if (__DEV__) {
+      if (inputProps.compact) {
+        console.log('Autocomplete: `compact` prop is deprecated, please use `small` instead.');
+      }
+    }
 
     return (
       <FormField {...fieldProps} id={id}>
