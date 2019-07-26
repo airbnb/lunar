@@ -14,13 +14,16 @@ export type Options = {
   transitionTime?: string;
 };
 
+const borderWidth = 1;
+const borderWidthThick = 2;
+
 export default function buildTheme(
   options: Options,
   accents: Partial<Theme['color']['accent']> = {},
 ): Theme {
   const {
     base,
-    borderRadius = 3,
+    borderRadius = 4,
     boxShadow = [2, 3],
     brand,
     color,
@@ -42,10 +45,12 @@ export default function buildTheme(
   };
 
   const ui = {
-    border: `1px solid ${accent.border}`,
-    borderThick: `2px solid ${accent.border}`,
+    border: `${borderWidth}px solid ${accent.border}`,
+    borderThick: `${borderWidthThick}px solid ${accent.border}`,
     borderRadius,
     borderRadiusThick: borderRadius * 2,
+    borderWidth,
+    borderWidthThick,
     boxShadow: `0 ${boxShadow[0]}px ${boxShadow[1]}px ${toRGBA(color.neutral[6], 10)}`,
     boxShadowMedium: `0 ${boxShadow[0] * 3}px ${boxShadow[1] * 2}px ${toRGBA(
       color.neutral[6],
@@ -110,15 +115,15 @@ export default function buildTheme(
       },
       smallButton: {
         ...font.textSmall,
-        padding: `${unit * 0.75}px ${unit * 1.25}px`,
+        padding: `${unit - borderWidthThick}px ${unit * 1.5 - borderWidthThick}px`,
       },
       regularButton: {
         ...font.textRegular,
-        padding: `${unit * 1.25}px ${unit * 1.5}px`,
+        padding: `${unit * 1.25 - borderWidthThick}px ${unit * 1.5 - borderWidthThick}px`,
       },
       largeButton: {
         ...font.textLarge,
-        padding: `${unit * 1.5}px ${unit * 2.5}px`,
+        padding: `${unit * 1.5 - borderWidthThick}px ${unit * 2 - borderWidthThick}px`,
       },
     },
     breakpoints,

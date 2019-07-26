@@ -6,8 +6,6 @@ import Loader from '../Loader';
 
 const sizingProp = mutuallyExclusiveTrueProps('small', 'large');
 
-const GOLDEN_RATIO = (1 + Math.sqrt(5)) / 2;
-
 export type Props = ButtonOrLinkProps & {
   /** Render as a block with full width. */
   block?: boolean;
@@ -17,9 +15,9 @@ export type Props = ButtonOrLinkProps & {
   invalid?: boolean;
   /** Invert text colors. */
   inverted?: boolean;
-  /** Increase font size to large. */
+  /** Increase font size and padding to large. */
   large?: boolean;
-  /** Decrease font size to small. */
+  /** Decrease font size and padding to small. */
   small?: boolean;
 };
 
@@ -91,7 +89,7 @@ export default withStyles(
       position: 'relative',
       color: color.base,
       backgroundColor: color.core.primary[3],
-      border: `2px solid ${color.core.primary[3]}`,
+      border: `${ui.borderWidthThick}px solid ${color.core.primary[3]}`,
       borderRadius: ui.borderRadius,
       textAlign: 'center',
 
@@ -152,17 +150,17 @@ export default withStyles(
 
     button_small: {
       ...pattern.smallButton,
-      minWidth: GOLDEN_RATIO * 4 * unit,
+      minWidth: 6 * unit,
     },
 
     button_regular: {
       ...pattern.regularButton,
-      minWidth: GOLDEN_RATIO * 6 * unit,
+      minWidth: 8 * unit,
     },
 
     button_large: {
       ...pattern.largeButton,
-      minWidth: GOLDEN_RATIO * 8 * unit,
+      minWidth: 9 * unit,
     },
   }),
   {
