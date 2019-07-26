@@ -6,8 +6,6 @@ import Loader from '../Loader';
 
 const sizingProp = mutuallyExclusiveTrueProps('small', 'large');
 
-const GOLDEN_RATIO = (1 + Math.sqrt(5)) / 2;
-
 export type Props = ButtonOrLinkProps & {
   /** Render as a block with full width. */
   block?: boolean;
@@ -152,17 +150,17 @@ export default withStyles(
 
     button_small: {
       ...pattern.smallButton,
-      minWidth: GOLDEN_RATIO * 4 * unit,
+      minWidth: 6 * unit,
     },
 
     button_regular: {
       ...pattern.regularButton,
-      minWidth: GOLDEN_RATIO * 6 * unit,
+      minWidth: 8 * unit,
     },
 
     button_large: {
       ...pattern.largeButton,
-      minWidth: GOLDEN_RATIO * 8 * unit,
+      minWidth: 9 * unit,
     },
   }),
   {
