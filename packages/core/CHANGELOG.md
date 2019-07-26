@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.13.2 - 2019-07-26
+
+#### 🎨 Styles
+
+- **[Button]** Adjust minimum widths. (#118) ([6563f5a](https://github.com/airbnb/lunar/tree/master/packages/core/commit/6563f5a)), closes [#118](https://github.com/airbnb/lunar/tree/master/packages/core/issues/118)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.13.1 - 2019-07-25
 
 #### 🎨 Styles
