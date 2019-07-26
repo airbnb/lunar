@@ -133,6 +133,7 @@ export class Text extends React.Component<Props & WithStylesProps> {
           small && styles.text_small,
           truncated && styles.text_truncated,
           uppercased && styles.text_uppercased,
+          micro && uppercased && styles.text_uppercased_micro,
           centerAlign && styles.text_center,
           endAlign && styles.text_end,
           startAlign && styles.text_start,
@@ -210,6 +211,10 @@ export default withStyles(({ color, font, pattern }) => ({
 
   text_uppercased: {
     textTransform: 'uppercase',
+  },
+
+  text_uppercased_micro: {
+    letterSpacing: 1,
   },
 
   text_center: {
