@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.1 - 2019-07-25
+
+#### 🐞 Fixes
+
+- Override defaultValue and onChange prop types. (#142) ([bcf834c](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/bcf834c)), closes [#142](https://github.com/airbnb/lunar/tree/master/packages/forms/issues/142)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ## 2.3.0 - 2019-07-24
 
 #### 🚀 Updates

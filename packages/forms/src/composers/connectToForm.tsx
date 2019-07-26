@@ -25,13 +25,10 @@ export const PROP_NAMES = [
   'validator',
 ];
 
-// Our composer provides implementations for required props
-// in the wrapped component, so we need to mark them as optional.
-export type OnChangeHandler = (...args: any[]) => any;
-
-export type OptionalOnChange<T> = T extends { onChange: OnChangeHandler }
-  ? Omit<T, 'onChange'> & Partial<Pick<T, 'onChange'>>
-  : T & { onChange?: OnChangeHandler };
+// Our composer provides implementations for a few critical props
+// in the wrapped component, so we need to remove them.
+// Otherwise they would collide with the underlying implementation.
+export type RemoveWrappedProps<P> = Omit<P, 'defaultValue' | 'onChange'>;
 
 export type Options<T> = {
   ignoreValue?: boolean;
@@ -56,6 +53,7 @@ export interface ConnectToFormProps<T> {
 export interface ConnectToFormWrapperProps<T> extends Field<T> {
   onBatchChange?: (value: T) => object | undefined;
   onBlur?: (event: React.FocusEvent) => void;
+  onChange?: (value: T, ...args: any[]) => void;
   onFocus?: (event: React.FocusEvent) => void;
   onStateUpdate?: (state: FieldState<T>) => void;
   unregisterOnUnmount?: boolean;
@@ -76,8 +74,8 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
 
   return function connectToFormFactory<Props extends object = {}>(
     WrappedComponent: React.ComponentType<Props & ConnectToFormProps<T>>,
-  ): React.ComponentType<OptionalOnChange<Props> & ConnectToFormWrapperProps<T>> {
-    type OwnProps = OptionalOnChange<Props> & ConnectToFormWrapperProps<T>;
+  ): React.ComponentType<RemoveWrappedProps<Props> & ConnectToFormWrapperProps<T>> {
+    type OwnProps = RemoveWrappedProps<Props> & ConnectToFormWrapperProps<T>;
 
     class ConnectToForm extends React.Component<OwnProps & { form: Context }, ConnectToFormState> {
       static defaultProps = {
