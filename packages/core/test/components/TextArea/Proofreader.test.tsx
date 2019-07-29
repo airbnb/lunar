@@ -828,17 +828,41 @@ describe('<Proofreader />', () => {
       ]);
     });
 
-    it('wraps errors in a secondary mark if matching rule', () => {
+    it('wraps errors in a secondary mark if isRuleSecondary() is true', () => {
       wrapper.setState({
         text: 'Something foobar',
-        errors: [{ ...error, rule_id: 'AGENT_TOOLS_UNNECESSARY_ADMIN_NOTE_RULE' }],
+        errors: [{ ...error }],
+      });
+
+      wrapper.setProps({
+        isRuleSecondary: () => true,
       });
 
       expect(instance.renderTextWithMarks()).toEqual([
         'Something ',
-        <SecondaryMark {...markProps} alwaysHighlight key="foobar-10">
+        <SecondaryMark {...markProps} key="foobar-10">
           foobar
         </SecondaryMark>,
+        '',
+        '.',
+      ]);
+    });
+
+    it('sets mark as highlighted if isRuleHighlighted() is true', () => {
+      wrapper.setState({
+        text: 'Something foobar',
+        errors: [{ ...error }],
+      });
+
+      wrapper.setProps({
+        isRuleHighlighted: () => true,
+      });
+
+      expect(instance.renderTextWithMarks()).toEqual([
+        'Something ',
+        <Mark {...markProps} alwaysHighlight key="foobar-10">
+          foobar
+        </Mark>,
         '',
         '.',
       ]);

@@ -20,3 +20,8 @@ export type DefinitionShape = {
   locale: string;
   label: string;
 };
+
+export type ExtraProofreadProps = {
+  isRuleHighlighted?: (rule: ProofreadRuleMatch) => boolean;
+  isRuleSecondary?: (rule: ProofreadRuleMatch) => boolean;
+};

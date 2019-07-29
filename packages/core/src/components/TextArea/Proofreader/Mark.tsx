@@ -5,10 +5,14 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   selected: boolean;
   onSelect: (top: number, left: number) => void;
-  alwaysHighlight: boolean;
+  alwaysHighlight?: boolean;
 };
 
 class Mark extends React.PureComponent<Props & WithStylesProps> {
+  static defaultProps = {
+    alwaysHighlight: false,
+  };
+
   ref = React.createRef<HTMLSpanElement>();
 
   componentDidMount() {

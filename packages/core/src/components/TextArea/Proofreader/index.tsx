@@ -14,9 +14,13 @@ import Mark from './Mark';
 import SecondaryMark from './SecondaryMark';
 import ErrorMenu from './ErrorMenu';
 import LocaleMenu from './LocaleMenu';
-import { ProofreadRuleMatch, ProofreaderResponse, DefinitionShape } from './types';
+import {
+  ProofreadRuleMatch,
+  ProofreaderResponse,
+  DefinitionShape,
+  ExtraProofreadProps,
+} from './types';
 import { Props as FormInputProps } from '../../private/FormInput';
-import { LANGUAGE_RULES } from '../constants';
 
 const AIRBNB_REGEX = /\b(((air|ari|iar)[bn]{3})(?!\.com))\b/gi;
 const NON_WORD_REGEX = /\W/;
@@ -39,15 +43,16 @@ export type Position = {
   top: number;
 };
 
-export type Props = Pick<FormInputProps, 'important'> & {
-  locale?: string;
-  name: string;
-  id: string;
-  noTranslate?: boolean;
-  onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onCheckText: (params: any) => Promise<ProofreaderResponse>;
-  value: string;
-};
+export type Props = Pick<FormInputProps, 'important'> &
+  ExtraProofreadProps & {
+    locale?: string;
+    name: string;
+    id: string;
+    noTranslate?: boolean;
+    onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    onCheckText: (params: any) => Promise<ProofreaderResponse>;
+    value: string;
+  };
 
 export type State = {
   errors: ProofreadRuleMatch[];
@@ -67,6 +72,8 @@ export type Snapshot = {
 
 export class Proofreader extends React.Component<Props & WithStylesProps, State, Snapshot> {
   static defaultProps = {
+    isRuleHighlighted: () => false,
+    isRuleSecondary: () => false,
     locale: NO_LOCALE,
   };
 
@@ -391,26 +398,6 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     }
   };
 
-  useSecondaryMark = (error: ProofreadRuleMatch) => {
-    const { rule_id: ruleID } = error;
-    switch (ruleID) {
-      case LANGUAGE_RULES.UNNECESSARY_ADMIN_NOTE_RULE:
-        return true;
-      default:
-        return false;
-    }
-  };
-
-  alwaysHighlight = (error: ProofreadRuleMatch) => {
-    const { rule_id: ruleID } = error;
-    switch (ruleID) {
-      case LANGUAGE_RULES.UNNECESSARY_ADMIN_NOTE_RULE:
-        return true;
-      default:
-        return false;
-    }
-  };
-
   private handleTextAreaClick = (event: React.MouseEvent<HTMLTextAreaElement>) => {
     this.selectErrorAtPosition(event.currentTarget.selectionStart);
   };
@@ -591,13 +578,13 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       // Extract match and wrap in a component
       const word = text.slice(offset, lastIndex);
 
-      const MarkComponent = this.useSecondaryMark(error) ? SecondaryMark : Mark;
+      const MarkComponent = this.props.isRuleSecondary!(error) ? SecondaryMark : Mark;
       content.push(
         <MarkComponent
           key={`${word}-${offset}`}
           selected={error === selectedError}
           onSelect={this.handleOpenErrorMenu}
-          alwaysHighlight={this.alwaysHighlight(error)}
+          alwaysHighlight={this.props.isRuleHighlighted!(error)}
         >
           {word}
         </MarkComponent>,
