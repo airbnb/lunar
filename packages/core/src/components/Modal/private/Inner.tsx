@@ -84,7 +84,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
       title,
     } = this.props;
 
-    const showLargeContent = large || !small || !!image;
+    const showLargeContent = large || !!image;
 
     const innerContent = (
       <ModalInnerContent
@@ -108,7 +108,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
         className={cx(
           styles.content,
           small && styles.content_small,
-          (large || !!image) && styles.content_large,
+          showLargeContent && styles.content_large,
           fluid && styles.content_fluid,
         )}
       >

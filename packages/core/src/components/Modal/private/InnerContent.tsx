@@ -74,7 +74,8 @@ function ModalInnerContent({
           !withHeader && styles.body_paddingTop,
           !withFooter && styles.body_paddingBottom,
           scrollable && styles.body_scrollable,
-          scrollable && (!small || large) && styles.body_scrollableLarge,
+          small && scrollable && styles.body_scrollableSmall,
+          large && scrollable && styles.body_scrollableLarge,
         )}
       >
         {children}
@@ -144,7 +145,7 @@ export default withStyles(({ color, ui, unit }) => ({
 
   body_scrollable: {
     paddingBottom: unit * 3,
-    maxHeight: 160,
+    maxHeight: 300,
     overflow: 'auto',
 
     ':before': {
@@ -158,8 +159,12 @@ export default withStyles(({ color, ui, unit }) => ({
     },
   },
 
+  body_scrollableSmall: {
+    maxHeight: 160,
+  },
+
   body_scrollableLarge: {
-    maxHeight: 300,
+    maxHeight: 500,
   },
 
   footer: {
