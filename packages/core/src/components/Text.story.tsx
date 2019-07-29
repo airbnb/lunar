@@ -12,7 +12,7 @@ storiesOf('Core/Text', module)
       <LoremIpsum short />
     </Text>
   ))
-  .add('With bold, light, and uppercased emphasis.', () => (
+  .add('With light, bold, and uppercased emphasis.', () => (
     <>
       <Text light>
         <LoremIpsum short />

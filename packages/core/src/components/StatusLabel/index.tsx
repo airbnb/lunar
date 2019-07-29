@@ -137,13 +137,14 @@ export default withStyles(({ color, font, ui, unit }) => ({
     borderRadius: ui.borderRadius,
     backgroundColor: color.core.neutral[1],
     color: color.accent.text,
-    fontWeight: font.weights.semibold,
+    fontWeight: font.weights.bold,
     border: ui.border,
     borderColor: 'transparent',
   },
 
   label_uppercased: {
     textTransform: 'uppercase',
+    letterSpacing: 1,
   },
 
   label_bordered: {
