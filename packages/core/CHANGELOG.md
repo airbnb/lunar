@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.13.4 - 2019-07-29
+
+#### 🎨 Styles
+
+- **[Modal]** Increase modal body height when scrollable is set. (#141) ([41b46fd](https://github.com/airbnb/lunar/tree/master/packages/core/commit/41b46fd)), closes [#141](https://github.com/airbnb/lunar/tree/master/packages/core/issues/141)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.13.3 - 2019-07-26
 
 #### 🎨 Styles
