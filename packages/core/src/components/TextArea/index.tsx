@@ -36,10 +36,7 @@ export default class TextArea extends React.Component<Props, State> {
     locale: 'none',
     noTranslate: false,
     proofread: false,
-    proofreadProps: {
-      isRuleHighlighted: () => false,
-      isRuleSecondary: () => false,
-    },
+    proofreadProps: undefined,
   };
 
   state = {
@@ -67,10 +64,11 @@ export default class TextArea extends React.Component<Props, State> {
         {proofread ? (
           <Proofreader
             {...(textareaProps as any)}
+            {...proofreadProps}
             id={id}
             locale={locale}
-            isRuleHighlighted={proofreadProps!.isRuleHighlighted}
-            isRuleSecondary={proofreadProps!.isRuleSecondary}
+            isRuleHighlighted={proofreadProps && proofreadProps.isRuleHighlighted}
+            isRuleSecondary={proofreadProps && proofreadProps.isRuleSecondary}
           />
         ) : (
           <BaseTextArea {...textareaProps} id={id} />

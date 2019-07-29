@@ -49,6 +49,7 @@ describe('<TextArea />', () => {
         locale="ja"
         proofread
         onCheckText={() => Promise.resolve({ proofread: { matches: [] } })}
+        proofreadProps={{ isRuleHighlighted: () => false, isRuleSecondary: () => false }}
       />,
     );
 

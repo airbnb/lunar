@@ -38,6 +38,14 @@ const LOCALE_TO_LT_LOCALE: { [locale: string]: string } = {
   zh: 'zh-CN',
 };
 
+function isRuleHighlighted(rule: ProofreadRuleMatch) {
+  return false;
+}
+
+function isRuleSecondary(rule: ProofreadRuleMatch) {
+  return false;
+}
+
 export type Position = {
   left: number;
   top: number;
@@ -72,8 +80,8 @@ export type Snapshot = {
 
 export class Proofreader extends React.Component<Props & WithStylesProps, State, Snapshot> {
   static defaultProps = {
-    isRuleHighlighted: () => false,
-    isRuleSecondary: () => false,
+    isRuleHighlighted,
+    isRuleSecondary,
     locale: NO_LOCALE,
   };
 
