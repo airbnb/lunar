@@ -10,7 +10,7 @@ export type Props = {
   before?: React.ReactNode;
   /** The primary contents to render. */
   children: NonNullable<React.ReactNode>;
-  /** Render with reduced vertical padding. */
+  /** Render with reduced vertical padding (12px). */
   compact?: boolean;
   /** Render content as inline. */
   inline?: boolean;
@@ -18,7 +18,7 @@ export type Props = {
   maxHeight?: number | string;
   /** Align contents in the middle vertically. */
   middleAlign?: boolean;
-  /** Render with vertical padding. */
+  /** Render with vertical padding (24px). */
   spacious?: boolean;
   /** The visibility of the row's topline. */
   topline?: boolean;
@@ -69,7 +69,17 @@ export class Row extends React.Component<Props & WithStylesProps> {
           topline && styles.row_topline,
         )}
       >
-        {before && <div className={cx(styles.before, inline && styles.inline)}>{before}</div>}
+        {before && (
+          <div
+            className={cx(
+              styles.before,
+              inline && styles.inline,
+              (inline || compact) && styles.before_compact,
+            )}
+          >
+            {before}
+          </div>
+        )}
 
         <div
           className={cx(
@@ -80,7 +90,17 @@ export class Row extends React.Component<Props & WithStylesProps> {
           {children}
         </div>
 
-        {after && <div className={cx(styles.after, inline && styles.inline)}>{after}</div>}
+        {after && (
+          <div
+            className={cx(
+              styles.after,
+              inline && styles.inline,
+              (inline || compact) && styles.after_compact,
+            )}
+          >
+            {after}
+          </div>
+        )}
       </div>
     );
   }
@@ -114,13 +134,21 @@ export default withStyles(({ ui, unit }) => ({
   },
 
   after: {
-    paddingLeft: unit,
+    paddingLeft: unit * 2,
     flexShrink: 0,
   },
 
+  after_compact: {
+    paddingLeft: unit,
+  },
+
   before: {
-    paddingRight: unit,
+    paddingRight: unit * 2,
     flexShrink: 0,
+  },
+
+  before_compact: {
+    paddingRight: unit,
   },
 
   primary: {

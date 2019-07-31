@@ -35,12 +35,7 @@ storiesOf('Core/Row', module)
     </Row>
   ))
   .add('With inline.', () => (
-    <Row
-      inline
-      middleAlign
-      before={<img src="http://via.placeholder.com/50x50" alt="" />}
-      after={<IconAddAlt decorative />}
-    >
+    <Row inline middleAlign after={<IconAddAlt decorative />}>
       <Text>Inline row with after content, middle aligned.</Text>
     </Row>
   ))
@@ -80,12 +75,12 @@ storiesOf('Core/Row', module)
   .add('All padding options.', () => (
     <>
       <div>
-        <Row topline spacious after={<Button>Take an action</Button>}>
-          <Text>A row with spacious padding.</Text>
+        <Row spacious topline after={<Button>Take an action</Button>}>
+          <Text>A row with spacious vertical padding (24px).</Text>
         </Row>
 
-        <Row topline baseline compact after={<Button>Take an action</Button>}>
-          <Text>A row with compact padding.</Text>
+        <Row compact baseline topline after={<Button>Take an action</Button>}>
+          <Text>A row with compact vertical padding (12px).</Text>
         </Row>
 
         <Row baseline after={<Button>Take an action</Button>}>
