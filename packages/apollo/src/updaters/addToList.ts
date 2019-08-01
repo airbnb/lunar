@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import set from 'lodash/set';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { DataProxy } from 'apollo-cache';
-import { FetchResult } from 'react-apollo';
+import { MutationFetchResult } from 'react-apollo';
 import prepareQuery from '../utils/prepareQuery';
 import getQueryName from '../utils/getQueryName';
 
@@ -14,7 +14,7 @@ export default function addToList<Result, Vars = {}>(
 ) {
   const query = prepareQuery<Vars>(docOrQuery);
 
-  return (cache: DataProxy, mutationResult: FetchResult<Result>) => {
+  return (cache: DataProxy, mutationResult: MutationFetchResult<Result>) => {
     const queryResult = cache.readQuery<Result>(query);
     const nextResult = { ...queryResult };
     const list = get(queryResult, listPath);

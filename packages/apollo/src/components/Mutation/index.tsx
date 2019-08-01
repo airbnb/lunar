@@ -1,9 +1,9 @@
 import React from 'react';
 import {
   Mutation as BaseMutation,
-  MutationProps,
+  MutationComponentOptions,
   MutationResult,
-  MutationFn,
+  MutationFunction,
   OperationVariables,
 } from 'react-apollo';
 import { ApolloError } from 'apollo-client';
@@ -14,9 +14,7 @@ import renderElementOrFunction, {
   RenderableProp,
 } from '@airbnb/lunar/lib/utils/renderElementOrFunction';
 
-export * from 'react-apollo/Mutation';
-
-export type Props<Data, Vars> = Omit<MutationProps<Data, Vars>, 'client'> & {
+export type Props<Data, Vars> = Omit<MutationComponentOptions<Data, Vars>, 'client'> & {
   /**
    * Render an element or a function that returns an element when an error occurs.
    * The function is passed the `ApolloError` as an argument.
@@ -49,7 +47,7 @@ export default class Mutation<Data = any, Vars = OperationVariables> extends Rea
     variables: {},
   };
 
-  private handleRender = (mutator: MutationFn<Data, Vars>, result: MutationResult<Data>) => {
+  private handleRender = (mutator: MutationFunction<Data, Vars>, result: MutationResult<Data>) => {
     if (result.loading) {
       return renderElementOrFunction(this.props.loading) || <Loader static />;
     }

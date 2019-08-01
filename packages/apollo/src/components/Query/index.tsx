@@ -1,5 +1,10 @@
 import React from 'react';
-import { Query as BaseQuery, QueryProps, QueryResult, OperationVariables } from 'react-apollo';
+import {
+  Query as BaseQuery,
+  QueryComponentOptions,
+  QueryResult,
+  OperationVariables,
+} from 'react-apollo';
 import { ApolloError } from 'apollo-client';
 import { Omit } from 'utility-types';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
@@ -8,9 +13,7 @@ import renderElementOrFunction, {
   RenderableProp,
 } from '@airbnb/lunar/lib/utils/renderElementOrFunction';
 
-export * from 'react-apollo/Query';
-
-export type Props<Data, Vars> = Omit<QueryProps<Data, Vars>, 'children' | 'client'> & {
+export type Props<Data, Vars> = Omit<QueryComponentOptions<Data, Vars>, 'children' | 'client'> & {
   /** Child function to render when the data has been received. */
   children: (data: Data | null, result: QueryResult<Data, Vars>) => React.ReactNode;
   /**
