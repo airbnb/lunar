@@ -424,6 +424,19 @@ describe('<DataTable /> renders and sorts data', () => {
 
     expect(text).toBe('Product Percy');
   });
+
+  it('should sort data in Descending order with selected rows first', () => {
+    const table = mountWithStyles(<DataTable selectedRowsFirst {...simpleProps} />);
+
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
+    nameHeader.simulate('click');
+    nameHeader.simulate('click');
+    const text = getCell(table, 1, NAME_COL)
+      .find(Text)
+      .text();
+
+    expect(text).toBe('Product Percy');
+  });
 });
 
 describe('<DataTable /> renders column labels', () => {

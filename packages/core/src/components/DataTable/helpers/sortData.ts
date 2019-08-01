@@ -1,5 +1,5 @@
 import { SortDirection, SortDirectionType } from 'react-virtualized';
-import { GenericRow, IndexedParentRow, SelectedRows } from '../types';
+import { GenericRow, SelectedRows } from '../types';
 
 function sortDesc(a: any, b: any) {
   if (typeof b === 'undefined' || a < b) {
@@ -17,32 +17,6 @@ function sortAsc(a: any, b: any) {
   return 1;
 }
 
-export default function sortData<T extends GenericRow>(
-  list: T[],
-  keys: string[],
-  selectedRows: SelectedRows,
-  selectedRowsFirst: boolean,
-  sortBy?: string,
-  sortDirection?: SortDirectionType,
-): T[] {
-  if (selectedRowsFirst) {
-    const selectedList = list.filter((row: T) =>
-      selectedRows.hasOwnProperty(row.metadata.originalIndex),
-    );
-    const sortedSelectedList = sortList(selectedList, keys, sortBy, sortDirection);
-
-    const unselectedList = list.filter(
-      (row: T) => !selectedRows.hasOwnProperty(row.metadata.originalIndex),
-    );
-
-    const sortedUnselectedList = sortList(unselectedList, keys, sortBy, sortDirection);
-
-    return sortedSelectedList.concat(sortedUnselectedList);
-  }
-
-  return sortList(list, keys, sortBy, sortDirection);
-}
-
 function sortList<T extends GenericRow>(
   list: T[],
   keys: string[],
@@ -58,4 +32,30 @@ function sortList<T extends GenericRow>(
   }
 
   return list;
+}
+
+export default function sortData<T extends GenericRow>(
+  list: T[],
+  keys: string[],
+  selectedRows: SelectedRows,
+  selectedRowsFirst: boolean,
+  sortBy?: string,
+  sortDirection?: SortDirectionType,
+): T[] {
+  if (selectedRowsFirst) {
+    const selectedList = list.filter((row: T) =>
+      Object.prototype.hasOwnProperty.call(selectedRows, row.metadata.originalIndex),
+    );
+    const sortedSelectedList = sortList(selectedList, keys, sortBy, sortDirection);
+
+    const unselectedList = list.filter(
+      (row: T) => !Object.prototype.hasOwnProperty.call(selectedRows, row.metadata.originalIndex),
+    );
+
+    const sortedUnselectedList = sortList(unselectedList, keys, sortBy, sortDirection);
+
+    return sortedSelectedList.concat(sortedUnselectedList);
+  }
+
+  return sortList(list, keys, sortBy, sortDirection);
 }
