@@ -62,14 +62,7 @@ export default class TextArea extends React.Component<Props, State> {
     return (
       <FormField {...fieldProps} id={id} labelDescription={description}>
         {proofread ? (
-          <Proofreader
-            {...(textareaProps as any)}
-            {...proofreadProps}
-            id={id}
-            locale={locale}
-            isRuleHighlighted={proofreadProps && proofreadProps.isRuleHighlighted}
-            isRuleSecondary={proofreadProps && proofreadProps.isRuleSecondary}
-          />
+          <Proofreader {...(textareaProps as any)} {...proofreadProps} id={id} locale={locale} />
         ) : (
           <BaseTextArea {...textareaProps} id={id} />
         )}
