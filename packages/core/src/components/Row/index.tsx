@@ -10,13 +10,15 @@ export type Props = {
   before?: React.ReactNode;
   /** The primary contents to render. */
   children: NonNullable<React.ReactNode>;
-  /** Render with reduced vertical padding. */
+  /** Render with reduced vertical padding (12px). */
   compact?: boolean;
+  /** Render content as inline. */
+  inline?: boolean;
   /** Max height of row. */
   maxHeight?: number | string;
   /** Align contents in the middle vertically. */
   middleAlign?: boolean;
-  /** Render with vertical padding. */
+  /** Render with vertical padding (24px). */
   spacious?: boolean;
   /** The visibility of the row's topline. */
   topline?: boolean;
@@ -32,6 +34,7 @@ export class Row extends React.Component<Props & WithStylesProps> {
     before: null,
     compact: false,
     flat: false,
+    inline: false,
     middleAlign: false,
     topline: false,
     truncated: false,
@@ -45,6 +48,7 @@ export class Row extends React.Component<Props & WithStylesProps> {
       before,
       children,
       compact,
+      inline,
       maxHeight,
       middleAlign,
       spacious,
@@ -66,12 +70,37 @@ export class Row extends React.Component<Props & WithStylesProps> {
         )}
       >
         {before && (
-          <div className={cx(compact ? styles.before_compact : styles.before)}>{before}</div>
+          <div
+            className={cx(
+              styles.before,
+              inline && styles.inline,
+              (inline || compact) && styles.before_compact,
+            )}
+          >
+            {before}
+          </div>
         )}
 
-        <div className={cx(styles.primary, truncated && styles.primary_truncated)}>{children}</div>
+        <div
+          className={cx(
+            inline ? styles.inline : styles.primary,
+            truncated && styles.primary_truncated,
+          )}
+        >
+          {children}
+        </div>
 
-        {after && <div className={cx(compact ? styles.after_compact : styles.after)}>{after}</div>}
+        {after && (
+          <div
+            className={cx(
+              styles.after,
+              inline && styles.inline,
+              (inline || compact) && styles.after_compact,
+            )}
+          >
+            {after}
+          </div>
+        )}
       </div>
     );
   }
@@ -129,5 +158,10 @@ export default withStyles(({ ui, unit }) => ({
 
   primary_truncated: {
     overflow: 'hidden',
+  },
+
+  inline: {
+    display: 'inline-flex',
+    alignSelf: 'initial',
   },
 }))(Row);
