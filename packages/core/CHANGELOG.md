@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.14.0 - 2019-08-01
+
+#### 🚀 Updates
+
+- **[Row]** Add inline prop. (#137) ([5e14045](https://github.com/airbnb/lunar/tree/master/packages/core/commit/5e14045)), closes [#137](https://github.com/airbnb/lunar/tree/master/packages/core/issues/137)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.13.4 - 2019-07-29
 
 #### 🎨 Styles
