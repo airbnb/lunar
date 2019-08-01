@@ -20,7 +20,8 @@
     "@airbnb/lunar": "^2.0.0",
     "graphql": "^14.1.0",
     "graphql-tag": "^2.10.0",
-    "react": "^16.8.0"
+    "react": "^16.8.0",
+    "react-apollo": "^3.0.0-beta.4"
   },
   "devDependencies": {
     "@airbnb/lunar-test-utils": "^2.2.0",
@@ -29,6 +30,7 @@
     "graphql": "^14.3.1",
     "graphql-tag": "^2.10.1",
     "react": "^16.8.6",
+    "react-apollo": "^3.0.0-beta.4",
     "react-test-renderer": "^16.8.6"
   },
   "dependencies": {
@@ -40,7 +42,6 @@
     "apollo-link-error": "^1.1.11",
     "apollo-link-http": "^1.5.15",
     "lodash": "^4.17.11",
-    "react-apollo": "^3.0.0-beta.4",
     "utility-types": "^3.7.0"
   }
 }
