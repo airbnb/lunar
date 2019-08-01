@@ -1,11 +1,13 @@
 import { SortDirectionType } from 'react-virtualized';
-import sortList from './sortData';
-import { IndexedParentRow, IndexedChildRow, ExpandedRow } from '../types';
+import sortData from './sortData';
+import { SelectedRows, IndexedParentRow, IndexedChildRow, ExpandedRow } from '../types';
 
 /*  Iterate over the sortedDataList in state to flatten out children stashed in metadata */
 export default function expandData(
   sortedData: IndexedParentRow[],
   expandedRows: Set<number>,
+  selectedRows: SelectedRows,
+  selectedRowsFirst: boolean,
   sortBy: string,
   keys: string[],
   sortDirection?: SortDirectionType,
@@ -20,7 +22,14 @@ export default function expandData(
       },
     });
     if (row.metadata.originalIndex !== undefined && expandedRows.has(row.metadata.originalIndex)) {
-      const children = sortList(row.metadata.children, keys, sortBy, sortDirection);
+      const children = sortData(
+        row.metadata.children,
+        keys,
+        selectedRows,
+        selectedRowsFirst,
+        sortBy,
+        sortDirection,
+      );
       children.forEach((child: IndexedChildRow) => {
         expandedData.push({
           ...child,

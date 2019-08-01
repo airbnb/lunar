@@ -373,6 +373,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       rowHeight,
       selectable,
       styles,
+      selectedRowsFirst,
     } = this.props;
 
     const { expandedRows, sortBy, sortDirection, editMode, selectedRows } = this.state;
@@ -381,7 +382,15 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     const filteredData = filterData!(sortedData);
 
-    const expandedData = expandData(filteredData, expandedRows, sortBy, this.keys, sortDirection);
+    const expandedData = expandData(
+      filteredData,
+      expandedRows,
+      selectedRows,
+      selectedRowsFirst!,
+      sortBy,
+      this.keys,
+      sortDirection,
+    );
 
     return (
       <div>

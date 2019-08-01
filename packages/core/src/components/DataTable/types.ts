@@ -115,6 +115,9 @@ export interface GenericRow {
   data: {
     [key: string]: any;
   };
+  metadata: {
+    [key: string]: any;
+  };
 }
 
 /** The row used by React Virtualized. */

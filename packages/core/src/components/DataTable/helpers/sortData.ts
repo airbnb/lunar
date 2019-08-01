@@ -1,5 +1,5 @@
 import { SortDirection, SortDirectionType } from 'react-virtualized';
-import { IndexedParentRow, SelectedRows } from '../types';
+import { GenericRow, IndexedParentRow, SelectedRows } from '../types';
 
 function sortDesc(a: any, b: any) {
   if (typeof b === 'undefined' || a < b) {
@@ -17,22 +17,22 @@ function sortAsc(a: any, b: any) {
   return 1;
 }
 
-export default function sortData(
-  list: IndexedParentRow[],
+export default function sortData<T extends GenericRow>(
+  list: T[],
   keys: string[],
   selectedRows: SelectedRows,
   selectedRowsFirst: boolean,
   sortBy?: string,
   sortDirection?: SortDirectionType,
-): IndexedParentRow[] {
+): T[] {
   if (selectedRowsFirst) {
-    const selectedList = list.filter((row: IndexedParentRow) =>
+    const selectedList = list.filter((row: T) =>
       selectedRows.hasOwnProperty(row.metadata.originalIndex),
     );
     const sortedSelectedList = sortList(selectedList, keys, sortBy, sortDirection);
 
     const unselectedList = list.filter(
-      (row: IndexedParentRow) => !selectedRows.hasOwnProperty(row.metadata.originalIndex),
+      (row: T) => !selectedRows.hasOwnProperty(row.metadata.originalIndex),
     );
 
     const sortedUnselectedList = sortList(unselectedList, keys, sortBy, sortDirection);
@@ -43,24 +43,18 @@ export default function sortData(
   return sortList(list, keys, sortBy, sortDirection);
 }
 
-function sortList(
-  list: IndexedParentRow[],
+function sortList<T extends GenericRow>(
+  list: T[],
   keys: string[],
   sortBy?: string,
   sortDirection?: SortDirectionType,
-): IndexedParentRow[] {
+): T[] {
   if (sortBy && keys.includes(sortBy)) {
     if (sortDirection === SortDirection.ASC) {
-      return list
-        .slice()
-        .sort((a: IndexedParentRow, b: IndexedParentRow) =>
-          sortAsc(a.data[sortBy], b.data[sortBy]),
-        );
+      return list.slice().sort((a: T, b: T) => sortAsc(a.data[sortBy], b.data[sortBy]));
     }
 
-    return list
-      .slice()
-      .sort((a: IndexedParentRow, b: IndexedParentRow) => sortDesc(a.data[sortBy], b.data[sortBy]));
+    return list.slice().sort((a: T, b: T) => sortDesc(a.data[sortBy], b.data[sortBy]));
   }
 
   return list;
