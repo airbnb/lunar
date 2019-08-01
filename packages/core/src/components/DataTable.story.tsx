@@ -130,35 +130,31 @@ export class SearchDemo extends React.Component {
     const { data, search } = this.state;
     // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
     const filteredData = this.filter(search);
+<<<<<<< HEAD
     const button = (
       <Button inline onClick={this.handleNewData}>
         New data
       </Button>
     );
+=======
+    const button = <Button onClick={this.handleNewData}>New Data</Button>;
+>>>>>>> enable autoheight
 
     return (
-      <>
+      <div style={{ height: 1000 }}>
         <Spacing bottom={2}>
           <Row before={button}>
-            <Input
-              hideLabel
-              inline
-              label="Edit row"
-              name=""
-              value={search}
-              onChange={this.handleChange}
-            />
+            <Input hideLabel label="Edit row" name="" value={search} onChange={this.handleChange} />
           </Row>
         </Spacing>
-
         <DataTable
-          keys={['number', 'zero']}
           data={data}
           filterData={filteredData}
-          selectable
+          autoHeight
           expandable
+          columnHeaderHeight="micro"
         />
-      </>
+      </div>
     );
   }
 }
@@ -199,12 +195,12 @@ storiesOf('Core/DataTable', module)
       filterData={filterData}
     />
   ))
-  .add('A table with a search box.', () => <SearchDemo />)
+  .add('A table with a search box and parent height.', () => <SearchDemo />)
   .add('A table that shows all rows.', () => (
     // This shows the height dynamically change with expanded rows
     <div style={{ background: '#835EFE', padding: 8 }}>
       <DataTable
-        tableHeaderLabel="Auto height table"
+        tableHeaderLabel="All rows"
         data={getData()}
         keys={['name', 'jobTitle']}
         expandable

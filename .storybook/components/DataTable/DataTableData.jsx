@@ -1,7 +1,11 @@
 import { STATUS_OPTIONS } from '@airbnb/lunar/src/components/DataTable/constants';
 
 export function generateRandomData() {
+<<<<<<< HEAD
   return new Array(5).fill(0).map((x, i) => ({
+=======
+  return new Array(50).fill(0).map(x => ({
+>>>>>>> enable autoheight
     data: {
       number: i,
       zero: x,
