@@ -18,6 +18,7 @@ const children = [
 
 storiesOf('Core/MenuToggle', module)
   .addParameters({
+    happo: false,
     inspectComponents: [MenuToggle],
   })
   .addDecorator(story => <div style={{ width: 200, margin: 'auto' }}>{story()}</div>)
