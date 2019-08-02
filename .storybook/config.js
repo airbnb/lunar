@@ -1,4 +1,5 @@
 import './bootstrap';
+import 'happo-plugin-storybook/register';
 import React from 'react';
 import { addDecorator, configure } from '@storybook/react';
 import { withContexts } from '@storybook/addon-contexts/react';

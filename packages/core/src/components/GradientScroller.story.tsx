@@ -54,8 +54,12 @@ storiesOf('Core/GradientScroller', module)
       </Text>
     </GradientScroller>
   ))
-  .add('With no scrollbar and variable width children.', () => (
-    <GradientScroller hideScrollbar>
-      <ButtonGroupDemo />
-    </GradientScroller>
-  ));
+  .add(
+    'With no scrollbar and variable width children.',
+    () => (
+      <GradientScroller hideScrollbar>
+        <ButtonGroupDemo />
+      </GradientScroller>
+    ),
+    { happo: false },
+  );
