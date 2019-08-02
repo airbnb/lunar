@@ -132,6 +132,7 @@ export default withStyles(theme => {
       display: 'block',
       position: 'relative',
       lineHeight: 0,
+
       // Add focus styling to the radio icons
       '@selectors': {
         '> input:focus + span': {
@@ -163,7 +164,7 @@ export default withStyles(theme => {
 
     bullet: {
       position: 'absolute',
-      top: 1.5,
+      top: 2,
       left: 1.5,
     },
 
