@@ -92,6 +92,7 @@ class ModalDemo extends React.Component<
 
 storiesOf('Core/Modal', module)
   .addParameters({
+    happo: false,
     inspectComponents: [Modal],
   })
   .add('Default modal (600px)', () => <ModalDemo />)

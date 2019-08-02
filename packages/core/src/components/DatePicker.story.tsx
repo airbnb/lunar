@@ -28,6 +28,7 @@ class DatePickerTodayDemo extends React.Component<{}, { selectedDay?: Date }> {
 
     return (
       <DatePicker
+        initialMonth={new Date(2019, 1, 1)}
         selectedDays={selectedDay}
         todayButton="Today"
         onDayClick={this.handleDayClick}
@@ -71,7 +72,7 @@ class DatePickerResetDemo extends React.Component<{}, ResetState> {
     return (
       <DatePicker
         showResetButton
-        initialMonth={new Date()}
+        initialMonth={new Date(2019, 1, 1)}
         selectedDays={selectedDays}
         todayButton={DateTime.format({
           at: Date.now(),
@@ -193,9 +194,10 @@ storiesOf('Core/DatePicker', module)
   .addParameters({
     inspectComponents: [DatePicker],
   })
-  .add('Display a single month.', () => <DatePicker />)
+  .add('Display a single month.', () => <DatePicker initialMonth={new Date(2019, 1, 1)} />)
   .add('Display a "Today" button.', () => (
     <DatePicker
+      initialMonth={new Date(2019, 1, 1)}
       todayButton={DateTime.format({
         at: Date.now(),
         medium: true,
@@ -205,7 +207,9 @@ storiesOf('Core/DatePicker', module)
     />
   ))
   .add('Display a "Reset" button.', () => <DatePickerResetDemo />)
-  .add('Display multiple months.', () => <DatePicker numberOfMonths={2} />)
+  .add('Display multiple months.', () => (
+    <DatePicker initialMonth={new Date(2019, 1, 1)} numberOfMonths={2} />
+  ))
   .add('Display days as disabled.', () => (
     <DatePicker
       initialMonth={new Date(2017, 3)}

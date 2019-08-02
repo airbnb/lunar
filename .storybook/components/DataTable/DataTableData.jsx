@@ -1,15 +1,15 @@
 import { STATUS_OPTIONS } from '@airbnb/lunar/src/components/DataTable/constants';
 
 export function generateRandomData() {
-  return new Array(5).fill(0).map(x => ({
+  return new Array(5).fill(0).map((x, i) => ({
     data: {
-      number: Math.random(),
+      number: i,
       zero: x,
     },
     metadata: {
-      children: new Array(2).fill(0).map(x => ({
+      children: new Array(2).fill(0).map((x, i) => ({
         data: {
-          number: Math.random(),
+          number: i,
           zero: x,
         },
       })),
