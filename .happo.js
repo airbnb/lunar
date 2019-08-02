@@ -9,9 +9,10 @@ module.exports = {
     'chrome-desktop': new RemoteBrowserTarget('chrome', {
       viewport: '1024x768',
     }),
-    'firefox-desktop': new RemoteBrowserTarget('firefox', {
-      viewport: '1024x768',
-    }),
+    // Doesnt work in Travis
+    // 'firefox-desktop': new RemoteBrowserTarget('firefox', {
+    //   viewport: '1024x768',
+    // }),
   },
 
   plugins: [
