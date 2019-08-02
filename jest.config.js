@@ -21,6 +21,9 @@ module.exports = {
     'core/src/components/ResponsiveImage',
     // Requires context support in Enzyme to test correctly
     'forms/src/components/FormActions',
+    // Requires hook support in Enzyme to test correctly
+    'apollo/src/components/Mutation',
+    'apollo/src/components/Query',
     // Deprecated, remove in next major
     'childrenWithComponentName',
   ],

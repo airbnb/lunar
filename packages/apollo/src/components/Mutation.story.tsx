@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import Button from '@airbnb/lunar/lib/components/Button';
 import Shimmer from '@airbnb/lunar/lib/components/Shimmer';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
-import { MockedProvider } from 'react-apollo/test-utils';
+import { MockedProvider } from '@apollo/react-testing';
 import Mutation from './Mutation';
 
 const MUTATION = gql`

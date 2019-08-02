@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Shimmer from '@airbnb/lunar/lib/components/Shimmer';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
-import { MockedProvider } from 'react-apollo/test-utils';
+import { MockedProvider } from '@apollo/react-testing';
 import gql from 'graphql-tag';
 import Query from './Query';
 

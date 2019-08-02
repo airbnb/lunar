@@ -1,3 +1,3 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from 'react-apollo';
 
 export default useQuery;
