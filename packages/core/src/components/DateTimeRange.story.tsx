@@ -16,5 +16,9 @@ storiesOf('Core/DateTimeRange', module)
     <DateTimeRange from={new Date(2019, 3, 1, 0, 0, 0)} to={new Date(2019, 5, 15, 0, 0, 0)} />
   ))
   .add('Different years range with custom separator.', () => (
-    <DateTimeRange from={new Date(2019, 1, 1, 0, 0, 0)} to={new Date(2021, 1, 1, 0, 0, 0)} separator=" ~ " />
+    <DateTimeRange
+      from={new Date(2019, 1, 1, 0, 0, 0)}
+      to={new Date(2021, 1, 1, 0, 0, 0)}
+      separator=" ~ "
+    />
   ));
