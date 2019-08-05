@@ -195,18 +195,22 @@ storiesOf('Core/DatePicker', module)
     inspectComponents: [DatePicker],
   })
   .add('Display a single month.', () => <DatePicker initialMonth={new Date(2019, 1, 1)} />)
-  .add('Display a "Today" button.', () => (
-    <DatePicker
-      initialMonth={new Date(2019, 1, 1)}
-      todayButton={DateTime.format({
-        at: Date.now(),
-        medium: true,
-        noTime: true,
-        noTimezone: true,
-      })}
-    />
-  ))
-  .add('Display a "Reset" button.', () => <DatePickerResetDemo />)
+  .add(
+    'Display a "Today" button.',
+    () => (
+      <DatePicker
+        initialMonth={new Date(2019, 1, 1)}
+        todayButton={DateTime.format({
+          at: Date.now(),
+          medium: true,
+          noTime: true,
+          noTimezone: true,
+        })}
+      />
+    ),
+    { happo: false },
+  )
+  .add('Display a "Reset" button.', () => <DatePickerResetDemo />, { happo: false })
   .add('Display multiple months.', () => (
     <DatePicker initialMonth={new Date(2019, 1, 1)} numberOfMonths={2} />
   ))
@@ -258,4 +262,4 @@ storiesOf('Core/DatePicker', module)
     />
   ))
   .add("Today button selects today's date.", () => <DatePickerTodayDemo />)
-  .add('Select days on mouse enter.', () => <DatePickerMouseRangeSelectDemo />);
+  .add('Select days on mouse enter.', () => <DatePickerMouseRangeSelectDemo />, { happo: false });

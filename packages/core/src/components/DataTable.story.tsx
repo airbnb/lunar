@@ -152,6 +152,7 @@ export class SearchDemo extends React.Component {
 
 storiesOf('Core/DataTable', module)
   .addParameters({
+    happo: { delay: 50 },
     inspectComponents: [DataTable],
   })
   .add('A standard table.', () => <DataTable data={getData()} keys={['name', 'jobTitle']} />)
