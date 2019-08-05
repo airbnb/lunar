@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.15.1 - 2019-08-05
+
+#### 🎨 Styles
+
+- **[Text]** Update line-height. (#147) ([4aa313c](https://github.com/airbnb/lunar/tree/master/packages/core/commit/4aa313c)), closes [#147](https://github.com/airbnb/lunar/tree/master/packages/core/issues/147)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.15.0 - 2019-08-05
 
 #### 🚀 Updates
