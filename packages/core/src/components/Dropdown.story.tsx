@@ -40,6 +40,7 @@ class DropdownDemo extends React.Component<any, { open: boolean }> {
 
 storiesOf('Core/Dropdown', module)
   .addParameters({
+    happo: false,
     inspectComponents: [Dropdown],
   })
   .addDecorator(story => <div style={{ padding: 50, margin: 'auto' }}>{story()}</div>)

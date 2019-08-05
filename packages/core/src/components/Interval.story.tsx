@@ -7,6 +7,7 @@ const start = Date.now();
 
 storiesOf('Core/Interval', module)
   .addParameters({
+    happo: false,
     inspectComponents: [Interval],
   })
   .add('Re-renders at an interval.', () => (
