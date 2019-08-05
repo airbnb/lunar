@@ -20,6 +20,8 @@ import DateTimeSelect from './Form/DateTimeSelect';
 import Multicomplete from './Form/Multicomplete';
 import Form from './Form';
 
+const fixedDate = new Date(2019, 1, 1, 10, 10, 10);
+
 function isRequired(value: any) {
   const pass = Array.isArray(value) ? value.length : value;
 
@@ -175,6 +177,7 @@ storiesOf('Forms/Form', module)
         name="datetime"
         onChange={action('onChange')}
         validator={isRequired}
+        defaultValue={fixedDate.toISOString()}
         unregisterOnUnmount
       />
 
@@ -183,6 +186,7 @@ storiesOf('Forms/Form', module)
         name="date"
         onChange={action('onChange')}
         validator={isDate}
+        defaultValue={fixedDate.toISOString()}
         unregisterOnUnmount
       />
 
