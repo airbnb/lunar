@@ -9,35 +9,40 @@ storiesOf('Core/Text', module)
   })
   .add('A basic string of text.', () => (
     <Text>
-      <LoremIpsum short />
+      <LoremIpsum />
     </Text>
   ))
   .add('With light, bold, and uppercased emphasis.', () => (
     <>
       <Text light>
-        <LoremIpsum short />
+        <LoremIpsum />
       </Text>
+      <br />
       <Text bold>
-        <LoremIpsum short />
+        <LoremIpsum />
       </Text>
+      <br />
       <Text uppercased>
-        <LoremIpsum short />
+        <LoremIpsum />
       </Text>
     </>
   ))
   .add('With different sizing: micro, small, regular (default), and large.', () => (
     <>
       <Text micro>
-        <LoremIpsum short />
+        <LoremIpsum />
       </Text>
+      <br />
       <Text small>
-        <LoremIpsum short />
+        <LoremIpsum />
       </Text>
+      <br />
       <Text>
-        <LoremIpsum short />
+        <LoremIpsum />
       </Text>
+      <br />
       <Text large>
-        <LoremIpsum short />
+        <LoremIpsum />
       </Text>
     </>
   ))
@@ -63,15 +68,7 @@ storiesOf('Core/Text', module)
   ))
   .add('With truncated.', () => (
     <Text truncated>
-      <div>
-        <LoremIpsum short /> Nam leo erat, lacinia nec porttitor sed, mollis sed nibh. Nam porta sit
-        amet risus quis interdum. Sed feugiat lorem vitae augue blandit, sed mollis mi laoreet.
-        Donec auctor, enim eget tempus auctor, est lorem laoreet nisi, a rutrum dolor quam eget mi.
-        Integer nibh orci, faucibus in dolor ut, maximus euismod erat. Nam efficitur vulputate augue
-        non pretium. Suspendisse vitae dui elit. Aliquam erat volutpat. Curabitur rutrum id elit ut
-        hendrerit. Pellentesque ullamcorper quam a nibh aliquam bibendum. Fusce at fermentum velit.
-        Phasellus malesuada dapibus tincidunt.
-      </div>
+      <LoremIpsum short /> <LoremIpsum />
     </Text>
   ))
   .add('With aligned text.', () => (

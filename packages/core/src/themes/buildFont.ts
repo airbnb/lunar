@@ -44,7 +44,7 @@ export default function buildFont(fontFamily: string): Theme['font'] {
     textRegular: {
       fontFamily,
       fontSize: 15,
-      lineHeight: 20 / 15,
+      lineHeight: 22 / 15,
       letterSpacing: 0.1,
     },
 
@@ -58,7 +58,7 @@ export default function buildFont(fontFamily: string): Theme['font'] {
     textMicro: {
       fontFamily,
       fontSize: 11,
-      lineHeight: 15 / 11,
+      lineHeight: 16 / 11,
       letterSpacing: 0.3,
     },
 
