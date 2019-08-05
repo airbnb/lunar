@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.2 - 2019-08-05
+
+#### 🛠 Internals
+
+- Fix some common Happo issues. (#148) ([de0582b](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/de0582b)), closes [#148](https://github.com/airbnb/lunar/tree/master/packages/forms/issues/148)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 2.3.1 - 2019-07-25
 
 #### 🐞 Fixes

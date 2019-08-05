@@ -4,6 +4,8 @@ import { action } from '@storybook/addon-actions';
 import Form from './Form';
 import DateTimeSelect from './Form/DateTimeSelect';
 
+const fixedDate = new Date(2019, 1, 1, 10, 10, 10);
+
 storiesOf('Forms/DateTimeSelect', module)
   .addParameters({
     inspectComponents: [DateTimeSelect],
@@ -16,6 +18,11 @@ storiesOf('Forms/DateTimeSelect', module)
         return Promise.resolve();
       }}
     >
-      <DateTimeSelect name="field" label="Label" validator={() => {}} />
+      <DateTimeSelect
+        name="field"
+        label="Label"
+        validator={() => {}}
+        defaultValue={fixedDate.toISOString()}
+      />
     </Form>
   ));

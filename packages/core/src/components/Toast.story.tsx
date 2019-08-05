@@ -2,9 +2,11 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Toast from './Toast';
 
+const TRANSITION_ANIMATION = 300;
+
 storiesOf('Core/Toast', module)
   .addParameters({
-    happo: { delay: 300 },
+    happo: { delay: 250 + TRANSITION_ANIMATION },
     inspectComponents: [Toast],
   })
   .add('A standard toast.', () => (
@@ -22,7 +24,7 @@ storiesOf('Core/Toast', module)
       />
     ),
     {
-      happo: { delay: 1050 },
+      happo: { delay: 1000 + TRANSITION_ANIMATION },
     },
   )
   .add('A success toast with a title.', () => (
