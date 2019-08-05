@@ -9,7 +9,8 @@ import Proofreader, {
 import T from '../../../src/components/Translate';
 import ErrorMenu from '../../../src/components/TextArea/Proofreader/ErrorMenu';
 import LocaleMenu from '../../../src/components/TextArea/Proofreader/LocaleMenu';
-import Mark from '../../../src/components/TextArea/Proofreader/Mark';
+import Mark, { Props as MarkProps } from '../../../src/components/TextArea/Proofreader/Mark';
+import SecondaryMark from '../../../src/components/TextArea/Proofreader/SecondaryMark';
 import Loader from '../../../src/components/Loader';
 import Link from '../../../src/components/Link';
 import BaseTextArea from '../../../src/components/private/BaseTextArea';
@@ -32,6 +33,7 @@ describe('<Proofreader />', () => {
     offset: 10,
     length: 6,
     replacements: ['foo'],
+    rule_id: 'MORFOLOGIK_RULE_EN_US',
   };
 
   beforeEach(() => {
@@ -265,6 +267,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'AirBnB',
           replacements: ['Airbnb'],
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -273,6 +276,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'AIRbnb',
           replacements: ['Airbnb'],
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -281,6 +285,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'AirBnb',
           replacements: ['Airbnb'],
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -289,6 +294,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'airbnb',
           replacements: ['Airbnb'],
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
       ]);
     });
@@ -306,6 +312,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'Aribnb',
           replacements: ['Airbnb'],
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -314,6 +321,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'Airbbn',
           replacements: ['Airbnb'],
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -322,6 +330,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'airnbb',
           replacements: ['Airbnb'],
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
         {
           short_message: '',
@@ -330,6 +339,7 @@ describe('<Proofreader />', () => {
           length: 6,
           found: 'iarbnb',
           replacements: ['Airbnb'],
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         },
       ]);
     });
@@ -787,6 +797,13 @@ describe('<Proofreader />', () => {
   });
 
   describe('renderTextWithMarks()', () => {
+    const markProps: MarkProps = {
+      children: 'Mark children',
+      selected: false,
+      onSelect: expect.anything(),
+      alwaysHighlight: false,
+    };
+
     it('returns text if no errors', () => {
       wrapper.setState({
         text: 'Something foobar',
@@ -803,7 +820,47 @@ describe('<Proofreader />', () => {
 
       expect(instance.renderTextWithMarks()).toEqual([
         'Something ',
-        <Mark key="foobar-10" selected={false} onSelect={expect.anything()}>
+        <Mark {...markProps} key="foobar-10">
+          foobar
+        </Mark>,
+        '',
+        '.',
+      ]);
+    });
+
+    it('wraps errors in a secondary mark if isRuleSecondary() is true', () => {
+      wrapper.setState({
+        text: 'Something foobar',
+        errors: [{ ...error }],
+      });
+
+      wrapper.setProps({
+        isRuleSecondary: () => true,
+      });
+
+      expect(instance.renderTextWithMarks()).toEqual([
+        'Something ',
+        <SecondaryMark {...markProps} key="foobar-10">
+          foobar
+        </SecondaryMark>,
+        '',
+        '.',
+      ]);
+    });
+
+    it('sets mark as highlighted if isRuleHighlighted() is true', () => {
+      wrapper.setState({
+        text: 'Something foobar',
+        errors: [{ ...error }],
+      });
+
+      wrapper.setProps({
+        isRuleHighlighted: () => true,
+      });
+
+      expect(instance.renderTextWithMarks()).toEqual([
+        'Something ',
+        <Mark {...markProps} alwaysHighlight key="foobar-10">
           foobar
         </Mark>,
         '',
@@ -820,7 +877,7 @@ describe('<Proofreader />', () => {
 
       expect(instance.renderTextWithMarks()).toEqual([
         'Something ',
-        <Mark key="foobar-10" selected onSelect={expect.anything()}>
+        <Mark {...markProps} key="foobar-10" selected>
           foobar
         </Mark>,
         '',
@@ -839,6 +896,7 @@ describe('<Proofreader />', () => {
             offset: 0,
             length: 9,
             replacements: ['Something'],
+            rule_id: 'UPPERCASE_SENTENCE_START',
           },
         ],
         selectedError: error,
@@ -846,11 +904,11 @@ describe('<Proofreader />', () => {
 
       expect(instance.renderTextWithMarks()).toEqual([
         '',
-        <Mark key="something-0" selected={false} onSelect={expect.anything()}>
+        <Mark {...markProps} key="something-0">
           something
         </Mark>,
         ' ',
-        <Mark key="foobar-10" selected onSelect={expect.anything()}>
+        <Mark {...markProps} key="foobar-10" selected>
           foobar
         </Mark>,
         '',

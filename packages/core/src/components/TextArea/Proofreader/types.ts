@@ -7,6 +7,7 @@ export type ProofreadRuleMatch = {
   length?: number;
   found?: string;
   replacements?: Array<string>;
+  rule_id?: string;
 };
 
 export type ProofreaderResponse = {
@@ -18,4 +19,9 @@ export type ProofreaderResponse = {
 export type DefinitionShape = {
   locale: string;
   label: string;
+};
+
+export type ExtraProofreadProps = {
+  isRuleHighlighted?: (rule: ProofreadRuleMatch) => boolean;
+  isRuleSecondary?: (rule: ProofreadRuleMatch) => boolean;
 };

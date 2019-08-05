@@ -11,9 +11,15 @@ import buildInputStyles from '../../../themes/buildInputStyles';
 import { LT_LOCALES } from '../../../constants';
 import { ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT } from '../../../keys';
 import Mark from './Mark';
+import SecondaryMark from './SecondaryMark';
 import ErrorMenu from './ErrorMenu';
 import LocaleMenu from './LocaleMenu';
-import { ProofreadRuleMatch, ProofreaderResponse, DefinitionShape } from './types';
+import {
+  ProofreadRuleMatch,
+  ProofreaderResponse,
+  DefinitionShape,
+  ExtraProofreadProps,
+} from './types';
 import { Props as FormInputProps } from '../../private/FormInput';
 
 const AIRBNB_REGEX = /\b(((air|ari|iar)[bn]{3})(?!\.com))\b/gi;
@@ -32,20 +38,29 @@ const LOCALE_TO_LT_LOCALE: { [locale: string]: string } = {
   zh: 'zh-CN',
 };
 
+function isRuleHighlighted(rule: ProofreadRuleMatch) {
+  return false;
+}
+
+function isRuleSecondary(rule: ProofreadRuleMatch) {
+  return false;
+}
+
 export type Position = {
   left: number;
   top: number;
 };
 
-export type Props = Pick<FormInputProps, 'important'> & {
-  locale?: string;
-  name: string;
-  id: string;
-  noTranslate?: boolean;
-  onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onCheckText: (params: any) => Promise<ProofreaderResponse>;
-  value: string;
-};
+export type Props = Pick<FormInputProps, 'important'> &
+  ExtraProofreadProps & {
+    locale?: string;
+    name: string;
+    id: string;
+    noTranslate?: boolean;
+    onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    onCheckText: (params: any) => Promise<ProofreaderResponse>;
+    value: string;
+  };
 
 export type State = {
   errors: ProofreadRuleMatch[];
@@ -65,6 +80,8 @@ export type Snapshot = {
 
 export class Proofreader extends React.Component<Props & WithStylesProps, State, Snapshot> {
   static defaultProps = {
+    isRuleHighlighted,
+    isRuleSecondary,
     locale: NO_LOCALE,
   };
 
@@ -251,6 +268,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           length: match[0].length,
           found: match[0],
           replacements: ['Airbnb'],
+          rule_id: 'AIRBNB_SPELLING_OR_CASING',
         });
       }
 
@@ -568,14 +586,16 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       // Extract match and wrap in a component
       const word = text.slice(offset, lastIndex);
 
+      const MarkComponent = this.props.isRuleSecondary!(error) ? SecondaryMark : Mark;
       content.push(
-        <Mark
+        <MarkComponent
           key={`${word}-${offset}`}
           selected={error === selectedError}
           onSelect={this.handleOpenErrorMenu}
+          alwaysHighlight={this.props.isRuleHighlighted!(error)}
         >
           {word}
-        </Mark>,
+        </MarkComponent>,
       );
     });
 

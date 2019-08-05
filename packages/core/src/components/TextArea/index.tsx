@@ -7,6 +7,7 @@ import BaseTextArea, { Props as BaseTextAreaProps } from '../private/BaseTextAre
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
 import T from '../Translate';
 import Proofreader, { Props as ProofreaderProps } from './Proofreader';
+import { ExtraProofreadProps } from './Proofreader/types';
 
 export type Props = Omit<BaseTextAreaProps, 'id'> &
   FormFieldProps &
@@ -17,6 +18,8 @@ export type Props = Omit<BaseTextAreaProps, 'id'> &
     noTranslate?: boolean;
     /** Enable proofreader to run spelling and grammar checks. */
     proofread?: boolean;
+    /** Additional props that determine more proofreader functionality */
+    proofreadProps?: ExtraProofreadProps;
   };
 
 export type State = {
@@ -33,6 +36,7 @@ export default class TextArea extends React.Component<Props, State> {
     locale: 'none',
     noTranslate: false,
     proofread: false,
+    proofreadProps: undefined,
   };
 
   state = {
@@ -41,7 +45,7 @@ export default class TextArea extends React.Component<Props, State> {
 
   render() {
     const { fieldProps, inputProps } = partitionFieldProps(this.props);
-    const { locale, proofread, ...textareaProps } = inputProps;
+    const { locale, proofread, proofreadProps, ...textareaProps } = inputProps;
     const { id } = this.state;
     const description =
       fieldProps.labelDescription ||
@@ -58,7 +62,7 @@ export default class TextArea extends React.Component<Props, State> {
     return (
       <FormField {...fieldProps} id={id} labelDescription={description}>
         {proofread ? (
-          <Proofreader {...(textareaProps as any)} id={id} locale={locale} />
+          <Proofreader {...(textareaProps as any)} {...proofreadProps} id={id} locale={locale} />
         ) : (
           <BaseTextArea {...textareaProps} id={id} />
         )}
