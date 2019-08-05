@@ -4,7 +4,7 @@ import Toast from './Toast';
 
 storiesOf('Core/Toast', module)
   .addParameters({
-    happo: { delay: 300 },
+    happo: { delay: 250 },
     inspectComponents: [Toast],
   })
   .add('A standard toast.', () => (
@@ -22,7 +22,7 @@ storiesOf('Core/Toast', module)
       />
     ),
     {
-      happo: { delay: 1050 },
+      happo: { delay: 1000 },
     },
   )
   .add('A success toast with a title.', () => (
