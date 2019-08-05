@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.15.0 - 2019-08-05
+
+#### 🚀 Updates
+
+- **[Proofreader]** Add `isRuleHighlighted` and `isRuleSecondary` props. Add `SecondaryMark` component. (#82) ([b8e5e3b](https://github.com/airbnb/lunar/tree/master/packages/core/commit/b8e5e3b)), closes [#82](https://github.com/airbnb/lunar/tree/master/packages/core/issues/82)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.14.1 - 2019-08-02
 
 #### 🛠 Internals
