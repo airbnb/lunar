@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.15.2 - 2019-08-05
+
+#### 🛠 Internals
+
+- Fix some common Happo issues. (#148) ([de0582b](https://github.com/airbnb/lunar/tree/master/packages/core/commit/de0582b)), closes [#148](https://github.com/airbnb/lunar/tree/master/packages/core/issues/148)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.15.1 - 2019-08-05
 
 #### 🎨 Styles
