@@ -12,6 +12,7 @@ describe('<ErrorMenu />', () => {
     offset: 0,
     length: 1,
     replacements: ['foo'],
+    rule_id: 'MORFOLOGIK_RULE_EN_US',
   };
 
   it('displays short message', () => {

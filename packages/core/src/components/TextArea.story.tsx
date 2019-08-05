@@ -14,6 +14,7 @@ function onCheckText() {
           offset: 59,
           length: 2,
           replacements: ['Or'],
+          rule_id: 'UPPERCASE_SENTENCE_START',
         },
         {
           message: '',
@@ -21,6 +22,7 @@ function onCheckText() {
           offset: 76,
           length: 3,
           replacements: ['to'],
+          rule_id: 'TOO_TO',
         },
         {
           message: '',
@@ -28,6 +30,7 @@ function onCheckText() {
           offset: 84,
           length: 2,
           replacements: ['a'],
+          rule_id: 'EN_A_VS_AN',
         },
         {
           message: '',
@@ -35,6 +38,7 @@ function onCheckText() {
           offset: 91,
           length: 5,
           replacements: ['of'],
+          rule_id: 'ENGLISH_WORD_REPEAT_RULE',
         },
         {
           message: '',
@@ -42,6 +46,7 @@ function onCheckText() {
           offset: 126,
           length: 6,
           replacements: ['detect'],
+          rule_id: 'MORFOLOGIK_RULE_EN_US',
         },
         {
           message: '',
@@ -49,6 +54,7 @@ function onCheckText() {
           offset: 146,
           length: 6,
           replacements: ['think'],
+          rule_id: 'NON3PRS_VERB',
         },
         {
           message: '',
@@ -56,6 +62,7 @@ function onCheckText() {
           offset: 181,
           length: 3,
           replacements: ['note'],
+          rule_id: 'PLEASE_NOT_THAT',
         },
       ],
     },
