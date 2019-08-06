@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.15.4 - 2019-08-06
+
+#### 🐞 Fixes
+
+- **[Proofreader]** Pull spurious, proofread-specific props from being passed to TextArea (#151) ([82211a5](https://github.com/airbnb/lunar/tree/master/packages/core/commit/82211a5)), closes [#151](https://github.com/airbnb/lunar/tree/master/packages/core/issues/151)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.15.3 - 2019-08-06
 
 #### 🐞 Fixes
