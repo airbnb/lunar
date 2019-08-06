@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<DateTime /> localized messages Dutch - nl 1`] = `"26 feb."`;
+exports[`<DateTime /> localized messages Dutch - nl 1`] = `"26 Feb"`;
 
-exports[`<DateTime /> localized messages Dutch - nl 2`] = `"26 feb. 88"`;
+exports[`<DateTime /> localized messages Dutch - nl 2`] = `"26 Feb 88"`;
 
-exports[`<DateTime /> localized messages Dutch - nl 3`] = `"26 feb. 1988"`;
+exports[`<DateTime /> localized messages Dutch - nl 3`] = `"26 Feb 1988"`;
 
-exports[`<DateTime /> localized messages Dutch - nl 4`] = `"vr, 26 februari 1988"`;
+exports[`<DateTime /> localized messages Dutch - nl 4`] = `"Fri, 26 February 1988"`;
 
 exports[`<DateTime /> localized messages Dutch - nl 5`] = `"16:12"`;
 
@@ -20,13 +20,13 @@ exports[`<DateTime /> localized messages English - en 4`] = `"Fri, February 26, 
 
 exports[`<DateTime /> localized messages English - en 5`] = `"4:12PM"`;
 
-exports[`<DateTime /> localized messages French - fr 1`] = `"26 févr."`;
+exports[`<DateTime /> localized messages French - fr 1`] = `"26 Feb"`;
 
-exports[`<DateTime /> localized messages French - fr 2`] = `"26 févr. 88"`;
+exports[`<DateTime /> localized messages French - fr 2`] = `"26 Feb 88"`;
 
-exports[`<DateTime /> localized messages French - fr 3`] = `"26 févr. 1988"`;
+exports[`<DateTime /> localized messages French - fr 3`] = `"26 Feb 1988"`;
 
-exports[`<DateTime /> localized messages French - fr 4`] = `"ven., 26 février 1988"`;
+exports[`<DateTime /> localized messages French - fr 4`] = `"Fri, 26 February 1988"`;
 
 exports[`<DateTime /> localized messages French - fr 5`] = `"16:12"`;
 
@@ -36,17 +36,17 @@ exports[`<DateTime /> localized messages German - de 2`] = `"26. Feb 88"`;
 
 exports[`<DateTime /> localized messages German - de 3`] = `"26. Feb 1988"`;
 
-exports[`<DateTime /> localized messages German - de 4`] = `"Fr, 26. Februar 1988"`;
+exports[`<DateTime /> localized messages German - de 4`] = `"Fri, 26. February 1988"`;
 
 exports[`<DateTime /> localized messages German - de 5`] = `"16:12"`;
 
-exports[`<DateTime /> localized messages Italian - it 1`] = `"26 feb"`;
+exports[`<DateTime /> localized messages Italian - it 1`] = `"26 Feb"`;
 
-exports[`<DateTime /> localized messages Italian - it 2`] = `"26 feb 88"`;
+exports[`<DateTime /> localized messages Italian - it 2`] = `"26 Feb 88"`;
 
-exports[`<DateTime /> localized messages Italian - it 3`] = `"26 feb 1988"`;
+exports[`<DateTime /> localized messages Italian - it 3`] = `"26 Feb 1988"`;
 
-exports[`<DateTime /> localized messages Italian - it 4`] = `"ven, 26 febbraio 1988"`;
+exports[`<DateTime /> localized messages Italian - it 4`] = `"Fri, 26 February 1988"`;
 
 exports[`<DateTime /> localized messages Italian - it 5`] = `"16:12"`;
 
@@ -56,19 +56,19 @@ exports[`<DateTime /> localized messages Japanese - ja 2`] = `"88年2月26日"`;
 
 exports[`<DateTime /> localized messages Japanese - ja 3`] = `"1988年2月26日"`;
 
-exports[`<DateTime /> localized messages Japanese - ja 4`] = `"金, 1988年2月26日"`;
+exports[`<DateTime /> localized messages Japanese - ja 4`] = `"Fri, 1988年2月26日"`;
 
 exports[`<DateTime /> localized messages Japanese - ja 5`] = `"16:12"`;
 
-exports[`<DateTime /> localized messages Korean - ko 1`] = `"2월 26일"`;
+exports[`<DateTime /> localized messages Korean - ko 1`] = `"Feb 26일"`;
 
-exports[`<DateTime /> localized messages Korean - ko 2`] = `"88년 2월 26일"`;
+exports[`<DateTime /> localized messages Korean - ko 2`] = `"88년 Feb 26일"`;
 
-exports[`<DateTime /> localized messages Korean - ko 3`] = `"1988년 2월 26일"`;
+exports[`<DateTime /> localized messages Korean - ko 3`] = `"1988년 Feb 26일"`;
 
-exports[`<DateTime /> localized messages Korean - ko 4`] = `"금, 1988년 2월 26일"`;
+exports[`<DateTime /> localized messages Korean - ko 4`] = `"Fri, 1988년 February 26일"`;
 
-exports[`<DateTime /> localized messages Korean - ko 5`] = `"오후 4:12"`;
+exports[`<DateTime /> localized messages Korean - ko 5`] = `"PM 4:12"`;
 
 exports[`<DateTime /> localized messages Malay - ms 1`] = `"26 Feb"`;
 
@@ -76,56 +76,56 @@ exports[`<DateTime /> localized messages Malay - ms 2`] = `"26 Feb 88"`;
 
 exports[`<DateTime /> localized messages Malay - ms 3`] = `"26 Feb 1988"`;
 
-exports[`<DateTime /> localized messages Malay - ms 4`] = `"Jum, 26 Februari 1988"`;
+exports[`<DateTime /> localized messages Malay - ms 4`] = `"Fri, 26 February 1988"`;
 
 exports[`<DateTime /> localized messages Malay - ms 5`] = `"16:12"`;
 
-exports[`<DateTime /> localized messages Mandarin - zh 1`] = `"2月26日"`;
+exports[`<DateTime /> localized messages Mandarin - zh 1`] = `"Feb26日"`;
 
-exports[`<DateTime /> localized messages Mandarin - zh 2`] = `"88年2月26日"`;
+exports[`<DateTime /> localized messages Mandarin - zh 2`] = `"88年Feb26日"`;
 
-exports[`<DateTime /> localized messages Mandarin - zh 3`] = `"1988年2月26日"`;
+exports[`<DateTime /> localized messages Mandarin - zh 3`] = `"1988年Feb26日"`;
 
-exports[`<DateTime /> localized messages Mandarin - zh 4`] = `"周五, 1988年二月26日"`;
+exports[`<DateTime /> localized messages Mandarin - zh 4`] = `"Fri, 1988年February26日"`;
 
 exports[`<DateTime /> localized messages Mandarin - zh 5`] = `"16:12"`;
 
-exports[`<DateTime /> localized messages Portuguese - pt 1`] = `"26 de fev"`;
+exports[`<DateTime /> localized messages Portuguese - pt 1`] = `"26 de Feb"`;
 
-exports[`<DateTime /> localized messages Portuguese - pt 2`] = `"26 de fev de 88"`;
+exports[`<DateTime /> localized messages Portuguese - pt 2`] = `"26 de Feb de 88"`;
 
-exports[`<DateTime /> localized messages Portuguese - pt 3`] = `"26 de fev de 1988"`;
+exports[`<DateTime /> localized messages Portuguese - pt 3`] = `"26 de Feb de 1988"`;
 
-exports[`<DateTime /> localized messages Portuguese - pt 4`] = `"sex, 26 de fevereiro de 1988"`;
+exports[`<DateTime /> localized messages Portuguese - pt 4`] = `"Fri, 26 de February de 1988"`;
 
 exports[`<DateTime /> localized messages Portuguese - pt 5`] = `"16:12"`;
 
-exports[`<DateTime /> localized messages Russian - ru 1`] = `"26 февр. г."`;
+exports[`<DateTime /> localized messages Russian - ru 1`] = `"26 Feb г."`;
 
-exports[`<DateTime /> localized messages Russian - ru 2`] = `"26 февр. 88 г."`;
+exports[`<DateTime /> localized messages Russian - ru 2`] = `"26 Feb 88 г."`;
 
-exports[`<DateTime /> localized messages Russian - ru 3`] = `"26 февр. 1988 г."`;
+exports[`<DateTime /> localized messages Russian - ru 3`] = `"26 Feb 1988 г."`;
 
-exports[`<DateTime /> localized messages Russian - ru 4`] = `"пт, 26 февраль 1988 г."`;
+exports[`<DateTime /> localized messages Russian - ru 4`] = `"Fri, 26 February 1988 г."`;
 
 exports[`<DateTime /> localized messages Russian - ru 5`] = `"16:12"`;
 
-exports[`<DateTime /> localized messages Spanish - es 1`] = `"26 de feb."`;
+exports[`<DateTime /> localized messages Spanish - es 1`] = `"26 de Feb"`;
 
-exports[`<DateTime /> localized messages Spanish - es 2`] = `"26 de feb. de 88"`;
+exports[`<DateTime /> localized messages Spanish - es 2`] = `"26 de Feb de 88"`;
 
-exports[`<DateTime /> localized messages Spanish - es 3`] = `"26 de feb. de 1988"`;
+exports[`<DateTime /> localized messages Spanish - es 3`] = `"26 de Feb de 1988"`;
 
-exports[`<DateTime /> localized messages Spanish - es 4`] = `"vie., 26 de febrero de 1988"`;
+exports[`<DateTime /> localized messages Spanish - es 4`] = `"Fri, 26 de February de 1988"`;
 
 exports[`<DateTime /> localized messages Spanish - es 5`] = `"16:12"`;
 
-exports[`<DateTime /> localized messages Turkish - tr 1`] = `"26 Şub"`;
+exports[`<DateTime /> localized messages Turkish - tr 1`] = `"26 Feb"`;
 
-exports[`<DateTime /> localized messages Turkish - tr 2`] = `"26 Şub 88"`;
+exports[`<DateTime /> localized messages Turkish - tr 2`] = `"26 Feb 88"`;
 
-exports[`<DateTime /> localized messages Turkish - tr 3`] = `"26 Şub 1988"`;
+exports[`<DateTime /> localized messages Turkish - tr 3`] = `"26 Feb 1988"`;
 
-exports[`<DateTime /> localized messages Turkish - tr 4`] = `"Cum, 26 Şubat 1988"`;
+exports[`<DateTime /> localized messages Turkish - tr 4`] = `"Fri, 26 February 1988"`;
 
 exports[`<DateTime /> localized messages Turkish - tr 5`] = `"16:12"`;
