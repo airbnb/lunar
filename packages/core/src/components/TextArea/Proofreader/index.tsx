@@ -38,11 +38,11 @@ const LOCALE_TO_LT_LOCALE: { [locale: string]: string } = {
   zh: 'zh-CN',
 };
 
-function isRuleHighlighted(rule: ProofreadRuleMatch) {
+function defaultIsRuleHighlighted(rule: ProofreadRuleMatch) {
   return false;
 }
 
-function isRuleSecondary(rule: ProofreadRuleMatch) {
+function defaultIsRuleSecondary(rule: ProofreadRuleMatch) {
   return false;
 }
 
@@ -80,8 +80,8 @@ export type Snapshot = {
 
 export class Proofreader extends React.Component<Props & WithStylesProps, State, Snapshot> {
   static defaultProps = {
-    isRuleHighlighted,
-    isRuleSecondary,
+    isRuleHighlighted: defaultIsRuleHighlighted,
+    isRuleSecondary: defaultIsRuleSecondary,
     locale: NO_LOCALE,
   };
 
@@ -610,7 +610,17 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   }
 
   render() {
-    const { cx, children, styles, onCheckText, theme, important, ...props } = this.props;
+    const {
+      cx,
+      children,
+      styles,
+      onCheckText,
+      theme,
+      important,
+      isRuleHighlighted,
+      isRuleSecondary,
+      ...props
+    } = this.props;
     const {
       position,
       errors,
