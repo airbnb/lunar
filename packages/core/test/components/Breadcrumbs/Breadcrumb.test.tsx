@@ -53,6 +53,7 @@ describe('<Breadcrumb/>', () => {
   it('doesnt render children', () => {
     const child = <div>Foo</div>;
     const wrapper = shallowWithStyles(
+      // @ts-ignore Allow invalid children
       <Breadcrumb label="Breadcrumb" onClick={() => {}}>
         {child}
       </Breadcrumb>,

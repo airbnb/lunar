@@ -1,7 +1,6 @@
 import { DocumentNode } from 'graphql';
 import get from 'lodash/get';
 import set from 'lodash/set';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { DataProxy } from 'apollo-cache';
 import { MutationFetchResult } from 'react-apollo';
 import prepareQuery from '../utils/prepareQuery';

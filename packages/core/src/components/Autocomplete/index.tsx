@@ -694,6 +694,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
 
     if (__DEV__) {
       if (inputProps.compact) {
+        // eslint-disable-next-line no-console
         console.log('Autocomplete: `compact` prop is deprecated, please use `small` instead.');
       }
     }

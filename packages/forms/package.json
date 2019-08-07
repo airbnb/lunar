@@ -29,9 +29,9 @@
     "@types/lodash": "^4.14.134",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
-    "airbnb-prop-types": "^2.13.2",
+    "airbnb-prop-types": "^2.14.0",
     "final-form": "^4.16.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "shallowequal": "^1.1.0",
     "utility-types": "^3.7.0",
     "uuid": "^3.3.2"

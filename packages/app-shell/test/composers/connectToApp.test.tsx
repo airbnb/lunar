@@ -1,5 +1,3 @@
-/* eslint-disable react/no-multi-comp */
-
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import { unwrapHOCs } from '@airbnb/lunar-test-utils';
