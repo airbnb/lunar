@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.5 - 2019-08-07
+
+#### 📦 Dependencies
+
+- **[ESLint]** Update plugins and fix some rule violations. ([694e540](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/694e540))
+
+**Note:** Version bump only for package @airbnb/lunar-app-shell
+
+
+
+
+
 ### 2.1.4 - 2019-07-24
 
 **Note:** Version bump only for package @airbnb/lunar-app-shell

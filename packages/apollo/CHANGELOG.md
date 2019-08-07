@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.1 - 2019-08-07
+
+#### 📦 Dependencies
+
+- **[ESLint]** Update plugins and fix some rule violations. ([694e540](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/694e540))
+- Update minor and patch versions. ([f2abbb0](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/f2abbb0))
+- Update to react-apollo v3 stable. ([8845608](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/8845608))
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
 ## 2.3.0 - 2019-08-01
 
 #### 🚀 Updates

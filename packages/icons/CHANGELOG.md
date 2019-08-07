@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.4 - 2019-08-07
+
+#### 📦 Dependencies
+
+- Update minor and patch versions. ([f2abbb0](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/f2abbb0))
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ### 2.1.3 - 2019-07-24
 
 **Note:** Version bump only for package @airbnb/lunar-icons
