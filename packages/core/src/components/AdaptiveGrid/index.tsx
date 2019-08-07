@@ -2,6 +2,8 @@ import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type AdaptiveGridProps = {
+  /** Content to render as a grid. */
+  children?: React.ReactNode;
   /** List of width/item pairs, describes how many items to display for windows of at least that width. */
   breakpoints?: { [key: string]: number };
   /** Items per row for screens smaller than the smallest breakpoint. */
@@ -62,7 +64,7 @@ class AdaptiveGrid extends React.PureComponent<Props> {
     );
   }
 }
-export default withStyles(({ unit, responsive }) => ({
+export default withStyles(({ unit }) => ({
   container: {
     display: 'grid',
     gridGap: 2 * unit,

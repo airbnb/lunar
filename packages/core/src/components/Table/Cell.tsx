@@ -4,6 +4,8 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 export type Props = {
   /** Display in the center horizontally. */
   centerAlign?: boolean;
+  /** Content to render. */
+  children: NonNullable<React.ReactNode>;
   /** Span multiple columns. */
   colSpan?: number;
   /** Display horizontally at the end. */
