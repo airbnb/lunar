@@ -142,6 +142,7 @@ class FormInput extends React.Component<PrivateProps> {
 
     if (__DEV__) {
       if (compact) {
+        // eslint-disable-next-line no-console
         console.log('Input: `compact` prop is deprecated, please use `small` instead.');
       }
     }

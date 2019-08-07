@@ -1,5 +1,4 @@
 import { DocumentNode } from 'graphql';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { DataProxy } from 'apollo-cache';
 
 export default function prepareQuery<Vars = {}>(
