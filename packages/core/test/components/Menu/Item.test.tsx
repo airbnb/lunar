@@ -40,7 +40,7 @@ describe('<MenuItem />', () => {
 
   it('passes props to underlying button', () => {
     const wrapper = shallowWithStyles(
-      <Item disabled openInNewWindow href="/" tabIndex={0}>
+      <Item disabled openInNewWindow href="/" tabIndex={0} id="tracking-item">
         Foo
       </Item>,
     );
