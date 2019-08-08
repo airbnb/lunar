@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.15.6 - 2019-08-08
+
+#### 🐞 Fixes
+
+- **[Modal]** Add padding to right of header to prevent close overlapping with long titles. (#150) ([8ab3450](https://github.com/airbnb/lunar/tree/master/packages/core/commit/8ab3450)), closes [#150](https://github.com/airbnb/lunar/tree/master/packages/core/issues/150)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.15.5 - 2019-08-07
 
 #### 📦 Dependencies
