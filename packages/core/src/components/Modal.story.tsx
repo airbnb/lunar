@@ -20,7 +20,7 @@ class ModalDemo extends React.Component<
   },
   { visible: boolean }
 > {
-  state = { visible: false };
+  state = { visible: true };
 
   handleToggle = () => this.setState(prevState => ({ visible: !prevState.visible }));
 
@@ -71,15 +71,14 @@ class ModalDemo extends React.Component<
             scrollable={showScrollable}
             small={showSmall}
             subtitle={showSubtitle ? 'Modal Sub-Title' : undefined}
-            title={showTitle ? 'Modal Title' : undefined}
+            title={showTitle ? <LoremIpsum short /> : undefined}
             onClose={this.handleClose}
           >
             <Text>
               <LoremIpsum />
-              <LoremIpsum />
               {(showLarge || !showSmall) && showScrollable && (
                 <>
-                  <LoremIpsum /> <LoremIpsum />
+                  <LoremIpsum /> <LoremIpsum /> <LoremIpsum />
                 </>
               )}
             </Text>
@@ -92,13 +91,12 @@ class ModalDemo extends React.Component<
 
 storiesOf('Core/Modal', module)
   .addParameters({
-    happo: false,
     inspectComponents: [Modal],
   })
   .add('Default modal (600px)', () => <ModalDemo />)
   .add('Small modal (400px)', () => <ModalDemo showSmall />)
   .add('Large modal (800px)', () => <ModalDemo showLarge />)
-  .add('Fluid modal', () => <ModalDemo showFluid showTitle />)
+  .add('Fluid modal', () => <ModalDemo showFluid />)
   .add('With title', () => <ModalDemo showTitle />)
   .add('With subtitle', () => <ModalDemo showSubtitle showTitle />)
   .add('With title and footer', () => <ModalDemo showFooter showTitle />)

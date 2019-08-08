@@ -96,7 +96,7 @@ export default withStyles(({ color, ui, unit }) => ({
   },
 
   header: {
-    padding: unit * 3,
+    padding: `${unit * 3}px ${unit * 4}px ${unit * 3}px ${unit * 3}px`,
   },
 
   header_scrollable: {
