@@ -23,6 +23,12 @@ describe('<Copy />', () => {
     expect(wrapper.find(Link)).toHaveLength(1);
   });
 
+  it('can add an id to the Link', () => {
+    const wrapper = shallow(<Copy text="foo" id="tracking-id" />);
+
+    expect(wrapper.find(Link).prop('id')).toBe('tracking-id');
+  });
+
   it('can customize the child', () => {
     const child = <button type="button">Click</button>;
     const wrapper = shallow(<Copy text="foo">{child}</Copy>);
