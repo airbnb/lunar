@@ -1,6 +1,6 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
-import renderDefaultContent from '../DefaultRenderer';
+import DefaultRenderer from '../DefaultRenderer';
 import Spacing from '../../Spacing';
 import {
   ColumnMetadata,
@@ -47,13 +47,11 @@ export default function renderDataColumns(
     const { metadata } = row.rowData;
     const { isChild } = metadata;
     const customRenderer = renderers && renderers[key];
-
     const indentSize = !expandable || !isLeftmost ? 2 : 2.5;
     const spacing = isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
-
     const rendererArguments: RendererProps = {
       row,
-      key,
+      keyName: key,
       editMode,
       onEdit,
       zebra: zebra || false,
@@ -63,15 +61,14 @@ export default function renderDataColumns(
     if (metadata && metadata.colSpanKey && renderers) {
       if (isLeftmost) {
         const colSpanRenderer = renderers[metadata.colSpanKey];
+
         if (colSpanRenderer) {
-          return colSpanRenderer(rendererArguments);
+          return React.createElement(colSpanRenderer, rendererArguments);
         }
       }
     }
 
-    const contents: React.ReactNode = customRenderer
-      ? customRenderer(rendererArguments)
-      : renderDefaultContent(rendererArguments);
+    const contents = React.createElement(customRenderer || DefaultRenderer, rendererArguments);
 
     return (
       <div className={cx(styles && styles.row)}>

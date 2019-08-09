@@ -17,10 +17,10 @@ import {
   IndexedChildRow,
 } from './types';
 import ColumnLabels from './ColumnLabels';
-import renderDataColumns from './columns/DataColumns';
-import renderExpandableColumn from './columns/ExpandableColumn';
-import renderSelectableColumn from './columns/SelectableColumn';
 import TableHeader from './TableHeader';
+import renderDataColumns from './columns/renderDataColumns';
+import renderExpandableColumn from './columns/renderExpandableColumn';
+import renderSelectableColumn from './columns/renderSelectableColumn';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';

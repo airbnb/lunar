@@ -215,7 +215,7 @@ export type RendererProps<T = RowData> = {
   /** Row including row data and metadata. */
   row: VirtualRow<T>;
   /** Key being rendered. */
-  key: string;
+  keyName: string;
   /** Whether or not edit mode is enabled. */
   editMode: boolean;
   /** Callback to trigger on cell edit. */
@@ -226,7 +226,7 @@ export type RendererProps<T = RowData> = {
   theme: WithStylesProps['theme'];
 };
 
-type Renderer = (props: RendererProps) => NonNullable<React.ReactNode>;
+export type Renderer = React.ComponentType<RendererProps>;
 
 export type Renderers = {
   [key: string]: Renderer;

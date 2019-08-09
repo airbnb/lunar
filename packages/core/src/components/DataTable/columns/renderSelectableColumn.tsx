@@ -1,6 +1,5 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
-
 import CheckBox from '../../CheckBox';
 import Spacing from '../../Spacing';
 import { ExpandedRow, SelectedRows, VirtualRow } from '../types';

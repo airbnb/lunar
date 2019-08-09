@@ -20,10 +20,12 @@ type EditableTextRendererProps = {
   value: string;
   editMode: boolean;
 };
+
 type EditableTextRendererState = {
   value: string;
 };
-class EditableTextRenderer extends React.Component<
+
+class InnerEditableTextRenderer extends React.Component<
   EditableTextRendererProps,
   EditableTextRendererState
 > {
@@ -61,24 +63,24 @@ class EditableTextRenderer extends React.Component<
   }
 }
 
-export default function editableTextRenderer({
+export default function EditableTextRenderer({
   row,
-  key,
+  keyName,
   editMode,
   onEdit,
 }: {
   row: VirtualRow;
-  key: string;
+  keyName: string;
   editMode: boolean;
   onEdit: EditCallback;
 }) {
   return (
-    <EditableTextRenderer
+    <InnerEditableTextRenderer
       editMode={editMode}
       onEdit={onEdit}
-      value={row.rowData.data[key]}
+      value={row.rowData.data[keyName]}
       row={row}
-      keyName={key}
+      keyName={keyName}
     />
   );
 }
@@ -541,7 +543,7 @@ describe('<DataTable /> handles edits', () => {
     editable: true,
     editCallbacks,
     renderers: {
-      name: editableTextRenderer,
+      name: EditableTextRenderer,
     },
   };
 
