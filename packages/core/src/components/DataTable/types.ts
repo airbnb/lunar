@@ -3,7 +3,6 @@ import { SortDirectionType, Table } from 'react-virtualized';
 import { WithStylesProps } from '../../composers/withStyles';
 
 export type TableRef = React.RefObject<Table>;
-
 export type RowHeightOptions = string;
 export type HeightOptions = RowHeightOptions | undefined;
 export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '';
@@ -23,8 +22,8 @@ export type ChangeLog = {
   };
 };
 
-export type EditCallback = (
-  row: VirtualRow,
+export type EditCallback<T = RowData> = (
+  row: VirtualRow<T>,
   key: string,
   newVal: any,
   event: React.SyntheticEvent<EventTarget>,
@@ -182,6 +181,7 @@ export interface ParentRow<T = RowData> extends Row<T> {
 export interface IndexedParentRow<T = RowData> extends Row<T> {
   metadata: IndexedParentMetadata;
 }
+
 export interface IndexedChildRow<T = RowData> extends Row<T> {
   metadata: IndexedChildMetadata;
 }
@@ -189,6 +189,7 @@ export interface IndexedChildRow<T = RowData> extends Row<T> {
 export interface ExpandedParentRow<T = RowData> extends Row<T> {
   metadata: ExpandedParentMetadata;
 }
+
 export interface ExpandedChildRow<T = RowData> extends Row<T> {
   metadata: ExpandedChildMetadata;
 }
@@ -212,13 +213,13 @@ export type ColumnToLabel = {
 
 export type RendererProps<T = RowData> = {
   /** Row including row data and metadata. */
-  row: VirtualRow;
+  row: VirtualRow<T>;
   /** Key being rendered. */
   key: string;
   /** Whether or not edit mode is enabled. */
   editMode: boolean;
   /** Callback to trigger on cell edit. */
-  onEdit: EditCallback;
+  onEdit: EditCallback<T>;
   /** Whether or not zebra mode is enabled. */
   zebra: boolean;
   /** Theme from Lunar. */
