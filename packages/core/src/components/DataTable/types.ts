@@ -24,7 +24,7 @@ export type ChangeLog = {
 };
 
 export type EditCallback = (
-  row: TableRow,
+  row: VirtualRow,
   key: string,
   newVal: any,
   event: React.SyntheticEvent<EventTarget>,
@@ -115,14 +115,14 @@ export interface GenericRow {
 }
 
 /** The row used by React Virtualized. */
-export interface TableRow {
-  cellData?: void;
-  columnData?: void;
+export interface VirtualRow<T = RowData> {
+  cellData?: unknown;
+  columnData?: unknown;
   columnIndex: number;
   dataKey: string;
   isScrolling?: boolean;
   parent?: React.ReactNode;
-  rowData: ExpandedRow;
+  rowData: ExpandedRow<T>;
   rowIndex: number;
 }
 
@@ -163,36 +163,38 @@ type ExpandedChildMetadata = IndexedChildMetadata & {
   parentOriginalIndex: number;
 };
 
-interface Row {
-  data: {
-    [key: string]: any;
-  };
+export interface RowData {
+  [key: string]: any;
 }
 
-export interface ChildRow extends Row {
+export interface Row<T = RowData> {
+  data: T;
+}
+
+export interface ChildRow<T = RowData> extends Row<T> {
   metadata?: ChildMetadata;
 }
 
-export interface ParentRow extends Row {
+export interface ParentRow<T = RowData> extends Row<T> {
   metadata?: ParentMetadata;
 }
 
-export interface IndexedParentRow extends Row {
+export interface IndexedParentRow<T = RowData> extends Row<T> {
   metadata: IndexedParentMetadata;
 }
-export interface IndexedChildRow extends Row {
+export interface IndexedChildRow<T = RowData> extends Row<T> {
   metadata: IndexedChildMetadata;
 }
 
-export interface ExpandedParentRow extends Row {
+export interface ExpandedParentRow<T = RowData> extends Row<T> {
   metadata: ExpandedParentMetadata;
 }
-export interface ExpandedChildRow extends Row {
+export interface ExpandedChildRow<T = RowData> extends Row<T> {
   metadata: ExpandedChildMetadata;
 }
 
-export type IndexedRow = IndexedChildRow | IndexedParentRow;
-export type ExpandedRow = ExpandedParentRow | ExpandedChildRow;
+export type IndexedRow<T = RowData> = IndexedChildRow<T> | IndexedParentRow<T>;
+export type ExpandedRow<T = RowData> = ExpandedParentRow<T> | ExpandedChildRow<T>;
 
 export type RowStyles = {
   [key: string]: string;
@@ -208,9 +210,9 @@ export type ColumnToLabel = {
   [key: string]: any;
 };
 
-export type RendererProps = {
+export type RendererProps<T = RowData> = {
   /** Row including row data and metadata. */
-  row: TableRow;
+  row: VirtualRow;
   /** Key being rendered. */
   key: string;
   /** Whether or not edit mode is enabled. */

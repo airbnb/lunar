@@ -5,7 +5,7 @@ import Spacing from '../../Spacing';
 import {
   ColumnMetadata,
   DataTableProps,
-  TableRow,
+  VirtualRow,
   EditCallback,
   HeightOptions,
   WidthProperties,
@@ -43,7 +43,7 @@ export default function renderDataColumns(
     expandable,
   }: ArgumentsFromProps,
 ) {
-  const renderCell = (key: string, isLeftmost: boolean) => (row: TableRow) => {
+  const renderCell = (key: string, isLeftmost: boolean) => (row: VirtualRow) => {
     const { metadata } = row.rowData;
     const { isChild } = metadata;
     const customRenderer = renderers && renderers[key];

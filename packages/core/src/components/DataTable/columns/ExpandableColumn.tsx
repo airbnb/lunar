@@ -4,7 +4,7 @@ import Spacing from '../../Spacing';
 import ExpandableIcon from '../../ExpandableIcon';
 import { WithStylesProps } from '../../../composers/withStyles';
 import { EXPANDABLE_COLUMN_WIDTH } from '../constants';
-import { TableRow } from '../types';
+import { VirtualRow } from '../types';
 
 export default function renderExpandableColumn(
   cx: WithStylesProps['cx'],
@@ -12,7 +12,7 @@ export default function renderExpandableColumn(
   expandedRows: Set<number>,
   expandRow: (newExpandedRowIndex: number) => (event: any) => void,
 ) {
-  const cellRenderer = (row: TableRow) => {
+  const cellRenderer = (row: VirtualRow) => {
     const { children, originalIndex } = row.rowData.metadata;
 
     if (children && children.length > 0) {

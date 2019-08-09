@@ -12,7 +12,7 @@ import {
   IndexedParentRow,
   ParentRow,
   RowStyles,
-  TableRow,
+  VirtualRow,
   SelectedRows,
   IndexedChildRow,
 } from './types';
@@ -24,6 +24,8 @@ import TableHeader from './TableHeader';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
+
+export * from './types';
 
 export type State = {
   changeLog: ChangeLog;
@@ -175,7 +177,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   };
 
   private onEdit = (
-    row: TableRow,
+    row: VirtualRow,
     key: string,
     newVal: any,
     event: React.SyntheticEvent<EventTarget>,
