@@ -6,7 +6,7 @@ import {
   ColumnMetadata,
   DataTableProps,
   TableRow,
-  OnEdit,
+  EditCallback,
   HeightOptions,
   WidthProperties,
   RendererProps,
@@ -30,7 +30,7 @@ type ArgumentsFromProps = {
 export default function renderDataColumns(
   keys: string[],
   editMode: boolean,
-  onEdit: OnEdit,
+  onEdit: EditCallback,
   {
     columnMetadata,
     showColumnDividers,

@@ -10,13 +10,13 @@ import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
 import Button from '../../src/components/Button';
 import Checkbox from '../../src/components/CheckBox';
-import { OnEdit, ParentRow, TableRow } from '../../src/components/DataTable/types';
+import { EditCallback, ParentRow, TableRow } from '../../src/components/DataTable/types';
 import { STATUS_OPTIONS } from '../../src/components/DataTable/constants';
 
 type EditableTextRendererProps = {
   row: TableRow;
   keyName: string;
-  onEdit: OnEdit;
+  onEdit: EditCallback;
   value: string;
   editMode: boolean;
 };
@@ -70,7 +70,7 @@ export default function editableTextRenderer({
   row: TableRow;
   key: string;
   editMode: boolean;
-  onEdit: OnEdit;
+  onEdit: EditCallback;
 }) {
   return (
     <EditableTextRenderer

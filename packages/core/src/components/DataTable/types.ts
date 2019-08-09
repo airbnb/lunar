@@ -23,14 +23,7 @@ export type ChangeLog = {
   };
 };
 
-type EditCallback = (
-  row: TableRow,
-  key: string,
-  newVal: any,
-  event: React.SyntheticEvent<EventTarget>,
-) => void;
-
-export type OnEdit = (
+export type EditCallback = (
   row: TableRow,
   key: string,
   newVal: any,
@@ -223,7 +216,7 @@ export type RendererProps = {
   /** Whether or not edit mode is enabled. */
   editMode: boolean;
   /** Callback to trigger on cell edit. */
-  onEdit: OnEdit;
+  onEdit: EditCallback;
   /** Whether or not zebra mode is enabled. */
   zebra: boolean;
   /** Theme from Lunar. */
