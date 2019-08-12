@@ -120,8 +120,8 @@ const data: ParentRow[] = [
   {
     data: {
       name: 'Frontend Fabien',
-      jobTitle: 'Engineer',
-      tenureDays: 600,
+      jobTitle: undefined,
+      tenureDays: null,
       menu: '',
       cats: 1,
     },
