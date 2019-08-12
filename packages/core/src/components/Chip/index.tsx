@@ -19,6 +19,8 @@ export type Props = {
   compact?: boolean;
   /** Disabled / gray. */
   disabled?: boolean;
+  /** Pass an HTML element attribute id */
+  id?: string;
   /** Callback fired when the element is clicked. */
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   /** Callback fired when the icon is clicked (requires an icon). */
@@ -51,6 +53,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
       children,
       compact,
       disabled,
+      id,
       onClick,
       onIconClick,
       profileImageSrc,
@@ -83,6 +86,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
           disabled && styles.chip_disabled,
         )}
         {...props}
+        id={id}
       >
         {shouldRenderBefore && (
           <div className={cx(styles.chipItem, styles.sideContent)}>
