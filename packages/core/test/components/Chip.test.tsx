@@ -19,6 +19,16 @@ describe('<Chip />', () => {
     expect(wrapper.prop('onClick')).toBe(onClick);
   });
 
+  it('passed an id for tracking', () => {
+    const onClick = () => {};
+    const wrapper = shallowWithStyles(
+      <Chip onClick={onClick} id="tracking-chip">
+        Potato
+      </Chip>,
+    );
+    expect(wrapper.prop('id')).toBe('tracking-chip');
+  });
+
   it('renders an after icon if provided', () => {
     const icon = <IconCheck />;
     const wrapper = shallowWithStyles(<Chip afterIcon={icon}>Sour Cream and Onion</Chip>);

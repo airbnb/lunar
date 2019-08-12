@@ -18,6 +18,8 @@ export type Props = {
   href?: string;
   /** An icon to display before the item. */
   icon?: React.ReactNode;
+  /** Pass an HTML element attribute id */
+  id?: string;
   /** Click handler. */
   onClick?: () => void;
   /** Opens links in a new window. */
@@ -81,6 +83,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
       highlighted,
       href,
       icon,
+      id,
       onClick,
       openInNewWindow,
       role,
@@ -116,6 +119,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
           beforeIcon={icon}
           disabled={disabled}
           href={href}
+          id={id}
           onClick={onClick}
           openInNewWindow={openInNewWindow}
           role={role}
