@@ -36,6 +36,14 @@ describe('<Breadcrumb/>', () => {
     expect(wrapper.find(ButtonOrLink).prop('disabled')).toBeTruthy();
   });
 
+  it('renders a passed id for tracking', () => {
+    const wrapper = shallowWithStyles(
+      <Breadcrumb id="tracking-breadcrump" onClick={() => {}} label="Breadcrumb" />,
+    );
+
+    expect(wrapper.find(ButtonOrLink).prop('id')).toBe('tracking-breadcrump');
+  });
+
   it('renders an icon', () => {
     const wrapper = shallowWithStyles(<Breadcrumb onClick={() => {}} label="Breadcrumb" />);
 

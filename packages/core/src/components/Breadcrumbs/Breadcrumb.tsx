@@ -14,6 +14,8 @@ export type Props = {
   highlighted?: boolean;
   /** @ignore */
   horizontal?: boolean;
+  /** Pass an HTML element attribute id */
+  id?: string;
   /** Content to within the Breadcrumb. */
   label: string;
   /** Render an anchor link with a URL instead of a button. */
@@ -48,6 +50,7 @@ class Breadcrumb extends React.Component<Props & WithStylesProps> {
       disabled,
       hideIcon,
       highlighted,
+      id,
       label,
       href,
       onClick,
@@ -82,6 +85,7 @@ class Breadcrumb extends React.Component<Props & WithStylesProps> {
           }
           disabled={disabled}
           href={href}
+          id={id}
           onClick={this.handleClick}
         >
           {label}
