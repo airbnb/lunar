@@ -8,11 +8,11 @@ function sort(a: any, b: any, ascending: boolean = false) {
     return 0;
   }
   // null sort after anything else.
-  if (a === null || a === 'undefined') {
+  if (a == null || a === 'undefined') {
     return 1;
   }
 
-  if (b === null || b === 'undefined') {
+  if (b == null || b === 'undefined') {
     return -1;
   }
   // If ascending, small sorts first.

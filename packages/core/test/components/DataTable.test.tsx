@@ -377,6 +377,32 @@ describe('<DataTable /> renders and sorts data', () => {
     expect(text).toBe('Product Percy');
   });
 
+  it('should sort data in Descending order by jobTitle', () => {
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
+
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
+    nameHeader.simulate('click');
+    nameHeader.simulate('click');
+    const text = getCell(table, 1, NAME_COL + 1)
+      .find(Text)
+      .text();
+
+    expect(text).toBe('PM');
+  });
+
+  it('should sort data in Descending order by tenureDays', () => {
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
+
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
+    nameHeader.simulate('click');
+    nameHeader.simulate('click');
+    const text = getCell(table, 1, NAME_COL + 2)
+      .find(Text)
+      .text();
+
+    expect(text).toBe('307');
+  });
+
   it('should sort data in Ascending order', () => {
     const table = mountWithStyles(<DataTable {...simpleProps} />);
 
