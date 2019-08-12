@@ -99,7 +99,7 @@ const data: ParentRow[] = [
     data: {
       name: 'Hidden Henry',
       jobTitle: 'Engineer',
-      tenureDays: 407,
+      tenureDays: 500,
       menu: '',
       cats: 1,
       colSpan: 'This person is hidden because you have insufficient permissions.',
