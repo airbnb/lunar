@@ -3,7 +3,6 @@ import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 const ANIMATION_DURATION_MS = 300;
-
 const IMAGE_BORDER_RADIUS = 3;
 
 const bottomBorderPropType = mutuallyExclusiveTrueProps('hasBorderBottomRadius', 'hasBorderRadius');
@@ -25,18 +24,18 @@ export type Props = {
   fit?: boolean;
   /** Has rounded bottom corners */
   hasBorderBottomRadius?: boolean;
-  /** All corners rounded. If specified, `hasBorderBottomRadius` and `hasBorderTopRadius` are redundant */
+  /** All corners rounded. If specified, using `hasBorderBottomRadius` or `hasBorderTopRadius` is redundant */
   hasBorderRadius?: boolean;
   /** Has rounded top corners */
   hasBorderTopRadius?: boolean;
   /** Height of content */
-  height?: string | number;
+  height?: number | string;
   /** Source for image */
   src: string;
   /** Img title */
   title?: string;
   /** Width of content */
-  width?: string | number;
+  width?: number | string;
   /** Srcset for img tag */
   srcset?: string;
 };
