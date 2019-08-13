@@ -16,7 +16,7 @@ import Button from './Button';
 import Input from './Input';
 import Row from './Row';
 import Spacing from './Spacing';
-import { SelectedRows, TableRow, IndexedParentRow } from './DataTable/types';
+import { SelectedRows, VirtualRow, IndexedParentRow } from './DataTable/types';
 
 const renderers = {
   name: EditableTextRenderer,
@@ -86,7 +86,7 @@ const filterData = (data: IndexedParentRow[]) => {
 };
 
 const defaultEditCallback = (
-  row: TableRow,
+  row: VirtualRow,
   key: string,
   newVal: any,
   event: React.SyntheticEvent<EventTarget>,
@@ -128,7 +128,7 @@ export class SearchDemo extends React.Component {
     const filteredData = this.filter(search);
     const button = (
       <Button inline onClick={this.handleNewData}>
-        New Data
+        New data
       </Button>
     );
 
@@ -146,7 +146,14 @@ export class SearchDemo extends React.Component {
             />
           </Row>
         </Spacing>
-        <DataTable data={data} filterData={filteredData} selectable expandable />
+
+        <DataTable
+          keys={['number', 'zero']}
+          data={data}
+          filterData={filteredData}
+          selectable
+          expandable
+        />
       </>
     );
   }

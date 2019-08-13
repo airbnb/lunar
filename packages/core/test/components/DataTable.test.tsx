@@ -10,20 +10,22 @@ import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
 import Button from '../../src/components/Button';
 import Checkbox from '../../src/components/CheckBox';
-import { OnEdit, ParentRow, TableRow } from '../../src/components/DataTable/types';
+import { EditCallback, ParentRow, VirtualRow } from '../../src/components/DataTable/types';
 import { STATUS_OPTIONS } from '../../src/components/DataTable/constants';
 
 type EditableTextRendererProps = {
-  row: TableRow;
+  row: VirtualRow;
   keyName: string;
-  onEdit: OnEdit;
+  onEdit: EditCallback;
   value: string;
   editMode: boolean;
 };
+
 type EditableTextRendererState = {
   value: string;
 };
-class EditableTextRenderer extends React.Component<
+
+class InnerEditableTextRenderer extends React.Component<
   EditableTextRendererProps,
   EditableTextRendererState
 > {
@@ -31,7 +33,7 @@ class EditableTextRenderer extends React.Component<
     value: this.props.value,
   };
 
-  onEdit = (row: TableRow, keyName: string) => (
+  onEdit = (row: VirtualRow, keyName: string) => (
     newVal: string,
     event: React.SyntheticEvent<EventTarget>,
   ) => {
@@ -61,24 +63,24 @@ class EditableTextRenderer extends React.Component<
   }
 }
 
-export default function editableTextRenderer({
+export default function EditableTextRenderer({
   row,
-  key,
+  keyName,
   editMode,
   onEdit,
 }: {
-  row: TableRow;
-  key: string;
+  row: VirtualRow;
+  keyName: string;
   editMode: boolean;
-  onEdit: OnEdit;
+  onEdit: EditCallback;
 }) {
   return (
-    <EditableTextRenderer
+    <InnerEditableTextRenderer
       editMode={editMode}
       onEdit={onEdit}
-      value={row.rowData.data[key]}
+      value={row.rowData.data[keyName]}
       row={row}
-      keyName={key}
+      keyName={keyName}
     />
   );
 }
@@ -541,7 +543,7 @@ describe('<DataTable /> handles edits', () => {
     editable: true,
     editCallbacks,
     renderers: {
-      name: editableTextRenderer,
+      name: EditableTextRenderer,
     },
   };
 

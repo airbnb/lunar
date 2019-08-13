@@ -1,9 +1,8 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
-
 import CheckBox from '../../CheckBox';
 import Spacing from '../../Spacing';
-import { ExpandedRow, SelectedRows, TableRow } from '../types';
+import { ExpandedRow, SelectedRows, VirtualRow } from '../types';
 import {
   SELECTION_OPTIONS,
   SELECTABLE_COLUMN_WIDTH,
@@ -17,7 +16,7 @@ export default function renderSelectableColumn(
 ) {
   const width = expandable ? SELECTABLE_COLUMN_WIDTH_EXPANDABLE : SELECTABLE_COLUMN_WIDTH;
 
-  const selectableCellRenderer = (row: TableRow) => {
+  const selectableCellRenderer = (row: VirtualRow) => {
     const { metadata } = row.rowData;
     const { originalIndex, parentOriginalIndex, isChild } = metadata;
 

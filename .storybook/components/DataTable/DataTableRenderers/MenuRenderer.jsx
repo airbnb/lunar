@@ -3,7 +3,7 @@ import Menu, { Item } from '@airbnb/lunar/src/components/Menu';
 import Button from '@airbnb/lunar/src/components/Button';
 import IconMenuDots from '@airbnb/lunar-icons/lib/interface/IconMenuDots';
 
-export class MenuRenderer extends React.Component {
+export class InnerMenuRenderer extends React.Component {
   state = {
     open: false,
   };
@@ -55,16 +55,16 @@ export class MenuRenderer extends React.Component {
     );
 
     return (
-      <React.Fragment>
+      <>
         <Button inverted small onClick={this.toggleClick}>
           <IconMenuDots decorative />
         </Button>
         {menu}
-      </React.Fragment>
+      </>
     );
   }
 }
 
-export default function menuRenderer() {
-  return <MenuRenderer />;
+export default function MenuRenderer() {
+  return <InnerMenuRenderer />;
 }

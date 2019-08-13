@@ -49,9 +49,11 @@ export function getRowColor(
   if (index < 0) {
     return accent.bg;
   }
+
   if (row.metadata && row.metadata.status) {
     return getStatusColor(theme, row.metadata.status);
   }
+
   if (zebra) {
     return index % 2 ? accent.bg : core.neutral[0];
   }
