@@ -10,12 +10,7 @@ import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
 import Button from '../../src/components/Button';
 import Checkbox from '../../src/components/CheckBox';
-import {
-  EditCallback,
-  SelectCallback,
-  ParentRow,
-  VirtualRow,
-} from '../../src/components/DataTable/types';
+import { EditCallback, ParentRow, VirtualRow } from '../../src/components/DataTable/types';
 import { STATUS_OPTIONS } from '../../src/components/DataTable/constants';
 
 type EditableTextRendererProps = {
