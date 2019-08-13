@@ -4,14 +4,15 @@ import Text from '@airbnb/lunar/src/components/Text';
 
 const onClick = e => e.stopPropagation();
 
-class EditableTextRenderer extends React.Component {
+class InnerEditableTextRenderer extends React.Component {
   state = {
     value: this.props.value,
   };
 
-  onEdit = (row, key) => (newVal, event) => {
-    const { onEdit } = this.props;
-    onEdit(row, key, newVal, event);
+  onEdit = (newVal, event) => {
+    const { onEdit, row, keyName } = this.props;
+
+    onEdit(row, keyName, newVal, event);
 
     this.setState({
       value: newVal,
@@ -19,7 +20,7 @@ class EditableTextRenderer extends React.Component {
   };
 
   render() {
-    const { editMode, row, key } = this.props;
+    const { editMode } = this.props;
     const { value } = this.state;
 
     return editMode ? (
@@ -28,7 +29,7 @@ class EditableTextRenderer extends React.Component {
         label="Edit row"
         name=""
         value={value}
-        onChange={this.onEdit(row, key)}
+        onChange={this.onEdit}
         onClick={onClick}
       />
     ) : (
@@ -37,6 +38,12 @@ class EditableTextRenderer extends React.Component {
   }
 }
 
-export default function editableTextRenderer({ row, key, editMode, onEdit }) {
-  return <EditableTextRenderer editMode={editMode} onEdit={onEdit} value={row.rowData.data[key]} />;
+export default function EditableTextRenderer({ row, keyName, editMode, onEdit }) {
+  return (
+    <InnerEditableTextRenderer
+      editMode={editMode}
+      onEdit={onEdit}
+      value={row.rowData.data[keyName]}
+    />
+  );
 }

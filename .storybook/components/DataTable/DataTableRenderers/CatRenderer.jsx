@@ -1,15 +1,14 @@
 import React from 'react';
-
 import Emoji from '@airbnb/lunar/src/components/Emoji';
 import CountBadge from '@airbnb/lunar/src/components/CountBadge';
 
-class CatRenderer extends React.Component {
+class InnerCatRenderer extends React.Component {
   state = {
     hovered: false,
   };
 
   renderCounter() {
-    const { row, key, onEdit } = this.props;
+    const { row, onEdit } = this.props;
 
     return (
       <IncrementableBadge
@@ -48,8 +47,8 @@ class CatRenderer extends React.Component {
   }
 }
 
-export default function catRenderer({ row, key, editMode, onEdit }) {
-  return <CatRenderer row={row} key={key} editMode={editMode} onEdit={onEdit} />;
+export default function CatRenderer({ row, keyName, editMode, onEdit }) {
+  return <InnerCatRenderer row={row} key={keyName} editMode={editMode} onEdit={onEdit} />;
 }
 
 export class IncrementableBadge extends React.Component {
@@ -57,7 +56,7 @@ export class IncrementableBadge extends React.Component {
     count: this.props.value || 1,
   };
 
-  handleClick = (event) => {
+  handleClick = event => {
     event.stopPropagation();
     const { count } = this.state;
     const { onChange } = this.props;
