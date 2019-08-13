@@ -139,7 +139,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   }
 
   private getTableHeight = (expandedDataList: ExpandedRow[]): number => {
-    const { autoHeight, height, rowHeight, showAllRows } = this.props;
+    const { height, rowHeight, showAllRows } = this.props;
 
     if (showAllRows) {
       return expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight();
