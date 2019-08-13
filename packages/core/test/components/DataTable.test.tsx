@@ -224,6 +224,7 @@ const simpleProps = {
   expandable: true,
   editable: true,
   tableHeaderLabel: 'My Great Table',
+  showAllRows: true,
 };
 
 const getRow = (table: any, row: number) => table.find(Grid).find(`[aria-rowindex=${row}]`);
@@ -380,27 +381,33 @@ describe('<DataTable /> renders and sorts data', () => {
   it('should sort data in Descending order by jobTitle', () => {
     const table = mountWithStyles(<DataTable {...simpleProps} />);
 
-    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(3);
     nameHeader.simulate('click');
     nameHeader.simulate('click');
-    const text = getCell(table, 1, NAME_COL + 1)
+    const firstRow = getCell(table, 1, NAME_COL + 1)
       .find(Text)
       .text();
+    expect(firstRow).toBe('PM');
 
-    expect(text).toBe('PM');
+    const lastRow = getCell(table, 6, NAME_COL + 1).find(Text);
+    expect(lastRow).toEqual({});
   });
 
   it('should sort data in Descending order by tenureDays', () => {
     const table = mountWithStyles(<DataTable {...simpleProps} />);
 
-    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(4);
     nameHeader.simulate('click');
     nameHeader.simulate('click');
-    const text = getCell(table, 1, NAME_COL + 2)
+
+    const firstRow = getCell(table, 1, NAME_COL + 2)
       .find(Text)
       .text();
+    expect(firstRow).toBe('820');
 
-    expect(text).toBe('307');
+    const lastRow = getCell(table, 6, NAME_COL + 2).find(Text);
+
+    expect(lastRow).toEqual({});
   });
 
   it('should sort data in Ascending order', () => {
