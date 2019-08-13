@@ -18,7 +18,7 @@ export default function renderExpandableColumn(
     if (children && children.length > 0) {
       return (
         <div
-          className={cx(styles.expand_caret)}
+          className={cx(styles.expandCaret)}
           role="button"
           tabIndex={0}
           onClick={expandRow(originalIndex)}

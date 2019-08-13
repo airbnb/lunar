@@ -72,7 +72,7 @@ export default function renderDataColumns(
 
     return (
       <div className={cx(styles && styles.row)}>
-        <div className={cx(styles && styles.row_inner)}>
+        <div className={cx(styles && styles.rowInner)}>
           <Spacing left={spacing} right={2}>
             {contents || ''}
           </Spacing>
@@ -109,7 +109,7 @@ export default function renderDataColumns(
         cellRenderer={renderCell(key, isLeftmost)}
         className={cx(
           styles && styles.column,
-          showColumnDividers && !isRightmost && styles && styles.column_divider,
+          showColumnDividers && !isRightmost && styles && styles.columnDivider,
         )}
       />
     );

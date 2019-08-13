@@ -5,12 +5,14 @@ import Spacing from '../Spacing';
 import Text from '../Text';
 import { WithStylesProps } from '../../composers/withStyles';
 import { caseColumnLabel, getHeight } from './helpers';
+import shouldRenderTableHeader from './helpers/shouldRenderTableHeader';
 import {
   ColumnLabelCase,
   ColumnMetadata,
   ColumnToLabel,
   HeightOptions,
   RowHeightOptions,
+  HeaderButton,
 } from './types';
 
 // Theses anys are required to match the param types from react-virtualized
@@ -38,6 +40,9 @@ export default function ColumnLabels({
   selectable,
   columnMetadata,
   columnLabelCase,
+  editable,
+  extraHeaderButtons,
+  tableHeaderLabel,
 }: {
   cx: WithStylesProps['cx'];
   styles: WithStylesProps['styles'];
@@ -49,6 +54,9 @@ export default function ColumnLabels({
   selectable?: boolean;
   columnMetadata?: ColumnMetadata;
   columnLabelCase?: ColumnLabelCase;
+  editable: boolean;
+  extraHeaderButtons: HeaderButton[];
+  tableHeaderLabel: string;
 }) {
   return ({ className, columns, style }: ColumnLabelsProps) => {
     const leftmostIdx = Number(expandable) + Number(selectable);
@@ -80,7 +88,7 @@ export default function ColumnLabels({
 
       const newHeader = (
         <Spacing left={indent ? 2 : 0}>
-          <div style={heightStyle} className={cx(showDivider && styles && styles.column_divider)}>
+          <div style={heightStyle} className={cx(showDivider && styles && styles.columnDivider)}>
             <div
               style={
                 columnMetadata && columnMetadata[key] && columnMetadata[key].rightAlign
@@ -112,7 +120,13 @@ export default function ColumnLabels({
       <div
         role="row"
         style={style}
-        className={cx(className, styles && styles.column_header, styles && styles.row)}
+        className={cx(
+          className,
+          shouldRenderTableHeader(editable!, extraHeaderButtons!, tableHeaderLabel!) &&
+            styles.columnHeader_topBorder,
+          styles.columnHeader,
+          styles.row,
+        )}
       >
         {newColumns}
       </div>

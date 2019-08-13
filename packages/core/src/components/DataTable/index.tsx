@@ -4,6 +4,7 @@ import memoize from 'lodash/memoize';
 import sortData from './helpers/sortData';
 import expandData from './helpers/expandData';
 import { indexData } from './helpers/indexData';
+import shouldRenderTableHeader from './helpers/shouldRenderTableHeader';
 import {
   ChangeLog,
   DataTableProps,
@@ -134,12 +135,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     const { columnHeaderHeight, rowHeight } = this.props;
 
     return getHeight(rowHeight, columnHeaderHeight);
-  };
-
-  private shouldRenderTableHeader = () => {
-    const { editable, extraHeaderButtons, tableHeaderLabel } = this.props;
-
-    return editable || extraHeaderButtons!.length > 0 || !!tableHeaderLabel;
   };
 
   private sort = ({
@@ -353,12 +348,15 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     const {
       cx,
       data,
+      editable,
       expandable,
+      extraHeaderButtons,
       filterData,
       propagateRef,
       rowHeight,
       selectable,
       styles,
+      tableHeaderLabel,
     } = this.props;
 
     const { expandedRows, sortBy, sortDirection, editMode, selectedRows } = this.state;
@@ -371,12 +369,12 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     return (
       <div>
-        {this.shouldRenderTableHeader() && (
+        {shouldRenderTableHeader(editable!, extraHeaderButtons!, tableHeaderLabel!) && (
           <AutoSizer disableHeight>
             {({ width }: { width: number }) => this.renderTableHeader(width)}
           </AutoSizer>
         )}
-        <div className={cx(styles.table_container)}>
+        <div className={cx(styles.tableContainer)}>
           <AutoSizer disableHeight>
             {({ width }: { width: number }) => (
               <Table
@@ -411,19 +409,21 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
 export default withStyles(
   theme => ({
-    table_container: {
+    tableContainer: {
       overflowX: 'auto',
     },
-    column_header: {
-      borderTop: '1px solid',
+    columnHeader: {
       borderBottom: '1px solid',
       borderColor: theme!.color.core.neutral[1],
       cursor: 'pointer',
     },
+    columnHeader_topBorder: {
+      borderTop: '1px solid',
+    },
     column: {
       height: 'inherit',
     },
-    column_divider: {
+    columnDivider: {
       borderRight: '1px solid',
       borderColor: theme!.color.core.neutral[1],
     },
@@ -432,10 +432,10 @@ export default withStyles(
       display: 'flex',
       alignItems: 'center',
     },
-    row_inner: {
+    rowInner: {
       width: '100%',
     },
-    expand_caret: {
+    expandCaret: {
       cursor: 'pointer',
     },
   }),
