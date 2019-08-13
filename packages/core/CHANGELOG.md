@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.17.0 - 2019-08-13
+
+#### 🚀 Updates
+
+- **[DataTable]** Add data type support to row renderers. Render rows/cells as JSX. (#154) ([8c881cd](https://github.com/airbnb/lunar/tree/master/packages/core/commit/8c881cd)), closes [#154](https://github.com/airbnb/lunar/tree/master/packages/core/issues/154)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.16.0 - 2019-08-12
 
 #### 🚀 Updates
