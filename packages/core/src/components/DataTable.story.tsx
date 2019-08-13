@@ -130,18 +130,10 @@ export class SearchDemo extends React.Component {
     const { data, search } = this.state;
     // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
     const filteredData = this.filter(search);
-<<<<<<< HEAD
-    const button = (
-      <Button inline onClick={this.handleNewData}>
-        New data
-      </Button>
-    );
-=======
     const button = <Button onClick={this.handleNewData}>New Data</Button>;
->>>>>>> enable autoheight
 
     return (
-      <div style={{ height: 1000 }}>
+      <div style={{ height: 600 }}>
         <Spacing bottom={2}>
           <Row before={button}>
             <Input hideLabel label="Edit row" name="" value={search} onChange={this.handleChange} />
