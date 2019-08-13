@@ -10,7 +10,12 @@ import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
 import Button from '../../src/components/Button';
 import Checkbox from '../../src/components/CheckBox';
-import { EditCallback, ParentRow, VirtualRow } from '../../src/components/DataTable/types';
+import {
+  EditCallback,
+  SelectCallback,
+  ParentRow,
+  VirtualRow,
+} from '../../src/components/DataTable/types';
 import { STATUS_OPTIONS } from '../../src/components/DataTable/constants';
 
 type EditableTextRendererProps = {
@@ -191,6 +196,8 @@ const headerButtonClick = jest.fn();
 
 const editCallback = jest.fn();
 
+const selectCallback = jest.fn();
+
 const editCallbacks = {
   name: editCallback,
 };
@@ -277,6 +284,14 @@ describe('<DataTable /> rows can be selected', () => {
     table.update();
 
     expect(getCheckbox(table, ROW).props().checked).toBe(true);
+  });
+
+  it('should trigger callbacks on selection', () => {
+    const table = mountWithStyles(<DataTable {...simpleProps} selectCallback={selectCallback} />);
+
+    selectRow(table, ROW);
+
+    expect(selectCallback.mock.calls.length).toBe(1);
   });
 
   it('should be expandable', () => {
