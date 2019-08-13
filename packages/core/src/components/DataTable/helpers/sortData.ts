@@ -8,18 +8,19 @@ function sort(a: any, b: any, ascending: boolean = false) {
     return 0;
   }
   // null sort after anything else.
+  /* eslint-disable no-eq-null */
   if (a == null) {
     return 1;
   }
 
+  /* eslint-disable no-eq-null */
   if (b == null) {
     return -1;
   }
-  // If ascending, small sorts first.
   if (ascending) {
     return a < b ? -1 : 1;
   }
-  // If descending, largest sorts first
+
   return a < b ? 1 : -1;
 }
 
