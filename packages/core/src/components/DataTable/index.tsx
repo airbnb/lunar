@@ -144,6 +144,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     if (showAllRows) {
       return expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight();
     }
+
     return height!;
   };
 
