@@ -286,7 +286,7 @@ describe('<DataTable /> rows can be selected', () => {
 
     selectRow(table, ROW);
 
-    expect(selectCallback.mock.calls.length).toBe(1);
+    expect(selectCallback.mock.calls).toHaveLength(1);
   });
 
   it('should be expandable', () => {
