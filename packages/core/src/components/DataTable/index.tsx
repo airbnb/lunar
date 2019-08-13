@@ -113,6 +113,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   componentDidUpdate(prevProps: DataTableProps) {
     if (this.props.data !== prevProps.data) {
+      this.keys = getKeys(this.props.keys!, this.props.data!);
+
       this.setState({
         selectedRows: {},
         expandedRows: new Set(),
