@@ -415,7 +415,6 @@ export default withStyles(
       overflowX: 'auto',
     },
     column_header: {
-      borderTop: '1px solid',
       borderBottom: '1px solid',
       borderColor: theme!.color.core.neutral[1],
       cursor: 'pointer',

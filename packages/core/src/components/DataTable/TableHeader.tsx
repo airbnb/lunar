@@ -142,5 +142,6 @@ export default withStyles(({ unit, color }) => ({
     justifyContent: 'space-between',
     paddingLeft: 2 * unit,
     paddingRight: 2 * unit,
+    borderBottom: `1px solid ${color.core.neutral[1]}`,
   },
 }))(TableHeader);
