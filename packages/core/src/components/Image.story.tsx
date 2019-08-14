@@ -24,7 +24,7 @@ storiesOf('Core/Image', module)
   .add('background contain', () => (
     <Image
       background
-      backgroundSize="contain"
+      contain
       src="https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg"
       alt="Something descriptive"
       height={450}
@@ -32,7 +32,7 @@ storiesOf('Core/Image', module)
   ))
   .add('no background, still contain', () => (
     <Image
-      fit
+      contain
       src="https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg"
       alt="Something descriptive"
       height={450}
@@ -40,26 +40,8 @@ storiesOf('Core/Image', module)
   ))
   .add('with rounded corners', () => (
     <Image
-      fit
-      hasBorderRadius
-      src="https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg"
-      alt="Something descriptive"
-      height={450}
-    />
-  ))
-  .add('with rounded top corners', () => (
-    <Image
-      fit
-      hasBorderTopRadius
-      src="https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg"
-      alt="Something descriptive"
-      height={450}
-    />
-  ))
-  .add('with rounded bottom corners', () => (
-    <Image
-      fit
-      hasBorderBottomRadius
+      contain
+      borderRadius={6}
       src="https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg"
       alt="Something descriptive"
       height={450}
