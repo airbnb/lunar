@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.18.0 - 2019-08-14
+
+#### 🚀 Updates
+
+- **[SortCarets]** Clean up styles. Add tests and story. (#160) ([6c95300](https://github.com/airbnb/lunar/tree/master/packages/core/commit/6c95300)), closes [#160](https://github.com/airbnb/lunar/tree/master/packages/core/issues/160)
+
+#### 🐞 Fixes
+
+- **[ImageViewer]** Fix icon path from src to lib. (#162) ([6e567bd](https://github.com/airbnb/lunar/tree/master/packages/core/commit/6e567bd)), closes [#162](https://github.com/airbnb/lunar/tree/master/packages/core/issues/162)
+
+#### 🎨 Styles
+
+- Override native agent font styles. (#161) ([5b4d892](https://github.com/airbnb/lunar/tree/master/packages/core/commit/5b4d892)), closes [#161](https://github.com/airbnb/lunar/tree/master/packages/core/issues/161)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.17.0 - 2019-08-13
 
 #### 🚀 Updates
