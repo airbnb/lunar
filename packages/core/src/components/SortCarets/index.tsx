@@ -7,34 +7,28 @@ export type Props = {
   /** Whether or not to display the bottom caret. */
   down?: boolean;
   /** If enabled, the caret is more pronounced. */
-  enableDown: boolean;
+  enableDown?: boolean;
   /** If enabled, the caret is more pronounced. */
-  enableUp: boolean;
+  enableUp?: boolean;
   /** Whether or not to display the top caret. */
   up?: boolean;
 };
 
-/** Carets to indicate sorting on DataTable. */
+/** Carets to indicate sorting on a table. */
 export class SortCarets extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
-    down: true,
+    down: false,
     enableDown: false,
     enableUp: false,
-    up: true,
+    up: false,
   };
 
   renderCaretUp() {
-    const { cx, down, up, enableUp, styles } = this.props;
+    const { cx, up, enableUp, styles } = this.props;
 
     return (
       up && (
-        <span
-          className={cx(
-            down && styles.caret_up,
-            styles.caret,
-            enableUp ? styles.caret_active : styles.caret_inactive,
-          )}
-        >
+        <span className={cx(styles.caret, enableUp ? styles.caret_active : styles.caret_inactive)}>
           <IconCaretUp decorative size="2em" />
         </span>
       )
@@ -42,16 +36,12 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
   }
 
   renderCaretDown() {
-    const { cx, down, up, enableDown, styles } = this.props;
+    const { cx, down, enableDown, styles } = this.props;
 
     return (
       down && (
         <span
-          className={cx(
-            up && styles.caret_down,
-            styles.caret,
-            enableDown ? styles.caret_active : styles.caret_inactive,
-          )}
+          className={cx(styles.caret, enableDown ? styles.caret_active : styles.caret_inactive)}
         >
           <IconCaretDown decorative size="2em" />
         </span>
@@ -71,24 +61,30 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles((theme: WithStylesProps['theme']) => ({
+export default withStyles(({ color }) => ({
   caret_container: {
-    marginRight: 0.5 * theme!.unit,
+    display: 'inline-block',
   },
+
   caret: {
+    display: 'block',
     position: 'relative',
-    right: 0.5 * theme!.unit,
+    width: '1em',
+    height: '1em',
+    overflow: 'hidden',
+
+    '@selectors': {
+      '> svg': {
+        margin: '-.5em',
+      },
+    },
   },
+
   caret_inactive: {
-    color: theme!.color.core.neutral[3],
+    color: color.core.neutral[3],
   },
+
   caret_active: {
-    color: theme!.color.core.neutral[4],
-  },
-  caret_up: {
-    bottom: -11,
-  },
-  caret_down: {
-    bottom: 11,
+    color: color.core.neutral[4],
   },
 }))(SortCarets);
