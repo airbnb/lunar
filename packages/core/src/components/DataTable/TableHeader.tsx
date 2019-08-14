@@ -116,8 +116,6 @@ export function TableHeader({
       </ButtonGroup>
     ) : null;
 
-  console.log(height);
-
   const dimensionStyles: React.CSSProperties = {
     width,
     height,
