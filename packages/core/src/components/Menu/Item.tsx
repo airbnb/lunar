@@ -34,6 +34,8 @@ export type Props = {
   tabIndex?: number;
   /** Tip to display after the item. */
   tip?: React.ReactNode;
+  /** Adds a data-tracking-name attribute */
+  trackingName?: string;
 };
 
 /** An interactive item within a menu. */
@@ -92,6 +94,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
       submenu,
       tabIndex,
       tip,
+      trackingName,
     } = this.props;
     const { showSubmenu } = this.state;
     const after = submenu ? (
@@ -119,6 +122,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
           beforeIcon={icon}
           disabled={disabled}
           href={href}
+          data-tracking-name={trackingName}
           id={id}
           onClick={onClick}
           openInNewWindow={openInNewWindow}
