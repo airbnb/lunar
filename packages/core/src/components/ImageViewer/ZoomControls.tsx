@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import IconAdd from '@airbnb/lunar-icons/src/interface/IconAdd';
-import IconRemove from '@airbnb/lunar-icons/src/interface/IconRemove';
+import IconAdd from '@airbnb/lunar-icons/lib/interface/IconAdd';
+import IconRemove from '@airbnb/lunar-icons/lib/interface/IconRemove';
 import Button from '../Button';
 import IconButton from '../IconButton';
 import ButtonGroup from '../ButtonGroup';

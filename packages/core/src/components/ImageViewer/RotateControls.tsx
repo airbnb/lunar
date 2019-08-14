@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import IconRotateLeft from '@airbnb/lunar-icons/src/interface/IconRotateLeft';
-import IconRotateRight from '@airbnb/lunar-icons/src/interface/IconRotateRight';
+import IconRotateLeft from '@airbnb/lunar-icons/lib/interface/IconRotateLeft';
+import IconRotateRight from '@airbnb/lunar-icons/lib/interface/IconRotateRight';
 import IconButton from '../IconButton';
 import ButtonGroup from '../ButtonGroup';
 import T from '../Translate';
