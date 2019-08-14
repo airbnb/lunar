@@ -30,7 +30,7 @@ storiesOf('Core/Image', module)
       height={450}
     />
   ))
-  .add('no background, still contain', () => (
+  .add('no background, still contain, default borderRadius', () => (
     <Image
       contain
       src="https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg"
@@ -38,10 +38,19 @@ storiesOf('Core/Image', module)
       height={450}
     />
   ))
-  .add('with rounded corners', () => (
+  .add('with custom borderRadius', () => (
     <Image
       contain
-      borderRadius={6}
+      borderRadius={25}
+      src="https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg"
+      alt="Something descriptive"
+      height={450}
+    />
+  ))
+  .add('with zero borderRadius', () => (
+    <Image
+      contain
+      borderRadius={0}
       src="https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg"
       alt="Something descriptive"
       height={450}
@@ -49,8 +58,8 @@ storiesOf('Core/Image', module)
   ))
   .add('background, top', () => (
     <Image
+      alignTop
       background
-      backgroundPositionY="top"
       src="https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg"
       alt="Something descriptive"
       height={450}
@@ -58,8 +67,8 @@ storiesOf('Core/Image', module)
   ))
   .add('background, bottom', () => (
     <Image
+      alignBottom
       background
-      backgroundPositionY="bottom"
       src="https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg"
       alt="Something descriptive"
       height={450}
