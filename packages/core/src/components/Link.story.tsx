@@ -9,7 +9,7 @@ storiesOf('Core/Link', module)
     inspectComponents: [Link],
   })
   .add('A standard link.', () => <Link href="https://github.com/airbnb/lunar">Link</Link>)
-  .add('A button link.', () => <Link onClick={action('onClick')}>Link</Link>)
+  .add('A button link.', () => <Link onClick={action('onClick')}>Button</Link>)
   .add('With different sizing: small, regular (default), and large.', () => (
     <>
       <Link href="https://github.com/airbnb/lunar" small>
@@ -53,7 +53,13 @@ storiesOf('Core/Link', module)
     </Link>
   ))
   .add('Bold text.', () => (
-    <Link href="https://github.com/airbnb/lunar" bold>
-      Link
-    </Link>
+    <>
+      <Link href="https://github.com/airbnb/lunar" bold>
+        Link
+      </Link>
+      <br />
+      <Link onClick={action('onClick')} bold>
+        Button
+      </Link>
+    </>
   ));

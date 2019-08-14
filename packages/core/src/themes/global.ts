@@ -31,13 +31,17 @@ export default (fontFaces: { [fontFamily: string]: FontFace[] }) => ({ color, fo
         '-webkit-font-smoothing': 'antialiased',
         '-moz-osx-font-smoothing': 'grayscale',
       },
-      'button, input, textarea': {
+      'a, button, input, select, textarea': {
         color: 'inherit',
         backgroundColor: 'inherit',
+        font: 'inherit',
       },
       img: {
         display: 'inline-block',
         verticalAlign: 'middle',
+      },
+      'tracking-boundary': {
+        display: 'block',
       },
     },
     '@font-face': fontFaces,
