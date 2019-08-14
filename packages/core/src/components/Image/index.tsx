@@ -69,12 +69,12 @@ const styleSheet: StyleSheet = ({ ui }) => ({
 });
 
 export type Props = {
-  /** Alternate text if image cannot be displayed */
-  alt: string;
   /** Sets background to bottom of image */
   alignBottom?: boolean;
   /** Sets background to top of image */
   alignTop?: boolean;
+  /** Alternate text if image cannot be displayed */
+  alt: string;
   /** Specified when image is not directly a part of the content */
   background?: boolean;
   /** Override default theme border radius */
@@ -99,10 +99,10 @@ export type Props = {
 
 /** Component that displays an image */
 function Image({
-  alt,
-  background = false,
   alignBottom = false,
   alignTop = false,
+  alt,
+  background = false,
   borderRadius,
   contain = false,
   cover = false,
