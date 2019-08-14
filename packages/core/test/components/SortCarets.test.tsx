@@ -34,13 +34,13 @@ describe('<SortCarets />', () => {
         .find('span')
         .at(1)
         .prop('className'),
-    ).toBe('caret caret_active');
+    ).toMatch('caret_active');
     expect(
       wrapper
         .find('span')
         .at(2)
         .prop('className'),
-    ).toBe('caret caret_inactive');
+    ).toMatch('caret_inactive');
   });
 
   it('sets active on down caret', () => {
@@ -51,12 +51,12 @@ describe('<SortCarets />', () => {
         .find('span')
         .at(1)
         .prop('className'),
-    ).toBe('caret caret_inactive');
+    ).toMatch('caret_inactive');
     expect(
       wrapper
         .find('span')
         .at(2)
         .prop('className'),
-    ).toBe('caret caret_active');
+    ).toMatch('caret_active');
   });
 });
