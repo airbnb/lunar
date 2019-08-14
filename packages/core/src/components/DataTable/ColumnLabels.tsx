@@ -94,11 +94,16 @@ export default function ColumnLabels({
                   {label}
                 </Text>
               </span>
+
               {label && sortable && (
-                <SortCarets
-                  enableUp={sort === SortDirection.ASC}
-                  enableDown={sort === SortDirection.DESC}
-                />
+                <Spacing inline left={0.5}>
+                  <SortCarets
+                    down
+                    up
+                    enableDown={sort === SortDirection.DESC}
+                    enableUp={sort === SortDirection.ASC}
+                  />
+                </Spacing>
               )}
             </div>
           </div>

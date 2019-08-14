@@ -7,63 +7,63 @@ export type Props = {
   /** Whether or not to display the bottom caret. */
   down?: boolean;
   /** If enabled, the caret is more pronounced. */
-  enableDown: boolean;
+  enableDown?: boolean;
   /** If enabled, the caret is more pronounced. */
-  enableUp: boolean;
+  enableUp?: boolean;
   /** Whether or not to display the top caret. */
   up?: boolean;
 };
 
-/** Carets to indicate sorting on DataTable. */
+/** Carets to indicate sorting on a table. */
 export class SortCarets extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
-    down: true,
+    down: false,
     enableDown: false,
     enableUp: false,
-    up: true,
+    up: false,
   };
 
   renderCaretUp() {
-    const { cx, down, up, enableUp, styles } = this.props;
+    const { cx, up, enableUp, styles } = this.props;
 
     return (
       up && (
         <span
           className={cx(
-            down && styles.caret_up,
             styles.caret,
+            styles.caret_up,
             enableUp ? styles.caret_active : styles.caret_inactive,
           )}
         >
-          <IconCaretUp decorative size="2em" />
+          <IconCaretUp decorative size="1.6em" />
         </span>
       )
     );
   }
 
   renderCaretDown() {
-    const { cx, down, up, enableDown, styles } = this.props;
+    const { cx, down, enableDown, styles } = this.props;
 
     return (
       down && (
         <span
           className={cx(
-            up && styles.caret_down,
             styles.caret,
+            styles.caret_down,
             enableDown ? styles.caret_active : styles.caret_inactive,
           )}
         >
-          <IconCaretDown decorative size="2em" />
+          <IconCaretDown decorative size="1.6em" />
         </span>
       )
     );
   }
 
   render() {
-    const { cx, styles } = this.props;
+    const { cx, styles, up, down } = this.props;
 
     return (
-      <span className={cx(styles.caret_container)}>
+      <span className={cx(styles.container, up && down && styles.container_full)}>
         {this.renderCaretUp()}
         {this.renderCaretDown()}
       </span>
@@ -71,24 +71,50 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles((theme: WithStylesProps['theme']) => ({
-  caret_container: {
-    marginRight: 0.5 * theme!.unit,
+export default withStyles(({ color, unit }) => ({
+  container: {
+    display: 'inline-block',
+    verticalAlign: 'middle',
+    marginTop: -1,
+    width: unit * 1.5,
+    height: unit,
   },
+
+  container_full: {
+    height: unit * 2,
+  },
+
   caret: {
+    display: 'block',
     position: 'relative',
-    right: 0.5 * theme!.unit,
+    width: unit * 1.5,
+    height: unit,
+    overflow: 'hidden',
   },
-  caret_inactive: {
-    color: theme!.color.core.neutral[3],
-  },
-  caret_active: {
-    color: theme!.color.core.neutral[4],
-  },
+
   caret_up: {
-    bottom: -11,
+    '@selectors': {
+      '> svg': {
+        margin: '-.4em',
+        marginTop: '-.5em',
+      },
+    },
   },
+
   caret_down: {
-    bottom: 11,
+    '@selectors': {
+      '> svg': {
+        margin: '-.4em',
+        marginTop: '-.6em',
+      },
+    },
+  },
+
+  caret_inactive: {
+    color: color.core.neutral[3],
+  },
+
+  caret_active: {
+    color: color.core.neutral[4],
   },
 }))(SortCarets);
