@@ -43,8 +43,8 @@ export default function sortData<T extends GenericRow>(
   sortDirection?: SortDirectionType,
 ): T[] {
   if (selectedRowsFirst) {
-    let selectedList: T[] = [];
-    let unselectedList: T[] = [];
+    const selectedList: T[] = [];
+    const unselectedList: T[] = [];
 
     list.forEach((row: T) => {
       if (Object.prototype.hasOwnProperty.call(selectedRows, row.metadata.originalIndex)) {
