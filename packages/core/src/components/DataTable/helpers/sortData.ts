@@ -43,15 +43,18 @@ export default function sortData<T extends GenericRow>(
   sortDirection?: SortDirectionType,
 ): T[] {
   if (selectedRowsFirst) {
-    const selectedList = list.filter((row: T) =>
-      Object.prototype.hasOwnProperty.call(selectedRows, row.metadata.originalIndex),
-    );
+    let selectedList: T[] = [];
+    let unselectedList: T[] = [];
+
+    list.forEach((row: T) => {
+      if (Object.prototype.hasOwnProperty.call(selectedRows, row.metadata.originalIndex)) {
+        selectedList.push(row);
+      } else {
+        unselectedList.push(row);
+      }
+    });
+
     const sortedSelectedList = sortList(selectedList, keys, sortBy, sortDirection);
-
-    const unselectedList = list.filter(
-      (row: T) => !Object.prototype.hasOwnProperty.call(selectedRows, row.metadata.originalIndex),
-    );
-
     const sortedUnselectedList = sortList(unselectedList, keys, sortBy, sortDirection);
 
     return sortedSelectedList.concat(sortedUnselectedList);
