@@ -137,11 +137,11 @@ export class SearchDemo extends React.Component {
         </Spacing>
         <div style={{ flexGrow: 1 }}>
           <DataTable
+            autoHeight
+            expandable
             tableHeaderLabel="My Great Table"
             data={data}
             filterData={filteredData}
-            autoHeight
-            expandable
             columnHeaderHeight="micro"
           />
         </div>
@@ -191,47 +191,47 @@ storiesOf('Core/DataTable', module)
     // This shows the height dynamically change with expanded rows
     <div style={{ background: '#835EFE', padding: 8 }}>
       <DataTable
-        tableHeaderLabel="All rows"
-        data={getData()}
-        keys={['name', 'jobTitle']}
         expandable
         selectable
         showAllRows
         showRowDividers
+        tableHeaderLabel="All rows"
+        data={getData()}
+        keys={['name', 'jobTitle']}
       />
     </div>
   ))
   .add('An editable table.', () => (
     <DataTable
-      tableHeaderLabel="My Great Table"
-      data={getData()}
-      keys={['name', 'jobTitle']}
       selectable
       expandable
       editable
+      tableHeaderLabel="My Great Table"
+      data={getData()}
+      keys={['name', 'jobTitle']}
       defaultEditCallback={defaultEditCallback}
       renderers={renderers}
     />
   ))
   .add('An table with zebra coloring, a colspan, inferred keys and renderers.', () => (
     <DataTable
-      tableHeaderLabel="My Great Table"
-      data={getData()}
       selectable
       expandable
       editable
       zebra
+      tableHeaderLabel="My Great Table"
+      data={getData()}
       renderers={renderers}
     />
   ))
   .add('A table with different row, column header and table header heights.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"
-      data={getData()}
       selectable
       expandable
       editable
       zebra
+      data={getData()}
       renderers={renderers}
       rowHeight="small"
       columnHeaderHeight="micro"
@@ -251,17 +251,18 @@ storiesOf('Core/DataTable', module)
   ))
   .add('A complex table with all features enabled.', () => (
     <DataTable
-      data={getData()}
-      columnToLabel={columnToLabel}
-      columnMetadata={columnMetadata}
-      renderers={renderers}
-      extraHeaderButtons={headerButtons}
       selectable
       expandable
       showColumnDividers
       showRowDividers
       zebra
       selectOnRowClick
+      editable
+      data={getData()}
+      columnToLabel={columnToLabel}
+      columnMetadata={columnMetadata}
+      renderers={renderers}
+      extraHeaderButtons={headerButtons}
       height={300}
       width={1000}
       tableHeaderLabel="My Great Table"
@@ -271,6 +272,5 @@ storiesOf('Core/DataTable', module)
       defaultEditCallback={defaultEditCallback}
       editCallbacks={editCallbacks}
       keys={['name', 'cats', 'tenureDays']}
-      editable
     />
   ));
