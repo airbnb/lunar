@@ -28,7 +28,13 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
 
     return (
       up && (
-        <span className={cx(styles.caret, enableUp ? styles.caret_active : styles.caret_inactive)}>
+        <span
+          className={cx(
+            styles.caret,
+            styles.caret_up,
+            enableUp ? styles.caret_active : styles.caret_inactive,
+          )}
+        >
           <IconCaretUp decorative size="1.6em" />
         </span>
       )
@@ -41,7 +47,11 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
     return (
       down && (
         <span
-          className={cx(styles.caret, enableDown ? styles.caret_active : styles.caret_inactive)}
+          className={cx(
+            styles.caret,
+            styles.caret_down,
+            enableDown ? styles.caret_active : styles.caret_inactive,
+          )}
         >
           <IconCaretDown decorative size="1.6em" />
         </span>
@@ -50,10 +60,10 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
   }
 
   render() {
-    const { cx, styles } = this.props;
+    const { cx, styles, up, down } = this.props;
 
     return (
-      <span className={cx(styles.caret_container)}>
+      <span className={cx(styles.container, up && down && styles.container_full)}>
         {this.renderCaretUp()}
         {this.renderCaretDown()}
       </span>
@@ -61,23 +71,41 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(({ color }) => ({
-  caret_container: {
+export default withStyles(({ color, unit }) => ({
+  container: {
     display: 'inline-block',
-    width: '.8em',
-    height: '1.2em',
+    verticalAlign: 'middle',
+    marginTop: -1,
+    width: unit * 1.5,
+    height: unit,
+  },
+
+  container_full: {
+    height: unit * 2,
   },
 
   caret: {
     display: 'block',
     position: 'relative',
-    width: '.8em',
-    height: '.6em',
+    width: unit * 1.5,
+    height: unit,
     overflow: 'hidden',
+  },
 
+  caret_up: {
     '@selectors': {
       '> svg': {
         margin: '-.4em',
+        marginTop: '-.5em',
+      },
+    },
+  },
+
+  caret_down: {
+    '@selectors': {
+      '> svg': {
+        margin: '-.4em',
+        marginTop: '-.6em',
       },
     },
   },
