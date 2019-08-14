@@ -29,7 +29,7 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
     return (
       up && (
         <span className={cx(styles.caret, enableUp ? styles.caret_active : styles.caret_inactive)}>
-          <IconCaretUp decorative size="2em" />
+          <IconCaretUp decorative size="1.6em" />
         </span>
       )
     );
@@ -43,7 +43,7 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
         <span
           className={cx(styles.caret, enableDown ? styles.caret_active : styles.caret_inactive)}
         >
-          <IconCaretDown decorative size="2em" />
+          <IconCaretDown decorative size="1.6em" />
         </span>
       )
     );
@@ -64,18 +64,20 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
 export default withStyles(({ color }) => ({
   caret_container: {
     display: 'inline-block',
+    width: '.8em',
+    height: '1.2em',
   },
 
   caret: {
     display: 'block',
     position: 'relative',
-    width: '1em',
-    height: '1em',
+    width: '.8em',
+    height: '.6em',
     overflow: 'hidden',
 
     '@selectors': {
       '> svg': {
-        margin: '-.5em',
+        margin: '-.4em',
       },
     },
   },
