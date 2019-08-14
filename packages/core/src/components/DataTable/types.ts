@@ -39,7 +39,7 @@ export type HeaderButton = {
 export type DefaultDataTableProps = keyof DataTableProps;
 
 export interface DataTableProps {
-  /** If enabled height will be infered from parent. */
+  /** If enabled height will be inferred from parent. */
   autoHeight?: boolean;
   /** Height of the column header. */
   columnHeaderHeight?: HeightOptions;

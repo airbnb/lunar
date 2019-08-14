@@ -401,34 +401,34 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     return (
       <>
-        {this.shouldRenderTableHeader() && (
-          <AutoSizer>{({ width }: { width: number }) => this.renderTableHeader(width)}</AutoSizer>
-        )}
         <div className={cx(styles.table_container)}>
           <AutoSizer disableHeight={!autoHeight}>
             {({ height, width }: { height: number; width: number }) => (
-              <Table
-                height={autoHeight ? height - headerHeight : this.getTableHeight(expandedData)}
-                width={this.props.width || width}
-                headerHeight={this.getColumnHeaderHeight()}
-                ref={propagateRef}
-                rowCount={expandedData.length}
-                rowHeight={HEIGHT_TO_PX[rowHeight!]}
-                rowGetter={this.rowGetter(expandedData)}
-                rowStyle={this.getRowStyle(expandedData)}
-                sort={this.sort}
-                sortBy={sortBy}
-                sortDirection={sortDirection}
-                headerRowRenderer={ColumnLabels(this.props)}
-                onRowClick={this.handleRowClick}
-              >
-                {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
+              <>
+                {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
+                <Table
+                  height={autoHeight ? height : this.getTableHeight(expandedData)}
+                  width={this.props.width || width}
+                  headerHeight={this.getColumnHeaderHeight()}
+                  ref={propagateRef}
+                  rowCount={expandedData.length}
+                  rowHeight={HEIGHT_TO_PX[rowHeight!]}
+                  rowGetter={this.rowGetter(expandedData)}
+                  rowStyle={this.getRowStyle(expandedData)}
+                  sort={this.sort}
+                  sortBy={sortBy}
+                  sortDirection={sortDirection}
+                  headerRowRenderer={ColumnLabels(this.props)}
+                  onRowClick={this.handleRowClick}
+                >
+                  {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
 
-                {selectable &&
-                  renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
+                  {selectable &&
+                    renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
 
-                {renderDataColumns(this.keys, editMode, this.onEdit, this.props)}
-              </Table>
+                  {renderDataColumns(this.keys, editMode, this.onEdit, this.props)}
+                </Table>
+              </>
             )}
           </AutoSizer>
         </div>

@@ -98,10 +98,6 @@ const selectCallback = (rowData: ExpandedRow, selectedRows: SelectedRows) => () 
   action('this callback has access to the newly selected row and all selected row');
 };
 
-export interface SearchDemoProps {
-  data: IndexedParentRow[];
-}
-
 export class SearchDemo extends React.Component {
   state = {
     search: '',
@@ -133,19 +129,22 @@ export class SearchDemo extends React.Component {
     const button = <Button onClick={this.handleNewData}>New Data</Button>;
 
     return (
-      <div style={{ height: 600 }}>
+      <div style={{ height: 500, display: 'flex', flexDirection: 'column' }}>
         <Spacing bottom={2}>
           <Row before={button}>
             <Input hideLabel label="Edit row" name="" value={search} onChange={this.handleChange} />
           </Row>
         </Spacing>
-        <DataTable
-          data={data}
-          filterData={filteredData}
-          autoHeight
-          expandable
-          columnHeaderHeight="micro"
-        />
+        <div style={{ flexGrow: 1 }}>
+          <DataTable
+            tableHeaderLabel="My Great Table"
+            data={data}
+            filterData={filteredData}
+            autoHeight
+            expandable
+            columnHeaderHeight="micro"
+          />
+        </div>
       </div>
     );
   }
@@ -214,7 +213,7 @@ storiesOf('Core/DataTable', module)
       renderers={renderers}
     />
   ))
-  .add('A table with zebra coloring, a colspan, infered keys and renderers.', () => (
+  .add('An table with zebra coloring, a colspan, inferred keys and renderers.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"
       data={getData()}
