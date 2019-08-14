@@ -89,12 +89,12 @@ export type Props = {
   height?: number | string;
   /** Source for image */
   src: string;
+  /** Srcset for img tag */
+  srcSet?: string;
   /** Img title */
   title?: string;
   /** Width of content */
   width?: number | string;
-  /** Srcset for img tag */
-  srcSet?: string;
 };
 
 /** Component that displays an image */
