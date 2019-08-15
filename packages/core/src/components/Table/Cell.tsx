@@ -5,7 +5,7 @@ export type Props = {
   /** Display in the center horizontally. */
   centerAlign?: boolean;
   /** Content to render. */
-  children: NonNullable<React.ReactNode>;
+  children?: React.ReactNode;
   /** Span multiple columns. */
   colSpan?: number;
   /** Display horizontally at the end. */
