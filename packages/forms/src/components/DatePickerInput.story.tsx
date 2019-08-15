@@ -16,6 +16,14 @@ storiesOf('Forms/DatePickerInput', module)
         return Promise.resolve();
       }}
     >
-      <DatePickerInput name="field" label="Label" validator={() => {}} />
+      <DatePickerInput
+        name="field"
+        label="Label"
+        validator={() => {}}
+        datePickerProps={{
+          onMonthChange: action('onMonthChange'),
+        }}
+        onChange={action('onChange')}
+      />
     </Form>
   ));
