@@ -133,7 +133,7 @@ export function TableHeader({
   );
 }
 
-export default withStyles(({ unit, color }) => ({
+export default withStyles(({ unit, color, ui }) => ({
   tableHeader_inner: {
     background: color.accent.bg,
     display: 'flex',
@@ -142,6 +142,6 @@ export default withStyles(({ unit, color }) => ({
     justifyContent: 'space-between',
     paddingLeft: 2 * unit,
     paddingRight: 2 * unit,
-    borderBottom: `1px solid ${color.core.neutral[1]}`,
+    borderBottom: ui.border,
   },
 }))(TableHeader);

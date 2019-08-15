@@ -410,19 +410,19 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 }
 
 export default withStyles(
-  ({ color }) => ({
+  ({ color, ui }) => ({
     table_container: {
       overflowX: 'auto',
     },
     column_header: {
-      borderBottom: `1px solid ${color.core.neutral[1]}`,
+      borderBottom: ui.border,
       cursor: 'pointer',
     },
     column: {
       height: 'inherit',
     },
     column_divider: {
-      borderRight: `1px solid ${color.core.neutral[1]}`,
+      borderRight: ui.border,
     },
     row: {
       height: '100%',
