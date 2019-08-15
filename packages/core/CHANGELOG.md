@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.18.1 - 2019-08-15
+
+#### 🐞 Fixes
+
+- **[Cell]** Make children optional. (#164) ([55b2a94](https://github.com/airbnb/lunar/tree/master/packages/core/commit/55b2a94)), closes [#164](https://github.com/airbnb/lunar/tree/master/packages/core/issues/164)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.18.0 - 2019-08-14
 
 #### 🚀 Updates
