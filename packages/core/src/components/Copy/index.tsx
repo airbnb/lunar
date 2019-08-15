@@ -8,7 +8,7 @@ import Link from '../Link';
 export type Props = {
   /** Custom element to trigger the click. */
   children?: React.ReactElement;
-  /** Pass an HTML element attribute id to the Link */
+  /** Pass an HTML element attribute id to the Link. */
   id?: string;
   /** String of text to be copied to the clipboard. */
   text: string;
@@ -16,7 +16,7 @@ export type Props = {
   onCopy?: (text: string, copied: boolean) => void;
   /** Custom prompt message to display in the tooltip. */
   prompt?: React.ReactNode;
-  /** Adds a data-tracking-name attribute */
+  /** Adds a data-tracking-name attribute. */
   trackingName?: string;
   /** Add an underline to the element. */
   underlined?: boolean;

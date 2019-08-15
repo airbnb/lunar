@@ -19,7 +19,7 @@ export type Props = {
   compact?: boolean;
   /** Disabled / gray. */
   disabled?: boolean;
-  /** Pass an HTML element attribute id */
+  /** Pass an HTML element attribute id. */
   id?: string;
   /** Callback fired when the element is clicked. */
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -27,7 +27,7 @@ export type Props = {
   onIconClick?: (event: React.MouseEvent<ButtonOrLinkTypes>) => void;
   /** Profile photo to render to the left of the primary content. */
   profileImageSrc?: string;
-  /** Adds a data-tracking-name attribute */
+  /** Adds a data-tracking-name attribute. */
   trackingName?: string;
 };
 

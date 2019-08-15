@@ -14,7 +14,7 @@ export type Props = {
   highlighted?: boolean;
   /** @ignore */
   horizontal?: boolean;
-  /** Pass an HTML element attribute id */
+  /** Pass an HTML element attribute id. */
   id?: string;
   /** Content to within the Breadcrumb. */
   label: string;
@@ -24,7 +24,7 @@ export type Props = {
   onClick?: () => void;
   /** Mark the breadcrumb as selected. */
   selected?: boolean;
-  /** Adds a data-tracking-name attribute */
+  /** Adds a data-tracking-name attribute. */
   trackingName?: string;
 };
 

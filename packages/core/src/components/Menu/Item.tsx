@@ -18,7 +18,7 @@ export type Props = {
   href?: string;
   /** An icon to display before the item. */
   icon?: React.ReactNode;
-  /** Pass an HTML element attribute id */
+  /** Pass an HTML element attribute id. */
   id?: string;
   /** Click handler. */
   onClick?: () => void;
@@ -34,7 +34,7 @@ export type Props = {
   tabIndex?: number;
   /** Tip to display after the item. */
   tip?: React.ReactNode;
-  /** Adds a data-tracking-name attribute */
+  /** Adds a data-tracking-name attribute. */
   trackingName?: string;
 };
 
