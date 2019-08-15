@@ -93,7 +93,6 @@ export default class PrivatePickerInput extends DayPickerInput {
         onBlur={this.handleOverlayBlur}
       >
         <DatePicker
-          ref={this.loadPickerRef}
           {...(dayPickerProps as any)}
           month={this.state.month}
           selectedDays={selectedDay}
@@ -101,6 +100,7 @@ export default class PrivatePickerInput extends DayPickerInput {
           onMonthChange={this.handleMonthChange}
           onResetClick={this.handleResetClick}
           onTodayButtonClick={this.handleTodayButtonClick}
+          pickerRef={this.loadPickerRef}
         />
       </Dropdown>
     );
