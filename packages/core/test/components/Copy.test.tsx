@@ -23,11 +23,11 @@ describe('<Copy />', () => {
     expect(wrapper.find(Link)).toHaveLength(1);
   });
 
-  it('can add an id and data-tracking-name to the Link', () => {
+  it('can add an id and trackingName to the Link', () => {
     const wrapper = shallow(<Copy text="foo" id="tracking-id" trackingName="tracking-name" />);
 
     expect(wrapper.find(Link).prop('id')).toBe('tracking-id');
-    expect(wrapper.find(Link).prop('data-tracking-name')).toBe('tracking-name');
+    expect(wrapper.find(Link).prop('trackingName')).toBe('tracking-name');
   });
 
   it('can customize the child', () => {

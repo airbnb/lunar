@@ -47,7 +47,7 @@ describe('<Breadcrumb/>', () => {
     );
 
     expect(wrapper.find(ButtonOrLink).prop('id')).toBe('tracking-breadcrump');
-    expect(wrapper.find(ButtonOrLink).prop('data-tracking-name')).toBe('tracking-name');
+    expect(wrapper.find(ButtonOrLink).prop('trackingName')).toBe('tracking-name');
   });
 
   it('renders an icon', () => {

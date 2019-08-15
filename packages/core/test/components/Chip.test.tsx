@@ -27,7 +27,7 @@ describe('<Chip />', () => {
       </Chip>,
     );
     expect(wrapper.prop('id')).toBe('tracking-chip');
-    expect(wrapper.prop('data-tracking-name')).toBe('tracking-chip-name');
+    expect(wrapper.prop('trackingName')).toBe('tracking-chip-name');
   });
 
   it('renders an after icon if provided', () => {

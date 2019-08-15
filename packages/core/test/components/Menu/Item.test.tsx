@@ -54,7 +54,7 @@ describe('<MenuItem />', () => {
 
     expect(wrapper.find(ButtonOrLink).prop('disabled')).toBe(true);
     expect(wrapper.find(ButtonOrLink).prop('id')).toBe('tracking-id');
-    expect(wrapper.find(ButtonOrLink).prop('data-tracking-name')).toBe('tracking-name');
+    expect(wrapper.find(ButtonOrLink).prop('trackingName')).toBe('tracking-name');
   });
 
   it('passes icon to underlying button', () => {
