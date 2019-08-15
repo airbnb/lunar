@@ -410,7 +410,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 }
 
 export default withStyles(
-  ({ color, ui }) => ({
+  ({ ui }) => ({
     table_container: {
       overflowX: 'auto',
     },
