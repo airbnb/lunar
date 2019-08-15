@@ -16,7 +16,7 @@ export type Props = {
   onCopy?: (text: string, copied: boolean) => void;
   /** Custom prompt message to display in the tooltip. */
   prompt?: React.ReactNode;
-  /** Adds a data-tracking-name attribute. */
+  /** A tracking name to identify this component. */
   trackingName?: string;
   /** Add an underline to the element. */
   underlined?: boolean;
@@ -59,7 +59,7 @@ export default class Copy extends React.Component<Props, State> {
     const { prompt, children, id, trackingName, underlined } = this.props;
     const element = children || (
       // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <Link data-tracking-name={trackingName} id={id}>
+      <Link trackingName={trackingName} id={id}>
         <IconCopy decorative />
       </Link>
     );

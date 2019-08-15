@@ -24,7 +24,7 @@ export type Props = {
   onClick?: () => void;
   /** Mark the breadcrumb as selected. */
   selected?: boolean;
-  /** Adds a data-tracking-name attribute. */
+  /** A tracking name to identify this component. */
   trackingName?: string;
 };
 
@@ -88,7 +88,7 @@ class Breadcrumb extends React.Component<Props & WithStylesProps> {
           }
           disabled={disabled}
           href={href}
-          data-tracking-name={trackingName}
+          trackingName={trackingName}
           id={id}
           onClick={this.handleClick}
         >

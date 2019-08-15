@@ -28,6 +28,8 @@ export type Props = {
   openInNewWindow?: boolean;
   /** Rel attribute override for if the component has an href */
   rel?: string;
+  /** Add a data-tracking-name attribute. */
+  trackingName?: string;
   /** When a button, the type of button. */
   type?: 'button' | 'submit' | 'reset';
 };
@@ -73,6 +75,7 @@ export default class ButtonOrLink extends React.Component<Props> {
       loading,
       openInNewWindow,
       rel,
+      trackingName,
       type,
       ...restProps
     } = this.props;
@@ -98,7 +101,13 @@ export default class ButtonOrLink extends React.Component<Props> {
 
     return (
       // @ts-ignore [ts] JSX element type 'Component' does not have any construct or call signatures. [2604]
-      <Tag {...restProps} {...props} onClick={this.handleClick} onMouseUp={this.handleMouseUp}>
+      <Tag
+        {...restProps}
+        {...props}
+        data-tracking-name={trackingName}
+        onClick={this.handleClick}
+        onMouseUp={this.handleMouseUp}
+      >
         {!loading && beforeIcon && (
           <IconAffix before flex={flexAlign}>
             {beforeIcon}

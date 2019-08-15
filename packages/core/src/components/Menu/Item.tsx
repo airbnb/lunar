@@ -34,7 +34,7 @@ export type Props = {
   tabIndex?: number;
   /** Tip to display after the item. */
   tip?: React.ReactNode;
-  /** Adds a data-tracking-name attribute. */
+  /** A tracking name to identify this component. */
   trackingName?: string;
 };
 
@@ -122,7 +122,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
           beforeIcon={icon}
           disabled={disabled}
           href={href}
-          data-tracking-name={trackingName}
+          trackingName={trackingName}
           id={id}
           onClick={onClick}
           openInNewWindow={openInNewWindow}
