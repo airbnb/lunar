@@ -117,6 +117,7 @@ export default class DatePickerInput extends React.Component<Props, State> {
     return (
       <FormField {...fieldProps} id={id}>
         <PrivatePickerInput
+          keepFocus
           clickUnselectsDay={clearOnDayClick}
           dayPickerProps={pickerProps}
           dropdownProps={dropdownProps}
@@ -128,7 +129,6 @@ export default class DatePickerInput extends React.Component<Props, State> {
           format={format}
           formatDate={this.formatDate}
           hideOnDayClick={hideOnDayClick}
-          keepFocus
           onDayChange={this.handleDayChange}
           onDayPickerHide={onHidePicker}
           parseDate={this.parseDate}

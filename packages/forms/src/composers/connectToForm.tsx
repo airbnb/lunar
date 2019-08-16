@@ -152,7 +152,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         return error instanceof Error ? error.message : String(error);
       }
 
-      formatValue(defaultValue: DefaultValue) {
+      formatValue(defaultValue: DefaultValue<T>) {
         const cast = this.props.parse as Parse<T> | undefined;
         let value = defaultValue;
 
@@ -162,6 +162,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         }
 
         if (multiple && !Array.isArray(value)) {
+          // @ts-ignore Some consumers use arrays, so handle it custom here
           value = [value] as string[];
         }
 
@@ -170,6 +171,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
           return value.map(cast);
         }
 
+        // @ts-ignore Typing this is very difficult
         return cast(value);
       }
 

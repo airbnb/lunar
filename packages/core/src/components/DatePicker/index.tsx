@@ -27,6 +27,8 @@ export type Props = {
   numberOfMonths?: DayPickerProps['numberOfMonths'];
   /** When displaying multiple months, navigation will be paginated displaying the `numberOfMonths` at time instead of one. */
   pagedNavigation?: DayPickerProps['pagedNavigation'];
+  /** @ignore */
+  pickerRef?: string | ((instance: DayPicker | null) => void) | React.RefObject<DayPicker> | null;
   /** Day(s) that should appear as selected. Set a `selected` modifier. See [matching days](http://react-day-picker.js.org/docs/matching-days) for a reference of the accepted value types. */
   selectedDays?: DayPickerProps['selectedDays'];
   /** Show the reset button. */
@@ -81,6 +83,7 @@ export class DatePicker extends React.Component<Props & WithStylesProps> {
       onResetClick,
       onTodayButtonClick,
       pagedNavigation,
+      pickerRef,
       selectedDays,
       showResetButton,
       styles,
@@ -90,6 +93,7 @@ export class DatePicker extends React.Component<Props & WithStylesProps> {
 
     return (
       <DayPicker
+        ref={pickerRef}
         fixedWeeks={Boolean(numberOfMonths && numberOfMonths > 1)}
         classNames={getClassNames('calendar', styles, this.props)}
         disabledDays={disabledDays}

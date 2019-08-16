@@ -13,16 +13,13 @@ describe('<FileInput />', () => {
   });
 
   it('connects to the form', () => {
-    const wrapper = mount(
-      <FileInput label="Label" name="foo" defaultValue="bar" validator={() => {}} />,
-      {
-        wrappingComponent: WrappingFormComponent,
-        wrappingComponentProps: { context },
-      },
-    );
+    const wrapper = mount(<FileInput label="Label" name="foo" validator={() => {}} />, {
+      wrappingComponent: WrappingFormComponent,
+      wrappingComponentProps: { context },
+    });
 
     expect(context.register).toHaveBeenCalledWith(
-      expect.objectContaining({ name: 'foo', defaultValue: 'bar' }),
+      expect.objectContaining({ name: 'foo' }),
       expect.anything(),
     );
 

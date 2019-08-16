@@ -19,7 +19,7 @@ describe('<Multicomplete />', () => {
         label="Label"
         accessibilityLabel="Label"
         name="foo"
-        defaultValue="bar"
+        defaultValue={['bar']}
         onLoadItems={() => Promise.resolve([])}
         validator={() => {}}
       />,
@@ -30,7 +30,7 @@ describe('<Multicomplete />', () => {
     );
 
     expect(context.register).toHaveBeenCalledWith(
-      expect.objectContaining({ name: 'foo', defaultValue: 'bar', parse: toString }),
+      expect.objectContaining({ name: 'foo', defaultValue: ['bar'], parse: toString }),
       expect.anything(),
     );
 

@@ -31,16 +31,14 @@ export type Errors = {
   [key: string]: string;
 };
 
-export type DefaultValue = boolean | string | string[] | null | undefined;
+export type DefaultValue<T> = T | null | undefined;
 
-export type ParseValue = boolean | string | null | undefined;
+export type UnboxValue<T> = T extends (infer U)[] ? U : T;
 
-export type UnboxParsedValue<T> = T extends (infer U)[] ? U : T;
-
-export type Parse<T> = (value: ParseValue) => UnboxParsedValue<T>;
+export type Parse<T> = (value: UnboxValue<T> | null | undefined) => UnboxValue<T>;
 
 export type Field<T> = {
-  defaultValue?: DefaultValue;
+  defaultValue?: DefaultValue<T>;
   isEqual?: IsEqual;
   name: string;
   parse?: Parse<T>;

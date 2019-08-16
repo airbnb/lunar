@@ -78,41 +78,81 @@ storiesOf('Core/DatePickerInput', module)
     inspectComponents: [DatePickerInput, DatePicker],
   })
   .add('A single month.', () => (
-    <DatePickerInput name="date" label="Label" onChange={action('onChange')} />
+    <DatePickerInput
+      name="date"
+      label="Label"
+      datePickerProps={{
+        onMonthChange: action('onMonthChange'),
+      }}
+      onChange={action('onChange')}
+    />
   ))
   .add('A custom format.', () => (
-    <DatePickerInput name="date" label="Label" onChange={action('onChange')} format="yyyy-MM-dd" />
+    <DatePickerInput
+      name="date"
+      label="Label"
+      format="yyyy-MM-dd"
+      datePickerProps={{
+        onMonthChange: action('onMonthChange'),
+      }}
+      onChange={action('onChange')}
+    />
   ))
   .add('With no label.', () => (
-    <DatePickerInput name="date" label="Label" onChange={action('onChange')} hideLabel />
+    <DatePickerInput
+      hideLabel
+      name="date"
+      label="Label"
+      datePickerProps={{
+        onMonthChange: action('onMonthChange'),
+      }}
+      onChange={action('onChange')}
+    />
   ))
   .add('With inline label.', () => (
-    <DatePickerInput name="date" label="Label" onChange={action('onChange')} inline />
+    <DatePickerInput
+      inline
+      name="date"
+      label="Label"
+      datePickerProps={{
+        onMonthChange: action('onMonthChange'),
+      }}
+      onChange={action('onChange')}
+    />
   ))
   .add('With dropdown right aligned.', () => (
     <DatePickerInput
       name="date"
       label="Label"
-      onChange={action('onChange')}
       dropdownProps={{ right: 0 }}
+      datePickerProps={{
+        onMonthChange: action('onMonthChange'),
+      }}
+      onChange={action('onChange')}
     />
   ))
   .add('With an error message in an invalid state.', () => (
     <DatePickerInput
+      invalid
       name="input-error"
       label="Label"
-      onChange={action('onChange')}
       errorMessage="This field is required."
-      invalid
+      datePickerProps={{
+        onMonthChange: action('onMonthChange'),
+      }}
+      onChange={action('onChange')}
     />
   ))
   .add('With a label description in a disabled state.', () => (
     <DatePickerInput
+      disabled
       name="input-disabled"
       label="Label"
       labelDescription="This is a small label description."
+      datePickerProps={{
+        onMonthChange: action('onMonthChange'),
+      }}
       onChange={action('onChange')}
-      disabled
     />
   ))
   .add('Range with two inputs.', () => <DatePickerInputDemo />);

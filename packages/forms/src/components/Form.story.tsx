@@ -38,10 +38,10 @@ function isEmail(value: string) {
   }
 }
 
-function isDate(value: string) {
+function isDate(value: string | Date) {
   isRequired(value);
 
-  if (!value.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+  if (typeof value === 'string' && !value.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
     throw new Error('Invalid date.');
   }
 }
@@ -186,7 +186,7 @@ storiesOf('Forms/Form', module)
         name="date"
         onChange={action('onChange')}
         validator={isDate}
-        defaultValue={fixedDate.toISOString()}
+        defaultValue={fixedDate}
         unregisterOnUnmount
       />
 
