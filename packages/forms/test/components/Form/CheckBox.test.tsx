@@ -14,16 +14,13 @@ describe('<CheckBox />', () => {
   });
 
   it('connects to the form', () => {
-    const wrapper = mount(
-      <CheckBox label="Label" name="foo" defaultValue="1" validator={() => {}} />,
-      {
-        wrappingComponent: WrappingFormComponent,
-        wrappingComponentProps: { context },
-      },
-    );
+    const wrapper = mount(<CheckBox label="Label" name="foo" defaultValue validator={() => {}} />, {
+      wrappingComponent: WrappingFormComponent,
+      wrappingComponentProps: { context },
+    });
 
     expect(context.register).toHaveBeenCalledWith(
-      expect.objectContaining({ name: 'foo', defaultValue: '1', parse: toBool }),
+      expect.objectContaining({ name: 'foo', defaultValue: true, parse: toBool }),
       expect.anything(),
     );
 
@@ -31,13 +28,10 @@ describe('<CheckBox />', () => {
   });
 
   it('sets checked prop', () => {
-    const wrapper = mount(
-      <CheckBox label="Label" name="foo" defaultValue="1" validator={() => {}} />,
-      {
-        wrappingComponent: WrappingFormComponent,
-        wrappingComponentProps: { context },
-      },
-    );
+    const wrapper = mount(<CheckBox label="Label" name="foo" defaultValue validator={() => {}} />, {
+      wrappingComponent: WrappingFormComponent,
+      wrappingComponentProps: { context },
+    });
 
     expect(wrapper.find(BaseCheckBox).prop('checked')).toBe(true);
   });

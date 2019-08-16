@@ -15,7 +15,7 @@ describe('<CheckBoxController />', () => {
 
   it('connects to the form', () => {
     const wrapper = mount(
-      <CheckBoxController label="Label" name="foo" defaultValue="bar" validator={() => {}}>
+      <CheckBoxController label="Label" name="foo" defaultValue={['bar']} validator={() => {}}>
         {CB => (
           <div>
             <CB value="foo" label="Foo" />
@@ -31,7 +31,7 @@ describe('<CheckBoxController />', () => {
     );
 
     expect(context.register).toHaveBeenCalledWith(
-      expect.objectContaining({ name: 'foo', defaultValue: 'bar', parse: toString }),
+      expect.objectContaining({ name: 'foo', defaultValue: ['bar'], parse: toString }),
       expect.anything(),
     );
 
@@ -40,7 +40,7 @@ describe('<CheckBoxController />', () => {
 
   it('passes value as an array', () => {
     const wrapper = mount(
-      <CheckBoxController label="Label" name="foo" defaultValue="bar" validator={() => {}}>
+      <CheckBoxController label="Label" name="foo" defaultValue={['bar']} validator={() => {}}>
         {CB => (
           <div>
             <CB value="foo" label="Foo" />
