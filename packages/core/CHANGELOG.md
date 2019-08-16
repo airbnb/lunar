@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.19.0 - 2019-08-16
+
+#### 🚀 Updates
+
+- Refine form types and fix date related logic. (#165) ([10b1c18](https://github.com/airbnb/lunar/tree/master/packages/core/commit/10b1c18)), closes [#165](https://github.com/airbnb/lunar/tree/master/packages/core/issues/165)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.18.1 - 2019-08-15
 
 #### 🐞 Fixes
