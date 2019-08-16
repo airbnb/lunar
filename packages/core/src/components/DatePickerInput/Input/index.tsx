@@ -87,6 +87,7 @@ export default class PrivatePickerInput extends DayPickerInput {
     return (
       <Dropdown
         top="100%"
+        tabIndex={0}
         zIndex={100}
         {...dropdownProps}
         onFocus={this.handleOverlayFocus}

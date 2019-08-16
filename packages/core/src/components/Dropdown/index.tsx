@@ -22,12 +22,16 @@ export type Props = {
   left?: number | string;
   /** Callback fired when dropdown is unfocused. */
   onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void;
+  /** Callback fired when a click occurs inside the dropdown when `visible`. */
+  onClickInside?: (event: MouseEvent) => void;
   /** Callback fired when a click occurs outside the dropdown when `visible`. */
   onClickOutside?: (event: MouseEvent) => void;
   /** Callback fired when dropdown is focused. */
   onFocus?: (event: React.FocusEvent<HTMLDivElement>) => void;
   /** Right offset. */
   right?: number | string;
+  /** Tab index for focus management. */
+  tabIndex?: number;
   /** Top offset. */
   top?: number | string;
   /** When the dropdown is visible, adds event listening for clicks outside of the dropdown. */
@@ -54,28 +58,32 @@ class Dropdown extends React.PureComponent<Props & WithStylesProps> {
 
   componentDidMount() {
     if (this.props.visible) {
-      document.addEventListener('click', this.handleClickOutside, true);
+      document.addEventListener('click', this.handleClick, true);
     }
   }
 
   componentDidUpdate(prevProps: Props) {
     if (prevProps.visible !== this.props.visible) {
       if (this.props.visible) {
-        document.addEventListener('click', this.handleClickOutside, true);
+        document.addEventListener('click', this.handleClick, true);
       } else {
-        document.removeEventListener('click', this.handleClickOutside, true);
+        document.removeEventListener('click', this.handleClick, true);
       }
     }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside, true);
+    document.removeEventListener('click', this.handleClick, true);
   }
 
-  private handleClickOutside = (event: MouseEvent) => {
+  private handleClick = (event: MouseEvent) => {
     const { current } = this.ref;
 
     if (current && current.contains(event.target as any)) {
+      if (this.props.onClickInside) {
+        this.props.onClickInside(event);
+      }
+
       return;
     }
 
@@ -91,6 +99,7 @@ class Dropdown extends React.PureComponent<Props & WithStylesProps> {
       fixed,
       onBlur,
       onFocus,
+      tabIndex,
       zIndex,
       visible,
       onClickOutside,
@@ -113,7 +122,13 @@ class Dropdown extends React.PureComponent<Props & WithStylesProps> {
     }
 
     return (
-      <div ref={this.ref} className={cx(style as any)} onBlur={onBlur} onFocus={onFocus}>
+      <div
+        ref={this.ref}
+        className={cx(style as any)}
+        tabIndex={tabIndex}
+        onBlur={onBlur}
+        onFocus={onFocus}
+      >
         {children}
       </div>
     );
