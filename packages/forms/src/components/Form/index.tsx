@@ -85,8 +85,6 @@ export default class Form<Data extends object = any> extends React.Component<
 
   form: FormApi<Data>;
 
-  formContext?: Context;
-
   registeredFields: { [name: string]: Unsubscribe } = {};
 
   constructor(props: Props<Data>) {
@@ -422,18 +420,16 @@ export default class Form<Data extends object = any> extends React.Component<
     // @ts-ignore Bug: https://github.com/Microsoft/TypeScript/issues/26970
     const content = typeof children === 'function' ? children(this.state!) : children;
 
-    if (!this.formContext) {
-      this.formContext = {
-        change: this.changeValue,
-        getFields: this.getFields,
-        getState: this.getState,
-        register: this.registerField,
-        submit: this.submitForm,
-      };
-    }
-
     return (
-      <FormContext.Provider value={this.formContext}>
+      <FormContext.Provider
+        value={{
+          change: this.changeValue,
+          getFields: this.getFields,
+          getState: this.getState,
+          register: this.registerField,
+          submit: this.submitForm,
+        }}
+      >
         <form
           id={id}
           method={method}
