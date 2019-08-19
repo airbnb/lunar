@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.4.1 - 2019-08-19
+
+#### 🐞 Fixes
+
+- **[Form]** Fix `FormContext` not propagating. (#166) ([1a17882](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/1a17882)), closes [#166](https://github.com/airbnb/lunar/tree/master/packages/forms/issues/166)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ## 2.4.0 - 2019-08-16
 
 #### 🚀 Updates
