@@ -18,7 +18,7 @@ export type Props = {
   href?: string;
   /** An icon to display before the item. */
   icon?: React.ReactNode;
-  /** Pass an HTML element attribute id */
+  /** Pass an HTML element attribute id. */
   id?: string;
   /** Click handler. */
   onClick?: () => void;
@@ -34,6 +34,8 @@ export type Props = {
   tabIndex?: number;
   /** Tip to display after the item. */
   tip?: React.ReactNode;
+  /** A tracking name to identify this component. */
+  trackingName?: string;
 };
 
 /** An interactive item within a menu. */
@@ -92,6 +94,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
       submenu,
       tabIndex,
       tip,
+      trackingName,
     } = this.props;
     const { showSubmenu } = this.state;
     const after = submenu ? (
@@ -119,6 +122,7 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
           beforeIcon={icon}
           disabled={disabled}
           href={href}
+          trackingName={trackingName}
           id={id}
           onClick={onClick}
           openInNewWindow={openInNewWindow}

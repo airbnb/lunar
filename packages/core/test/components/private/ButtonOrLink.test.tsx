@@ -27,6 +27,12 @@ describe('<ButtonOrLink />', () => {
     expect(wrapper.prop('disabled')).toBe(true);
   });
 
+  it('adds data-tracking-name when trackingName is passed', () => {
+    const wrapper = shallow(<ButtonOrLink trackingName="tracking-button">Child</ButtonOrLink>);
+
+    expect(wrapper.prop('data-tracking-name')).toBe('tracking-button');
+  });
+
   it('disables the button when loading', () => {
     const wrapper = shallow(<ButtonOrLink loading>Child</ButtonOrLink>);
 

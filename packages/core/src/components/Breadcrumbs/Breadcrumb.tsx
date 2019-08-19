@@ -14,7 +14,7 @@ export type Props = {
   highlighted?: boolean;
   /** @ignore */
   horizontal?: boolean;
-  /** Pass an HTML element attribute id */
+  /** Pass an HTML element attribute id. */
   id?: string;
   /** Content to within the Breadcrumb. */
   label: string;
@@ -24,6 +24,8 @@ export type Props = {
   onClick?: () => void;
   /** Mark the breadcrumb as selected. */
   selected?: boolean;
+  /** A tracking name to identify this component. */
+  trackingName?: string;
 };
 
 /** A single breadcrumb button. Usually rendered amongst a collection of breadcrumbs. */
@@ -56,6 +58,7 @@ class Breadcrumb extends React.Component<Props & WithStylesProps> {
       onClick,
       selected,
       styles,
+      trackingName,
     } = this.props;
     const clickable = !disabled && (!!href || !!onClick);
     const aria = selected ? { 'aria-current': 'page' } : {};
@@ -85,6 +88,7 @@ class Breadcrumb extends React.Component<Props & WithStylesProps> {
           }
           disabled={disabled}
           href={href}
+          trackingName={trackingName}
           id={id}
           onClick={this.handleClick}
         >

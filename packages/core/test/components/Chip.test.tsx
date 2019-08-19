@@ -19,14 +19,36 @@ describe('<Chip />', () => {
     expect(wrapper.prop('onClick')).toBe(onClick);
   });
 
-  it('passed an id for tracking', () => {
+  it('add data-tracking-name when clickable', () => {
     const onClick = () => {};
     const wrapper = shallowWithStyles(
-      <Chip onClick={onClick} id="tracking-chip">
+      <Chip onClick={onClick} id="tracking-chip" trackingName="tracking-chip-name">
         Potato
       </Chip>,
     );
     expect(wrapper.prop('id')).toBe('tracking-chip');
+    expect(wrapper.find('button').prop('id')).toBe('tracking-chip');
+    expect(wrapper.find('button').prop('data-tracking-name')).toBe('tracking-chip-name');
+  });
+
+  it('doesnt add data-tracking-name when not clickable', () => {
+    const wrapper = shallowWithStyles(
+      <Chip id="tracking-chip" trackingName="tracking-chip-name">
+        Potato
+      </Chip>,
+    );
+    expect(
+      wrapper
+        .find('div')
+        .first()
+        .prop('id'),
+    ).toBe('tracking-chip');
+    expect(
+      wrapper
+        .find('div')
+        .find({ id: 'tracking-chip' })
+        .prop('data-tracking-name'),
+    ).toBeUndefined();
   });
 
   it('renders an after icon if provided', () => {

@@ -38,10 +38,16 @@ describe('<Breadcrumb/>', () => {
 
   it('renders a passed id for tracking', () => {
     const wrapper = shallowWithStyles(
-      <Breadcrumb id="tracking-breadcrump" onClick={() => {}} label="Breadcrumb" />,
+      <Breadcrumb
+        id="tracking-breadcrump"
+        trackingName="tracking-name"
+        onClick={() => {}}
+        label="Breadcrumb"
+      />,
     );
 
     expect(wrapper.find(ButtonOrLink).prop('id')).toBe('tracking-breadcrump');
+    expect(wrapper.find(ButtonOrLink).prop('trackingName')).toBe('tracking-name');
   });
 
   it('renders an icon', () => {

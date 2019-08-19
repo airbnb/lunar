@@ -8,7 +8,7 @@ import Link from '../Link';
 export type Props = {
   /** Custom element to trigger the click. */
   children?: React.ReactElement;
-  /** Pass an HTML element attribute id to the Link */
+  /** Pass an HTML element attribute id to the Link. */
   id?: string;
   /** String of text to be copied to the clipboard. */
   text: string;
@@ -16,6 +16,8 @@ export type Props = {
   onCopy?: (text: string, copied: boolean) => void;
   /** Custom prompt message to display in the tooltip. */
   prompt?: React.ReactNode;
+  /** A tracking name to identify this component. */
+  trackingName?: string;
   /** Add an underline to the element. */
   underlined?: boolean;
 };
@@ -54,10 +56,10 @@ export default class Copy extends React.Component<Props, State> {
   };
 
   render() {
-    const { prompt, children, id, underlined } = this.props;
+    const { prompt, children, id, trackingName, underlined } = this.props;
     const element = children || (
       // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <Link id={id}>
+      <Link trackingName={trackingName} id={id}>
         <IconCopy decorative />
       </Link>
     );

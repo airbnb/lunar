@@ -19,7 +19,7 @@ export type Props = {
   compact?: boolean;
   /** Disabled / gray. */
   disabled?: boolean;
-  /** Pass an HTML element attribute id */
+  /** Pass an HTML element attribute id. */
   id?: string;
   /** Callback fired when the element is clicked. */
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -27,6 +27,8 @@ export type Props = {
   onIconClick?: (event: React.MouseEvent<ButtonOrLinkTypes>) => void;
   /** Profile photo to render to the left of the primary content. */
   profileImageSrc?: string;
+  /** A tracking name to identify this component when element is clicked. */
+  trackingName?: string;
 };
 
 /** Compact component that represents a snippet of information, such as a filter. */
@@ -58,6 +60,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
       onIconClick,
       profileImageSrc,
       styles,
+      trackingName,
     } = this.props;
 
     const Component = onClick ? 'button' : 'div';
@@ -67,6 +70,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
             disabled,
             onClick,
             type: 'button',
+            ...(trackingName && { 'data-tracking-name': trackingName }),
           }
         : {};
 

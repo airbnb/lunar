@@ -40,12 +40,21 @@ describe('<MenuItem />', () => {
 
   it('passes props to underlying button', () => {
     const wrapper = shallowWithStyles(
-      <Item disabled openInNewWindow href="/" tabIndex={0} id="tracking-item">
+      <Item
+        disabled
+        openInNewWindow
+        href="/"
+        tabIndex={0}
+        id="tracking-id"
+        trackingName="tracking-name"
+      >
         Foo
       </Item>,
     );
 
     expect(wrapper.find(ButtonOrLink).prop('disabled')).toBe(true);
+    expect(wrapper.find(ButtonOrLink).prop('id')).toBe('tracking-id');
+    expect(wrapper.find(ButtonOrLink).prop('trackingName')).toBe('tracking-name');
   });
 
   it('passes icon to underlying button', () => {
