@@ -1,0 +1,40 @@
+name: Test
+on: [push, pull_request]
+jobs:
+  # Jest
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [8, 10, 12]
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: yarn install, build, and test
+        run: |
+          yarn install --frozen-lockfile --ignore-engines
+          yarn run build
+          yarn run jest:coverage
+
+  # ESLint
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [8, 10, 12]
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: yarn install, build, and test
+        run: |
+          yarn install --frozen-lockfile --ignore-engines
+          yarn run build
+          yarn run lint:errors
