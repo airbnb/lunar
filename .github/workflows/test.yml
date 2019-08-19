@@ -1,8 +1,8 @@
 name: Test
 on: push
 jobs:
-  build:
-    name: Build
+  test:
+    name: Jest + ESLint
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -13,54 +13,26 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Run yarn install and build
+      - name: Run Jest and ESLint
         run: |
           yarn install --frozen-lockfile --ignore-engines
           yarn run build
+          yarn run jest:coverage
+          yarn run lint:errors
 
-  # Jest
-  test:
-    name: Jest
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [8, 10, 12]
-      fail-fast: true
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: yarn run jest:coverage
-
-  # ESLint
-  lint:
-    name: ESLint
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [8, 10, 12]
-      fail-fast: true
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: yarn run lint:errors
-
-  # Happo
   happo:
     name: Happo
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: yarn run happo:ci
+      - name: Run Happo CI
+        run: |
+          yarn install --frozen-lockfile --ignore-engines
+          yarn run build
+          yarn run happo:ci
         env:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
@@ -68,17 +40,18 @@ jobs:
           CURRENT_SHA: ${{ github.event.after }}
           CHANGE_URL: ${{ github.head_commit.url }}
 
-  # DangerJS
   danger:
     name: Danger
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: yarn danger ci --use-github-checks
+      - name: Run Danger CI
+        run: |
+          yarn install --frozen-lockfile --ignore-engines
+          yarn danger ci --use-github-checks
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
           DANGER_JS_APP_INSTALL_ID: ${{ secrets.DANGER_JS_APP_INSTALL_ID }}

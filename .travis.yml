@@ -13,43 +13,43 @@ matrix:
   fast_finish: true
 jobs:
   include:
-    # - stage: Tests
-    #   name: Danger
-    #   script: yarn danger ci --use-github-checks
-    #   node_js: '12'
-    #   if: type = pull_request
-    # - name: Happo
-    #   script: yarn run happo:ci
-    #   node_js: '12'
-    #   if: type = pull_request OR branch = master
-    # - name: Test @ 8
-    #   script: yarn run jest:coverage -w 4
-    #   node_js: '8'
-    # - name: Test @ 10
-    #   script: yarn run jest:coverage -w 4
-    #   node_js: '10'
-    # - name: Test @ 12
-    #   script: yarn run jest:coverage -w 4
-    #   node_js: '12'
-    # - name: Lint @ 8
-    #   script: yarn run lint:errors
-    #   node_js: '8'
-    # - name: Lint @ 10
-    #   script: yarn run lint:errors
-    #   node_js: '10'
-    # - name: Lint @ 12
-    #   script: yarn run lint:errors
-    #   node_js: '12'
-    # - stage: Publish Storybook
-    #   script: skip
-    #   node_js: '12'
-    #   if: branch = master
-    #   deploy:
-    #     provider: script
-    #     script: yarn run deploy:ghp
-    #     skip_cleanup: true
-    #     on:
-    #       branch: master
+    - stage: Tests
+      name: Danger
+      script: yarn danger ci --use-github-checks
+      node_js: '12'
+      if: type = pull_request
+    - name: Happo
+      script: yarn run happo:ci:travis
+      node_js: '12'
+      if: type = pull_request OR branch = master
+    - name: Test @ 8
+      script: yarn run jest:coverage -w 4
+      node_js: '8'
+    - name: Test @ 10
+      script: yarn run jest:coverage -w 4
+      node_js: '10'
+    - name: Test @ 12
+      script: yarn run jest:coverage -w 4
+      node_js: '12'
+    - name: Lint @ 8
+      script: yarn run lint:errors
+      node_js: '8'
+    - name: Lint @ 10
+      script: yarn run lint:errors
+      node_js: '10'
+    - name: Lint @ 12
+      script: yarn run lint:errors
+      node_js: '12'
+    - stage: Publish Storybook
+      script: skip
+      node_js: '12'
+      if: branch = master
+      deploy:
+        provider: script
+        script: yarn run deploy:ghp
+        skip_cleanup: true
+        on:
+          branch: master
     - stage: Release Packages
       script: skip
       node_js: '12'
@@ -63,7 +63,7 @@ jobs:
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
       deploy:
         provider: script
-        script: yarn run deploy:release
+        script: yarn run deploy:npm
         skip_cleanup: true
         on:
           branch: master
