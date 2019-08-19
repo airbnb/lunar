@@ -1,0 +1,20 @@
+name: Publish
+on:
+  push:
+    branches:
+      - master
+jobs:
+  storybook:
+    name: Storybook
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Run yarn install, build, storybook:build, and deploy:ghp
+        run: |
+          yarn install --frozen-lockfile --ignore-engines
+          yarn run build
+          yarn run storybook:build
+          yarn run deploy:ghp

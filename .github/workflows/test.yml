@@ -3,7 +3,7 @@ on: [push, pull_request]
 jobs:
   # Jest
   test:
-    name: Test
+    name: Jest
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: yarn install, build, and test
+      - name: Run yarn install, build, and jest:coverage
         run: |
           yarn install --frozen-lockfile --ignore-engines
           yarn run build
@@ -22,7 +22,7 @@ jobs:
 
   # ESLint
   lint:
-    name: Lint
+    name: ESLint
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -33,8 +33,45 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: yarn install, build, and test
+      - name: Run yarn install, build, and lint:errors
         run: |
           yarn install --frozen-lockfile --ignore-engines
           yarn run build
           yarn run lint:errors
+
+  # Happo
+  happo:
+    name: Happo
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12]
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Run yarn install, build, and happo:ci
+        run: |
+          yarn install --frozen-lockfile --ignore-engines
+          yarn run build
+          yarn run happo:ci
+
+  # DangerJS
+  danger:
+    name: Danger
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12]
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Run yarn install and danger ci
+        run: |
+          yarn install --frozen-lockfile --ignore-engines
+          yarn danger ci --use-github-checks
