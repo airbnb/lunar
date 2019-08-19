@@ -13,12 +13,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Run Jest and ESLint
+      - name: Setup
         run: |
           yarn install --frozen-lockfile --ignore-engines
           yarn run build
-          yarn run jest:coverage
-          yarn run lint:errors
+      - name: Run Jest
+        run: yarn run jest:coverage
+      - name: Run ESLint
+        run: yarn run lint:errors
 
   happo:
     name: Happo
@@ -28,17 +30,18 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Run Happo CI
+      - name: Setup
         run: |
           yarn install --frozen-lockfile --ignore-engines
           yarn run build
-          yarn run happo:ci
+      - name: Run Happo CI
+        run: yarn run happo:ci
         env:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
           PREVIOUS_SHA: ${{ github.event.before }}
           CURRENT_SHA: ${{ github.event.after }}
-          CHANGE_URL: ${{ github.head_commit.url }}
+          CHANGE_URL: ${{ github.event.head_commit.url }}
 
   danger:
     name: Danger
@@ -48,10 +51,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - name: Setup
+        run: yarn install --frozen-lockfile --ignore-engines
       - name: Run Danger CI
-        run: |
-          yarn install --frozen-lockfile --ignore-engines
-          yarn danger ci --use-github-checks
+        run: yarn danger ci --use-github-checks
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
           DANGER_JS_APP_INSTALL_ID: ${{ secrets.DANGER_JS_APP_INSTALL_ID }}
