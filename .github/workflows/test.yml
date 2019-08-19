@@ -64,9 +64,9 @@ jobs:
         env:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
-          PREVIOUS_SHA: ${{ GITHUB_SHA }}
-          CURRENT_SHA: ${{ GITHUB_SHA }}
-          CHANGE_URL: ${{}}
+          # PREVIOUS_SHA: ${{ GITHUB_SHA }}
+          # CURRENT_SHA: ${{ GITHUB_SHA }}
+          # CHANGE_URL: ${{}}
 
   # DangerJS
   danger:
