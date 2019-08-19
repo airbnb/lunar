@@ -13,10 +13,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Setup
-        run: |
-          yarn install --frozen-lockfile --ignore-engines
-          yarn run build
+      - uses: ./.github/actions/setup
       - name: Run Jest
         run: yarn run jest:coverage
       - name: Run ESLint
@@ -30,10 +27,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Setup
-        run: |
-          yarn install --frozen-lockfile --ignore-engines
-          yarn run build
+      - uses: ./.github/actions/setup
       - name: Run Happo CI
         run: yarn run happo:ci
         env:

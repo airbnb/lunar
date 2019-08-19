@@ -9,8 +9,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Setup
-        run: yarn install --frozen-lockfile --ignore-engines
+      - uses: ./.github/actions/setup
       - name: Run Danger CI
         run: yarn danger ci --use-github-checks
         env:

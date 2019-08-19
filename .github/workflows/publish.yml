@@ -12,10 +12,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Setup
-        run: |
-          yarn install --frozen-lockfile --ignore-engines
-          yarn run build
+      - uses: ./.github/actions/setup
       - name: Publish Storybook to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -43,10 +40,7 @@ jobs:
           git remote set-url origin "https://${GITHUB_TOKEN}@github.com/airbnb/lunar.git" > /dev/null 2>&1
           git checkout master
           echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
-      - name: Setup
-        run: |
-          yarn install --frozen-lockfile --ignore-engines
-          yarn run build
+      - uses: ./.github/actions/setup
       # Enable later on!
       # - name: Publish packages to NPM
       #   env:
