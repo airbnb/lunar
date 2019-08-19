@@ -19,7 +19,7 @@ import T from '@airbnb/lunar/lib/components/Translate';
 import { getErrorMessage } from '@airbnb/lunar/lib/components/ErrorMessage';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
 import FormContext from '../FormContext';
-import { Context, Errors, Parse, Field } from '../../types';
+import { Errors, Parse, Field } from '../../types';
 import { throttleToSinglePromise } from '../../helpers';
 
 function mapSubscriptions(subscriptions: string[]): { [sub: string]: boolean } {
@@ -84,8 +84,6 @@ export default class Form<Data extends object = any> extends React.Component<
   };
 
   form: FormApi<Data>;
-
-  formContext?: Context;
 
   registeredFields: { [name: string]: Unsubscribe } = {};
 
@@ -422,18 +420,16 @@ export default class Form<Data extends object = any> extends React.Component<
     // @ts-ignore Bug: https://github.com/Microsoft/TypeScript/issues/26970
     const content = typeof children === 'function' ? children(this.state!) : children;
 
-    if (!this.formContext) {
-      this.formContext = {
-        change: this.changeValue,
-        getFields: this.getFields,
-        getState: this.getState,
-        register: this.registerField,
-        submit: this.submitForm,
-      };
-    }
-
     return (
-      <FormContext.Provider value={this.formContext}>
+      <FormContext.Provider
+        value={{
+          change: this.changeValue,
+          getFields: this.getFields,
+          getState: this.getState,
+          register: this.registerField,
+          submit: this.submitForm,
+        }}
+      >
         <form
           id={id}
           method={method}
