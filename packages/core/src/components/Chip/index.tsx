@@ -27,7 +27,7 @@ export type Props = {
   onIconClick?: (event: React.MouseEvent<ButtonOrLinkTypes>) => void;
   /** Profile photo to render to the left of the primary content. */
   profileImageSrc?: string;
-  /** A tracking name to identify this component. */
+  /** A tracking name to identify this component when element is clicked. */
   trackingName?: string;
 };
 
@@ -70,6 +70,7 @@ export class Chip extends React.Component<Props & WithStylesProps> {
             disabled,
             onClick,
             type: 'button',
+            ...(trackingName && { 'data-tracking-name': trackingName }),
           }
         : {};
 
@@ -89,7 +90,6 @@ export class Chip extends React.Component<Props & WithStylesProps> {
           disabled && styles.chip_disabled,
         )}
         {...props}
-        trackingName={trackingName}
         id={id}
       >
         {shouldRenderBefore && (
