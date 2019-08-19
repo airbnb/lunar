@@ -13,6 +13,8 @@ jobs:
         with:
           node-version: 12
       - name: Run yarn install, build, storybook:build, and deploy:ghp
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn install --frozen-lockfile --ignore-engines
           yarn run build
