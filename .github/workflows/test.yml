@@ -3,7 +3,7 @@ on: push
 jobs:
   build:
     name: Build
-    runs-on: build
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [8, 10, 12]
