@@ -99,7 +99,7 @@ const data: ParentRow[] = [
     data: {
       name: 'Hidden Henry',
       jobTitle: 'Engineer',
-      tenureDays: 407,
+      tenureDays: 500,
       menu: '',
       cats: 1,
       colSpan: 'This person is hidden because you have insufficient permissions.',
@@ -120,8 +120,8 @@ const data: ParentRow[] = [
   {
     data: {
       name: 'Frontend Fabien',
-      jobTitle: 'Engineer',
-      tenureDays: 600,
+      jobTitle: undefined,
+      tenureDays: null,
       menu: '',
       cats: 1,
     },
@@ -226,6 +226,7 @@ const simpleProps = {
   expandable: true,
   editable: true,
   tableHeaderLabel: 'My Great Table',
+  showAllRows: true,
 };
 
 const getRow = (table: any, row: number) => table.find(Grid).find(`[aria-rowindex=${row}]`);
@@ -385,6 +386,38 @@ describe('<DataTable /> renders and sorts data', () => {
       .text();
 
     expect(text).toBe('Product Percy');
+  });
+
+  it('should sort data in Descending order by jobTitle', () => {
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
+
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(3);
+    nameHeader.simulate('click');
+    nameHeader.simulate('click');
+    const firstRow = getCell(table, 1, NAME_COL + 1)
+      .find(Text)
+      .text();
+    expect(firstRow).toBe('PM');
+
+    const lastRow = getCell(table, 6, NAME_COL + 1).find(Text);
+    expect(lastRow).toEqual({});
+  });
+
+  it('should sort data in Descending order by tenureDays', () => {
+    const table = mountWithStyles(<DataTable {...simpleProps} />);
+
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(4);
+    nameHeader.simulate('click');
+    nameHeader.simulate('click');
+
+    const firstRow = getCell(table, 1, NAME_COL + 2)
+      .find(Text)
+      .text();
+    expect(firstRow).toBe('820');
+
+    const lastRow = getCell(table, 6, NAME_COL + 2).find(Text);
+
+    expect(lastRow).toEqual({});
   });
 
   it('should sort data in Ascending order', () => {

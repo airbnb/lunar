@@ -168,7 +168,9 @@ storiesOf('Core/DataTable', module)
     happo: { delay: 50 },
     inspectComponents: [DataTable],
   })
-  .add('A standard table.', () => <DataTable data={getData()} keys={['name', 'jobTitle']} />)
+  .add('A standard table.', () => (
+    <DataTable data={getData()} keys={['name', 'jobTitle', 'tenureDays']} />
+  ))
   .add('A standard table with initial sorting.', () => (
     <DataTable
       data={getData()}
