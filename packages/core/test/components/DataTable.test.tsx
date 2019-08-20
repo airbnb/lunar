@@ -191,6 +191,8 @@ const headerButtonClick = jest.fn();
 
 const editCallback = jest.fn();
 
+const selectCallback = jest.fn();
+
 const editCallbacks = {
   name: editCallback,
 };
@@ -277,6 +279,14 @@ describe('<DataTable /> rows can be selected', () => {
     table.update();
 
     expect(getCheckbox(table, ROW).props().checked).toBe(true);
+  });
+
+  it('should trigger callbacks on selection', () => {
+    const table = mountWithStyles(<DataTable {...simpleProps} selectCallback={selectCallback} />);
+
+    selectRow(table, ROW);
+
+    expect(selectCallback.mock.calls).toHaveLength(1);
   });
 
   it('should be expandable', () => {

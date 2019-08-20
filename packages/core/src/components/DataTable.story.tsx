@@ -16,7 +16,7 @@ import Button from './Button';
 import Input from './Input';
 import Row from './Row';
 import Spacing from './Spacing';
-import { SelectedRows, VirtualRow, IndexedParentRow } from './DataTable/types';
+import { ExpandedRow, SelectedRows, IndexedParentRow, VirtualRow } from './DataTable/types';
 
 const renderers = {
   name: EditableTextRenderer,
@@ -92,6 +92,10 @@ const defaultEditCallback = (
   event: React.SyntheticEvent<EventTarget>,
 ) => {
   action('this callback has access to row, key, newVal and event');
+};
+
+const selectCallback = (rowData: ExpandedRow, selectedRows: SelectedRows) => () => {
+  action('this callback has access to the newly selected row and all selected row');
 };
 
 export interface SearchDemoProps {
@@ -219,7 +223,7 @@ storiesOf('Core/DataTable', module)
       renderers={renderers}
     />
   ))
-  .add('An table with zebra coloring, a colspan, infered keys and renderers.', () => (
+  .add('A table with zebra coloring, a colspan, infered keys and renderers.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"
       data={getData()}
@@ -230,7 +234,7 @@ storiesOf('Core/DataTable', module)
       renderers={renderers}
     />
   ))
-  .add('An table with different row, column header and table header heights.', () => (
+  .add('A table with different row, column header and table header heights.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"
       data={getData()}
@@ -244,12 +248,15 @@ storiesOf('Core/DataTable', module)
       tableHeaderHeight="large"
     />
   ))
-  .add('An table that logs custom edit callbacks.', () => (
+  .add('A table that logs custom edit callbacks and select callback.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"
       data={getData()}
       defaultEditCallback={defaultEditCallback}
       editCallbacks={editCallbacks}
+      selectCallback={selectCallback}
+      selectable
+      expandable
     />
   ))
   .add('A complex table with all features enabled.', () => (

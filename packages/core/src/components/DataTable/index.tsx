@@ -57,6 +57,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     renderers: {},
     rowHeight: 'regular',
     selectable: false,
+    selectCallback: (rowData: ExpandedRow, selectedRows: SelectedRows) => () => {},
     selectOnRowClick: false,
     showAllRows: false,
     showColumnDividers: false,
@@ -231,7 +232,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   };
 
   private handleChildSelection = (row: ExpandedRow) => {
-    const { data } = this.props;
+    const { data, selectCallback } = this.props;
     const {
       selectedRows,
       sortBy,
@@ -278,13 +279,12 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       };
     }
 
-    this.setState({
-      selectedRows,
-    });
+    this.setState({ selectedRows }, selectCallback!(row, selectedRows));
   };
 
   private handleParentSelection(row: ExpandedRow) {
-    const { selectedRows }: { selectedRows: SelectedRows } = this.state;
+    const { selectedRows } = this.state;
+    const { selectCallback } = this.props;
     const { originalIndex } = row.metadata;
 
     // If parent is already selected
@@ -302,7 +302,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       };
     }
 
-    this.setState({ selectedRows });
+    this.setState({ selectedRows }, selectCallback!(row, selectedRows));
   }
 
   private handleSelection = (rowData: ExpandedRow) => () => {

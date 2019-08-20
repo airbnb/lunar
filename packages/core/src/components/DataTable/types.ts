@@ -77,6 +77,8 @@ export interface DataTableProps {
   rowHeight?: RowHeightOptions;
   /** If enabled, a special column is rendered to allows rows to be selected. */
   selectable?: boolean;
+  /** Function that gets called on row selection. */
+  selectCallback?: (rowData: ExpandedRow, selectedRows: SelectedRows) => () => void;
   /** If enabled, clicking the row triggers the same function as click the selection checkbox. */
   selectOnRowClick?: boolean;
   /**
@@ -95,7 +97,7 @@ export interface DataTableProps {
   sortByOverride?: string;
   /** sortDirection value if override is enabled. */
   sortDirectionOverride?: SortDirectionType;
-  /** sortCallback in override is enabled. */
+  /** sortCallback if override is enabled. */
   sortCallback?: (sortBy: string, sortDirection: SortDirectionType) => void;
   /** Label for the table header. */
   tableHeaderLabel?: string;
