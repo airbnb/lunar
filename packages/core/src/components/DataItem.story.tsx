@@ -38,7 +38,7 @@ storiesOf('Core/DataItem', module)
     <div style={{ width: 300 }}>
       <Card>
         <Content>
-          <DataItem floatLinkRight label="Pending tickets" link={<Link small>Details</Link>}>
+          <DataItem endAlign label="Pending tickets" link={<Link small>Details</Link>}>
             8
           </DataItem>
         </Content>
