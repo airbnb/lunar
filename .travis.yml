@@ -19,7 +19,7 @@ jobs:
       node_js: '12'
       if: type = pull_request
     - name: Happo
-      script: yarn run happo:ci
+      script: yarn run happo:ci:travis
       node_js: '12'
       if: type = pull_request OR branch = master
     - name: Test @ 8
@@ -63,7 +63,7 @@ jobs:
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
       deploy:
         provider: script
-        script: yarn run deploy:release
+        script: yarn run deploy:npm
         skip_cleanup: true
         on:
           branch: master

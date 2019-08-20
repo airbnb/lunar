@@ -1,0 +1,38 @@
+name: Test
+on: push
+jobs:
+  test:
+    name: Jest + ESLint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [8, 10, 12]
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: ./.github/actions/setup
+      - name: Run Jest
+        run: yarn run jest:coverage
+      - name: Run ESLint
+        run: yarn run lint:errors
+
+  happo:
+    name: Happo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - uses: ./.github/actions/setup
+      - name: Run Happo CI
+        run: yarn run happo:ci
+        env:
+          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+          PREVIOUS_SHA: ${{ github.event.before }}
+          CURRENT_SHA: ${{ github.event.after }}
+          CHANGE_URL: ${{ github.event.head_commit.url }}

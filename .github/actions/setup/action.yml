@@ -1,0 +1,8 @@
+name: Setup
+description: Setup the project by installing dependencies and building files.
+runs:
+  using: node12
+  main: ./index.js
+branding:
+  icon: moon
+  color: purple
