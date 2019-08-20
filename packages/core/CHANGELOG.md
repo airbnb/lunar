@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.22.0 - 2019-08-20
+
+#### 🚀 Updates
+
+- **[DataTable]** Add `selectedRowsFirst` prop. (#128) ([6721666](https://github.com/airbnb/lunar/tree/master/packages/core/commit/6721666)), closes [#128](https://github.com/airbnb/lunar/tree/master/packages/core/issues/128)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.21.0 - 2019-08-20
 
 #### 🚀 Updates
