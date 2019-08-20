@@ -385,8 +385,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
 
-    const headerHeight = getHeight(rowHeight, tableHeaderHeight);
-
     const filteredData = filterData!(sortedData);
 
     const expandedData = expandData(
