@@ -9,6 +9,7 @@ function DataItem({
   link,
   endAlign,
   inline,
+  keyTextRegular,
   children,
   cx,
   styles,
@@ -17,13 +18,14 @@ function DataItem({
   link?: NonNullable<React.ReactNode>;
   endAlign?: boolean;
   inline?: boolean;
+  keyTextRegular?: boolean;
   children: NonNullable<React.ReactNode>;
 } & WithStylesProps) {
   return (
     <div className={cx(inline && styles.inline)}>
       <div className={cx(styles.wrapper, endAlign && styles.wrapper_endAlign)}>
         <Spacing right={1}>
-          <Text small muted>
+          <Text small={!keyTextRegular} muted>
             {label}
           </Text>
         </Spacing>

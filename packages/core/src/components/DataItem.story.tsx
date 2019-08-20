@@ -11,6 +11,11 @@ storiesOf('Core/DataItem', module)
     inspectComponents: [DataItem],
   })
   .add('Standard DataItem.', () => <DataItem label="Pending tickets">8</DataItem>)
+  .add('Standard DataItem with regular key text size.', () => (
+    <DataItem keyTextRegular label="Pending tickets">
+      8
+    </DataItem>
+  ))
   .add('DataItem with multiple links.', () => (
     <div style={{ width: 300 }}>
       <Card>
