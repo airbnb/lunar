@@ -413,6 +413,7 @@ export default withStyles(
   theme => ({
     table_container: {
       overflowX: 'auto',
+      display: 'flex',
     },
     column_header: {
       borderTop: '1px solid',
