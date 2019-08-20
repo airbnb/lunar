@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.21.0 - 2019-08-20
+
+#### 🚀 Updates
+
+- **[DataTable]** add prop for callback on row selection (#127) ([8415d3a](https://github.com/airbnb/lunar/tree/master/packages/core/commit/8415d3a)), closes [#127](https://github.com/airbnb/lunar/tree/master/packages/core/issues/127)
+- **[DataTable]** Only render top border when there's a header. (#159) ([e8879f9](https://github.com/airbnb/lunar/tree/master/packages/core/commit/e8879f9)), closes [#159](https://github.com/airbnb/lunar/tree/master/packages/core/issues/159)
+- **[DataTable]** Sort null and undefined last. (#156) ([7d8496a](https://github.com/airbnb/lunar/tree/master/packages/core/commit/7d8496a)), closes [#156](https://github.com/airbnb/lunar/tree/master/packages/core/issues/156)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.20.0 - 2019-08-19
 
 #### 🚀 Updates
