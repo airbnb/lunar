@@ -434,6 +434,28 @@ describe('<DataTable /> renders and sorts data', () => {
     expect(text).toBe('Dev Ops Danny');
   });
 
+  it('should sort data in Ascending order with selectedRowsFirst', () => {
+    const table = mountWithStyles(<DataTable selectedRowsFirst {...simpleProps} />);
+
+    selectRow(table, ROW);
+
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(NAME_COL - 1);
+    nameHeader.simulate('click');
+    table.update();
+
+    expect(
+      getCell(table, 1, NAME_COL)
+        .find(Text)
+        .text(),
+    ).toBe('Engineer Emma');
+
+    expect(
+      getCell(table, 2, NAME_COL)
+        .find(Text)
+        .text(),
+    ).toBe('Dev Ops Danny');
+  });
+
   it('should sort data in Ascending order through props', () => {
     const table = mountWithStyles(
       <DataTable {...simpleProps} sortByOverride="name" sortDirectionOverride="ASC" />,
@@ -451,6 +473,19 @@ describe('<DataTable /> renders and sorts data', () => {
       <DataTable {...simpleProps} sortByOverride="name" sortDirectionOverride="DESC" />,
     );
 
+    const text = getCell(table, 1, NAME_COL)
+      .find(Text)
+      .text();
+
+    expect(text).toBe('Product Percy');
+  });
+
+  it('should sort data in Descending order with selected rows first', () => {
+    const table = mountWithStyles(<DataTable selectedRowsFirst {...simpleProps} />);
+
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
+    nameHeader.simulate('click');
+    nameHeader.simulate('click');
     const text = getCell(table, 1, NAME_COL)
       .find(Text)
       .text();

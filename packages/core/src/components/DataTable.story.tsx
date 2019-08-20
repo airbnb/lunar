@@ -179,13 +179,14 @@ storiesOf('Core/DataTable', module)
       sortDirectionOverride="ASC"
     />
   ))
-  .add('A table with selectable and exandable rows.', () => (
+  .add('A table with selectable and exandable rows that displays selected rows first.', () => (
     <DataTable
       tableHeaderLabel="My Great Table"
       data={getData()}
       keys={['name', 'jobTitle']}
       expandable
       selectable
+      selectedRowsFirst
     />
   ))
   .add('A table with filtered data.', () => (
