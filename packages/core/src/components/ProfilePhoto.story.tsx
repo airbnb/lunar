@@ -31,4 +31,7 @@ storiesOf('Core/ProfilePhoto', module)
   ))
   .add('Broken image with overflowing alt text.', () => (
     <ProfilePhoto imageSrc="BROKEN_IMAGE" title="Alt title text." large />
+  ))
+  .add('Fallback image src when image is broken.', () => (
+    <ProfilePhoto fallbackImageSrc={lunar} imageSrc="BROKEN_IMAGE" title="Alt title text." large />
   ));

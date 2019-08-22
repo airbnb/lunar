@@ -14,6 +14,8 @@ const namedSizePropType = and([PropTypes.bool, mutuallyExclusiveSizePropType]);
 const unitSizePropType = and([PropTypes.number, mutuallyExclusiveSizePropType]);
 
 export type Props = {
+  /** Fallback image if the image is broken. */
+  fallbackImageSrc?: string;
   /** URL of the image to display. */
   imageSrc: string;
   /** Whether the component should be inline. */
@@ -48,9 +50,19 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
     square: false,
   };
 
+  private handleError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const { fallbackImageSrc } = this.props;
+
+    if (event && fallbackImageSrc) {
+      // eslint-disable-next-line no-param-reassign
+      (event.currentTarget || event.target).src = fallbackImageSrc;
+    }
+  };
+
   render() {
     const {
       cx,
+      fallbackImageSrc,
       imageSrc,
       inline,
       macro,
@@ -100,6 +112,7 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
           src={imageSrc}
           alt={title}
           title={title}
+          onError={fallbackImageSrc ? this.handleError : undefined}
         />
       </div>
     );
