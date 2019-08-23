@@ -378,7 +378,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       selectable,
       styles,
       selectedRowsFirst,
-      tableHeaderHeight,
     } = this.props;
 
     const { expandedRows, sortBy, sortDirection, editMode, selectedRows } = this.state;
