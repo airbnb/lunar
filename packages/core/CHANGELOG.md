@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.24.0 - 2019-08-26
+
+#### 🚀 Updates
+
+- **[DataTable]** Add `autoHeight` prop. (#144) ([5238278](https://github.com/airbnb/lunar/tree/master/packages/core/commit/5238278)), closes [#144](https://github.com/airbnb/lunar/tree/master/packages/core/issues/144)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.23.0 - 2019-08-26
 
 #### 🚀 Updates
