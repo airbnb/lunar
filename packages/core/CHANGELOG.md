@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.25.0 - 2019-08-26
+
+#### 🚀 Updates
+
+- **[Image]** Add Image Component (#157) ([0abdb21](https://github.com/airbnb/lunar/tree/master/packages/core/commit/0abdb21)), closes [#157](https://github.com/airbnb/lunar/tree/master/packages/core/issues/157)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.24.0 - 2019-08-26
 
 #### 🚀 Updates

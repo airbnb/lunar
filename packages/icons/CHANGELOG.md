@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.0 - 2019-08-26
+
+#### 🚀 Updates
+
+- **[Icons]** Add timeline icons (#170) ([fea4de3](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/fea4de3)), closes [#170](https://github.com/airbnb/lunar/tree/master/packages/icons/issues/170)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ### 2.1.4 - 2019-08-07
 
 #### 📦 Dependencies
