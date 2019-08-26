@@ -36,10 +36,10 @@ jobs:
           GIT_USER: ${{ secrets.GIT_USER }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          git config --global user.name ${GIT_USER}
-          git config --global user.email ${GIT_EMAIL}
-          git remote set-url origin "https://${GITHUB_TOKEN}@github.com/airbnb/lunar.git" > /dev/null 2>&1
           git checkout master
+          # git config --global user.name ${GIT_USER}
+          # git config --global user.email ${GIT_EMAIL}
+          git remote set-url origin "https://${GITHUB_TOKEN}@github.com/airbnb/lunar.git" > /dev/null 2>&1
           echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
       - uses: ./.github/actions/setup
       # Enable later on!
