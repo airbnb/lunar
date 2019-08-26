@@ -1,24 +1,25 @@
 name: Publish
-on:
-  push:
-    branches:
-      - master
+# on:
+#   push:
+#     branches:
+#       - master
+on: push
 jobs:
-  storybook:
-    name: Storybook
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - uses: ./.github/actions/setup
-      - name: Publish Storybook to GitHub Pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          yarn run storybook:build
-          yarn run deploy:ghp
+  # storybook:
+  #   name: Storybook
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v1
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12
+  #     - uses: ./.github/actions/setup
+  #     - name: Publish Storybook to GitHub Pages
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       run: |
+  #         yarn run storybook:build
+  #         yarn run deploy:ghp
 
   npm:
     name: NPM
@@ -31,12 +32,12 @@ jobs:
       - name: Setup Git and NPM
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_EMAIL: ${{ secrets.GITHUB_EMAIL }}
-          GITHUB_USER: ${{ secrets.GITHUB_USER }}
+          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+          GIT_USER: ${{ secrets.GIT_USER }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          git config --global user.name ${GITHUB_USER}
-          git config --global user.email ${GITHUB_EMAIL}
+          git config --global user.name ${GIT_USER}
+          git config --global user.email ${GIT_EMAIL}
           git remote set-url origin "https://${GITHUB_TOKEN}@github.com/airbnb/lunar.git" > /dev/null 2>&1
           git checkout master
           echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
