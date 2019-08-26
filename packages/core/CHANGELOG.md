@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.23.0 - 2019-08-26
+
+#### 🚀 Updates
+
+- **[ProfilePhoto]** Add `fallbackImageSrc` to render if an image is broken. (#169) ([9bb8c41](https://github.com/airbnb/lunar/tree/master/packages/core/commit/9bb8c41)), closes [#169](https://github.com/airbnb/lunar/tree/master/packages/core/issues/169)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.22.0 - 2019-08-20
 
 #### 🚀 Updates
