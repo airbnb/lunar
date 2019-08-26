@@ -37,10 +37,18 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           git checkout master
-          git config --local user.name ${GIT_USER}
-          git config --locale user.email ${GIT_EMAIL}
+          # git config --local user.name ${GIT_USER}
+          # git config --locale user.email ${GIT_EMAIL}
           git remote set-url origin "https://${GITHUB_TOKEN}@github.com/airbnb/lunar.git" > /dev/null 2>&1
           echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
+      - name: Test
+        run: |
+          echo $GIT_AUTHOR_NAME
+          echo $GIT_AUTHOR_EMAIL
+          echo $GIT_COMMITTER_NAME
+          echo $GIT_COMMITTER_EMAIL
+          echo git config --get user.name
+          echo git config --get user.email
       - uses: ./.github/actions/setup
       # Enable later on!
       # - name: Publish packages to NPM
