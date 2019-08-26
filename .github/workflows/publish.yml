@@ -45,10 +45,10 @@ jobs:
         run: |
           echo $GIT_AUTHOR_NAME
           echo $GIT_AUTHOR_EMAIL
-          echo $GIT_COMMITTER_NAME
-          echo $GIT_COMMITTER_EMAIL
-          echo git config --get user.name
-          echo git config --get user.email
+          echo GIT_COMMITTER_NAME
+          echo GIT_COMMITTER_EMAIL
+          git config --get user.name
+          git config --get user.email
       - uses: ./.github/actions/setup
       # Enable later on!
       # - name: Publish packages to NPM
