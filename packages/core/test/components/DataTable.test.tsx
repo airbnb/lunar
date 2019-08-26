@@ -501,7 +501,6 @@ describe('<DataTable /> renders column labels', () => {
     );
     const table = wrapper
       .find(AutoSizer)
-      .at(1)
       .dive()
       .find(Table)
       .dive();
@@ -517,7 +516,6 @@ describe('<DataTable /> renders column labels', () => {
     const wrapper = shallowWithStyles(<DataTable data={data} editable />);
     const table = wrapper
       .find(AutoSizer)
-      .at(1)
       .dive()
       .find(Table)
       .dive();
@@ -535,7 +533,6 @@ describe('<DataTable /> renders column labels', () => {
     );
     const table = wrapper
       .find(AutoSizer)
-      .at(1)
       .dive()
       .find(Table)
       .dive();
@@ -551,7 +548,6 @@ describe('<DataTable /> renders column labels', () => {
     const wrapper = shallowWithStyles(<DataTable data={data} editable columnLabelCase="title" />);
     const table = wrapper
       .find(AutoSizer)
-      .at(1)
       .dive()
       .find(Table)
       .dive();
