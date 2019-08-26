@@ -34,8 +34,12 @@ export type Props = {
   title: string;
 };
 
+type State = {
+  src: string;
+};
+
 /** Display a profile photo. */
-export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
+export class ProfilePhoto extends React.Component<Props & WithStylesProps, State> {
   static propTypes = {
     large: namedSizePropType,
     macro: namedSizePropType,
@@ -50,20 +54,35 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
     square: false,
   };
 
+  state = {
+    src: this.props.imageSrc || '',
+  };
+
+  componentDidUpdate(prevProps: Props & WithStylesProps) {
+    const { imageSrc } = this.props;
+
+    if (imageSrc !== prevProps.imageSrc) {
+      this.setState({
+        src: imageSrc,
+      });
+    }
+  }
+
   private handleError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const { fallbackImageSrc } = this.props;
 
-    if (event && fallbackImageSrc) {
-      // eslint-disable-next-line no-param-reassign
-      (event.currentTarget || event.target).src = fallbackImageSrc;
+    if (fallbackImageSrc) {
+      this.setState({
+        src: fallbackImageSrc,
+      });
     }
   };
 
   render() {
+    const { src } = this.state;
     const {
       cx,
       fallbackImageSrc,
-      imageSrc,
       inline,
       macro,
       large,
@@ -109,7 +128,7 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps> {
                 width: size * unit,
               },
           )}
-          src={imageSrc}
+          src={src}
           alt={title}
           title={title}
           onError={fallbackImageSrc ? this.handleError : undefined}
@@ -124,6 +143,7 @@ export default withStyles(
     inline: {
       display: 'inline-block',
     },
+
     image: {
       display: 'block',
       background: color.core.neutral[6],
@@ -131,9 +151,11 @@ export default withStyles(
       objectFit: 'cover',
       overflow: 'hidden',
     },
+
     roundedImage: {
       borderRadius: '50%',
     },
+
     small: {
       height: 24,
       width: 24,
@@ -146,12 +168,14 @@ export default withStyles(
       maxHeight: 48,
       maxWidth: 48,
     },
+
     large: {
       height: 96,
       width: 96,
       maxHeight: 96,
       maxWidth: 96,
     },
+
     macro: {
       height: 160,
       width: 160,
