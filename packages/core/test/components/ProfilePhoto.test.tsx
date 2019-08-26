@@ -51,4 +51,27 @@ describe('<ProfilePhoto />', () => {
 
     expect(wrapper.prop('className')).toMatch('inline-0');
   });
+
+  it('uses fallback image', () => {
+    const wrapper = shallowWithStyles(
+      <ProfilePhoto {...props} imageSrc="broken" fallbackImageSrc={imageSrc} />,
+    );
+
+    wrapper.find('img').simulate('load');
+    wrapper.find('img').simulate('error');
+
+    expect(wrapper.find('img').prop('src')).toBe(imageSrc);
+  });
+
+  it('updates state value when props change', () => {
+    const wrapper = shallowWithStyles(<ProfilePhoto {...props} />);
+
+    expect(wrapper.state('src')).toEqual(imageSrc);
+
+    wrapper.setProps({
+      imageSrc: 'bar',
+    });
+
+    expect(wrapper.state('src')).toEqual('bar');
+  });
 });
