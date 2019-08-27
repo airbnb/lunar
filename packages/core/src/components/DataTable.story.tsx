@@ -166,6 +166,14 @@ storiesOf('Core/DataTable', module)
   .add('A standard table.', () => (
     <DataTable data={getData()} keys={['name', 'jobTitle', 'tenureDays']} />
   ))
+  .add('A standard table with a flex wrapper.', () => (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <Spacing bottom={2}>
+        <Button>Dummy Button</Button>
+      </Spacing>
+      <DataTable data={getData()} keys={['name', 'jobTitle', 'tenureDays']} />
+    </div>
+  ))
   .add('A standard table with initial sorting.', () => (
     <DataTable
       data={getData()}
