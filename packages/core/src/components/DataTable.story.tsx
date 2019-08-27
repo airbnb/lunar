@@ -129,21 +129,29 @@ export class SearchDemo extends React.Component {
     const button = <Button onClick={this.handleNewData}>New Data</Button>;
 
     return (
-      <div style={{ height: 500, display: 'flex', flexDirection: 'column' }}>
-        <Spacing bottom={2}>
-          <Row before={button}>
-            <Input hideLabel label="Edit row" name="" value={search} onChange={this.handleChange} />
-          </Row>
-        </Spacing>
-        <div style={{ flexGrow: 1 }}>
-          <DataTable
-            autoHeight
-            expandable
-            tableHeaderLabel="My Great Table"
-            data={data}
-            filterData={filteredData}
-            columnHeaderHeight="micro"
-          />
+      <div style={{ height: 500 }}>
+        <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+          <Spacing bottom={2}>
+            <Row before={button}>
+              <Input
+                hideLabel
+                label="Edit row"
+                name=""
+                value={search}
+                onChange={this.handleChange}
+              />
+            </Row>
+          </Spacing>
+          <div style={{ flexGrow: 1 }}>
+            <DataTable
+              autoHeight
+              expandable
+              tableHeaderLabel="My Great Table"
+              data={data}
+              filterData={filteredData}
+              columnHeaderHeight="micro"
+            />
+          </div>
         </div>
       </div>
     );
