@@ -402,7 +402,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         {({ height, width }: { height: number; width: number }) => (
           <>
             {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
-            <div className={cx(styles.table_container, { width: width })}>
+            <div className={cx(styles.table_container, { width })}>
               <Table
                 height={
                   autoHeight

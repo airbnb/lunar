@@ -135,8 +135,8 @@ export class SearchDemo extends React.Component {
             <Row before={button}>
               <Input
                 hideLabel
-                label="Edit row"
-                name=""
+                label="Search"
+                name="search"
                 value={search}
                 onChange={this.handleChange}
               />
