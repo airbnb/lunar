@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.26.1 - 2019-08-28
+
+#### 🐞 Fixes
+
+- **[DataTable]** Subtract header height from `autoHeight` only when a header exists. ([8440761](https://github.com/airbnb/lunar/tree/master/packages/core/commit/8440761))
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.26.0 - 2019-08-28
 
 #### 🚀 Updates
