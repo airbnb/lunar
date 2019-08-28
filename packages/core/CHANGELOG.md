@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.26.0 - 2019-08-28
+
+#### 🚀 Updates
+
+- **[DataTable]** Robust fix for flexbox container bug. (#172) ([e5e8d98](https://github.com/airbnb/lunar/tree/master/packages/core/commit/e5e8d98)), closes [#172](https://github.com/airbnb/lunar/tree/master/packages/core/issues/172)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.25.0 - 2019-08-26
 
 #### 🚀 Updates
