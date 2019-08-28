@@ -406,7 +406,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
               <Table
                 height={
                   autoHeight
-                    ? height - getHeight(rowHeight, tableHeaderHeight)
+                    ? height -
+                      (this.shouldRenderTableHeader() ? getHeight(rowHeight, tableHeaderHeight) : 0)
                     : this.getTableHeight(expandedData)
                 }
                 width={this.props.width || width}
