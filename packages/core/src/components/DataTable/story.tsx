@@ -190,7 +190,6 @@ export function aStandardTableWithAFlexWrapper() {
   ))
   .add('A standard table with dynamic row height.', () => (
     <DataTable
-      width={500}
       data={[
         {
           data: {

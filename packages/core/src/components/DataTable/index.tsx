@@ -413,7 +413,7 @@ export class DataTable extends React.Component<
     const { expandedRows } = this.state;
 
     const datum = expandedRows[rowIndex % expandedRows.length];
-    const content = "a b c d e".slice(0, rowIndex + 1);
+    const content = 'a b c d e f g h i j k l m n o p'.slice(0, rowIndex + 1);
 
     return (
       <CellMeasurer
@@ -529,13 +529,19 @@ export class DataTable extends React.Component<
                 headerRowRenderer={ColumnLabels(this.props)}
                 onRowClick={this.handleRowClick}
               >
-                {expandable &&
-                  renderExpandableColumn(
-                    cx,
-                    styles,
-                    expandedRows,
-                    this.expandRow
-                  )}
+                <Column
+                  width={80}
+                  dataKey="name"
+                  label="Dynamic text"
+                  cellRenderer={this.columnCellRenderer}
+                />
+                <Column
+                  width={width - 80}
+                  dataKey="name2"
+                  label="Dynamic text 2"
+                  cellRenderer={this.columnCellRenderer}
+                />
+                {/* {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
 
                 {selectable &&
                   renderSelectableColumn(
