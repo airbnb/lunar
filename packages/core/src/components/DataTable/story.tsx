@@ -187,15 +187,28 @@ export function aStandardTableWithAFlexWrapper() {
       </Spacing>
       <DataTable data={getData()} keys={['name', 'jobTitle', 'tenureDays']} />
     </div>
-  );
-}
-
-aStandardTableWithAFlexWrapper.story = {
-  name: 'A standard table with a flex wrapper.',
-};
-
-export function aStandardTableWithInitialSorting() {
-  return (
+  ))
+  .add('A standard table with dynamic row height.', () => (
+    <DataTable
+      width={500}
+      data={[
+        {
+          data: {
+            name: 'regular text',
+          },
+        },
+        {
+          data: {
+            name:
+              'here is a very very long input field that needs to break and trigger a dynamic row height',
+          },
+        },
+        ...getData(),
+      ]}
+      keys={['name', 'jobTitle', 'tenureDays']}
+    />
+  ))
+  .add('A standard table with initial sorting.', () => (
     <DataTable
       data={getData()}
       keys={['name', 'jobTitle']}

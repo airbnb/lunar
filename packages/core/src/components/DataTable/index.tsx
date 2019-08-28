@@ -1,9 +1,18 @@
-import React from 'react';
-import { AutoSizer, SortDirection, SortDirectionType, Table } from 'react-virtualized';
-import memoize from 'lodash/memoize';
-import sortData from './helpers/sortData';
-import expandData from './helpers/expandData';
-import { indexData } from './helpers/indexData';
+import React from "react";
+import {
+  Column,
+  CellMeasurer,
+  CellMeasurerCache,
+  AutoSizer,
+  SortDirection,
+  SortDirectionType,
+  Table
+} from "react-virtualized";
+import memoize from "lodash/memoize";
+
+import sortData from "./helpers/sortData";
+import expandData from "./helpers/expandData";
+import { indexData } from "./helpers/indexData";
 import {
   ChangeLog,
   DataTableProps,
@@ -14,18 +23,18 @@ import {
   RowStyles,
   VirtualRow,
   SelectedRows,
-  IndexedChildRow,
-} from './types';
-import ColumnLabels from './ColumnLabels';
-import TableHeader from './TableHeader';
-import renderDataColumns from './columns/renderDataColumns';
-import renderExpandableColumn from './columns/renderExpandableColumn';
-import renderSelectableColumn from './columns/renderSelectableColumn';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import { getRowColor, getHeight, getKeys } from './helpers';
-import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
+  IndexedChildRow
+} from "./types";
+import ColumnLabels from "./ColumnLabels";
+import TableHeader from "./TableHeader";
+import renderDataColumns from "./columns/renderDataColumns";
+import renderExpandableColumn from "./columns/renderExpandableColumn";
+import renderSelectableColumn from "./columns/renderSelectableColumn";
+import withStyles, { WithStylesProps } from "../../composers/withStyles";
+import { getRowColor, getHeight, getKeys } from "./helpers";
+import { HEIGHT_TO_PX, SELECTION_OPTIONS } from "./constants";
 
-export * from './types';
+export * from "./types";
 
 export type State = {
   changeLog: ChangeLog;
@@ -37,11 +46,14 @@ export type State = {
 };
 
 /** A dynamic and responsive table for displaying tabular data. */
-export class DataTable extends React.Component<DataTableProps & WithStylesProps, State> {
+export class DataTable extends React.Component<
+  DataTableProps & WithStylesProps,
+  State
+> {
   static defaultProps: Pick<DataTableProps, DefaultDataTableProps> = {
     autoHeight: false,
     columnHeaderHeight: undefined,
-    columnLabelCase: '',
+    columnLabelCase: "",
     columnMetadata: {},
     columnToLabel: {},
     data: [],
@@ -56,38 +68,41 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     instantEdit: true,
     keys: [],
     renderers: {},
-    rowHeight: 'regular',
+    rowHeight: "regular",
     selectable: false,
     // eslint-disable-next-line unicorn/consistent-function-scoping
-    selectCallback: (rowData: ExpandedRow, selectedRows: SelectedRows) => () => {},
+    selectCallback: (
+      rowData: ExpandedRow,
+      selectedRows: SelectedRows
+    ) => () => {},
     selectedRowsFirst: false,
     selectOnRowClick: false,
     showAllRows: false,
     showColumnDividers: false,
     showRowDividers: false,
-    sortByOverride: '',
+    sortByOverride: "",
     sortCallback: () => {},
     sortDirectionOverride: SortDirection.ASC,
     sortOverride: false,
     tableHeaderHeight: undefined,
-    tableHeaderLabel: '',
+    tableHeaderLabel: "",
     width: 0,
-    zebra: false,
+    zebra: false
   };
 
   state: State = {
     changeLog: {},
     expandedRows: new Set(),
     selectedRows: {},
-    sortBy: this.props.sortByOverride || '',
+    sortBy: this.props.sortByOverride || "",
     sortDirection: this.props.sortDirectionOverride!,
-    editMode: false,
+    editMode: false
   };
 
   keys = getKeys(this.props.keys!, this.props.data!);
 
   private getRowStyle = (expandedDataList: ExpandedRow[]) => ({
-    index,
+    index
   }: {
     index: number;
   }): RowStyles => ({
@@ -95,14 +110,14 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       expandedDataList[index],
       index,
       this.props.zebra || false,
-      this.props.theme,
+      this.props.theme
     ),
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottom: this.props.showRowDividers ? '1px solid' : '',
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottom: this.props.showRowDividers ? "1px solid" : "",
     borderColor: this.props.theme!.color.core.neutral[1],
-    outline: 'none',
+    outline: "none"
   });
 
   private getData = memoize(
@@ -110,7 +125,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       data: ParentRow[],
       sortBy: string,
       sortDirection: SortDirectionType,
-      selectedRows: SelectedRows,
+      selectedRows: SelectedRows
     ): IndexedParentRow[] => {
       const { selectedRowsFirst } = this.props;
       const indexedData = indexData(data);
@@ -120,12 +135,12 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         selectedRows,
         selectedRowsFirst!,
         sortBy,
-        sortDirection,
+        sortDirection
       );
 
       return sortedData;
     },
-    (...args) => JSON.stringify(args),
+    (...args) => JSON.stringify(args)
   );
 
   componentDidUpdate(prevProps: DataTableProps) {
@@ -134,7 +149,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
       this.setState({
         selectedRows: {},
-        expandedRows: new Set(),
+        expandedRows: new Set()
       });
     }
   }
@@ -143,7 +158,10 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     const { height, rowHeight, showAllRows } = this.props;
 
     if (showAllRows) {
-      return expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight();
+      return (
+        expandedDataList.length * getHeight(rowHeight) +
+        this.getColumnHeaderHeight()
+      );
     }
 
     return height!;
@@ -163,7 +181,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   private sort = ({
     sortBy,
-    sortDirection,
+    sortDirection
   }: {
     sortBy: string;
     sortDirection: SortDirectionType;
@@ -174,13 +192,13 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     } else {
       this.setState({
         sortBy,
-        sortDirection,
+        sortDirection
       });
     }
   };
 
   private expandRow = (newExpandedRowIndex: number) => (
-    event: React.SyntheticEvent<EventTarget>,
+    event: React.SyntheticEvent<EventTarget>
   ) => {
     event.stopPropagation();
     this.setState(({ expandedRows }) => {
@@ -192,7 +210,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       }
 
       return {
-        expandedRows: newExpandedRows,
+        expandedRows: newExpandedRows
       };
     });
   };
@@ -201,7 +219,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     row: VirtualRow,
     key: string | number,
     newVal: string,
-    event: React.SyntheticEvent<EventTarget>,
+    event: React.SyntheticEvent<EventTarget>
   ) => {
     const { defaultEditCallback, editCallbacks, instantEdit } = this.props;
 
@@ -224,14 +242,14 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       }
 
       this.setState({
-        changeLog,
+        changeLog
       });
     }
   };
 
   private handleDisableEditMode = () => {
     this.setState({
-      editMode: false,
+      editMode: false
     });
   };
 
@@ -239,7 +257,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     const { enactEditsCallback } = this.props;
     const { changeLog } = this.state;
     this.setState({
-      editMode: false,
+      editMode: false
     });
     if (enactEditsCallback) {
       enactEditsCallback(changeLog);
@@ -248,7 +266,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   private handleEnableEditMode = () => {
     this.setState({
-      editMode: true,
+      editMode: true
     });
   };
 
@@ -257,19 +275,26 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     const {
       selectedRows,
       sortBy,
-      sortDirection,
+      sortDirection
     }: {
       selectedRows: SelectedRows;
       sortBy: string;
       sortDirection: SortDirectionType;
     } = this.state;
 
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
+    const sortedData: IndexedParentRow[] = this.getData(
+      data!,
+      sortBy,
+      sortDirection,
+      selectedRows
+    );
 
     const { parentOriginalIndex, parentIndex, originalIndex } = row.metadata;
 
     // If parent is already selected
-    if (Object.prototype.hasOwnProperty.call(selectedRows, parentOriginalIndex!)) {
+    if (
+      Object.prototype.hasOwnProperty.call(selectedRows, parentOriginalIndex!)
+    ) {
       const { selectedChildren } = selectedRows[parentOriginalIndex!];
       // If child is already selected
       if (selectedChildren.has(originalIndex)) {
@@ -279,24 +304,29 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
           delete selectedRows[parentOriginalIndex!];
           // If there is still at least one selected child
         } else {
-          selectedRows[parentOriginalIndex!].status = SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
+          selectedRows[parentOriginalIndex!].status =
+            SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
         }
         // If child is not already selected
       } else {
         selectedChildren.add(originalIndex);
         // If all children are now selected
-        if (sortedData[parentIndex!].metadata.children.length === selectedChildren.size) {
+        if (
+          sortedData[parentIndex!].metadata.children.length ===
+          selectedChildren.size
+        ) {
           selectedRows[parentOriginalIndex!].status = SELECTION_OPTIONS.ACTIVE;
           // If not all children are now selected
         } else {
-          selectedRows[parentOriginalIndex!].status = SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
+          selectedRows[parentOriginalIndex!].status =
+            SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
         }
       }
       // If parent is not already selected
     } else {
       selectedRows[parentOriginalIndex!] = {
         status: SELECTION_OPTIONS.HAS_ACTIVE_CHILD,
-        selectedChildren: new Set([originalIndex]),
+        selectedChildren: new Set([originalIndex])
       };
     }
 
@@ -315,11 +345,13 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     } else {
       // Is there are children, select them all
       const children = row.metadata.children
-        ? row.metadata.children.map((child: IndexedChildRow) => child.metadata.originalIndex)
+        ? row.metadata.children.map(
+            (child: IndexedChildRow) => child.metadata.originalIndex
+          )
         : [];
       selectedRows[originalIndex] = {
         status: SELECTION_OPTIONS.ACTIVE,
-        selectedChildren: new Set(children),
+        selectedChildren: new Set(children)
       };
     }
 
@@ -345,7 +377,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       instantEdit,
       rowHeight,
       tableHeaderLabel,
-      tableHeaderHeight,
+      tableHeaderHeight
     } = this.props;
 
     const { editMode, selectedRows } = this.state;
@@ -359,7 +391,11 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         instantEdit={instantEdit!}
         editMode={editMode}
         height={getHeight(rowHeight, tableHeaderHeight)}
-        width={this.props.width ? Math.min(this.props.width, parentWidth) : parentWidth}
+        width={
+          this.props.width
+            ? Math.min(this.props.width, parentWidth)
+            : parentWidth
+        }
         onDisableEditMode={this.handleDisableEditMode}
         onEnableEditMode={this.handleEnableEditMode}
         onEnactEdits={this.handleEnactEdits}
@@ -367,14 +403,50 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     );
   }
 
-  rowGetter = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }) =>
-    expandedDataList[index];
+  rowGetter = (expandedDataList: ExpandedRow[]) => ({
+    index
+  }: {
+    index: number;
+  }) => expandedDataList[index];
+
+  columnCellRenderer = ({ dataKey, parent, rowIndex }) => {
+    const { expandedRows } = this.state;
+
+    const datum = expandedRows[rowIndex % expandedRows.length];
+    const content = "a b c d e".slice(0, rowIndex + 1);
+
+    return (
+      <CellMeasurer
+        cache={this.cache}
+        columnIndex={0}
+        key={dataKey}
+        parent={parent}
+        rowIndex={rowIndex}
+      >
+        <div
+          style={{
+            background: `rgba(255, 0, 0, ${rowIndex / 10})`
+          }}
+        >
+          {content}
+        </div>
+      </CellMeasurer>
+    );
+  };
+
+  cache = new CellMeasurerCache({
+    minHeight: 25,
+    defaultHeight: 35,
+    fixedHeight: false,
+    fixedWidth: true
+  });
 
   render() {
     const {
       cx,
       autoHeight,
       data,
+      dynamicRowHeight
       expandable,
       filterData,
       propagateRef,
@@ -382,12 +454,23 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       selectable,
       styles,
       selectedRowsFirst,
-      tableHeaderHeight,
+      tableHeaderHeight
     } = this.props;
 
-    const { expandedRows, sortBy, sortDirection, editMode, selectedRows } = this.state;
+    const {
+      expandedRows,
+      sortBy,
+      sortDirection,
+      editMode,
+      selectedRows
+    } = this.state;
 
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
+    const sortedData: IndexedParentRow[] = this.getData(
+      data!,
+      sortBy,
+      sortDirection,
+      selectedRows
+    );
 
     const filteredData = filterData!(sortedData);
 
@@ -398,8 +481,11 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       selectedRowsFirst!,
       sortBy,
       this.keys,
-      sortDirection,
+      sortDirection
     );
+
+    // Maybe add overscanRowCount
+    console.log(this.cache);
 
     return (
       <AutoSizer disableHeight={!autoHeight}>
@@ -414,12 +500,28 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
                 height={
                   autoHeight
                     ? height -
-                      (this.shouldRenderTableHeader() ? getHeight(rowHeight, tableHeaderHeight) : 0)
+                      (this.shouldRenderTableHeader()
+                        ? getHeight(rowHeight, tableHeaderHeight)
+                        : 0)
                     : this.getTableHeight(expandedData)
                 }
-                rowCount={expandedData.length}
-                rowHeight={HEIGHT_TO_PX[rowHeight!]}
+                deferredMeasurementCache={this.cache}
+                rowHeight={
+                  dynamicRowHeight
+                    ? this.cache.rowHeight
+                    : HEIGHT_TO_PX[rowHeight!]
+                }
                 width={this.props.width || width}
+                headerHeight={this.getColumnHeaderHeight()}
+                ref={propagateRef}
+                rowCount={expandedData.length}
+                rowGetter={this.rowGetter(expandedData)}
+                rowHeight={this.cache.rowHeight}
+                width={this.props.width || width}
+                headerHeight={this.getColumnHeaderHeight()}
+                ref={propagateRef}
+                rowCount={expandedData.length}
+                rowGetter={this.rowGetter(expandedData)}
                 rowStyle={this.getRowStyle(expandedData)}
                 sort={this.sort}
                 sortBy={sortBy}
@@ -427,12 +529,27 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
                 headerRowRenderer={ColumnLabels(this.props)}
                 onRowClick={this.handleRowClick}
               >
-                {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
+                {expandable &&
+                  renderExpandableColumn(
+                    cx,
+                    styles,
+                    expandedRows,
+                    this.expandRow
+                  )}
 
                 {selectable &&
-                  renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
+                  renderSelectableColumn(
+                    selectedRows,
+                    this.handleSelection,
+                    expandable
+                  )}
 
-                {renderDataColumns(this.keys, editMode, this.onEdit, this.props)}
+                {renderDataColumns(
+                  this.keys,
+                  editMode,
+                  this.onEdit,
+                  this.props
+                )}
               </Table>
             </div>
           </>
@@ -445,31 +562,31 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 export default withStyles(
   ({ ui }) => ({
     table_container: {
-      overflowX: 'auto',
+      overflowX: "auto"
     },
     column_header: {
       borderBottom: ui.border,
-      cursor: 'pointer',
+      cursor: "pointer"
     },
     column: {
-      height: 'inherit',
+      height: "inherit"
     },
     column_divider: {
-      borderRight: ui.border,
+      borderRight: ui.border
     },
     row: {
-      height: '100%',
-      display: 'flex',
-      alignItems: 'center',
+      height: "100%",
+      display: "flex",
+      alignItems: "center"
     },
     row_inner: {
-      width: '100%',
+      width: "100%"
     },
     expand_caret: {
-      cursor: 'pointer',
-    },
+      cursor: "pointer"
+    }
   }),
   {
-    passThemeProp: true,
-  },
+    passThemeProp: true
+  }
 )(DataTable);
