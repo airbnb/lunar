@@ -194,5 +194,9 @@ export default function buildInputStyles({
     button_neutral: {
       ...commonNeutral,
     },
+
+    button_small: {
+      padding: unit * 2,
+    },
   };
 }
