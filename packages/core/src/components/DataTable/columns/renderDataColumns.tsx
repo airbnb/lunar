@@ -44,26 +44,6 @@ export default function renderDataColumns<T>(
     theme
   }: ArgumentsFromProps
 ) {
-  const columnCellRenderer = (columnIdx: number) => (row: VirtualRow) => {
-    const { dataKey, parent, rowIndex } = row;
-
-    const content = renderCell(dataKey, columnIdx, row);
-
-    return (
-      <div className={cx(styles.rowContainer)}>
-        <CellMeasurer
-          cache={cache}
-          columnIndex={columnIdx}
-          key={dataKey}
-          parent={parent}
-          rowIndex={rowIndex}
-        >
-          <div className={cx(styles.row)}>{content}</div>
-        </CellMeasurer>
-      </div>
-    );
-  };
-
   const renderCell = (key: string, columnIndex: number, row: VirtualRow) => {
     const { metadata } = row.rowData;
     const { isChild } = metadata;
@@ -100,6 +80,27 @@ export default function renderDataColumns<T>(
       <Spacing left={spacing} right={2}>
         {contents || ""}
       </Spacing>
+    );
+  };
+
+  const columnCellRenderer = (columnIdx: number) => (row: VirtualRow) => {
+    const { dataKey, parent, rowIndex } = row;
+
+    const content = renderCell(dataKey, columnIdx, row);
+
+    return (
+      <div className={cx(styles.rowContainer)}>
+        <CellMeasurer
+          cache={cache}
+          columnIndex={columnIdx}
+          key={dataKey}
+          //@ts-ignore
+          parent={parent}
+          rowIndex={rowIndex}
+        >
+          <div className={cx(styles.row)}>{content}</div>
+        </CellMeasurer>
+      </div>
     );
   };
 

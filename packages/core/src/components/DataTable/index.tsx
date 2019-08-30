@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  Column,
-  CellMeasurer,
   CellMeasurerCache,
   AutoSizer,
   SortDirection,
