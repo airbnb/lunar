@@ -179,6 +179,10 @@ export default function buildInputStyles({
       ...commonChecked,
     },
 
+    button_compact: {
+      padding: unit * 2,
+    },
+
     button_disabled: {
       ...commonDisabled,
     },
@@ -193,10 +197,6 @@ export default function buildInputStyles({
 
     button_neutral: {
       ...commonNeutral,
-    },
-
-    button_small: {
-      padding: unit * 2,
     },
   };
 }

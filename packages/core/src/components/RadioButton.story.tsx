@@ -108,7 +108,7 @@ storiesOf('Core/RadioButton', module)
       value="foo"
       onChange={action('onChange')}
       button
-      small
+      compact
     >
       <Row after={<ProfilePhoto imageSrc={lunar} title="Photo" small />}>Label from children</Row>
     </RadioButton>

@@ -39,7 +39,7 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
       id,
       invalid,
       indeterminate,
-      small,
+      compact,
       styles,
       ...restProps
     } = this.props;
@@ -93,7 +93,7 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
       id,
       invalid,
       indeterminate,
-      small,
+      compact,
       styles,
     } = this.props;
 
@@ -110,7 +110,7 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
           checked && styles.button_checked,
           invalid && styles.button_invalid,
           disabled && styles.button_disabled,
-          small && styles.button_small,
+          compact && styles.button_compact,
         )}
       >
         {this.renderRadioButton()}
