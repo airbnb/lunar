@@ -14,11 +14,7 @@ matrix:
 jobs:
   include:
     - stage: Tests
-      name: Danger
-      script: yarn danger ci --use-github-checks
-      node_js: '12'
-      if: type = pull_request
-    - name: Happo
+      name: Happo
       script: yarn run happo:ci:travis
       node_js: '12'
       if: type = pull_request OR branch = master
