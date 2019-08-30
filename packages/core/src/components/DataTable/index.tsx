@@ -411,7 +411,7 @@ export class DataTable extends React.Component<
     index: number;
   }) => expandedDataList[index];
 
-  _cache = new CellMeasurerCache({
+  cache = new CellMeasurerCache({
     minHeight: 25,
     defaultHeight: 35,
     fixedHeight: false,
@@ -460,6 +460,8 @@ export class DataTable extends React.Component<
       sortDirection
     );
 
+    console.log(this.props);
+
     return (
       <AutoSizer disableHeight={!autoHeight}>
         {({ height, width }: { height: number; width: number }) => (
@@ -490,9 +492,8 @@ export class DataTable extends React.Component<
                 rowCount={expandedData.length}
                 rowGetter={this.rowGetter(expandedData)}
                 rowHeight={this.cache.rowHeight}
-                deferredMeasurementCache={this._cache}
                 overscanRowCount={2}
-                rowHeight={this._cache.rowHeight}
+                rowHeight={this.cache.rowHeight}
                 rowGetter={this.rowGetter(expandedData)}
                 rowCount={expandedData.length}
                 width={this.props.width || width}
@@ -504,20 +505,7 @@ export class DataTable extends React.Component<
                 onRowClick={this.handleRowClick}
                 headerHeight={this.getColumnHeaderHeight()}
               >
-                <Column
-                  width={80}
-                  dataKey="name"
-                  label="Dynamic text"
-                  cellRenderer={this.columnCellRenderer}
-                />
-                <Column
-                  width={width - 80}
-                  dataKey="name2"
-                  label="Dynamic text 2"
-                  cellRenderer={this.columnCellRenderer}
-                />
-                {/* {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
-
+                {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
                 {selectable &&
                   renderSelectableColumn(
                     selectedRows,
@@ -531,6 +519,8 @@ export class DataTable extends React.Component<
                   this.onEdit,
                   this.props
                 )}
+                  renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
+                {renderDataColumns(this.keys, editMode, this.onEdit, this.cache, this.props)}
               </Table>
             </div>
           </>

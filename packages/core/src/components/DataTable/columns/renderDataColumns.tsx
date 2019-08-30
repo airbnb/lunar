@@ -34,20 +34,21 @@ export default function renderDataColumns<T>(
   cache: any,
   {
     columnMetadata,
+    expandable,
+    renderers,
+    selectable,
     showColumnDividers,
+    zebra,
     cx,
     styles,
-    renderers,
-    zebra,
-    theme,
-    selectable,
-    expandable
+    theme
   }: ArgumentsFromProps
 ) {
   const columnCellRenderer = (columnIdx: number) => (row: VirtualRow) => {
     const { dataKey, parent, rowIndex } = row;
-    // const content = row.rowData.data[dataKey] || '';
+
     const content = renderCell(dataKey, columnIdx, row);
+
     return (
       <div className={cx(styles.rowContainer)}>
         <CellMeasurer
