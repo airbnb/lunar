@@ -194,17 +194,21 @@ export function aStandardTableWithAFlexWrapper() {
         {
           data: {
             name: 'regular text',
+            jobTitle: 'regular job title',
           },
         },
         {
           data: {
             name:
               'here is a very very long input field that needs to break and trigger a dynamic row height',
+            jobTitle: 'regular job title',
           },
         },
         ...getData(),
       ]}
-      keys={['name', 'jobTitle', 'tenureDays']}
+      keys={['name', 'jobTitle']}
+      width={400}
+      columnLabelCase="sentence"
     />
   ))
   .add('A standard table with initial sorting.', () => (

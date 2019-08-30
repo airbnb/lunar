@@ -91,13 +91,11 @@ export default function ColumnLabels({
                   ? rightAlignmentStyle
                   : {}
               }
-              className={cx(styles && styles.row)}
+              className={cx(styles && styles.headerRow)}
             >
-              <span>
-                <Text micro muted>
-                  {label}
-                </Text>
-              </span>
+              <Text micro muted>
+                {label}
+              </Text>
 
               {label && sortable && (
                 <Spacing inline left={0.5}>
@@ -118,11 +116,7 @@ export default function ColumnLabels({
     });
 
     return (
-      <div
-        role="row"
-        style={style}
-        className={cx(className, styles && styles.column_header, styles && styles.row)}
-      >
+      <div role="row" style={style} className={cx(className, styles && styles.column_header)}>
         {newColumns}
       </div>
     );

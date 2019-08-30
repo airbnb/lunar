@@ -6,9 +6,10 @@ import {
   AutoSizer,
   SortDirection,
   SortDirectionType,
-  Table
-} from "react-virtualized";
-import memoize from "lodash/memoize";
+  Table,
+} from 'react-virtualized';
+import 'react-virtualized/styles.css';
+import memoize from 'lodash/memoize';
 
 import sortData from "./helpers/sortData";
 import expandData from "./helpers/expandData";
@@ -23,18 +24,19 @@ import {
   RowStyles,
   VirtualRow,
   SelectedRows,
-  IndexedChildRow
-} from "./types";
-import ColumnLabels from "./ColumnLabels";
-import TableHeader from "./TableHeader";
-import renderDataColumns from "./columns/renderDataColumns";
-import renderExpandableColumn from "./columns/renderExpandableColumn";
-import renderSelectableColumn from "./columns/renderSelectableColumn";
-import withStyles, { WithStylesProps } from "../../composers/withStyles";
-import { getRowColor, getHeight, getKeys } from "./helpers";
-import { HEIGHT_TO_PX, SELECTION_OPTIONS } from "./constants";
+  IndexedChildRow,
+} from './types';
+import ColumnLabels from './ColumnLabels';
+import TableHeader from './TableHeader';
+import renderDataColumns from './columns/renderDataColumns';
+import renderExpandableColumn from './columns/renderExpandableColumn';
+import renderSelectableColumn from './columns/renderSelectableColumn';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import { getRowColor, getHeight, getKeys } from './helpers';
+import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
+import { inherits } from 'util';
 
-export * from "./types";
+export * from './types';
 
 export type State = {
   changeLog: ChangeLog;
@@ -409,36 +411,10 @@ export class DataTable extends React.Component<
     index: number;
   }) => expandedDataList[index];
 
-  columnCellRenderer = ({ dataKey, parent, rowIndex }) => {
-    const { expandedRows } = this.state;
-
-    const datum = expandedRows[rowIndex % expandedRows.length];
-    const content = 'a b c d e f g h i j k l m n o p'.slice(0, rowIndex + 1);
-
-    return (
-      <CellMeasurer
-        cache={this.cache}
-        columnIndex={0}
-        key={dataKey}
-        parent={parent}
-        rowIndex={rowIndex}
-      >
-        <div
-          style={{
-            background: `rgba(255, 0, 0, ${rowIndex / 10})`
-          }}
-        >
-          {content}
-        </div>
-      </CellMeasurer>
-    );
-  };
-
-  cache = new CellMeasurerCache({
+  _cache = new CellMeasurerCache({
     minHeight: 25,
     defaultHeight: 35,
     fixedHeight: false,
-    fixedWidth: true
   });
 
   render() {
@@ -484,9 +460,6 @@ export class DataTable extends React.Component<
       sortDirection
     );
 
-    // Maybe add overscanRowCount
-    console.log(this.cache);
-
     return (
       <AutoSizer disableHeight={!autoHeight}>
         {({ height, width }: { height: number; width: number }) => (
@@ -517,17 +490,19 @@ export class DataTable extends React.Component<
                 rowCount={expandedData.length}
                 rowGetter={this.rowGetter(expandedData)}
                 rowHeight={this.cache.rowHeight}
-                width={this.props.width || width}
-                headerHeight={this.getColumnHeaderHeight()}
-                ref={propagateRef}
-                rowCount={expandedData.length}
+                deferredMeasurementCache={this._cache}
+                overscanRowCount={2}
+                rowHeight={this._cache.rowHeight}
                 rowGetter={this.rowGetter(expandedData)}
-                rowStyle={this.getRowStyle(expandedData)}
+                rowCount={expandedData.length}
+                width={this.props.width || width}
+                ref={propagateRef}
                 sort={this.sort}
                 sortBy={sortBy}
                 sortDirection={sortDirection}
                 headerRowRenderer={ColumnLabels(this.props)}
                 onRowClick={this.handleRowClick}
+                headerHeight={this.getColumnHeaderHeight()}
               >
                 <Column
                   width={80}
@@ -570,6 +545,12 @@ export default withStyles(
     table_container: {
       overflowX: "auto"
     },
+    headerRow: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      height: '100%',
+      textTransform: 'none',
+    },
     column_header: {
       borderBottom: ui.border,
       cursor: "pointer"
@@ -580,13 +561,13 @@ export default withStyles(
     column_divider: {
       borderRight: ui.border
     },
-    row: {
-      height: "100%",
-      display: "flex",
-      alignItems: "center"
+    rowContainer: {
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
     },
-    row_inner: {
-      width: "100%"
+    row: {
+      whiteSpace: 'normal',
     },
     expand_caret: {
       cursor: "pointer"

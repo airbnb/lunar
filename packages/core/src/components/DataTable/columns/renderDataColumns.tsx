@@ -1,7 +1,7 @@
-import React from 'react';
-import { Column } from 'react-virtualized';
-import DefaultRenderer from '../DefaultRenderer';
-import Spacing from '../../Spacing';
+import React from "react";
+import { Column, CellMeasurer } from "react-virtualized";
+import DefaultRenderer from "../DefaultRenderer";
+import Spacing from "../../Spacing";
 import {
   ColumnMetadata,
   DataTableProps,
@@ -9,20 +9,20 @@ import {
   EditCallback,
   HeightOptions,
   WidthProperties,
-  RendererProps,
-} from '../types';
-import { WithStylesProps } from '../../../composers/withStyles';
-import { DEFAULT_WIDTH_PROPERTIES } from '../constants';
+  RendererProps
+} from "../types";
+import { WithStylesProps } from "../../../composers/withStyles";
+import { DEFAULT_WIDTH_PROPERTIES } from "../constants";
 
 type ArgumentsFromProps = {
   columnMetadata?: ColumnMetadata;
   showColumnDividers?: boolean;
-  cx: WithStylesProps['cx'];
-  styles: WithStylesProps['styles'];
-  renderers?: DataTableProps['renderers'];
+  cx: WithStylesProps["cx"];
+  styles: WithStylesProps["styles"];
+  renderers?: DataTableProps["renderers"];
   zebra?: boolean;
   rowHeight?: HeightOptions;
-  theme?: WithStylesProps['theme'];
+  theme?: WithStylesProps["theme"];
   selectable?: boolean;
   expandable?: boolean;
 };
@@ -30,7 +30,8 @@ type ArgumentsFromProps = {
 export default function renderDataColumns<T>(
   keys: string[],
   editMode: boolean,
-  onEdit: EditCallback<T>,
+  onEdit: EditCallback,
+  cache: any,
   {
     columnMetadata,
     showColumnDividers,
@@ -40,22 +41,43 @@ export default function renderDataColumns<T>(
     zebra,
     theme,
     selectable,
-    expandable,
-  }: ArgumentsFromProps,
+    expandable
+  }: ArgumentsFromProps
 ) {
-  const renderCell = (key: string, isLeftmost: boolean) => (row: VirtualRow<T>) => {
+  const columnCellRenderer = (columnIdx: number) => (row: VirtualRow) => {
+    const { dataKey, parent, rowIndex } = row;
+    // const content = row.rowData.data[dataKey] || '';
+    const content = renderCell(dataKey, columnIdx, row);
+    return (
+      <div className={cx(styles.rowContainer)}>
+        <CellMeasurer
+          cache={cache}
+          columnIndex={columnIdx}
+          key={dataKey}
+          parent={parent}
+          rowIndex={rowIndex}
+        >
+          <div className={cx(styles.row)}>{content}</div>
+        </CellMeasurer>
+      </div>
+    );
+  };
+
+  const renderCell = (key: string, columnIndex: number, row: VirtualRow) => {
     const { metadata } = row.rowData;
     const { isChild } = metadata;
     const customRenderer = renderers && renderers[key];
+    const isLeftmost = columnIndex === 0;
     const indentSize = !expandable || !isLeftmost ? 2 : 2.5;
-    const spacing = isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
+    const spacing =
+      isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
     const rendererArguments: RendererProps<T> = {
       row,
       keyName: key as keyof T,
       editMode,
       onEdit,
       zebra: zebra || false,
-      theme,
+      theme
     };
 
     if (metadata && metadata.colSpanKey && renderers) {
@@ -68,21 +90,26 @@ export default function renderDataColumns<T>(
       }
     }
 
-    const contents = React.createElement(customRenderer || DefaultRenderer, rendererArguments);
+    const contents = React.createElement(
+      customRenderer || DefaultRenderer,
+      rendererArguments
+    );
 
     return (
-      <div className={cx(styles && styles.row)}>
-        <div className={cx(styles && styles.row_inner)}>
-          <Spacing left={spacing} right={2}>
-            {contents || ''}
-          </Spacing>
-        </div>
-      </div>
+      <Spacing left={spacing} right={2}>
+        {contents || ""}
+      </Spacing>
     );
   };
 
   return keys.map((key, idx: number) => {
-    const widthPropertiesOptions = ['maxWidth', 'minWidth', 'width', 'flexGrow', 'flexShrink'];
+    const widthPropertiesOptions = [
+      "maxWidth",
+      "minWidth",
+      "width",
+      "flexGrow",
+      "flexShrink"
+    ];
     const widthProperties: WidthProperties = {};
     widthPropertiesOptions.forEach(property => {
       widthProperties[property] =
@@ -93,7 +120,6 @@ export default function renderDataColumns<T>(
           : DEFAULT_WIDTH_PROPERTIES[property];
     });
 
-    const isLeftmost = idx === 0;
     const isRightmost = idx === keys.length - 1;
 
     return (
@@ -106,10 +132,10 @@ export default function renderDataColumns<T>(
         flexShrink={widthProperties.flexShrink}
         maxWidth={widthProperties.maxWidth}
         minWidth={widthProperties.minWidth}
-        cellRenderer={renderCell(key, isLeftmost)}
+        cellRenderer={columnCellRenderer(idx)}
         className={cx(
           styles && styles.column,
-          showColumnDividers && !isRightmost && styles && styles.column_divider,
+          showColumnDividers && !isRightmost && styles && styles.column_divider
         )}
       />
     );
