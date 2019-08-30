@@ -294,6 +294,7 @@ export function anEditableTable() {
       selectable
       expandable
       editable
+      showRowDividers
       tableHeaderLabel="My Great Table"
       data={getData()}
       keys={['name', 'jobTitle']}

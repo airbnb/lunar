@@ -53,6 +53,8 @@ export interface DataTableProps {
   data?: ParentRow[];
   /** Default callback on all edits. */
   defaultEditCallback?: EditCallback;
+  /** When enabled, row height is set dynamically to accomodate content. */
+  dynamicRowHeight?: boolean;
   /** Specifies whether or not editMode can be enabled. */
   editable?: boolean;
   /** Callback for any specific key, called on all edits. */

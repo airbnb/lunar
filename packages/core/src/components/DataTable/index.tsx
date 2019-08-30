@@ -6,10 +6,10 @@ import {
   AutoSizer,
   SortDirection,
   SortDirectionType,
-  Table,
-} from 'react-virtualized';
-import 'react-virtualized/styles.css';
-import memoize from 'lodash/memoize';
+  Table
+} from "react-virtualized";
+import "react-virtualized/styles.css";
+import memoize from "lodash/memoize";
 
 import sortData from "./helpers/sortData";
 import expandData from "./helpers/expandData";
@@ -24,19 +24,19 @@ import {
   RowStyles,
   VirtualRow,
   SelectedRows,
-  IndexedChildRow,
-} from './types';
-import ColumnLabels from './ColumnLabels';
-import TableHeader from './TableHeader';
-import renderDataColumns from './columns/renderDataColumns';
-import renderExpandableColumn from './columns/renderExpandableColumn';
-import renderSelectableColumn from './columns/renderSelectableColumn';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import { getRowColor, getHeight, getKeys } from './helpers';
-import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
-import { inherits } from 'util';
+  IndexedChildRow
+} from "./types";
+import ColumnLabels from "./ColumnLabels";
+import TableHeader from "./TableHeader";
+import renderDataColumns from "./columns/renderDataColumns";
+import renderExpandableColumn from "./columns/renderExpandableColumn";
+import renderSelectableColumn from "./columns/renderSelectableColumn";
+import withStyles, { WithStylesProps } from "../../composers/withStyles";
+import { getRowColor, getHeight, getKeys } from "./helpers";
+import { HEIGHT_TO_PX, SELECTION_OPTIONS } from "./constants";
+import { inherits } from "util";
 
-export * from './types';
+export * from "./types";
 
 export type State = {
   changeLog: ChangeLog;
@@ -60,6 +60,7 @@ export class DataTable extends React.Component<
     columnToLabel: {},
     data: [],
     defaultEditCallback: () => {},
+    dynamicRowHeight: false,
     editable: false,
     editCallbacks: {},
     enactEditsCallback: () => {},
@@ -414,15 +415,14 @@ export class DataTable extends React.Component<
   cache = new CellMeasurerCache({
     minHeight: 25,
     defaultHeight: 35,
-    fixedHeight: false,
+    fixedHeight: false
   });
 
   render() {
     const {
-      cx,
       autoHeight,
       data,
-      dynamicRowHeight
+      dynamicRowHeight,
       expandable,
       filterData,
       propagateRef,
@@ -430,7 +430,8 @@ export class DataTable extends React.Component<
       selectable,
       styles,
       selectedRowsFirst,
-      tableHeaderHeight
+      tableHeaderHeight,
+      cx
     } = this.props;
 
     const {
@@ -460,8 +461,6 @@ export class DataTable extends React.Component<
       sortDirection
     );
 
-    console.log(this.props);
-
     return (
       <AutoSizer disableHeight={!autoHeight}>
         {({ height, width }: { height: number; width: number }) => (
@@ -481,19 +480,12 @@ export class DataTable extends React.Component<
                     : this.getTableHeight(expandedData)
                 }
                 deferredMeasurementCache={this.cache}
+                overscanRowCount={2}
                 rowHeight={
                   dynamicRowHeight
                     ? this.cache.rowHeight
                     : HEIGHT_TO_PX[rowHeight!]
                 }
-                width={this.props.width || width}
-                headerHeight={this.getColumnHeaderHeight()}
-                ref={propagateRef}
-                rowCount={expandedData.length}
-                rowGetter={this.rowGetter(expandedData)}
-                rowHeight={this.cache.rowHeight}
-                overscanRowCount={2}
-                rowHeight={this.cache.rowHeight}
                 rowGetter={this.rowGetter(expandedData)}
                 rowCount={expandedData.length}
                 width={this.props.width || width}
@@ -504,23 +496,36 @@ export class DataTable extends React.Component<
                 headerRowRenderer={ColumnLabels(this.props)}
                 onRowClick={this.handleRowClick}
                 headerHeight={this.getColumnHeaderHeight()}
+                rowStyle={this.getRowStyle(expandedData)}
               >
-                {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
+                {expandable &&
+                  renderExpandableColumn(
+                    cx,
+                    styles,
+                    expandedRows,
+                    this.expandRow
+                  )}
                 {selectable &&
                   renderSelectableColumn(
                     selectedRows,
                     this.handleSelection,
                     expandable
                   )}
-
                 {renderDataColumns(
                   this.keys,
                   editMode,
                   this.onEdit,
                   this.props
                 )}
-                  renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
-                {renderDataColumns(this.keys, editMode, this.onEdit, this.cache, this.props)}
+                renderSelectableColumn(selectedRows, this.handleSelection,
+                expandable)}
+                {renderDataColumns(
+                  this.keys,
+                  editMode,
+                  this.onEdit,
+                  this.cache,
+                  this.props
+                )}
               </Table>
             </div>
           </>
@@ -536,10 +541,10 @@ export default withStyles(
       overflowX: "auto"
     },
     headerRow: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      height: '100%',
-      textTransform: 'none',
+      display: "inline-flex",
+      alignItems: "center",
+      height: "100%",
+      textTransform: "none"
     },
     column_header: {
       borderBottom: ui.border,
@@ -552,12 +557,12 @@ export default withStyles(
       borderRight: ui.border
     },
     rowContainer: {
-      height: '100%',
-      display: 'flex',
-      alignItems: 'center',
+      height: "100%",
+      display: "flex",
+      alignItems: "center"
     },
     row: {
-      whiteSpace: 'normal',
+      whiteSpace: "normal"
     },
     expand_caret: {
       cursor: "pointer"
