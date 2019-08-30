@@ -34,7 +34,6 @@ import renderSelectableColumn from "./columns/renderSelectableColumn";
 import withStyles, { WithStylesProps } from "../../composers/withStyles";
 import { getRowColor, getHeight, getKeys } from "./helpers";
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from "./constants";
-import { inherits } from "util";
 
 export * from "./types";
 
@@ -413,8 +412,7 @@ export class DataTable extends React.Component<
   }) => expandedDataList[index];
 
   cache = new CellMeasurerCache({
-    minHeight: 25,
-    defaultHeight: 35,
+    minHeight: 10,
     fixedHeight: false
   });
 

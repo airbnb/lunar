@@ -190,18 +190,20 @@ export function aStandardTableWithAFlexWrapper() {
   ))
   .add('A standard table with dynamic row height.', () => (
     <DataTable
+      dynamicRowHeight
+      showRowDividers
       data={[
         {
           data: {
-            name: 'regular text',
-            jobTitle: 'regular job title',
+            name: 'regular length name text',
+            jobTitle: 'really super long job title global head of all projects and programs',
           },
         },
         {
           data: {
             name:
-              'here is a very very long input field that needs to break and trigger a dynamic row height',
-            jobTitle: 'regular job title',
+              'here is a very very long input field that needs to break line and use dynamic row height',
+            jobTitle: 'regular length job title',
           },
         },
         ...getData(),
