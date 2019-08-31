@@ -3,13 +3,13 @@ import { STATUS_OPTIONS } from '@airbnb/lunar/src/components/DataTable/constants
 export function generateRandomData() {
   return new Array(50).fill(0).map((x, i) => ({
     data: {
-      number: i,
+      number: `${i + 1} `.repeat(i + 1),
       zero: x,
     },
     metadata: {
-      children: new Array(2).fill(0).map((x, i) => ({
+      children: new Array(2).fill(0).map((x, j) => ({
         data: {
-          number: i,
+          number: `${j + 1} `.repeat(i + 1),
           zero: x,
         },
       })),

@@ -150,6 +150,8 @@ class SearchDemo extends React.Component {
           <div style={{ flexGrow: 1 }}>
             <DataTable
               autoHeight
+              dynamicRowHeight
+              showRowDividers
               expandable
               tableHeaderLabel="My Great Table"
               data={data}
@@ -201,9 +203,26 @@ export function aStandardTableWithAFlexWrapper() {
         },
         {
           data: {
-            name:
-              'here is a very very long input field that needs to break line and use dynamic row height',
+            name: 'here is a very very long input field that needs to break line multiple times',
             jobTitle: 'regular length job title',
+          },
+          metadata: {
+            children: [
+              {
+                data: {
+                  name:
+                    'here is a very very long input field that needs to break line and use dynamic row height',
+                  jobTitle: 'regular length job title',
+                },
+              },
+              {
+                data: {
+                  name:
+                    'here is a very very long input field that needs to break line and use dynamic row height',
+                  jobTitle: 'regular length job title',
+                },
+              },
+            ],
           },
         },
         ...getData(),
