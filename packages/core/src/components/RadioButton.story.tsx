@@ -100,7 +100,7 @@ storiesOf('Core/RadioButton', module)
       topAlign
     />
   ))
-  .add('As a small clickable button.', () => (
+  .add('As a compact, clickable button.', () => (
     <RadioButton
       name="radio-basic"
       label="Label"
