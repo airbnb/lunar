@@ -378,6 +378,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       selectable,
       styles,
       selectedRowsFirst,
+      tableHeaderHeight,
     } = this.props;
 
     const { expandedRows, sortBy, sortDirection, editMode, selectedRows } = this.state;
@@ -397,13 +398,18 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     );
 
     return (
-      <div className={cx(styles.table_container)}>
-        <AutoSizer disableHeight={!autoHeight}>
-          {({ height, width }: { height: number; width: number }) => (
-            <>
-              {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
+      <AutoSizer disableHeight={!autoHeight}>
+        {({ height, width }: { height: number; width: number }) => (
+          <>
+            {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
+            <div className={cx(styles.table_container, { width })}>
               <Table
-                height={autoHeight ? height : this.getTableHeight(expandedData)}
+                height={
+                  autoHeight
+                    ? height -
+                      (this.shouldRenderTableHeader() ? getHeight(rowHeight, tableHeaderHeight) : 0)
+                    : this.getTableHeight(expandedData)
+                }
                 width={this.props.width || width}
                 headerHeight={this.getColumnHeaderHeight()}
                 ref={propagateRef}
@@ -424,10 +430,10 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
                 {renderDataColumns(this.keys, editMode, this.onEdit, this.props)}
               </Table>
-            </>
-          )}
-        </AutoSizer>
-      </div>
+            </div>
+          </>
+        )}
+      </AutoSizer>
     );
   }
 }
@@ -436,7 +442,6 @@ export default withStyles(
   ({ ui }) => ({
     table_container: {
       overflowX: 'auto',
-      height: '100%',
     },
     column_header: {
       borderBottom: ui.border,

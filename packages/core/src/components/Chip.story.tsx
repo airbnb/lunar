@@ -15,6 +15,7 @@ storiesOf('Core/Chip', module)
     inspectComponents: [Chip],
   })
   .add('Simple chip.', () => <Chip>Chip</Chip>)
+  .add('With `active`.', () => <Chip active>Chip</Chip>)
   .add('With a icons before and/or after.', () => (
     <>
       <Spacing bottom={1}>
