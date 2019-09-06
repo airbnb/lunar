@@ -33,7 +33,6 @@ export type Props = {
 
 /** Header for the DataTable that displays a title and Table-level buttons. */
 export function TableHeader({
-  bold,
   cx,
   editable,
   editMode,
