@@ -63,10 +63,6 @@ export default function ColumnLabels({
       justifyContent: 'flex-end',
     };
 
-    const borderBottomStyle: React.CSSProperties = {
-      borderBottom: '1px solid gray',
-    };
-
     const newColumns = columns.map((col: React.ReactElement, idx: number) => {
       const { children } = col.props;
       const key = children[0].props.children;
