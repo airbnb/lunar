@@ -41,6 +41,8 @@ export type DefaultDataTableProps = keyof DataTableProps;
 export interface DataTableProps {
   /** If enabled height will be inferred from parent. */
   autoHeight?: boolean;
+  /** Apply bold style to column headers. */
+  columnHeaderBold?: boolean;
   /** Height of the column header. */
   columnHeaderHeight?: HeightOptions;
   /** Change all column label keys to UPPERCASE or Title Case or Sentence case */

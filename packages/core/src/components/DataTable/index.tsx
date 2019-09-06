@@ -41,6 +41,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   static defaultProps: Pick<DataTableProps, DefaultDataTableProps> = {
     autoHeight: false,
     columnHeaderHeight: undefined,
+    columnHeaderBold: false,
     columnLabelCase: '',
     columnMetadata: {},
     columnToLabel: {},
@@ -446,6 +447,9 @@ export default withStyles(
     column_header: {
       borderBottom: ui.border,
       cursor: 'pointer',
+    },
+    column_header_bold: {
+      borderBottomWidth: ui.borderWidthThick,
     },
     column: {
       height: 'inherit',

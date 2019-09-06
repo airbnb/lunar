@@ -29,6 +29,7 @@ type ColumnLabelsProps = {
     we clone them from props (children[0] = label, children[1] = carets), build around their data. */
 export default function ColumnLabels({
   cx,
+  columnHeaderBold,
   styles,
   columnToLabel = {},
   showColumnDividers,
@@ -43,6 +44,7 @@ export default function ColumnLabels({
   styles: WithStylesProps['styles'];
   columnToLabel?: ColumnToLabel;
   showColumnDividers?: boolean;
+  columnHeaderBold?: boolean;
   rowHeight?: RowHeightOptions;
   columnHeaderHeight?: HeightOptions;
   expandable?: boolean;
@@ -59,6 +61,10 @@ export default function ColumnLabels({
 
     const rightAlignmentStyle: React.CSSProperties = {
       justifyContent: 'flex-end',
+    };
+
+    const borderBottomStyle: React.CSSProperties = {
+      borderBottom: '1px solid gray',
     };
 
     const newColumns = columns.map((col: React.ReactElement, idx: number) => {
@@ -90,7 +96,7 @@ export default function ColumnLabels({
               className={cx(styles && styles.row)}
             >
               <span>
-                <Text micro muted>
+                <Text micro={!columnHeaderBold} muted={!columnHeaderBold} bold={columnHeaderBold}>
                   {label}
                 </Text>
               </span>
@@ -117,7 +123,12 @@ export default function ColumnLabels({
       <div
         role="row"
         style={style}
-        className={cx(className, styles && styles.column_header, styles && styles.row)}
+        className={cx(
+          className,
+          styles && styles.column_header,
+          styles && styles.row,
+          styles && columnHeaderBold && styles.column_header_bold,
+        )}
       >
         {newColumns}
       </div>

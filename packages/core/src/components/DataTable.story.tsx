@@ -174,6 +174,13 @@ storiesOf('Core/DataTable', module)
       <DataTable data={getData()} keys={['name', 'jobTitle', 'tenureDays']} />
     </div>
   ))
+  .add('A standard table with bold column headers.', () => (
+    <DataTable
+      columnHeaderBold
+      data={getData()}
+      keys={['name', 'jobTitle']}
+    />
+  ))
   .add('A standard table with initial sorting.', () => (
     <DataTable
       data={getData()}
@@ -269,6 +276,7 @@ storiesOf('Core/DataTable', module)
     <DataTable
       selectable
       expandable
+      columnHeaderBold
       showColumnDividers
       showRowDividers
       zebra
