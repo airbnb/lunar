@@ -34,12 +34,12 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
       button,
       checked,
       children,
+      compact,
       disabled,
       hideLabel,
       id,
       invalid,
       indeterminate,
-      compact,
       styles,
       ...restProps
     } = this.props;
@@ -89,11 +89,11 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
       button,
       checked,
       children,
+      compact,
       disabled,
       id,
       invalid,
       indeterminate,
-      compact,
       styles,
     } = this.props;
 
