@@ -202,7 +202,7 @@ export default withStyles(({ unit }) => ({
   },
 
   content_topAlign: {
-    alignItems: 'flext-start',
+    alignItems: 'flex-start',
   },
 
   label: {
