@@ -313,7 +313,7 @@ export default withStyles(({ ui, unit, color, font, pattern }) => ({
   },
 
   skinTone_active: {
-    backgroundColor: 'white !important',
+    backgroundColor: color.accent.bg,
     opacity: 1,
   },
 
