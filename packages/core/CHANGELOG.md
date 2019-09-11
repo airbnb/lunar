@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.27.0 - 2019-09-11
+
+#### 🚀 Updates
+
+- **[RadioButton, CheckBox]** Add `compact` support to `button` option. Full width children. (#176) ([6d43cab](https://github.com/airbnb/lunar/tree/master/packages/core/commit/6d43cab)), closes [#176](https://github.com/airbnb/lunar/tree/master/packages/core/issues/176)
+
+#### 🐞 Fixes
+
+- **[Dropdown]** Remove prop type restrictions. (#180) ([08edeb0](https://github.com/airbnb/lunar/tree/master/packages/core/commit/08edeb0)), closes [#180](https://github.com/airbnb/lunar/tree/master/packages/core/issues/180)
+- **[FormField]** fix CSS typo (#175) ([2c90107](https://github.com/airbnb/lunar/tree/master/packages/core/commit/2c90107)), closes [#175](https://github.com/airbnb/lunar/tree/master/packages/core/issues/175)
+
+#### 📘 Docs
+
+- **[Chip]** Add `active` story example. (#177) ([400a17f](https://github.com/airbnb/lunar/tree/master/packages/core/commit/400a17f)), closes [#177](https://github.com/airbnb/lunar/tree/master/packages/core/issues/177)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.26.1 - 2019-08-28
 
 #### 🐞 Fixes
