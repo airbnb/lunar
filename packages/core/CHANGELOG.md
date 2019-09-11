@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.27.1 - 2019-09-11
+
+#### 🎨 Styles
+
+- **[EmojiPicker]** Tighten up header spacing (#181) ([ff7b4ad](https://github.com/airbnb/lunar/tree/master/packages/core/commit/ff7b4ad)), closes [#181](https://github.com/airbnb/lunar/tree/master/packages/core/issues/181)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.27.0 - 2019-09-11
 
 #### 🚀 Updates
