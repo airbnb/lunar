@@ -1,15 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { mutuallyExclusiveProps } from 'airbnb-prop-types';
+import { Block } from 'aesthetic';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-
-const PositionShape = PropTypes.oneOfType([
-  PropTypes.number.isRequired,
-  PropTypes.string.isRequired,
-]);
-
-const leftRightProp = mutuallyExclusiveProps(PositionShape, 'left', 'right');
-const topBottomProp = mutuallyExclusiveProps(PositionShape, 'top', 'bottom');
 
 export type Props = {
   /** Bottom offset. */
@@ -42,13 +33,6 @@ export type Props = {
 
 /** An abstract component for displaing menus and overlays over content. */
 class Dropdown extends React.PureComponent<Props & WithStylesProps> {
-  static propTypes = {
-    bottom: topBottomProp,
-    left: leftRightProp,
-    right: leftRightProp,
-    top: topBottomProp,
-  };
-
   static defaultProps = {
     fixed: false,
     visible: false,
@@ -105,7 +89,7 @@ class Dropdown extends React.PureComponent<Props & WithStylesProps> {
       onClickOutside,
       ...props
     } = this.props;
-    const style: React.CSSProperties = {
+    const style: Block = {
       position: fixed ? 'fixed' : 'absolute',
       zIndex: zIndex || 'auto',
       ...props,
@@ -124,7 +108,7 @@ class Dropdown extends React.PureComponent<Props & WithStylesProps> {
     return (
       <div
         ref={this.ref}
-        className={cx(style as any)}
+        className={cx(style)}
         tabIndex={tabIndex}
         onBlur={onBlur}
         onFocus={onFocus}
