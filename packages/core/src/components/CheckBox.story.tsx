@@ -68,12 +68,22 @@ storiesOf('Core/CheckBox', module)
       />
     </>
   ))
-  .add('As a large clickable button.', () => (
+  .add('As a clickable button.', () => (
     <CheckBox
       name="cb-basic"
       label="Label"
       labelDescription="This is a label description."
       onChange={action('onChange')}
       button
+    />
+  ))
+  .add('As a compact, clickable button.', () => (
+    <CheckBox
+      name="cb-basic"
+      label="Label"
+      labelDescription="This is a label description."
+      onChange={action('onChange')}
+      button
+      compact
     />
   ));

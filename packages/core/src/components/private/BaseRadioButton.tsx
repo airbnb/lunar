@@ -34,6 +34,7 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
       button,
       checked,
       children,
+      compact,
       disabled,
       hideLabel,
       id,
@@ -88,6 +89,7 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
       button,
       checked,
       children,
+      compact,
       disabled,
       id,
       invalid,
@@ -108,6 +110,7 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
           checked && styles.button_checked,
           invalid && styles.button_invalid,
           disabled && styles.button_disabled,
+          compact && styles.button_compact,
         )}
       >
         {this.renderRadioButton()}
@@ -175,6 +178,7 @@ export default withStyles(theme => {
 
     children: {
       marginLeft: theme.unit,
+      width: '100%',
     },
   };
 })(BaseRadioButton);

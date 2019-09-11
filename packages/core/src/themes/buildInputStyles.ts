@@ -179,6 +179,10 @@ export default function buildInputStyles({
       ...commonChecked,
     },
 
+    button_compact: {
+      padding: unit * 2,
+    },
+
     button_disabled: {
       ...commonDisabled,
     },

@@ -34,6 +34,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
       button,
       checked,
       children,
+      compact,
       disabled,
       hideLabel,
       id,
@@ -89,6 +90,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
       button,
       checked,
       children,
+      compact,
       disabled,
       id,
       invalid,
@@ -109,6 +111,7 @@ class BaseCheckBox extends React.Component<Props & WithStylesProps> {
           checked && styles.button_checked,
           invalid && styles.button_invalid,
           disabled && styles.button_disabled,
+          compact && styles.button_compact,
         )}
       >
         {this.renderCheckBox()}

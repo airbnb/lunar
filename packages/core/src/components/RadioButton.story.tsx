@@ -1,7 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import lunar from ':storybook/images/lunar-logo.png';
 import RadioButton from './RadioButton';
+import Row from './Row';
+import ProfilePhoto from './ProfilePhoto';
 
 storiesOf('Core/RadioButton', module)
   .addParameters({
@@ -86,7 +89,7 @@ storiesOf('Core/RadioButton', module)
       />
     </>
   ))
-  .add('As a large clickable button.', () => (
+  .add('As a clickable button.', () => (
     <RadioButton
       name="radio-basic"
       label="Label"
@@ -94,5 +97,19 @@ storiesOf('Core/RadioButton', module)
       value="foo"
       onChange={action('onChange')}
       button
+      topAlign
     />
+  ))
+  .add('As a compact, clickable button.', () => (
+    <RadioButton
+      name="radio-basic"
+      label="Label"
+      labelDescription="This is a label description."
+      value="foo"
+      onChange={action('onChange')}
+      button
+      compact
+    >
+      <Row after={<ProfilePhoto imageSrc={lunar} title="Photo" small />}>Label from children</Row>
+    </RadioButton>
   ));
