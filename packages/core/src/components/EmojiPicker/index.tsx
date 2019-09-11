@@ -232,9 +232,8 @@ export default withStyles(({ ui, unit, color, font, pattern }) => ({
     textTransform: 'uppercase',
     color: color.accent.text,
     background: color.accent.bg,
-    borderTopLeftRadius: ui.borderRadius,
-    borderTopRightRadius: ui.borderRadius,
-    padding: `${unit * 0.75}px 0`,
+    padding: `${unit}px 0`,
+    lineHeight: 1,
   },
 
   emojisHeader_sticky: {
@@ -250,6 +249,7 @@ export default withStyles(({ ui, unit, color, font, pattern }) => ({
     flexWrap: 'nowrap',
     margin: 0,
     padding: 0,
+    lineHeight: 1,
     listStyle: 'none',
     justifyContent: 'space-between',
   },
@@ -295,11 +295,12 @@ export default withStyles(({ ui, unit, color, font, pattern }) => ({
     borderRadius: '50%',
     width: 12,
     height: 12,
-    lineHeight: 0,
     padding: 0,
+    margin: 0,
     marginLeft: unit / 2,
     overflow: 'hidden',
     cursor: 'pointer',
+    display: 'block',
     opacity: 0.75,
 
     ':hover': {
@@ -312,7 +313,7 @@ export default withStyles(({ ui, unit, color, font, pattern }) => ({
   },
 
   skinTone_active: {
-    background: 'white !important',
+    backgroundColor: color.accent.bg,
     opacity: 1,
   },
 
