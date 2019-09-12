@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.27.2 - 2019-09-12
+
+#### 🐞 Fixes
+
+- **[RadioButton]** Center align radio with first line when `topAlign` is applied. (#182) ([9e60c2e](https://github.com/airbnb/lunar/tree/master/packages/core/commit/9e60c2e)), closes [#182](https://github.com/airbnb/lunar/tree/master/packages/core/issues/182)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.27.1 - 2019-09-11
 
 #### 🎨 Styles
