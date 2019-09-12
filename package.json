@@ -5,7 +5,7 @@
   "description": "React toolkit and design language for Airbnb open source and internal projects.",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run clean && yarn workspaces run build --ignore-engines && yarn run type",
+    "build": "nimbus babel --workspaces=* && nimbus babel --esm --workspaces=*",
     "clean": "rimraf './packages/*/{lib,esm}'",
     "clean:hard": "yarn run clean && rimraf './packages/**/*.tsbuildinfo'",
     "clean:story": "rimraf './packages/**/*.story.d.ts' './packages/**/*.story.d.ts.map'",
@@ -15,22 +15,24 @@
     "happo": "STORYBOOK=true happo run",
     "happo:ci": "STORYBOOK=true happo-ci",
     "happo:ci:travis": "STORYBOOK=true happo-ci-travis",
-    "jest:coverage": "yarn run jest --coverage",
-    "jest": "NODE_ICU_DATA=$(npx node-full-icu-path) NODE_ENV=test TZ=UTC jest --colors --logHeapUsage",
+    "jest:coverage": "yarn run jest -- --coverage",
+    "jest": "NODE_ENV=test TZ=UTC nimbus jest",
     "lint:errors": "yarn run lint --quiet",
     "lint:in": "eslint --color --ext .ts,.tsx,.js,.jsx --report-unused-disable-directives",
-    "lint": "yarn run lint:in ./packages/*/src ./packages/*/test",
+    "lint": "nimbus eslint",
     "posttest": "yarn run lint",
     "pretest": "yarn run type",
-    "prettier": "prettier --write ./*.{md,json} \"./packages/*/{src,test}/**/*.{ts,tsx,js,jsx,gql,graphql,yml,yaml,md}\"",
+    "prettier": "nimbus prettier",
     "release": "yarn run build && lerna publish",
     "release:publish": "lerna publish from-git --yes",
     "release:version": "lerna version --yes --conventional-commits --changelog-preset conventional-changelog-beemo --create-release github --push",
     "sg": "NODE_ENV=development yarn run storybook",
     "test": "yarn run jest:coverage",
-    "type": "tsc --build && yarn run clean:story",
+    "type": "nimbus typescript --build --reference-workspaces",
     "storybook": "STORYBOOK=true start-storybook -p 6006",
-    "storybook:build": "STORYBOOK=true build-storybook"
+    "storybook:build": "STORYBOOK=true build-storybook",
+    "prepare": "nimbus create-config --silent",
+    "prebuild": "yarn run type"
   },
   "repository": {
     "type": "git",
@@ -81,6 +83,12 @@
     "react-element-to-jsx-string": "^14.1.0"
   },
   "devDependencies": {
+    "@airbnb/config-babel": "^2.0.0",
+    "@airbnb/config-eslint": "^2.0.0",
+    "@airbnb/config-jest": "^2.0.0",
+    "@airbnb/config-prettier": "^2.0.0",
+    "@airbnb/config-typescript": "^2.0.0",
+    "@airbnb/nimbus": "^2.0.0",
     "@testing-library/react": "^9.1.4",
     "@types/enzyme": "^3.10.3",
     "@types/google.analytics": "0.0.40",
@@ -108,5 +116,22 @@
     "rimraf": "^2.6.3",
     "svgo": "^1.3.0",
     "url-loader": "^2.1.0"
+  },
+  "nimbus": {
+    "drivers": [
+      "babel",
+      "eslint",
+      "jest",
+      "prettier",
+      "typescript"
+    ],
+    "settings": {
+      "library": true,
+      "next": true,
+      "react": true,
+      "env": {
+        "targets": false
+      }
+    }
   }
 }
