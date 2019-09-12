@@ -123,7 +123,10 @@
       "eslint",
       "jest",
       "prettier",
-      "typescript"
+      {
+        "driver": "typescript",
+        "declarationOnly": true
+      }
     ],
     "settings": {
       "library": true,

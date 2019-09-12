@@ -65,11 +65,11 @@ export function wrapGlobal(
   return () => {
     const old = global[property];
 
-    global[property] = jest.fn();
+    (global as any)[property] = jest.fn();
 
     const response = callback(global[property]);
 
-    global[property] = old;
+    (global as any)[property] = old;
 
     return response;
   };

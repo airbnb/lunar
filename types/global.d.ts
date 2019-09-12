@@ -87,3 +87,4 @@ declare namespace NodeJS {
   }
 }
 
+// declare type GlobalFetch = WindowOrWorkerGlobalScope;

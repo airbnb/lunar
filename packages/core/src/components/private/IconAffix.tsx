@@ -1,6 +1,3 @@
-// Required for TS
-// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-import React from 'react';
 import withStyles from '../../composers/withStyles';
 import BaseAffix, { Props as BaseProps } from './BaseAffix';
 
