@@ -44,14 +44,24 @@ storiesOf('Core/RadioButton', module)
     />
   ))
   .add('With a top alignment.', () => (
-    <RadioButton
-      topAlign
-      name="radio-disabled"
-      label="Label"
-      value="foo"
-      labelDescription="This is a small label description."
-      onChange={action('onChange')}
-    />
+    <>
+      <RadioButton
+        checked
+        topAlign
+        name="radio-topalign"
+        label="Label"
+        value="foo"
+        onChange={action('onChange')}
+      />
+      <RadioButton
+        topAlign
+        name="radio-topalign"
+        label="Label"
+        value="foo"
+        labelDescription="This is a small label description."
+        onChange={action('onChange')}
+      />
+    </>
   ))
   .add('Marked as optional.', () => (
     <RadioButton

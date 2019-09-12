@@ -38,13 +38,16 @@ storiesOf('Core/CheckBox', module)
     />
   ))
   .add('With a top alignment.', () => (
-    <CheckBox
-      topAlign
-      name="cb-disabled"
-      label="Label"
-      labelDescription="This is a small label description."
-      onChange={action('onChange')}
-    />
+    <>
+      <CheckBox checked topAlign name="cb-topalign" label="Label" onChange={action('onChange')} />
+      <CheckBox
+        topAlign
+        name="cb-topalign"
+        label="Label"
+        labelDescription="This is a small label description."
+        onChange={action('onChange')}
+      />
+    </>
   ))
   .add('Marked as optional.', () => (
     <CheckBox name="cb-optional" label="Label" onChange={action('onChange')} optional />
