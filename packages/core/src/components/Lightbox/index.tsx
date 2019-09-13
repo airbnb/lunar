@@ -42,7 +42,7 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
       this.preloadedUrls.set(images[index].src, true);
 
       if (totalImages > 1) {
-        this.preloadAfterTII();
+        window.requestIdleCallback(() => this.preloadImages());
       }
     }
 
@@ -61,19 +61,6 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
   componentWillUnmount() {
     // We no longer need these images, so let's remove them so they can be garbage collected.
     delete this.preloadedUrls;
-  }
-
-  preloadAfterTII() {
-    // this ensures image preload is delayed after TTI
-    if ('requestIdleCallback' in window) {
-      // eslint-disable-next-line
-      window.requestIdleCallback(() => this.preloadImages());
-    } else {
-      // Fallback for Safari & Edge
-      setTimeout(() => {
-        this.preloadImages();
-      }, 1);
-    }
   }
 
   preloadImages() {
