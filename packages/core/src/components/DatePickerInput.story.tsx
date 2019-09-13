@@ -38,7 +38,6 @@ class DatePickerInputDemo extends React.Component<{}, State> {
             hideLabel
             label="From"
             name="from-date"
-            onChange={this.handleFromChange}
             placeholder="Start date"
             value={from || undefined}
             datePickerProps={{
@@ -49,6 +48,7 @@ class DatePickerInputDemo extends React.Component<{}, State> {
               selectedDays: from && to ? [to, from, { from, to }] : undefined,
               onDayClick: this.handleDayClick,
             }}
+            onChange={this.handleFromChange}
           />
         </Spacing>
 
@@ -57,7 +57,6 @@ class DatePickerInputDemo extends React.Component<{}, State> {
             hideLabel
             label="To"
             name="to-date"
-            onChange={this.handleToChange}
             propagateRef={this.ref}
             placeholder="End date"
             value={to || undefined}
@@ -68,6 +67,7 @@ class DatePickerInputDemo extends React.Component<{}, State> {
               month: from || undefined,
               selectedDays: from && to ? [to, from, { from, to }] : undefined,
             }}
+            onChange={this.handleToChange}
           />
         </Spacing>
       </div>

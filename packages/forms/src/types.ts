@@ -20,10 +20,10 @@ import {
 // File[] - FileInput
 
 export type Context = {
-  change: (name: string, value: any, batchValues?: object) => void;
-  getFields: () => FieldState<any>[];
-  getState: () => FormState<any>;
-  register: (field: Field<any>, onUpdate: FieldSubscriber<any>) => Unsubscribe;
+  change: (name: string, value: unknown, batchValues?: object) => void;
+  getFields: () => FieldState<unknown>[];
+  getState: () => FormState<unknown>;
+  register: (field: Field<unknown>, onUpdate: FieldSubscriber<unknown>) => Unsubscribe;
   submit: () => Promise<object | undefined>;
 };
 

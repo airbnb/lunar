@@ -27,12 +27,12 @@ storiesOf('Forms/Multicomplete', module)
         name="field"
         label="Label"
         accessibilityLabel="Multicomplete"
+        validator={() => {}}
         onLoadItems={value =>
           Promise.resolve(
             items.filter(item => item.name.toLowerCase().match(value.toLowerCase())),
-          ) as any
+          ) as unknown
         }
-        validator={() => {}}
       />
     </Form>
   ));

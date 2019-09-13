@@ -20,14 +20,14 @@ storiesOf('Core/Interweave', module)
   .add('Specify size for Autolinked URLs and emails.', () => (
     <Text large>
       <Interweave
-        content="This contains a URL, www.airbnb.com, and an email, noreply@airbnb.com."
         large
+        content="This contains a URL, www.airbnb.com, and an email, noreply@airbnb.com."
       />
     </Text>
   ))
   .add('Render emojis by converting unicode characters, shortcodes, and emoticons.', () => (
     <Text>
-      <Interweave content="Character: 😽 Shortcode: :kissing_cat: Emoticon: :3" withEmoticons />
+      <Interweave withEmoticons content="Character: 😽 Shortcode: :kissing_cat: Emoticon: :3" />
     </Text>
   ))
   .add('Supports long URLs.', () => (

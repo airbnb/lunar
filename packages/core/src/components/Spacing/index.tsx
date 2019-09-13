@@ -89,7 +89,7 @@ export class Spacing extends React.Component<Props & WithStylesProps> {
       vertical,
     } = this.props;
     const type = inner ? 'inner' : 'outer';
-    const classes: any = [];
+    const classes: unknown = [];
 
     if (all) {
       const cleaned = cleanClassName(all);

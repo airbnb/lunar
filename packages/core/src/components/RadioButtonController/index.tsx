@@ -67,11 +67,11 @@ export default class RadioButtonController extends React.Component<Props, State>
         compactSpacing
         {...props}
         {...inputProps}
+        hideOptionalLabel
         id={`${id}-${value}`}
         value={value}
         checked={value === currentValue}
         onChange={this.handleChange}
-        hideOptionalLabel
       />
     );
   });

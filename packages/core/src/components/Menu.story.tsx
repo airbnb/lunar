@@ -36,21 +36,21 @@ storiesOf('Core/Menu', module)
   ))
   .add('With links, icons (1em), and tips.', () => (
     <Menu accessibilityLabel="User menu">
-      <Item icon={<IconUser decorative />} href="https://github.com/airbnb/lunar" openInNewWindow>
+      <Item openInNewWindow icon={<IconUser decorative />} href="https://github.com/airbnb/lunar">
         Profile
       </Item>
       <Item
+        openInNewWindow
         icon={<IconSettings decorative />}
         href="https://github.com/airbnb/lunar"
-        openInNewWindow
       >
         Settings
       </Item>
       <Item
+        openInNewWindow
         icon={<IconKey decorative />}
         href="https://github.com/airbnb/lunar"
         tip="Cmd + L"
-        openInNewWindow
       >
         Log Out
       </Item>

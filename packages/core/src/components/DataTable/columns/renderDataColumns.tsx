@@ -98,8 +98,8 @@ export default function renderDataColumns(
 
     return (
       <Column
-        dataKey={key}
         key={key}
+        dataKey={key}
         label={key}
         width={widthProperties.width}
         flexGrow={widthProperties.flexGrow}

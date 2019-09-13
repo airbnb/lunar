@@ -1,15 +1,15 @@
 import React from 'react';
 
-export type RenderableProp<T = any> =
-  | React.ReactElement<any>
-  | ((value: T) => React.ReactElement<any> | null)
+export type RenderableProp<T = unknown> =
+  | React.ReactElement<unknown>
+  | ((value: T) => React.ReactElement<unknown> | null)
   | undefined
   | null;
 
-function renderElementOrFunction<T = any>(
+function renderElementOrFunction<T = unknown>(
   prop: RenderableProp<T>,
   value?: T,
-): React.ReactElement<any> | null {
+): React.ReactElement<unknown> | null {
   if (!prop) {
     return null;
   }

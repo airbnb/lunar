@@ -74,12 +74,12 @@ describe('<RadioButton />', () => {
     beforeEach(() => {
       wrapper = shallow(
         <RadioButton
+          button
           name="foo"
           label="Label"
           labelDescription="Label description"
           value="foo"
           onChange={() => {}}
-          button
         />,
       );
     });

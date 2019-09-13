@@ -59,7 +59,7 @@ export interface ConnectToFormWrapperProps<T> extends Field<T> {
   unregisterOnUnmount?: boolean;
 }
 
-export interface ConnectToFormState extends Required<FieldState<any>> {
+export interface ConnectToFormState extends Required<FieldState<unknown>> {
   name: string;
 }
 
@@ -167,7 +167,6 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         }
 
         if (Array.isArray(value)) {
-          // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
           return value.map(cast);
         }
 
@@ -189,7 +188,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
 
       private handleChange = (
         checkedOrValue: T,
-        valueOrEvent: T | React.ChangeEvent<any>,
+        valueOrEvent: T | React.ChangeEvent<unknown>,
         event?: React.ChangeEvent,
       ) => {
         this.props.form.change(
@@ -212,7 +211,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
       };
 
       // istanbul ignore next
-      private handleUpdate = (state: FieldState<any>) => {
+      private handleUpdate = (state: FieldState<unknown>) => {
         if (!this.mounted) {
           return;
         }
@@ -253,7 +252,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
     function ConnectToFormWrapper(props: OwnProps) {
       const form = useContext(FormContext);
 
-      return form ? <ConnectToForm {...(props as any)} form={form} /> : null;
+      return form ? <ConnectToForm {...(props as unknown)} form={form} /> : null;
     }
 
     return finishHOC('connectToForm', ConnectToFormWrapper, WrappedComponent);

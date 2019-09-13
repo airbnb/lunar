@@ -82,7 +82,7 @@ describe('Metrics', () => {
   });
 
   describe('bootstrapSentry()', () => {
-    let scope: any;
+    let scope: unknown;
 
     beforeEach(() => {
       scope = {
@@ -91,7 +91,7 @@ describe('Metrics', () => {
         setExtras: jest.fn(),
       };
 
-      (configureScope as jest.Mock).mockImplementation((cb: any) => cb(scope));
+      (configureScope as jest.Mock).mockImplementation((cb: unknown) => cb(scope));
 
       Metrics.settings = {
         ...settings,

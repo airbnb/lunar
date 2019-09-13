@@ -25,7 +25,7 @@ export default class Input extends React.Component<Props, State> {
     const { id } = this.state;
 
     if (inputProps.type === 'hidden') {
-      return <BaseInput {...inputProps} id={id} hidden optional />;
+      return <BaseInput {...inputProps} hidden optional id={id} />;
     }
 
     return (

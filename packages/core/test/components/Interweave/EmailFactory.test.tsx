@@ -27,7 +27,7 @@ describe('linkFactory()', () => {
 
   it('sets open in new window', () => {
     const wrapper = shallowWithStyles(
-      <EmailFactory emailParts={emailParts} newWindow>
+      <EmailFactory newWindow emailParts={emailParts}>
         email@airbnb.com
       </EmailFactory>,
       true,
@@ -38,7 +38,7 @@ describe('linkFactory()', () => {
 
   it('sets small prop on link', () => {
     const wrapper = shallowWithStyles(
-      <EmailFactory emailParts={emailParts} newWindow small>
+      <EmailFactory newWindow small emailParts={emailParts}>
         email@airbnb.com
       </EmailFactory>,
       true,
@@ -50,7 +50,7 @@ describe('linkFactory()', () => {
 
   it('sets large prop on link', () => {
     const wrapper = shallowWithStyles(
-      <EmailFactory emailParts={emailParts} newWindow large>
+      <EmailFactory newWindow large emailParts={emailParts}>
         email@airbnb.com
       </EmailFactory>,
       true,

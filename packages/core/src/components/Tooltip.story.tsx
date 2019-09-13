@@ -26,7 +26,7 @@ class TooltipDemo extends React.Component<{}, { text: string; clicked: boolean }
 
   render() {
     return (
-      <Tooltip content={this.state.text} width={20} remainOnMouseDown>
+      <Tooltip remainOnMouseDown content={this.state.text} width={20}>
         <Button onClick={this.handleClick} onMouseLeave={this.handleMouseLeave}>
           Hover over here
         </Button>

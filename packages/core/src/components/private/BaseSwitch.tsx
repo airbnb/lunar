@@ -29,15 +29,15 @@ class BaseSwitch extends React.Component<Props & WithStylesProps> {
       <label htmlFor={id} className={cx(styles.switch)}>
         <FormInput
           {...restProps}
+          hidden
+          optional
           checked={checked}
           disabled={disabled}
           id={id}
           invalid={invalid}
-          onChange={this.handleChange}
           tagName="input"
           type="checkbox"
-          hidden
-          optional
+          onChange={this.handleChange}
         />
 
         <span

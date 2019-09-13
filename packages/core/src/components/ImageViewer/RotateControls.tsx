@@ -17,9 +17,13 @@ export default function RotateControls(props: Props) {
   const { onRotation, rotation = 0 } = props;
 
   const handleRotateLeft = useCallback(() => onRotation(rotation - 90 < 0 ? 270 : rotation - 90), [
+    onRotation,
     rotation,
   ]);
-  const handleRotateRight = useCallback(() => onRotation((rotation + 90) % 360), [rotation]);
+  const handleRotateRight = useCallback(() => onRotation((rotation + 90) % 360), [
+    onRotation,
+    rotation,
+  ]);
 
   return (
     <ButtonGroup>

@@ -17,7 +17,7 @@ describe('<Card />', () => {
     const wrapper = shallowWithStyles(<Content beforeImageSrc={imageUrl}>Sup</Content>);
 
     expect(
-      shallow(wrapper.find(Row).prop('before') as any)
+      shallow(wrapper.find(Row).prop('before') as unknown)
         .find('img')
         .prop('src'),
     ).toBe(imageUrl);
@@ -28,7 +28,7 @@ describe('<Card />', () => {
     const wrapper = shallowWithStyles(<Content afterImageSrc={imageUrl}>Sup</Content>);
 
     expect(
-      shallow(wrapper.find(Row).prop('after') as any)
+      shallow(wrapper.find(Row).prop('after') as unknown)
         .find('img')
         .prop('src'),
     ).toBe(imageUrl);
@@ -45,14 +45,14 @@ describe('<Card />', () => {
     const after = '~~After~~';
     const wrapper = shallowWithStyles(<Content after={after}>Sup</Content>);
 
-    expect(shallow(wrapper.find(Row).prop('after') as any).contains(after)).toBe(true);
+    expect(shallow(wrapper.find(Row).prop('after') as unknown).contains(after)).toBe(true);
   });
 
   it('renders before content', () => {
     const before = '~*Before*~';
     const wrapper = shallowWithStyles(<Content before={before}>Sup</Content>);
 
-    expect(shallow(wrapper.find(Row).prop('before') as any).contains(before)).toBe(true);
+    expect(shallow(wrapper.find(Row).prop('before') as unknown).contains(before)).toBe(true);
   });
 
   it('renders before and after content', () => {
@@ -64,7 +64,7 @@ describe('<Card />', () => {
       </Content>,
     );
 
-    expect(shallow(wrapper.find(Row).prop('after') as any).contains(after)).toBe(true);
-    expect(shallow(wrapper.find(Row).prop('before') as any).contains(before)).toBe(true);
+    expect(shallow(wrapper.find(Row).prop('after') as unknown).contains(after)).toBe(true);
+    expect(shallow(wrapper.find(Row).prop('before') as unknown).contains(before)).toBe(true);
   });
 });

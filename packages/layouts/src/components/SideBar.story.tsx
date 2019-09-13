@@ -19,7 +19,7 @@ storiesOf('Layouts/SideBar', module)
   .add('With labels and an active state.', () => (
     <SideBar accessibilityLabel="Side menu">
       <Item icon={<IconUser accessibilityLabel="Profile" />} label="Stats" />
-      <Item icon={<IconSettings accessibilityLabel="Settings" />} label="Config" active />
+      <Item active icon={<IconSettings accessibilityLabel="Settings" />} label="Config" />
       <Item icon={<IconChat accessibilityLabel="Chat" />} label="Chat" />
     </SideBar>
   ));

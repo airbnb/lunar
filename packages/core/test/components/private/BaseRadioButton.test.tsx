@@ -17,7 +17,7 @@ describe('<BaseRadioButton />', () => {
 
   it('renders invalid', () => {
     const wrapper = shallowWithStyles(
-      <BaseRadioButton id="foo" name="foo" onChange={() => {}} invalid />,
+      <BaseRadioButton invalid id="foo" name="foo" onChange={() => {}} />,
     );
 
     expect(wrapper.find(FormInput).prop('invalid')).toBe(true);
@@ -25,7 +25,7 @@ describe('<BaseRadioButton />', () => {
 
   it('renders disabled', () => {
     const wrapper = shallowWithStyles(
-      <BaseRadioButton id="foo" name="foo" onChange={() => {}} disabled />,
+      <BaseRadioButton disabled id="foo" name="foo" onChange={() => {}} />,
     );
 
     expect(wrapper.find(FormInput).prop('disabled')).toBe(true);
@@ -73,7 +73,7 @@ describe('<BaseRadioButton />', () => {
   it('renders in button mode', () => {
     const child = <div>Child</div>;
     const wrapper = shallowWithStyles(
-      <BaseRadioButton id="foo" name="foo" onChange={() => {}} button>
+      <BaseRadioButton button id="foo" name="foo" onChange={() => {}}>
         {child}
       </BaseRadioButton>,
     );

@@ -42,7 +42,7 @@ describe('<FormField />', () => {
 
   it('doesnt renders optional label if `hideOptionalLabel` is true', () => {
     const wrapper = shallowWithStyles(
-      <FormField id="foo" label="Label" hideOptionalLabel>
+      <FormField hideOptionalLabel id="foo" label="Label">
         Foo
       </FormField>,
     );
@@ -91,7 +91,7 @@ describe('<FormField />', () => {
 
   it('renders input before the label', () => {
     const wrapper = shallowWithStyles(
-      <FormField id="foo" label="Label" renderBeforeLabel>
+      <FormField renderBeforeLabel id="foo" label="Label">
         Foo
       </FormField>,
     );
@@ -107,7 +107,7 @@ describe('<FormField />', () => {
 
   it('hides the label', () => {
     const wrapper = shallowWithStyles(
-      <FormField id="foo" label="Label" hideLabel>
+      <FormField hideLabel id="foo" label="Label">
         Foo
       </FormField>,
     );
@@ -117,7 +117,7 @@ describe('<FormField />', () => {
 
   it('shows error if invalid', () => {
     const wrapper = shallowWithStyles(
-      <FormField id="foo" label="Label" invalid errorMessage="Broken!">
+      <FormField invalid id="foo" label="Label" errorMessage="Broken!">
         Foo
       </FormField>,
     );

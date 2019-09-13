@@ -199,7 +199,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   private onEdit = (
     row: VirtualRow,
     key: string,
-    newVal: any,
+    newVal: unknown,
     event: React.SyntheticEvent<EventTarget>,
   ) => {
     const { defaultEditCallback, editCallbacks, instantEdit } = this.props;
@@ -331,7 +331,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   };
 
   // Have to use `any` to match react-virutalized's specified callback signature.
-  private handleRowClick = ({ rowData }: { rowData: any }) =>
+  private handleRowClick = ({ rowData }: { rowData: unknown }) =>
     this.props.selectOnRowClick && this.handleSelection(rowData)();
 
   renderTableHeader(parentWidth: number) {
@@ -348,17 +348,17 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     return (
       <TableHeader
-        editable={editable}
-        editMode={editMode}
-        onEnactEdits={this.handleEnactEdits}
-        onEnableEditMode={this.handleEnableEditMode}
-        onDisableEditMode={this.handleDisableEditMode}
         extraHeaderButtons={extraHeaderButtons}
-        height={getHeight(rowHeight, tableHeaderHeight)}
-        instantEdit={instantEdit!}
-        selectedRows={selectedRows}
+        editable={editable}
         tableHeaderLabel={tableHeaderLabel}
+        selectedRows={selectedRows}
+        instantEdit={instantEdit!}
+        editMode={editMode}
+        height={getHeight(rowHeight, tableHeaderHeight)}
         width={this.props.width ? Math.min(this.props.width, parentWidth) : parentWidth}
+        onDisableEditMode={this.handleDisableEditMode}
+        onEnableEditMode={this.handleEnableEditMode}
+        onEnactEdits={this.handleEnactEdits}
       />
     );
   }
@@ -404,18 +404,18 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
             <div className={cx(styles.table_container, { width })}>
               <Table
+                ref={propagateRef}
+                rowGetter={this.rowGetter(expandedData)}
+                headerHeight={this.getColumnHeaderHeight()}
                 height={
                   autoHeight
                     ? height -
                       (this.shouldRenderTableHeader() ? getHeight(rowHeight, tableHeaderHeight) : 0)
                     : this.getTableHeight(expandedData)
                 }
-                width={this.props.width || width}
-                headerHeight={this.getColumnHeaderHeight()}
-                ref={propagateRef}
                 rowCount={expandedData.length}
                 rowHeight={HEIGHT_TO_PX[rowHeight!]}
-                rowGetter={this.rowGetter(expandedData)}
+                width={this.props.width || width}
                 rowStyle={this.getRowStyle(expandedData)}
                 sort={this.sort}
                 sortBy={sortBy}

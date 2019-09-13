@@ -51,10 +51,10 @@ export function TableHeader({
     (btnConfig: HeaderButton) =>
       btnConfig.displayEditMode && (
         <Button
+          key={btnConfig.label}
           small
           inverted
           onClick={btnConfig.onClick && btnConfig.onClick(selectedRows)}
-          key={btnConfig.label}
         >
           {btnConfig.label}
         </Button>
@@ -65,10 +65,10 @@ export function TableHeader({
     (btnConfig: HeaderButton) =>
       btnConfig.display && (
         <Button
+          key={btnConfig.label}
           small
           inverted
           onClick={btnConfig.onClick && btnConfig.onClick(selectedRows)}
-          key={btnConfig.label}
         >
           {btnConfig.label}
         </Button>
@@ -78,19 +78,19 @@ export function TableHeader({
   const extraButtons = editMode ? extraEditButtons : extraNonEditButtons;
 
   const editModeButtons = instantEdit ? (
-    <Button small onClick={onDisableEditMode} key="Done">
+    <Button key="Done" small onClick={onDisableEditMode}>
       <Translate k="lunar.common.done" phrase="Done" context="This button exits edit mode." />
     </Button>
   ) : (
     [
-      <Button small inverted onClick={onDisableEditMode} key="Cancel">
+      <Button key="Cancel" small inverted onClick={onDisableEditMode}>
         <Translate
           k="lunar.common.cancel"
           phrase="Cancel"
           context="This button cancels out of edit mode without applying changes."
         />
       </Button>,
-      <Button small onClick={onEnactEdits} key="Apply">
+      <Button key="Apply" small onClick={onEnactEdits}>
         <Translate
           k="lunar.common.apply"
           phrase="Apply"

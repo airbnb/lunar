@@ -43,7 +43,7 @@ class OverlayNoBgDemo extends React.Component<{}, State> {
         <div style={{ margin: '10px 0' }}>
           <Button onClick={this.handleToggle}>Open overlay</Button>
 
-          <Overlay open={this.state.open} onClose={this.handleToggle} noBackground>
+          <Overlay noBackground open={this.state.open} onClose={this.handleToggle}>
             <div style={{ width: 200, marginTop: 2 }}>
               <NotchedBox>
                 <Text>Hello World</Text>

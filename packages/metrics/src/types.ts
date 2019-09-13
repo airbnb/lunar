@@ -1,4 +1,4 @@
-export type Params<T = any> = { [key: string]: T };
+export type Params<T = unknown> = { [key: string]: T };
 
 export type CaptureOptions = {
   contexts?: Params<Params>;

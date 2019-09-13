@@ -52,24 +52,24 @@ storiesOf('Core/Pagination', module)
     <Pagination
       hasNext
       showBookends
+      page={1}
+      pageCount={3}
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
-      page={1}
-      pageCount={3}
     />
   ))
   .add('Bookends, last page.', () => (
     <Pagination
       hasPrev
       showBookends
+      page={3}
+      pageCount={3}
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
-      page={3}
-      pageCount={3}
     />
   ))
   .add('Bookends, middle page.', () => (
@@ -77,12 +77,12 @@ storiesOf('Core/Pagination', module)
       hasNext
       hasPrev
       showBookends
+      page={2}
+      pageCount={3}
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
-      page={2}
-      pageCount={3}
     />
   ))
   .add('Align arrows at the start', () => (
@@ -91,12 +91,12 @@ storiesOf('Core/Pagination', module)
       hasPrev
       showBookends
       startAlign
+      page={2}
+      pageCount={3}
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
-      page={2}
-      pageCount={3}
     />
   ))
   .add('Align arrows in the center', () => (
@@ -105,12 +105,12 @@ storiesOf('Core/Pagination', module)
       hasNext
       hasPrev
       showBookends
+      page={2}
+      pageCount={3}
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
-      page={2}
-      pageCount={3}
     />
   ))
   .add('Align arrows at the end', () => (
@@ -119,11 +119,11 @@ storiesOf('Core/Pagination', module)
       hasNext
       hasPrev
       showBookends
+      page={2}
+      pageCount={3}
       onFirst={action('onFirst')}
       onLast={action('onLast')}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
-      page={2}
-      pageCount={3}
     />
   ));

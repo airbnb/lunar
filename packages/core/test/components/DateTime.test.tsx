@@ -35,7 +35,7 @@ describe('<DateTime />', () => {
   });
 
   it('accepts a UNIX timestamp in milliseconds', () => {
-    const wrapper = shallow(<DateTime at={date.getTime()} timezone="UTC" medium />);
+    const wrapper = shallow(<DateTime medium at={date.getTime()} timezone="UTC" />);
 
     expect(wrapper.text()).toBe('Feb 26, 1988 4:12PM UTC');
   });
@@ -43,10 +43,10 @@ describe('<DateTime />', () => {
   it('accepts a custom format', () => {
     const wrapper = shallow(
       <DateTime
+        medium
         at="26/02/1988 - 16:12:05"
         timezone="UTC"
         sourceFormat="dd/MM/yyyy - HH:mm:ss"
-        medium
       />,
     );
 
@@ -71,37 +71,37 @@ describe('<DateTime />', () => {
   });
 
   it('formats using the `micro` prop', () => {
-    const wrapper = shallow(<DateTime at={date} timezone="UTC" micro />);
+    const wrapper = shallow(<DateTime micro at={date} timezone="UTC" />);
 
     expect(wrapper.text()).toBe('Feb 26 4:12PM UTC');
   });
 
   it('formats using the `short` prop', () => {
-    const wrapper = shallow(<DateTime at={date} timezone="UTC" short />);
+    const wrapper = shallow(<DateTime short at={date} timezone="UTC" />);
 
     expect(wrapper.text()).toBe('Feb 26, 88 4:12PM UTC');
   });
 
   it('formats using the `medium` prop', () => {
-    const wrapper = shallow(<DateTime at={date} timezone="UTC" medium />);
+    const wrapper = shallow(<DateTime medium at={date} timezone="UTC" />);
 
     expect(wrapper.text()).toBe('Feb 26, 1988 4:12PM UTC');
   });
 
   it('formats using the `long` prop', () => {
-    const wrapper = shallow(<DateTime at={date} timezone="UTC" long />);
+    const wrapper = shallow(<DateTime long at={date} timezone="UTC" />);
 
     expect(wrapper.text()).toBe('Fri, February 26, 1988 4:12PM UTC');
   });
 
   it('formats using the `clock` prop', () => {
-    const wrapper = shallow(<DateTime at={date} timezone="UTC" clock />);
+    const wrapper = shallow(<DateTime clock at={date} timezone="UTC" />);
 
     expect(wrapper.text()).toBe('4:12PM UTC');
   });
 
   it('formats without the timestamp', () => {
-    const wrapper = shallow(<DateTime at={date} timezone="UTC" long noTime />);
+    const wrapper = shallow(<DateTime long noTime at={date} timezone="UTC" />);
 
     expect(wrapper.text()).toBe('Fri, February 26, 1988 UTC');
   });
@@ -113,10 +113,10 @@ describe('<DateTime />', () => {
   });
 
   it('displays the day', () => {
-    const micro = shallow(<DateTime at={date} timezone="UTC" micro withDay />);
-    const short = shallow(<DateTime at={date} timezone="UTC" short withDay />);
-    const medium = shallow(<DateTime at={date} timezone="UTC" medium withDay />);
-    const long = shallow(<DateTime at={date} timezone="UTC" long />); // On by default
+    const micro = shallow(<DateTime micro withDay at={date} timezone="UTC" />);
+    const short = shallow(<DateTime short withDay at={date} timezone="UTC" />);
+    const medium = shallow(<DateTime medium withDay at={date} timezone="UTC" />);
+    const long = shallow(<DateTime long at={date} timezone="UTC" />); // On by default
 
     expect(micro.text()).toBe('Fri, Feb 26 4:12PM UTC');
     expect(short.text()).toBe('Fri, Feb 26, 88 4:12PM UTC');
@@ -125,10 +125,10 @@ describe('<DateTime />', () => {
   });
 
   it('hides the day', () => {
-    const micro = shallow(<DateTime at={date} timezone="UTC" micro />);
-    const short = shallow(<DateTime at={date} timezone="UTC" short />);
-    const medium = shallow(<DateTime at={date} timezone="UTC" medium />);
-    const long = shallow(<DateTime at={date} timezone="UTC" long noDay />); // On by default
+    const micro = shallow(<DateTime micro at={date} timezone="UTC" />);
+    const short = shallow(<DateTime short at={date} timezone="UTC" />);
+    const medium = shallow(<DateTime medium at={date} timezone="UTC" />);
+    const long = shallow(<DateTime long noDay at={date} timezone="UTC" />); // On by default
 
     expect(micro.text()).toBe('Feb 26 4:12PM UTC');
     expect(short.text()).toBe('Feb 26, 88 4:12PM UTC');
@@ -137,10 +137,10 @@ describe('<DateTime />', () => {
   });
 
   it('hides the time', () => {
-    const micro = shallow(<DateTime at={date} timezone="UTC" micro noTime />);
-    const short = shallow(<DateTime at={date} timezone="UTC" short noTime />);
-    const medium = shallow(<DateTime at={date} timezone="UTC" medium noTime />);
-    const long = shallow(<DateTime at={date} timezone="UTC" long noTime />);
+    const micro = shallow(<DateTime micro noTime at={date} timezone="UTC" />);
+    const short = shallow(<DateTime short noTime at={date} timezone="UTC" />);
+    const medium = shallow(<DateTime medium noTime at={date} timezone="UTC" />);
+    const long = shallow(<DateTime long noTime at={date} timezone="UTC" />);
 
     expect(micro.text()).toBe('Feb 26 UTC');
     expect(short.text()).toBe('Feb 26, 88 UTC');
@@ -149,10 +149,10 @@ describe('<DateTime />', () => {
   });
 
   it('hides the timezone', () => {
-    const micro = shallow(<DateTime at={date} timezone="UTC" micro noTimezone />);
-    const short = shallow(<DateTime at={date} timezone="UTC" short noTimezone />);
-    const medium = shallow(<DateTime at={date} timezone="UTC" medium noTimezone />);
-    const long = shallow(<DateTime at={date} timezone="UTC" long noTimezone />);
+    const micro = shallow(<DateTime micro noTimezone at={date} timezone="UTC" />);
+    const short = shallow(<DateTime short noTimezone at={date} timezone="UTC" />);
+    const medium = shallow(<DateTime medium noTimezone at={date} timezone="UTC" />);
+    const long = shallow(<DateTime long noTimezone at={date} timezone="UTC" />);
 
     expect(micro.text()).toBe('Feb 26 4:12PM');
     expect(short.text()).toBe('Feb 26, 88 4:12PM');
@@ -161,10 +161,10 @@ describe('<DateTime />', () => {
   });
 
   it('hides all the things', () => {
-    const micro = shallow(<DateTime at={date} timezone="UTC" micro noTime noTimezone noDay />);
-    const short = shallow(<DateTime at={date} timezone="UTC" short noTime noTimezone noDay />);
-    const medium = shallow(<DateTime at={date} timezone="UTC" medium noTime noTimezone noDay />);
-    const long = shallow(<DateTime at={date} timezone="UTC" long noTime noTimezone noDay />);
+    const micro = shallow(<DateTime micro noTime noTimezone noDay at={date} timezone="UTC" />);
+    const short = shallow(<DateTime short noTime noTimezone noDay at={date} timezone="UTC" />);
+    const medium = shallow(<DateTime medium noTime noTimezone noDay at={date} timezone="UTC" />);
+    const long = shallow(<DateTime long noTime noTimezone noDay at={date} timezone="UTC" />);
 
     expect(micro.text()).toBe('Feb 26');
     expect(short.text()).toBe('Feb 26, 88');
@@ -181,11 +181,11 @@ describe('<DateTime />', () => {
           noTime: true,
           noTimezone: true,
         };
-        const micro = shallow(<DateTime {...props} locale={locale} micro />);
-        const short = shallow(<DateTime {...props} locale={locale} short />);
-        const medium = shallow(<DateTime {...props} locale={locale} medium />);
-        const long = shallow(<DateTime {...props} locale={locale} long />);
-        const clock = shallow(<DateTime {...props} locale={locale} clock />);
+        const micro = shallow(<DateTime {...props} micro locale={locale} />);
+        const short = shallow(<DateTime {...props} short locale={locale} />);
+        const medium = shallow(<DateTime {...props} medium locale={locale} />);
+        const long = shallow(<DateTime {...props} long locale={locale} />);
+        const clock = shallow(<DateTime {...props} clock locale={locale} />);
 
         expect(micro.text()).toMatchSnapshot();
         expect(short.text()).toMatchSnapshot();
@@ -199,26 +199,26 @@ describe('<DateTime />', () => {
   describe('relative time', () => {
     describe('intervals', () => {
       it('renders an Interval component when relative is set', () => {
-        const wrapper = shallow(<DateTime at={date} timezone="UTC" relative />);
+        const wrapper = shallow(<DateTime relative at={date} timezone="UTC" />);
 
         expect(wrapper.find(Interval)).toHaveLength(1);
       });
 
       it('does not render an Interval component when relativeCompact is set', () => {
-        const wrapper = shallow(<DateTime at={date} timezone="UTC" relativeCompact />);
+        const wrapper = shallow(<DateTime relativeCompact at={date} timezone="UTC" />);
 
         expect(wrapper.find(Interval)).toHaveLength(0);
       });
 
       it('uses 5 seconds as the minimal Interval update', () => {
-        const wrapper = shallow(<DateTime timezone="UTC" relative />);
+        const wrapper = shallow(<DateTime relative timezone="UTC" />);
 
         expect(wrapper.find(Interval).props().every).toBe(toMilliseconds('5 seconds'));
       });
 
       it('uses 6 hours as the maximum Interval update', () => {
         date.setFullYear(2088);
-        const wrapper = shallow(<DateTime at={date} timezone="UTC" relative />);
+        const wrapper = shallow(<DateTime relative at={date} timezone="UTC" />);
 
         expect(wrapper.find(Interval).props().every).toBe(toMilliseconds('6 hours'));
       });
@@ -227,7 +227,7 @@ describe('<DateTime />', () => {
     describe('rendered output', () => {
       it('formats to relative time in the future', () => {
         const wrapper = shallow(
-          <DateTime at={createDateTime().plus({ years: 70 })} timezone="UTC" relative />,
+          <DateTime relative at={createDateTime().plus({ years: 70 })} timezone="UTC" />,
         ).dive();
 
         expect(wrapper.text()).toBe('in 69 years');
@@ -236,14 +236,14 @@ describe('<DateTime />', () => {
       it('uses the current time when noFuture is set and the time is in the future', () => {
         date.setFullYear(2088);
 
-        const wrapper = shallow(<DateTime at={date} timezone="UTC" relative noFuture />).dive();
+        const wrapper = shallow(<DateTime relative noFuture at={date} timezone="UTC" />).dive();
 
         expect(wrapper.text()).toBe('a few seconds ago');
       });
 
       it('uses the provided time when noFuture is set and the time is in the past', () => {
         const wrapper = shallow(
-          <DateTime at={createDateTime().minus({ seconds: 5 })} timezone="UTC" relative noFuture />,
+          <DateTime relative noFuture at={createDateTime().minus({ seconds: 5 })} timezone="UTC" />,
         ).dive();
 
         expect(wrapper.text()).toBe('a few seconds ago');

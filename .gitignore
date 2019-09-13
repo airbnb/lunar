@@ -8,7 +8,7 @@ logs/
 # Cache
 .axe/
 .bundle/
-.eslintcache/
+.eslintcache
 .happo/
 .idea/
 .npm/

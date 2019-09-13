@@ -25,7 +25,7 @@ export default class Switch extends React.Component<Props, State> {
     const { id } = this.state;
 
     return (
-      <FormField {...fieldProps} id={id} inline stretchLabel>
+      <FormField {...fieldProps} inline stretchLabel id={id}>
         <BaseSwitch value="1" {...inputProps} id={id} />
       </FormField>
     );

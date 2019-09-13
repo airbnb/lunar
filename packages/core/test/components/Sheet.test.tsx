@@ -27,7 +27,7 @@ describe('<Sheet />', () => {
 
   it('invokes the context method', () => {
     const wrapper = mount(
-      <Sheet onClose={jest.fn()} visible>
+      <Sheet visible onClose={jest.fn()}>
         sheet content
       </Sheet>,
       {
@@ -49,7 +49,7 @@ describe('<Sheet />', () => {
   it('calls onClose when the close button is pressed', () => {
     const close = jest.fn();
     const wrapper = mount(
-      <Sheet onClose={close} visible>
+      <Sheet visible onClose={close}>
         sheet content
       </Sheet>,
       {
@@ -67,7 +67,7 @@ describe('<Sheet />', () => {
     it('calls onClose when the gap button is pressed', () => {
       const close = jest.fn();
       const wrapper = mount(
-        <Sheet onClose={close} gap visible>
+        <Sheet gap visible onClose={close}>
           sheet content
         </Sheet>,
         {
@@ -88,7 +88,7 @@ describe('<Sheet />', () => {
       const eventSpy = jest.spyOn(document, 'addEventListener');
 
       mount(
-        <Sheet onClose={jest.fn()} visible portal>
+        <Sheet visible portal onClose={jest.fn()}>
           sheet content
         </Sheet>,
         {
@@ -106,13 +106,13 @@ describe('<Sheet />', () => {
 
     it('focuses the first element and restores focus on close', () => {
       const focused = document.createElement('input');
-      document.body.appendChild(focused);
+      document.body.append(focused);
       focused.focus();
 
       jest.useFakeTimers();
 
       const wrapper = mount(
-        <Sheet onClose={jest.fn()} visible portal>
+        <Sheet visible portal onClose={jest.fn()}>
           sheet content
         </Sheet>,
         {
@@ -140,7 +140,7 @@ describe('<Sheet />', () => {
       const close = jest.fn();
 
       mount(
-        <Sheet onClose={close} visible portal>
+        <Sheet visible portal onClose={close}>
           sheet content
         </Sheet>,
         {

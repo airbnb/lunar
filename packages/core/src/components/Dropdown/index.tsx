@@ -63,7 +63,7 @@ class Dropdown extends React.PureComponent<Props & WithStylesProps> {
   private handleClick = (event: MouseEvent) => {
     const { current } = this.ref;
 
-    if (current && current.contains(event.target as any)) {
+    if (current && current.contains(event.target as unknown)) {
       if (this.props.onClickInside) {
         this.props.onClickInside(event);
       }

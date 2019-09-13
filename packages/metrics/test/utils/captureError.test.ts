@@ -5,7 +5,7 @@ import '../setup';
 jest.mock('@sentry/browser');
 
 describe('captureError()', () => {
-  let scope: any;
+  let scope: unknown;
 
   beforeEach(() => {
     scope = {

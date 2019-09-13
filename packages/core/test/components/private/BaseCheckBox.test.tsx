@@ -17,7 +17,7 @@ describe('<BaseCheckBox />', () => {
 
   it('renders invalid', () => {
     const wrapper = shallowWithStyles(
-      <BaseCheckBox id="foo" name="foo" onChange={() => {}} invalid />,
+      <BaseCheckBox invalid id="foo" name="foo" onChange={() => {}} />,
     );
 
     expect(wrapper.find(FormInput).prop('invalid')).toBe(true);
@@ -25,7 +25,7 @@ describe('<BaseCheckBox />', () => {
 
   it('renders disabled', () => {
     const wrapper = shallowWithStyles(
-      <BaseCheckBox id="foo" name="foo" onChange={() => {}} disabled />,
+      <BaseCheckBox disabled id="foo" name="foo" onChange={() => {}} />,
     );
 
     expect(wrapper.find(FormInput).prop('disabled')).toBe(true);
@@ -73,7 +73,7 @@ describe('<BaseCheckBox />', () => {
   it('renders in button mode', () => {
     const child = <div>Child</div>;
     const wrapper = shallowWithStyles(
-      <BaseCheckBox id="foo" name="foo" onChange={() => {}} button>
+      <BaseCheckBox button id="foo" name="foo" onChange={() => {}}>
         {child}
       </BaseCheckBox>,
     );

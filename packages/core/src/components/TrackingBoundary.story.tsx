@@ -10,6 +10,7 @@ storiesOf('Core/TrackingBoundary', module)
   })
   .add('Track clicks and keypresses in an area.', () => (
     <TrackingBoundary name="ReservationsTable">
+      {/* eslint-disable-next-line */}
       <div onClick={action('onClick')} onKeyDown={action('onKeyDown')}>
         <LoremIpsum />
       </div>

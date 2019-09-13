@@ -10,7 +10,7 @@ describe('<MulticompleteChip />', () => {
   };
 
   let wrapper: Enzyme.ShallowWrapper<Props, MulticompleteChip>;
-  let instance: any;
+  let instance: unknown;
 
   beforeEach(() => {
     wrapper = shallow(<MulticompleteChip {...props} />);

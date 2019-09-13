@@ -18,10 +18,10 @@ storiesOf('Core/Translate', module)
   .add('Interpolate variables. Also support HTML.', () => (
     <Text>
       <Translate
+        html
         phrase="Hello %{name}!"
         name={<b>Bruce</b>}
         context="This message is for translation editors."
-        html
       />
     </Text>
   ))

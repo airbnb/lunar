@@ -21,8 +21,8 @@ describe('<Autocomplete />', () => {
     onLoadItems: () => Promise.resolve([]),
   };
 
-  let wrapper: Enzyme.ShallowWrapper<Props<any>, State<any>, Autocomplete<any>>;
-  let instance: Autocomplete<any>;
+  let wrapper: Enzyme.ShallowWrapper<Props<unknown>, State<unknown>, Autocomplete<unknown>>;
+  let instance: Autocomplete<unknown>;
 
   beforeEach(() => {
     wrapper = shallow(<Autocomplete {...props} />);
@@ -618,7 +618,7 @@ describe('<Autocomplete />', () => {
 
     it('can customize children with `renderItem` prop', () => {
       wrapper.setProps({
-        renderItem: (item: any) => item.value.toUpperCase(),
+        renderItem: (item: unknown) => item.value.toUpperCase(),
       });
 
       const item = shallow(instance.renderItem({ value: 'foo' }, true));
@@ -779,14 +779,14 @@ describe('<Autocomplete />', () => {
   describe('getFilteredItems()', () => {
     it('gets filtered items', () => {
       wrapper.setProps({
-        shouldItemRender: (item: any, value: string) => item.value === 'foo',
+        shouldItemRender: (item: unknown, value: string) => item.value === 'foo',
       });
 
       const state = {
         items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
       };
 
-      const filteredItems = instance.getFilteredItems(state as any);
+      const filteredItems = instance.getFilteredItems(state as unknown);
 
       expect(filteredItems).toHaveLength(1);
     });

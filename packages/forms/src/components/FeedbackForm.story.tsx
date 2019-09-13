@@ -25,6 +25,7 @@ storiesOf('Forms/FeedbackForm', module)
   ))
   .add('Without bug reporting.', () => (
     <FeedbackForm
+      disableBugReporting
       categories={{
         chat: 'Chat',
         phone: 'Phone',
@@ -37,6 +38,5 @@ storiesOf('Forms/FeedbackForm', module)
 
         return Promise.resolve();
       }}
-      disableBugReporting
     />
   ));

@@ -62,7 +62,7 @@ describe('<Modal />', () => {
       click: null,
       mouseup: null,
       mousedown: null,
-    } as any;
+    } as unknown;
 
     document.addEventListener = jest.fn((event, cb) => {
       eventMap[event] = cb;
@@ -83,7 +83,7 @@ describe('<Modal />', () => {
       click: null,
       mouseup: null,
       mousedown: null,
-    } as any;
+    } as unknown;
 
     document.addEventListener = jest.fn((event, cb) => {
       eventMap[event] = cb;
@@ -193,7 +193,7 @@ describe('<Modal />', () => {
 
   it('re-focuses on the last focused element on close', () => {
     const focused = document.createElement('input');
-    document.body.appendChild(focused);
+    document.body.append(focused);
     focused.focus();
 
     const clearTimeoutSpy = jest.spyOn(window, 'clearTimeout');

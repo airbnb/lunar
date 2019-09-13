@@ -5,7 +5,7 @@ import BrowserNotification from '../../src/components/BrowserNotification';
 
 describe('<BrowserNotification />', () => {
   let unmockNotification: () => void;
-  let Notification: any;
+  let Notification: unknown;
 
   beforeEach(() => {
     unmockNotification = mockNotification();

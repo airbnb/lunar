@@ -52,7 +52,7 @@ describe('<Dropdown />', () => {
 
     const eventMap = {
       click: null,
-    } as any;
+    } as unknown;
 
     document.addEventListener = jest.fn((event, cb) => {
       eventMap[event] = cb;

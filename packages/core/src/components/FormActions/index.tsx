@@ -68,10 +68,10 @@ export default class FormActions extends React.PureComponent<Props> {
       <ButtonGroup>
         <Button
           type="submit"
-          onClick={onContinue}
           disabled={disabled}
           loading={processing}
           small={small}
+          onClick={onContinue}
         >
           {processing
             ? processingText || (
@@ -87,7 +87,7 @@ export default class FormActions extends React.PureComponent<Props> {
         </Button>
 
         {!hideCancel && (
-          <MutedButton inverted onClick={onCancel} small={small} disabled={processing}>
+          <MutedButton inverted small={small} disabled={processing} onClick={onCancel}>
             {cancelText || (
               <T
                 k="lunar.common.cancel"
@@ -99,7 +99,7 @@ export default class FormActions extends React.PureComponent<Props> {
         )}
 
         {showReset && (
-          <MutedButton type="reset" inverted small={small} disabled={processing}>
+          <MutedButton inverted type="reset" small={small} disabled={processing}>
             {resetText || (
               <T k="lunar.common.reset" phrase="Reset" context="Button label to reset a form" />
             )}

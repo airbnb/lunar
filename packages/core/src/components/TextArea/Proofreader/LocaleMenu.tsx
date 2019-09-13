@@ -49,8 +49,8 @@ export default class LocaleMenu extends React.Component<Props> {
           {noneDefinition && (
             <Item
               key={noneDefinition.locale}
-              onClick={() => this.handleClick(noneDefinition.locale)}
               highlighted={selectedLocale === noneDefinition.locale}
+              onClick={() => this.handleClick(noneDefinition.locale)}
             >
               <Text inline>{noneDefinition.label}</Text>
             </Item>
@@ -59,8 +59,8 @@ export default class LocaleMenu extends React.Component<Props> {
           {autoDefinition && (
             <Item
               key={autoDefinition.locale}
-              onClick={() => this.handleClick(autoDefinition.locale)}
               highlighted={selectedLocale === autoDefinition.locale}
+              onClick={() => this.handleClick(autoDefinition.locale)}
             >
               <Text inline>{autoDefinition.label}</Text>
             </Item>
@@ -71,8 +71,8 @@ export default class LocaleMenu extends React.Component<Props> {
           {locales.map(definition => (
             <Item
               key={definition.locale}
-              onClick={() => this.handleClick(definition.locale)}
               highlighted={selectedLocale === definition.locale}
+              onClick={() => this.handleClick(definition.locale)}
             >
               <Text inline>{definition.label}</Text>
             </Item>

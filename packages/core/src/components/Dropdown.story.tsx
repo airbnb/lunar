@@ -6,7 +6,7 @@ import Menu, { Row } from './Menu';
 import Text from './Text';
 import Dropdown from './Dropdown';
 
-class DropdownDemo extends React.Component<any, { open: boolean }> {
+class DropdownDemo extends React.Component<unknown, { open: boolean }> {
   state = {
     open: false,
   };
@@ -25,7 +25,7 @@ class DropdownDemo extends React.Component<any, { open: boolean }> {
         <Button onClick={this.handleToggle}>{children!}</Button>
 
         {this.state.open && (
-          <Dropdown {...props} visible onClickOutside={action('onClickOutside')} zIndex={5}>
+          <Dropdown {...props} visible zIndex={5} onClickOutside={action('onClickOutside')}>
             <Menu accessibilityLabel="Dropdown demo">
               <Row>
                 <Text>Dropdown menu is open!</Text>

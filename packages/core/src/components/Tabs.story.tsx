@@ -19,9 +19,9 @@ storiesOf('Core/Tabs', module)
   ))
   .add('Small tabs stretched.', () => (
     <Tabs stretched>
-      <Tab key="a" label="Bruce W." small />
-      <Tab key="b" label="Clark K." small />
-      <Tab key="c" label="Peter P." small />
+      <Tab key="a" small label="Bruce W." />
+      <Tab key="b" small label="Clark K." />
+      <Tab key="c" small label="Peter P." />
     </Tabs>
   ))
   .add('Borderless tabs with icons.', () => (
@@ -46,7 +46,7 @@ storiesOf('Core/Tabs', module)
         </Text>
       </Tab>
 
-      <Tab key="b" label="Clark K." disabled>
+      <Tab key="b" disabled label="Clark K.">
         <Text>
           <LoremIpsum />
         </Text>

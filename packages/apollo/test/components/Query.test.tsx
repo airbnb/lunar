@@ -88,7 +88,7 @@ describe('Query', () => {
       },
     };
 
-    it('renders an `ErrorMessage` by default', async () => {
+    it('renders an `ErrorMessage` by default', () => {
       const wrapper = mount(<Query query={QUERY}>{() => null}</Query>, {
         wrappingComponent: ApolloComponent,
         wrappingComponentProps: { mocks: [mock] },
@@ -125,7 +125,7 @@ describe('Query', () => {
       const spy = jest.fn(() => null);
 
       mount(
-        <Query query={QUERY} ignoreGraphQLErrors>
+        <Query ignoreGraphQLErrors query={QUERY}>
           {spy}
         </Query>,
         {

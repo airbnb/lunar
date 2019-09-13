@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-const componentName: PropTypes.Requireable<any> = (
-  props: any,
+const componentName: PropTypes.Requireable<unknown> = (
+  props: unknown,
   propName: string,
   compName: string,
 ) => {
@@ -17,7 +17,7 @@ const componentName: PropTypes.Requireable<any> = (
 };
 
 componentName.isRequired = (
-  props: any,
+  props: unknown,
   propName: string,
   compName: string,
   location: string,

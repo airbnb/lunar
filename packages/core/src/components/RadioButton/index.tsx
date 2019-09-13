@@ -49,14 +49,14 @@ export default class RadioButton extends React.Component<Props, State> {
     return (
       <FormField
         {...fieldProps}
-        id={id}
-        hideLabel={fieldProps.hideLabel || inputProps.button}
-        renderFullWidth={inputProps.button}
-        topAlign={topAlign}
         inline
         renderBeforeLabel
         renderLargeLabel
         stretchLabel
+        id={id}
+        hideLabel={fieldProps.hideLabel || inputProps.button}
+        renderFullWidth={inputProps.button}
+        topAlign={topAlign}
       >
         <BaseRadioButton {...restProps} id={id} hideLabel={hideLabel}>
           {children || (

@@ -91,11 +91,11 @@ describe('<FeedbackForm />', () => {
   });
 
   describe('handleSubmit()', () => {
-    it('posts with correct data', async () => {
+    it('posts with correct data', () => {
       const spy = jest.fn(() => Promise.resolve({}));
       const wrapper = shallow<FeedbackForm>(<FeedbackForm {...props} onSubmit={spy} />);
 
-      await wrapper.find(Form).simulate('submit', {
+      wrapper.find(Form).simulate('submit', {
         type: 'bug',
         category: 'Chat',
         feedback: 'Its good',

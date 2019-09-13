@@ -1,6 +1,6 @@
 import { Props as FormFieldProps } from '.';
 
-export type MaybeChildren = { children?: any };
+export type MaybeChildren = { children?: unknown };
 
 export type ExplicitProps = {
   value: string;
@@ -12,7 +12,11 @@ export type ExplicitProps = {
   optional: boolean;
 };
 
-export default function partitionFieldProps<Props extends object = {}, Children = any, Field = any>(
+export default function partitionFieldProps<
+  Props extends object = {},
+  Children = unknown,
+  Field = unknown
+>(
   props: MaybeChildren & FormFieldProps & Props,
 ): {
   children: Children;

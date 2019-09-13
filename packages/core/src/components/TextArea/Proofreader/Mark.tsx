@@ -38,7 +38,7 @@ class Mark extends React.PureComponent<Props & WithStylesProps> {
     const highlight = selected || alwaysHighlight;
 
     return (
-      <mark className={cx(styles.mark, highlight && styles.mark_highlight)} ref={this.ref}>
+      <mark ref={this.ref} className={cx(styles.mark, highlight && styles.mark_highlight)}>
         {children}
       </mark>
     );

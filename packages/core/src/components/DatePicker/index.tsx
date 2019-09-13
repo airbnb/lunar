@@ -94,7 +94,7 @@ export class DatePicker extends React.Component<Props & WithStylesProps> {
     return (
       <DayPicker
         ref={pickerRef}
-        fixedWeeks={Boolean(numberOfMonths && numberOfMonths > 1)}
+        weekdaysShort={getWeekdays('short', true)}
         classNames={getClassNames('calendar', styles, this.props)}
         disabledDays={disabledDays}
         firstDayOfWeek={firstDayOfWeek}
@@ -112,19 +112,19 @@ export class DatePicker extends React.Component<Props & WithStylesProps> {
             onResetClick={onResetClick}
           />
         )}
-        numberOfMonths={numberOfMonths}
-        onBlur={onBlur}
-        onDayClick={onDayClick}
-        onDayMouseEnter={onDayMouseEnter}
-        onFocus={onFocus}
-        onMonthChange={onMonthChange}
-        onTodayButtonClick={onTodayButtonClick}
-        pagedNavigation={pagedNavigation}
-        selectedDays={selectedDays}
-        todayButton={todayButton}
-        toMonth={toMonth}
+        fixedWeeks={Boolean(numberOfMonths && numberOfMonths > 1)}
         weekdaysLong={getWeekdays('long', true)}
-        weekdaysShort={getWeekdays('short', true)}
+        toMonth={toMonth}
+        todayButton={todayButton}
+        selectedDays={selectedDays}
+        pagedNavigation={pagedNavigation}
+        numberOfMonths={numberOfMonths}
+        onTodayButtonClick={onTodayButtonClick}
+        onMonthChange={onMonthChange}
+        onFocus={onFocus}
+        onDayMouseEnter={onDayMouseEnter}
+        onDayClick={onDayClick}
+        onBlur={onBlur}
       />
     );
   }

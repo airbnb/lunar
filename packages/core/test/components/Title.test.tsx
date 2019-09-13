@@ -6,7 +6,7 @@ describe('<Title />', () => {
   it('errors when multiple alignments are used at once', () => {
     expect(() => {
       shallowWithStyles(
-        <Title level={1} centerAlign endAlign>
+        <Title centerAlign endAlign level={1}>
           Default
         </Title>,
       );
@@ -16,7 +16,7 @@ describe('<Title />', () => {
   it('errors when multiple states are used at once', () => {
     expect(() => {
       shallowWithStyles(
-        <Title level={1} muted inverted>
+        <Title muted inverted level={1}>
           Default
         </Title>,
       );
@@ -46,7 +46,7 @@ describe('<Title />', () => {
 
   it('renders inline', () => {
     const wrapper = shallowWithStyles(
-      <Title level={1} inline>
+      <Title inline level={1}>
         Inline
       </Title>,
     );
@@ -56,7 +56,7 @@ describe('<Title />', () => {
 
   it('renders inverted', () => {
     const wrapper = shallowWithStyles(
-      <Title level={1} inverted>
+      <Title inverted level={1}>
         Inverted
       </Title>,
     );
@@ -66,7 +66,7 @@ describe('<Title />', () => {
 
   it('renders muted', () => {
     const wrapper = shallowWithStyles(
-      <Title level={1} muted>
+      <Title muted level={1}>
         Muted
       </Title>,
     );

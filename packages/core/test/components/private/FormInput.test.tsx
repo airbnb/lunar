@@ -34,19 +34,19 @@ describe('<FormInput />', () => {
   });
 
   it('renders compact', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" compact {...props} />);
+    const wrapper = shallowWithStyles(<FormInput compact tagName="input" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('input_compact');
   });
 
   it('renders select compact', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="select" compact {...props} />);
+    const wrapper = shallowWithStyles(<FormInput compact tagName="select" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('select select_compact');
   });
 
   it('renders important', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" important {...props} />);
+    const wrapper = shallowWithStyles(<FormInput important tagName="input" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('input_important');
   });
@@ -90,13 +90,13 @@ describe('<FormInput />', () => {
   });
 
   it('sets disabled', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" disabled {...props} />);
+    const wrapper = shallowWithStyles(<FormInput disabled tagName="input" {...props} />);
 
     expect(wrapper.prop('disabled')).toBe(true);
   });
 
   it('sets hidden', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" hidden {...props} />);
+    const wrapper = shallowWithStyles(<FormInput hidden tagName="input" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('input_hidden');
   });
@@ -108,7 +108,7 @@ describe('<FormInput />', () => {
   });
 
   it('sets name', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" disabled {...props} />);
+    const wrapper = shallowWithStyles(<FormInput disabled tagName="input" {...props} />);
 
     expect(wrapper.prop('name')).toBe('test');
   });
@@ -152,13 +152,13 @@ describe('<FormInput />', () => {
   });
 
   it('supports prefixes', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" hasPrefix {...props} />);
+    const wrapper = shallowWithStyles(<FormInput hasPrefix tagName="input" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('input_hasPrefix');
   });
 
   it('supports suffixes', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" hasSuffix {...props} />);
+    const wrapper = shallowWithStyles(<FormInput hasSuffix tagName="input" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('input_hasSuffix');
   });

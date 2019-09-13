@@ -5,7 +5,7 @@ import SecondaryMark from '../../../src/components/TextArea/Proofreader/Secondar
 describe('<SecondaryMark />', () => {
   it('renders a mark', () => {
     const wrapper = shallow(
-      <SecondaryMark selected={false} onSelect={() => {}} alwaysHighlight>
+      <SecondaryMark alwaysHighlight selected={false} onSelect={() => {}}>
         Word
       </SecondaryMark>,
     )

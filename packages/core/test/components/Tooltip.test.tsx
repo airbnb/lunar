@@ -12,7 +12,7 @@ describe('<Tooltip />', () => {
   beforeEach(() => {
     wrapper = shallowWithStyles(
       <Tooltip content="test">
-        <a href="#">hello world</a>
+        <a href="/">hello world</a>
       </Tooltip>,
     );
     childContainer = wrapper.find('div[aria-labelledby]');

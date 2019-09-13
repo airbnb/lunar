@@ -58,7 +58,7 @@ export type Props = Pick<FormInputProps, 'important'> &
     id: string;
     noTranslate?: boolean;
     onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    onCheckText: (params: any) => Promise<ProofreaderResponse>;
+    onCheckText: (params: unknown) => Promise<ProofreaderResponse>;
     value: string;
   };
 
@@ -512,7 +512,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         preventDefault() {},
       };
 
-      this.props.onChange(newText, event as React.ChangeEvent<any>);
+      this.props.onChange(newText, event as React.ChangeEvent<unknown>);
     }
   };
 
@@ -591,8 +591,8 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         <MarkComponent
           key={`${word}-${offset}`}
           selected={error === selectedError}
-          onSelect={this.handleOpenErrorMenu}
           alwaysHighlight={this.props.isRuleHighlighted!(error)}
+          onSelect={this.handleOpenErrorMenu}
         >
           {word}
         </MarkComponent>,
@@ -649,7 +649,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
 
         {/* Track the top/left offset of the caret within the textarea. */}
         {caretPosition > 0 && (
-          <div className={cx(styles.caret)} ref={this.caretRef}>
+          <div ref={this.caretRef} className={cx(styles.caret)}>
             <span>{text.slice(0, caretPosition)}</span>
             <span>{text.slice(caretPosition)}.</span>
           </div>
@@ -659,12 +659,12 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           {...props}
           spellCheck={false}
           value={this.state.text}
+          propagateRef={this.textareaRef}
+          important={important}
           onClick={this.handleTextAreaClick}
           onKeyDown={this.handleTextAreaKeyDown}
           onScroll={this.handleScroll}
           onInput={this.handleInput}
-          propagateRef={this.textareaRef}
-          important={important}
         />
 
         {position && selectedError && (
@@ -674,8 +674,8 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         )}
 
         <div
-          className={cx(styles.controls, important && styles.controls_important)}
           ref={this.controlsRef}
+          className={cx(styles.controls, important && styles.controls_important)}
         >
           <span className={cx(styles.cell, { pointerEvents: 'initial' })}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}

@@ -8,7 +8,7 @@ import crosstab from '../../src/crosstab';
 
 describe('<Toast />', () => {
   it('sets failed class', () => {
-    const wrapper = shallowWithStyles(<Toast id="1" message="Hi" danger />);
+    const wrapper = shallowWithStyles(<Toast danger id="1" message="Hi" />);
 
     expect(wrapper.prop('className')).toMatch('container_danger');
   });
@@ -20,7 +20,7 @@ describe('<Toast />', () => {
   });
 
   it('sets success class', () => {
-    const wrapper = shallowWithStyles(<Toast id="1" message="Hi" success />);
+    const wrapper = shallowWithStyles(<Toast success id="1" message="Hi" />);
 
     expect(wrapper.prop('className')).toMatch('container_success');
   });
@@ -39,7 +39,7 @@ describe('<Toast />', () => {
 
   it('renders refresh', () => {
     const wrapper = shallowWithStyles(
-      <Toast id="1" message="A new version is available" refresh />,
+      <Toast refresh id="1" message="A new version is available" />,
     );
 
     expect(wrapper.find(Button)).toHaveLength(1);
@@ -59,7 +59,7 @@ describe('<Toast />', () => {
 
   it('emits crosstab events when crostTabClose is set to true', () => {
     const wrapper = shallowWithStyles(
-      <Toast id="1" message="Hi" delay={25} duration={50} crosstabClose />,
+      <Toast crosstabClose id="1" message="Hi" delay={25} duration={50} />,
     );
     const crosstabHandler = jest.fn();
 
@@ -122,11 +122,11 @@ describe('<Toast />', () => {
         <Toast
           id="1"
           message="Hi"
+          delay={25}
+          duration={50}
           onOpen={open}
           onClose={close}
           onRemove={remove}
-          delay={25}
-          duration={50}
         />,
       );
 
@@ -173,12 +173,12 @@ describe('<Toast />', () => {
       const onClose = jest.fn();
       const wrapper = shallowWithStyles(
         <Toast
+          crosstabClose
           id="1"
           message="Hi"
+          delay={25}
           onClose={onClose}
           onRemove={onRemove}
-          delay={25}
-          crosstabClose
         />,
       );
 
@@ -197,7 +197,7 @@ describe('<Toast />', () => {
       const onRemove = jest.fn();
       const onClose = jest.fn();
       const wrapper = shallowWithStyles(
-        <Toast id="1" message="Hi" onClose={onClose} onRemove={onRemove} delay={25} />,
+        <Toast id="1" message="Hi" delay={25} onClose={onClose} onRemove={onRemove} />,
       );
 
       wrapper.instance().componentDidMount!();

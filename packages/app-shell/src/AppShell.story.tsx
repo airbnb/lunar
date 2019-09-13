@@ -29,7 +29,7 @@ class PageDataExample extends React.Component<{ onSubmit: Function }, { data: st
   render() {
     return (
       <div>
-        <Input label="Example data" onChange={this.handleChange} value={this.state.data} />
+        <Input label="Example data" value={this.state.data} onChange={this.handleChange} />
         <Button onClick={this.handleSubmit}>Add page data</Button>
       </div>
     );
@@ -43,7 +43,7 @@ storiesOf('AppShell', module)
   .add('Supports toasts.', () => (
     <AppShell name="Lunar">
       <AppContext.Consumer>
-        {({ addSuccessToast, addFailureToast }: any) => (
+        {({ addSuccessToast, addFailureToast }: unknown) => (
           <div>
             <Button
               onClick={() => {
@@ -87,7 +87,7 @@ storiesOf('AppShell', module)
   .add('Supports page data.', () => (
     <AppShell name="Lunar">
       <AppContext.Consumer>
-        {({ addPageData, data }: any) => (
+        {({ addPageData, data }: unknown) => (
           <div>
             <PageDataExample onSubmit={addPageData} />
 

@@ -104,7 +104,7 @@ describe('<Picker />', () => {
   });
 
   describe('handler functions', () => {
-    let myProps: any;
+    let myProps: unknown;
     let wrapper: Enzyme.ShallowWrapper<PickerProps, PickerState>;
 
     beforeEach(() => {

@@ -13,7 +13,7 @@ describe('<Emoji />', () => {
           locale: 'en',
           version: 'latest',
         }}
-        emojiData={{} as any}
+        emojiData={{} as unknown}
       />,
     );
 

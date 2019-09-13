@@ -12,10 +12,10 @@ export default function EmojiRestrictedPicker(props: Props) {
       disableGroups
       disableSearch
       disableSkinTones
-      emojiLargeSize={36}
       hideEmoticon
       hideGroupHeaders
       hideShortcodes
+      emojiLargeSize={36}
       {...props}
       rowCount={2}
       stickyGroupHeader={false}

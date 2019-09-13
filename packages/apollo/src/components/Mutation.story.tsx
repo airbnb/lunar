@@ -48,7 +48,7 @@ const errorMock = {
   error: new Error('404: GraphQL mutation failed!'),
 };
 
-function UpdateButton({ onUpdate }: any) {
+function UpdateButton({ onUpdate }: unknown) {
   return (
     <Button
       type="button"

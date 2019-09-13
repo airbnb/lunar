@@ -14,7 +14,7 @@ describe('<Switch />', () => {
   });
 
   it('connects to the form', () => {
-    const wrapper = mount(<Switch label="Label" name="foo" defaultValue validator={() => {}} />, {
+    const wrapper = mount(<Switch defaultValue label="Label" name="foo" validator={() => {}} />, {
       wrappingComponent: WrappingFormComponent,
       wrappingComponentProps: { context },
     });
@@ -28,7 +28,7 @@ describe('<Switch />', () => {
   });
 
   it('sets checked prop', () => {
-    const wrapper = mount(<Switch label="Label" name="foo" defaultValue validator={() => {}} />, {
+    const wrapper = mount(<Switch defaultValue label="Label" name="foo" validator={() => {}} />, {
       wrappingComponent: WrappingFormComponent,
       wrappingComponentProps: { context },
     });

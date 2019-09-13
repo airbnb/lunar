@@ -53,14 +53,9 @@ class IconGrid extends React.Component<{
         <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 16 }}>
           {icons.map(Icon => (
             <button
-              type="button"
               key={Icon.displayName}
+              type="button"
               title={Icon.displayName}
-              onClick={() => {
-                const icon = Icon.displayName!;
-
-                action(icon)(`import ${icon} from '@airbnb/lunar-icons/lib/${category}/${icon}';`);
-              }}
               style={{
                 fontSize: 15,
                 padding: '1rem .5rem',
@@ -71,6 +66,11 @@ class IconGrid extends React.Component<{
                 color: '#484848',
                 textAlign: 'center',
                 width: 90,
+              }}
+              onClick={() => {
+                const icon = Icon.displayName!;
+
+                action(icon)(`import ${icon} from '@airbnb/lunar-icons/lib/${category}/${icon}';`);
               }}
             >
               <Icon
@@ -143,8 +143,8 @@ class IconList extends React.Component<
           <select
             name="color"
             value={color}
-            onChange={this.handleColorChange}
             style={{ margin: '0 8px' }}
+            onChange={this.handleColorChange}
           >
             <option value="">No Color</option>
             <option value="red">Red</option>
@@ -155,8 +155,8 @@ class IconList extends React.Component<
           <select
             name="size"
             value={size}
-            onChange={this.handleSizeChange}
             style={{ margin: '0 8px' }}
+            onChange={this.handleSizeChange}
           >
             <option value="1em">1x</option>
             <option value="2em">2x</option>

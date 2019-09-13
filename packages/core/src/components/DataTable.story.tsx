@@ -88,7 +88,7 @@ const filterData = (data: IndexedParentRow[]) => {
 const defaultEditCallback = (
   row: VirtualRow,
   key: string,
-  newVal: any,
+  newVal: unknown,
   event: React.SyntheticEvent<EventTarget>,
 ) => {
   action('this callback has access to row, key, newVal and event');
@@ -124,7 +124,6 @@ export class SearchDemo extends React.Component {
 
   render() {
     const { data, search } = this.state;
-    // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
     const filteredData = this.filter(search);
     const button = <Button onClick={this.handleNewData}>New Data</Button>;
 
@@ -184,21 +183,21 @@ storiesOf('Core/DataTable', module)
   ))
   .add('A table with selectable and exandable rows that displays selected rows first.', () => (
     <DataTable
-      tableHeaderLabel="My Great Table"
-      data={getData()}
-      keys={['name', 'jobTitle']}
       expandable
       selectable
       selectedRowsFirst
+      tableHeaderLabel="My Great Table"
+      data={getData()}
+      keys={['name', 'jobTitle']}
     />
   ))
   .add('A table with filtered data.', () => (
     <DataTable
+      expandable
+      selectable
       tableHeaderLabel="My Engineer Table"
       data={getData()}
       keys={['name', 'jobTitle']}
-      expandable
-      selectable
       filterData={filterData}
     />
   ))
@@ -242,11 +241,11 @@ storiesOf('Core/DataTable', module)
   ))
   .add('A table with different row, column header and table header heights.', () => (
     <DataTable
-      tableHeaderLabel="My Great Table"
       selectable
       expandable
       editable
       zebra
+      tableHeaderLabel="My Great Table"
       data={getData()}
       renderers={renderers}
       rowHeight="small"
@@ -256,13 +255,13 @@ storiesOf('Core/DataTable', module)
   ))
   .add('A table that logs custom edit callbacks and select callback.', () => (
     <DataTable
+      selectable
+      expandable
       tableHeaderLabel="My Great Table"
       data={getData()}
       defaultEditCallback={defaultEditCallback}
       editCallbacks={editCallbacks}
       selectCallback={selectCallback}
-      selectable
-      expandable
     />
   ))
   .add('A complex table with all features enabled.', () => (

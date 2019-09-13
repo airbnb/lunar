@@ -8,5 +8,5 @@ storiesOf('Core/Emoji', module)
   })
   .add('Using a unicode character.', () => <Emoji unicode="🎮️" />)
   .add('Using a hexcode with a large size.', () => (
-    <Emoji hexcode="1F3AE" emojiLargeSize="3em" enlargeEmoji />
+    <Emoji enlargeEmoji hexcode="1F3AE" emojiLargeSize="3em" />
   ));

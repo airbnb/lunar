@@ -29,7 +29,7 @@ describe('<DatePickerInput />', () => {
     const wrapper = shallow(<DatePickerInput {...props} />);
 
     expect(wrapper.find(FormField).prop('id')).toBe(
-      (wrapper.find(PrivatePickerInput).prop('inputProps') as any).id,
+      (wrapper.find(PrivatePickerInput).prop('inputProps') as unknown).id,
     );
   });
 
@@ -48,8 +48,8 @@ describe('<DatePickerInput />', () => {
         clearOnDayClick
         hideOnDayClick
         locale="fr"
-        onHidePicker={onHide}
         datePickerProps={datePickerProps}
+        onHidePicker={onHide}
       />,
     );
 
@@ -63,7 +63,7 @@ describe('<DatePickerInput />', () => {
   });
 
   it('passes input props to picker input', () => {
-    const wrapper = shallow(<DatePickerInput {...props} placeholder="What" value="Why" disabled />);
+    const wrapper = shallow(<DatePickerInput {...props} disabled placeholder="What" value="Why" />);
 
     expect(wrapper.find(PrivatePickerInput).prop('placeholder')).toBe('What');
     expect(wrapper.find(PrivatePickerInput).prop('value')).toBe('Why');
@@ -78,7 +78,7 @@ describe('<DatePickerInput />', () => {
 
     expect(wrapper.find(PrivatePickerInput).prop('formatDate')).toBe(instance.formatDate);
     expect(wrapper.find(PrivatePickerInput).prop('parseDate')).toBe(instance.parseDate);
-    expect((wrapper.find(PrivatePickerInput).prop('inputProps') as any).onChange).toBe(
+    expect((wrapper.find(PrivatePickerInput).prop('inputProps') as unknown).onChange).toBe(
       // @ts-ignore Allow private access
       instance.handleChange,
     );

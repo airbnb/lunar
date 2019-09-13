@@ -86,7 +86,7 @@ export { Cell, Row };
 
 export default withBoundary('Table')(
   withStyles(({ color, ui, unit }) => {
-    function createCell(styles: any) {
+    function createCell(styles: unknown) {
       return {
         '@selectors': {
           ':only-child td': styles,

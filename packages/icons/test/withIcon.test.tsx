@@ -11,7 +11,7 @@ describe('withIcon()', () => {
     const Hoc = withIcon('IconTest')(Foo);
 
     expect(Hoc.displayName).toBe('IconTest');
-    expect((Hoc as any).WrappedComponent).toBe(Foo);
+    expect((Hoc as unknown).WrappedComponent).toBe(Foo);
   });
 
   it('passes through props', () => {

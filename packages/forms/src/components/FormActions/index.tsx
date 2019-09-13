@@ -14,7 +14,7 @@ export default class FormActions extends React.PureComponent<Props> {
     const props = { ...this.props };
 
     if (this.context) {
-      const { submitting, valid }: FormState<any> = this.context.getState();
+      const { submitting, valid }: FormState<unknown> = this.context.getState();
 
       Object.assign(props, {
         disabled: !valid,

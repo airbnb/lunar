@@ -16,7 +16,7 @@ describe('<BaseSelect />', () => {
 
   it('renders disabled', () => {
     const wrapper = shallowWithStyles(
-      <BaseSelect name="foo" onChange={() => {}} disabled>
+      <BaseSelect disabled name="foo" onChange={() => {}}>
         <option value="bar">Bar</option>
       </BaseSelect>,
     );
@@ -26,7 +26,7 @@ describe('<BaseSelect />', () => {
 
   it('renders invalid', () => {
     const wrapper = shallowWithStyles(
-      <BaseSelect name="foo" onChange={() => {}} invalid>
+      <BaseSelect invalid name="foo" onChange={() => {}}>
         <option value="bar">Bar</option>
       </BaseSelect>,
     );
@@ -36,7 +36,7 @@ describe('<BaseSelect />', () => {
 
   it('renders compact', () => {
     const wrapper = shallowWithStyles(
-      <BaseSelect name="foo" onChange={() => {}} compact>
+      <BaseSelect compact name="foo" onChange={() => {}}>
         <option value="bar">Bar</option>
       </BaseSelect>,
     );
@@ -71,7 +71,7 @@ describe('<BaseSelect />', () => {
 
   it('supports a placeholder option', () => {
     const wrapper = shallowWithStyles(
-      <BaseSelect name="foo" onChange={() => {}} placeholder="Select something">
+      <BaseSelect name="foo" placeholder="Select something" onChange={() => {}}>
         <option value="bar">Bar</option>
       </BaseSelect>,
     );
@@ -82,7 +82,7 @@ describe('<BaseSelect />', () => {
         .find('option')
         .at(0)
         .equals(
-          <option value="" disabled>
+          <option disabled value="">
             Select something
           </option>,
         ),

@@ -16,7 +16,7 @@ describe('<BaseSwitch />', () => {
 
   it('renders invalid', () => {
     const wrapper = shallowWithStyles(
-      <BaseSwitch id="foo" name="foo" onChange={() => {}} invalid />,
+      <BaseSwitch invalid id="foo" name="foo" onChange={() => {}} />,
     );
 
     expect(wrapper.find(FormInput).prop('invalid')).toBe(true);
@@ -24,7 +24,7 @@ describe('<BaseSwitch />', () => {
 
   it('renders disabled', () => {
     const wrapper = shallowWithStyles(
-      <BaseSwitch id="foo" name="foo" onChange={() => {}} disabled />,
+      <BaseSwitch disabled id="foo" name="foo" onChange={() => {}} />,
     );
 
     expect(wrapper.find(FormInput).prop('disabled')).toBe(true);

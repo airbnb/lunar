@@ -15,11 +15,11 @@ import renderElementOrFunction, { RenderableProp } from '../../utils/renderEleme
 
 export const CACHE_DURATION = toMilliseconds('5 minutes');
 
-function getItemValue(item: any): string {
+function getItemValue(item: unknown): string {
   return String(item.value || item.id);
 }
 
-function renderItem(item: any): NonNullable<React.ReactNode> {
+function renderItem(item: unknown): NonNullable<React.ReactNode> {
   return <Text>{item.name || item.title || item.value}</Text>;
 }
 
@@ -62,7 +62,7 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     /** Message to display when no items are found. */
     noResultsText?: React.ReactNode;
     /** Callback fired when the value changes. */
-    onChange: (value: string, event: React.SyntheticEvent<any>) => void;
+    onChange: (value: string, event: React.SyntheticEvent<unknown>) => void;
     /** Callback fired to load items. Must return a promise with an array of items. */
     onLoadItems: (value: string) => Promise<ItemResponseType<T>>;
     /** Callback fired when the display of the menu is toggled. */
@@ -71,7 +71,7 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
      * Callback fired when an item is selected.
      * When a field is reset, item is passed `null` and no event is passed.
      */
-    onSelectItem?: (value: string, item: T | null, event?: React.SyntheticEvent<any>) => void;
+    onSelectItem?: (value: string, item: T | null, event?: React.SyntheticEvent<unknown>) => void;
     /** Placeholder within the search input. */
     placeholder?: string;
     /** Render an error when items fail to load. */
@@ -107,10 +107,8 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
     debounce: 250,
     disableCache: false,
     getItemValue,
-    isItemSelectable() {
-      return true;
-    },
-    isItemSelected() {},
+    isItemSelectable: () => true,
+    isItemSelected: () => false,
     loadItemsOnFocus: false,
     loadItemsOnMount: false,
     onMenuVisibilityChange() {},
@@ -383,7 +381,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
     });
   };
 
-  private handleItemMouseDown = (item: T, event: React.MouseEvent<any>) => {
+  private handleItemMouseDown = (item: T, event: React.MouseEvent<unknown>) => {
     const value = this.props.getItemValue!(item);
 
     // The menu will de-render before a mouseLeave event
@@ -400,7 +398,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
     );
   };
 
-  private handleSelect = (value: string, item: T, event: React.SyntheticEvent<any>) => {
+  private handleSelect = (value: string, item: T, event: React.SyntheticEvent<unknown>) => {
     this.props.onSelectItem!(value, item, event);
     this.props.onChange(value, event);
 
@@ -583,7 +581,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
     <MenuRow>
       <Spacing horizontal={0.5}>
         {renderElementOrFunction(this.props.renderError, error) || (
-          <ErrorMessage error={error} inline />
+          <ErrorMessage inline error={error} />
         )}
       </Spacing>
     </MenuRow>
@@ -621,7 +619,8 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
       const props: React.HTMLAttributes<HTMLDivElement> = {};
 
       if (this.props.isItemSelectable!(item, selected)) {
-        props.onMouseDown = (event: React.MouseEvent<any>) => this.handleItemMouseDown(item, event);
+        props.onMouseDown = (event: React.MouseEvent<unknown>) =>
+          this.handleItemMouseDown(item, event);
         props.onMouseEnter = () => this.handleItemMouseEnter(index);
       }
 
@@ -705,17 +704,17 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
           <BaseInput
             {...this.getInputProps(inputProps)}
             role="combobox"
-            type="search"
+            value={value}
             aria-autocomplete="list"
             aria-expanded={open}
             autoComplete="off"
-            onBlur={this.handleInputBlur}
-            onChange={this.handleInputChange}
+            propagateRef={this.inputRef}
+            type="search"
             onClick={this.handleInputClick}
             onFocus={this.handleInputFocus}
             onKeyDown={this.handleInputKeyDown}
-            propagateRef={this.inputRef}
-            value={value}
+            onBlur={this.handleInputBlur}
+            onChange={this.handleInputChange}
           />
 
           {open && this.renderMenu()}

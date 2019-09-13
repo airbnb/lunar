@@ -5,7 +5,7 @@ import connectToApp, { ConnectToAppProps } from '../../src/composers/connectToAp
 import AppContext from '../../src/components/AppContext';
 import { Context } from '../../src/types';
 
-function unwrap(element: any): Enzyme.ShallowWrapper {
+function unwrap(element: unknown): Enzyme.ShallowWrapper {
   return unwrapHOCs(shallow(element), 'WithAppWrapper');
 }
 
@@ -13,7 +13,7 @@ describe('connectToApp()', () => {
   let modifyPageData = false;
   let context: Context;
   let wrapper: Enzyme.ReactWrapper;
-  let Hoc: any;
+  let Hoc: unknown;
 
   class HasData extends React.Component<ConnectToAppProps> {
     registerPageData() {
@@ -35,10 +35,8 @@ describe('connectToApp()', () => {
     }
   }
 
-  class NoPushMethod extends React.Component<ConnectToAppProps> {
-    render() {
-      return null;
-    }
+  function NoPushMethod(props: ConnectToAppProps) {
+    return null;
   }
 
   function WrappingComponent({ children }: { children: React.ReactNode }) {
@@ -108,7 +106,7 @@ describe('connectToApp()', () => {
     });
 
     it('removes data on unmount', () => {
-      const instance: any = wrapper.find('ConnectToApp').instance();
+      const instance: unknown = wrapper.find('ConnectToApp').instance();
 
       instance.id = '123456';
       instance.componentWillUnmount();

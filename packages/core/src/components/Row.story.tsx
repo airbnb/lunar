@@ -51,7 +51,7 @@ storiesOf('Core/Row', module)
     </Row>
   ))
   .add('With topline and baseline.', () => (
-    <Row after={<Button>Take an action</Button>} topline baseline spacious>
+    <Row topline baseline spacious after={<Button>Take an action</Button>}>
       <Text>A row where both topline and baseline are true.</Text>
     </Row>
   ))

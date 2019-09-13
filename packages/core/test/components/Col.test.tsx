@@ -7,7 +7,7 @@ describe('<Col />', () => {
 
   range.forEach(span => {
     it(`renders span ${span}`, () => {
-      const wrapper = shallowWithStyles(<Col span={span as any}>Child</Col>);
+      const wrapper = shallowWithStyles(<Col span={span as unknown}>Child</Col>);
 
       expect(wrapper.prop('data-span')).toBe(span);
     });
@@ -16,7 +16,7 @@ describe('<Col />', () => {
 
     it(`renders offset ${offset}`, () => {
       const wrapper = shallowWithStyles(
-        <Col span={span as any} offset={offset as any}>
+        <Col span={span as unknown} offset={offset as unknown}>
           Child
         </Col>,
       );

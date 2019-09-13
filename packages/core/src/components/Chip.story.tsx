@@ -21,13 +21,13 @@ storiesOf('Core/Chip', module)
       <Spacing bottom={1}>
         <Text>Note that before/after padding is not symetrical</Text>
       </Spacing>
-      <Spacing right={1} inline>
+      <Spacing inline right={1}>
         <Chip afterIcon={<IconCloseAlt decorative size="2em" />}>Chip</Chip>
       </Spacing>
-      <Spacing right={1} inline>
+      <Spacing inline right={1}>
         <Chip beforeIcon={<IconCalendar decorative size="1.2em" />}>Calendar</Chip>
       </Spacing>
-      <Spacing right={1} inline>
+      <Spacing inline right={1}>
         <Chip
           afterIcon={<IconCalendar decorative size="1.2em" />}
           beforeIcon={<IconCalendar decorative size="1.2em" />}
@@ -43,23 +43,23 @@ storiesOf('Core/Chip', module)
         <Text>Note that before/after padding is not symetrical</Text>
       </Spacing>
 
-      <Spacing right={1} inline>
-        <Chip beforeIcon={<IconUser decorative size="1.2em" />} compact onClick={action('onClick')}>
+      <Spacing inline right={1}>
+        <Chip compact beforeIcon={<IconUser decorative size="1.2em" />} onClick={action('onClick')}>
           Chip
         </Chip>
       </Spacing>
 
-      <Spacing right={1} inline>
+      <Spacing inline right={1}>
         <Chip
-          afterIcon={<IconCalendar decorative size="1.2em" />}
           compact
+          afterIcon={<IconCalendar decorative size="1.2em" />}
           onClick={action('onClick')}
         >
           Chip
         </Chip>
       </Spacing>
 
-      <Spacing right={0} inline>
+      <Spacing inline right={0}>
         <Chip compact active onClick={action('onClick')}>
           Chip
         </Chip>
@@ -68,7 +68,7 @@ storiesOf('Core/Chip', module)
   ))
   .add('With an icon button.', () => (
     <>
-      <Spacing right={1} inline>
+      <Spacing inline right={1}>
         <Chip
           afterIcon={<IconCloseAlt decorative size="2em" />}
           onIconClick={action('onIconClick')}
@@ -77,7 +77,7 @@ storiesOf('Core/Chip', module)
         </Chip>
       </Spacing>
 
-      <Spacing right={0} inline>
+      <Spacing inline right={0}>
         <Chip
           disabled
           afterIcon={<IconCloseAlt decorative size="2em" />}
@@ -96,17 +96,17 @@ storiesOf('Core/Chip', module)
   ))
   .add('Disabled chips.', () => (
     <>
-      <Spacing right={1} inline>
+      <Spacing inline right={1}>
         <Chip disabled>Chip</Chip>
       </Spacing>
 
-      <Spacing right={1} inline>
+      <Spacing inline right={1}>
         <Chip disabled afterIcon={<IconSettings decorative size="2em" />} profileImageSrc={lunar}>
           User
         </Chip>
       </Spacing>
 
-      <Spacing right={0} inline>
+      <Spacing inline right={0}>
         <Chip disabled afterIcon={<IconSettings decorative size="2em" />}>
           Settings
         </Chip>
@@ -115,11 +115,11 @@ storiesOf('Core/Chip', module)
   ))
   .add('As buttons.', () => (
     <>
-      <Spacing right={1} inline>
+      <Spacing inline right={1}>
         <Chip onClick={action('onClick')}>Chip</Chip>
       </Spacing>
 
-      <Spacing right={1} inline>
+      <Spacing inline right={1}>
         <Chip
           afterIcon={<IconSettings decorative size="2em" />}
           profileImageSrc={lunar}
@@ -129,7 +129,7 @@ storiesOf('Core/Chip', module)
         </Chip>
       </Spacing>
 
-      <Spacing right={0} inline>
+      <Spacing inline right={0}>
         <Chip afterIcon={<IconSettings decorative size="2em" />} onClick={action('onClick')}>
           Settings
         </Chip>

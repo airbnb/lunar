@@ -14,18 +14,18 @@ storiesOf('Core/DirectionalIcon', module)
       <br />
       <br />
       <DirectionalIcon
+        decorative
         direction="left"
         left={IconChevronLeft}
         right={IconChevronRight}
         size="1.5em"
-        decorative
       />
       <DirectionalIcon
+        decorative
         direction="right"
         left={IconChevronLeft}
         right={IconChevronRight}
         size="3em"
-        decorative
       />
     </div>
   ));

@@ -7,7 +7,7 @@ import StatusText from '../StatusText';
 import { ErrorType } from '../../types';
 import Core from '../..';
 
-export function getErrorMessage(error: any, includeCode: boolean = false): string {
+export function getErrorMessage(error: unknown, includeCode: boolean = false): string {
   const debug = error.debug_info;
 
   const message = debug

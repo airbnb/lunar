@@ -17,7 +17,7 @@ describe('<Multicomplete />', () => {
 
   const event = {
     target: {},
-  } as React.ChangeEvent<any>;
+  } as React.ChangeEvent<unknown>;
 
   it('sets default value', () => {
     const wrapper = shallow(<Multicomplete {...props} />);

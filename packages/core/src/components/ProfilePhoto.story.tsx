@@ -11,27 +11,27 @@ storiesOf('Core/ProfilePhoto', module)
   .add('With different sizing: units-based size, small, regular (default), large, macro.', () => (
     <>
       <ProfilePhoto imageSrc={lunar} title="Photo" size={2} />
-      <ProfilePhoto imageSrc={lunar} title="Photo" small />
+      <ProfilePhoto small imageSrc={lunar} title="Photo" />
       <ProfilePhoto imageSrc={lunar} title="Photo" />
-      <ProfilePhoto imageSrc={lunar} title="Photo" large />
-      <ProfilePhoto imageSrc={lunar} title="Photo" macro />
+      <ProfilePhoto large imageSrc={lunar} title="Photo" />
+      <ProfilePhoto macro imageSrc={lunar} title="Photo" />
     </>
   ))
   .add('Inline profile photos.', () => (
     <>
-      <ProfilePhoto imageSrc={lunar} inline title="Photo" size={2} />
-      <ProfilePhoto imageSrc={lunar} inline title="Photo" small />
-      <ProfilePhoto imageSrc={lunar} inline title="Photo" />
-      <ProfilePhoto imageSrc={lunar} inline title="Photo" large />
-      <ProfilePhoto imageSrc={lunar} inline title="Photo" macro />
+      <ProfilePhoto inline imageSrc={lunar} title="Photo" size={2} />
+      <ProfilePhoto inline small imageSrc={lunar} title="Photo" />
+      <ProfilePhoto inline imageSrc={lunar} title="Photo" />
+      <ProfilePhoto inline large imageSrc={lunar} title="Photo" />
+      <ProfilePhoto inline macro imageSrc={lunar} title="Photo" />
     </>
   ))
   .add('Square profile photo.', () => (
-    <ProfilePhoto imageSrc={lunar} inline title="Photo" large square />
+    <ProfilePhoto inline large square imageSrc={lunar} title="Photo" />
   ))
   .add('Broken image with overflowing alt text.', () => (
-    <ProfilePhoto imageSrc="BROKEN_IMAGE" title="Alt title text." large />
+    <ProfilePhoto large imageSrc="BROKEN_IMAGE" title="Alt title text." />
   ))
   .add('Fallback image src when image is broken.', () => (
-    <ProfilePhoto fallbackImageSrc={lunar} imageSrc="BROKEN_IMAGE" title="Alt title text." large />
+    <ProfilePhoto large fallbackImageSrc={lunar} imageSrc="BROKEN_IMAGE" title="Alt title text." />
   ));

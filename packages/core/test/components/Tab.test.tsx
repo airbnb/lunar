@@ -15,7 +15,7 @@ describe('<Tab/>', () => {
   it('renders a before icon', () => {
     const icon = <IconCheck decorative />;
     const wrapper = shallowWithStyles(
-      <Tab keyName="default" label="Tab" onClick={() => {}} disabled beforeIcon={icon} />,
+      <Tab disabled keyName="default" label="Tab" beforeIcon={icon} onClick={() => {}} />,
     );
 
     expect(wrapper.find(ButtonOrLink).prop('beforeIcon')).toBe(icon);
@@ -24,7 +24,7 @@ describe('<Tab/>', () => {
   it('renders a after icon', () => {
     const icon = <IconCheck decorative />;
     const wrapper = shallowWithStyles(
-      <Tab keyName="default" label="Tab" onClick={() => {}} disabled afterIcon={icon} />,
+      <Tab disabled keyName="default" label="Tab" afterIcon={icon} onClick={() => {}} />,
     );
 
     expect(wrapper.find(ButtonOrLink).prop('afterIcon')).toBe(icon);
@@ -32,7 +32,7 @@ describe('<Tab/>', () => {
 
   it('renders disabled', () => {
     const wrapper = shallowWithStyles(
-      <Tab keyName="default" label="Tab" onClick={() => {}} disabled />,
+      <Tab disabled keyName="default" label="Tab" onClick={() => {}} />,
     );
 
     expect(wrapper.prop('className')).toMatch('tab_disabled');
@@ -40,7 +40,7 @@ describe('<Tab/>', () => {
 
   it('renders selected', () => {
     const wrapper = shallowWithStyles(
-      <Tab keyName="default" label="Tab" onClick={() => {}} selected />,
+      <Tab selected keyName="default" label="Tab" onClick={() => {}} />,
     );
 
     expect(wrapper.prop('className')).toMatch('tab_selected');
@@ -48,7 +48,7 @@ describe('<Tab/>', () => {
 
   it('renders stretched', () => {
     const wrapper = shallowWithStyles(
-      <Tab keyName="default" label="Tab" onClick={() => {}} stretched />,
+      <Tab stretched keyName="default" label="Tab" onClick={() => {}} />,
     );
 
     expect(wrapper.prop('className')).toMatch('tab_stretched');

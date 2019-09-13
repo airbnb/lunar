@@ -2,7 +2,7 @@ import { SheetMap } from 'aesthetic';
 import { DayPickerProps } from 'react-day-picker';
 import { getClassNames, getCustomModifiers } from '../../src/utils/datePicker';
 
-const STYLE: SheetMap<any> = {
+const STYLE: SheetMap<unknown> = {
   body: { opacity: 0 },
   calendarContainer: { opacity: 0.1 },
   caption: { opacity: 0.2 },
@@ -46,7 +46,7 @@ function cx(...styles: any[]): string {
 }
 
 describe('getClassNames()', () => {
-  let mockStyles: SheetMap<any>;
+  let mockStyles: SheetMap<unknown>;
 
   beforeEach(() => {
     mockStyles = { ...STYLE };
@@ -88,7 +88,7 @@ describe('getClassNames()', () => {
 });
 
 describe('getCustomModifiers()', () => {
-  let mockStyles: SheetMap<any>;
+  let mockStyles: SheetMap<unknown>;
 
   beforeEach(() => {
     mockStyles = { ...STYLE };

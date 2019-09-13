@@ -66,6 +66,7 @@ export default class Copy extends React.Component<Props, State> {
 
     return (
       <Tooltip
+        remainOnMouseDown
         content={
           this.state.copied ? (
             <T
@@ -84,7 +85,6 @@ export default class Copy extends React.Component<Props, State> {
           )
         }
         underlined={underlined}
-        remainOnMouseDown
       >
         {React.cloneElement(element, {
           onClick: this.handleClick,

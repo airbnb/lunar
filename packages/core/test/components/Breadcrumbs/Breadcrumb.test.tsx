@@ -5,7 +5,7 @@ import ButtonOrLink from '../../../src/components/private/ButtonOrLink';
 
 describe('<Breadcrumb/>', () => {
   it('renders a button', () => {
-    const wrapper = shallowWithStyles(<Breadcrumb onClick={() => {}} label="Breadcrumb" />)
+    const wrapper = shallowWithStyles(<Breadcrumb label="Breadcrumb" onClick={() => {}} />)
       .find(ButtonOrLink)
       .dive();
 
@@ -22,7 +22,7 @@ describe('<Breadcrumb/>', () => {
 
   it('renders selected with `aria-current` attribute', () => {
     const wrapper = shallowWithStyles(
-      <Breadcrumb selected onClick={() => {}} label="Breadcrumb" />,
+      <Breadcrumb selected label="Breadcrumb" onClick={() => {}} />,
     );
 
     expect(wrapper.find(ButtonOrLink).prop('aria-current')).toBe('page');
@@ -30,7 +30,7 @@ describe('<Breadcrumb/>', () => {
 
   it('renders disabled', () => {
     const wrapper = shallowWithStyles(
-      <Breadcrumb disabled onClick={() => {}} label="Breadcrumb" />,
+      <Breadcrumb disabled label="Breadcrumb" onClick={() => {}} />,
     );
 
     expect(wrapper.find(ButtonOrLink).prop('disabled')).toBeTruthy();
@@ -41,8 +41,8 @@ describe('<Breadcrumb/>', () => {
       <Breadcrumb
         id="tracking-breadcrump"
         trackingName="tracking-name"
-        onClick={() => {}}
         label="Breadcrumb"
+        onClick={() => {}}
       />,
     );
 
@@ -51,14 +51,14 @@ describe('<Breadcrumb/>', () => {
   });
 
   it('renders an icon', () => {
-    const wrapper = shallowWithStyles(<Breadcrumb onClick={() => {}} label="Breadcrumb" />);
+    const wrapper = shallowWithStyles(<Breadcrumb label="Breadcrumb" onClick={() => {}} />);
 
     expect(wrapper.find(ButtonOrLink).prop('afterIcon')).toBeTruthy();
   });
 
   it('doesnt render an icon with `hideIcon`', () => {
     const wrapper = shallowWithStyles(
-      <Breadcrumb hideIcon onClick={() => {}} label="Breadcrumb" />,
+      <Breadcrumb hideIcon label="Breadcrumb" onClick={() => {}} />,
     );
 
     expect(wrapper.find(ButtonOrLink).prop('afterIcon')).toBeFalsy();

@@ -197,10 +197,9 @@ export class BaseSheet extends React.Component<Props & PrivateProps & WithStyles
 
     const sheetContent = (
       <div
+        ref={this.sheetRef}
         aria-modal
         role="dialog"
-        ref={this.sheetRef}
-        onAnimationEnd={this.handleAnimationEnd}
         className={cx(
           styles.sheet,
           portal && styles.sheet_portal,
@@ -208,6 +207,7 @@ export class BaseSheet extends React.Component<Props & PrivateProps & WithStyles
           !gap && animating && !visible && styles.sheet_out,
           !gap && animating && visible && styles.sheet_in,
         )}
+        onAnimationEnd={this.handleAnimationEnd}
       >
         <FocusTrap disabled={!portal}>
           <div
@@ -228,7 +228,6 @@ export class BaseSheet extends React.Component<Props & PrivateProps & WithStyles
 
             <div
               ref={this.wrapperRef}
-              onAnimationEnd={this.handleAnimationEnd}
               className={cx(
                 styles.wrapper,
                 gap && styles.wrapper_gap,
@@ -236,6 +235,7 @@ export class BaseSheet extends React.Component<Props & PrivateProps & WithStyles
                 gap && animating && !visible && styles.sheet_slide_out,
                 gap && animating && visible && styles.sheet_slide_in,
               )}
+              onAnimationEnd={this.handleAnimationEnd}
             >
               <div className={cx(headerShadow && styles.headerShadow)}>
                 <Spacing all={compact ? 1 : 4} bottom={0}>

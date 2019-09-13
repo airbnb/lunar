@@ -94,8 +94,8 @@ export class Portal extends React.Component<Props & WithStylesProps, State> {
       <BasePortal>
         <FocusTrap>
           <div
-            className={cx(styles.container, noBackground ? styles.noBg : styles.opaque)}
             ref={this.ref}
+            className={cx(styles.container, noBackground ? styles.noBg : styles.opaque)}
             role="presentation"
             onClick={this.handleClick}
             onScroll={this.handleScrollThrottled}

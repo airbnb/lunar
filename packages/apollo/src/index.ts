@@ -25,7 +25,7 @@ class Apollo {
     resolvers: {},
   };
 
-  protected client?: ApolloClient<any>;
+  protected client?: ApolloClient<unknown>;
 
   initialize(settings?: Settings) {
     this.settings = {

@@ -120,7 +120,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
             return null;
           }
 
-          const { key, props } = child as any;
+          const { key, props } = child as unknown;
           const selected = key === selectedKey || (!selectedKey && i === 0);
 
           if (__DEV__ && !key) {

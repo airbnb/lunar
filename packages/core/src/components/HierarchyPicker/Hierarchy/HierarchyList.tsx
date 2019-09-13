@@ -109,9 +109,9 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
       >
         <button
           className={cx(styles.asideButton)}
-          onClick={() => onItemPicked([...parents, item.name])}
           tabIndex={-1}
           type="button"
+          onClick={() => onItemPicked([...parents, item.name])}
         >
           <ItemDescription item={item} />
         </button>
@@ -139,6 +139,7 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
       <>
         <div
           key="list"
+          ref={this.ref}
           className={cx(
             styles.pane,
             verticallyAlign && styles.pane_verticallyAlign,
@@ -150,7 +151,6 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
               zIndex: 1,
             },
           )}
-          ref={this.ref}
         >
           <ul className={cx(styles.list)}>
             {items.map((item, index) => {
@@ -177,12 +177,12 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
                   <li className={cx(styles.row)}>
                     <HierarchyItem
                       {...passThruProps}
-                      onDomFocusDeeper={this.handleDomFocusDeeper}
-                      onDomFocusShallower={this.handleDomFocusShallower}
                       item={item}
                       definition={definition}
                       selected={this.isChosen(definition)}
                       focused={isFocused}
+                      onDomFocusDeeper={this.handleDomFocusDeeper}
+                      onDomFocusShallower={this.handleDomFocusShallower}
                     />
 
                     {!verticallyAlign && isFocused && item.items && item.items.length > 0 ? (
@@ -209,12 +209,12 @@ export class HierarchyList extends React.Component<Props & WithStylesProps> {
           <HierarchyList
             key="sub-list"
             {...passThruProps}
+            verticallyAlign
             cx={cx}
             styles={styles}
             items={focusedItem!.items}
             focus={focusRest}
             parents={parents.concat(focusedItem!.name)}
-            verticallyAlign
           />
         ) : (
           verticallyAlign && focusedItem && this.renderAside(focusedItem)

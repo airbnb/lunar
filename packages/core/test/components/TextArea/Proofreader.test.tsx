@@ -16,7 +16,7 @@ import Link from '../../../src/components/Link';
 import BaseTextArea from '../../../src/components/private/BaseTextArea';
 import { ProofreadRuleMatch } from '../../../src/components/TextArea/Proofreader/types';
 
-jest.mock('lodash/debounce', () => (value: any) => value);
+jest.mock('lodash/debounce', () => (value: unknown) => value);
 
 function getInstance(wrapper: Enzyme.ShallowWrapper<Props, State>): BaseProofreader {
   return wrapper.instance() as BaseProofreader;
@@ -860,7 +860,7 @@ describe('<Proofreader />', () => {
 
       expect(instance.renderTextWithMarks()).toEqual([
         'Something ',
-        <Mark {...markProps} alwaysHighlight key="foobar-10">
+        <Mark {...markProps} key="foobar-10" alwaysHighlight>
           foobar
         </Mark>,
         '',

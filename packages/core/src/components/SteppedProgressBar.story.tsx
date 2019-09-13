@@ -17,9 +17,9 @@ storiesOf('Core/SteppedProgressBar', module)
   ))
   .add('With tooltip labels on each step.', () => (
     <SteppedProgressBar>
-      <Step label="Cart" complete />
-      <Step label="Checkout" complete />
-      <Step label="Billing" complete />
+      <Step complete label="Cart" />
+      <Step complete label="Checkout" />
+      <Step complete label="Billing" />
       <Step label="Payment" />
       <Step label="Complete" />
     </SteppedProgressBar>

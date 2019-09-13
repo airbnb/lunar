@@ -75,12 +75,12 @@ describe('<Pagination />', () => {
       const wrapper = shallowWithStyles(
         <Pagination
           {...request}
+          showBookends
+          pageCount={pageCount}
           onNext={noop}
           onPrevious={noop}
           onFirst={noop}
           onLast={noop}
-          pageCount={pageCount}
-          showBookends
         />,
       );
 
@@ -96,7 +96,7 @@ describe('<Pagination />', () => {
       };
 
       const wrapper = shallowWithStyles(
-        <Pagination {...request} onNext={noop} onPrevious={noop} pageLabel="Photo" />,
+        <Pagination {...request} pageLabel="Photo" onNext={noop} onPrevious={noop} />,
       );
 
       expect(wrapper.find(T).prop('pageLabel')).toBe('Photo');
@@ -285,12 +285,12 @@ describe('<Pagination />', () => {
       const wrapper = shallowWithStyles(
         <Pagination
           {...request}
+          showBookends
+          pageCount={pageCount}
           onNext={noop}
           onPrevious={noop}
           onFirst={noop}
           onLast={noop}
-          pageCount={pageCount}
-          showBookends
         />,
       );
 
@@ -315,12 +315,12 @@ describe('<Pagination />', () => {
       const wrapper = shallowWithStyles(
         <Pagination
           {...request}
+          showBookends
+          pageCount={pageCount}
           onNext={noop}
           onPrevious={noop}
           onFirst={noop}
           onLast={noop}
-          pageCount={pageCount}
-          showBookends
         />,
       );
 
@@ -344,12 +344,12 @@ describe('<Pagination />', () => {
       const wrapper = shallowWithStyles(
         <Pagination
           {...request}
+          showBookends
+          pageCount={pageCount}
           onNext={noop}
           onPrevious={noop}
           onFirst={onFirst}
           onLast={noop}
-          pageCount={pageCount}
-          showBookends
         />,
       );
 
@@ -374,12 +374,12 @@ describe('<Pagination />', () => {
       const wrapper = shallowWithStyles(
         <Pagination
           {...request}
+          showBookends
+          pageCount={pageCount}
           onNext={noop}
           onPrevious={noop}
           onFirst={noop}
           onLast={noop}
-          pageCount={pageCount}
-          showBookends
         />,
       );
 
@@ -417,12 +417,12 @@ describe('<Pagination />', () => {
       const wrapper = shallowWithStyles(
         <Pagination
           {...request}
+          showBookends
+          pageCount={pageCount}
           onNext={noop}
           onPrevious={noop}
           onFirst={noop}
           onLast={noop}
-          pageCount={pageCount}
-          showBookends
         />,
       );
 
@@ -447,12 +447,12 @@ describe('<Pagination />', () => {
       const wrapper = shallowWithStyles(
         <Pagination
           {...request}
+          showBookends
+          pageCount={pageCount}
           onNext={noop}
           onPrevious={noop}
           onFirst={noop}
           onLast={noop}
-          pageCount={pageCount}
-          showBookends
         />,
       );
 
@@ -476,12 +476,12 @@ describe('<Pagination />', () => {
       const wrapper = shallowWithStyles(
         <Pagination
           {...request}
+          showBookends
+          pageCount={pageCount}
           onNext={noop}
           onPrevious={noop}
           onFirst={noop}
           onLast={onLast}
-          pageCount={pageCount}
-          showBookends
         />,
       );
 
@@ -505,12 +505,12 @@ describe('<Pagination />', () => {
       const wrapper = shallowWithStyles(
         <Pagination
           {...request}
+          showBookends
+          pageCount={pageCount}
           onNext={noop}
           onPrevious={noop}
           onFirst={noop}
           onLast={noop}
-          pageCount={pageCount}
-          showBookends
         />,
       );
 

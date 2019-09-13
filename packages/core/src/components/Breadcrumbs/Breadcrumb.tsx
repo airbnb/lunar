@@ -78,11 +78,11 @@ class Breadcrumb extends React.Component<Props & WithStylesProps> {
           afterIcon={
             hideIcon ? null : (
               <DirectionalIcon
+                decorative
                 direction="right"
                 left={IconChevronLeft}
                 right={IconChevronRight}
                 size={24}
-                decorative
               />
             )
           }

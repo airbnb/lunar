@@ -87,12 +87,12 @@ export class Tab extends React.Component<Props & WithStylesProps> {
             disabled={disabled}
             href={href}
             role="tab"
-            onClick={disabled ? undefined : this.handleClick}
             className={cx(
               styles.tabButton,
               small && styles.tabButton_small,
               selected && styles.tabButton_active,
             )}
+            onClick={disabled ? undefined : this.handleClick}
           >
             {label}
           </ButtonOrLink>

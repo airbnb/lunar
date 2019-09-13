@@ -99,11 +99,11 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
     const { showSubmenu } = this.state;
     const after = submenu ? (
       <DirectionalIcon
+        decorative
         direction="right"
         left={IconCaretLeft}
         right={IconCaretRight}
         size="1.5em"
-        decorative
       />
     ) : (
       tip
@@ -119,23 +119,23 @@ export class MenuItem extends React.Component<Props & WithStylesProps> {
               </Text>
             ) : null
           }
-          beforeIcon={icon}
-          disabled={disabled}
-          href={href}
-          trackingName={trackingName}
-          id={id}
-          onClick={onClick}
-          openInNewWindow={openInNewWindow}
-          role={role}
-          tabIndex={tabIndex}
-          aria-haspopup={!!submenu}
-          aria-expanded={showSubmenu}
           className={cx(
             styles.item,
             (showSubmenu || highlighted) && styles.item_highlighted,
             disabled && styles.item_disabled,
             spacious && styles.item_spacious,
           )}
+          disabled={disabled}
+          href={href}
+          trackingName={trackingName}
+          id={id}
+          beforeIcon={icon}
+          openInNewWindow={openInNewWindow}
+          role={role}
+          tabIndex={tabIndex}
+          aria-haspopup={!!submenu}
+          aria-expanded={showSubmenu}
+          onClick={onClick}
         >
           {children}
         </ButtonOrLink>

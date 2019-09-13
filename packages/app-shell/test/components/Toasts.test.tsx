@@ -33,7 +33,9 @@ describe('Toasts', () => {
 
   function WrappingComponent({ children }: { children?: React.ReactNode }) {
     return (
-      <AppContext.Provider value={{ toasts, onRemove() {} } as any}>{children}</AppContext.Provider>
+      <AppContext.Provider value={{ toasts, onRemove() {} } as unknown}>
+        {children}
+      </AppContext.Provider>
     );
   }
 

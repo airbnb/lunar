@@ -1,4 +1,5 @@
 /* eslint-disable no-console, import/no-extraneous-dependencies */
+/* eslint-env node */
 
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
@@ -41,10 +42,10 @@ export function shallowWithStyles<C extends React.Component, P = C['props'], S =
     wrappingComponentProps: props,
   });
 
-  return self ? wrapper : (wrapper.dive() as any);
+  return self ? wrapper : (wrapper.dive() as unknown);
 }
 
-export function wrapEnv(env: string, callback: () => any): () => any {
+export function wrapEnv(env: string, callback: () => unknown): () => unknown {
   return () => {
     const oldEnv = process.env.NODE_ENV;
 
@@ -60,22 +61,25 @@ export function wrapEnv(env: string, callback: () => any): () => any {
 
 export function wrapGlobal(
   property: keyof NodeJS.Global,
-  callback: (spy: jest.Mock) => any,
-): () => any {
+  callback: (spy: jest.Mock) => unknown,
+): () => unknown {
   return () => {
     const old = global[property];
 
-    (global as any)[property] = jest.fn();
+    (global as unknown)[property] = jest.fn();
 
     const response = callback(global[property]);
 
-    (global as any)[property] = old;
+    (global as unknown)[property] = old;
 
     return response;
   };
 }
 
-export function wrapConsole(property: keyof Console, callback: (spy: jest.Mock) => any): () => any {
+export function wrapConsole(
+  property: keyof Console,
+  callback: (spy: jest.Mock) => unknown,
+): () => unknown {
   return () => {
     const old = console[property];
 
@@ -89,7 +93,7 @@ export function wrapConsole(property: keyof Console, callback: (spy: jest.Mock) 
   };
 }
 
-export function getWrapperName(wrapper: Enzyme.ShallowWrapper<any, any>): string {
+export function getWrapperName(wrapper: Enzyme.ShallowWrapper<unknown, unknown>): string {
   let name = wrapper.type();
 
   if (typeof name === 'function') {
@@ -104,11 +108,11 @@ export function getWrapperName(wrapper: Enzyme.ShallowWrapper<any, any>): string
 }
 
 export function unwrapHOCs(
-  wrapper: Enzyme.ShallowWrapper<any, any>,
+  wrapper: Enzyme.ShallowWrapper<unknown, unknown>,
   target: string,
-  context: any = {},
+  context: unknown = {},
   options: { exitOnContext?: boolean; render?: boolean } = {},
-): Enzyme.ShallowWrapper<any, any> {
+): Enzyme.ShallowWrapper<unknown, unknown> {
   let result = wrapper;
 
   // Unwrap all wrapping and annoying HOCs
@@ -125,7 +129,7 @@ export function unwrapHOCs(
       const child = result.prop('children');
 
       if (typeof child === 'function') {
-        result = new Enzyme.ShallowWrapper((child as any)(context), result, { context });
+        result = new Enzyme.ShallowWrapper((child as unknown)(context), result, { context });
 
         if (options.exitOnContext) {
           return result.shallow({ context });
@@ -148,12 +152,12 @@ export function unwrapHOCs(
 
 export function mockNotification() {
   const oldNotification = window.Notification;
-  const mock: any = jest.fn(() => {
-    let cb: any = null;
+  const mock: unknown = jest.fn(() => {
+    let cb: unknown = null;
     const api = {
       close: jest.fn(),
       onclick: jest.fn(),
-      addEventListener: (type: string, callback: any) => {
+      addEventListener: (type: string, callback: unknown) => {
         cb = callback;
       },
       dispatchEvent: (event: Event) => {
@@ -185,7 +189,7 @@ export function mockResizeObserver() {
     disconnect: jest.fn(),
     observe: jest.fn(),
     unobserve: jest.fn(),
-  })) as any;
+  })) as unknown;
 
   return () => {
     window.ResizeObserver = oldObserver;

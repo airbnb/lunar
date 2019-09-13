@@ -7,7 +7,7 @@ describe('<Link />', () => {
   it('errors when multiple states are used at once', () => {
     expect(() => {
       shallowWithStyles(
-        <Link muted inverted href="#">
+        <Link muted inverted href="/">
           Default
         </Link>,
       );
@@ -17,7 +17,7 @@ describe('<Link />', () => {
   it('errors when multiple sizes are used at once', () => {
     expect(() => {
       shallowWithStyles(
-        <Link small large href="#">
+        <Link small large href="/">
           Default
         </Link>,
       );
@@ -26,7 +26,7 @@ describe('<Link />', () => {
 
   it('renders small (passes to `Text`)', () => {
     const wrapper = shallowWithStyles(
-      <Link small href="#">
+      <Link small href="/">
         Small
       </Link>,
     );
@@ -36,7 +36,7 @@ describe('<Link />', () => {
 
   it('renders large (passes to `Text`)', () => {
     const wrapper = shallowWithStyles(
-      <Link large href="#">
+      <Link large href="/">
         Large
       </Link>,
     );
@@ -46,7 +46,7 @@ describe('<Link />', () => {
 
   it('renders disabled', () => {
     const wrapper = shallowWithStyles(
-      <Link disabled href="#">
+      <Link disabled href="/">
         Disabled
       </Link>,
     );
@@ -56,7 +56,7 @@ describe('<Link />', () => {
 
   it('renders inverted', () => {
     const wrapper = shallowWithStyles(
-      <Link inverted href="#">
+      <Link inverted href="/">
         Inverted
       </Link>,
     );
@@ -66,7 +66,7 @@ describe('<Link />', () => {
 
   it('renders muted', () => {
     const wrapper = shallowWithStyles(
-      <Link muted href="#">
+      <Link muted href="/">
         Muted
       </Link>,
     );
@@ -87,7 +87,7 @@ describe('<Link />', () => {
 
   it('renders bold (passes to `Text`)', () => {
     const wrapper = shallowWithStyles(
-      <Link bold href="#">
+      <Link bold href="/">
         Bold
       </Link>,
     );

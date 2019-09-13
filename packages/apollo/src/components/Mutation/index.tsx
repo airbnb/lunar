@@ -37,7 +37,7 @@ export type Props<Data, Vars> = Omit<MutationComponentOptions<Data, Vars>, 'clie
  * A declarative component to make GraphQL mutations.
  * Based on Apollo's [Mutation](https://www.apollographql.com/docs/react/essentials/mutations.html#props) component.
  */
-export default class Mutation<Data = any, Vars = OperationVariables> extends React.Component<
+export default class Mutation<Data = unknown, Vars = OperationVariables> extends React.Component<
   Props<Data, Vars>
 > {
   static defaultProps = {
@@ -67,6 +67,6 @@ export default class Mutation<Data = any, Vars = OperationVariables> extends Rea
   render() {
     const { children, loading, error, ...props } = this.props;
 
-    return <BaseMutation<Data, Vars> {...(props as any)}>{this.handleRender}</BaseMutation>;
+    return <BaseMutation<Data, Vars> {...(props as unknown)}>{this.handleRender}</BaseMutation>;
   }
 }

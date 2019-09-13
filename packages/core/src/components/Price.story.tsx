@@ -8,8 +8,8 @@ storiesOf('Core/Price', module)
   })
   .add('Standard amount.', () => <Price amount={123.45} currency="USD" />)
   .add('Cents-enabled (micros) amount in GBP.', () => (
-    <Price amount={123450000} currency="GBP" micros />
+    <Price micros amount={123450000} currency="GBP" />
   ))
   .add('Rounded amount in JPY.', () => (
-    <Price amount={12300.45} currency="JPY" locale="ja" round />
+    <Price round amount={12300.45} currency="JPY" locale="ja" />
   ));

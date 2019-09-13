@@ -63,7 +63,7 @@ class InnerEditableTextRenderer extends React.Component<
   }
 }
 
-export default function EditableTextRenderer({
+function EditableTextRenderer({
   row,
   keyName,
   editMode,
@@ -77,10 +77,10 @@ export default function EditableTextRenderer({
   return (
     <InnerEditableTextRenderer
       editMode={editMode}
-      onEdit={onEdit}
       value={row.rowData.data[keyName]}
       row={row}
       keyName={keyName}
+      onEdit={onEdit}
     />
   );
 }
@@ -229,23 +229,23 @@ const simpleProps = {
   showAllRows: true,
 };
 
-const getRow = (table: any, row: number) => table.find(Grid).find(`[aria-rowindex=${row}]`);
+const getRow = (table: unknown, row: number) => table.find(Grid).find(`[aria-rowindex=${row}]`);
 
-const getCell = (wrapper: any, row: number, col: number) =>
+const getCell = (wrapper: unknown, row: number, col: number) =>
   wrapper
     .find(Grid)
     .find(`[aria-rowindex=${row}]`)
     .find(`[aria-colindex=${col}]`);
 
-const getCheckbox = (table: any, row: number) => getRow(table, row).find(Checkbox);
-const getCaret = (table: any, row: number) => getCell(table, row, 1);
+const getCheckbox = (table: unknown, row: number) => getRow(table, row).find(Checkbox);
+const getCaret = (table: unknown, row: number) => getCell(table, row, 1);
 
-const selectRow = (table: any, row: number) => {
+const selectRow = (table: unknown, row: number) => {
   getCheckbox(table, row).prop('onChange')();
   table.update();
 };
 
-const expandRow = (table: any, row: number) => {
+const expandRow = (table: unknown, row: number) => {
   getCaret(table, row)
     .childAt(0)
     .simulate('click');
@@ -497,7 +497,7 @@ describe('<DataTable /> renders and sorts data', () => {
 describe('<DataTable /> renders column labels', () => {
   it('should render the correct column labels in sentence case', () => {
     const wrapper = shallowWithStyles(
-      <DataTable data={data} editable columnLabelCase="sentence" />,
+      <DataTable editable data={data} columnLabelCase="sentence" />,
     );
     const table = wrapper
       .find(AutoSizer)
@@ -513,7 +513,7 @@ describe('<DataTable /> renders column labels', () => {
   });
 
   it('should not format labels by default', () => {
-    const wrapper = shallowWithStyles(<DataTable data={data} editable />);
+    const wrapper = shallowWithStyles(<DataTable editable data={data} />);
     const table = wrapper
       .find(AutoSizer)
       .dive()
@@ -529,7 +529,7 @@ describe('<DataTable /> renders column labels', () => {
 
   it('should render the correct column labels in uppercase', () => {
     const wrapper = shallowWithStyles(
-      <DataTable data={data} editable columnLabelCase="uppercase" />,
+      <DataTable editable data={data} columnLabelCase="uppercase" />,
     );
     const table = wrapper
       .find(AutoSizer)
@@ -545,7 +545,7 @@ describe('<DataTable /> renders column labels', () => {
   });
 
   it('should render the correct column labels in title case', () => {
-    const wrapper = shallowWithStyles(<DataTable data={data} editable columnLabelCase="title" />);
+    const wrapper = shallowWithStyles(<DataTable editable data={data} columnLabelCase="title" />);
     const table = wrapper
       .find(AutoSizer)
       .dive()

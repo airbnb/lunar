@@ -19,9 +19,9 @@ type ColumnLabelsProps = {
   // Column className from react-virutalized.
   className: string;
   // Array of columns from react-virtualized.
-  columns: Array<any>;
+  columns: Array<unknown>;
   // Column style from react-virtualized, infered from Column widths.
-  style: any;
+  style: unknown;
 };
 
 /** See https://github.com/bvaughn/react-virtualized/blob/master/source/Table/defaultHeaderRowRenderer.js.

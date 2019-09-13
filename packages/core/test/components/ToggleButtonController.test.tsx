@@ -12,7 +12,7 @@ describe('<ToggleButtonController />', () => {
     onChange() {},
   };
 
-  function clickButton(wrapper: Enzyme.ShallowWrapper, value: any): Enzyme.ShallowWrapper {
+  function clickButton(wrapper: Enzyme.ShallowWrapper, value: unknown): Enzyme.ShallowWrapper {
     return wrapper
       .find({ value })
       .dive()
@@ -55,7 +55,7 @@ describe('<ToggleButtonController />', () => {
   it('does not notify of click that does not cause change', () => {
     const onChange = jest.fn();
     const wrapper = shallowWithStyles(
-      <ToggleButtonController {...props} onChange={onChange} value="1">
+      <ToggleButtonController {...props} value="1" onChange={onChange}>
         {ProxyButton => (
           <div>
             <ProxyButton value="1">1</ProxyButton>

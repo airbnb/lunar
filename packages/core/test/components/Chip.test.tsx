@@ -22,7 +22,7 @@ describe('<Chip />', () => {
   it('add data-tracking-name when clickable', () => {
     const onClick = () => {};
     const wrapper = shallowWithStyles(
-      <Chip onClick={onClick} id="tracking-chip" trackingName="tracking-chip-name">
+      <Chip id="tracking-chip" trackingName="tracking-chip-name" onClick={onClick}>
         Potato
       </Chip>,
     );

@@ -48,7 +48,7 @@ export default class ToggleButtonController extends React.Component<Props, State
     }
   }
 
-  private handleClick = (event: React.MouseEvent<any>) => {
+  private handleClick = (event: React.MouseEvent<unknown>) => {
     const { value: newValue } = event.currentTarget;
     const { value } = this.state;
 

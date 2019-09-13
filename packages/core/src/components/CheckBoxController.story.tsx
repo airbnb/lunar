@@ -10,11 +10,11 @@ storiesOf('Core/CheckBoxController', module)
   })
   .add('Controls multiple checkboxes.', () => (
     <CheckBoxController
+      optional
       label="Favorite colors?"
       name="color"
       value={['green']}
       onChange={action('onChange')}
-      optional
     >
       {CheckBox => (
         <div>
@@ -27,34 +27,34 @@ storiesOf('Core/CheckBoxController', module)
   ))
   .add('Handles invalid state, with no spacing.', () => (
     <CheckBoxController
+      invalid
       label="Favorite colors?"
       name="color"
       value={['green']}
       onChange={action('onChange')}
-      invalid
     >
       {CheckBox => (
         <div>
-          <CheckBox label="❤️ Red" value="red" noSpacing />
-          <CheckBox label="💙 Blue" value="blue" noSpacing />
-          <CheckBox label="💚 Green" value="green" noSpacing />
+          <CheckBox noSpacing label="❤️ Red" value="red" />
+          <CheckBox noSpacing label="💙 Blue" value="blue" />
+          <CheckBox noSpacing label="💚 Green" value="green" />
         </div>
       )}
     </CheckBoxController>
   ))
   .add('Handles disabled state, with no spacing.', () => (
     <CheckBoxController
+      disabled
       label="Favorite colors?"
       name="color"
       value={['green']}
       onChange={action('onChange')}
-      disabled
     >
       {CheckBox => (
         <div>
-          <CheckBox label="❤️ Red" value="red" noSpacing />
-          <CheckBox label="💙 Blue" value="blue" noSpacing />
-          <CheckBox label="💚 Green" value="green" noSpacing />
+          <CheckBox noSpacing label="❤️ Red" value="red" />
+          <CheckBox noSpacing label="💙 Blue" value="blue" />
+          <CheckBox noSpacing label="💚 Green" value="green" />
         </div>
       )}
     </CheckBoxController>

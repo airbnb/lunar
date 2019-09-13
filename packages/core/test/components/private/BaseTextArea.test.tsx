@@ -80,7 +80,7 @@ describe('<BaseTextArea />', () => {
 
     it('sets min and normal height', () => {
       const wrapper = shallow<BaseTextArea>(
-        <BaseTextArea name="foo" onChange={() => {}} autoResize />,
+        <BaseTextArea autoResize name="foo" onChange={() => {}} />,
       );
 
       wrapper.instance().textareaRef = ref;
@@ -95,7 +95,7 @@ describe('<BaseTextArea />', () => {
 
     it('uses manual height if greater than max height', () => {
       const wrapper = shallow<BaseTextArea>(
-        <BaseTextArea name="foo" onChange={() => {}} autoResize maxHeight={300} />,
+        <BaseTextArea autoResize name="foo" maxHeight={300} onChange={() => {}} />,
       );
 
       ref.style.height = '350px';
@@ -112,7 +112,7 @@ describe('<BaseTextArea />', () => {
 
     it('uses auto if max height is greater than manual height', () => {
       const wrapper = shallow<BaseTextArea>(
-        <BaseTextArea name="foo" onChange={() => {}} autoResize maxHeight={300} />,
+        <BaseTextArea autoResize name="foo" maxHeight={300} onChange={() => {}} />,
       );
 
       ref.style.height = '250px';
@@ -156,7 +156,7 @@ describe('<BaseTextArea />', () => {
     it('passes to `propagateRef`', () => {
       const spy = jest.fn();
       const wrapper = shallow<BaseTextArea>(
-        <BaseTextArea name="foo" onChange={() => {}} propagateRef={spy} />,
+        <BaseTextArea name="foo" propagateRef={spy} onChange={() => {}} />,
       );
 
       // @ts-ignore Allow private access

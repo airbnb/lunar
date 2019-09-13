@@ -21,17 +21,17 @@ storiesOf('Core/IconButton', module)
     </>
   ))
   .add('An anchor link when passing `href`.', () => (
-    <IconButton onClick={action('onClick')} href="https://github.com/airbnb/lunar" openInNewWindow>
+    <IconButton openInNewWindow href="https://github.com/airbnb/lunar" onClick={action('onClick')}>
       <IconCheck decorative />
     </IconButton>
   ))
   .add('Wrapped in a tooltip.', () => (
-    <IconButton onClick={action('onClick')} tooltip="This does something cool.">
+    <IconButton tooltip="This does something cool." onClick={action('onClick')}>
       <IconCheck decorative />
     </IconButton>
   ))
   .add('With a disabled state.', () => (
-    <IconButton onClick={action('onClick')} disabled>
+    <IconButton disabled onClick={action('onClick')}>
       <IconCheck decorative />
     </IconButton>
   ));

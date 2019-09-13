@@ -15,7 +15,7 @@ describe('TrackBreadcrumb', () => {
   });
 
   function WrappingComponent({ children }: { children?: React.ReactNode }) {
-    return <AppContext.Provider value={context as any}>{children}</AppContext.Provider>;
+    return <AppContext.Provider value={context as unknown}>{children}</AppContext.Provider>;
   }
 
   it('adds a crumb', () => {

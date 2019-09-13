@@ -72,7 +72,7 @@ describe('<ImageViewer />', () => {
     it('sets state if dragging', () => {
       const eventMap = {
         mousedown: null,
-      } as any;
+      } as unknown;
 
       document.addEventListener = jest.fn((event, cb) => {
         eventMap[event] = cb;

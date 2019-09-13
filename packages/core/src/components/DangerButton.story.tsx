@@ -14,10 +14,10 @@ storiesOf('Core/DangerButton', module)
   ))
   .add('An anchor link when passing `href`.', () => (
     <>
-      <DangerButton href="https://github.com/airbnb/lunar" openInNewWindow>
+      <DangerButton openInNewWindow href="https://github.com/airbnb/lunar">
         Link
       </DangerButton>{' '}
-      <DangerButton href="https://github.com/airbnb/lunar" openInNewWindow inverted>
+      <DangerButton openInNewWindow inverted href="https://github.com/airbnb/lunar">
         Link
       </DangerButton>
     </>

@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -12,24 +14,24 @@ storiesOf('Core/Link', module)
   .add('A button link.', () => <Link onClick={action('onClick')}>Button</Link>)
   .add('With different sizing: small, regular (default), and large.', () => (
     <>
-      <Link href="https://github.com/airbnb/lunar" small>
+      <Link small href="https://github.com/airbnb/lunar">
         Link
       </Link>{' '}
       <Link href="https://github.com/airbnb/lunar">Link</Link>{' '}
-      <Link href="https://github.com/airbnb/lunar" large>
+      <Link large href="https://github.com/airbnb/lunar">
         Link
       </Link>
     </>
   ))
   .add('With different states: muted, disabled, and inverted.', () => (
     <>
-      <Link href="https://github.com/airbnb/lunar" muted>
+      <Link muted href="https://github.com/airbnb/lunar">
         Link
       </Link>{' '}
-      <Link href="https://github.com/airbnb/lunar" disabled>
+      <Link disabled href="https://github.com/airbnb/lunar">
         Link
       </Link>{' '}
-      <Link href="https://github.com/airbnb/lunar" inverted>
+      <Link inverted href="https://github.com/airbnb/lunar">
         Link
       </Link>
     </>
@@ -48,17 +50,17 @@ storiesOf('Core/Link', module)
     </>
   ))
   .add('Stop click and default events when disabled.', () => (
-    <Link href="https://github.com/airbnb/lunar" onClick={action('onClick')} disabled>
+    <Link disabled href="https://github.com/airbnb/lunar" onClick={action('onClick')}>
       Link
     </Link>
   ))
   .add('Bold text.', () => (
     <>
-      <Link href="https://github.com/airbnb/lunar" bold>
+      <Link bold href="https://github.com/airbnb/lunar">
         Link
       </Link>
       <br />
-      <Link onClick={action('onClick')} bold>
+      <Link bold onClick={action('onClick')}>
         Button
       </Link>
     </>
