@@ -95,6 +95,7 @@ storiesOf('Core/MessageItem', module)
       imageDescription="Link"
       imageSrc={lunar}
       onClickTitle={action('onClickTitle')}
+      source="web"
       title="Some custom title"
       titleClickDescription="Real name: Link - Click to chat"
     >
