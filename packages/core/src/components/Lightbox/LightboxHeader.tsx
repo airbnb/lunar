@@ -4,14 +4,21 @@ import Pagination from '../Pagination';
 import T from '../Translate';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { ARROW_RIGHT, ARROW_LEFT } from '../../keys';
+import { ZoomControls, RotateControls } from '../ImageViewer';
 
 export type LightboxHeaderProps = {
   activeIndex: number;
   hasAside?: boolean;
   imageCount: number;
   hideAside?: boolean;
+  showZoomControls?: boolean;
+  showRotateControls?: boolean;
   onChangeSlide: (index: number) => void;
   onToggleAside: () => void;
+  onZoomImage?: (scale: number) => void;
+  onRotateImage?: (rotation: number) => void;
+  scale?: number;
+  rotation?: number;
 };
 
 export class LightboxHeader extends React.PureComponent<LightboxHeaderProps & WithStylesProps> {
@@ -43,6 +50,18 @@ export class LightboxHeader extends React.PureComponent<LightboxHeaderProps & Wi
     onChangeSlide(imageCount - 1);
   };
 
+  private handleZoom = (scale: number) => {
+    if (this.props.onZoomImage) {
+      this.props.onZoomImage(scale);
+    }
+  };
+
+  private handleRotate = (rotation: number) => {
+    if (this.props.onRotateImage) {
+      this.props.onRotateImage(rotation);
+    }
+  };
+
   private handleKeyDown = (event: KeyboardEvent) => {
     const { activeIndex, imageCount } = this.props;
 
@@ -64,7 +83,18 @@ export class LightboxHeader extends React.PureComponent<LightboxHeaderProps & Wi
   };
 
   render() {
-    const { cx, activeIndex, hasAside, imageCount, hideAside, styles } = this.props;
+    const {
+      cx,
+      activeIndex,
+      hasAside,
+      imageCount,
+      hideAside,
+      styles,
+      showZoomControls,
+      showRotateControls,
+      scale,
+      rotation,
+    } = this.props;
 
     return (
       <div className={cx(styles.header)}>
@@ -83,6 +113,16 @@ export class LightboxHeader extends React.PureComponent<LightboxHeaderProps & Wi
             onLast={this.handleLast}
           />
         </div>
+        {showZoomControls && (
+          <div>
+            <ZoomControls onScale={this.handleZoom} scale={scale} />
+          </div>
+        )}
+        {showRotateControls && (
+          <div>
+            <RotateControls onRotation={this.handleRotate} rotation={rotation} />
+          </div>
+        )}
 
         {hasAside && (
           <div className={cx(styles.infoButton)}>

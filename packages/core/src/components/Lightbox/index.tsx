@@ -4,14 +4,23 @@ import LightboxImage, { LightboxImageProps } from './LightboxImage';
 import LightboxHeader from './LightboxHeader';
 
 export type LightboxProps = {
+  /** Images to show. */
   images: LightboxImageProps[];
+  /** Image start index. */
   startIndex?: number;
+  /** Show zoom controls. */
+  showZoomControls?: boolean;
+  /** Show rotate controls. */
+  showRotateControls?: boolean;
+  /** Function to run on close. */
   onClose: () => void;
 };
 
 export type LightboxState = {
   activeIndex: number;
   hideAside: boolean;
+  scale: number;
+  rotation: number;
 };
 
 export default class Lightbox extends React.PureComponent<LightboxProps, LightboxState> {
@@ -22,6 +31,8 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
   state = {
     activeIndex: 0,
     hideAside: false,
+    scale: 1,
+    rotation: 0,
   };
 
   preloadedUrls: Map<string, boolean | HTMLImageElement>;
@@ -93,7 +104,7 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
   }
 
   private handleChangeSlide = (index: number) => {
-    this.setState({ activeIndex: index });
+    this.setState({ activeIndex: index, scale: 1, rotation: 0 });
   };
 
   private handleToggleAside = () => {
@@ -102,9 +113,17 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
     });
   };
 
+  private handleZoomImage = (scale: number) => {
+    this.setState({ scale });
+  };
+
+  private handleRotateImage = (rotation: number) => {
+    this.setState({ rotation });
+  };
+
   render() {
-    const { onClose, images } = this.props;
-    const { activeIndex, hideAside } = this.state;
+    const { onClose, images, showZoomControls, showRotateControls } = this.props;
+    const { activeIndex, hideAside, scale, rotation } = this.state;
     const image = images[activeIndex];
     const { alt, aside, src } = image;
     const hasAside = images.some(img => !!img.aside);
@@ -117,12 +136,27 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
         hasAside={hasAside}
         onChangeSlide={this.handleChangeSlide}
         onToggleAside={this.handleToggleAside}
+        showZoomControls={showZoomControls}
+        showRotateControls={showRotateControls}
+        onZoomImage={this.handleZoomImage}
+        onRotateImage={this.handleRotateImage}
+        scale={scale}
+        rotation={rotation}
       />
     );
 
     return (
       <Sheet compact headerShadow noAnimation portal visible header={header} onClose={onClose}>
-        <LightboxImage aside={aside} alt={alt} src={src} hideAside={hideAside} />
+        <LightboxImage
+          aside={aside}
+          alt={alt}
+          src={src}
+          hideAside={hideAside}
+          showZoomControls
+          showRotateControls
+          scale={scale}
+          rotation={rotation}
+        />
       </Sheet>
     );
   }

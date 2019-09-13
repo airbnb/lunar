@@ -6,6 +6,7 @@ import stars from ':storybook/images/stars.jpg';
 import Button from './Button';
 import Text from './Text';
 import Lightbox, { LightboxProps } from './Lightbox';
+import { LightboxImageProps } from './Lightbox/LightboxImage';
 
 type AsideDemoProps = {
   title: string;
@@ -24,7 +25,7 @@ const mockImages = [
   { src: moon, alt: 'moon' },
   { src: space, alt: 'space' },
   { src: stars, alt: 'stars' },
-];
+]; //: Pick<LightboxImageProps, 'src' | 'alt'>
 
 const mockImagesWithAside = [
   { src: moon, alt: 'moon', aside: <AsideDemo title="Moon" /> },
@@ -64,4 +65,11 @@ storiesOf('Core/Lightbox', module)
   })
   .add('Default lightbox', () => <LightboxDemo images={mockImages} />)
   .add('With set start index', () => <LightboxDemo images={mockImages} startIndex={1} />)
-  .add('With sidebar components', () => <LightboxDemo images={mockImagesWithAside} />);
+  .add('With sidebar components', () => <LightboxDemo images={mockImagesWithAside} />)
+  .add('With zoom controls', () => <LightboxDemo images={mockImagesWithAside} showZoomControls />)
+  .add('With rotate controls', () => (
+    <LightboxDemo images={mockImagesWithAside} showRotateControls />
+  ))
+  .add('With zoom and rotate controls', () => (
+    <LightboxDemo images={mockImagesWithAside} showZoomControls showRotateControls />
+  ));
