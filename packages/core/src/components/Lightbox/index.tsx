@@ -152,8 +152,8 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
           alt={alt}
           src={src}
           hideAside={hideAside}
-          showZoomControls
-          showRotateControls
+          showZoomControls={showZoomControls}
+          showRotateControls={showRotateControls}
           scale={scale}
           rotation={rotation}
         />

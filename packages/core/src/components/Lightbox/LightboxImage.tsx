@@ -83,7 +83,6 @@ export default withStyles(({ color, unit }) => ({
     background: color.accent.bgHover,
     flexGrow: 1,
     margin: 0,
-    position: 'relative',
   },
 
   aside: {

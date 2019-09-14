@@ -42,7 +42,7 @@ class LightboxDemo extends React.Component<Omit<LightboxProps, 'onClose'>, { vis
 
   render() {
     const { visible } = this.state;
-    const { images, startIndex } = this.props;
+    const { images, startIndex, showZoomControls, showRotateControls } = this.props;
 
     return (
       <div>
@@ -52,7 +52,13 @@ class LightboxDemo extends React.Component<Omit<LightboxProps, 'onClose'>, { vis
         <br />
 
         {visible && (
-          <Lightbox images={images} startIndex={startIndex} onClose={this.handleToggle} />
+          <Lightbox
+            images={images}
+            startIndex={startIndex}
+            onClose={this.handleToggle}
+            showZoomControls={showZoomControls}
+            showRotateControls={showRotateControls}
+          />
         )}
       </div>
     );
@@ -66,10 +72,11 @@ storiesOf('Core/Lightbox', module)
   .add('Default lightbox', () => <LightboxDemo images={mockImages} />)
   .add('With set start index', () => <LightboxDemo images={mockImages} startIndex={1} />)
   .add('With sidebar components', () => <LightboxDemo images={mockImagesWithAside} />)
-  .add('With zoom controls', () => <LightboxDemo images={mockImagesWithAside} showZoomControls />)
-  .add('With rotate controls', () => (
-    <LightboxDemo images={mockImagesWithAside} showRotateControls />
-  ))
+  .add('With zoom controls', () => <LightboxDemo images={mockImages} showZoomControls />)
+  .add('With rotate controls', () => <LightboxDemo images={mockImages} showRotateControls />)
   .add('With zoom and rotate controls', () => (
+    <LightboxDemo images={mockImages} startIndex={1} showZoomControls showRotateControls />
+  ))
+  .add('With all options', () => (
     <LightboxDemo images={mockImagesWithAside} showZoomControls showRotateControls />
   ));
