@@ -5,6 +5,7 @@ import T from '../Translate';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { ARROW_RIGHT, ARROW_LEFT } from '../../keys';
 import { ZoomControls, RotateControls } from '../ImageViewer';
+import Spacing from '../Spacing';
 
 export type LightboxHeaderProps = {
   activeIndex: number;
@@ -113,15 +114,17 @@ export class LightboxHeader extends React.PureComponent<LightboxHeaderProps & Wi
             onLast={this.handleLast}
           />
         </div>
-        {showZoomControls && (
-          <div>
-            <ZoomControls onScale={this.handleZoom} scale={scale} />
-          </div>
-        )}
+
         {showRotateControls && (
-          <div>
+          <Spacing right={2}>
             <RotateControls onRotation={this.handleRotate} rotation={rotation} />
-          </div>
+          </Spacing>
+        )}
+
+        {showZoomControls && (
+          <Spacing right={2}>
+            <ZoomControls onScale={this.handleZoom} scale={scale} />
+          </Spacing>
         )}
 
         {hasAside && (
