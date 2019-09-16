@@ -2,12 +2,12 @@ import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import removeFocusOnMouseUp from '../../utils/removeFocusOnMouseUp';
+import toRGBA from '../../utils/toRGBA';
 import ProfilePhoto from '../ProfilePhoto';
 import Shimmer from '../Shimmer';
 import Text from '../Text';
 import Spacing from '../Spacing';
 import T from '../Translate';
-import toRGBA from '../../utils/toRGBA';
 
 // add color flags here
 const stripeColorTypePropType = mutuallyExclusiveTrueProps('important', 'info', 'warning');
@@ -108,6 +108,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
       verticalSpacing,
       warning,
     } = this.props;
+
     const timestamp = source
       ? T.phrase(
           '%{time} via %{source}',
@@ -117,6 +118,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
       : formattedTimestamp;
 
     const striped = !!(important || info || warning);
+
     const containerStyles = cx(
       styles.container,
       horizontalSpacing && styles.container_horizontalSpacing,
@@ -136,24 +138,26 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
     if (loadingAuthor) {
       return (
         <div className={containerStyles}>
-          <div className={cx(styles.profilePhoto, styles.tableCell)}>
-            <Shimmer width={32} height={32} radius="50%" />
-          </div>
+          <div className={cx(styles.grid)}>
+            <div>
+              <Shimmer width={32} height={32} radius="50%" />
+            </div>
 
-          <div className={cx(styles.messageBody, styles.tableCell)}>
-            <Spacing bottom={0.5}>
-              <Spacing right={1} inline>
-                <Shimmer width={175} height={14} />
+            <div>
+              <Spacing bottom={0.5}>
+                <div className={cx(styles.title)}>
+                  <Shimmer width={175} height={14} />
+
+                  <Text small muted>
+                    {timestamp}
+                  </Text>
+                </div>
+
+                {email && <Shimmer height={12} width={225} />}
               </Spacing>
 
-              <Text inline small muted>
-                {timestamp}
-              </Text>
-
-              {email && <Shimmer height={12} width={225} />}
-            </Spacing>
-
-            {children}
+              {children}
+            </div>
           </div>
 
           {sending && <div className={cx(styles.sendingOverlay)} />}
@@ -176,12 +180,11 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
     }
 
     const avatar = imageBadgeSrc ? (
-      <div>
+      <>
         {profilePhoto}
 
         <div className={cx(styles.profileBadge)}>
           <ProfilePhoto
-            inline
             imageSrc={imageBadgeSrc}
             size={2}
             title={T.phrase(
@@ -194,15 +197,15 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
             )}
           />
         </div>
-      </div>
+      </>
     ) : (
       profilePhoto
     );
 
     return (
       <div className={containerStyles}>
-        <div className={cx(styles.table)}>
-          <div className={cx(styles.profilePhoto, styles.tableCell)}>
+        <div className={cx(styles.grid)}>
+          <div className={cx(styles.relative)}>
             {onClickImage ? (
               <button
                 className={cx(styles.resetButton)}
@@ -218,9 +221,9 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
             )}
           </div>
 
-          <div className={cx(styles.messageBody, styles.tableCell)}>
+          <div>
             <Spacing bottom={0.5}>
-              <span className={cx(styles.messageTitle)}>
+              <div className={cx(styles.title)}>
                 {onClickTitle ? (
                   <button
                     className={cx(styles.resetButton)}
@@ -229,28 +232,28 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
                     onClick={onClickTitle}
                     onMouseUp={removeFocusOnMouseUp}
                   >
-                    <Text inline bold>
+                    <Text bold truncated>
                       {formatedTitle}
                     </Text>
                   </button>
                 ) : (
-                  <Text inline bold>
+                  <Text bold truncated>
                     {formatedTitle}
                   </Text>
                 )}
-              </span>
 
-              {titleTag && (
-                <span className={cx(styles.tag)}>
-                  <Text inline micro muted>
-                    {titleTag}
-                  </Text>
-                </span>
-              )}
+                {titleTag && (
+                  <div className={cx(styles.tag)}>
+                    <Text micro muted>
+                      {titleTag}
+                    </Text>
+                  </div>
+                )}
 
-              <Text inline small muted>
-                {timestamp}
-              </Text>
+                <Text small muted>
+                  {timestamp}
+                </Text>
+              </div>
 
               {email && (
                 <Text small muted>
@@ -265,7 +268,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
               )}
             </Spacing>
 
-            <div className={cx(styles.messageBodyContent)}>{children}</div>
+            <div className={cx(styles.wordBreak)}>{children}</div>
           </div>
         </div>
 
@@ -275,7 +278,11 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(({ color, ui, unit, pattern }) => ({
+export default withStyles(({ color, font, ui, unit, pattern }) => ({
+  relative: {
+    position: 'relative',
+  },
+
   container: {
     position: 'relative',
     border: '1px solid transparent',
@@ -315,19 +322,11 @@ export default withStyles(({ color, ui, unit, pattern }) => ({
     borderLeftColor: color.core.warning[3],
   },
 
-  table: {
-    display: 'table',
-    tableLayout: 'fixed',
+  grid: {
+    display: 'grid',
+    gridGap: unit,
+    gridTemplateColumns: `${unit * 4}px 1fr`,
     width: '100%',
-  },
-
-  tableCell: {
-    display: 'table-cell',
-    verticalAlign: 'top',
-  },
-
-  profilePhoto: {
-    width: 4 * unit,
   },
 
   profileBadge: {
@@ -335,46 +334,51 @@ export default withStyles(({ color, ui, unit, pattern }) => ({
     transform: `translate(50%, ${-unit}px)`,
   },
 
-  messageBody: {
-    paddingLeft: unit,
-  },
-
-  messageBodyContent: {
-    wordBreak: 'break-word',
-  },
-
-  messageTitle: {
-    marginRight: unit,
+  wordBreak: {
     wordBreak: 'break-word',
   },
 
   resetButton: {
     ...pattern.resetButton,
+    display: 'block',
+    width: '100%',
     textAlign: 'left',
+
+    ':focus': {
+      outline: 'none',
+    },
   },
 
   sendingOverlay: {
+    backgroundColor: toRGBA(color.core.neutral[1], 50),
     position: 'absolute',
     top: '0',
     left: '0',
     width: '100%',
     height: '100%',
     pointerEvents: 'all',
-    backgroundColor: toRGBA(color.core.neutral[3], 50),
     zIndex: 1,
   },
 
   tag: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    display: 'flex',
     border: ui.border,
     borderRadius: unit / 4,
-    display: 'inline-block',
     lineHeight: 1,
-    marginRight: unit,
-    maxWidth: '100%',
+    maxWidth: '5em',
     overflow: 'hidden',
     padding: `0 ${unit / 2}px`,
     textOverflow: 'ellipsis',
-    verticalAlign: 'sub',
     whiteSpace: 'nowrap',
+  },
+
+  title: {
+    display: 'grid',
+    gridGap: unit,
+    gridTemplateColumns: 'auto auto auto auto',
+    alignItems: 'baseline',
+    justifyContent: 'flex-start',
   },
 }))(MessageItem);
