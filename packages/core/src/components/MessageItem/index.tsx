@@ -242,7 +242,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
 
                 {titleTag && (
                   <div className={cx(styles.tag)}>
-                    <Text baseline micro muted>
+                    <Text micro muted>
                       {titleTag}
                     </Text>
                   </div>
