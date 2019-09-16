@@ -145,13 +145,15 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
 
             <div>
               <Spacing bottom={0.5}>
-                <Spacing right={1} inline>
-                  <Shimmer width={175} height={14} />
-                </Spacing>
+                <div className={cx(styles.title)}>
+                  <Spacing right={1} inline>
+                    <Shimmer width={175} height={14} />
+                  </Spacing>
 
-                <Text small muted>
-                  {timestamp}
-                </Text>
+                  <Text small muted>
+                    {timestamp}
+                  </Text>
+                </div>
 
                 {email && <Shimmer height={12} width={225} />}
               </Spacing>
