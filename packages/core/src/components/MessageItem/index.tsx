@@ -149,7 +149,9 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
                   <Shimmer width={175} height={14} />
                 </Spacing>
 
-                <span className={cx(styles.timestamp)}>{timestamp}</span>
+                <Text small muted>
+                  {timestamp}
+                </Text>
 
                 {email && <Shimmer height={12} width={225} />}
               </Spacing>
@@ -248,7 +250,9 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
                   </div>
                 )}
 
-                <span className={cx(styles.timestamp)}>{timestamp}</span>
+                <Text small muted>
+                  {timestamp}
+                </Text>
               </div>
 
               {email && (
@@ -357,6 +361,9 @@ export default withStyles(({ color, font, ui, unit, pattern }) => ({
   },
 
   tag: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    display: 'flex',
     border: ui.border,
     borderRadius: unit / 4,
     lineHeight: 1,
@@ -367,18 +374,11 @@ export default withStyles(({ color, font, ui, unit, pattern }) => ({
     whiteSpace: 'nowrap',
   },
 
-  timestamp: {
-    ...font.textSmall,
-    lineHeight: font.textRegular.lineHeight,
-    color: color.muted,
-    display: 'inline',
-  },
-
   title: {
     display: 'grid',
     gridGap: unit,
     gridTemplateColumns: 'auto auto auto auto',
-    alignItems: 'center',
+    alignItems: 'baseline',
     justifyContent: 'flex-start',
   },
 }))(MessageItem);
