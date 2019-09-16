@@ -5,38 +5,38 @@ exports[`<MessageItem> renders a loading author 1`] = `
   className="container"
 >
   <div
-    className="grid"
+    className="profilePhoto tableCell"
   >
-    <div>
-      <Shimmer
-        height={32}
-        radius="50%"
-        width={32}
-      />
-    </div>
-    <div>
+    <Shimmer
+      height={32}
+      radius="50%"
+      width={32}
+    />
+  </div>
+  <div
+    className="messageBody tableCell"
+  >
+    <Spacing
+      bottom={0.5}
+    >
       <Spacing
-        bottom={0.5}
+        inline={true}
+        right={1}
       >
-        <Spacing
-          inline={true}
-          right={1}
-        >
-          <Shimmer
-            height={14}
-            width={175}
-          />
-        </Spacing>
-        <Text
-          inline={true}
-          muted={true}
-          small={true}
-        >
-          11:56 AM
-        </Text>
+        <Shimmer
+          height={14}
+          width={175}
+        />
       </Spacing>
-      Hello world
-    </div>
+      <Text
+        inline={true}
+        muted={true}
+        small={true}
+      >
+        11:56 AM
+      </Text>
+    </Spacing>
+    Hello world
   </div>
 </div>
 `;
@@ -46,10 +46,10 @@ exports[`<MessageItem> renders a message item 1`] = `
   className="container"
 >
   <div
-    className="grid"
+    className="table"
   >
     <div
-      className="relative"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -57,39 +57,32 @@ exports[`<MessageItem> renders a message item 1`] = `
         title="title"
       />
     </div>
-    <div>
+    <div
+      className="messageBody tableCell"
+    >
       <Spacing
         bottom={0.5}
       >
-        <Row
-          after={
-            <Memo(WithStyles)
-              before=""
-              inline={true}
-              middleAlign={true}
-            >
-              <Memo(WithStyles)
-                micro={true}
-                muted={true}
-              >
-                11:56 AM
-              </Memo(WithStyles)>
-            </Memo(WithStyles)>
-          }
-          inline={true}
-          middleAlign={true}
-          truncated={true}
+        <span
+          className="messageTitle"
         >
           <Text
             bold={true}
-            truncated={true}
+            inline={true}
           >
             title
           </Text>
-        </Row>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
       </Spacing>
       <div
-        className="wordBreak"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -103,10 +96,10 @@ exports[`<MessageItem> renders a message item with \`horizontalSpacing\` 1`] = `
   className="container container_horizontalSpacing"
 >
   <div
-    className="grid"
+    className="table"
   >
     <div
-      className="relative"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -114,39 +107,32 @@ exports[`<MessageItem> renders a message item with \`horizontalSpacing\` 1`] = `
         title="title"
       />
     </div>
-    <div>
+    <div
+      className="messageBody tableCell"
+    >
       <Spacing
         bottom={0.5}
       >
-        <Row
-          after={
-            <Memo(WithStyles)
-              before=""
-              inline={true}
-              middleAlign={true}
-            >
-              <Memo(WithStyles)
-                micro={true}
-                muted={true}
-              >
-                11:56 AM
-              </Memo(WithStyles)>
-            </Memo(WithStyles)>
-          }
-          inline={true}
-          middleAlign={true}
-          truncated={true}
+        <span
+          className="messageTitle"
         >
           <Text
             bold={true}
-            truncated={true}
+            inline={true}
           >
             title
           </Text>
-        </Row>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
       </Spacing>
       <div
-        className="wordBreak"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -160,10 +146,10 @@ exports[`<MessageItem> renders a message item with \`important\` 1`] = `
   className="container container_withStripe container_important"
 >
   <div
-    className="grid"
+    className="table"
   >
     <div
-      className="relative"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -171,39 +157,32 @@ exports[`<MessageItem> renders a message item with \`important\` 1`] = `
         title="title"
       />
     </div>
-    <div>
+    <div
+      className="messageBody tableCell"
+    >
       <Spacing
         bottom={0.5}
       >
-        <Row
-          after={
-            <Memo(WithStyles)
-              before=""
-              inline={true}
-              middleAlign={true}
-            >
-              <Memo(WithStyles)
-                micro={true}
-                muted={true}
-              >
-                11:56 AM
-              </Memo(WithStyles)>
-            </Memo(WithStyles)>
-          }
-          inline={true}
-          middleAlign={true}
-          truncated={true}
+        <span
+          className="messageTitle"
         >
           <Text
             bold={true}
-            truncated={true}
+            inline={true}
           >
             title
           </Text>
-        </Row>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
       </Spacing>
       <div
-        className="wordBreak"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -217,10 +196,10 @@ exports[`<MessageItem> renders a message item with \`info\` stripe 1`] = `
   className="container container_withStripe container_info"
 >
   <div
-    className="grid"
+    className="table"
   >
     <div
-      className="relative"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -228,39 +207,32 @@ exports[`<MessageItem> renders a message item with \`info\` stripe 1`] = `
         title="title"
       />
     </div>
-    <div>
+    <div
+      className="messageBody tableCell"
+    >
       <Spacing
         bottom={0.5}
       >
-        <Row
-          after={
-            <Memo(WithStyles)
-              before=""
-              inline={true}
-              middleAlign={true}
-            >
-              <Memo(WithStyles)
-                micro={true}
-                muted={true}
-              >
-                11:56 AM
-              </Memo(WithStyles)>
-            </Memo(WithStyles)>
-          }
-          inline={true}
-          middleAlign={true}
-          truncated={true}
+        <span
+          className="messageTitle"
         >
           <Text
             bold={true}
-            truncated={true}
+            inline={true}
           >
             title
           </Text>
-        </Row>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
       </Spacing>
       <div
-        className="wordBreak"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -274,10 +246,10 @@ exports[`<MessageItem> renders a message item with \`verticalSpacing\` 1`] = `
   className="container container_verticalSpacing"
 >
   <div
-    className="grid"
+    className="table"
   >
     <div
-      className="relative"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -285,39 +257,32 @@ exports[`<MessageItem> renders a message item with \`verticalSpacing\` 1`] = `
         title="title"
       />
     </div>
-    <div>
+    <div
+      className="messageBody tableCell"
+    >
       <Spacing
         bottom={0.5}
       >
-        <Row
-          after={
-            <Memo(WithStyles)
-              before=""
-              inline={true}
-              middleAlign={true}
-            >
-              <Memo(WithStyles)
-                micro={true}
-                muted={true}
-              >
-                11:56 AM
-              </Memo(WithStyles)>
-            </Memo(WithStyles)>
-          }
-          inline={true}
-          middleAlign={true}
-          truncated={true}
+        <span
+          className="messageTitle"
         >
           <Text
             bold={true}
-            truncated={true}
+            inline={true}
           >
             title
           </Text>
-        </Row>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
       </Spacing>
       <div
-        className="wordBreak"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -331,10 +296,10 @@ exports[`<MessageItem> renders a message item with \`warning\` stripe 1`] = `
   className="container container_withStripe container_warning"
 >
   <div
-    className="grid"
+    className="table"
   >
     <div
-      className="relative"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -342,39 +307,32 @@ exports[`<MessageItem> renders a message item with \`warning\` stripe 1`] = `
         title="title"
       />
     </div>
-    <div>
+    <div
+      className="messageBody tableCell"
+    >
       <Spacing
         bottom={0.5}
       >
-        <Row
-          after={
-            <Memo(WithStyles)
-              before=""
-              inline={true}
-              middleAlign={true}
-            >
-              <Memo(WithStyles)
-                micro={true}
-                muted={true}
-              >
-                11:56 AM
-              </Memo(WithStyles)>
-            </Memo(WithStyles)>
-          }
-          inline={true}
-          middleAlign={true}
-          truncated={true}
+        <span
+          className="messageTitle"
         >
           <Text
             bold={true}
-            truncated={true}
+            inline={true}
           >
             title
           </Text>
-        </Row>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
       </Spacing>
       <div
-        className="wordBreak"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -388,10 +346,10 @@ exports[`<MessageItem> renders a sending overlay when message is sending 1`] = `
   className="container"
 >
   <div
-    className="grid"
+    className="table"
   >
     <div
-      className="relative"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -399,39 +357,32 @@ exports[`<MessageItem> renders a sending overlay when message is sending 1`] = `
         title="title"
       />
     </div>
-    <div>
+    <div
+      className="messageBody tableCell"
+    >
       <Spacing
         bottom={0.5}
       >
-        <Row
-          after={
-            <Memo(WithStyles)
-              before=""
-              inline={true}
-              middleAlign={true}
-            >
-              <Memo(WithStyles)
-                micro={true}
-                muted={true}
-              >
-                11:56 AM
-              </Memo(WithStyles)>
-            </Memo(WithStyles)>
-          }
-          inline={true}
-          middleAlign={true}
-          truncated={true}
+        <span
+          className="messageTitle"
         >
           <Text
             bold={true}
-            truncated={true}
+            inline={true}
           >
             title
           </Text>
-        </Row>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
       </Spacing>
       <div
-        className="wordBreak"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -448,10 +399,10 @@ exports[`<MessageItem> renders a source when given 1`] = `
   className="container"
 >
   <div
-    className="grid"
+    className="table"
   >
     <div
-      className="relative"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -459,39 +410,32 @@ exports[`<MessageItem> renders a source when given 1`] = `
         title="title"
       />
     </div>
-    <div>
+    <div
+      className="messageBody tableCell"
+    >
       <Spacing
         bottom={0.5}
       >
-        <Row
-          after={
-            <Memo(WithStyles)
-              before=""
-              inline={true}
-              middleAlign={true}
-            >
-              <Memo(WithStyles)
-                micro={true}
-                muted={true}
-              >
-                11:56 AM via web
-              </Memo(WithStyles)>
-            </Memo(WithStyles)>
-          }
-          inline={true}
-          middleAlign={true}
-          truncated={true}
+        <span
+          className="messageTitle"
         >
           <Text
             bold={true}
-            truncated={true}
+            inline={true}
           >
             title
           </Text>
-        </Row>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM via web
+        </Text>
       </Spacing>
       <div
-        className="wordBreak"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -505,10 +449,10 @@ exports[`<MessageItem> renders a title tag when given 1`] = `
   className="container"
 >
   <div
-    className="grid"
+    className="table"
   >
     <div
-      className="relative"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -516,51 +460,43 @@ exports[`<MessageItem> renders a title tag when given 1`] = `
         title="title"
       />
     </div>
-    <div>
+    <div
+      className="messageBody tableCell"
+    >
       <Spacing
         bottom={0.5}
       >
-        <Row
-          after={
-            <Memo(WithStyles)
-              before={
-                <div
-                  className="tag"
-                >
-                  <Memo(WithStyles)
-                    baseline={true}
-                    micro={true}
-                    muted={true}
-                  >
-                    CX
-                  </Memo(WithStyles)>
-                </div>
-              }
-              inline={true}
-              middleAlign={true}
-            >
-              <Memo(WithStyles)
-                micro={true}
-                muted={true}
-              >
-                11:56 AM
-              </Memo(WithStyles)>
-            </Memo(WithStyles)>
-          }
-          inline={true}
-          middleAlign={true}
-          truncated={true}
+        <span
+          className="messageTitle"
         >
           <Text
             bold={true}
-            truncated={true}
+            inline={true}
           >
             title
           </Text>
-        </Row>
+        </span>
+        <span
+          className="tag"
+        >
+          <Text
+            inline={true}
+            micro={true}
+            muted={true}
+          >
+            CX
+          </Text>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
       </Spacing>
       <div
-        className="wordBreak"
+        className="messageBodyContent"
       >
         Hello world
       </div>
@@ -574,10 +510,10 @@ exports[`<MessageItem> renders an email when given 1`] = `
   className="container"
 >
   <div
-    className="grid"
+    className="table"
   >
     <div
-      className="relative"
+      className="profilePhoto tableCell"
     >
       <ProfilePhoto
         imageSrc="https://image.com"
@@ -585,36 +521,29 @@ exports[`<MessageItem> renders an email when given 1`] = `
         title="title"
       />
     </div>
-    <div>
+    <div
+      className="messageBody tableCell"
+    >
       <Spacing
         bottom={0.5}
       >
-        <Row
-          after={
-            <Memo(WithStyles)
-              before=""
-              inline={true}
-              middleAlign={true}
-            >
-              <Memo(WithStyles)
-                micro={true}
-                muted={true}
-              >
-                11:56 AM
-              </Memo(WithStyles)>
-            </Memo(WithStyles)>
-          }
-          inline={true}
-          middleAlign={true}
-          truncated={true}
+        <span
+          className="messageTitle"
         >
           <Text
             bold={true}
-            truncated={true}
+            inline={true}
           >
             title
           </Text>
-        </Row>
+        </span>
+        <Text
+          inline={true}
+          muted={true}
+          small={true}
+        >
+          11:56 AM
+        </Text>
         <Text
           muted={true}
           small={true}
@@ -629,7 +558,7 @@ exports[`<MessageItem> renders an email when given 1`] = `
         </Text>
       </Spacing>
       <div
-        className="wordBreak"
+        className="messageBodyContent"
       >
         Hello world
       </div>
