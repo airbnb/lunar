@@ -8,7 +8,6 @@ import Shimmer from '../Shimmer';
 import Text from '../Text';
 import Spacing from '../Spacing';
 import T from '../Translate';
-import Row from '../Row';
 
 // add color flags here
 const stripeColorTypePropType = mutuallyExclusiveTrueProps('important', 'info', 'warning');
@@ -150,9 +149,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
                   <Shimmer width={175} height={14} />
                 </Spacing>
 
-                <Text inline small muted>
-                  {timestamp}
-                </Text>
+                <span className={cx(styles.timestamp)}>{timestamp}</span>
 
                 {email && <Shimmer height={12} width={225} />}
               </Spacing>
@@ -224,30 +221,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
 
           <div>
             <Spacing bottom={0.5}>
-              <Row
-                inline
-                middleAlign
-                truncated
-                after={
-                  <Row
-                    inline
-                    middleAlign
-                    before={
-                      titleTag && (
-                        <div className={cx(styles.tag)}>
-                          <Text baseline micro muted>
-                            {titleTag}
-                          </Text>
-                        </div>
-                      )
-                    }
-                  >
-                    <Text micro muted>
-                      {timestamp}
-                    </Text>
-                  </Row>
-                }
-              >
+              <div className={cx(styles.title)}>
                 {onClickTitle ? (
                   <button
                     className={cx(styles.resetButton)}
@@ -265,7 +239,17 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
                     {formatedTitle}
                   </Text>
                 )}
-              </Row>
+
+                {titleTag && (
+                  <div className={cx(styles.tag)}>
+                    <Text baseline micro muted>
+                      {titleTag}
+                    </Text>
+                  </div>
+                )}
+
+                <span className={cx(styles.timestamp)}>{timestamp}</span>
+              </div>
 
               {email && (
                 <Text small muted>
@@ -290,7 +274,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(({ color, ui, unit, pattern }) => ({
+export default withStyles(({ color, font, ui, unit, pattern }) => ({
   relative: {
     position: 'relative',
   },
@@ -381,5 +365,20 @@ export default withStyles(({ color, ui, unit, pattern }) => ({
     padding: `0 ${unit / 2}px`,
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+  },
+
+  timestamp: {
+    ...font.textSmall,
+    lineHeight: font.textRegular.lineHeight,
+    color: color.muted,
+    display: 'inline',
+  },
+
+  title: {
+    display: 'grid',
+    gridGap: unit,
+    gridTemplateColumns: 'auto auto auto auto',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
 }))(MessageItem);
