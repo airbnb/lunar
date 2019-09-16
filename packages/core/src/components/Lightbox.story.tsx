@@ -6,7 +6,6 @@ import stars from ':storybook/images/stars.jpg';
 import Button from './Button';
 import Text from './Text';
 import Lightbox, { LightboxProps } from './Lightbox';
-import { LightboxImageProps } from './Lightbox/LightboxImage';
 
 type AsideDemoProps = {
   title: string;
@@ -25,7 +24,7 @@ const mockImages = [
   { src: moon, alt: 'moon' },
   { src: space, alt: 'space' },
   { src: stars, alt: 'stars' },
-]; //: Pick<LightboxImageProps, 'src' | 'alt'>
+];
 
 const mockImagesWithAside = [
   { src: moon, alt: 'moon', aside: <AsideDemo title="Moon" /> },
