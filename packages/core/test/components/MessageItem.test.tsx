@@ -3,112 +3,88 @@ import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import MessageItem from '../../src/components/MessageItem';
 import IconCheck from '../../../icons/src/interface/IconCheck';
 import ProfilePhoto from '../../src/components/ProfilePhoto';
+import Shimmer from '../../src/components/Shimmer';
 import Text from '../../src/components/Text';
 
 describe('<MessageItem>', () => {
+  const url = 'https://image.com';
+  const timestamp = '11:56 AM';
+  const title = 'title';
+
+  const props = {
+    formattedTimestamp: timestamp,
+    imageSrc: url,
+    title,
+  };
+
   it('renders a message item', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
+    const wrapper = shallowWithStyles(<MessageItem {...props}>Hello world</MessageItem>);
 
-    const wrapper = shallowWithStyles(
-      <MessageItem formattedTimestamp={timestamp} imageSrc={url} title={title}>
-        Hello world
-      </MessageItem>,
-    );
-
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.debug()).toContain(title);
+    expect(wrapper.debug()).toContain(timestamp);
+    expect(wrapper.debug()).toContain(url);
   });
 
   it('renders a loading author', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
-
     const wrapper = shallowWithStyles(
-      <MessageItem loadingAuthor formattedTimestamp={timestamp} imageSrc={url} title={title}>
+      <MessageItem loadingAuthor {...props}>
         Hello world
       </MessageItem>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Shimmer)).toHaveLength(2);
   });
 
   it('renders a sending overlay when message is sending', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
-
     const wrapper = shallowWithStyles(
-      <MessageItem sending formattedTimestamp={timestamp} imageSrc={url} title={title}>
+      <MessageItem sending {...props}>
         Hello world
       </MessageItem>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('div.sendingOverlay')).toHaveLength(1);
   });
 
   it('renders an email when given', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
+    const email = 'foo@airbnb.com';
 
     const wrapper = shallowWithStyles(
-      <MessageItem
-        email="foo@airbnb.com"
-        formattedTimestamp={timestamp}
-        imageSrc={url}
-        title={title}
-      >
+      <MessageItem {...props} email={email}>
         Hello world
       </MessageItem>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.debug()).toContain(email);
   });
 
   it('renders a source when given', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
-
+    const source = 'web';
     const wrapper = shallowWithStyles(
-      <MessageItem formattedTimestamp={timestamp} imageSrc={url} title={title} source="web">
+      <MessageItem {...props} source={source}>
         Hello world
       </MessageItem>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.debug()).toContain(source);
   });
 
   it('renders a title tag when given', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
     const titleTag = 'CX';
 
     const wrapper = shallowWithStyles(
-      <MessageItem formattedTimestamp={timestamp} imageSrc={url} title={title} titleTag={titleTag}>
+      <MessageItem {...props} titleTag={titleTag}>
         Hello world
       </MessageItem>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.debug()).toContain(titleTag);
   });
 
   it('renders the title with a `button` when `onClickTitle` is true', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
     const onClickTitle = () => {};
 
     const wrapper = shallowWithStyles(
-      <MessageItem
-        formattedTimestamp={timestamp}
-        imageSrc={url}
-        title={title}
-        onClickTitle={onClickTitle}
-      >
+      <MessageItem {...props} onClickTitle={onClickTitle}>
         Hello world
       </MessageItem>,
     );
@@ -123,18 +99,10 @@ describe('<MessageItem>', () => {
   });
 
   it('renders the profile photo with a `button` when `onClickImage` is given', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
     const onClickImage = () => {};
 
     const wrapper = shallowWithStyles(
-      <MessageItem
-        formattedTimestamp={timestamp}
-        imageSrc={url}
-        title={title}
-        onClickImage={onClickImage}
-      >
+      <MessageItem {...props} onClickImage={onClickImage}>
         Hello world
       </MessageItem>,
     );
@@ -148,10 +116,8 @@ describe('<MessageItem>', () => {
   });
 
   it('renders an icon when given', () => {
-    const timestamp = '11:56 AM';
-    const title = 'title';
     const wrapper = shallowWithStyles(
-      <MessageItem formattedTimestamp={timestamp} title={title} icon={<IconCheck decorative />}>
+      <MessageItem {...props} imageSrc={undefined} icon={<IconCheck decorative />}>
         Hello world
       </MessageItem>,
     );
@@ -161,72 +127,52 @@ describe('<MessageItem>', () => {
   });
 
   it('renders a message item with `horizontalSpacing`', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
-
     const wrapper = shallowWithStyles(
-      <MessageItem horizontalSpacing formattedTimestamp={timestamp} imageSrc={url} title={title}>
+      <MessageItem horizontalSpacing {...props}>
         Hello world
       </MessageItem>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('container_horizontalSpacing');
   });
 
   it('renders a message item with `verticalSpacing`', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
-
     const wrapper = shallowWithStyles(
-      <MessageItem verticalSpacing formattedTimestamp={timestamp} imageSrc={url} title={title}>
+      <MessageItem verticalSpacing {...props}>
         Hello world
       </MessageItem>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('container_verticalSpacing');
   });
 
   it('renders a message item with `important`', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
-
     const wrapper = shallowWithStyles(
-      <MessageItem important formattedTimestamp={timestamp} imageSrc={url} title={title}>
+      <MessageItem important {...props}>
         Hello world
       </MessageItem>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('container_important');
   });
 
   it('renders a message item with `info` stripe', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
-
     const wrapper = shallowWithStyles(
-      <MessageItem info formattedTimestamp={timestamp} imageSrc={url} title={title}>
+      <MessageItem info {...props}>
         Hello world
       </MessageItem>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('container_info');
   });
 
   it('renders a message item with `warning` stripe', () => {
-    const url = 'https://image.com';
-    const timestamp = '11:56 AM';
-    const title = 'title';
-
     const wrapper = shallowWithStyles(
-      <MessageItem warning formattedTimestamp={timestamp} imageSrc={url} title={title}>
+      <MessageItem warning {...props}>
         Hello world
       </MessageItem>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.prop('className')).toMatch('container_warning');
   });
 });
