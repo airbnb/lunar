@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.27.3 - 2019-09-16
+
+#### 🐞 Fixes
+
+- **[MessageItem]** Consistent title alignment when it is a button or not. (#184) ([b1c31a3](https://github.com/airbnb/lunar/tree/master/packages/core/commit/b1c31a3)), closes [#184](https://github.com/airbnb/lunar/tree/master/packages/core/issues/184)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.27.2 - 2019-09-12
 
 #### 🐞 Fixes
