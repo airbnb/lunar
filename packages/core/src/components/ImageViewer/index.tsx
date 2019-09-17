@@ -157,7 +157,6 @@ export default withStyles(({ ui }) => ({
     width: '100%',
     height: '100%',
     display: 'flex',
-    align: 'center',
     alignItems: 'center',
     justifyContent: 'center',
   },
