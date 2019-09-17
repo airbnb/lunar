@@ -18,14 +18,21 @@ describe('Apollo', () => {
   describe('initialize()', () => {
     it('sets settings', () => {
       const link = new HttpLink();
+      const resolvers = {
+        Mutation: {
+          testMutation: () => {},
+        },
+      };
 
       Apollo.initialize({
         links: [link],
+        resolvers,
       });
 
       expect(Apollo.settings).toEqual(
         expect.objectContaining({
           links: [link],
+          resolvers,
         }),
       );
     });
