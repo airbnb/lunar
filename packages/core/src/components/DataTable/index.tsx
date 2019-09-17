@@ -186,6 +186,8 @@ export class DataTable extends React.Component<
     sortBy: string;
     sortDirection: SortDirectionType;
   }): void => {
+    this.cache.clearAll();
+
     const { sortOverride, sortCallback } = this.props;
     if (sortOverride && sortCallback) {
       sortCallback(sortBy, sortDirection);
@@ -201,7 +203,7 @@ export class DataTable extends React.Component<
     event: React.SyntheticEvent<EventTarget>
   ) => {
     event.stopPropagation();
-    // this.cache.clearAll();
+    this.cache.clearAll();
     this.setState(({ expandedRows }) => {
       const newExpandedRows = new Set(expandedRows);
       if (expandedRows.has(newExpandedRowIndex)) {

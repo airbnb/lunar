@@ -21,7 +21,6 @@ type ArgumentsFromProps = {
   styles: WithStylesProps["styles"];
   renderers?: DataTableProps["renderers"];
   zebra?: boolean;
-  rowHeight?: HeightOptions;
   theme?: WithStylesProps["theme"];
   selectable?: boolean;
   expandable?: boolean;
