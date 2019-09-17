@@ -41,13 +41,14 @@ class Apollo {
       return;
     }
 
-    const { links } = this.settings;
+    const { links, resolvers } = this.settings;
 
     this.client = new ApolloClient({
       cache: new InMemoryCache(),
       connectToDevTools: __DEV__,
       link: ApolloLink.from(links),
       name: Core.settings.name,
+      resolvers,
       version: pkg.version,
     });
 
