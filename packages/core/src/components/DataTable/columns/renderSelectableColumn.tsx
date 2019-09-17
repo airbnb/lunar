@@ -40,7 +40,7 @@ export default function renderSelectableColumn(
     const spacing = isChild || !expandable ? indentSize : 0;
 
     return (
-      <Spacing left={spacing}>
+      <Spacing all={0.5} left={spacing}>
         <CheckBox
           label=""
           name=""
