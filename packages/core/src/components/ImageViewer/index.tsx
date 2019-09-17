@@ -146,10 +146,6 @@ export default withStyles(({ ui }) => ({
   container: {
     border: ui.border,
     cursor: 'move',
-    display: 'flex',
-    align: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
     overflow: 'hidden',
   },
 
@@ -158,6 +154,10 @@ export default withStyles(({ ui }) => ({
   },
 
   image: {
-    display: 'inline-block',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 }))(ImageViewer);
