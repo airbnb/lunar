@@ -47,7 +47,10 @@ export default class Lightbox extends React.PureComponent<Props, State> {
       this.preloadedUrls.set(images[index].src, true);
 
       if (totalImages > 1) {
-        window.requestIdleCallback(() => this.preloadImages());
+        window.requestIdleCallback(() => {
+          console.log('requestIdleCallback', images);
+          this.preloadImages();
+        });
       }
     }
 

@@ -2,18 +2,24 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Sheet from '../../../src/components/Sheet';
 import Lightbox from '../../../src/components/Lightbox';
-import LightboxImage from '../../../src/components/Lightbox/LightboxImage';
+import LightboxImage from '../../../src/components/Lightbox/Image';
 
 describe('<Lightbox />', () => {
   const requestIdleCallbackSpy = jest.fn();
-  window.requestIdleCallback = requestIdleCallbackSpy;
+  const oldRIC = window.requestIdleCallback;
+
   const props = {
     onClose: () => {},
     images: [{ alt: 'foo', src: 'bar' }],
     startIndex: 0,
   };
 
+  beforeEach(() => {
+    window.requestIdleCallback = requestIdleCallbackSpy;
+  });
+
   afterEach(() => {
+    window.requestIdleCallback = oldRIC;
     jest.resetAllMocks();
   });
 
@@ -32,7 +38,7 @@ describe('<Lightbox />', () => {
     });
 
     it('preloads images when image count > 1', () => {
-      const images = [{ alt: 'foo', src: 'bar' }, { alt: 'foo2', src: 'bar2' }];
+      const images = [{ alt: 'requestIdleTest', src: 'bar' }, { alt: 'foo2', src: 'bar2' }];
       shallow(<Lightbox {...props} images={images} />);
 
       expect(requestIdleCallbackSpy).toHaveBeenCalled();
