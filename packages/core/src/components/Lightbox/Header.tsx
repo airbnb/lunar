@@ -7,22 +7,34 @@ import { ARROW_RIGHT, ARROW_LEFT } from '../../keys';
 import { ZoomControls, RotateControls } from '../ImageViewer';
 import Spacing from '../Spacing';
 
-export type LightboxHeaderProps = {
+export type Props = {
+  /** Currently active image index. */
   activeIndex: number;
-  hasAside?: boolean;
+  /** Number of images. */
   imageCount: number;
+  /** Has sidebar. */
+  hasAside?: boolean;
+  /** Hide sidebar. */
   hideAside?: boolean;
-  showZoomControls?: boolean;
-  showRotateControls?: boolean;
-  onChangeSlide: (index: number) => void;
-  onToggleAside: () => void;
-  onZoomImage?: (scale: number) => void;
-  onRotateImage?: (rotation: number) => void;
-  scale?: number;
+  /** Image rotation value. */
   rotation?: number;
+  /** Image scale value. */
+  scale?: number;
+  /** Show rotate controls. */
+  showRotateControls?: boolean;
+  /** Show zoom controls. */
+  showZoomControls?: boolean;
+  /** Callback fired when the slide changes. */
+  onChangeSlide: (index: number) => void;
+  /** Callback fired when the rotation changes. */
+  onRotateImage?: (rotation: number) => void;
+  /** Callback fired when the sidebar is toggled. */
+  onToggleAside: () => void;
+  /** Callback fired when the zoom changes. */
+  onZoomImage?: (scale: number) => void;
 };
 
-export class LightboxHeader extends React.PureComponent<LightboxHeaderProps & WithStylesProps> {
+export class Header extends React.PureComponent<Props & WithStylesProps> {
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
   }
@@ -160,4 +172,4 @@ export default withStyles(({ unit }) => ({
     paddingRight: unit,
     textAlign: 'right',
   },
-}))(LightboxHeader);
+}))(Header);

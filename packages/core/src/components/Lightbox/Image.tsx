@@ -4,18 +4,26 @@ import ResponsiveImage from '../ResponsiveImage';
 import Loader from '../Loader';
 import ImageViewer from '../ImageViewer';
 
-export type LightboxImageProps = {
+export type Props = {
+  /** Image alt text */
   alt: string;
-  src: string;
+  /** React node for sidebar. */
   aside?: React.ReactNode;
+  /** Hide sidebar. */
   hideAside?: boolean;
-  showZoomControls?: boolean;
-  showRotateControls?: boolean;
-  scale?: number;
+  /** Image rotation value. */
   rotation?: number;
+  /** Image scale value. */
+  scale?: number;
+  /** Show rotate controls. */
+  showRotateControls?: boolean;
+  /** Show zoom controls. */
+  showZoomControls?: boolean;
+  /** Image src */
+  src: string;
 };
 
-export class LightboxImage extends React.PureComponent<LightboxImageProps & WithStylesProps> {
+export class Image extends React.PureComponent<Props & WithStylesProps> {
   render() {
     const {
       cx,
@@ -91,4 +99,4 @@ export default withStyles(({ color, unit }) => ({
     flexShrink: 0,
     padding: unit * 3,
   },
-}))(LightboxImage);
+}))(Image);

@@ -1,9 +1,9 @@
 import React from 'react';
 import Sheet from '../Sheet';
-import LightboxImage, { LightboxImageProps } from './LightboxImage';
-import LightboxHeader from './LightboxHeader';
+import LightboxImage, { Props as LightboxImageProps } from './Image';
+import Header from './Header';
 
-export type LightboxProps = {
+export type Props = {
   /** Images to show. */
   images: LightboxImageProps[];
   /** Image start index. */
@@ -16,14 +16,14 @@ export type LightboxProps = {
   onClose: () => void;
 };
 
-export type LightboxState = {
+export type State = {
   activeIndex: number;
   hideAside: boolean;
   scale: number;
   rotation: number;
 };
 
-export default class Lightbox extends React.PureComponent<LightboxProps, LightboxState> {
+export default class Lightbox extends React.PureComponent<Props, State> {
   static defaultProps = {
     startIndex: 0,
   };
@@ -35,13 +35,7 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
     rotation: 0,
   };
 
-  preloadedUrls: Map<string, boolean | HTMLImageElement>;
-
-  constructor(props: LightboxProps) {
-    super(props);
-
-    this.preloadedUrls = new Map();
-  }
+  preloadedUrls = new Map<string, boolean | HTMLImageElement>();
 
   componentDidMount() {
     const { startIndex = 0, images } = this.props;
@@ -71,7 +65,7 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
 
   componentWillUnmount() {
     // We no longer need these images, so let's remove them so they can be garbage collected.
-    delete this.preloadedUrls;
+    this.preloadedUrls.clear();
   }
 
   preloadImages() {
@@ -80,6 +74,7 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
     const totalImages = images.length;
     const startIndex = activeIndex + 1; // start direction is going forward (+1)
     const endIndex = activeIndex + 2;
+    // TODO: Fix this logic - it always results in an array with a single value
     const indices = Array.from({ length: endIndex - startIndex }, (_, i) => i + startIndex);
 
     let preloadUrls = indices.map(preloadIndex => {
@@ -129,7 +124,7 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
     const hasAside = images.some(img => !!img.aside);
 
     const header = (
-      <LightboxHeader
+      <Header
         activeIndex={activeIndex}
         imageCount={images.length}
         hideAside={hideAside}
