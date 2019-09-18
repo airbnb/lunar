@@ -1,5 +1,6 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
+import T from '@airbnb/lunar/lib/components/Translate';
 import CheckBox from '../../CheckBox';
 import Spacing from '../../Spacing';
 import { ExpandedRow, SelectedRows, VirtualRow } from '../types';
@@ -43,7 +44,14 @@ export default function renderSelectableColumn(
       <Spacing all={0.5} left={spacing}>
         <CheckBox
           hideLabel
-          label="Select row"
+          label={T.phrase(
+            'Select row',
+            {},
+            {
+              context: 'Selecting a row from the data table',
+              key: 'lunar.datatable.selectRow',
+            },
+          )}
           indeterminate={isNeutral}
           checked={isSelected}
           onChange={handleSelection(row.rowData)}
