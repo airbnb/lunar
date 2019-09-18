@@ -76,4 +76,9 @@ storiesOf('Core/MenuToggle', module)
     <MenuToggle small accessibilityLabel="Actions" toggleLabel="Actions" zIndex={10}>
       {children}
     </MenuToggle>
+  ))
+  .add('With disabled.', () => (
+    <MenuToggle disabled accessibilityLabel="Actions" toggleLabel="Actions" zIndex={10}>
+      {children}
+    </MenuToggle>
   ));
