@@ -42,8 +42,8 @@ export default function renderSelectableColumn(
     return (
       <Spacing all={0.5} left={spacing}>
         <CheckBox
-          label=""
-          name=""
+          hideLabel
+          label="Select row"
           indeterminate={isNeutral}
           checked={isSelected}
           onChange={handleSelection(row.rowData)}
