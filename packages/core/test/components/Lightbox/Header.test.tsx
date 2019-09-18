@@ -4,7 +4,6 @@ import Button from '../../../src/components/Button';
 import Pagination from '../../../src/components/Pagination';
 import Header from '../../../src/components/Lightbox/Header';
 import { RotateControls, ZoomControls } from '../../../src/components/ImageViewer';
-import IconButton from '../../../src/components/IconButton';
 import { ARROW_RIGHT, ARROW_LEFT } from '../../../src/keys';
 
 describe('<LightboxHeader />', () => {

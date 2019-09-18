@@ -1,10 +1,9 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Sheet from '../../../src/components/Sheet';
 import Lightbox from '../../../src/components/Lightbox';
 import LightboxImage from '../../../src/components/Lightbox/Image';
 import LightboxHeader from '../../../src/components/Lightbox/Header';
-import Button from '../../../src/components/Button';
 
 describe('<Lightbox />', () => {
   const requestIdleCallbackSpy = jest.fn();
