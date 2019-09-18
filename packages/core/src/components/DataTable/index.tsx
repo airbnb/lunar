@@ -203,7 +203,7 @@ export class DataTable extends React.Component<
     event: React.SyntheticEvent<EventTarget>
   ) => {
     event.stopPropagation();
-    this.cache.clearAll();
+    // this.cache.clearAll();
     this.setState(({ expandedRows }) => {
       const newExpandedRows = new Set(expandedRows);
       if (expandedRows.has(newExpandedRowIndex)) {
@@ -413,8 +413,10 @@ export class DataTable extends React.Component<
   }) => expandedDataList[index];
 
   cache = new CellMeasurerCache({
-    minHeight: 10,
-    fixedHeight: false
+    fixedHeight: false,
+    keyMapper: (rowIndex: number, columnIndex: number) => {
+      return `${rowIndex}-${columnIndex}`;
+    }
   });
 
   render() {

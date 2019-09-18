@@ -9,26 +9,20 @@ import ColSpanRenderer from ':storybook/components/DataTable/DataTableRenderers/
 import CatRenderer from ':storybook/components/DataTable/DataTableRenderers/CatRenderer';
 import MenuRenderer from ':storybook/components/DataTable/DataTableRenderers/MenuRenderer';
 import EditableTextRenderer from ':storybook/components/DataTable/DataTableRenderers/EditableTextRenderer';
-import DataTable from '.';
-import Button from '../Button';
-import Input from '../Input';
-import Row from '../Row';
-import Spacing from '../Spacing';
-import { SelectedRows, IndexedParentRow, Renderers, RendererProps } from './types';
+import DataTable from './DataTable';
+import Button from './Button';
+import Input from './Input';
+import Row from './Row';
+import Spacing from './Spacing';
+import {
+  ExpandedRow,
+  SelectedRows,
+  IndexedParentRow,
+  RendererProps,
+  VirtualRow,
+} from './DataTable/types';
 
-type CustomShape = {
-  name: string;
-  jobTitle: string;
-  tenureDays: number;
-  menu: string;
-  cats: number;
-};
-
-function CustomRenderer({ row, keyName }: RendererProps<CustomShape>) {
-  return <span>{String(row.rowData.data[keyName])}</span>;
-}
-
-const renderers: Renderers<CustomShape> = {
+const renderers = {
   name: EditableTextRenderer,
   colSpan: ColSpanRenderer,
   cats: CatRenderer,
@@ -129,9 +123,26 @@ class SearchDemo extends React.Component {
   };
 
   render() {
-    const { data, search } = this.state;
+    const { search } = this.state;
+    // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
     const filteredData = this.filter(search);
     const button = <Button onClick={this.handleNewData}>New Data</Button>;
+
+    const data = new Array(50).fill(0).map((el, idx) => ({
+      data: {
+        number: idx,
+      },
+    }));
+
+    // <div style={{ height: 20 + row.rowData.data.number, border: '1px solid black', margin: 1 }}>
+    // const renderers = {};
+    const renderers = {
+      number: ({ row }: RendererProps) => (
+        <div style={{ height: 20 + row.rowData.data.number, border: '1px solid black', margin: 1 }}>
+          {row.rowData.data.number}
+        </div>
+      ),
+    };
 
     return (
       <div style={{ height: 500 }}>
@@ -149,10 +160,10 @@ class SearchDemo extends React.Component {
           </Spacing>
           <div style={{ flexGrow: 1 }}>
             <DataTable
+              renderers={renderers}
               autoHeight
               dynamicRowHeight
               showRowDividers
-              expandable
               tableHeaderLabel="My Great Table"
               data={data}
               filterData={filteredData}
