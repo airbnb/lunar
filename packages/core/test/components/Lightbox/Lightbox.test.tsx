@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Sheet from '../../../src/components/Sheet';
 import Lightbox from '../../../src/components/Lightbox';
 import LightboxImage from '../../../src/components/Lightbox/Image';
 import LightboxHeader from '../../../src/components/Lightbox/Header';
+import Button from '../../../src/components/Button';
 
 describe('<Lightbox />', () => {
   const requestIdleCallbackSpy = jest.fn();
@@ -69,5 +70,29 @@ describe('<Lightbox />', () => {
 
       expect(wrapper.state()).toEqual(expect.objectContaining({ activeIndex: 0 }));
     });
+  });
+
+  it('toggles the sidebar state', () => {
+    const wrapper: Lightbox = shallow(<Lightbox {...props} />);
+    expect(wrapper.state('hideAside')).toBe(false);
+    wrapper.instance().handleToggleAside();
+
+    expect(wrapper.state('hideAside')).toBe(true);
+  });
+
+  it('sets the scale state', () => {
+    const wrapper: Lightbox = shallow(<Lightbox {...props} />);
+    expect(wrapper.state('scale')).toBe(1);
+    wrapper.instance().handleZoomImage(2);
+
+    expect(wrapper.state('scale')).toBe(2);
+  });
+
+  it('sets the rotation state', () => {
+    const wrapper: Lightbox = shallow(<Lightbox {...props} />);
+    expect(wrapper.state('rotation')).toBe(0);
+    wrapper.instance().handleRotateImage(90);
+
+    expect(wrapper.state('rotation')).toBe(90);
   });
 });
