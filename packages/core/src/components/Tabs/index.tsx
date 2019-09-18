@@ -46,11 +46,36 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
     selectedKey: this.getDefaultSelectedKey(),
   };
 
+  boundPopstateHandler = this.handlePopstate.bind(this);
+
+  componentDidMount() {
+    if (this.props.persistWithHash) {
+      window.addEventListener('popstate', this.boundPopstateHandler);
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('popstate', this.boundPopstateHandler);
+  }
+
   componentDidUpdate(prevProps: Props) {
     if (this.props.defaultKey !== prevProps.defaultKey) {
       this.setState({
         selectedKey: this.props.defaultKey!,
       });
+    }
+  }
+
+  handlePopstate() {
+    const { persistWithHash } = this.props;
+
+    if (persistWithHash) {
+      const query = this.getHashQuery();
+      if (query.has(persistWithHash)) {
+        this.setState({
+          selectedKey: query.get(persistWithHash)!,
+        });
+      }
     }
   }
 
