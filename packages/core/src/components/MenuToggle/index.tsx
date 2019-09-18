@@ -53,8 +53,8 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
   };
 
   static defaultProps = {
-    disabled: false,
     closeOnClick: false,
+    disabled: false,
     ignoreClickOutside: false,
     inverted: false,
     large: false,
