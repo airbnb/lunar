@@ -72,10 +72,9 @@ export default class Lightbox extends React.PureComponent<Props, State> {
     const { images } = this.props;
     const { activeIndex } = this.state;
     const totalImages = images.length;
-    const startIndex = activeIndex + 1; // start direction is going forward (+1)
-    const endIndex = activeIndex + 2;
-    // TODO: Fix this logic - it always results in an array with a single value
-    const indices = Array.from({ length: endIndex - startIndex }, (_, i) => i + startIndex);
+
+    // Preload two images ahead
+    const indices = [activeIndex + 1, activeIndex + 2];
 
     let preloadUrls = indices.map(preloadIndex => {
       const index = (preloadIndex + totalImages) % totalImages;
