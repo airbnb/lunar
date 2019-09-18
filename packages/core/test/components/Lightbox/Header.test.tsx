@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Button from '../../../src/components/Button';
 import Pagination from '../../../src/components/Pagination';
-import LightboxHeader from '../../../src/components/Lightbox/LightboxHeader';
+import Header from '../../../src/components/Lightbox/Header';
 
 describe('<LightboxHeader />', () => {
   const onChangeSlideSpy = jest.fn();
@@ -15,14 +15,14 @@ describe('<LightboxHeader />', () => {
   };
 
   it('renders a Pagination component', () => {
-    const wrapper = shallow(<LightboxHeader {...props} />).dive();
+    const wrapper = shallow(<Header {...props} />).dive();
 
     expect(wrapper.find(Pagination)).toHaveLength(1);
   });
 
   describe('renders a toggle info Button', () => {
     it('with "Hide Info" if hideAside is false', () => {
-      const wrapper = shallow(<LightboxHeader {...props} hasAside />).dive();
+      const wrapper = shallow(<Header {...props} hasAside />).dive();
 
       expect(
         wrapper
@@ -33,7 +33,7 @@ describe('<LightboxHeader />', () => {
     });
 
     it('with "Show Info" if hideAside is true', () => {
-      const wrapper = shallow(<LightboxHeader {...props} hasAside hideAside />).dive();
+      const wrapper = shallow(<Header {...props} hasAside hideAside />).dive();
 
       expect(
         wrapper
