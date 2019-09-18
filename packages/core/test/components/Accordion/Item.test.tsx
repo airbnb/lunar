@@ -67,6 +67,15 @@ describe('<AccordionItem />', () => {
     expect(wrapper.find('section').prop('className')).toMatch('body_expanded');
   });
 
+  it('renders without spacing', () => {
+    const wrapper = shallowWithStyles(
+      <AccordionItem noSpacing id=".0" index={0} title="Title" onClick={() => {}} />,
+    );
+
+    expect(wrapper.find('button').prop('className')).toMatch('title_noSpacing');
+    expect(wrapper.find('section').prop('className')).toMatch('body_noSpacing');
+  });
+
   it('triggers `onClick` when clicked', () => {
     const spy = jest.fn();
     const wrapper = shallowWithStyles(
