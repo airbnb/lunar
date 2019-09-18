@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.27.4 - 2019-09-18
+
+#### 🎨 Styles
+
+- **[ImageViewer]** Move flexbox from outer to inner div. (#185) ([c3d2579](https://github.com/airbnb/lunar/tree/master/packages/core/commit/c3d2579)), closes [#185](https://github.com/airbnb/lunar/tree/master/packages/core/issues/185)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.27.3 - 2019-09-16
 
 #### 🐞 Fixes
