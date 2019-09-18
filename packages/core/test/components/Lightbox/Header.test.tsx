@@ -48,7 +48,7 @@ describe('<LightboxHeader />', () => {
   });
 
   describe('handles keydown events', () => {
-    let wrapper: Enzyme.ShallowWrapper<null, null, Header<any>>;
+    let wrapper: Enzyme.ShallowWrapper<any, any, Header>;
     const spy = jest.fn();
 
     beforeEach(() => {

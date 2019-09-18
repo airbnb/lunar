@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import Sheet from '../../../src/components/Sheet';
 import Lightbox from '../../../src/components/Lightbox';
 import LightboxImage from '../../../src/components/Lightbox/Image';
+import LightboxHeader from '../../../src/components/Lightbox/Header';
 
 describe('<Lightbox />', () => {
   const requestIdleCallbackSpy = jest.fn();
@@ -28,6 +29,8 @@ describe('<Lightbox />', () => {
 
     expect(wrapper.find(Sheet)).toHaveLength(1);
     expect(wrapper.find(LightboxImage)).toHaveLength(1);
+    // @ts-ignore
+    expect(wrapper.find(Sheet).prop('header').type).toBe(LightboxHeader);
   });
 
   describe('preloadedUrls', () => {
