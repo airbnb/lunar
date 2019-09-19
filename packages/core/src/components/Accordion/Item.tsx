@@ -13,7 +13,7 @@ export type Props = {
   id: string;
   /** Index amongst a collection of accordion items. */
   index?: number;
-  /** Removes horizontal padding from item title and both horizontal and vertical padding from item body. */
+  /** Removes horizontal the item and top padding from item body. */
   noSpacing?: boolean;
   /** Title of the accordion item. */
   title?: React.ReactNode;
@@ -84,7 +84,7 @@ export default withStyles(
     },
 
     body_noSpacing: {
-      padding: 0,
+      padding: `0 0 ${unit * 2}px`,
     },
 
     body_expanded: {
