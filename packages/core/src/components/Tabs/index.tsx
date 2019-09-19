@@ -50,12 +50,12 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
 
   componentDidMount() {
     if (this.props.persistWithHash) {
-      window.addEventListener('popstate', this.boundPopstateHandler);
+      document.addEventListener('popstate', this.boundPopstateHandler);
     }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('popstate', this.boundPopstateHandler);
+    document.removeEventListener('popstate', this.boundPopstateHandler);
   }
 
   componentDidUpdate(prevProps: Props) {

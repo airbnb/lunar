@@ -59,7 +59,7 @@ storiesOf('Core/Tabs', module)
       </Tab>
     </Tabs>
   ))
-  .add('state persisted to hash and following back button.', () => (
+  .add('Persist with hash and back button.', () => (
     <Tabs persistWithHash="tab">
       <Tab key="a" label="Bruce W.">
         <Text>

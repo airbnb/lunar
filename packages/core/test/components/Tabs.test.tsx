@@ -252,8 +252,8 @@ describe('<Tabs/>', () => {
   });
 
   it('adds popstate listener when persistWithHash', () => {
-    const addSpy = jest.spyOn(window, 'addEventListener');
-    const rmSpy = jest.spyOn(window, 'removeEventListener');
+    const addSpy = jest.spyOn(document, 'addEventListener');
+    const rmSpy = jest.spyOn(document, 'removeEventListener');
 
     const wrapper = unwrap(
       <Tabs persistWithHash="tab">
