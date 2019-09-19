@@ -250,4 +250,22 @@ describe('<Tabs/>', () => {
         .prop('borderless'),
     ).toBe(true);
   });
+
+  it('adds popstate listener when persistWithHash', () => {
+    const addSpy = jest.spyOn(document, 'addEventListener');
+    const rmSpy = jest.spyOn(document, 'addEventListener');
+
+    const wrapper = unwrap(
+      <Tabs persistWithHash="tab">
+        <Tab key="a" label="One" />
+      </Tabs>,
+    );
+
+    expect(addSpy).toHaveBeenCalledWith('popstate', expect.any(Function), true);
+
+    // @ts-ignore
+    wrapper.instance().componentWillUnmount();
+
+    expect(rmSpy).toHaveBeenCalledWith('popstate', expect.any(Function), true);
+  });
 });
