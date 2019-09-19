@@ -280,15 +280,10 @@ describe('<Tabs/>', () => {
 
       wrapper
         .find(Tab)
-        .at(0)
-        .simulate('click', 'a');
-      expect(wrapper.state('selectedKey')).toBe('a');
-
-      wrapper
-        .find(Tab)
         .at(1)
         .simulate('click', 'b');
       expect(wrapper.state('selectedKey')).toBe('b');
+      expect(location.hash).toBe('#tab=b');
 
       location.hash = '#tab=a';
       document.dispatchEvent(new Event('popstate'));
