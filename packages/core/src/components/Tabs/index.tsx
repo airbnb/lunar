@@ -46,27 +46,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
     selectedKey: this.getDefaultSelectedKey(),
   };
 
-  boundPopstateHandler = this.handlePopstate.bind(this);
-
-  componentDidMount() {
-    if (this.props.persistWithHash) {
-      document.addEventListener('popstate', this.boundPopstateHandler);
-    }
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('popstate', this.boundPopstateHandler);
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    if (this.props.defaultKey !== prevProps.defaultKey) {
-      this.setState({
-        selectedKey: this.props.defaultKey!,
-      });
-    }
-  }
-
-  handlePopstate() {
+  handlePopstate = () => {
     const { persistWithHash } = this.props;
 
     if (persistWithHash) {
@@ -76,6 +56,24 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
           selectedKey: query.get(persistWithHash)!,
         });
       }
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.persistWithHash) {
+      document.addEventListener('popstate', this.handlePopstate);
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('popstate', this.handlePopstate);
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.defaultKey !== prevProps.defaultKey) {
+      this.setState({
+        selectedKey: this.props.defaultKey!,
+      });
     }
   }
 
