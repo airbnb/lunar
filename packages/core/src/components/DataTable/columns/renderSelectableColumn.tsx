@@ -1,6 +1,6 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
-import T from '@airbnb/lunar/lib/components/Translate';
+import T from '../../Translate';
 import CheckBox from '../../CheckBox';
 import Spacing from '../../Spacing';
 import { ExpandedRow, SelectedRows, VirtualRow } from '../types';
