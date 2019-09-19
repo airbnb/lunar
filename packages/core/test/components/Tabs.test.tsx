@@ -251,21 +251,48 @@ describe('<Tabs/>', () => {
     ).toBe(true);
   });
 
-  it('adds popstate listener when persistWithHash', () => {
-    const addSpy = jest.spyOn(document, 'addEventListener');
-    const rmSpy = jest.spyOn(document, 'removeEventListener');
+  describe('when persistWithHash', () => {
+    it('adds popstate listener', () => {
+      const addSpy = jest.spyOn(document, 'addEventListener');
+      const rmSpy = jest.spyOn(document, 'removeEventListener');
+  
+      const wrapper = unwrap(
+        <Tabs persistWithHash="tab">
+          <Tab key="a" label="One" />
+        </Tabs>,
+      );
+  
+      expect(addSpy).toHaveBeenCalledWith('popstate', expect.any(Function));
+    
+      // @ts-ignore
+      wrapper.instance().componentWillUnmount();
+  
+      expect(rmSpy).toHaveBeenCalledWith('popstate', expect.any(Function));
+    });
 
-    const wrapper = unwrap(
-      <Tabs persistWithHash="tab">
-        <Tab key="a" label="One" />
-      </Tabs>,
-    );
+    it('triggers popstate listener', () => {
+      const wrapper = unwrap(
+        <Tabs persistWithHash="tab">
+          <Tab key="a" label="One" />
+          <Tab key="b" label="Two" />
+        </Tabs>,
+      );
 
-    expect(addSpy).toHaveBeenCalledWith('popstate', expect.any(Function));
+      wrapper
+        .find(Tab)
+        .at(0)
+        .simulate('click', 'a');
+      expect(wrapper.state('selectedKey')).toBe('a');
 
-    // @ts-ignore
-    wrapper.instance().componentWillUnmount();
+      wrapper
+        .find(Tab)
+        .at(1)
+        .simulate('click', 'b');
+      expect(wrapper.state('selectedKey')).toBe('b');
 
-    expect(rmSpy).toHaveBeenCalledWith('popstate', expect.any(Function));
+      location.hash = '#tab=a';
+      document.dispatchEvent(new Event('popstate'));
+      expect(wrapper.state('selectedKey')).toBe('a');
+    });
   });
 });
