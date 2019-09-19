@@ -54,4 +54,19 @@ storiesOf('Core/Accordion', module)
         </Text>
       </Item>
     </Accordion>
+  ))
+  .add('With no spacing.', () => (
+    <Accordion bordered>
+      <Item noSpacing title="Item 1" id="one">
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Item>
+
+      <Item noSpacing title="Item 2" id="two">
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Item>
+    </Accordion>
   ));
