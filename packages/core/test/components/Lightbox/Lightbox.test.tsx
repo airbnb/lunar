@@ -1,13 +1,14 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import Sheet from '../../../src/components/Sheet';
-import Lightbox from '../../../src/components/Lightbox';
+import Lightbox, { Props, State } from '../../../src/components/Lightbox';
 import LightboxImage from '../../../src/components/Lightbox/Image';
 import LightboxHeader from '../../../src/components/Lightbox/Header';
 
 describe('<Lightbox />', () => {
   const requestIdleCallbackSpy = jest.fn();
   const oldRIC = window.requestIdleCallback;
+  let wrapper: Enzyme.ShallowWrapper<Props, State, Lightbox>;
 
   const props = {
     onClose: () => {},
@@ -25,7 +26,7 @@ describe('<Lightbox />', () => {
   });
 
   it('renders a Sheet component', () => {
-    const wrapper = shallow(<Lightbox {...props} />);
+    wrapper = shallow(<Lightbox {...props} />);
 
     expect(wrapper.find(Sheet)).toHaveLength(1);
     expect(wrapper.find(LightboxImage)).toHaveLength(1);
@@ -55,7 +56,7 @@ describe('<Lightbox />', () => {
         images: [{ alt: 'foo', src: 'bar' }, { alt: 'foo2', src: 'bar2' }],
         startIndex: 1,
       };
-      const wrapper = shallow(<Lightbox {...newProps} />);
+      wrapper = shallow(<Lightbox {...newProps} />);
 
       expect(wrapper.state()).toEqual(expect.objectContaining({ activeIndex: 1 }));
     });
@@ -65,14 +66,14 @@ describe('<Lightbox />', () => {
         ...props,
         startIndex: 1,
       };
-      const wrapper = shallow(<Lightbox {...newProps} />);
+      wrapper = shallow(<Lightbox {...newProps} />);
 
       expect(wrapper.state()).toEqual(expect.objectContaining({ activeIndex: 0 }));
     });
   });
 
   it('toggles the sidebar state', () => {
-    const wrapper: Lightbox = shallow(<Lightbox {...props} />);
+    wrapper = shallow(<Lightbox {...props} />);
     expect(wrapper.state('hideAside')).toBe(false);
     wrapper.instance().handleToggleAside();
 
@@ -80,7 +81,7 @@ describe('<Lightbox />', () => {
   });
 
   it('sets the scale state', () => {
-    const wrapper: Lightbox = shallow(<Lightbox {...props} />);
+    wrapper = shallow(<Lightbox {...props} />);
     expect(wrapper.state('scale')).toBe(1);
     wrapper.instance().handleZoomImage(2);
 
@@ -88,7 +89,7 @@ describe('<Lightbox />', () => {
   });
 
   it('sets the rotation state', () => {
-    const wrapper: Lightbox = shallow(<Lightbox {...props} />);
+    wrapper = shallow(<Lightbox {...props} />);
     expect(wrapper.state('rotation')).toBe(0);
     wrapper.instance().handleRotateImage(90);
 
