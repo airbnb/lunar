@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.29.0 - 2019-09-19
+
+#### 🚀 Updates
+
+- **[AccordionItem]** Add `noSpacing` support. (#189) ([a46dc81](https://github.com/airbnb/lunar/tree/master/packages/core/commit/a46dc81)), closes [#189](https://github.com/airbnb/lunar/tree/master/packages/core/issues/189)
+
+#### 🐞 Fixes
+
+- **[DataTable]** Add spacing to prevent clipping checkbox focus. (#186) ([ed2b890](https://github.com/airbnb/lunar/tree/master/packages/core/commit/ed2b890)), closes [#186](https://github.com/airbnb/lunar/tree/master/packages/core/issues/186)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.28.0 - 2019-09-18
 
 #### 🚀 Updates
