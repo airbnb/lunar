@@ -2,11 +2,12 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Button from '../../../src/components/Button';
 import Pagination from '../../../src/components/Pagination';
-import Header from '../../../src/components/Lightbox/Header';
+import LightboxHeader, { Props } from '../../../src/components/Lightbox/Header';
 import { RotateControls, ZoomControls } from '../../../src/components/ImageViewer';
 import { ARROW_RIGHT, ARROW_LEFT } from '../../../src/keys';
 
 describe('<LightboxHeader />', () => {
+  let wrapper: Enzyme.ShallowWrapper<Props, any, LightboxHeader>;
   const onChangeSlideSpy = jest.fn();
   const onToggleAsideSpy = jest.fn();
   const props = {
@@ -17,14 +18,14 @@ describe('<LightboxHeader />', () => {
   };
 
   it('renders a Pagination component', () => {
-    const wrapper = shallow(<Header {...props} />).dive();
+    wrapper = shallow(<LightboxHeader {...props} />).dive();
 
     expect(wrapper.find(Pagination)).toHaveLength(1);
   });
 
   describe('renders a toggle info Button', () => {
     it('with "Hide Info" if hideAside is false', () => {
-      const wrapper = shallow(<Header {...props} hasAside />).dive();
+      wrapper = shallow(<LightboxHeader {...props} hasAside />).dive();
 
       expect(
         wrapper
@@ -35,7 +36,7 @@ describe('<LightboxHeader />', () => {
     });
 
     it('with "Show Info" if hideAside is true', () => {
-      const wrapper = shallow(<Header {...props} hasAside hideAside />).dive();
+      wrapper = shallow(<LightboxHeader {...props} hasAside hideAside />).dive();
 
       expect(
         wrapper
@@ -47,11 +48,10 @@ describe('<LightboxHeader />', () => {
   });
 
   describe('handles keydown events', () => {
-    let wrapper: Enzyme.ShallowWrapper<any, any, Header>;
     const spy = jest.fn();
 
     beforeEach(() => {
-      wrapper = shallow(<Header {...props} onChangeSlide={spy} />).dive();
+      wrapper = shallow(<LightboxHeader {...props} onChangeSlide={spy} />).dive();
     });
 
     it('changes slide to next on right arrow', () => {
@@ -100,7 +100,7 @@ describe('<LightboxHeader />', () => {
     it('removes event listener for keydown on umount', () => {
       const eventSpy = jest.spyOn(window, 'removeEventListener');
 
-      const wrapper = shallow(<Header {...props} />).dive();
+      wrapper = shallow(<LightboxHeader {...props} />).dive();
       // @ts-ignore
       wrapper.instance().componentWillUnmount();
 
@@ -109,11 +109,12 @@ describe('<LightboxHeader />', () => {
   });
 
   describe('rotate controls', () => {
-    let wrapper: Enzyme.ShallowWrapper<null, null, Header<any>>;
     const spy = jest.fn();
 
     beforeEach(() => {
-      wrapper = shallow(<Header {...props} showRotateControls onRotateImage={spy} />).dive();
+      wrapper = shallow(
+        <LightboxHeader {...props} showRotateControls onRotateImage={spy} />,
+      ).dive();
     });
 
     it('renders rotate controls', () => {
@@ -128,11 +129,10 @@ describe('<LightboxHeader />', () => {
   });
 
   describe('zoom controls', () => {
-    let wrapper: Enzyme.ShallowWrapper<null, null, Header<any>>;
     const spy = jest.fn();
 
     beforeEach(() => {
-      wrapper = shallow(<Header {...props} showZoomControls onZoomImage={spy} />).dive();
+      wrapper = shallow(<LightboxHeader {...props} showZoomControls onZoomImage={spy} />).dive();
     });
 
     it('renders zoom controls', () => {
