@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import AccordionItem from '../../../src/components/Accordion/Item';
+import ExpandableIcon from '../../../src/components/ExpandableIcon';
 
 describe('<AccordionItem />', () => {
   it('renders a button', () => {
@@ -65,6 +66,7 @@ describe('<AccordionItem />', () => {
     );
 
     expect(wrapper.find('section').prop('className')).toMatch('body_expanded');
+    expect(wrapper.find(ExpandableIcon).prop('expanded')).toBe(true);
   });
 
   it('renders without spacing', () => {
