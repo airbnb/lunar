@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.29.1 - 2019-09-20
+
+#### 📘 Docs
+
+- **[AccordionItem]** Comment update. (#192) ([a6b639f](https://github.com/airbnb/lunar/tree/master/packages/core/commit/a6b639f)), closes [#192](https://github.com/airbnb/lunar/tree/master/packages/core/issues/192)
+
+#### 📋 Misc
+
+- **[AccordionItem]** Add test condition in order to bump release version (#191) ([1662057](https://github.com/airbnb/lunar/tree/master/packages/core/commit/1662057)), closes [#191](https://github.com/airbnb/lunar/tree/master/packages/core/issues/191)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.29.0 - 2019-09-19
 
 #### 🚀 Updates
