@@ -13,6 +13,8 @@ export type Props = {
   id: string;
   /** Index amongst a collection of accordion items. */
   index?: number;
+  /** Removes horizontal padding from the item and top padding from item body. */
+  noSpacing?: boolean;
   /** Title of the accordion item. */
   title?: React.ReactNode;
   /** Callback fired when the accordion item is clicked. */
@@ -27,6 +29,7 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
     bordered: false,
     children: null,
     expanded: false,
+    noSpacing: false,
   };
 
   private handleClick = () => {
@@ -36,12 +39,12 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
   };
 
   render() {
-    const { cx, bordered, children, expanded, id, styles, theme, title } = this.props;
+    const { cx, bordered, children, expanded, id, noSpacing, styles, theme, title } = this.props;
 
     return (
       <div className={cx(styles.item, bordered && styles.item_bordered)}>
         <button
-          className={cx(styles.title)}
+          className={cx(styles.title, noSpacing && styles.title_noSpacing)}
           aria-controls={`accordion-body-${id}`}
           aria-selected={expanded}
           id={`accordion-title-${id}`}
@@ -56,7 +59,11 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
         </button>
 
         <section
-          className={cx(styles.body, expanded && styles.body_expanded)}
+          className={cx(
+            styles.body,
+            expanded && styles.body_expanded,
+            noSpacing && styles.body_noSpacing,
+          )}
           aria-hidden={!expanded}
           aria-labelledby={`accordion-title-${id}`}
           id={`accordion-body-${id}`}
@@ -74,6 +81,10 @@ export default withStyles(
     body: {
       display: 'none',
       padding: `${unit}px ${unit * 2}px ${unit * 2}px`,
+    },
+
+    body_noSpacing: {
+      padding: `0 0 ${unit * 2}px`,
     },
 
     body_expanded: {
@@ -95,6 +106,11 @@ export default withStyles(
       padding: unit * 2,
       textAlign: 'left',
       width: '100%',
+    },
+
+    title_noSpacing: {
+      paddingLeft: 0,
+      paddingRight: 0,
     },
 
     titleText: {

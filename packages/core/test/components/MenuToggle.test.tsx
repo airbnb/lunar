@@ -188,4 +188,14 @@ describe('<MenuToggle />', () => {
 
     expect(onHide).toHaveBeenCalled();
   });
+
+  it('renders disabled button', () => {
+    const wrapper = shallowWithStyles(
+      <MenuToggle disabled accessibilityLabel="Foo" toggleLabel="Foo">
+        <Item>Child</Item>
+      </MenuToggle>,
+    );
+
+    expect(wrapper.find(Button).prop('disabled')).toBe(true);
+  });
 });

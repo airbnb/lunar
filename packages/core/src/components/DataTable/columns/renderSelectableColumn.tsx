@@ -1,5 +1,6 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
+import T from '../../Translate';
 import CheckBox from '../../CheckBox';
 import Spacing from '../../Spacing';
 import { ExpandedRow, SelectedRows, VirtualRow } from '../types';
@@ -40,10 +41,17 @@ export default function renderSelectableColumn(
     const spacing = isChild || !expandable ? indentSize : 0;
 
     return (
-      <Spacing left={spacing}>
+      <Spacing all={0.5} left={spacing}>
         <CheckBox
-          label=""
-          name=""
+          hideLabel
+          label={T.phrase(
+            'Select row',
+            {},
+            {
+              context: 'Selecting a row from the data table',
+              key: 'lunar.datatable.selectRow',
+            },
+          )}
           indeterminate={isNeutral}
           checked={isSelected}
           onChange={handleSelection(row.rowData)}

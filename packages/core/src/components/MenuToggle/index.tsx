@@ -15,6 +15,8 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** If true, will close the menu on click of an item. */
   closeOnClick?: boolean;
+  /** Mark the menu as disabled. */
+  disabled?: boolean;
   /** Props to pass to the `Dropdown` component. */
   dropdownProps?: Partial<DropdownProps>;
   /** If true, will not close the menu when an outside element is clicked. */
@@ -52,6 +54,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
 
   static defaultProps = {
     closeOnClick: false,
+    disabled: false,
     ignoreClickOutside: false,
     inverted: false,
     large: false,
@@ -123,6 +126,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
       accessibilityLabel,
       children,
       closeOnClick,
+      disabled,
       dropdownProps = { right: 0 },
       inverted,
       large,
@@ -144,11 +148,16 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
     return (
       <div className={cx(styles.container)} ref={this.ref}>
         {toggleIcon ? (
-          <IconButton aria-label={accessibilityLabel} onClick={this.handleToggleMenu}>
+          <IconButton
+            disabled={disabled}
+            aria-label={accessibilityLabel}
+            onClick={this.handleToggleMenu}
+          >
             {toggleIcon}
           </IconButton>
         ) : (
           <Button
+            disabled={disabled}
             afterIcon={<ExpandableIcon expanded={opened} size={iconSize} />}
             inverted={inverted}
             large={large}

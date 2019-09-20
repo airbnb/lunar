@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.0 - 2019-09-19
+
+#### 🚀 Updates
+
+- **[Apollo]** Add resolvers to Apollo settings (#187) ([c9d3abc](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/c9d3abc)), closes [#187](https://github.com/airbnb/lunar/tree/master/packages/apollo/issues/187)
+
+#### 🎨 Styles
+
+- Override native agent font styles. (#161) ([5b4d892](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/5b4d892)), closes [#161](https://github.com/airbnb/lunar/tree/master/packages/apollo/issues/161)
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
 ### 2.3.1 - 2019-08-07
 
 #### 📦 Dependencies
