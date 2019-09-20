@@ -1,13 +1,14 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import Button from '../../../src/components/Button';
+import IconButton from '../../../src/components/IconButton';
 import Pagination from '../../../src/components/Pagination';
 import LightboxHeader, { Props } from '../../../src/components/Lightbox/Header';
 import { RotateControls, ZoomControls } from '../../../src/components/ImageViewer';
 import { ARROW_RIGHT, ARROW_LEFT } from '../../../src/keys';
 
 describe('<LightboxHeader />', () => {
-  let wrapper: Enzyme.ShallowWrapper<Props, any, LightboxHeader>;
+  let wrapper: Enzyme.ShallowWrapper<Props>;
   const onChangeSlideSpy = jest.fn();
   const onToggleAsideSpy = jest.fn();
   const props = {
@@ -111,18 +112,23 @@ describe('<LightboxHeader />', () => {
   describe('rotate controls', () => {
     const spy = jest.fn();
 
-    beforeEach(() => {
+    it('renders rotate controls', () => {
       wrapper = shallow(
         <LightboxHeader {...props} showRotateControls onRotateImage={spy} />,
       ).dive();
-    });
 
-    it('renders rotate controls', () => {
       expect(wrapper.find(RotateControls)).toHaveLength(1);
     });
 
     it('calls onRotateImage', () => {
-      wrapper.instance().handleRotate(90);
+      const wrapperMount = mount(
+        <LightboxHeader {...props} showRotateControls onRotateImage={spy} />,
+      );
+      wrapperMount
+        .find(RotateControls)
+        .find(IconButton)
+        .at(1)
+        .simulate('click');
 
       expect(spy).toBeCalledWith(90);
     });
@@ -131,18 +137,21 @@ describe('<LightboxHeader />', () => {
   describe('zoom controls', () => {
     const spy = jest.fn();
 
-    beforeEach(() => {
-      wrapper = shallow(<LightboxHeader {...props} showZoomControls onZoomImage={spy} />).dive();
-    });
-
     it('renders zoom controls', () => {
+      wrapper = shallow(<LightboxHeader {...props} showZoomControls onZoomImage={spy} />).dive();
+
       expect(wrapper.find(ZoomControls)).toHaveLength(1);
     });
 
     it('calls onZoomImage', () => {
-      wrapper.instance().handleZoom(1);
+      const wrapperMount = mount(<LightboxHeader {...props} showZoomControls onZoomImage={spy} />);
+      wrapperMount
+        .find(ZoomControls)
+        .find(IconButton)
+        .at(1)
+        .simulate('click');
 
-      expect(spy).toBeCalledWith(1);
+      expect(spy).toBeCalledWith(1.5);
     });
   });
 });
