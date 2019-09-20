@@ -57,7 +57,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
         });
       }
     }
-  }
+  };
 
   componentDidMount() {
     if (this.props.persistWithHash) {
