@@ -13,7 +13,7 @@ export type Props = {
   id: string;
   /** Index amongst a collection of accordion items. */
   index?: number;
-  /** Removes horizontal padding from the item and top padding from item body. */
+  /** Removes horizontal padding from the item and top padding from the item body. */
   noSpacing?: boolean;
   /** Title of the accordion item. */
   title?: React.ReactNode;
