@@ -11,7 +11,7 @@ import LightboxHeader from '../../../src/components/Lightbox/Header';
 describe('<Lightbox />', () => {
   const requestIdleCallbackSpy = jest.fn();
   const oldRIC = window.requestIdleCallback;
-  let wrapper: Enzyme.ShallowWrapper<Props, State, Lightbox>;
+  let wrapper: Enzyme.ShallowWrapper<Props, State>;
 
   const props = {
     onClose: () => {},
