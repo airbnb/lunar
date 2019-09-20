@@ -1,6 +1,9 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import Sheet from '../../../src/components/Sheet';
+import Button from '../../../src/components/Button';
+import IconButton from '../../../src/components/IconButton';
+import { ZoomControls, RotateControls } from '../../../src/components/ImageViewer';
 import Lightbox, { Props, State } from '../../../src/components/Lightbox';
 import LightboxImage from '../../../src/components/Lightbox/Image';
 import LightboxHeader from '../../../src/components/Lightbox/Header';
@@ -73,26 +76,38 @@ describe('<Lightbox />', () => {
   });
 
   it('toggles the sidebar state', () => {
-    wrapper = shallow(<Lightbox {...props} />);
-    expect(wrapper.state('hideAside')).toBe(false);
-    wrapper.instance().handleToggleAside();
+    const images = [{ alt: 'foo', src: 'bar', aside: <div>Hello</div> }];
+    const wrapperMount = mount(<Lightbox {...props} images={images} />);
+    expect(wrapperMount.state('hideAside')).toBe(false);
 
-    expect(wrapper.state('hideAside')).toBe(true);
+    wrapperMount.find(Button).simulate('click');
+
+    expect(wrapperMount.state('hideAside')).toBe(true);
   });
 
   it('sets the scale state', () => {
-    wrapper = shallow(<Lightbox {...props} />);
-    expect(wrapper.state('scale')).toBe(1);
-    wrapper.instance().handleZoomImage(2);
+    const wrapperMount = mount(<Lightbox {...props} showZoomControls />);
+    expect(wrapperMount.state('scale')).toBe(1);
 
-    expect(wrapper.state('scale')).toBe(2);
+    wrapperMount
+      .find(ZoomControls)
+      .find(IconButton)
+      .at(1)
+      .simulate('click');
+
+    expect(wrapperMount.state('scale')).toBe(1.5);
   });
 
   it('sets the rotation state', () => {
-    wrapper = shallow(<Lightbox {...props} />);
-    expect(wrapper.state('rotation')).toBe(0);
-    wrapper.instance().handleRotateImage(90);
+    const wrapperMount = mount(<Lightbox {...props} showRotateControls />);
+    expect(wrapperMount.state('rotation')).toBe(0);
 
-    expect(wrapper.state('rotation')).toBe(90);
+    wrapperMount
+      .find(RotateControls)
+      .find(IconButton)
+      .at(1)
+      .simulate('click');
+
+    expect(wrapperMount.state('rotation')).toBe(90);
   });
 });

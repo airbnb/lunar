@@ -108,6 +108,7 @@ export default class Lightbox extends React.PureComponent<Props, State> {
   };
 
   private handleZoomImage = (scale: number) => {
+    console.log('handleZoomImage', scale);
     this.setState({ scale });
   };
 
