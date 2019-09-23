@@ -52,7 +52,7 @@
     "interweave-emoji": "^4.1.1",
     "interweave-emoji-picker": "^4.0.2",
     "lodash": "^4.17.15",
-    "luxon": "^1.17.2",
+    "luxon": "^1.19.2",
     "ms": "^2.1.2",
     "prop-types": "^15.7.2",
     "react-day-picker": "^7.3.2",
