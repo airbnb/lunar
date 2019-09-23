@@ -460,7 +460,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
     };
   }
 
-  loadItems = (value: string, force: boolean = false, callback?: () => void) => {
+  loadItems = (value: string, force?: boolean, callback?: () => void) => {
     this.setState({
       value,
       error: null,
@@ -589,8 +589,8 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
 
   renderItem = (
     item: T,
-    highlighted: boolean = false,
-    selected: boolean = false,
+    highlighted?: boolean,
+    selected?: boolean,
     props?: React.HTMLAttributes<HTMLDivElement>,
   ) => {
     const { disabled, href } = item;
@@ -604,7 +604,7 @@ export default class Autocomplete<T extends Item> extends React.Component<Props<
           highlighted={highlighted}
           href={href}
         >
-          {this.props.renderItem!(item, highlighted, selected)}
+          {this.props.renderItem!(item, !!highlighted, !!selected)}
         </MenuItem>
       </div>
     );

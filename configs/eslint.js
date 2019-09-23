@@ -1,13 +1,4 @@
 module.exports = {
-  env: {
-    // We reference process everywhere
-    node: true,
-  },
-
-  globals: {
-    ga: 'readonly',
-  },
-
   rules: {
     'class-methods-use-this': 'off',
 
@@ -33,6 +24,9 @@ module.exports = {
     },
     {
       files: ['*.story.tsx'],
+      env: {
+        node: true,
+      },
       rules: {
         'max-classes-per-file': 'off',
 

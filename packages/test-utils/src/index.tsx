@@ -1,5 +1,4 @@
-/* eslint-disable no-console, import/no-extraneous-dependencies */
-/* eslint-env node */
+/* eslint-disable no-console, import/no-extraneous-dependencies, @typescript-eslint/no-explicit-any */
 
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
@@ -42,7 +41,7 @@ export function shallowWithStyles<C extends React.Component, P = C['props'], S =
     wrappingComponentProps: props,
   });
 
-  return self ? wrapper : (wrapper.dive() as unknown);
+  return self ? wrapper : (wrapper.dive() as any);
 }
 
 export function wrapEnv(env: string, callback: () => unknown): () => unknown {
@@ -66,11 +65,11 @@ export function wrapGlobal(
   return () => {
     const old = global[property];
 
-    (global as unknown)[property] = jest.fn();
+    (global as any)[property] = jest.fn();
 
     const response = callback(global[property]);
 
-    (global as unknown)[property] = old;
+    (global as any)[property] = old;
 
     return response;
   };
@@ -129,7 +128,7 @@ export function unwrapHOCs(
       const child = result.prop('children');
 
       if (typeof child === 'function') {
-        result = new Enzyme.ShallowWrapper((child as unknown)(context), result, { context });
+        result = new Enzyme.ShallowWrapper((child as any)(context), result, { context });
 
         if (options.exitOnContext) {
           return result.shallow({ context });
@@ -152,8 +151,8 @@ export function unwrapHOCs(
 
 export function mockNotification() {
   const oldNotification = window.Notification;
-  const mock: unknown = jest.fn(() => {
-    let cb: unknown = null;
+  const mock: any = jest.fn(() => {
+    let cb: any = null;
     const api = {
       close: jest.fn(),
       onclick: jest.fn(),
@@ -189,7 +188,7 @@ export function mockResizeObserver() {
     disconnect: jest.fn(),
     observe: jest.fn(),
     unobserve: jest.fn(),
-  })) as unknown;
+  })) as any;
 
   return () => {
     window.ResizeObserver = oldObserver;

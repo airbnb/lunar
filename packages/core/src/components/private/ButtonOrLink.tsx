@@ -80,7 +80,7 @@ export default class ButtonOrLink extends React.Component<Props> {
       ...restProps
     } = this.props;
     const Tag = href ? 'a' : 'button';
-    const props: unknown = {};
+    const props: JSX.IntrinsicElements['a'] & JSX.IntrinsicElements['button'] = {};
 
     // Determine props based on element type
     if (href) {

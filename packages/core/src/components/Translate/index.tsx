@@ -24,11 +24,9 @@ export default class Translate extends React.PureComponent<Props> {
     const options: TranslateOptions = { context, html, key };
 
     if (!Translator) {
-      return <span>{Core.translate(phrase, params as unknown, options)}</span>;
+      return <span>{Core.translate(phrase, params as {}, options)}</span>;
     }
 
-    return (
-      <Translator k={key} phrase={phrase} context={context} html={html} {...(params as unknown)} />
-    );
+    return <Translator k={key} phrase={phrase} context={context} html={html} {...(params as {})} />;
   }
 }
