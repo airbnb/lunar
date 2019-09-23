@@ -74,6 +74,7 @@ export class Tab extends React.Component<Props & WithStylesProps> {
           styles.tab,
           disabled && styles.tab_disabled,
           borderless && styles.tab_borderless,
+          (disabled && borderless) && styles.tab_disabled_borderless,
           selected && styles.tab_selected,
           stretched && styles.tab_stretched,
         )}
@@ -139,6 +140,12 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
 
     ':hover': {
       borderColor: color.accent.border,
+    },
+  },
+
+  tab_disabled_borderless: {
+    ':hover': {
+      borderColor: color.clear,
     },
   },
 
