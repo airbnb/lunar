@@ -5,8 +5,10 @@ import Spacing from './Spacing';
 import DatePickerInput from './DatePickerInput';
 import DatePicker from './DatePicker';
 
-class DatePickerInputDemo extends React.Component<{}, { from: Date | null; to?: Date | null }> {
-  state = {
+type State = { from: Date | null; to?: Date | null };
+
+class DatePickerInputDemo extends React.Component<{}, State> {
+  state: State = {
     from: null,
     to: null,
   };
@@ -27,7 +29,7 @@ class DatePickerInputDemo extends React.Component<{}, { from: Date | null; to?: 
 
   render() {
     const { from, to } = this.state;
-    const modifiers = { start: from, end: to };
+    const modifiers = from && to ? { start: from, end: to } : undefined;
 
     return (
       <div>
@@ -40,11 +42,11 @@ class DatePickerInputDemo extends React.Component<{}, { from: Date | null; to?: 
             placeholder="Start date"
             value={from || undefined}
             datePickerProps={{
-              disabledDays: to && { after: to },
+              disabledDays: to ? { after: to } : undefined,
               modifiers,
               month: new Date(),
               toMonth: to || undefined,
-              selectedDays: from && [to, from, { from, to }],
+              selectedDays: from && to ? [to, from, { from, to }] : undefined,
               onDayClick: this.handleDayClick,
             }}
           />
@@ -60,11 +62,11 @@ class DatePickerInputDemo extends React.Component<{}, { from: Date | null; to?: 
             placeholder="End date"
             value={to || undefined}
             datePickerProps={{
-              disabledDays: from && { before: from },
+              disabledDays: from ? { before: from } : undefined,
               fromMonth: from || undefined,
               modifiers,
               month: from || undefined,
-              selectedDays: from && [to, from, { from, to }],
+              selectedDays: from && to ? [to, from, { from, to }] : undefined,
             }}
           />
         </Spacing>

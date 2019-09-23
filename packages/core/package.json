@@ -23,8 +23,8 @@
   },
   "devDependencies": {
     "@airbnb/lunar-test-utils": "^2.2.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "dependencies": {
     "@types/airbnb-prop-types": "^2.13.1",
@@ -32,8 +32,8 @@
     "@types/lodash": "^4.14.134",
     "@types/luxon": "^1.15.1",
     "@types/prop-types": "^15.7.1",
-    "@types/react": "^16.8.25",
-    "@types/react-dom": "^16.8.5",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
     "aesthetic": "^4.1.0",
@@ -55,7 +55,7 @@
     "luxon": "^1.17.2",
     "ms": "^2.1.2",
     "prop-types": "^15.7.2",
-    "react-day-picker": "^7.3.0",
+    "react-day-picker": "^7.3.2",
     "react-virtualized": "9.21.1",
     "shallowequal": "^1.1.0",
     "utility-types": "^3.7.0",

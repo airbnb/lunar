@@ -21,9 +21,9 @@
   },
   "devDependencies": {
     "@airbnb/lunar-test-utils": "^2.2.1",
-    "react": "^16.8.6"
+    "react": "^16.9.0"
   },
   "dependencies": {
-    "@types/react": "^16.8.25"
+    "@types/react": "^16.9.2"
   }
 }

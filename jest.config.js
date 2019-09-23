@@ -51,7 +51,7 @@ module.exports = {
   },
   roots: ['<rootDir>/packages'],
   setupFiles: ['./test/setup.js'],
-  setupFilesAfterEnv: ['./test/setupAfterEnv.js', '@testing-library/react/cleanup-after-each'],
+  setupFilesAfterEnv: ['./test/setupAfterEnv.js'],
   testEnvironment: './test/environment.js',
   testURL: 'http://localhost',
   verbose: false,
