@@ -8541,45 +8541,41 @@ interpret@^1.0.0, interpret@^1.2.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
 
-interweave-autolink@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/interweave-autolink/-/interweave-autolink-3.0.1.tgz#7a9db3cb56d98f6c442b9ffb825606b11c2e27fd"
-  integrity sha512-NoaKf7kJptTWu2RET/Grb61oe79lxLlRqX9aApaS7maVqMu2iz4fo1uK3JKi+y2FHd/a60Jbwu+SgcF2/vifMw==
+interweave-autolink@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/interweave-autolink/-/interweave-autolink-3.0.2.tgz#51250928f132782ef9e79dd9b833eb60604a10c6"
+  integrity sha512-NPw+1bhItv72I3ef291HsPySlX+KUrAoRx+jFA5VDNsuzBh563EJzqTq56fIJ0yaeytNFJhO0CAXmr9larympw==
   dependencies:
-    "@types/prop-types" "*"
     "@types/react" "*"
     prop-types "^15.7.2"
 
-interweave-emoji-picker@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/interweave-emoji-picker/-/interweave-emoji-picker-4.0.1.tgz#f133c5ffae867afdb84c91e80376091f65432513"
-  integrity sha512-xZYINkAqvNgIYMSXKMyB8zY5WgFTJ1jJNG4IIYfY/gbpQtaxNcpdqGjKXDTpvpdzS0jeeU45mh1Fg5s8NOAMNQ==
+interweave-emoji-picker@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/interweave-emoji-picker/-/interweave-emoji-picker-4.0.2.tgz#9f0d33b397c3ce739ee939583a80e30480c68c93"
+  integrity sha512-mBFKz0fpxgtf6cLblQtn5MKYcJsTbfg3vAG8dO5n38yzSh88RTCwl0K0bQ+ji/IuX+TGs+v7rfYpr509Iu5JCA==
   dependencies:
     "@types/lodash" "*"
-    "@types/prop-types" "*"
     "@types/react" "*"
     "@types/react-virtualized" "*"
-    lodash "^4.17.11"
+    lodash "^4.17.15"
     prop-types "^15.7.2"
-    react-virtualized "^9.21.0"
+    react-virtualized "^9.21.1"
 
-interweave-emoji@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/interweave-emoji/-/interweave-emoji-4.1.0.tgz#642d55725ea3d07fa1e761860af7bb50b8babee1"
-  integrity sha512-HL18Nv0bFh4LcDuXBxGrdszUuSfpl/KY3g8oY44M+/ZJIZnU7Ys/JMzBX10daWXxv0DVM37QrSMJ/6Z8QvKgIQ==
+interweave-emoji@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/interweave-emoji/-/interweave-emoji-4.1.1.tgz#e36783eb6c375df7218a61f4cfa0198e90066c4c"
+  integrity sha512-uwjR25aYHxxfWv14HUV4h8wPeK2cKJbsoLQpVjFXLq2qmP2quSCjg/pBSo3d83+00RFrTUyUCbHI31duiZp7Uw==
   dependencies:
-    "@types/prop-types" "*"
     "@types/react" "*"
     emojibase-regex "^2.0.1"
     hoist-non-react-statics "^3.3.0"
     prop-types "^15.7.2"
 
-interweave@^11.1.0:
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/interweave/-/interweave-11.1.0.tgz#1da968783f248990c814219a16536fb67e49a2f8"
-  integrity sha512-Y4x3K9eYnhgHCLcQls1gyLn0DXDtuMOdArmpjdgrM+Y/kt6IOYOa6AxbqhRPxh+3UaSZZ53APf4SAJIDqn9ORg==
+interweave@^11.2.0:
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/interweave/-/interweave-11.2.0.tgz#d0571cdc1002ef08f3b1f64c458bd320780c50c3"
+  integrity sha512-33h9LOXbT52tMin3IyLBPcd5RbiwroP/Sxr0OamnJJU7A/jh0XtZKGvdcSNKYRC7sLZuDk+ZJ2XVrmkcMU5i6w==
   dependencies:
-    "@types/prop-types" "*"
     "@types/react" "*"
     escape-html "^1.0.3"
     prop-types "^15.7.2"
@@ -12362,7 +12358,7 @@ react-textarea-autosize@^7.1.0:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.6.0"
 
-react-virtualized@9.21.1, react-virtualized@^9.21.0:
+react-virtualized@9.21.1, react-virtualized@^9.21.1:
   version "9.21.1"
   resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.21.1.tgz#4dbbf8f0a1420e2de3abf28fbb77120815277b3a"
   integrity sha512-E53vFjRRMCyUTEKuDLuGH1ld/9TFzjf/fFW816PE4HFXWZorESbSTYtiZz1oAjra0MminaUU1EnvUxoGuEFFPA==
