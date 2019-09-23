@@ -19,6 +19,8 @@ export type Props = {
   onChange?: (key: string) => void;
   /** Persist the selected tab through the defined URL hash. */
   persistWithHash?: string;
+  /** Rounded tab style, implies borderless. */
+  rounded?: boolean;
   /** Wrap tabs in a scrollable region. */
   scrollable?: boolean;
   /** Stretch tabs to fill the full width. */
@@ -38,6 +40,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
     defaultKey: '',
     onChange() {},
     persistWithHash: '',
+    rounded: false,
     scrollable: false,
     stretched: false,
   };
@@ -110,13 +113,14 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
   };
 
   render() {
-    const { cx, borderless, children, scrollable, stretched, styles } = this.props;
+    const { cx, borderless, children, rounded, scrollable, stretched, styles } = this.props;
     const { selectedKey } = this.state;
+    const noborder = borderless || rounded;
 
     // Generate content
     let content = null;
     const nav = (
-      <nav role="tablist" className={cx(styles.nav, borderless && styles.nav_borderless)}>
+      <nav role="tablist" className={cx(styles.nav, noborder && styles.nav_noborder)}>
         {React.Children.map(children, (child, i) => {
           if (!child) {
             return null;
@@ -136,6 +140,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
           return React.cloneElement(child as React.ReactElement<TabProps>, {
             borderless,
             keyName: String(key),
+            rounded,
             selected,
             stretched,
             onClick: this.handleClick,
@@ -171,7 +176,7 @@ export default withBoundary('Tabs')(
       display: 'flex',
     },
 
-    nav_borderless: {
+    nav_noborder: {
       borderColor: color.clear,
     },
 

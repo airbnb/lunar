@@ -21,6 +21,8 @@ export type Props = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabl
   onClick?: (key: string) => void;
   /** Callback fired when the tab is selected. */
   onSelected?: () => void;
+  /** Rounded tab style, implies borderless. */
+  rounded?: boolean;
   /** Whether the tab is selected or not. */
   selected?: boolean;
   /** Decrease font size to small. */
@@ -34,6 +36,7 @@ export class Tab extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
     borderless: false,
     children: null,
+    rounded: false,
     selected: false,
     small: false,
     stretched: false,
@@ -61,20 +64,22 @@ export class Tab extends React.Component<Props & WithStylesProps> {
       href,
       keyName,
       label,
+      rounded,
       selected,
       small,
       stretched,
       styles,
     } = this.props;
     const trackingName = upperFirst(camelCase(keyName || 'Tab'));
+    const noborder = rounded || borderless;
 
     return (
       <span
         className={cx(
           styles.tab,
           disabled && styles.tab_disabled,
-          borderless && styles.tab_borderless,
-          (disabled && borderless) && styles.tab_disabled_borderless,
+          noborder && styles.tab_noborder,
+          noborder && disabled && styles.tab_disabled_noborder,
           selected && styles.tab_selected,
           stretched && styles.tab_stretched,
         )}
@@ -118,7 +123,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     },
   },
 
-  tab_borderless: {
+  tab_noborder: {
     borderColor: color.clear,
   },
 
@@ -143,7 +148,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     },
   },
 
-  tab_disabled_borderless: {
+  tab_disabled_noborder: {
     ':hover': {
       borderColor: color.clear,
     },
