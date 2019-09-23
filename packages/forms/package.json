@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@types/airbnb-prop-types": "^2.13.1",
-    "@types/lodash": "^4.14.134",
+    "@types/lodash": "^4.14.139",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
     "airbnb-prop-types": "^2.14.0",
