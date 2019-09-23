@@ -34,6 +34,6 @@
     "lodash": "^4.17.15",
     "shallowequal": "^1.1.0",
     "utility-types": "^3.7.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.3"
   }
 }

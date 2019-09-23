@@ -3591,45 +3591,45 @@ address@1.0.3, address@^1.0.1:
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
   integrity sha512-z55ocwKBRLryBs394Sm3ushTtBeg6VAeuku7utSoSnsJKvKcnXFIyC6vh27n3rXyxSgkJBBCAvyOn7gSUcTYjg==
 
-aesthetic-adapter-aphrodite@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/aesthetic-adapter-aphrodite/-/aesthetic-adapter-aphrodite-4.0.0.tgz#4c3641bdcf7381aa852a5c0eba07772938e3359e"
-  integrity sha512-pPOdj6AaysuDQNjGIeQB1cDA9p1KigZOZgH6dcLW7NCPfWg/TBpksSQaw0Kzxe2CeZHS4WkzUPEu6BI0eyksFg==
+aesthetic-adapter-aphrodite@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/aesthetic-adapter-aphrodite/-/aesthetic-adapter-aphrodite-4.1.0.tgz#64510b52e023914e262e3d27be0970bcfe29d40d"
+  integrity sha512-6JfXYYvChk2nS4WQWXz1sIn8f5uZLcaxq+u8REYlZe96dQQIT/0W8/Q2ImkJlbaIpyAnnPuA918xImZ9deeSjw==
   dependencies:
-    aesthetic-utils "^2.0.0"
+    aesthetic-utils "^2.0.1"
 
-aesthetic-react@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/aesthetic-react/-/aesthetic-react-1.1.1.tgz#4174bee86012105b2f1750eff0873610db84c921"
-  integrity sha512-a9GgGJgJ/Az1jk+zInfh7f0FRh3IclKRQ9tEsua/MplA136Neu6pxsavryrH00aew+QHyI91Tcin5jFhfeLiUA==
+aesthetic-react@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/aesthetic-react/-/aesthetic-react-1.1.2.tgz#5d88e8bac6aceddb02c43e4ccdbea95e927edbdb"
+  integrity sha512-ovBVEYimyS6r9gwBi+NrDuCHvtemWGzXXaH0NWZo1owaESEtlJekjFZOryWt9YxQNBwVIb1ThCgPRi5FyU/5tA==
   dependencies:
     "@types/react" "*"
-    aesthetic-utils "^2.0.0"
+    aesthetic-utils "^2.0.1"
     direction "^1.0.3"
     hoist-non-react-statics "^3.3.0"
     prop-types "^15.7.2"
     utility-types "^3.7.0"
-    uuid "^3.3.2"
+    uuid "^3.3.3"
 
-aesthetic-utils@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/aesthetic-utils/-/aesthetic-utils-2.0.0.tgz#52f609ea07687b9a1c8d76bd40cbf2cb922f8517"
-  integrity sha512-D9dGH0ewS9aygPhBcbT+5RtfOTTJLvN2Nce4mIFhkprXcQaagtRz8XZHhaQ1vIbLvdBBpE2VUEGh+PzPFZ3PzA==
+aesthetic-utils@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/aesthetic-utils/-/aesthetic-utils-2.0.1.tgz#3afd68436a196e5317ddb23e9c5f7151677d4e55"
+  integrity sha512-hMABu/GC5ABBBKGZRxsem+98JWqD2mL9hQItMdKWRiUkYbVUy+KQJpMxJRU/pMNkPjAMSQzKXUpHIP6SH2FBvw==
   dependencies:
     utility-types "^3.7.0"
 
-aesthetic@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/aesthetic/-/aesthetic-4.1.0.tgz#35b5b086a16f6bf6c2b7f7f5f3aeddb66c327d80"
-  integrity sha512-7Z/0xUuT0bUqFiN4621Fj2eZz0nzR2u75jEaER713k7+NiXRxDGZBzkOyQyZZlWMkPBIk3iaKbOiNuOHcBKRKA==
+aesthetic@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/aesthetic/-/aesthetic-4.1.1.tgz#5ea2ae7f49a8277ca48c93943b408c934fd99672"
+  integrity sha512-kZH+8Mjc/AfzwLoCb/62+BV1k3YstrNFyFtrYzRedRCaSH3Jy9wU4w6rbnzMyF3Oow64eJjDxnIooOkUhWWAOA==
   dependencies:
-    aesthetic-utils "^2.0.0"
+    aesthetic-utils "^2.0.1"
     csstype "^2.6.6"
     extend "^3.0.2"
-    rtl-css-js "^1.13.0"
+    rtl-css-js "^1.13.1"
     stylis "^3.5.4"
     utility-types "^3.7.0"
-    uuid "^3.3.2"
+    uuid "^3.3.3"
 
 agent-base@4, agent-base@^4.1.0, agent-base@~4.2.1:
   version "4.2.1"
@@ -3781,13 +3781,13 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-aphrodite@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/aphrodite/-/aphrodite-2.3.1.tgz#376b9964c8742218fd10b8b82786f9d22e650e41"
-  integrity sha512-hwRxpYarrHLRti62RlWplK3A1bDkh4dw5jjDh4Xvra6z45B5yx9Rqsiaw3duELCI/FLOYxlxVe1bysRpIw5X1Q==
+aphrodite@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/aphrodite/-/aphrodite-2.4.0.tgz#ec1a2afa41ba7310a47a4f1fba27919d99572c91"
+  integrity sha512-1rVRlLco+j1YAT5aKEE8Wuw5zWV+tI41/quEheJAG0vNaGHE64iJ/a2SiVMz8Uc80VdP2/Hjlfd2bPJOWsqJuQ==
   dependencies:
     asap "^2.0.3"
-    inline-style-prefixer "^5.0.4"
+    inline-style-prefixer "^5.1.0"
     string-hash "^1.1.3"
 
 apollo-cache-inmemory@^1.6.3:
@@ -8510,7 +8510,7 @@ init-package-json@^1.10.3:
     validate-npm-package-license "^3.0.1"
     validate-npm-package-name "^3.0.0"
 
-inline-style-prefixer@^5.0.4:
+inline-style-prefixer@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-5.1.0.tgz#cb63195f9456dcda25cf59743e45c4d9815b0811"
   integrity sha512-giteQHPMrApQOSjNSjteO5ZGSGMRf9gas14fRy2lg2buSc1nRnj6o6xuNds5cMTKrkncyrTu3gJn/yflFMVdmg==
@@ -12972,10 +12972,10 @@ rsvp@^4.8.4:
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
   integrity sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==
 
-rtl-css-js@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.13.0.tgz#e97ebb67dd9fc6c4be1278730901967fc432ed9f"
-  integrity sha512-zUydBqLfSKEk6XF+OiK1fmReAsnoZz0MKIYPsAfP4DZuCdLewtH7nDwXpnqd8jbL7J1pE9uCaOLTkfQGAFfJRw==
+rtl-css-js@^1.13.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.13.1.tgz#80deabf6e8f36d6767d495cd3eb60fecb20c67e1"
+  integrity sha512-jgkIDj6Xi25kAEm5oYM3ZMFiOQhpLEcXi2LY/6bVr91cVz73hciHKneL5AMVPxOcks/JuizSaaNsvNRkeAWe3w==
   dependencies:
     "@babel/runtime" "^7.1.2"
 
@@ -14542,6 +14542,11 @@ uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
+
+uuid@^3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
+  integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
 
 validate-npm-package-license@^3.0.1, validate-npm-package-license@^3.0.3:
   version "3.0.4"

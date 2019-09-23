@@ -20,8 +20,8 @@
     "react": "^16.8.0"
   },
   "dependencies": {
-    "aesthetic": "^4.1.0",
-    "aesthetic-react": "^1.1.1"
+    "aesthetic": "^4.1.1",
+    "aesthetic-react": "^1.1.2"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.3",

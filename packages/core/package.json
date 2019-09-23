@@ -36,11 +36,11 @@
     "@types/react-dom": "^16.9.0",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
-    "aesthetic": "^4.1.0",
-    "aesthetic-adapter-aphrodite": "^4.0.0",
-    "aesthetic-react": "^1.1.1",
+    "aesthetic": "^4.1.1",
+    "aesthetic-adapter-aphrodite": "^4.1.0",
+    "aesthetic-react": "^1.1.2",
     "airbnb-prop-types": "^2.14.0",
-    "aphrodite": "^2.3.1",
+    "aphrodite": "^2.4.0",
     "copy-to-clipboard": "^3.2.0",
     "debounce-promise": "^3.1.2",
     "emojibase": "^2.2.0",
@@ -59,6 +59,6 @@
     "react-virtualized": "9.21.1",
     "shallowequal": "^1.1.0",
     "utility-types": "^3.7.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.3"
   }
 }
