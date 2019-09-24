@@ -14,11 +14,7 @@ matrix:
 jobs:
   include:
     - stage: Tests
-      name: Happo
-      script: yarn run happo:ci:travis
-      node_js: '12'
-      if: type = pull_request OR branch = master
-    - name: Test @ 8
+      name: Test @ 8
       script: yarn run jest:coverage -w 4
       node_js: '8'
     - name: Test @ 10
@@ -36,16 +32,6 @@ jobs:
     - name: Lint @ 12
       script: yarn run lint:errors
       node_js: '12'
-    - stage: Publish Storybook
-      script: skip
-      node_js: '12'
-      if: branch = master
-      deploy:
-        provider: script
-        script: yarn run deploy:ghp
-        skip_cleanup: true
-        on:
-          branch: master
     - stage: Release Packages
       script: skip
       node_js: '12'
