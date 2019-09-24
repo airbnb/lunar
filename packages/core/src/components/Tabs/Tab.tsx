@@ -72,6 +72,7 @@ export class Tab extends React.Component<Props & WithStylesProps> {
     } = this.props;
     const trackingName = upperFirst(camelCase(keyName || 'Tab'));
     const noborder = rounded || borderless;
+    const nohover = rounded || (noborder && disabled);
 
     return (
       <span
@@ -79,8 +80,8 @@ export class Tab extends React.Component<Props & WithStylesProps> {
           styles.tab,
           disabled && styles.tab_disabled,
           noborder && styles.tab_noborder,
-          noborder && disabled && styles.tab_disabled_noborder,
-          selected && styles.tab_selected,
+          nohover && styles.tab_nohover,
+          selected && !rounded && styles.tab_selected,
           stretched && styles.tab_stretched,
         )}
       >
@@ -95,8 +96,10 @@ export class Tab extends React.Component<Props & WithStylesProps> {
             role="tab"
             className={cx(
               styles.tabButton,
+              rounded && styles.tabButton_rounded,
               small && styles.tabButton_small,
               selected && styles.tabButton_active,
+              disabled && styles.tabButton_disabled,
             )}
             onClick={disabled ? undefined : this.handleClick}
           >
@@ -140,7 +143,6 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
   },
 
   tab_disabled: {
-    ...pattern.disabled,
     borderColor: color.accent.border,
 
     ':hover': {
@@ -148,7 +150,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     },
   },
 
-  tab_disabled_noborder: {
+  tab_nohover: {
     ':hover': {
       borderColor: color.clear,
     },
@@ -173,6 +175,14 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     fontWeight: font.weights.bold,
     borderTopLeftRadius: ui.borderRadius,
     borderTopRightRadius: ui.borderRadius,
+  },
+
+  tabButton_disabled: {
+    ...pattern.disabled
+  },
+
+  tabButton_rounded: {
+
   },
 
   tabButton_small: {
