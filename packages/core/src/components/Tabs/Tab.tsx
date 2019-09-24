@@ -192,12 +192,13 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
   },
 
   tabButton_rounded_selected: {
+    boxShadow: ui.boxShadowMedium,
     color: color.base,
-    borderColor: color.core.secondary[2],
-    backgroundColor: color.core.secondary[2],
+    borderColor: color.core.secondary[4],
+    backgroundColor: color.core.secondary[3],
     ':hover': {
       backgroundColor: 'none'
-    }
+    },
   },
 
   tabButton_disabled: {
