@@ -29,19 +29,21 @@ export default function Toasts() {
     return null;
   }
 
+  const toasts = [...context.toasts];
+
+  toasts.reverse();
+
   return (
     <div className={cx(styles.toasts)}>
-      {context.toasts
-        .map(toast => (
-          <Toast
-            {...toast.props}
-            key={toast.id}
-            id={toast.id}
-            message={toast.message}
-            onRemove={context.removeToast}
-          />
-        ))
-        .reverse()}
+      {toasts.map(toast => (
+        <Toast
+          {...toast.props}
+          key={toast.id}
+          id={toast.id}
+          message={toast.message}
+          onRemove={context.removeToast}
+        />
+      ))}
     </div>
   );
 }

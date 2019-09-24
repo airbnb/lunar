@@ -152,9 +152,9 @@ class DatePickerMouseRangeSelectDemo extends React.Component<{}, RangeState> {
 
   render() {
     const { from, to, enteredTo } = this.state;
-    const modifiers = { start: from, end: enteredTo };
-    const disabledDays = from && { before: from };
-    const selectedDays = from && enteredTo && [from, { from, to: enteredTo }];
+    const modifiers = from && enteredTo ? { start: from, end: enteredTo } : undefined;
+    const disabledDays = from ? { before: from } : undefined;
+    const selectedDays = from && enteredTo ? [from, { from, to: enteredTo }] : undefined;
 
     return (
       <div>
