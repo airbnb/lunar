@@ -182,7 +182,9 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
   },
 
   tabButton_rounded: {
-
+    ...pattern.regularButton,
+    border: `2px solid ${color.accent.border}`,
+    borderRadius: ui.borderRadius * 2
   },
 
   tabButton_small: {
