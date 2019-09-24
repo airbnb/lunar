@@ -59,6 +59,21 @@ storiesOf('Core/Tabs', module)
       </Tab>
     </Tabs>
   ))
+  .add('Persist with hash and back button.', () => (
+    <Tabs persistWithHash="tab">
+      <Tab key="a" label="Bruce W.">
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Tab>
+
+      <Tab key="b" label="Clark K.">
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Tab>
+    </Tabs>
+  ))
   .add('With scrollable variable height tabs.', () => (
     <div style={{ width: '325px' }}>
       <Tabs scrollable>

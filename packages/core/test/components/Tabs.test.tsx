@@ -250,4 +250,34 @@ describe('<Tabs/>', () => {
         .prop('borderless'),
     ).toBe(true);
   });
+
+  it('Persist with hash and back button.', () => {
+    const addSpy = jest.spyOn(document, 'addEventListener');
+    const rmSpy = jest.spyOn(document, 'removeEventListener');
+
+    const wrapper = unwrap(
+      <Tabs persistWithHash="tab">
+        <Tab key="a" label="One" />
+        <Tab key="b" label="Two" />
+      </Tabs>,
+    );
+
+    expect(addSpy).toHaveBeenCalledWith('popstate', expect.any(Function));
+
+    wrapper
+      .find(Tab)
+      .at(1)
+      .simulate('click', 'b');
+    expect(wrapper.state('selectedKey')).toBe('b');
+    expect(location.hash).toBe('#tab=b');
+
+    location.hash = '#tab=a';
+    document.dispatchEvent(new Event('popstate'));
+    expect(wrapper.state('selectedKey')).toBe('a');
+
+    // @ts-ignore
+    wrapper.instance().componentWillUnmount();
+
+    expect(rmSpy).toHaveBeenCalledWith('popstate', expect.any(Function));
+  });
 });
