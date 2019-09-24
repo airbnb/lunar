@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.29.3 - 2019-09-24
+
+#### 🐞 Fixes
+
+- **[Tabs]** Persist active tab when back button is used. (#190) ([c3ff68f](https://github.com/airbnb/lunar/tree/master/packages/core/commit/c3ff68f)), closes [#190](https://github.com/airbnb/lunar/tree/master/packages/core/issues/190)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.29.2 - 2019-09-24
 
 #### 📦 Dependencies
