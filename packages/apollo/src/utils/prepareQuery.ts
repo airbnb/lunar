@@ -7,7 +7,7 @@ export default function prepareQuery<Vars = {}>(
   let query = docOrQuery;
 
   if ((query as DocumentNode).kind) {
-    query = { query } as unknown;
+    return { query } as DataProxy.Query<Vars>;
   }
 
   return query as DataProxy.Query<Vars>;

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 type Props = { [key: string]: unknown };
 
-const componentName: PropTypes.Requireable<unknown> = (
+const componentName: PropTypes.Requireable<any> = (
   props: Props,
   propName: string,
   compName: string,

@@ -4,10 +4,10 @@ import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 
 export default function finishHOC<
-  T extends React.ComponentType<unknown>,
-  W extends React.ComponentType<unknown>
+  T extends React.ComponentType<any>,
+  W extends React.ComponentType<any>
 >(name: string, WrapperComponent: T, WrappedComponent: W) {
-  /* istanbul ignore next */
+  // istanbul ignore next
   const wrappedName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
   WrapperComponent.displayName = `${name}(${wrappedName})`;

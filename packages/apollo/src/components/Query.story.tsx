@@ -15,6 +15,11 @@ const QUERY = gql`
   }
 `;
 
+type User = {
+  id: number;
+  name: string;
+};
+
 const mock = {
   request: {
     query: QUERY,
@@ -51,8 +56,8 @@ storiesOf('Apollo/Query', module)
   })
   .add('Execute a GraphQL query and render the response when received.', () => (
     <MockedProvider mocks={[mock]} addTypename={false}>
-      <Query query={QUERY} variables={{ id: 123 }}>
-        {({ user }) => <div>Loaded user: {user.name}</div>}
+      <Query<{ user: User }> query={QUERY} variables={{ id: 123 }}>
+        {data => data && <div>Loaded user: {data.user.name}</div>}
       </Query>
     </MockedProvider>
   ))

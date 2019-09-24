@@ -13,6 +13,15 @@ import T from '../Translate';
 import Text from '../Text';
 import renderElementOrFunction, { RenderableProp } from '../../utils/renderElementOrFunction';
 
+export type Item = {
+  disabled?: boolean;
+  href?: string;
+  id?: string | number;
+  name?: string;
+  title?: string;
+  value?: string;
+};
+
 export const CACHE_DURATION = toMilliseconds('5 minutes');
 
 function getItemValue(item: Item): string {
@@ -23,18 +32,9 @@ function renderItem(item: Item): NonNullable<React.ReactNode> {
   return <Text>{item.name || item.title || item.value}</Text>;
 }
 
-export type Item = {
-  disabled?: boolean;
-  href?: string;
-  id?: string | number;
-  name?: string;
-  title?: string;
-  value?: string;
-};
-
 export type ItemResponseType<T> = T[] | { items?: T[]; results?: T[] };
 
-export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
+export type Props<T extends Item = Item> = Omit<BaseInputProps, 'id'> &
   FormFieldProps & {
     /** Accessibility label. */
     accessibilityLabel: string;
@@ -93,7 +93,7 @@ export type Props<T extends Item> = Omit<BaseInputProps, 'id'> &
     shouldItemRender?: (item: T, value: string) => boolean;
   };
 
-export type State<T extends Item> = {
+export type State<T extends Item = Item> = {
   error: Error | null;
   highlightedIndex: number | null;
   id: string;
@@ -104,7 +104,10 @@ export type State<T extends Item> = {
 };
 
 /** An uncontrolled input field that utilizes a search lookup for automatic completion. */
-export default class Autocomplete<T extends Item> extends React.Component<Props<T>, State<T>> {
+export default class Autocomplete<T extends Item = Item> extends React.Component<
+  Props<T>,
+  State<T>
+> {
   static defaultProps = {
     autoFocus: false,
     clearOnSelect: false,

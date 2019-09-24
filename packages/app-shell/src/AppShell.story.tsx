@@ -6,6 +6,7 @@ import Breadcrumbs, { TrackBreadcrumb } from './components/Breadcrumbs';
 import { PopToast } from './components/Toasts';
 import AppContext from './components/AppContext';
 import AppShell from '.';
+import { Context } from './types';
 
 class PageDataExample extends React.Component<{ onSubmit: Function }, { data: string }> {
   state = {
@@ -43,7 +44,7 @@ storiesOf('AppShell', module)
   .add('Supports toasts.', () => (
     <AppShell name="Lunar">
       <AppContext.Consumer>
-        {({ addSuccessToast, addFailureToast }: unknown) => (
+        {({ addSuccessToast, addFailureToast }: Context) => (
           <div>
             <Button
               onClick={() => {
@@ -87,7 +88,7 @@ storiesOf('AppShell', module)
   .add('Supports page data.', () => (
     <AppShell name="Lunar">
       <AppContext.Consumer>
-        {({ addPageData, data }: unknown) => (
+        {({ addPageData, data }: Context) => (
           <div>
             <PageDataExample onSubmit={addPageData} />
 

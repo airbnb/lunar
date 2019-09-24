@@ -29,9 +29,7 @@ storiesOf('Forms/Autocomplete', module)
         accessibilityLabel="Autocomplete"
         validator={() => {}}
         onLoadItems={value =>
-          Promise.resolve(
-            items.filter(item => item.name.toLowerCase().match(value.toLowerCase())),
-          ) as unknown
+          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
         }
       />
     </Form>

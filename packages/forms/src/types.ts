@@ -21,9 +21,9 @@ import {
 
 export type Context = {
   change: (name: string, value: unknown, batchValues?: object) => void;
-  getFields: () => FieldState<unknown>[];
-  getState: () => FormState<unknown>;
-  register: (field: Field<unknown>, onUpdate: FieldSubscriber<unknown>) => Unsubscribe;
+  getFields: () => FieldState<any>[];
+  getState: () => FormState<any>;
+  register: (field: Field<any>, onUpdate: FieldSubscriber<any>) => Unsubscribe;
   submit: () => Promise<object | undefined>;
 };
 

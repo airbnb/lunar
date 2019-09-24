@@ -3,6 +3,7 @@ import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withSty
 import ButtonOrLink, { ButtonOrLinkTypes } from '@airbnb/lunar/lib/components/private/ButtonOrLink';
 import iconComponent from '@airbnb/lunar/lib/prop-types/iconComponent';
 import Text from '@airbnb/lunar/lib/components/Text';
+import { WithIconWrapperProps } from '@airbnb/lunar-icons/lib/withIcon';
 
 export type Props = {
   /** Mark the item as active. */
@@ -10,7 +11,7 @@ export type Props = {
   /** Render as an anchor link with a URL. */
   href?: string;
   /** Icon to display above the label. */
-  icon: NonNullable<React.ReactElement<unknown>>;
+  icon: NonNullable<React.ReactElement<WithIconWrapperProps>>;
   /** Item label. */
   label?: React.ReactNode;
   /** Callback fired when the element is clicked. */

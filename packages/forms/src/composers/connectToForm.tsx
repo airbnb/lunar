@@ -59,7 +59,7 @@ export interface ConnectToFormWrapperProps<T> extends Field<T> {
   unregisterOnUnmount?: boolean;
 }
 
-export interface ConnectToFormState extends Required<FieldState<unknown>> {
+export interface ConnectToFormState extends Required<FieldState<any>> {
   name: string;
 }
 
@@ -211,7 +211,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
       };
 
       // istanbul ignore next
-      private handleUpdate = (state: FieldState<unknown>) => {
+      private handleUpdate = (state: FieldState<any>) => {
         if (!this.mounted) {
           return;
         }
@@ -252,7 +252,8 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
     function ConnectToFormWrapper(props: OwnProps) {
       const form = useContext(FormContext);
 
-      return form ? <ConnectToForm {...(props as unknown)} form={form} /> : null;
+      // @ts-ignore Props spreading
+      return form ? <ConnectToForm {...props} form={form} /> : null;
     }
 
     return finishHOC('connectToForm', ConnectToFormWrapper, WrappedComponent);

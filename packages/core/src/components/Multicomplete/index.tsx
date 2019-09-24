@@ -10,7 +10,7 @@ import Chip from './private/Chip';
 
 export type Item = AutocompleteItem;
 
-export type Props<T extends Item> = Omit<
+export type Props<T extends Item = Item> = Omit<
   AutocompleteProps<T>,
   'children' | 'isItemSelected' | 'onChange' | 'value'
 > & {
@@ -25,7 +25,7 @@ export type State = {
 };
 
 /** An uncontrolled input field for selecting multiple values via an autocomplete. */
-export default class Multicomplete<T extends Item> extends React.Component<Props<T>, State> {
+export default class Multicomplete<T extends Item = Item> extends React.Component<Props<T>, State> {
   static defaultProps = {
     value: [],
   };

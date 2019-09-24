@@ -38,7 +38,7 @@ export type Props<Data, Vars> = Omit<QueryComponentOptions<Data, Vars>, 'childre
  * A declarative component to make GraphQL queries.
  * Based on Apollo's [Query](https://www.apollographql.com/docs/react/essentials/queries.html#props) component.
  */
-export default class Query<Data = unknown, Vars = OperationVariables> extends React.Component<
+export default class Query<Data = {}, Vars = OperationVariables> extends React.Component<
   Props<Data, Vars>
 > {
   static defaultProps = {
@@ -70,6 +70,7 @@ export default class Query<Data = unknown, Vars = OperationVariables> extends Re
   render() {
     const { children, loading, error, ...props } = this.props;
 
-    return <BaseQuery<Data, Vars> {...(props as unknown)}>{this.handleRender}</BaseQuery>;
+    // @ts-ignore Prop spreading
+    return <BaseQuery<Data, Vars> {...props}>{this.handleRender}</BaseQuery>;
   }
 }

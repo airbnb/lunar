@@ -199,7 +199,7 @@ storiesOf('Forms/Form', module)
         validator={isRequired}
         onChange={action('onChange')}
         onLoadItems={value =>
-          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value))) as unknown
+          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value)))
         }
       />
 
@@ -210,13 +210,11 @@ storiesOf('Forms/Form', module)
         label="Multicomplete"
         // defaultValue={['blue', 'red']}
         name="multicomplete"
-        renderItem={(item: unknown, highlighted, selected) => (
-          <Text bold={selected}>{item.name}</Text>
-        )}
+        renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
         validator={isRequired}
         onChange={action('onChange')}
         onLoadItems={value =>
-          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value))) as unknown
+          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value)))
         }
       />
 

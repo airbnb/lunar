@@ -14,6 +14,7 @@ import {
   Unsubscribe,
   FieldSubscriber,
   FieldValidator,
+  MutableState,
 } from 'final-form';
 import T from '@airbnb/lunar/lib/components/Translate';
 import { getErrorMessage } from '@airbnb/lunar/lib/components/ErrorMessage';
@@ -68,7 +69,7 @@ export type State<Data extends object> = FinalFormState<Data> & {
 /**
  * A form manager built on [final-form](https://github.com/final-form/final-form).
  */
-export default class Form<Data extends object = unknown> extends React.Component<
+export default class Form<Data extends object = {}> extends React.Component<
   Props<Data>,
   State<Data>
 > {
@@ -341,9 +342,12 @@ export default class Form<Data extends object = unknown> extends React.Component
   /**
    * Form mutator to manually set a fields configuration and value.
    */
-  setFieldConfig([name, config]: [string, Field<unknown>], { fields, formState }: unknown) {
+  setFieldConfig(
+    [name, config]: [string, Field<unknown>],
+    { fields, formState }: MutableState<object>,
+  ) {
     const field = fields[name];
-    const initial = getIn(formState.initialValues, name);
+    const initial = getIn(formState.initialValues!, name);
     const value = typeof initial === 'undefined' ? config.defaultValue : initial;
 
     if (!field) {
@@ -351,12 +355,14 @@ export default class Form<Data extends object = unknown> extends React.Component
     }
 
     field.data.config = config;
+    // @ts-ignore
     field.initial = value;
+    // @ts-ignore
     field.value = value;
-    field.touched = config.validateDefaultValue;
+    field.touched = config.validateDefaultValue || false;
 
     /* eslint-disable no-param-reassign */
-    formState.initialValues = setIn(formState.initialValues, name, value);
+    formState.initialValues = setIn(formState.initialValues!, name, value);
     formState.values = setIn(formState.values, name, value);
     /* eslint-enable no-param-reassign */
   }

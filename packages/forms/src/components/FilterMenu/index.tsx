@@ -109,7 +109,7 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
     // Let the button handle itself
     const { current } = this.ref;
 
-    if (current && current.contains(event.target as unknown)) {
+    if (current && current.contains(event.target as Element)) {
       return;
     }
 

@@ -32,7 +32,7 @@ export default function connectToApp(scope: string) /* infer */ {
 
       instanceRef = React.createRef<ConnectedComponent>();
 
-      lastData: unknown = {};
+      lastData: object = {};
 
       componentDidMount() {
         this.lastData = this.getPageData();
@@ -71,15 +71,14 @@ export default function connectToApp(scope: string) /* infer */ {
       render() {
         const { app, ...props } = this.props;
 
-        return <WrappedComponent {...(props as unknown)} ref={this.instanceRef} />;
+        // @ts-ignore Props spreading
+        return <WrappedComponent {...props} ref={this.instanceRef} />;
       }
     }
 
     function ConnectToAppWrapper(props: Props) {
       return (
-        <AppContext.Consumer>
-          {app => app && <ConnectToApp {...(props as unknown)} app={app} />}
-        </AppContext.Consumer>
+        <AppContext.Consumer>{app => <ConnectToApp {...props} app={app} />}</AppContext.Consumer>
       );
     }
 
