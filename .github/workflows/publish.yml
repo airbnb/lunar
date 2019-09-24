@@ -29,21 +29,21 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Setup Git and NPM
+      - name: Checkout master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git checkout master
-          git remote set-url origin "https://${GITHUB_TOKEN}@github.com/airbnb/lunar.git" > /dev/null 2>&1
-          echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
+          git remote set-url origin "https://${GH_TOKEN}@github.com/airbnb/lunar.git" > /dev/null 2>&1
       - uses: ./.github/actions/setup
       - name: Publish packages to NPM
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GIT_AUTHOR_EMAIL: ${{ secrets.GIT_EMAIL }}
           GIT_AUTHOR_NAME: ${{ secrets.GIT_USER }}
           GIT_COMMITTER_EMAIL: ${{ secrets.GIT_EMAIL }}
           GIT_COMMITTER_NAME: ${{ secrets.GIT_USER }}
         run: |
+          echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
           yarn run deploy:npm
