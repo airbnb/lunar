@@ -1,19 +1,11 @@
 import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Term from './Term';
-import Definition from './Definition';
 
 export { Term };
-export { Definition };
 
-import Spacing from '../Spacing';
-import Text from '../Text';
-
-function DescriptionList({
-  link,
-  endAlign,
+function TermList({
   inline,
-  keyTextRegular,
   children,
   cx,
   styles,
@@ -24,11 +16,21 @@ function DescriptionList({
   keyTextRegular?: boolean;
   children: NonNullable<React.ReactNode>;
 } & WithStylesProps) {
-  return <div className={cx(inline && styles.inline)}>{children}</div>;
+  return <dl className={cx(inline && styles.inline, styles.termList)}>{children}</dl>;
 }
 
-export default withStyles(() => ({
+export default withStyles(({ unit }) => ({
   inline: {
     display: 'inline-block',
   },
-}))(DescriptionList);
+  termList: {
+    // Reset dl styles
+    marginBlockStart: 0,
+    marginBlockEnd: 0,
+    '@selectors': {
+      '> div:not(:last-child) > dd': {
+        marginBottom: unit * 2,
+      },
+    },
+  },
+}))(TermList);
