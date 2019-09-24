@@ -512,7 +512,11 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         preventDefault() {},
       };
 
-      this.props.onChange(newText, event as React.ChangeEvent<unknown>);
+      this.props.onChange(
+        newText,
+        // @ts-ignore
+        event,
+      );
     }
   };
 

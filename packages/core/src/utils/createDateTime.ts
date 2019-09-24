@@ -30,7 +30,7 @@ export default function createDateTime(
   }
 
   // Support moment objects for backwards compat
-  const moment = value as unknown;
+  const moment = value as any;
 
   if (moment && typeof moment === 'object' && '_isAMomentObject' in moment) {
     return DateTime.fromISO(moment.toISOString(), options);

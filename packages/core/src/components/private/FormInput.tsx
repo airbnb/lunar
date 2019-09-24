@@ -120,7 +120,7 @@ class FormInput extends React.Component<PrivateProps> {
       ...restProps
     } = this.props;
     const isSelect = Tag === 'select';
-    const props: unknown = {
+    const props: { [key: string]: unknown } = {
       ...restProps,
       className: cx(
         styles.input,

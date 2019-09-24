@@ -48,8 +48,8 @@ export type PositionStruct = {
 };
 
 export type StyleStruct = {
-  center: unknown;
-  right: unknown;
+  center: string | number;
+  right: string | number;
 };
 
 /** A tooltip that renders in an portal, so it can escape potentially overflowed containers. */

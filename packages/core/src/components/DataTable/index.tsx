@@ -200,10 +200,11 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   private onEdit = (
     row: VirtualRow,
     key: string,
-    newVal: unknown,
+    newVal: string,
     event: React.SyntheticEvent<EventTarget>,
   ) => {
     const { defaultEditCallback, editCallbacks, instantEdit } = this.props;
+
     if (defaultEditCallback) {
       defaultEditCallback(row, key, newVal, event);
     }
@@ -215,11 +216,13 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     if (!instantEdit) {
       const { changeLog }: { changeLog: ChangeLog } = this.state;
       const { originalIndex } = row.rowData.metadata;
-      if (Object.prototype.hasOwnProperty.call(changeLog, originalIndex)) {
-        changeLog[originalIndex][key] = newVal;
+
+      if (changeLog[originalIndex] && changeLog[originalIndex][key]) {
+        changeLog[originalIndex][key] = { newVal };
       } else {
-        changeLog[originalIndex] = { [key]: newVal };
+        changeLog[originalIndex] = { [key]: { newVal } };
       }
+
       this.setState({
         changeLog,
       });
@@ -332,7 +335,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   };
 
   // Have to use `any` to match react-virutalized's specified callback signature.
-  private handleRowClick = ({ rowData }: { rowData: unknown }) =>
+  private handleRowClick = ({ rowData }: { rowData: ExpandedRow }) =>
     this.props.selectOnRowClick && this.handleSelection(rowData)();
 
   renderTableHeader(parentWidth: number) {

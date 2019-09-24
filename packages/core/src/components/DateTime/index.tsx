@@ -14,7 +14,7 @@ import {
   dateMediumBundle,
   dateLongBundle,
 } from '../../messages';
-import { DateTimeType, Locale } from '../../types';
+import { DateTimeType } from '../../types';
 
 const MINUTE_THRESHOLD = toMilliseconds('1 minute');
 const MIN_RELATIVE_DATETIME_REFRESH_INTERVAL = toMilliseconds('5 seconds');
@@ -38,7 +38,7 @@ export type Props = {
   /** A date time pattern to format the timestamp to. */
   format?: string;
   /** Locale to translate and format the timestamp to. Defaults to "en". */
-  locale?: Locale;
+  locale?: string;
   /** Use long format. */
   long?: boolean;
   /** Use medium format. */

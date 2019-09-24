@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 
+type Props = { [key: string]: unknown };
+
 const componentName: PropTypes.Requireable<unknown> = (
-  props: unknown,
+  props: Props,
   propName: string,
   compName: string,
 ) => {
@@ -17,7 +19,7 @@ const componentName: PropTypes.Requireable<unknown> = (
 };
 
 componentName.isRequired = (
-  props: unknown,
+  props: Props,
   propName: string,
   compName: string,
   location: string,

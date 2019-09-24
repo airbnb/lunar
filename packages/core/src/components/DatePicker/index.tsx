@@ -2,7 +2,6 @@ import React from 'react';
 import DayPicker, { DayPickerProps } from 'react-day-picker';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import datePickerStyles from '../private/datePickerStyles';
-import { Locale } from '../../types';
 import getMonths from '../../utils/getMonths';
 import getWeekdays from '../../utils/getWeekdays';
 import { getClassNames, getCustomModifiers } from '../../utils/datePicker';
@@ -18,7 +17,7 @@ export type Props = {
   /** The month to display in the calendar at first render. This differs from the `month` prop, as it won’t re-render the calendar if its value changes. */
   initialMonth?: DayPickerProps['initialMonth'];
   /** Locale to translate and format the calendar to. Defaults to "en". */
-  locale?: Locale;
+  locale?: string;
   /** An object of day modifiers. See [matching days](http://react-day-picker.js.org/docs/matching-days). */
   modifiers?: DayPickerProps['modifiers'];
   /** The month to display in the calendar. This differs from the `initialMonth` prop, as it causes the calendar to re-render when its value changes. */

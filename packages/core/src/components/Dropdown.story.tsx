@@ -4,9 +4,9 @@ import { action } from '@storybook/addon-actions';
 import Button from './Button';
 import Menu, { Row } from './Menu';
 import Text from './Text';
-import Dropdown from './Dropdown';
+import Dropdown, { Props } from './Dropdown';
 
-class DropdownDemo extends React.Component<unknown, { open: boolean }> {
+class DropdownDemo extends React.Component<Props, { open: boolean }> {
   state = {
     open: false,
   };

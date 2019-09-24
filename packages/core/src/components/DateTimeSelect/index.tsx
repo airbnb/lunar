@@ -100,7 +100,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
   }
 
   getCurrentValue(date: DateTime, key: string): string {
-    let value: unknown = Number(date.get(key as keyof DateTime));
+    let value: number | string = Number(date.get(key as keyof DateTime));
 
     if (key === 'meridiem') {
       value = this.state.meridiem;

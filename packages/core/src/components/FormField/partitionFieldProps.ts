@@ -12,20 +12,16 @@ export type ExplicitProps = {
   optional: boolean;
 };
 
-export default function partitionFieldProps<
-  Props extends object = {},
-  Children = unknown,
-  Field = unknown
->(
-  props: MaybeChildren & FormFieldProps & Props,
+export default function partitionFieldProps<Props extends MaybeChildren = {}>(
+  props: FormFieldProps & Props,
 ): {
-  children: Children;
-  field: Field;
+  children: any;
+  field: object;
   fieldProps: FormFieldProps;
-  inputProps: Props & ExplicitProps;
+  inputProps: Omit<Props, 'children'> & ExplicitProps;
 } {
   const {
-    children = null,
+    children,
     compact = false,
     compactSpacing = false,
     disabled = false,
@@ -63,7 +59,7 @@ export default function partitionFieldProps<
       prefix,
       suffix,
     },
-    // @ts-ignore Cant get this to type correctly
+    // @ts-ignore Hard to type
     inputProps: {
       value: '',
       ...inputProps,

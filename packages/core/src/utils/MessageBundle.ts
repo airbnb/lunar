@@ -1,4 +1,3 @@
-import { Locale } from '../types';
 import Core from '..';
 
 export type Messages = {
@@ -19,7 +18,7 @@ export default class MessageBundle {
     this.options = options;
   }
 
-  get(locale?: Locale): string {
+  get(locale?: string): string {
     const message =
       // Try to use localized message first
       this.messages[locale || Core.locale()] ||

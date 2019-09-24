@@ -94,7 +94,7 @@ export default class PrivatePickerInput extends DayPickerInput {
         onBlur={this.handleOverlayBlur}
       >
         <DatePicker
-          {...(dayPickerProps as unknown)}
+          {...dayPickerProps}
           month={this.state.month}
           selectedDays={selectedDay}
           pickerRef={this.loadPickerRef}

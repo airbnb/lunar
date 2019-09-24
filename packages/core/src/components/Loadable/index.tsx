@@ -44,7 +44,7 @@ export type State = {
  * A declarative component for async loading of other components via native `import()` and `React.lazy`.
  * @experimental Requires React.lazy
  */
-export default class Loadable<T extends object = unknown> extends React.Component<Props<T>, State> {
+export default class Loadable<T extends object = {}> extends React.Component<Props<T>, State> {
   static defaultProps = {
     delay: 150,
     error: null,
@@ -104,7 +104,8 @@ export default class Loadable<T extends object = unknown> extends React.Componen
       return children(Component, restProps);
     }
 
-    return <Component {...(restProps as unknown)}>{children}</Component>;
+    // @ts-ignore
+    return <Component {...restProps}>{children}</Component>;
   };
 
   renderError = () => {

@@ -18,9 +18,11 @@ function sort(a: unknown, b: unknown, ascending: boolean = false) {
   }
 
   if (ascending) {
+    // @ts-ignore
     return a < b ? -1 : 1;
   }
 
+  // @ts-ignore
   return a < b ? 1 : -1;
 }
 
@@ -54,7 +56,9 @@ export default function sortData<T extends GenericRow>(
     const unselectedList: T[] = [];
 
     list.forEach((row: T) => {
-      if (Object.prototype.hasOwnProperty.call(selectedRows, row.metadata.originalIndex)) {
+      if (
+        Object.prototype.hasOwnProperty.call(selectedRows, row.metadata.originalIndex as number)
+      ) {
         selectedList.push(row);
       } else {
         unselectedList.push(row);

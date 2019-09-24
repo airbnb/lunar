@@ -18,12 +18,15 @@ export default function withBoundary(name?: string) /* infer */ {
       return (
         <TrackingBoundary name={trackingName || name}>
           <ErrorBoundary name={trackingName || name} onCatch={Core.log}>
-            <WrappedComponent {...(restProps as unknown)} />
+            <WrappedComponent {...(restProps as Props)} />
           </ErrorBoundary>
         </TrackingBoundary>
       );
     }
 
-    return finishHOC('withBoundary', WithBoundary, WrappedComponent);
+    // @ts-ignore
+    finishHOC('withBoundary', WithBoundary, WrappedComponent);
+
+    return WithBoundary;
   };
 }

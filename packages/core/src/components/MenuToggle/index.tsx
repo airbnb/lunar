@@ -112,7 +112,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
     // Let the button handle itself
     const { current } = this.ref;
 
-    if (current && current.contains(event.target as unknown)) {
+    if (current && current.contains(event.target as Element)) {
       return;
     }
 
@@ -182,8 +182,8 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
               >
                 {closeOnClick
                   ? React.Children.map(
-                      children as unknown,
-                      (child: React.ReactElement<unknown>) => {
+                      children as React.ReactElement[],
+                      (child: React.ReactElement) => {
                         if (!child || !child.props) {
                           return null;
                         }

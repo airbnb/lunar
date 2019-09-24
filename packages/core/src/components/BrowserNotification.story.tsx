@@ -26,9 +26,10 @@ class BrowserNotificationExample extends React.Component<{}, State> {
   }
 
   handleChange(field: keyof State, value: string) {
-    this.setState({
+    this.setState(prevState => ({
+      ...prevState,
       [field]: value,
-    } as unknown);
+    }));
   }
 
   render() {

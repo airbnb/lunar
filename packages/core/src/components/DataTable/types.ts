@@ -15,9 +15,9 @@ export type SelectedRows = {
 };
 
 export type ChangeLog = {
-  [key: number]: {
+  [idx: number]: {
     [key: string]: {
-      newVal: unknown;
+      newVal: string;
     };
   };
 };
@@ -25,7 +25,7 @@ export type ChangeLog = {
 export type EditCallback<T = RowData> = (
   row: VirtualRow<T>,
   key: string,
-  newVal: unknown,
+  newVal: string,
   event: React.SyntheticEvent<EventTarget>,
 ) => void;
 
@@ -217,7 +217,7 @@ export type ColumnMetadata = {
 };
 
 export type ColumnToLabel = {
-  [key: string]: unknown;
+  [key: string]: React.ReactNode;
 };
 
 export type RendererProps<T = RowData> = {

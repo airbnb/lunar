@@ -15,17 +15,21 @@ import renderElementOrFunction, { RenderableProp } from '../../utils/renderEleme
 
 export const CACHE_DURATION = toMilliseconds('5 minutes');
 
-function getItemValue(item: unknown): string {
+function getItemValue(item: Item): string {
   return String(item.value || item.id);
 }
 
-function renderItem(item: unknown): NonNullable<React.ReactNode> {
+function renderItem(item: Item): NonNullable<React.ReactNode> {
   return <Text>{item.name || item.title || item.value}</Text>;
 }
 
 export type Item = {
   disabled?: boolean;
   href?: string;
+  id?: string | number;
+  name?: string;
+  title?: string;
+  value?: string;
 };
 
 export type ItemResponseType<T> = T[] | { items?: T[]; results?: T[] };

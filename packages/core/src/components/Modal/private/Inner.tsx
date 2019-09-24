@@ -44,7 +44,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
   private handleClickOutside = (event: React.MouseEvent | MouseEvent) => {
     const { current } = this.dialogRef;
 
-    if (current && current.contains(event.target as unknown)) {
+    if (current && current.contains(event.target as Element)) {
       return;
     }
 
