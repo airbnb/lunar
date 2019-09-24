@@ -85,18 +85,34 @@ storiesOf('Core/Card', module)
       </Content>
     </Card>
   ))
-  .add('A card with a left featured image.', () => (
+  .add('A card with a small left featured image.', () => (
     <Card>
-      <Content beforeImageSrc={moon}>
+      <Content small beforeImageSrc={moon}>
         <Text>
           <LoremIpsum />
         </Text>
       </Content>
     </Card>
   ))
+  .add('A card with a left featured image.', () => (
+    <Card>
+      <Content beforeImageSrc={moon}>
+        <LoremIpsum />
+      </Content>
+    </Card>
+  ))
   .add('A card with a large left featured image.', () => (
     <Card>
       <Content large beforeImageSrc={moon}>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Content>
+    </Card>
+  ))
+  .add('A card with a small right featured image.', () => (
+    <Card>
+      <Content small afterImageSrc={moon}>
         <Text>
           <LoremIpsum />
         </Text>
