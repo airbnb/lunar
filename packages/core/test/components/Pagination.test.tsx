@@ -4,8 +4,9 @@ import T from '../../src/components/Translate';
 import IconButton from '../../src/components/IconButton';
 import Pagination from '../../src/components/Pagination';
 
+const noop = () => {};
+
 describe('<Pagination />', () => {
-  const noop = () => {};
   const baseRequest = {
     page: 1,
     hasNext: false,

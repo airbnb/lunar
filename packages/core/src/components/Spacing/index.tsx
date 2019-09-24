@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleBlock, SheetMap } from 'aesthetic';
+import { StyleBlock } from 'aesthetic';
 import { ParsedBlock } from 'aesthetic-adapter-aphrodite';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 

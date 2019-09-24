@@ -2,13 +2,13 @@ import { DateTime } from 'luxon';
 import moment from 'moment';
 import createDateTime from '../../src/utils/createDateTime';
 
-describe('createDateTime()', () => {
-  // Some timezone sub-values are off by 1 between implementations,
-  // which makes it very hard to test. So strip it for now.
-  function parseISO(iso: string): string {
-    return iso.split('.')[0];
-  }
+// Some timezone sub-values are off by 1 between implementations,
+// which makes it very hard to test. So strip it for now.
+function parseISO(iso: string): string {
+  return iso.split('.')[0];
+}
 
+describe('createDateTime()', () => {
   it('converts UTC to defined zone', () => {
     const utc = DateTime.utc();
     const time = createDateTime(null, { timezone: 'America/New_York' });

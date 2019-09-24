@@ -58,6 +58,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     renderers: {},
     rowHeight: 'regular',
     selectable: false,
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     selectCallback: (rowData: ExpandedRow, selectedRows: SelectedRows) => () => {},
     selectedRowsFirst: false,
     selectOnRowClick: false,

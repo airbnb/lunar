@@ -35,6 +35,7 @@ describe('connectToApp()', () => {
     }
   }
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
   function NoPushMethod(props: ConnectToAppProps) {
     return null;
   }

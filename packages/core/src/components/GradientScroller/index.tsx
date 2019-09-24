@@ -97,6 +97,7 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
   }
 
   doScroll(amount: number, interval: boolean = true) {
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     const callback = () => {
       if (this.scrollerRef) {
         this.scrollerRef.scrollLeft += amount;

@@ -16,6 +16,7 @@ import Link from '../../../src/components/Link';
 import BaseTextArea from '../../../src/components/private/BaseTextArea';
 import { ProofreadRuleMatch } from '../../../src/components/TextArea/Proofreader/types';
 
+// eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('lodash/debounce', () => (value: unknown) => value);
 
 function getInstance(wrapper: Enzyme.ShallowWrapper<Props, State>): BaseProofreader {

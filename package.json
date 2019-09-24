@@ -5,7 +5,8 @@
   "description": "React toolkit and design language for Airbnb open source and internal projects.",
   "license": "MIT",
   "scripts": {
-    "build": "nimbus babel --workspaces=* && nimbus babel --esm --workspaces=*",
+    "babel": "nimbus babel --workspaces=* && nimbus babel --esm --workspaces=*",
+    "build": "yarn run type && yarn run babel",
     "clean": "rimraf './packages/*/{lib,esm}'",
     "clean:hard": "yarn run clean && rimraf './packages/**/*.tsbuildinfo'",
     "clean:story": "rimraf './packages/**/*.story.d.ts' './packages/**/*.story.d.ts.map'",
@@ -30,8 +31,7 @@
     "type": "nimbus typescript --build --reference-workspaces",
     "storybook": "STORYBOOK=true start-storybook -p 6006",
     "storybook:build": "STORYBOOK=true build-storybook",
-    "prepare": "nimbus create-config --silent",
-    "prebuild": "yarn run type"
+    "prepare": "nimbus create-config --silent"
   },
   "repository": {
     "type": "git",
@@ -112,7 +112,7 @@
     "react": "^16.9.0",
     "react-docgen-typescript-loader": "^3.2.1",
     "react-dom": "^16.9.0",
-    "rimraf": "^2.6.3",
+    "rimraf": "^3.0.0",
     "svgo": "^1.3.0",
     "url-loader": "^2.1.0"
   },

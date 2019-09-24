@@ -8,17 +8,17 @@ import Dropdown from '@airbnb/lunar/lib/components/Dropdown';
 import T from '@airbnb/lunar/lib/components/Translate';
 import FilterMenu, { Row } from '../../src/components/FilterMenu';
 
+function openFilters(wrapper: Enzyme.ShallowWrapper) {
+  wrapper
+    .find(Button)
+    .first()
+    .simulate('Click');
+}
+
 describe('<FilterMenu />', () => {
   const props = {
     accessibilityLabel: 'label',
   };
-
-  function openFilters(wrapper: Enzyme.ShallowWrapper) {
-    wrapper
-      .find(Button)
-      .first()
-      .simulate('Click');
-  }
 
   it('renders a button', () => {
     const wrapper = shallowWithStyles(

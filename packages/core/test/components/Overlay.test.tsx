@@ -13,7 +13,10 @@ import Portal, {
 } from '../../src/components/Overlay/Portal';
 import { ESCAPE } from '../../src/keys';
 
+// eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('lodash/throttle', () => (value: unknown) => value);
+
+// eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('lodash/debounce', () => (value: unknown) => value);
 
 describe('<Overlay />', () => {

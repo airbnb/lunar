@@ -8,13 +8,15 @@ module.exports = {
     // Disabled until we migrate to hooks
     'react/no-did-update-set-state': 'off',
     'react/prefer-stateless-function': 'off',
-
-    // Fix upstream
-    '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/unbound-method': 'off',
   },
 
   overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        '@typescript-eslint/consistent-type-assertions': 'off',
+      },
+    },
     {
       files: ['*.test.ts', '*.test.tsx', '*.story.tsx'],
       rules: {

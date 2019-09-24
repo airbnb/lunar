@@ -3,12 +3,12 @@ import { shallow } from 'enzyme';
 import Core, { Settings } from '../../src';
 import Translate from '../../src/components/Translate';
 
+function T() {
+  return null;
+}
+
 describe('<Translate />', () => {
   let oldSettings: Required<Settings>;
-
-  function T() {
-    return null;
-  }
 
   beforeEach(() => {
     oldSettings = Core.settings;

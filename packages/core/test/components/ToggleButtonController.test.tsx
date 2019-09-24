@@ -3,6 +3,13 @@ import Enzyme, { shallow } from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ToggleButtonController from '../../src/components/ToggleButtonController';
 
+function clickButton(wrapper: Enzyme.ShallowWrapper, value: unknown): Enzyme.ShallowWrapper {
+  return wrapper
+    .find({ value })
+    .dive()
+    .simulate('click', { currentTarget: { value } });
+}
+
 describe('<ToggleButtonController />', () => {
   const props = {
     id: 'foo',
@@ -11,13 +18,6 @@ describe('<ToggleButtonController />', () => {
     label: 'Label',
     onChange() {},
   };
-
-  function clickButton(wrapper: Enzyme.ShallowWrapper, value: unknown): Enzyme.ShallowWrapper {
-    return wrapper
-      .find({ value })
-      .dive()
-      .simulate('click', { currentTarget: { value } });
-  }
 
   it('sets default value', () => {
     const wrapper = shallow(

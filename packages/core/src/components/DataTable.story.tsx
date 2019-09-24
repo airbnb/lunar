@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable import/prefer-default-export, unicorn/consistent-function-scoping */
 
 import React from 'react';
 import { storiesOf } from '@storybook/react';
