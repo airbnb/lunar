@@ -97,6 +97,7 @@ export class Tab extends React.Component<Props & WithStylesProps> {
             className={cx(
               styles.tabButton,
               rounded && styles.tabButton_rounded,
+              rounded && selected && styles.tabButton_rounded_selected,
               small && styles.tabButton_small,
               selected && styles.tabButton_active,
               disabled && styles.tabButton_disabled,
@@ -177,14 +178,24 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     borderTopRightRadius: ui.borderRadius,
   },
 
-  tabButton_disabled: {
-    ...pattern.disabled
-  },
-
   tabButton_rounded: {
     ...pattern.regularButton,
     border: `2px solid ${color.accent.border}`,
-    borderRadius: ui.borderRadius * 2
+    borderRadius: ui.borderRadius * 2,
+    ':hover': {
+      backgroundColor: color.accent.bgHover
+    }
+  },
+
+  tabButton_rounded_selected: {
+    borderColor: color.accent.borderActive,
+    ':hover': {
+      backgroundColor: 'inherit'
+    }
+  },
+
+  tabButton_disabled: {
+    ...pattern.disabled
   },
 
   tabButton_small: {
