@@ -19,31 +19,29 @@ jobs:
         run: |
           yarn run storybook:build
           yarn run deploy:ghp
-
-  npm:
-    name: NPM
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - name: Setup Git and NPM
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_EMAIL: ${{ secrets.GITHUB_EMAIL }}
-          GITHUB_USER: ${{ secrets.GITHUB_USER }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          git config --global user.name ${GITHUB_USER}
-          git config --global user.email ${GITHUB_EMAIL}
-          git remote set-url origin "https://${GITHUB_TOKEN}@github.com/airbnb/lunar.git" > /dev/null 2>&1
-          git checkout master
-          echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
-      - uses: ./.github/actions/setup
-      # Enable later on!
-      # - name: Publish packages to NPM
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: |
-      #     yarn run deploy:npm
+  # npm:
+  #   name: NPM
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v1
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12
+  #     - name: Checkout master
+  #       env:
+  #         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       run: |
+  #         git checkout master
+  #         git remote set-url origin "https://${GH_TOKEN}@github.com/airbnb/lunar.git" > /dev/null 2>&1
+  #     - uses: ./.github/actions/setup
+  #     - name: Publish packages to NPM
+  #       env:
+  #         GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+  #         GIT_NAME: ${{ secrets.GIT_USER }}
+  #         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #       run: |
+  #         git config user.email "${GIT_EMAIL}"
+  #         git config user.name "${GIT_NAME}"
+  #         echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
+  #         yarn run deploy:npm
