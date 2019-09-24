@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.6 - 2019-09-24
+
+#### 📦 Dependencies
+
+- Update minor and patch versions. ([4afb2ee](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/4afb2ee))
+- **[Aesthetic]** Update to latest. Bump Aphrodite. ([a73d9db](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/a73d9db))
+- **[React]** Test against v16.9. ([c3eafd4](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/c3eafd4))
+
+**Note:** Version bump only for package @airbnb/lunar-app-shell
+
+
+
+
+
 ### 2.1.5 - 2019-08-07
 
 #### 📦 Dependencies

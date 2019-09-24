@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.4.1 - 2019-09-24
+
+#### 📦 Dependencies
+
+- Update all types packages. ([b2ad9f5](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/b2ad9f5))
+- **[React]** Test against v16.9. ([c3eafd4](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/c3eafd4))
+- Update Apollo and GraphQL to latest. ([0150114](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/0150114))
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
 ## 2.4.0 - 2019-09-19
 
 #### 🚀 Updates

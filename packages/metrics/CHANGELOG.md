@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.3 - 2019-09-24
+
+#### 📦 Dependencies
+
+- Update minor and patch versions. ([4afb2ee](https://github.com/airbnb/lunar/tree/master/packages/metrics/commit/4afb2ee))
+
+**Note:** Version bump only for package @airbnb/lunar-metrics
+
+
+
+
+
 ### 2.1.2 - 2019-08-07
 
 #### 📦 Dependencies

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.29.2 - 2019-09-24
+
+#### 📦 Dependencies
+
+- Update minor and patch versions. ([4afb2ee](https://github.com/airbnb/lunar/tree/master/packages/core/commit/4afb2ee))
+- **[Aesthetic]** Update to latest. Bump Aphrodite. ([a73d9db](https://github.com/airbnb/lunar/tree/master/packages/core/commit/a73d9db))
+- **[Interweave]** Update to v11.2. ([0f6cef0](https://github.com/airbnb/lunar/tree/master/packages/core/commit/0f6cef0))
+- **[Luxon]** Update to v1.19. ([bab042d](https://github.com/airbnb/lunar/tree/master/packages/core/commit/bab042d))
+- Update all types packages. ([b2ad9f5](https://github.com/airbnb/lunar/tree/master/packages/core/commit/b2ad9f5))
+- **[React]** Test against v16.9. ([c3eafd4](https://github.com/airbnb/lunar/tree/master/packages/core/commit/c3eafd4))
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.29.1 - 2019-09-20
 
 #### 📘 Docs

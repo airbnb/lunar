@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.2.7 - 2019-09-24
+
+#### 📦 Dependencies
+
+- Update minor and patch versions. ([4afb2ee](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/4afb2ee))
+- **[React]** Test against v16.9. ([c3eafd4](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/c3eafd4))
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
 ### 2.2.6 - 2019-08-07
 
 #### 📦 Dependencies
