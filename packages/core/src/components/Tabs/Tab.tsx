@@ -78,6 +78,7 @@ export class Tab extends React.Component<Props & WithStylesProps> {
       <span
         className={cx(
           styles.tab,
+          rounded && styles.tab_rounded,
           disabled && styles.tab_disabled,
           noborder && styles.tab_noborder,
           nohover && styles.tab_nohover,
@@ -125,6 +126,10 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     ':last-child': {
       marginRight: 0,
     },
+  },
+
+  tab_rounded: {
+    marginRight: unit
   },
 
   tab_noborder: {
@@ -180,6 +185,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
 
   tabButton_rounded: {
     ...pattern.regularButton,
+    justifyContent: 'center',
     border: `2px solid ${color.accent.border}`,
     borderRadius: ui.borderRadius * 2,
     ':hover': {
