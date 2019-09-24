@@ -32,8 +32,8 @@ jobs:
       - name: Setup Git and NPM
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
-          GIT_USER: ${{ secrets.GIT_USER }}
+          GIT_COMMITTER_EMAIL: ${{ secrets.GIT_EMAIL }}
+          GIT_COMMITTER_NAME: ${{ secrets.GIT_USER }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           git checkout master
@@ -45,8 +45,8 @@ jobs:
         run: |
           echo $GIT_AUTHOR_NAME
           echo $GIT_AUTHOR_EMAIL
-          echo GIT_COMMITTER_NAME
-          echo GIT_COMMITTER_EMAIL
+          echo $GIT_COMMITTER_NAME
+          echo $GIT_COMMITTER_EMAIL
           git config --get user.name
           git config --get user.email
       - uses: ./.github/actions/setup
