@@ -83,6 +83,7 @@
   },
   "devDependencies": {
     "@airbnb/config-babel": "^2.0.0",
+    "@airbnb/config-danger": "^2.0.1",
     "@airbnb/config-eslint": "^2.0.1",
     "@airbnb/config-jest": "^2.0.0",
     "@airbnb/config-prettier": "^2.0.0",
@@ -96,8 +97,6 @@
     "@types/storybook__addon-actions": "^3.4.3",
     "@types/storybook__react": "^4.0.2",
     "airbnb-js-shims": "^2.2.0",
-    "conventional-changelog-beemo": "^1.5.0",
-    "danger": "^9.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.4.0",

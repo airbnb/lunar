@@ -26,6 +26,14 @@
     babel-plugin-transform-react-remove-prop-types "^0.4.24"
     babel-plugin-typescript-to-proptypes "^0.17.1"
 
+"@airbnb/config-danger@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@airbnb/config-danger/-/config-danger-2.0.1.tgz#32ea18507796d9f75bedd84baa47e50346ba9971"
+  integrity sha512-PavrmCQhtMw5FYCaasC7mGt8SJZk7jRet1cwc+xpS9yyr7LSdSPFbyxqKw8b0DCcMaKGKHxjYiYNiqi46AilxQ==
+  dependencies:
+    conventional-changelog-beemo "^1.5.0"
+    danger "^9.2.0"
+
 "@airbnb/config-eslint@^2.0.1":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@airbnb/config-eslint/-/config-eslint-2.0.2.tgz#16b54f1264e31139176aa2ef4392c0697eb1b130"
