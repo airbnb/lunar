@@ -7,7 +7,7 @@ function clickButton(wrapper: Enzyme.ShallowWrapper, value: unknown): Enzyme.Sha
   return wrapper
     .find({ value })
     .dive()
-    .simulate('click', { currentTarget: { value } });
+    .simulate('click', { currentTarget: { dataset: { value } } });
 }
 
 describe('<ToggleButtonController />', () => {
@@ -86,13 +86,13 @@ describe('<ToggleButtonController />', () => {
     );
 
     clickButton(wrapper, '1');
-    expect(onChange).toHaveBeenCalledWith('1', { currentTarget: { value: '1' } });
+    expect(onChange).toHaveBeenCalledWith('1', { currentTarget: { dataset: { value: '1' } } });
 
     clickButton(wrapper, '2');
-    expect(onChange).toHaveBeenCalledWith('2', { currentTarget: { value: '2' } });
+    expect(onChange).toHaveBeenCalledWith('2', { currentTarget: { dataset: { value: '2' } } });
 
     clickButton(wrapper, '3');
-    expect(onChange).toHaveBeenCalledWith('3', { currentTarget: { value: '3' } });
+    expect(onChange).toHaveBeenCalledWith('3', { currentTarget: { dataset: { value: '3' } } });
   });
 
   it('inverts inactive buttons', () => {

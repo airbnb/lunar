@@ -96,7 +96,6 @@ describe('connectToApp()', () => {
     it('sets data when component doesnt define data', () => {
       Hoc = connectToApp('NoData')(NoData);
       wrapper = mount(<Hoc>Child</Hoc>, {
-        // @ts-ignore Not typed yet
         wrappingComponent: WrappingComponent,
       });
 

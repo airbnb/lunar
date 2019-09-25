@@ -612,7 +612,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
       <div key={`item-${value}`} {...props}>
         <MenuItem
           disabled={disabled || !isItemSelectable!(item, selected)}
-          highlighted={highlighted}
+          highlighted={!!highlighted}
           href={href}
         >
           {this.props.renderItem!(item, !!highlighted, !!selected)}

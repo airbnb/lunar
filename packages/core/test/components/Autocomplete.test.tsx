@@ -460,7 +460,7 @@ describe('<Autocomplete />', () => {
       expect(wrapper.state()).toEqual(
         expect.objectContaining({
           value: 'foo',
-          items: [1, 2, 3],
+          items: [{ id: 1 }, { id: 2 }, { id: 3 }],
           loading: false,
         }),
       );
@@ -505,7 +505,7 @@ describe('<Autocomplete />', () => {
       instance.loadItems('foo').then(() => {
         expect(instance.cache.foo).toEqual(
           expect.objectContaining({
-            items: [4, 5, 6],
+            items: [{ id: 4 }, { id: 5 }, { id: 6 }],
           }),
         );
       }));
@@ -524,7 +524,7 @@ describe('<Autocomplete />', () => {
       instance.loadItems('foo').then(() => {
         expect(wrapper.state()).toEqual(
           expect.objectContaining({
-            items: [4, 5, 6],
+            items: [{ id: 4 }, { id: 5 }, { id: 6 }],
             loading: false,
           }),
         );
