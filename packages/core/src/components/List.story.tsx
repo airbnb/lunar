@@ -29,6 +29,27 @@ storiesOf('Core/List', module)
       </Item>
     </List>
   ))
+  .add('List with `gutter`.', () => (
+    <List gutter>
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+    </List>
+  ))
   .add('List with `horizontal`.', () => (
     <List horizontal>
       <Item>
@@ -50,7 +71,27 @@ storiesOf('Core/List', module)
       </Item>
     </List>
   ))
+  .add('List  with `horizontal` and `gutter`.', () => (
+    <List gutter horizontal>
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
 
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+    </List>
+  ))
   .add('List with `horizontal` and `wrap`.', () => (
     <List horizontal wrap>
       <Item>

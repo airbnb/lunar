@@ -61,19 +61,33 @@ describe('<List />', () => {
     expect(wrapper.type()).toEqual('ol');
   });
 
-  it('renders a horizontal list', () => {
-    const wrapperDefault = shallowWithStyles(
-      <List>
+  it('renders a list with gutters', () => {
+    const wrapper = shallowWithStyles(
+      <List gutter>
         <Item>Item 1</Item>
       </List>,
     );
 
-    const wrapperHorizontal = shallowWithStyles(
+    expect(wrapper.prop('className')).toContain('list_gutter');
+  });
+
+  it('renders a horizontal list with gutters', () => {
+    const wrapper = shallowWithStyles(
+      <List gutter horizontal>
+        <Item>Item 1</Item>
+      </List>,
+    );
+
+    expect(wrapper.prop('className')).toContain('list_gutter_horizontal');
+  });
+
+  it('renders a horizontal list', () => {
+    const wrapper = shallowWithStyles(
       <List horizontal>
         <Item>Item 1</Item>
       </List>,
     );
 
-    expect(wrapperDefault.prop('className') === wrapperHorizontal.prop('className')).toBe(false);
+    expect(wrapper.prop('className')).toContain('list_horizontal');
   });
 });
