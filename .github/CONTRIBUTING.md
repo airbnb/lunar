@@ -2,7 +2,7 @@
 
 ## 🛠 Developing
 
-Lunar at minimum requires Node v8.9 and Yarn v1.16. To begin, run `yarn install`.
+Lunar at minimum requires Node v10.10 and Yarn v1.16. To begin, run `yarn install`.
 
 - Builds can be ran with `yarn run build`.
 - Testing can be ran with `yarn run jest`.
