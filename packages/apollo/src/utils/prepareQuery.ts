@@ -4,7 +4,7 @@ import { DataProxy } from 'apollo-cache';
 export default function prepareQuery<Vars = {}>(
   docOrQuery: DocumentNode | DataProxy.Query<Vars>,
 ): DataProxy.Query<Vars> {
-  let query = docOrQuery;
+  const query = docOrQuery;
 
   if ((query as DocumentNode).kind) {
     return { query } as DataProxy.Query<Vars>;

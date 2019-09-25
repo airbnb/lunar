@@ -70,17 +70,20 @@ describe('<ImageViewer />', () => {
     });
 
     it('sets state if dragging', () => {
-      const eventMap = {
+      const eventMap: {
+        mousedown: null | ((event: Partial<MouseEvent>) => void);
+      } = {
         mousedown: null,
-      } as any;
+      };
 
       document.addEventListener = jest.fn((event, cb) => {
-        eventMap[event] = cb;
+        eventMap[event as 'mousedown'] = cb as () => void;
       });
 
       const wrapper = shallowWithStyles(<ImageViewer {...props} />);
       wrapper.simulate('mousedown', mouseEvent);
-      eventMap.mousemove({ ...mouseEvent, pageX: 20, pageY: 20 });
+
+      eventMap.mousedown!({ ...mouseEvent, pageX: 20, pageY: 20 });
 
       expect(wrapper.state('lastMouseLocation')).toMatchObject({ x: 20, y: 20 });
       expect(wrapper.state('imageLocation')).toMatchObject({ x: 10, y: 10 });

@@ -88,7 +88,7 @@ const filterData = (data: IndexedParentRow[]) => {
 const defaultEditCallback = (
   row: VirtualRow,
   key: string,
-  newVal: unknown,
+  newVal: string,
   event: React.SyntheticEvent<EventTarget>,
 ) => {
   action('this callback has access to row, key, newVal and event');

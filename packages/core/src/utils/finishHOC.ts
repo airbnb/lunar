@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-param-reassign, @typescript-eslint/no-explicit-any */
 
 import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';

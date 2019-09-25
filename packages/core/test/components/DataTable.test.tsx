@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React from 'react';
 import Enzyme from 'enzyme';
 import { AutoSizer, Grid, Table } from 'react-virtualized';

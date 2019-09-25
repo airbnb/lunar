@@ -7,7 +7,7 @@ describe('<BrowserNotification />', () => {
   let unmockNotification: () => void;
   let Notification: Notification & {
     permission: string;
-    requestPermission: () => void;
+    requestPermission: () => Promise<NotificationPermission>;
   };
 
   beforeEach(() => {

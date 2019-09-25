@@ -19,7 +19,7 @@
     "jest:coverage": "yarn run jest --coverage",
     "jest": "NODE_ENV=test TZ=UTC nimbus jest",
     "lint:errors": "yarn run lint --quiet",
-    "lint": "nimbus eslint --cache",
+    "lint": "nimbus eslint",
     "posttest": "yarn run lint",
     "pretest": "yarn run type",
     "prettier": "nimbus prettier",

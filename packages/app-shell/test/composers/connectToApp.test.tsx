@@ -13,6 +13,7 @@ describe('connectToApp()', () => {
   let modifyPageData = false;
   let context: Context;
   let wrapper: Enzyme.ReactWrapper;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let Hoc: React.ComponentType<any>;
 
   class HasData extends React.Component<ConnectToAppProps> {

@@ -22,9 +22,7 @@ storiesOf('Core/Autocomplete', module)
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
       onLoadItems={value =>
-        Promise.resolve(
-          items.filter(item => item.name.toLowerCase().match(value.toLowerCase())),
-        ) as any
+        Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
       }
     />
   ))
@@ -71,7 +69,7 @@ storiesOf('Core/Autocomplete', module)
       labelDescription="Load some items on focus."
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value => Promise.resolve(items) as any}
+      onLoadItems={() => Promise.resolve(items)}
     />
   ))
   .add('Disable selected items with `isItemSelectable`.', () => (

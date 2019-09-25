@@ -1,3 +1,4 @@
+import { Omit } from 'utility-types';
 import { Props as FormFieldProps } from '.';
 
 export type MaybeChildren = { children?: unknown };
@@ -15,6 +16,8 @@ export type ExplicitProps = {
 export default function partitionFieldProps<Props extends MaybeChildren = {}>(
   props: FormFieldProps & Props,
 ): {
+  // Need any for consumers to work correctly
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: any;
   field: object;
   fieldProps: FormFieldProps;

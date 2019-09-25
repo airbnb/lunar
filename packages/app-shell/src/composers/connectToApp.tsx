@@ -14,6 +14,7 @@ export type ConnectToAppWrapperProps = {
 };
 
 export type ConnectToAppProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ref: React.RefObject<any>;
 };
 

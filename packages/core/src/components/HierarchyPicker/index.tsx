@@ -30,7 +30,7 @@ export type Props = {
   /** A function to format the display of choice. */
   formatter?: (chosen: TreePath, labeler: Labeler) => string;
   /** Fuse.js search options to override. */
-  fuseOptions?: FuseOptions<unknown>;
+  fuseOptions?: FuseOptions<{}>;
   /** Maximum height of a (vertically aligned) hierarchy menu. */
   hierarchyMaxHeight?: number;
   /** Width of a single level of the hierarchy menu. */
