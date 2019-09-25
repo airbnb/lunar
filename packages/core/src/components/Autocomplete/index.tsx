@@ -66,7 +66,7 @@ export type Props<T extends Item = Item> = Omit<BaseInputProps, 'id'> &
     /** Message to display when no items are found. */
     noResultsText?: React.ReactNode;
     /** Callback fired when the value changes. */
-    onChange: (value: string, event: React.SyntheticEvent<unknown>) => void;
+    onChange: (value: string, event: React.SyntheticEvent<HTMLElement>) => void;
     /** Callback fired to load items. Must return a promise with an array of items. */
     onLoadItems: (value: string) => Promise<ItemResponseType<T>>;
     /** Callback fired when the display of the menu is toggled. */
@@ -75,7 +75,11 @@ export type Props<T extends Item = Item> = Omit<BaseInputProps, 'id'> &
      * Callback fired when an item is selected.
      * When a field is reset, item is passed `null` and no event is passed.
      */
-    onSelectItem?: (value: string, item: T | null, event?: React.SyntheticEvent<unknown>) => void;
+    onSelectItem?: (
+      value: string,
+      item: T | null,
+      event?: React.SyntheticEvent<HTMLElement>,
+    ) => void;
     /** Placeholder within the search input. */
     placeholder?: string;
     /** Render an error when items fail to load. */
@@ -388,7 +392,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     });
   };
 
-  private handleItemMouseDown = (item: T, event: React.MouseEvent<unknown>) => {
+  private handleItemMouseDown = (item: T, event: React.MouseEvent<HTMLElement>) => {
     const value = this.props.getItemValue!(item);
 
     // The menu will de-render before a mouseLeave event
@@ -405,7 +409,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     );
   };
 
-  private handleSelect = (value: string, item: T, event: React.SyntheticEvent<unknown>) => {
+  private handleSelect = (value: string, item: T, event: React.SyntheticEvent<HTMLElement>) => {
     this.props.onSelectItem!(value, item, event);
     this.props.onChange(value, event);
 
@@ -626,7 +630,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
       const props: React.HTMLAttributes<HTMLDivElement> = {};
 
       if (this.props.isItemSelectable!(item, selected)) {
-        props.onMouseDown = (event: React.MouseEvent<unknown>) =>
+        props.onMouseDown = (event: React.MouseEvent<HTMLElement>) =>
           this.handleItemMouseDown(item, event);
         props.onMouseEnter = () => this.handleItemMouseEnter(index);
       }

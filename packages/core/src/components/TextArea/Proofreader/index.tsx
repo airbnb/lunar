@@ -19,6 +19,7 @@ import {
   ProofreaderResponse,
   DefinitionShape,
   ExtraProofreadProps,
+  ProofreaderParams,
 } from './types';
 import { Props as FormInputProps } from '../../private/FormInput';
 
@@ -58,7 +59,7 @@ export type Props = Pick<FormInputProps, 'important'> &
     id: string;
     noTranslate?: boolean;
     onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    onCheckText: (params: unknown) => Promise<ProofreaderResponse>;
+    onCheckText: (params: ProofreaderParams) => Promise<ProofreaderResponse>;
     value: string;
   };
 
@@ -206,7 +207,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     }
 
     // Check with language tool
-    const params = {
+    const params: ProofreaderParams = {
       text,
       locale: selectedLocale,
       action: 'check',

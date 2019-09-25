@@ -10,7 +10,7 @@ export type Props<T extends object> = {
   /** Render the component once it has been loaded. */
   children?:
     | React.ReactNode
-    | ((component: React.ComponentType<T>, ownProps: T) => React.ReactElement<unknown>);
+    | ((component: React.ComponentType<T>, ownProps: T) => React.ReactElement);
   /** A function that `import()`s a component and returns a promise. */
   component: () => Promise<{ default: React.ComponentType<T> }>;
   /**
@@ -104,7 +104,7 @@ export default class Loadable<T extends object = {}> extends React.Component<Pro
       return children(Component, restProps);
     }
 
-    // @ts-ignore
+    // @ts-ignore Props spreading
     return <Component {...restProps}>{children}</Component>;
   };
 

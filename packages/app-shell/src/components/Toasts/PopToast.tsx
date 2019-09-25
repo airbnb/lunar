@@ -8,7 +8,7 @@ export type Props = Omit<BaseProps, 'id' | 'onRemove'>;
 export default function PopToast({ message, ...props }: Props) {
   const { addFailureToast, addRefreshToast, addSuccessToast, addInfoToast } = useContext(
     AppContext,
-  )!;
+  );
 
   useEffect(() => {
     if (props.danger || message instanceof Error) {

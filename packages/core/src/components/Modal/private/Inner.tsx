@@ -64,7 +64,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
     }, 0);
   };
 
-  private handleClose = (event: React.MouseEvent<unknown> | React.KeyboardEvent) => {
+  private handleClose = (event: React.MouseEvent | React.KeyboardEvent) => {
     const { onClose } = this.props;
     onClose(event);
   };

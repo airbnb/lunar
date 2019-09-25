@@ -15,7 +15,7 @@ export type Props<T extends Item = Item> = Omit<
   'children' | 'isItemSelected' | 'onChange' | 'value'
 > & {
   /** Callback that is triggered when an item is selected. */
-  onChange: (values: string[], event: React.SyntheticEvent<unknown>) => void;
+  onChange: (values: string[], event: React.SyntheticEvent<HTMLElement>) => void;
   /** Default selected values. */
   value?: string[];
 };
@@ -44,14 +44,14 @@ export default class Multicomplete<T extends Item = Item> extends React.Componen
 
   private isItemSelected = (item: T, value: string) => this.state.values.has(value);
 
-  private handleChange = (value: string, event: React.SyntheticEvent<unknown>) => {
+  private handleChange = (value: string, event: React.SyntheticEvent<HTMLElement>) => {
     this.props.onChange(Array.from(this.state.values), event);
   };
 
   private handleSelectItem = (
     value: string,
     item: T | null,
-    event?: React.SyntheticEvent<unknown>,
+    event?: React.SyntheticEvent<HTMLElement>,
   ) => {
     if (this.props.onSelectItem) {
       this.props.onSelectItem(value, item, event);
@@ -71,7 +71,7 @@ export default class Multicomplete<T extends Item = Item> extends React.Componen
     );
   };
 
-  private handleChipClick = (value: string, event: React.MouseEvent<unknown>) => {
+  private handleChipClick = (value: string, event: React.MouseEvent<HTMLElement>) => {
     this.setState(
       prevState => {
         const values = new Set(prevState.values);

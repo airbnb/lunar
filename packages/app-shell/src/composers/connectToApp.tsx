@@ -5,7 +5,7 @@ import withBoundary from '@airbnb/lunar/lib/composers/withBoundary';
 import AppContext from '../components/AppContext';
 import { Context } from '../types';
 
-export interface ConnectedComponent extends React.ComponentClass<unknown> {
+export interface ConnectedComponent extends React.ComponentClass<{}> {
   registerPageData(): object;
 }
 
@@ -14,7 +14,7 @@ export type ConnectToAppWrapperProps = {
 };
 
 export type ConnectToAppProps = {
-  ref: React.RefObject<unknown>;
+  ref: React.RefObject<any>;
 };
 
 export default function connectToApp(scope: string) /* infer */ {

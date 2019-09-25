@@ -48,7 +48,7 @@ describe('connectToForm()', () => {
   });
 
   function unwrap(
-    element: React.ReactElement<unknown>,
+    element: React.ReactElement,
   ): Enzyme.ReactWrapper<ConnectToFormWrapperProps<unknown>> {
     return mount(element, {
       wrappingComponent: WrappingFormComponent,
@@ -64,7 +64,7 @@ describe('connectToForm()', () => {
 
   it('returns an HOC', () => {
     expect(Hoc.displayName).toBe('connectToForm(BaseField)');
-    expect((Hoc as unknown).WrappedComponent).toBe(BaseField);
+    expect(Hoc.WrappedComponent).toBe(BaseField);
   });
 
   it('sets `defaultValue` from `initialValue` option', () => {

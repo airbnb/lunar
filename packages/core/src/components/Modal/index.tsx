@@ -18,7 +18,7 @@ export class Modal extends React.Component<Props & WithStylesProps> {
     document.body.style.overflow = '';
   }
 
-  private handleClose = (event: React.MouseEvent<unknown> | React.KeyboardEvent) => {
+  private handleClose = (event: React.MouseEvent | React.KeyboardEvent) => {
     this.props.onClose(event);
   };
 

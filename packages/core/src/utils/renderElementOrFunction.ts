@@ -1,15 +1,15 @@
 import React from 'react';
 
 export type RenderableProp<T = unknown> =
-  | React.ReactElement<unknown>
-  | ((value: T) => React.ReactElement<unknown> | null)
+  | React.ReactElement
+  | ((value: T) => React.ReactElement | null)
   | undefined
   | null;
 
 function renderElementOrFunction<T = unknown>(
   prop: RenderableProp<T>,
   value?: T,
-): React.ReactElement<unknown> | null {
+): React.ReactElement | null {
   if (!prop) {
     return null;
   }

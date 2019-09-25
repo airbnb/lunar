@@ -11,7 +11,7 @@ import EmailFactory from './factories/Email';
 import UrlFactory from './factories/Url';
 import transformer from './factories/transformer';
 
-export const globalMatchers: MatcherInterface<unknown>[] = [];
+export const globalMatchers: MatcherInterface<{}>[] = [];
 
 export const globalFilters: FilterInterface[] = [];
 

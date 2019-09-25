@@ -32,7 +32,7 @@ function ApolloComponent({
 }
 
 describe('Mutation', () => {
-  const childHandler = (mutate: unknown) => (
+  const childHandler = (mutate: MutationFunction<unknown, {}>) => (
     <button type="button" onClick={() => mutate({ variables: { id: 123, name: 'Something' } })}>
       Submit
     </button>

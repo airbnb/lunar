@@ -10,6 +10,12 @@ export type ProofreadRuleMatch = {
   rule_id?: string;
 };
 
+export type ProofreaderParams = {
+  text: string;
+  locale: string;
+  action: 'check';
+};
+
 export type ProofreaderResponse = {
   proofread: {
     matches: ProofreadRuleMatch[];
