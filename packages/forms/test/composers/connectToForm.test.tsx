@@ -41,7 +41,9 @@ describe('connectToForm()', () => {
     validator() {},
   };
 
-  let form: Context;
+  let form: Context & {
+    unregister: () => void;
+  };
 
   beforeEach(() => {
     form = createFormContext();
@@ -56,14 +58,15 @@ describe('connectToForm()', () => {
     });
   }
 
-  function findField(
-    wrapper: Enzyme.ReactWrapper<unknown, unknown, unknown>,
+  function findField<P, S>(
+    wrapper: Enzyme.ReactWrapper<P, S>,
   ): Enzyme.ReactWrapper<ConnectToFormProps<unknown>> {
     return wrapper.find(BaseField);
   }
 
   it('returns an HOC', () => {
     expect(Hoc.displayName).toBe('connectToForm(BaseField)');
+    // @ts-ignore
     expect(Hoc.WrappedComponent).toBe(BaseField);
   });
 
@@ -122,7 +125,7 @@ describe('connectToForm()', () => {
         name: 'bar',
       });
 
-      expect((form as unknown).unregister).toHaveBeenCalled();
+      expect(form.unregister).toHaveBeenCalled();
       expect(form.register).toHaveBeenCalledWith(
         expect.objectContaining({
           name: 'foo',
@@ -149,7 +152,7 @@ describe('connectToForm()', () => {
 
       wrapper.unmount();
 
-      expect((form as unknown).unregister).toHaveBeenCalled();
+      expect(form.unregister).toHaveBeenCalled();
     });
 
     it('doesnt unregister field if `unregisterOnMount` is not set', () => {
@@ -157,7 +160,7 @@ describe('connectToForm()', () => {
 
       wrapper.unmount();
 
-      expect((form as unknown).unregister).not.toHaveBeenCalled();
+      expect(form.unregister).not.toHaveBeenCalled();
     });
   });
 

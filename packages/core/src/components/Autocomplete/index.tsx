@@ -19,7 +19,7 @@ export type Item = {
   id?: string | number;
   name?: string;
   title?: string;
-  value?: string;
+  value?: string | number;
 };
 
 export const CACHE_DURATION = toMilliseconds('5 minutes');

@@ -5,7 +5,7 @@ import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
 import Form, { Props } from '../../src/components/Form';
 
 describe('<Form />', () => {
-  let wrapper: Enzyme.ShallowWrapper<Props<unknown>, unknown, Form>;
+  let wrapper: Enzyme.ShallowWrapper<Props<{}>, unknown, Form>;
   let instance: Form;
 
   beforeEach(() => {
@@ -25,7 +25,7 @@ describe('<Form />', () => {
     );
 
     expect(wrapper.state('initialValues')).toEqual({ foo: 'bar' });
-    expect((wrapper.state('values') as unknown).foo).toBe('bar');
+    expect((wrapper.state('values') as { foo: string }).foo).toBe('bar');
   });
 
   it('can change `initialValues` through props', () => {
@@ -539,6 +539,7 @@ describe('<Form />', () => {
       const fields = { foo: { data: {} } };
       const formState = { initialValues: {}, values: {} };
 
+      // @ts-ignore
       instance.setFieldConfig(['foo', config], { fields, formState });
 
       expect(fields).toEqual({

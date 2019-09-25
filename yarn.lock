@@ -90,10 +90,10 @@
     execa "^2.0.4"
     fast-glob "^3.0.4"
 
-"@airbnb/nimbus@^2.0.1":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@airbnb/nimbus/-/nimbus-2.0.2.tgz#aa2ce59bbbf228b850b689a921a900c31729f1e9"
-  integrity sha512-qmneaVoklPJq5l6DGkEXj3FlWH2r08KAJVSUxfyauISRW2KpAibI8HfSDoAS3rWN+XOn1cCiVDll4Mf9WVR3kw==
+"@airbnb/nimbus@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@airbnb/nimbus/-/nimbus-2.0.3.tgz#b6686e8f8ecc5cb07b247c92eed2174fd4fb0db7"
+  integrity sha512-Qhq8bAnH3ov3wGkE8ZyuLir2TmSQFYBVtepfrg6UvAVoaUiyS8j/HqFzGFNBSXCBZMfohqC8xOeXtZ1zujLlnA==
   dependencies:
     "@airbnb/nimbus-common" "^2.0.0"
     "@beemo/cli" "^1.0.4"

@@ -1,14 +1,15 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import PopToast from '../../../src/components/Toasts/PopToast';
-import AppContext from '../../../src/components/AppContext';
+import AppContext, { defaultContext } from '../../../src/components/AppContext';
 import { Context } from '../../../src/types';
 
 describe('PopToast', () => {
-  let context: Partial<Context>;
+  let context: Context;
 
   beforeEach(() => {
     context = {
+      ...defaultContext,
       addFailureToast: jest.fn(),
       addRefreshToast: jest.fn(),
       addSuccessToast: jest.fn(),
@@ -17,7 +18,7 @@ describe('PopToast', () => {
   });
 
   function WrappingComponent({ children }: { children?: React.ReactNode }) {
-    return <AppContext.Provider value={context as unknown}>{children}</AppContext.Provider>;
+    return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
   }
 
   it('adds a failure toast', () => {

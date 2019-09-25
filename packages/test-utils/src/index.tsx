@@ -4,6 +4,11 @@ import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import { DirectionContext, ThemeContext } from 'aesthetic-react';
 
+export interface WrappedComponent<P = {}> extends React.ComponentClass<P> {
+  displayName: string;
+  WrappedComponent: React.ComponentType<any>;
+}
+
 type WrappingProps = {
   dir?: 'ltr' | 'rtl';
   themeName?: string;
@@ -92,7 +97,7 @@ export function wrapConsole(
   };
 }
 
-export function getWrapperName(wrapper: Enzyme.ShallowWrapper<unknown, unknown>): string {
+export function getWrapperName<P, S>(wrapper: Enzyme.ShallowWrapper<P, S>): string {
   let name = wrapper.type();
 
   if (typeof name === 'function') {
@@ -106,12 +111,12 @@ export function getWrapperName(wrapper: Enzyme.ShallowWrapper<unknown, unknown>)
   return name;
 }
 
-export function unwrapHOCs(
-  wrapper: Enzyme.ShallowWrapper<unknown, unknown>,
+export function unwrapHOCs<P, S>(
+  wrapper: Enzyme.ShallowWrapper<P, S>,
   target: string,
   context: unknown = {},
   options: { exitOnContext?: boolean; render?: boolean } = {},
-): Enzyme.ShallowWrapper<unknown, unknown> {
+): Enzyme.ShallowWrapper<P, S> {
   let result = wrapper;
 
   // Unwrap all wrapping and annoying HOCs

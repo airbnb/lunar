@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledComponent } from 'aesthetic-react';
 import withStyles from '../../src/composers/withStyles';
 
 describe('withStyles()', () => {
@@ -10,7 +11,7 @@ describe('withStyles()', () => {
     const Hoc = withStyles(() => ({}))(Foo);
 
     expect(Hoc.displayName).toBe('withStyles(Foo)');
-    expect((Hoc as unknown).styleName).toEqual(expect.stringMatching(/^Foo/));
-    expect((Hoc as unknown).WrappedComponent).toBe(Foo);
+    expect((Hoc as StyledComponent<{}, {}>).styleName).toEqual(expect.stringMatching(/^Foo/));
+    expect((Hoc as StyledComponent<{}, {}>).WrappedComponent).toBe(Foo);
   });
 });

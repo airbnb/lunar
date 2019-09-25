@@ -232,11 +232,7 @@ describe('<DateTimeSelect />', () => {
   });
 
   describe('handleChange()', () => {
-    function simulateChange(
-      wrapper: Enzyme.ShallowWrapper<unknown, unknown>,
-      type: string,
-      value: unknown,
-    ) {
+    function simulateChange<P>(wrapper: Enzyme.ShallowWrapper<P>, type: string, value: unknown) {
       const event = {
         target: {
           id: `foo_${type}`,

@@ -4,9 +4,9 @@ import gql from 'graphql-tag';
 import Button from '@airbnb/lunar/lib/components/Button';
 import Shimmer from '@airbnb/lunar/lib/components/Shimmer';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
+import { MutationFunction } from 'react-apollo';
 import { MockedProvider } from '@apollo/react-testing';
 import Mutation from './Mutation';
-import { MutationFunction } from 'react-apollo';
 
 const MUTATION = gql`
   mutation updateUserName($id: ID!, $name: String!) {

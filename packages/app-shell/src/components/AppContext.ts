@@ -3,7 +3,7 @@ import { Context } from '../types';
 
 const noop = () => '';
 
-export default React.createContext<Context>({
+export const defaultContext: Context = {
   addBreadcrumb: noop,
   addPageData: noop,
   addInfoToast: noop,
@@ -17,4 +17,6 @@ export default React.createContext<Context>({
   removePageData() {},
   removeToast() {},
   toasts: [],
-});
+};
+
+export default React.createContext<Context>(defaultContext);

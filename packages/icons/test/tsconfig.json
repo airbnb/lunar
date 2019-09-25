@@ -1,9 +1,18 @@
 {
-  "extends": "../../../tsconfig.options.json",
   "compilerOptions": {
+    "emitDeclarationOnly": false,
     "noEmit": true,
     "rootDir": "."
   },
-  "include": ["**/*", "../../../types/**/*"],
-  "references": [{ "path": ".." }]
+  "extends": "../../../tsconfig.options.json",
+  "include": [
+    "**/*",
+    "../types/**/*",
+    "../../../types/**/*"
+  ],
+  "references": [
+    {
+      "path": ".."
+    }
+  ]
 }

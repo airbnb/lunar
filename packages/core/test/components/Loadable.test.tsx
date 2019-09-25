@@ -20,7 +20,8 @@ describe('<Loadable />', () => {
   beforeEach(() => {
     jest.useFakeTimers();
     timeoutSpy = jest.spyOn(window, 'setTimeout');
-    React.lazy = jest.fn(() => Foo) as unknown;
+    // @ts-ignore
+    React.lazy = jest.fn(() => Foo);
   });
 
   afterEach(() => {

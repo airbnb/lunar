@@ -7,6 +7,7 @@ import PrivatePickerInput from '../../src/components/DatePickerInput/Input';
 import FormField from '../../src/components/FormField';
 import FormInput from '../../src/components/private/FormInput';
 import { FORMAT_YMD } from '../../src/constants';
+import { Props as BaseInputProps } from '../../src/components/private/BaseInput';
 
 describe('<DatePickerInput />', () => {
   const props = {
@@ -29,7 +30,7 @@ describe('<DatePickerInput />', () => {
     const wrapper = shallow(<DatePickerInput {...props} />);
 
     expect(wrapper.find(FormField).prop('id')).toBe(
-      (wrapper.find(PrivatePickerInput).prop('inputProps') as unknown).id,
+      (wrapper.find(PrivatePickerInput).prop('inputProps') as BaseInputProps).id,
     );
   });
 
@@ -78,7 +79,7 @@ describe('<DatePickerInput />', () => {
 
     expect(wrapper.find(PrivatePickerInput).prop('formatDate')).toBe(instance.formatDate);
     expect(wrapper.find(PrivatePickerInput).prop('parseDate')).toBe(instance.parseDate);
-    expect((wrapper.find(PrivatePickerInput).prop('inputProps') as unknown).onChange).toBe(
+    expect((wrapper.find(PrivatePickerInput).prop('inputProps') as BaseInputProps).onChange).toBe(
       // @ts-ignore Allow private access
       instance.handleChange,
     );

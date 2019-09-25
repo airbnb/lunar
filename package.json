@@ -87,7 +87,7 @@
     "@airbnb/config-jest": "^2.0.0",
     "@airbnb/config-prettier": "^2.0.0",
     "@airbnb/config-typescript": "^2.0.0",
-    "@airbnb/nimbus": "^2.0.1",
+    "@airbnb/nimbus": "^2.0.3",
     "@testing-library/react": "^9.1.4",
     "@types/enzyme": "^3.10.3",
     "@types/google.analytics": "0.0.40",

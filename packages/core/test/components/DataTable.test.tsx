@@ -77,7 +77,7 @@ function EditableTextRenderer({
   return (
     <InnerEditableTextRenderer
       editMode={editMode}
-      value={row.rowData.data[keyName]}
+      value={String(row.rowData.data[keyName])}
       row={row}
       keyName={keyName}
       onEdit={onEdit}
@@ -229,23 +229,26 @@ const simpleProps = {
   showAllRows: true,
 };
 
-const getRow = (table: unknown, row: number) => table.find(Grid).find(`[aria-rowindex=${row}]`);
+const getRow = (table: Enzyme.ReactWrapper<any, any>, row: number) =>
+  table.find(Grid).find(`[aria-rowindex=${row}]`);
 
-const getCell = (wrapper: unknown, row: number, col: number) =>
+const getCell = (wrapper: Enzyme.ReactWrapper<any, any>, row: number, col: number) =>
   wrapper
     .find(Grid)
     .find(`[aria-rowindex=${row}]`)
     .find(`[aria-colindex=${col}]`);
 
-const getCheckbox = (table: unknown, row: number) => getRow(table, row).find(Checkbox);
-const getCaret = (table: unknown, row: number) => getCell(table, row, 1);
+const getCheckbox = (table: Enzyme.ReactWrapper<any, any>, row: number) =>
+  getRow(table, row).find(Checkbox);
 
-const selectRow = (table: unknown, row: number) => {
-  getCheckbox(table, row).prop('onChange')();
+const getCaret = (table: Enzyme.ReactWrapper<any, any>, row: number) => getCell(table, row, 1);
+
+const selectRow = (table: Enzyme.ReactWrapper<any, any>, row: number) => {
+  (getCheckbox(table, row).prop('onChange') as () => void)();
   table.update();
 };
 
-const expandRow = (table: unknown, row: number) => {
+const expandRow = (table: Enzyme.ReactWrapper<any, any>, row: number) => {
   getCaret(table, row)
     .childAt(0)
     .simulate('click');
@@ -261,7 +264,7 @@ describe('<DataTable /> rows can be selected', () => {
     const table = mountWithStyles(<DataTable {...simpleProps} />);
 
     selectRow(table, ROW);
-    expect(getCheckbox(table, ROW).props().checked).toBe(true);
+    expect(getCheckbox(table, ROW).prop('checked')).toBe(true);
   });
 
   it('should be unselectable', () => {
@@ -270,7 +273,7 @@ describe('<DataTable /> rows can be selected', () => {
     selectRow(table, ROW);
     selectRow(table, ROW);
 
-    expect(getCheckbox(table, ROW).props().checked).toBe(false);
+    expect(getCheckbox(table, ROW).prop('checked')).toBe(false);
   });
 
   it('should be selectable by row click', () => {
@@ -279,7 +282,7 @@ describe('<DataTable /> rows can be selected', () => {
     getRow(table, ROW).simulate('click');
     table.update();
 
-    expect(getCheckbox(table, ROW).props().checked).toBe(true);
+    expect(getCheckbox(table, ROW).prop('checked')).toBe(true);
   });
 
   it('should trigger callbacks on selection', () => {
@@ -321,7 +324,7 @@ describe('<DataTable /> rows can be selected', () => {
     expandRow(table, PARENT_ROW);
     selectRow(table, CHILD_ROW);
 
-    expect(getCheckbox(table, CHILD_ROW).props().checked).toBe(true);
+    expect(getCheckbox(table, CHILD_ROW).prop('checked')).toBe(true);
   });
 
   it('selecting the parent should select the children', () => {
@@ -330,7 +333,7 @@ describe('<DataTable /> rows can be selected', () => {
     expandRow(table, PARENT_ROW);
     selectRow(table, PARENT_ROW);
 
-    expect(getCheckbox(table, CHILD_ROW).props().checked).toBe(true);
+    expect(getCheckbox(table, CHILD_ROW).prop('checked')).toBe(true);
   });
 
   it('selecting both children should select the parent', () => {
@@ -340,7 +343,7 @@ describe('<DataTable /> rows can be selected', () => {
     selectRow(table, CHILD_ROW);
     selectRow(table, CHILD_ROW + 1);
 
-    expect(getCheckbox(table, PARENT_ROW).props().checked).toBe(true);
+    expect(getCheckbox(table, PARENT_ROW).prop('checked')).toBe(true);
   });
 
   it('selecting the parent then deselecting child should deselect child', () => {
@@ -350,7 +353,7 @@ describe('<DataTable /> rows can be selected', () => {
     selectRow(table, PARENT_ROW);
     selectRow(table, CHILD_ROW);
 
-    expect(getCheckbox(table, CHILD_ROW).props().checked).toBe(false);
+    expect(getCheckbox(table, CHILD_ROW).prop('checked')).toBe(false);
   });
 
   it('Selecting the parent then deselecting both children should deselect the parent', () => {
@@ -361,7 +364,7 @@ describe('<DataTable /> rows can be selected', () => {
     selectRow(table, CHILD_ROW);
     selectRow(table, CHILD_ROW + 1);
 
-    expect(getCheckbox(table, PARENT_ROW).props().checked).toBe(false);
+    expect(getCheckbox(table, PARENT_ROW).prop('checked')).toBe(false);
   });
 });
 

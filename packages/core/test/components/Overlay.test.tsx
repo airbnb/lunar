@@ -123,7 +123,7 @@ describe('<Overlay />', () => {
 
       wrapper = shallowWithStyles(
         <Portal {...props} noBackground onResize={resizeSpy} onClose={closeSpy} />,
-      ) as unknown;
+      );
       instance = wrapper.instance();
     });
 
