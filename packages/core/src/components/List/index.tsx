@@ -57,8 +57,12 @@ export default withStyles(({ unit }) => ({
 
   list_gutter: {
     '@selectors': {
-      '> li + li': {
-        marginTop: unit / 2,
+      '> li': {
+        marginBottom: unit / 2,
+      },
+
+      '> li:last-child': {
+        marginBottom: 0,
       },
     },
   },
@@ -66,6 +70,7 @@ export default withStyles(({ unit }) => ({
   list_gutter_horizontal: {
     '@selectors': {
       '> li': {
+        marginBottom: 0,
         marginRight: unit,
       },
 
