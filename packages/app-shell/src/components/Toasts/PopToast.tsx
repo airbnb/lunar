@@ -21,7 +21,7 @@ export default function PopToast({ message, ...props }: Props) {
       addInfoToast(message, props);
     }
 
-    // We only care when the label changes, not all the props
+    // We only care when the message changes, not all the props
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addFailureToast, addRefreshToast, addSuccessToast, addInfoToast, message]);
 
