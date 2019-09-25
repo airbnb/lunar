@@ -5,11 +5,12 @@
   "description": "React toolkit and design language for Airbnb open source and internal projects.",
   "license": "MIT",
   "scripts": {
+    "prepare": "nimbus create-config --silent",
     "babel": "nimbus babel --workspaces=* && nimbus babel --esm --workspaces=*",
     "build": "yarn run type && yarn run babel",
-    "clean": "rimraf './packages/*/{lib,esm}'",
-    "clean:hard": "yarn run clean && rimraf './packages/**/*.tsbuildinfo'",
-    "clean:story": "rimraf './packages/**/*.story.d.ts' './packages/**/*.story.d.ts.map'",
+    "clean": "rm -rf './packages/*/{lib,esm}'",
+    "clean:hard": "yarn run clean && rm -rf './packages/**/*.tsbuildinfo'",
+    "clean:story": "rm -rf './packages/**/*.story.d.ts' './packages/**/*.story.d.ts.map'",
     "deploy:ghp": "yarn run storybook:build && node ./scripts/publishGitHubPages.js",
     "deploy:npm": "yarn run release:version && yarn run release:publish",
     "gen:icon": "node ./scripts/generateIcon.js",
@@ -30,8 +31,7 @@
     "test": "yarn run jest:coverage",
     "type": "nimbus typescript --build --reference-workspaces",
     "storybook": "STORYBOOK=true start-storybook -p 6006",
-    "storybook:build": "STORYBOOK=true build-storybook",
-    "prepare": "nimbus create-config --silent"
+    "storybook:build": "STORYBOOK=true build-storybook"
   },
   "repository": {
     "type": "git",
@@ -92,11 +92,9 @@
     "@testing-library/react": "^9.1.4",
     "@types/enzyme": "^3.10.3",
     "@types/google.analytics": "0.0.40",
-    "@types/jest": "^24.0.18",
     "@types/jscodeshift": "^0.6.3",
     "@types/storybook__addon-actions": "^3.4.3",
     "@types/storybook__react": "^4.0.2",
-    "airbnb-js-shims": "^2.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.4.0",
@@ -111,7 +109,6 @@
     "react": "^16.9.0",
     "react-docgen-typescript-loader": "^3.2.1",
     "react-dom": "^16.9.0",
-    "rimraf": "^3.0.0",
     "svgo": "^1.3.0",
     "url-loader": "^2.1.0"
   },
