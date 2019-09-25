@@ -14,7 +14,11 @@ matrix:
 jobs:
   include:
     - stage: Tests
-      name: Test @ 8
+      name: Happo
+      script: yarn run happo:ci:travis
+      node_js: '12'
+      if: type = pull_request
+    - name: Test @ 8
       script: yarn run jest:coverage -w 4
       node_js: '8'
     - name: Test @ 10
