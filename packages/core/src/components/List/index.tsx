@@ -7,6 +7,8 @@ export { Item };
 export type Props = {
   /** List items. */
   children: NonNullable<React.ReactNode>;
+  /** Apply gutters between `li`s. */
+  gutter?: boolean;
   /** Horizontal list. */
   horizontal?: boolean;
   /** Renders an `<ol></ol>`. */
@@ -17,14 +19,16 @@ export type Props = {
 
 class List extends React.Component<Props & WithStylesProps> {
   render() {
-    const { children, cx, horizontal, ordered, styles, wrap } = this.props;
+    const { children, cx, gutter, horizontal, ordered, styles, wrap } = this.props;
     const Tag = ordered ? 'ol' : 'ul';
 
     return (
       <Tag
         className={cx(
           styles.list,
+          !horizontal && gutter && styles.list_gutter,
           horizontal && styles.list_horizontal,
+          horizontal && gutter && styles.list_gutter_horizontal,
           horizontal && wrap && styles.list_horizontal_wrap,
         )}
       >
@@ -44,11 +48,36 @@ class List extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(() => ({
+export default withStyles(({ unit }) => ({
   list: {
     listStyle: 'none',
     margin: 0,
     padding: 0,
+  },
+
+  list_gutter: {
+    '@selectors': {
+      '> li': {
+        marginBottom: unit / 2,
+      },
+
+      '> li:last-child': {
+        marginBottom: 0,
+      },
+    },
+  },
+
+  list_gutter_horizontal: {
+    '@selectors': {
+      '> li': {
+        marginBottom: 0,
+        marginRight: unit,
+      },
+
+      '> li:last-child': {
+        marginRight: 0,
+      },
+    },
   },
 
   list_horizontal: {
