@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+
 import { FileInfo, API, Options } from 'jscodeshift';
 import { Codemod } from '../helpers';
 

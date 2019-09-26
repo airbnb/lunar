@@ -1,7 +1,10 @@
+/* eslint-disable  */
+// Copied from Storybook since their codemod does not support TS.
+// https://github.com/storybookjs/storybook/blob/next/lib/codemod/src/transforms/storiesof-to-csf.js
+// jscodeshift --extensions=js,jsx,ts,tsx --parser=tsx --transform=./codemods/storybookCsf.js ./packages/**/*.story.tsx
+
 const camelCase = require('lodash/camelCase');
 const startCase = require('lodash/startCase');
-
-// jscodeshift --extensions=js,jsx,ts,tsx --parser=tsx --transform=./codemods/storybookCsf.js ./packages/**/*.story.tsx
 
 const RESERVED = /^(?:do|if|in|for|let|new|try|var|case|else|enum|eval|false|null|this|true|void|with|await|break|catch|class|const|super|throw|while|yield|delete|export|import|public|return|static|switch|typeof|default|extends|finally|package|private|continue|debugger|function|arguments|interface|protected|implements|instanceof)$/;
 
@@ -21,7 +24,7 @@ export const sanitizeName = name => {
 
 const storyNameFromExport = key => startCase(key);
 
-export default function transformer(file, api, options) {
+module.exports = function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
 
@@ -145,7 +148,8 @@ export default function transformer(file, api, options) {
       statements.push(
         j.exportDeclaration(
           false,
-          j.variableDeclaration('const', [j.variableDeclarator(j.identifier(key), val)]),
+          // j.variableDeclaration('const', [j.variableDeclarator(j.identifier(key), val)])
+          j.functionDeclaration(j.identifier(key), [], j.blockStatement([j.returnStatement(val)])),
         ),
       );
 
@@ -241,4 +245,4 @@ export default function transformer(file, api, options) {
     quote: 'single',
     trailingComma: true,
   });
-}
+};
