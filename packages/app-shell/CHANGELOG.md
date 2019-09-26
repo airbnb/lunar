@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.2.0-alpha.1 - 2019-09-26
+
+#### 🚀 Updates
+
+- Migrate to Nimbus. Update to latest TypeScript, Babel, ESLint, and more. (#196) ([fe0962b](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/fe0962b)), closes [#196](https://github.com/airbnb/lunar/tree/master/packages/app-shell/issues/196)
+
+**Note:** Version bump only for package @airbnb/lunar-app-shell
+
+
+
+
+
 ### 2.1.6 - 2019-09-24
 
 #### 📦 Dependencies
