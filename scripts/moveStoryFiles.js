@@ -6,7 +6,7 @@ const glob = require('fast-glob');
 
 glob('packages/**/*.story.tsx').then(storyPaths => {
   storyPaths.forEach(oldPath => {
-    if (!oldPath.includes('components')) {
+    if (!oldPath.includes('components') || oldPath.includes('packages/forms')) {
       return;
     }
 
@@ -23,7 +23,7 @@ glob('packages/**/*.story.tsx').then(storyPaths => {
         let source = fs.readFileSync(newPath, 'utf8');
 
         source = source.replace(`from './${componentName}'`, `from '.'`);
-        source = source.replace("from './", "from '../");
+        source = source.replace(/from '\.\//g, "from '../");
 
         return fs.writeFile(newPath, source, 'utf8');
       });

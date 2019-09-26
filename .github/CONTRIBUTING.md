@@ -120,8 +120,7 @@ documenting of components to properly infer prop types.
   [docblock comment description](https://github.com/reactjs/react-docgen#proptypes).
 - Component names are extracted by the default export (or the named export when wrapped with an
   HOC).
-- Stories must be placed within a `<component>.story.tsx` file, in the root of the components
-  folder.
+- Stories must be placed within a `<component>/story.tsx` file.
 - When running `yarn run sg`, there should be _no_ errors/warnings in your terminal or browser
   console.
 - All comments, descriptions, and example text must be in sentence case with proper capitalization

@@ -10,7 +10,6 @@
     "build": "yarn run type && yarn run babel",
     "clean": "rm -rf './packages/*/{lib,esm}'",
     "clean:hard": "yarn run clean && rm -rf './packages/**/*.tsbuildinfo'",
-    "clean:story": "rm -rf './packages/**/*.story.d.ts' './packages/**/*.story.d.ts.map'",
     "deploy:ghp": "yarn run storybook:build && node ./scripts/publishGitHubPages.js",
     "deploy:npm": "yarn run release:version && yarn run release:publish",
     "gen:icon": "node ./scripts/generateIcon.js",

@@ -18,14 +18,14 @@ module.exports = {
       },
     },
     {
-      files: ['*.test.ts', '*.test.tsx', '*.story.tsx'],
+      files: ['*.test.ts', '*.test.tsx', 'story.tsx', '*.story.tsx'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
         'react/jsx-no-literals': 'off',
       },
     },
     {
-      files: ['*.story.tsx'],
+      files: ['story.tsx', '*.story.tsx'],
       env: {
         node: true,
       },
