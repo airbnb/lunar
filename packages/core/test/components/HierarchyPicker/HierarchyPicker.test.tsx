@@ -98,11 +98,10 @@ describe('<HierarchyPicker />', () => {
     });
 
     describe('handleKeyDown', () => {
-      let event: any;
+      let event: unknown;
 
       beforeEach(() => {
         event = { preventDefault: jest.fn(), target: instance.ref.current };
-        expect(instance.state.open).toBe(false);
       });
 
       it('default', () => {

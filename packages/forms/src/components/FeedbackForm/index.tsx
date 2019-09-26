@@ -27,7 +27,7 @@ export type Props = {
   /** Callback fired when the continue button is clicked. */
   onContinue?: () => void;
   /** Callback fired when the form has been submitted. */
-  onSubmit: (data: Data, props: Props) => Promise<any>;
+  onSubmit: (data: Data, props: Props) => Promise<unknown>;
   /** The team ID within JIRA. */
   teamID: number;
 };
@@ -103,6 +103,7 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
             {RadioButton => (
               <div>
                 <RadioButton
+                  noSpacing
                   value="bug"
                   label={
                     <T
@@ -111,10 +112,10 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
                       context="Feedback form type option"
                     />
                   }
-                  noSpacing
                 />
 
                 <RadioButton
+                  noSpacing
                   value="feedback"
                   label={
                     <T
@@ -123,7 +124,6 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
                       context="Feedback form type option"
                     />
                   }
-                  noSpacing
                 />
               </div>
             )}

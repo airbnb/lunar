@@ -19,9 +19,9 @@ type ColumnLabelsProps = {
   // Column className from react-virutalized.
   className: string;
   // Array of columns from react-virtualized.
-  columns: Array<any>;
+  columns: React.ReactNode[];
   // Column style from react-virtualized, infered from Column widths.
-  style: any;
+  style: React.CSSProperties;
 };
 
 /** See https://github.com/bvaughn/react-virtualized/blob/master/source/Table/defaultHeaderRowRenderer.js.
@@ -61,7 +61,11 @@ export default function ColumnLabels({
       justifyContent: 'flex-end',
     };
 
-    const newColumns = columns.map((col: React.ReactElement, idx: number) => {
+    const newColumns = columns.map((col, idx) => {
+      if (!React.isValidElement(col)) {
+        return col;
+      }
+
       const { children } = col.props;
       const key = children[0].props.children;
       const label = columnToLabel[key]

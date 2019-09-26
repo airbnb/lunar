@@ -25,7 +25,7 @@ export type Props = {
   /** Dialog header title. */
   title?: React.ReactNode;
   /** Callback for when the Dialog should be closed.  */
-  onClose: (event: React.MouseEvent<any> | React.KeyboardEvent) => void;
+  onClose: (event: React.MouseEvent | React.KeyboardEvent) => void;
 };
 
 /** A Dialog component with a backdrop and a standardized layout. */

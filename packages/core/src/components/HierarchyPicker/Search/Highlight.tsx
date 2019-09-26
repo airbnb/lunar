@@ -18,8 +18,7 @@ export class Highlight extends React.Component<Props & WithStylesProps> {
 
     const { value, indices = [] } = match;
     const matchIndices = [...indices]; // clean ref
-
-    const output: React.ReactElement<any>[] = [];
+    const output: React.ReactElement[] = [];
     let pair = matchIndices.shift();
     let substr = '';
 

@@ -15,24 +15,24 @@ storiesOf('Layouts/Layout', module)
   ))
   .add('With left aside, and no main padding.', () => (
     <Layout
+      noPadding
       before={
         <Aside width={300}>
           <LoremIpsum />
         </Aside>
       }
-      noPadding
     >
       <LoremIpsum />
     </Layout>
   ))
   .add('With right aside, and no main background color.', () => (
     <Layout
+      noBackground
       after={
         <Aside width={300}>
           <LoremIpsum />
         </Aside>
       }
-      noBackground
     >
       <LoremIpsum />
     </Layout>

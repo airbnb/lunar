@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-icons",
-  "version": "2.2.1",
+  "version": "2.3.0-alpha.0",
   "description": "Icons for Lunar.",
   "license": "(MIT AND Apache-2.0)",
   "main": "./lib/index.js",
@@ -20,10 +20,10 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
-    "@airbnb/lunar-test-utils": "^2.2.2",
+    "@airbnb/lunar-test-utils": "^2.3.0-alpha.0",
     "react": "^16.9.0"
   },
   "dependencies": {
-    "@types/react": "^16.9.2"
+    "@types/react": "^16.9.3"
   }
 }

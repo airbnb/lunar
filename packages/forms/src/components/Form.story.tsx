@@ -22,7 +22,7 @@ import Form from './Form';
 
 const fixedDate = new Date(2019, 1, 1, 10, 10, 10);
 
-function isRequired(value: any) {
+function isRequired(value: unknown) {
   const pass = Array.isArray(value) ? value.length : value;
 
   if (!pass) {
@@ -84,23 +84,23 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
       >
         {mounted && (
           <Input
+            unregisterOnUnmount
             label="Prefills other field on change"
             name="text_base"
+            validator={isRequired}
             onChange={action('onChange')}
             onBatchChange={() => ({
               text_other: 'Prefilled',
             })}
-            validator={isRequired}
-            unregisterOnUnmount
           />
         )}
 
         <Input
+          unregisterOnUnmount
           label="Cannot be empty"
           name="text_other"
-          onChange={action('onChange')}
           validator={isRequired}
-          unregisterOnUnmount
+          onChange={action('onChange')}
         />
 
         <Button onClick={this.handleToggleMount}>
@@ -127,44 +127,44 @@ storiesOf('Forms/Form', module)
       onStateUpdate={action('onStateUpdate')}
     >
       <Input
+        unregisterOnUnmount
         label="Text"
-        name="text[base]"
         // Set as an initial value
         // defaultValue="Lunar"
-        onChange={action('onChange')}
+        name="text[base]"
         validator={isRequired}
-        unregisterOnUnmount
+        onChange={action('onChange')}
       />
 
       <Input
+        validateDefaultValue
+        unregisterOnUnmount
         label="Email"
         name="text[email]"
         type="email"
         defaultValue="lunar@domain.com"
-        onChange={action('onChange')}
         validator={isEmail}
-        validateDefaultValue
-        unregisterOnUnmount
+        onChange={action('onChange')}
       />
 
       <TextArea
-        label="Textarea"
-        name="textarea"
-        defaultValue="Type something..."
-        onChange={action('onChange')}
-        validator={isRequired}
         autoResize
         important
         unregisterOnUnmount
+        label="Textarea"
+        name="textarea"
+        defaultValue="Type something..."
+        validator={isRequired}
+        onChange={action('onChange')}
       />
 
       <Select
+        unregisterOnUnmount
         label="Select"
         name="select"
         defaultValue="foo"
-        onChange={action('onChange')}
         validator={isRequired}
-        unregisterOnUnmount
+        onChange={action('onChange')}
       >
         <option value="">---</option>
         <option value="foo">Foo</option>
@@ -173,78 +173,79 @@ storiesOf('Forms/Form', module)
       </Select>
 
       <DateTimeSelect
+        unregisterOnUnmount
         label="Datetime select"
         name="datetime"
-        onChange={action('onChange')}
         validator={isRequired}
         defaultValue={fixedDate.toISOString()}
-        unregisterOnUnmount
+        onChange={action('onChange')}
       />
 
       <DatePickerInput
+        unregisterOnUnmount
         label="Date picker"
         name="date"
-        onChange={action('onChange')}
         validator={isDate}
         defaultValue={fixedDate}
-        unregisterOnUnmount
+        onChange={action('onChange')}
       />
 
       <Autocomplete
+        unregisterOnUnmount
         accessibilityLabel="Autocomplete"
         label="Autocomplete"
         name="autocomplete"
         defaultValue="black"
+        validator={isRequired}
         onChange={action('onChange')}
         onLoadItems={value =>
-          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value))) as any
+          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value)))
         }
-        validator={isRequired}
-        unregisterOnUnmount
       />
 
       <Multicomplete
         optional
+        unregisterOnUnmount
         accessibilityLabel="Multicomplete"
         label="Multicomplete"
-        name="multicomplete"
         // defaultValue={['blue', 'red']}
+        name="multicomplete"
+        renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
+        validator={isRequired}
         onChange={action('onChange')}
         onLoadItems={value =>
-          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value))) as any
+          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value)))
         }
-        renderItem={(item: any, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
-        validator={isRequired}
-        unregisterOnUnmount
       />
 
       <Switch
+        unregisterOnUnmount
         label="Switch"
         name="switch"
-        onChange={action('onChange')}
         validator={isRequired}
-        unregisterOnUnmount
+        onChange={action('onChange')}
       />
 
       <CheckBox
+        unregisterOnUnmount
         label="Single checkbox"
         name="single_checkbox"
-        onChange={action('onChange')}
         validator={isRequired}
-        unregisterOnUnmount
+        onChange={action('onChange')}
       />
 
       <CheckBoxController
+        unregisterOnUnmount
         label="Checkboxes"
         name="multiple_checkbox"
         defaultValue={['foo', 'baz']}
-        onChange={action('onChange')}
         validator={isRequired}
-        unregisterOnUnmount
+        onChange={action('onChange')}
       >
         {CB => (
           <div>
             <CB
+              topAlign
               value="foo"
               label="Foo"
               labelDescription={
@@ -252,10 +253,10 @@ storiesOf('Forms/Form', module)
                   <LoremIpsum medium />
                 </Text>
               }
-              topAlign
             />
 
             <CB
+              topAlign
               value="bar"
               label="Bar"
               labelDescription={
@@ -263,10 +264,10 @@ storiesOf('Forms/Form', module)
                   <LoremIpsum medium />
                 </Text>
               }
-              topAlign
             />
 
             <CB
+              topAlign
               value="baz"
               label="Baz"
               labelDescription={
@@ -274,36 +275,35 @@ storiesOf('Forms/Form', module)
                   <LoremIpsum medium />
                 </Text>
               }
-              topAlign
             />
           </div>
         )}
       </CheckBoxController>
 
       <RadioButtonController
+        unregisterOnUnmount
         label="Radio buttons (in button mode)"
         name="multiple_radio"
         defaultValue="foo"
-        onChange={action('onChange')}
         validator={isRequired}
-        unregisterOnUnmount
+        onChange={action('onChange')}
       >
         {RB => (
           <div>
-            <RB value="foo" label="Foo" button />
-            <RB value="bar" label="Bar" button />
-            <RB value="baz" label="Baz" button />
+            <RB button value="foo" label="Foo" />
+            <RB button value="bar" label="Bar" />
+            <RB button value="baz" label="Baz" />
           </div>
         )}
       </RadioButtonController>
 
       <ToggleButtonController
+        unregisterOnUnmount
         label="Toggle buttons"
         name="mutliple_buttons"
         defaultValue="foo"
-        onChange={action('onChange')}
         validator={isRequired}
-        unregisterOnUnmount
+        onChange={action('onChange')}
       >
         {B => (
           <ButtonGroup>

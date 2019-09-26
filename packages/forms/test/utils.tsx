@@ -11,7 +11,8 @@ export function createFormContext(): Context & { unregister: () => void } {
   return {
     change: jest.fn(),
     getFields: () => [],
-    getState: () => ({} as any),
+    // @ts-ignore
+    getState: () => ({}),
     register: jest.fn(() => unregister),
     submit: jest.fn(() => Promise.resolve({})),
     unregister,

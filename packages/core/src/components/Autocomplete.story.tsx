@@ -22,9 +22,7 @@ storiesOf('Core/Autocomplete', module)
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
       onLoadItems={value =>
-        Promise.resolve(
-          items.filter(item => item.name.toLowerCase().match(value.toLowerCase())),
-        ) as any
+        Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
       }
     />
   ))
@@ -40,38 +38,38 @@ storiesOf('Core/Autocomplete', module)
   ))
   .add('With an error message in an invalid state.', () => (
     <Autocomplete
+      invalid
       accessibilityLabel="Label"
       name="autocomplete-error"
       label="Label"
+      errorMessage="This field is required."
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
       onLoadItems={value => Promise.resolve([])}
-      errorMessage="This field is required."
-      invalid
     />
   ))
   .add('With a label description in a disabled state.', () => (
     <Autocomplete
+      disabled
       accessibilityLabel="Label"
       name="autocomplete-disabled"
       label="Label"
+      labelDescription="This is a small label description."
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
       onLoadItems={value => Promise.resolve([])}
-      labelDescription="This is a small label description."
-      disabled
     />
   ))
   .add('Load items on focus.', () => (
     <Autocomplete
+      loadItemsOnFocus
       accessibilityLabel="Label"
       name="autocomplete-load-on-focus"
       label="Label"
+      labelDescription="Load some items on focus."
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value => Promise.resolve(items) as any}
-      labelDescription="Load some items on focus."
-      loadItemsOnFocus
+      onLoadItems={() => Promise.resolve(items)}
     />
   ))
   .add('Disable selected items with `isItemSelectable`.', () => (
@@ -79,50 +77,50 @@ storiesOf('Core/Autocomplete', module)
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
       name="autocomplete"
+      isItemSelectable={(item, selected) => !selected}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
       onLoadItems={value =>
         Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
       }
-      isItemSelectable={(item, selected) => !selected}
     />
   ))
   .add('With custom states in a small form.', () => (
     <>
       <Autocomplete
+        loadItemsOnMount
+        small
         accessibilityLabel="Label"
         name="autocomplete-state-error"
         label="Error"
+        renderError={error => <div>{error.message}</div>}
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
         onLoadItems={value => Promise.reject(new Error('Failed to load.'))}
-        renderError={error => <div>{error.message}</div>}
-        loadItemsOnMount
-        small
       />
 
       <Autocomplete
+        loadItemsOnMount
+        small
         accessibilityLabel="Label"
         name="autocomplete-state-loading"
         label="Loading"
+        renderLoading={() => <div>Loading...</div>}
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
         onLoadItems={value => new Promise(() => {})}
-        renderLoading={() => <div>Loading...</div>}
-        loadItemsOnMount
-        small
       />
 
       <Autocomplete
+        loadItemsOnMount
+        small
         accessibilityLabel="Label"
         name="autocomplete-state-empty"
         label="No results"
+        renderNoResults={() => <div>Nothing to see here!</div>}
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
         onLoadItems={value => Promise.resolve([])}
-        renderNoResults={() => <div>Nothing to see here!</div>}
-        loadItemsOnMount
-        small
       />
     </>
   ));

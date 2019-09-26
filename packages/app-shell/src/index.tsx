@@ -8,6 +8,8 @@ import Toasts from './components/Toasts';
 import AppContext from './components/AppContext';
 import { Breadcrumb, ToastType, Toast } from './types';
 
+export * from './types';
+
 export type Props = {
   /** Application to render. */
   children: NonNullable<React.ReactNode>;

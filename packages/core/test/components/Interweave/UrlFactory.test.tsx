@@ -39,7 +39,7 @@ describe('linkFactory()', () => {
 
   it('sets open in new window', () => {
     const wrapper = shallowWithStyles(
-      <UrlFactory urlParts={urlParts} newWindow>
+      <UrlFactory newWindow urlParts={urlParts}>
         airbnb.com
       </UrlFactory>,
       true,
@@ -50,7 +50,7 @@ describe('linkFactory()', () => {
 
   it('sets small prop on link', () => {
     const wrapper = shallowWithStyles(
-      <UrlFactory urlParts={urlParts} small>
+      <UrlFactory small urlParts={urlParts}>
         airbnb.com
       </UrlFactory>,
       true,
@@ -62,7 +62,7 @@ describe('linkFactory()', () => {
 
   it('sets large prop on link', () => {
     const wrapper = shallowWithStyles(
-      <UrlFactory urlParts={urlParts} large>
+      <UrlFactory large urlParts={urlParts}>
         airbnb.com
       </UrlFactory>,
       true,

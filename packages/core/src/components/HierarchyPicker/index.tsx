@@ -30,7 +30,7 @@ export type Props = {
   /** A function to format the display of choice. */
   formatter?: (chosen: TreePath, labeler: Labeler) => string;
   /** Fuse.js search options to override. */
-  fuseOptions?: FuseOptions<any>;
+  fuseOptions?: FuseOptions<{}>;
   /** Maximum height of a (vertically aligned) hierarchy menu. */
   hierarchyMaxHeight?: number;
   /** Width of a single level of the hierarchy menu. */
@@ -172,6 +172,7 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
     return (
       <div>
         <div
+          ref={this.ref}
           className={cx(
             styles.selectlike,
             !disabled && styles.selectlike_enabled,
@@ -184,7 +185,6 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
           role="button"
           onKeyDown={this.handleKeyDown}
           onClick={this.handleClick}
-          ref={this.ref}
         >
           {children || <Text>{this.boundFormatter(chosen || [])}</Text>}
 
@@ -197,7 +197,6 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
           <Picker
             {...passThruProps}
             formatter={this.boundFormatter}
-            onClose={this.handleClose}
             searchPlaceholder={
               searchPlaceholder ||
               T.phrase(
@@ -220,6 +219,7 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
                 },
               )
             }
+            onClose={this.handleClose}
           />
         </Overlay>
       </div>

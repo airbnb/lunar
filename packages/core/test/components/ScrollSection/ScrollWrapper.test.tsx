@@ -9,9 +9,9 @@ import ScrollWrapper, {
 describe('<ScrollWrapper />', () => {
   const anchor = document.createElement('a');
   const savedIntersectionObserver = global.IntersectionObserver;
-  let wrapper: Enzyme.ShallowWrapper<Props, any, BaseScrollWrapper>;
-  let activeScrollSectionHandler: jest.Mock<any>;
-  let hideScrollSectionHandler: jest.Mock<any>;
+  let wrapper: Enzyme.ShallowWrapper<Props, unknown, BaseScrollWrapper>;
+  let activeScrollSectionHandler: jest.Mock<unknown>;
+  let hideScrollSectionHandler: jest.Mock<unknown>;
 
   beforeEach(() => {
     activeScrollSectionHandler = jest.fn();

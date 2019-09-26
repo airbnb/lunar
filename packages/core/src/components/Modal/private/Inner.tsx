@@ -44,7 +44,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
   private handleClickOutside = (event: React.MouseEvent | MouseEvent) => {
     const { current } = this.dialogRef;
 
-    if (current && current.contains(event.target as any)) {
+    if (current && current.contains(event.target as Element)) {
       return;
     }
 
@@ -64,7 +64,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
     }, 0);
   };
 
-  private handleClose = (event: React.MouseEvent<any> | React.KeyboardEvent) => {
+  private handleClose = (event: React.MouseEvent | React.KeyboardEvent) => {
     const { onClose } = this.props;
     onClose(event);
   };
@@ -102,9 +102,9 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
+        ref={this.dialogRef}
         aria-modal
         role="dialog"
-        ref={this.dialogRef}
         className={cx(
           styles.content,
           small && styles.content_small,

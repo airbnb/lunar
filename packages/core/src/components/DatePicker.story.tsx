@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+// @ts-ignore
 import { DateUtils } from 'react-day-picker';
 import DateTime from './DateTime';
 import Spacing from './Spacing';

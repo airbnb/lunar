@@ -3,7 +3,6 @@
 exports[`linkFactory() renders a link 1`] = `
 <Link
   baseline={true}
-  cx={[Function]}
   href="http://airbnb.com"
   openInNewWindow={false}
   withStylesClasses={

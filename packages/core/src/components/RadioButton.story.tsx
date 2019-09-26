@@ -15,32 +15,32 @@ storiesOf('Core/RadioButton', module)
   ))
   .add('With an error message in an invalid state.', () => (
     <RadioButton
+      invalid
       name="radio-error"
       label="Label"
       value="foo"
-      onChange={action('onChange')}
       errorMessage="This field is required."
-      invalid
+      onChange={action('onChange')}
     />
   ))
   .add('With a label description in a disabled state.', () => (
     <RadioButton
+      disabled
       name="radio-disabled"
       label="Label"
       value="foo"
       labelDescription="This is a small label description."
       onChange={action('onChange')}
-      disabled
     />
   ))
   .add('With a label description in a indeterminate state.', () => (
     <RadioButton
+      indeterminate
       name="radio-neutral"
       label="Label"
       value="foo"
       labelDescription="This is a small label description."
       onChange={action('onChange')}
-      indeterminate
     />
   ))
   .add('With a top alignment.', () => (
@@ -65,61 +65,61 @@ storiesOf('Core/RadioButton', module)
   ))
   .add('Marked as optional.', () => (
     <RadioButton
+      optional
       name="radio-optional"
       label="Label"
       value="foo"
       onChange={action('onChange')}
-      optional
     />
   ))
   .add('Marked as checked in different states.', () => (
     <>
       <RadioButton
+        checked
         name="radio-checked"
         label="Label"
         value="foo"
         onChange={action('onChange')}
-        checked
       />
       <RadioButton
+        checked
+        disabled
         name="radio-checked-disabled"
         label="Label"
         value="foo"
         onChange={action('onChange')}
-        checked
-        disabled
       />
       <RadioButton
+        checked
+        invalid
         name="radio-checked-invalid"
         label="Label"
         value="foo"
         onChange={action('onChange')}
-        checked
-        invalid
       />
     </>
   ))
   .add('As a clickable button.', () => (
     <RadioButton
+      button
+      topAlign
       name="radio-basic"
       label="Label"
       labelDescription="This is a label description."
       value="foo"
       onChange={action('onChange')}
-      button
-      topAlign
     />
   ))
   .add('As a compact, clickable button.', () => (
     <RadioButton
+      button
+      compact
       name="radio-basic"
       label="Label"
       labelDescription="This is a label description."
       value="foo"
       onChange={action('onChange')}
-      button
-      compact
     >
-      <Row after={<ProfilePhoto imageSrc={lunar} title="Photo" small />}>Label from children</Row>
+      <Row after={<ProfilePhoto small imageSrc={lunar} title="Photo" />}>Label from children</Row>
     </RadioButton>
   ));

@@ -13,6 +13,7 @@ storiesOf('Core/Multicomplete', module)
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
       name="autocomplete"
+      renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
       onLoadItems={value =>
@@ -25,7 +26,6 @@ storiesOf('Core/Multicomplete', module)
           ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
         )
       }
-      renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
     />
   ))
   .add('Supports pre-populating multiple items.', () => (
@@ -33,6 +33,8 @@ storiesOf('Core/Multicomplete', module)
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
       name="autocomplete"
+      renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
+      value={['red', 'green']}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
       onLoadItems={value =>
@@ -45,15 +47,16 @@ storiesOf('Core/Multicomplete', module)
           ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
         )
       }
-      renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
-      value={['red', 'green']}
     />
   ))
   .add('Load items on focus.', () => (
     <Multicomplete
+      loadItemsOnFocus
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
       name="autocomplete"
+      renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
+      value={['red', 'green']}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
       onLoadItems={value =>
@@ -66,8 +69,5 @@ storiesOf('Core/Multicomplete', module)
           ].filter(item => !value || item.name.toLowerCase().match(value.toLowerCase())),
         )
       }
-      renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
-      value={['red', 'green']}
-      loadItemsOnFocus
     />
   ));

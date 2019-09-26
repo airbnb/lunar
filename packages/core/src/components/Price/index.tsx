@@ -65,7 +65,7 @@ export default class Price extends React.PureComponent<Props> {
     }
 
     if (typeof baseAmount === 'object') {
-      currency = baseAmount.currency; // eslint-disable-line prefer-destructuring
+      currency = baseAmount.currency;
       micros = baseAmount.is_micros_accuracy;
       amount = micros ? baseAmount.amount_micros : baseAmount.amount;
     } else if (typeof baseAmount === 'number') {

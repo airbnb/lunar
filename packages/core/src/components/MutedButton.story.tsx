@@ -14,10 +14,10 @@ storiesOf('Core/MutedButton', module)
   ))
   .add('An anchor link when passing `href`.', () => (
     <>
-      <MutedButton href="https://github.com/airbnb/lunar" openInNewWindow>
+      <MutedButton openInNewWindow href="https://github.com/airbnb/lunar">
         Link
       </MutedButton>{' '}
-      <MutedButton href="https://github.com/airbnb/lunar" openInNewWindow inverted>
+      <MutedButton openInNewWindow inverted href="https://github.com/airbnb/lunar">
         Link
       </MutedButton>
     </>

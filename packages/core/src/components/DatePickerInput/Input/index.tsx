@@ -15,11 +15,11 @@ export default class PrivatePickerInput extends DayPickerInput {
     dropdownProps?: Partial<DropdownProps>;
   };
 
-  daypicker: any = null;
+  daypicker: unknown = null;
 
   input: HTMLInputElement | null = null;
 
-  updateState?(day: Date, value: string, callback: any): void;
+  updateState?(day: Date, value: string, callback: unknown): void;
 
   hideAfterDayClick?(): void;
 
@@ -54,7 +54,7 @@ export default class PrivatePickerInput extends DayPickerInput {
     }
   };
 
-  private loadPickerRef = (ref: any) => {
+  private loadPickerRef = (ref: unknown) => {
     this.daypicker = ref;
   };
 
@@ -94,14 +94,14 @@ export default class PrivatePickerInput extends DayPickerInput {
         onBlur={this.handleOverlayBlur}
       >
         <DatePicker
-          {...(dayPickerProps as any)}
+          {...dayPickerProps}
           month={this.state.month}
           selectedDays={selectedDay}
+          pickerRef={this.loadPickerRef}
           onDayClick={this.handleDayClick}
           onMonthChange={this.handleMonthChange}
           onResetClick={this.handleResetClick}
           onTodayButtonClick={this.handleTodayButtonClick}
-          pickerRef={this.loadPickerRef}
         />
       </Dropdown>
     );
@@ -118,13 +118,13 @@ export default class PrivatePickerInput extends DayPickerInput {
           placeholder={this.props.placeholder}
           {...inputProps}
           value={this.state.typedValue || this.state.value}
+          propagateRef={this.loadInputRef}
           onChange={this.handleInputChange}
           onFocus={this.handleInputFocus}
           onBlur={this.handleInputBlur}
           onKeyDown={this.handleInputKeyDown}
           onKeyUp={this.handleInputKeyUp}
           onClick={this.handleInputClick}
-          propagateRef={this.loadInputRef}
         />
 
         {this.state.showOverlay && this.renderOverlay()}

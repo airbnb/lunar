@@ -1,4 +1,5 @@
-/* global BroadcastChannel */
+// Anything can be emitted. Really, anything.
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export type Handler = (value: any) => void;
 

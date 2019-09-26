@@ -47,7 +47,7 @@ describe('<ButtonOrLink />', () => {
 
   it('adds props when opening in a new window', () => {
     const wrapper = shallow(
-      <ButtonOrLink href="/" openInNewWindow>
+      <ButtonOrLink openInNewWindow href="/">
         Child
       </ButtonOrLink>,
     );
@@ -59,7 +59,7 @@ describe('<ButtonOrLink />', () => {
 
   it('sets rel to provided value when passed and opening in a new widnow', () => {
     const wrapper = shallow(
-      <ButtonOrLink href="/" rel="noopener" openInNewWindow>
+      <ButtonOrLink openInNewWindow href="/" rel="noopener">
         Child
       </ButtonOrLink>,
     );
@@ -114,7 +114,7 @@ describe('<ButtonOrLink />', () => {
   it('calls prevent default when disabled', () => {
     const spy = jest.fn();
     const wrapper = shallow(
-      <ButtonOrLink href="/" onClick={spy} disabled>
+      <ButtonOrLink disabled href="/" onClick={spy}>
         Default
       </ButtonOrLink>,
     );
@@ -157,7 +157,7 @@ describe('<ButtonOrLink />', () => {
     const beforeIcon = <div>Icon</div>;
     const afterIcon = <div>Icon</div>;
     const wrapper = shallow(
-      <ButtonOrLink beforeIcon={beforeIcon} afterIcon={afterIcon} loading>
+      <ButtonOrLink loading beforeIcon={beforeIcon} afterIcon={afterIcon}>
         Default
       </ButtonOrLink>,
     );
@@ -170,7 +170,7 @@ describe('<ButtonOrLink />', () => {
     const beforeIcon = <div>Icon</div>;
     const afterIcon = <div>Icon</div>;
     const wrapper = shallow(
-      <ButtonOrLink beforeIcon={beforeIcon} afterIcon={afterIcon} flexAlign>
+      <ButtonOrLink flexAlign beforeIcon={beforeIcon} afterIcon={afterIcon}>
         Default
       </ButtonOrLink>,
     );

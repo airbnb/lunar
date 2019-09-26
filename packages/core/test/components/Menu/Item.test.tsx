@@ -74,7 +74,7 @@ describe('<MenuItem />', () => {
     });
 
     const icon = wrapper.find(ButtonOrLink).prop('afterIcon');
-    const iconWrapper = shallowWithStyles(icon as any, true);
+    const iconWrapper = shallowWithStyles(icon as React.ReactElement, true);
 
     expect(icon).not.toBeNull();
     expect(iconWrapper.prop('children')).toBe('Something');
@@ -133,7 +133,7 @@ describe('<MenuItem />', () => {
       });
 
       const icon = wrapper.find(ButtonOrLink).prop('afterIcon');
-      const iconWrapper = shallowWithStyles(icon as any, true);
+      const iconWrapper = shallowWithStyles(icon as React.ReactElement, true);
 
       expect(icon).not.toBeNull();
       expect(iconWrapper.find(DirectionalIcon)).toHaveLength(1);

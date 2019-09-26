@@ -97,6 +97,7 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
   }
 
   doScroll(amount: number, interval: boolean = true) {
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     const callback = () => {
       if (this.scrollerRef) {
         this.scrollerRef.scrollLeft += amount;
@@ -223,11 +224,11 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
               onClick={this.handleScrollLeft}
             >
               <DirectionalIcon
+                decorative
                 direction="left"
                 left={IconChevronLeft}
                 right={IconChevronRight}
                 size="2em"
-                decorative
               />
             </button>
           ) : (
@@ -247,11 +248,11 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
               onClick={this.handleScrollRight}
             >
               <DirectionalIcon
+                decorative
                 direction="right"
                 left={IconChevronLeft}
                 right={IconChevronRight}
                 size="2em"
-                decorative
               />
             </button>
           ) : (
@@ -264,11 +265,11 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
         </div>
 
         <div
-          className={cx(styles.scroller, hideScrollbar && styles.scroller_hideScrollbar)}
           ref={this.handleScrollerRef}
+          className={cx(styles.scroller, hideScrollbar && styles.scroller_hideScrollbar)}
           onScroll={this.handleScrollThrottled}
         >
-          <div className={cx(styles.contents)} ref={this.handleContentsRef}>
+          <div ref={this.handleContentsRef} className={cx(styles.contents)}>
             {children}
           </div>
         </div>

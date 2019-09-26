@@ -94,9 +94,9 @@ export default class BaseTextArea extends React.Component<Props> {
     return (
       <FormInput
         {...restProps}
-        onChange={this.handleChange}
         propagateRef={this.loadRef}
         tagName="textarea"
+        onChange={this.handleChange}
       />
     );
   }

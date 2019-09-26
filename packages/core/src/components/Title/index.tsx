@@ -57,7 +57,7 @@ export class Title extends React.Component<Props & WithStylesProps> {
       primary,
       styles,
     } = this.props;
-    const Tag: 'h1' | 'h2' | 'h3' = `h${level}` as any;
+    const Tag: 'h1' | 'h2' | 'h3' = `h${level}` as 'h1';
 
     return (
       <Tag

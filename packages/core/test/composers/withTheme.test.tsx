@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledComponent } from 'aesthetic-react';
 import withTheme from '../../src/composers/withTheme';
 
 describe('withTheme()', () => {
@@ -10,6 +11,6 @@ describe('withTheme()', () => {
     const Hoc = withTheme()(Foo);
 
     expect(Hoc.displayName).toBe('withTheme(Foo)');
-    expect((Hoc as any).WrappedComponent).toBe(Foo);
+    expect((Hoc as StyledComponent<{}, {}>).WrappedComponent).toBe(Foo);
   });
 });

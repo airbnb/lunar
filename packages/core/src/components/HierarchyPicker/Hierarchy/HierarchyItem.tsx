@@ -117,22 +117,22 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
         )}
         role="option"
         aria-selected={selected}
+        tabIndex={focused ? 1 : 0}
         onMouseMove={this.handleMouseMove}
         onClick={this.handleClick}
-        onKeyDown={this.handleKeyDown}
         // this is needed to find a focused parent item in a vertically aligned list
-        tabIndex={focused ? 1 : 0}
+        onKeyDown={this.handleKeyDown}
       >
         {this.renderItem()}
 
         {item.items && (
           <DirectionalIcon
+            decorative
+            inline
             direction="right"
             left={IconChevronLeft}
             right={IconChevronRight}
             size="1.4em"
-            decorative
-            inline
           />
         )}
       </div>

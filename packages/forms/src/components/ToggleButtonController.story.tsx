@@ -20,13 +20,13 @@ storiesOf('Forms/ToggleButtonController', module)
       <ToggleButtonController name="field" label="Label" validator={() => {}}>
         {ControlledButton => (
           <ButtonGroup>
-            <ControlledButton value="red" key="red">
+            <ControlledButton key="red" value="red">
               Red
             </ControlledButton>
-            <ControlledButton value="blue" key="blue">
+            <ControlledButton key="blue" value="blue">
               Blue
             </ControlledButton>
-            <ControlledButton value="green" key="green">
+            <ControlledButton key="green" value="green">
               Green
             </ControlledButton>
           </ButtonGroup>

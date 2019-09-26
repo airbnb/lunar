@@ -13,7 +13,8 @@ describe('<Emoji />', () => {
           locale: 'en',
           version: 'latest',
         }}
-        emojiData={{} as any}
+        // @ts-ignore
+        emojiData={{}}
       />,
     );
 

@@ -5,7 +5,7 @@ import Tabs from '../../src/components/Tabs';
 import Tab from '../../src/components/Tabs/Tab';
 import GradientScroller from '../../src/components/GradientScroller';
 
-function unwrap(element: any): Enzyme.ShallowWrapper {
+function unwrap(element: React.ReactElement): Enzyme.ShallowWrapper {
   // Dont use shallowWithStyles because of TrackingBoundary
   return unwrapHOCs(shallow(element), 'Tabs', {}, { render: true });
 }

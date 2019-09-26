@@ -1,21 +1,22 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import TrackBreadcrumb from '../../../src/components/Breadcrumbs/TrackBreadcrumb';
-import AppContext from '../../../src/components/AppContext';
+import AppContext, { defaultContext } from '../../../src/components/AppContext';
 import { Context } from '../../../src/types';
 
 describe('TrackBreadcrumb', () => {
-  let context: Partial<Context>;
+  let context: Context;
 
   beforeEach(() => {
     context = {
+      ...defaultContext,
       addBreadcrumb: jest.fn(() => '123'),
       removeBreadcrumb: jest.fn(),
     };
   });
 
   function WrappingComponent({ children }: { children?: React.ReactNode }) {
-    return <AppContext.Provider value={context as any}>{children}</AppContext.Provider>;
+    return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
   }
 
   it('adds a crumb', () => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleBlock } from 'aesthetic';
+import { ParsedBlock } from 'aesthetic-adapter-aphrodite';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type SpacingRange =
@@ -89,7 +90,7 @@ export class Spacing extends React.Component<Props & WithStylesProps> {
       vertical,
     } = this.props;
     const type = inner ? 'inner' : 'outer';
-    const classes: any = [];
+    const classes: ParsedBlock[] = [];
 
     if (all) {
       const cleaned = cleanClassName(all);

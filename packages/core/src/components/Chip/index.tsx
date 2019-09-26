@@ -36,14 +36,14 @@ export class Chip extends React.Component<Props & WithStylesProps> {
   static propTypes = {
     afterIcon: requiredBy('onIconClick', iconComponent),
     beforeIcon: mutuallyExclusiveProps(PropTypes.node, 'beforeIcon', 'profileImageSrc'),
-    onClick: mutuallyExclusiveProps(PropTypes.func, 'onIconClick'),
+    compact: mutuallyExclusiveProps(PropTypes.any, 'profileImageSrc', 'compact'),
     profileImageSrc: mutuallyExclusiveProps(
       PropTypes.any,
       'beforeIcon',
       'profileImageSrc',
       'compact',
     ),
-    compact: mutuallyExclusiveProps(PropTypes.any, 'profileImageSrc', 'compact'),
+    onClick: mutuallyExclusiveProps(PropTypes.func, 'onIconClick'),
   };
 
   render() {

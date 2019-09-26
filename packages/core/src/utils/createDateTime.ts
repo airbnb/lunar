@@ -30,6 +30,7 @@ export default function createDateTime(
   }
 
   // Support moment objects for backwards compat
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const moment = value as any;
 
   if (moment && typeof moment === 'object' && '_isAMomentObject' in moment) {

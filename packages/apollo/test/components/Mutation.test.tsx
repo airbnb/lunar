@@ -32,7 +32,7 @@ function ApolloComponent({
 }
 
 describe('Mutation', () => {
-  const childHandler = (mutate: any) => (
+  const childHandler = (mutate: MutationFunction<unknown, {}>) => (
     <button type="button" onClick={() => mutate({ variables: { id: 123, name: 'Something' } })}>
       Submit
     </button>
@@ -168,11 +168,11 @@ describe('Mutation', () => {
       }
     });
 
-    it('will ignore an error with the `ignoreGraphQLErrors` prop', async () => {
+    it('will ignore an error with the `ignoreGraphQLErrors` prop', () => {
       const spy = jest.fn(() => null);
 
       mount(
-        <Mutation mutation={MUTATION} ignoreGraphQLErrors>
+        <Mutation ignoreGraphQLErrors mutation={MUTATION}>
           {spy}
         </Mutation>,
         {

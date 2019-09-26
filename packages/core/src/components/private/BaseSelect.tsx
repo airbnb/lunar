@@ -26,9 +26,9 @@ class BaseSelect extends React.Component<Props & WithStylesProps> {
 
     return (
       <div className={cx(styles.select)}>
-        <FormInput {...restProps} onChange={this.handleChange} tagName="select">
+        <FormInput {...restProps} tagName="select" onChange={this.handleChange}>
           {placeholder && (
-            <option value="" disabled>
+            <option disabled value="">
               {placeholder}
             </option>
           )}

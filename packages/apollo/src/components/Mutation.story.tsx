@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Button from '@airbnb/lunar/lib/components/Button';
 import Shimmer from '@airbnb/lunar/lib/components/Shimmer';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
+import { MutationFunction } from 'react-apollo';
 import { MockedProvider } from '@apollo/react-testing';
 import Mutation from './Mutation';
 
@@ -15,6 +16,11 @@ const MUTATION = gql`
     }
   }
 `;
+
+type User = {
+  id: number;
+  name: string;
+};
 
 const variables = { id: 123, name: 'Lunar' };
 
@@ -48,7 +54,7 @@ const errorMock = {
   error: new Error('404: GraphQL mutation failed!'),
 };
 
-function UpdateButton({ onUpdate }: any) {
+function UpdateButton({ onUpdate }: { onUpdate: MutationFunction<{}, User> }) {
   return (
     <Button
       type="button"

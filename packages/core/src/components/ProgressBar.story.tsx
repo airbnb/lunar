@@ -19,8 +19,8 @@ storiesOf('Core/ProgressBar', module)
   ))
   .add('Can disable leading and trailing edges (no rounded corners).', () => (
     <>
-      <ProgressBar percent={50} leading />
+      <ProgressBar leading percent={50} />
       <br />
-      <ProgressBar percent={50} trailing />
+      <ProgressBar trailing percent={50} />
     </>
   ));

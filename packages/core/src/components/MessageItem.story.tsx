@@ -81,8 +81,8 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link - Click to open Nova profile"
       imageSrc={lunar}
-      onClickImage={action('onClickImage')}
       title="Some custom title"
+      onClickImage={action('onClickImage')}
     >
       <Text>
         <LoremIpsum />
@@ -94,9 +94,9 @@ storiesOf('Core/MessageItem', module)
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
       imageSrc={lunar}
-      onClickTitle={action('onClickTitle')}
       title="Some custom title"
       titleClickDescription="Real name: Link - Click to chat"
+      onClickTitle={action('onClickTitle')}
     >
       <Text>
         <LoremIpsum />

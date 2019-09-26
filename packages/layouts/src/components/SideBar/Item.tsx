@@ -10,7 +10,7 @@ export type Props = {
   /** Render as an anchor link with a URL. */
   href?: string;
   /** Icon to display above the label. */
-  icon: NonNullable<React.ReactElement<any>>;
+  icon: NonNullable<React.ReactElement<{ size?: string }>>;
   /** Item label. */
   label?: React.ReactNode;
   /** Callback fired when the element is clicked. */
@@ -36,8 +36,8 @@ export class SideBarItem extends React.Component<Props & WithStylesProps> {
         <ButtonOrLink
           role="menuitem"
           href={href}
-          onClick={onClick}
           className={cx(styles.item, active && styles.item_active)}
+          onClick={onClick}
         >
           <span className={cx(styles.icon)}>{React.cloneElement(icon, { size: '2em' })}</span>
 

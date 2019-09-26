@@ -13,8 +13,11 @@ import Portal, {
 } from '../../src/components/Overlay/Portal';
 import { ESCAPE } from '../../src/keys';
 
-jest.mock('lodash/throttle', () => (value: any) => value);
-jest.mock('lodash/debounce', () => (value: any) => value);
+// eslint-disable-next-line unicorn/consistent-function-scoping
+jest.mock('lodash/throttle', () => (value: unknown) => value);
+
+// eslint-disable-next-line unicorn/consistent-function-scoping
+jest.mock('lodash/debounce', () => (value: unknown) => value);
 
 describe('<Overlay />', () => {
   const props = {
@@ -119,8 +122,8 @@ describe('<Overlay />', () => {
       resizeSpy = jest.fn();
 
       wrapper = shallowWithStyles(
-        <Portal {...props} onResize={resizeSpy} onClose={closeSpy} noBackground />,
-      ) as any;
+        <Portal {...props} noBackground onResize={resizeSpy} onClose={closeSpy} />,
+      );
       instance = wrapper.instance();
     });
 

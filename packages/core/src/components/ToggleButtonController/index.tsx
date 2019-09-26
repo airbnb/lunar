@@ -5,6 +5,7 @@ import FormField, { partitionFieldProps, Props as FormFieldProps } from '../Form
 import BaseButton, { Props as ButtonProps } from '../Button';
 import FormInputButton from '../private/FormInputButton';
 import ButtonGroup from '../ButtonGroup';
+import { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
 export { ButtonGroup };
 
@@ -48,15 +49,15 @@ export default class ToggleButtonController extends React.Component<Props, State
     }
   }
 
-  private handleClick = (event: React.MouseEvent<any>) => {
-    const { value: newValue } = event.currentTarget;
+  private handleClick = (event: React.MouseEvent<ButtonOrLinkTypes>) => {
+    const newValue = event.currentTarget.dataset.value!;
     const { value } = this.state;
 
     if (newValue === value) {
       return;
     }
 
-    this.props.onChange(newValue, event);
+    this.props.onChange(newValue, event as React.MouseEvent<HTMLButtonElement>);
 
     this.setState({
       value: newValue,
@@ -71,9 +72,9 @@ export default class ToggleButtonController extends React.Component<Props, State
     return (
       <FormInputButton
         {...props}
+        data-value={value}
         id={`${id}-${value}`}
         name={name}
-        value={value}
         disabled={disabled}
         inverted={!selected}
         invalid={invalid}

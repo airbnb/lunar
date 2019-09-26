@@ -32,7 +32,7 @@ describe('<Interweave />', () => {
 
   it('set large size prop if urls and emails are present', () => {
     const wrapper = mountWithStyles(
-      <Interweave {...props} content="Foo http://test.com bar with an email@email.com" large />,
+      <Interweave {...props} large content="Foo http://test.com bar with an email@email.com" />,
     );
 
     expect(wrapper.find(Url).prop('large')).toBeTruthy();
@@ -43,7 +43,7 @@ describe('<Interweave />', () => {
 
   it('set small size prop if urls and emails are present', () => {
     const wrapper = mountWithStyles(
-      <Interweave {...props} content="Foo http://test.com bar with an email@email.com" small />,
+      <Interweave {...props} small content="Foo http://test.com bar with an email@email.com" />,
     );
 
     expect(wrapper.find(Url).prop('large')).toBeFalsy();
@@ -65,7 +65,7 @@ describe('<Interweave />', () => {
   });
 
   it('adds url, email, and emoji global matchers by default', () => {
-    const wrapper = shallow(<Interweave {...props} content="Foo" withEmoticons />);
+    const wrapper = shallow(<Interweave {...props} withEmoticons content="Foo" />);
 
     expect(wrapper.prop('matchers')).toHaveLength(3);
   });

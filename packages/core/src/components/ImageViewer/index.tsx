@@ -120,9 +120,9 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
       <div
         className={cx(styles.container, borderless && styles.container_borderless)}
         role="presentation"
+        style={{ width, height }}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
-        style={{ width, height }}
       >
         <div className={cx(styles.image)} style={this.getTransformStyle()}>
           <ResponsiveImage

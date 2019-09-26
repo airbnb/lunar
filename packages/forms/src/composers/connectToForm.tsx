@@ -59,7 +59,7 @@ export interface ConnectToFormWrapperProps<T> extends Field<T> {
   unregisterOnUnmount?: boolean;
 }
 
-export interface ConnectToFormState extends Required<FieldState<any>> {
+export interface ConnectToFormState<T> extends Required<FieldState<T>> {
   name: string;
 }
 
@@ -77,7 +77,10 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
   ): React.ComponentType<RemoveWrappedProps<Props> & ConnectToFormWrapperProps<T>> {
     type OwnProps = RemoveWrappedProps<Props> & ConnectToFormWrapperProps<T>;
 
-    class ConnectToForm extends React.Component<OwnProps & { form: Context }, ConnectToFormState> {
+    class ConnectToForm extends React.Component<
+      OwnProps & { form: Context },
+      ConnectToFormState<T>
+    > {
       static defaultProps = {
         defaultValue: initialValue,
         parse,
@@ -89,14 +92,14 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
 
       // https://github.com/final-form/final-form#fieldstate
       // @ts-ignore Other non-critical fields get set on mount
-      state: ConnectToFormState = {
+      state: ConnectToFormState<T> = {
         blur() {},
         error: '',
         focus() {},
         invalid: false,
         touched: false,
         name: this.props.name,
-        value: this.props.defaultValue,
+        value: this.props.defaultValue!,
       };
 
       private mounted: boolean = false;
@@ -125,7 +128,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         if (this.props.defaultValue !== prevProps.defaultValue) {
           this.setState(
             {
-              value: this.props.defaultValue,
+              value: this.props.defaultValue!,
             },
             () => {
               if (typeof this.props.defaultValue === 'string') {
@@ -167,7 +170,6 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
         }
 
         if (Array.isArray(value)) {
-          // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
           return value.map(cast);
         }
 
@@ -189,7 +191,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
 
       private handleChange = (
         checkedOrValue: T,
-        valueOrEvent: T | React.ChangeEvent<any>,
+        valueOrEvent: T | React.ChangeEvent<unknown>,
         event?: React.ChangeEvent,
       ) => {
         this.props.form.change(
@@ -212,7 +214,7 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
       };
 
       // istanbul ignore next
-      private handleUpdate = (state: FieldState<any>) => {
+      private handleUpdate = (state: FieldState<T>) => {
         if (!this.mounted) {
           return;
         }
@@ -253,7 +255,8 @@ export default function connectToForm<T>(options: Options<T>) /* infer */ {
     function ConnectToFormWrapper(props: OwnProps) {
       const form = useContext(FormContext);
 
-      return form ? <ConnectToForm {...(props as any)} form={form} /> : null;
+      // @ts-ignore Props spreading
+      return form ? <ConnectToForm {...props} form={form} /> : null;
     }
 
     return finishHOC('connectToForm', ConnectToFormWrapper, WrappedComponent);

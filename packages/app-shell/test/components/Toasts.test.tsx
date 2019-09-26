@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Toasts from '../../src/components/Toasts';
-import AppContext from '../../src/components/AppContext';
+import AppContext, { defaultContext } from '../../src/components/AppContext';
 
 describe('Toasts', () => {
   const toasts = [
@@ -33,7 +33,7 @@ describe('Toasts', () => {
 
   function WrappingComponent({ children }: { children?: React.ReactNode }) {
     return (
-      <AppContext.Provider value={{ toasts, onRemove() {} } as any}>{children}</AppContext.Provider>
+      <AppContext.Provider value={{ ...defaultContext, toasts }}>{children}</AppContext.Provider>
     );
   }
 

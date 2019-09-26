@@ -18,11 +18,11 @@ storiesOf('Core/Input', module)
   .add('With different sizing: small, default or large.', () => (
     <>
       <Input
+        small
         name="input-small"
         label="Small"
         placeholder="Placeholder"
         onChange={action('onChange')}
-        small
       />
       <Input
         name="input-regular"
@@ -31,52 +31,52 @@ storiesOf('Core/Input', module)
         onChange={action('onChange')}
       />
       <Input
+        large
         name="input-large"
         label="Large"
         placeholder="Placeholder"
         onChange={action('onChange')}
-        large
       />
     </>
   ))
   .add('With an error message in an invalid state.', () => (
     <Input
+      invalid
       name="input-error"
       label="Label"
-      onChange={action('onChange')}
       errorMessage="This field is required."
-      invalid
+      onChange={action('onChange')}
     />
   ))
   .add('With a label description in a disabled state.', () => (
     <Input
+      disabled
       name="input-disabled"
       label="Label"
       labelDescription="This is a small label description."
       onChange={action('onChange')}
-      disabled
     />
   ))
   .add('With a hidden label and password type.', () => (
     <Input
+      hideLabel
       name="input-custom"
       label="Label"
-      onChange={action('onChange')}
       type="password"
       value="foobar"
-      hideLabel
+      onChange={action('onChange')}
     />
   ))
   .add('Marked as optional.', () => (
-    <Input name="input-optional" label="Label" onChange={action('onChange')} optional />
+    <Input optional name="input-optional" label="Label" onChange={action('onChange')} />
   ))
   .add('Display with inline label.', () => (
     <Input
+      optional
+      inline
       name="input-optional"
       label="Label"
       labelDescription="This is a small label description."
       onChange={action('onChange')}
-      optional
-      inline
     />
   ));

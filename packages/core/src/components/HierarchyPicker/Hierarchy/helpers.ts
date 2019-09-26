@@ -8,10 +8,8 @@ export function allChildrenReadonly(parent: ItemShape): boolean {
     : !!parent.readonly;
 }
 
-/** remove readonly parents that only contain readonly children */
 export function readonlyReducer(acc: ItemShape[], item: ItemShape): ItemShape[] {
   if (!(item.readonly && allChildrenReadonly(item))) {
-    // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
     const children = (item.items || []).reduce(readonlyReducer, []);
 
     acc.push({

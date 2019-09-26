@@ -50,12 +50,14 @@ describe('<Dropdown />', () => {
   it('closes when clicked outside', () => {
     const spy = jest.fn();
 
-    const eventMap = {
+    const eventMap: {
+      click: (() => void) | null;
+    } = {
       click: null,
-    } as any;
+    };
 
     document.addEventListener = jest.fn((event, cb) => {
-      eventMap[event] = cb;
+      eventMap[event as 'click'] = cb as () => void;
     });
 
     shallowWithStyles(
@@ -64,7 +66,7 @@ describe('<Dropdown />', () => {
       </Dropdown>,
     );
 
-    eventMap.click();
+    eventMap.click!();
 
     expect(spy).toHaveBeenCalled();
   });

@@ -18,7 +18,7 @@ export type Props = {
   /** Error message to display under the input when invalid. */
   errorMessage?: string;
   /** @ignore Passed from final form. */
-  field?: any;
+  field?: object;
   /** Visually hide the label. */
   hideLabel?: boolean;
   /** @ignore Hide optional label. (Internal use only) */

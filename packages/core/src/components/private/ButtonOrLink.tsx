@@ -5,7 +5,7 @@ import IconAffix from './IconAffix';
 export type ButtonOrLinkTypes = HTMLAnchorElement | HTMLButtonElement;
 
 export type Props = {
-  [prop: string]: any;
+  [prop: string]: unknown;
   /** Icon to display at the end the content. */
   afterIcon?: React.ReactNode;
   /** Icon to display at the start the content. */
@@ -80,7 +80,7 @@ export default class ButtonOrLink extends React.Component<Props> {
       ...restProps
     } = this.props;
     const Tag = href ? 'a' : 'button';
-    const props: any = {};
+    const props: JSX.IntrinsicElements['a'] & JSX.IntrinsicElements['button'] = {};
 
     // Determine props based on element type
     if (href) {

@@ -10,10 +10,10 @@ storiesOf('Core/RadioButtonController', module)
   })
   .add('Controls multiple radio buttons.', () => (
     <RadioButtonController
+      optional
       label="Favorite food?"
       name="food"
       onChange={action('onChange')}
-      optional
     >
       {RadioButton => (
         <div>
@@ -25,28 +25,28 @@ storiesOf('Core/RadioButtonController', module)
     </RadioButtonController>
   ))
   .add('Handles invalid state, with no spacing.', () => (
-    <RadioButtonController label="Favorite food?" name="food" onChange={action('onChange')} invalid>
+    <RadioButtonController invalid label="Favorite food?" name="food" onChange={action('onChange')}>
       {RadioButton => (
         <div>
-          <RadioButton label="🍕 Pizza" value="pizza" noSpacing />
-          <RadioButton label="🍔 Burger" value="burger" noSpacing />
-          <RadioButton label="🍜 Ramen" value="ramen" noSpacing />
+          <RadioButton noSpacing label="🍕 Pizza" value="pizza" />
+          <RadioButton noSpacing label="🍔 Burger" value="burger" />
+          <RadioButton noSpacing label="🍜 Ramen" value="ramen" />
         </div>
       )}
     </RadioButtonController>
   ))
   .add('Handles disabled state, with no spacing.', () => (
     <RadioButtonController
+      disabled
       label="Favorite food?"
       name="food"
       onChange={action('onChange')}
-      disabled
     >
       {RadioButton => (
         <div>
-          <RadioButton label="🍕 Pizza" value="pizza" noSpacing />
-          <RadioButton label="🍔 Burger" value="burger" noSpacing />
-          <RadioButton label="🍜 Ramen" value="ramen" noSpacing />
+          <RadioButton noSpacing label="🍕 Pizza" value="pizza" />
+          <RadioButton noSpacing label="🍔 Burger" value="burger" />
+          <RadioButton noSpacing label="🍜 Ramen" value="ramen" />
         </div>
       )}
     </RadioButtonController>

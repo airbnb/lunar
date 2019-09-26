@@ -24,15 +24,15 @@ storiesOf('Core/Title', module)
   ))
   .add('With different states: muted, inverted, and primary.', () => (
     <>
-      <Title level={3} muted>
+      <Title muted level={3}>
         <LoremIpsum short />
       </Title>
 
-      <Title level={3} inverted>
+      <Title inverted level={3}>
         <LoremIpsum short />
       </Title>
 
-      <Title level={3} primary>
+      <Title primary level={3}>
         <LoremIpsum short />
       </Title>
     </>
@@ -43,11 +43,11 @@ storiesOf('Core/Title', module)
         <LoremIpsum short />
       </Title>
 
-      <Title level={3} centerAlign>
+      <Title centerAlign level={3}>
         <LoremIpsum short />
       </Title>
 
-      <Title level={3} endAlign>
+      <Title endAlign level={3}>
         <LoremIpsum short />
       </Title>
     </>

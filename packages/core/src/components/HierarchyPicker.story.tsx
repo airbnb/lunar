@@ -285,12 +285,12 @@ class PickerDemo extends React.Component<Partial<Props>, { chosen: Props['chosen
           items={items}
           chosen={chosen}
           searchWidth={400}
+          searchPlaceholder="Search all the things"
+          noResultsLabel="No results match your query."
           onItemPicked={(nextChosen: string[] | null) => {
             action('onItemPicked')(nextChosen);
             this.setState({ chosen: nextChosen || undefined });
           }}
-          searchPlaceholder="Search all the things"
-          noResultsLabel="No results match your query."
           {...passThroughProps}
         />
         <br />
@@ -305,9 +305,9 @@ storiesOf('Core/HierarchyPicker', module)
     inspectComponents: [HierarchyPicker],
   })
   .add('Vertically offset menu', () => <PickerDemo items={demoItems} />)
-  .add('Vertically aligned menu', () => <PickerDemo items={demoItems} verticallyAlign />)
+  .add('Vertically aligned menu', () => <PickerDemo verticallyAlign items={demoItems} />)
   .add('With sub-sections and hierarchy dimensions', () => (
-    <PickerDemo items={demoItems2} verticallyAlign hierarchyMaxHeight={272} hierarchyWidth={260} />
+    <PickerDemo verticallyAlign items={demoItems2} hierarchyMaxHeight={272} hierarchyWidth={260} />
   ))
   .add('With chosen value', () => (
     <PickerDemo items={demoItems} chosen={['Item 1', 'Funtastic Testing']} />
@@ -331,5 +331,5 @@ storiesOf('Core/HierarchyPicker', module)
       ]}
     />
   ))
-  .add('Disabled', () => <PickerDemo items={demoItems} disabled />)
-  .add('Invalid', () => <PickerDemo items={demoItems} invalid />);
+  .add('Disabled', () => <PickerDemo disabled items={demoItems} />)
+  .add('Invalid', () => <PickerDemo invalid items={demoItems} />);

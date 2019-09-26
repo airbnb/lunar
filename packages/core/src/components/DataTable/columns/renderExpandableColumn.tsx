@@ -10,7 +10,7 @@ export default function renderExpandableColumn(
   cx: WithStylesProps['cx'],
   styles: WithStylesProps['styles'],
   expandedRows: Set<number>,
-  expandRow: (newExpandedRowIndex: number) => (event: any) => void,
+  expandRow: (newExpandedRowIndex: number) => (event: React.SyntheticEvent) => void,
 ) {
   const cellRenderer = (row: VirtualRow) => {
     const { children, originalIndex } = row.rowData.metadata;

@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-layouts",
-  "version": "2.2.7",
+  "version": "2.3.0-alpha.0",
   "description": "Pre-defined page layouts for Lunar.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -21,12 +21,12 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
-    "@airbnb/lunar-test-utils": "^2.2.2",
+    "@airbnb/lunar-test-utils": "^2.3.0-alpha.0",
     "react": "^16.9.0"
   },
   "dependencies": {
     "@types/airbnb-prop-types": "^2.13.1",
     "airbnb-prop-types": "^2.15.0",
-    "utility-types": "^3.7.0"
+    "utility-types": "^3.8.0"
   }
 }

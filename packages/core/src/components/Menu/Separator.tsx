@@ -7,7 +7,7 @@ export type Props = {
    * a property existed in this type. I have no idea why.
    * @ignore
    */
-  fakeProp?: any;
+  fakeProp?: unknown;
 };
 
 /** A separator between menu items. */

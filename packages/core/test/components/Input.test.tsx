@@ -13,7 +13,7 @@ describe('<Input />', () => {
   });
 
   it('supports hidden types', () => {
-    const wrapper = shallow(<Input name="foo" label="Label" onChange={() => {}} type="hidden" />);
+    const wrapper = shallow(<Input name="foo" label="Label" type="hidden" onChange={() => {}} />);
 
     expect(wrapper.find(FormField)).toHaveLength(0);
     expect(wrapper.find(BaseInput)).toHaveLength(1);

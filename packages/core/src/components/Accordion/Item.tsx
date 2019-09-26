@@ -48,10 +48,10 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
           aria-controls={`accordion-body-${id}`}
           aria-selected={expanded}
           id={`accordion-title-${id}`}
-          onClick={this.handleClick}
           role="tab"
           tabIndex={0}
           type="button"
+          onClick={this.handleClick}
         >
           {title && <span className={cx(styles.titleText)}>{title}</span>}
 

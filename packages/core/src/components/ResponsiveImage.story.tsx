@@ -15,7 +15,7 @@ storiesOf('Core/ResponsiveImage', module)
       maxWidth={150}
       maxHeight={150}
       borderRadius={6}
-      shimmer={<Shimmer height={150} width={150} block />}
+      shimmer={<Shimmer block height={150} width={150} />}
     />
   ))
   .add('With contain.', () => (
@@ -25,7 +25,7 @@ storiesOf('Core/ResponsiveImage', module)
       alt="Image"
       maxWidth={150}
       maxHeight={100}
-      shimmer={<Shimmer height={100} width={150} block />}
+      shimmer={<Shimmer block height={100} width={150} />}
     />
   ))
   .add('With cover.', () => (
@@ -35,7 +35,7 @@ storiesOf('Core/ResponsiveImage', module)
       alt="Image"
       maxWidth={150}
       maxHeight={100}
-      shimmer={<Shimmer height={100} width={150} block />}
+      shimmer={<Shimmer block height={100} width={150} />}
     />
   ))
   .add('With no shadow.', () => (
@@ -44,6 +44,6 @@ storiesOf('Core/ResponsiveImage', module)
       src={lunar}
       alt="Image"
       maxWidth={150}
-      shimmer={<Shimmer height={150} width={150} block />}
+      shimmer={<Shimmer block height={150} width={150} />}
     />
   ));

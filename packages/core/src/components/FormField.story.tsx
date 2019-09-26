@@ -14,29 +14,29 @@ storiesOf('Core/FormField', module)
   })
   .add('Supports a disabled state.', () => (
     <>
-      <Input name="disabled-input" label="Input" onChange={action('onChange')} disabled />
+      <Input disabled name="disabled-input" label="Input" onChange={action('onChange')} />
 
-      <Select name="disabled-select" label="Select" onChange={action('onChange')} disabled>
+      <Select disabled name="disabled-select" label="Select" onChange={action('onChange')}>
         <option value="">Option</option>
       </Select>
 
-      <TextArea name="disabled-textarea" label="Textarea" onChange={action('onChange')} disabled />
+      <TextArea disabled name="disabled-textarea" label="Textarea" onChange={action('onChange')} />
     </>
   ))
   .add('Supports an invalid error state.', () => (
     <>
-      <Input name="invalid-input" label="Input" onChange={action('onChange')} invalid />
+      <Input invalid name="invalid-input" label="Input" onChange={action('onChange')} />
 
-      <Select name="invalid-select" label="Select" onChange={action('onChange')} invalid>
+      <Select invalid name="invalid-select" label="Select" onChange={action('onChange')}>
         <option value="">Option</option>
       </Select>
 
       <TextArea
+        invalid
         name="invalid-textarea"
         label="Textarea"
-        onChange={action('onChange')}
-        invalid
         errorMessage="With an optional error message."
+        onChange={action('onChange')}
       />
     </>
   ))
@@ -89,15 +89,17 @@ storiesOf('Core/FormField', module)
   .add('Supports both a prefix and suffix, and a compact state.', () => (
     <>
       <Input
+        compact
         name="both-input"
         label="Input"
         prefix={<Prefix compact>http://</Prefix>}
         suffix={<Suffix compact>.com</Suffix>}
         onChange={action('onChange')}
-        compact
       />
 
       <TextArea
+        compact
+        disabled
         name="both-textarea"
         label="TextArea"
         prefix={
@@ -111,19 +113,17 @@ storiesOf('Core/FormField', module)
           </Suffix>
         }
         onChange={action('onChange')}
-        compact
-        disabled
       />
     </>
   ))
   .add('Supports inline.', () => (
     <>
-      <Input name="disabled-input" label="Input" onChange={action('onChange')} inline />
+      <Input inline name="disabled-input" label="Input" onChange={action('onChange')} />
 
-      <Select name="disabled-select" label="Select" onChange={action('onChange')} inline>
+      <Select inline name="disabled-select" label="Select" onChange={action('onChange')}>
         <option value="">Option</option>
       </Select>
 
-      <TextArea name="disabled-textarea" label="Textarea" onChange={action('onChange')} inline />
+      <TextArea inline name="disabled-textarea" label="Textarea" onChange={action('onChange')} />
     </>
   ));

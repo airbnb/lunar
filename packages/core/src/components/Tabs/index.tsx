@@ -120,7 +120,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
             return null;
           }
 
-          const { key, props } = child as any;
+          const { key, props } = child as React.ReactElement;
           const selected = key === selectedKey || (!selectedKey && i === 0);
 
           if (__DEV__ && !key) {
@@ -133,7 +133,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
 
           return React.cloneElement(child as React.ReactElement<TabProps>, {
             borderless,
-            keyName: key,
+            keyName: String(key),
             selected,
             stretched,
             onClick: this.handleClick,

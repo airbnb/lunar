@@ -43,16 +43,16 @@ storiesOf('Core/Spacing', module)
     </Spacing>
   ))
   .add('Use padding instead of margin.', () => (
-    <Spacing all={3} inner>
+    <Spacing inner all={3}>
       <StatusLabel>Content</StatusLabel>
     </Spacing>
   ))
   .add('Display inline.', () => (
     <>
-      <Spacing all={0.5} inline>
+      <Spacing inline all={0.5}>
         <StatusLabel>Content 1</StatusLabel>
       </Spacing>
-      <Spacing all={0.5} inline>
+      <Spacing inline all={0.5}>
         <StatusLabel>Content 2</StatusLabel>
       </Spacing>
     </>

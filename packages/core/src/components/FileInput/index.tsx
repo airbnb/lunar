@@ -128,13 +128,13 @@ export default class FileInput extends React.Component<Props, State> {
       <FormField {...fieldProps} id={id}>
         <FormInput
           {...props}
+          hidden
           id={id}
           accept={accept}
           type="file"
           tagName="input"
-          onChange={this.handleChange}
           propagateRef={this.ref}
-          hidden
+          onChange={this.handleChange}
         />
 
         <FormInputButton
@@ -142,8 +142,8 @@ export default class FileInput extends React.Component<Props, State> {
           invalid={fieldProps.invalid}
           small={fieldProps.compact}
           disabled={props.disabled}
+          afterIcon={<Icon decorative size="1.25em" />}
           onClick={this.handleClick}
-          afterIcon={<Icon size="1.25em" decorative />}
         >
           <T
             k="lunar.form.chooseFile"
@@ -168,7 +168,7 @@ export default class FileInput extends React.Component<Props, State> {
 
                       {!hideLastModified && (
                         <Cell>
-                          <DateTime at={file.lastModified} short />
+                          <DateTime short at={file.lastModified} />
                         </Cell>
                       )}
 

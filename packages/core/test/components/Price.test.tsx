@@ -18,19 +18,19 @@ describe('<Price />', () => {
     });
 
     it('rounds the amount', () => {
-      const wrapper = shallow(<Price amount={53120.78} currency="USD" round />);
+      const wrapper = shallow(<Price round amount={53120.78} currency="USD" />);
 
       expect(wrapper.text()).toBe('$53,121.00');
     });
 
     it('trims trailing zeros', () => {
-      const wrapper = shallow(<Price amount={53120} currency="USD" trimTrailingZeros />);
+      const wrapper = shallow(<Price trimTrailingZeros amount={53120} currency="USD" />);
 
       expect(wrapper.text()).toBe('$53,120');
     });
 
     it('divides the amount when using micros', () => {
-      const wrapper = shallow(<Price amount={792000000} currency="USD" round micros />);
+      const wrapper = shallow(<Price round micros amount={792000000} currency="USD" />);
 
       expect(wrapper.text()).toBe('$792.00');
     });
@@ -80,6 +80,7 @@ describe('<Price />', () => {
     it('rounds the amount', () => {
       const wrapper = shallow(
         <Price
+          round
           amount={{
             amount: 53120.78,
             amount_micros: 53120000000,
@@ -87,7 +88,6 @@ describe('<Price />', () => {
             currency: 'USD',
             is_micros_accuracy: false,
           }}
-          round
         />,
       );
 
@@ -97,6 +97,7 @@ describe('<Price />', () => {
     it('trims trailing zeros', () => {
       const wrapper = shallow(
         <Price
+          trimTrailingZeros
           amount={{
             amount: 53120,
             amount_micros: 53120000000,
@@ -104,7 +105,6 @@ describe('<Price />', () => {
             currency: 'USD',
             is_micros_accuracy: false,
           }}
-          trimTrailingZeros
         />,
       );
 
@@ -114,6 +114,7 @@ describe('<Price />', () => {
     it('divides the amount when using micros', () => {
       const wrapper = shallow(
         <Price
+          round
           amount={{
             amount: 792,
             amount_micros: 792000000,
@@ -121,7 +122,6 @@ describe('<Price />', () => {
             currency: 'USD',
             is_micros_accuracy: true,
           }}
-          round
         />,
       );
 

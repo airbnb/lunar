@@ -21,7 +21,7 @@ export class SteppedProgressBar extends React.Component<Props & WithStylesProps>
     return (
       <div className={cx(styles.bar)}>
         {React.Children.map(children, (child, index) =>
-          React.cloneElement(child as React.ReactElement<any>, {
+          React.cloneElement(child as React.ReactElement, {
             first: index === 0,
             last: index === steps - 1,
           }),

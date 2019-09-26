@@ -258,11 +258,11 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
               {email && (
                 <Text small muted>
                   <T
+                    html
                     k="lunar.message.fromUser"
                     phrase="From: %{email}"
                     email={email}
                     context="Who the message is from"
-                    html
                   />
                 </Text>
               )}

@@ -14,24 +14,24 @@ storiesOf('Core/SecondaryLink', module)
   .add('A button link.', () => <SecondaryLink>Link</SecondaryLink>)
   .add('With different sizing: small, regular (default), and large.', () => (
     <>
-      <SecondaryLink href="https://github.com/airbnb/lunar" small>
+      <SecondaryLink small href="https://github.com/airbnb/lunar">
         Link
       </SecondaryLink>{' '}
       <SecondaryLink href="https://github.com/airbnb/lunar">Link</SecondaryLink>{' '}
-      <SecondaryLink href="https://github.com/airbnb/lunar" large>
+      <SecondaryLink large href="https://github.com/airbnb/lunar">
         Link
       </SecondaryLink>
     </>
   ))
   .add('With different states: muted, disabled, and inverted.', () => (
     <>
-      <SecondaryLink href="https://github.com/airbnb/lunar" muted>
+      <SecondaryLink muted href="https://github.com/airbnb/lunar">
         Link
       </SecondaryLink>{' '}
-      <SecondaryLink href="https://github.com/airbnb/lunar" disabled>
+      <SecondaryLink disabled href="https://github.com/airbnb/lunar">
         Link
       </SecondaryLink>{' '}
-      <SecondaryLink href="https://github.com/airbnb/lunar" inverted>
+      <SecondaryLink inverted href="https://github.com/airbnb/lunar">
         Link
       </SecondaryLink>
     </>
@@ -48,12 +48,12 @@ storiesOf('Core/SecondaryLink', module)
     </>
   ))
   .add('Stop click and default events when disabled.', () => (
-    <SecondaryLink href="https://github.com/airbnb/lunar" onClick={action('onClick')} disabled>
+    <SecondaryLink disabled href="https://github.com/airbnb/lunar" onClick={action('onClick')}>
       Link
     </SecondaryLink>
   ))
   .add('Bold text.', () => (
-    <SecondaryLink href="https://github.com/airbnb/lunar" bold>
+    <SecondaryLink bold href="https://github.com/airbnb/lunar">
       Link
     </SecondaryLink>
   ));

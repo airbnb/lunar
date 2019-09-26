@@ -12,7 +12,7 @@ exports[`<Tooltip /> can underline  1`] = `
     onMouseLeave={[Function]}
   >
     <a
-      href="#"
+      href="/"
     >
       hello world
     </a>
@@ -62,7 +62,7 @@ exports[`<Tooltip /> disabled does not underline 1`] = `
     onMouseLeave={[Function]}
   >
     <a
-      href="#"
+      href="/"
     >
       hello world
     </a>
@@ -112,7 +112,7 @@ exports[`<Tooltip /> disabled does not up when hovered 1`] = `
     onMouseLeave={[Function]}
   >
     <a
-      href="#"
+      href="/"
     >
       hello world
     </a>
@@ -162,7 +162,7 @@ exports[`<Tooltip /> once open supports changing content 1`] = `
     onMouseLeave={[Function]}
   >
     <a
-      href="#"
+      href="/"
     >
       hello world
     </a>
@@ -213,7 +213,7 @@ exports[`<Tooltip /> opens up when hovered 1`] = `
     onMouseLeave={[Function]}
   >
     <a
-      href="#"
+      href="/"
     >
       hello world
     </a>

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import Text from './Text';
 import Grid, { Col } from './Grid';
 
-function Box({ children = null }: { children: any }) {
+function Box({ children = null }: { children: React.ReactNode }) {
   const color = localStorage.getItem('storybook.theme') === 'dark' ? '#222222' : '#EBEBEB';
 
   return (

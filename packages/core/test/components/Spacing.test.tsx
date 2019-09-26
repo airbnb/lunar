@@ -21,7 +21,7 @@ describe('<Spacing />', () => {
 
   it('renders as inline', () => {
     const wrapper = shallowWithStyles(
-      <Spacing vertical={2} inline>
+      <Spacing inline vertical={2}>
         Content
       </Spacing>,
     );
@@ -31,7 +31,7 @@ describe('<Spacing />', () => {
 
   it('renders with padding', () => {
     const wrapper = shallowWithStyles(
-      <Spacing all={2} inner>
+      <Spacing inner all={2}>
         Content
       </Spacing>,
     );

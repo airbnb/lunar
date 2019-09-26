@@ -18,7 +18,7 @@ export class Modal extends React.Component<Props & WithStylesProps> {
     document.body.style.overflow = '';
   }
 
-  private handleClose = (event: React.MouseEvent<any> | React.KeyboardEvent) => {
+  private handleClose = (event: React.MouseEvent | React.KeyboardEvent) => {
     this.props.onClose(event);
   };
 
@@ -34,7 +34,7 @@ export class Modal extends React.Component<Props & WithStylesProps> {
     return (
       <Portal>
         <div className={cx(styles.container)}>
-          <div onKeyUp={this.handleKeyUp} role="presentation" className={cx(styles.wrapper)}>
+          <div role="presentation" className={cx(styles.wrapper)} onKeyUp={this.handleKeyUp}>
             <ModalInner {...otherProps} />
           </div>
         </div>

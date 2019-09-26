@@ -52,7 +52,7 @@ export default class DatePickerInput extends React.Component<Props, State> {
     id: uuid(),
   };
 
-  private handleChange = (event: React.ChangeEvent<any>) => {
+  private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
     const date = this.parseDate(value);
 
@@ -68,14 +68,19 @@ export default class DatePickerInput extends React.Component<Props, State> {
 
     // Update the parent form with the selected value.
     // We also don't have a real event object, so fake it.
-    this.props.onChange(this.formatDate(day), day, {} as any);
+    this.props.onChange(
+      this.formatDate(day),
+      day,
+      // @ts-ignore
+      {},
+    );
   };
 
   getFormat(): string {
     return this.props.format || mdyCalendarBundle.get(this.props.locale);
   }
 
-  parseDate = (value: string, format?: string, locale?: any) => {
+  parseDate = (value: string, format?: string, locale?: string) => {
     try {
       return createDateTime(value, {
         sourceFormat: format || this.getFormat(),
@@ -86,7 +91,7 @@ export default class DatePickerInput extends React.Component<Props, State> {
     }
   };
 
-  formatDate = (date: Date | string, baseFormat?: string, locale?: any) => {
+  formatDate = (date: Date | string, baseFormat?: string, locale?: string) => {
     const format = baseFormat || this.getFormat();
 
     return DateTime.format({
@@ -118,7 +123,7 @@ export default class DatePickerInput extends React.Component<Props, State> {
       <FormField {...fieldProps} id={id}>
         <PrivatePickerInput
           keepFocus
-          clickUnselectsDay={clearOnDayClick}
+          value={restProps.value}
           dayPickerProps={pickerProps}
           dropdownProps={dropdownProps}
           inputProps={{
@@ -127,13 +132,13 @@ export default class DatePickerInput extends React.Component<Props, State> {
             onChange: this.handleChange,
           }}
           format={format}
-          formatDate={this.formatDate}
+          clickUnselectsDay={clearOnDayClick}
           hideOnDayClick={hideOnDayClick}
-          onDayChange={this.handleDayChange}
-          onDayPickerHide={onHidePicker}
-          parseDate={this.parseDate}
           placeholder={restProps.placeholder || format.toUpperCase()}
-          value={restProps.value}
+          parseDate={this.parseDate}
+          formatDate={this.formatDate}
+          onDayPickerHide={onHidePicker}
+          onDayChange={this.handleDayChange}
         />
       </FormField>
     );

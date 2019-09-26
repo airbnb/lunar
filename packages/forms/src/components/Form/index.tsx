@@ -14,6 +14,7 @@ import {
   Unsubscribe,
   FieldSubscriber,
   FieldValidator,
+  MutableState,
 } from 'final-form';
 import T from '@airbnb/lunar/lib/components/Translate';
 import { getErrorMessage } from '@airbnb/lunar/lib/components/ErrorMessage';
@@ -49,14 +50,14 @@ export type Props<Data extends object> = {
    * Callback fired when the form has passed validation and data is ready to be submitted.
    * Return a `Promise` to automatically handle form error states.
    */
-  onSubmit: (data: Data) => Promise<any>;
+  onSubmit: (data: Data) => Promise<unknown>;
   /** Callback fired when the form is reset. */
   onReset?: () => void;
   /**
    * Callback fired after validation. Must return true for passed validation,
    * or false for failed validation.
    */
-  onValidate?: (data: Data, errors: Errors, fields: FieldState<any>[]) => boolean;
+  onValidate?: (data: Data, errors: Errors, fields: FieldState<unknown>[]) => boolean;
   /** A list of `final-form` subscriptions to listen to. */
   subscriptions?: (keyof FormSubscription)[];
 };
@@ -68,7 +69,7 @@ export type State<Data extends object> = FinalFormState<Data> & {
 /**
  * A form manager built on [final-form](https://github.com/final-form/final-form).
  */
-export default class Form<Data extends object = any> extends React.Component<
+export default class Form<Data extends object = {}> extends React.Component<
   Props<Data>,
   State<Data>
 > {
@@ -122,9 +123,8 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Cast a value using the fields `parse` function.
    */
-  castValue(value: any, parse: Parse<any>) {
+  castValue(value: unknown, parse: Parse<unknown>) {
     if (Array.isArray(value)) {
-      // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
       return value.map(parse);
     }
 
@@ -134,7 +134,7 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Change the value of the source input, while also changing batch values using an object.
    */
-  changeValue = (name: string, value: any, batchValues?: Partial<Data>) => {
+  changeValue = (name: string, value: unknown, batchValues?: Partial<Data>) => {
     const values = {
       ...batchValues,
       [name]: value,
@@ -154,7 +154,7 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Return a list of all field states.
    */
-  getFields = (): FieldState<any>[] => {
+  getFields = (): FieldState<unknown>[] => {
     if (!this.form) {
       return [];
     }
@@ -265,7 +265,7 @@ export default class Form<Data extends object = any> extends React.Component<
   private handleValidate = throttleToSinglePromise(async (data: object) => {
     const nextData = data as Data;
     const errors = await this.validate(nextData);
-    const passes = await this.props.onValidate!(nextData, errors, this.getFields());
+    const passes = this.props.onValidate!(nextData, errors, this.getFields());
     let errorCount = Object.keys(errors).length;
 
     if (!passes && errorCount === 0) {
@@ -316,7 +316,7 @@ export default class Form<Data extends object = any> extends React.Component<
    * Register a new field and set their default value into the data set.
    * Optionally validate the default value if `validateDefaultValue` is true.
    */
-  registerField = <T extends unknown>(field: Field<any>, onUpdate: FieldSubscriber<T>) => {
+  registerField = <T extends unknown>(field: Field<unknown>, onUpdate: FieldSubscriber<T>) => {
     const { name, isEqual, subscriptions = [], validateFields = [] } = field;
     const unregister = this.form.registerField(name, onUpdate, mapSubscriptions(subscriptions), {
       isEqual,
@@ -342,9 +342,12 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Form mutator to manually set a fields configuration and value.
    */
-  setFieldConfig([name, config]: [string, Field<any>], { fields, formState }: any) {
+  setFieldConfig(
+    [name, config]: [string, Field<unknown>],
+    { fields, formState }: MutableState<object>,
+  ) {
     const field = fields[name];
-    const initial = getIn(formState.initialValues, name);
+    const initial = getIn(formState.initialValues!, name);
     const value = typeof initial === 'undefined' ? config.defaultValue : initial;
 
     if (!field) {
@@ -352,12 +355,14 @@ export default class Form<Data extends object = any> extends React.Component<
     }
 
     field.data.config = config;
+    // @ts-ignore
     field.initial = value;
+    // @ts-ignore
     field.value = value;
-    field.touched = config.validateDefaultValue;
+    field.touched = config.validateDefaultValue || false;
 
     /* eslint-disable no-param-reassign */
-    formState.initialValues = setIn(formState.initialValues, name, value);
+    formState.initialValues = setIn(formState.initialValues!, name, value);
     formState.values = setIn(formState.values, name, value);
     /* eslint-enable no-param-reassign */
   }
@@ -400,7 +405,7 @@ export default class Form<Data extends object = any> extends React.Component<
   /**
    * Wrap a validator in a closure to correctly handle error states.
    */
-  wrapValidator(validator?: FieldValidator<any>): FieldValidator<any> {
+  wrapValidator(validator?: FieldValidator<unknown>): FieldValidator<unknown> {
     return async (value, data) => {
       if (validator) {
         try {

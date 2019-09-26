@@ -23,7 +23,7 @@ describe('<PriceGroup />', () => {
 
   it('changes the display and rounding', () => {
     const wrapper = mount(
-      <PriceGroup amounts={{ GBP: 123.45, JPY: 456.93 }} round display="code" />,
+      <PriceGroup round amounts={{ GBP: 123.45, JPY: 456.93 }} display="code" />,
     );
 
     expect(wrapper.text()).toMatch(/GBP\s*123\.00, JPY\s*457/);
@@ -36,7 +36,7 @@ describe('<PriceGroup />', () => {
   });
 
   it('divides the amount when using micros', () => {
-    const wrapper = mount(<PriceGroup amounts={{ GBP: 123000000, JPY: 456000000 }} micros />);
+    const wrapper = mount(<PriceGroup micros amounts={{ GBP: 123000000, JPY: 456000000 }} />);
 
     expect(wrapper.text()).toBe('£123.00, ¥456');
   });

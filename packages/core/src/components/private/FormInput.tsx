@@ -28,7 +28,7 @@ export type IgnoreAttributes =
   | 'results'
   | 'security';
 
-export type Props<T = any> = {
+export type Props<T = unknown> = {
   /** @deprecated decrease font size and padding to small. */
   compact?: boolean;
   /** Mark the field as important. */
@@ -64,7 +64,7 @@ export type TextAreaProps = Omit<
 export type PrivateProps = Props &
   WithStylesProps & {
     // Support everything for convenience
-    [key: string]: any;
+    [key: string]: unknown;
     /** @ignore */
     children?: React.ReactNode;
     /** @ignore */
@@ -120,7 +120,7 @@ class FormInput extends React.Component<PrivateProps> {
       ...restProps
     } = this.props;
     const isSelect = Tag === 'select';
-    const props: any = {
+    const props: { [key: string]: unknown } = {
       ...restProps,
       className: cx(
         styles.input,

@@ -20,7 +20,8 @@ describe('<Loadable />', () => {
   beforeEach(() => {
     jest.useFakeTimers();
     timeoutSpy = jest.spyOn(window, 'setTimeout');
-    React.lazy = jest.fn(() => Foo) as any;
+    // @ts-ignore
+    React.lazy = jest.fn(() => Foo);
   });
 
   afterEach(() => {
@@ -116,7 +117,7 @@ describe('<Loadable />', () => {
 
     it('filters loadable props from the imported component', () => {
       const wrapper = shallow<Loadable>(
-        <Loadable component={importFunc} noError delay={100} loading={<div />} />,
+        <Loadable noError component={importFunc} delay={100} loading={<div />} />,
       );
 
       expect(wrapper.find(Foo).props()).toEqual({});
@@ -124,8 +125,8 @@ describe('<Loadable />', () => {
 
     it('passes the imported component to function children', () => {
       shallow<Loadable>(
-        <Loadable component={importFunc} noLoading customProp={123}>
-          {(Comp: any, props: any) => {
+        <Loadable noLoading component={importFunc} customProp={123}>
+          {(Comp: unknown, props: unknown) => {
             expect(Comp).toBe(Foo);
             expect(props).toEqual({ customProp: 123 });
           }}
@@ -142,7 +143,7 @@ describe('<Loadable />', () => {
     });
 
     it('renders null if `noError` is true', () => {
-      const wrapper = shallow<Loadable>(<Loadable component={importFunc} noError />);
+      const wrapper = shallow<Loadable>(<Loadable noError component={importFunc} />);
 
       wrapper.setState({
         error: new Error('Ooops'),
@@ -195,7 +196,7 @@ describe('<Loadable />', () => {
 
   describe('renderLoading()', () => {
     it('renders null if `noLoading` is true', () => {
-      const wrapper = shallow<Loadable>(<Loadable component={importFunc} noLoading />);
+      const wrapper = shallow<Loadable>(<Loadable noLoading component={importFunc} />);
 
       expect(wrapper.instance().renderLoading()).toBeNull();
     });

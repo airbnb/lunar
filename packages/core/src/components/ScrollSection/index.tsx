@@ -32,7 +32,7 @@ export class InternalScrollSection extends React.Component<Props & PrivateProps>
     const { children, id } = this.props;
 
     return (
-      <section id={id} ref={this.handleRef}>
+      <section ref={this.handleRef} id={id}>
         {children}
       </section>
     );

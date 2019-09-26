@@ -2,25 +2,27 @@ import { SortDirection, SortDirectionType } from 'react-virtualized';
 import { GenericRow, SelectedRows } from '../types';
 
 // https://stackoverflow.com/questions/29829205/sort-an-array-so-that-null-values-always-come-last
-function sort(a: any, b: any, ascending: boolean = false) {
+function sort(a: unknown, b: unknown, ascending: boolean = false) {
   // Equal items sort equally.
   if (a === b) {
     return 0;
   }
-  // null sort after anything else.
-  /* eslint-disable no-eq-null */
+
+  // Null sort after anything else.
   if (a == null) {
     return 1;
   }
 
-  /* eslint-disable no-eq-null */
   if (b == null) {
     return -1;
   }
+
   if (ascending) {
+    // @ts-ignore
     return a < b ? -1 : 1;
   }
 
+  // @ts-ignore
   return a < b ? 1 : -1;
 }
 
@@ -54,7 +56,9 @@ export default function sortData<T extends GenericRow>(
     const unselectedList: T[] = [];
 
     list.forEach((row: T) => {
-      if (Object.prototype.hasOwnProperty.call(selectedRows, row.metadata.originalIndex)) {
+      if (
+        Object.prototype.hasOwnProperty.call(selectedRows, row.metadata.originalIndex as number)
+      ) {
         selectedList.push(row);
       } else {
         unselectedList.push(row);

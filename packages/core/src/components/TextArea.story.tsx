@@ -88,11 +88,11 @@ class ProofreaderDemo extends React.Component<{}, { value: string }> {
         proofread
         name="textarea-proofread"
         label="Proofread"
-        onChange={this.handleChange}
-        onCheckText={onCheckText}
         rows={5}
         maxLength={10000}
         value={this.state.value}
+        onChange={this.handleChange}
+        onCheckText={onCheckText}
       />
     );
   }
@@ -107,53 +107,53 @@ storiesOf('Core/TextArea', module)
   ))
   .add('With a compact smaller view.', () => (
     <>
-      <TextArea name="textarea-compact" label="Compact" onChange={action('onChange')} compact />
+      <TextArea compact name="textarea-compact" label="Compact" onChange={action('onChange')} />
       <TextArea name="textarea-regular" label="Regular" onChange={action('onChange')} />
     </>
   ))
   .add('With an error message in an invalid state.', () => (
     <TextArea
+      invalid
       name="textarea-error"
       label="Label"
-      onChange={action('onChange')}
       errorMessage="This field is required."
-      invalid
+      onChange={action('onChange')}
     />
   ))
   .add('With a label description in a disabled state.', () => (
     <TextArea
+      disabled
       name="textarea-disabled"
       label="Label"
       labelDescription="This is a small label description."
       onChange={action('onChange')}
-      disabled
     />
   ))
   .add('With a hidden label and different row height.', () => (
     <TextArea
+      hideLabel
       name="textarea-custom"
       label="Label"
-      onChange={action('onChange')}
       rows={5}
-      hideLabel
+      onChange={action('onChange')}
     />
   ))
   .add('Marked as optional with a placeholder.', () => (
     <TextArea
+      optional
       name="textarea-optional"
       label="Label"
-      onChange={action('onChange')}
       placeholder="Tell us how you feel..."
-      optional
+      onChange={action('onChange')}
     />
   ))
   .add('Display with inline label and a prefix.', () => (
     <TextArea
+      inline
       name="both-textarea"
       label="TextArea"
       prefix={<Prefix compact>Hello</Prefix>}
       onChange={action('onChange')}
-      inline
     />
   ))
   .add(

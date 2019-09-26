@@ -5,7 +5,7 @@ import withBoundary from '@airbnb/lunar/lib/composers/withBoundary';
 import AppContext from '../components/AppContext';
 import { Context } from '../types';
 
-export interface ConnectedComponent extends React.ComponentClass<any> {
+export interface ConnectedComponent extends React.ComponentClass<{}> {
   registerPageData(): object;
 }
 
@@ -14,6 +14,7 @@ export type ConnectToAppWrapperProps = {
 };
 
 export type ConnectToAppProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ref: React.RefObject<any>;
 };
 
@@ -32,7 +33,7 @@ export default function connectToApp(scope: string) /* infer */ {
 
       instanceRef = React.createRef<ConnectedComponent>();
 
-      lastData: any = {};
+      lastData: object = {};
 
       componentDidMount() {
         this.lastData = this.getPageData();
@@ -71,15 +72,14 @@ export default function connectToApp(scope: string) /* infer */ {
       render() {
         const { app, ...props } = this.props;
 
-        return <WrappedComponent {...(props as any)} ref={this.instanceRef} />;
+        // @ts-ignore Props spreading
+        return <WrappedComponent {...props} ref={this.instanceRef} />;
       }
     }
 
     function ConnectToAppWrapper(props: Props) {
       return (
-        <AppContext.Consumer>
-          {app => app && <ConnectToApp {...(props as any)} app={app} />}
-        </AppContext.Consumer>
+        <AppContext.Consumer>{app => <ConnectToApp {...props} app={app} />}</AppContext.Consumer>
       );
     }
 

@@ -4,7 +4,7 @@ import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm
 import { toString } from '../../helpers';
 
 /** `Autocomplete` automatically connected to the parent `Form`. */
-export function FormAutocomplete(props: Props<any> & ConnectToFormProps<string>) {
+export function FormAutocomplete(props: Props & ConnectToFormProps<string>) {
   return <BaseAutocomplete {...props} />;
 }
 

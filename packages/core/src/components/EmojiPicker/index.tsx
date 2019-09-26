@@ -46,7 +46,7 @@ const groupIcons = {
   flags: <IconFlag decorative />,
 };
 
-const clearIcon = <IconCloseAlt size="1.325em" decorative />;
+const clearIcon = <IconCloseAlt decorative size="1.325em" />;
 
 export type Props = Partial<PickerProps> & {
   /** @ignore */
@@ -140,8 +140,9 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
     };
 
     return (
-      <div onKeyUp={this.handleKeyUp} role="presentation">
+      <div role="presentation" onKeyUp={this.handleKeyUp}>
         <BaseEmojiPicker
+          stickyGroupHeader
           autoFocus={!disableAutoFocus}
           commonMode="frequently-used"
           columnCount={10}
@@ -149,7 +150,6 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
           emojiPath={Core.settings.emojiCDN}
           emojiSize={20}
           emojiLargeSize={48}
-          stickyGroupHeader
           {...props}
           classNames={classNames}
           clearIcon={clearIcon}

@@ -49,7 +49,7 @@ storiesOf('Core/AdaptiveGrid', module)
     </AdaptiveGrid>
   ))
   .add('A grid with 4 items per row and no padding', () => (
-    <AdaptiveGrid defaultItemsPerRow={4} noGutter>
+    <AdaptiveGrid noGutter defaultItemsPerRow={4}>
       {gridItem()}
       {gridItem()}
       {gridItem()}

@@ -60,7 +60,7 @@ export default class DateTimeRange extends React.PureComponent<Props> {
     } else if (fromTimeStamp.day !== toTimeStamp.day) {
       toFormat = rangeToDayBundle.get(locale);
     } else {
-      return <DateTime {...props} at={toTimeStamp} medium noTime noTimezone />;
+      return <DateTime {...props} medium noTime noTimezone at={toTimeStamp} />;
     }
 
     return (

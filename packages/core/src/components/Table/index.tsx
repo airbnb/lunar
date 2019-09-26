@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleBlock } from 'aesthetic';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import withBoundary from '../../composers/withBoundary';
 import Cell from './Cell';
@@ -86,7 +87,7 @@ export { Cell, Row };
 
 export default withBoundary('Table')(
   withStyles(({ color, ui, unit }) => {
-    function createCell(styles: any) {
+    function createCell(styles: StyleBlock) {
       return {
         '@selectors': {
           ':only-child td': styles,

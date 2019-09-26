@@ -69,10 +69,10 @@ storiesOf('Core/StatusLabel', module)
   .add('With before and or after icons.', () => (
     <>
       <div>
-        <StatusLabel beforeIcon={<IconAddAlt decorative />} success>
+        <StatusLabel success beforeIcon={<IconAddAlt decorative />}>
           Before icon
         </StatusLabel>
-        <StatusLabel afterIcon={<IconAddAlt decorative />} notice>
+        <StatusLabel notice afterIcon={<IconAddAlt decorative />}>
           After icon
         </StatusLabel>
       </div>

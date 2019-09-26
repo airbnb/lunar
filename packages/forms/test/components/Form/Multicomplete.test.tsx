@@ -20,8 +20,8 @@ describe('<Multicomplete />', () => {
         accessibilityLabel="Label"
         name="foo"
         defaultValue={['bar']}
-        onLoadItems={() => Promise.resolve([])}
         validator={() => {}}
+        onLoadItems={() => Promise.resolve([])}
       />,
       {
         wrappingComponent: WrappingFormComponent,

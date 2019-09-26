@@ -14,7 +14,7 @@ describe('<CheckBox />', () => {
   });
 
   it('connects to the form', () => {
-    const wrapper = mount(<CheckBox label="Label" name="foo" defaultValue validator={() => {}} />, {
+    const wrapper = mount(<CheckBox defaultValue label="Label" name="foo" validator={() => {}} />, {
       wrappingComponent: WrappingFormComponent,
       wrappingComponentProps: { context },
     });
@@ -28,7 +28,7 @@ describe('<CheckBox />', () => {
   });
 
   it('sets checked prop', () => {
-    const wrapper = mount(<CheckBox label="Label" name="foo" defaultValue validator={() => {}} />, {
+    const wrapper = mount(<CheckBox defaultValue label="Label" name="foo" validator={() => {}} />, {
       wrappingComponent: WrappingFormComponent,
       wrappingComponentProps: { context },
     });

@@ -9,11 +9,11 @@ describe('<DirectionalIcon />', () => {
   it('passes props to underlying icon', () => {
     const wrapper = shallow(
       <DirectionalIcon
+        decorative
         direction="left"
         left={IconChevronLeft}
         right={IconChevronRight}
         size="1.5em"
-        decorative
       />,
     );
 
@@ -25,11 +25,11 @@ describe('<DirectionalIcon />', () => {
     it('renders left icon when direction is left', () => {
       const wrapper = shallow(
         <DirectionalIcon
+          decorative
           direction="left"
           left={IconChevronLeft}
           right={IconChevronRight}
           size="1.5em"
-          decorative
         />,
       );
 
@@ -39,11 +39,11 @@ describe('<DirectionalIcon />', () => {
     it('renders right icon when direction is right', () => {
       const wrapper = shallow(
         <DirectionalIcon
+          decorative
           direction="right"
           left={IconChevronLeft}
           right={IconChevronRight}
           size="1.5em"
-          decorative
         />,
       );
 
@@ -56,11 +56,11 @@ describe('<DirectionalIcon />', () => {
       const wrapper = mount(
         <DirectionContext.Provider value="rtl">
           <DirectionalIcon
+            decorative
             direction="left"
             left={IconChevronLeft}
             right={IconChevronRight}
             size="1.5em"
-            decorative
           />
         </DirectionContext.Provider>,
       );
@@ -72,11 +72,11 @@ describe('<DirectionalIcon />', () => {
       const wrapper = mount(
         <DirectionContext.Provider value="rtl">
           <DirectionalIcon
+            decorative
             direction="right"
             left={IconChevronLeft}
             right={IconChevronRight}
             size="1.5em"
-            decorative
           />
         </DirectionContext.Provider>,
       );

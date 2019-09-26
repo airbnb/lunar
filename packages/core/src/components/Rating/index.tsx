@@ -43,7 +43,7 @@ export default function Rating({ large, micro, rating = 0, reviews, small }: Pro
             Star = IconStarFull;
           }
 
-          return <Star key={key} color={color} size="1.15em" decorative />;
+          return <Star key={key} decorative color={color} size="1.15em" />;
         })}
       </Row>
     </Text>

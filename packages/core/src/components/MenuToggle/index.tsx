@@ -112,7 +112,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
     // Let the button handle itself
     const { current } = this.ref;
 
-    if (current && current.contains(event.target as any)) {
+    if (current && current.contains(event.target as Element)) {
       return;
     }
 
@@ -146,7 +146,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
     }
 
     return (
-      <div className={cx(styles.container)} ref={this.ref}>
+      <div ref={this.ref} className={cx(styles.container)}>
         {toggleIcon ? (
           <IconButton
             disabled={disabled}
@@ -172,7 +172,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
           className={cx(styles.dropdown, !opened && styles.dropdown_hidden, { zIndex })}
           aria-expanded={opened}
         >
-          <Dropdown {...dropdownProps} onClickOutside={this.handleClickOutside} visible={opened}>
+          <Dropdown {...dropdownProps} visible={opened} onClickOutside={this.handleClickOutside}>
             <div className={cx(styles.menu)}>
               <Menu
                 minWidth={250}
@@ -181,15 +181,18 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
                 {...menuProps}
               >
                 {closeOnClick
-                  ? React.Children.map(children as any, (child: React.ReactElement<any>) => {
-                      if (!child || !child.props) {
-                        return null;
-                      }
+                  ? React.Children.map(
+                      children as React.ReactElement[],
+                      (child: React.ReactElement) => {
+                        if (!child || !child.props) {
+                          return null;
+                        }
 
-                      return React.cloneElement(child, {
-                        onClick: () => this.handleItemClick(child.props.onClick),
-                      });
-                    })
+                        return React.cloneElement(child, {
+                          onClick: () => this.handleItemClick(child.props.onClick),
+                        });
+                      },
+                    )
                   : children}
               </Menu>
             </div>

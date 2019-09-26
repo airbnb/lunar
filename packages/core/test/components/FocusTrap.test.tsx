@@ -1,3 +1,5 @@
+/* eslint-disable jest/no-if */
+
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import FocusTrap, { Props } from '../../src/components/FocusTrap';
@@ -6,7 +8,7 @@ describe('<FocusTrap>', () => {
   let childAElement: HTMLInputElement | null;
   let childBElement: HTMLInputElement | null;
   let childCElement: HTMLInputElement | null;
-  let wrapper: Enzyme.ReactWrapper<Props, any, FocusTrap>;
+  let wrapper: Enzyme.ReactWrapper<Props, unknown, FocusTrap>;
   let preventDefault: jest.Mock;
 
   describe('with all focusable elements', () => {

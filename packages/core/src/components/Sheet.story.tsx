@@ -114,10 +114,10 @@ class SheetDemo extends React.Component<
             noAnimation={!animated}
             portal={portal}
             visible={visible}
-            onClose={this.handleClick}
             header={header && <Text>This is the header!</Text>}
             headerShadow={headerShadow}
             compact={compact}
+            onClose={this.handleClick}
           >
             <Spacing inner vertical={12}>
               <Text>This is in a sheet!</Text>

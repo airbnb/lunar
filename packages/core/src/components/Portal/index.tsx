@@ -20,7 +20,7 @@ export default class Portal extends React.PureComponent<Props> {
   render() {
     if (!this.node) {
       this.node = document.createElement('div');
-      document.body.appendChild(this.node);
+      document.body.append(this.node);
     }
 
     return ReactDOM.createPortal(this.props.children, this.node);

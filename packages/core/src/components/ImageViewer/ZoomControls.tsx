@@ -59,15 +59,15 @@ export default function ZoomControls(props: Props) {
 
   const handleZoomOut = useCallback(
     () => onScale(scale - ZOOM_FACTOR < 1 ? 1 : scale - ZOOM_FACTOR),
-    [scale],
+    [onScale, scale],
   );
-  const handleZoomIn = useCallback(() => onScale(scale + ZOOM_FACTOR), [scale]);
+  const handleZoomIn = useCallback(() => onScale(scale + ZOOM_FACTOR), [onScale, scale]);
   const toggleZoomMenu = useCallback(() => setVisible(!visible), [visible]);
 
   return (
     <div className={cx(styles.controls)}>
       <ButtonGroup>
-        <IconButton onClick={handleZoomOut} disabled={scale === 1}>
+        <IconButton disabled={scale === 1} onClick={handleZoomOut}>
           <IconRemove
             accessibilityLabel={T.phrase('Zoom out', {}, 'Label for zoom out button')}
             size="2em"
@@ -86,7 +86,7 @@ export default function ZoomControls(props: Props) {
         </IconButton>
       </ButtonGroup>
       {visible && (
-        <Dropdown visible={visible} left="0" onClickOutside={toggleZoomMenu} zIndex={5}>
+        <Dropdown visible={visible} left="0" zIndex={5} onClickOutside={toggleZoomMenu}>
           <Menu
             accessibilityLabel={T.phrase(
               'Zoom dropdown menu',

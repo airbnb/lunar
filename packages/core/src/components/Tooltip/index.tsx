@@ -48,8 +48,8 @@ export type PositionStruct = {
 };
 
 export type StyleStruct = {
-  center: any;
-  right: any;
+  center: string | number;
+  right: string | number;
 };
 
 /** A tooltip that renders in an portal, so it can escape potentially overflowed containers. */
@@ -194,13 +194,13 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     const distance = halfNotch + 1;
 
     return (
-      <span className={cx(styles.container)} ref={this.containerRef}>
+      <span ref={this.containerRef} className={cx(styles.container)}>
         <div
           aria-labelledby={labelID}
+          className={cx(!disabled && underlined && styles.underlined)}
           onMouseEnter={this.handleEnter}
           onMouseLeave={this.handleClose}
           onMouseDown={this.handleMouseDown}
-          className={cx(!disabled && underlined && styles.underlined)}
         >
           {children}
         </div>
@@ -209,8 +209,9 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
           {content}
         </div>
 
-        <Overlay open={open} onClose={this.handleClose} noBackground>
+        <Overlay noBackground open={open} onClose={this.handleClose}>
           <div
+            ref={this.handleTooltipRef}
             role="tooltip"
             className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
               width,
@@ -218,7 +219,6 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
               marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
               textAlign: align,
             })}
-            ref={this.handleTooltipRef}
           >
             <div className={cx(styles.shadow)}>
               <NotchedBox

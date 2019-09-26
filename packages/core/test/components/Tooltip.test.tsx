@@ -3,6 +3,7 @@ import Enzyme from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Tooltip, { Tooltip as BaseTooltip, Props, State } from '../../src/components/Tooltip';
 
+// eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('uuid/v4', () => () => 'uuid-test-mock');
 
 describe('<Tooltip />', () => {
@@ -12,7 +13,7 @@ describe('<Tooltip />', () => {
   beforeEach(() => {
     wrapper = shallowWithStyles(
       <Tooltip content="test">
-        <a href="#">hello world</a>
+        <a href="/">hello world</a>
       </Tooltip>,
     );
     childContainer = wrapper.find('div[aria-labelledby]');

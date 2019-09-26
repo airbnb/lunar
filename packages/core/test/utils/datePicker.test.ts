@@ -1,8 +1,9 @@
 import { SheetMap } from 'aesthetic';
+import { ParsedBlock, NativeBlock } from 'aesthetic-adapter-aphrodite';
 import { DayPickerProps } from 'react-day-picker';
 import { getClassNames, getCustomModifiers } from '../../src/utils/datePicker';
 
-const STYLE: SheetMap<any> = {
+const STYLE: SheetMap<NativeBlock> = {
   body: { opacity: 0 },
   calendarContainer: { opacity: 0.1 },
   caption: { opacity: 0.2 },
@@ -46,10 +47,16 @@ function cx(...styles: any[]): string {
 }
 
 describe('getClassNames()', () => {
-  let mockStyles: SheetMap<any>;
+  let mockStyles: SheetMap<ParsedBlock>;
 
   beforeEach(() => {
-    mockStyles = { ...STYLE };
+    mockStyles = Object.entries(STYLE).reduce(
+      (obj, [key, value]) => ({
+        ...obj,
+        [key]: { _definition: value },
+      }),
+      {},
+    );
   });
 
   afterEach(() => {
@@ -88,10 +95,16 @@ describe('getClassNames()', () => {
 });
 
 describe('getCustomModifiers()', () => {
-  let mockStyles: SheetMap<any>;
+  let mockStyles: SheetMap<ParsedBlock>;
 
   beforeEach(() => {
-    mockStyles = { ...STYLE };
+    mockStyles = Object.entries(STYLE).reduce(
+      (obj, [key, value]) => ({
+        ...obj,
+        [key]: { _definition: value },
+      }),
+      {},
+    );
   });
 
   afterEach(() => {

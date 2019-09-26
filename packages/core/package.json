@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar",
-  "version": "2.29.3",
+  "version": "2.30.0-alpha.0",
   "description": "React toolkit and design language for Airbnb open source and internal projects.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -22,7 +22,7 @@
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@airbnb/lunar-test-utils": "^2.2.2",
+    "@airbnb/lunar-test-utils": "^2.3.0-alpha.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
@@ -31,9 +31,9 @@
     "@types/hoist-non-react-statics": "^3.3.1",
     "@types/lodash": "^4.14.139",
     "@types/luxon": "^1.15.1",
-    "@types/prop-types": "^15.7.2",
-    "@types/react": "^16.9.2",
-    "@types/react-dom": "^16.9.0",
+    "@types/prop-types": "^15.7.3",
+    "@types/react": "^16.9.3",
+    "@types/react-dom": "^16.9.1",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
     "aesthetic": "^4.1.1",
@@ -52,13 +52,13 @@
     "interweave-emoji": "^4.1.1",
     "interweave-emoji-picker": "^4.0.2",
     "lodash": "^4.17.15",
-    "luxon": "^1.19.2",
+    "luxon": "^1.19.3",
     "ms": "^2.1.2",
     "prop-types": "^15.7.2",
     "react-day-picker": "^7.3.2",
     "react-virtualized": "9.21.1",
     "shallowequal": "^1.1.0",
-    "utility-types": "^3.7.0",
+    "utility-types": "^3.8.0",
     "uuid": "^3.3.3"
   }
 }

@@ -41,6 +41,7 @@ describe('<Alert />', () => {
       it(`renders ${status} alert`, () => {
         const wrapper = shallowWithStyles(<Alert {...{ [status]: true }} title={status} />);
 
+        // eslint-disable-next-line jest/no-if
         if (status === 'muted') {
           expect(wrapper.prop('className')).toBe('alert');
         } else {

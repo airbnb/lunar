@@ -10,11 +10,11 @@ describe('<MulticompleteChip />', () => {
   };
 
   let wrapper: Enzyme.ShallowWrapper<Props, MulticompleteChip>;
-  let instance: any;
+  let instance: MulticompleteChip;
 
   beforeEach(() => {
     wrapper = shallow(<MulticompleteChip {...props} />);
-    instance = wrapper.instance();
+    instance = wrapper.instance() as MulticompleteChip;
   });
 
   it('renders as a <Chip />', () => {
@@ -27,6 +27,7 @@ describe('<MulticompleteChip />', () => {
       onClick: spy,
     });
 
+    // @ts-ignore Allow private
     instance.handleClick();
     expect(spy).toHaveBeenCalled();
   });

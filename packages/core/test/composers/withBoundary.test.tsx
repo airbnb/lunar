@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { StyledComponent } from 'aesthetic-react';
 import withBoundary from '../../src/composers/withBoundary';
 import ErrorBoundary from '../../src/components/ErrorBoundary';
 import TrackingBoundary from '../../src/components/TrackingBoundary';
@@ -13,7 +14,7 @@ describe('withBoundary()', () => {
     const Hoc = withBoundary('Test')(Foo);
 
     expect(Hoc.displayName).toBe('withBoundary(Foo)');
-    expect((Hoc as any).WrappedComponent).toBe(Foo);
+    expect((Hoc as StyledComponent<{}, {}>).WrappedComponent).toBe(Foo);
   });
 
   it('can render without a `name`', () => {

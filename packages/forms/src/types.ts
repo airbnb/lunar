@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {
   IsEqual,
   FormState,
@@ -20,7 +22,7 @@ import {
 // File[] - FileInput
 
 export type Context = {
-  change: (name: string, value: any, batchValues?: object) => void;
+  change: (name: string, value: unknown, batchValues?: object) => void;
   getFields: () => FieldState<any>[];
   getState: () => FormState<any>;
   register: (field: Field<any>, onUpdate: FieldSubscriber<any>) => Unsubscribe;

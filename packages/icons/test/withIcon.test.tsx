@@ -1,4 +1,5 @@
 import React from 'react';
+import { WrappedComponent } from '@airbnb/lunar-test-utils';
 import { shallow } from 'enzyme';
 import withIcon from '../src/withIcon';
 
@@ -11,7 +12,7 @@ describe('withIcon()', () => {
     const Hoc = withIcon('IconTest')(Foo);
 
     expect(Hoc.displayName).toBe('IconTest');
-    expect((Hoc as any).WrappedComponent).toBe(Foo);
+    expect((Hoc as WrappedComponent).WrappedComponent).toBe(Foo);
   });
 
   it('passes through props', () => {

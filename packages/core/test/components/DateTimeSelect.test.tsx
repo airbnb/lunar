@@ -232,7 +232,7 @@ describe('<DateTimeSelect />', () => {
   });
 
   describe('handleChange()', () => {
-    function simulateChange(wrapper: Enzyme.ShallowWrapper<any, any>, type: string, value: any) {
+    function simulateChange<P>(wrapper: Enzyme.ShallowWrapper<P>, type: string, value: unknown) {
       const event = {
         target: {
           id: `foo_${type}`,
@@ -249,7 +249,7 @@ describe('<DateTimeSelect />', () => {
 
     it('calls `onChange` prop', () => {
       const spy = jest.fn();
-      const wrapper = shallowWithStyles(<DateTimeSelect {...props} onChange={spy} value={date} />);
+      const wrapper = shallowWithStyles(<DateTimeSelect {...props} value={date} onChange={spy} />);
       const event = simulateChange(wrapper, 'hour', 12);
 
       expect(spy).toHaveBeenCalledWith('1988-02-26T12:00:00.000Z', event);
@@ -297,7 +297,7 @@ describe('<DateTimeSelect />', () => {
 
     it('sets 8pm (12-hour clock)', () => {
       const wrapper = shallowWithStyles<BaseDateTimeSelect>(
-        <DateTimeSelect {...props} value={date} enable12HourClock />,
+        <DateTimeSelect {...props} enable12HourClock value={date} />,
       );
 
       wrapper.setState({
@@ -311,7 +311,7 @@ describe('<DateTimeSelect />', () => {
 
     it('sets 12pm (12-hour clock)', () => {
       const wrapper = shallowWithStyles<BaseDateTimeSelect>(
-        <DateTimeSelect {...props} value={date} enable12HourClock />,
+        <DateTimeSelect {...props} enable12HourClock value={date} />,
       );
 
       wrapper.setState({
@@ -325,7 +325,7 @@ describe('<DateTimeSelect />', () => {
 
     it('sets 2am (12-hour clock)', () => {
       const wrapper = shallowWithStyles<BaseDateTimeSelect>(
-        <DateTimeSelect {...props} value={date} enable12HourClock />,
+        <DateTimeSelect {...props} enable12HourClock value={date} />,
       );
 
       wrapper.setState({
@@ -339,7 +339,7 @@ describe('<DateTimeSelect />', () => {
 
     it('sets 12am (12-hour clock)', () => {
       const wrapper = shallowWithStyles<BaseDateTimeSelect>(
-        <DateTimeSelect {...props} value={date} enable12HourClock />,
+        <DateTimeSelect {...props} enable12HourClock value={date} />,
       );
 
       wrapper.setState({
@@ -363,7 +363,7 @@ describe('<DateTimeSelect />', () => {
 
     it('sets meridiem', () => {
       const wrapper = shallowWithStyles(
-        <DateTimeSelect {...props} value={date} enable12HourClock />,
+        <DateTimeSelect {...props} enable12HourClock value={date} />,
       );
 
       simulateChange(wrapper, 'meridiem', 'pm');
@@ -373,7 +373,7 @@ describe('<DateTimeSelect />', () => {
 
     it('updates hour when meridiem changes (12-hour clock)', () => {
       const wrapper = shallowWithStyles<BaseDateTimeSelect>(
-        <DateTimeSelect {...props} value={date} enable12HourClock />,
+        <DateTimeSelect {...props} enable12HourClock value={date} />,
       );
 
       wrapper.setState({

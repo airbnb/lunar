@@ -1,14 +1,15 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import PopToast from '../../../src/components/Toasts/PopToast';
-import AppContext from '../../../src/components/AppContext';
+import AppContext, { defaultContext } from '../../../src/components/AppContext';
 import { Context } from '../../../src/types';
 
 describe('PopToast', () => {
-  let context: Partial<Context>;
+  let context: Context;
 
   beforeEach(() => {
     context = {
+      ...defaultContext,
       addFailureToast: jest.fn(),
       addRefreshToast: jest.fn(),
       addSuccessToast: jest.fn(),
@@ -17,23 +18,23 @@ describe('PopToast', () => {
   });
 
   function WrappingComponent({ children }: { children?: React.ReactNode }) {
-    return <AppContext.Provider value={context as any}>{children}</AppContext.Provider>;
+    return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
   }
 
   it('adds a failure toast', () => {
-    render(<PopToast message="Hello" delay={123} danger />, { wrapper: WrappingComponent });
+    render(<PopToast danger message="Hello" delay={123} />, { wrapper: WrappingComponent });
 
     expect(context.addFailureToast).toHaveBeenCalledWith('Hello', { danger: true, delay: 123 });
   });
 
   it('adds a success toast', () => {
-    render(<PopToast message="Hello" duration={123} success />, { wrapper: WrappingComponent });
+    render(<PopToast success message="Hello" duration={123} />, { wrapper: WrappingComponent });
 
     expect(context.addSuccessToast).toHaveBeenCalledWith('Hello', { success: true, duration: 123 });
   });
 
   it('adds a refresh toast', () => {
-    render(<PopToast message="Hello" refresh />, { wrapper: WrappingComponent });
+    render(<PopToast refresh message="Hello" />, { wrapper: WrappingComponent });
 
     expect(context.addRefreshToast).toHaveBeenCalledWith('Hello', { refresh: true });
   });

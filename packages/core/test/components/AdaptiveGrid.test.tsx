@@ -5,7 +5,7 @@ import AdaptiveGrid from '../../src/components/AdaptiveGrid';
 describe('<AdaptiveGrid />', () => {
   it('renders an AdaptiveGrid and passes props', () => {
     const wrapper = mount(
-      <AdaptiveGrid breakpoints={{ 1200: 3 }} defaultItemsPerRow={2} noGutter>
+      <AdaptiveGrid noGutter breakpoints={{ 1200: 3 }} defaultItemsPerRow={2}>
         <div>Item</div>
         <div>Item</div>
         <div>Item</div>

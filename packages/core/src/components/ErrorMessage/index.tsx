@@ -7,12 +7,20 @@ import StatusText from '../StatusText';
 import { ErrorType } from '../../types';
 import Core from '../..';
 
-export function getErrorMessage(error: any, includeCode: boolean = false): string {
+export function getErrorMessage(error: string | ErrorType, includeCode: boolean = false): string {
+  if (typeof error === 'string') {
+    return error;
+  }
+
+  if (error instanceof Error) {
+    return error.message;
+  }
+
   const debug = error.debug_info;
 
   const message = debug
     ? `${debug.error_class} - ${debug.error_message || debug.response_message}`
-    : error.user_message || error.error_details || error.error_message || error.message;
+    : error.user_message || error.error_details || error.error_message;
 
   if (includeCode && error.error_code) {
     return `${error.error_code} - ${message}`;
@@ -21,7 +29,7 @@ export function getErrorMessage(error: any, includeCode: boolean = false): strin
   return message || '';
 }
 
-/* istanbul ignore next */
+// istanbul ignore next
 function createRedirectURL(id: string, url?: string) {
   return () => window.open(url || Core.settings.errorURL.replace('{{id}}', id), '_blank');
 }

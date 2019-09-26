@@ -12,55 +12,55 @@ storiesOf('Core/FileInput', module)
   ))
   .add('Supports multiple files, of image only, while hiding file preview columns.', () => (
     <FileInput
-      name="input-multiple"
-      label="Label"
-      onChange={action('onChange')}
       onlyImages
       multiple
       hideFileType
       hideLastModified
+      name="input-multiple"
+      label="Label"
+      onChange={action('onChange')}
     />
   ))
   .add('With a compact smaller view, only supporting audio and video.', () => (
     <>
       <FileInput
+        onlyAudio
+        compact
         name="input-compact"
         label="Compact"
         onChange={action('onChange')}
-        onlyAudio
-        compact
       />
-      <FileInput name="input-regular" label="Regular" onChange={action('onChange')} onlyVideo />
+      <FileInput onlyVideo name="input-regular" label="Regular" onChange={action('onChange')} />
     </>
   ))
   .add('With an error message in an invalid state.', () => (
     <FileInput
+      invalid
       name="input-error"
       label="Label"
-      onChange={action('onChange')}
       errorMessage="This field is required."
-      invalid
+      onChange={action('onChange')}
     />
   ))
   .add('With a label description in a disabled state.', () => (
     <FileInput
+      disabled
       name="input-disabled"
       label="Label"
       labelDescription="This is a small label description."
       onChange={action('onChange')}
-      disabled
     />
   ))
   .add('Marked as optional.', () => (
-    <FileInput name="input-optional" label="Label" onChange={action('onChange')} optional />
+    <FileInput optional name="input-optional" label="Label" onChange={action('onChange')} />
   ))
   .add('Display with inline label (does not display file table).', () => (
     <FileInput
+      optional
+      inline
       name="input-optional"
       label="Label"
       labelDescription="This is a small label description."
       onChange={action('onChange')}
-      optional
-      inline
     />
   ));

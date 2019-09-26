@@ -6,11 +6,11 @@ import renderElementOrFunction, { RenderableProp } from '../../utils/renderEleme
 
 export type Props<T extends object> = {
   /** Allow all props since they are piped to the loaded component. */
-  [prop: string]: any;
+  [prop: string]: unknown;
   /** Render the component once it has been loaded. */
   children?:
     | React.ReactNode
-    | ((component: React.ComponentType<T>, ownProps: T) => React.ReactElement<any>);
+    | ((component: React.ComponentType<T>, ownProps: T) => React.ReactElement);
   /** A function that `import()`s a component and returns a promise. */
   component: () => Promise<{ default: React.ComponentType<T> }>;
   /**
@@ -44,7 +44,7 @@ export type State = {
  * A declarative component for async loading of other components via native `import()` and `React.lazy`.
  * @experimental Requires React.lazy
  */
-export default class Loadable<T extends object = any> extends React.Component<Props<T>, State> {
+export default class Loadable<T extends object = {}> extends React.Component<Props<T>, State> {
   static defaultProps = {
     delay: 150,
     error: null,
@@ -104,7 +104,8 @@ export default class Loadable<T extends object = any> extends React.Component<Pr
       return children(Component, restProps);
     }
 
-    return <Component {...(restProps as any)}>{children}</Component>;
+    // @ts-ignore Props spreading
+    return <Component {...restProps}>{children}</Component>;
   };
 
   renderError = () => {

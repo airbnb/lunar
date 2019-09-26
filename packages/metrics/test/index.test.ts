@@ -1,4 +1,5 @@
 import { init, configureScope } from '@sentry/browser';
+import { Scope } from '@sentry/types';
 import Metrics from '../src';
 import { settings } from './setup';
 
@@ -82,16 +83,17 @@ describe('Metrics', () => {
   });
 
   describe('bootstrapSentry()', () => {
-    let scope: any;
+    let scope: Scope;
 
     beforeEach(() => {
+      // @ts-ignore
       scope = {
         setUser: jest.fn(),
         setTag: jest.fn(),
         setExtras: jest.fn(),
       };
 
-      (configureScope as jest.Mock).mockImplementation((cb: any) => cb(scope));
+      (configureScope as jest.Mock).mockImplementation(cb => cb(scope));
 
       Metrics.settings = {
         ...settings,

@@ -12,6 +12,8 @@ import focusFirstFocusableChild from '../../src/utils/focus/focusFirstFocusableC
 
 jest.mock('../../src/utils/focus/focusFirstFocusableChild');
 
+type EventMap = { [key: string]: ((event?: Event) => void) | null };
+
 describe('<Modal />', () => {
   function setup(override = {}, isShallow = true) {
     const props: Props = {
@@ -58,19 +60,20 @@ describe('<Modal />', () => {
   it('closes when clicked outside', () => {
     const closeSpy = jest.fn();
 
-    const eventMap = {
+    const eventMap: EventMap = {
       click: null,
       mouseup: null,
       mousedown: null,
-    } as any;
+    };
 
     document.addEventListener = jest.fn((event, cb) => {
+      // @ts-ignore
       eventMap[event] = cb;
     });
 
     shallowWithStyles(<ModalInner onClose={closeSpy}>Foo</ModalInner>);
 
-    eventMap.click();
+    eventMap.click!();
 
     expect(closeSpy).toHaveBeenCalled();
   });
@@ -79,13 +82,14 @@ describe('<Modal />', () => {
     const target = document.createElement('div');
     const closeSpy = jest.fn();
 
-    const eventMap = {
+    const eventMap: EventMap = {
       click: null,
       mouseup: null,
       mousedown: null,
-    } as any;
+    };
 
     document.addEventListener = jest.fn((event, cb) => {
+      // @ts-ignore
       eventMap[event] = cb;
     });
 
@@ -95,7 +99,8 @@ describe('<Modal />', () => {
     // @ts-ignore
     instance.dialogRef = { current: target };
 
-    eventMap.click({ preventDefault: jest.fn(), target });
+    // @ts-ignore
+    eventMap.click!({ preventDefault: jest.fn(), target });
 
     expect(closeSpy).toHaveBeenCalledTimes(0);
   });
@@ -193,7 +198,7 @@ describe('<Modal />', () => {
 
   it('re-focuses on the last focused element on close', () => {
     const focused = document.createElement('input');
-    document.body.appendChild(focused);
+    document.body.append(focused);
     focused.focus();
 
     const clearTimeoutSpy = jest.spyOn(window, 'clearTimeout');

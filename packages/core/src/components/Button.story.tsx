@@ -15,10 +15,10 @@ storiesOf('Core/Button', module)
   ))
   .add('Render an anchor link when passing `href`.', () => (
     <>
-      <Button href="https://github.com/airbnb/lunar" openInNewWindow>
+      <Button openInNewWindow href="https://github.com/airbnb/lunar">
         Link
       </Button>{' '}
-      <Button href="https://github.com/airbnb/lunar" openInNewWindow inverted>
+      <Button openInNewWindow inverted href="https://github.com/airbnb/lunar">
         Link
       </Button>
     </>

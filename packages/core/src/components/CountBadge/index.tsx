@@ -50,8 +50,8 @@ export class CountBadge extends React.Component<Props & WithStylesProps> {
 
     return (
       <div
-        className={cx(styles.badge, waggle ? styles.animateInAndWaggle : styles.animateIn)}
         ref={this.badgeRef}
+        className={cx(styles.badge, waggle ? styles.animateInAndWaggle : styles.animateIn)}
         aria-label={accessibilityLabel}
       >
         {value.toLocaleString()}

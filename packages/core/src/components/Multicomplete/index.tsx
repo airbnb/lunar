@@ -10,12 +10,12 @@ import Chip from './private/Chip';
 
 export type Item = AutocompleteItem;
 
-export type Props<T extends Item> = Omit<
+export type Props<T extends Item = Item> = Omit<
   AutocompleteProps<T>,
   'children' | 'isItemSelected' | 'onChange' | 'value'
 > & {
   /** Callback that is triggered when an item is selected. */
-  onChange: (values: string[], event: React.SyntheticEvent<any>) => void;
+  onChange: (values: string[], event: React.SyntheticEvent<HTMLElement>) => void;
   /** Default selected values. */
   value?: string[];
 };
@@ -25,7 +25,7 @@ export type State = {
 };
 
 /** An uncontrolled input field for selecting multiple values via an autocomplete. */
-export default class Multicomplete<T extends Item> extends React.Component<Props<T>, State> {
+export default class Multicomplete<T extends Item = Item> extends React.Component<Props<T>, State> {
   static defaultProps = {
     value: [],
   };
@@ -44,11 +44,15 @@ export default class Multicomplete<T extends Item> extends React.Component<Props
 
   private isItemSelected = (item: T, value: string) => this.state.values.has(value);
 
-  private handleChange = (value: string, event: React.SyntheticEvent<any>) => {
+  private handleChange = (value: string, event: React.SyntheticEvent<HTMLElement>) => {
     this.props.onChange(Array.from(this.state.values), event);
   };
 
-  private handleSelectItem = (value: string, item: T | null, event?: React.SyntheticEvent<any>) => {
+  private handleSelectItem = (
+    value: string,
+    item: T | null,
+    event?: React.SyntheticEvent<HTMLElement>,
+  ) => {
     if (this.props.onSelectItem) {
       this.props.onSelectItem(value, item, event);
     }
@@ -67,7 +71,7 @@ export default class Multicomplete<T extends Item> extends React.Component<Props
     );
   };
 
-  private handleChipClick = (value: string, event: React.MouseEvent<any>) => {
+  private handleChipClick = (value: string, event: React.MouseEvent<HTMLElement>) => {
     this.setState(
       prevState => {
         const values = new Set(prevState.values);
@@ -92,15 +96,15 @@ export default class Multicomplete<T extends Item> extends React.Component<Props
       <Autocomplete<T>
         clearOnSelect
         {...props}
-        onChange={this.handleChange}
-        onSelectItem={this.handleSelectItem}
         isItemSelected={this.isItemSelected}
         value=""
+        onChange={this.handleChange}
+        onSelectItem={this.handleSelectItem}
       >
         {selected.length > 0 && (
           <div>
             {selected.map(item => (
-              <Spacing inline key={item} right={1} top={1}>
+              <Spacing key={item} inline right={1} top={1}>
                 <Chip value={item} onClick={this.handleChipClick} />
               </Spacing>
             ))}

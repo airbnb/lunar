@@ -53,28 +53,36 @@ describe('<FileInput />', () => {
   it('defaults to any files', () => {
     const wrapper = shallow(<FileInput {...props} />);
 
-    expect((wrapper.find(FormInputButton).prop('afterIcon') as any).type).toBe(IconUpload);
+    expect((wrapper.find(FormInputButton).prop('afterIcon') as React.ReactElement).type).toBe(
+      IconUpload,
+    );
     expect(wrapper.find(FormInput).prop('accept')).toBeUndefined();
   });
 
   it('can limit to only audio files', () => {
     const wrapper = shallow(<FileInput {...props} onlyAudio />);
 
-    expect((wrapper.find(FormInputButton).prop('afterIcon') as any).type).toBe(IconAudio);
+    expect((wrapper.find(FormInputButton).prop('afterIcon') as React.ReactElement).type).toBe(
+      IconAudio,
+    );
     expect(wrapper.find(FormInput).prop('accept')).toBe('audio/*');
   });
 
   it('can limit to only image files', () => {
     const wrapper = shallow(<FileInput {...props} onlyImages />);
 
-    expect((wrapper.find(FormInputButton).prop('afterIcon') as any).type).toBe(IconPhoto);
+    expect((wrapper.find(FormInputButton).prop('afterIcon') as React.ReactElement).type).toBe(
+      IconPhoto,
+    );
     expect(wrapper.find(FormInput).prop('accept')).toBe('image/*');
   });
 
   it('can limit to only video files', () => {
     const wrapper = shallow(<FileInput {...props} onlyVideo />);
 
-    expect((wrapper.find(FormInputButton).prop('afterIcon') as any).type).toBe(IconVideo);
+    expect((wrapper.find(FormInputButton).prop('afterIcon') as React.ReactElement).type).toBe(
+      IconVideo,
+    );
     expect(wrapper.find(FormInput).prop('accept')).toBe('video/*');
   });
 
@@ -208,7 +216,8 @@ describe('<FileInput />', () => {
     const spy = jest.fn();
     const wrapper = shallow(<FileInput {...props} />);
 
-    (wrapper.instance() as any).ref = { current: { click: spy } };
+    // @ts-ignore
+    wrapper.instance().ref = { current: { click: spy } };
 
     wrapper.find(FormInputButton).simulate('click');
 

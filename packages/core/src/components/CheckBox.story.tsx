@@ -12,29 +12,29 @@ storiesOf('Core/CheckBox', module)
   ))
   .add('With an error message in an invalid state.', () => (
     <CheckBox
+      invalid
       name="cb-error"
       label="Label"
-      onChange={action('onChange')}
       errorMessage="This field is required."
-      invalid
+      onChange={action('onChange')}
     />
   ))
   .add('With a label description in a disabled state.', () => (
     <CheckBox
+      disabled
       name="cb-disabled"
       label="Label"
       labelDescription="This is a small label description."
       onChange={action('onChange')}
-      disabled
     />
   ))
   .add('With a label description in an indeterminate state.', () => (
     <CheckBox
+      indeterminate
       name="cb-disabled"
       label="Label"
       labelDescription="This is a small label description."
       onChange={action('onChange')}
-      indeterminate
     />
   ))
   .add('With a top alignment.', () => (
@@ -50,43 +50,43 @@ storiesOf('Core/CheckBox', module)
     </>
   ))
   .add('Marked as optional.', () => (
-    <CheckBox name="cb-optional" label="Label" onChange={action('onChange')} optional />
+    <CheckBox optional name="cb-optional" label="Label" onChange={action('onChange')} />
   ))
   .add('Marked as checked in different states.', () => (
     <>
-      <CheckBox name="cb-checked" label="Label" onChange={action('onChange')} checked />{' '}
+      <CheckBox checked name="cb-checked" label="Label" onChange={action('onChange')} />{' '}
       <CheckBox
+        checked
+        disabled
         name="cb-checked-disabled"
         label="Label"
         onChange={action('onChange')}
-        checked
-        disabled
       />{' '}
       <CheckBox
+        checked
+        invalid
         name="cb-checked-invalid"
         label="Label"
         onChange={action('onChange')}
-        checked
-        invalid
       />
     </>
   ))
   .add('As a clickable button.', () => (
     <CheckBox
+      button
       name="cb-basic"
       label="Label"
       labelDescription="This is a label description."
       onChange={action('onChange')}
-      button
     />
   ))
   .add('As a compact, clickable button.', () => (
     <CheckBox
+      button
+      compact
       name="cb-basic"
       label="Label"
       labelDescription="This is a label description."
       onChange={action('onChange')}
-      button
-      compact
     />
   ));

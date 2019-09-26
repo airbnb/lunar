@@ -18,18 +18,12 @@ jobs:
       script: yarn run happo:ci:travis
       node_js: '12'
       if: type = pull_request
-    - name: Test @ 8
-      script: yarn run jest:coverage -w 4
-      node_js: '8'
     - name: Test @ 10
       script: yarn run jest:coverage -w 4
       node_js: '10'
     - name: Test @ 12
       script: yarn run jest:coverage -w 4
       node_js: '12'
-    - name: Lint @ 8
-      script: yarn run lint:errors
-      node_js: '8'
     - name: Lint @ 10
       script: yarn run lint:errors
       node_js: '10'

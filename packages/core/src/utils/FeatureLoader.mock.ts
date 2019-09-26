@@ -1,7 +1,7 @@
 export default class MockFeatureLoader<T> {
   cache: Map<string, T> = new Map();
 
-  fetch: any = (key: string) => Promise.resolve(key);
+  fetch: unknown = (key: string) => Promise.resolve(key);
 
   clear() {
     this.cache.clear();

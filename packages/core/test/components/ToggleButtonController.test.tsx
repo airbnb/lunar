@@ -3,6 +3,13 @@ import Enzyme, { shallow } from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ToggleButtonController from '../../src/components/ToggleButtonController';
 
+function clickButton(wrapper: Enzyme.ShallowWrapper, value: unknown): Enzyme.ShallowWrapper {
+  return wrapper
+    .find({ value })
+    .dive()
+    .simulate('click', { currentTarget: { dataset: { value } } });
+}
+
 describe('<ToggleButtonController />', () => {
   const props = {
     id: 'foo',
@@ -11,13 +18,6 @@ describe('<ToggleButtonController />', () => {
     label: 'Label',
     onChange() {},
   };
-
-  function clickButton(wrapper: Enzyme.ShallowWrapper, value: any): Enzyme.ShallowWrapper {
-    return wrapper
-      .find({ value })
-      .dive()
-      .simulate('click', { currentTarget: { value } });
-  }
 
   it('sets default value', () => {
     const wrapper = shallow(
@@ -55,7 +55,7 @@ describe('<ToggleButtonController />', () => {
   it('does not notify of click that does not cause change', () => {
     const onChange = jest.fn();
     const wrapper = shallowWithStyles(
-      <ToggleButtonController {...props} onChange={onChange} value="1">
+      <ToggleButtonController {...props} value="1" onChange={onChange}>
         {ProxyButton => (
           <div>
             <ProxyButton value="1">1</ProxyButton>
@@ -86,13 +86,13 @@ describe('<ToggleButtonController />', () => {
     );
 
     clickButton(wrapper, '1');
-    expect(onChange).toHaveBeenCalledWith('1', { currentTarget: { value: '1' } });
+    expect(onChange).toHaveBeenCalledWith('1', { currentTarget: { dataset: { value: '1' } } });
 
     clickButton(wrapper, '2');
-    expect(onChange).toHaveBeenCalledWith('2', { currentTarget: { value: '2' } });
+    expect(onChange).toHaveBeenCalledWith('2', { currentTarget: { dataset: { value: '2' } } });
 
     clickButton(wrapper, '3');
-    expect(onChange).toHaveBeenCalledWith('3', { currentTarget: { value: '3' } });
+    expect(onChange).toHaveBeenCalledWith('3', { currentTarget: { dataset: { value: '3' } } });
   });
 
   it('inverts inactive buttons', () => {

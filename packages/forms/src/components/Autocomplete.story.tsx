@@ -27,12 +27,10 @@ storiesOf('Forms/Autocomplete', module)
         name="field"
         label="Label"
         accessibilityLabel="Autocomplete"
-        onLoadItems={value =>
-          Promise.resolve(
-            items.filter(item => item.name.toLowerCase().match(value.toLowerCase())),
-          ) as any
-        }
         validator={() => {}}
+        onLoadItems={value =>
+          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
+        }
       />
     </Form>
   ));

@@ -45,7 +45,7 @@ export default class TextArea extends React.Component<Props, State> {
 
   render() {
     const { fieldProps, inputProps } = partitionFieldProps(this.props);
-    const { locale, proofread, proofreadProps, ...textareaProps } = inputProps;
+    const { locale, name, proofread, proofreadProps, onCheckText, ...textareaProps } = inputProps;
     const { id } = this.state;
     const description =
       fieldProps.labelDescription ||
@@ -61,10 +61,17 @@ export default class TextArea extends React.Component<Props, State> {
 
     return (
       <FormField {...fieldProps} id={id} labelDescription={description}>
-        {proofread ? (
-          <Proofreader {...(textareaProps as any)} {...proofreadProps} id={id} locale={locale} />
+        {proofread && onCheckText ? (
+          <Proofreader
+            {...textareaProps}
+            {...proofreadProps}
+            id={id}
+            locale={locale}
+            name={name!}
+            onCheckText={onCheckText}
+          />
         ) : (
-          <BaseTextArea {...textareaProps} id={id} />
+          <BaseTextArea {...textareaProps} id={id} name={name} />
         )}
       </FormField>
     );

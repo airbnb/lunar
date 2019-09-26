@@ -15,9 +15,9 @@ export type SelectedRows = {
 };
 
 export type ChangeLog = {
-  [key: number]: {
+  [idx: number]: {
     [key: string]: {
-      newVal: any;
+      newVal: string;
     };
   };
 };
@@ -25,7 +25,7 @@ export type ChangeLog = {
 export type EditCallback<T = RowData> = (
   row: VirtualRow<T>,
   key: string,
-  newVal: any,
+  newVal: string,
   event: React.SyntheticEvent<EventTarget>,
 ) => void;
 
@@ -115,10 +115,10 @@ export interface DataTableProps {
 
 export interface GenericRow {
   data: {
-    [key: string]: any;
+    [key: string]: unknown;
   };
   metadata: {
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 
@@ -172,7 +172,7 @@ type ExpandedChildMetadata = IndexedChildMetadata & {
 };
 
 export interface RowData {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface Row<T = RowData> {
@@ -217,7 +217,7 @@ export type ColumnMetadata = {
 };
 
 export type ColumnToLabel = {
-  [key: string]: any;
+  [key: string]: React.ReactNode;
 };
 
 export type RendererProps<T = RowData> = {

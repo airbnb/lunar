@@ -59,10 +59,10 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
   static propTypes = {
     centerAlign: alignProp,
     endAlign: alignProp,
+    pageCount: requiredBy('showBookends', PropTypes.number),
     startAlign: alignProp,
     onFirst: requiredBy('showBookends', PropTypes.func),
     onLast: requiredBy('showBookends', PropTypes.func),
-    pageCount: requiredBy('showBookends', PropTypes.number),
   };
 
   render() {

@@ -51,7 +51,7 @@ export default function withIcon(
           size,
         } = this.props;
 
-        const props: any = {
+        const props: Props & { 'aria-hidden'?: boolean; 'aria-label'?: string } = {
           focusable: 'false',
           role: decorative ? 'presentation' : 'img',
           style: {

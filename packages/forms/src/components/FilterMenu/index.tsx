@@ -109,7 +109,7 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
     // Let the button handle itself
     const { current } = this.ref;
 
-    if (current && current.contains(event.target as any)) {
+    if (current && current.contains(event.target as Element)) {
       return;
     }
 
@@ -146,13 +146,13 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
     );
 
     return (
-      <div className={cx(styles.container)} ref={this.ref}>
+      <div ref={this.ref} className={cx(styles.container)}>
         <Button
           inverted
           large={large}
           small={small}
-          onClick={this.handleToggleFilters}
           afterIcon={<ExpandableIcon expanded={opened} size="1.25em" />}
+          onClick={this.handleToggleFilters}
         >
           {activeCountLabel || toggleLabel}
         </Button>
@@ -161,7 +161,7 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
           className={cx(styles.form, !opened && styles.form_hidden, { zIndex })}
           aria-expanded={opened}
         >
-          <Dropdown {...dropdownProps} onClickOutside={this.handleClickOutside} visible={opened}>
+          <Dropdown {...dropdownProps} visible={opened} onClickOutside={this.handleClickOutside}>
             <div className={cx(styles.menu)}>
               <Menu
                 minWidth={250}

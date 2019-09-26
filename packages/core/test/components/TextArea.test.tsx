@@ -20,7 +20,7 @@ describe('<TextArea />', () => {
   });
 
   it('can set `noTranslate`', () => {
-    const wrapper = shallow(<TextArea name="foo" label="Label" onChange={() => {}} noTranslate />);
+    const wrapper = shallow(<TextArea noTranslate name="foo" label="Label" onChange={() => {}} />);
 
     expect(wrapper.find(BaseTextArea).prop('noTranslate')).toBe(true);
   });
@@ -42,14 +42,14 @@ describe('<TextArea />', () => {
   it('renders a proofreader', () => {
     const wrapper = shallow(
       <TextArea
+        proofread
         name="foo"
         label="Label"
         rows={5}
-        onChange={() => {}}
         locale="ja"
-        proofread
-        onCheckText={() => Promise.resolve({ proofread: { matches: [] } })}
         proofreadProps={{ isRuleHighlighted: () => false, isRuleSecondary: () => false }}
+        onChange={() => {}}
+        onCheckText={() => Promise.resolve({ proofread: { matches: [] } })}
       />,
     );
 
@@ -71,9 +71,9 @@ describe('<TextArea />', () => {
         name="foo"
         label="Label"
         rows={5}
-        onChange={() => {}}
         maxLength={1000}
         value="Hello"
+        onChange={() => {}}
       />,
     );
 

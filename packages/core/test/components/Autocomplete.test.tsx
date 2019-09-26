@@ -2,7 +2,12 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import T from '../../src/components/Translate';
-import Autocomplete, { CACHE_DURATION, Props, State } from '../../src/components/Autocomplete';
+import Autocomplete, {
+  CACHE_DURATION,
+  Props,
+  State,
+  Item as AutocompleteItem,
+} from '../../src/components/Autocomplete';
 import BaseInput from '../../src/components/private/BaseInput';
 import FormField from '../../src/components/FormField';
 import Text from '../../src/components/Text';
@@ -21,8 +26,8 @@ describe('<Autocomplete />', () => {
     onLoadItems: () => Promise.resolve([]),
   };
 
-  let wrapper: Enzyme.ShallowWrapper<Props<any>, State<any>, Autocomplete<any>>;
-  let instance: Autocomplete<any>;
+  let wrapper: Enzyme.ShallowWrapper<Props, State, Autocomplete>;
+  let instance: Autocomplete;
 
   beforeEach(() => {
     wrapper = shallow(<Autocomplete {...props} />);
@@ -395,7 +400,7 @@ describe('<Autocomplete />', () => {
   describe('loadItems()', () => {
     beforeEach(() => {
       instance.loadItemsDebounced = jest.fn(() =>
-        Promise.resolve({ input: 'foo', response: [4, 5, 6] }),
+        Promise.resolve({ input: 'foo', response: [{ id: 4 }, { id: 5 }, { id: 6 }] }),
       );
     });
 
@@ -403,7 +408,7 @@ describe('<Autocomplete />', () => {
       wrapper.setState({
         value: 'foo',
         error: null,
-        items: [1, 2, 3],
+        items: [{ id: 1 }, { id: 2 }, { id: 3 }],
         loading: true,
       });
 
@@ -446,7 +451,7 @@ describe('<Autocomplete />', () => {
 
     it('uses cache if it exists', () => {
       instance.cache.foo = {
-        items: [1, 2, 3],
+        items: [{ id: 1 }, { id: 2 }, { id: 3 }],
         time: Date.now(),
       };
 
@@ -455,7 +460,7 @@ describe('<Autocomplete />', () => {
       expect(wrapper.state()).toEqual(
         expect.objectContaining({
           value: 'foo',
-          items: [1, 2, 3],
+          items: [{ id: 1 }, { id: 2 }, { id: 3 }],
           loading: false,
         }),
       );
@@ -464,7 +469,7 @@ describe('<Autocomplete />', () => {
 
     it('bypasses cache if forced', () => {
       instance.cache.foo = {
-        items: [1, 2, 3],
+        items: [{ id: 1 }, { id: 2 }, { id: 3 }],
         time: Date.now(),
       };
 
@@ -481,7 +486,7 @@ describe('<Autocomplete />', () => {
 
     it('bypasses cache if stale', () => {
       instance.cache.foo = {
-        items: [1, 2, 3],
+        items: [{ id: 1 }, { id: 2 }, { id: 3 }],
         time: Date.now() - CACHE_DURATION - CACHE_DURATION,
       };
 
@@ -500,7 +505,7 @@ describe('<Autocomplete />', () => {
       instance.loadItems('foo').then(() => {
         expect(instance.cache.foo).toEqual(
           expect.objectContaining({
-            items: [4, 5, 6],
+            items: [{ id: 4 }, { id: 5 }, { id: 6 }],
           }),
         );
       }));
@@ -519,7 +524,7 @@ describe('<Autocomplete />', () => {
       instance.loadItems('foo').then(() => {
         expect(wrapper.state()).toEqual(
           expect.objectContaining({
-            items: [4, 5, 6],
+            items: [{ id: 4 }, { id: 5 }, { id: 6 }],
             loading: false,
           }),
         );
@@ -527,13 +532,13 @@ describe('<Autocomplete />', () => {
 
     it('handles success using `results` property', () => {
       instance.loadItemsDebounced = jest.fn(() =>
-        Promise.resolve({ input: 'foo', response: { results: [7, 8, 9] } }),
+        Promise.resolve({ input: 'foo', response: { results: [{ id: 7 }, { id: 8 }, { id: 9 }] } }),
       );
 
       return instance.loadItems('foo').then(() => {
         expect(wrapper.state()).toEqual(
           expect.objectContaining({
-            items: [7, 8, 9],
+            items: [{ id: 7 }, { id: 8 }, { id: 9 }],
             loading: false,
           }),
         );
@@ -542,13 +547,13 @@ describe('<Autocomplete />', () => {
 
     it('handles success using `items` property', () => {
       instance.loadItemsDebounced = jest.fn(() =>
-        Promise.resolve({ input: 'foo', response: { items: [7, 8, 9] } }),
+        Promise.resolve({ input: 'foo', response: { items: [{ id: 7 }, { id: 8 }, { id: 9 }] } }),
       );
 
       return instance.loadItems('foo').then(() => {
         expect(wrapper.state()).toEqual(
           expect.objectContaining({
-            items: [7, 8, 9],
+            items: [{ id: 7 }, { id: 8 }, { id: 9 }],
             loading: false,
           }),
         );
@@ -618,7 +623,7 @@ describe('<Autocomplete />', () => {
 
     it('can customize children with `renderItem` prop', () => {
       wrapper.setProps({
-        renderItem: (item: any) => item.value.toUpperCase(),
+        renderItem: (item: AutocompleteItem) => String(item.value!).toUpperCase(),
       });
 
       const item = shallow(instance.renderItem({ value: 'foo' }, true));
@@ -681,6 +686,7 @@ describe('<Autocomplete />', () => {
       const items = [<li key="0">A</li>, <li key="1">B</li>, <li key="2">C</li>];
 
       wrapper.setState({
+        // @ts-ignore
         items,
         value: 'foo',
       });
@@ -779,14 +785,15 @@ describe('<Autocomplete />', () => {
   describe('getFilteredItems()', () => {
     it('gets filtered items', () => {
       wrapper.setProps({
-        shouldItemRender: (item: any, value: string) => item.value === 'foo',
+        shouldItemRender: (item, value) => item.value === 'foo',
       });
 
       const state = {
+        ...wrapper.state(),
         items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
       };
 
-      const filteredItems = instance.getFilteredItems(state as any);
+      const filteredItems = instance.getFilteredItems(state);
 
       expect(filteredItems).toHaveLength(1);
     });

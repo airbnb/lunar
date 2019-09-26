@@ -48,15 +48,15 @@ class BaseRadioButton extends React.Component<Props & WithStylesProps> {
       <label htmlFor={id} className={cx(styles.radio, hideLabel && styles.radio_hideLabel)}>
         <FormInput
           {...restProps}
+          hidden
+          optional
           checked={checked}
           disabled={disabled}
           id={id}
           invalid={invalid}
-          onChange={this.handleChange}
           tagName="input"
           type="radio"
-          hidden
-          optional
+          onChange={this.handleChange}
         />
 
         <span

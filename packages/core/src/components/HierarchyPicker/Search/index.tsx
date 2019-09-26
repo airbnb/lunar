@@ -168,6 +168,8 @@ export class Search extends React.Component<Props & WithStylesProps> {
     return (
       <div className={cx(styles.container, { width: query ? width : undefined })}>
         <Autocomplete<SearchItemResult>
+          hideLabel
+          optional
           accessibilityLabel={T.phrase(
             'Hierarchy item search',
             {},
@@ -176,20 +178,18 @@ export class Search extends React.Component<Props & WithStylesProps> {
               key: 'lunar.picker.searchLabel',
             },
           )}
-          hideLabel
-          label=""
           getItemValue={this.getItemValue}
           maxHeight={maxHeight}
           name="autocomplete-search"
           noResultsText={noResultsLabel}
-          onChange={onSearch}
-          onLoadItems={this.handleAsyncSearch}
-          onSelectItem={this.handleItemPicked}
-          optional
-          placeholder={placeholder}
-          renderItem={this.renderItem}
-          type="search"
           value={query}
+          type="search"
+          renderItem={this.renderItem}
+          label=""
+          placeholder={placeholder}
+          onSelectItem={this.handleItemPicked}
+          onLoadItems={this.handleAsyncSearch}
+          onChange={onSearch}
         />
       </div>
     );

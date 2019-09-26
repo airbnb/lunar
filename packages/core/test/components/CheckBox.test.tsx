@@ -62,12 +62,12 @@ describe('<CheckBox />', () => {
     beforeEach(() => {
       wrapper = shallow(
         <CheckBox
+          button
           name="foo"
           label="Label"
           labelDescription="Label description"
           value="1"
           onChange={() => {}}
-          button
         />,
       );
     });

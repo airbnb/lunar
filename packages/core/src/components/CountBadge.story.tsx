@@ -38,6 +38,6 @@ storiesOf('Core/CountBadge', module)
   })
   .add('Default animation.', () => <CountBadge accessibilityLabel="5 unread messages" value={5} />)
   .add('Add waggle animation.', () => (
-    <CountBadge accessibilityLabel="5 unread messages" value={5} waggle />
+    <CountBadge waggle accessibilityLabel="5 unread messages" value={5} />
   ))
   .add('Change value to trigger animations.', () => <CountExample />);

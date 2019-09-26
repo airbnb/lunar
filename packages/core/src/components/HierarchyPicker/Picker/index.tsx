@@ -127,18 +127,18 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
 
     return (
       /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
-      <div className={cx(styles.pane)} ref={this.ref} onKeyDown={this.handleKeyDown}>
+      <div ref={this.ref} className={cx(styles.pane)} onKeyDown={this.handleKeyDown}>
         <Search
           formatter={formatter}
           indexParentPath={indexParentPath}
           items={items}
           maxHeight={searchMaxHeight}
           noResultsLabel={noResultsLabel}
-          onSearch={this.handleSearch}
-          onItemPicked={this.handleItemPicked}
           placeholder={searchPlaceholder}
           query={searchQuery}
           width={searchWidth!}
+          onSearch={this.handleSearch}
+          onItemPicked={this.handleItemPicked}
         />
 
         {!searchQuery && (
@@ -147,11 +147,11 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
               chosen={chosen}
               items={items}
               formatter={formatter}
-              onItemPicked={this.handleItemPicked}
               hierarchyMaxHeight={hierarchyMaxHeight}
               hierarchyWidth={hierarchyWidth}
               renderItem={renderItem}
               verticallyAlign={verticallyAlign}
+              onItemPicked={this.handleItemPicked}
             />
           </div>
         )}

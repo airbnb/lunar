@@ -1,11 +1,11 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
-import { unwrapHOCs } from '@airbnb/lunar-test-utils';
+import { unwrapHOCs, WrappedComponent } from '@airbnb/lunar-test-utils';
 import connectToApp, { ConnectToAppProps } from '../../src/composers/connectToApp';
 import AppContext from '../../src/components/AppContext';
 import { Context } from '../../src/types';
 
-function unwrap(element: any): Enzyme.ShallowWrapper {
+function unwrap(element: React.ReactElement): Enzyme.ShallowWrapper {
   return unwrapHOCs(shallow(element), 'WithAppWrapper');
 }
 
@@ -13,7 +13,8 @@ describe('connectToApp()', () => {
   let modifyPageData = false;
   let context: Context;
   let wrapper: Enzyme.ReactWrapper;
-  let Hoc: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let Hoc: React.ComponentType<any>;
 
   class HasData extends React.Component<ConnectToAppProps> {
     registerPageData() {
@@ -35,10 +36,9 @@ describe('connectToApp()', () => {
     }
   }
 
-  class NoPushMethod extends React.Component<ConnectToAppProps> {
-    render() {
-      return null;
-    }
+  // eslint-disable-next-line unicorn/consistent-function-scoping
+  function NoPushMethod(props: ConnectToAppProps) {
+    return null;
   }
 
   function WrappingComponent({ children }: { children: React.ReactNode }) {
@@ -64,7 +64,6 @@ describe('connectToApp()', () => {
 
     Hoc = connectToApp('HasData')(HasData);
     wrapper = mount(<Hoc>Child</Hoc>, {
-      // @ts-ignore Not typed yet
       wrappingComponent: WrappingComponent,
     });
   });
@@ -82,7 +81,7 @@ describe('connectToApp()', () => {
 
   it('returns an HOC', () => {
     expect(Hoc.displayName).toBe('withBoundary(connectToApp(HasData))');
-    expect(Hoc.WrappedComponent).toBe(HasData);
+    expect((Hoc as WrappedComponent).WrappedComponent).toBe(HasData);
   });
 
   describe('event data', () => {
@@ -97,7 +96,6 @@ describe('connectToApp()', () => {
     it('sets data when component doesnt define data', () => {
       Hoc = connectToApp('NoData')(NoData);
       wrapper = mount(<Hoc>Child</Hoc>, {
-        // @ts-ignore Not typed yet
         wrappingComponent: WrappingComponent,
       });
 
@@ -108,10 +106,11 @@ describe('connectToApp()', () => {
     });
 
     it('removes data on unmount', () => {
-      const instance: any = wrapper.find('ConnectToApp').instance();
+      const instance: React.Component = wrapper.find('ConnectToApp').instance();
 
+      // @ts-ignore
       instance.id = '123456';
-      instance.componentWillUnmount();
+      instance.componentWillUnmount!();
 
       expect(context.removePageData).toHaveBeenCalledWith('123456');
     });

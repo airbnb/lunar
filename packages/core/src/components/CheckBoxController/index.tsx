@@ -79,11 +79,11 @@ export default class CheckBoxController extends React.Component<Props, State> {
         compactSpacing
         {...props}
         {...inputProps}
+        hideOptionalLabel
         id={`${id}-${value}`}
         value={value}
         checked={values.has(value)}
         onChange={this.handleChange}
-        hideOptionalLabel
       />
     );
   });

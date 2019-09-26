@@ -31,8 +31,8 @@ storiesOf('Forms/FilterMenu', module)
               label="Select"
               name="select"
               defaultValue="foo"
-              onChange={action('onChange')}
               validator={() => {}}
+              onChange={action('onChange')}
             >
               <option value="foo">Foo</option>
               <option value="bar">Bar</option>
@@ -44,8 +44,8 @@ storiesOf('Forms/FilterMenu', module)
             <CheckBox
               label="CheckBox"
               name="checkbox"
-              onChange={action('onChange')}
               validator={() => {}}
+              onChange={action('onChange')}
             />
           </Row>
         </FilterMenu>
@@ -66,8 +66,8 @@ storiesOf('Forms/FilterMenu', module)
             label="Select"
             name="select"
             defaultValue="foo"
-            onChange={action('onChange')}
             validator={() => {}}
+            onChange={action('onChange')}
           >
             <option value="foo">Foo</option>
             <option value="bar">Bar</option>
@@ -79,8 +79,8 @@ storiesOf('Forms/FilterMenu', module)
           <CheckBox
             label="CheckBox"
             name="checkbox"
-            onChange={action('onChange')}
             validator={() => {}}
+            onChange={action('onChange')}
           />
         </Row>
       </FilterMenu>
@@ -101,8 +101,8 @@ storiesOf('Forms/FilterMenu', module)
               label="Select"
               name="select"
               defaultValue="foo"
-              onChange={action('onChange')}
               validator={() => {}}
+              onChange={action('onChange')}
             >
               <option value="foo">Foo</option>
               <option value="bar">Bar</option>
@@ -114,8 +114,8 @@ storiesOf('Forms/FilterMenu', module)
             <CheckBox
               label="CheckBox"
               name="checkbox"
-              onChange={action('onChange')}
               validator={() => {}}
+              onChange={action('onChange')}
             />
           </Row>
 

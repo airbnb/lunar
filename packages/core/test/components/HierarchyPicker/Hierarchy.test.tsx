@@ -151,7 +151,7 @@ describe('<Hierarchy />', () => {
   });
 
   describe('HierarchyItem', () => {
-    let itemProps: any;
+    let itemProps: HierarchyItemProps;
     let wrapper: Enzyme.ShallowWrapper<HierarchyItemProps>;
 
     beforeEach(() => {

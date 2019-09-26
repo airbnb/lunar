@@ -1,13 +1,15 @@
 import { captureException, withScope } from '@sentry/browser';
+import { Scope } from '@sentry/types';
 import captureError from '../../src/utils/captureError';
 import '../setup';
 
 jest.mock('@sentry/browser');
 
 describe('captureError()', () => {
-  let scope: any;
+  let scope: Scope;
 
   beforeEach(() => {
+    // @ts-ignore
     scope = {
       setContext: jest.fn(),
       setExtras: jest.fn(),

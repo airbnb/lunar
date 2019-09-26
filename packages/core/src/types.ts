@@ -19,7 +19,8 @@ export type ErrorType =
       error_message?: string;
       error_details?: string;
       error_url?: string;
-      debug_info?: unknown;
+      debug_info?: { [key: string]: string };
+      user_message?: string;
     }
   | Error;
 

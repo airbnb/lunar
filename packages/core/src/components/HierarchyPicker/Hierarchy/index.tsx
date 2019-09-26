@@ -58,7 +58,6 @@ export default class Hierarchy extends React.Component<Props, State> {
 
   filterItems() {
     this.setState({
-      // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
       filteredItems: (this.props.items || []).reduce(readonlyReducer, []),
     });
   }
@@ -95,11 +94,11 @@ export default class Hierarchy extends React.Component<Props, State> {
         focus={focusDef}
         items={filteredItems}
         maxHeight={hierarchyMaxHeight}
-        onItemPicked={this.handleItemPicked}
-        onSubtree={this.handleSubtree}
         renderItem={renderItem}
         width={hierarchyWidth}
         verticallyAlign={verticallyAlign}
+        onItemPicked={this.handleItemPicked}
+        onSubtree={this.handleSubtree}
       />
     );
   }

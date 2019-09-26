@@ -6,11 +6,11 @@ export type Props = {
   /** Value to display. */
   value: string;
   /** Callback when the icon is clicked. */
-  onClick: (value: string, event: React.MouseEvent<any>) => void;
+  onClick: (value: string, event: React.MouseEvent<HTMLElement>) => void;
 };
 
 export default class MulticompleteChip extends React.Component<Props> {
-  private handleClick = (event: React.MouseEvent<any>) => {
+  private handleClick = (event: React.MouseEvent<HTMLElement>) => {
     this.props.onClick(this.props.value, event);
   };
 

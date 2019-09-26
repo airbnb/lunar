@@ -4,7 +4,7 @@ import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm
 import { toString } from '../../helpers';
 
 /** `Multicomplete` automatically connected to the parent `Form`.  */
-export function FormMulticomplete(props: Props<any> & ConnectToFormProps<string[]>) {
+export function FormMulticomplete(props: Props & ConnectToFormProps<string[]>) {
   return <BaseMulticomplete {...props} />;
 }
 
