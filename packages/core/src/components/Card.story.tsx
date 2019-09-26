@@ -67,6 +67,15 @@ storiesOf('Core/Card', module)
       </Content>
     </Card>
   ))
+  .add('With a min height.', () => (
+    <Card>
+      <Content middleAlign minHeight={300}>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Content>
+    </Card>
+  ))
   .add('A card with a top featured image.', () => (
     <Card>
       <Content topImageSrc={stars}>

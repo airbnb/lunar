@@ -88,4 +88,14 @@ storiesOf('Core/Row', module)
         </Row>
       </div>
     </>
+  ))
+  .add('With a min height.', () => (
+    <Row minHeight={200} topline baseline>
+      <Text>A Row with a Min Height</Text>
+    </Row>
+  ))
+  .add('With a max height.', () => (
+    <Row maxHeight={50} topline baseline>
+      <Text>A Row with a Max Height</Text>
+    </Row>
   ));

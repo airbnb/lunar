@@ -31,6 +31,7 @@ function getSideImageWidth({ small, large }: { large?: boolean; small?: boolean 
   if (small) {
     return 80;
   }
+
   if (large) {
     return 195;
   }
