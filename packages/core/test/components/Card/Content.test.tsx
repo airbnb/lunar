@@ -16,14 +16,18 @@ describe('<Card />', () => {
     const imageUrl = 'LeftFoo.jpg';
     const wrapper = shallowWithStyles(<Content beforeImageSrc={imageUrl}>Sup</Content>);
 
-    expect((wrapper.find(Row).prop('before')! as React.ReactElement<{src: string}>).props.src).toBe(imageUrl);
+    expect(
+      (wrapper.find(Row).prop('before')! as React.ReactElement<{ src: string }>).props.src,
+    ).toBe(imageUrl);
   });
 
   it('renders a right image', () => {
     const imageUrl = 'RightFoo.jpg';
     const wrapper = shallowWithStyles(<Content afterImageSrc={imageUrl}>Sup</Content>);
 
-    expect((wrapper.find(Row).prop('after') as React.ReactElement<{src: string}>)!.props.src).toBe(imageUrl);
+    expect(
+      (wrapper.find(Row).prop('after') as React.ReactElement<{ src: string }>)!.props.src,
+    ).toBe(imageUrl);
   });
 
   it('renders a button if `onClick` is provided', () => {
