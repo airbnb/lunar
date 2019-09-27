@@ -91,7 +91,7 @@ const selectCallback = () => () => {
   action('this callback has access to the newly selected row and all selected row');
 };
 
-export class SearchDemo extends React.Component {
+class SearchDemo extends React.Component {
   state = {
     search: '',
     data: generateRandomData(),
