@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Text from '../Text';
 import Accordion, { Item } from '.';
 
-storiesOf('Core/Accordion', module)
-  .addParameters({
+export default {
+  title: 'Core/Accordion',
+
+  parameters: {
     inspectComponents: [Accordion, Item],
-  })
-  .add('Multiple items with borders.', () => (
+  },
+};
+
+export function multipleItemsWithBorders() {
+  return (
     <Accordion bordered>
       <Item title="Item 1" id="one">
         <Text>
@@ -28,8 +32,15 @@ storiesOf('Core/Accordion', module)
         </Text>
       </Item>
     </Accordion>
-  ))
-  .add('Single item initially closed.', () => (
+  );
+}
+
+multipleItemsWithBorders.story = {
+  name: 'Multiple items with borders.',
+};
+
+export function singleItemInitiallyClosed() {
+  return (
     <Accordion defaultIndex={-1}>
       <Item title="Item 1" id="one">
         <Text>
@@ -37,8 +48,15 @@ storiesOf('Core/Accordion', module)
         </Text>
       </Item>
     </Accordion>
-  ))
-  .add('Custom title component.', () => (
+  );
+}
+
+singleItemInitiallyClosed.story = {
+  name: 'Single item initially closed.',
+};
+
+export function customTitleComponent() {
+  return (
     <Accordion bordered>
       <Item
         title={
@@ -54,8 +72,15 @@ storiesOf('Core/Accordion', module)
         </Text>
       </Item>
     </Accordion>
-  ))
-  .add('With no spacing.', () => (
+  );
+}
+
+customTitleComponent.story = {
+  name: 'Custom title component.',
+};
+
+export function withNoSpacing() {
+  return (
     <Accordion bordered>
       <Item noSpacing title="Item 1" id="one">
         <Text>
@@ -69,4 +94,9 @@ storiesOf('Core/Accordion', module)
         </Text>
       </Item>
     </Accordion>
-  ));
+  );
+}
+
+withNoSpacing.story = {
+  name: 'With no spacing.',
+};

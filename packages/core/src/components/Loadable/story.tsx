@@ -1,16 +1,30 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Loadable from '.';
 
-storiesOf('Core/Loadable', module)
-  .addParameters({
+export default {
+  title: 'Core/Loadable',
+
+  parameters: {
     inspectComponents: [Loadable],
-  })
-  .add('Render a component after importing it.', () => (
-    <Loadable component={() => import('../Shimmer')} />
-  ))
-  .add('Render a component using function children.', () => (
+  },
+};
+
+export function renderAComponentAfterImportingIt() {
+  return <Loadable component={() => import('../Shimmer')} />;
+}
+
+renderAComponentAfterImportingIt.story = {
+  name: 'Render a component after importing it.',
+};
+
+export function renderAComponentUsingFunctionChildren() {
+  return (
     <Loadable component={() => import('../Text')}>
       {Text => <Text>Loaded the `Text` component and rendered it.</Text>}
     </Loadable>
-  ));
+  );
+}
+
+renderAComponentUsingFunctionChildren.story = {
+  name: 'Render a component using function children.',
+};

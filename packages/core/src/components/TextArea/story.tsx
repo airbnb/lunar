@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Prefix from '../FormField/Prefix';
 import TextArea from '.';
@@ -98,20 +97,35 @@ class ProofreaderDemo extends React.Component<{}, { value: string }> {
   }
 }
 
-storiesOf('Core/TextArea', module)
-  .addParameters({
+export default {
+  title: 'Core/TextArea',
+
+  parameters: {
     inspectComponents: [TextArea],
-  })
-  .add('A standard textarea field.', () => (
-    <TextArea name="textarea-basic" label="Label" onChange={action('onChange')} />
-  ))
-  .add('With a compact smaller view.', () => (
-    <>
-      <TextArea compact name="textarea-compact" label="Compact" onChange={action('onChange')} />
-      <TextArea name="textarea-regular" label="Regular" onChange={action('onChange')} />
-    </>
-  ))
-  .add('With an error message in an invalid state.', () => (
+  },
+};
+
+export function aStandardTextareaField() {
+  return <TextArea name="textarea-basic" label="Label" onChange={action('onChange')} />;
+}
+
+aStandardTextareaField.story = {
+  name: 'A standard textarea field.',
+};
+
+export function withACompactSmallerView() {
+  return <>
+    <TextArea compact name="textarea-compact" label="Compact" onChange={action('onChange')} />
+    <TextArea name="textarea-regular" label="Regular" onChange={action('onChange')} />
+  </>;
+}
+
+withACompactSmallerView.story = {
+  name: 'With a compact smaller view.',
+};
+
+export function withAnErrorMessageInAnInvalidState() {
+  return (
     <TextArea
       invalid
       name="textarea-error"
@@ -119,8 +133,15 @@ storiesOf('Core/TextArea', module)
       errorMessage="This field is required."
       onChange={action('onChange')}
     />
-  ))
-  .add('With a label description in a disabled state.', () => (
+  );
+}
+
+withAnErrorMessageInAnInvalidState.story = {
+  name: 'With an error message in an invalid state.',
+};
+
+export function withALabelDescriptionInADisabledState() {
+  return (
     <TextArea
       disabled
       name="textarea-disabled"
@@ -128,8 +149,15 @@ storiesOf('Core/TextArea', module)
       labelDescription="This is a small label description."
       onChange={action('onChange')}
     />
-  ))
-  .add('With a hidden label and different row height.', () => (
+  );
+}
+
+withALabelDescriptionInADisabledState.story = {
+  name: 'With a label description in a disabled state.',
+};
+
+export function withAHiddenLabelAndDifferentRowHeight() {
+  return (
     <TextArea
       hideLabel
       name="textarea-custom"
@@ -137,8 +165,15 @@ storiesOf('Core/TextArea', module)
       rows={5}
       onChange={action('onChange')}
     />
-  ))
-  .add('Marked as optional with a placeholder.', () => (
+  );
+}
+
+withAHiddenLabelAndDifferentRowHeight.story = {
+  name: 'With a hidden label and different row height.',
+};
+
+export function markedAsOptionalWithAPlaceholder() {
+  return (
     <TextArea
       optional
       name="textarea-optional"
@@ -146,8 +181,15 @@ storiesOf('Core/TextArea', module)
       placeholder="Tell us how you feel..."
       onChange={action('onChange')}
     />
-  ))
-  .add('Display with inline label and a prefix.', () => (
+  );
+}
+
+markedAsOptionalWithAPlaceholder.story = {
+  name: 'Marked as optional with a placeholder.',
+};
+
+export function displayWithInlineLabelAndAPrefix() {
+  return (
     <TextArea
       inline
       name="both-textarea"
@@ -155,8 +197,17 @@ storiesOf('Core/TextArea', module)
       prefix={<Prefix compact>Hello</Prefix>}
       onChange={action('onChange')}
     />
-  ))
-  .add(
-    'A textarea with built-in grammar and spelling checks, as well as a max character limit.',
-    () => <ProofreaderDemo />,
   );
+}
+
+displayWithInlineLabelAndAPrefix.story = {
+  name: 'Display with inline label and a prefix.',
+};
+
+export function aTextareaWithBuiltInGrammarAndSpellingChecksAsWellAsAMaxCharacterLimit() {
+  return <ProofreaderDemo />;
+}
+
+aTextareaWithBuiltInGrammarAndSpellingChecksAsWellAsAMaxCharacterLimit.story = {
+  name: 'A textarea with built-in grammar and spelling checks, as well as a max character limit.',
+};

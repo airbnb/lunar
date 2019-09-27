@@ -1,11 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import FormErrorMessage from '.';
 
-storiesOf('Core/FormErrorMessage', module)
-  .addParameters({
+export default {
+  title: 'Core/FormErrorMessage',
+
+  parameters: {
     inspectComponents: [FormErrorMessage],
-  })
-  .add('An error message for an invalid form field.', () => (
-    <FormErrorMessage id="foo" error="This field is required!" />
-  ));
+  },
+};
+
+export function anErrorMessageForAnInvalidFormField() {
+  return <FormErrorMessage id="foo" error="This field is required!" />;
+}
+
+anErrorMessageForAnInvalidFormField.story = {
+  name: 'An error message for an invalid form field.',
+};

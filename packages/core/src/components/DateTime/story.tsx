@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import DateTime from '.';
 
 const future = new Date();
@@ -7,15 +6,75 @@ future.setDate(future.getDate() + 12);
 
 const fixedDate = new Date(2019, 1, 1, 0, 0, 0);
 
-storiesOf('Core/DateTime', module)
-  .addParameters({
+export default {
+  title: 'Core/DateTime',
+
+  parameters: {
     inspectComponents: [DateTime],
-  })
-  .add('Micro timestamp.', () => <DateTime micro at={fixedDate} />)
-  .add('Short timestamp.', () => <DateTime short at={fixedDate} />)
-  .add('Medium timestamp.', () => <DateTime medium at={fixedDate} />)
-  .add('Long timestamp.', () => <DateTime long at={fixedDate} />)
-  .add('Long timestamp without time.', () => <DateTime long noTime noTimezone at={fixedDate} />)
-  .add('Relative timestamp.', () => <DateTime relative at={future} />, { happo: false })
-  .add('Custom format.', () => <DateTime at={fixedDate} format="MM/dd/yyyy" />)
-  .add('Using static method.', () => <div>{DateTime.format({ at: fixedDate, long: true })}</div>);
+  },
+};
+
+export function microTimestamp() {
+  return <DateTime micro at={fixedDate} />;
+}
+
+microTimestamp.story = {
+  name: 'Micro timestamp.',
+};
+
+export function shortTimestamp() {
+  return <DateTime short at={fixedDate} />;
+}
+
+shortTimestamp.story = {
+  name: 'Short timestamp.',
+};
+
+export function mediumTimestamp() {
+  return <DateTime medium at={fixedDate} />;
+}
+
+mediumTimestamp.story = {
+  name: 'Medium timestamp.',
+};
+
+export function longTimestamp() {
+  return <DateTime long at={fixedDate} />;
+}
+
+longTimestamp.story = {
+  name: 'Long timestamp.',
+};
+
+export function longTimestampWithoutTime() {
+  return <DateTime long noTime noTimezone at={fixedDate} />;
+}
+
+longTimestampWithoutTime.story = {
+  name: 'Long timestamp without time.',
+};
+
+export function relativeTimestamp() {
+  return <DateTime relative at={future} />;
+}
+
+relativeTimestamp.story = {
+  name: 'Relative timestamp.',
+  parameters: { happo: false },
+};
+
+export function customFormat() {
+  return <DateTime at={fixedDate} format="MM/dd/yyyy" />;
+}
+
+customFormat.story = {
+  name: 'Custom format.',
+};
+
+export function usingStaticMethod() {
+  return <div>{DateTime.format({ at: fixedDate, long: true })}</div>;
+}
+
+usingStaticMethod.story = {
+  name: 'Using static method.',
+};

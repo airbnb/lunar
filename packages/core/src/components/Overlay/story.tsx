@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Button from '../Button';
 import Text from '../Text';
@@ -60,10 +59,27 @@ class OverlayNoBgDemo extends React.Component<{}, State> {
   }
 }
 
-storiesOf('Core/Overlay', module)
-  .addParameters({
+export default {
+  title: 'Core/Overlay',
+
+  parameters: {
     happo: false,
     inspectComponents: [Overlay],
-  })
-  .add('An overlay with visible dark background.', () => <OverlayDemo />)
-  .add('With no background.', () => <OverlayNoBgDemo />);
+  },
+};
+
+export function anOverlayWithVisibleDarkBackground() {
+  return <OverlayDemo />;
+}
+
+anOverlayWithVisibleDarkBackground.story = {
+  name: 'An overlay with visible dark background.',
+};
+
+export function withNoBackground() {
+  return <OverlayNoBgDemo />;
+}
+
+withNoBackground.story = {
+  name: 'With no background.',
+};

@@ -1,9 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LabeledDivider from '.';
 
-storiesOf('Core/LabeledDivider', module)
-  .addParameters({
+export default {
+  title: 'Core/LabeledDivider',
+
+  parameters: {
     inspectComponents: [LabeledDivider],
-  })
-  .add('Standard divider with label.', () => <LabeledDivider label="Custom label" />);
+  },
+};
+
+export function standardDividerWithLabel() {
+  return <LabeledDivider label="Custom label" />;
+}
+
+standardDividerWithLabel.story = {
+  name: 'Standard divider with label.',
+};

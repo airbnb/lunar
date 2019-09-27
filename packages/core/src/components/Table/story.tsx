@@ -1,13 +1,17 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Text from '../Text';
 import Table, { Cell, Row } from '.';
 
-storiesOf('Core/Table', module)
-  .addParameters({
+export default {
+  title: 'Core/Table',
+
+  parameters: {
     inspectComponents: [Table, Cell, Row],
-  })
-  .add('Display a table with no styles.', () => (
+  },
+};
+
+export function displayATableWithNoStyles() {
+  return (
     <Text>
       <Table>
         <thead>
@@ -36,8 +40,15 @@ storiesOf('Core/Table', module)
         </tbody>
       </Table>
     </Text>
-  ))
-  .add('With a border and vertical dividers.', () => (
+  );
+}
+
+displayATableWithNoStyles.story = {
+  name: 'Display a table with no styles.',
+};
+
+export function withABorderAndVerticalDividers() {
+  return (
     <Text>
       <Table bordered vertical>
         <thead>
@@ -66,8 +77,15 @@ storiesOf('Core/Table', module)
         </tbody>
       </Table>
     </Text>
-  ))
-  .add('With striped rows and horizontal dividers.', () => (
+  );
+}
+
+withABorderAndVerticalDividers.story = {
+  name: 'With a border and vertical dividers.',
+};
+
+export function withStripedRowsAndHorizontalDividers() {
+  return (
     <Text>
       <Table horizontal striped>
         <thead>
@@ -96,8 +114,15 @@ storiesOf('Core/Table', module)
         </tbody>
       </Table>
     </Text>
-  ))
-  .add('A compact view with multiple styles applied.', () => (
+  );
+}
+
+withStripedRowsAndHorizontalDividers.story = {
+  name: 'With striped rows and horizontal dividers.',
+};
+
+export function aCompactViewWithMultipleStylesApplied() {
+  return (
     <Text>
       <Table compact bordered horizontal vertical striped>
         <thead>
@@ -126,8 +151,15 @@ storiesOf('Core/Table', module)
         </tbody>
       </Table>
     </Text>
-  ))
-  .add('With different row status colors.', () => (
+  );
+}
+
+aCompactViewWithMultipleStylesApplied.story = {
+  name: 'A compact view with multiple styles applied.',
+};
+
+export function withDifferentRowStatusColors() {
+  return (
     <Text>
       <Table bordered horizontal vertical>
         <thead>
@@ -171,8 +203,15 @@ storiesOf('Core/Table', module)
         </tbody>
       </Table>
     </Text>
-  ))
-  .add('Cells with different alignments.', () => (
+  );
+}
+
+withDifferentRowStatusColors.story = {
+  name: 'With different row status colors.',
+};
+
+export function cellsWithDifferentAlignments() {
+  return (
     <Text>
       <Table bordered horizontal vertical>
         <thead>
@@ -197,8 +236,15 @@ storiesOf('Core/Table', module)
         </tbody>
       </Table>
     </Text>
-  ))
-  .add('Cells with centered content.', () => (
+  );
+}
+
+cellsWithDifferentAlignments.story = {
+  name: 'Cells with different alignments.',
+};
+
+export function cellsWithCenteredContent() {
+  return (
     <Text>
       <Table middleAlign>
         <thead>
@@ -233,4 +279,9 @@ storiesOf('Core/Table', module)
         </tbody>
       </Table>
     </Text>
-  ));
+  );
+}
+
+cellsWithCenteredContent.story = {
+  name: 'Cells with centered content.',
+};

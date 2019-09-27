@@ -1,14 +1,26 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import ExpandableIcon from '.';
 
-storiesOf('Core/ExpandableIcon', module)
-  .addParameters({
+export default {
+  title: 'Core/ExpandableIcon',
+
+  parameters: {
     inspectComponents: [ExpandableIcon],
-  })
-  .add('Renders horizontal arrow when not expanded.', () => (
-    <ExpandableIcon expanded={false} size="1.5em" />
-  ))
-  .add('Renders down arrow, with custom size, when expanded.', () => (
-    <ExpandableIcon expanded size="3em" />
-  ));
+  },
+};
+
+export function rendersHorizontalArrowWhenNotExpanded() {
+  return <ExpandableIcon expanded={false} size="1.5em" />;
+}
+
+rendersHorizontalArrowWhenNotExpanded.story = {
+  name: 'Renders horizontal arrow when not expanded.',
+};
+
+export function rendersDownArrowWithCustomSizeWhenExpanded() {
+  return <ExpandableIcon expanded size="3em" />;
+}
+
+rendersDownArrowWithCustomSizeWhenExpanded.story = {
+  name: 'Renders down arrow, with custom size, when expanded.',
+};

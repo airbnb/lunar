@@ -1,20 +1,43 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Text from '../Text';
 import Loader from '.';
 
-storiesOf('Core/Loader', module)
-  .addParameters({
+export default {
+  title: 'Core/Loader',
+
+  parameters: {
     inspectComponents: [Loader],
-  })
-  .add('A loader absolutely centered within a parent.', () => (
+  },
+};
+
+export function aLoaderAbsolutelyCenteredWithinAParent() {
+  return (
     <div style={{ height: 100, position: 'relative' }}>
       <Loader />
     </div>
-  ))
-  .add('A loader inline.', () => (
+  );
+}
+
+aLoaderAbsolutelyCenteredWithinAParent.story = {
+  name: 'A loader absolutely centered within a parent.',
+};
+
+export function aLoaderInline() {
+  return (
     <Text>
       Content before the loader. <Loader inline /> Content after the loader.
     </Text>
-  ))
-  .add('With a larger size positioned statically.', () => <Loader static large />);
+  );
+}
+
+aLoaderInline.story = {
+  name: 'A loader inline.',
+};
+
+export function withALargerSizePositionedStatically() {
+  return <Loader static large />;
+}
+
+withALargerSizePositionedStatically.story = {
+  name: 'With a larger size positioned statically.',
+};

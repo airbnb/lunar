@@ -1,19 +1,30 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Aside from '../Aside';
 import Layout from '.';
 
-storiesOf('Layouts/Layout', module)
-  .addParameters({
+export default {
+  title: 'Layouts/Layout',
+
+  parameters: {
     inspectComponents: [Layout],
-  })
-  .add('Standard layout.', () => (
+  },
+};
+
+export function standardLayout() {
+  return (
     <Layout>
       <LoremIpsum />
     </Layout>
-  ))
-  .add('With left aside, and no main padding.', () => (
+  );
+}
+
+standardLayout.story = {
+  name: 'Standard layout.',
+};
+
+export function withLeftAsideAndNoMainPadding() {
+  return (
     <Layout
       noPadding
       before={
@@ -24,8 +35,15 @@ storiesOf('Layouts/Layout', module)
     >
       <LoremIpsum />
     </Layout>
-  ))
-  .add('With right aside, and no main background color.', () => (
+  );
+}
+
+withLeftAsideAndNoMainPadding.story = {
+  name: 'With left aside, and no main padding.',
+};
+
+export function withRightAsideAndNoMainBackgroundColor() {
+  return (
     <Layout
       noBackground
       after={
@@ -36,8 +54,15 @@ storiesOf('Layouts/Layout', module)
     >
       <LoremIpsum />
     </Layout>
-  ))
-  .add('With both sides.', () => (
+  );
+}
+
+withRightAsideAndNoMainBackgroundColor.story = {
+  name: 'With right aside, and no main background color.',
+};
+
+export function withBothSides() {
+  return (
     <Layout
       before={
         <Aside width={300}>
@@ -52,4 +77,9 @@ storiesOf('Layouts/Layout', module)
     >
       <LoremIpsum />
     </Layout>
-  ));
+  );
+}
+
+withBothSides.story = {
+  name: 'With both sides.',
+};

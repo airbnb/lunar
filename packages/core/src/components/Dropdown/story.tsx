@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button';
 import Menu, { Row } from '../Menu';
@@ -38,15 +37,32 @@ class DropdownDemo extends React.Component<Props, { open: boolean }> {
   }
 }
 
-storiesOf('Core/Dropdown', module)
-  .addParameters({
+export default {
+  title: 'Core/Dropdown',
+  decorators: [story => <div style={{ padding: 50, margin: 'auto' }}>{story()}</div>],
+
+  parameters: {
     happo: false,
     inspectComponents: [Dropdown],
-  })
-  .addDecorator(story => <div style={{ padding: 50, margin: 'auto' }}>{story()}</div>)
-  .add('Bottom-left dropdown.', () => <DropdownDemo>Toggle bottom-left (default)</DropdownDemo>)
-  .add('Top-right dropdown.', () => (
+  },
+};
+
+export function bottomLeftDropdown() {
+  return <DropdownDemo>Toggle bottom-left (default)</DropdownDemo>;
+}
+
+bottomLeftDropdown.story = {
+  name: 'Bottom-left dropdown.',
+};
+
+export function topRightDropdown() {
+  return (
     <DropdownDemo right="0" bottom="100%">
       Toggle top-right
     </DropdownDemo>
-  ));
+  );
+}
+
+topRightDropdown.story = {
+  name: 'Top-right dropdown.',
+};

@@ -1,12 +1,16 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import PriceGroup from '.';
 
-storiesOf('Core/PriceGroup', module)
-  .addParameters({
+export default {
+  title: 'Core/PriceGroup',
+
+  parameters: {
     inspectComponents: [PriceGroup],
-  })
-  .add('Multiple currency amounts.', () => (
+  },
+};
+
+export function multipleCurrencyAmounts() {
+  return (
     <PriceGroup
       amounts={{
         USD: 123.45,
@@ -15,4 +19,9 @@ storiesOf('Core/PriceGroup', module)
         JPY: 12345,
       }}
     />
-  ));
+  );
+}
+
+multipleCurrencyAmounts.story = {
+  name: 'Multiple currency amounts.',
+};

@@ -1,77 +1,117 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Text from '.';
 
-storiesOf('Core/Text', module)
-  .addParameters({
+export default {
+  title: 'Core/Text',
+
+  parameters: {
     inspectComponents: [Text],
-  })
-  .add('A basic string of text.', () => (
+  },
+};
+
+export function aBasicStringOfText() {
+  return (
     <Text>
       <LoremIpsum />
     </Text>
-  ))
-  .add('With light, bold, and uppercased emphasis.', () => (
-    <>
-      <Text light>
-        <LoremIpsum />
-      </Text>
-      <br />
-      <Text bold>
-        <LoremIpsum />
-      </Text>
-      <br />
-      <Text uppercased>
-        <LoremIpsum />
-      </Text>
-    </>
-  ))
-  .add('With different sizing: micro, small, regular (default), and large.', () => (
-    <>
-      <Text micro>
-        <LoremIpsum />
-      </Text>
-      <br />
-      <Text small>
-        <LoremIpsum />
-      </Text>
-      <br />
-      <Text>
-        <LoremIpsum />
-      </Text>
-      <br />
-      <Text large>
-        <LoremIpsum />
-      </Text>
-    </>
-  ))
-  .add('With different states: muted, disabled, and inverted.', () => (
-    <>
-      <Text muted>
-        <LoremIpsum short />
-      </Text>
-      <Text disabled>
-        <LoremIpsum short />
-      </Text>
-      <Text inverted>
-        <LoremIpsum short />
-      </Text>
-    </>
-  ))
-  .add('With whitespace preserved:', () => (
+  );
+}
+
+aBasicStringOfText.story = {
+  name: 'A basic string of text.',
+};
+
+export function withLightBoldAndUppercasedEmphasis() {
+  return <>
+    <Text light>
+      <LoremIpsum />
+    </Text>
+    <br />
+    <Text bold>
+      <LoremIpsum />
+    </Text>
+    <br />
+    <Text uppercased>
+      <LoremIpsum />
+    </Text>
+  </>;
+}
+
+withLightBoldAndUppercasedEmphasis.story = {
+  name: 'With light, bold, and uppercased emphasis.',
+};
+
+export function withDifferentSizingMicroSmallRegularDefaultAndLarge() {
+  return <>
+    <Text micro>
+      <LoremIpsum />
+    </Text>
+    <br />
+    <Text small>
+      <LoremIpsum />
+    </Text>
+    <br />
+    <Text>
+      <LoremIpsum />
+    </Text>
+    <br />
+    <Text large>
+      <LoremIpsum />
+    </Text>
+  </>;
+}
+
+withDifferentSizingMicroSmallRegularDefaultAndLarge.story = {
+  name: 'With different sizing: micro, small, regular (default), and large.',
+};
+
+export function withDifferentStatesMutedDisabledAndInverted() {
+  return <>
+    <Text muted>
+      <LoremIpsum short />
+    </Text>
+    <Text disabled>
+      <LoremIpsum short />
+    </Text>
+    <Text inverted>
+      <LoremIpsum short />
+    </Text>
+  </>;
+}
+
+withDifferentStatesMutedDisabledAndInverted.story = {
+  name: 'With different states: muted, disabled, and inverted.',
+};
+
+export function withWhitespacePreserved() {
+  return (
     <Text preserveWhitespace>
       {'     '}
       <LoremIpsum short />
       {'     '}
     </Text>
-  ))
-  .add('With truncated.', () => (
+  );
+}
+
+withWhitespacePreserved.story = {
+  name: 'With whitespace preserved:',
+};
+
+export function withTruncated() {
+  return (
     <Text truncated>
       <LoremIpsum short /> <LoremIpsum />
     </Text>
-  ))
-  .add('With aligned text.', () => (
+  );
+}
+
+withTruncated.story = {
+  name: 'With truncated.',
+};
+
+export function withAlignedText() {
+  return (
     <div style={{ textAlign: 'center' }}>
       <Text>
         <Text bold>Parent alignment</Text> <LoremIpsum short />
@@ -89,4 +129,9 @@ storiesOf('Core/Text', module)
         <Text bold>End align</Text> <LoremIpsum short />
       </Text>
     </div>
-  ));
+  );
+}
+
+withAlignedText.story = {
+  name: 'With aligned text.',
+};

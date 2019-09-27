@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Text from '../Text';
 import Multicomplete from '.';
 
-storiesOf('Core/Multicomplete', module)
-  .addParameters({
+export default {
+  title: 'Core/Multicomplete',
+
+  parameters: {
     inspectComponents: [Multicomplete],
-  })
-  .add('An autocomplete that supports selecting multiple items.', () => (
+  },
+};
+
+export function anAutocompleteThatSupportsSelectingMultipleItems() {
+  return (
     <Multicomplete
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
@@ -27,8 +31,15 @@ storiesOf('Core/Multicomplete', module)
         )
       }
     />
-  ))
-  .add('Supports pre-populating multiple items.', () => (
+  );
+}
+
+anAutocompleteThatSupportsSelectingMultipleItems.story = {
+  name: 'An autocomplete that supports selecting multiple items.',
+};
+
+export function supportsPrePopulatingMultipleItems() {
+  return (
     <Multicomplete
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
@@ -48,8 +59,15 @@ storiesOf('Core/Multicomplete', module)
         )
       }
     />
-  ))
-  .add('Load items on focus.', () => (
+  );
+}
+
+supportsPrePopulatingMultipleItems.story = {
+  name: 'Supports pre-populating multiple items.',
+};
+
+export function loadItemsOnFocusStory() {
+  return (
     <Multicomplete
       loadItemsOnFocus
       accessibilityLabel="Favorite color?"
@@ -70,4 +88,9 @@ storiesOf('Core/Multicomplete', module)
         )
       }
     />
-  ));
+  );
+}
+
+loadItemsOnFocusStory.story = {
+  name: 'Load items on focus.',
+};

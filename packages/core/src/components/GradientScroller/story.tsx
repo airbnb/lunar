@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Text from '../Text';
 import Button from '../Button';
@@ -30,11 +29,16 @@ class ButtonGroupDemo extends React.Component<{}, { buttons: number[] }> {
   }
 }
 
-storiesOf('Core/GradientScroller', module)
-  .addParameters({
+export default {
+  title: 'Core/GradientScroller',
+
+  parameters: {
     inspectComponents: [GradientScroller],
-  })
-  .add('A scrollable container.', () => (
+  },
+};
+
+export function aScrollableContainer() {
+  return (
     <GradientScroller>
       <Text>
         <span style={{ whiteSpace: 'nowrap' }}>
@@ -43,8 +47,15 @@ storiesOf('Core/GradientScroller', module)
         </span>
       </Text>
     </GradientScroller>
-  ))
-  .add('With left and right arrows.', () => (
+  );
+}
+
+aScrollableContainer.story = {
+  name: 'A scrollable container.',
+};
+
+export function withLeftAndRightArrows() {
+  return (
     <GradientScroller showArrows hideScrollbar>
       <Text>
         <span style={{ whiteSpace: 'nowrap' }}>
@@ -53,13 +64,22 @@ storiesOf('Core/GradientScroller', module)
         </span>
       </Text>
     </GradientScroller>
-  ))
-  .add(
-    'With no scrollbar and variable width children.',
-    () => (
-      <GradientScroller hideScrollbar>
-        <ButtonGroupDemo />
-      </GradientScroller>
-    ),
-    { happo: false },
   );
+}
+
+withLeftAndRightArrows.story = {
+  name: 'With left and right arrows.',
+};
+
+export function withNoScrollbarAndVariableWidthChildren() {
+  return (
+    <GradientScroller hideScrollbar>
+      <ButtonGroupDemo />
+    </GradientScroller>
+  );
+}
+
+withNoScrollbarAndVariableWidthChildren.story = {
+  name: 'With no scrollbar and variable width children.',
+  parameters: { happo: false },
+};

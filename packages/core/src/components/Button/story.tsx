@@ -1,19 +1,30 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import IconAddAlt from '@airbnb/lunar-icons/lib/interface/IconAddAlt';
 import Button from '.';
 
-storiesOf('Core/Button', module)
-  .addParameters({
+export default {
+  title: 'Core/Button',
+
+  parameters: {
     inspectComponents: [Button],
-  })
-  .add('Standard button with an inverted variant.', () => (
+  },
+};
+
+export function standardButtonWithAnInvertedVariant() {
+  return (
     <>
       <Button>Button</Button> <Button inverted>Button</Button>
     </>
-  ))
-  .add('Render an anchor link when passing `href`.', () => (
+  );
+}
+
+standardButtonWithAnInvertedVariant.story = {
+  name: 'Standard button with an inverted variant.',
+};
+
+export function renderAnAnchorLinkWhenPassingHref() {
+  return (
     <>
       <Button openInNewWindow href="https://github.com/airbnb/lunar">
         Link
@@ -22,8 +33,15 @@ storiesOf('Core/Button', module)
         Link
       </Button>
     </>
-  ))
-  .add('With event handlers.', () => (
+  );
+}
+
+renderAnAnchorLinkWhenPassingHref.story = {
+  name: 'Render an anchor link when passing `href`.',
+};
+
+export function withEventHandlers() {
+  return (
     <Button
       onClick={action('onClick')}
       onMouseOver={action('onMouseOver')}
@@ -31,8 +49,15 @@ storiesOf('Core/Button', module)
     >
       Button
     </Button>
-  ))
-  .add('With different sizing: small, regular (default), and large.', () => (
+  );
+}
+
+withEventHandlers.story = {
+  name: 'With event handlers.',
+};
+
+export function withDifferentSizingSmallRegularDefaultAndLarge() {
+  return (
     <>
       <Button small>Button</Button> <Button>Button</Button> <Button large>Button</Button>
       <br />
@@ -45,8 +70,15 @@ storiesOf('Core/Button', module)
         Button
       </Button>
     </>
-  ))
-  .add('With different states: disabled and loading.', () => (
+  );
+}
+
+withDifferentSizingSmallRegularDefaultAndLarge.story = {
+  name: 'With different sizing: small, regular (default), and large.',
+};
+
+export function withDifferentStatesDisabledAndLoading() {
+  return (
     <>
       <Button disabled>Button</Button> <Button loading>Button</Button>
       <br />
@@ -58,16 +90,30 @@ storiesOf('Core/Button', module)
         Button
       </Button>
     </>
-  ))
-  .add('With before and or after icons.', () => (
+  );
+}
+
+withDifferentStatesDisabledAndLoading.story = {
+  name: 'With different states: disabled and loading.',
+};
+
+export function withBeforeAndOrAfterIcons() {
+  return (
     <>
       <div>
         <Button beforeIcon={<IconAddAlt decorative />}>Before icon</Button>{' '}
         <Button afterIcon={<IconAddAlt decorative />}>After icon</Button>
       </div>
     </>
-  ))
-  .add('With borderless.', () => (
+  );
+}
+
+withBeforeAndOrAfterIcons.story = {
+  name: 'With before and or after icons.',
+};
+
+export function withBorderless() {
+  return (
     <>
       <div>
         <Button borderless>Button</Button>{' '}
@@ -79,4 +125,9 @@ storiesOf('Core/Button', module)
         </Button>
       </div>
     </>
-  ));
+  );
+}
+
+withBorderless.story = {
+  name: 'With borderless.',
+};

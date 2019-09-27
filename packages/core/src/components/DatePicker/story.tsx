@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 // @ts-ignore
 import { DateUtils } from 'react-day-picker';
 import DateTime from '../DateTime';
@@ -191,31 +190,60 @@ class DatePickerMouseRangeSelectDemo extends React.Component<{}, RangeState> {
   }
 }
 
-storiesOf('Core/DatePicker', module)
-  .addParameters({
+export default {
+  title: 'Core/DatePicker',
+
+  parameters: {
     inspectComponents: [DatePicker],
-  })
-  .add('Display a single month.', () => <DatePicker initialMonth={new Date(2019, 1, 1)} />)
-  .add(
-    'Display a "Today" button.',
-    () => (
-      <DatePicker
-        initialMonth={new Date(2019, 1, 1)}
-        todayButton={DateTime.format({
-          at: Date.now(),
-          medium: true,
-          noTime: true,
-          noTimezone: true,
-        })}
-      />
-    ),
-    { happo: false },
-  )
-  .add('Display a "Reset" button.', () => <DatePickerResetDemo />, { happo: false })
-  .add('Display multiple months.', () => (
-    <DatePicker initialMonth={new Date(2019, 1, 1)} numberOfMonths={2} />
-  ))
-  .add('Display days as disabled.', () => (
+  },
+};
+
+export function displayASingleMonth() {
+  return <DatePicker initialMonth={new Date(2019, 1, 1)} />;
+}
+
+displayASingleMonth.story = {
+  name: 'Display a single month.',
+};
+
+export function displayATodayButton() {
+  return (
+    <DatePicker
+      initialMonth={new Date(2019, 1, 1)}
+      todayButton={DateTime.format({
+        at: Date.now(),
+        medium: true,
+        noTime: true,
+        noTimezone: true,
+      })}
+    />
+  );
+}
+
+displayATodayButton.story = {
+  name: 'Display a "Today" button.',
+  parameters: { happo: false },
+};
+
+export function displayAResetButton() {
+  return <DatePickerResetDemo />;
+}
+
+displayAResetButton.story = {
+  name: 'Display a "Reset" button.',
+  parameters: { happo: false },
+};
+
+export function displayMultipleMonths() {
+  return <DatePicker initialMonth={new Date(2019, 1, 1)} numberOfMonths={2} />;
+}
+
+displayMultipleMonths.story = {
+  name: 'Display multiple months.',
+};
+
+export function displayDaysAsDisabled() {
+  return (
     <DatePicker
       initialMonth={new Date(2017, 3)}
       disabledDays={[
@@ -227,14 +255,28 @@ storiesOf('Core/DatePicker', module)
         },
       ]}
     />
-  ))
-  .add('Disable weekends.', () => (
+  );
+}
+
+displayDaysAsDisabled.story = {
+  name: 'Display days as disabled.',
+};
+
+export function disableWeekends() {
+  return (
     <DatePicker
       initialMonth={new Date(2017, 3)}
       disabledDays={[new Date(2017, 3, 12), { daysOfWeek: [0, 6] }]}
     />
-  ))
-  .add('Display days as selected.', () => (
+  );
+}
+
+disableWeekends.story = {
+  name: 'Disable weekends.',
+};
+
+export function displayDaysAsSelected() {
+  return (
     <DatePicker
       initialMonth={new Date(2017, 3)}
       selectedDays={[
@@ -246,8 +288,15 @@ storiesOf('Core/DatePicker', module)
         },
       ]}
     />
-  ))
-  .add('Display a range of days.', () => (
+  );
+}
+
+displayDaysAsSelected.story = {
+  name: 'Display days as selected.',
+};
+
+export function displayARangeOfDays() {
+  return (
     <DatePicker
       initialMonth={new Date(2017, 3)}
       modifiers={{
@@ -261,6 +310,26 @@ storiesOf('Core/DatePicker', module)
         },
       ]}
     />
-  ))
-  .add("Today button selects today's date.", () => <DatePickerTodayDemo />)
-  .add('Select days on mouse enter.', () => <DatePickerMouseRangeSelectDemo />, { happo: false });
+  );
+}
+
+displayARangeOfDays.story = {
+  name: 'Display a range of days.',
+};
+
+export function todayButtonSelectsTodaysDate() {
+  return <DatePickerTodayDemo />;
+}
+
+todayButtonSelectsTodaysDate.story = {
+  name: 'Today button selects today\'s date.',
+};
+
+export function selectDaysOnMouseEnter() {
+  return <DatePickerMouseRangeSelectDemo />;
+}
+
+selectDaysOnMouseEnter.story = {
+  name: 'Select days on mouse enter.',
+  parameters: { happo: false },
+};

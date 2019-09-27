@@ -1,40 +1,56 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import DateTimeSelect from '.';
 
 const fixedDate = new Date(2019, 1, 1, 10, 10, 10);
 
-storiesOf('Core/DateTimeSelect', module)
-  .addParameters({
+export default {
+  title: 'Core/DateTimeSelect',
+
+  parameters: {
     inspectComponents: [DateTimeSelect],
-  })
-  .add('Standard select field for dates and times.', () => (
+  },
+};
+
+export function standardSelectFieldForDatesAndTimes() {
+  return (
     <DateTimeSelect
       name="dts-basic"
       label="Label"
       value={fixedDate}
       onChange={action('onChange')}
     />
-  ))
-  .add('With a compact smaller view.', () => (
-    <>
-      <DateTimeSelect
-        compact
-        name="dts-compact"
-        label="Compact"
-        value={fixedDate}
-        onChange={action('onChange')}
-      />
-      <DateTimeSelect
-        name="dts-regular"
-        label="Regular"
-        value={fixedDate}
-        onChange={action('onChange')}
-      />
-    </>
-  ))
-  .add('With an invalid state.', () => (
+  );
+}
+
+standardSelectFieldForDatesAndTimes.story = {
+  name: 'Standard select field for dates and times.',
+};
+
+export function withACompactSmallerView() {
+  return <>
+    <DateTimeSelect
+      compact
+      name="dts-compact"
+      label="Compact"
+      value={fixedDate}
+      onChange={action('onChange')}
+    />
+    <DateTimeSelect
+      name="dts-regular"
+      label="Regular"
+      value={fixedDate}
+      onChange={action('onChange')}
+    />
+  </>;
+}
+
+withACompactSmallerView.story = {
+  name: 'With a compact smaller view.',
+};
+
+export function withAnInvalidState() {
+  return (
     <DateTimeSelect
       invalid
       name="dts-invalid"
@@ -42,8 +58,15 @@ storiesOf('Core/DateTimeSelect', module)
       value={fixedDate}
       onChange={action('onChange')}
     />
-  ))
-  .add('With a disabled state and label description.', () => (
+  );
+}
+
+withAnInvalidState.story = {
+  name: 'With an invalid state.',
+};
+
+export function withADisabledStateAndLabelDescription() {
+  return (
     <DateTimeSelect
       disabled
       name="dts-disabled"
@@ -52,8 +75,15 @@ storiesOf('Core/DateTimeSelect', module)
       value={fixedDate}
       onChange={action('onChange')}
     />
-  ))
-  .add('With the year hidden.', () => (
+  );
+}
+
+withADisabledStateAndLabelDescription.story = {
+  name: 'With a disabled state and label description.',
+};
+
+export function withTheYearHidden() {
+  return (
     <DateTimeSelect
       hideYear
       name="dts-noyear"
@@ -61,8 +91,15 @@ storiesOf('Core/DateTimeSelect', module)
       value={fixedDate}
       onChange={action('onChange')}
     />
-  ))
-  .add('Or all dates hidden.', () => (
+  );
+}
+
+withTheYearHidden.story = {
+  name: 'With the year hidden.',
+};
+
+export function orAllDatesHidden() {
+  return (
     <DateTimeSelect
       hideDate
       name="dts-nodate"
@@ -70,8 +107,15 @@ storiesOf('Core/DateTimeSelect', module)
       value={fixedDate}
       onChange={action('onChange')}
     />
-  ))
-  .add('Or all times hidden.', () => (
+  );
+}
+
+orAllDatesHidden.story = {
+  name: 'Or all dates hidden.',
+};
+
+export function orAllTimesHidden() {
+  return (
     <DateTimeSelect
       hideTime
       name="dts-notime"
@@ -79,8 +123,15 @@ storiesOf('Core/DateTimeSelect', module)
       value={fixedDate}
       onChange={action('onChange')}
     />
-  ))
-  .add('With 12-hour days instead of 24.', () => (
+  );
+}
+
+orAllTimesHidden.story = {
+  name: 'Or all times hidden.',
+};
+
+export function with12HourDaysInsteadOf24() {
+  return (
     <DateTimeSelect
       enable12HourClock
       name="dts-12"
@@ -88,8 +139,15 @@ storiesOf('Core/DateTimeSelect', module)
       value={fixedDate}
       onChange={action('onChange')}
     />
-  ))
-  .add('With inline label.', () => (
+  );
+}
+
+with12HourDaysInsteadOf24.story = {
+  name: 'With 12-hour days instead of 24.',
+};
+
+export function withInlineLabel() {
+  return (
     <DateTimeSelect
       hideTime
       inline
@@ -98,4 +156,9 @@ storiesOf('Core/DateTimeSelect', module)
       value={fixedDate}
       onChange={action('onChange')}
     />
-  ));
+  );
+}
+
+withInlineLabel.story = {
+  name: 'With inline label.',
+};

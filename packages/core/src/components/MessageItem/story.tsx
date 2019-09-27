@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import IconBolt from '@airbnb/lunar-icons/lib/general/IconBolt';
 import LoremIpsum from ':storybook/components/LoremIpsum';
@@ -8,11 +7,16 @@ import Text from '../Text';
 import Interweave from '../Interweave';
 import MessageItem from '.';
 
-storiesOf('Core/MessageItem', module)
-  .addParameters({
+export default {
+  title: 'Core/MessageItem',
+
+  parameters: {
     inspectComponents: [MessageItem],
-  })
-  .add('Message item.', () => (
+  },
+};
+
+export function messageItem() {
+  return (
     <MessageItem
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
@@ -23,8 +27,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With loading author.', () => (
+  );
+}
+
+messageItem.story = {
+  name: 'Message item.',
+};
+
+export function withLoadingAuthor() {
+  return (
     <MessageItem
       loadingAuthor
       formattedTimestamp="2:45 AM"
@@ -36,8 +47,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With sending state.', () => (
+  );
+}
+
+withLoadingAuthor.story = {
+  name: 'With loading author.',
+};
+
+export function withSendingState() {
+  return (
     <MessageItem
       sending
       formattedTimestamp="2:45 AM"
@@ -49,8 +67,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With a badge.', () => (
+  );
+}
+
+withSendingState.story = {
+  name: 'With sending state.',
+};
+
+export function withABadge() {
+  return (
     <MessageItem
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
@@ -62,8 +87,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With an icon avatar.', () => (
+  );
+}
+
+withABadge.story = {
+  name: 'With a badge.',
+};
+
+export function withAnIconAvatar() {
+  return (
     <MessageItem
       formattedTimestamp="2:45 AM"
       icon={<IconBolt decorative size="1.25em" />}
@@ -75,8 +107,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With profile photo click.', () => (
+  );
+}
+
+withAnIconAvatar.story = {
+  name: 'With an icon avatar.',
+};
+
+export function withProfilePhotoClick() {
+  return (
     <MessageItem
       formattedTimestamp="2:45 AM"
       imageDescription="Link - Click to open Nova profile"
@@ -88,8 +127,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With a clickable title.', () => (
+  );
+}
+
+withProfilePhotoClick.story = {
+  name: 'With profile photo click.',
+};
+
+export function withAClickableTitle() {
+  return (
     <MessageItem
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
@@ -102,8 +148,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With an email.', () => (
+  );
+}
+
+withAClickableTitle.story = {
+  name: 'With a clickable title.',
+};
+
+export function withAnEmail() {
+  return (
     <MessageItem
       email="noreply@airbnb.com"
       formattedTimestamp="2:45 AM"
@@ -115,8 +168,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With a source.', () => (
+  );
+}
+
+withAnEmail.story = {
+  name: 'With an email.',
+};
+
+export function withASource() {
+  return (
     <MessageItem
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
@@ -128,8 +188,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With a title tag.', () => (
+  );
+}
+
+withASource.story = {
+  name: 'With a source.',
+};
+
+export function withATitleTag() {
+  return (
     <MessageItem
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
@@ -141,8 +208,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With `Interweave`.', () => (
+  );
+}
+
+withATitleTag.story = {
+  name: 'With a title tag.',
+};
+
+export function withInterweave() {
+  return (
     <MessageItem
       formattedTimestamp="2:45 AM"
       imageDescription="Link"
@@ -154,8 +228,15 @@ storiesOf('Core/MessageItem', module)
         <Interweave content="This text <b>will be bold</b>. And this <a href='https://www.google.com/search?q=google+image+cats&tbm=isch&tbo=u&source=univ&sa=X&ved=2ahUKEwjDqIymvr3cAhWJllQKHV6iCZgQsAR6BAgAEAE&biw=1280&bih=1343'>https://www.google.com/search?q=google+image+cats&tbm=isch&tbo=u&source=univ&sa=X&ved=2ahUKEwjDqIymvr3cAhWJllQKHV6iCZgQsAR6BAgAEAE&biw=1280&bih=1343</a> will wrap." />
       </Text>
     </MessageItem>
-  ))
-  .add('With vertical spacing.', () => (
+  );
+}
+
+withInterweave.story = {
+  name: 'With `Interweave`.',
+};
+
+export function withVerticalSpacing() {
+  return (
     <MessageItem
       verticalSpacing
       formattedTimestamp="2:45 AM"
@@ -168,8 +249,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With horizontal spacing.', () => (
+  );
+}
+
+withVerticalSpacing.story = {
+  name: 'With vertical spacing.',
+};
+
+export function withHorizontalSpacing() {
+  return (
     <MessageItem
       horizontalSpacing
       formattedTimestamp="2:45 AM"
@@ -182,8 +270,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With important.', () => (
+  );
+}
+
+withHorizontalSpacing.story = {
+  name: 'With horizontal spacing.',
+};
+
+export function withImportant() {
+  return (
     <MessageItem
       important
       formattedTimestamp="2:45 AM"
@@ -196,8 +291,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With warning.', () => (
+  );
+}
+
+withImportant.story = {
+  name: 'With important.',
+};
+
+export function withWarning() {
+  return (
     <MessageItem
       warning
       formattedTimestamp="2:45 AM"
@@ -210,8 +312,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With info.', () => (
+  );
+}
+
+withWarning.story = {
+  name: 'With warning.',
+};
+
+export function withInfo() {
+  return (
     <MessageItem
       info
       email="noreply@airbnb.com"
@@ -224,8 +333,15 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ))
-  .add('With disable title translation.', () => (
+  );
+}
+
+withInfo.story = {
+  name: 'With info.',
+};
+
+export function withDisableTitleTranslation() {
+  return (
     <MessageItem
       disableTitleTranslation
       formattedTimestamp="2:45 AM"
@@ -237,4 +353,9 @@ storiesOf('Core/MessageItem', module)
         <LoremIpsum />
       </Text>
     </MessageItem>
-  ));
+  );
+}
+
+withDisableTitleTranslation.story = {
+  name: 'With disable title translation.',
+};

@@ -1,15 +1,34 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Price from '.';
 
-storiesOf('Core/Price', module)
-  .addParameters({
+export default {
+  title: 'Core/Price',
+
+  parameters: {
     inspectComponents: [Price],
-  })
-  .add('Standard amount.', () => <Price amount={123.45} currency="USD" />)
-  .add('Cents-enabled (micros) amount in GBP.', () => (
-    <Price micros amount={123450000} currency="GBP" />
-  ))
-  .add('Rounded amount in JPY.', () => (
-    <Price round amount={12300.45} currency="JPY" locale="ja" />
-  ));
+  },
+};
+
+export function standardAmount() {
+  return <Price amount={123.45} currency="USD" />;
+}
+
+standardAmount.story = {
+  name: 'Standard amount.',
+};
+
+export function centsEnabledMicrosAmountInGbp() {
+  return <Price micros amount={123450000} currency="GBP" />;
+}
+
+centsEnabledMicrosAmountInGbp.story = {
+  name: 'Cents-enabled (micros) amount in GBP.',
+};
+
+export function roundedAmountInJpy() {
+  return <Price round amount={12300.45} currency="JPY" locale="ja" />;
+}
+
+roundedAmountInJpy.story = {
+  name: 'Rounded amount in JPY.',
+};

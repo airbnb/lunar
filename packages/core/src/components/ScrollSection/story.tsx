@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Text from '../Text';
 import ScrollSection, { ScrollWrapper } from '.';
 
@@ -48,10 +47,18 @@ class ScrollDemo extends React.Component<{}, { activeSection: string }> {
   }
 }
 
-storiesOf('Core/ScrollSection', module)
-  .addParameters({
+export default {
+  title: 'Core/ScrollSection',
+
+  parameters: {
     inspectComponents: [ScrollSection, ScrollWrapper],
-  })
-  .add('Section scrolled to the top of the wrapper will be set as the active section.', () => (
-    <ScrollDemo />
-  ));
+  },
+};
+
+export function sectionScrolledToTheTopOfTheWrapperWillBeSetAsTheActiveSection() {
+  return <ScrollDemo />;
+}
+
+sectionScrolledToTheTopOfTheWrapperWillBeSetAsTheActiveSection.story = {
+  name: 'Section scrolled to the top of the wrapper will be set as the active section.',
+};

@@ -1,12 +1,26 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Emoji from '.';
 
-storiesOf('Core/Emoji', module)
-  .addParameters({
+export default {
+  title: 'Core/Emoji',
+
+  parameters: {
     inspectComponents: [Emoji],
-  })
-  .add('Using a unicode character.', () => <Emoji unicode="🎮️" />)
-  .add('Using a hexcode with a large size.', () => (
-    <Emoji enlargeEmoji hexcode="1F3AE" emojiLargeSize="3em" />
-  ));
+  },
+};
+
+export function usingAUnicodeCharacter() {
+  return <Emoji unicode="🎮️" />;
+}
+
+usingAUnicodeCharacter.story = {
+  name: 'Using a unicode character.',
+};
+
+export function usingAHexcodeWithALargeSize() {
+  return <Emoji enlargeEmoji hexcode="1F3AE" emojiLargeSize="3em" />;
+}
+
+usingAHexcodeWithALargeSize.story = {
+  name: 'Using a hexcode with a large size.',
+};

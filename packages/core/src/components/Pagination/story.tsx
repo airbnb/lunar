@@ -1,23 +1,42 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Pagination from '.';
 import T from '../Translate';
 
-storiesOf('Core/Pagination', module)
-  .addParameters({
+export default {
+  title: 'Core/Pagination',
+
+  parameters: {
     inspectComponents: [Pagination],
-  })
-  .add('No previous or next pages.', () => (
-    <Pagination page={1} onNext={action('onNext')} onPrevious={action('onPrevious')} />
-  ))
-  .add('Next pages.', () => (
-    <Pagination hasNext page={1} onNext={action('onNext')} onPrevious={action('onPrevious')} />
-  ))
-  .add('Previous pages.', () => (
-    <Pagination hasPrev page={2} onNext={action('onNext')} onPrevious={action('onPrevious')} />
-  ))
-  .add('Both next and pages.', () => (
+  },
+};
+
+export function noPreviousOrNextPages() {
+  return <Pagination page={1} onNext={action('onNext')} onPrevious={action('onPrevious')} />;
+}
+
+noPreviousOrNextPages.story = {
+  name: 'No previous or next pages.',
+};
+
+export function nextPages() {
+  return <Pagination hasNext page={1} onNext={action('onNext')} onPrevious={action('onPrevious')} />;
+}
+
+nextPages.story = {
+  name: 'Next pages.',
+};
+
+export function previousPages() {
+  return <Pagination hasPrev page={2} onNext={action('onNext')} onPrevious={action('onPrevious')} />;
+}
+
+previousPages.story = {
+  name: 'Previous pages.',
+};
+
+export function bothNextAndPages() {
+  return (
     <Pagination
       hasPrev
       hasNext
@@ -25,8 +44,15 @@ storiesOf('Core/Pagination', module)
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
     />
-  ))
-  .add('With label.', () => (
+  );
+}
+
+bothNextAndPages.story = {
+  name: 'Both next and pages.',
+};
+
+export function withLabel() {
+  return (
     <Pagination
       hasPrev
       hasNext
@@ -35,8 +61,15 @@ storiesOf('Core/Pagination', module)
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
     />
-  ))
-  .add('With no label.', () => (
+  );
+}
+
+withLabel.story = {
+  name: 'With label.',
+};
+
+export function withNoLabel() {
+  return (
     <Pagination
       hasPrev
       hasNext
@@ -47,8 +80,15 @@ storiesOf('Core/Pagination', module)
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
     />
-  ))
-  .add('Bookends, first page.', () => (
+  );
+}
+
+withNoLabel.story = {
+  name: 'With no label.',
+};
+
+export function bookendsFirstPage() {
+  return (
     <Pagination
       hasNext
       showBookends
@@ -59,8 +99,15 @@ storiesOf('Core/Pagination', module)
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
     />
-  ))
-  .add('Bookends, last page.', () => (
+  );
+}
+
+bookendsFirstPage.story = {
+  name: 'Bookends, first page.',
+};
+
+export function bookendsLastPage() {
+  return (
     <Pagination
       hasPrev
       showBookends
@@ -71,8 +118,15 @@ storiesOf('Core/Pagination', module)
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
     />
-  ))
-  .add('Bookends, middle page.', () => (
+  );
+}
+
+bookendsLastPage.story = {
+  name: 'Bookends, last page.',
+};
+
+export function bookendsMiddlePage() {
+  return (
     <Pagination
       hasNext
       hasPrev
@@ -84,8 +138,15 @@ storiesOf('Core/Pagination', module)
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
     />
-  ))
-  .add('Align arrows at the start', () => (
+  );
+}
+
+bookendsMiddlePage.story = {
+  name: 'Bookends, middle page.',
+};
+
+export function alignArrowsAtTheStart() {
+  return (
     <Pagination
       hasNext
       hasPrev
@@ -98,8 +159,15 @@ storiesOf('Core/Pagination', module)
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
     />
-  ))
-  .add('Align arrows in the center', () => (
+  );
+}
+
+alignArrowsAtTheStart.story = {
+  name: 'Align arrows at the start',
+};
+
+export function alignArrowsInTheCenter() {
+  return (
     <Pagination
       centerAlign
       hasNext
@@ -112,8 +180,15 @@ storiesOf('Core/Pagination', module)
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
     />
-  ))
-  .add('Align arrows at the end', () => (
+  );
+}
+
+alignArrowsInTheCenter.story = {
+  name: 'Align arrows in the center',
+};
+
+export function alignArrowsAtTheEnd() {
+  return (
     <Pagination
       endAlign
       hasNext
@@ -126,4 +201,9 @@ storiesOf('Core/Pagination', module)
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}
     />
-  ));
+  );
+}
+
+alignArrowsAtTheEnd.story = {
+  name: 'Align arrows at the end',
+};

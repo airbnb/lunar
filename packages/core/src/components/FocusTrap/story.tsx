@@ -1,16 +1,20 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button';
 import Input from '../Input';
 import TextArea from '../TextArea';
 import FocusTrap from '.';
 
-storiesOf('Core/FocusTrap', module)
-  .addParameters({
+export default {
+  title: 'Core/FocusTrap',
+
+  parameters: {
     inspectComponents: [FocusTrap],
-  })
-  .add('Traps focus (try tabbing around).', () => (
+  },
+};
+
+export function trapsFocusTryTabbingAround() {
+  return (
     <FocusTrap>
       <Input name="trap-input" label="Input" onChange={action('onChange')} />
 
@@ -18,4 +22,9 @@ storiesOf('Core/FocusTrap', module)
 
       <Button>Action</Button>
     </FocusTrap>
-  ));
+  );
+}
+
+trapsFocusTryTabbingAround.story = {
+  name: 'Traps focus (try tabbing around).',
+};

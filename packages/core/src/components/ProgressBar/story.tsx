@@ -1,26 +1,38 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import ProgressBar from '.';
 
-storiesOf('Core/ProgressBar', module)
-  .addParameters({
+export default {
+  title: 'Core/ProgressBar',
+
+  parameters: {
     inspectComponents: [ProgressBar],
-  })
-  .add('A progress bar with different completion percentages and widths.', () => (
-    <>
-      <ProgressBar percent={1} />
-      <br />
-      <ProgressBar percent={29} />
-      <br />
-      <ProgressBar percent={100} />
-      <br />
-      <ProgressBar percent={63} />
-    </>
-  ))
-  .add('Can disable leading and trailing edges (no rounded corners).', () => (
-    <>
-      <ProgressBar leading percent={50} />
-      <br />
-      <ProgressBar trailing percent={50} />
-    </>
-  ));
+  },
+};
+
+export function aProgressBarWithDifferentCompletionPercentagesAndWidths() {
+  return <>
+    <ProgressBar percent={1} />
+    <br />
+    <ProgressBar percent={29} />
+    <br />
+    <ProgressBar percent={100} />
+    <br />
+    <ProgressBar percent={63} />
+  </>;
+}
+
+aProgressBarWithDifferentCompletionPercentagesAndWidths.story = {
+  name: 'A progress bar with different completion percentages and widths.',
+};
+
+export function canDisableLeadingAndTrailingEdgesNoRoundedCorners() {
+  return <>
+    <ProgressBar leading percent={50} />
+    <br />
+    <ProgressBar trailing percent={50} />
+  </>;
+}
+
+canDisableLeadingAndTrailingEdgesNoRoundedCorners.story = {
+  name: 'Can disable leading and trailing edges (no rounded corners).',
+};

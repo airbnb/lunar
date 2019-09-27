@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Button from '../Button';
 import Input from '../Input';
 import BrowserNotification from '.';
@@ -70,8 +69,18 @@ class BrowserNotificationExample extends React.Component<{}, State> {
   }
 }
 
-storiesOf('Core/BrowserNotification', module)
-  .addParameters({
+export default {
+  title: 'Core/BrowserNotification',
+
+  parameters: {
     inspectComponents: [BrowserNotification],
-  })
-  .add('Display browser notifications.', () => <BrowserNotificationExample />);
+  },
+};
+
+export function displayBrowserNotifications() {
+  return <BrowserNotificationExample />;
+}
+
+displayBrowserNotifications.story = {
+  name: 'Display browser notifications.',
+};

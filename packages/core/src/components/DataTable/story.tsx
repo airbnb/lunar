@@ -1,9 +1,7 @@
 /* eslint-disable import/prefer-default-export, unicorn/consistent-function-scoping */
 
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-// @ts-ignore
 import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
 import getData, { generateRandomData } from ':storybook/components/DataTable/DataTableData';
 import TenureRenderer from ':storybook/components/DataTable/DataTableRenderers/TenureRenderer';
@@ -157,31 +155,55 @@ export class SearchDemo extends React.Component {
   }
 }
 
-storiesOf('Core/DataTable', module)
-  .addParameters({
+export default {
+  title: 'Core/DataTable',
+
+  parameters: {
     happo: { delay: 50 },
     inspectComponents: [DataTable],
-  })
-  .add('A standard table.', () => (
-    <DataTable data={getData()} keys={['name', 'jobTitle', 'tenureDays']} />
-  ))
-  .add('A standard table with a flex wrapper.', () => (
+  },
+};
+
+export function aStandardTable() {
+  return <DataTable data={getData()} keys={['name', 'jobTitle', 'tenureDays']} />;
+}
+
+aStandardTable.story = {
+  name: 'A standard table.',
+};
+
+export function aStandardTableWithAFlexWrapper() {
+  return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <Spacing bottom={2}>
         <Button>Dummy Button</Button>
       </Spacing>
       <DataTable data={getData()} keys={['name', 'jobTitle', 'tenureDays']} />
     </div>
-  ))
-  .add('A standard table with initial sorting.', () => (
+  );
+}
+
+aStandardTableWithAFlexWrapper.story = {
+  name: 'A standard table with a flex wrapper.',
+};
+
+export function aStandardTableWithInitialSorting() {
+  return (
     <DataTable
       data={getData()}
       keys={['name', 'jobTitle']}
       sortByOverride="name"
       sortDirectionOverride="ASC"
     />
-  ))
-  .add('A table with selectable and exandable rows that displays selected rows first.', () => (
+  );
+}
+
+aStandardTableWithInitialSorting.story = {
+  name: 'A standard table with initial sorting.',
+};
+
+export function aTableWithSelectableAndExandableRowsThatDisplaysSelectedRowsFirst() {
+  return (
     <DataTable
       expandable
       selectable
@@ -190,8 +212,15 @@ storiesOf('Core/DataTable', module)
       data={getData()}
       keys={['name', 'jobTitle']}
     />
-  ))
-  .add('A table with filtered data.', () => (
+  );
+}
+
+aTableWithSelectableAndExandableRowsThatDisplaysSelectedRowsFirst.story = {
+  name: 'A table with selectable and exandable rows that displays selected rows first.',
+};
+
+export function aTableWithFilteredData() {
+  return (
     <DataTable
       expandable
       selectable
@@ -200,9 +229,23 @@ storiesOf('Core/DataTable', module)
       keys={['name', 'jobTitle']}
       filterData={filterData}
     />
-  ))
-  .add('A table with a search box and parent height.', () => <SearchDemo />)
-  .add('A table that shows all rows.', () => (
+  );
+}
+
+aTableWithFilteredData.story = {
+  name: 'A table with filtered data.',
+};
+
+export function aTableWithASearchBoxAndParentHeight() {
+  return <SearchDemo />;
+}
+
+aTableWithASearchBoxAndParentHeight.story = {
+  name: 'A table with a search box and parent height.',
+};
+
+export function aTableThatShowsAllRows() {
+  return (
     // This shows the height dynamically change with expanded rows
     <div style={{ background: '#835EFE', padding: 8 }}>
       <DataTable
@@ -215,8 +258,15 @@ storiesOf('Core/DataTable', module)
         keys={['name', 'jobTitle']}
       />
     </div>
-  ))
-  .add('An editable table.', () => (
+  );
+}
+
+aTableThatShowsAllRows.story = {
+  name: 'A table that shows all rows.',
+};
+
+export function anEditableTable() {
+  return (
     <DataTable
       selectable
       expandable
@@ -227,8 +277,15 @@ storiesOf('Core/DataTable', module)
       defaultEditCallback={defaultEditCallback}
       renderers={renderers}
     />
-  ))
-  .add('An table with zebra coloring, a colspan, inferred keys and renderers.', () => (
+  );
+}
+
+anEditableTable.story = {
+  name: 'An editable table.',
+};
+
+export function anTableWithZebraColoringAColspanInferredKeysAndRenderers() {
+  return (
     <DataTable
       selectable
       expandable
@@ -238,8 +295,15 @@ storiesOf('Core/DataTable', module)
       data={getData()}
       renderers={renderers}
     />
-  ))
-  .add('A table with different row, column header and table header heights.', () => (
+  );
+}
+
+anTableWithZebraColoringAColspanInferredKeysAndRenderers.story = {
+  name: 'An table with zebra coloring, a colspan, inferred keys and renderers.',
+};
+
+export function aTableWithDifferentRowColumnHeaderAndTableHeaderHeights() {
+  return (
     <DataTable
       selectable
       expandable
@@ -252,8 +316,15 @@ storiesOf('Core/DataTable', module)
       columnHeaderHeight="micro"
       tableHeaderHeight="large"
     />
-  ))
-  .add('A table that logs custom edit callbacks and select callback.', () => (
+  );
+}
+
+aTableWithDifferentRowColumnHeaderAndTableHeaderHeights.story = {
+  name: 'A table with different row, column header and table header heights.',
+};
+
+export function aTableThatLogsCustomEditCallbacksAndSelectCallback() {
+  return (
     <DataTable
       selectable
       expandable
@@ -263,8 +334,15 @@ storiesOf('Core/DataTable', module)
       editCallbacks={editCallbacks}
       selectCallback={selectCallback}
     />
-  ))
-  .add('A complex table with all features enabled.', () => (
+  );
+}
+
+aTableThatLogsCustomEditCallbacksAndSelectCallback.story = {
+  name: 'A table that logs custom edit callbacks and select callback.',
+};
+
+export function aComplexTableWithAllFeaturesEnabled() {
+  return (
     <DataTable
       selectable
       expandable
@@ -288,4 +366,9 @@ storiesOf('Core/DataTable', module)
       editCallbacks={editCallbacks}
       keys={['name', 'cats', 'tenureDays']}
     />
-  ));
+  );
+}
+
+aComplexTableWithAllFeaturesEnabled.story = {
+  name: 'A complex table with all features enabled.',
+};

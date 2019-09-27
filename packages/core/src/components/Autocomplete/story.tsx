@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Autocomplete from '.';
 
@@ -10,11 +9,16 @@ const items = [
   { value: 'green', name: 'Green' },
 ];
 
-storiesOf('Core/Autocomplete', module)
-  .addParameters({
+export default {
+  title: 'Core/Autocomplete',
+
+  parameters: {
     inspectComponents: [Autocomplete],
-  })
-  .add('Standard autocomplete used for searching.', () => (
+  },
+};
+
+export function standardAutocompleteUsedForSearching() {
+  return (
     <Autocomplete
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
@@ -25,8 +29,15 @@ storiesOf('Core/Autocomplete', module)
         Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
       }
     />
-  ))
-  .add('Supports errors thrown within promises.', () => (
+  );
+}
+
+standardAutocompleteUsedForSearching.story = {
+  name: 'Standard autocomplete used for searching.',
+};
+
+export function supportsErrorsThrownWithinPromises() {
+  return (
     <Autocomplete
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
@@ -35,8 +46,15 @@ storiesOf('Core/Autocomplete', module)
       onSelectItem={action('onSelectItem')}
       onLoadItems={value => Promise.reject(new Error('Failed to load.'))}
     />
-  ))
-  .add('With an error message in an invalid state.', () => (
+  );
+}
+
+supportsErrorsThrownWithinPromises.story = {
+  name: 'Supports errors thrown within promises.',
+};
+
+export function withAnErrorMessageInAnInvalidState() {
+  return (
     <Autocomplete
       invalid
       accessibilityLabel="Label"
@@ -47,8 +65,15 @@ storiesOf('Core/Autocomplete', module)
       onSelectItem={action('onSelectItem')}
       onLoadItems={value => Promise.resolve([])}
     />
-  ))
-  .add('With a label description in a disabled state.', () => (
+  );
+}
+
+withAnErrorMessageInAnInvalidState.story = {
+  name: 'With an error message in an invalid state.',
+};
+
+export function withALabelDescriptionInADisabledState() {
+  return (
     <Autocomplete
       disabled
       accessibilityLabel="Label"
@@ -59,8 +84,15 @@ storiesOf('Core/Autocomplete', module)
       onSelectItem={action('onSelectItem')}
       onLoadItems={value => Promise.resolve([])}
     />
-  ))
-  .add('Load items on focus.', () => (
+  );
+}
+
+withALabelDescriptionInADisabledState.story = {
+  name: 'With a label description in a disabled state.',
+};
+
+export function loadItemsOnFocusStory() {
+  return (
     <Autocomplete
       loadItemsOnFocus
       accessibilityLabel="Label"
@@ -71,8 +103,15 @@ storiesOf('Core/Autocomplete', module)
       onSelectItem={action('onSelectItem')}
       onLoadItems={() => Promise.resolve(items)}
     />
-  ))
-  .add('Disable selected items with `isItemSelectable`.', () => (
+  );
+}
+
+loadItemsOnFocusStory.story = {
+  name: 'Load items on focus.',
+};
+
+export function disableSelectedItemsWithIsItemSelectable() {
+  return (
     <Autocomplete
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
@@ -84,43 +123,53 @@ storiesOf('Core/Autocomplete', module)
         Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
       }
     />
-  ))
-  .add('With custom states in a small form.', () => (
-    <>
-      <Autocomplete
-        loadItemsOnMount
-        small
-        accessibilityLabel="Label"
-        name="autocomplete-state-error"
-        label="Error"
-        renderError={error => <div>{error.message}</div>}
-        onChange={action('onChange')}
-        onSelectItem={action('onSelectItem')}
-        onLoadItems={value => Promise.reject(new Error('Failed to load.'))}
-      />
+  );
+}
 
-      <Autocomplete
-        loadItemsOnMount
-        small
-        accessibilityLabel="Label"
-        name="autocomplete-state-loading"
-        label="Loading"
-        renderLoading={() => <div>Loading...</div>}
-        onChange={action('onChange')}
-        onSelectItem={action('onSelectItem')}
-        onLoadItems={value => new Promise(() => {})}
-      />
+disableSelectedItemsWithIsItemSelectable.story = {
+  name: 'Disable selected items with `isItemSelectable`.',
+};
 
-      <Autocomplete
-        loadItemsOnMount
-        small
-        accessibilityLabel="Label"
-        name="autocomplete-state-empty"
-        label="No results"
-        renderNoResults={() => <div>Nothing to see here!</div>}
-        onChange={action('onChange')}
-        onSelectItem={action('onSelectItem')}
-        onLoadItems={value => Promise.resolve([])}
-      />
-    </>
-  ));
+export function withCustomStatesInASmallForm() {
+  return <>
+    <Autocomplete
+      loadItemsOnMount
+      small
+      accessibilityLabel="Label"
+      name="autocomplete-state-error"
+      label="Error"
+      renderError={error => <div>{error.message}</div>}
+      onChange={action('onChange')}
+      onSelectItem={action('onSelectItem')}
+      onLoadItems={value => Promise.reject(new Error('Failed to load.'))}
+    />
+
+    <Autocomplete
+      loadItemsOnMount
+      small
+      accessibilityLabel="Label"
+      name="autocomplete-state-loading"
+      label="Loading"
+      renderLoading={() => <div>Loading...</div>}
+      onChange={action('onChange')}
+      onSelectItem={action('onSelectItem')}
+      onLoadItems={value => new Promise(() => {})}
+    />
+
+    <Autocomplete
+      loadItemsOnMount
+      small
+      accessibilityLabel="Label"
+      name="autocomplete-state-empty"
+      label="No results"
+      renderNoResults={() => <div>Nothing to see here!</div>}
+      onChange={action('onChange')}
+      onSelectItem={action('onSelectItem')}
+      onLoadItems={value => Promise.resolve([])}
+    />
+  </>;
+}
+
+withCustomStatesInASmallForm.story = {
+  name: 'With custom states in a small form.',
+};

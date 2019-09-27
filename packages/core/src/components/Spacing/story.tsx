@@ -1,59 +1,122 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import StatusLabel from '../StatusLabel';
 import Spacing from '.';
 
-storiesOf('Core/Spacing', module)
-  .addParameters({
+export default {
+  title: 'Core/Spacing',
+
+  parameters: {
     inspectComponents: [Spacing],
-  })
-  .add('Apply top margin.', () => (
+  },
+};
+
+export function applyTopMargin() {
+  return (
     <Spacing top={3}>
       <StatusLabel>Content</StatusLabel>
     </Spacing>
-  ))
-  .add('Apply right margin.', () => (
+  );
+}
+
+applyTopMargin.story = {
+  name: 'Apply top margin.',
+};
+
+export function applyRightMargin() {
+  return (
     <Spacing right={3}>
       <StatusLabel>Content</StatusLabel>
     </Spacing>
-  ))
-  .add('Apply bottom margin.', () => (
+  );
+}
+
+applyRightMargin.story = {
+  name: 'Apply right margin.',
+};
+
+export function applyBottomMargin() {
+  return (
     <Spacing bottom={3}>
       <StatusLabel>Content</StatusLabel>
     </Spacing>
-  ))
-  .add('Apply left margin.', () => (
+  );
+}
+
+applyBottomMargin.story = {
+  name: 'Apply bottom margin.',
+};
+
+export function applyLeftMargin() {
+  return (
     <Spacing left={3}>
       <StatusLabel>Content</StatusLabel>
     </Spacing>
-  ))
-  .add('Apply top and bottom (vertical) margin.', () => (
+  );
+}
+
+applyLeftMargin.story = {
+  name: 'Apply left margin.',
+};
+
+export function applyTopAndBottomVerticalMargin() {
+  return (
     <Spacing vertical={3}>
       <StatusLabel>Content</StatusLabel>
     </Spacing>
-  ))
-  .add('Apply left and right (horizontal) margin.', () => (
+  );
+}
+
+applyTopAndBottomVerticalMargin.story = {
+  name: 'Apply top and bottom (vertical) margin.',
+};
+
+export function applyLeftAndRightHorizontalMargin() {
+  return (
     <Spacing horizontal={3}>
       <StatusLabel>Content</StatusLabel>
     </Spacing>
-  ))
-  .add('Apply margin on all sides.', () => (
+  );
+}
+
+applyLeftAndRightHorizontalMargin.story = {
+  name: 'Apply left and right (horizontal) margin.',
+};
+
+export function applyMarginOnAllSides() {
+  return (
     <Spacing all={3}>
       <StatusLabel>Content</StatusLabel>
     </Spacing>
-  ))
-  .add('Use padding instead of margin.', () => (
+  );
+}
+
+applyMarginOnAllSides.story = {
+  name: 'Apply margin on all sides.',
+};
+
+export function usePaddingInsteadOfMargin() {
+  return (
     <Spacing inner all={3}>
       <StatusLabel>Content</StatusLabel>
     </Spacing>
-  ))
-  .add('Display inline.', () => (
-    <>
-      <Spacing inline all={0.5}>
-        <StatusLabel>Content 1</StatusLabel>
-      </Spacing>
-      <Spacing inline all={0.5}>
-        <StatusLabel>Content 2</StatusLabel>
-      </Spacing>
-    </>
-  ));
+  );
+}
+
+usePaddingInsteadOfMargin.story = {
+  name: 'Use padding instead of margin.',
+};
+
+export function displayInline() {
+  return <>
+    <Spacing inline all={0.5}>
+      <StatusLabel>Content 1</StatusLabel>
+    </Spacing>
+    <Spacing inline all={0.5}>
+      <StatusLabel>Content 2</StatusLabel>
+    </Spacing>
+  </>;
+}
+
+displayInline.story = {
+  name: 'Display inline.',
+};

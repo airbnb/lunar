@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import lunar from ':storybook/images/lunar-logo.png';
 import Shimmer from '../Shimmer';
 import ResponsiveImage from '.';
 
-storiesOf('Core/ResponsiveImage', module)
-  .addParameters({
+export default {
+  title: 'Core/ResponsiveImage',
+
+  parameters: {
     inspectComponents: [ResponsiveImage],
-  })
-  .add('An image that is constrained proportionally.', () => (
+  },
+};
+
+export function anImageThatIsConstrainedProportionally() {
+  return (
     <ResponsiveImage
       src={lunar}
       alt="Image"
@@ -17,8 +21,15 @@ storiesOf('Core/ResponsiveImage', module)
       borderRadius={6}
       shimmer={<Shimmer block height={150} width={150} />}
     />
-  ))
-  .add('With contain.', () => (
+  );
+}
+
+anImageThatIsConstrainedProportionally.story = {
+  name: 'An image that is constrained proportionally.',
+};
+
+export function withContain() {
+  return (
     <ResponsiveImage
       contain
       src={lunar}
@@ -27,8 +38,15 @@ storiesOf('Core/ResponsiveImage', module)
       maxHeight={100}
       shimmer={<Shimmer block height={100} width={150} />}
     />
-  ))
-  .add('With cover.', () => (
+  );
+}
+
+withContain.story = {
+  name: 'With contain.',
+};
+
+export function withCover() {
+  return (
     <ResponsiveImage
       cover
       src={lunar}
@@ -37,8 +55,15 @@ storiesOf('Core/ResponsiveImage', module)
       maxHeight={100}
       shimmer={<Shimmer block height={100} width={150} />}
     />
-  ))
-  .add('With no shadow.', () => (
+  );
+}
+
+withCover.story = {
+  name: 'With cover.',
+};
+
+export function withNoShadow() {
+  return (
     <ResponsiveImage
       noShadow
       src={lunar}
@@ -46,4 +71,9 @@ storiesOf('Core/ResponsiveImage', module)
       maxWidth={150}
       shimmer={<Shimmer block height={150} width={150} />}
     />
-  ));
+  );
+}
+
+withNoShadow.story = {
+  name: 'With no shadow.',
+};

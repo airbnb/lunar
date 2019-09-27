@@ -1,45 +1,77 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Aside from '.';
 
-storiesOf('Layouts/Aside', module)
-  .addParameters({
+export default {
+  title: 'Layouts/Aside',
+
+  parameters: {
     inspectComponents: [Aside],
-  })
-  .add('Standard aside with a width', () => (
+  },
+};
+
+export function standardAsideWithAWidth() {
+  return (
     <Aside width={300}>
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
     </Aside>
-  ))
-  .add('With a before (left) border.', () => (
+  );
+}
+
+standardAsideWithAWidth.story = {
+  name: 'Standard aside with a width',
+};
+
+export function withABeforeLeftBorder() {
+  return (
     <Aside before width={300}>
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
     </Aside>
-  ))
-  .add('With an after (right) border.', () => (
+  );
+}
+
+withABeforeLeftBorder.story = {
+  name: 'With a before (left) border.',
+};
+
+export function withAnAfterRightBorder() {
+  return (
     <Aside after width={300}>
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
     </Aside>
-  ))
-  .add('With no padding.', () => (
+  );
+}
+
+withAnAfterRightBorder.story = {
+  name: 'With an after (right) border.',
+};
+
+export function withNoPadding() {
+  return (
     <Aside noPadding width={300}>
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
     </Aside>
-  ))
-  .add('As a scrollable container.', () => (
+  );
+}
+
+withNoPadding.story = {
+  name: 'With no padding.',
+};
+
+export function asAScrollableContainer() {
+  return (
     <div style={{ height: 500 }}>
       <Aside scrollable width={300}>
         <LoremIpsum />
@@ -48,4 +80,9 @@ storiesOf('Layouts/Aside', module)
         <LoremIpsum />
       </Aside>
     </div>
-  ));
+  );
+}
+
+asAScrollableContainer.story = {
+  name: 'As a scrollable container.',
+};

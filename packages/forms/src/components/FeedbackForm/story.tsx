@@ -1,13 +1,17 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import FeedbackForm from '.';
 
-storiesOf('Forms/FeedbackForm', module)
-  .addParameters({
+export default {
+  title: 'Forms/FeedbackForm',
+
+  parameters: {
     inspectComponents: [FeedbackForm],
-  })
-  .add('Basic form.', () => (
+  },
+};
+
+export function basicForm() {
+  return (
     <FeedbackForm
       categories={{
         chat: 'Chat',
@@ -22,8 +26,15 @@ storiesOf('Forms/FeedbackForm', module)
         return Promise.resolve();
       }}
     />
-  ))
-  .add('Without bug reporting.', () => (
+  );
+}
+
+basicForm.story = {
+  name: 'Basic form.',
+};
+
+export function withoutBugReporting() {
+  return (
     <FeedbackForm
       disableBugReporting
       categories={{
@@ -39,4 +50,9 @@ storiesOf('Forms/FeedbackForm', module)
         return Promise.resolve();
       }}
     />
-  ));
+  );
+}
+
+withoutBugReporting.story = {
+  name: 'Without bug reporting.',
+};

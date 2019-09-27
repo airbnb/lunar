@@ -1,13 +1,34 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import PriceComparison from '.';
 
-storiesOf('Core/PriceComparison', module)
-  .addParameters({
+export default {
+  title: 'Core/PriceComparison',
+
+  parameters: {
     inspectComponents: [PriceComparison],
-  })
-  .add('Both native and USD amounts.', () => (
-    <PriceComparison amount={123} amountUSD={123} currency="EUR" />
-  ))
-  .add('Only native amounts.', () => <PriceComparison amount={123} currency="EUR" />)
-  .add('Only USD amounts.', () => <PriceComparison amountUSD={123} currency="EUR" />);
+  },
+};
+
+export function bothNativeAndUsdAmounts() {
+  return <PriceComparison amount={123} amountUSD={123} currency="EUR" />;
+}
+
+bothNativeAndUsdAmounts.story = {
+  name: 'Both native and USD amounts.',
+};
+
+export function onlyNativeAmounts() {
+  return <PriceComparison amount={123} currency="EUR" />;
+}
+
+onlyNativeAmounts.story = {
+  name: 'Only native amounts.',
+};
+
+export function onlyUsdAmounts() {
+  return <PriceComparison amountUSD={123} currency="EUR" />;
+}
+
+onlyUsdAmounts.story = {
+  name: 'Only USD amounts.',
+};

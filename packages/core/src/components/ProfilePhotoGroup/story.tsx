@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import lunar from ':storybook/images/lunar-logo.png';
 import ProfilePhoto from '../ProfilePhoto';
 import ProfilePhotoGroup from '.';
 
-storiesOf('Core/ProfilePhotoGroup', module)
-  .addParameters({
+export default {
+  title: 'Core/ProfilePhotoGroup',
+
+  parameters: {
     inspectComponents: [ProfilePhotoGroup],
-  })
-  .add('Display a horizontal group of profile photos.', () => (
+  },
+};
+
+export function displayAHorizontalGroupOfProfilePhotos() {
+  return (
     <ProfilePhotoGroup>
       <ProfilePhoto imageSrc={lunar} title="Photo" />
 
@@ -16,8 +20,15 @@ storiesOf('Core/ProfilePhotoGroup', module)
 
       <ProfilePhoto imageSrc={lunar} title="Photo" />
     </ProfilePhotoGroup>
-  ))
-  .add('Show a remainder when the max is met.', () => (
+  );
+}
+
+displayAHorizontalGroupOfProfilePhotos.story = {
+  name: 'Display a horizontal group of profile photos.',
+};
+
+export function showARemainderWhenTheMaxIsMet() {
+  return (
     <ProfilePhotoGroup max={2}>
       <ProfilePhoto imageSrc={lunar} title="Photo" />
 
@@ -27,25 +38,35 @@ storiesOf('Core/ProfilePhotoGroup', module)
 
       <ProfilePhoto imageSrc={lunar} title="Photo" />
     </ProfilePhotoGroup>
-  ))
-  .add('Support different sizes.', () => (
-    <>
-      <div>
-        <ProfilePhotoGroup size={3}>
-          <ProfilePhoto imageSrc={lunar} title="Photo" />
+  );
+}
 
-          <ProfilePhoto imageSrc={lunar} title="Photo" />
+showARemainderWhenTheMaxIsMet.story = {
+  name: 'Show a remainder when the max is met.',
+};
 
-          <ProfilePhoto imageSrc={lunar} title="Photo" />
-        </ProfilePhotoGroup>
-        <br />
-        <ProfilePhotoGroup size={8}>
-          <ProfilePhoto imageSrc={lunar} title="Photo" />
+export function supportDifferentSizes() {
+  return <>
+    <div>
+      <ProfilePhotoGroup size={3}>
+        <ProfilePhoto imageSrc={lunar} title="Photo" />
 
-          <ProfilePhoto imageSrc={lunar} title="Photo" />
+        <ProfilePhoto imageSrc={lunar} title="Photo" />
 
-          <ProfilePhoto imageSrc={lunar} title="Photo" />
-        </ProfilePhotoGroup>
-      </div>
-    </>
-  ));
+        <ProfilePhoto imageSrc={lunar} title="Photo" />
+      </ProfilePhotoGroup>
+      <br />
+      <ProfilePhotoGroup size={8}>
+        <ProfilePhoto imageSrc={lunar} title="Photo" />
+
+        <ProfilePhoto imageSrc={lunar} title="Photo" />
+
+        <ProfilePhoto imageSrc={lunar} title="Photo" />
+      </ProfilePhotoGroup>
+    </div>
+  </>;
+}
+
+supportDifferentSizes.story = {
+  name: 'Support different sizes.',
+};

@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Text from '../Text';
 import List, { Item } from '.';
 
-storiesOf('Core/List', module)
-  .addParameters({
+export default {
+  title: 'Core/List',
+
+  parameters: {
     inspectComponents: [List, Item],
-  })
-  .add('Default unordered list.', () => (
+  },
+};
+
+export function defaultUnorderedList() {
+  return (
     <List>
       <Item>
         <Text>
@@ -28,8 +32,15 @@ storiesOf('Core/List', module)
         </Text>
       </Item>
     </List>
-  ))
-  .add('List with `gutter`.', () => (
+  );
+}
+
+defaultUnorderedList.story = {
+  name: 'Default unordered list.',
+};
+
+export function listWithGutter() {
+  return (
     <List gutter>
       <Item>
         <Text>
@@ -49,8 +60,15 @@ storiesOf('Core/List', module)
         </Text>
       </Item>
     </List>
-  ))
-  .add('List with `horizontal`.', () => (
+  );
+}
+
+listWithGutter.story = {
+  name: 'List with `gutter`.',
+};
+
+export function listWithHorizontal() {
+  return (
     <List horizontal>
       <Item>
         <Text>
@@ -70,8 +88,15 @@ storiesOf('Core/List', module)
         </Text>
       </Item>
     </List>
-  ))
-  .add('List  with `horizontal` and `gutter`.', () => (
+  );
+}
+
+listWithHorizontal.story = {
+  name: 'List with `horizontal`.',
+};
+
+export function listWithHorizontalAndGutter() {
+  return (
     <List gutter horizontal>
       <Item>
         <Text>
@@ -91,8 +116,15 @@ storiesOf('Core/List', module)
         </Text>
       </Item>
     </List>
-  ))
-  .add('List with `horizontal` and `wrap`.', () => (
+  );
+}
+
+listWithHorizontalAndGutter.story = {
+  name: 'List  with `horizontal` and `gutter`.',
+};
+
+export function listWithHorizontalAndWrap() {
+  return (
     <List horizontal wrap>
       <Item>
         <Text>
@@ -112,8 +144,15 @@ storiesOf('Core/List', module)
         </Text>
       </Item>
     </List>
-  ))
-  .add('List with `ordered` to render as `<ol></ol>`.', () => (
+  );
+}
+
+listWithHorizontalAndWrap.story = {
+  name: 'List with `horizontal` and `wrap`.',
+};
+
+export function listWithOrderedToRenderAsOlOl() {
+  return (
     <List ordered>
       <Item>
         <Text>
@@ -133,8 +172,15 @@ storiesOf('Core/List', module)
         </Text>
       </Item>
     </List>
-  ))
-  .add('Items with `bordered`.', () => (
+  );
+}
+
+listWithOrderedToRenderAsOlOl.story = {
+  name: 'List with `ordered` to render as `<ol></ol>`.',
+};
+
+export function itemsWithBordered() {
+  return (
     <List>
       <Item bordered>
         <Text>
@@ -154,8 +200,15 @@ storiesOf('Core/List', module)
         </Text>
       </Item>
     </List>
-  ))
-  .add('Items with `compact` padding.', () => (
+  );
+}
+
+itemsWithBordered.story = {
+  name: 'Items with `bordered`.',
+};
+
+export function itemsWithCompactPadding() {
+  return (
     <List>
       <Item compact>
         <Text>
@@ -175,8 +228,15 @@ storiesOf('Core/List', module)
         </Text>
       </Item>
     </List>
-  ))
-  .add('Items with `spacious` padding.', () => (
+  );
+}
+
+itemsWithCompactPadding.story = {
+  name: 'Items with `compact` padding.',
+};
+
+export function itemsWithSpaciousPadding() {
+  return (
     <List>
       <Item spacious>
         <Text>
@@ -196,4 +256,9 @@ storiesOf('Core/List', module)
         </Text>
       </Item>
     </List>
-  ));
+  );
+}
+
+itemsWithSpaciousPadding.story = {
+  name: 'Items with `spacious` padding.',
+};

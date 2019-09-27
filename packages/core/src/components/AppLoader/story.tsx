@@ -1,18 +1,29 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Text from '../Text';
 import AppLoader from '.';
 
-storiesOf('Core/AppLoader', module)
-  .addParameters({
+export default {
+  title: 'Core/AppLoader',
+
+  parameters: {
     inspectComponents: [AppLoader],
-  })
-  .add('By default, displays a loading state while requesting data.', () => (
+  },
+};
+
+export function byDefaultDisplaysALoadingStateWhileRequestingData() {
+  return (
     <AppLoader failureText="Failed to load application" loadingText="Loading application">
       <Text>Content</Text>
     </AppLoader>
-  ))
-  .add('Display an error when a request fails.', () => (
+  );
+}
+
+byDefaultDisplaysALoadingStateWhileRequestingData.story = {
+  name: 'By default, displays a loading state while requesting data.',
+};
+
+export function displayAnErrorWhenARequestFails() {
+  return (
     <AppLoader
       error={new Error('404')}
       failureText="Failed to load application"
@@ -20,13 +31,27 @@ storiesOf('Core/AppLoader', module)
     >
       <Text>Content</Text>
     </AppLoader>
-  ))
-  .add('Display the content for a successful, fetched request.', () => (
+  );
+}
+
+displayAnErrorWhenARequestFails.story = {
+  name: 'Display an error when a request fails.',
+};
+
+export function displayTheContentForASuccessfulFetchedRequest() {
+  return (
     <AppLoader fetched failureText="Failed to load application" loadingText="Loading application">
       <Text>Content</Text>
     </AppLoader>
-  ))
-  .add('With a subtitle.', () => (
+  );
+}
+
+displayTheContentForASuccessfulFetchedRequest.story = {
+  name: 'Display the content for a successful, fetched request.',
+};
+
+export function withASubtitle() {
+  return (
     <AppLoader
       failureText="Failed to load reservation"
       loadingText="Loading reservation"
@@ -34,8 +59,15 @@ storiesOf('Core/AppLoader', module)
     >
       <Text>Content</Text>
     </AppLoader>
-  ))
-  .add('With a small heading and centered horizontally.', () => (
+  );
+}
+
+withASubtitle.story = {
+  name: 'With a subtitle.',
+};
+
+export function withASmallHeadingAndCenteredHorizontally() {
+  return (
     <AppLoader
       centered
       small
@@ -45,4 +77,9 @@ storiesOf('Core/AppLoader', module)
     >
       <Text>Content</Text>
     </AppLoader>
-  ));
+  );
+}
+
+withASmallHeadingAndCenteredHorizontally.story = {
+  name: 'With a small heading and centered horizontally.',
+};

@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Form from '../Form';
 import FormActions from '.';
 
-storiesOf('Forms/FormActions', module)
-  .addParameters({
+export default {
+  title: 'Forms/FormActions',
+
+  parameters: {
     inspectComponents: [FormActions],
-  })
-  .add('Connected to the parent `Form`.', () => (
+  },
+};
+
+export function connectedToTheParentForm() {
+  return (
     <Form
       onSubmit={() => {
         action('onSubmit')();
@@ -18,4 +22,9 @@ storiesOf('Forms/FormActions', module)
     >
       <FormActions />
     </Form>
-  ));
+  );
+}
+
+connectedToTheParentForm.story = {
+  name: 'Connected to the parent `Form`.',
+};

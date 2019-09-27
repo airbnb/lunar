@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import CountBadge from '.';
@@ -32,12 +31,34 @@ class CountExample extends React.Component<{}, { count: number }> {
   }
 }
 
-storiesOf('Core/CountBadge', module)
-  .addParameters({
+export default {
+  title: 'Core/CountBadge',
+
+  parameters: {
     inspectComponents: [CountBadge],
-  })
-  .add('Default animation.', () => <CountBadge accessibilityLabel="5 unread messages" value={5} />)
-  .add('Add waggle animation.', () => (
-    <CountBadge waggle accessibilityLabel="5 unread messages" value={5} />
-  ))
-  .add('Change value to trigger animations.', () => <CountExample />);
+  },
+};
+
+export function defaultAnimation() {
+  return <CountBadge accessibilityLabel="5 unread messages" value={5} />;
+}
+
+defaultAnimation.story = {
+  name: 'Default animation.',
+};
+
+export function addWaggleAnimation() {
+  return <CountBadge waggle accessibilityLabel="5 unread messages" value={5} />;
+}
+
+addWaggleAnimation.story = {
+  name: 'Add waggle animation.',
+};
+
+export function changeValueToTriggerAnimations() {
+  return <CountExample />;
+}
+
+changeValueToTriggerAnimations.story = {
+  name: 'Change value to trigger animations.',
+};

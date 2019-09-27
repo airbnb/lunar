@@ -1,18 +1,27 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import TrackingBoundary from '.';
 
-storiesOf('Core/TrackingBoundary', module)
-  .addParameters({
+export default {
+  title: 'Core/TrackingBoundary',
+
+  parameters: {
     inspectComponents: [TrackingBoundary],
-  })
-  .add('Track clicks and keypresses in an area.', () => (
+  },
+};
+
+export function trackClicksAndKeypressesInAnArea() {
+  return (
     <TrackingBoundary name="ReservationsTable">
       {/* eslint-disable-next-line */}
       <div onClick={action('onClick')} onKeyDown={action('onKeyDown')}>
         <LoremIpsum />
       </div>
     </TrackingBoundary>
-  ));
+  );
+}
+
+trackClicksAndKeypressesInAnArea.story = {
+  name: 'Track clicks and keypresses in an area.',
+};

@@ -1,41 +1,78 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Text from '../Text';
 import NotchedBox from '.';
 
-storiesOf('Core/NotchedBox', module)
-  .addParameters({
+export default {
+  title: 'Core/NotchedBox',
+
+  parameters: {
     inspectComponents: [NotchedBox],
-  })
-  .add('Display a box with a notch.', () => (
+  },
+};
+
+export function displayABoxWithANotch() {
+  return (
     <NotchedBox>
       <Text>
         <LoremIpsum />
       </Text>
     </NotchedBox>
-  ))
-  .add('Specifying an offset.', () => (
+  );
+}
+
+displayABoxWithANotch.story = {
+  name: 'Display a box with a notch.',
+};
+
+export function specifyingAnOffset() {
+  return (
     <NotchedBox notchOffset="50%">
       <Text>
         <LoremIpsum />
       </Text>
     </NotchedBox>
-  ))
-  .add('With an inverted style.', () => (
+  );
+}
+
+specifyingAnOffset.story = {
+  name: 'Specifying an offset.',
+};
+
+export function withAnInvertedStyle() {
+  return (
     <NotchedBox inverted>
       <Text inverted>
         <LoremIpsum />
       </Text>
     </NotchedBox>
-  ))
-  .add('Inline.', () => (
+  );
+}
+
+withAnInvertedStyle.story = {
+  name: 'With an inverted style.',
+};
+
+export function inlineStory() {
+  return (
     <NotchedBox inline>
       <Text>Hello World</Text>
     </NotchedBox>
-  ))
-  .add('Inline and right-aligned notch.', () => (
+  );
+}
+
+inlineStory.story = {
+  name: 'Inline.',
+};
+
+export function inlineAndRightAlignedNotch() {
+  return (
     <NotchedBox inline notchOffset={-1}>
       <Text>Hello World</Text>
     </NotchedBox>
-  ));
+  );
+}
+
+inlineAndRightAlignedNotch.story = {
+  name: 'Inline and right-aligned notch.',
+};

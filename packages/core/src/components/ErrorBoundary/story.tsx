@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import ErrorBoundary from '.';
 
@@ -10,12 +9,22 @@ function TestComponent() {
   return null;
 }
 
-storiesOf('Core/ErrorBoundary', module)
-  .addParameters({
+export default {
+  title: 'Core/ErrorBoundary',
+
+  parameters: {
     inspectComponents: [ErrorBoundary],
-  })
-  .add('Wraps and catches an error.', () => (
+  },
+};
+
+export function wrapsAndCatchesAnError() {
+  return (
     <ErrorBoundary onCatch={action('onCatch')}>
       <TestComponent />
     </ErrorBoundary>
-  ));
+  );
+}
+
+wrapsAndCatchesAnError.story = {
+  name: 'Wraps and catches an error.',
+};

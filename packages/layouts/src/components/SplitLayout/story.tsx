@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Aside from '../Aside';
 import SplitLayout from '.';
 
-storiesOf('Layouts/SplitLayout', module)
-  .addParameters({
+export default {
+  title: 'Layouts/SplitLayout',
+
+  parameters: {
     inspectComponents: [SplitLayout],
-  })
-  .add('A split column layout with before and after aside.', () => (
+  },
+};
+
+export function aSplitColumnLayoutWithBeforeAndAfterAside() {
+  return (
     <SplitLayout
       after={
         <Aside>
@@ -21,4 +25,9 @@ storiesOf('Layouts/SplitLayout', module)
         </Aside>
       }
     />
-  ));
+  );
+}
+
+aSplitColumnLayoutWithBeforeAndAfterAside.story = {
+  name: 'A split column layout with before and after aside.',
+};

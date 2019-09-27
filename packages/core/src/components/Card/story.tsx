@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import LoremIpsum from ':storybook/components/LoremIpsum';
@@ -10,12 +9,17 @@ import Text from '../Text';
 import ResponsiveImage from '../ResponsiveImage';
 import Card, { Content } from '.';
 
-storiesOf('Core/Card', module)
-  .addParameters({
+export default {
+  title: 'Core/Card',
+
+  parameters: {
     inspectComponents: [Card, Content],
     happo: { delay: 500 },
-  })
-  .add('A standard card.', () => (
+  },
+};
+
+export function aStandardCard() {
+  return (
     <Card>
       <Content>
         <Text>
@@ -23,8 +27,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('A card with overflow visible.', () => (
+  );
+}
+
+aStandardCard.story = {
+  name: 'A standard card.',
+};
+
+export function aCardWithOverflowVisible() {
+  return (
     <Card overflow>
       <Content>
         <div
@@ -43,8 +54,15 @@ storiesOf('Core/Card', module)
         </div>
       </Content>
     </Card>
-  ))
-  .add('A card with multiple blocks of content.', () => (
+  );
+}
+
+aCardWithOverflowVisible.story = {
+  name: 'A card with overflow visible.',
+};
+
+export function aCardWithMultipleBlocksOfContent() {
+  return (
     <Card>
       <Content>
         <Text>
@@ -58,8 +76,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('With a max height.', () => (
+  );
+}
+
+aCardWithMultipleBlocksOfContent.story = {
+  name: 'A card with multiple blocks of content.',
+};
+
+export function withAMaxHeight() {
+  return (
     <Card>
       <Content middleAlign maxHeight={50}>
         <Text>
@@ -67,8 +92,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('With a min height.', () => (
+  );
+}
+
+withAMaxHeight.story = {
+  name: 'With a max height.',
+};
+
+export function withAMinHeight() {
+  return (
     <Card>
       <Content middleAlign minHeight={300}>
         <Text>
@@ -76,8 +108,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('A card with a top featured image.', () => (
+  );
+}
+
+withAMinHeight.story = {
+  name: 'With a min height.',
+};
+
+export function aCardWithATopFeaturedImage() {
+  return (
     <Card>
       <Content topImageSrc={stars}>
         <Text>
@@ -85,8 +124,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('A card with a large top featured image.', () => (
+  );
+}
+
+aCardWithATopFeaturedImage.story = {
+  name: 'A card with a top featured image.',
+};
+
+export function aCardWithALargeTopFeaturedImage() {
+  return (
     <Card>
       <Content large topImageSrc={stars}>
         <Text>
@@ -94,8 +140,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('A card with a small left featured image.', () => (
+  );
+}
+
+aCardWithALargeTopFeaturedImage.story = {
+  name: 'A card with a large top featured image.',
+};
+
+export function aCardWithALSmallLeftFeaturedImage() {
+  return (
     <Card>
       <Content small beforeImageSrc={moon}>
         <Text>
@@ -103,8 +156,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('A card with a left featured image.', () => (
+  );
+}
+
+aCardWithALSmallLeftFeaturedImage.story = {
+  name: 'A card with a small left featured image.',
+};
+
+export function aCardWithALeftFeaturedImage() {
+  return (
     <Card>
       <Content beforeImageSrc={moon}>
         <Text>
@@ -112,8 +172,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('A card with a large left featured image.', () => (
+  );
+}
+
+aCardWithALeftFeaturedImage.story = {
+  name: 'A card with a left featured image.',
+};
+
+export function aCardWithALargeLeftFeaturedImage() {
+  return (
     <Card>
       <Content large beforeImageSrc={moon}>
         <Text>
@@ -121,8 +188,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('A card with a small right featured image.', () => (
+  );
+}
+
+aCardWithALargeLeftFeaturedImage.story = {
+  name: 'A card with a large left featured image.',
+};
+
+export function aCardWithASmallRightFeaturedImage() {
+  return (
     <Card>
       <Content small afterImageSrc={moon}>
         <Text>
@@ -130,8 +204,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('A card with a right featured image.', () => (
+  );
+}
+
+aCardWithASmallRightFeaturedImage.story = {
+  name: 'A card with a small right featured image.',
+};
+
+export function aCardWithARightFeaturedImage() {
+  return (
     <Card>
       <Content afterImageSrc={moon}>
         <Text>
@@ -139,8 +220,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('A card with a large right featured image.', () => (
+  );
+}
+
+aCardWithARightFeaturedImage.story = {
+  name: 'A card with a right featured image.',
+};
+
+export function aCardWithALargeRightFeaturedImage() {
+  return (
     <Card>
       <Content large afterImageSrc={moon}>
         <Text>
@@ -148,8 +236,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('A card with text truncation.', () => (
+  );
+}
+
+aCardWithALargeRightFeaturedImage.story = {
+  name: 'A card with a large right featured image.',
+};
+
+export function aCardWithTextTruncation() {
+  return (
     <Card>
       <Content truncated beforeImageSrc={stars}>
         <Text truncated>
@@ -161,8 +256,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('Click-able.', () => (
+  );
+}
+
+aCardWithTextTruncation.story = {
+  name: 'A card with text truncation.',
+};
+
+export function clickAble() {
+  return (
     <Card>
       <Content
         truncated
@@ -174,8 +276,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('As compact.', () => (
+  );
+}
+
+clickAble.story = {
+  name: 'Click-able.',
+};
+
+export function asCompact() {
+  return (
     <Card>
       <Content compact>
         <Text>
@@ -183,8 +292,15 @@ storiesOf('Core/Card', module)
         </Text>
       </Content>
     </Card>
-  ))
-  .add('Card as a button with middle alignment.', () => (
+  );
+}
+
+asCompact.story = {
+  name: 'As compact.',
+};
+
+export function cardAsAButtonWithMiddleAlignment() {
+  return (
     <Card>
       <Content
         compact
@@ -212,4 +328,9 @@ storiesOf('Core/Card', module)
         <Text>Read more</Text>
       </Content>
     </Card>
-  ));
+  );
+}
+
+cardAsAButtonWithMiddleAlignment.story = {
+  name: 'Card as a button with middle alignment.',
+};

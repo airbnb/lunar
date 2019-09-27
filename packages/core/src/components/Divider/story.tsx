@@ -1,10 +1,26 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Divider from '.';
 
-storiesOf('Core/Divider', module)
-  .addParameters({
+export default {
+  title: 'Core/Divider',
+
+  parameters: {
     inspectComponents: [Divider],
-  })
-  .add('Standard divider.', () => <Divider />)
-  .add('Short divider.', () => <Divider short />);
+  },
+};
+
+export function standardDivider() {
+  return <Divider />;
+}
+
+standardDivider.story = {
+  name: 'Standard divider.',
+};
+
+export function shortDivider() {
+  return <Divider short />;
+}
+
+shortDivider.story = {
+  name: 'Short divider.',
+};

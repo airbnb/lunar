@@ -1,9 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Empty from '.';
 
-storiesOf('Core/Empty', module)
-  .addParameters({
+export default {
+  title: 'Core/Empty',
+
+  parameters: {
     inspectComponents: [Empty],
-  })
-  .add('Empty state using a dash.', () => <Empty />);
+  },
+};
+
+export function emptyStateUsingADash() {
+  return <Empty />;
+}
+
+emptyStateUsingADash.story = {
+  name: 'Empty state using a dash.',
+};

@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import gql from 'graphql-tag';
 import Button from '@airbnb/lunar/lib/components/Button';
 import Shimmer from '@airbnb/lunar/lib/components/Shimmer';
@@ -72,28 +71,52 @@ function UpdateButton({ onUpdate }: { onUpdate: MutationFunction<{}, User> }) {
   );
 }
 
-storiesOf('Apollo/Mutation', module)
-  .addParameters({
+export default {
+  title: 'Apollo/Mutation',
+
+  parameters: {
     inspectComponents: [Mutation],
-  })
-  .add('Execute a GraphQL mutation and handle the response when received.', () => (
+  },
+};
+
+export function executeAGraphQlMutationAndHandleTheResponseWhenReceived() {
+  return (
     <MockedProvider mocks={[mock]} addTypename={false}>
       <Mutation mutation={MUTATION} variables={variables}>
         {updateUser => <UpdateButton onUpdate={updateUser} />}
       </Mutation>
     </MockedProvider>
-  ))
-  .add('Custom loading component.', () => (
+  );
+}
+
+executeAGraphQlMutationAndHandleTheResponseWhenReceived.story = {
+  name: 'Execute a GraphQL mutation and handle the response when received.',
+};
+
+export function customLoadingComponent() {
+  return (
     <MockedProvider mocks={[loadingMock]} addTypename={false}>
       <Mutation mutation={MUTATION} variables={variables} loading={<Shimmer />}>
         {updateUser => <UpdateButton onUpdate={updateUser} />}
       </Mutation>
     </MockedProvider>
-  ))
-  .add('Custom error component.', () => (
+  );
+}
+
+customLoadingComponent.story = {
+  name: 'Custom loading component.',
+};
+
+export function customErrorComponent() {
+  return (
     <MockedProvider mocks={[errorMock]} addTypename={false}>
       <Mutation mutation={MUTATION} error={error => <ErrorMessage error={error} />}>
         {updateUser => <UpdateButton onUpdate={updateUser} />}
       </Mutation>
     </MockedProvider>
-  ));
+  );
+}
+
+customErrorComponent.story = {
+  name: 'Custom error component.',
+};

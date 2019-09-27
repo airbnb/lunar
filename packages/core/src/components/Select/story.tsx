@@ -1,13 +1,17 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Select from '.';
 
-storiesOf('Core/Select', module)
-  .addParameters({
+export default {
+  title: 'Core/Select',
+
+  parameters: {
     inspectComponents: [Select],
-  })
-  .add('A standard select field.', () => (
+  },
+};
+
+export function aStandardSelectField() {
+  return (
     <Select name="select-basic" label="Label" onChange={action('onChange')}>
       <option value="foo">Foo</option>
       <option disabled value="bar">
@@ -15,27 +19,39 @@ storiesOf('Core/Select', module)
       </option>
       <option value="baz">Baz</option>
     </Select>
-  ))
-  .add('With a compact smaller view.', () => (
-    <>
-      <Select compact name="select-compact" label="Compact" onChange={action('onChange')}>
-        <option value="foo">Foo</option>
-        <option disabled value="bar">
-          Bar
-        </option>
-        <option value="baz">Baz</option>
-      </Select>
+  );
+}
 
-      <Select name="select-regular" label="Regular" onChange={action('onChange')}>
-        <option value="foo">Foo</option>
-        <option disabled value="bar">
-          Bar
-        </option>
-        <option value="baz">Baz</option>
-      </Select>
-    </>
-  ))
-  .add('With an error message in an invalid state.', () => (
+aStandardSelectField.story = {
+  name: 'A standard select field.',
+};
+
+export function withACompactSmallerView() {
+  return <>
+    <Select compact name="select-compact" label="Compact" onChange={action('onChange')}>
+      <option value="foo">Foo</option>
+      <option disabled value="bar">
+        Bar
+      </option>
+      <option value="baz">Baz</option>
+    </Select>
+
+    <Select name="select-regular" label="Regular" onChange={action('onChange')}>
+      <option value="foo">Foo</option>
+      <option disabled value="bar">
+        Bar
+      </option>
+      <option value="baz">Baz</option>
+    </Select>
+  </>;
+}
+
+withACompactSmallerView.story = {
+  name: 'With a compact smaller view.',
+};
+
+export function withAnErrorMessageInAnInvalidState() {
+  return (
     <Select
       invalid
       name="select-error"
@@ -49,8 +65,15 @@ storiesOf('Core/Select', module)
       </option>
       <option value="baz">Baz</option>
     </Select>
-  ))
-  .add('With a label description in a disabled state.', () => (
+  );
+}
+
+withAnErrorMessageInAnInvalidState.story = {
+  name: 'With an error message in an invalid state.',
+};
+
+export function withALabelDescriptionInADisabledState() {
+  return (
     <Select
       disabled
       name="select-disabled"
@@ -64,8 +87,15 @@ storiesOf('Core/Select', module)
       </option>
       <option value="baz">Baz</option>
     </Select>
-  ))
-  .add('With a hidden label and a placeholder.', () => (
+  );
+}
+
+withALabelDescriptionInADisabledState.story = {
+  name: 'With a label description in a disabled state.',
+};
+
+export function withAHiddenLabelAndAPlaceholder() {
+  return (
     <Select
       hideLabel
       name="select-custom"
@@ -79,8 +109,15 @@ storiesOf('Core/Select', module)
       </option>
       <option value="baz">Baz</option>
     </Select>
-  ))
-  .add('Marked as optional.', () => (
+  );
+}
+
+withAHiddenLabelAndAPlaceholder.story = {
+  name: 'With a hidden label and a placeholder.',
+};
+
+export function markedAsOptional() {
+  return (
     <Select optional name="select-optional" label="Label" onChange={action('onChange')}>
       <option value="foo">Foo</option>
       <option disabled value="bar">
@@ -88,8 +125,15 @@ storiesOf('Core/Select', module)
       </option>
       <option value="baz">Baz</option>
     </Select>
-  ))
-  .add('Display with inline label.', () => (
+  );
+}
+
+markedAsOptional.story = {
+  name: 'Marked as optional.',
+};
+
+export function displayWithInlineLabel() {
+  return (
     <Select optional inline name="select-optional" label="Label" onChange={action('onChange')}>
       <option value="foo">Foo</option>
       <option disabled value="bar">
@@ -97,4 +141,9 @@ storiesOf('Core/Select', module)
       </option>
       <option value="baz">Baz</option>
     </Select>
-  ));
+  );
+}
+
+displayWithInlineLabel.story = {
+  name: 'Display with inline label.',
+};

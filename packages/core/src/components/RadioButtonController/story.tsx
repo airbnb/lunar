@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import RadioButtonController from '.';
 import BaseRadioButton from '../RadioButton';
 
-storiesOf('Core/RadioButtonController', module)
-  .addParameters({
+export default {
+  title: 'Core/RadioButtonController',
+
+  parameters: {
     inspectComponents: [RadioButtonController, BaseRadioButton],
-  })
-  .add('Controls multiple radio buttons.', () => (
+  },
+};
+
+export function controlsMultipleRadioButtons() {
+  return (
     <RadioButtonController
       optional
       label="Favorite food?"
@@ -23,8 +27,15 @@ storiesOf('Core/RadioButtonController', module)
         </div>
       )}
     </RadioButtonController>
-  ))
-  .add('Handles invalid state, with no spacing.', () => (
+  );
+}
+
+controlsMultipleRadioButtons.story = {
+  name: 'Controls multiple radio buttons.',
+};
+
+export function handlesInvalidStateWithNoSpacing() {
+  return (
     <RadioButtonController invalid label="Favorite food?" name="food" onChange={action('onChange')}>
       {RadioButton => (
         <div>
@@ -34,8 +45,15 @@ storiesOf('Core/RadioButtonController', module)
         </div>
       )}
     </RadioButtonController>
-  ))
-  .add('Handles disabled state, with no spacing.', () => (
+  );
+}
+
+handlesInvalidStateWithNoSpacing.story = {
+  name: 'Handles invalid state, with no spacing.',
+};
+
+export function handlesDisabledStateWithNoSpacing() {
+  return (
     <RadioButtonController
       disabled
       label="Favorite food?"
@@ -50,4 +68,9 @@ storiesOf('Core/RadioButtonController', module)
         </div>
       )}
     </RadioButtonController>
-  ));
+  );
+}
+
+handlesDisabledStateWithNoSpacing.story = {
+  name: 'Handles disabled state, with no spacing.',
+};

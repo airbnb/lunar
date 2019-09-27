@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import DirectionalIcon from '.';
 
-storiesOf('Core/DirectionalIcon', module)
-  .addParameters({
+export default {
+  title: 'Core/DirectionalIcon',
+
+  parameters: {
     inspectComponents: [DirectionalIcon],
-  })
-  .add('Renders left and right icons based on RTL setting.', () => (
+  },
+};
+
+export function rendersLeftAndRightIconsBasedOnRtlSetting() {
+  return (
     <div>
       Toggle RTL mode to view the icon orientation flip.
       <br />
@@ -28,4 +32,9 @@ storiesOf('Core/DirectionalIcon', module)
         size="3em"
       />
     </div>
-  ));
+  );
+}
+
+rendersLeftAndRightIconsBasedOnRtlSetting.story = {
+  name: 'Renders left and right icons based on RTL setting.',
+};

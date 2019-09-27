@@ -1,16 +1,20 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Text from '../Text';
 import Interval from '.';
 
 const start = Date.now();
 
-storiesOf('Core/Interval', module)
-  .addParameters({
+export default {
+  title: 'Core/Interval',
+
+  parameters: {
     happo: false,
     inspectComponents: [Interval],
-  })
-  .add('Re-renders at an interval.', () => (
+  },
+};
+
+export function reRendersAtAnInterval() {
+  return (
     <Text>
       {/* A fast timer, to demonstrate the deferred scheduling */}
       <Interval every={100}>{now => <div>Interval last time: {now}</div>}</Interval>
@@ -20,4 +24,9 @@ storiesOf('Core/Interval', module)
         {now => <div>Interval has been running for {Math.floor((now - start) / 1000)} seconds</div>}
       </Interval>
     </Text>
-  ));
+  );
+}
+
+reRendersAtAnInterval.story = {
+  name: 'Re-renders at an interval.',
+};

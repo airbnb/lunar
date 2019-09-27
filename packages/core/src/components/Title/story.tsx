@@ -1,54 +1,71 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Title from '.';
 
-storiesOf('Core/Title', module)
-  .addParameters({
+export default {
+  title: 'Core/Title',
+
+  parameters: {
     inspectComponents: [Title],
-  })
-  .add('Titles with different heading levels.', () => (
-    <>
-      <Title level={1}>
-        <LoremIpsum short />
-      </Title>
+  },
+};
 
-      <Title level={2}>
-        <LoremIpsum short />
-      </Title>
+export function titlesWithDifferentHeadingLevels() {
+  return <>
+    <Title level={1}>
+      <LoremIpsum short />
+    </Title>
 
-      <Title level={3}>
-        <LoremIpsum short />
-      </Title>
-    </>
-  ))
-  .add('With different states: muted, inverted, and primary.', () => (
-    <>
-      <Title muted level={3}>
-        <LoremIpsum short />
-      </Title>
+    <Title level={2}>
+      <LoremIpsum short />
+    </Title>
 
-      <Title inverted level={3}>
-        <LoremIpsum short />
-      </Title>
+    <Title level={3}>
+      <LoremIpsum short />
+    </Title>
+  </>;
+}
 
-      <Title primary level={3}>
-        <LoremIpsum short />
-      </Title>
-    </>
-  ))
-  .add('With aligned text.', () => (
-    <>
-      <Title level={3}>
-        <LoremIpsum short />
-      </Title>
+titlesWithDifferentHeadingLevels.story = {
+  name: 'Titles with different heading levels.',
+};
 
-      <Title centerAlign level={3}>
-        <LoremIpsum short />
-      </Title>
+export function withDifferentStatesMutedInvertedAndPrimary() {
+  return <>
+    <Title muted level={3}>
+      <LoremIpsum short />
+    </Title>
 
-      <Title endAlign level={3}>
-        <LoremIpsum short />
-      </Title>
-    </>
-  ));
+    <Title inverted level={3}>
+      <LoremIpsum short />
+    </Title>
+
+    <Title primary level={3}>
+      <LoremIpsum short />
+    </Title>
+  </>;
+}
+
+withDifferentStatesMutedInvertedAndPrimary.story = {
+  name: 'With different states: muted, inverted, and primary.',
+};
+
+export function withAlignedText() {
+  return <>
+    <Title level={3}>
+      <LoremIpsum short />
+    </Title>
+
+    <Title centerAlign level={3}>
+      <LoremIpsum short />
+    </Title>
+
+    <Title endAlign level={3}>
+      <LoremIpsum short />
+    </Title>
+  </>;
+}
+
+withAlignedText.story = {
+  name: 'With aligned text.',
+};

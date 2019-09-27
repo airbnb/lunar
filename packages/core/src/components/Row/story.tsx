@@ -1,31 +1,56 @@
 import React from 'react';
 import IconAddAlt from '@airbnb/lunar-icons/lib/interface/IconAddAlt';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Text from '../Text';
 import Button from '../Button';
 import Row from '.';
 
-storiesOf('Core/Row', module)
-  .addParameters({
+export default {
+  title: 'Core/Row',
+
+  parameters: {
     inspectComponents: [Row],
-  })
-  .add('Primary content.', () => (
+  },
+};
+
+export function primaryContent() {
+  return (
     <Row>
       <Text>This row only has primary content in it.</Text>
     </Row>
-  ))
-  .add('Before content.', () => (
+  );
+}
+
+primaryContent.story = {
+  name: 'Primary content.',
+};
+
+export function beforeContent() {
+  return (
     <Row before={<img src="http://via.placeholder.com/50x50" alt="" />}>
       <Text>This row has a before component.</Text>
     </Row>
-  ))
-  .add('After content.', () => (
+  );
+}
+
+beforeContent.story = {
+  name: 'Before content.',
+};
+
+export function afterContent() {
+  return (
     <Row after={<Button>Take an action</Button>}>
       <Text>This row has an after component.</Text>
     </Row>
-  ))
-  .add('Both before and after content.', () => (
+  );
+}
+
+afterContent.story = {
+  name: 'After content.',
+};
+
+export function bothBeforeAndAfterContent() {
+  return (
     <Row
       middleAlign
       before={<img src="http://via.placeholder.com/50x50" alt="" />}
@@ -33,13 +58,27 @@ storiesOf('Core/Row', module)
     >
       <Text>This row has both before and after, and is aligned in the middle vertically.</Text>
     </Row>
-  ))
-  .add('With inline.', () => (
+  );
+}
+
+bothBeforeAndAfterContent.story = {
+  name: 'Both before and after content.',
+};
+
+export function withInline() {
+  return (
     <Row inline middleAlign after={<IconAddAlt decorative />}>
       <Text>Inline row with after content, middle aligned.</Text>
     </Row>
-  ))
-  .add('With long content.', () => (
+  );
+}
+
+withInline.story = {
+  name: 'With inline.',
+};
+
+export function withLongContent() {
+  return (
     <Row
       before={<img src="http://via.placeholder.com/50x50" alt="" />}
       after={<Button>Take an action</Button>}
@@ -49,13 +88,27 @@ storiesOf('Core/Row', module)
         <LoremIpsum />
       </Text>
     </Row>
-  ))
-  .add('With topline and baseline.', () => (
+  );
+}
+
+withLongContent.story = {
+  name: 'With long content.',
+};
+
+export function withToplineAndBaseline() {
+  return (
     <Row topline baseline spacious after={<Button>Take an action</Button>}>
       <Text>A row where both topline and baseline are true.</Text>
     </Row>
-  ))
-  .add('All line options.', () => (
+  );
+}
+
+withToplineAndBaseline.story = {
+  name: 'With topline and baseline.',
+};
+
+export function allLineOptions() {
+  return (
     <>
       <div>
         <Row topline spacious after={<Button>Take an action</Button>}>
@@ -71,8 +124,15 @@ storiesOf('Core/Row', module)
         </Row>
       </div>
     </>
-  ))
-  .add('All padding options.', () => (
+  );
+}
+
+allLineOptions.story = {
+  name: 'All line options.',
+};
+
+export function allPaddingOptions() {
+  return (
     <>
       <div>
         <Row spacious topline after={<Button>Take an action</Button>}>
@@ -88,14 +148,33 @@ storiesOf('Core/Row', module)
         </Row>
       </div>
     </>
-  ))
-  .add('With a min height.', () => (
+  );
+}
+
+allPaddingOptions.story = {
+  name: 'All padding options.',
+};
+
+export function withAMinHeight() {
+  return (
     <Row topline baseline minHeight={200}>
-      <Text>A Row with a Min Height</Text>
+      <Text>A row with a min height.</Text>
     </Row>
-  ))
-  .add('With a max height.', () => (
+  );
+}
+
+withAMinHeight.story = {
+  name: 'With a min height.',
+};
+
+export function withAMaxHeight() {
+  return (
     <Row topline baseline maxHeight={50}>
-      <Text>A Row with a Max Height</Text>
+      <Text>A row with a max height.</Text>
     </Row>
-  ));
+  );
+}
+
+withAMaxHeight.story = {
+  name: 'With a max height.',
+};

@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Button from '../Button';
 import CheckBox from '../CheckBox';
 import Text from '../Text';
@@ -135,9 +134,19 @@ class SheetDemo extends React.Component<
   }
 }
 
-storiesOf('Core/Sheet', module)
-  .addParameters({
+export default {
+  title: 'Core/Sheet',
+
+  parameters: {
     happo: false,
     inspectComponents: [Sheet, SheetArea],
-  })
-  .add('A sheet that appears over content.', () => <SheetDemo />);
+  },
+};
+
+export function aSheetThatAppearsOverContent() {
+  return <SheetDemo />;
+}
+
+aSheetThatAppearsOverContent.story = {
+  name: 'A sheet that appears over content.',
+};

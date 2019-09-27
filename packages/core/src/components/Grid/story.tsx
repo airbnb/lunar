@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Text from '../Text';
 import Grid, { Col } from '.';
 
@@ -13,11 +12,16 @@ function Box({ children = null }: { children: React.ReactNode }) {
   );
 }
 
-storiesOf('Core/Grid', module)
-  .addParameters({
+export default {
+  title: 'Core/Grid',
+
+  parameters: {
     inspectComponents: [Grid, Col],
-  })
-  .add('A 12 column grid with 16px gutters.', () => (
+  },
+};
+
+export function a12ColumnGridWith16PxGutters() {
+  return (
     <Text>
       <Grid>
         <Col span={12}>
@@ -166,8 +170,15 @@ storiesOf('Core/Grid', module)
         </Col>
       </Grid>
     </Text>
-  ))
-  .add('Supports columns with offsets for advanced spacing.', () => (
+  );
+}
+
+a12ColumnGridWith16PxGutters.story = {
+  name: 'A 12 column grid with 16px gutters.',
+};
+
+export function supportsColumnsWithOffsetsForAdvancedSpacing() {
+  return (
     <Text>
       <Grid>
         <Col span={12}>
@@ -184,8 +195,15 @@ storiesOf('Core/Grid', module)
         </Col>
       </Grid>
     </Text>
-  ))
-  .add('Can align children along the horizontal axis (default is space-between)', () => (
+  );
+}
+
+supportsColumnsWithOffsetsForAdvancedSpacing.story = {
+  name: 'Supports columns with offsets for advanced spacing.',
+};
+
+export function canAlignChildrenAlongTheHorizontalAxisDefaultIsSpaceBetween() {
+  return (
     <Text>
       <Grid startAlign>
         <Col span={6}>
@@ -205,8 +223,15 @@ storiesOf('Core/Grid', module)
         </Col>
       </Grid>
     </Text>
-  ))
-  .add('Can align children along the vertical axis (default is stretch).', () => (
+  );
+}
+
+canAlignChildrenAlongTheHorizontalAxisDefaultIsSpaceBetween.story = {
+  name: 'Can align children along the horizontal axis (default is space-between)',
+};
+
+export function canAlignChildrenAlongTheVerticalAxisDefaultIsStretch() {
+  return (
     <Text>
       <Grid>
         <Col span={7}>
@@ -269,8 +294,15 @@ storiesOf('Core/Grid', module)
         </Col>
       </Grid>
     </Text>
-  ))
-  .add('Can reverse the order of columns.', () => (
+  );
+}
+
+canAlignChildrenAlongTheVerticalAxisDefaultIsStretch.story = {
+  name: 'Can align children along the vertical axis (default is stretch).',
+};
+
+export function canReverseTheOrderOfColumns() {
+  return (
     <Text>
       <Grid reversed>
         <Col span={3}>
@@ -287,4 +319,9 @@ storiesOf('Core/Grid', module)
         </Col>
       </Grid>
     </Text>
-  ));
+  );
+}
+
+canReverseTheOrderOfColumns.story = {
+  name: 'Can reverse the order of columns.',
+};

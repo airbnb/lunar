@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
 
 import space from ':storybook/images/space.jpg';
 import ImageViewer, { ZoomControls, RotateControls } from '.';
@@ -35,14 +34,34 @@ function ImageViewerDemo({ width, height }: ImageViewerDemoProps) {
   );
 }
 
-storiesOf('Core/ImageViewer', module)
-  .addParameters({
+export default {
+  title: 'Core/ImageViewer',
+
+  parameters: {
     inspectComponents: [ImageViewer, ZoomControls, RotateControls],
-  })
-  .add('ImageViewer', () => <ImageViewerDemo />)
-  .add('With set width and height, landscape.', () => (
-    <ImageViewerDemo height="200px" width="400px" />
-  ))
-  .add('With set width and height, portrait.', () => (
-    <ImageViewerDemo height="300px" width="250px" />
-  ));
+  },
+};
+
+export function imageViewer() {
+  return <ImageViewerDemo />;
+}
+
+imageViewer.story = {
+  name: 'ImageViewer',
+};
+
+export function withSetWidthAndHeightLandscape() {
+  return <ImageViewerDemo height="200px" width="400px" />;
+}
+
+withSetWidthAndHeightLandscape.story = {
+  name: 'With set width and height, landscape.',
+};
+
+export function withSetWidthAndHeightPortrait() {
+  return <ImageViewerDemo height="300px" width="250px" />;
+}
+
+withSetWidthAndHeightPortrait.story = {
+  name: 'With set width and height, portrait.',
+};

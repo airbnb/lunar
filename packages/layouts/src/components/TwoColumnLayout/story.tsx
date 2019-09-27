@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Aside from '../Aside';
 import TwoColumnLayout from '.';
 
-storiesOf('Layouts/TwoColumnLayout', module)
-  .addParameters({
+export default {
+  title: 'Layouts/TwoColumnLayout',
+
+  parameters: {
     inspectComponents: [TwoColumnLayout],
-  })
-  .add('A two column layout with before (left) aside.', () => (
+  },
+};
+
+export function aTwoColumnLayoutWithBeforeLeftAside() {
+  return (
     <TwoColumnLayout
       before
       aside={
@@ -22,8 +26,15 @@ storiesOf('Layouts/TwoColumnLayout', module)
       <LoremIpsum />
       <LoremIpsum />
     </TwoColumnLayout>
-  ))
-  .add('A two column layout with after (right) aside.', () => (
+  );
+}
+
+aTwoColumnLayoutWithBeforeLeftAside.story = {
+  name: 'A two column layout with before (left) aside.',
+};
+
+export function aTwoColumnLayoutWithAfterRightAside() {
+  return (
     <TwoColumnLayout
       after
       aside={
@@ -37,4 +48,9 @@ storiesOf('Layouts/TwoColumnLayout', module)
       <LoremIpsum />
       <LoremIpsum />
     </TwoColumnLayout>
-  ));
+  );
+}
+
+aTwoColumnLayoutWithAfterRightAside.story = {
+  name: 'A two column layout with after (right) aside.',
+};

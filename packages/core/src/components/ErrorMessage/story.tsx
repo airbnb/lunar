@@ -1,15 +1,24 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import ErrorMessage from '.';
 
-storiesOf('Core/ErrorMessage', module)
-  .addParameters({
+export default {
+  title: 'Core/ErrorMessage',
+
+  parameters: {
     inspectComponents: [ErrorMessage],
-  })
-  .add('With an `Error`.', () => (
-    <ErrorMessage error={new Error('Something is broken!')} title="Oops" />
-  ))
-  .add('From an API endpoint error.', () => (
+  },
+};
+
+export function withAnError() {
+  return <ErrorMessage error={new Error('Something is broken!')} title="Oops" />;
+}
+
+withAnError.story = {
+  name: 'With an `Error`.',
+};
+
+export function fromAnApiEndpointError() {
+  return (
     <ErrorMessage
       error={{
         error_id: '123',
@@ -17,4 +26,9 @@ storiesOf('Core/ErrorMessage', module)
         error_message: 'Resource not found.',
       }}
     />
-  ));
+  );
+}
+
+fromAnApiEndpointError.story = {
+  name: 'From an API endpoint error.',
+};

@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import HierarchyPicker, { Props } from '.';
 import Button from '../Button';
@@ -300,26 +299,62 @@ class PickerDemo extends React.Component<Partial<Props>, { chosen: Props['chosen
   }
 }
 
-storiesOf('Core/HierarchyPicker', module)
-  .addParameters({
+export default {
+  title: 'Core/HierarchyPicker',
+
+  parameters: {
     inspectComponents: [HierarchyPicker],
-  })
-  .add('Vertically offset menu', () => <PickerDemo items={demoItems} />)
-  .add('Vertically aligned menu', () => <PickerDemo verticallyAlign items={demoItems} />)
-  .add('With sub-sections and hierarchy dimensions', () => (
-    <PickerDemo verticallyAlign items={demoItems2} hierarchyMaxHeight={272} hierarchyWidth={260} />
-  ))
-  .add('With chosen value', () => (
-    <PickerDemo items={demoItems} chosen={['Item 1', 'Funtastic Testing']} />
-  ))
-  .add('Custom hierarchy width', () => (
+  },
+};
+
+export function verticallyOffsetMenu() {
+  return <PickerDemo items={demoItems} />;
+}
+
+verticallyOffsetMenu.story = {
+  name: 'Vertically offset menu',
+};
+
+export function verticallyAlignedMenu() {
+  return <PickerDemo verticallyAlign items={demoItems} />;
+}
+
+verticallyAlignedMenu.story = {
+  name: 'Vertically aligned menu',
+};
+
+export function withSubSectionsAndHierarchyDimensions() {
+  return <PickerDemo verticallyAlign items={demoItems2} hierarchyMaxHeight={272} hierarchyWidth={260} />;
+}
+
+withSubSectionsAndHierarchyDimensions.story = {
+  name: 'With sub-sections and hierarchy dimensions',
+};
+
+export function withChosenValue() {
+  return <PickerDemo items={demoItems} chosen={['Item 1', 'Funtastic Testing']} />;
+}
+
+withChosenValue.story = {
+  name: 'With chosen value',
+};
+
+export function customHierarchyWidth() {
+  return (
     <PickerDemo
       hierarchyWidth={150}
       items={demoItems2}
       chosen={[demoItems2[1].name, demoItems2[1].items![2].name]}
     />
-  ))
-  .add('Custom search dimensions', () => (
+  );
+}
+
+customHierarchyWidth.story = {
+  name: 'Custom hierarchy width',
+};
+
+export function customSearchDimensions() {
+  return (
     <PickerDemo
       searchWidth={500}
       searchMaxHeight={150}
@@ -330,6 +365,25 @@ storiesOf('Core/HierarchyPicker', module)
         demoItems2[1].items![2].items![1].name,
       ]}
     />
-  ))
-  .add('Disabled', () => <PickerDemo disabled items={demoItems} />)
-  .add('Invalid', () => <PickerDemo invalid items={demoItems} />);
+  );
+}
+
+customSearchDimensions.story = {
+  name: 'Custom search dimensions',
+};
+
+export function disabledStory() {
+  return <PickerDemo disabled items={demoItems} />;
+}
+
+disabledStory.story = {
+  name: 'Disabled',
+};
+
+export function invalidStory() {
+  return <PickerDemo invalid items={demoItems} />;
+}
+
+invalidStory.story = {
+  name: 'Invalid',
+};

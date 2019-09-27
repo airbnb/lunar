@@ -1,13 +1,50 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import SortCarets from '.';
 
-storiesOf('Core/SortCarets', module)
-  .addParameters({
+export default {
+  title: 'Core/SortCarets',
+
+  parameters: {
     inspectComponents: [SortCarets],
-  })
-  .add('With up and down carets.', () => <SortCarets down up />)
-  .add('With only up.', () => <SortCarets up />)
-  .add('With only down.', () => <SortCarets down />)
-  .add('Active up caret.', () => <SortCarets down up enableUp />)
-  .add('Active down caret.', () => <SortCarets down up enableDown />);
+  },
+};
+
+export function withUpAndDownCarets() {
+  return <SortCarets down up />;
+}
+
+withUpAndDownCarets.story = {
+  name: 'With up and down carets.',
+};
+
+export function withOnlyUp() {
+  return <SortCarets up />;
+}
+
+withOnlyUp.story = {
+  name: 'With only up.',
+};
+
+export function withOnlyDown() {
+  return <SortCarets down />;
+}
+
+withOnlyDown.story = {
+  name: 'With only down.',
+};
+
+export function activeUpCaret() {
+  return <SortCarets down up enableUp />;
+}
+
+activeUpCaret.story = {
+  name: 'Active up caret.',
+};
+
+export function activeDownCaret() {
+  return <SortCarets down up enableDown />;
+}
+
+activeDownCaret.story = {
+  name: 'Active down caret.',
+};

@@ -1,12 +1,16 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import SteppedProgressBar, { Step } from '.';
 
-storiesOf('Core/SteppedProgressBar', module)
-  .addParameters({
+export default {
+  title: 'Core/SteppedProgressBar',
+
+  parameters: {
     inspectComponents: [SteppedProgressBar, Step],
-  })
-  .add('Standard progress bar.', () => (
+  },
+};
+
+export function standardProgressBar() {
+  return (
     <SteppedProgressBar>
       <Step complete />
       <Step complete />
@@ -14,8 +18,15 @@ storiesOf('Core/SteppedProgressBar', module)
       <Step />
       <Step />
     </SteppedProgressBar>
-  ))
-  .add('With tooltip labels on each step.', () => (
+  );
+}
+
+standardProgressBar.story = {
+  name: 'Standard progress bar.',
+};
+
+export function withTooltipLabelsOnEachStep() {
+  return (
     <SteppedProgressBar>
       <Step complete label="Cart" />
       <Step complete label="Checkout" />
@@ -23,4 +34,9 @@ storiesOf('Core/SteppedProgressBar', module)
       <Step label="Payment" />
       <Step label="Complete" />
     </SteppedProgressBar>
-  ));
+  );
+}
+
+withTooltipLabelsOnEachStep.story = {
+  name: 'With tooltip labels on each step.',
+};

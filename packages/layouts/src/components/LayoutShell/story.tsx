@@ -1,23 +1,34 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import IconSettings from '@airbnb/lunar-icons/lib/interface/IconSettings';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import SideBar, { Item } from '../SideBar';
 import LayoutShell from '.';
 
-storiesOf('Layouts/LayoutShell', module)
-  .addParameters({
+export default {
+  title: 'Layouts/LayoutShell',
+
+  parameters: {
     inspectComponents: [LayoutShell],
-  })
-  .add('Standard shell with no top or side bars.', () => (
+  },
+};
+
+export function standardShellWithNoTopOrSideBars() {
+  return (
     <LayoutShell>
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
     </LayoutShell>
-  ))
-  .add('With side bar and no background color.', () => (
+  );
+}
+
+standardShellWithNoTopOrSideBars.story = {
+  name: 'Standard shell with no top or side bars.',
+};
+
+export function withSideBarAndNoBackgroundColor() {
+  return (
     <LayoutShell
       sideBar={
         <SideBar accessibilityLabel="Nav">
@@ -30,4 +41,9 @@ storiesOf('Layouts/LayoutShell', module)
       <LoremIpsum />
       <LoremIpsum />
     </LayoutShell>
-  ));
+  );
+}
+
+withSideBarAndNoBackgroundColor.story = {
+  name: 'With side bar and no background color.',
+};

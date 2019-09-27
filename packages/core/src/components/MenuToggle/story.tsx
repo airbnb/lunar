@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import IconMenuDots from '@airbnb/lunar-icons/lib/interface/IconMenuDots';
 import MenuToggle, { Item } from '.';
@@ -16,18 +15,30 @@ const children = [
   </Item>,
 ];
 
-storiesOf('Core/MenuToggle', module)
-  .addParameters({
+export default {
+  title: 'Core/MenuToggle',
+  decorators: [story => <div style={{ width: 200, margin: 'auto' }}>{story()}</div>],
+
+  parameters: {
     happo: false,
     inspectComponents: [MenuToggle],
-  })
-  .addDecorator(story => <div style={{ width: 200, margin: 'auto' }}>{story()}</div>)
-  .add('A basic menu with menu items.', () => (
+  },
+};
+
+export function aBasicMenuWithMenuItems() {
+  return (
     <MenuToggle accessibilityLabel="Actions" toggleLabel="Actions" zIndex={10}>
       {children}
     </MenuToggle>
-  ))
-  .add('With custom icon.', () => (
+  );
+}
+
+aBasicMenuWithMenuItems.story = {
+  name: 'A basic menu with menu items.',
+};
+
+export function withCustomIcon() {
+  return (
     <MenuToggle
       accessibilityLabel="Actions"
       toggleIcon={<IconMenuDots decorative />}
@@ -36,18 +47,39 @@ storiesOf('Core/MenuToggle', module)
     >
       {children}
     </MenuToggle>
-  ))
-  .add('Close on click of an item.', () => (
+  );
+}
+
+withCustomIcon.story = {
+  name: 'With custom icon.',
+};
+
+export function closeOnClickOfAnItem() {
+  return (
     <MenuToggle closeOnClick accessibilityLabel="Actions" toggleLabel="Actions" zIndex={10}>
       {children}
     </MenuToggle>
-  ))
-  .add('Ignore click on outside.', () => (
+  );
+}
+
+closeOnClickOfAnItem.story = {
+  name: 'Close on click of an item.',
+};
+
+export function ignoreClickOnOutside() {
+  return (
     <MenuToggle ignoreClickOutside accessibilityLabel="Actions" toggleLabel="Actions" zIndex={10}>
       {children}
     </MenuToggle>
-  ))
-  .add('As left align.', () => (
+  );
+}
+
+ignoreClickOnOutside.story = {
+  name: 'Ignore click on outside.',
+};
+
+export function asLeftAlign() {
+  return (
     <MenuToggle
       accessibilityLabel="Actions"
       toggleLabel="Actions"
@@ -56,8 +88,15 @@ storiesOf('Core/MenuToggle', module)
     >
       {children}
     </MenuToggle>
-  ))
-  .add('With max height.', () => (
+  );
+}
+
+asLeftAlign.story = {
+  name: 'As left align.',
+};
+
+export function withMaxHeight() {
+  return (
     <MenuToggle
       accessibilityLabel="Actions"
       menuProps={{ maxHeight: 100 }}
@@ -66,19 +105,45 @@ storiesOf('Core/MenuToggle', module)
     >
       {children}
     </MenuToggle>
-  ))
-  .add('As large.', () => (
+  );
+}
+
+withMaxHeight.story = {
+  name: 'With max height.',
+};
+
+export function asLarge() {
+  return (
     <MenuToggle large accessibilityLabel="Actions" toggleLabel="Actions" zIndex={10}>
       {children}
     </MenuToggle>
-  ))
-  .add('As small.', () => (
+  );
+}
+
+asLarge.story = {
+  name: 'As large.',
+};
+
+export function asSmall() {
+  return (
     <MenuToggle small accessibilityLabel="Actions" toggleLabel="Actions" zIndex={10}>
       {children}
     </MenuToggle>
-  ))
-  .add('With disabled.', () => (
+  );
+}
+
+asSmall.story = {
+  name: 'As small.',
+};
+
+export function withDisabled() {
+  return (
     <MenuToggle disabled accessibilityLabel="Actions" toggleLabel="Actions" zIndex={10}>
       {children}
     </MenuToggle>
-  ));
+  );
+}
+
+withDisabled.story = {
+  name: 'With disabled.',
+};

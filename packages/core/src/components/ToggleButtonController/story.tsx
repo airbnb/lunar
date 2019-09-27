@@ -1,15 +1,19 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import ToggleButtonController from '.';
 
-storiesOf('Core/ToggleButtonController', module)
-  .addParameters({
+export default {
+  title: 'Core/ToggleButtonController',
+
+  parameters: {
     inspectComponents: [ToggleButtonController, Button],
-  })
-  .add('A list of single select toggle buttons.', () => (
+  },
+};
+
+export function aListOfSingleSelectToggleButtons() {
+  return (
     <ToggleButtonController
       value="red"
       name="button-group-controller"
@@ -30,8 +34,15 @@ storiesOf('Core/ToggleButtonController', module)
         </ButtonGroup>
       )}
     </ToggleButtonController>
-  ))
-  .add('Handles invalid state.', () => (
+  );
+}
+
+aListOfSingleSelectToggleButtons.story = {
+  name: 'A list of single select toggle buttons.',
+};
+
+export function handlesInvalidState() {
+  return (
     <ToggleButtonController
       invalid
       value="red"
@@ -53,8 +64,15 @@ storiesOf('Core/ToggleButtonController', module)
         </ButtonGroup>
       )}
     </ToggleButtonController>
-  ))
-  .add('Handles disabled state.', () => (
+  );
+}
+
+handlesInvalidState.story = {
+  name: 'Handles invalid state.',
+};
+
+export function handlesDisabledState() {
+  return (
     <ToggleButtonController
       disabled
       value="red"
@@ -76,8 +94,15 @@ storiesOf('Core/ToggleButtonController', module)
         </ButtonGroup>
       )}
     </ToggleButtonController>
-  ))
-  .add('With `compact`', () => (
+  );
+}
+
+handlesDisabledState.story = {
+  name: 'Handles disabled state.',
+};
+
+export function withCompact() {
+  return (
     <ToggleButtonController
       compact
       value="red"
@@ -99,8 +124,15 @@ storiesOf('Core/ToggleButtonController', module)
         </ButtonGroup>
       )}
     </ToggleButtonController>
-  ))
-  .add('With `inline`', () => (
+  );
+}
+
+withCompact.story = {
+  name: 'With `compact`',
+};
+
+export function withInline() {
+  return (
     <ToggleButtonController
       inline
       value="red"
@@ -122,4 +154,9 @@ storiesOf('Core/ToggleButtonController', module)
         </ButtonGroup>
       )}
     </ToggleButtonController>
-  ));
+  );
+}
+
+withInline.story = {
+  name: 'With `inline`',
+};

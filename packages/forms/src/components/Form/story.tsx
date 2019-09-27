@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Button from '@airbnb/lunar/lib/components/Button';
 import ButtonGroup from '@airbnb/lunar/lib/components/ButtonGroup';
@@ -111,11 +110,16 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
   }
 }
 
-storiesOf('Forms/Form', module)
-  .addParameters({
+export default {
+  title: 'Forms/Form',
+
+  parameters: {
     inspectComponents: [Form],
-  })
-  .add('With all fields.', () => (
+  },
+};
+
+export function withAllFields() {
+  return (
     <Form
       initialValues={values}
       onFailedSubmit={action('onFailedSubmit')}
@@ -319,5 +323,17 @@ storiesOf('Forms/Form', module)
 
       <FormActions showReset />
     </Form>
-  ))
-  .add('Testing side-effects.', () => <UnmountExample />);
+  );
+}
+
+withAllFields.story = {
+  name: 'With all fields.',
+};
+
+export function testingSideEffects() {
+  return <UnmountExample />;
+}
+
+testingSideEffects.story = {
+  name: 'Testing side-effects.',
+};

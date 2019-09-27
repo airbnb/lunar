@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Aside from '../Aside';
 import ThreeColumnLayout from '.';
 
-storiesOf('Layouts/ThreeColumnLayout', module)
-  .addParameters({
+export default {
+  title: 'Layouts/ThreeColumnLayout',
+
+  parameters: {
     inspectComponents: [ThreeColumnLayout],
-  })
-  .add('A three column layout.', () => (
+  },
+};
+
+export function aThreeColumnLayout() {
+  return (
     <ThreeColumnLayout
       after={
         <Aside width={300}>
@@ -26,4 +30,9 @@ storiesOf('Layouts/ThreeColumnLayout', module)
       <LoremIpsum />
       <LoremIpsum />
     </ThreeColumnLayout>
-  ));
+  );
+}
+
+aThreeColumnLayout.story = {
+  name: 'A three column layout.',
+};

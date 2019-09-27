@@ -1,13 +1,17 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import EmojiRestrictedPicker from '.';
 
-storiesOf('Core/EmojiRestrictedPicker', module)
-  .addParameters({
+export default {
+  title: 'Core/EmojiRestrictedPicker',
+
+  parameters: {
     inspectComponents: [EmojiRestrictedPicker],
-  })
-  .add('Restricted emoji picker.', () => (
+  },
+};
+
+export function restrictedEmojiPicker() {
+  return (
     <div style={{ position: 'relative', width: 245, height: 135 }}>
       <div style={{ position: 'absolute', bottom: 0, left: 0 }}>
         <EmojiRestrictedPicker
@@ -16,4 +20,9 @@ storiesOf('Core/EmojiRestrictedPicker', module)
         />
       </div>
     </div>
-  ));
+  );
+}
+
+restrictedEmojiPicker.story = {
+  name: 'Restricted emoji picker.',
+};

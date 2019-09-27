@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import CheckBoxController from '.';
 import BaseCheckBox from '../CheckBox';
 
-storiesOf('Core/CheckBoxController', module)
-  .addParameters({
+export default {
+  title: 'Core/CheckBoxController',
+
+  parameters: {
     inspectComponents: [CheckBoxController, BaseCheckBox],
-  })
-  .add('Controls multiple checkboxes.', () => (
+  },
+};
+
+export function controlsMultipleCheckboxes() {
+  return (
     <CheckBoxController
       optional
       label="Favorite colors?"
@@ -24,8 +28,15 @@ storiesOf('Core/CheckBoxController', module)
         </div>
       )}
     </CheckBoxController>
-  ))
-  .add('Handles invalid state, with no spacing.', () => (
+  );
+}
+
+controlsMultipleCheckboxes.story = {
+  name: 'Controls multiple checkboxes.',
+};
+
+export function handlesInvalidStateWithNoSpacing() {
+  return (
     <CheckBoxController
       invalid
       label="Favorite colors?"
@@ -41,8 +52,15 @@ storiesOf('Core/CheckBoxController', module)
         </div>
       )}
     </CheckBoxController>
-  ))
-  .add('Handles disabled state, with no spacing.', () => (
+  );
+}
+
+handlesInvalidStateWithNoSpacing.story = {
+  name: 'Handles invalid state, with no spacing.',
+};
+
+export function handlesDisabledStateWithNoSpacing() {
+  return (
     <CheckBoxController
       disabled
       label="Favorite colors?"
@@ -58,4 +76,9 @@ storiesOf('Core/CheckBoxController', module)
         </div>
       )}
     </CheckBoxController>
-  ));
+  );
+}
+
+handlesDisabledStateWithNoSpacing.story = {
+  name: 'Handles disabled state, with no spacing.',
+};

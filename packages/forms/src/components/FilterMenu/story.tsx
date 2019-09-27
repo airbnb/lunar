@@ -1,17 +1,21 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Form from '../Form';
 import Select from '../Form/Select';
 import CheckBox from '../Form/CheckBox';
 import FilterMenu, { Row } from '.';
 
-storiesOf('Forms/FilterMenu', module)
-  .addParameters({
+export default {
+  title: 'Forms/FilterMenu',
+  decorators: [story => <div style={{ margin: 'auto' }}>{story()}</div>],
+
+  parameters: {
     inspectComponents: [FilterMenu],
-  })
-  .addDecorator(story => <div style={{ margin: 'auto' }}>{story()}</div>)
-  .add('Form in a dropdown.', () => (
+  },
+};
+
+export function formInADropdown() {
+  return (
     <Form
       onSubmit={() => {
         action('onSubmit')();
@@ -51,8 +55,15 @@ storiesOf('Forms/FilterMenu', module)
         </FilterMenu>
       </div>
     </Form>
-  ))
-  .add('Left-aligned menu.', () => (
+  );
+}
+
+formInADropdown.story = {
+  name: 'Form in a dropdown.',
+};
+
+export function leftAlignedMenu() {
+  return (
     <Form
       onSubmit={() => {
         action('onSubmit')();
@@ -85,8 +96,15 @@ storiesOf('Forms/FilterMenu', module)
         </Row>
       </FilterMenu>
     </Form>
-  ))
-  .add('With overflow.', () => (
+  );
+}
+
+leftAlignedMenu.story = {
+  name: 'Left-aligned menu.',
+};
+
+export function withOverflow() {
+  return (
     <Form
       onSubmit={() => {
         action('onSubmit')();
@@ -125,4 +143,9 @@ storiesOf('Forms/FilterMenu', module)
         </FilterMenu>
       </div>
     </Form>
-  ));
+  );
+}
+
+withOverflow.story = {
+  name: 'With overflow.',
+};

@@ -1,16 +1,25 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import CheckBox from '.';
 
-storiesOf('Core/CheckBox', module)
-  .addParameters({
+export default {
+  title: 'Core/CheckBox',
+
+  parameters: {
     inspectComponents: [CheckBox],
-  })
-  .add('A standard checkbox field.', () => (
-    <CheckBox name="cb-basic" label="Label" onChange={action('onChange')} />
-  ))
-  .add('With an error message in an invalid state.', () => (
+  },
+};
+
+export function aStandardCheckboxField() {
+  return <CheckBox name="cb-basic" label="Label" onChange={action('onChange')} />;
+}
+
+aStandardCheckboxField.story = {
+  name: 'A standard checkbox field.',
+};
+
+export function withAnErrorMessageInAnInvalidState() {
+  return (
     <CheckBox
       invalid
       name="cb-error"
@@ -18,8 +27,15 @@ storiesOf('Core/CheckBox', module)
       errorMessage="This field is required."
       onChange={action('onChange')}
     />
-  ))
-  .add('With a label description in a disabled state.', () => (
+  );
+}
+
+withAnErrorMessageInAnInvalidState.story = {
+  name: 'With an error message in an invalid state.',
+};
+
+export function withALabelDescriptionInADisabledState() {
+  return (
     <CheckBox
       disabled
       name="cb-disabled"
@@ -27,8 +43,15 @@ storiesOf('Core/CheckBox', module)
       labelDescription="This is a small label description."
       onChange={action('onChange')}
     />
-  ))
-  .add('With a label description in an indeterminate state.', () => (
+  );
+}
+
+withALabelDescriptionInADisabledState.story = {
+  name: 'With a label description in a disabled state.',
+};
+
+export function withALabelDescriptionInAnIndeterminateState() {
+  return (
     <CheckBox
       indeterminate
       name="cb-disabled"
@@ -36,42 +59,64 @@ storiesOf('Core/CheckBox', module)
       labelDescription="This is a small label description."
       onChange={action('onChange')}
     />
-  ))
-  .add('With a top alignment.', () => (
-    <>
-      <CheckBox checked topAlign name="cb-topalign" label="Label" onChange={action('onChange')} />
-      <CheckBox
-        topAlign
-        name="cb-topalign"
-        label="Label"
-        labelDescription="This is a small label description."
-        onChange={action('onChange')}
-      />
-    </>
-  ))
-  .add('Marked as optional.', () => (
-    <CheckBox optional name="cb-optional" label="Label" onChange={action('onChange')} />
-  ))
-  .add('Marked as checked in different states.', () => (
-    <>
-      <CheckBox checked name="cb-checked" label="Label" onChange={action('onChange')} />{' '}
-      <CheckBox
-        checked
-        disabled
-        name="cb-checked-disabled"
-        label="Label"
-        onChange={action('onChange')}
-      />{' '}
-      <CheckBox
-        checked
-        invalid
-        name="cb-checked-invalid"
-        label="Label"
-        onChange={action('onChange')}
-      />
-    </>
-  ))
-  .add('As a clickable button.', () => (
+  );
+}
+
+withALabelDescriptionInAnIndeterminateState.story = {
+  name: 'With a label description in an indeterminate state.',
+};
+
+export function withATopAlignment() {
+  return <>
+    <CheckBox checked topAlign name="cb-topalign" label="Label" onChange={action('onChange')} />
+    <CheckBox
+      topAlign
+      name="cb-topalign"
+      label="Label"
+      labelDescription="This is a small label description."
+      onChange={action('onChange')}
+    />
+  </>;
+}
+
+withATopAlignment.story = {
+  name: 'With a top alignment.',
+};
+
+export function markedAsOptional() {
+  return <CheckBox optional name="cb-optional" label="Label" onChange={action('onChange')} />;
+}
+
+markedAsOptional.story = {
+  name: 'Marked as optional.',
+};
+
+export function markedAsCheckedInDifferentStates() {
+  return <>
+    <CheckBox checked name="cb-checked" label="Label" onChange={action('onChange')} />{' '}
+    <CheckBox
+      checked
+      disabled
+      name="cb-checked-disabled"
+      label="Label"
+      onChange={action('onChange')}
+    />{' '}
+    <CheckBox
+      checked
+      invalid
+      name="cb-checked-invalid"
+      label="Label"
+      onChange={action('onChange')}
+    />
+  </>;
+}
+
+markedAsCheckedInDifferentStates.story = {
+  name: 'Marked as checked in different states.',
+};
+
+export function asAClickableButton() {
+  return (
     <CheckBox
       button
       name="cb-basic"
@@ -79,8 +124,15 @@ storiesOf('Core/CheckBox', module)
       labelDescription="This is a label description."
       onChange={action('onChange')}
     />
-  ))
-  .add('As a compact, clickable button.', () => (
+  );
+}
+
+asAClickableButton.story = {
+  name: 'As a clickable button.',
+};
+
+export function asACompactClickableButton() {
+  return (
     <CheckBox
       button
       compact
@@ -89,4 +141,9 @@ storiesOf('Core/CheckBox', module)
       labelDescription="This is a label description."
       onChange={action('onChange')}
     />
-  ));
+  );
+}
+
+asACompactClickableButton.story = {
+  name: 'As a compact, clickable button.',
+};

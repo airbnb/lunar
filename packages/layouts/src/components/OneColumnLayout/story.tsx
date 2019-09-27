@@ -1,17 +1,26 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import OneColumnLayout from '.';
 
-storiesOf('Layouts/OneColumnLayout', module)
-  .addParameters({
+export default {
+  title: 'Layouts/OneColumnLayout',
+
+  parameters: {
     inspectComponents: [OneColumnLayout],
-  })
-  .add('A single column layout with no asides.', () => (
+  },
+};
+
+export function aSingleColumnLayoutWithNoAsides() {
+  return (
     <OneColumnLayout>
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
       <LoremIpsum />
     </OneColumnLayout>
-  ));
+  );
+}
+
+aSingleColumnLayoutWithNoAsides.story = {
+  name: 'A single column layout with no asides.',
+};

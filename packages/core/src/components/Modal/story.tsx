@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import moon from ':storybook/images/moon.png';
 import Button from '../Button';
@@ -89,23 +88,106 @@ class ModalDemo extends React.Component<
   }
 }
 
-storiesOf('Core/Modal', module)
-  .addParameters({
+export default {
+  title: 'Core/Modal',
+
+  parameters: {
     inspectComponents: [Modal],
-  })
-  .add('Default modal (600px)', () => <ModalDemo />)
-  .add('Small modal (400px)', () => <ModalDemo showSmall />)
-  .add('Large modal (800px)', () => <ModalDemo showLarge />)
-  .add('Fluid modal', () => <ModalDemo showFluid />)
-  .add('With title', () => <ModalDemo showTitle />)
-  .add('With subtitle', () => <ModalDemo showSubtitle showTitle />)
-  .add('With title and footer', () => <ModalDemo showFooter showTitle />)
-  .add('Scrollable content', () => <ModalDemo showFooter showTitle showScrollable />)
-  .add('Small scrollable content', () => (
-    <ModalDemo showSmall showFooter showTitle showScrollable />
-  ))
-  .add('Large scrollable content', () => (
-    <ModalDemo showLarge showFooter showTitle showScrollable />
-  ))
-  .add('With a right, centered image.', () => <ModalDemo showFooter showTitle image="center" />)
-  .add('With a right, covered image.', () => <ModalDemo showFooter showTitle image="cover" />);
+  },
+};
+
+export function defaultModal600Px() {
+  return <ModalDemo />;
+}
+
+defaultModal600Px.story = {
+  name: 'Default modal (600px)',
+};
+
+export function smallModal400Px() {
+  return <ModalDemo showSmall />;
+}
+
+smallModal400Px.story = {
+  name: 'Small modal (400px)',
+};
+
+export function largeModal800Px() {
+  return <ModalDemo showLarge />;
+}
+
+largeModal800Px.story = {
+  name: 'Large modal (800px)',
+};
+
+export function fluidModal() {
+  return <ModalDemo showFluid />;
+}
+
+fluidModal.story = {
+  name: 'Fluid modal',
+};
+
+export function withTitle() {
+  return <ModalDemo showTitle />;
+}
+
+withTitle.story = {
+  name: 'With title',
+};
+
+export function withSubtitle() {
+  return <ModalDemo showSubtitle showTitle />;
+}
+
+withSubtitle.story = {
+  name: 'With subtitle',
+};
+
+export function withTitleAndFooter() {
+  return <ModalDemo showFooter showTitle />;
+}
+
+withTitleAndFooter.story = {
+  name: 'With title and footer',
+};
+
+export function scrollableContent() {
+  return <ModalDemo showFooter showTitle showScrollable />;
+}
+
+scrollableContent.story = {
+  name: 'Scrollable content',
+};
+
+export function smallScrollableContent() {
+  return <ModalDemo showSmall showFooter showTitle showScrollable />;
+}
+
+smallScrollableContent.story = {
+  name: 'Small scrollable content',
+};
+
+export function largeScrollableContent() {
+  return <ModalDemo showLarge showFooter showTitle showScrollable />;
+}
+
+largeScrollableContent.story = {
+  name: 'Large scrollable content',
+};
+
+export function withARightCenteredImage() {
+  return <ModalDemo showFooter showTitle image="center" />;
+}
+
+withARightCenteredImage.story = {
+  name: 'With a right, centered image.',
+};
+
+export function withARightCoveredImage() {
+  return <ModalDemo showFooter showTitle image="cover" />;
+}
+
+withARightCoveredImage.story = {
+  name: 'With a right, covered image.',
+};

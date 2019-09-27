@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Spacing from '../Spacing';
 import DatePickerInput from '.';
@@ -75,11 +74,16 @@ class DatePickerInputDemo extends React.Component<{}, State> {
   }
 }
 
-storiesOf('Core/DatePickerInput', module)
-  .addParameters({
+export default {
+  title: 'Core/DatePickerInput',
+
+  parameters: {
     inspectComponents: [DatePickerInput, DatePicker],
-  })
-  .add('A single month.', () => (
+  },
+};
+
+export function aSingleMonth() {
+  return (
     <DatePickerInput
       name="date"
       label="Label"
@@ -88,8 +92,15 @@ storiesOf('Core/DatePickerInput', module)
       }}
       onChange={action('onChange')}
     />
-  ))
-  .add('A custom format.', () => (
+  );
+}
+
+aSingleMonth.story = {
+  name: 'A single month.',
+};
+
+export function aCustomFormat() {
+  return (
     <DatePickerInput
       name="date"
       label="Label"
@@ -99,8 +110,15 @@ storiesOf('Core/DatePickerInput', module)
       }}
       onChange={action('onChange')}
     />
-  ))
-  .add('With no label.', () => (
+  );
+}
+
+aCustomFormat.story = {
+  name: 'A custom format.',
+};
+
+export function withNoLabel() {
+  return (
     <DatePickerInput
       hideLabel
       name="date"
@@ -110,8 +128,15 @@ storiesOf('Core/DatePickerInput', module)
       }}
       onChange={action('onChange')}
     />
-  ))
-  .add('With inline label.', () => (
+  );
+}
+
+withNoLabel.story = {
+  name: 'With no label.',
+};
+
+export function withInlineLabel() {
+  return (
     <DatePickerInput
       inline
       name="date"
@@ -121,8 +146,15 @@ storiesOf('Core/DatePickerInput', module)
       }}
       onChange={action('onChange')}
     />
-  ))
-  .add('With dropdown right aligned.', () => (
+  );
+}
+
+withInlineLabel.story = {
+  name: 'With inline label.',
+};
+
+export function withDropdownRightAligned() {
+  return (
     <DatePickerInput
       name="date"
       label="Label"
@@ -132,8 +164,15 @@ storiesOf('Core/DatePickerInput', module)
       }}
       onChange={action('onChange')}
     />
-  ))
-  .add('With an error message in an invalid state.', () => (
+  );
+}
+
+withDropdownRightAligned.story = {
+  name: 'With dropdown right aligned.',
+};
+
+export function withAnErrorMessageInAnInvalidState() {
+  return (
     <DatePickerInput
       invalid
       name="input-error"
@@ -144,8 +183,15 @@ storiesOf('Core/DatePickerInput', module)
       }}
       onChange={action('onChange')}
     />
-  ))
-  .add('With a label description in a disabled state.', () => (
+  );
+}
+
+withAnErrorMessageInAnInvalidState.story = {
+  name: 'With an error message in an invalid state.',
+};
+
+export function withALabelDescriptionInADisabledState() {
+  return (
     <DatePickerInput
       disabled
       name="input-disabled"
@@ -156,5 +202,17 @@ storiesOf('Core/DatePickerInput', module)
       }}
       onChange={action('onChange')}
     />
-  ))
-  .add('Range with two inputs.', () => <DatePickerInputDemo />);
+  );
+}
+
+withALabelDescriptionInADisabledState.story = {
+  name: 'With a label description in a disabled state.',
+};
+
+export function rangeWithTwoInputs() {
+  return <DatePickerInputDemo />;
+}
+
+rangeWithTwoInputs.story = {
+  name: 'Range with two inputs.',
+};

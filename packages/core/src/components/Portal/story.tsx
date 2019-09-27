@@ -1,10 +1,19 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Portal from '.';
 
-storiesOf('Core/Portal', module)
-  .addParameters({
+export default {
+  title: 'Core/Portal',
+
+  parameters: {
     happo: false,
     inspectComponents: [Portal],
-  })
-  .add('Declarative component.', () => <Portal>Content within the portal!</Portal>);
+  },
+};
+
+export function declarativeComponent() {
+  return <Portal>Content within the portal!</Portal>;
+}
+
+declarativeComponent.story = {
+  name: 'Declarative component.',
+};
