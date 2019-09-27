@@ -5,15 +5,17 @@ import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import lunar from ':storybook/images/lunar-logo.png';
 import stars from ':storybook/images/stars.jpg';
-import moon from ':storybook/images/moon.png';
 import Text from './Text';
 import ResponsiveImage from './ResponsiveImage';
 import Card, { Content } from './Card';
 
+const moon =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAARdSURBVHgB7ZzLUeQwEIZ7djcAuHGDDCADIALIgOHGbciAyQBuHCED4MgJiACIADhyYjLwzu9aV+3DY8ljdevXbH9V2gemLFnfSC2PWx6JSCUODd/EocKFkOFCyHAhZLgQMlwIGS6EDBdChgshw4WQ4ULIcCFkuBAyXAgZLoQMF0KGCyHDhZDhQshwIWT8kAJZW1uTra0t2dnZ+efYbDary8vLS/13aRQhBJ1/eHgou7u7sre3VwuJ4f39vRZzd3cnj4+P9f9LoGIs806vzs7OqoeHhyoVONd4PK7PzXrddEIaEV9fX5UWb29vdR3zkUd17VRCLES0icGIYekDGiHz4Fx3Ti5QN9FoyduAyWRSMYCReXp6+n8LOT8/r9jAtJmzT77P/5iKMVi2Xl5eysnJiaRif39fnp6e6vL5+Vn/bGNjQ/rSLKvv7+8lF+afgqurqyo1bfVgoYCgvczSGaM3R9+YC9GapkL1ImhfX1/3Omem6cuuMlygFrFtgJg+K7qjo6PVFIKO0KRve6bTadR5sfoyXhLbVKR9n7FMm7DMjQExaKWEaE5VDcu2DUE/BsM7et0KtKeqhiFtjBkpmLqMvpTUrUBjidvG0HZeXFwE60DcKVqI1egAQ9uKT38ozmGUaAtRfYSLu95SwNPF4+Pjzt/BHbzFNanZfn5+rqxI1ebQXb3BikvnxJbTFUjV7vkICNalGdzVpiw8Ay8RPHtH6ULz2tSEHBwcSKkgKaKLtmyXlKgMPctHsSBl20PTLWKjVr+Nfv0jKViNzIWIJaPRSFKC9i9KN8KKbH19XTRQmbK0h7QFXXEEojY3N0UDFSGxiWzMfHx8dB4vaoSsgpBQGqrWNXqy9QJCaadIb9XAhSwgNAK0ErldyAJcCBm54qCKEGwBKJ3t7e3O41rX6DeGC1ipG0M0uJTNMW3gxrZrytKcAdRiSMnTVugh1Ovrq2ihJgQ5tqUymUw6j4e+nh+KyreW/oBq6aJ24qT7A0NYtRlZNJp9pnofEnrQw8Z4PA7GD4trUrONoW31oGpoW2OSsHFcs79Ee8pCiU1qHsrQdsYk9Bmlk+pWYDVKhrQxJvfYaHToC0GJzTIfgqYMsDLJ1k3RXnFpytBeWWURgqCpOXX1aQum0Zubm6jzZtjDblZR9F6MZYhtA278+mwewksNLPtIjCtTW3XFiOg7bRptP8grBCVmL0Zf2urBpxtxYpmk70wy8ggRhZGC6RDnxLZrxIch8SqjjHxCNKSkgOB9J1krrz/Z1nnAbSDQI87k7o/sQlCwrLT8ZvhvMMURvWWOohF1wWixfG8W0ajgFGIlhvRNcrxCfheTaipDnMK5CEfEH0UlDSg1ze5XFORLxeyEbd7di4SE29vbYt7jW4SQNpDs3CQ8Nyk7zUuUS05DKlbIquK5vWS4EDJcCBkuhAwXQoYLIcOFkOFCyHAhZLgQMlwIGS6EDBdChgshw4WQ4ULIcCFkuBAyXAgZLoSMn0EOei7Pde0JAAAAAElFTkSuQmCC';
+
 storiesOf('Core/Card', module)
   .addParameters({
     inspectComponents: [Card, Content],
-    happo: { delay: 2000 },
+    happo: { delay: 250 },
   })
   .add('A standard card.', () => (
     <Card>

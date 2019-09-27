@@ -243,6 +243,11 @@ export default withStyles(({ color, pattern, ui, unit }) => ({
     paddingLeft: unit * 1.5,
   },
 
+  image: {
+    display: 'block',
+    objectFit: 'cover',
+  },
+
   topImage: {
     height: 105,
   },
