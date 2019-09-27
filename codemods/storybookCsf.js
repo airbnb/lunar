@@ -47,7 +47,6 @@ module.exports = function transformer(file, api, options) {
 
   function convertToModuleExports(path, originalExports) {
     const base = j(path);
-
     const statements = [];
     const extraExports = [];
 
@@ -104,14 +103,16 @@ module.exports = function transformer(file, api, options) {
     base
       .find(j.CallExpression)
       .filter(call => call.node.callee.name === 'storiesOf')
-      .filter(call => call.node.arguments.length > 0 && call.node.arguments[0].type === 'Literal')
+      .filter(
+        call => call.node.arguments.length > 0 && call.node.arguments[0].type === 'StringLiteral',
+      )
       .forEach(storiesOf => {
         const title = storiesOf.node.arguments[0].value;
         statements.push(
           j.exportDefaultDeclaration(
             j.objectExpression([
               j.property('init', j.identifier('title'), j.literal(title)),
-              ...extraExports,
+              ...extraExports.filter(Boolean),
             ]),
           ),
         );
@@ -122,7 +123,9 @@ module.exports = function transformer(file, api, options) {
     base
       .find(j.CallExpression)
       .filter(add => add.node.callee.property && add.node.callee.property.name === 'add')
-      .filter(add => add.node.arguments.length >= 2 && add.node.arguments[0].type === 'Literal')
+      .filter(
+        add => add.node.arguments.length >= 2 && add.node.arguments[0].type === 'StringLiteral',
+      )
       .forEach(add => adds.push(add));
 
     adds.reverse();
@@ -148,8 +151,14 @@ module.exports = function transformer(file, api, options) {
       statements.push(
         j.exportDeclaration(
           false,
+          // const function expression
           // j.variableDeclaration('const', [j.variableDeclarator(j.identifier(key), val)])
-          j.functionDeclaration(j.identifier(key), [], j.blockStatement([j.returnStatement(val)])),
+          // function declaration
+          j.functionDeclaration(
+            j.identifier(key),
+            [],
+            j.blockStatement([j.returnStatement(val.body)]),
+          ),
         ),
       );
 
@@ -214,8 +223,8 @@ module.exports = function transformer(file, api, options) {
   // replace it with the entire export statements
   root
     .find(j.CallExpression)
-    .filter(add => add.node.callee.property && add.node.callee.property.name === 'add')
-    .filter(add => add.node.arguments.length >= 2 && add.node.arguments[0].type === 'Literal')
+    .filter(add => add.node.callee.property && add.node.callee.property.name.startsWith('add'))
+    .filter(add => add.node.arguments.length >= 2 && add.node.arguments[0].type === 'StringLiteral')
     .filter(add => add.parentPath.node.type === 'ExpressionStatement')
     .forEach(path => convertToModuleExports(path, originalExports));
 
@@ -233,6 +242,7 @@ module.exports = function transformer(file, api, options) {
     });
 
   const source = root.toSource({ trailingComma: true, quote: 'single', tabWidth: 2 });
+
   if (initialStoriesOf.size() > 1) {
     console.warn(
       `Found ${initialStoriesOf.size()} 'storiesOf' calls, PLEASE FIX BY HAND: '${file.path}'`,
@@ -240,9 +250,5 @@ module.exports = function transformer(file, api, options) {
     return source;
   }
 
-  return root.toSource({
-    tabWidth: 2,
-    quote: 'single',
-    trailingComma: true,
-  });
+  return source;
 };
