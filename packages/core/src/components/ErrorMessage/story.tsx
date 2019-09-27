@@ -3,7 +3,6 @@ import ErrorMessage from '.';
 
 export default {
   title: 'Core/ErrorMessage',
-
   parameters: {
     inspectComponents: [ErrorMessage],
   },

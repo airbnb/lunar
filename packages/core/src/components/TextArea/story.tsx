@@ -99,7 +99,6 @@ class ProofreaderDemo extends React.Component<{}, { value: string }> {
 
 export default {
   title: 'Core/TextArea',
-
   parameters: {
     inspectComponents: [TextArea],
   },
@@ -114,10 +113,12 @@ aStandardTextareaField.story = {
 };
 
 export function withACompactSmallerView() {
-  return <>
-    <TextArea compact name="textarea-compact" label="Compact" onChange={action('onChange')} />
-    <TextArea name="textarea-regular" label="Regular" onChange={action('onChange')} />
-  </>;
+  return (
+    <>
+      <TextArea compact name="textarea-compact" label="Compact" onChange={action('onChange')} />
+      <TextArea name="textarea-regular" label="Regular" onChange={action('onChange')} />
+    </>
+  );
 }
 
 withACompactSmallerView.story = {

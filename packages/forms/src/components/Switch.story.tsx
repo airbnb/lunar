@@ -5,7 +5,6 @@ import Switch from './Form/Switch';
 
 export default {
   title: 'Forms/Switch',
-
   parameters: {
     inspectComponents: [Switch],
   },

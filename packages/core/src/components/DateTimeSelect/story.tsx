@@ -6,7 +6,6 @@ const fixedDate = new Date(2019, 1, 1, 10, 10, 10);
 
 export default {
   title: 'Core/DateTimeSelect',
-
   parameters: {
     inspectComponents: [DateTimeSelect],
   },
@@ -28,21 +27,23 @@ standardSelectFieldForDatesAndTimes.story = {
 };
 
 export function withACompactSmallerView() {
-  return <>
-    <DateTimeSelect
-      compact
-      name="dts-compact"
-      label="Compact"
-      value={fixedDate}
-      onChange={action('onChange')}
-    />
-    <DateTimeSelect
-      name="dts-regular"
-      label="Regular"
-      value={fixedDate}
-      onChange={action('onChange')}
-    />
-  </>;
+  return (
+    <>
+      <DateTimeSelect
+        compact
+        name="dts-compact"
+        label="Compact"
+        value={fixedDate}
+        onChange={action('onChange')}
+      />
+      <DateTimeSelect
+        name="dts-regular"
+        label="Regular"
+        value={fixedDate}
+        onChange={action('onChange')}
+      />
+    </>
+  );
 }
 
 withACompactSmallerView.story = {

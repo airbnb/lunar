@@ -112,7 +112,6 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
 
 export default {
   title: 'Forms/Form',
-
   parameters: {
     inspectComponents: [Form],
   },

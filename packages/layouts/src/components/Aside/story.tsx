@@ -4,7 +4,6 @@ import Aside from '.';
 
 export default {
   title: 'Layouts/Aside',
-
   parameters: {
     inspectComponents: [Aside],
   },

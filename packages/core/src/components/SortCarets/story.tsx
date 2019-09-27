@@ -3,7 +3,6 @@ import SortCarets from '.';
 
 export default {
   title: 'Core/SortCarets',
-
   parameters: {
     inspectComponents: [SortCarets],
   },

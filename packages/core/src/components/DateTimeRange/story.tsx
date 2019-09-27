@@ -3,14 +3,15 @@ import DateTimeRange from '.';
 
 export default {
   title: 'Core/DateTimeRange',
-
   parameters: {
     inspectComponents: [DateTimeRange],
   },
 };
 
 export function differentDayRange() {
-  return <DateTimeRange from={new Date(2019, 1, 15, 0, 0, 0)} to={new Date(2019, 1, 17, 0, 0, 0)} />;
+  return (
+    <DateTimeRange from={new Date(2019, 1, 15, 0, 0, 0)} to={new Date(2019, 1, 17, 0, 0, 0)} />
+  );
 }
 
 differentDayRange.story = {

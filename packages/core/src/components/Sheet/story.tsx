@@ -136,7 +136,6 @@ class SheetDemo extends React.Component<
 
 export default {
   title: 'Core/Sheet',
-
   parameters: {
     happo: false,
     inspectComponents: [Sheet, SheetArea],

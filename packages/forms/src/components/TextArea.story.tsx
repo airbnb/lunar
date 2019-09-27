@@ -5,7 +5,6 @@ import TextArea from './Form/TextArea';
 
 export default {
   title: 'Forms/TextArea',
-
   parameters: {
     inspectComponents: [TextArea],
   },

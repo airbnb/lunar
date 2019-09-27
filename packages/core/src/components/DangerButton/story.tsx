@@ -4,16 +4,17 @@ import DangerButton from '.';
 
 export default {
   title: 'Core/DangerButton',
-
   parameters: {
     inspectComponents: [DangerButton],
   },
 };
 
 export function buttonWithAnInvertedVariant() {
-  return <>
-    <DangerButton>Button</DangerButton> <DangerButton inverted>Button</DangerButton>
-  </>;
+  return (
+    <>
+      <DangerButton>Button</DangerButton> <DangerButton inverted>Button</DangerButton>
+    </>
+  );
 }
 
 buttonWithAnInvertedVariant.story = {
@@ -21,14 +22,16 @@ buttonWithAnInvertedVariant.story = {
 };
 
 export function anAnchorLinkWhenPassingHref() {
-  return <>
-    <DangerButton openInNewWindow href="https://github.com/airbnb/lunar">
-      Link
-    </DangerButton>{' '}
-    <DangerButton openInNewWindow inverted href="https://github.com/airbnb/lunar">
-      Link
-    </DangerButton>
-  </>;
+  return (
+    <>
+      <DangerButton openInNewWindow href="https://github.com/airbnb/lunar">
+        Link
+      </DangerButton>{' '}
+      <DangerButton openInNewWindow inverted href="https://github.com/airbnb/lunar">
+        Link
+      </DangerButton>
+    </>
+  );
 }
 
 anAnchorLinkWhenPassingHref.story = {
@@ -52,19 +55,21 @@ withEventHandlers.story = {
 };
 
 export function withDifferentSizingSmallRegularDefaultAndLarge() {
-  return <>
-    <DangerButton small>Button</DangerButton> <DangerButton>Button</DangerButton>{' '}
-    <DangerButton large>Button</DangerButton>
-    <br />
-    <br />
-    <DangerButton inverted small>
-      Button
-    </DangerButton>{' '}
-    <DangerButton inverted>Button</DangerButton>{' '}
-    <DangerButton inverted large>
-      Button
-    </DangerButton>
-  </>;
+  return (
+    <>
+      <DangerButton small>Button</DangerButton> <DangerButton>Button</DangerButton>{' '}
+      <DangerButton large>Button</DangerButton>
+      <br />
+      <br />
+      <DangerButton inverted small>
+        Button
+      </DangerButton>{' '}
+      <DangerButton inverted>Button</DangerButton>{' '}
+      <DangerButton inverted large>
+        Button
+      </DangerButton>
+    </>
+  );
 }
 
 withDifferentSizingSmallRegularDefaultAndLarge.story = {
@@ -72,17 +77,19 @@ withDifferentSizingSmallRegularDefaultAndLarge.story = {
 };
 
 export function withDifferentStatesDisabledAndLoading() {
-  return <>
-    <DangerButton disabled>Button</DangerButton> <DangerButton loading>Button</DangerButton>
-    <br />
-    <br />
-    <DangerButton inverted disabled>
-      Button
-    </DangerButton>{' '}
-    <DangerButton inverted loading>
-      Button
-    </DangerButton>
-  </>;
+  return (
+    <>
+      <DangerButton disabled>Button</DangerButton> <DangerButton loading>Button</DangerButton>
+      <br />
+      <br />
+      <DangerButton inverted disabled>
+        Button
+      </DangerButton>{' '}
+      <DangerButton inverted loading>
+        Button
+      </DangerButton>
+    </>
+  );
 }
 
 withDifferentStatesDisabledAndLoading.story = {

@@ -5,7 +5,6 @@ import ProfilePhotoGroup from '.';
 
 export default {
   title: 'Core/ProfilePhotoGroup',
-
   parameters: {
     inspectComponents: [ProfilePhotoGroup],
   },
@@ -46,25 +45,27 @@ showARemainderWhenTheMaxIsMet.story = {
 };
 
 export function supportDifferentSizes() {
-  return <>
-    <div>
-      <ProfilePhotoGroup size={3}>
-        <ProfilePhoto imageSrc={lunar} title="Photo" />
+  return (
+    <>
+      <div>
+        <ProfilePhotoGroup size={3}>
+          <ProfilePhoto imageSrc={lunar} title="Photo" />
 
-        <ProfilePhoto imageSrc={lunar} title="Photo" />
+          <ProfilePhoto imageSrc={lunar} title="Photo" />
 
-        <ProfilePhoto imageSrc={lunar} title="Photo" />
-      </ProfilePhotoGroup>
-      <br />
-      <ProfilePhotoGroup size={8}>
-        <ProfilePhoto imageSrc={lunar} title="Photo" />
+          <ProfilePhoto imageSrc={lunar} title="Photo" />
+        </ProfilePhotoGroup>
+        <br />
+        <ProfilePhotoGroup size={8}>
+          <ProfilePhoto imageSrc={lunar} title="Photo" />
 
-        <ProfilePhoto imageSrc={lunar} title="Photo" />
+          <ProfilePhoto imageSrc={lunar} title="Photo" />
 
-        <ProfilePhoto imageSrc={lunar} title="Photo" />
-      </ProfilePhotoGroup>
-    </div>
-  </>;
+          <ProfilePhoto imageSrc={lunar} title="Photo" />
+        </ProfilePhotoGroup>
+      </div>
+    </>
+  );
 }
 
 supportDifferentSizes.story = {

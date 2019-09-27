@@ -40,7 +40,6 @@ class DropdownDemo extends React.Component<Props, { open: boolean }> {
 export default {
   title: 'Core/Dropdown',
   decorators: [story => <div style={{ padding: 50, margin: 'auto' }}>{story()}</div>],
-
   parameters: {
     happo: false,
     inspectComponents: [Dropdown],

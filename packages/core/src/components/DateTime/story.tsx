@@ -8,7 +8,6 @@ const fixedDate = new Date(2019, 1, 1, 0, 0, 0);
 
 export default {
   title: 'Core/DateTime',
-
   parameters: {
     inspectComponents: [DateTime],
   },

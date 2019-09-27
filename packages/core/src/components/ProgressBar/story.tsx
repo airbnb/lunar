@@ -3,22 +3,23 @@ import ProgressBar from '.';
 
 export default {
   title: 'Core/ProgressBar',
-
   parameters: {
     inspectComponents: [ProgressBar],
   },
 };
 
 export function aProgressBarWithDifferentCompletionPercentagesAndWidths() {
-  return <>
-    <ProgressBar percent={1} />
-    <br />
-    <ProgressBar percent={29} />
-    <br />
-    <ProgressBar percent={100} />
-    <br />
-    <ProgressBar percent={63} />
-  </>;
+  return (
+    <>
+      <ProgressBar percent={1} />
+      <br />
+      <ProgressBar percent={29} />
+      <br />
+      <ProgressBar percent={100} />
+      <br />
+      <ProgressBar percent={63} />
+    </>
+  );
 }
 
 aProgressBarWithDifferentCompletionPercentagesAndWidths.story = {
@@ -26,11 +27,13 @@ aProgressBarWithDifferentCompletionPercentagesAndWidths.story = {
 };
 
 export function canDisableLeadingAndTrailingEdgesNoRoundedCorners() {
-  return <>
-    <ProgressBar leading percent={50} />
-    <br />
-    <ProgressBar trailing percent={50} />
-  </>;
+  return (
+    <>
+      <ProgressBar leading percent={50} />
+      <br />
+      <ProgressBar trailing percent={50} />
+    </>
+  );
 }
 
 canDisableLeadingAndTrailingEdgesNoRoundedCorners.story = {

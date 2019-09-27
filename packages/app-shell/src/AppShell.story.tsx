@@ -38,7 +38,6 @@ class PageDataExample extends React.Component<{ onSubmit: Function }, { data: st
 
 export default {
   title: 'AppShell',
-
   parameters: {
     inspectComponents: [AppShell],
   },

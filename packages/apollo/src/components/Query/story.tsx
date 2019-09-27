@@ -51,7 +51,6 @@ const errorMock = {
 
 export default {
   title: 'Apollo/Query',
-
   parameters: {
     inspectComponents: [Query],
   },

@@ -4,7 +4,6 @@ import OneColumnLayout from '.';
 
 export default {
   title: 'Layouts/OneColumnLayout',
-
   parameters: {
     inspectComponents: [OneColumnLayout],
   },

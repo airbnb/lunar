@@ -3,7 +3,6 @@ import ExpandableIcon from '.';
 
 export default {
   title: 'Core/ExpandableIcon',
-
   parameters: {
     inspectComponents: [ExpandableIcon],
   },

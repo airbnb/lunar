@@ -18,7 +18,6 @@ const children = [
 export default {
   title: 'Core/MenuToggle',
   decorators: [story => <div style={{ width: 200, margin: 'auto' }}>{story()}</div>],
-
   parameters: {
     happo: false,
     inspectComponents: [MenuToggle],

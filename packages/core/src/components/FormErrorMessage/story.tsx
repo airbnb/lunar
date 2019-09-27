@@ -3,7 +3,6 @@ import FormErrorMessage from '.';
 
 export default {
   title: 'Core/FormErrorMessage',
-
   parameters: {
     inspectComponents: [FormErrorMessage],
   },

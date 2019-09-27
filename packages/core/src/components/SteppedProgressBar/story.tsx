@@ -3,7 +3,6 @@ import SteppedProgressBar, { Step } from '.';
 
 export default {
   title: 'Core/SteppedProgressBar',
-
   parameters: {
     inspectComponents: [SteppedProgressBar, Step],
   },

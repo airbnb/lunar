@@ -31,7 +31,6 @@ class ButtonGroupDemo extends React.Component<{}, { buttons: number[] }> {
 
 export default {
   title: 'Core/GradientScroller',
-
   parameters: {
     inspectComponents: [GradientScroller],
   },

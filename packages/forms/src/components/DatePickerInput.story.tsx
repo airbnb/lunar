@@ -5,7 +5,6 @@ import DatePickerInput from './Form/DatePickerInput';
 
 export default {
   title: 'Forms/DatePickerInput',
-
   parameters: {
     inspectComponents: [DatePickerInput],
   },

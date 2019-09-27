@@ -4,7 +4,6 @@ import FileInput from '.';
 
 export default {
   title: 'Core/FileInput',
-
   parameters: {
     inspectComponents: [FileInput],
   },
@@ -37,16 +36,18 @@ supportsMultipleFilesOfImageOnlyWhileHidingFilePreviewColumns.story = {
 };
 
 export function withACompactSmallerViewOnlySupportingAudioAndVideo() {
-  return <>
-    <FileInput
-      onlyAudio
-      compact
-      name="input-compact"
-      label="Compact"
-      onChange={action('onChange')}
-    />
-    <FileInput onlyVideo name="input-regular" label="Regular" onChange={action('onChange')} />
-  </>;
+  return (
+    <>
+      <FileInput
+        onlyAudio
+        compact
+        name="input-compact"
+        label="Compact"
+        onChange={action('onChange')}
+      />
+      <FileInput onlyVideo name="input-regular" label="Regular" onChange={action('onChange')} />
+    </>
+  );
 }
 
 withACompactSmallerViewOnlySupportingAudioAndVideo.story = {

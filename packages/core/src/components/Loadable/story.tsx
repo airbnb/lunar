@@ -3,7 +3,6 @@ import Loadable from '.';
 
 export default {
   title: 'Core/Loadable',
-
   parameters: {
     inspectComponents: [Loadable],
   },

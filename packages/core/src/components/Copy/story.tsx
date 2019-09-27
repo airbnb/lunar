@@ -4,7 +4,6 @@ import Copy from '.';
 
 export default {
   title: 'Core/Copy',
-
   parameters: {
     inspectComponents: [Copy],
   },

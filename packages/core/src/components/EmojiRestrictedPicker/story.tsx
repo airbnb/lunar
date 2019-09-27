@@ -4,7 +4,6 @@ import EmojiRestrictedPicker from '.';
 
 export default {
   title: 'Core/EmojiRestrictedPicker',
-
   parameters: {
     inspectComponents: [EmojiRestrictedPicker],
   },

@@ -5,7 +5,6 @@ import T from '../Translate';
 
 export default {
   title: 'Core/Pagination',
-
   parameters: {
     inspectComponents: [Pagination],
   },
@@ -20,7 +19,9 @@ noPreviousOrNextPages.story = {
 };
 
 export function nextPages() {
-  return <Pagination hasNext page={1} onNext={action('onNext')} onPrevious={action('onPrevious')} />;
+  return (
+    <Pagination hasNext page={1} onNext={action('onNext')} onPrevious={action('onPrevious')} />
+  );
 }
 
 nextPages.story = {
@@ -28,7 +29,9 @@ nextPages.story = {
 };
 
 export function previousPages() {
-  return <Pagination hasPrev page={2} onNext={action('onNext')} onPrevious={action('onPrevious')} />;
+  return (
+    <Pagination hasPrev page={2} onNext={action('onNext')} onPrevious={action('onPrevious')} />
+  );
 }
 
 previousPages.story = {

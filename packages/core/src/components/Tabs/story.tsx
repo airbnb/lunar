@@ -7,7 +7,6 @@ import Tabs, { Tab } from '.';
 
 export default {
   title: 'Core/Tabs',
-
   parameters: {
     inspectComponents: [Tabs, Tab],
   },

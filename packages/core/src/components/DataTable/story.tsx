@@ -157,7 +157,6 @@ export class SearchDemo extends React.Component {
 
 export default {
   title: 'Core/DataTable',
-
   parameters: {
     happo: { delay: 50 },
     inspectComponents: [DataTable],

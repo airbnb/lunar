@@ -5,7 +5,6 @@ import ResponsiveImage from '.';
 
 export default {
   title: 'Core/ResponsiveImage',
-
   parameters: {
     inspectComponents: [ResponsiveImage],
   },

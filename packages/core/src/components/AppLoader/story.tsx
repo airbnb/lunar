@@ -4,7 +4,6 @@ import AppLoader from '.';
 
 export default {
   title: 'Core/AppLoader',
-
   parameters: {
     inspectComponents: [AppLoader],
   },

@@ -7,7 +7,6 @@ import ProgressCard from '.';
 
 export default {
   title: 'Core/ProgressCard',
-
   parameters: {
     inspectComponents: [ProgressCard],
   },

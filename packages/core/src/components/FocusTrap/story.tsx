@@ -7,7 +7,6 @@ import FocusTrap from '.';
 
 export default {
   title: 'Core/FocusTrap',
-
   parameters: {
     inspectComponents: [FocusTrap],
   },

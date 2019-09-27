@@ -3,20 +3,21 @@ import Shimmer from '.';
 
 export default {
   title: 'Core/Shimmer',
-
   parameters: {
     inspectComponents: [Shimmer],
   },
 };
 
 export function aShimmerWithRandomWidthsDefault() {
-  return <>
-    <Shimmer block width="random" />
-    <br />
-    <Shimmer block width="random" />
-    <br />
-    <Shimmer block width="random" />
-  </>;
+  return (
+    <>
+      <Shimmer block width="random" />
+      <br />
+      <Shimmer block width="random" />
+      <br />
+      <Shimmer block width="random" />
+    </>
+  );
 }
 
 aShimmerWithRandomWidthsDefault.story = {

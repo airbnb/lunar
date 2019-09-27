@@ -3,7 +3,6 @@ import Divider from '.';
 
 export default {
   title: 'Core/Divider',
-
   parameters: {
     inspectComponents: [Divider],
   },

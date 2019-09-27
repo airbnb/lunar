@@ -5,7 +5,6 @@ import ThreeColumnLayout from '.';
 
 export default {
   title: 'Layouts/ThreeColumnLayout',
-
   parameters: {
     inspectComponents: [ThreeColumnLayout],
   },

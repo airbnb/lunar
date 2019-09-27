@@ -4,16 +4,17 @@ import MutedButton from '.';
 
 export default {
   title: 'Core/MutedButton',
-
   parameters: {
     inspectComponents: [MutedButton],
   },
 };
 
 export function aMutedButtonWithAnInvertedVariant() {
-  return <>
-    <MutedButton>Button</MutedButton> <MutedButton inverted>Button</MutedButton>
-  </>;
+  return (
+    <>
+      <MutedButton>Button</MutedButton> <MutedButton inverted>Button</MutedButton>
+    </>
+  );
 }
 
 aMutedButtonWithAnInvertedVariant.story = {
@@ -21,14 +22,16 @@ aMutedButtonWithAnInvertedVariant.story = {
 };
 
 export function anAnchorLinkWhenPassingHref() {
-  return <>
-    <MutedButton openInNewWindow href="https://github.com/airbnb/lunar">
-      Link
-    </MutedButton>{' '}
-    <MutedButton openInNewWindow inverted href="https://github.com/airbnb/lunar">
-      Link
-    </MutedButton>
-  </>;
+  return (
+    <>
+      <MutedButton openInNewWindow href="https://github.com/airbnb/lunar">
+        Link
+      </MutedButton>{' '}
+      <MutedButton openInNewWindow inverted href="https://github.com/airbnb/lunar">
+        Link
+      </MutedButton>
+    </>
+  );
 }
 
 anAnchorLinkWhenPassingHref.story = {
@@ -52,19 +55,21 @@ withEventHandlers.story = {
 };
 
 export function withDifferentSizingSmallRegularDefaultAndLarge() {
-  return <>
-    <MutedButton small>Button</MutedButton> <MutedButton>Button</MutedButton>{' '}
-    <MutedButton large>Button</MutedButton>
-    <br />
-    <br />
-    <MutedButton inverted small>
-      Button
-    </MutedButton>{' '}
-    <MutedButton inverted>Button</MutedButton>{' '}
-    <MutedButton inverted large>
-      Button
-    </MutedButton>
-  </>;
+  return (
+    <>
+      <MutedButton small>Button</MutedButton> <MutedButton>Button</MutedButton>{' '}
+      <MutedButton large>Button</MutedButton>
+      <br />
+      <br />
+      <MutedButton inverted small>
+        Button
+      </MutedButton>{' '}
+      <MutedButton inverted>Button</MutedButton>{' '}
+      <MutedButton inverted large>
+        Button
+      </MutedButton>
+    </>
+  );
 }
 
 withDifferentSizingSmallRegularDefaultAndLarge.story = {
@@ -72,17 +77,19 @@ withDifferentSizingSmallRegularDefaultAndLarge.story = {
 };
 
 export function withDifferentStatesDisabledAndLoading() {
-  return <>
-    <MutedButton disabled>Button</MutedButton> <MutedButton loading>Button</MutedButton>
-    <br />
-    <br />
-    <MutedButton inverted disabled>
-      Button
-    </MutedButton>{' '}
-    <MutedButton inverted loading>
-      Button
-    </MutedButton>
-  </>;
+  return (
+    <>
+      <MutedButton disabled>Button</MutedButton> <MutedButton loading>Button</MutedButton>
+      <br />
+      <br />
+      <MutedButton inverted disabled>
+        Button
+      </MutedButton>{' '}
+      <MutedButton inverted loading>
+        Button
+      </MutedButton>
+    </>
+  );
 }
 
 withDifferentStatesDisabledAndLoading.story = {

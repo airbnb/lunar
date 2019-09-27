@@ -12,7 +12,6 @@ const items = [
 
 export default {
   title: 'Forms/Autocomplete',
-
   parameters: {
     inspectComponents: [Autocomplete],
   },

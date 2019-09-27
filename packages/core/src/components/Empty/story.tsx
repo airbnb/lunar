@@ -3,7 +3,6 @@ import Empty from '.';
 
 export default {
   title: 'Core/Empty',
-
   parameters: {
     inspectComponents: [Empty],
   },

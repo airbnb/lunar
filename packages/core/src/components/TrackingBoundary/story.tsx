@@ -5,7 +5,6 @@ import TrackingBoundary from '.';
 
 export default {
   title: 'Core/TrackingBoundary',
-
   parameters: {
     inspectComponents: [TrackingBoundary],
   },

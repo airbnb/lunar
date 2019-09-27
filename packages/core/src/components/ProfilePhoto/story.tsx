@@ -4,7 +4,6 @@ import ProfilePhoto from '.';
 
 export default {
   title: 'Core/ProfilePhoto',
-
   parameters: {
     inspectComponents: [ProfilePhoto],
   },
@@ -19,13 +18,15 @@ defaultProfilePhoto.story = {
 };
 
 export function withDifferentSizingUnitsBasedSizeSmallRegularDefaultLargeMacro() {
-  return <>
-    <ProfilePhoto imageSrc={lunar} title="Photo" size={2} />
-    <ProfilePhoto small imageSrc={lunar} title="Photo" />
-    <ProfilePhoto imageSrc={lunar} title="Photo" />
-    <ProfilePhoto large imageSrc={lunar} title="Photo" />
-    <ProfilePhoto macro imageSrc={lunar} title="Photo" />
-  </>;
+  return (
+    <>
+      <ProfilePhoto imageSrc={lunar} title="Photo" size={2} />
+      <ProfilePhoto small imageSrc={lunar} title="Photo" />
+      <ProfilePhoto imageSrc={lunar} title="Photo" />
+      <ProfilePhoto large imageSrc={lunar} title="Photo" />
+      <ProfilePhoto macro imageSrc={lunar} title="Photo" />
+    </>
+  );
 }
 
 withDifferentSizingUnitsBasedSizeSmallRegularDefaultLargeMacro.story = {
@@ -33,13 +34,15 @@ withDifferentSizingUnitsBasedSizeSmallRegularDefaultLargeMacro.story = {
 };
 
 export function inlineProfilePhotos() {
-  return <>
-    <ProfilePhoto inline imageSrc={lunar} title="Photo" size={2} />
-    <ProfilePhoto inline small imageSrc={lunar} title="Photo" />
-    <ProfilePhoto inline imageSrc={lunar} title="Photo" />
-    <ProfilePhoto inline large imageSrc={lunar} title="Photo" />
-    <ProfilePhoto inline macro imageSrc={lunar} title="Photo" />
-  </>;
+  return (
+    <>
+      <ProfilePhoto inline imageSrc={lunar} title="Photo" size={2} />
+      <ProfilePhoto inline small imageSrc={lunar} title="Photo" />
+      <ProfilePhoto inline imageSrc={lunar} title="Photo" />
+      <ProfilePhoto inline large imageSrc={lunar} title="Photo" />
+      <ProfilePhoto inline macro imageSrc={lunar} title="Photo" />
+    </>
+  );
 }
 
 inlineProfilePhotos.story = {
@@ -63,7 +66,9 @@ brokenImageWithOverflowingAltText.story = {
 };
 
 export function fallbackImageSrcWhenImageIsBroken() {
-  return <ProfilePhoto large fallbackImageSrc={lunar} imageSrc="BROKEN_IMAGE" title="Alt title text." />;
+  return (
+    <ProfilePhoto large fallbackImageSrc={lunar} imageSrc="BROKEN_IMAGE" title="Alt title text." />
+  );
 }
 
 fallbackImageSrcWhenImageIsBroken.story = {

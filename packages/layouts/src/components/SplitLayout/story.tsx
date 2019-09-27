@@ -5,7 +5,6 @@ import SplitLayout from '.';
 
 export default {
   title: 'Layouts/SplitLayout',
-
   parameters: {
     inspectComponents: [SplitLayout],
   },

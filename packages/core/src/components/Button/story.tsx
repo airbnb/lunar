@@ -5,7 +5,6 @@ import Button from '.';
 
 export default {
   title: 'Core/Button',
-
   parameters: {
     inspectComponents: [Button],
   },

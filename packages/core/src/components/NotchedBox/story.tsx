@@ -5,7 +5,6 @@ import NotchedBox from '.';
 
 export default {
   title: 'Core/NotchedBox',
-
   parameters: {
     inspectComponents: [NotchedBox],
   },

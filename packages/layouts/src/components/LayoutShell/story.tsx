@@ -6,7 +6,6 @@ import LayoutShell from '.';
 
 export default {
   title: 'Layouts/LayoutShell',
-
   parameters: {
     inspectComponents: [LayoutShell],
   },

@@ -3,7 +3,6 @@ import Price from '.';
 
 export default {
   title: 'Core/Price',
-
   parameters: {
     inspectComponents: [Price],
   },

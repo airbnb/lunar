@@ -5,22 +5,23 @@ import StatusLabel from '.';
 
 export default {
   title: 'Core/StatusLabel',
-
   parameters: {
     inspectComponents: [StatusLabel],
   },
 };
 
 export function defaultAndStatusLabels() {
-  return <>
-    <StatusLabel>Default</StatusLabel>
-    <StatusLabel notice>Notice</StatusLabel>
-    <StatusLabel info>Info</StatusLabel>
-    <StatusLabel success>Success</StatusLabel>
-    <StatusLabel warning>Warning</StatusLabel>
-    <StatusLabel danger>Danger</StatusLabel>
-    <StatusLabel muted>Muted</StatusLabel>
-  </>;
+  return (
+    <>
+      <StatusLabel>Default</StatusLabel>
+      <StatusLabel notice>Notice</StatusLabel>
+      <StatusLabel info>Info</StatusLabel>
+      <StatusLabel success>Success</StatusLabel>
+      <StatusLabel warning>Warning</StatusLabel>
+      <StatusLabel danger>Danger</StatusLabel>
+      <StatusLabel muted>Muted</StatusLabel>
+    </>
+  );
 }
 
 defaultAndStatusLabels.story = {
@@ -28,10 +29,12 @@ defaultAndStatusLabels.story = {
 };
 
 export function brandedStatusLabels() {
-  return <>
-    <StatusLabel luxury>Luxury</StatusLabel>
-    <StatusLabel plus>Plus</StatusLabel>
-  </>;
+  return (
+    <>
+      <StatusLabel luxury>Luxury</StatusLabel>
+      <StatusLabel plus>Plus</StatusLabel>
+    </>
+  );
 }
 
 brandedStatusLabels.story = {
@@ -39,35 +42,37 @@ brandedStatusLabels.story = {
 };
 
 export function colorInvertedAndUppercasedLabels() {
-  return <>
-    <StatusLabel inverted uppercased>
-      Default
-    </StatusLabel>
-    <StatusLabel inverted uppercased notice>
-      Notice
-    </StatusLabel>
-    <StatusLabel inverted uppercased info>
-      Info
-    </StatusLabel>
-    <StatusLabel inverted uppercased success>
-      Success
-    </StatusLabel>
-    <StatusLabel inverted uppercased warning>
-      Warning
-    </StatusLabel>
-    <StatusLabel inverted uppercased danger>
-      Danger
-    </StatusLabel>
-    <StatusLabel inverted uppercased muted>
-      Muted
-    </StatusLabel>
-    <StatusLabel inverted uppercased luxury>
-      Luxury
-    </StatusLabel>
-    <StatusLabel inverted uppercased plus>
-      Plus
-    </StatusLabel>
-  </>;
+  return (
+    <>
+      <StatusLabel inverted uppercased>
+        Default
+      </StatusLabel>
+      <StatusLabel inverted uppercased notice>
+        Notice
+      </StatusLabel>
+      <StatusLabel inverted uppercased info>
+        Info
+      </StatusLabel>
+      <StatusLabel inverted uppercased success>
+        Success
+      </StatusLabel>
+      <StatusLabel inverted uppercased warning>
+        Warning
+      </StatusLabel>
+      <StatusLabel inverted uppercased danger>
+        Danger
+      </StatusLabel>
+      <StatusLabel inverted uppercased muted>
+        Muted
+      </StatusLabel>
+      <StatusLabel inverted uppercased luxury>
+        Luxury
+      </StatusLabel>
+      <StatusLabel inverted uppercased plus>
+        Plus
+      </StatusLabel>
+    </>
+  );
 }
 
 colorInvertedAndUppercasedLabels.story = {
@@ -99,16 +104,18 @@ withinABlockOfText.story = {
 };
 
 export function withBeforeAndOrAfterIcons() {
-  return <>
-    <div>
-      <StatusLabel success beforeIcon={<IconAddAlt decorative />}>
-        Before icon
-      </StatusLabel>
-      <StatusLabel notice afterIcon={<IconAddAlt decorative />}>
-        After icon
-      </StatusLabel>
-    </div>
-  </>;
+  return (
+    <>
+      <div>
+        <StatusLabel success beforeIcon={<IconAddAlt decorative />}>
+          Before icon
+        </StatusLabel>
+        <StatusLabel notice afterIcon={<IconAddAlt decorative />}>
+          After icon
+        </StatusLabel>
+      </div>
+    </>
+  );
 }
 
 withBeforeAndOrAfterIcons.story = {
@@ -116,17 +123,19 @@ withBeforeAndOrAfterIcons.story = {
 };
 
 export function withCompactPadding() {
-  return <>
-    <StatusLabel compact uppercased>
-      Compact
-    </StatusLabel>
-    <StatusLabel info compact uppercased>
-      Info
-    </StatusLabel>
-    <StatusLabel compact info inverted bordered uppercased>
-      Info Inverted
-    </StatusLabel>
-  </>;
+  return (
+    <>
+      <StatusLabel compact uppercased>
+        Compact
+      </StatusLabel>
+      <StatusLabel info compact uppercased>
+        Info
+      </StatusLabel>
+      <StatusLabel compact info inverted bordered uppercased>
+        Info Inverted
+      </StatusLabel>
+    </>
+  );
 }
 
 withCompactPadding.story = {
@@ -134,12 +143,14 @@ withCompactPadding.story = {
 };
 
 export function sameHeightWithOrWithoutBorderApplied() {
-  return <>
-    <StatusLabel>Default</StatusLabel>
-    <StatusLabel inverted bordered>
-      Default
-    </StatusLabel>
-  </>;
+  return (
+    <>
+      <StatusLabel>Default</StatusLabel>
+      <StatusLabel inverted bordered>
+        Default
+      </StatusLabel>
+    </>
+  );
 }
 
 sameHeightWithOrWithoutBorderApplied.story = {

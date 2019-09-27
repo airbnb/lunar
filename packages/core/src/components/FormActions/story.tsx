@@ -4,7 +4,6 @@ import FormActions from '.';
 
 export default {
   title: 'Core/FormActions',
-
   parameters: {
     inspectComponents: [FormActions],
   },

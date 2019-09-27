@@ -5,7 +5,6 @@ import Input from './Form/Input';
 
 export default {
   title: 'Forms/Input',
-
   parameters: {
     inspectComponents: [Input],
   },

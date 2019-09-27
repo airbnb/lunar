@@ -5,7 +5,6 @@ import RadioButtonController from './Form/RadioButtonController';
 
 export default {
   title: 'Forms/RadioButtonController',
-
   parameters: {
     inspectComponents: [RadioButtonController],
   },

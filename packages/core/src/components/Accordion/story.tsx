@@ -5,7 +5,6 @@ import Accordion, { Item } from '.';
 
 export default {
   title: 'Core/Accordion',
-
   parameters: {
     inspectComponents: [Accordion, Item],
   },

@@ -4,7 +4,6 @@ import Select from '.';
 
 export default {
   title: 'Core/Select',
-
   parameters: {
     inspectComponents: [Select],
   },
@@ -27,23 +26,25 @@ aStandardSelectField.story = {
 };
 
 export function withACompactSmallerView() {
-  return <>
-    <Select compact name="select-compact" label="Compact" onChange={action('onChange')}>
-      <option value="foo">Foo</option>
-      <option disabled value="bar">
-        Bar
-      </option>
-      <option value="baz">Baz</option>
-    </Select>
+  return (
+    <>
+      <Select compact name="select-compact" label="Compact" onChange={action('onChange')}>
+        <option value="foo">Foo</option>
+        <option disabled value="bar">
+          Bar
+        </option>
+        <option value="baz">Baz</option>
+      </Select>
 
-    <Select name="select-regular" label="Regular" onChange={action('onChange')}>
-      <option value="foo">Foo</option>
-      <option disabled value="bar">
-        Bar
-      </option>
-      <option value="baz">Baz</option>
-    </Select>
-  </>;
+      <Select name="select-regular" label="Regular" onChange={action('onChange')}>
+        <option value="foo">Foo</option>
+        <option disabled value="bar">
+          Bar
+        </option>
+        <option value="baz">Baz</option>
+      </Select>
+    </>
+  );
 }
 
 withACompactSmallerView.story = {

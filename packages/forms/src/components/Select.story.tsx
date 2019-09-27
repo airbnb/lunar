@@ -5,7 +5,6 @@ import Select from './Form/Select';
 
 export default {
   title: 'Forms/Select',
-
   parameters: {
     inspectComponents: [Select],
   },

@@ -4,7 +4,6 @@ import Switch from '.';
 
 export default {
   title: 'Core/Switch',
-
   parameters: {
     inspectComponents: [Switch],
   },
@@ -59,23 +58,25 @@ markedAsOptional.story = {
 };
 
 export function markedAsCheckedInDifferentStates() {
-  return <>
-    <Switch checked name="switch-checked" label="Label" onChange={action('onChange')} />
-    <Switch
-      checked
-      disabled
-      name="switch-checked-disabled"
-      label="Label"
-      onChange={action('onChange')}
-    />
-    <Switch
-      checked
-      invalid
-      name="switch-checked-invalid"
-      label="Label"
-      onChange={action('onChange')}
-    />
-  </>;
+  return (
+    <>
+      <Switch checked name="switch-checked" label="Label" onChange={action('onChange')} />
+      <Switch
+        checked
+        disabled
+        name="switch-checked-disabled"
+        label="Label"
+        onChange={action('onChange')}
+      />
+      <Switch
+        checked
+        invalid
+        name="switch-checked-invalid"
+        label="Label"
+        onChange={action('onChange')}
+      />
+    </>
+  );
 }
 
 markedAsCheckedInDifferentStates.story = {

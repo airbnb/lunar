@@ -5,7 +5,6 @@ import BaseRadioButton from '../RadioButton';
 
 export default {
   title: 'Core/RadioButtonController',
-
   parameters: {
     inspectComponents: [RadioButtonController, BaseRadioButton],
   },

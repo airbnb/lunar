@@ -11,7 +11,6 @@ function TestComponent() {
 
 export default {
   title: 'Core/ErrorBoundary',
-
   parameters: {
     inspectComponents: [ErrorBoundary],
   },

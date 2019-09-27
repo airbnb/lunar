@@ -76,7 +76,6 @@ class DatePickerInputDemo extends React.Component<{}, State> {
 
 export default {
   title: 'Core/DatePickerInput',
-
   parameters: {
     inspectComponents: [DatePickerInput, DatePicker],
   },

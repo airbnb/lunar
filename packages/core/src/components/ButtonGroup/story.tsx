@@ -5,7 +5,6 @@ import ButtonGroup from '.';
 
 export default {
   title: 'Core/ButtonGroup',
-
   parameters: {
     inspectComponents: [ButtonGroup],
   },

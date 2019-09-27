@@ -4,7 +4,6 @@ import EmojiPicker from '.';
 
 export default {
   title: 'Core/EmojiPicker',
-
   parameters: {
     inspectComponents: [EmojiPicker],
   },

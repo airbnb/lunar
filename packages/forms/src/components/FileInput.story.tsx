@@ -5,7 +5,6 @@ import FileInput from './Form/FileInput';
 
 export default {
   title: 'Forms/FileInput',
-
   parameters: {
     inspectComponents: [FileInput],
   },

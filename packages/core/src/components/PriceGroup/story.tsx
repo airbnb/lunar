@@ -3,7 +3,6 @@ import PriceGroup from '.';
 
 export default {
   title: 'Core/PriceGroup',
-
   parameters: {
     inspectComponents: [PriceGroup],
   },

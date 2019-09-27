@@ -3,7 +3,6 @@ import Portal from '.';
 
 export default {
   title: 'Core/Portal',
-
   parameters: {
     happo: false,
     inspectComponents: [Portal],

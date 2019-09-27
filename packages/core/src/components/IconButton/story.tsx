@@ -5,23 +5,24 @@ import IconButton from '.';
 
 export default {
   title: 'Core/IconButton',
-
   parameters: {
     inspectComponents: [IconButton],
   },
 };
 
 export function aStandardButtonWithDifferentSizes() {
-  return <>
-    <IconButton onClick={action('onClick')}>
-      <IconCheck decorative />
-    </IconButton>
-    <br />
-    <br />
-    <IconButton onClick={action('onClick')}>
-      <IconCheck decorative size="2em" />
-    </IconButton>
-  </>;
+  return (
+    <>
+      <IconButton onClick={action('onClick')}>
+        <IconCheck decorative />
+      </IconButton>
+      <br />
+      <br />
+      <IconButton onClick={action('onClick')}>
+        <IconCheck decorative size="2em" />
+      </IconButton>
+    </>
+  );
 }
 
 aStandardButtonWithDifferentSizes.story = {

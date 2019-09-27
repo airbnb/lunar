@@ -6,7 +6,6 @@ import ToggleButtonController from './Form/ToggleButtonController';
 
 export default {
   title: 'Forms/ToggleButtonController',
-
   parameters: {
     inspectComponents: [ToggleButtonController],
   },

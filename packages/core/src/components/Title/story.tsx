@@ -4,26 +4,27 @@ import Title from '.';
 
 export default {
   title: 'Core/Title',
-
   parameters: {
     inspectComponents: [Title],
   },
 };
 
 export function titlesWithDifferentHeadingLevels() {
-  return <>
-    <Title level={1}>
-      <LoremIpsum short />
-    </Title>
+  return (
+    <>
+      <Title level={1}>
+        <LoremIpsum short />
+      </Title>
 
-    <Title level={2}>
-      <LoremIpsum short />
-    </Title>
+      <Title level={2}>
+        <LoremIpsum short />
+      </Title>
 
-    <Title level={3}>
-      <LoremIpsum short />
-    </Title>
-  </>;
+      <Title level={3}>
+        <LoremIpsum short />
+      </Title>
+    </>
+  );
 }
 
 titlesWithDifferentHeadingLevels.story = {
@@ -31,19 +32,21 @@ titlesWithDifferentHeadingLevels.story = {
 };
 
 export function withDifferentStatesMutedInvertedAndPrimary() {
-  return <>
-    <Title muted level={3}>
-      <LoremIpsum short />
-    </Title>
+  return (
+    <>
+      <Title muted level={3}>
+        <LoremIpsum short />
+      </Title>
 
-    <Title inverted level={3}>
-      <LoremIpsum short />
-    </Title>
+      <Title inverted level={3}>
+        <LoremIpsum short />
+      </Title>
 
-    <Title primary level={3}>
-      <LoremIpsum short />
-    </Title>
-  </>;
+      <Title primary level={3}>
+        <LoremIpsum short />
+      </Title>
+    </>
+  );
 }
 
 withDifferentStatesMutedInvertedAndPrimary.story = {
@@ -51,19 +54,21 @@ withDifferentStatesMutedInvertedAndPrimary.story = {
 };
 
 export function withAlignedText() {
-  return <>
-    <Title level={3}>
-      <LoremIpsum short />
-    </Title>
+  return (
+    <>
+      <Title level={3}>
+        <LoremIpsum short />
+      </Title>
 
-    <Title centerAlign level={3}>
-      <LoremIpsum short />
-    </Title>
+      <Title centerAlign level={3}>
+        <LoremIpsum short />
+      </Title>
 
-    <Title endAlign level={3}>
-      <LoremIpsum short />
-    </Title>
-  </>;
+      <Title endAlign level={3}>
+        <LoremIpsum short />
+      </Title>
+    </>
+  );
 }
 
 withAlignedText.story = {

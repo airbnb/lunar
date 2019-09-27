@@ -192,7 +192,6 @@ class IconList extends React.Component<
 
 export default {
   title: 'Icons',
-
   parameters: {
     inspectComponents: [FakeIcon],
   },

@@ -5,7 +5,6 @@ import List, { Item } from '.';
 
 export default {
   title: 'Core/List',
-
   parameters: {
     inspectComponents: [List, Item],
   },

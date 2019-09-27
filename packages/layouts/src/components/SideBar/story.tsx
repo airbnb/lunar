@@ -6,7 +6,6 @@ import SideBar, { Item } from '.';
 
 export default {
   title: 'Layouts/SideBar',
-
   parameters: {
     inspectComponents: [SideBar, Item],
   },

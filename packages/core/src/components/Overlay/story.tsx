@@ -61,7 +61,6 @@ class OverlayNoBgDemo extends React.Component<{}, State> {
 
 export default {
   title: 'Core/Overlay',
-
   parameters: {
     happo: false,
     inspectComponents: [Overlay],

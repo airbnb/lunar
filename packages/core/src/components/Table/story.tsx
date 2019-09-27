@@ -4,7 +4,6 @@ import Table, { Cell, Row } from '.';
 
 export default {
   title: 'Core/Table',
-
   parameters: {
     inspectComponents: [Table, Cell, Row],
   },

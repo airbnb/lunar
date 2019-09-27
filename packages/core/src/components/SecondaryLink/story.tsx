@@ -5,7 +5,6 @@ import SecondaryLink from '.';
 
 export default {
   title: 'Core/SecondaryLink',
-
   parameters: {
     inspectComponents: [SecondaryLink],
   },
@@ -28,15 +27,17 @@ aButtonLink.story = {
 };
 
 export function withDifferentSizingSmallRegularDefaultAndLarge() {
-  return <>
-    <SecondaryLink small href="https://github.com/airbnb/lunar">
-      Link
-    </SecondaryLink>{' '}
-    <SecondaryLink href="https://github.com/airbnb/lunar">Link</SecondaryLink>{' '}
-    <SecondaryLink large href="https://github.com/airbnb/lunar">
-      Link
-    </SecondaryLink>
-  </>;
+  return (
+    <>
+      <SecondaryLink small href="https://github.com/airbnb/lunar">
+        Link
+      </SecondaryLink>{' '}
+      <SecondaryLink href="https://github.com/airbnb/lunar">Link</SecondaryLink>{' '}
+      <SecondaryLink large href="https://github.com/airbnb/lunar">
+        Link
+      </SecondaryLink>
+    </>
+  );
 }
 
 withDifferentSizingSmallRegularDefaultAndLarge.story = {
@@ -44,17 +45,19 @@ withDifferentSizingSmallRegularDefaultAndLarge.story = {
 };
 
 export function withDifferentStatesMutedDisabledAndInverted() {
-  return <>
-    <SecondaryLink muted href="https://github.com/airbnb/lunar">
-      Link
-    </SecondaryLink>{' '}
-    <SecondaryLink disabled href="https://github.com/airbnb/lunar">
-      Link
-    </SecondaryLink>{' '}
-    <SecondaryLink inverted href="https://github.com/airbnb/lunar">
-      Link
-    </SecondaryLink>
-  </>;
+  return (
+    <>
+      <SecondaryLink muted href="https://github.com/airbnb/lunar">
+        Link
+      </SecondaryLink>{' '}
+      <SecondaryLink disabled href="https://github.com/airbnb/lunar">
+        Link
+      </SecondaryLink>{' '}
+      <SecondaryLink inverted href="https://github.com/airbnb/lunar">
+        Link
+      </SecondaryLink>
+    </>
+  );
 }
 
 withDifferentStatesMutedDisabledAndInverted.story = {
@@ -62,15 +65,17 @@ withDifferentStatesMutedDisabledAndInverted.story = {
 };
 
 export function withBeforeAndOrAfterIcons() {
-  return <>
-    <SecondaryLink href="https://github.com/airbnb/lunar" beforeIcon={<IconAddAlt decorative />}>
-      Link
-    </SecondaryLink>
-    <br />
-    <SecondaryLink href="https://github.com/airbnb/lunar" afterIcon={<IconAddAlt decorative />}>
-      Link
-    </SecondaryLink>
-  </>;
+  return (
+    <>
+      <SecondaryLink href="https://github.com/airbnb/lunar" beforeIcon={<IconAddAlt decorative />}>
+        Link
+      </SecondaryLink>
+      <br />
+      <SecondaryLink href="https://github.com/airbnb/lunar" afterIcon={<IconAddAlt decorative />}>
+        Link
+      </SecondaryLink>
+    </>
+  );
 }
 
 withBeforeAndOrAfterIcons.story = {

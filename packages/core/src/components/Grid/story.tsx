@@ -14,7 +14,6 @@ function Box({ children = null }: { children: React.ReactNode }) {
 
 export default {
   title: 'Core/Grid',
-
   parameters: {
     inspectComponents: [Grid, Col],
   },

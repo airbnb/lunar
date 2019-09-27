@@ -90,7 +90,6 @@ class ModalDemo extends React.Component<
 
 export default {
   title: 'Core/Modal',
-
   parameters: {
     inspectComponents: [Modal],
   },

@@ -11,7 +11,6 @@ const items = [
 
 export default {
   title: 'Core/Autocomplete',
-
   parameters: {
     inspectComponents: [Autocomplete],
   },
@@ -131,43 +130,45 @@ disableSelectedItemsWithIsItemSelectable.story = {
 };
 
 export function withCustomStatesInASmallForm() {
-  return <>
-    <Autocomplete
-      loadItemsOnMount
-      small
-      accessibilityLabel="Label"
-      name="autocomplete-state-error"
-      label="Error"
-      renderError={error => <div>{error.message}</div>}
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
-      onLoadItems={value => Promise.reject(new Error('Failed to load.'))}
-    />
+  return (
+    <>
+      <Autocomplete
+        loadItemsOnMount
+        small
+        accessibilityLabel="Label"
+        name="autocomplete-state-error"
+        label="Error"
+        renderError={error => <div>{error.message}</div>}
+        onChange={action('onChange')}
+        onSelectItem={action('onSelectItem')}
+        onLoadItems={value => Promise.reject(new Error('Failed to load.'))}
+      />
 
-    <Autocomplete
-      loadItemsOnMount
-      small
-      accessibilityLabel="Label"
-      name="autocomplete-state-loading"
-      label="Loading"
-      renderLoading={() => <div>Loading...</div>}
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
-      onLoadItems={value => new Promise(() => {})}
-    />
+      <Autocomplete
+        loadItemsOnMount
+        small
+        accessibilityLabel="Label"
+        name="autocomplete-state-loading"
+        label="Loading"
+        renderLoading={() => <div>Loading...</div>}
+        onChange={action('onChange')}
+        onSelectItem={action('onSelectItem')}
+        onLoadItems={value => new Promise(() => {})}
+      />
 
-    <Autocomplete
-      loadItemsOnMount
-      small
-      accessibilityLabel="Label"
-      name="autocomplete-state-empty"
-      label="No results"
-      renderNoResults={() => <div>Nothing to see here!</div>}
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
-      onLoadItems={value => Promise.resolve([])}
-    />
-  </>;
+      <Autocomplete
+        loadItemsOnMount
+        small
+        accessibilityLabel="Label"
+        name="autocomplete-state-empty"
+        label="No results"
+        renderNoResults={() => <div>Nothing to see here!</div>}
+        onChange={action('onChange')}
+        onSelectItem={action('onSelectItem')}
+        onLoadItems={value => Promise.resolve([])}
+      />
+    </>
+  );
 }
 
 withCustomStatesInASmallForm.story = {

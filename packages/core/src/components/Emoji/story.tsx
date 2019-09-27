@@ -3,7 +3,6 @@ import Emoji from '.';
 
 export default {
   title: 'Core/Emoji',
-
   parameters: {
     inspectComponents: [Emoji],
   },

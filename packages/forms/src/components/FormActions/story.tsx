@@ -5,7 +5,6 @@ import FormActions from '.';
 
 export default {
   title: 'Forms/FormActions',
-
   parameters: {
     inspectComponents: [FormActions],
   },

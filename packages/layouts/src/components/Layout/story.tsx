@@ -5,7 +5,6 @@ import Layout from '.';
 
 export default {
   title: 'Layouts/Layout',
-
   parameters: {
     inspectComponents: [Layout],
   },

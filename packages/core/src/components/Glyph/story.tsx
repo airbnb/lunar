@@ -4,7 +4,6 @@ import Glyph from '.';
 
 export default {
   title: 'Core/Glyph',
-
   parameters: {
     inspectComponents: [Glyph],
   },

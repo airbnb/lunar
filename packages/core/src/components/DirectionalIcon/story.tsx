@@ -5,7 +5,6 @@ import DirectionalIcon from '.';
 
 export default {
   title: 'Core/DirectionalIcon',
-
   parameters: {
     inspectComponents: [DirectionalIcon],
   },

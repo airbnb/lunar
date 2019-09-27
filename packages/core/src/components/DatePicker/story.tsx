@@ -192,7 +192,6 @@ class DatePickerMouseRangeSelectDemo extends React.Component<{}, RangeState> {
 
 export default {
   title: 'Core/DatePicker',
-
   parameters: {
     inspectComponents: [DatePicker],
   },
@@ -322,7 +321,7 @@ export function todayButtonSelectsTodaysDate() {
 }
 
 todayButtonSelectsTodaysDate.story = {
-  name: 'Today button selects today\'s date.',
+  name: "Today button selects today's date.",
 };
 
 export function selectDaysOnMouseEnter() {

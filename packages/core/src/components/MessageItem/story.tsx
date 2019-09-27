@@ -9,7 +9,6 @@ import MessageItem from '.';
 
 export default {
   title: 'Core/MessageItem',
-
   parameters: {
     inspectComponents: [MessageItem],
   },

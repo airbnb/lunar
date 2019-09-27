@@ -49,7 +49,6 @@ class ScrollDemo extends React.Component<{}, { activeSection: string }> {
 
 export default {
   title: 'Core/ScrollSection',
-
   parameters: {
     inspectComponents: [ScrollSection, ScrollWrapper],
   },

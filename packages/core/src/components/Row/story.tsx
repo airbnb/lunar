@@ -7,7 +7,6 @@ import Row from '.';
 
 export default {
   title: 'Core/Row',
-
   parameters: {
     inspectComponents: [Row],
   },

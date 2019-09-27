@@ -5,7 +5,6 @@ import CheckBoxController from './Form/CheckBoxController';
 
 export default {
   title: 'Forms/CheckBoxController',
-
   parameters: {
     inspectComponents: [CheckBoxController],
   },

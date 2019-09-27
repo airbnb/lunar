@@ -4,7 +4,6 @@ import Text from '.';
 
 export default {
   title: 'Core/Text',
-
   parameters: {
     inspectComponents: [Text],
   },
@@ -23,19 +22,21 @@ aBasicStringOfText.story = {
 };
 
 export function withLightBoldAndUppercasedEmphasis() {
-  return <>
-    <Text light>
-      <LoremIpsum />
-    </Text>
-    <br />
-    <Text bold>
-      <LoremIpsum />
-    </Text>
-    <br />
-    <Text uppercased>
-      <LoremIpsum />
-    </Text>
-  </>;
+  return (
+    <>
+      <Text light>
+        <LoremIpsum />
+      </Text>
+      <br />
+      <Text bold>
+        <LoremIpsum />
+      </Text>
+      <br />
+      <Text uppercased>
+        <LoremIpsum />
+      </Text>
+    </>
+  );
 }
 
 withLightBoldAndUppercasedEmphasis.story = {
@@ -43,23 +44,25 @@ withLightBoldAndUppercasedEmphasis.story = {
 };
 
 export function withDifferentSizingMicroSmallRegularDefaultAndLarge() {
-  return <>
-    <Text micro>
-      <LoremIpsum />
-    </Text>
-    <br />
-    <Text small>
-      <LoremIpsum />
-    </Text>
-    <br />
-    <Text>
-      <LoremIpsum />
-    </Text>
-    <br />
-    <Text large>
-      <LoremIpsum />
-    </Text>
-  </>;
+  return (
+    <>
+      <Text micro>
+        <LoremIpsum />
+      </Text>
+      <br />
+      <Text small>
+        <LoremIpsum />
+      </Text>
+      <br />
+      <Text>
+        <LoremIpsum />
+      </Text>
+      <br />
+      <Text large>
+        <LoremIpsum />
+      </Text>
+    </>
+  );
 }
 
 withDifferentSizingMicroSmallRegularDefaultAndLarge.story = {
@@ -67,17 +70,19 @@ withDifferentSizingMicroSmallRegularDefaultAndLarge.story = {
 };
 
 export function withDifferentStatesMutedDisabledAndInverted() {
-  return <>
-    <Text muted>
-      <LoremIpsum short />
-    </Text>
-    <Text disabled>
-      <LoremIpsum short />
-    </Text>
-    <Text inverted>
-      <LoremIpsum short />
-    </Text>
-  </>;
+  return (
+    <>
+      <Text muted>
+        <LoremIpsum short />
+      </Text>
+      <Text disabled>
+        <LoremIpsum short />
+      </Text>
+      <Text inverted>
+        <LoremIpsum short />
+      </Text>
+    </>
+  );
 }
 
 withDifferentStatesMutedDisabledAndInverted.story = {

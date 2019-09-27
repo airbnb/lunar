@@ -8,7 +8,6 @@ import Menu, { Item, Separator, Row } from '.';
 export default {
   title: 'Core/Menu',
   decorators: [story => <div style={{ width: 200 }}>{story()}</div>],
-
   parameters: {
     inspectComponents: [Menu, Item, Row, Separator],
   },

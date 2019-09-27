@@ -3,7 +3,6 @@ import PriceComparison from '.';
 
 export default {
   title: 'Core/PriceComparison',
-
   parameters: {
     inspectComponents: [PriceComparison],
   },

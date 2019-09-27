@@ -5,7 +5,6 @@ import TwoColumnLayout from '.';
 
 export default {
   title: 'Layouts/TwoColumnLayout',
-
   parameters: {
     inspectComponents: [TwoColumnLayout],
   },

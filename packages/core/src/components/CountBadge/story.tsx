@@ -33,7 +33,6 @@ class CountExample extends React.Component<{}, { count: number }> {
 
 export default {
   title: 'Core/CountBadge',
-
   parameters: {
     inspectComponents: [CountBadge],
   },

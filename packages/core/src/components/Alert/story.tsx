@@ -8,26 +8,27 @@ import Alert from '.';
 
 export default {
   title: 'Core/Alert',
-
   parameters: {
     inspectComponents: [Alert],
   },
 };
 
 export function defaultAndStatusClassifiedAlerts() {
-  return <>
-    <Alert title="Alert title" />
-    <br />
-    <Alert notice title="Notice alert title" />
-    <br />
-    <Alert info title="Info alert title" />
-    <br />
-    <Alert success title="Success alert title" />
-    <br />
-    <Alert warning title="Warning alert title" />
-    <br />
-    <Alert danger title="Danger alert title" />
-  </>;
+  return (
+    <>
+      <Alert title="Alert title" />
+      <br />
+      <Alert notice title="Notice alert title" />
+      <br />
+      <Alert info title="Info alert title" />
+      <br />
+      <Alert success title="Success alert title" />
+      <br />
+      <Alert warning title="Warning alert title" />
+      <br />
+      <Alert danger title="Danger alert title" />
+    </>
+  );
 }
 
 defaultAndStatusClassifiedAlerts.story = {
@@ -35,19 +36,21 @@ defaultAndStatusClassifiedAlerts.story = {
 };
 
 export function withNoIcons() {
-  return <>
-    <Alert hideStatusIcon title="Alert title" />
-    <br />
-    <Alert notice hideStatusIcon title="Notice alert title" />
-    <br />
-    <Alert info hideStatusIcon title="Info alert title" />
-    <br />
-    <Alert success hideStatusIcon title="Success alert title" />
-    <br />
-    <Alert warning hideStatusIcon title="Warning alert title" />
-    <br />
-    <Alert danger hideStatusIcon title="Danger alert title" />
-  </>;
+  return (
+    <>
+      <Alert hideStatusIcon title="Alert title" />
+      <br />
+      <Alert notice hideStatusIcon title="Notice alert title" />
+      <br />
+      <Alert info hideStatusIcon title="Info alert title" />
+      <br />
+      <Alert success hideStatusIcon title="Success alert title" />
+      <br />
+      <Alert warning hideStatusIcon title="Warning alert title" />
+      <br />
+      <Alert danger hideStatusIcon title="Danger alert title" />
+    </>
+  );
 }
 
 withNoIcons.story = {
@@ -55,23 +58,25 @@ withNoIcons.story = {
 };
 
 export function withACloseButton() {
-  return <>
-    <div>
-      <Alert title="Alert title" onClose={action('onClose')} />
+  return (
+    <>
+      <div>
+        <Alert title="Alert title" onClose={action('onClose')} />
 
-      <br />
+        <br />
 
-      <Alert title="Alert title" onClose={action('onClose')}>
-        <Text>Supporting content that is descriptive and helpful would go here</Text>
-      </Alert>
+        <Alert title="Alert title" onClose={action('onClose')}>
+          <Text>Supporting content that is descriptive and helpful would go here</Text>
+        </Alert>
 
-      <br />
+        <br />
 
-      <Alert danger title="Danger alert title" onClose={action('onClose')}>
-        <Text>Supporting content that is descriptive and helpful would go here</Text>
-      </Alert>
-    </div>
-  </>;
+        <Alert danger title="Danger alert title" onClose={action('onClose')}>
+          <Text>Supporting content that is descriptive and helpful would go here</Text>
+        </Alert>
+      </div>
+    </>
+  );
 }
 
 withACloseButton.story = {

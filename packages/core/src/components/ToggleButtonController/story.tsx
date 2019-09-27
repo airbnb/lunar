@@ -6,7 +6,6 @@ import ToggleButtonController from '.';
 
 export default {
   title: 'Core/ToggleButtonController',
-
   parameters: {
     inspectComponents: [ToggleButtonController, Button],
   },

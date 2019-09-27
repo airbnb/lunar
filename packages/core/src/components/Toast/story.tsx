@@ -5,7 +5,6 @@ const TRANSITION_ANIMATION = 300;
 
 export default {
   title: 'Core/Toast',
-
   parameters: {
     happo: { delay: 250 + TRANSITION_ANIMATION },
     inspectComponents: [Toast],
@@ -22,19 +21,12 @@ aStandardToast.story = {
 
 export function anErrorToastThatHasADelayBeforeDisplaying() {
   return (
-    <Toast
-      danger
-      id="bar"
-      message="This is a message within a toast."
-      duration={0}
-      delay={1000}
-    />
+    <Toast danger id="bar" message="This is a message within a toast." duration={0} delay={1000} />
   );
 }
 
 anErrorToastThatHasADelayBeforeDisplaying.story = {
   name: 'An error toast that has a delay before displaying.',
-
   parameters: {
     happo: { delay: 1000 + TRANSITION_ANIMATION },
   },

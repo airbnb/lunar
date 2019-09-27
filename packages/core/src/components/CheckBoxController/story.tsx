@@ -5,7 +5,6 @@ import BaseCheckBox from '../CheckBox';
 
 export default {
   title: 'Core/CheckBoxController',
-
   parameters: {
     inspectComponents: [CheckBoxController, BaseCheckBox],
   },

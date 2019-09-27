@@ -4,7 +4,6 @@ import FeedbackForm from '.';
 
 export default {
   title: 'Forms/FeedbackForm',
-
   parameters: {
     inspectComponents: [FeedbackForm],
   },

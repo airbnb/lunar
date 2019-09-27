@@ -5,7 +5,6 @@ import CheckBox from './Form/CheckBox';
 
 export default {
   title: 'Forms/CheckBox',
-
   parameters: {
     inspectComponents: [CheckBox],
   },

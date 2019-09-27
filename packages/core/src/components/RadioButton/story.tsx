@@ -7,7 +7,6 @@ import ProfilePhoto from '../ProfilePhoto';
 
 export default {
   title: 'Core/RadioButton',
-
   parameters: {
     inspectComponents: [RadioButton],
   },
@@ -73,24 +72,26 @@ withALabelDescriptionInAIndeterminateState.story = {
 };
 
 export function withATopAlignment() {
-  return <>
-    <RadioButton
-      checked
-      topAlign
-      name="radio-topalign"
-      label="Label"
-      value="foo"
-      onChange={action('onChange')}
-    />
-    <RadioButton
-      topAlign
-      name="radio-topalign"
-      label="Label"
-      value="foo"
-      labelDescription="This is a small label description."
-      onChange={action('onChange')}
-    />
-  </>;
+  return (
+    <>
+      <RadioButton
+        checked
+        topAlign
+        name="radio-topalign"
+        label="Label"
+        value="foo"
+        onChange={action('onChange')}
+      />
+      <RadioButton
+        topAlign
+        name="radio-topalign"
+        label="Label"
+        value="foo"
+        labelDescription="This is a small label description."
+        onChange={action('onChange')}
+      />
+    </>
+  );
 }
 
 withATopAlignment.story = {
@@ -114,31 +115,33 @@ markedAsOptional.story = {
 };
 
 export function markedAsCheckedInDifferentStates() {
-  return <>
-    <RadioButton
-      checked
-      name="radio-checked"
-      label="Label"
-      value="foo"
-      onChange={action('onChange')}
-    />
-    <RadioButton
-      checked
-      disabled
-      name="radio-checked-disabled"
-      label="Label"
-      value="foo"
-      onChange={action('onChange')}
-    />
-    <RadioButton
-      checked
-      invalid
-      name="radio-checked-invalid"
-      label="Label"
-      value="foo"
-      onChange={action('onChange')}
-    />
-  </>;
+  return (
+    <>
+      <RadioButton
+        checked
+        name="radio-checked"
+        label="Label"
+        value="foo"
+        onChange={action('onChange')}
+      />
+      <RadioButton
+        checked
+        disabled
+        name="radio-checked-disabled"
+        label="Label"
+        value="foo"
+        onChange={action('onChange')}
+      />
+      <RadioButton
+        checked
+        invalid
+        name="radio-checked-invalid"
+        label="Label"
+        value="foo"
+        onChange={action('onChange')}
+      />
+    </>
+  );
 }
 
 markedAsCheckedInDifferentStates.story = {

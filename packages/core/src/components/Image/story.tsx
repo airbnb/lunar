@@ -4,7 +4,6 @@ import lunar from ':storybook/images/lunar-logo.png';
 
 export default {
   title: 'Core/Image',
-
   parameters: {
     inspectComponents: [Image],
     happo: { delay: 500 },

@@ -4,7 +4,6 @@ import CheckBox from '.';
 
 export default {
   title: 'Core/CheckBox',
-
   parameters: {
     inspectComponents: [CheckBox],
   },
@@ -67,16 +66,18 @@ withALabelDescriptionInAnIndeterminateState.story = {
 };
 
 export function withATopAlignment() {
-  return <>
-    <CheckBox checked topAlign name="cb-topalign" label="Label" onChange={action('onChange')} />
-    <CheckBox
-      topAlign
-      name="cb-topalign"
-      label="Label"
-      labelDescription="This is a small label description."
-      onChange={action('onChange')}
-    />
-  </>;
+  return (
+    <>
+      <CheckBox checked topAlign name="cb-topalign" label="Label" onChange={action('onChange')} />
+      <CheckBox
+        topAlign
+        name="cb-topalign"
+        label="Label"
+        labelDescription="This is a small label description."
+        onChange={action('onChange')}
+      />
+    </>
+  );
 }
 
 withATopAlignment.story = {
@@ -92,23 +93,25 @@ markedAsOptional.story = {
 };
 
 export function markedAsCheckedInDifferentStates() {
-  return <>
-    <CheckBox checked name="cb-checked" label="Label" onChange={action('onChange')} />{' '}
-    <CheckBox
-      checked
-      disabled
-      name="cb-checked-disabled"
-      label="Label"
-      onChange={action('onChange')}
-    />{' '}
-    <CheckBox
-      checked
-      invalid
-      name="cb-checked-invalid"
-      label="Label"
-      onChange={action('onChange')}
-    />
-  </>;
+  return (
+    <>
+      <CheckBox checked name="cb-checked" label="Label" onChange={action('onChange')} />{' '}
+      <CheckBox
+        checked
+        disabled
+        name="cb-checked-disabled"
+        label="Label"
+        onChange={action('onChange')}
+      />{' '}
+      <CheckBox
+        checked
+        invalid
+        name="cb-checked-invalid"
+        label="Label"
+        onChange={action('onChange')}
+      />
+    </>
+  );
 }
 
 markedAsCheckedInDifferentStates.story = {

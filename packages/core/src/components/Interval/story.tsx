@@ -6,7 +6,6 @@ const start = Date.now();
 
 export default {
   title: 'Core/Interval',
-
   parameters: {
     happo: false,
     inspectComponents: [Interval],

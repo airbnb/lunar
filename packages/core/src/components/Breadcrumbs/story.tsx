@@ -4,7 +4,6 @@ import Breadcrumbs, { Breadcrumb } from '.';
 
 export default {
   title: 'Core/Breadcrumbs',
-
   parameters: {
     inspectComponents: [Breadcrumbs, Breadcrumb],
   },

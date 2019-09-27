@@ -12,7 +12,6 @@ function gridItem(short: boolean = true): React.ReactNode {
 
 export default {
   title: 'Core/AdaptiveGrid',
-
   parameters: {
     inspectComponents: [AdaptiveGrid],
   },

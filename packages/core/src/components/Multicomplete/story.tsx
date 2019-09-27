@@ -5,7 +5,6 @@ import Multicomplete from '.';
 
 export default {
   title: 'Core/Multicomplete',
-
   parameters: {
     inspectComponents: [Multicomplete],
   },

@@ -7,7 +7,6 @@ const fixedDate = new Date(2019, 1, 1, 10, 10, 10);
 
 export default {
   title: 'Forms/DateTimeSelect',
-
   parameters: {
     inspectComponents: [DateTimeSelect],
   },

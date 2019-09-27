@@ -4,7 +4,6 @@ import Input from '.';
 
 export default {
   title: 'Core/Input',
-
   parameters: {
     inspectComponents: [Input],
   },
@@ -26,28 +25,30 @@ aStandardTextField.story = {
 };
 
 export function withDifferentSizingSmallDefaultOrLarge() {
-  return <>
-    <Input
-      small
-      name="input-small"
-      label="Small"
-      placeholder="Placeholder"
-      onChange={action('onChange')}
-    />
-    <Input
-      name="input-regular"
-      label="Regular"
-      placeholder="Placeholder"
-      onChange={action('onChange')}
-    />
-    <Input
-      large
-      name="input-large"
-      label="Large"
-      placeholder="Placeholder"
-      onChange={action('onChange')}
-    />
-  </>;
+  return (
+    <>
+      <Input
+        small
+        name="input-small"
+        label="Small"
+        placeholder="Placeholder"
+        onChange={action('onChange')}
+      />
+      <Input
+        name="input-regular"
+        label="Regular"
+        placeholder="Placeholder"
+        onChange={action('onChange')}
+      />
+      <Input
+        large
+        name="input-large"
+        label="Large"
+        placeholder="Placeholder"
+        onChange={action('onChange')}
+      />
+    </>
+  );
 }
 
 withDifferentSizingSmallDefaultOrLarge.story = {

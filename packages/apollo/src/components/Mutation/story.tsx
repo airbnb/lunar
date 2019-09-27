@@ -73,7 +73,6 @@ function UpdateButton({ onUpdate }: { onUpdate: MutationFunction<{}, User> }) {
 
 export default {
   title: 'Apollo/Mutation',
-
   parameters: {
     inspectComponents: [Mutation],
   },

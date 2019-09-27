@@ -3,7 +3,6 @@ import LabeledDivider from '.';
 
 export default {
   title: 'Core/LabeledDivider',
-
   parameters: {
     inspectComponents: [LabeledDivider],
   },

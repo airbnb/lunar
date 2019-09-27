@@ -4,7 +4,6 @@ import Loader from '.';
 
 export default {
   title: 'Core/Loader',
-
   parameters: {
     inspectComponents: [Loader],
   },

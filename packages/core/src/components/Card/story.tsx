@@ -11,7 +11,6 @@ import Card, { Content } from '.';
 
 export default {
   title: 'Core/Card',
-
   parameters: {
     inspectComponents: [Card, Content],
     happo: { delay: 500 },

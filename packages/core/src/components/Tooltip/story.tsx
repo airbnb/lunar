@@ -57,7 +57,6 @@ class TooltipOnShowDemo extends React.Component<{}, { text: string; count: numbe
 
 export default {
   title: 'Core/Tooltip',
-
   parameters: {
     happo: false,
     inspectComponents: [Tooltip],
@@ -65,43 +64,45 @@ export default {
 };
 
 export function displaysWhenAnElementIsHovered() {
-  return <>
-    <div>
-      <Tooltip content="Tooltips are an anti-pattern! Please think carefully about accessibility before using them. Do not use tooltips for content that cannot be discovered by other means.">
-        <Button>Hover Me</Button>
-      </Tooltip>
-
-      <Text inline>← Has a tooltip</Text>
-
-      <Text>
-        <LoremIpsum />
-      </Text>
-
-      <div style={{ textAlign: 'right' }}>
-        <Text inline>Also has a tooltip →</Text>
-        <Tooltip
-          content="This uncomfortably wide tooltip should probably be right-aligned"
-          width={100}
-        >
+  return (
+    <>
+      <div>
+        <Tooltip content="Tooltips are an anti-pattern! Please think carefully about accessibility before using them. Do not use tooltips for content that cannot be discovered by other means.">
           <Button>Hover Me</Button>
         </Tooltip>
-      </div>
 
-      <Text>
-        <LoremIpsum />
-      </Text>
+        <Text inline>← Has a tooltip</Text>
 
-      <div style={{ textAlign: 'center' }}>
-        <Tooltip content="This tooltip should most definitely be centered" width={20}>
-          <Button>
-            Hover Me too
-            <br />
-            please
-          </Button>
-        </Tooltip>
+        <Text>
+          <LoremIpsum />
+        </Text>
+
+        <div style={{ textAlign: 'right' }}>
+          <Text inline>Also has a tooltip →</Text>
+          <Tooltip
+            content="This uncomfortably wide tooltip should probably be right-aligned"
+            width={100}
+          >
+            <Button>Hover Me</Button>
+          </Tooltip>
+        </div>
+
+        <Text>
+          <LoremIpsum />
+        </Text>
+
+        <div style={{ textAlign: 'center' }}>
+          <Tooltip content="This tooltip should most definitely be centered" width={20}>
+            <Button>
+              Hover Me too
+              <br />
+              please
+            </Button>
+          </Tooltip>
+        </div>
       </div>
-    </div>
-  </>;
+    </>
+  );
 }
 
 displaysWhenAnElementIsHovered.story = {
@@ -117,15 +118,17 @@ supressDismissalOnMouseDown.story = {
 };
 
 export function addAnUnderlineToTheTrigger() {
-  return <>
-    <Text>
-      <Tooltip underlined content="Hello">
-        I have a tooltip
-      </Tooltip>
-      ...
-      <Tooltip content="Goodbye">and I have a tooltip too</Tooltip>
-    </Text>
-  </>;
+  return (
+    <>
+      <Text>
+        <Tooltip underlined content="Hello">
+          I have a tooltip
+        </Tooltip>
+        ...
+        <Tooltip content="Goodbye">and I have a tooltip too</Tooltip>
+      </Text>
+    </>
+  );
 }
 
 addAnUnderlineToTheTrigger.story = {
@@ -133,15 +136,17 @@ addAnUnderlineToTheTrigger.story = {
 };
 
 export function useLightBackgroundWithDarkText() {
-  return <>
-    <Text>
-      <Tooltip inverted content="Hello">
-        I have a light background tooltip
-      </Tooltip>
-      ...
-      <Tooltip content="Goodbye">and I have the default dark background tooltip</Tooltip>
-    </Text>
-  </>;
+  return (
+    <>
+      <Text>
+        <Tooltip inverted content="Hello">
+          I have a light background tooltip
+        </Tooltip>
+        ...
+        <Tooltip content="Goodbye">and I have the default dark background tooltip</Tooltip>
+      </Text>
+    </>
+  );
 }
 
 useLightBackgroundWithDarkText.story = {

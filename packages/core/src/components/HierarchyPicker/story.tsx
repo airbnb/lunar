@@ -301,7 +301,6 @@ class PickerDemo extends React.Component<Partial<Props>, { chosen: Props['chosen
 
 export default {
   title: 'Core/HierarchyPicker',
-
   parameters: {
     inspectComponents: [HierarchyPicker],
   },
@@ -324,7 +323,9 @@ verticallyAlignedMenu.story = {
 };
 
 export function withSubSectionsAndHierarchyDimensions() {
-  return <PickerDemo verticallyAlign items={demoItems2} hierarchyMaxHeight={272} hierarchyWidth={260} />;
+  return (
+    <PickerDemo verticallyAlign items={demoItems2} hierarchyMaxHeight={272} hierarchyWidth={260} />
+  );
 }
 
 withSubSectionsAndHierarchyDimensions.story = {

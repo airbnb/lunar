@@ -4,7 +4,6 @@ import Interweave from '.';
 
 export default {
   title: 'Core/Interweave',
-
   parameters: {
     inspectComponents: [Interweave],
   },
@@ -82,5 +81,5 @@ export function doesntBreakInterpolations() {
 }
 
 doesntBreakInterpolations.story = {
-  name: 'Doesn\'t break interpolations.',
+  name: "Doesn't break interpolations.",
 };

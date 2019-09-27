@@ -36,7 +36,6 @@ function ImageViewerDemo({ width, height }: ImageViewerDemoProps) {
 
 export default {
   title: 'Core/ImageViewer',
-
   parameters: {
     inspectComponents: [ImageViewer, ZoomControls, RotateControls],
   },

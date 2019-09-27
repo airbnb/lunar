@@ -7,7 +7,6 @@ import Link from '.';
 
 export default {
   title: 'Core/Link',
-
   parameters: {
     inspectComponents: [Link],
   },
@@ -30,15 +29,17 @@ aButtonLink.story = {
 };
 
 export function withDifferentSizingSmallRegularDefaultAndLarge() {
-  return <>
-    <Link small href="https://github.com/airbnb/lunar">
-      Link
-    </Link>{' '}
-    <Link href="https://github.com/airbnb/lunar">Link</Link>{' '}
-    <Link large href="https://github.com/airbnb/lunar">
-      Link
-    </Link>
-  </>;
+  return (
+    <>
+      <Link small href="https://github.com/airbnb/lunar">
+        Link
+      </Link>{' '}
+      <Link href="https://github.com/airbnb/lunar">Link</Link>{' '}
+      <Link large href="https://github.com/airbnb/lunar">
+        Link
+      </Link>
+    </>
+  );
 }
 
 withDifferentSizingSmallRegularDefaultAndLarge.story = {
@@ -46,17 +47,19 @@ withDifferentSizingSmallRegularDefaultAndLarge.story = {
 };
 
 export function withDifferentStatesMutedDisabledAndInverted() {
-  return <>
-    <Link muted href="https://github.com/airbnb/lunar">
-      Link
-    </Link>{' '}
-    <Link disabled href="https://github.com/airbnb/lunar">
-      Link
-    </Link>{' '}
-    <Link inverted href="https://github.com/airbnb/lunar">
-      Link
-    </Link>
-  </>;
+  return (
+    <>
+      <Link muted href="https://github.com/airbnb/lunar">
+        Link
+      </Link>{' '}
+      <Link disabled href="https://github.com/airbnb/lunar">
+        Link
+      </Link>{' '}
+      <Link inverted href="https://github.com/airbnb/lunar">
+        Link
+      </Link>
+    </>
+  );
 }
 
 withDifferentStatesMutedDisabledAndInverted.story = {
@@ -64,17 +67,19 @@ withDifferentStatesMutedDisabledAndInverted.story = {
 };
 
 export function withBeforeAndOrAfterIcons() {
-  return <>
-    <div>
-      <Link href="https://github.com/airbnb/lunar" beforeIcon={<IconAddAlt decorative />}>
-        Link
-      </Link>
-      <br />
-      <Link href="https://github.com/airbnb/lunar" afterIcon={<IconAddAlt decorative />}>
-        Link
-      </Link>
-    </div>
-  </>;
+  return (
+    <>
+      <div>
+        <Link href="https://github.com/airbnb/lunar" beforeIcon={<IconAddAlt decorative />}>
+          Link
+        </Link>
+        <br />
+        <Link href="https://github.com/airbnb/lunar" afterIcon={<IconAddAlt decorative />}>
+          Link
+        </Link>
+      </div>
+    </>
+  );
 }
 
 withBeforeAndOrAfterIcons.story = {
@@ -94,15 +99,17 @@ stopClickAndDefaultEventsWhenDisabled.story = {
 };
 
 export function boldText() {
-  return <>
-    <Link bold href="https://github.com/airbnb/lunar">
-      Link
-    </Link>
-    <br />
-    <Link bold onClick={action('onClick')}>
-      Button
-    </Link>
-  </>;
+  return (
+    <>
+      <Link bold href="https://github.com/airbnb/lunar">
+        Link
+      </Link>
+      <br />
+      <Link bold onClick={action('onClick')}>
+        Button
+      </Link>
+    </>
+  );
 }
 
 boldText.story = {

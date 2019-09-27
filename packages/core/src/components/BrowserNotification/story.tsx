@@ -71,7 +71,6 @@ class BrowserNotificationExample extends React.Component<{}, State> {
 
 export default {
   title: 'Core/BrowserNotification',
-
   parameters: {
     inspectComponents: [BrowserNotification],
   },

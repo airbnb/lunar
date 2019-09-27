@@ -4,7 +4,6 @@ import Spacing from '.';
 
 export default {
   title: 'Core/Spacing',
-
   parameters: {
     inspectComponents: [Spacing],
   },
@@ -107,14 +106,16 @@ usePaddingInsteadOfMargin.story = {
 };
 
 export function displayInline() {
-  return <>
-    <Spacing inline all={0.5}>
-      <StatusLabel>Content 1</StatusLabel>
-    </Spacing>
-    <Spacing inline all={0.5}>
-      <StatusLabel>Content 2</StatusLabel>
-    </Spacing>
-  </>;
+  return (
+    <>
+      <Spacing inline all={0.5}>
+        <StatusLabel>Content 1</StatusLabel>
+      </Spacing>
+      <Spacing inline all={0.5}>
+        <StatusLabel>Content 2</StatusLabel>
+      </Spacing>
+    </>
+  );
 }
 
 displayInline.story = {
