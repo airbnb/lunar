@@ -13,6 +13,7 @@ import Card, { Content } from './Card';
 storiesOf('Core/Card', module)
   .addParameters({
     inspectComponents: [Card, Content],
+    happo: { delay: 250 },
   })
   .add('A standard card.', () => (
     <Card>
