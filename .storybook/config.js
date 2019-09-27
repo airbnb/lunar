@@ -16,8 +16,4 @@ addDecorator(withProps);
 addDecorator(withStory);
 addDecorator(withContexts(contexts));
 
-configure(() => {
-  const glob = require.context('../packages', true, /story\.tsx?$/);
-
-  glob.keys().forEach(filename => glob(filename));
-}, module);
+configure(require.context('../packages', true, /story\.tsx?$/), module);

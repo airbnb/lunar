@@ -1,14 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Form from './Form';
 import CheckBoxController from './Form/CheckBoxController';
 
-storiesOf('Forms/CheckBoxController', module)
-  .addParameters({
+export default {
+  title: 'Forms/CheckBoxController',
+
+  parameters: {
     inspectComponents: [CheckBoxController],
-  })
-  .add('Connected to the parent `Form`.', () => (
+  },
+};
+
+export function connectedToTheParentForm() {
+  return (
     <Form
       onSubmit={() => {
         action('onSubmit')();
@@ -26,4 +30,9 @@ storiesOf('Forms/CheckBoxController', module)
         )}
       </CheckBoxController>
     </Form>
-  ));
+  );
+}
+
+connectedToTheParentForm.story = {
+  name: 'Connected to the parent `Form`.',
+};
