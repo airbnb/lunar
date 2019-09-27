@@ -128,14 +128,14 @@ export default class Lightbox extends React.PureComponent<Props, State> {
         imageCount={images.length}
         hideAside={hideAside}
         hasAside={hasAside}
-        onChangeSlide={this.handleChangeSlide}
-        onToggleAside={this.handleToggleAside}
-        showZoomControls={showZoomControls}
-        showRotateControls={showRotateControls}
-        onZoomImage={this.handleZoomImage}
-        onRotateImage={this.handleRotateImage}
         scale={scale}
         rotation={rotation}
+        showZoomControls={showZoomControls}
+        showRotateControls={showRotateControls}
+        onChangeSlide={this.handleChangeSlide}
+        onRotateImage={this.handleRotateImage}
+        onToggleAside={this.handleToggleAside}
+        onZoomImage={this.handleZoomImage}
       />
     );
 
@@ -146,10 +146,10 @@ export default class Lightbox extends React.PureComponent<Props, State> {
           alt={alt}
           src={src}
           hideAside={hideAside}
-          showZoomControls={showZoomControls}
-          showRotateControls={showRotateControls}
           scale={scale}
           rotation={rotation}
+          showZoomControls={showZoomControls}
+          showRotateControls={showRotateControls}
         />
       </Sheet>
     );

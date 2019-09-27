@@ -129,13 +129,13 @@ export class Header extends React.PureComponent<Props & WithStylesProps> {
 
         {showRotateControls && (
           <Spacing right={2}>
-            <RotateControls onRotation={this.handleRotate} rotation={rotation} />
+            <RotateControls rotation={rotation} onRotation={this.handleRotate} />
           </Spacing>
         )}
 
         {showZoomControls && (
           <Spacing right={2}>
-            <ZoomControls onScale={this.handleZoom} scale={scale} />
+            <ZoomControls scale={scale} onScale={this.handleZoom} />
           </Spacing>
         )}
 
