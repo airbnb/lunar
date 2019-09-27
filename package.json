@@ -10,7 +10,7 @@
     "build": "yarn run type && yarn run babel && yarn run clean:story",
     "clean": "rimraf './packages/*/{lib,esm}'",
     "clean:hard": "yarn run clean && rimraf './packages/**/*.tsbuildinfo'",
-    "clean:story": "rimraf './packages/**/*story.*'",
+    "clean:story": "rimraf './packages/*/{lib,esm}/**/*story.*'",
     "deploy:ghp": "yarn run storybook:build && node ./scripts/publishGitHubPages.js",
     "deploy:npm": "yarn run release:version && yarn run release:publish",
     "gen:icon": "node ./scripts/generateIcon.js",
