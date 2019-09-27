@@ -7,7 +7,7 @@ import FilterMenu, { Row } from '.';
 
 export default {
   title: 'Forms/FilterMenu',
-  decorators: [story => <div style={{ margin: 'auto' }}>{story()}</div>],
+  decorators: [(story: Function) => <div style={{ margin: 'auto' }}>{story()}</div>],
   parameters: {
     inspectComponents: [FilterMenu],
   },

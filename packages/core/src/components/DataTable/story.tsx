@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export, unicorn/consistent-function-scoping */
+/* eslint-disable unicorn/consistent-function-scoping */
 
 import React from 'react';
 import { action } from '@storybook/addon-actions';
@@ -14,7 +14,7 @@ import Button from '../Button';
 import Input from '../Input';
 import Row from '../Row';
 import Spacing from '../Spacing';
-import { ExpandedRow, SelectedRows, IndexedParentRow, VirtualRow } from './types';
+import { SelectedRows, IndexedParentRow } from './types';
 
 const renderers = {
   name: EditableTextRenderer,
@@ -83,16 +83,11 @@ const filterData = (data: IndexedParentRow[]) => {
   return data.filter(row => row.data.jobTitle === 'Engineer');
 };
 
-const defaultEditCallback = (
-  row: VirtualRow,
-  key: string,
-  newVal: string,
-  event: React.SyntheticEvent<EventTarget>,
-) => {
+const defaultEditCallback = () => {
   action('this callback has access to row, key, newVal and event');
 };
 
-const selectCallback = (rowData: ExpandedRow, selectedRows: SelectedRows) => () => {
+const selectCallback = () => () => {
   action('this callback has access to the newly selected row and all selected row');
 };
 
