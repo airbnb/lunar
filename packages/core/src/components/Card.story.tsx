@@ -5,7 +5,7 @@ import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import lunar from ':storybook/images/lunar-logo.png';
 import stars from ':storybook/images/stars.jpg';
-import moon from ':storybook/images/moon.jpg';
+import moon from ':storybook/images/moon.png';
 import Text from './Text';
 import ResponsiveImage from './ResponsiveImage';
 import Card, { Content } from './Card';
