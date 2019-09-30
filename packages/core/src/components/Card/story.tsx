@@ -146,7 +146,7 @@ aCardWithALargeTopFeaturedImage.story = {
   name: 'A card with a large top featured image.',
 };
 
-export function aCardWithALSmallLeftFeaturedImage() {
+export function aCardWithASmallLeftFeaturedImage() {
   return (
     <Card>
       <Content small beforeImageSrc={moon}>
@@ -158,7 +158,7 @@ export function aCardWithALSmallLeftFeaturedImage() {
   );
 }
 
-aCardWithALSmallLeftFeaturedImage.story = {
+aCardWithASmallLeftFeaturedImage.story = {
   name: 'A card with a small left featured image.',
 };
 
