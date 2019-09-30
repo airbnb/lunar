@@ -6,7 +6,7 @@ import lunar from ':storybook/images/lunar-logo.png';
 storiesOf('Core/Image', module)
   .addParameters({
     inspectComponents: [Image],
-    happo: { delay: 250 },
+    happo: { delay: 500 },
   })
   .add('default', () => <Image src={lunar} alt="Something descriptive" height={600} />)
   .add('background', () => (

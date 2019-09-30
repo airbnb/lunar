@@ -17,9 +17,7 @@ describe('<Card />', () => {
     const wrapper = shallowWithStyles(<Content beforeImageSrc={imageUrl}>Sup</Content>);
 
     expect(
-      shallow(wrapper.find(Row).prop('before') as React.ReactElement)
-        .find('img')
-        .prop('src'),
+      (wrapper.find(Row).prop('before')! as React.ReactElement<{ src: string }>).props.src,
     ).toBe(imageUrl);
   });
 
@@ -28,9 +26,7 @@ describe('<Card />', () => {
     const wrapper = shallowWithStyles(<Content afterImageSrc={imageUrl}>Sup</Content>);
 
     expect(
-      shallow(wrapper.find(Row).prop('after') as React.ReactElement)
-        .find('img')
-        .prop('src'),
+      (wrapper.find(Row).prop('after') as React.ReactElement<{ src: string }>)!.props.src,
     ).toBe(imageUrl);
   });
 
