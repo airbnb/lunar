@@ -146,7 +146,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
             <div>
               <Spacing bottom={0.5}>
                 <div className={cx(styles.title)}>
-                  <Spacing inline right={1}>
+                  <Spacing inline bottom={0.5} right={1}>
                     <Shimmer width={175} height={14} />
                   </Spacing>
 
@@ -226,7 +226,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
           <div>
             <Spacing bottom={0.5}>
               <div className={cx(styles.title)}>
-                <Spacing inline right={1}>
+                <Spacing inline bottom={0.5} right={1}>
                   {onClickTitle ? (
                     <button
                       className={cx(styles.resetButton)}
@@ -243,7 +243,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
                 </Spacing>
 
                 {titleTag && (
-                  <Spacing inline right={1}>
+                  <Spacing inline bottom={0.5} right={1}>
                     <div className={cx(styles.tag)}>
                       <Text micro muted>
                         {titleTag}
