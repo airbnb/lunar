@@ -40,7 +40,7 @@ const styleSheet: StyleSheet = ({ color, ui }) => ({
   fadeIn: {
     animationName: {
       from: {
-        opacity: 0,
+        opacity: 0.1,
       },
 
       to: {
