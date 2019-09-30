@@ -18,6 +18,8 @@ export type Props = {
   maxHeight?: number | string;
   /** Align contents in the middle vertically. */
   middleAlign?: boolean;
+  /** Min height of row. */
+  minHeight?: number | string;
   /** Render with vertical padding (24px). */
   spacious?: boolean;
   /** The visibility of the row's topline. */
@@ -42,15 +44,16 @@ export class Row extends React.Component<Props & WithStylesProps> {
 
   render() {
     const {
-      cx,
       after,
       baseline,
       before,
       children,
       compact,
+      cx,
       inline,
       maxHeight,
       middleAlign,
+      minHeight,
       spacious,
       styles,
       topline,
@@ -61,7 +64,7 @@ export class Row extends React.Component<Props & WithStylesProps> {
       <div
         className={cx(
           styles.row,
-          { maxHeight },
+          { maxHeight, minHeight },
           compact && styles.row_compact,
           spacious && styles.row_spacious,
           middleAlign && styles.row_middleAlign,

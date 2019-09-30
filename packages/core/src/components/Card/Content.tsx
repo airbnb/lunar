@@ -2,8 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { mutuallyExclusiveProps } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import Image from '../Image';
 import Row from '../Row';
 import Spacing from '../Spacing';
+
+function getSideImageWidth({ large, small }: { large?: boolean; small?: boolean }): number {
+  if (small) {
+    return 80;
+  }
+
+  if (large) {
+    return 195;
+  }
+
+  return 152;
+}
 
 const imageUrlTypePropType = mutuallyExclusiveProps(
   PropTypes.string,
@@ -24,6 +37,8 @@ const beforePropType = mutuallyExclusiveProps(
   'beforeImageSrc',
 );
 
+const imageSizePropType = mutuallyExclusiveProps(PropTypes.bool, 'small', 'large');
+
 export type Props = {
   /** Content to display following the primary content. Takes priority over `afterImageSrc`. */
   after?: React.ReactNode;
@@ -43,6 +58,10 @@ export type Props = {
   maxHeight?: number | string;
   /** Align contents in the middle vertically. */
   middleAlign?: boolean;
+  /** Min height of content. */
+  minHeight?: number | string;
+  /** Whether the image content is small. */
+  small?: boolean;
   /** Top image URL. */
   topImageSrc?: string;
   /** To use with text truncation; overflow is hidden. */
@@ -58,22 +77,26 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
     afterImageSrc: imageUrlTypePropType,
     before: beforePropType,
     beforeImageSrc: imageUrlTypePropType,
+    large: imageSizePropType,
+    small: imageSizePropType,
     topImageSrc: imageUrlTypePropType,
   };
 
   render() {
     const {
-      cx,
       after,
       afterImageSrc,
       before,
       beforeImageSrc,
       children,
       compact,
+      cx,
       large,
       maxHeight,
       middleAlign,
+      minHeight,
       onClick,
+      small,
       styles,
       topImageSrc,
       truncated,
@@ -99,9 +122,14 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
 
     if (!afterContent && afterImageSrc) {
       afterContent = (
-        <div className={cx(styles.imageWrapper, large && styles.imageWrapper_large)}>
-          <img className={cx(styles.image)} alt="" height="100%" src={afterImageSrc} width="100%" />
-        </div>
+        <Image
+          background
+          cover
+          alt=""
+          height="100%"
+          width={getSideImageWidth({ large, small })}
+          src={afterImageSrc}
+        />
       );
     }
 
@@ -120,15 +148,14 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
 
     if (!beforeContent && beforeImageSrc) {
       beforeContent = (
-        <div className={cx(styles.imageWrapper, large && styles.imageWrapper_large)}>
-          <img
-            className={cx(styles.image)}
-            alt=""
-            height="100%"
-            src={beforeImageSrc}
-            width="100%"
-          />
-        </div>
+        <Image
+          background
+          cover
+          alt=""
+          height="100%"
+          width={getSideImageWidth({ large, small })}
+          src={beforeImageSrc}
+        />
       );
     }
 
@@ -146,6 +173,7 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
           before={beforeContent}
           maxHeight={maxHeight}
           middleAlign={middleAlign}
+          minHeight={minHeight}
           truncated={truncated}
         >
           <Spacing
@@ -218,16 +246,6 @@ export default withStyles(({ color, pattern, ui, unit }) => ({
   image: {
     display: 'block',
     objectFit: 'cover',
-  },
-
-  imageWrapper: {
-    height: '100%',
-    width: 80,
-    overflow: 'hidden',
-  },
-
-  imageWrapper_large: {
-    width: 195,
   },
 
   topImage: {

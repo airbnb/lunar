@@ -13,6 +13,7 @@ import Card, { Content } from './Card';
 storiesOf('Core/Card', module)
   .addParameters({
     inspectComponents: [Card, Content],
+    happo: { delay: 500 },
   })
   .add('A standard card.', () => (
     <Card>
@@ -67,6 +68,15 @@ storiesOf('Core/Card', module)
       </Content>
     </Card>
   ))
+  .add('With a min height.', () => (
+    <Card>
+      <Content middleAlign minHeight={300}>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Content>
+    </Card>
+  ))
   .add('A card with a top featured image.', () => (
     <Card>
       <Content topImageSrc={stars}>
@@ -85,6 +95,15 @@ storiesOf('Core/Card', module)
       </Content>
     </Card>
   ))
+  .add('A card with a small left featured image.', () => (
+    <Card>
+      <Content small beforeImageSrc={moon}>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Content>
+    </Card>
+  ))
   .add('A card with a left featured image.', () => (
     <Card>
       <Content beforeImageSrc={moon}>
@@ -97,6 +116,15 @@ storiesOf('Core/Card', module)
   .add('A card with a large left featured image.', () => (
     <Card>
       <Content large beforeImageSrc={moon}>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Content>
+    </Card>
+  ))
+  .add('A card with a small right featured image.', () => (
+    <Card>
+      <Content small afterImageSrc={moon}>
         <Text>
           <LoremIpsum />
         </Text>

@@ -5,17 +5,19 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 const backgroundAlignPropType = mutuallyExclusiveTrueProps('alignBottom', 'alignTop');
 const objectFitPropType = mutuallyExclusiveTrueProps('contain', 'cover');
 
-const styleSheet: StyleSheet = ({ ui }) => ({
+const styleSheet: StyleSheet = ({ color, ui }) => ({
   background: {
     backgroundPosition: '50% 50%',
     backgroundRepeat: 'no-repeat',
   },
 
   backgroundSize_cover: {
+    backgroundColor: color.accent.bgHover,
     backgroundSize: 'cover',
   },
 
   backgroundSize_contain: {
+    backgroundColor: color.accent.bg,
     backgroundSize: 'contain',
   },
 
@@ -38,7 +40,7 @@ const styleSheet: StyleSheet = ({ ui }) => ({
   fadeIn: {
     animationName: {
       from: {
-        opacity: 0,
+        opacity: 0.1,
       },
 
       to: {
