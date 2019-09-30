@@ -252,8 +252,8 @@ describe('<Tabs/>', () => {
   });
 
   it('Persist with hash and back button.', () => {
-    const addSpy = jest.spyOn(document, 'addEventListener');
-    const rmSpy = jest.spyOn(document, 'removeEventListener');
+    const addSpy = jest.spyOn(window, 'addEventListener');
+    const rmSpy = jest.spyOn(window, 'removeEventListener');
 
     const wrapper = unwrap(
       <Tabs persistWithHash="tab">
@@ -272,7 +272,7 @@ describe('<Tabs/>', () => {
     expect(location.hash).toBe('#tab=b');
 
     location.hash = '#tab=a';
-    document.dispatchEvent(new Event('popstate'));
+    window.dispatchEvent(new Event('popstate'));
     expect(wrapper.state('selectedKey')).toBe('a');
 
     // @ts-ignore
