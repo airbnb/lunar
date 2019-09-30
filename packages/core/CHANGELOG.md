@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.31.1 - 2019-09-30
+
+#### 🐞 Fixes
+
+- **[Tabs]** Listen for `popstate` on window instead of document.  (#200) ([3b3f4fe](https://github.com/airbnb/lunar/tree/master/packages/core/commit/3b3f4fe)), closes [#200](https://github.com/airbnb/lunar/tree/master/packages/core/issues/200)
+
+#### 🛠 Internals
+
+- Migrate to Storybook v5.2. (#199) ([5b546fa](https://github.com/airbnb/lunar/tree/master/packages/core/commit/5b546fa)), closes [#199](https://github.com/airbnb/lunar/tree/master/packages/core/issues/199)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.31.0 - 2019-09-30
 
 #### 🚀 Updates
