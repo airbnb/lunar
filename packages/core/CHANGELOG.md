@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.31.0 - 2019-09-30
+
+#### 🚀 Updates
+
+- **[Row, CardContent]** Add `minHeight` support. Add `small` image option. Rework CardContent before/after images and increase default size. (#201) ([cb5cfcf](https://github.com/airbnb/lunar/tree/master/packages/core/commit/cb5cfcf)), closes [#201](https://github.com/airbnb/lunar/tree/master/packages/core/issues/201)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.30.0 - 2019-09-26
 
 **Note:** Version bump only for package @airbnb/lunar
