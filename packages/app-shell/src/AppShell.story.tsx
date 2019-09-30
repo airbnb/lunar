@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import Button from '@airbnb/lunar/lib/components/Button';
 import Input from '@airbnb/lunar/lib/components/Input';
 import Breadcrumbs, { TrackBreadcrumb } from './components/Breadcrumbs';
@@ -37,11 +36,15 @@ class PageDataExample extends React.Component<{ onSubmit: Function }, { data: st
   }
 }
 
-storiesOf('AppShell', module)
-  .addParameters({
+export default {
+  title: 'AppShell',
+  parameters: {
     inspectComponents: [AppShell],
-  })
-  .add('Supports toasts.', () => (
+  },
+};
+
+export function supportsToasts() {
+  return (
     <AppShell name="Lunar">
       <AppContext.Consumer>
         {({ addSuccessToast, addFailureToast }: Context) => (
@@ -68,24 +71,45 @@ storiesOf('AppShell', module)
         )}
       </AppContext.Consumer>
     </AppShell>
-  ))
-  .add('Displays a toast using a component.', () => (
+  );
+}
+
+supportsToasts.story = {
+  name: 'Supports toasts.',
+};
+
+export function displaysAToastUsingAComponent() {
+  return (
     <AppShell name="Lunar">
       <PopToast
         message="This message is displayed by rendering a component and not using context!"
         duration={0}
       />
     </AppShell>
-  ))
-  .add('Displays a trail of breadcrumbs using components.', () => (
+  );
+}
+
+displaysAToastUsingAComponent.story = {
+  name: 'Displays a toast using a component.',
+};
+
+export function displaysATrailOfBreadcrumbsUsingComponents() {
+  return (
     <AppShell name="Lunar">
       <TrackBreadcrumb label="Countries" href="/countries" />
       <TrackBreadcrumb label="America" href="/countries/usa" />
       <TrackBreadcrumb label="California" href="/countries/usa/ca" />
       <Breadcrumbs accessibilityLabel="Navigation" />
     </AppShell>
-  ))
-  .add('Supports page data.', () => (
+  );
+}
+
+displaysATrailOfBreadcrumbsUsingComponents.story = {
+  name: 'Displays a trail of breadcrumbs using components.',
+};
+
+export function supportsPageData() {
+  return (
     <AppShell name="Lunar">
       <AppContext.Consumer>
         {({ addPageData, data }: Context) => (
@@ -100,4 +124,9 @@ storiesOf('AppShell', module)
         )}
       </AppContext.Consumer>
     </AppShell>
-  ));
+  );
+}
+
+supportsPageData.story = {
+  name: 'Supports page data.',
+};

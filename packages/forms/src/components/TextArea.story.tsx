@@ -1,14 +1,17 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Form from './Form';
 import TextArea from './Form/TextArea';
 
-storiesOf('Forms/TextArea', module)
-  .addParameters({
+export default {
+  title: 'Forms/TextArea',
+  parameters: {
     inspectComponents: [TextArea],
-  })
-  .add('Connected to the parent `Form`.', () => (
+  },
+};
+
+export function connectedToTheParentForm() {
+  return (
     <Form
       onSubmit={() => {
         action('onSubmit')();
@@ -18,4 +21,9 @@ storiesOf('Forms/TextArea', module)
     >
       <TextArea name="field" label="Label" validator={() => {}} />
     </Form>
-  ));
+  );
+}
+
+connectedToTheParentForm.story = {
+  name: 'Connected to the parent `Form`.',
+};

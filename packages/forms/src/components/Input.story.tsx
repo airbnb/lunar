@@ -1,14 +1,17 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Form from './Form';
 import Input from './Form/Input';
 
-storiesOf('Forms/Input', module)
-  .addParameters({
+export default {
+  title: 'Forms/Input',
+  parameters: {
     inspectComponents: [Input],
-  })
-  .add('Connected to the parent `Form`.', () => (
+  },
+};
+
+export function connectedToTheParentForm() {
+  return (
     <Form
       onSubmit={() => {
         action('onSubmit')();
@@ -18,4 +21,9 @@ storiesOf('Forms/Input', module)
     >
       <Input name="field" label="Label" validator={() => {}} />
     </Form>
-  ));
+  );
+}
+
+connectedToTheParentForm.story = {
+  name: 'Connected to the parent `Form`.',
+};

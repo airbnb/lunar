@@ -1,6 +1,6 @@
 import './bootstrap';
-import { setDefaultDelay } from 'happo-plugin-storybook/register';
 import React from 'react';
+import { setDefaultDelay } from 'happo-plugin-storybook/register';
 import { addDecorator, configure } from '@storybook/react';
 import { withContexts } from '@storybook/addon-contexts/react';
 import { withA11y } from '@storybook/addon-a11y';
@@ -16,8 +16,4 @@ addDecorator(withProps);
 addDecorator(withStory);
 addDecorator(withContexts(contexts));
 
-configure(() => {
-  const glob = require.context('../packages', true, /\.story\.tsx?$/);
-
-  glob.keys().forEach(filename => glob(filename));
-}, module);
+configure(require.context('../packages', true, /\/([A-Za-z0-9]+\.)?story\.tsx?$/), module);

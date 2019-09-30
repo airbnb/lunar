@@ -1,15 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import ButtonGroup from '@airbnb/lunar/lib/components/ButtonGroup';
 import Form from './Form';
 import ToggleButtonController from './Form/ToggleButtonController';
 
-storiesOf('Forms/ToggleButtonController', module)
-  .addParameters({
+export default {
+  title: 'Forms/ToggleButtonController',
+  parameters: {
     inspectComponents: [ToggleButtonController],
-  })
-  .add('Connected to the parent `Form`.', () => (
+  },
+};
+
+export function connectedToTheParentForm() {
+  return (
     <Form
       onSubmit={() => {
         action('onSubmit')();
@@ -33,4 +36,9 @@ storiesOf('Forms/ToggleButtonController', module)
         )}
       </ToggleButtonController>
     </Form>
-  ));
+  );
+}
+
+connectedToTheParentForm.story = {
+  name: 'Connected to the parent `Form`.',
+};

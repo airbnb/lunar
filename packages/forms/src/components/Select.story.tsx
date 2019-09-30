@@ -1,14 +1,17 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Form from './Form';
 import Select from './Form/Select';
 
-storiesOf('Forms/Select', module)
-  .addParameters({
+export default {
+  title: 'Forms/Select',
+  parameters: {
     inspectComponents: [Select],
-  })
-  .add('Connected to the parent `Form`.', () => (
+  },
+};
+
+export function connectedToTheParentForm() {
+  return (
     <Form
       onSubmit={() => {
         action('onSubmit')();
@@ -22,4 +25,9 @@ storiesOf('Forms/Select', module)
         <option value="baz">Baz</option>
       </Select>
     </Form>
-  ));
+  );
+}
+
+connectedToTheParentForm.story = {
+  name: 'Connected to the parent `Form`.',
+};

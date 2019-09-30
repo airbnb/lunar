@@ -1,16 +1,19 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Form from './Form';
 import DateTimeSelect from './Form/DateTimeSelect';
 
 const fixedDate = new Date(2019, 1, 1, 10, 10, 10);
 
-storiesOf('Forms/DateTimeSelect', module)
-  .addParameters({
+export default {
+  title: 'Forms/DateTimeSelect',
+  parameters: {
     inspectComponents: [DateTimeSelect],
-  })
-  .add('Connected to the parent `Form`.', () => (
+  },
+};
+
+export function connectedToTheParentForm() {
+  return (
     <Form
       onSubmit={() => {
         action('onSubmit')();
@@ -25,4 +28,9 @@ storiesOf('Forms/DateTimeSelect', module)
         defaultValue={fixedDate.toISOString()}
       />
     </Form>
-  ));
+  );
+}
+
+connectedToTheParentForm.story = {
+  name: 'Connected to the parent `Form`.',
+};

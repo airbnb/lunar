@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Form from './Form';
 import Multicomplete from './Form/Multicomplete';
@@ -11,11 +10,15 @@ const items = [
   { value: 'green', name: 'Green' },
 ];
 
-storiesOf('Forms/Multicomplete', module)
-  .addParameters({
+export default {
+  title: 'Forms/Multicomplete',
+  parameters: {
     inspectComponents: [Multicomplete],
-  })
-  .add('Connected to the parent `Form`.', () => (
+  },
+};
+
+export function connectedToTheParentForm() {
+  return (
     <Form
       onSubmit={() => {
         action('onSubmit')();
@@ -33,4 +36,9 @@ storiesOf('Forms/Multicomplete', module)
         }
       />
     </Form>
-  ));
+  );
+}
+
+connectedToTheParentForm.story = {
+  name: 'Connected to the parent `Form`.',
+};

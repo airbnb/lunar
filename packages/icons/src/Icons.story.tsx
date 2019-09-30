@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-onchange */
 
 import React, { ChangeEvent } from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { WithIconWrapperProps } from './withIcon';
 import FakeIcon from './FakeIcon';
@@ -191,8 +190,17 @@ class IconList extends React.Component<
   }
 }
 
-storiesOf('Icons', module)
-  .addParameters({
+export default {
+  title: 'Icons',
+  parameters: {
     inspectComponents: [FakeIcon],
-  })
-  .add('Icon gallery.', () => <IconList />);
+  },
+};
+
+export function iconGallery() {
+  return <IconList />;
+}
+
+iconGallery.story = {
+  name: 'Icon gallery.',
+};

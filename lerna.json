@@ -4,7 +4,7 @@
   "useWorkspaces": true,
   "command": {
     "publish": {
-      "ignoreChanges": ["*.md", "*.story.tsx", "*.test.ts", "*.test.tsx", "*.snap", "*.d.ts"],
+      "ignoreChanges": ["*.md", "story.tsx", "*.story.tsx", "*.test.ts", "*.test.tsx", "*.snap", "*.d.ts"],
       "message": "Release [ci skip]"
     }
   },
