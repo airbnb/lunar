@@ -126,8 +126,8 @@ export class CardContent extends React.Component<Props & WithStylesProps> {
           background
           cover
           alt=""
-          width={getSideImageWidth({ large, small })}
           height="100%"
+          width={getSideImageWidth({ large, small })}
           src={afterImageSrc}
         />
       );
