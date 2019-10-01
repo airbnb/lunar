@@ -43,15 +43,45 @@ smallTabsStretched.story = {
 export function secondaryTabs() {
   return (
     <Tabs secondary>
-      <Tab key="a" small label="Bruce W." />
-      <Tab key="b" small label="Clark K." />
-      <Tab key="c" small label="Peter P." />
+      <Tab key="a" label="Lorem">
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Tab>
+      <Tab key="b" label="Ipsum">
+        <Text>
+          <LoremIpsum medium />
+        </Text>
+      </Tab>
+      <Tab key="c" disabled label="Dolor" />
     </Tabs>
   );
 }
 
 secondaryTabs.story = {
   name: 'Secondary tabs.',
+};
+
+export function secondaryTabsStretched() {
+  return (
+    <Tabs secondary stretched>
+      <Tab key="a" label="Lorem">
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Tab>
+      <Tab key="b" label="Ipsum">
+        <Text>
+          <LoremIpsum medium />
+        </Text>
+      </Tab>
+      <Tab key="c" disabled label="Dolor" />
+    </Tabs>
+  );
+}
+
+secondaryTabsStretched.story = {
+  name: 'Secondary stretched tabs.',
 };
 
 export function borderlessTabsWithIcons() {
