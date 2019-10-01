@@ -358,3 +358,50 @@ export function withDisableTitleTranslation() {
 withDisableTitleTranslation.story = {
   name: 'With disable title translation.',
 };
+
+export function withAllOfTheThings() {
+  return (
+    <div style={{ display: 'grid', gridGap: 48, gridTemplateColumns: '1fr 1fr' }}>
+      <MessageItem
+        horizontalSpacing
+        info
+        verticalSpacing
+        email="noreply@airbnb.com"
+        formattedTimestamp="Sep 20 10:23AM"
+        imageDescription="Link"
+        imageSrc={lunar}
+        source="email"
+        titleTag="Specialist"
+        title="Long title lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        onClickImage={action('onClickImage')}
+      >
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </MessageItem>
+
+      <MessageItem
+        horizontalSpacing
+        info
+        verticalSpacing
+        email="noreply@airbnb.com"
+        formattedTimestamp="Sep 20 10:23AM"
+        imageDescription="Link"
+        imageSrc={lunar}
+        source="email"
+        titleTag="Specialist"
+        title="Long title lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        titleClickDescription="Real name: Link - Click to chat"
+        onClickTitle={action('onClickTitle')}
+      >
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </MessageItem>
+    </div>
+  );
+}
+
+withAllOfTheThings.story = {
+  name: 'With all of the things.',
+};

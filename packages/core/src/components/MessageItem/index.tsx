@@ -146,7 +146,9 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
             <div>
               <Spacing bottom={0.5}>
                 <div className={cx(styles.title)}>
-                  <Shimmer width={175} height={14} />
+                  <Spacing inline bottom={0.5} right={1}>
+                    <Shimmer width={175} height={14} />
+                  </Spacing>
 
                   <Text small muted>
                     {timestamp}
@@ -224,30 +226,30 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
           <div>
             <Spacing bottom={0.5}>
               <div className={cx(styles.title)}>
-                {onClickTitle ? (
-                  <button
-                    className={cx(styles.resetButton)}
-                    type="button"
-                    title={titleClickDescription || title}
-                    onClick={onClickTitle}
-                    onMouseUp={removeFocusOnMouseUp}
-                  >
-                    <Text bold truncated>
-                      {formatedTitle}
-                    </Text>
-                  </button>
-                ) : (
-                  <Text bold truncated>
-                    {formatedTitle}
-                  </Text>
-                )}
+                <Spacing inline bottom={0.5} right={1}>
+                  {onClickTitle ? (
+                    <button
+                      className={cx(styles.resetButton)}
+                      type="button"
+                      title={titleClickDescription || title}
+                      onClick={onClickTitle}
+                      onMouseUp={removeFocusOnMouseUp}
+                    >
+                      <Text bold>{formatedTitle}</Text>
+                    </button>
+                  ) : (
+                    <Text bold>{formatedTitle}</Text>
+                  )}
+                </Spacing>
 
                 {titleTag && (
-                  <div className={cx(styles.tag)}>
-                    <Text micro muted>
-                      {titleTag}
-                    </Text>
-                  </div>
+                  <Spacing inline bottom={0.5} right={1}>
+                    <div className={cx(styles.tag)}>
+                      <Text micro muted>
+                        {titleTag}
+                      </Text>
+                    </div>
+                  </Spacing>
                 )}
 
                 <Text small muted>
@@ -375,9 +377,8 @@ export default withStyles(({ color, font, ui, unit, pattern }) => ({
   },
 
   title: {
-    display: 'grid',
-    gridGap: unit,
-    gridTemplateColumns: 'auto auto auto auto',
+    display: 'flex',
+    flexWrap: 'wrap',
     alignItems: 'baseline',
     justifyContent: 'flex-start',
   },
