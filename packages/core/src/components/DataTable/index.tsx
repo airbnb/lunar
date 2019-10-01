@@ -199,7 +199,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   private onEdit = (
     row: VirtualRow,
-    key: string,
+    key: string | number,
     newVal: string,
     event: React.SyntheticEvent<EventTarget>,
   ) => {

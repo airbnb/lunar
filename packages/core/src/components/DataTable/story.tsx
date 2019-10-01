@@ -14,14 +14,27 @@ import Button from '../Button';
 import Input from '../Input';
 import Row from '../Row';
 import Spacing from '../Spacing';
-import { SelectedRows, IndexedParentRow } from './types';
+import { SelectedRows, IndexedParentRow, Renderers, RendererProps } from './types';
 
-const renderers = {
+type CustomShape = {
+  name: string;
+  jobTitle: string;
+  tenureDays: number;
+  menu: string;
+  cats: number;
+};
+
+function CustomRenderer({ row, keyName }: RendererProps<CustomShape>) {
+  return <span>{String(row.rowData.data[keyName])}</span>;
+}
+
+const renderers: Renderers<CustomShape> = {
   name: EditableTextRenderer,
   colSpan: ColSpanRenderer,
   cats: CatRenderer,
   tenureDays: TenureRenderer,
   menu: MenuRenderer,
+  custom: CustomRenderer,
 };
 
 const columnMetadata = {

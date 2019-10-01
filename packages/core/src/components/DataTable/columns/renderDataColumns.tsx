@@ -27,10 +27,10 @@ type ArgumentsFromProps = {
   expandable?: boolean;
 };
 
-export default function renderDataColumns(
+export default function renderDataColumns<T>(
   keys: string[],
   editMode: boolean,
-  onEdit: EditCallback,
+  onEdit: EditCallback<T>,
   {
     columnMetadata,
     showColumnDividers,
@@ -43,15 +43,15 @@ export default function renderDataColumns(
     expandable,
   }: ArgumentsFromProps,
 ) {
-  const renderCell = (key: string, isLeftmost: boolean) => (row: VirtualRow) => {
+  const renderCell = (key: string, isLeftmost: boolean) => (row: VirtualRow<T>) => {
     const { metadata } = row.rowData;
     const { isChild } = metadata;
     const customRenderer = renderers && renderers[key];
     const indentSize = !expandable || !isLeftmost ? 2 : 2.5;
     const spacing = isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
-    const rendererArguments: RendererProps = {
+    const rendererArguments: RendererProps<T> = {
       row,
-      keyName: key,
+      keyName: key as keyof T,
       editMode,
       onEdit,
       zebra: zebra || false,

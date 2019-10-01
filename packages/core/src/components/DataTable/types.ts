@@ -24,7 +24,7 @@ export type ChangeLog = {
 
 export type EditCallback<T = RowData> = (
   row: VirtualRow<T>,
-  key: string,
+  key: keyof T,
   newVal: string,
   event: React.SyntheticEvent<EventTarget>,
 ) => void;
@@ -74,7 +74,9 @@ export interface DataTableProps {
   /** Propagated as the 'ref' prop to the underlying react-virtualized Table instance. */
   propagateRef?: TableRef;
   /** Custom renderers mapped to column keys. */
-  renderers?: Renderers;
+  // Any so that consumers can pass any types they want.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  renderers?: Renderers<any>;
   /** Height of table rows, default for table header and column header height. */
   rowHeight?: RowHeightOptions;
   /** If enabled, a special column is rendered to allows rows to be selected. */
@@ -224,7 +226,7 @@ export type RendererProps<T = RowData> = {
   /** Row including row data and metadata. */
   row: VirtualRow<T>;
   /** Key being rendered. */
-  keyName: string;
+  keyName: keyof T;
   /** Whether or not edit mode is enabled. */
   editMode: boolean;
   /** Callback to trigger on cell edit. */
@@ -235,10 +237,10 @@ export type RendererProps<T = RowData> = {
   theme: WithStylesProps['theme'];
 };
 
-export type Renderer = React.ComponentType<RendererProps>;
+export type Renderer<T = RowData> = React.ComponentType<RendererProps<T>>;
 
-export type Renderers = {
-  [key: string]: Renderer;
+export type Renderers<T = RowData> = {
+  [key: string]: Renderer<T>;
 };
 
 export type WidthProperties = {
