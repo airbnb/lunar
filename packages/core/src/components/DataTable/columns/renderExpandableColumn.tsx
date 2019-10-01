@@ -10,7 +10,11 @@ export default function renderExpandableColumn(
   cx: WithStylesProps['cx'],
   styles: WithStylesProps['styles'],
   expandedRows: Set<number>,
+<<<<<<< HEAD
   expandRow: (newExpandedRowIndex: number) => (event: React.SyntheticEvent) => void,
+=======
+  expandRow: (newExpandedRowOriginalIndex: number, rowIndex: number) => (event: any) => void,
+>>>>>>> clear cache on first load and reset scroll
 ) {
   const cellRenderer = (row: VirtualRow) => {
     const { children, originalIndex } = row.rowData.metadata;
@@ -21,8 +25,8 @@ export default function renderExpandableColumn(
           className={cx(styles.expand_caret)}
           role="button"
           tabIndex={0}
-          onClick={expandRow(originalIndex)}
-          onKeyPress={expandRow(originalIndex)}
+          onClick={expandRow(originalIndex, row.rowIndex)}
+          onKeyPress={expandRow(originalIndex, row.rowIndex)}
         >
           <Spacing left={1.5}>
             <ExpandableIcon expanded={expandedRows.has(originalIndex)} size="1.6em" />

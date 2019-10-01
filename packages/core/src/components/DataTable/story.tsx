@@ -136,13 +136,13 @@ class SearchDemo extends React.Component {
 
     // <div style={{ height: 20 + row.rowData.data.number, border: '1px solid black', margin: 1 }}>
     // const renderers = {};
-    const renderers = {
-      number: ({ row }: RendererProps) => (
-        <div style={{ height: 20 + row.rowData.data.number, border: '1px solid black', margin: 1 }}>
-          {row.rowData.data.number}
-        </div>
-      ),
-    };
+    // const renderers = {
+    //   number: ({ row }: RendererProps) => (
+    //     <div style={{ height: 20 + row.rowData.data.number, border: '1px solid black', margin: 1 }}>
+    //       {row.rowData.data.number}
+    //     </div>
+    //   ),
+    // };
 
     return (
       <div style={{ height: 500 }}>
@@ -163,6 +163,7 @@ class SearchDemo extends React.Component {
               renderers={renderers}
               autoHeight
               dynamicRowHeight
+              expandable
               showRowDividers
               tableHeaderLabel="My Great Table"
               data={data}
@@ -205,6 +206,8 @@ export function aStandardTableWithAFlexWrapper() {
     <DataTable
       showRowDividers
       dynamicRowHeight
+      height={300}
+      expandable
       data={[
         {
           data: {

@@ -42,6 +42,7 @@ export type State = {
   sortBy: string;
   sortDirection: SortDirectionType;
   editMode: boolean;
+  scrollToIndex: number;
 };
 
 /** A dynamic and responsive table for displaying tabular data. */
@@ -96,7 +97,8 @@ export class DataTable extends React.Component<
     selectedRows: {},
     sortBy: this.props.sortByOverride || "",
     sortDirection: this.props.sortDirectionOverride!,
-    editMode: false
+    editMode: false,
+    scrollToIndex: 0
   };
 
   keys = getKeys(this.props.keys!, this.props.data!);
@@ -143,6 +145,17 @@ export class DataTable extends React.Component<
     (...args) => JSON.stringify(args)
   );
 
+  componentDidMount() {
+    // Inittial render measures cells incorrectly, so we need to clear cache and rerender
+    const { dynamicRowHeight } = this.props;
+    if (dynamicRowHeight) {
+      setTimeout(() => {
+        this.cache.clearAll();
+        this.setState({ ...this.state });
+      }, 0);
+    }
+  }
+
   componentDidUpdate(prevProps: DataTableProps) {
     if (this.props.data !== prevProps.data) {
       this.keys = getKeys(this.props.keys!, this.props.data!);
@@ -156,6 +169,8 @@ export class DataTable extends React.Component<
 
   private getTableHeight = (expandedDataList: ExpandedRow[]): number => {
     const { height, rowHeight, showAllRows } = this.props;
+    // console.log(this.cache);
+    // Todo calculate from cache when using dynamicRowHeight
 
     if (showAllRows) {
       return (
@@ -199,23 +214,48 @@ export class DataTable extends React.Component<
     }
   };
 
-  private expandRow = (newExpandedRowIndex: number) => (
-    event: React.SyntheticEvent<EventTarget>
-  ) => {
+  private expandRow = (
+    newExpandedRowOriginalIndex: number,
+    rowIndex: number
+  ) => (event: React.SyntheticEvent<EventTarget>) => {
+    const { data } = this.props;
     event.stopPropagation();
-    // this.cache.clearAll();
+    this.cache.clearAll();
     this.setState(({ expandedRows }) => {
       const newExpandedRows = new Set(expandedRows);
-      if (expandedRows.has(newExpandedRowIndex)) {
-        newExpandedRows.delete(newExpandedRowIndex);
+      if (expandedRows.has(newExpandedRowOriginalIndex)) {
+        newExpandedRows.delete(newExpandedRowOriginalIndex);
       } else {
-        newExpandedRows.add(newExpandedRowIndex);
+        newExpandedRows.add(newExpandedRowOriginalIndex);
       }
 
       return {
         expandedRows: newExpandedRows
+        // scrollToIndex: 6,
       };
     });
+
+    const lastChildIndex =
+      rowIndex + data[newExpandedRowOriginalIndex].metadata.children.length;
+    console.log(this.table);
+    console.log(this.table.Grid);
+    const scroll = this.table.Grid._scrollingContainer.scrollTop;
+    console.log(scroll);
+    console.log(this.table.Grid._scrollingContainer.scrollTop);
+    console.log(this.table.Grid._scrollingContainer.scrollHeight);
+
+    // setTimeout(() => this.table.scrollToPosition(scroll), 0);
+    setTimeout(() => this.table.scrollToRow(rowIndex), 0);
+
+    // this.myRef.current.scrollToRow(5);
+    // console.log(this.table.measureAllRows());
+    // setTimeout(
+    //   () =>
+    //     this.setState({
+    //       scrollToIndex: 6,
+    //     }),
+    //   1000,
+    // );
   };
 
   private onEdit = (
@@ -440,7 +480,8 @@ export class DataTable extends React.Component<
       sortBy,
       sortDirection,
       editMode,
-      selectedRows
+      selectedRows,
+      scrollToIndex
     } = this.state;
 
     const sortedData: IndexedParentRow[] = this.getData(
@@ -490,14 +531,16 @@ export class DataTable extends React.Component<
                 rowGetter={this.rowGetter(expandedData)}
                 rowCount={expandedData.length}
                 width={this.props.width || width}
-                ref={propagateRef}
+                ref={table => (this.table = table)}
                 sort={this.sort}
                 sortBy={sortBy}
+                scrollToIndex={scrollToIndex}
                 sortDirection={sortDirection}
                 headerRowRenderer={ColumnLabels(this.props)}
                 onRowClick={this.handleRowClick}
                 headerHeight={this.getColumnHeaderHeight()}
                 rowStyle={this.getRowStyle(expandedData)}
+                scrollToAlignment="start"
               >
                 {expandable &&
                   renderExpandableColumn(

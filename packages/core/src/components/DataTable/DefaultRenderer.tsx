@@ -1,5 +1,7 @@
 import React from 'react';
 import Text from '../Text';
+import Spacing from '../Spacing';
+
 import { RendererProps } from './types';
 
 export default function DefaultRenderer({ row, keyName }: RendererProps) {
