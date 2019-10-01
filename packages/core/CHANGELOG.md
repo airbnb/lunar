@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.32.0 - 2019-10-01
+
+#### 🚀 Updates
+
+- **[MessageItem]** Wrap long titles. (#202) ([549e8a1](https://github.com/airbnb/lunar/tree/master/packages/core/commit/549e8a1)), closes [#202](https://github.com/airbnb/lunar/tree/master/packages/core/issues/202)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.31.1 - 2019-09-30
 
 #### 🐞 Fixes
