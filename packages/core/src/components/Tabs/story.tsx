@@ -40,6 +40,20 @@ smallTabsStretched.story = {
   name: 'Small tabs stretched.',
 };
 
+export function secondaryTabs() {
+  return (
+    <Tabs secondary>
+      <Tab key="a" small label="Bruce W." />
+      <Tab key="b" small label="Clark K." />
+      <Tab key="c" small label="Peter P." />
+    </Tabs>
+  );
+}
+
+secondaryTabs.story = {
+  name: 'Secondary tabs.',
+};
+
 export function borderlessTabsWithIcons() {
   return (
     <Tabs borderless>

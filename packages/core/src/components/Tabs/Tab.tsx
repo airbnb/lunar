@@ -21,8 +21,8 @@ export type Props = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabl
   onClick?: (key: string) => void;
   /** Callback fired when the tab is selected. */
   onSelected?: () => void;
-  /** Rounded tab style, implies borderless. */
-  rounded?: boolean;
+  /** Secondary tab style, implies borderless. */
+  secondary?: boolean;
   /** Whether the tab is selected or not. */
   selected?: boolean;
   /** Decrease font size to small. */
@@ -36,7 +36,7 @@ export class Tab extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
     borderless: false,
     children: null,
-    rounded: false,
+    secondary: false,
     selected: false,
     small: false,
     stretched: false,
@@ -64,25 +64,25 @@ export class Tab extends React.Component<Props & WithStylesProps> {
       href,
       keyName,
       label,
-      rounded,
+      secondary,
       selected,
       small,
       stretched,
       styles,
     } = this.props;
     const trackingName = upperFirst(camelCase(keyName || 'Tab'));
-    const noborder = rounded || borderless;
-    const nohover = rounded || (noborder && disabled);
+    const noborder = secondary || borderless;
+    const nohover = secondary || (noborder && disabled);
 
     return (
       <span
         className={cx(
           styles.tab,
-          rounded && styles.tab_rounded,
+          secondary && styles.tab_secondary,
           disabled && styles.tab_disabled,
           noborder && styles.tab_noborder,
           nohover && styles.tab_nohover,
-          selected && !rounded && styles.tab_selected,
+          selected && !secondary && styles.tab_selected,
           stretched && styles.tab_stretched,
         )}
       >
@@ -97,9 +97,9 @@ export class Tab extends React.Component<Props & WithStylesProps> {
             role="tab"
             className={cx(
               styles.tabButton,
-              rounded && styles.tabButton_rounded,
+              secondary && styles.tabButton_secondary,
               selected && styles.tabButton_selected,
-              selected && rounded && styles.tabButton_rounded_selected,
+              selected && secondary && styles.tabButton_secondary_selected,
               small && styles.tabButton_small,
               disabled && styles.tabButton_disabled,
             )}
@@ -128,7 +128,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     },
   },
 
-  tab_rounded: {
+  tab_secondary: {
     marginRight: unit
   },
 
@@ -183,7 +183,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     borderTopRightRadius: ui.borderRadius,
   },
 
-  tabButton_rounded: {
+  tabButton_secondary: {
     ...pattern.regularButton,
     justifyContent: 'center',
     border: `2px solid ${color.accent.border}`,
@@ -197,7 +197,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     color: color.accent.textActive,
   },
 
-  tabButton_rounded_selected: {
+  tabButton_secondary_selected: {
     boxShadow: ui.boxShadowMedium,
     color: color.base,
     borderColor: color.core.secondary[3],
