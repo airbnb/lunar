@@ -45,36 +45,33 @@ class Mark extends React.PureComponent<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(
-  ({ color, ui }) => ({
-    mark: {
-      position: 'relative',
-      color: 'transparent',
-      backgroundColor: 'transparent',
-      opacity: 0.75,
-      padding: 1,
-      margin: -1,
-      transition: 'opacity .2s, background .2s',
+export default withStyles(({ color, ui }) => ({
+  mark: {
+    position: 'relative',
+    color: 'transparent',
+    backgroundColor: 'transparent',
+    opacity: 0.75,
+    padding: 1,
+    margin: -1,
+    transition: 'opacity .2s, background .2s',
 
-      '::after': {
-        position: 'absolute',
-        display: 'block',
-        content: '""',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: 2,
-        borderRadius: ui.borderRadius,
-        backgroundColor: color.core.danger[2],
-      },
-    },
-
-    mark_highlight: {
-      opacity: ui.disabledOpacity,
-      borderTopLeftRadius: ui.borderRadius,
-      borderTopRightRadius: ui.borderRadius,
+    '::after': {
+      position: 'absolute',
+      display: 'block',
+      content: '""',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      height: 2,
+      borderRadius: ui.borderRadius,
       backgroundColor: color.core.danger[2],
     },
-  }),
-  { extendable: true },
-)(Mark);
+  },
+
+  mark_highlight: {
+    opacity: ui.disabledOpacity,
+    borderTopLeftRadius: ui.borderRadius,
+    borderTopRightRadius: ui.borderRadius,
+    backgroundColor: color.core.danger[2],
+  },
+}))(Mark);

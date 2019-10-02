@@ -51,7 +51,7 @@ class Core {
     translatorComponent: null,
   };
 
-  readonly aesthetic = new AphroditeAesthetic<Theme>([], { theme: 'light' });
+  readonly aesthetic = new AphroditeAesthetic<Theme>([], { extendable: true, theme: 'light' });
 
   initialize(settings: Settings) {
     this.settings = {
