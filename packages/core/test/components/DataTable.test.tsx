@@ -4,7 +4,12 @@ import React from 'react';
 import Enzyme from 'enzyme';
 import { AutoSizer, Grid, Table } from 'react-virtualized';
 import { shallowWithStyles, mountWithStyles } from '@airbnb/lunar-test-utils';
-import DataTable from '../../src/components/DataTable';
+import DataTable, {
+  ParentRow,
+  VirtualRow,
+  DataTableProps,
+  RendererProps,
+} from '../../src/components/DataTable';
 import Input from '../../src/components/Input';
 import FormInput from '../../src/components/private/FormInput';
 import TableHeader from '../../src/components/DataTable/TableHeader';
@@ -12,15 +17,10 @@ import Text from '../../src/components/Text';
 import Translate from '../../src/components/Translate';
 import Button from '../../src/components/Button';
 import Checkbox from '../../src/components/CheckBox';
-import { EditCallback, ParentRow, VirtualRow } from '../../src/components/DataTable/types';
 import { STATUS_OPTIONS } from '../../src/components/DataTable/constants';
 
-type EditableTextRendererProps = {
-  row: VirtualRow;
-  keyName: string;
-  onEdit: EditCallback;
+type EditableTextRendererProps = Omit<RendererProps, 'theme' | 'zebra'> & {
   value: string;
-  editMode: boolean;
 };
 
 type EditableTextRendererState = {
@@ -35,7 +35,7 @@ class InnerEditableTextRenderer extends React.Component<
     value: this.props.value,
   };
 
-  onEdit = (row: VirtualRow, keyName: string) => (
+  onEdit = (row: VirtualRow, keyName: string | number) => (
     newVal: string,
     event: React.SyntheticEvent<EventTarget>,
   ) => {
@@ -65,17 +65,7 @@ class InnerEditableTextRenderer extends React.Component<
   }
 }
 
-function EditableTextRenderer({
-  row,
-  keyName,
-  editMode,
-  onEdit,
-}: {
-  row: VirtualRow;
-  keyName: string;
-  editMode: boolean;
-  onEdit: EditCallback;
-}) {
+function EditableTextRenderer({ row, keyName, editMode, onEdit }: RendererProps) {
   return (
     <InnerEditableTextRenderer
       editMode={editMode}
@@ -615,7 +605,7 @@ function getHeader(wrapper: Enzyme.ShallowWrapper) {
 }
 
 describe('<DataTable /> handles edits', () => {
-  const props = {
+  const props: DataTableProps = {
     data,
     width: 500,
     tableHeaderLabel: 'My Table',
