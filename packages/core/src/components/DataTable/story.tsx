@@ -123,26 +123,10 @@ class SearchDemo extends React.Component {
   };
 
   render() {
-    const { search } = this.state;
+    const { data, search } = this.state;
     // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
     const filteredData = this.filter(search);
     const button = <Button onClick={this.handleNewData}>New Data</Button>;
-
-    const data = new Array(50).fill(0).map((el, idx) => ({
-      data: {
-        number: idx,
-      },
-    }));
-
-    // <div style={{ height: 20 + row.rowData.data.number, border: '1px solid black', margin: 1 }}>
-    // const renderers = {};
-    // const renderers = {
-    //   number: ({ row }: RendererProps) => (
-    //     <div style={{ height: 20 + row.rowData.data.number, border: '1px solid black', margin: 1 }}>
-    //       {row.rowData.data.number}
-    //     </div>
-    //   ),
-    // };
 
     return (
       <div style={{ height: 500 }}>
@@ -160,11 +144,14 @@ class SearchDemo extends React.Component {
           </Spacing>
           <div style={{ flexGrow: 1 }}>
             <DataTable
-              renderers={renderers}
-              autoHeight
               dynamicRowHeight
+              // showAllRows
+              width={400}
+              height={400}
+              keys={['number']}
               expandable
               showRowDividers
+              renderers={renderers}
               tableHeaderLabel="My Great Table"
               data={data}
               filterData={filteredData}
@@ -205,9 +192,11 @@ export function aStandardTableWithAFlexWrapper() {
   .add('A standard table with dynamic row height.', () => (
     <DataTable
       showRowDividers
-      dynamicRowHeight
-      height={300}
       expandable
+      dynamicRowHeight
+      keys={['name', 'jobTitle']}
+      width={400}
+      columnLabelCase="sentence"
       data={[
         {
           data: {
@@ -241,9 +230,6 @@ export function aStandardTableWithAFlexWrapper() {
         },
         ...getData(),
       ]}
-      keys={['name', 'jobTitle']}
-      width={400}
-      columnLabelCase="sentence"
     />
   ))
   .add('A standard table with initial sorting.', () => (
@@ -305,12 +291,14 @@ aTableWithASearchBoxAndParentHeight.story = {
 export function aTableThatShowsAllRows() {
   return (
     // This shows the height dynamically change with expanded rows
-    <div style={{ background: '#835EFE', padding: 8 }}>
+    // <div style={{ background: '#835EFE', padding: 8 }}>
+    <div style={{ border: '1px solid black' }}>
       <DataTable
         expandable
         selectable
         showAllRows
         showRowDividers
+        dynamicRowHeight
         tableHeaderLabel="All rows"
         data={getData()}
         keys={['name', 'jobTitle']}

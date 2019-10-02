@@ -93,7 +93,7 @@ export default function renderDataColumns<T>(
           cache={cache}
           columnIndex={columnIdx}
           key={dataKey}
-          //@ts-ignore
+          // @ts-ignore We need to pass in the parent node
           parent={parent}
           rowIndex={rowIndex}
         >

@@ -6,7 +6,6 @@ import {
   SortDirectionType,
   Table
 } from "react-virtualized";
-import "react-virtualized/styles.css";
 import memoize from "lodash/memoize";
 
 import sortData from "./helpers/sortData";
@@ -145,18 +144,31 @@ export class DataTable extends React.Component<
     (...args) => JSON.stringify(args)
   );
 
-  componentDidMount() {
-    // Inittial render measures cells incorrectly, so we need to clear cache and rerender
-    const { dynamicRowHeight } = this.props;
-    if (dynamicRowHeight) {
+  componentDidUpdate(prevProps: DataTableProps, prevState: State) {
+    const { data, filterData } = this.props;
+    const { sortBy, sortDirection, selectedRows } = this.state;
+    const sortedData: IndexedParentRow[] = this.getData(
+      data!,
+      sortBy,
+      sortDirection,
+      selectedRows
+    );
+    const filteredData = filterData!(sortedData);
+    const oldFilteredData = prevProps.filterData!(sortedData);
+
+    if (
+      filteredData.length !== oldFilteredData.length ||
+      filteredData.some(
+        (x: IndexedParentRow, i: number) =>
+          x.metadata.originalIndex !== oldFilteredData[i].metadata.originalIndex
+      )
+    ) {
       setTimeout(() => {
         this.cache.clearAll();
         this.setState({ ...this.state });
       }, 0);
     }
-  }
 
-  componentDidUpdate(prevProps: DataTableProps) {
     if (this.props.data !== prevProps.data) {
       this.keys = getKeys(this.props.keys!, this.props.data!);
 
@@ -168,9 +180,23 @@ export class DataTable extends React.Component<
   }
 
   private getTableHeight = (expandedDataList: ExpandedRow[]): number => {
-    const { height, rowHeight, showAllRows } = this.props;
-    // console.log(this.cache);
-    // Todo calculate from cache when using dynamicRowHeight
+    const { height, rowHeight, showAllRows, dynamicRowHeight } = this.props;
+    const { expandedRows } = this.state;
+    const rowHeights = this.cache._rowHeightCache;
+    console.log(this.cache);
+
+    if (Object.values(rowHeights).length > 0) {
+      const totalHeight = Object.values(rowHeights).reduce(
+        (sum: number, height: number) => sum + height,
+        0
+      );
+      console.log(totalHeight);
+      return totalHeight + this.getColumnHeaderHeight();
+      // Todo calculate from cache when using dynamicRowHeight
+      // Check which rows are expanded
+    } else if (dynamicRowHeight) {
+      this.setState({ ...this.state });
+    }
 
     if (showAllRows) {
       return (
@@ -202,7 +228,6 @@ export class DataTable extends React.Component<
     sortDirection: SortDirectionType;
   }): void => {
     this.cache.clearAll();
-
     const { sortOverride, sortCallback } = this.props;
     if (sortOverride && sortCallback) {
       sortCallback(sortBy, sortDirection);
@@ -218,9 +243,8 @@ export class DataTable extends React.Component<
     newExpandedRowOriginalIndex: number,
     rowIndex: number
   ) => (event: React.SyntheticEvent<EventTarget>) => {
-    const { data } = this.props;
+    // this.cache.clearAll();
     event.stopPropagation();
-    this.cache.clearAll();
     this.setState(({ expandedRows }) => {
       const newExpandedRows = new Set(expandedRows);
       if (expandedRows.has(newExpandedRowOriginalIndex)) {
@@ -231,31 +255,20 @@ export class DataTable extends React.Component<
 
       return {
         expandedRows: newExpandedRows
-        // scrollToIndex: 6,
       };
     });
 
-    const lastChildIndex =
-      rowIndex + data[newExpandedRowOriginalIndex].metadata.children.length;
-    console.log(this.table);
-    console.log(this.table.Grid);
+    // const { data } = this.props;
+    // const lastChildIndex = rowIndex + data[newExpandedRowOriginalIndex].metadata.children.length;
     const scroll = this.table.Grid._scrollingContainer.scrollTop;
-    console.log(scroll);
-    console.log(this.table.Grid._scrollingContainer.scrollTop);
-    console.log(this.table.Grid._scrollingContainer.scrollHeight);
-
     // setTimeout(() => this.table.scrollToPosition(scroll), 0);
-    setTimeout(() => this.table.scrollToRow(rowIndex), 0);
-
-    // this.myRef.current.scrollToRow(5);
-    // console.log(this.table.measureAllRows());
-    // setTimeout(
-    //   () =>
-    //     this.setState({
-    //       scrollToIndex: 6,
-    //     }),
-    //   1000,
-    // );
+    // console.log(scroll);
+    // setTimeout(() => this.table.scrollToPosition(1000), 0);
+    setTimeout(() => {
+      this.cache.clearAll();
+      this.setState({ ...this.state });
+      // this.table.scrollToPosition(1000);
+    }, 0);
   };
 
   private onEdit = (
@@ -454,9 +467,7 @@ export class DataTable extends React.Component<
 
   cache = new CellMeasurerCache({
     fixedHeight: false,
-    keyMapper: (rowIndex: number, columnIndex: number) => {
-      return `${rowIndex}-${columnIndex}`;
-    }
+    defaultHeight: 1
   });
 
   render() {
@@ -503,77 +514,69 @@ export class DataTable extends React.Component<
       sortDirection
     );
 
+    console.log(filteredData);
+
     return (
       <AutoSizer disableHeight={!autoHeight}>
-        {({ height, width }: { height: number; width: number }) => (
-          <>
-            {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
-            <div className={cx(styles.table_container, { width })}>
-              <Table
-                ref={propagateRef}
-                rowGetter={this.rowGetter(expandedData)}
-                headerHeight={this.getColumnHeaderHeight()}
-                height={
-                  autoHeight
-                    ? height -
-                      (this.shouldRenderTableHeader()
-                        ? getHeight(rowHeight, tableHeaderHeight)
-                        : 0)
-                    : this.getTableHeight(expandedData)
-                }
-                deferredMeasurementCache={this.cache}
-                overscanRowCount={2}
-                rowHeight={
-                  dynamicRowHeight
-                    ? this.cache.rowHeight
-                    : HEIGHT_TO_PX[rowHeight!]
-                }
-                rowGetter={this.rowGetter(expandedData)}
-                rowCount={expandedData.length}
-                width={this.props.width || width}
-                ref={table => (this.table = table)}
-                sort={this.sort}
-                sortBy={sortBy}
-                scrollToIndex={scrollToIndex}
-                sortDirection={sortDirection}
-                headerRowRenderer={ColumnLabels(this.props)}
-                onRowClick={this.handleRowClick}
-                headerHeight={this.getColumnHeaderHeight()}
-                rowStyle={this.getRowStyle(expandedData)}
-                scrollToAlignment="start"
-              >
-                {expandable &&
-                  renderExpandableColumn(
-                    cx,
-                    styles,
-                    expandedRows,
-                    this.expandRow
+        {({ height, width }: { height: number; width: number }) => {
+          const tableHeight = autoHeight
+            ? height -
+              (this.shouldRenderTableHeader()
+                ? getHeight(rowHeight, tableHeaderHeight)
+                : 0)
+            : this.getTableHeight(expandedData);
+          console.log(tableHeight);
+          return (
+            <>
+              {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
+              <div className={cx(styles.table_container, { width })}>
+                <Table
+                  height={tableHeight}
+                  overscanRowCount={100}
+                  rowHeight={
+                    dynamicRowHeight
+                      ? this.cache.rowHeight
+                      : HEIGHT_TO_PX[rowHeight!]
+                  }
+                  rowGetter={this.rowGetter(expandedData)}
+                  rowCount={expandedData.length}
+                  width={this.props.width || width}
+                  ref={table => (this.table = table)}
+                  sort={this.sort}
+                  sortBy={sortBy}
+                  scrollToIndex={scrollToIndex}
+                  sortDirection={sortDirection}
+                  headerRowRenderer={ColumnLabels(this.props)}
+                  onRowClick={this.handleRowClick}
+                  headerHeight={this.getColumnHeaderHeight()}
+                  rowStyle={this.getRowStyle(expandedData)}
+                  scrollToAlignment="start"
+                >
+                  {expandable &&
+                    renderExpandableColumn(
+                      cx,
+                      styles,
+                      expandedRows,
+                      this.expandRow
+                    )}
+                  {selectable &&
+                    renderSelectableColumn(
+                      selectedRows,
+                      this.handleSelection,
+                      expandable
+                    )}
+                  {renderDataColumns(
+                    this.keys,
+                    editMode,
+                    this.onEdit,
+                    this.cache,
+                    this.props
                   )}
-                {selectable &&
-                  renderSelectableColumn(
-                    selectedRows,
-                    this.handleSelection,
-                    expandable
-                  )}
-                {renderDataColumns(
-                  this.keys,
-                  editMode,
-                  this.onEdit,
-                  this.props
-                )}
-                renderSelectableColumn(selectedRows, this.handleSelection,
-                expandable)}
-                {renderDataColumns(
-                  this.keys,
-                  editMode,
-                  this.onEdit,
-                  this.cache,
-                  this.props
-                )}
-              </Table>
-            </div>
-          </>
-        )}
+                </Table>
+              </div>
+            </>
+          );
+        }}
       </AutoSizer>
     );
   }
