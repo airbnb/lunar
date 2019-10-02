@@ -19,6 +19,11 @@ import {
   TranslateOptions,
 } from './types';
 
+const aestheticOptions = {
+  extendable: true,
+  theme: 'light',
+};
+
 export type Settings = {
   defaultLocale?: Locale;
   defaultTimezone?: TimeZone;
@@ -51,7 +56,7 @@ class Core {
     translatorComponent: null,
   };
 
-  readonly aesthetic = new AphroditeAesthetic<Theme>([], { extendable: true, theme: 'light' });
+  readonly aesthetic = new AphroditeAesthetic<Theme>([], aestheticOptions);
 
   initialize(settings: Settings) {
     this.settings = {
@@ -167,7 +172,7 @@ if (process.env.NODE_ENV === 'test') {
   const { TestAesthetic } = require('aesthetic/lib/testUtils');
 
   // @ts-ignore Allow mutation of readonly for testing
-  instance.aesthetic = new TestAesthetic({ theme: 'light' });
+  instance.aesthetic = new TestAesthetic(aestheticOptions);
 }
 
 export default instance;
