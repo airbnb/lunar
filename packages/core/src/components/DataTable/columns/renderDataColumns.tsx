@@ -7,7 +7,6 @@ import {
   DataTableProps,
   VirtualRow,
   EditCallback,
-  HeightOptions,
   WidthProperties,
   RendererProps
 } from "../types";

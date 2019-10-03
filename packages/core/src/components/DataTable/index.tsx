@@ -181,8 +181,8 @@ export class DataTable extends React.Component<
 
   private getTableHeight = (expandedDataList: ExpandedRow[]): number => {
     const { height, rowHeight, showAllRows, dynamicRowHeight } = this.props;
-    const { expandedRows } = this.state;
-    const rowHeights = this.cache._rowHeightCache;
+    // @ts-ignore _rowHeightCache is missing from DataTable types
+    const rowHeights: { [key: number]: number } = this.cache._rowHeightCache;
     console.log(this.cache);
 
     if (Object.values(rowHeights).length > 0) {
@@ -192,8 +192,6 @@ export class DataTable extends React.Component<
       );
       console.log(totalHeight);
       return totalHeight + this.getColumnHeaderHeight();
-      // Todo calculate from cache when using dynamicRowHeight
-      // Check which rows are expanded
     } else if (dynamicRowHeight) {
       this.setState({ ...this.state });
     }
@@ -239,11 +237,9 @@ export class DataTable extends React.Component<
     }
   };
 
-  private expandRow = (
-    newExpandedRowOriginalIndex: number,
-    rowIndex: number
-  ) => (event: React.SyntheticEvent<EventTarget>) => {
-    // this.cache.clearAll();
+  private expandRow = (newExpandedRowOriginalIndex: number) => (
+    event: React.SyntheticEvent<EventTarget>
+  ) => {
     event.stopPropagation();
     this.setState(({ expandedRows }) => {
       const newExpandedRows = new Set(expandedRows);
@@ -258,16 +254,9 @@ export class DataTable extends React.Component<
       };
     });
 
-    // const { data } = this.props;
-    // const lastChildIndex = rowIndex + data[newExpandedRowOriginalIndex].metadata.children.length;
-    const scroll = this.table.Grid._scrollingContainer.scrollTop;
-    // setTimeout(() => this.table.scrollToPosition(scroll), 0);
-    // console.log(scroll);
-    // setTimeout(() => this.table.scrollToPosition(1000), 0);
     setTimeout(() => {
       this.cache.clearAll();
       this.setState({ ...this.state });
-      // this.table.scrollToPosition(1000);
     }, 0);
   };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import Text from '../Text';
-
 import { RendererProps } from './types';
 
 export default function DefaultRenderer({ row, keyName }: RendererProps) {
