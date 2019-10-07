@@ -9,18 +9,14 @@ import ColSpanRenderer from ':storybook/components/DataTable/DataTableRenderers/
 import CatRenderer from ':storybook/components/DataTable/DataTableRenderers/CatRenderer';
 import MenuRenderer from ':storybook/components/DataTable/DataTableRenderers/MenuRenderer';
 import EditableTextRenderer from ':storybook/components/DataTable/DataTableRenderers/EditableTextRenderer';
+
+import DataTable from './DataTable';
 import DataTable from './DataTable';
 import Button from './Button';
 import Input from './Input';
 import Row from './Row';
 import Spacing from './Spacing';
-import {
-  ExpandedRow,
-  SelectedRows,
-  IndexedParentRow,
-  RendererProps,
-  VirtualRow,
-} from './DataTable/types';
+import { SelectedRows, IndexedParentRow } from './DataTable/types';
 
 const renderers = {
   name: EditableTextRenderer,
@@ -188,8 +184,11 @@ export function aStandardTableWithAFlexWrapper() {
       </Spacing>
       <DataTable data={getData()} keys={['name', 'jobTitle', 'tenureDays']} />
     </div>
-  ))
-  .add('A standard table with dynamic row height.', () => (
+  );
+}
+
+export function aStandardTableWithDynamicRowHeight() {
+  return (
     <DataTable
       showRowDividers
       expandable
@@ -231,8 +230,15 @@ export function aStandardTableWithAFlexWrapper() {
         ...getData(),
       ]}
     />
-  ))
-  .add('A standard table with initial sorting.', () => (
+  );
+}
+
+aStandardTableWithDynamicRowHeight.story = {
+  name: 'A table with dynamic row height.',
+};
+
+export function aStandardTableWithInitialSorting() {
+  return (
     <DataTable
       data={getData()}
       keys={['name', 'jobTitle']}
@@ -292,7 +298,6 @@ export function aTableThatShowsAllRows() {
   return (
     // This shows the height dynamically change with expanded rows
     <div style={{ background: '#835EFE', padding: 8 }}>
-    <div style={{ border: '1px solid black' }}>
       <DataTable
         expandable
         selectable
