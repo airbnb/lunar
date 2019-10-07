@@ -31,6 +31,7 @@ import renderSelectableColumn from './columns/renderSelectableColumn';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
+import componentName from '../../prop-types/componentName';
 
 export * from './types';
 
@@ -144,12 +145,14 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     const oldFilteredData = prevProps.filterData!(sortedData);
 
     if (
-      filteredData.length !== oldFilteredData.length ||
-      filteredData.some(
-        (x: IndexedParentRow, i: number) =>
-          x.metadata.originalIndex !== oldFilteredData[i].metadata.originalIndex,
-      )
+      filteredData.length > 0 &&
+      (filteredData.length !== oldFilteredData.length ||
+        filteredData.some(
+          (x: IndexedParentRow, i: number) =>
+            x.metadata.originalIndex !== oldFilteredData[i].metadata.originalIndex,
+        ))
     ) {
+      console.log('123');
       setTimeout(() => {
         this.cache.clearAll();
         this.setState(previousState => ({ ...previousState }));
@@ -157,6 +160,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     }
 
     if (this.props.data !== prevProps.data) {
+      console.log('456');
       this.keys = getKeys(this.props.keys!, this.props.data!);
 
       this.setState({
@@ -182,9 +186,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
           return totalHeight + this.getColumnHeaderHeight();
         }
         this.setState(prevState => ({ ...prevState }));
+      } else {
+        return expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight();
       }
-    } else {
-      return expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight();
     }
 
     return height!;
@@ -419,6 +423,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
   cache = new CellMeasurerCache({
     fixedHeight: false,
+    fixedWidth: true,
     defaultHeight: 1,
   });
 

@@ -149,12 +149,11 @@ class SearchDemo extends React.Component {
           </Spacing>
           <div style={{ flexGrow: 1 }}>
             <DataTable
-              showAllRows
               dynamicRowHeight
               expandable
               showRowDividers
+              showAllRows
               width={400}
-              height={400}
               keys={['number']}
               renderers={renderers}
               tableHeaderLabel="My Great Table"
