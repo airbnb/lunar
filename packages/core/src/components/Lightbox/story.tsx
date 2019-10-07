@@ -3,9 +3,9 @@ import { storiesOf } from '@storybook/react';
 import moon from ':storybook/images/moon.png';
 import space from ':storybook/images/space.jpg';
 import stars from ':storybook/images/stars.jpg';
-import Button from './Button';
-import Text from './Text';
-import Lightbox, { Props } from './Lightbox';
+import Button from '../Button';
+import Text from '../Text';
+import Lightbox, { Props } from '.';
 
 type AsideDemoProps = {
   title: string;
