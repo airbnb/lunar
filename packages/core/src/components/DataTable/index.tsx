@@ -466,7 +466,6 @@ export class DataTable extends React.Component<
       dynamicRowHeight,
       expandable,
       filterData,
-      propagateRef,
       rowHeight,
       selectable,
       styles,
@@ -503,8 +502,6 @@ export class DataTable extends React.Component<
       sortDirection
     );
 
-    console.log(filteredData);
-
     return (
       <AutoSizer disableHeight={!autoHeight}>
         {({ height, width }: { height: number; width: number }) => {
@@ -514,32 +511,29 @@ export class DataTable extends React.Component<
                 ? getHeight(rowHeight, tableHeaderHeight)
                 : 0)
             : this.getTableHeight(expandedData);
-          console.log(tableHeight);
           return (
             <>
               {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
               <div className={cx(styles.table_container, { width })}>
                 <Table
                   height={tableHeight}
+                  width={this.props.width || width}
+                  rowCount={expandedData.length}
+                  rowGetter={this.rowGetter(expandedData)}
+                  sort={this.sort}
+                  sortBy={sortBy}
+                  sortDirection={sortDirection}
+                  headerHeight={this.getColumnHeaderHeight()}
+                  headerRowRenderer={ColumnLabels(this.props)}
+                  onRowClick={this.handleRowClick}
                   overscanRowCount={100}
+                  ref={table => (this.table = table)}
                   rowHeight={
                     dynamicRowHeight
                       ? this.cache.rowHeight
                       : HEIGHT_TO_PX[rowHeight!]
                   }
-                  rowGetter={this.rowGetter(expandedData)}
-                  rowCount={expandedData.length}
-                  width={this.props.width || width}
-                  ref={table => (this.table = table)}
-                  sort={this.sort}
-                  sortBy={sortBy}
-                  scrollToIndex={scrollToIndex}
-                  sortDirection={sortDirection}
-                  headerRowRenderer={ColumnLabels(this.props)}
-                  onRowClick={this.handleRowClick}
-                  headerHeight={this.getColumnHeaderHeight()}
                   rowStyle={this.getRowStyle(expandedData)}
-                  scrollToAlignment="start"
                 >
                   {expandable &&
                     renderExpandableColumn(

@@ -291,7 +291,7 @@ aTableWithASearchBoxAndParentHeight.story = {
 export function aTableThatShowsAllRows() {
   return (
     // This shows the height dynamically change with expanded rows
-    // <div style={{ background: '#835EFE', padding: 8 }}>
+    <div style={{ background: '#835EFE', padding: 8 }}>
     <div style={{ border: '1px solid black' }}>
       <DataTable
         expandable
