@@ -14,7 +14,7 @@ import Button from '../Button';
 import Input from '../Input';
 import Row from '../Row';
 import Spacing from '../Spacing';
-import { RendererProps, SelectedRows, IndexedParentRow } from '../DataTable/types';
+import { RendererProps, SelectedRows, IndexedParentRow } from './types';
 
 type CustomShape = {
   name: string;
@@ -130,7 +130,6 @@ class SearchDemo extends React.Component {
 
   render() {
     const { data, search } = this.state;
-    // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
     const filteredData = this.filter(search);
     const button = <Button onClick={this.handleNewData}>New Data</Button>;
 
@@ -150,13 +149,13 @@ class SearchDemo extends React.Component {
           </Spacing>
           <div style={{ flexGrow: 1 }}>
             <DataTable
+              showAllRows
               dynamicRowHeight
-              // showAllRows
+              expandable
+              showRowDividers
               width={400}
               height={400}
               keys={['number']}
-              expandable
-              showRowDividers
               renderers={renderers}
               tableHeaderLabel="My Great Table"
               data={data}

@@ -152,7 +152,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     ) {
       setTimeout(() => {
         this.cache.clearAll();
-        this.setState({ ...this.state });
+        this.setState(previousState => ({ ...previousState }));
       }, 0);
     }
 
@@ -169,19 +169,19 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   private getTableHeight = (expandedDataList: ExpandedRow[]): number => {
     const { height, rowHeight, showAllRows, dynamicRowHeight } = this.props;
     // @ts-ignore _rowHeightCache is missing from DataTable types
+    // eslint-disable-next-line no-underscore-dangle
     const rowHeights: { [key: number]: number } = this.cache._rowHeightCache;
 
     if (showAllRows) {
       if (dynamicRowHeight) {
         if (Object.values(rowHeights).length > 0) {
           const totalHeight = Object.values(rowHeights).reduce(
-            (sum: number, height: number) => sum + height,
+            (sum: number, measuredRowHeight: number) => sum + measuredRowHeight,
             0,
           );
           return totalHeight + this.getColumnHeaderHeight();
-        } else {
-          this.setState({ ...this.state });
         }
+        this.setState(prevState => ({ ...prevState }));
       }
     } else {
       return expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight();
@@ -240,7 +240,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     setTimeout(() => {
       this.cache.clearAll();
-      this.setState({ ...this.state });
+      this.setState(prevState => ({ ...prevState }));
     }, 0);
   };
 
@@ -465,6 +465,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
               {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
               <div className={cx(styles.table_container, { width })}>
                 <Table
+                  ref={table => {
+                    this.table = table;
+                  }}
                   height={tableHeight}
                   width={this.props.width || width}
                   rowCount={expandedData.length}
@@ -474,11 +477,10 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
                   sortDirection={sortDirection}
                   headerHeight={this.getColumnHeaderHeight()}
                   headerRowRenderer={ColumnLabels(this.props)}
-                  onRowClick={this.handleRowClick}
-                  overscanRowCount={100}
-                  ref={table => (this.table = table)}
                   rowHeight={dynamicRowHeight ? this.cache.rowHeight : HEIGHT_TO_PX[rowHeight!]}
                   rowStyle={this.getRowStyle(expandedData)}
+                  overscanRowCount={100}
+                  onRowClick={this.handleRowClick}
                 >
                   {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
                   {selectable &&

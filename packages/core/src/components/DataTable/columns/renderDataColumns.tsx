@@ -1,26 +1,26 @@
-import React from "react";
-import { Column, CellMeasurer } from "react-virtualized";
-import DefaultRenderer from "../DefaultRenderer";
-import Spacing from "../../Spacing";
+import React from 'react';
+import { Column, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
+import DefaultRenderer from '../DefaultRenderer';
+import Spacing from '../../Spacing';
 import {
   ColumnMetadata,
   DataTableProps,
   VirtualRow,
   EditCallback,
   WidthProperties,
-  RendererProps
-} from "../types";
-import { WithStylesProps } from "../../../composers/withStyles";
-import { DEFAULT_WIDTH_PROPERTIES } from "../constants";
+  RendererProps,
+} from '../types';
+import { WithStylesProps } from '../../../composers/withStyles';
+import { DEFAULT_WIDTH_PROPERTIES } from '../constants';
 
 type ArgumentsFromProps = {
+  cx: WithStylesProps['cx'];
+  styles: WithStylesProps['styles'];
   columnMetadata?: ColumnMetadata;
   showColumnDividers?: boolean;
-  cx: WithStylesProps["cx"];
-  styles: WithStylesProps["styles"];
-  renderers?: DataTableProps["renderers"];
+  renderers?: DataTableProps['renderers'];
   zebra?: boolean;
-  theme?: WithStylesProps["theme"];
+  theme?: WithStylesProps['theme'];
   selectable?: boolean;
   expandable?: boolean;
 };
@@ -28,8 +28,8 @@ type ArgumentsFromProps = {
 export default function renderDataColumns<T>(
   keys: string[],
   editMode: boolean,
-  onEdit: EditCallback,
-  cache: any,
+  onEdit: EditCallback<T>,
+  cache: CellMeasurerCache,
   {
     columnMetadata,
     expandable,
@@ -39,24 +39,23 @@ export default function renderDataColumns<T>(
     zebra,
     cx,
     styles,
-    theme
-  }: ArgumentsFromProps
+    theme,
+  }: ArgumentsFromProps,
 ) {
-  const renderCell = (key: string, columnIndex: number, row: VirtualRow) => {
+  const renderCell = (key: string, columnIndex: number, row: VirtualRow<T>) => {
     const { metadata } = row.rowData;
     const { isChild } = metadata;
     const customRenderer = renderers && renderers[key];
     const isLeftmost = columnIndex === 0;
     const indentSize = !expandable || !isLeftmost ? 2 : 2.5;
-    const spacing =
-      isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
+    const spacing = isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
     const rendererArguments: RendererProps<T> = {
       row,
       keyName: key as keyof T,
-      editMode,
       onEdit,
       zebra: zebra || false,
-      theme
+      editMode,
+      theme,
     };
 
     if (metadata && metadata.colSpanKey && renderers) {
@@ -69,14 +68,11 @@ export default function renderDataColumns<T>(
       }
     }
 
-    const contents = React.createElement(
-      customRenderer || DefaultRenderer,
-      rendererArguments
-    );
+    const contents = React.createElement(customRenderer || DefaultRenderer, rendererArguments);
 
     return (
       <Spacing left={spacing} right={2}>
-        {contents || ""}
+        {contents || ''}
       </Spacing>
     );
   };
@@ -89,9 +85,9 @@ export default function renderDataColumns<T>(
     return (
       <div className={cx(styles.rowContainer)}>
         <CellMeasurer
+          key={dataKey}
           cache={cache}
           columnIndex={columnIdx}
-          key={dataKey}
           // @ts-ignore We need to pass in the parent node
           parent={parent}
           rowIndex={rowIndex}
@@ -103,13 +99,7 @@ export default function renderDataColumns<T>(
   };
 
   return keys.map((key, idx: number) => {
-    const widthPropertiesOptions = [
-      "maxWidth",
-      "minWidth",
-      "width",
-      "flexGrow",
-      "flexShrink"
-    ];
+    const widthPropertiesOptions = ['maxWidth', 'minWidth', 'width', 'flexGrow', 'flexShrink'];
     const widthProperties: WidthProperties = {};
     widthPropertiesOptions.forEach(property => {
       widthProperties[property] =
@@ -135,7 +125,7 @@ export default function renderDataColumns<T>(
         cellRenderer={columnCellRenderer(idx)}
         className={cx(
           styles && styles.column,
-          showColumnDividers && !isRightmost && styles && styles.column_divider
+          showColumnDividers && !isRightmost && styles && styles.column_divider,
         )}
       />
     );
