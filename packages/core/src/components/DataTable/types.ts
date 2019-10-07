@@ -1,11 +1,11 @@
-import React from 'react';
-import { SortDirectionType, Table } from 'react-virtualized';
-import { WithStylesProps } from '../../composers/withStyles';
+import React from "react";
+import { SortDirectionType, Table } from "react-virtualized";
+import { WithStylesProps } from "../../composers/withStyles";
 
 export type TableRef = React.RefObject<Table>;
 export type RowHeightOptions = string;
 export type HeightOptions = RowHeightOptions | undefined;
-export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '';
+export type ColumnLabelCase = "sentence" | "title" | "uppercase" | "";
 
 export type SelectedRows = {
   [key: number]: {
@@ -26,7 +26,7 @@ export type EditCallback<T = RowData> = (
   row: VirtualRow<T>,
   key: keyof T,
   newVal: string,
-  event: React.SyntheticEvent<EventTarget>,
+  event: React.SyntheticEvent<EventTarget>
 ) => void;
 
 export type HeaderButton = {
@@ -84,7 +84,10 @@ export interface DataTableProps {
   /** If enabled, a special column is rendered to allows rows to be selected. */
   selectable?: boolean;
   /** Function that gets called on row selection. */
-  selectCallback?: (rowData: ExpandedRow, selectedRows: SelectedRows) => () => void;
+  selectCallback?: (
+    rowData: ExpandedRow,
+    selectedRows: SelectedRows
+  ) => () => void;
   /** Display selected rows above everything else, regardless of sort order. */
   selectedRowsFirst?: boolean;
   /** If enabled, clicking the row triggers the same function as click the selection checkbox. */
@@ -208,7 +211,9 @@ export interface ExpandedChildRow<T = RowData> extends Row<T> {
 }
 
 export type IndexedRow<T = RowData> = IndexedChildRow<T> | IndexedParentRow<T>;
-export type ExpandedRow<T = RowData> = ExpandedParentRow<T> | ExpandedChildRow<T>;
+export type ExpandedRow<T = RowData> =
+  | ExpandedParentRow<T>
+  | ExpandedChildRow<T>;
 
 export type RowStyles = {
   [key: string]: string;
@@ -236,7 +241,7 @@ export type RendererProps<T = RowData> = {
   /** Whether or not zebra mode is enabled. */
   zebra: boolean;
   /** Theme from Lunar. */
-  theme: WithStylesProps['theme'];
+  theme: WithStylesProps["theme"];
 };
 
 export type Renderer<T = RowData> = React.ComponentType<RendererProps<T>>;

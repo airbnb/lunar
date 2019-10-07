@@ -41,7 +41,6 @@ export type State = {
   sortBy: string;
   sortDirection: SortDirectionType;
   editMode: boolean;
-  scrollToIndex: number;
 };
 
 /** A dynamic and responsive table for displaying tabular data. */
@@ -71,10 +70,7 @@ export class DataTable extends React.Component<
     rowHeight: "regular",
     selectable: false,
     // eslint-disable-next-line unicorn/consistent-function-scoping
-    selectCallback: (
-      rowData: ExpandedRow,
-      selectedRows: SelectedRows
-    ) => () => {},
+    selectCallback: () => () => {},
     selectedRowsFirst: false,
     selectOnRowClick: false,
     showAllRows: false,
@@ -96,8 +92,7 @@ export class DataTable extends React.Component<
     selectedRows: {},
     sortBy: this.props.sortByOverride || "",
     sortDirection: this.props.sortDirectionOverride!,
-    editMode: false,
-    scrollToIndex: 0
+    editMode: false
   };
 
   keys = getKeys(this.props.keys!, this.props.data!);
@@ -479,8 +474,7 @@ export class DataTable extends React.Component<
       sortBy,
       sortDirection,
       editMode,
-      selectedRows,
-      scrollToIndex
+      selectedRows
     } = this.state;
 
     const sortedData: IndexedParentRow[] = this.getData(
