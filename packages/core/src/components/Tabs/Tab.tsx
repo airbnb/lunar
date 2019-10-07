@@ -186,8 +186,8 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
   tabButton_secondary: {
     ...pattern.regularButton,
     justifyContent: 'center',
-    border: `2px solid ${color.accent.border}`,
-    borderRadius: ui.borderRadius * 2,
+    border: `1px solid ${color.accent.border}`,
+    borderRadius: ui.borderRadius,
     ':hover': {
       backgroundColor: color.accent.bgHover
     }

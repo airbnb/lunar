@@ -43,23 +43,23 @@ smallTabsStretched.story = {
 export function secondaryTabs() {
   return (
     <Tabs secondary>
-      <Tab key="a" label="Lorem">
+      <Tab small key="a" label="Lorem">
         <Text>
           <LoremIpsum short />
         </Text>
       </Tab>
-      <Tab key="b" label="Ipsum">
+      <Tab small key="b" label="Ipsum">
         <Text>
           <LoremIpsum medium />
         </Text>
       </Tab>
-      <Tab key="c" disabled label="Dolor" />
+      <Tab small key="c" disabled label="Dolor" />
     </Tabs>
   );
 }
 
 secondaryTabs.story = {
-  name: 'Secondary tabs.',
+  name: 'Secondary small tabs.',
 };
 
 export function secondaryTabsStretched() {
