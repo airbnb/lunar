@@ -31,7 +31,6 @@ import renderSelectableColumn from './columns/renderSelectableColumn';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
-import componentName from '../../prop-types/componentName';
 
 export * from './types';
 
