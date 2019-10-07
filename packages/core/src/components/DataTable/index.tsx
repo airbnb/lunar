@@ -465,9 +465,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
               {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
               <div className={cx(styles.table_container, { width })}>
                 <Table
-                  ref={table => {
-                    this.table = table;
-                  }}
                   height={tableHeight}
                   width={this.props.width || width}
                   rowCount={expandedData.length}
