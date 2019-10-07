@@ -77,7 +77,7 @@ export default function renderDataColumns<T>(
     );
   };
 
-  const columnCellRenderer = (columnIdx: number) => (row: VirtualRow) => {
+  const columnCellRenderer = (columnIdx: number) => (row: VirtualRow<T>) => {
     const { dataKey, parent, rowIndex } = row;
 
     const content = renderCell(dataKey, columnIdx, row);
