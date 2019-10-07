@@ -74,8 +74,8 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
     return (
       <Form
         onFailedSubmit={action('onFailedSubmit')}
-        onSubmit={() => {
-          action('onSubmit')();
+        onSubmit={data => {
+          action('onSubmit')(data);
 
           return Promise.resolve();
         }}
@@ -105,6 +105,8 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
         <Button onClick={this.handleToggleMount}>
           {mounted ? 'Unmount Input' : 'Mount Input'}
         </Button>
+
+        <FormActions showReset />
       </Form>
     );
   }
@@ -122,8 +124,8 @@ export function withAllFields() {
     <Form
       initialValues={values}
       onFailedSubmit={action('onFailedSubmit')}
-      onSubmit={() => {
-        action('onSubmit')();
+      onSubmit={data => {
+        action('onSubmit')(data);
 
         return Promise.resolve();
       }}
