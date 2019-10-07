@@ -105,8 +105,6 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
         <Button onClick={this.handleToggleMount}>
           {mounted ? 'Unmount Input' : 'Mount Input'}
         </Button>
-
-        <FormActions showReset />
       </Form>
     );
   }
