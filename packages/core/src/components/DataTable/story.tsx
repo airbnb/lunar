@@ -9,13 +9,16 @@ import ColSpanRenderer from ':storybook/components/DataTable/DataTableRenderers/
 import CatRenderer from ':storybook/components/DataTable/DataTableRenderers/CatRenderer';
 import MenuRenderer from ':storybook/components/DataTable/DataTableRenderers/MenuRenderer';
 import EditableTextRenderer from ':storybook/components/DataTable/DataTableRenderers/EditableTextRenderer';
-import CustomRenderer from ':storybook/components/DataTable/DataTableRenderers/CustomRenderer';
 import DataTable from '.';
 import Button from '../Button';
 import Input from '../Input';
 import Row from '../Row';
 import Spacing from '../Spacing';
 import { SelectedRows, IndexedParentRow } from '../DataTable/types';
+
+function CustomRenderer({ row, keyName }: RendererProps<CustomShape>) {
+  return <span>{String(row.rowData.data[keyName])}</span>;
+}
 
 const renderers = {
   name: EditableTextRenderer,
