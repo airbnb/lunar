@@ -43,7 +43,33 @@ smallTabsStretched.story = {
 export function secondaryTabs() {
   return (
     <Tabs secondary>
-      <Tab small key="a" label="Lorem">
+      <Tab key="a" label="Lorem is an example">
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Tab>
+      <Tab key="b" label="Ipsum">
+        <Text>
+          <LoremIpsum medium />
+        </Text>
+      </Tab>
+      <Tab key="c" disabled label="Dolor" />
+      <Tab key="d" label="another" beforeIcon={<IconAdd decorative size="1.25em" />} />
+      <Tab key="e" label="amazing item" />
+      <Tab key="f" label="to be clicked " />
+      <Tab key="g" label="and selected" />
+    </Tabs>
+  );
+}
+
+secondaryTabs.story = {
+  name: 'Secondary tabs.',
+};
+
+export function secondarySmallTabs() {
+  return (
+    <Tabs secondary>
+      <Tab small key="a" label="Lorem" beforeIcon={<IconAdd decorative />}>
         <Text>
           <LoremIpsum short />
         </Text>
@@ -58,7 +84,7 @@ export function secondaryTabs() {
   );
 }
 
-secondaryTabs.story = {
+secondarySmallTabs.story = {
   name: 'Secondary small tabs.',
 };
 

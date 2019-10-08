@@ -126,10 +126,14 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     ':last-child': {
       marginRight: 0,
     },
+
+    userSelect: 'none',
   },
 
   tab_secondary: {
-    marginRight: unit
+    marginRight: unit,
+    borderWidth: 0,
+    marginBottom: 0
   },
 
   tab_noborder: {
@@ -185,10 +189,15 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
 
   tabButton_secondary: {
     ...pattern.regularButton,
+    paddingTop: unit / 2,
+    paddingBottom: (unit / 8) * 5,
+    fontWeight: 'normal',
     justifyContent: 'center',
-    border: `1px solid ${color.accent.border}`,
+    border: `1px solid ${color.clear}`,
+    backgroundColor: color.clear,
     borderRadius: ui.borderRadius,
     ':hover': {
+      borderColor: color.accent.borderHover,
       backgroundColor: color.accent.bgHover
     }
   },
@@ -198,17 +207,17 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
   },
 
   tabButton_secondary_selected: {
-    boxShadow: ui.boxShadowMedium,
-    color: color.base,
-    borderColor: color.core.secondary[3],
-    backgroundColor: color.core.secondary[3],
+    borderColor: color.accent.borderActive,
+    backgroundColor: color.accent.bg,
     ':hover': {
-      backgroundColor: 'none'
-    },
+      borderColor: color.accent.borderActive,
+      backgroundColor: color.accent.bg
+    }
   },
 
   tabButton_disabled: {
-    ...pattern.disabled
+    ...pattern.disabled,
+    pointerEvents: 'none'
   },
 
   tabButton_small: {
