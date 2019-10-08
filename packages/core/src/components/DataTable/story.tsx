@@ -311,7 +311,6 @@ export function aTableThatShowsAllRows() {
         selectable
         showAllRows
         showRowDividers
-        dynamicRowHeight
         tableHeaderLabel="All rows"
         data={getData()}
         keys={['name', 'jobTitle']}

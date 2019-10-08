@@ -31,6 +31,7 @@ import renderSelectableColumn from './columns/renderSelectableColumn';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
+import componentName from '../../prop-types/componentName';
 
 export * from './types';
 
@@ -151,10 +152,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             x.metadata.originalIndex !== oldFilteredData[i].metadata.originalIndex,
         ))
     ) {
-      console.log('123');
       setTimeout(() => {
         this.cache.clearAll();
-        this.setState(previousState => ({ ...previousState }));
+        this.forceUpdate();
       }, 0);
     }
 
@@ -184,7 +184,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
           );
           return totalHeight + this.getColumnHeaderHeight();
         }
-        this.setState(prevState => ({ ...prevState }));
+        this.forceUpdate();
       } else {
         return expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight();
       }
@@ -243,7 +243,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     setTimeout(() => {
       this.cache.clearAll();
-      this.setState(prevState => ({ ...prevState }));
+      this.forceUpdate();
     }, 0);
   };
 
@@ -423,7 +423,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   cache = new CellMeasurerCache({
     fixedHeight: false,
     fixedWidth: true,
-    defaultHeight: 1,
+    defaultHeight: 16,
   });
 
   render() {
@@ -439,6 +439,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       selectedRowsFirst,
       tableHeaderHeight,
       cx,
+      showAllRows,
     } = this.props;
 
     const { expandedRows, sortBy, sortDirection, editMode, selectedRows } = this.state;
@@ -480,7 +481,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
                   headerRowRenderer={ColumnLabels(this.props)}
                   rowHeight={dynamicRowHeight ? this.cache.rowHeight : HEIGHT_TO_PX[rowHeight!]}
                   rowStyle={this.getRowStyle(expandedData)}
-                  overscanRowCount={100}
+                  overscanRowCount={dynamicRowHeight && showAllRows ? expandedData.length : 2}
                   onRowClick={this.handleRowClick}
                 >
                   {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}

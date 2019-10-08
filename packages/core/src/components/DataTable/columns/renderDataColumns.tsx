@@ -23,6 +23,7 @@ type ArgumentsFromProps = {
   theme?: WithStylesProps['theme'];
   selectable?: boolean;
   expandable?: boolean;
+  dynamicRowHeight?: boolean;
 };
 
 export default function renderDataColumns<T>(
@@ -37,6 +38,7 @@ export default function renderDataColumns<T>(
     selectable,
     showColumnDividers,
     zebra,
+    dynamicRowHeight,
     cx,
     styles,
     theme,
@@ -81,6 +83,14 @@ export default function renderDataColumns<T>(
     const { dataKey, parent, rowIndex } = row;
 
     const content = renderCell(dataKey, columnIdx, row);
+
+    if (!dynamicRowHeight) {
+      return (
+        <div className={cx(styles.rowContainer)}>
+          <div className={cx(styles.row)}>{content}</div>
+        </div>
+      );
+    }
 
     return (
       <div className={cx(styles.rowContainer)}>
