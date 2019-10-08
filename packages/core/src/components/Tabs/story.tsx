@@ -69,17 +69,17 @@ secondaryTabs.story = {
 export function secondarySmallTabs() {
   return (
     <Tabs secondary>
-      <Tab small key="a" label="Lorem" beforeIcon={<IconAdd decorative />}>
+      <Tab key="a" small label="Lorem" beforeIcon={<IconAdd decorative />}>
         <Text>
           <LoremIpsum short />
         </Text>
       </Tab>
-      <Tab small key="b" label="Ipsum">
+      <Tab key="b" small label="Ipsum">
         <Text>
           <LoremIpsum medium />
         </Text>
       </Tab>
-      <Tab small key="c" disabled label="Dolor" />
+      <Tab key="c" disabled small label="Dolor" />
     </Tabs>
   );
 }

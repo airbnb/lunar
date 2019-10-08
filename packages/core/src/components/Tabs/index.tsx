@@ -40,8 +40,8 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
     defaultKey: '',
     onChange() {},
     persistWithHash: '',
-    secondary: false,
     scrollable: false,
+    secondary: false,
     stretched: false,
   };
 
