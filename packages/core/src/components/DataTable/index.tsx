@@ -159,7 +159,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     }
 
     if (this.props.data !== prevProps.data) {
-      console.log('456');
       this.keys = getKeys(this.props.keys!, this.props.data!);
 
       this.setState({
