@@ -193,7 +193,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     paddingBottom: (unit / 8) * 5,
     fontWeight: 'normal',
     justifyContent: 'center',
-    border: `1px solid ${color.clear}`,
+    border: `${ui.borderWidth}px solid ${color.clear}`,
     backgroundColor: color.clear,
     borderRadius: ui.borderRadius,
     ':hover': {
