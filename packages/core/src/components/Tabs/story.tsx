@@ -223,3 +223,40 @@ export function withScrollableVariableHeightTabs() {
 withScrollableVariableHeightTabs.story = {
   name: 'With scrollable variable height tabs.',
 };
+
+
+export function withScrollableVariableHeightSecondaryTabs() {
+  return (
+    <div style={{ width: '325px' }}>
+      <Tabs scrollable secondary>
+        <Tab
+          key="a"
+          label={
+            <>
+              Bruce
+              <br />
+              Wayne
+            </>
+          }
+        />
+        <Tab key="b" label="Clark K." />
+        <Tab
+          key="c"
+          label={
+            <>
+              Peter
+              <br />
+              Parker
+            </>
+          }
+        />
+        <Tab key="d" label="Tony S." />
+        <Tab key="e" label="Bruce B." />
+      </Tabs>
+    </div>
+  );
+}
+
+withScrollableVariableHeightSecondaryTabs.story = {
+  name: 'With scrollable variable height secondary tabs.',
+};
