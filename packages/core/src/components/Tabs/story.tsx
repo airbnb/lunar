@@ -224,7 +224,6 @@ withScrollableVariableHeightTabs.story = {
   name: 'With scrollable variable height tabs.',
 };
 
-
 export function withScrollableVariableHeightSecondaryTabs() {
   return (
     <div style={{ width: '325px' }}>

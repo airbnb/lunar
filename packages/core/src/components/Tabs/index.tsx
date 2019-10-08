@@ -120,7 +120,14 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
     // Generate content
     let content = null;
     const nav = (
-      <nav role="tablist" className={cx(styles.nav, noBorder && styles.nav_noBorder, secondary && styles.nav_secondary)}>
+      <nav
+        role="tablist"
+        className={cx(
+          styles.nav,
+          noBorder && styles.nav_noBorder,
+          secondary && styles.nav_secondary,
+        )}
+      >
         {React.Children.map(children, (child, i) => {
           if (!child) {
             return null;
@@ -186,7 +193,7 @@ export default withBoundary('Tabs')(
       overflow: 'auto',
       borderWidth: 0,
       borderRadius: ui.borderRadius,
-      backgroundColor: color.accent.bgHover
+      backgroundColor: color.accent.bgHover,
     },
 
     panel: {

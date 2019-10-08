@@ -133,7 +133,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
   tab_secondary: {
     marginRight: unit,
     borderWidth: 0,
-    marginBottom: 0
+    marginBottom: 0,
   },
 
   tab_noBorder: {
@@ -198,8 +198,8 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     borderRadius: ui.borderRadius,
     ':hover': {
       borderColor: color.accent.borderHover,
-      backgroundColor: color.accent.bgHover
-    }
+      backgroundColor: color.accent.bgHover,
+    },
   },
 
   tabButton_selected: {
@@ -211,13 +211,13 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     backgroundColor: color.accent.bg,
     ':hover': {
       borderColor: color.accent.borderActive,
-      backgroundColor: color.accent.bg
-    }
+      backgroundColor: color.accent.bg,
+    },
   },
 
   tabButton_disabled: {
     ...pattern.disabled,
-    pointerEvents: 'none'
+    pointerEvents: 'none',
   },
 
   tabButton_small: {
