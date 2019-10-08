@@ -71,8 +71,8 @@ export class Tab extends React.Component<Props & WithStylesProps> {
       styles,
     } = this.props;
     const trackingName = upperFirst(camelCase(keyName || 'Tab'));
-    const noborder = secondary || borderless;
-    const nohover = secondary || (noborder && disabled);
+    const noBorder = secondary || borderless;
+    const noHover = secondary || (noBorder && disabled);
 
     return (
       <span
@@ -80,8 +80,8 @@ export class Tab extends React.Component<Props & WithStylesProps> {
           styles.tab,
           secondary && styles.tab_secondary,
           disabled && styles.tab_disabled,
-          noborder && styles.tab_noborder,
-          nohover && styles.tab_nohover,
+          noBorder && styles.tab_noBorder,
+          noHover && styles.tab_noHover,
           selected && !secondary && styles.tab_selected,
           stretched && styles.tab_stretched,
         )}
@@ -136,7 +136,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     marginBottom: 0
   },
 
-  tab_noborder: {
+  tab_noBorder: {
     borderColor: color.clear,
   },
 
@@ -160,7 +160,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     },
   },
 
-  tab_nohover: {
+  tab_noHover: {
     ':hover': {
       borderColor: color.clear,
     },

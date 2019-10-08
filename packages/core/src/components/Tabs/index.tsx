@@ -115,12 +115,12 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
   render() {
     const { cx, borderless, children, secondary, scrollable, stretched, styles } = this.props;
     const { selectedKey } = this.state;
-    const noborder = borderless || secondary;
+    const noBorder = borderless || secondary;
 
     // Generate content
     let content = null;
     const nav = (
-      <nav role="tablist" className={cx(styles.nav, noborder && styles.nav_noborder, secondary && styles.nav_secondary)}>
+      <nav role="tablist" className={cx(styles.nav, noBorder && styles.nav_noBorder, secondary && styles.nav_secondary)}>
         {React.Children.map(children, (child, i) => {
           if (!child) {
             return null;
@@ -176,7 +176,7 @@ export default withBoundary('Tabs')(
       display: 'flex',
     },
 
-    nav_noborder: {
+    nav_noBorder: {
       borderColor: color.clear,
     },
 
