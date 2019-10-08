@@ -82,7 +82,7 @@ export default function buildTheme(
       },
       disabled: {
         opacity: disabledOpacity,
-        cursor: 'default',
+        cursor: 'normal',
       },
       focused: {
         borderColor: accent.borderActive,
