@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.33.0 - 2019-10-08
+
+#### 🚀 Updates
+
+- **[Lightbox]** Add Lightbox component (#183) ([c717697](https://github.com/airbnb/lunar/tree/master/packages/core/commit/c717697)), closes [#183](https://github.com/airbnb/lunar/tree/master/packages/core/issues/183)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.32.1 - 2019-10-02
 
 #### ⚙️ Types
