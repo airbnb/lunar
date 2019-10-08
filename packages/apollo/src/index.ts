@@ -1,10 +1,9 @@
 import Core from '@airbnb/lunar';
-import { ApolloClient, Resolvers } from 'apollo-client';
+import { ApolloClient, ApolloClientOptions } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { HttpLink } from 'apollo-link-http';
-import { DocumentNode } from 'graphql';
 import Mutation from './components/Mutation';
 import Query from './components/Query';
 import Provider from './components/Provider';
@@ -17,8 +16,8 @@ export { onError, HttpLink, Mutation, Query, Provider };
 
 export type Settings = {
   links?: ApolloLink[];
-  resolvers?: Resolvers | Resolvers[];
-  typeDefs?: string | string[] | DocumentNode | DocumentNode[];
+  resolvers?: ApolloClientOptions<null>['resolvers'];
+  typeDefs?: ApolloClientOptions<null>['typeDefs'];
 };
 
 class Apollo {
