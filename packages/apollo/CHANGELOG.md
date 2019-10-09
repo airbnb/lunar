@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.6.0 - 2019-10-09
+
+#### 🚀 Updates
+
+- **[Apollo]** Add typeDefs to Apollo settings (#206) ([04b5e1d](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/04b5e1d)), closes [#206](https://github.com/airbnb/lunar/tree/master/packages/apollo/issues/206)
+
+#### 🛠 Internals
+
+- Migrate to Storybook v5.2. (#199) ([5b546fa](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/5b546fa)), closes [#199](https://github.com/airbnb/lunar/tree/master/packages/apollo/issues/199)
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
 ### 2.5.0 - 2019-09-26
 
 **Note:** Version bump only for package @airbnb/lunar-apollo
