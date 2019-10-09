@@ -1,5 +1,5 @@
 import Core from '@airbnb/lunar';
-import { ApolloClient, Resolvers } from 'apollo-client';
+import { ApolloClient, ApolloClientOptions } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
@@ -16,13 +16,15 @@ export { onError, HttpLink, Mutation, Query, Provider };
 
 export type Settings = {
   links?: ApolloLink[];
-  resolvers?: Resolvers;
+  resolvers?: ApolloClientOptions<null>['resolvers'];
+  typeDefs?: ApolloClientOptions<null>['typeDefs'];
 };
 
 class Apollo {
   settings: Required<Settings> = {
     links: [],
     resolvers: {},
+    typeDefs: '',
   };
 
   protected client?: ApolloClient<{}>;
@@ -41,7 +43,7 @@ class Apollo {
       return;
     }
 
-    const { links, resolvers } = this.settings;
+    const { links, resolvers, typeDefs } = this.settings;
 
     this.client = new ApolloClient({
       cache: new InMemoryCache(),
@@ -49,6 +51,7 @@ class Apollo {
       link: ApolloLink.from(links),
       name: Core.settings.name,
       resolvers,
+      typeDefs,
       version: pkg.version,
     });
 
