@@ -198,21 +198,20 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     borderRadius: ui.borderRadius,
     ':hover': {
       borderColor: color.accent.borderHover,
-      backgroundColor: color.accent.bgHover,
+      backgroundColor: color.core.neutral[1],
     },
   },
 
   tabButton_selected: {
     color: color.accent.textActive,
-    cursor: 'normal', // TODO: fix in buildTheme
   },
 
   tabButton_secondary_selected: {
     borderColor: color.accent.borderActive,
     backgroundColor: color.accent.bg,
     ':hover': {
-      borderColor: color.accent.borderActive,
-      backgroundColor: color.accent.bg,
+      borderColor: color.core.primary[4],
+      backgroundColor: color.core.neutral[1],
     },
   },
 
