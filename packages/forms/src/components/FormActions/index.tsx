@@ -9,15 +9,14 @@ export type Props = Omit<BaseProps, 'disabled' | 'processing'>;
 /** `FormActions` automatically connected to the parent `Form`. */
 export default function FormActions(props: Props) {
   const context = useContext(FormContext);
+  const baseProps: BaseProps = { ...props };
 
   if (context) {
     const { submitting, valid }: FormState<unknown> = context.getState();
 
-    Object.assign(props, {
-      disabled: !valid,
-      processing: submitting,
-    });
+    baseProps.disabled = !valid;
+    baseProps.processing = submitting;
   }
 
-  return <BaseFormActions {...props} />;
+  return <BaseFormActions {...baseProps} />;
 }

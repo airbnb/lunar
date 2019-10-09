@@ -2,7 +2,6 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '@airbnb/lunar/lib/components/Button';
 import ButtonGroup from '@airbnb/lunar/lib/components/ButtonGroup';
-import FormActions from '@airbnb/lunar/lib/components/FormActions';
 import Text from '@airbnb/lunar/lib/components/Text';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Input from './Input';
@@ -17,6 +16,7 @@ import ToggleButtonController from './ToggleButtonController';
 import DatePickerInput from './DatePickerInput';
 import DateTimeSelect from './DateTimeSelect';
 import Multicomplete from './Multicomplete';
+import FormActions from '../FormActions';
 import Form from '.';
 
 const fixedDate = new Date(2019, 1, 1, 10, 10, 10);
@@ -74,8 +74,8 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
     return (
       <Form
         onFailedSubmit={action('onFailedSubmit')}
-        onSubmit={() => {
-          action('onSubmit')();
+        onSubmit={data => {
+          action('onSubmit')(data);
 
           return Promise.resolve();
         }}
@@ -122,8 +122,8 @@ export function withAllFields() {
     <Form
       initialValues={values}
       onFailedSubmit={action('onFailedSubmit')}
-      onSubmit={() => {
-        action('onSubmit')();
+      onSubmit={data => {
+        action('onSubmit')(data);
 
         return Promise.resolve();
       }}
