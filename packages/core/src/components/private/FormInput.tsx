@@ -20,10 +20,11 @@ export type IgnoreAttributes =
   | 'typeof'
   | 'vocab'
   // Non-standard attributes
+  | 'color'
+  | 'css'
   | 'inputMode'
   | 'is'
   | 'radioGroup'
-  | 'color'
   | 'results'
   | 'security';
 
