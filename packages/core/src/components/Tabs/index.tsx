@@ -188,12 +188,8 @@ export default withBoundary('Tabs')(
     },
 
     nav_secondary: {
-      padding: unit / 2,
       alignItems: 'center',
-      overflow: 'auto',
       borderWidth: 0,
-      borderRadius: ui.borderRadius,
-      backgroundColor: color.accent.bgHover,
     },
 
     panel: {

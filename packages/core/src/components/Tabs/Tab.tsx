@@ -204,6 +204,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
 
   tabButton_selected: {
     color: color.accent.textActive,
+    cursor: 'normal', // TODO: fix in buildTheme
   },
 
   tabButton_secondary_selected: {
