@@ -22,11 +22,11 @@
   },
   "devDependencies": {
     "@airbnb/lunar-test-utils": "^2.3.0",
-    "react": "^16.9.0"
+    "react": "^16.10.2"
   },
   "dependencies": {
     "@types/airbnb-prop-types": "^2.13.1",
-    "@types/lodash": "^4.14.139",
+    "@types/lodash": "^4.14.144",
     "@types/shallowequal": "^1.1.1",
     "@types/uuid": "^3.4.4",
     "airbnb-prop-types": "^2.15.0",
