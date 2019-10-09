@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.5.1 - 2019-10-09
+
+#### 🐞 Fixes
+
+- **[FormActions]** Fix FormActions error `Cannot add property disabled, object is not extensible`. (#204) ([35c804c](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/35c804c)), closes [#204](https://github.com/airbnb/lunar/tree/master/packages/forms/issues/204)
+
+#### 🛠 Internals
+
+- Migrate to Storybook v5.2. (#199) ([5b546fa](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/5b546fa)), closes [#199](https://github.com/airbnb/lunar/tree/master/packages/forms/issues/199)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 2.5.0 - 2019-09-26
 
 **Note:** Version bump only for package @airbnb/lunar-forms
