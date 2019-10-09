@@ -4,7 +4,6 @@ import {
   ThemeProviderProps,
   ThemeContext,
 } from 'aesthetic-react';
-import { Omit } from 'utility-types';
 import Core from '..';
 
 export { ThemeContext };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Omit } from 'utility-types';
 import ErrorMessage from '../ErrorMessage';
 import Loader from '../Loader';
 import renderElementOrFunction, { RenderableProp } from '../../utils/renderElementOrFunction';

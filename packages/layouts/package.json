@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@types/airbnb-prop-types": "*",
-    "airbnb-prop-types": "^2.15.0",
-    "utility-types": "^3.8.0"
+    "airbnb-prop-types": "^2.15.0"
   }
 }

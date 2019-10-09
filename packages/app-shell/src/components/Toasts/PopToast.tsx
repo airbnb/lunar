@@ -1,6 +1,5 @@
 import { useContext, useEffect } from 'react';
 import { Props as BaseProps } from '@airbnb/lunar/lib/components/Toast';
-import { Omit } from 'utility-types';
 import AppContext from '../AppContext';
 
 export type Props = Omit<BaseProps, 'id' | 'onRemove'>;

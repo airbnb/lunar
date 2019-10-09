@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import omit from 'lodash/omit';
-import { Omit } from 'utility-types';
 import { fieldSubscriptionItems, FieldState, Unsubscribe } from 'final-form';
 import finishHOC from '@airbnb/lunar/lib/utils/finishHOC';
 import FormContext from '../components/FormContext';

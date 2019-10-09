@@ -1,6 +1,5 @@
 import React from 'react';
 import shallowEqual from 'shallowequal';
-import { Omit } from 'utility-types';
 import Autocomplete, {
   Props as AutocompleteProps,
   Item as AutocompleteItem,

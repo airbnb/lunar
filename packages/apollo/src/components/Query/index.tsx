@@ -6,7 +6,6 @@ import {
   OperationVariables,
 } from 'react-apollo';
 import { ApolloError } from 'apollo-client';
-import { Omit } from 'utility-types';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
 import Loader from '@airbnb/lunar/lib/components/Loader';
 import renderElementOrFunction, {

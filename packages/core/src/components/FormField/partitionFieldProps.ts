@@ -1,4 +1,3 @@
-import { Omit } from 'utility-types';
 import { Props as FormFieldProps } from '.';
 
 export type MaybeChildren = { children?: unknown };

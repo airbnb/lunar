@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Omit } from 'utility-types';
 import BaseBreadcrumbs, {
   Breadcrumb,
   Props as BaseProps,
