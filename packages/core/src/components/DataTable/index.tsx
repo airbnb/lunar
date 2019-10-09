@@ -52,6 +52,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     columnMetadata: {},
     columnToLabel: {},
     data: [],
+    defaultDynamicRowHeight: 16,
     defaultEditCallback: () => {},
     dynamicRowHeight: false,
     editable: false,
@@ -63,6 +64,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     height: 400,
     instantEdit: true,
     keys: [],
+    minimumDynamicRowHeight: undefined,
     renderers: {},
     rowHeight: 'regular',
     selectable: false,
@@ -151,6 +153,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             x.metadata.originalIndex !== oldFilteredData[i].metadata.originalIndex,
         ))
     ) {
+      // We need to make sure the cache is cleared before React tries to re-render.
       setTimeout(() => {
         this.cache.clearAll();
         this.forceUpdate();
@@ -238,7 +241,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         expandedRows: newExpandedRows,
       };
     });
-
+    // We need to make sure the cache is cleared before React tries to re-render.
     setTimeout(() => {
       this.cache.clearAll();
       this.forceUpdate();
@@ -421,7 +424,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   cache = new CellMeasurerCache({
     fixedHeight: false,
     fixedWidth: true,
-    defaultHeight: 16,
+    defaultHeight: this.props.defaultDynamicRowHeight,
+    minHeight: this.props.minimumDynamicRowHeight,
   });
 
   render() {

@@ -51,6 +51,8 @@ export interface DataTableProps {
   columnMetadata?: ColumnMetadata;
   /** Array of data rows. */
   data?: ParentRow[];
+  /** If dynamicRowHeight is enabled, thiis sets the default value for measured row height. */
+  defaultDynamicRowHeight?: number;
   /** Default callback on all edits. */
   defaultEditCallback?: EditCallback;
   /** When enabled, row height is set dynamically to accomodate content. */
@@ -73,6 +75,8 @@ export interface DataTableProps {
   instantEdit?: boolean;
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];
+  /** If dynamicRowHeight is enabled, thiis sets the minimum value for measured row height. */
+  minimumDynamicRowHeight?: number;
   /** Propagated as the 'ref' prop to the underlying react-virtualized Table instance. */
   propagateRef?: TableRef;
   /** Custom renderers mapped to column keys. */
