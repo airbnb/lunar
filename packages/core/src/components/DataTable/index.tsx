@@ -139,13 +139,14 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   );
 
   componentDidUpdate(prevProps: DataTableProps, prevState: State) {
-    const { data, filterData } = this.props;
+    const { dynamicRowHeight, data, filterData } = this.props;
     const { sortBy, sortDirection, selectedRows } = this.state;
     const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
     const filteredData = filterData!(sortedData);
     const oldFilteredData = prevProps.filterData!(sortedData);
 
     if (
+      dynamicRowHeight &&
       filteredData.length > 0 &&
       (filteredData.length !== oldFilteredData.length ||
         filteredData.some(
@@ -228,6 +229,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   private expandRow = (newExpandedRowOriginalIndex: number) => (
     event: React.SyntheticEvent<EventTarget>,
   ) => {
+    const { dynamicRowHeight } = this.props;
     event.stopPropagation();
     this.setState(({ expandedRows }) => {
       const newExpandedRows = new Set(expandedRows);
@@ -241,11 +243,13 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         expandedRows: newExpandedRows,
       };
     });
-    // We need to make sure the cache is cleared before React tries to re-render.
-    setTimeout(() => {
-      this.cache.clearAll();
-      this.forceUpdate();
-    }, 0);
+    if (dynamicRowHeight) {
+      // We need to make sure the cache is cleared before React tries to re-render.
+      setTimeout(() => {
+        this.cache.clearAll();
+        this.forceUpdate();
+      }, 0);
+    }
   };
 
   private onEdit = (
