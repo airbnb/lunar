@@ -1,5 +1,5 @@
 import React from 'react';
-import { Column } from 'react-virtualized';
+import { Column, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
 import DefaultRenderer from '../DefaultRenderer';
 import Spacing from '../../Spacing';
 import {
@@ -7,7 +7,6 @@ import {
   DataTableProps,
   VirtualRow,
   EditCallback,
-  HeightOptions,
   WidthProperties,
   RendererProps,
 } from '../types';
@@ -15,46 +14,49 @@ import { WithStylesProps } from '../../../composers/withStyles';
 import { DEFAULT_WIDTH_PROPERTIES } from '../constants';
 
 type ArgumentsFromProps = {
-  columnMetadata?: ColumnMetadata;
-  showColumnDividers?: boolean;
   cx: WithStylesProps['cx'];
   styles: WithStylesProps['styles'];
+  columnMetadata?: ColumnMetadata;
+  showColumnDividers?: boolean;
   renderers?: DataTableProps['renderers'];
   zebra?: boolean;
-  rowHeight?: HeightOptions;
   theme?: WithStylesProps['theme'];
   selectable?: boolean;
   expandable?: boolean;
+  dynamicRowHeight?: boolean;
 };
 
 export default function renderDataColumns<T>(
   keys: string[],
   editMode: boolean,
   onEdit: EditCallback<T>,
+  cache: CellMeasurerCache,
   {
     columnMetadata,
+    expandable,
+    renderers,
+    selectable,
     showColumnDividers,
+    zebra,
+    dynamicRowHeight,
     cx,
     styles,
-    renderers,
-    zebra,
     theme,
-    selectable,
-    expandable,
   }: ArgumentsFromProps,
 ) {
-  const renderCell = (key: string, isLeftmost: boolean) => (row: VirtualRow<T>) => {
+  const renderCell = (key: string, columnIndex: number, row: VirtualRow<T>) => {
     const { metadata } = row.rowData;
     const { isChild } = metadata;
     const customRenderer = renderers && renderers[key];
+    const isLeftmost = columnIndex === 0;
     const indentSize = !expandable || !isLeftmost ? 2 : 2.5;
     const spacing = isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
     const rendererArguments: RendererProps<T> = {
       row,
       keyName: key as keyof T,
-      editMode,
       onEdit,
       zebra: zebra || false,
+      editMode,
       theme,
     };
 
@@ -71,12 +73,37 @@ export default function renderDataColumns<T>(
     const contents = React.createElement(customRenderer || DefaultRenderer, rendererArguments);
 
     return (
-      <div className={cx(styles && styles.row)}>
-        <div className={cx(styles && styles.row_inner)}>
-          <Spacing left={spacing} right={2}>
-            {contents || ''}
-          </Spacing>
+      <Spacing left={spacing} right={2}>
+        {contents || ''}
+      </Spacing>
+    );
+  };
+
+  const columnCellRenderer = (columnIdx: number) => (row: VirtualRow<T>) => {
+    const { dataKey, parent, rowIndex } = row;
+
+    const content = renderCell(dataKey, columnIdx, row);
+
+    if (!dynamicRowHeight) {
+      return (
+        <div className={cx(styles.rowContainer)}>
+          <div className={cx(styles.row)}>{content}</div>
         </div>
+      );
+    }
+
+    return (
+      <div className={cx(styles.rowContainer)}>
+        <CellMeasurer
+          key={dataKey}
+          cache={cache}
+          columnIndex={columnIdx}
+          // @ts-ignore We need to pass in the parent node
+          parent={parent}
+          rowIndex={rowIndex}
+        >
+          <div className={cx(styles.row)}>{content}</div>
+        </CellMeasurer>
       </div>
     );
   };
@@ -93,7 +120,6 @@ export default function renderDataColumns<T>(
           : DEFAULT_WIDTH_PROPERTIES[property];
     });
 
-    const isLeftmost = idx === 0;
     const isRightmost = idx === keys.length - 1;
 
     return (
@@ -106,7 +132,7 @@ export default function renderDataColumns<T>(
         flexShrink={widthProperties.flexShrink}
         maxWidth={widthProperties.maxWidth}
         minWidth={widthProperties.minWidth}
-        cellRenderer={renderCell(key, isLeftmost)}
+        cellRenderer={columnCellRenderer(idx)}
         className={cx(
           styles && styles.column,
           showColumnDividers && !isRightmost && styles && styles.column_divider,

@@ -14,7 +14,7 @@ import Button from '../Button';
 import Input from '../Input';
 import Row from '../Row';
 import Spacing from '../Spacing';
-import { SelectedRows, IndexedParentRow, Renderers, RendererProps } from './types';
+import { RendererProps, SelectedRows, IndexedParentRow } from './types';
 
 type CustomShape = {
   name: string;
@@ -28,7 +28,7 @@ function CustomRenderer({ row, keyName }: RendererProps<CustomShape>) {
   return <span>{String(row.rowData.data[keyName])}</span>;
 }
 
-const renderers: Renderers<CustomShape> = {
+const renderers = {
   name: EditableTextRenderer,
   colSpan: ColSpanRenderer,
   cats: CatRenderer,
@@ -149,8 +149,13 @@ class SearchDemo extends React.Component {
           </Spacing>
           <div style={{ flexGrow: 1 }}>
             <DataTable
-              autoHeight
+              dynamicRowHeight
               expandable
+              showRowDividers
+              showAllRows
+              width={400}
+              keys={['number']}
+              renderers={renderers}
               tableHeaderLabel="My Great Table"
               data={data}
               filterData={filteredData}
@@ -190,8 +195,54 @@ export function aStandardTableWithAFlexWrapper() {
   );
 }
 
-aStandardTableWithAFlexWrapper.story = {
-  name: 'A standard table with a flex wrapper.',
+export function aStandardTableWithDynamicRowHeight() {
+  return (
+    <DataTable
+      showRowDividers
+      expandable
+      dynamicRowHeight
+      keys={['name', 'jobTitle']}
+      width={400}
+      columnLabelCase="sentence"
+      data={[
+        {
+          data: {
+            name: 'regular length name text',
+            jobTitle: 'really super long job title global head of all projects and programs',
+          },
+        },
+        {
+          data: {
+            name: 'here is a very very long input field that needs to break line multiple times',
+            jobTitle: 'regular length job title',
+          },
+          metadata: {
+            children: [
+              {
+                data: {
+                  name:
+                    'here is a very very long input field that needs to break line and use dynamic row height',
+                  jobTitle: 'regular length job title',
+                },
+              },
+              {
+                data: {
+                  name:
+                    'here is a very very long input field that needs to break line and use dynamic row height',
+                  jobTitle: 'regular length job title',
+                },
+              },
+            ],
+          },
+        },
+        ...getData(),
+      ]}
+    />
+  );
+}
+
+aStandardTableWithDynamicRowHeight.story = {
+  name: 'A table with dynamic row height.',
 };
 
 export function aStandardTableWithInitialSorting() {
@@ -248,7 +299,7 @@ export function aTableWithASearchBoxAndParentHeight() {
 }
 
 aTableWithASearchBoxAndParentHeight.story = {
-  name: 'A table with a search box and parent height.',
+  name: 'A table with a search box and dynamic row height that shows all rows.',
 };
 
 export function aTableThatShowsAllRows() {
@@ -278,6 +329,7 @@ export function anEditableTable() {
       selectable
       expandable
       editable
+      showRowDividers
       tableHeaderLabel="My Great Table"
       data={getData()}
       keys={['name', 'jobTitle']}

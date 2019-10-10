@@ -1,6 +1,13 @@
 import React from 'react';
-import { AutoSizer, SortDirection, SortDirectionType, Table } from 'react-virtualized';
+import {
+  CellMeasurerCache,
+  AutoSizer,
+  SortDirection,
+  SortDirectionType,
+  Table,
+} from 'react-virtualized';
 import memoize from 'lodash/memoize';
+
 import sortData from './helpers/sortData';
 import expandData from './helpers/expandData';
 import { indexData } from './helpers/indexData';
@@ -45,7 +52,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     columnMetadata: {},
     columnToLabel: {},
     data: [],
+    defaultDynamicRowHeight: 16,
     defaultEditCallback: () => {},
+    dynamicRowHeight: false,
     editable: false,
     editCallbacks: {},
     enactEditsCallback: () => {},
@@ -55,11 +64,12 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     height: 400,
     instantEdit: true,
     keys: [],
+    minimumDynamicRowHeight: undefined,
     renderers: {},
     rowHeight: 'regular',
     selectable: false,
     // eslint-disable-next-line unicorn/consistent-function-scoping
-    selectCallback: (rowData: ExpandedRow, selectedRows: SelectedRows) => () => {},
+    selectCallback: () => () => {},
     selectedRowsFirst: false,
     selectOnRowClick: false,
     showAllRows: false,
@@ -128,7 +138,29 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     (...args) => JSON.stringify(args),
   );
 
-  componentDidUpdate(prevProps: DataTableProps) {
+  componentDidUpdate(prevProps: DataTableProps, prevState: State) {
+    const { dynamicRowHeight, data, filterData } = this.props;
+    const { sortBy, sortDirection, selectedRows } = this.state;
+    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
+    const filteredData = filterData!(sortedData);
+    const oldFilteredData = prevProps.filterData!(sortedData);
+
+    if (
+      dynamicRowHeight &&
+      filteredData.length > 0 &&
+      (filteredData.length !== oldFilteredData.length ||
+        filteredData.some(
+          (x: IndexedParentRow, i: number) =>
+            x.metadata.originalIndex !== oldFilteredData[i].metadata.originalIndex,
+        ))
+    ) {
+      // We need to make sure the cache is cleared before React tries to re-render.
+      setTimeout(() => {
+        this.cache.clearAll();
+        this.forceUpdate();
+      }, 0);
+    }
+
     if (this.props.data !== prevProps.data) {
       this.keys = getKeys(this.props.keys!, this.props.data!);
 
@@ -140,10 +172,24 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   }
 
   private getTableHeight = (expandedDataList: ExpandedRow[]): number => {
-    const { height, rowHeight, showAllRows } = this.props;
+    const { height, rowHeight, showAllRows, dynamicRowHeight } = this.props;
+    // @ts-ignore _rowHeightCache is missing from DataTable types
+    // eslint-disable-next-line no-underscore-dangle
+    const rowHeights: { [key: number]: number } = this.cache._rowHeightCache;
 
     if (showAllRows) {
-      return expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight();
+      if (dynamicRowHeight) {
+        if (Object.values(rowHeights).length > 0) {
+          const totalHeight = Object.values(rowHeights).reduce(
+            (sum: number, measuredRowHeight: number) => sum + measuredRowHeight,
+            0,
+          );
+          return totalHeight + this.getColumnHeaderHeight();
+        }
+        this.forceUpdate();
+      } else {
+        return expandedDataList.length * getHeight(rowHeight) + this.getColumnHeaderHeight();
+      }
     }
 
     return height!;
@@ -168,6 +214,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     sortBy: string;
     sortDirection: SortDirectionType;
   }): void => {
+    this.cache.clearAll();
     const { sortOverride, sortCallback } = this.props;
     if (sortOverride && sortCallback) {
       sortCallback(sortBy, sortDirection);
@@ -179,22 +226,30 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     }
   };
 
-  private expandRow = (newExpandedRowIndex: number) => (
+  private expandRow = (newExpandedRowOriginalIndex: number) => (
     event: React.SyntheticEvent<EventTarget>,
   ) => {
+    const { dynamicRowHeight } = this.props;
     event.stopPropagation();
     this.setState(({ expandedRows }) => {
       const newExpandedRows = new Set(expandedRows);
-      if (expandedRows.has(newExpandedRowIndex)) {
-        newExpandedRows.delete(newExpandedRowIndex);
+      if (expandedRows.has(newExpandedRowOriginalIndex)) {
+        newExpandedRows.delete(newExpandedRowOriginalIndex);
       } else {
-        newExpandedRows.add(newExpandedRowIndex);
+        newExpandedRows.add(newExpandedRowOriginalIndex);
       }
 
       return {
         expandedRows: newExpandedRows,
       };
     });
+    if (dynamicRowHeight) {
+      // We need to make sure the cache is cleared before React tries to re-render.
+      setTimeout(() => {
+        this.cache.clearAll();
+        this.forceUpdate();
+      }, 0);
+    }
   };
 
   private onEdit = (
@@ -370,19 +425,27 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   rowGetter = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }) =>
     expandedDataList[index];
 
+  cache = new CellMeasurerCache({
+    fixedHeight: false,
+    fixedWidth: true,
+    defaultHeight: this.props.defaultDynamicRowHeight,
+    minHeight: this.props.minimumDynamicRowHeight,
+  });
+
   render() {
     const {
-      cx,
       autoHeight,
       data,
+      dynamicRowHeight,
       expandable,
       filterData,
-      propagateRef,
       rowHeight,
       selectable,
       styles,
       selectedRowsFirst,
       tableHeaderHeight,
+      cx,
+      showAllRows,
     } = this.props;
 
     const { expandedRows, sortBy, sortDirection, editMode, selectedRows } = this.state;
@@ -403,40 +466,39 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     return (
       <AutoSizer disableHeight={!autoHeight}>
-        {({ height, width }: { height: number; width: number }) => (
-          <>
-            {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
-            <div className={cx(styles.table_container, { width })}>
-              <Table
-                ref={propagateRef}
-                rowGetter={this.rowGetter(expandedData)}
-                headerHeight={this.getColumnHeaderHeight()}
-                height={
-                  autoHeight
-                    ? height -
-                      (this.shouldRenderTableHeader() ? getHeight(rowHeight, tableHeaderHeight) : 0)
-                    : this.getTableHeight(expandedData)
-                }
-                rowCount={expandedData.length}
-                rowHeight={HEIGHT_TO_PX[rowHeight!]}
-                width={this.props.width || width}
-                rowStyle={this.getRowStyle(expandedData)}
-                sort={this.sort}
-                sortBy={sortBy}
-                sortDirection={sortDirection}
-                headerRowRenderer={ColumnLabels(this.props)}
-                onRowClick={this.handleRowClick}
-              >
-                {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
-
-                {selectable &&
-                  renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
-
-                {renderDataColumns(this.keys, editMode, this.onEdit, this.props)}
-              </Table>
-            </div>
-          </>
-        )}
+        {({ height, width }: { height: number; width: number }) => {
+          const tableHeight = autoHeight
+            ? height -
+              (this.shouldRenderTableHeader() ? getHeight(rowHeight, tableHeaderHeight) : 0)
+            : this.getTableHeight(expandedData);
+          return (
+            <>
+              {this.shouldRenderTableHeader() && this.renderTableHeader(width)}
+              <div className={cx(styles.table_container, { width })}>
+                <Table
+                  height={tableHeight}
+                  width={this.props.width || width}
+                  rowCount={expandedData.length}
+                  rowGetter={this.rowGetter(expandedData)}
+                  sort={this.sort}
+                  sortBy={sortBy}
+                  sortDirection={sortDirection}
+                  headerHeight={this.getColumnHeaderHeight()}
+                  headerRowRenderer={ColumnLabels(this.props)}
+                  rowHeight={dynamicRowHeight ? this.cache.rowHeight : HEIGHT_TO_PX[rowHeight!]}
+                  rowStyle={this.getRowStyle(expandedData)}
+                  overscanRowCount={dynamicRowHeight && showAllRows ? expandedData.length : 2}
+                  onRowClick={this.handleRowClick}
+                >
+                  {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
+                  {selectable &&
+                    renderSelectableColumn(selectedRows, this.handleSelection, expandable)}
+                  {renderDataColumns(this.keys, editMode, this.onEdit, this.cache, this.props)}
+                </Table>
+              </div>
+            </>
+          );
+        }}
       </AutoSizer>
     );
   }
@@ -446,6 +508,12 @@ export default withStyles(
   ({ ui }) => ({
     table_container: {
       overflowX: 'auto',
+    },
+    headerRow: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      height: '100%',
+      textTransform: 'none',
     },
     column_header: {
       borderBottom: ui.border,
@@ -457,13 +525,13 @@ export default withStyles(
     column_divider: {
       borderRight: ui.border,
     },
-    row: {
+    rowContainer: {
       height: '100%',
       display: 'flex',
       alignItems: 'center',
     },
-    row_inner: {
-      width: '100%',
+    row: {
+      whiteSpace: 'normal',
     },
     expand_caret: {
       cursor: 'pointer',
