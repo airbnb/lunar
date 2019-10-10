@@ -126,8 +126,6 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     ':last-child': {
       marginRight: 0,
     },
-
-    userSelect: 'none',
   },
 
   tab_secondary: {
@@ -211,7 +209,7 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     backgroundColor: color.accent.bg,
     ':hover': {
       borderColor: color.core.primary[4],
-      backgroundColor: color.core.neutral[1],
+      backgroundColor: color.accent.bgHover,
     },
   },
 
