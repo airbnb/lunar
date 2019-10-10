@@ -21,6 +21,8 @@ export type Props = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabl
   onClick?: (key: string) => void;
   /** Callback fired when the tab is selected. */
   onSelected?: () => void;
+  /** Secondary tab style, implies borderless. */
+  secondary?: boolean;
   /** Whether the tab is selected or not. */
   selected?: boolean;
   /** Decrease font size to small. */
@@ -34,6 +36,7 @@ export class Tab extends React.Component<Props & WithStylesProps> {
   static defaultProps = {
     borderless: false,
     children: null,
+    secondary: false,
     selected: false,
     small: false,
     stretched: false,
@@ -61,20 +64,25 @@ export class Tab extends React.Component<Props & WithStylesProps> {
       href,
       keyName,
       label,
+      secondary,
       selected,
       small,
       stretched,
       styles,
     } = this.props;
     const trackingName = upperFirst(camelCase(keyName || 'Tab'));
+    const noBorder = secondary || borderless;
+    const noHover = secondary || (noBorder && disabled);
 
     return (
       <span
         className={cx(
           styles.tab,
+          secondary && styles.tab_secondary,
           disabled && styles.tab_disabled,
-          borderless && styles.tab_borderless,
-          selected && styles.tab_selected,
+          noBorder && styles.tab_noBorder,
+          noHover && styles.tab_noHover,
+          selected && !secondary && styles.tab_selected,
           stretched && styles.tab_stretched,
         )}
       >
@@ -89,8 +97,11 @@ export class Tab extends React.Component<Props & WithStylesProps> {
             role="tab"
             className={cx(
               styles.tabButton,
+              secondary && styles.tabButton_secondary,
+              selected && styles.tabButton_selected,
+              selected && secondary && styles.tabButton_secondary_selected,
               small && styles.tabButton_small,
-              selected && styles.tabButton_active,
+              disabled && styles.tabButton_disabled,
             )}
             onClick={disabled ? undefined : this.handleClick}
           >
@@ -117,7 +128,13 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     },
   },
 
-  tab_borderless: {
+  tab_secondary: {
+    marginRight: unit,
+    borderWidth: 0,
+    marginBottom: 0,
+  },
+
+  tab_noBorder: {
     borderColor: color.clear,
   },
 
@@ -134,11 +151,16 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
   },
 
   tab_disabled: {
-    ...pattern.disabled,
     borderColor: color.accent.border,
 
     ':hover': {
       borderColor: color.accent.border,
+    },
+  },
+
+  tab_noHover: {
+    ':hover': {
+      borderColor: color.clear,
     },
   },
 
@@ -163,11 +185,40 @@ export default withStyles(({ color, font, pattern, unit, ui, transition }) => ({
     borderTopRightRadius: ui.borderRadius,
   },
 
-  tabButton_small: {
-    ...font.textSmall,
+  tabButton_secondary: {
+    ...pattern.regularButton,
+    paddingTop: unit / 2,
+    paddingBottom: (unit / 8) * 5,
+    fontWeight: 'normal',
+    justifyContent: 'center',
+    border: `${ui.borderWidth}px solid ${color.clear}`,
+    backgroundColor: color.clear,
+    borderRadius: ui.borderRadius,
+    ':hover': {
+      borderColor: color.accent.borderHover,
+      backgroundColor: color.core.neutral[1],
+    },
   },
 
-  tabButton_active: {
+  tabButton_selected: {
     color: color.accent.textActive,
+  },
+
+  tabButton_secondary_selected: {
+    borderColor: color.accent.borderActive,
+    backgroundColor: color.accent.bg,
+    ':hover': {
+      borderColor: color.core.primary[4],
+      backgroundColor: color.accent.bgHover,
+    },
+  },
+
+  tabButton_disabled: {
+    ...pattern.disabled,
+    pointerEvents: 'none',
+  },
+
+  tabButton_small: {
+    ...font.textSmall,
   },
 }))(Tab);

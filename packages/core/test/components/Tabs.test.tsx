@@ -251,6 +251,21 @@ describe('<Tabs/>', () => {
     ).toBe(true);
   });
 
+  it('it passes the secondary prop to Tab children', () => {
+    const wrapper = unwrap(
+      <Tabs secondary>
+        <Tab key="a" label="One" />
+      </Tabs>,
+    );
+
+    expect(
+      wrapper
+        .find(Tab)
+        .at(0)
+        .prop('secondary'),
+    ).toBe(true);
+  });
+
   it('Persist with hash and back button.', () => {
     const addSpy = jest.spyOn(window, 'addEventListener');
     const rmSpy = jest.spyOn(window, 'removeEventListener');

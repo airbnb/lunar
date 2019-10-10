@@ -19,6 +19,8 @@ export type Props = {
   onChange?: (key: string) => void;
   /** Persist the selected tab through the defined URL hash. */
   persistWithHash?: string;
+  /** Secondary tab style, implies borderless. */
+  secondary?: boolean;
   /** Wrap tabs in a scrollable region. */
   scrollable?: boolean;
   /** Stretch tabs to fill the full width. */
@@ -39,6 +41,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
     onChange() {},
     persistWithHash: '',
     scrollable: false,
+    secondary: false,
     stretched: false,
   };
 
@@ -110,13 +113,21 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
   };
 
   render() {
-    const { cx, borderless, children, scrollable, stretched, styles } = this.props;
+    const { cx, borderless, children, secondary, scrollable, stretched, styles } = this.props;
     const { selectedKey } = this.state;
+    const noBorder = borderless || secondary;
 
     // Generate content
     let content = null;
     const nav = (
-      <nav role="tablist" className={cx(styles.nav, borderless && styles.nav_borderless)}>
+      <nav
+        role="tablist"
+        className={cx(
+          styles.nav,
+          noBorder && styles.nav_noBorder,
+          secondary && styles.nav_secondary,
+        )}
+      >
         {React.Children.map(children, (child, i) => {
           if (!child) {
             return null;
@@ -136,6 +147,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
           return React.cloneElement(child as React.ReactElement<TabProps>, {
             borderless,
             keyName: String(key),
+            secondary,
             selected,
             stretched,
             onClick: this.handleClick,
@@ -171,8 +183,13 @@ export default withBoundary('Tabs')(
       display: 'flex',
     },
 
-    nav_borderless: {
+    nav_noBorder: {
       borderColor: color.clear,
+    },
+
+    nav_secondary: {
+      alignItems: 'center',
+      borderWidth: 0,
     },
 
     panel: {

@@ -40,6 +40,76 @@ smallTabsStretched.story = {
   name: 'Small tabs stretched.',
 };
 
+export function secondaryTabs() {
+  return (
+    <Tabs secondary>
+      <Tab key="a" label="Lorem is an example">
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Tab>
+      <Tab key="b" label="Ipsum">
+        <Text>
+          <LoremIpsum medium />
+        </Text>
+      </Tab>
+      <Tab key="c" disabled label="Dolor" />
+      <Tab key="d" label="another" beforeIcon={<IconAdd decorative size="1.25em" />} />
+      <Tab key="e" label="amazing item" />
+      <Tab key="f" label="to be clicked " />
+      <Tab key="g" label="and selected" />
+    </Tabs>
+  );
+}
+
+secondaryTabs.story = {
+  name: 'Secondary tabs.',
+};
+
+export function secondarySmallTabs() {
+  return (
+    <Tabs secondary>
+      <Tab key="a" small label="Lorem" beforeIcon={<IconAdd decorative />}>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Tab>
+      <Tab key="b" small label="Ipsum">
+        <Text>
+          <LoremIpsum medium />
+        </Text>
+      </Tab>
+      <Tab key="c" disabled small label="Dolor" />
+    </Tabs>
+  );
+}
+
+secondarySmallTabs.story = {
+  name: 'Secondary small tabs.',
+};
+
+export function secondaryTabsStretched() {
+  return (
+    <Tabs secondary stretched>
+      <Tab key="a" label="Lorem">
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Tab>
+      <Tab key="b" label="Ipsum">
+        <Text>
+          <LoremIpsum medium />
+        </Text>
+      </Tab>
+      <Tab key="c" disabled label="Dolor" />
+    </Tabs>
+  );
+}
+
+secondaryTabsStretched.story = {
+  name: 'Secondary stretched tabs.',
+};
+
 export function borderlessTabsWithIcons() {
   return (
     <Tabs borderless>
@@ -152,4 +222,40 @@ export function withScrollableVariableHeightTabs() {
 
 withScrollableVariableHeightTabs.story = {
   name: 'With scrollable variable height tabs.',
+};
+
+export function withScrollableVariableHeightSecondaryTabs() {
+  return (
+    <div style={{ width: '325px' }}>
+      <Tabs scrollable secondary>
+        <Tab
+          key="a"
+          label={
+            <>
+              Bruce
+              <br />
+              Wayne
+            </>
+          }
+        />
+        <Tab key="b" label="Clark K." />
+        <Tab
+          key="c"
+          label={
+            <>
+              Peter
+              <br />
+              Parker
+            </>
+          }
+        />
+        <Tab key="d" label="Tony S." />
+        <Tab key="e" label="Bruce B." />
+      </Tabs>
+    </div>
+  );
+}
+
+withScrollableVariableHeightSecondaryTabs.story = {
+  name: 'With scrollable variable height secondary tabs.',
 };
