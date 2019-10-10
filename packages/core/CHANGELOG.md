@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.35.0 - 2019-10-10
+
+#### 🚀 Updates
+
+- **[DataTable]** Add `dynamicRowHeight` prop (#173) ([a6b8d55](https://github.com/airbnb/lunar/tree/master/packages/core/commit/a6b8d55)), closes [#173](https://github.com/airbnb/lunar/tree/master/packages/core/issues/173)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.34.0 - 2019-10-10
 
 #### 🚀 Updates
