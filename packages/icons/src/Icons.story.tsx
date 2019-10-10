@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-onchange */
 
 import React, { ChangeEvent } from 'react';
-import { action } from '@storybook/addon-actions';
 import { WithIconWrapperProps } from './withIcon';
 import FakeIcon from './FakeIcon';
 

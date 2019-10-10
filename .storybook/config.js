@@ -17,3 +17,5 @@ addDecorator(withStory);
 addDecorator(withContexts(contexts));
 
 configure(require.context('../packages', true, /\/([A-Za-z0-9]+\.)?story\.tsx?$/), module);
+
+global.action = key => (...args) => console.log(key, ...args);

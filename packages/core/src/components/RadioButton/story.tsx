@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import lunar from ':storybook/images/lunar-logo.png';
 import RadioButton from '.';
 import Row from '../Row';

@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import EmojiRestrictedPicker from '.';
 
 export default {

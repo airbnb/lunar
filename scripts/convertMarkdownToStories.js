@@ -10,7 +10,6 @@ const Parser = require('remark-parse/lib/parser');
 function createHeader(packageName, componentName, imports = []) {
   return `import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 ${Array.from(imports).join('\n')}
 import ${componentName} from './${componentName}';
 

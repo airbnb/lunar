@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import IconBolt from '@airbnb/lunar-icons/lib/general/IconBolt';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import lunar from ':storybook/images/lunar-logo.png';
