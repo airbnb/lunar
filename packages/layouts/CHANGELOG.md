@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.1 - 2019-10-10
+
+#### 📦 Dependencies
+
+- Remove utility-types. ([8f9d0cc](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/8f9d0cc))
+- Update [@types](https://github.com/types) to use star versions. ([96d2804](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/96d2804))
+- **[React]** Update to v12. ([002d30c](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/002d30c))
+
+#### 🛠 Internals
+
+- Migrate to Storybook v5.2. (#199) ([5b546fa](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/5b546fa)), closes [#199](https://github.com/airbnb/lunar/tree/master/packages/layouts/issues/199)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
 ### 2.3.0 - 2019-09-26
 
 **Note:** Version bump only for package @airbnb/lunar-layouts

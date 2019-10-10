@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.33.1 - 2019-10-10
+
+#### 🐞 Fixes
+
+- Fix `css` attribute being resolved in form props. ([0eb0c02](https://github.com/airbnb/lunar/tree/master/packages/core/commit/0eb0c02))
+
+#### 📦 Dependencies
+
+- Remove utility-types. ([8f9d0cc](https://github.com/airbnb/lunar/tree/master/packages/core/commit/8f9d0cc))
+- Update [@types](https://github.com/types) to use star versions. ([96d2804](https://github.com/airbnb/lunar/tree/master/packages/core/commit/96d2804))
+- **[React]** Update to v12. ([002d30c](https://github.com/airbnb/lunar/tree/master/packages/core/commit/002d30c))
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.33.0 - 2019-10-08
 
 #### 🚀 Updates

@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-apollo",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "Apollo and GraphQL utilities.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -24,7 +24,7 @@
     "react-apollo": "^3.0.0"
   },
   "devDependencies": {
-    "@airbnb/lunar-test-utils": "^2.3.0",
+    "@airbnb/lunar-test-utils": "^2.3.1",
     "@apollo/react-testing": "^3.1.2",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",

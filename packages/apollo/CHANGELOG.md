@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.6.1 - 2019-10-10
+
+#### 📦 Dependencies
+
+- Remove utility-types. ([8f9d0cc](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/8f9d0cc))
+- Update [@types](https://github.com/types) to use star versions. ([96d2804](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/96d2804))
+- **[React]** Update to v12. ([002d30c](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/002d30c))
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
 ## 2.6.0 - 2019-10-09
 
 #### 🚀 Updates
