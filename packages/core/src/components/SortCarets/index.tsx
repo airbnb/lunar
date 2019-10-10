@@ -105,7 +105,7 @@ export default withStyles(({ color, unit }) => ({
     '@selectors': {
       '> svg': {
         margin: '-.4em',
-        marginTop: '-.6em',
+        marginTop: '-.55em',
       },
     },
   },
