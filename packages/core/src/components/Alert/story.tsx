@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Text from '../Text';
 import MutedButton from '../MutedButton';

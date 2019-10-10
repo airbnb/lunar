@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import Form from './Form';
 import CheckBox from './Form/CheckBox';
 

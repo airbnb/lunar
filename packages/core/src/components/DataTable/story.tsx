@@ -1,7 +1,6 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
 import getData, { generateRandomData } from ':storybook/components/DataTable/DataTableData';
 import TenureRenderer from ':storybook/components/DataTable/DataTableRenderers/TenureRenderer';

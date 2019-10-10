@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import Spacing from '../Spacing';
 import DatePickerInput from '.';
 import DatePicker from '../DatePicker';

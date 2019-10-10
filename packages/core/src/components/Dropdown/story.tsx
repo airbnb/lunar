@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import Button from '../Button';
 import Menu, { Row } from '../Menu';
 import Text from '../Text';

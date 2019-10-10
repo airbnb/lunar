@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import DateTimeSelect from '.';
 
 const fixedDate = new Date(2019, 1, 1, 10, 10, 10);

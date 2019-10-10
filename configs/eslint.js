@@ -29,6 +29,9 @@ module.exports = {
       env: {
         node: true,
       },
+      globals: {
+        action: 'readonly',
+      },
       rules: {
         'max-classes-per-file': 'off',
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import IconTranslate from '@airbnb/lunar-icons/lib/interface/IconTranslate';
 import IconCurrency from '@airbnb/lunar-icons/lib/general/IconCurrency';
 import Input from '../Input';
