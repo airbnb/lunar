@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.34.0 - 2019-10-10
+
+#### 🚀 Updates
+
+- **[Tabs]** Add `secondary` prop and styles. (#205) ([827e048](https://github.com/airbnb/lunar/tree/master/packages/core/commit/827e048)), closes [#205](https://github.com/airbnb/lunar/tree/master/packages/core/issues/205)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.33.1 - 2019-10-10
 
 #### 🐞 Fixes
