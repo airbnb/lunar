@@ -38,6 +38,16 @@ describe('<Tab/>', () => {
     expect(wrapper.prop('className')).toMatch('tab_disabled');
   });
 
+  it('renders secondary', () => {
+    const wrapper = shallowWithStyles(
+      <Tab secondary keyName="default" label="Tab" onClick={() => {}} />,
+    );
+
+    const className = wrapper.prop('className');
+    expect(className).toMatch('tab_secondary');
+    expect(className).toMatch('tab_noBorder');
+  });
+
   it('renders selected', () => {
     const wrapper = shallowWithStyles(
       <Tab selected keyName="default" label="Tab" onClick={() => {}} />,
