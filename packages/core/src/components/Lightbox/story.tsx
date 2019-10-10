@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import moon from ':storybook/images/moon.png';
 import space from ':storybook/images/space.jpg';
 import stars from ':storybook/images/stars.jpg';
@@ -64,18 +63,66 @@ class LightboxDemo extends React.Component<Omit<Props, 'onClose'>, { visible: bo
   }
 }
 
-storiesOf('Core/Lightbox', module)
-  .addParameters({
+export default {
+  title: 'Core/Lightbox',
+
+  parameters: {
     inspectComponents: [Lightbox],
-  })
-  .add('Default lightbox', () => <LightboxDemo images={mockImages} />)
-  .add('With set start index', () => <LightboxDemo images={mockImages} startIndex={1} />)
-  .add('With sidebar components', () => <LightboxDemo images={mockImagesWithAside} />)
-  .add('With zoom controls', () => <LightboxDemo showZoomControls images={mockImages} />)
-  .add('With rotate controls', () => <LightboxDemo showRotateControls images={mockImages} />)
-  .add('With zoom and rotate controls', () => (
-    <LightboxDemo showZoomControls showRotateControls images={mockImages} startIndex={1} />
-  ))
-  .add('With all options', () => (
-    <LightboxDemo showZoomControls showRotateControls images={mockImagesWithAside} />
-  ));
+  },
+};
+
+export function defaultLightbox() {
+  return <LightboxDemo images={mockImages} />;
+}
+
+defaultLightbox.story = {
+  name: 'Default lightbox',
+};
+
+export function withSetStartIndex() {
+  return <LightboxDemo images={mockImages} startIndex={1} />;
+}
+
+withSetStartIndex.story = {
+  name: 'With set start index',
+};
+
+export function withSidebarComponents() {
+  return <LightboxDemo images={mockImagesWithAside} />;
+}
+
+withSidebarComponents.story = {
+  name: 'With sidebar components',
+};
+
+export function withZoomControls() {
+  return <LightboxDemo showZoomControls images={mockImages} />;
+}
+
+withZoomControls.story = {
+  name: 'With zoom controls',
+};
+
+export function withRotateControls() {
+  return <LightboxDemo showRotateControls images={mockImages} />;
+}
+
+withRotateControls.story = {
+  name: 'With rotate controls',
+};
+
+export function withZoomAndRotateControls() {
+  return <LightboxDemo showZoomControls showRotateControls images={mockImages} startIndex={1} />;
+}
+
+withZoomAndRotateControls.story = {
+  name: 'With zoom and rotate controls',
+};
+
+export function withAllOptions() {
+  return <LightboxDemo showZoomControls showRotateControls images={mockImagesWithAside} />;
+}
+
+withAllOptions.story = {
+  name: 'With all options',
+};
