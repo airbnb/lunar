@@ -1,6 +1,5 @@
 import React from 'react';
 import uuid from 'uuid/v4';
-import { Omit } from 'utility-types';
 import IconUpload from '@airbnb/lunar-icons/lib/interface/IconUpload';
 import IconAudio from '@airbnb/lunar-icons/lib/interface/IconAudio';
 import IconPhoto from '@airbnb/lunar-icons/lib/interface/IconPhoto';

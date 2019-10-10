@@ -1,6 +1,5 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
-import { Omit } from 'utility-types';
 import uuid from 'uuid/v4';
 import BaseSelect, { Props as BaseSelectProps } from '../private/BaseSelect';
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';

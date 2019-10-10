@@ -1,6 +1,5 @@
 import React from 'react';
 import uuid from 'uuid/v4';
-import { Omit } from 'utility-types';
 import PropTypes from 'prop-types';
 import { requiredBy } from 'airbnb-prop-types';
 import BaseTextArea, { Props as BaseTextAreaProps } from '../private/BaseTextArea';

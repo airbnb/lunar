@@ -1,7 +1,6 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import debouncePromise from 'debounce-promise';
-import { Omit } from 'utility-types';
 import toMilliseconds from '../../utils/toMilliseconds';
 import BaseInput, { Props as BaseInputProps } from '../private/BaseInput';
 import ErrorMessage from '../ErrorMessage';

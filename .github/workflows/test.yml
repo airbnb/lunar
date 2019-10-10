@@ -28,11 +28,16 @@ jobs:
         with:
           node-version: 12
       - uses: ./.github/actions/setup
+      - name: Using current SHA because no previous SHA
+        if: contains(github.event.before, '0000000000') == true
+        run: echo ::set-env name=PREVIOUS_SHA::"${{ github.event.after }}"
+      - name: Using previous SHA
+        if: contains(github.event.before, '0000000000') == false
+        run: echo ::set-env name=PREVIOUS_SHA::"${{ github.event.before }}"
       - name: Run Happo CI
         run: yarn run happo:ci
         env:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
-          PREVIOUS_SHA: ${{ github.event.before }}
           CURRENT_SHA: ${{ github.event.after }}
           CHANGE_URL: ${{ github.event.head_commit.url }}

@@ -1,7 +1,6 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import { Omit } from 'utility-types';
 import BaseRadioButton, { Props as BaseRadioButtonProps } from '../private/BaseRadioButton';
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
 import Text from '../Text';

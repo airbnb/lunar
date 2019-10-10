@@ -1,6 +1,5 @@
 import React from 'react';
 import uuid from 'uuid/v4';
-import { Omit } from 'utility-types';
 import BaseSwitch, { Props as BaseSwitchProps } from '../private/BaseSwitch';
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
 

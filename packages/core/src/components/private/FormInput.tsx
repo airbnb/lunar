@@ -1,6 +1,5 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import { Omit } from 'utility-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import buildInputStyles from '../../themes/buildInputStyles';
 
@@ -21,10 +20,11 @@ export type IgnoreAttributes =
   | 'typeof'
   | 'vocab'
   // Non-standard attributes
+  | 'color'
+  | 'css'
   | 'inputMode'
   | 'is'
   | 'radioGroup'
-  | 'color'
   | 'results'
   | 'security';
 
