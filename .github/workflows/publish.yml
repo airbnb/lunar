@@ -17,9 +17,7 @@ jobs:
       - name: Publish Storybook to GitHub Pages
         env:
           GHP_TOKEN: ${{ secrets.GHP_TOKEN }}
-        run: |
-          yarn run storybook:build
-          yarn run deploy:ghp
+        run: yarn run deploy:ghp
   # npm:
   #   name: NPM
   #   runs-on: ubuntu-latest
