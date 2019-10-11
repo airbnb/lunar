@@ -761,6 +761,6 @@ describe('<DataTable />', () => {
     const ref = React.createRef<Table>();
     mountWithStyles(<DataTable data={data} propagateRef={ref} />);
 
-    expect(ref.current).toBeDefined();
+    expect(ref.current).not.toBeNull();
   });
 });
