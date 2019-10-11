@@ -15,7 +15,7 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Publish Storybook to GitHub Pages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GHP_TOKEN: ${{ secrets.GHP_TOKEN }}
         run: |
           yarn run storybook:build
           yarn run deploy:ghp
