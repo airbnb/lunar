@@ -14,10 +14,16 @@ jobs:
         with:
           node-version: 12
       - uses: ./.github/actions/setup
+      - name: Build Storybook
+        run: yarn run storybook:build
       - name: Publish Storybook to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v1
+        with:
+          target_branch: gh-pages
+          build_dir: storybook-static
         env:
-          GHP_TOKEN: ${{ secrets.GHP_TOKEN }}
-        run: yarn run deploy:ghp
+          GITHUB_TOKEN: ${{ secrets.GHP_TOKEN }}
   # npm:
   #   name: NPM
   #   runs-on: ubuntu-latest
