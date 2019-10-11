@@ -8,14 +8,23 @@ import { withProps } from './addons/props';
 import { withStory } from './addons/story';
 import contexts from './contexts';
 
+global.action = key => (...args) => console.log(key, ...args);
+
 setDefaultDelay(100);
 
-addDecorator(story => <div style={{ padding: 24 }}>{story()}</div>);
+addDecorator(story => (
+  <div
+    style={{
+      padding: 24,
+    }}
+  >
+    {' '}
+    {story()}{' '}
+  </div>
+));
 addDecorator(withA11y);
 addDecorator(withProps);
 addDecorator(withStory);
 addDecorator(withContexts(contexts));
 
 configure(require.context('../packages', true, /\/([A-Za-z0-9]+\.)?story\.tsx?$/), module);
-
-global.action = key => (...args) => console.log(key, ...args);
