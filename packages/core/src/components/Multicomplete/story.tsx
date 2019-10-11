@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import Text from '../Text';
 import Multicomplete from '.';
 

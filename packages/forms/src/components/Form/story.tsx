@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import Button from '@airbnb/lunar/lib/components/Button';
 import ButtonGroup from '@airbnb/lunar/lib/components/ButtonGroup';
 import Text from '@airbnb/lunar/lib/components/Text';

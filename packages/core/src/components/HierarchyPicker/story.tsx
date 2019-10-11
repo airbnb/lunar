@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import HierarchyPicker, { Props } from '.';
 import Button from '../Button';
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import ButtonGroup from '@airbnb/lunar/lib/components/ButtonGroup';
 import Form from './Form';
 import ToggleButtonController from './Form/ToggleButtonController';

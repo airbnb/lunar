@@ -8,6 +8,7 @@ declare module '*.png';
 
 declare const __DEV__: boolean;
 declare const jsdom: any;
+declare const action: (key: string) => (...args: unknown[]) => void;
 
 // MONKEY PATCHING
 
@@ -86,5 +87,3 @@ declare namespace NodeJS {
     Notification: Notification;
   }
 }
-
-// declare type GlobalFetch = WindowOrWorkerGlobalScope;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import IconCalendar from '@airbnb/lunar-icons/lib/general/IconCalendar';
 import IconUser from '@airbnb/lunar-icons/lib/general/IconUser';
 import IconCloseAlt from '@airbnb/lunar-icons/lib/interface/IconCloseAlt';
