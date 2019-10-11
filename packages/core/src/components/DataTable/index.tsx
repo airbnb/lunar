@@ -532,6 +532,7 @@ export default withStyles(
     },
     row: {
       whiteSpace: 'normal',
+      width: '100%', // this is important for consumers who need full-width cells
     },
     expand_caret: {
       cursor: 'pointer',
