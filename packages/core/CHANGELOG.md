@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.36.0 - 2019-10-11
+
+#### 🚀 Updates
+
+- **[NotchedBox]** Update default background color to `color.accent.bg`. (#213) ([e094e8a](https://github.com/airbnb/lunar/tree/master/packages/core/commit/e094e8a)), closes [#213](https://github.com/airbnb/lunar/tree/master/packages/core/issues/213)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.35.2 - 2019-10-11
 
 #### 🐞 Fixes
