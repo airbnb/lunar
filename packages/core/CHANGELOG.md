@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.35.2 - 2019-10-11
+
+#### 🐞 Fixes
+
+- **[DataTable]** add back propagateRef prop (#212) ([fb18eb6](https://github.com/airbnb/lunar/tree/master/packages/core/commit/fb18eb6)), closes [#212](https://github.com/airbnb/lunar/tree/master/packages/core/issues/212)
+- Rewrite stories to remove `@emotion/core` unintended import. (#210) ([5976e92](https://github.com/airbnb/lunar/tree/master/packages/core/commit/5976e92)), closes [#210](https://github.com/airbnb/lunar/tree/master/packages/core/issues/210)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.35.1 - 2019-10-11
 
 #### 🐞 Fixes
