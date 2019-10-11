@@ -72,7 +72,7 @@ export default withStyles(({ ui, color, unit }) => {
       width: notchSide,
       height: notchSide,
       position: 'absolute',
-      backgroundColor: color.core.neutral[0],
+      backgroundColor: color.accent.bg,
       transform: `translate(${offset}px, ${offset}px) rotate(-45deg)`,
     },
 
@@ -94,7 +94,7 @@ export default withStyles(({ ui, color, unit }) => {
     content: {
       padding: NOTCH_SPACING * unit,
       position: 'relative',
-      backgroundColor: color.core.neutral[0],
+      backgroundColor: color.accent.bg,
       borderRadius,
     },
   };
