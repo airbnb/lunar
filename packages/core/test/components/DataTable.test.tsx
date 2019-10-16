@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Enzyme from 'enzyme';
-import { AutoSizer, Grid, Table } from 'react-virtualized';
+import { Grid, Table } from 'react-virtualized';
 import { shallowWithStyles, mountWithStyles } from '@airbnb/lunar-test-utils';
 import DataTable, {
   ParentRow,
@@ -245,17 +245,6 @@ const getTable = (wrapper: Enzyme.ShallowWrapper) => {
     .dive() // DataTable
     .find(Table)
     .dive();
-};
-
-const getHeader = (wrapper: Enzyme.ShallowWrapper) => {
-  return shallowWithStyles(
-    wrapper
-      .find(StyledDataTable)
-      .dive() // withStyles
-      .dive() // DataTable
-      .find(TableHeader)
-      .getElement(),
-  );
 };
 
 const getHeaderFromStyledDataTable = (styledDataTable: Enzyme.ShallowWrapper) =>
