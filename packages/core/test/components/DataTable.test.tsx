@@ -10,6 +10,9 @@ import DataTable, {
   DataTableProps,
   RendererProps,
 } from '../../src/components/DataTable';
+import StyledDataTable, {
+  DataTable as InnerDataTable,
+} from '../../src/components/DataTable/DataTable';
 import Input from '../../src/components/Input';
 import FormInput from '../../src/components/private/FormInput';
 import TableHeader from '../../src/components/DataTable/TableHeader';
@@ -234,6 +237,29 @@ const getCheckbox = (table: Enzyme.ReactWrapper<any, any>, row: number) =>
   getRow(table, row).find(Checkbox);
 
 const getCaret = (table: Enzyme.ReactWrapper<any, any>, row: number) => getCell(table, row, 1);
+
+const getTable = (wrapper: Enzyme.ShallowWrapper) => {
+  return wrapper
+    .find(StyledDataTable)
+    .dive() // withStyles
+    .dive() // DataTable
+    .find(Table)
+    .dive();
+};
+
+const getHeader = (wrapper: Enzyme.ShallowWrapper) => {
+  return shallowWithStyles(
+    wrapper
+      .find(StyledDataTable)
+      .dive() // withStyles
+      .dive() // DataTable
+      .find(TableHeader)
+      .getElement(),
+  );
+};
+
+const getHeaderFromStyledDataTable = (styledDataTable: Enzyme.ShallowWrapper) =>
+  shallowWithStyles(styledDataTable.find(TableHeader).getElement());
 
 const selectRow = (table: Enzyme.ReactWrapper<any, any>, row: number) => {
   (getCheckbox(table, row).prop('onChange') as () => void)();
@@ -491,14 +517,9 @@ describe('<DataTable /> renders and sorts data', () => {
 
 describe('<DataTable /> renders column labels', () => {
   it('should render the correct column labels in sentence case', () => {
-    const wrapper = shallowWithStyles(
-      <DataTable editable data={data} columnLabelCase="sentence" />,
+    const table = getTable(
+      shallowWithStyles(<DataTable editable data={data} columnLabelCase="sentence" />),
     );
-    const table = wrapper
-      .find(AutoSizer)
-      .dive()
-      .find(Table)
-      .dive();
     const columnLabels = table.childAt(0);
     const labels = ['Name', 'Job title', 'Tenure days', 'Menu', 'Cats', 'Log', 'Colspan'];
 
@@ -508,12 +529,7 @@ describe('<DataTable /> renders column labels', () => {
   });
 
   it('should not format labels by default', () => {
-    const wrapper = shallowWithStyles(<DataTable editable data={data} />);
-    const table = wrapper
-      .find(AutoSizer)
-      .dive()
-      .find(Table)
-      .dive();
+    const table = getTable(shallowWithStyles(<DataTable editable data={data} />));
     const columnLabels = table.childAt(0);
     const labels = ['name', 'jobTitle', 'tenureDays', 'menu', 'cats', 'log', 'colspan'];
 
@@ -523,14 +539,9 @@ describe('<DataTable /> renders column labels', () => {
   });
 
   it('should render the correct column labels in uppercase', () => {
-    const wrapper = shallowWithStyles(
-      <DataTable editable data={data} columnLabelCase="uppercase" />,
+    const table = getTable(
+      shallowWithStyles(<DataTable editable data={data} columnLabelCase="uppercase" />),
     );
-    const table = wrapper
-      .find(AutoSizer)
-      .dive()
-      .find(Table)
-      .dive();
     const columnLabels = table.childAt(0);
     const labels = ['NAME', 'JOB TITLE', 'TENURE DAYS', 'MENU', 'CATS', 'LOG', 'COLSPAN'];
 
@@ -540,12 +551,9 @@ describe('<DataTable /> renders column labels', () => {
   });
 
   it('should render the correct column labels in title case', () => {
-    const wrapper = shallowWithStyles(<DataTable editable data={data} columnLabelCase="title" />);
-    const table = wrapper
-      .find(AutoSizer)
-      .dive()
-      .find(Table)
-      .dive();
+    const table = getTable(
+      shallowWithStyles(<DataTable editable data={data} columnLabelCase="title" />),
+    );
     const columnLabels = table.childAt(0);
     const labels = ['Name', 'Job Title', 'Tenure Days', 'Menu', 'Cats', 'Log', 'Colspan'];
 
@@ -565,26 +573,22 @@ describe('<DataTable /> renders column labels', () => {
       'CUSTOM COLSPAN',
     ];
 
-    const wrapper = shallowWithStyles(
-      <DataTable
-        data={data}
-        columnToLabel={{
-          name: labels[0],
-          jobTitle: labels[1],
-          tenureDays: labels[2],
-          menu: labels[3],
-          cats: labels[4],
-          log: labels[5],
-          colspan: labels[6],
-        }}
-      />,
+    const table = getTable(
+      shallowWithStyles(
+        <DataTable
+          data={data}
+          columnToLabel={{
+            name: labels[0],
+            jobTitle: labels[1],
+            tenureDays: labels[2],
+            menu: labels[3],
+            cats: labels[4],
+            log: labels[5],
+            colspan: labels[6],
+          }}
+        />,
+      ),
     );
-    const table = wrapper
-      .find(AutoSizer)
-      .at(0)
-      .dive()
-      .find(Table)
-      .dive();
     const columnLabels = table.childAt(0);
 
     columnLabels.find(Text).forEach((node, idx) => {
@@ -592,17 +596,6 @@ describe('<DataTable /> renders column labels', () => {
     });
   });
 });
-
-function getHeader(wrapper: Enzyme.ShallowWrapper) {
-  return shallowWithStyles(
-    wrapper
-      .find(AutoSizer)
-      .at(0)
-      .dive()
-      .find(TableHeader)
-      .getElement(),
-  );
-}
 
 describe('<DataTable /> handles edits', () => {
   const props: DataTableProps = {
@@ -617,23 +610,24 @@ describe('<DataTable /> handles edits', () => {
   };
 
   it('should be able to toggle edit mode off', () => {
-    const wrapper = shallowWithStyles(<DataTable {...props} />);
-    const editButton = getHeader(wrapper).find(Button);
+    const wrapper = shallowWithStyles(<StyledDataTable {...props} />);
+    const editButton = getHeaderFromStyledDataTable(wrapper).find(Button);
+
     editButton.simulate('click');
 
-    const doneButton = getHeader(wrapper).find(Button);
+    const doneButton = getHeaderFromStyledDataTable(wrapper).find(Button);
     doneButton.simulate('click');
 
     expect(wrapper.state('editMode')).toBe(false);
   });
 
   it('should enable instant edit mode', () => {
-    const wrapper = shallowWithStyles(<DataTable {...props} />);
-    const editButton = getHeader(wrapper).find(Button);
+    const wrapper = shallowWithStyles(<StyledDataTable {...props} />);
+    const editButton = getHeaderFromStyledDataTable(wrapper).find(Button);
 
     editButton.simulate('click');
 
-    const doneButton = getHeader(wrapper).find(Button);
+    const doneButton = getHeaderFromStyledDataTable(wrapper).find(Button);
 
     expect(wrapper.state('editMode')).toBe(true);
     expect(doneButton.find(Translate).prop('phrase')).toBe('Done');
@@ -736,12 +730,12 @@ describe('<DataTable /> does not break with weird props', () => {
 
 describe('<DataTable />', () => {
   it('Auto-computes height when showAllRows is `true`', () => {
-    const height = 50;
+    const height = 100;
     const wrapper = shallowWithStyles(<DataTable data={data} height={height} />);
     let table = wrapper
-      .find(AutoSizer)
-      .at(0)
-      .dive()
+      .find(StyledDataTable)
+      .dive() // withStyles
+      .dive() // DataTable
       .find(Table);
 
     expect(table.prop('height')).toBe(height);
@@ -749,12 +743,20 @@ describe('<DataTable />', () => {
     wrapper.setProps({ showAllRows: true });
 
     table = wrapper
-      .find(AutoSizer)
-      .at(0)
-      .dive()
+      .find(StyledDataTable)
+      .dive() // withStyles
+      .dive() // DataTable
       .find(Table);
 
     expect(table.prop('height')).toBeGreaterThan(height);
+  });
+
+  it('Propagates calls dataTableRef with a DataTable instance', () => {
+    const ref = jest.fn();
+    mountWithStyles(<DataTable data={data} dataTableRef={ref} />);
+
+    expect(ref).toHaveBeenCalledTimes(1);
+    expect(ref.mock.calls[0][0] instanceof InnerDataTable).toBe(true);
   });
 
   it('Propagates a ref to the underlying Table', () => {
