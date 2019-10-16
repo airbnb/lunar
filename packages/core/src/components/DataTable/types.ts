@@ -1,9 +1,9 @@
 import React from 'react';
 import { SortDirectionType, Table } from 'react-virtualized';
 import { WithStylesProps } from '../../composers/withStyles';
-import { DataTableWithDimensions } from './DataTable';
+import { DataTable } from './DataTable';
 
-export type DataTableRef = (instance: DataTableWithDimensions) => void;
+export type DataTableRef = (instance: DataTable) => void;
 export type TableRef = React.RefObject<Table>;
 export type RowHeightOptions = string;
 export type HeightOptions = RowHeightOptions | undefined;

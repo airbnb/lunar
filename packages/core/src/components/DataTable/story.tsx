@@ -14,7 +14,7 @@ import Input from '../Input';
 import Row from '../Row';
 import Spacing from '../Spacing';
 import { RendererProps, SelectedRows, IndexedParentRow, DataTableRef } from './types';
-import { DataTableWithDimensions } from './DataTable';
+import { DataTable as StyledDataTable } from './DataTable';
 
 type CustomShape = {
   name: string;
@@ -236,9 +236,9 @@ class ForceUpdateDynamicSize extends React.Component<{}, { extraCount: number }>
     extraCount: 0,
   };
 
-  ref?: DataTableWithDimensions;
+  ref?: StyledDataTable;
 
-  setRef: DataTableRef = ref => {
+  setRef = (ref: StyledDataTable) => {
     this.ref = ref;
   };
 
@@ -266,7 +266,7 @@ class ForceUpdateDynamicSize extends React.Component<{}, { extraCount: number }>
         {rowData.data.name}{' '}
         {this.state.extraCount > 0 && (
           <span style={{ color: '#6f44ff' }}>
-            {new Array(this.state.extraCount).fill('more').join(' ')}
+            {new Array(this.state.extraCount).fill('more more').join(' ')}
           </span>
         )}
       </>
