@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.37.0 - 2019-10-16
+
+#### 🚀 Updates
+
+- **[DataTable]** Improve `CellMeasurerCache` invalidation (#215) ([807586e](https://github.com/airbnb/lunar/tree/master/packages/core/commit/807586e)), closes [#215](https://github.com/airbnb/lunar/tree/master/packages/core/issues/215)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.36.0 - 2019-10-11
 
 #### 🚀 Updates
