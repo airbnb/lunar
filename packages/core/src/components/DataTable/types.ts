@@ -79,7 +79,7 @@ export interface DataTableProps {
   keys?: string[];
   /** If dynamicRowHeight is enabled, this sets the minimum value for measured row height. */
   minimumDynamicRowHeight?: number;
-  /** ref to the underlying DataTable instance. */
+  /** Ref to the underlying DataTable instance. */
   dataTableRef?: DataTableRef;
   /** Propagated as the 'ref' prop to the underlying react-virtualized Table instance. */
   propagateRef?: TableRef;
