@@ -26,8 +26,6 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
 
-export * from './types';
-
 export type State = {
   changeLog: ChangeLog;
   expandedRows: Set<number>;
@@ -88,6 +86,13 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     editMode: false,
   };
 
+  constructor(props: DataTableProps & WithStylesProps) {
+    super(props);
+    if (this.props.dataTableRef) {
+      this.props.dataTableRef(this);
+    }
+  }
+
   keys = getKeys(this.props.keys!, this.props.data!);
 
   private getRowStyle = (expandedDataList: ExpandedRow[]) => ({
@@ -133,21 +138,22 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   );
 
   componentDidUpdate(prevProps: DataTableProps, prevState: State) {
-    const { dynamicRowHeight, data, filterData } = this.props;
+    const { dynamicRowHeight, data, filterData, width, height } = this.props;
     const { sortBy, sortDirection, selectedRows } = this.state;
+    const dimensionsChanged = width !== prevProps.width || height !== prevProps.height;
     const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
     const filteredData = filterData!(sortedData);
     const oldFilteredData = prevProps.filterData!(sortedData);
 
-    if (
-      dynamicRowHeight &&
+    const filteredDataChanged =
       filteredData.length > 0 &&
       (filteredData.length !== oldFilteredData.length ||
         filteredData.some(
           (x: IndexedParentRow, i: number) =>
             x.metadata.originalIndex !== oldFilteredData[i].metadata.originalIndex,
-        ))
-    ) {
+        ));
+
+    if (dynamicRowHeight && (filteredDataChanged || dimensionsChanged)) {
       // We need to make sure the cache is cleared before React tries to re-render.
       setTimeout(() => {
         this.cache.clearAll();
@@ -419,7 +425,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   rowGetter = (expandedDataList: ExpandedRow[]) => ({ index }: { index: number }) =>
     expandedDataList[index];
 
-  cache = new CellMeasurerCache({
+  public cache = new CellMeasurerCache({
     fixedHeight: false,
     fixedWidth: true,
     defaultHeight: this.props.defaultDynamicRowHeight,
