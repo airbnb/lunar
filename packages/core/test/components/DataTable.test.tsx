@@ -730,25 +730,24 @@ describe('<DataTable /> does not break with weird props', () => {
 
 describe('<DataTable />', () => {
   it('Auto-computes height when showAllRows is `true`', () => {
-    const height = 100;
+    const height = 50;
     const wrapper = shallowWithStyles(<DataTable data={data} height={height} />);
-    let table = wrapper
+    const wrapperAllRows = shallowWithStyles(<DataTable showAllRows data={data} height={height} />);
+
+    const table = wrapper
+      .find(StyledDataTable)
+      .dive() // withStyles
+      .dive() // DataTable
+      .find(Table);
+
+    const tableAllRows = wrapperAllRows
       .find(StyledDataTable)
       .dive() // withStyles
       .dive() // DataTable
       .find(Table);
 
     expect(table.prop('height')).toBe(height);
-
-    wrapper.setProps({ showAllRows: true });
-
-    table = wrapper
-      .find(StyledDataTable)
-      .dive() // withStyles
-      .dive() // DataTable
-      .find(Table);
-
-    expect(table.prop('height')).toBeGreaterThan(height);
+    expect(tableAllRows.prop('height')).toBeGreaterThan(height);
   });
 
   it('Propagates calls dataTableRef with a DataTable instance', () => {
