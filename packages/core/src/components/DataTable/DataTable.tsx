@@ -192,7 +192,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       }
     }
 
-    return height!;
+    return height || 0;
   };
 
   private getColumnHeaderHeight = () => {
@@ -468,7 +468,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     );
 
     const tableHeight = autoHeight
-      ? height! - (this.shouldRenderTableHeader() ? getHeight(rowHeight, tableHeaderHeight) : 0)
+      ? (height || 0) -
+        (this.shouldRenderTableHeader() ? getHeight(rowHeight, tableHeaderHeight) : 0)
       : this.getTableHeight(expandedData);
 
     return (
