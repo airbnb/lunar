@@ -14,6 +14,7 @@ import Input from '../Input';
 import Row from '../Row';
 import Spacing from '../Spacing';
 import { RendererProps, SelectedRows, IndexedParentRow } from './types';
+import { DataTable as StyledDataTable } from './DataTable';
 
 type CustomShape = {
   name: string;
@@ -194,48 +195,148 @@ export function aStandardTableWithAFlexWrapper() {
   );
 }
 
+const dynamicRowData = [
+  {
+    data: {
+      name: 'regular length name text',
+      jobTitle:
+        'really super long job title global head of all projects and programs really super long job title global head of all projects and programs really super long job title global head of all projects and programs',
+    },
+  },
+  {
+    data: {
+      name:
+        'here is a very very long input field that needs to break line multiple times here is a very very long input field that needs to break line multiple times here is a very very long input field that needs to break line multiple times here is a very very long input field that needs to break line multiple times',
+      jobTitle: 'regular length job title',
+    },
+    metadata: {
+      children: [
+        {
+          data: {
+            name:
+              'here is a very very long input field that needs to break line and use dynamic row height',
+            jobTitle: 'regular length job title',
+          },
+        },
+        {
+          data: {
+            name:
+              'here is a very very long input field that needs to break line and use dynamic row height here is a very very long input field that needs to break line multiple times here is a very very long input field that needs to break line multiple times',
+            jobTitle: 'regular length job title',
+          },
+        },
+      ],
+    },
+  },
+  ...getData(),
+];
+
+class ForceUpdateDynamicSize extends React.Component<{}, { extraCount: number }> {
+  state = {
+    extraCount: 0,
+  };
+
+  ref?: StyledDataTable;
+
+  setRef = (ref: StyledDataTable) => {
+    this.ref = ref;
+  };
+
+  handleAddText = () => {
+    this.setState(({ extraCount }) => ({ extraCount: extraCount + 1 }), this.updateTable);
+  };
+
+  handleRemoveText = () => {
+    this.setState(
+      ({ extraCount }) => ({ extraCount: Math.max(0, extraCount - 1) }),
+      this.updateTable,
+    );
+  };
+
+  updateTable = () => {
+    if (this.ref) {
+      this.ref.cache.clearAll();
+      this.ref.forceUpdate();
+    }
+  };
+
+  renderers = {
+    name: ({ row: { rowData } }: RendererProps<{ name: string; jobTitle: string }>) => (
+      <>
+        {rowData.data.name}{' '}
+        {this.state.extraCount > 0 && (
+          <span style={{ color: '#6f44ff' }}>
+            {new Array(this.state.extraCount).fill('more more').join(' ')}
+          </span>
+        )}
+      </>
+    ),
+  };
+
+  render() {
+    return (
+      <>
+        <Button block={false} onClick={this.handleAddText}>
+          Add text
+        </Button>{' '}
+        <Button
+          block={false}
+          disabled={this.state.extraCount === 0}
+          onClick={this.handleRemoveText}
+        >
+          Remove text
+        </Button>
+        <br />
+        <DataTable
+          showRowDividers
+          expandable
+          dynamicRowHeight
+          showAllRows
+          dataTableRef={this.setRef}
+          keys={['name', 'jobTitle']}
+          columnLabelCase="sentence"
+          renderers={this.renderers}
+          columnMetadata={{
+            name: {
+              flexGrow: 1,
+            },
+            jobTitle: {
+              flexGrow: 1,
+            },
+          }}
+          data={dynamicRowData}
+        />
+      </>
+    );
+  }
+}
+
+export function ForceUpdateDynamicSizeStory() {
+  return <ForceUpdateDynamicSize />;
+}
+
+ForceUpdateDynamicSizeStory.story = {
+  name: 'Dynamic row height with force update.',
+};
+
 export function aStandardTableWithDynamicRowHeight() {
   return (
     <DataTable
       showRowDividers
       expandable
       dynamicRowHeight
+      showAllRows
       keys={['name', 'jobTitle']}
-      width={400}
       columnLabelCase="sentence"
-      data={[
-        {
-          data: {
-            name: 'regular length name text',
-            jobTitle: 'really super long job title global head of all projects and programs',
-          },
+      columnMetadata={{
+        name: {
+          flexGrow: 1,
         },
-        {
-          data: {
-            name: 'here is a very very long input field that needs to break line multiple times',
-            jobTitle: 'regular length job title',
-          },
-          metadata: {
-            children: [
-              {
-                data: {
-                  name:
-                    'here is a very very long input field that needs to break line and use dynamic row height',
-                  jobTitle: 'regular length job title',
-                },
-              },
-              {
-                data: {
-                  name:
-                    'here is a very very long input field that needs to break line and use dynamic row height',
-                  jobTitle: 'regular length job title',
-                },
-              },
-            ],
-          },
+        jobTitle: {
+          flexGrow: 1,
         },
-        ...getData(),
-      ]}
+      }}
+      data={dynamicRowData}
     />
   );
 }

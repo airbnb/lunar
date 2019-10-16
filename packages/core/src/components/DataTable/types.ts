@@ -1,7 +1,9 @@
 import React from 'react';
 import { SortDirectionType, Table } from 'react-virtualized';
 import { WithStylesProps } from '../../composers/withStyles';
+import { DataTable } from './DataTable';
 
+export type DataTableRef = (instance: DataTable) => void;
 export type TableRef = React.RefObject<Table>;
 export type RowHeightOptions = string;
 export type HeightOptions = RowHeightOptions | undefined;
@@ -77,6 +79,8 @@ export interface DataTableProps {
   keys?: string[];
   /** If dynamicRowHeight is enabled, this sets the minimum value for measured row height. */
   minimumDynamicRowHeight?: number;
+  /** Ref to the underlying DataTable instance. */
+  dataTableRef?: DataTableRef;
   /** Propagated as the 'ref' prop to the underlying react-virtualized Table instance. */
   propagateRef?: TableRef;
   /** Custom renderers mapped to column keys. */
