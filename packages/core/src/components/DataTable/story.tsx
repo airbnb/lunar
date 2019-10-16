@@ -13,7 +13,7 @@ import Button from '../Button';
 import Input from '../Input';
 import Row from '../Row';
 import Spacing from '../Spacing';
-import { RendererProps, SelectedRows, IndexedParentRow, DataTableRef } from './types';
+import { RendererProps, SelectedRows, IndexedParentRow } from './types';
 import { DataTable as StyledDataTable } from './DataTable';
 
 type CustomShape = {
