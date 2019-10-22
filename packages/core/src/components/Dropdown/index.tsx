@@ -87,6 +87,7 @@ class Dropdown extends React.PureComponent<Props & WithStylesProps> {
       zIndex,
       visible,
       onClickOutside,
+      styles, // do not pass the withStyles prop in
       ...props
     } = this.props;
     const style: Block = {
