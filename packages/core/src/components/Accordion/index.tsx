@@ -71,7 +71,6 @@ export class Accordion extends React.Component<Props & WithStylesProps, State> {
 
 export default withStyles(({ color }) => ({
   container: {
-    background: color.accent.bg,
     borderBottom: '1px solid transparent',
     borderTop: '1px solid transparent',
 
