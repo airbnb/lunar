@@ -17,8 +17,6 @@ export default function ExpandableIcon({ expanded, size }: Props) {
   const context = useContext(DirectionContext);
 
   return expanded ? (
-    <IconChevronDown decorative size={size} />
-  ) : (
     <DirectionalIcon
       decorative
       direction={Core.isRTL(context) ? 'left' : 'right'}
@@ -26,5 +24,7 @@ export default function ExpandableIcon({ expanded, size }: Props) {
       right={IconChevronRight}
       size={size}
     />
+  ) : (
+    <IconChevronDown decorative size={size} />
   );
 }
