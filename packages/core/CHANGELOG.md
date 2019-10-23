@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.37.3 - 2019-10-23
+
+#### 🎨 Styles
+
+- **[Accordion, AccordionItem]** Remove accordion background color. (#218) ([8ec932f](https://github.com/airbnb/lunar/tree/master/packages/core/commit/8ec932f)), closes [#218](https://github.com/airbnb/lunar/tree/master/packages/core/issues/218)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.37.2 - 2019-10-23
 
 #### 🎨 Styles
