@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.37.2 - 2019-10-23
+
+#### 🎨 Styles
+
+- **[DataTable]** Adjust expanded row spacing. (#219) ([0279439](https://github.com/airbnb/lunar/tree/master/packages/core/commit/0279439)), closes [#219](https://github.com/airbnb/lunar/tree/master/packages/core/issues/219)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.37.1 - 2019-10-23
 
 #### 🐞 Fixes
