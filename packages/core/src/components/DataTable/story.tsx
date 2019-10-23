@@ -380,7 +380,6 @@ aTableWithSelectableAndExandableRowsThatDisplaysSelectedRowsFirst.story = {
 export function aTableWithFilteredData() {
   return (
     <DataTable
-      expandable
       selectable
       tableHeaderLabel="My Engineer Table"
       data={getData()}
