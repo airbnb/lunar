@@ -42,7 +42,7 @@ export class AccordionItem extends React.Component<Props & WithStylesProps> {
     const { cx, bordered, children, expanded, id, noSpacing, styles, theme, title } = this.props;
 
     return (
-      <div className={cx(styles.item, bordered && styles.item_bordered)}>
+      <div className={cx(bordered && styles.item_bordered)}>
         <button
           className={cx(styles.title, noSpacing && styles.title_noSpacing)}
           aria-controls={`accordion-body-${id}`}
@@ -89,10 +89,6 @@ export default withStyles(
 
     body_expanded: {
       display: 'block',
-    },
-
-    item: {
-      background: color.accent.bg,
     },
 
     item_bordered: {
