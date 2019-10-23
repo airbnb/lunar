@@ -4,19 +4,13 @@ import T from '../../Translate';
 import CheckBox from '../../CheckBox';
 import Spacing from '../../Spacing';
 import { ExpandedRow, SelectedRows, VirtualRow } from '../types';
-import {
-  SELECTION_OPTIONS,
-  SELECTABLE_COLUMN_WIDTH,
-  SELECTABLE_COLUMN_WIDTH_EXPANDABLE,
-} from '../constants';
+import { SELECTION_OPTIONS, SELECTABLE_COLUMN_WIDTH } from '../constants';
 
 export default function renderSelectableColumn(
   selectedRows: SelectedRows,
   handleSelection: (rowData: ExpandedRow) => () => void,
   expandable?: boolean,
 ) {
-  const width = expandable ? SELECTABLE_COLUMN_WIDTH_EXPANDABLE : SELECTABLE_COLUMN_WIDTH;
-
   const selectableCellRenderer = (row: VirtualRow) => {
     const { metadata } = row.rowData;
     const { originalIndex, parentOriginalIndex, isChild } = metadata;
@@ -37,11 +31,11 @@ export default function renderSelectableColumn(
       Object.prototype.hasOwnProperty.call(selectedRows, originalIndex) &&
       selectedRows[originalIndex].status === SELECTION_OPTIONS.HAS_ACTIVE_CHILD;
 
-    const indentSize = expandable ? 2.5 : 2;
-    const spacing = isChild || !expandable ? indentSize : 0;
+    const indentSize = expandable ? 3.5 : 2;
+    const spacing = isChild || !expandable ? indentSize : 0.5;
 
     return (
-      <Spacing all={0.5} left={spacing}>
+      <Spacing vertical={0.5} right={0.5} left={spacing}>
         <CheckBox
           hideLabel
           label={T.phrase(
@@ -60,5 +54,11 @@ export default function renderSelectableColumn(
     );
   };
 
-  return <Column dataKey="selected" cellRenderer={selectableCellRenderer} width={width} />;
+  return (
+    <Column
+      dataKey="selected"
+      cellRenderer={selectableCellRenderer}
+      width={SELECTABLE_COLUMN_WIDTH}
+    />
+  );
 }
