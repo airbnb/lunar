@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.37.1 - 2019-10-23
+
+#### 🐞 Fixes
+
+- **[Dropdown]** Omit styles from props before passing into cx (#216) ([c905a25](https://github.com/airbnb/lunar/tree/master/packages/core/commit/c905a25)), closes [#216](https://github.com/airbnb/lunar/tree/master/packages/core/issues/216)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.37.0 - 2019-10-16
 
 #### 🚀 Updates

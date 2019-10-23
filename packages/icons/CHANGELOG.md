@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.0 - 2019-10-23
+
+#### 🚀 Updates
+
+- **[Icons]** Add IconVariable, IconViewList, IconZoomToFit icons. (#217) ([baeefdd](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/baeefdd)), closes [#217](https://github.com/airbnb/lunar/tree/master/packages/icons/issues/217)
+
+#### 🐞 Fixes
+
+- Rewrite stories to remove `@emotion/core` unintended import. (#210) ([5976e92](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/5976e92)), closes [#210](https://github.com/airbnb/lunar/tree/master/packages/icons/issues/210)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ### 2.3.1 - 2019-10-10
 
 #### 📦 Dependencies
