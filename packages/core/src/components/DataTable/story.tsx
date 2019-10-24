@@ -177,7 +177,22 @@ export default {
 };
 
 export function aStandardTable() {
-  return <DataTable data={getData()} keys={['name', 'jobTitle', 'tenureDays']} />;
+  return (
+    <DataTable
+      data={getData()}
+      keys={['name', 'jobTitle', 'tenureDays']}
+      renderers={{
+        tenureDays: ({ row }: RendererProps<CustomShape>) => (
+          <div style={{ float: 'right', marginRight: -8 }}>{row.rowData.data.tenureDays}</div>
+        ),
+      }}
+      columnMetadata={{
+        tenureDays: {
+          rightAlign: 1,
+        },
+      }}
+    />
+  );
 }
 
 aStandardTable.story = {
