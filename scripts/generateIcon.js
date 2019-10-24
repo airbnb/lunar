@@ -60,13 +60,25 @@ function createIcon(srcPath) {
     const compName = `Icon${upperFirst(camelCase(path.basename(srcPath, '.svg')))}`;
     const dstPath = path.join(ICON_ROOT, path.dirname(srcPath.split('svgs')[1]), `${compName}.tsx`);
 
+    const svg = result.data
+      .replace(/xmlns:xlink/g, camelCase('xmlns:xlink'))
+      .replace(/xlink:href/g, camelCase('xlink:href'))
+      .replace(/fill-opacity/g, 'fillOpacity')
+      .replace(/clip-path/g, 'clipPath')
+      .replace(/clip-rule/g, 'clipRule')
+      .replace(/fill-rule/g, 'fillRule')
+      .replace(/stroke-linecap/g, 'strokeLinecap')
+      .replace(/stroke-linejoin/g, 'strokeLinejoin')
+      .replace(/stroke-width/g, 'strokeWidth')
+      .replace(/(<\s*svg[^>]*)(>)/, '$1 {...props}$2');
+
     fs.writeFileSync(
       dstPath,
       `import React from 'react';
 import withIcon, { Props } from '../withIcon';
 
 function ${compName}(props: Props) {
-  return ${result.data.replace('<svg', '<svg {...props}')};
+  return ${svg};
 }
 
 export default withIcon('${compName}')(${compName});`,
