@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.37.4 - 2019-10-24
+
+#### 🐞 Fixes
+
+- **[DataTable]** Enable rightAlign functionality in columnMetadata. (#221) ([62a1a30](https://github.com/airbnb/lunar/tree/master/packages/core/commit/62a1a30)), closes [#221](https://github.com/airbnb/lunar/tree/master/packages/core/issues/221)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.37.3 - 2019-10-23
 
 #### 🎨 Styles
