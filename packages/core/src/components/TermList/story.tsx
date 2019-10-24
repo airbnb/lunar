@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import TermList, { Term } from '.';
 import Link from '../Link';
 import Spacing from '../Spacing';
