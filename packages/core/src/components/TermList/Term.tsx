@@ -7,48 +7,44 @@ import Text from '../Text';
 
 function Term({
   label,
-  after,
+  after = '',
   endAlign,
-  keyTextRegular,
+  small = true,
   children,
   cx,
   styles,
 }: {
   label: string;
-  after?: NonNullable<React.ReactNode>;
+  after?: React.ReactNode;
   endAlign?: boolean;
-  inline?: boolean;
+  small?: boolean;
   keyTextRegular?: boolean;
   children: NonNullable<React.ReactNode>;
 } & WithStylesProps) {
   return (
-    <div className={cx(styles.container)}>
-      <Row inline={!endAlign} after={endAlign && after}>
-        <dt>
-          <Text inline small={!keyTextRegular}>
+    <>
+      <dt>
+        <Row after={endAlign && after}>
+          <Text inline small={small}>
             {label}
           </Text>
-        </dt>
-        {!endAlign && (
-          <Spacing inline left={1}>
-            {after || ''}
-          </Spacing>
-        )}
-      </Row>
-      <dd>
+          {!endAlign && (
+            <Spacing inline left={1}>
+              {after!}
+            </Spacing>
+          )}
+        </Row>
+      </dt>
+      <dd className={cx(styles.value)}>
         <Text>{children}</Text>
       </dd>
-    </div>
+    </>
   );
 }
 
 export default withStyles(() => ({
-  container: {
-    '@selectors': {
-      '> dd': {
-        // reset styles
-        marginInlineStart: 0,
-      },
-    },
+  value: {
+    // reset styles
+    marginInlineStart: 0,
   },
 }))(Term);

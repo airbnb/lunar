@@ -10,25 +10,32 @@ function TermList({
   cx,
   styles,
 }: {
-  link?: NonNullable<React.ReactNode>;
-  endAlign?: boolean;
   inline?: boolean;
-  keyTextRegular?: boolean;
+  small?: boolean;
   children: NonNullable<React.ReactNode>;
 } & WithStylesProps) {
-  return <dl className={cx(inline && styles.inline, styles.termList)}>{children}</dl>;
+  2;
+  return <dl className={cx(styles.termList, inline && styles.inline)}>{children}</dl>;
 }
 
-export default withStyles(({ unit }) => ({
+export default withStyles(({ unit, font }) => ({
   inline: {
-    display: 'inline-block',
+    // display: 'inline-flex',
+    '@selectors': {
+      '> dd': {
+        // display: 'inline-block',
+      },
+      '> dt': {
+        // display: 'inline-block',
+      },
+    },
   },
   termList: {
     // Reset dl styles
     marginBlockStart: 0,
     marginBlockEnd: 0,
     '@selectors': {
-      '> div:not(:last-child) > dd': {
+      '> dd:not(:last-child)': {
         marginBottom: unit * 2,
       },
     },
