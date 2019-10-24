@@ -59,6 +59,7 @@ export default function ColumnLabels({
 
     const rightAlignmentStyle: React.CSSProperties = {
       justifyContent: 'flex-end',
+      width: '100%',
     };
 
     const newColumns = columns.map((col, idx) => {
