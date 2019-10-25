@@ -3,7 +3,7 @@ import withIcon, { Props } from '../withIcon';
 
 function IconManual(props: Props) {
   return (
-    <svg {...props} xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
+    <svg xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" {...props}>
       <defs>
         <path id="a" d="M0 0h24v24H0V0z" />
       </defs>
