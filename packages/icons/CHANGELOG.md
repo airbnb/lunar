@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.5.0 - 2019-10-25
+
+#### 🚀 Updates
+
+- **[Icons]** Update gen:icon script and remove unused paths and fills. (#222) ([7440f0b](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/7440f0b)), closes [#222](https://github.com/airbnb/lunar/tree/master/packages/icons/issues/222)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ## 2.4.0 - 2019-10-23
 
 #### 🚀 Updates
