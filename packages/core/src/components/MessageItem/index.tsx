@@ -182,18 +182,6 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
         )
       : formattedTimestamp;
 
-    const striped = !!(important || info || warning);
-
-    const containerStyles = cx(
-      styles.container,
-      horizontalSpacing && styles.container_horizontalSpacing,
-      verticalSpacing && styles.container_verticalSpacing,
-      striped && styles.container_withStripe,
-      important && styles.container_important,
-      info && styles.container_info,
-      warning && styles.container_warning,
-    );
-
     const formatedTitle = disableTitleTranslation ? (
       <span className="notranslate">{title}</span>
     ) : (
@@ -201,7 +189,17 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
     );
 
     return (
-      <div className={containerStyles}>
+      <div
+        className={cx(
+          styles.container,
+          horizontalSpacing && styles.container_horizontalSpacing,
+          verticalSpacing && styles.container_verticalSpacing,
+          !!(important || info || warning) && styles.container_withStripe,
+          important && styles.container_important,
+          info && styles.container_info,
+          warning && styles.container_warning,
+        )}
+      >
         <div className={cx(styles.grid)}>
           <div className={cx(styles.relative)}>{this.getAvatar()}</div>
 
