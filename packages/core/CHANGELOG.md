@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.37.5 - 2019-10-28
+
+#### 🐞 Fixes
+
+- **[Alert]** Add word-break support for titles. (#223) ([52c1218](https://github.com/airbnb/lunar/tree/master/packages/core/commit/52c1218)), closes [#223](https://github.com/airbnb/lunar/tree/master/packages/core/issues/223)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.37.4 - 2019-10-24
 
 #### 🐞 Fixes
