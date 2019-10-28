@@ -62,4 +62,10 @@ describe('<Table />', () => {
 
     expect(wrapper.find('table').prop('className')).toMatch('content_middle_align');
   });
+
+  it('renders bordered', () => {
+    const wrapper = unwrap(<Table noWrap>Bordered</Table>);
+
+    expect(wrapper.find('div').prop('className')).toMatch('responsive_wrapper');
+  });
 });
