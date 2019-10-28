@@ -63,9 +63,17 @@ describe('<Table />', () => {
     expect(wrapper.find('table').prop('className')).toMatch('content_middle_align');
   });
 
-  it('renders bordered', () => {
-    const wrapper = unwrap(<Table noWrap>Bordered</Table>);
+  describe('responsive wrapper', () => {
+    it('renders wrapper', () => {
+      const wrapper = unwrap(<Table> Wrap</Table>);
 
-    expect(wrapper.find('div').prop('className')).toMatch('responsive_wrapper');
+      expect(wrapper.find('div').prop('className')).toMatch('responsive_wrapper');
+    });
+
+    it('renders wrapper', () => {
+      const wrapper = unwrap(<Table noWrap>No Wrap</Table>);
+
+      expect(wrapper.find('div').prop('className')).not.toMatch('responsive_wrapper');
+    });
   });
 });
