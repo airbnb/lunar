@@ -157,6 +157,7 @@ export default withStyles(
       backgroundColor: color.accent.bg,
       overflow: 'hidden',
       padding: unit * 3,
+      wordBreak: 'break-word',
 
       ':before': {
         content: '" "',
