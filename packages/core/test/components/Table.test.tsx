@@ -70,7 +70,7 @@ describe('<Table />', () => {
       expect(wrapper.find('div').prop('className')).toMatch('responsive_wrapper');
     });
 
-    it('renders wrapper', () => {
+    it('renders without wrapper', () => {
       const wrapper = unwrap(<Table noWrap>No Wrap</Table>);
 
       expect(wrapper.find('div').prop('className')).not.toMatch('responsive_wrapper');
