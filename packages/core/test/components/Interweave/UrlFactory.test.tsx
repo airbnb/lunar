@@ -2,7 +2,7 @@ import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import UrlFactory from '../../../src/components/Interweave/factories/Url';
 
-describe('linkFactory()', () => {
+describe('UrlFactory', () => {
   const urlParts = {
     auth: '',
     fragment: '',
@@ -14,14 +14,20 @@ describe('linkFactory()', () => {
   };
 
   it('renders a link', () => {
-    const wrapper = shallowWithStyles(<UrlFactory urlParts={urlParts}>airbnb.com</UrlFactory>);
+    const wrapper = shallowWithStyles(
+      <UrlFactory url="airbnb.com" urlParts={urlParts}>
+        airbnb.com
+      </UrlFactory>,
+    );
 
     expect(wrapper).toMatchSnapshot();
   });
 
   it('adds http:// to URL', () => {
     const wrapper = shallowWithStyles(
-      <UrlFactory urlParts={urlParts}>airbnb.com</UrlFactory>,
+      <UrlFactory url="airbnb.com" urlParts={urlParts}>
+        airbnb.com
+      </UrlFactory>,
       true,
     );
 
@@ -30,7 +36,9 @@ describe('linkFactory()', () => {
 
   it('doesnt add http:// to URL', () => {
     const wrapper = shallowWithStyles(
-      <UrlFactory urlParts={urlParts}>https://airbnb.com</UrlFactory>,
+      <UrlFactory url="https://airbnb.com" urlParts={urlParts}>
+        https://airbnb.com
+      </UrlFactory>,
       true,
     );
 
@@ -39,7 +47,7 @@ describe('linkFactory()', () => {
 
   it('sets open in new window', () => {
     const wrapper = shallowWithStyles(
-      <UrlFactory newWindow urlParts={urlParts}>
+      <UrlFactory newWindow url="airbnb.com" urlParts={urlParts}>
         airbnb.com
       </UrlFactory>,
       true,
@@ -50,7 +58,7 @@ describe('linkFactory()', () => {
 
   it('sets small prop on link', () => {
     const wrapper = shallowWithStyles(
-      <UrlFactory small urlParts={urlParts}>
+      <UrlFactory small url="airbnb.com" urlParts={urlParts}>
         airbnb.com
       </UrlFactory>,
       true,
@@ -62,7 +70,7 @@ describe('linkFactory()', () => {
 
   it('sets large prop on link', () => {
     const wrapper = shallowWithStyles(
-      <UrlFactory large urlParts={urlParts}>
+      <UrlFactory large url="airbnb.com" urlParts={urlParts}>
         airbnb.com
       </UrlFactory>,
       true,

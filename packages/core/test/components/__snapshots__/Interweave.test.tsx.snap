@@ -19,13 +19,13 @@ exports[`<Interweave /> autolinks emails 1`] = `
   emojiSource={
     Object {
       "compact": false,
+      "error": undefined,
       "locale": "en",
-      "version": "",
+      "version": "latest",
     }
   }
   emojis={Array []}
   filters={Array []}
-  large={false}
   matchers={
     Array [
       EmailMatcher {
@@ -69,7 +69,6 @@ exports[`<Interweave /> autolinks emails 1`] = `
     ]
   }
   newWindow={true}
-  small={false}
   transform={[Function]}
 />
 `;
@@ -93,13 +92,13 @@ exports[`<Interweave /> autolinks urls 1`] = `
   emojiSource={
     Object {
       "compact": false,
+      "error": undefined,
       "locale": "en",
-      "version": "",
+      "version": "latest",
     }
   }
   emojis={Array []}
   filters={Array []}
-  large={false}
   matchers={
     Array [
       EmailMatcher {
@@ -135,7 +134,6 @@ exports[`<Interweave /> autolinks urls 1`] = `
     ]
   }
   newWindow={true}
-  small={false}
   transform={[Function]}
 />
 `;

@@ -9,26 +9,23 @@ export type Props = UrlProps & {
   small?: boolean;
 };
 
-export default class Url extends React.PureComponent<Props> {
-  static defaultProps = {
-    href: '',
-    large: false,
-    newWindow: false,
-    small: false,
-  };
+export default function Url({
+  children,
+  href,
+  large = false,
+  newWindow,
+  small = false,
+  url,
+}: Props) {
+  let nextUrl = href || url || '';
 
-  render() {
-    const { children, href, large, newWindow, small } = this.props;
-    let url = href || children || '';
-
-    if (!url.match(/^https?:\/\//)) {
-      url = `http://${url}`;
-    }
-
-    return (
-      <Link baseline href={url} openInNewWindow={newWindow} small={small} large={large}>
-        {children}
-      </Link>
-    );
+  if (!url.match(/^https?:\/\//)) {
+    nextUrl = `http://${url}`;
   }
+
+  return (
+    <Link baseline href={nextUrl} openInNewWindow={newWindow} small={small} large={large}>
+      {children}
+    </Link>
+  );
 }

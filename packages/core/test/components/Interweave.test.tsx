@@ -3,9 +3,11 @@ import { shallow } from 'enzyme';
 import { mountWithStyles } from '@airbnb/lunar-test-utils';
 import { UrlMatcher } from 'interweave-autolink';
 import { EmojiDataManager } from 'interweave-emoji';
-import { Interweave } from '../../src/components/Interweave';
+import Interweave from '../../src/components/Interweave';
 import Url from '../../src/components/Interweave/factories/Url';
 import Email from '../../src/components/Interweave/factories/Email';
+
+jest.mock('emojibase');
 
 describe('<Interweave />', () => {
   const props = {
