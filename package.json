@@ -69,14 +69,14 @@
     "./packages/*"
   ],
   "dependencies": {
-    "@storybook/addon-a11y": "^5.2.3",
-    "@storybook/addon-actions": "^5.2.3",
+    "@storybook/addon-a11y": "^5.2.5",
+    "@storybook/addon-actions": "^5.2.5",
     "@storybook/addon-console": "^1.2.1",
-    "@storybook/addon-contexts": "^5.2.3",
-    "@storybook/addon-links": "^5.2.3",
-    "@storybook/addon-viewport": "^5.2.3",
-    "@storybook/addons": "^5.2.3",
-    "@storybook/react": "^5.2.3",
+    "@storybook/addon-contexts": "^5.2.5",
+    "@storybook/addon-links": "^5.2.5",
+    "@storybook/addon-viewport": "^5.2.5",
+    "@storybook/addons": "^5.2.5",
+    "@storybook/react": "^5.2.5",
     "markdown-to-jsx": "^6.10.3",
     "react-element-to-jsx-string": "^14.1.0"
   },
