@@ -120,7 +120,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       sortBy: string,
       sortDirection: SortDirectionType,
       selectedRows: SelectedRows,
-      maybeSortKey?: string,
+      sortByCacheKey?: string, // used only in the memoize cache key below
     ): IndexedParentRow[] => {
       const { selectedRowsFirst, sortByValue } = this.props;
       const indexedData = indexData(data);
