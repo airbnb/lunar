@@ -82,89 +82,21 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
     warning: false,
   };
 
-  render() {
+  getAvatar() {
     const {
       cx,
-      children,
-      disableTitleTranslation,
-      email,
-      formattedTimestamp,
-      horizontalSpacing,
       icon,
       imageBadgeSrc,
       imageDescription,
       imageSrc,
-      important,
-      info,
       loadingAuthor,
-      onClickImage,
-      onClickTitle,
-      sending,
-      source,
-      styles,
       title,
-      titleClickDescription,
-      titleTag,
-      verticalSpacing,
-      warning,
+      onClickImage,
+      styles,
     } = this.props;
 
-    const timestamp = source
-      ? T.phrase(
-          '%{time} via %{source}',
-          { time: formattedTimestamp, source },
-          { context: 'Timestamp and source within a message bubble', key: 'lunar.message.source' },
-        )
-      : formattedTimestamp;
-
-    const striped = !!(important || info || warning);
-
-    const containerStyles = cx(
-      styles.container,
-      horizontalSpacing && styles.container_horizontalSpacing,
-      verticalSpacing && styles.container_verticalSpacing,
-      striped && styles.container_withStripe,
-      important && styles.container_important,
-      info && styles.container_info,
-      warning && styles.container_warning,
-    );
-
-    const formatedTitle = disableTitleTranslation ? (
-      <span className="notranslate">{title}</span>
-    ) : (
-      title
-    );
-
     if (loadingAuthor) {
-      return (
-        <div className={containerStyles}>
-          <div className={cx(styles.grid)}>
-            <div>
-              <Shimmer width={32} height={32} radius="50%" />
-            </div>
-
-            <div>
-              <Spacing bottom={0.5}>
-                <div className={cx(styles.title)}>
-                  <Spacing inline bottom={0.5} right={1}>
-                    <Shimmer width={175} height={14} />
-                  </Spacing>
-
-                  <Text small muted>
-                    {timestamp}
-                  </Text>
-                </div>
-
-                {email && <Shimmer height={12} width={225} />}
-              </Spacing>
-
-              {children}
-            </div>
-          </div>
-
-          {sending && <div className={cx(styles.sendingOverlay)} />}
-        </div>
-      );
+      return <Shimmer width={32} height={32} radius="50%" />;
     }
 
     let profilePhoto = null;
@@ -204,42 +136,106 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
       profilePhoto
     );
 
+    if (onClickImage) {
+      return (
+        <button
+          className={cx(styles.resetButton)}
+          type="button"
+          title={imageDescription || title}
+          onClick={onClickImage}
+          onMouseUp={removeFocusOnMouseUp}
+        >
+          {avatar}
+        </button>
+      );
+    }
+
+    return avatar;
+  }
+
+  getTitle() {
+    const {
+      cx,
+      disableTitleTranslation,
+      loadingAuthor,
+      title,
+      titleClickDescription,
+      onClickTitle,
+      styles,
+    } = this.props;
+
+    if (loadingAuthor) {
+      return <Shimmer width={150} height={14} />;
+    }
+
+    const formatedTitle = disableTitleTranslation ? (
+      <span className="notranslate">{title}</span>
+    ) : (
+      title
+    );
+
+    if (onClickTitle) {
+      return (
+        <button
+          className={cx(styles.resetButton)}
+          type="button"
+          title={titleClickDescription || title}
+          onClick={onClickTitle}
+          onMouseUp={removeFocusOnMouseUp}
+        >
+          <Text bold>{formatedTitle}</Text>
+        </button>
+      );
+    }
+
+    return <Text bold>{formatedTitle}</Text>;
+  }
+
+  render() {
+    const {
+      cx,
+      children,
+      email,
+      formattedTimestamp,
+      horizontalSpacing,
+      important,
+      info,
+      sending,
+      source,
+      styles,
+      titleTag,
+      verticalSpacing,
+      warning,
+    } = this.props;
+
+    const timestamp = source
+      ? T.phrase(
+          '%{time} via %{source}',
+          { time: formattedTimestamp, source },
+          { context: 'Timestamp and source within a message bubble', key: 'lunar.message.source' },
+        )
+      : formattedTimestamp;
+
     return (
-      <div className={containerStyles}>
+      <div
+        className={cx(
+          styles.container,
+          horizontalSpacing && styles.container_horizontalSpacing,
+          verticalSpacing && styles.container_verticalSpacing,
+          !!(important || info || warning) && styles.container_withStripe,
+          important && styles.container_important,
+          info && styles.container_info,
+          warning && styles.container_warning,
+        )}
+      >
         <div className={cx(styles.grid)}>
-          <div className={cx(styles.relative)}>
-            {onClickImage ? (
-              <button
-                className={cx(styles.resetButton)}
-                type="button"
-                title={imageDescription || title}
-                onClick={onClickImage}
-                onMouseUp={removeFocusOnMouseUp}
-              >
-                {avatar}
-              </button>
-            ) : (
-              avatar
-            )}
-          </div>
+          <div className={cx(styles.relative)}>{this.getAvatar()}</div>
 
           <div>
             <Spacing bottom={0.5}>
               <div className={cx(styles.title)}>
                 <Spacing inline bottom={0.5} right={1}>
-                  {onClickTitle ? (
-                    <button
-                      className={cx(styles.resetButton)}
-                      type="button"
-                      title={titleClickDescription || title}
-                      onClick={onClickTitle}
-                      onMouseUp={removeFocusOnMouseUp}
-                    >
-                      <Text bold>{formatedTitle}</Text>
-                    </button>
-                  ) : (
-                    <Text bold>{formatedTitle}</Text>
-                  )}
+                  {this.getTitle()}
                 </Spacing>
 
                 {titleTag && (
