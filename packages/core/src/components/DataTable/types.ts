@@ -40,6 +40,8 @@ export type HeaderButton = {
 
 export type DefaultDataTableProps = keyof DataTableProps;
 
+export type SortByValueAccessor<T = GenericRow> = (rowData: T, columnKey: string) => unknown;
+
 export interface DataTableProps {
   /** If enabled height will be inferred from parent. */
   autoHeight?: boolean;
@@ -111,6 +113,10 @@ export interface DataTableProps {
   sortOverride?: boolean;
   /** sortBy value if override is enabled. */
   sortByOverride?: string;
+  /** Key used as part of the sort cache key, can be used to force re-sorting without a full sortOverride. */
+  sortByCacheKey?: string;
+  /** Given rowData and a column key, returns the value used for sorting rows. Defaults to rowData.data[columnKey]. */
+  sortByValue?: SortByValueAccessor;
   /** sortDirection value if override is enabled. */
   sortDirectionOverride?: SortDirectionType;
   /** sortCallback if override is enabled. */
