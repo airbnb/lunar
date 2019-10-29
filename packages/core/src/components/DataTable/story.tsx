@@ -599,8 +599,8 @@ export function ATableWithDynamicSortKey() {
             setSortByKey(key as 'banana' | 'grape');
           }}
         >
-          <Tab key="banana" label="banana 🍌" />
           <Tab key="grape" label="grape 🍇" />
+          <Tab key="banana" label="banana 🍌" />
         </Tabs>
       </Spacing>
       <DataTable
