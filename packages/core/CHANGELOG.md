@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.37.6 - 2019-10-29
+
+#### 🐞 Fixes
+
+- **[MessageItem]** Fix wrapping when author is loading. (#225) ([2e304bd](https://github.com/airbnb/lunar/tree/master/packages/core/commit/2e304bd)), closes [#225](https://github.com/airbnb/lunar/tree/master/packages/core/issues/225)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.37.5 - 2019-10-28
 
 #### 🐞 Fixes
