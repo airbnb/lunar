@@ -515,7 +515,7 @@ describe('<DataTable /> renders and sorts data', () => {
         selectable={false}
         sortByOverride="cats"
         sortDirectionOverride="ASC"
-        sortByCacheKey={0}
+        sortByCacheKey="a"
         keys={['cats']}
         sortByValue={sortByLowHigh}
       />,
@@ -527,7 +527,7 @@ describe('<DataTable /> renders and sorts data', () => {
         .text(),
     ).toBe('1');
 
-    table.setProps({ sortByValue: sortByHighLow, sortByCacheKey: 1 });
+    table.setProps({ sortByValue: sortByHighLow, sortByCacheKey: 'b' });
 
     expect(
       getCell(table, 1, 1)
@@ -541,10 +541,10 @@ describe('<DataTable /> renders and sorts data', () => {
     const table = mountWithStyles(
       <DataTable
         {...simpleProps}
-        expandable={false} // affects cell index
+        expandable={false}
         selectable={false}
         keys={['cats']}
-        sortByCacheKey={0}
+        sortByCacheKey="a"
         sortByValue={sortByValue}
       />,
     );
@@ -555,10 +555,11 @@ describe('<DataTable /> renders and sorts data', () => {
     const callCount = sortByValue.mock.calls.length;
     expect(callCount).toBeGreaterThan(0);
 
-    table.setProps({ sortByCacheKey: 0 });
+    // setting the same cache key should do nothing
+    table.setProps({ sortByCacheKey: 'a' });
     expect(sortByValue.mock.calls).toHaveLength(callCount);
 
-    table.setProps({ sortByCacheKey: 1 });
+    table.setProps({ sortByCacheKey: 'b' });
     expect(sortByValue.mock.calls.length).toBeGreaterThan(callCount);
   });
 });
