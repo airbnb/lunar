@@ -153,22 +153,56 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
     return avatar;
   }
 
+  getTitle() {
+    const {
+      cx,
+      disableTitleTranslation,
+      loadingAuthor,
+      title,
+      titleClickDescription,
+      onClickTitle,
+      styles,
+    } = this.props;
+
+    if (loadingAuthor) {
+      return <Shimmer width={150} height={14} />;
+    }
+
+    const formatedTitle = disableTitleTranslation ? (
+      <span className="notranslate">{title}</span>
+    ) : (
+      title
+    );
+
+    if (onClickTitle) {
+      return (
+        <button
+          className={cx(styles.resetButton)}
+          type="button"
+          title={titleClickDescription || title}
+          onClick={onClickTitle}
+          onMouseUp={removeFocusOnMouseUp}
+        >
+          <Text bold>{formatedTitle}</Text>
+        </button>
+      );
+    }
+
+    return <Text bold>{formatedTitle}</Text>;
+  }
+
   render() {
     const {
       cx,
       children,
-      disableTitleTranslation,
       email,
       formattedTimestamp,
       horizontalSpacing,
       important,
       info,
-      onClickTitle,
       sending,
       source,
       styles,
-      title,
-      titleClickDescription,
       titleTag,
       verticalSpacing,
       warning,
@@ -181,12 +215,6 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
           { context: 'Timestamp and source within a message bubble', key: 'lunar.message.source' },
         )
       : formattedTimestamp;
-
-    const formatedTitle = disableTitleTranslation ? (
-      <span className="notranslate">{title}</span>
-    ) : (
-      title
-    );
 
     return (
       <div
@@ -207,19 +235,7 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
             <Spacing bottom={0.5}>
               <div className={cx(styles.title)}>
                 <Spacing inline bottom={0.5} right={1}>
-                  {onClickTitle ? (
-                    <button
-                      className={cx(styles.resetButton)}
-                      type="button"
-                      title={titleClickDescription || title}
-                      onClick={onClickTitle}
-                      onMouseUp={removeFocusOnMouseUp}
-                    >
-                      <Text bold>{formatedTitle}</Text>
-                    </button>
-                  ) : (
-                    <Text bold>{formatedTitle}</Text>
-                  )}
+                  {this.getTitle()}
                 </Spacing>
 
                 {titleTag && (

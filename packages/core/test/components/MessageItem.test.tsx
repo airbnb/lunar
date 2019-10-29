@@ -32,7 +32,7 @@ describe('<MessageItem>', () => {
       </MessageItem>,
     );
 
-    expect(wrapper.find(Shimmer)).toHaveLength(1);
+    expect(wrapper.find(Shimmer)).toHaveLength(2);
   });
 
   it('renders a sending overlay when message is sending', () => {
