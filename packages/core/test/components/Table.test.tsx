@@ -65,7 +65,7 @@ describe('<Table />', () => {
 
   describe('responsive wrapper', () => {
     it('renders wrapper', () => {
-      const wrapper = unwrap(<Table> Wrap</Table>);
+      const wrapper = unwrap(<Table>Wrap</Table>);
 
       expect(wrapper.find('div').prop('className')).toMatch('responsive_wrapper');
     });
