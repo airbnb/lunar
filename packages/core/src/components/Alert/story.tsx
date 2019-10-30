@@ -58,23 +58,21 @@ withNoIcons.story = {
 
 export function withACloseButton() {
   return (
-    <>
-      <div>
-        <Alert title="Alert title" onClose={action('onClose')} />
+    <div>
+      <Alert title="Alert title" onClose={action('onClose')} />
 
-        <br />
+      <br />
 
-        <Alert title="Alert title" onClose={action('onClose')}>
-          <Text>Supporting content that is descriptive and helpful would go here</Text>
-        </Alert>
+      <Alert title="Alert title" onClose={action('onClose')}>
+        <Text>Supporting content that is descriptive and helpful would go here</Text>
+      </Alert>
 
-        <br />
+      <br />
 
-        <Alert danger title="Danger alert title" onClose={action('onClose')}>
-          <Text>Supporting content that is descriptive and helpful would go here</Text>
-        </Alert>
-      </div>
-    </>
+      <Alert danger title="Danger alert title" onClose={action('onClose')}>
+        <Text>Supporting content that is descriptive and helpful would go here</Text>
+      </Alert>
+    </div>
   );
 }
 

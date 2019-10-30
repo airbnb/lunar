@@ -50,6 +50,56 @@ exports[`<Tooltip /> can underline  1`] = `
 </span>
 `;
 
+exports[`<Tooltip /> can underline 1`] = `
+<span
+  className="container"
+>
+  <div
+    aria-labelledby="uuid-test-mock"
+    className="underlined"
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <a
+      href="/"
+    >
+      hello world
+    </a>
+  </div>
+  <div
+    className="offscreen"
+    id="uuid-test-mock"
+  >
+    test
+  </div>
+  <Overlay
+    noBackground={true}
+    onClose={[Function]}
+  >
+    <div
+      className="tooltip tooltip_below inline-0"
+      role="tooltip"
+    >
+      <div
+        className="shadow"
+      >
+        <NotchedBox
+          inverted={true}
+          notchBelow={false}
+        >
+          <Text
+            inverted={true}
+          >
+            test
+          </Text>
+        </NotchedBox>
+      </div>
+    </div>
+  </Overlay>
+</span>
+`;
+
 exports[`<Tooltip /> disabled does not underline 1`] = `
 <span
   className="container"

@@ -105,16 +105,14 @@ withinABlockOfText.story = {
 
 export function withBeforeAndOrAfterIcons() {
   return (
-    <>
-      <div>
-        <StatusLabel success beforeIcon={<IconAddAlt decorative />}>
-          Before icon
-        </StatusLabel>
-        <StatusLabel notice afterIcon={<IconAddAlt decorative />}>
-          After icon
-        </StatusLabel>
-      </div>
-    </>
+    <div>
+      <StatusLabel success beforeIcon={<IconAddAlt decorative />}>
+        Before icon
+      </StatusLabel>
+      <StatusLabel notice afterIcon={<IconAddAlt decorative />}>
+        After icon
+      </StatusLabel>
+    </div>
   );
 }
 

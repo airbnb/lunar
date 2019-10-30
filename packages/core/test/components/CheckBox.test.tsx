@@ -26,7 +26,7 @@ describe('<CheckBox />', () => {
     expect(wrapper.find(FormField).prop('stretchLabel')).toBe(true);
   });
 
-  it('it generates a unique ID', () => {
+  it('generates a unique ID', () => {
     const wrapper = shallow(<CheckBox name="foo" label="Label" value="1" onChange={() => {}} />);
 
     expect(wrapper.find(FormField).prop('id')).toBe(wrapper.find(BaseCheckBox).prop('id'));

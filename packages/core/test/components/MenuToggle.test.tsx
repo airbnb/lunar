@@ -12,7 +12,6 @@ describe('<MenuToggle />', () => {
     const wrapper = shallowWithStyles(
       <MenuToggle accessibilityLabel="Foo" toggleLabel="Foo">
         <Item>Child</Item>
-        {''}
       </MenuToggle>,
     );
 

@@ -66,7 +66,7 @@ describe('<Modal />', () => {
       mousedown: null,
     };
 
-    document.addEventListener = jest.fn((event, cb) => {
+    jest.spyOn(document, 'addEventListener').mockImplementation((event, cb) => {
       // @ts-ignore
       eventMap[event] = cb;
     });
@@ -88,7 +88,7 @@ describe('<Modal />', () => {
       mousedown: null,
     };
 
-    document.addEventListener = jest.fn((event, cb) => {
+    jest.spyOn(document, 'addEventListener').mockImplementation((event, cb) => {
       // @ts-ignore
       eventMap[event] = cb;
     });

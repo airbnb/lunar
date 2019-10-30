@@ -106,13 +106,13 @@ describe('<Search />', () => {
       expect(instance.handleSearch('hello')).toHaveLength(0);
     });
 
-    it('handleAsyncSearch resolves to handleSearch', () => {
+    it('handleAsyncSearch resolves to handleSearch', async () => {
       expect.assertions(1);
-      const syncResult = instance.handleSearch('coverage');
 
-      return instance.handleAsyncSearch('coverage').then((asyncResult: SearchItemResult[]) => {
-        expect(syncResult).toEqual(asyncResult);
-      });
+      const syncResult = instance.handleSearch('coverage');
+      const asyncResult = await instance.handleAsyncSearch('coverage');
+
+      expect(syncResult).toEqual(asyncResult);
     });
   });
 

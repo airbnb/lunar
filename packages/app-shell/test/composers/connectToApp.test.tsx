@@ -74,9 +74,7 @@ describe('connectToApp()', () => {
 
       // @ts-ignore Testing missing name
       Hoc = connectToApp()(Foo);
-    }).toThrowError(
-      'Connecting to the application shell requires a unique scope or component name.',
-    );
+    }).toThrow('Connecting to the application shell requires a unique scope or component name.');
   });
 
   it('returns an HOC', () => {
@@ -144,6 +142,6 @@ describe('connectToApp()', () => {
     expect(() => {
       Hoc = connectToApp('NoPushMethod')(NoPushMethod);
       unwrap(<Hoc>Child</Hoc>);
-    }).toThrowError('Connected component has not defined an registerPageData() method.');
+    }).toThrow('Connected component has not defined an registerPageData() method.');
   });
 });

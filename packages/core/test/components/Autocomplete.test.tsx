@@ -120,7 +120,7 @@ describe('<Autocomplete />', () => {
 
   describe('handleChange()', () => {
     it('sets state and loads items', () => {
-      instance.loadItems = jest.fn();
+      jest.spyOn(instance, 'loadItems').mockImplementation();
 
       expect(wrapper.state('value')).toBe('');
 
@@ -399,9 +399,11 @@ describe('<Autocomplete />', () => {
 
   describe('loadItems()', () => {
     beforeEach(() => {
-      instance.loadItemsDebounced = jest.fn(() =>
-        Promise.resolve({ input: 'foo', response: [{ id: 4 }, { id: 5 }, { id: 6 }] }),
-      );
+      jest
+        .spyOn(instance, 'loadItemsDebounced')
+        .mockImplementation(() =>
+          Promise.resolve({ input: 'foo', response: [{ id: 4 }, { id: 5 }, { id: 6 }] }),
+        );
     });
 
     it('resets state at start of load', () => {
@@ -510,14 +512,14 @@ describe('<Autocomplete />', () => {
         );
       }));
 
-    it('doesnt cache if `disableCache` is set', () => {
+    it('doesnt cache if `disableCache` is set', async () => {
       wrapper.setProps({
         disableCache: true,
       });
 
-      return instance.loadItems('foo').then(() => {
-        expect(instance.cache.foo).toBeUndefined();
-      });
+      await instance.loadItems('foo');
+
+      expect(instance.cache.foo).toBeUndefined();
     });
 
     it('handles success', () =>
@@ -530,47 +532,56 @@ describe('<Autocomplete />', () => {
         );
       }));
 
-    it('handles success using `results` property', () => {
-      instance.loadItemsDebounced = jest.fn(() =>
-        Promise.resolve({ input: 'foo', response: { results: [{ id: 7 }, { id: 8 }, { id: 9 }] } }),
+    it('handles success using `results` property', async () => {
+      jest.spyOn(instance, 'loadItemsDebounced').mockImplementation(() =>
+        Promise.resolve({
+          input: 'foo',
+          response: { results: [{ id: 7 }, { id: 8 }, { id: 9 }] },
+        }),
       );
 
-      return instance.loadItems('foo').then(() => {
-        expect(wrapper.state()).toEqual(
-          expect.objectContaining({
-            items: [{ id: 7 }, { id: 8 }, { id: 9 }],
-            loading: false,
-          }),
-        );
-      });
-    });
+      await instance.loadItems('foo');
 
-    it('handles success using `items` property', () => {
-      instance.loadItemsDebounced = jest.fn(() =>
-        Promise.resolve({ input: 'foo', response: { items: [{ id: 7 }, { id: 8 }, { id: 9 }] } }),
+      expect(wrapper.state()).toEqual(
+        expect.objectContaining({
+          items: [{ id: 7 }, { id: 8 }, { id: 9 }],
+          loading: false,
+        }),
       );
-
-      return instance.loadItems('foo').then(() => {
-        expect(wrapper.state()).toEqual(
-          expect.objectContaining({
-            items: [{ id: 7 }, { id: 8 }, { id: 9 }],
-            loading: false,
-          }),
-        );
-      });
     });
 
-    it('handles error', () => {
-      instance.loadItemsDebounced = jest.fn(() => Promise.reject(new Error('Oops')));
+    it('handles success using `items` property', async () => {
+      jest
+        .spyOn(instance, 'loadItemsDebounced')
+        .mockImplementation(() =>
+          Promise.resolve({ input: 'foo', response: { items: [{ id: 7 }, { id: 8 }, { id: 9 }] } }),
+        );
 
-      return instance.loadItems('foo').catch(error => {
+      await instance.loadItems('foo');
+
+      expect(wrapper.state()).toEqual(
+        expect.objectContaining({
+          items: [{ id: 7 }, { id: 8 }, { id: 9 }],
+          loading: false,
+        }),
+      );
+    });
+
+    it('handles error', async () => {
+      jest
+        .spyOn(instance, 'loadItemsDebounced')
+        .mockImplementation(() => Promise.reject(new Error('Oops')));
+
+      try {
+        await instance.loadItems('foo');
+      } catch (error) {
         expect(wrapper.state()).toEqual(
           expect.objectContaining({
             error,
             loading: false,
           }),
         );
-      });
+      }
     });
   });
 

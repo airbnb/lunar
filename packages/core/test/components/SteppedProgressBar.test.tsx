@@ -38,6 +38,6 @@ describe('<SteppedProgressBar />', () => {
   it('errors if child is not a `Step`', () => {
     expect(() => {
       shallowWithStyles(<SteppedProgressBar>Foo</SteppedProgressBar>);
-    }).toThrowError();
+    }).toThrow();
   });
 });

@@ -32,7 +32,7 @@ describe('<Tooltip />', () => {
     expect(onShowSpy).toHaveBeenCalled();
   });
 
-  it('can underline ', () => {
+  it('can underline', () => {
     wrapper.setProps({ underlined: true });
     expect(wrapper).toMatchSnapshot();
   });

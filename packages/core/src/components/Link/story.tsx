@@ -67,17 +67,15 @@ withDifferentStatesMutedDisabledAndInverted.story = {
 
 export function withBeforeAndOrAfterIcons() {
   return (
-    <>
-      <div>
-        <Link href="https://github.com/airbnb/lunar" beforeIcon={<IconAddAlt decorative />}>
-          Link
-        </Link>
-        <br />
-        <Link href="https://github.com/airbnb/lunar" afterIcon={<IconAddAlt decorative />}>
-          Link
-        </Link>
-      </div>
-    </>
+    <div>
+      <Link href="https://github.com/airbnb/lunar" beforeIcon={<IconAddAlt decorative />}>
+        Link
+      </Link>
+      <br />
+      <Link href="https://github.com/airbnb/lunar" afterIcon={<IconAddAlt decorative />}>
+        Link
+      </Link>
+    </div>
   );
 }
 

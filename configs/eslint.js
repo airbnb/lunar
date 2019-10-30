@@ -21,6 +21,7 @@ module.exports = {
       files: ['*.test.ts', '*.test.tsx', 'story.tsx', '*.story.tsx'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
+        'jest/require-to-throw-message': 'off', // Prop type errors
         'react/jsx-no-literals': 'off',
       },
     },

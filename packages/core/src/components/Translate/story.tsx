@@ -43,29 +43,27 @@ interpolateVariablesAlsoSupportHtml.story = {
 
 export function handleContextualMessagesBasedOnCounts() {
   return (
-    <>
-      <Text>
-        <Translate
-          phrase="%{smartCount} item||||%{smartCount} items"
-          smartCount={0}
-          context="This message is for translation editors."
-        />
-        <br />
-        <br />
-        <Translate
-          phrase="%{smartCount} item||||%{smartCount} items"
-          smartCount={1}
-          context="This message is for translation editors."
-        />
-        <br />
-        <br />
-        <Translate
-          phrase="%{smartCount} item||||%{smartCount} items"
-          smartCount={2}
-          context="This message is for translation editors."
-        />
-      </Text>
-    </>
+    <Text>
+      <Translate
+        phrase="%{smartCount} item||||%{smartCount} items"
+        smartCount={0}
+        context="This message is for translation editors."
+      />
+      <br />
+      <br />
+      <Translate
+        phrase="%{smartCount} item||||%{smartCount} items"
+        smartCount={1}
+        context="This message is for translation editors."
+      />
+      <br />
+      <br />
+      <Translate
+        phrase="%{smartCount} item||||%{smartCount} items"
+        smartCount={2}
+        context="This message is for translation editors."
+      />
+    </Text>
   );
 }
 

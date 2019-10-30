@@ -66,7 +66,7 @@ function UpdateButton({ onUpdate }: { onUpdate: MutationFunction<{}, User> }) {
         });
       }}
     >
-      {'Update name to "Lunar"'}
+      Update name to <b>Lunar</b>
     </Button>
   );
 }

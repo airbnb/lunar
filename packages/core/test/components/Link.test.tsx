@@ -11,7 +11,7 @@ describe('<Link />', () => {
           Default
         </Link>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('errors when multiple sizes are used at once', () => {
@@ -21,7 +21,7 @@ describe('<Link />', () => {
           Default
         </Link>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('renders small (passes to `Text`)', () => {

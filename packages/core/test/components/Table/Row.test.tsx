@@ -11,7 +11,7 @@ describe('<TableRow />', () => {
           Default
         </TableRow>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   describe('statuses', () => {

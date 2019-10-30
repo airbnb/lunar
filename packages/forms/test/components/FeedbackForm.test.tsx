@@ -141,17 +141,17 @@ describe('<FeedbackForm />', () => {
 
       expect(() => {
         wrapper.instance().validate('');
-      }).toThrowError('This field is required.');
+      }).toThrow('This field is required.');
 
       expect(() => {
         // @ts-ignore Allow non-string
         wrapper.instance().validate(0);
-      }).toThrowError('This field is required.');
+      }).toThrow('This field is required.');
 
       expect(() => {
         // @ts-ignore Allow non-string
         wrapper.instance().validate(false);
-      }).toThrowError('This field is required.');
+      }).toThrow('This field is required.');
     });
   });
 });

@@ -61,7 +61,7 @@ describe('<LightboxHeader />', () => {
       });
       window.dispatchEvent(event);
 
-      expect(spy).toBeCalledWith(1);
+      expect(spy).toHaveBeenCalledWith(1);
     });
 
     it('changes slide to previous on left arrow', () => {
@@ -71,7 +71,7 @@ describe('<LightboxHeader />', () => {
       });
       window.dispatchEvent(event);
 
-      expect(spy).toBeCalledWith(0);
+      expect(spy).toHaveBeenCalledWith(0);
     });
 
     it('changes slide to first on shift + left arrow', () => {
@@ -82,7 +82,7 @@ describe('<LightboxHeader />', () => {
       });
       window.dispatchEvent(event);
 
-      expect(spy).toBeCalledWith(0);
+      expect(spy).toHaveBeenCalledWith(0);
     });
 
     it('changes slide to first on shift + right arrow', () => {
@@ -93,7 +93,7 @@ describe('<LightboxHeader />', () => {
       });
       window.dispatchEvent(event);
 
-      expect(spy).toBeCalledWith(2);
+      expect(spy).toHaveBeenCalledWith(2);
     });
   });
 
@@ -130,7 +130,7 @@ describe('<LightboxHeader />', () => {
         .at(1)
         .simulate('click');
 
-      expect(spy).toBeCalledWith(90);
+      expect(spy).toHaveBeenCalledWith(90);
     });
   });
 
@@ -151,7 +151,7 @@ describe('<LightboxHeader />', () => {
         .at(1)
         .simulate('click');
 
-      expect(spy).toBeCalledWith(1.5);
+      expect(spy).toHaveBeenCalledWith(1.5);
     });
   });
 });

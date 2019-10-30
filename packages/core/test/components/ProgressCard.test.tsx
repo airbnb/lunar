@@ -51,6 +51,6 @@ describe('<Card />', () => {
   it('errors if an unsupported progress bar is used', () => {
     expect(() => {
       shallow(<ProgressCard title="Card" progress={<div />} />).dive();
-    }).toThrowError();
+    }).toThrow();
   });
 });

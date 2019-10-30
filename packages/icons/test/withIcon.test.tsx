@@ -67,13 +67,13 @@ describe('withIcon()', () => {
     expect(() => {
       const Hoc = withIcon('IconTest')(Foo);
       shallow(<Hoc />);
-    }).toThrowError('Missing `accessibilityLabel` or `decorative` for accessibility.');
+    }).toThrow('Missing `accessibilityLabel` or `decorative` for accessibility.');
   });
 
   it('errors when both a11y props are added', () => {
     expect(() => {
       const Hoc = withIcon('IconTest')(Foo);
       shallow(<Hoc decorative accessibilityLabel="foobar" />);
-    }).toThrowError('Only one of `accessibilityLabel` or `decorative` may be used.');
+    }).toThrow('Only one of `accessibilityLabel` or `decorative` may be used.');
   });
 });

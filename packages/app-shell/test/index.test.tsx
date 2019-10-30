@@ -148,7 +148,7 @@ describe('AppShell', () => {
   });
 
   describe('removeBreadcrumb()', () => {
-    it('it removes a toast', () => {
+    it('removes a toast', () => {
       expect(wrapper.state('breadcrumbs')).toHaveLength(0);
 
       const id = instance.addBreadcrumb('Page Name');
@@ -162,7 +162,7 @@ describe('AppShell', () => {
   });
 
   describe('removePageData()', () => {
-    it('it removes page data by id', () => {
+    it('removes page data by id', () => {
       expect(wrapper.state('data')).toEqual({});
 
       instance.addPageData({
@@ -178,7 +178,7 @@ describe('AppShell', () => {
   });
 
   describe('removeToast()', () => {
-    it('it removes a toast', () => {
+    it('removes a toast', () => {
       expect(wrapper.state('toasts')).toHaveLength(0);
 
       instance.addFailureToast('Data failed to save');

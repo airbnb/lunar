@@ -100,7 +100,9 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
           </span>
         )}
 
-        <span className={cx(styles.label)}>{<Text>{item.label || item.name}</Text>}</span>
+        <span className={cx(styles.label)}>
+          <Text>{item.label || item.name}</Text>
+        </span>
       </>
     );
   };

@@ -4,7 +4,7 @@ import Breadcrumbs from '../../src/components/Breadcrumbs';
 import Breadcrumb from '../../src/components/Breadcrumbs/Breadcrumb';
 
 describe('<Breadcrumbs/>', () => {
-  it('it renders a nav', () => {
+  it('renders a nav', () => {
     const wrapper = shallow(
       <Breadcrumbs accessibilityLabel="Breadcrumb">
         <Breadcrumb label="Label" />

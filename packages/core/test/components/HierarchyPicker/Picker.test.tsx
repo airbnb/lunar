@@ -42,7 +42,7 @@ describe('<Picker />', () => {
     const oldGetFocusables = BasePicker.prototype.getFocusables;
 
     beforeEach(() => {
-      window.scrollTo = jest.fn();
+      jest.spyOn(window, 'scrollTo').mockImplementation();
     });
 
     afterEach(() => {
@@ -63,7 +63,7 @@ describe('<Picker />', () => {
       });
 
       it('focusNext() invokes .focus() on focusables', () => {
-        HTMLDivElement.prototype.focus = jest.fn();
+        jest.spyOn(HTMLDivElement.prototype, 'focus').mockImplementation();
         const mockElement = document.createElement('div');
         const mockFocusables = [mockElement];
 

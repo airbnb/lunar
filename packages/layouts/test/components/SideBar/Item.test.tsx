@@ -8,7 +8,7 @@ describe('<SideBarItem />', () => {
   it('errors for invalid icon', () => {
     expect(() => {
       shallowWithStyles(<SideBarItem icon={<div />} />);
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('renders a list item with accessibility', () => {

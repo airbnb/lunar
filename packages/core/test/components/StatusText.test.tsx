@@ -12,7 +12,7 @@ describe('<StatusText />', () => {
           Default
         </StatusText>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   describe('statuses', () => {

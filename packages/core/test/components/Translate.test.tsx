@@ -13,6 +13,7 @@ describe('<Translate />', () => {
   beforeEach(() => {
     oldSettings = Core.settings;
 
+    // eslint-disable-next-line jest/prefer-spy-on
     Core.settings.translator = jest.fn();
     Core.settings.translatorComponent = T;
   });

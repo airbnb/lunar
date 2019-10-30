@@ -16,7 +16,7 @@ describe('<Accordion />', () => {
           <ProxiedAccordionItem id="0" title="Label" />
         </Accordion>,
       ),
-    ).not.toThrowError();
+    ).not.toThrow();
   });
 
   it('renders expected number of accordion items', () => {

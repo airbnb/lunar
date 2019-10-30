@@ -56,7 +56,7 @@ describe('<Dropdown />', () => {
       click: null,
     };
 
-    document.addEventListener = jest.fn((event, cb) => {
+    jest.spyOn(document, 'addEventListener').mockImplementation((event, cb) => {
       eventMap[event as 'click'] = cb as () => void;
     });
 

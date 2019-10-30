@@ -35,6 +35,6 @@ describe('<Image />', () => {
   });
 
   it('throws error if cover and contain are both true', () => {
-    expect(() => shallow(<Image background contain cover src="src" alt="Test" />)).toThrowError();
+    expect(() => shallow(<Image background contain cover src="src" alt="Test" />)).toThrow();
   });
 });

@@ -26,7 +26,7 @@ describe('<DatePickerInput />', () => {
     expect(wrapper.find(PrivatePickerInput)).toHaveLength(1);
   });
 
-  it('it generates a unique ID', () => {
+  it('generates a unique ID', () => {
     const wrapper = shallow(<DatePickerInput {...props} />);
 
     expect(wrapper.find(FormField).prop('id')).toBe(
@@ -34,7 +34,7 @@ describe('<DatePickerInput />', () => {
     );
   });
 
-  it('it uses custom date formatting', () => {
+  it('uses custom date formatting', () => {
     const wrapper = shallow(<DatePickerInput {...props} format="dd/MM/yyyy" />);
 
     expect(wrapper.find(PrivatePickerInput).prop('format')).toBe('dd/MM/yyyy');
