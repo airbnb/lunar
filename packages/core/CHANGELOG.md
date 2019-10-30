@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.38.0 - 2019-10-30
+
+#### 🚀 Updates
+
+- **[DataTable]** Add `sortByValue` accessor + `sortByCacheKey` (#226) ([8568bcd](https://github.com/airbnb/lunar/tree/master/packages/core/commit/8568bcd)), closes [#226](https://github.com/airbnb/lunar/tree/master/packages/core/issues/226)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.37.6 - 2019-10-29
 
 #### 🐞 Fixes
