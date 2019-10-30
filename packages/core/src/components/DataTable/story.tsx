@@ -13,8 +13,10 @@ import Button from '../Button';
 import Input from '../Input';
 import Row from '../Row';
 import Spacing from '../Spacing';
+import Text from '../Text';
 import { RendererProps, SelectedRows, IndexedParentRow } from './types';
 import { DataTable as StyledDataTable } from './DataTable';
+import Tabs, { Tab } from '../Tabs';
 
 type CustomShape = {
   name: string;
@@ -545,3 +547,82 @@ export function aComplexTableWithAllFeaturesEnabled() {
 aComplexTableWithAllFeaturesEnabled.story = {
   name: 'A complex table with all features enabled.',
 };
+
+const dynamicSortKeyData = [
+  {
+    data: {
+      banana: '🍌',
+      grape: '🍇🍇🍇🍇',
+    },
+  },
+  {
+    data: {
+      banana: '🍌🍌',
+      grape: '🍇🍇🍇',
+    },
+  },
+  {
+    data: {
+      banana: '🍌🍌🍌',
+      grape: '🍇🍇',
+    },
+  },
+  {
+    data: {
+      banana: '🍌🍌🍌🍌',
+      grape: '🍇',
+    },
+    metadata: {
+      children: [
+        {
+          data: {
+            banana: '🍌🍌🍌🍌🍌🍌🍌🍌',
+            grape: '🍇🍇🍇🍇🍇🍇🍇🍇',
+          },
+        },
+      ],
+    },
+  },
+];
+
+export function ATableWithDynamicSortKey() {
+  const [sortByKey, setSortByKey] = React.useState<'banana' | 'grape'>('grape');
+
+  return (
+    <>
+      <Text small>Select a sort key for the mixed column</Text>
+      <Spacing vertical={0.5}>
+        <Tabs
+          secondary
+          defaultKey={sortByKey}
+          onChange={key => {
+            setSortByKey(key as 'banana' | 'grape');
+          }}
+        >
+          <Tab key="grape" label="grape 🍇" />
+          <Tab key="banana" label="banana 🍌" />
+        </Tabs>
+      </Spacing>
+      <DataTable
+        expandable
+        showAllRows
+        showColumnDividers
+        showRowDividers
+        data={dynamicSortKeyData}
+        keys={['mix', 'banana', 'grape']}
+        renderers={{
+          banana: ({ row: { rowData } }) => <>{rowData.data.banana}</>,
+          grape: ({ row: { rowData } }) => <>{rowData.data.grape}</>,
+          mix: ({ row: { rowData } }) => <>{`${rowData.data.grape}${rowData.data.banana}`}</>,
+        }}
+        columnToLabel={{
+          mix: `Mix: Sorting on selection: "${sortByKey} ${sortByKey === 'banana' ? '🍌' : '🍇'}"`,
+          banana: 'Sort by 🍌',
+          grape: 'Sort by 🍇',
+        }}
+        sortByValue={({ data: d }, key) => d[key === 'mix' ? sortByKey : key]}
+        sortByCacheKey={sortByKey}
+      />
+    </>
+  );
+}

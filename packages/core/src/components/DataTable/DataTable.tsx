@@ -120,8 +120,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       sortBy: string,
       sortDirection: SortDirectionType,
       selectedRows: SelectedRows,
+      sortByCacheKey?: string, // used only in the memoize cache key below
     ): IndexedParentRow[] => {
-      const { selectedRowsFirst } = this.props;
+      const { selectedRowsFirst, sortByValue } = this.props;
       const indexedData = indexData(data);
       const sortedData = sortData(
         indexedData,
@@ -130,6 +131,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         selectedRowsFirst!,
         sortBy,
         sortDirection,
+        sortByValue,
       );
 
       return sortedData;
@@ -138,10 +140,16 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   );
 
   componentDidUpdate(prevProps: DataTableProps, prevState: State) {
-    const { dynamicRowHeight, data, filterData, width, height } = this.props;
+    const { dynamicRowHeight, data, filterData, width, height, sortByCacheKey } = this.props;
     const { sortBy, sortDirection, selectedRows } = this.state;
     const dimensionsChanged = width !== prevProps.width || height !== prevProps.height;
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
+    const sortedData: IndexedParentRow[] = this.getData(
+      data!,
+      sortBy,
+      sortDirection,
+      selectedRows,
+      sortByCacheKey,
+    );
     const filteredData = filterData!(sortedData);
     const oldFilteredData = prevProps.filterData!(sortedData);
 
@@ -308,7 +316,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   };
 
   private handleChildSelection = (row: ExpandedRow) => {
-    const { data, selectCallback } = this.props;
+    const { data, selectCallback, sortByCacheKey } = this.props;
     const {
       selectedRows,
       sortBy,
@@ -319,7 +327,13 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       sortDirection: SortDirectionType;
     } = this.state;
 
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
+    const sortedData: IndexedParentRow[] = this.getData(
+      data!,
+      sortBy,
+      sortDirection,
+      selectedRows,
+      sortByCacheKey,
+    );
 
     const { parentOriginalIndex, parentIndex, originalIndex } = row.metadata;
 
@@ -449,11 +463,18 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       showAllRows,
       width,
       height,
+      sortByCacheKey,
     } = this.props;
 
     const { expandedRows, sortBy, sortDirection, editMode, selectedRows } = this.state;
 
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
+    const sortedData: IndexedParentRow[] = this.getData(
+      data!,
+      sortBy,
+      sortDirection,
+      selectedRows,
+      sortByCacheKey,
+    );
 
     const filteredData = filterData!(sortedData);
 
