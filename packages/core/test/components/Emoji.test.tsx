@@ -1,14 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { renderAndWait } from 'rut';
 import { Emoji as BaseEmoji } from 'interweave-emoji';
-import Emoji from '../../src/components/Emoji';
-
-jest.mock('emojibase');
+import Emoji, { Props } from '../../src/components/Emoji';
 
 describe('<Emoji />', () => {
-  it('renders an emoji', () => {
-    const wrapper = shallow(<Emoji />);
+  it('renders an emoji', async () => {
+    const { root } = await renderAndWait<Props>(<Emoji shortcode=":cat:" />);
 
-    expect(wrapper.find(BaseEmoji)).toHaveLength(1);
+    expect(root.find(BaseEmoji)).toHaveLength(1);
   });
 });

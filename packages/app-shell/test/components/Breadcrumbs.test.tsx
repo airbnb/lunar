@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from 'rut';
 import Breadcrumbs, { TrackBreadcrumb } from '../../src/components/Breadcrumbs';
-import AppShell from '../../src';
+import AppShell, { Props } from '../../src';
 
 describe('Breadcrumbs', () => {
   it('renders all crumbs', () => {
-    const { container } = render(
+    const { root } = render<Props>(
       <AppShell name="AppShell">
         <TrackBreadcrumb label="Foo" href="/foo" />
         <TrackBreadcrumb label="Bar" href="/foo/bar" />
@@ -14,6 +14,6 @@ describe('Breadcrumbs', () => {
       </AppShell>,
     );
 
-    expect(container.querySelectorAll('ol > li')).toHaveLength(3);
+    expect(root.find('li')).toHaveLength(3);
   });
 });

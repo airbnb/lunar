@@ -22,7 +22,7 @@ const emojiOptions = {
   enlargeThreshold: 3,
 };
 
-const urlMatcher = new UrlMatcher(
+export const urlMatcher = new UrlMatcher(
   'url',
   {
     customTLDs: ['tools'],
@@ -30,17 +30,16 @@ const urlMatcher = new UrlMatcher(
   UrlFactory,
 );
 
-const emailMatcher = new EmailMatcher('email', {}, EmailFactory);
+export const emailMatcher = new EmailMatcher('email', {}, EmailFactory);
 
-const emojiMatcher = new EmojiMatcher('emoji', emojiOptions);
+export const emojiMatcher = new EmojiMatcher('emoji', emojiOptions);
 
-const emojiMatcherWithEmoticons = new EmojiMatcher('emoji', {
+export const emojiMatcherWithEmoticons = new EmojiMatcher('emoji', {
   ...emojiOptions,
   convertEmoticon: true,
 });
 
 export type Props = BaseInterweaveProps & {
-  [key: string]: unknown;
   /** Render any found links using large prop. */
   large?: boolean;
   /** Only run these matchers (by name). */

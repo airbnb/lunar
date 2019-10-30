@@ -1,4 +1,6 @@
 module.exports = {
+  extends: ['plugin:rut/recommended'],
+
   rules: {
     'class-methods-use-this': 'off',
 

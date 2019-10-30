@@ -1,6 +1,5 @@
 import React from 'react';
-import BaseEmojiPicker, { PickerProps } from 'interweave-emoji-picker';
-import { SKIN_COLORS } from 'interweave-emoji-picker/lib/constants';
+import BaseEmojiPicker, { PickerProps, SKIN_COLORS } from 'interweave-emoji-picker';
 import IconBolt from '@airbnb/lunar-icons/lib/general/IconBolt';
 import IconBulb from '@airbnb/lunar-icons/lib/general/IconBulb';
 import IconClock from '@airbnb/lunar-icons/lib/general/IconClock';
@@ -329,6 +328,7 @@ export default withStyles(({ ui, unit, color, font, pattern }) => ({
           ...colors,
           [`[data-skin-tone="${key}"]`]: {
             backgroundColor: SKIN_COLORS[key],
+            borderColor: SKIN_COLORS[key],
           },
         }),
         {},
@@ -339,8 +339,16 @@ export default withStyles(({ ui, unit, color, font, pattern }) => ({
   skinTone_active: {
     opacity: 1,
 
-    '[data-skin-tone]': {
-      backgroundColor: color.accent.bg,
+    '@selectors': {
+      ...Object.keys(SKIN_COLORS).reduce(
+        (colors, key) => ({
+          ...colors,
+          [`[data-skin-tone="${key}"]`]: {
+            backgroundColor: color.accent.bg,
+          },
+        }),
+        {},
+      ),
     },
   },
 
