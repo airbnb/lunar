@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.38.1 - 2019-10-31
+
+#### 📋 Misc
+
+- Audit 2019-10-29 ([0e3e3da](https://github.com/airbnb/lunar/tree/master/packages/core/commit/0e3e3da))
+
+#### 📦 Dependencies
+
+- **[Interweave,Emojibase]** Update to latest major version. ([f3846b7](https://github.com/airbnb/lunar/tree/master/packages/core/commit/f3846b7))
+- **[React]** Update to v16.11. ([07b80dc](https://github.com/airbnb/lunar/tree/master/packages/core/commit/07b80dc))
+
+#### 🛠 Internals
+
+- Fix lint and test failures. ([f2ccc7f](https://github.com/airbnb/lunar/tree/master/packages/core/commit/f2ccc7f))
+- Integrate rut. ([1ca54a6](https://github.com/airbnb/lunar/tree/master/packages/core/commit/1ca54a6))
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.38.0 - 2019-10-30
 
 #### 🚀 Updates

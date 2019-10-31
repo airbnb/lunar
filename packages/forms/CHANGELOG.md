@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.5.3 - 2019-10-31
+
+#### 🐞 Fixes
+
+- Rewrite stories to remove `@emotion/core` unintended import. (#210) ([5976e92](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/5976e92)), closes [#210](https://github.com/airbnb/lunar/tree/master/packages/forms/issues/210)
+
+#### 📦 Dependencies
+
+- **[React]** Update to v16.11. ([07b80dc](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/07b80dc))
+
+#### 🛠 Internals
+
+- Fix lint and test failures. ([f2ccc7f](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/f2ccc7f))
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 2.5.2 - 2019-10-10
 
 #### 📦 Dependencies

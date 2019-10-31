@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.5.1 - 2019-10-31
+
+#### 📦 Dependencies
+
+- **[React]** Update to v16.11. ([07b80dc](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/07b80dc))
+
+#### 🛠 Internals
+
+- Fix lint and test failures. ([f2ccc7f](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/f2ccc7f))
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ## 2.5.0 - 2019-10-25
 
 #### 🚀 Updates
