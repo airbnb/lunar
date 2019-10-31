@@ -7,7 +7,7 @@ describe('<ListItem />', () => {
     expect(() => {
       // @ts-ignore
       shallowWithStyles(<ListItem />);
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('renders a <li /> by default', () => {

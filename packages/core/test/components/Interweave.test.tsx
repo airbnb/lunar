@@ -1,89 +1,92 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { mountWithStyles } from '@airbnb/lunar-test-utils';
+import { renderAndWait } from 'rut';
+import BaseInterweave from 'interweave';
 import { UrlMatcher } from 'interweave-autolink';
-import { EmojiDataManager } from 'interweave-emoji';
-import { Interweave } from '../../src/components/Interweave';
+import Interweave, {
+  Props,
+  emailMatcher,
+  emojiMatcher,
+  emojiMatcherWithEmoticons,
+  urlMatcher,
+} from '../../src/components/Interweave';
 import Url from '../../src/components/Interweave/factories/Url';
 import Email from '../../src/components/Interweave/factories/Email';
+import Link from '../../src/components/Link';
 
 describe('<Interweave />', () => {
-  const props = {
-    emojis: [],
-    emojiData: new EmojiDataManager('en'),
-    emojiSource: {
-      locale: 'en',
-      version: '',
-      compact: false,
-    },
-  };
+  it('passes content', async () => {
+    const { root } = await renderAndWait<Props>(<Interweave content="Foo" />);
 
-  it('passes content', () => {
-    const wrapper = shallow(<Interweave {...props} content="Foo" />);
-
-    expect(wrapper.prop('content')).toBe('Foo');
+    expect(root.findOne(BaseInterweave)).toHaveProp('content', 'Foo');
   });
 
-  it('autolinks urls', () => {
-    const wrapper = shallow(<Interweave {...props} content="Foo http://test.com bar" />);
+  it('autolinks urls', async () => {
+    const { root } = await renderAndWait<Props>(<Interweave content="Foo http://test.com bar" />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(root.find(Link.WrappedComponent)).toHaveLength(1);
   });
 
-  it('set large size prop if urls and emails are present', () => {
-    const wrapper = mountWithStyles(
-      <Interweave {...props} large content="Foo http://test.com bar with an email@email.com" />,
+  it('set large size prop if urls and emails are present', async () => {
+    const { root } = await renderAndWait<Props>(
+      <Interweave large content="Foo http://test.com bar with an email@email.com" />,
     );
 
-    expect(wrapper.find(Url).prop('large')).toBeTruthy();
-    expect(wrapper.find(Url).prop('small')).toBeFalsy();
-    expect(wrapper.find(Email).prop('large')).toBeTruthy();
-    expect(wrapper.find(Email).prop('small')).toBeFalsy();
+    expect(root.findOne(Url)).toHaveProp('large', true);
+    expect(root.findOne(Url)).not.toHaveProp('small');
+    expect(root.findOne(Email)).toHaveProp('large', true);
+    expect(root.findOne(Email)).not.toHaveProp('small');
   });
 
-  it('set small size prop if urls and emails are present', () => {
-    const wrapper = mountWithStyles(
-      <Interweave {...props} small content="Foo http://test.com bar with an email@email.com" />,
+  it('set small size prop if urls and emails are present', async () => {
+    const { root } = await renderAndWait<Props>(
+      <Interweave small content="Foo http://test.com bar with an email@email.com" />,
     );
 
-    expect(wrapper.find(Url).prop('large')).toBeFalsy();
-    expect(wrapper.find(Url).prop('small')).toBeTruthy();
-    expect(wrapper.find(Email).prop('large')).toBeFalsy();
-    expect(wrapper.find(Email).prop('small')).toBeTruthy();
+    expect(root.findOne(Url)).not.toHaveProp('large');
+    expect(root.findOne(Url)).toHaveProp('small', true);
+    expect(root.findOne(Email)).not.toHaveProp('large');
+    expect(root.findOne(Email)).toHaveProp('small', true);
   });
 
-  it('autolinks emails', () => {
-    const wrapper = shallow(<Interweave {...props} content="Foo test@domain.com bar" />);
+  it('autolinks emails', async () => {
+    const { root } = await renderAndWait<Props>(<Interweave content="Foo test@domain.com bar" />);
 
-    expect(wrapper).toMatchSnapshot();
+    expect(root.find(Link.WrappedComponent)).toHaveLength(1);
   });
 
-  it('can pass custom props', () => {
-    const wrapper = shallow(<Interweave {...props} content="Foo" emojiSize="3em" />);
+  it('can pass custom props', async () => {
+    const { root } = await renderAndWait<Props>(<Interweave content="Foo" emojiSize="3em" />);
 
-    expect(wrapper.prop('emojiSize')).toBe('3em');
+    expect(root.findOne(BaseInterweave)).toHaveProp('emojiSize', '3em');
   });
 
-  it('adds url, email, and emoji global matchers by default', () => {
-    const wrapper = shallow(<Interweave {...props} withEmoticons content="Foo" />);
+  it('adds url, email, and emoji global matchers by default', async () => {
+    const { root } = await renderAndWait<Props>(<Interweave withEmoticons content="Foo" />);
 
-    expect(wrapper.prop('matchers')).toHaveLength(3);
+    expect(root.findOne(BaseInterweave)).toHaveProp('matchers', [
+      emailMatcher,
+      urlMatcher,
+      emojiMatcherWithEmoticons,
+    ]);
   });
 
-  it('merges custom matchers with global matchers', () => {
+  it('merges custom matchers with global matchers', async () => {
     const matcher = new UrlMatcher('foo');
-    const wrapper = shallow(<Interweave {...props} content="Foo" matchers={[matcher]} />);
+    const { root } = await renderAndWait<Props>(<Interweave content="Foo" matchers={[matcher]} />);
 
-    expect(wrapper.prop('matchers')).toHaveLength(4);
+    expect(root.findOne(BaseInterweave)).toHaveProp('matchers', [
+      emailMatcher,
+      urlMatcher,
+      emojiMatcher,
+      matcher,
+    ]);
   });
 
-  it('filters matchers to the only list', () => {
-    const wrapper = shallow(
-      <Interweave {...props} content="Foo" onlyMatchers={['url', 'emoji']} />,
+  it('filters matchers to the only list', async () => {
+    const { root } = await renderAndWait<Props>(
+      <Interweave content="Foo" onlyMatchers={['url', 'emoji']} />,
     );
 
-    expect(wrapper.prop('matchers')).toHaveLength(2);
-    expect(wrapper.prop('matchers')[0].propName).toBe('url');
-    expect(wrapper.prop('matchers')[1].propName).toBe('emoji');
+    expect(root.findOne(BaseInterweave)).toHaveProp('matchers', [urlMatcher, emojiMatcher]);
   });
 });

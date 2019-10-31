@@ -19,6 +19,6 @@ module.exports = {
     // Deprecated, remove in next major
     'childrenWithComponentName',
   ],
-  setupFilesAfterEnv: ['@airbnb/config-jest/aphrodite', '@airbnb/config-jest/enzyme'],
+  setupFilesAfterEnv: ['@airbnb/config-jest/aphrodite', '@airbnb/config-jest/enzyme', 'jest-rut'],
   timers: 'real',
 };

@@ -5,7 +5,7 @@ import BaseInterweave, {
   FilterInterface,
 } from 'interweave';
 import { EmailMatcher, UrlMatcher } from 'interweave-autolink';
-import withEmojiData, { WithEmojiDataProps, EmojiMatcher } from 'interweave-emoji';
+import { EmojiMatcher, useEmojiData } from 'interweave-emoji';
 import Core from '../..';
 import EmailFactory from './factories/Email';
 import UrlFactory from './factories/Url';
@@ -22,7 +22,7 @@ const emojiOptions = {
   enlargeThreshold: 3,
 };
 
-const urlMatcher = new UrlMatcher(
+export const urlMatcher = new UrlMatcher(
   'url',
   {
     customTLDs: ['tools'],
@@ -30,11 +30,11 @@ const urlMatcher = new UrlMatcher(
   UrlFactory,
 );
 
-const emailMatcher = new EmailMatcher('email', {}, EmailFactory);
+export const emailMatcher = new EmailMatcher('email', {}, EmailFactory);
 
-const emojiMatcher = new EmojiMatcher('emoji', emojiOptions);
+export const emojiMatcher = new EmojiMatcher('emoji', emojiOptions);
 
-const emojiMatcherWithEmoticons = new EmojiMatcher('emoji', {
+export const emojiMatcherWithEmoticons = new EmojiMatcher('emoji', {
   ...emojiOptions,
   convertEmoticon: true,
 });
@@ -54,49 +54,41 @@ export type Props = BaseInterweaveProps & {
  * Safely render HTML, filter attributes, autowrap text with matchers, render emoji characters,
  * and much more.
  */
-export class Interweave extends React.PureComponent<Props & WithEmojiDataProps> {
-  static defaultProps = {
-    content: '',
-    filters: [],
-    large: false,
-    matchers: [],
-    onlyMatchers: [],
-    small: false,
-    withEmoticons: false,
-  };
+export default function Interweave({
+  content,
+  filters = [],
+  matchers = [],
+  onlyMatchers = [],
+  withEmoticons,
+  ...props
+}: Props) {
+  const [, emojiSource] = useEmojiData({
+    throwErrors: false,
+  });
+  const finalFilters = [...globalFilters, ...filters];
+  let finalMatchers = [
+    ...globalMatchers,
+    emailMatcher,
+    urlMatcher,
+    withEmoticons ? emojiMatcherWithEmoticons : emojiMatcher,
+    ...matchers,
+  ];
 
-  render() {
-    const { content, filters, matchers, onlyMatchers, withEmoticons, ...props } = this
-      .props as Required<Props>;
-    const finalFilters = [...globalFilters, ...filters];
-    let finalMatchers = [
-      ...globalMatchers,
-      emailMatcher,
-      urlMatcher,
-      withEmoticons ? emojiMatcherWithEmoticons : emojiMatcher,
-      ...matchers,
-    ];
-
-    if (onlyMatchers.length > 0) {
-      finalMatchers = finalMatchers.filter(matcher => onlyMatchers.includes(matcher.propName));
-    }
-
-    return (
-      <BaseInterweave
-        newWindow
-        content={content}
-        filters={finalFilters}
-        matchers={finalMatchers}
-        emojiPath={Core.settings.emojiCDN}
-        emojiSize="1.25em"
-        transform={transformer}
-        {...props}
-      />
-    );
+  if (onlyMatchers.length > 0) {
+    finalMatchers = finalMatchers.filter(matcher => onlyMatchers.includes(matcher.propName));
   }
-}
 
-export default withEmojiData({
-  alwaysRender: true,
-  throwErrors: false,
-})(Interweave);
+  return (
+    <BaseInterweave
+      newWindow
+      content={content}
+      emojiSize="1.25em"
+      filters={finalFilters}
+      matchers={finalMatchers}
+      transform={transformer}
+      {...props}
+      emojiPath={Core.settings.emojiCDN}
+      emojiSource={emojiSource}
+    />
+  );
+}

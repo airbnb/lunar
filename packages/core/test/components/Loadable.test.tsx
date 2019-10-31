@@ -21,7 +21,7 @@ describe('<Loadable />', () => {
     jest.useFakeTimers();
     timeoutSpy = jest.spyOn(window, 'setTimeout');
     // @ts-ignore
-    React.lazy = jest.fn(() => Foo);
+    jest.spyOn(React, 'lazy').mockImplementation(() => Foo);
   });
 
   afterEach(() => {

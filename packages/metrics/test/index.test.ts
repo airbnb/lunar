@@ -1,3 +1,5 @@
+/* eslint-disable jest/prefer-spy-on */
+
 import { init, configureScope } from '@sentry/browser';
 import { Scope } from '@sentry/types';
 import Metrics from '../src';
@@ -12,7 +14,6 @@ describe('Metrics', () => {
 
     global.newrelic.setCustomAttribute = jest.fn();
     global.newrelic.setErrorHandler = jest.fn();
-
     global.ga = (jest.fn() as unknown) as UniversalAnalytics.ga;
   });
 
@@ -165,8 +166,8 @@ describe('Metrics', () => {
       Metrics.settings.userID = 12355;
       Metrics.bootstrapGoogleAnalytics();
 
-      expect(global.ga).toBeCalledTimes(1);
-      expect(global.ga).toBeCalledWith('set', 'userId', '12355');
+      expect(global.ga).toHaveBeenCalledTimes(1);
+      expect(global.ga).toHaveBeenCalledWith('set', 'userId', '12355');
     });
 
     it('does not attempt to set the google analytics user if the user ID is not present', () => {

@@ -25,7 +25,7 @@ describe('<Switch />', () => {
     expect(wrapper.find(FormField).prop('stretchLabel')).toBe(true);
   });
 
-  it('it generates a unique ID', () => {
+  it('generates a unique ID', () => {
     const wrapper = shallow(<Switch name="foo" label="Label" onChange={() => {}} />);
 
     expect(wrapper.find(FormField).prop('id')).toBe(wrapper.find(BaseSwitch).prop('id'));

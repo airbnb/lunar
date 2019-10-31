@@ -16,7 +16,7 @@ describe('<Select />', () => {
     expect(wrapper.find(BaseSelect)).toHaveLength(1);
   });
 
-  it('it generates a unique ID', () => {
+  it('generates a unique ID', () => {
     const wrapper = shallow(
       <Select name="foo" label="Label" onChange={() => {}}>
         <option value="">Option</option>

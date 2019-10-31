@@ -10,7 +10,7 @@ describe('<Title />', () => {
           Default
         </Title>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('errors when multiple states are used at once', () => {
@@ -20,7 +20,7 @@ describe('<Title />', () => {
           Default
         </Title>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('renders level 1', () => {

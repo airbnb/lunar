@@ -108,21 +108,19 @@ withToplineAndBaseline.story = {
 
 export function allLineOptions() {
   return (
-    <>
-      <div>
-        <Row topline spacious after={<Button>Take an action</Button>}>
-          <Text>A row where only topline is true.</Text>
-        </Row>
+    <div>
+      <Row topline spacious after={<Button>Take an action</Button>}>
+        <Text>A row where only topline is true.</Text>
+      </Row>
 
-        <Row topline baseline spacious after={<Button>Take an action</Button>}>
-          <Text>A row with both topline and baseline.</Text>
-        </Row>
+      <Row topline baseline spacious after={<Button>Take an action</Button>}>
+        <Text>A row with both topline and baseline.</Text>
+      </Row>
 
-        <Row baseline spacious after={<Button>Take an action</Button>}>
-          <Text>A row where only baseline is true.</Text>
-        </Row>
-      </div>
-    </>
+      <Row baseline spacious after={<Button>Take an action</Button>}>
+        <Text>A row where only baseline is true.</Text>
+      </Row>
+    </div>
   );
 }
 
@@ -132,21 +130,19 @@ allLineOptions.story = {
 
 export function allPaddingOptions() {
   return (
-    <>
-      <div>
-        <Row spacious topline after={<Button>Take an action</Button>}>
-          <Text>A row with spacious vertical padding (24px).</Text>
-        </Row>
+    <div>
+      <Row spacious topline after={<Button>Take an action</Button>}>
+        <Text>A row with spacious vertical padding (24px).</Text>
+      </Row>
 
-        <Row compact baseline topline after={<Button>Take an action</Button>}>
-          <Text>A row with compact vertical padding (12px).</Text>
-        </Row>
+      <Row compact baseline topline after={<Button>Take an action</Button>}>
+        <Text>A row with compact vertical padding (12px).</Text>
+      </Row>
 
-        <Row baseline after={<Button>Take an action</Button>}>
-          <Text>A row with no padding.</Text>
-        </Row>
-      </div>
-    </>
+      <Row baseline after={<Button>Take an action</Button>}>
+        <Text>A row with no padding.</Text>
+      </Row>
+    </div>
   );
 }
 

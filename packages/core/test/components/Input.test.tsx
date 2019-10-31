@@ -20,7 +20,7 @@ describe('<Input />', () => {
     expect(wrapper.find(BaseInput).prop('hidden')).toBe(true);
   });
 
-  it('it generates a unique ID', () => {
+  it('generates a unique ID', () => {
     const wrapper = shallow(<Input name="foo" label="Label" onChange={() => {}} />);
 
     expect(wrapper.find(FormField).prop('id')).toBe(wrapper.find(BaseInput).prop('id'));

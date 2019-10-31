@@ -13,7 +13,7 @@ export class Highlight extends React.Component<Props & WithStylesProps> {
     const { cx, fallback, match, styles, word: searchWord } = this.props;
 
     if (!match) {
-      return <>{fallback}</>;
+      return <span>{fallback}</span>;
     }
 
     const { value, indices = [] } = match;
@@ -56,7 +56,7 @@ export class Highlight extends React.Component<Props & WithStylesProps> {
       output.push(<span key="last">{substr}</span>);
     }
 
-    return <>{output}</>;
+    return <span>{output}</span>;
   }
 }
 

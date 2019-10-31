@@ -32,7 +32,7 @@ describe('<RadioButton />', () => {
     expect(wrapper.find(FormField).prop('stretchLabel')).toBe(true);
   });
 
-  it('it generates a unique ID', () => {
+  it('generates a unique ID', () => {
     const wrapper = shallow(
       <RadioButton name="foo" label="Label" value="foo" onChange={() => {}} />,
     );

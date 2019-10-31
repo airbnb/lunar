@@ -57,19 +57,17 @@ describe('<DateTimeRange />', () => {
   });
 
   it('errors for an invalid time', () => {
-    expect(() =>
-      shallow(<DateTimeRange from="2016-02-33" to={dateA} timezone="UTC" />),
-    ).toThrowError(
+    expect(() => shallow(<DateTimeRange from="2016-02-33" to={dateA} timezone="UTC" />)).toThrow(
       'Invalid DateTime: unit out of range: you specified 33 (of type number) as a day, which is invalid',
     );
 
-    expect(() => shallow(<DateTimeRange from={dateA} to="2016-02-33" />)).toThrowError(
+    expect(() => shallow(<DateTimeRange from={dateA} to="2016-02-33" />)).toThrow(
       'Invalid DateTime: unit out of range: you specified 33 (of type number) as a day, which is invalid',
     );
   });
 
   it('errors for inproperly ordered times', () => {
-    expect(() => shallow(<DateTimeRange from={dateB} to={dateA} timezone="UTC" />)).toThrowError(
+    expect(() => shallow(<DateTimeRange from={dateB} to={dateA} timezone="UTC" />)).toThrow(
       'Invalid chronological order of timestamps passed to `DateTimeRange`',
     );
   });
@@ -77,9 +75,7 @@ describe('<DateTimeRange />', () => {
   it(
     'doesnt error in production',
     wrapEnv('production', () => {
-      expect(() =>
-        shallow(<DateTimeRange from={dateB} to={dateA} timezone="UTC" />),
-      ).not.toThrowError();
+      expect(() => shallow(<DateTimeRange from={dateB} to={dateA} timezone="UTC" />)).not.toThrow();
     }),
   );
 

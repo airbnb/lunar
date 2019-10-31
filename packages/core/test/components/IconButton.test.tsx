@@ -12,7 +12,7 @@ describe('<IconButton />', () => {
           <div />
         </IconButton>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('renders disabled', () => {

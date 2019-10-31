@@ -14,7 +14,7 @@ describe('<StatusLabel />', () => {
           Default
         </StatusLabel>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('renders a before icon', () => {

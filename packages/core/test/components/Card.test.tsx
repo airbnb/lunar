@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Card, { Content } from '../../src/components/Card';
 
 describe('<Card />', () => {
-  it('it renders different styles for `overflow`', () => {
+  it('renders different styles for `overflow`', () => {
     const withoutOverflow = shallow(
       <Card>
         <Content>Foo</Content>

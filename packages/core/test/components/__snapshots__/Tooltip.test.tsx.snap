@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Tooltip /> can underline  1`] = `
+exports[`<Tooltip /> can underline 1`] = `
 <span
   className="container"
 >

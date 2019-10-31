@@ -32,6 +32,6 @@ describe('<FieldAffix />', () => {
           Child
         </FieldAffix>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 });

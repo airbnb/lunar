@@ -11,7 +11,7 @@ describe('passThroughRef()', () => {
     expect(() => {
       // @ts-ignore Allow invalid type
       passThroughRef('foo');
-    }).toThrowError('String refs are not supported. Use React.createRef() instead.');
+    }).toThrow('String refs are not supported. Use React.createRef() instead.');
   });
 
   it('calls function with ref', () => {

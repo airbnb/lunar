@@ -9,28 +9,10 @@ export type Props = EmailProps & {
   small?: boolean;
 };
 
-export default class Email extends React.PureComponent<Props> {
-  static propTypes = {};
-
-  static defaultProps = {
-    large: false,
-    newWindow: false,
-    small: false,
-  };
-
-  render() {
-    const { children, large, newWindow, small } = this.props;
-
-    return (
-      <Link
-        baseline
-        href={`mailto:${children}`}
-        openInNewWindow={newWindow}
-        small={small}
-        large={large}
-      >
-        {children}
-      </Link>
-    );
-  }
+export default function Email({ children, email, large = false, newWindow, small = false }: Props) {
+  return (
+    <Link baseline href={`mailto:${email}`} openInNewWindow={newWindow} small={small} large={large}>
+      {children}
+    </Link>
+  );
 }

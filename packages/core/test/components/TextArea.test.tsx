@@ -13,7 +13,7 @@ describe('<TextArea />', () => {
     expect(wrapper.find(BaseTextArea)).toHaveLength(1);
   });
 
-  it('it generates a unique ID', () => {
+  it('generates a unique ID', () => {
     const wrapper = shallow(<TextArea name="foo" label="Label" onChange={() => {}} />);
 
     expect(wrapper.find(FormField).prop('id')).toBe(wrapper.find(BaseTextArea).prop('id'));

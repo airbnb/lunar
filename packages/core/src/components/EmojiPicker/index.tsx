@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseEmojiPicker, { PickerProps } from 'interweave-emoji-picker';
+import BaseEmojiPicker, { PickerProps, SKIN_COLORS } from 'interweave-emoji-picker';
 import IconBolt from '@airbnb/lunar-icons/lib/general/IconBolt';
 import IconBulb from '@airbnb/lunar-icons/lib/general/IconBulb';
 import IconClock from '@airbnb/lunar-icons/lib/general/IconClock';
@@ -7,6 +7,7 @@ import IconFlag from '@airbnb/lunar-icons/lib/interface/IconFlag';
 import IconFlower from '@airbnb/lunar-icons/lib/general/IconFlower';
 import IconPlane from '@airbnb/lunar-icons/lib/general/IconPlane';
 import IconSmile from '@airbnb/lunar-icons/lib/general/IconSmile';
+import IconThumbUp from '@airbnb/lunar-icons/lib/interface/IconThumbUp';
 import IconUtensils from '@airbnb/lunar-icons/lib/general/IconUtensils';
 import IconVideoGame from '@airbnb/lunar-icons/lib/general/IconVideoGame';
 import IconCloseAlt from '@airbnb/lunar-icons/lib/interface/IconCloseAlt';
@@ -16,7 +17,7 @@ import { ESCAPE } from '../../keys';
 import T from '../Translate';
 
 // Exclude inappropriate or offensive emojis
-const blacklist = [
+const blockList = [
   '1F621', // 😡 pouting face
   '1F620', // 😠 angry face
   '1F47F', // 👿 angry face with horns
@@ -36,7 +37,8 @@ const blacklist = [
 
 const groupIcons = {
   commonlyUsed: <IconClock decorative />,
-  smileysPeople: <IconSmile decorative />,
+  smileysEmotion: <IconSmile decorative />,
+  peopleBody: <IconThumbUp decorative />,
   animalsNature: <IconFlower decorative />,
   foodDrink: <IconUtensils decorative />,
   travelPlaces: <IconPlane decorative />,
@@ -97,6 +99,7 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
       previewEmoji: cx(styles.previewEmoji),
       previewTitle: cx(styles.previewTitle),
       previewSubtitle: cx(styles.previewSubtitle),
+      previewShiftMore: cx(styles.previewShiftMore),
       search: cx(styles.search),
       searchInput: cx(styles.searchInput),
       clear: cx(styles.clear),
@@ -105,7 +108,8 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
     const messages = {
       recentlyUsed: T.phrase('Recently Used', {}, { key: 'lunar.emoji.recentlyUsed' }),
       frequentlyUsed: T.phrase('Frequently Used', {}, { key: 'lunar.emoji.frequentlyUsed' }),
-      smileysPeople: T.phrase('Smileys & People', {}, { key: 'lunar.emoji.smileysPeople' }),
+      smileysEmotion: T.phrase('Smileys & Emotions', {}, { key: 'lunar.emoji.smileysEmotion' }),
+      peopleBody: T.phrase('People & Bodies', {}, { key: 'lunar.emoji.peopleBody' }),
       animalsNature: T.phrase('Animals & Nature', {}, { key: 'lunar.emoji.animalsNature' }),
       foodDrink: T.phrase('Food & Drink', {}, { key: 'lunar.emoji.foodDrink' }),
       travelPlaces: T.phrase('Travel & Weather', {}, { key: 'lunar.emoji.travelWeather' }),
@@ -113,6 +117,7 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
       objects: T.phrase('Objects', {}, { key: 'lunar.emoji.objects' }),
       symbols: T.phrase('Symbols', {}, { key: 'lunar.emoji.symbols' }),
       flags: T.phrase('Flags', {}, { key: 'lunar.emoji.flags' }),
+      variations: T.phrase('Variations', {}, { key: 'lunar.emoji.variations' }),
       searchResults: T.phrase('Search results', {}, { key: 'lunar.emoji.searchResults' }),
       none: T.phrase('All emojis', {}, { key: 'lunar.emoji.allResults' }),
       skinNone: T.phrase('No skin tone', {}, { key: 'lunar.emoji.noSkinTone' }),
@@ -153,7 +158,7 @@ export class EmojiPicker extends React.Component<Props & WithStylesProps> {
           {...props}
           classNames={classNames}
           clearIcon={clearIcon}
-          blacklist={blacklist}
+          blockList={blockList}
           displayOrder={['preview', 'emojis', 'search', 'groups']}
           groupIcons={groupIcons}
           messages={messages}
@@ -196,6 +201,12 @@ export default withStyles(({ ui, unit, color, font, pattern }) => ({
     ...font.textSmall,
     fontWeight: font.weights.light,
     color: color.muted,
+  },
+
+  previewShiftMore: {
+    fontWeight: font.weights.light,
+    color: color.muted,
+    marginLeft: unit,
   },
 
   emoji: {
@@ -303,18 +314,42 @@ export default withStyles(({ ui, unit, color, font, pattern }) => ({
     display: 'block',
     opacity: 0.75,
 
-    ':hover': {
-      opacity: 1,
-    },
+    '@selectors': {
+      ':hover': {
+        opacity: 1,
+      },
 
-    ':focus': {
-      outline: 'none',
+      ':focus': {
+        outline: 'none',
+      },
+
+      ...Object.keys(SKIN_COLORS).reduce(
+        (colors, key) => ({
+          ...colors,
+          [`[data-skin-tone="${key}"]`]: {
+            backgroundColor: SKIN_COLORS[key],
+            borderColor: SKIN_COLORS[key],
+          },
+        }),
+        {},
+      ),
     },
   },
 
   skinTone_active: {
-    backgroundColor: color.accent.bg,
     opacity: 1,
+
+    '@selectors': {
+      ...Object.keys(SKIN_COLORS).reduce(
+        (colors, key) => ({
+          ...colors,
+          [`[data-skin-tone="${key}"]`]: {
+            backgroundColor: color.accent.bg,
+          },
+        }),
+        {},
+      ),
+    },
   },
 
   skinTones: {

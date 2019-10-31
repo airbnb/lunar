@@ -145,8 +145,7 @@ describe('<FocusTrap>', () => {
         <input
           ref={ref => {
             if (ref) {
-              // eslint-disable-next-line no-param-reassign
-              ref.focus = jest.fn();
+              jest.spyOn(ref, 'focus').mockImplementation();
             }
           }}
           style={{ display: 'none' }}

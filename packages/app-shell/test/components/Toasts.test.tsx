@@ -1,5 +1,6 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from 'rut';
+import { Toast } from '@airbnb/lunar/lib/components/Toast';
 import Toasts from '../../src/components/Toasts';
 import AppContext, { defaultContext } from '../../src/components/AppContext';
 
@@ -38,9 +39,9 @@ describe('Toasts', () => {
   }
 
   it('renders all toasts', () => {
-    const { getAllByRole } = render(<Toasts />, { wrapper: WrappingComponent });
+    const { root } = render<{}>(<Toasts />, { wrapper: <WrappingComponent /> });
 
-    expect(getAllByRole('status')).toHaveLength(3);
+    expect(root.find(Toast)).toHaveLength(3);
   });
 
   // it.skip('renders toasts in reverse', () => {

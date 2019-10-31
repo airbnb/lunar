@@ -14,7 +14,7 @@ describe('<List />', () => {
           <ProxiedItem>Item 1</ProxiedItem>
         </List>,
       ),
-    ).not.toThrowError();
+    ).not.toThrow();
   });
 
   it('renders expected number of List items', () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import EmailFactory from '../../../src/components/Interweave/factories/Email';
 
-describe('linkFactory()', () => {
+describe('EmailFactory', () => {
   const emailParts = {
     host: '',
     username: '',
@@ -10,7 +10,9 @@ describe('linkFactory()', () => {
 
   it('renders a link', () => {
     const wrapper = shallowWithStyles(
-      <EmailFactory emailParts={emailParts}>email@airbnb.com</EmailFactory>,
+      <EmailFactory email="email@airbnb.com" emailParts={emailParts}>
+        email@airbnb.com
+      </EmailFactory>,
     );
 
     expect(wrapper).toMatchSnapshot();
@@ -18,7 +20,9 @@ describe('linkFactory()', () => {
 
   it('adds mailto: to emails', () => {
     const wrapper = shallowWithStyles(
-      <EmailFactory emailParts={emailParts}>email@airbnb.com</EmailFactory>,
+      <EmailFactory email="email@airbnb.com" emailParts={emailParts}>
+        email@airbnb.com
+      </EmailFactory>,
       true,
     );
 
@@ -27,7 +31,7 @@ describe('linkFactory()', () => {
 
   it('sets open in new window', () => {
     const wrapper = shallowWithStyles(
-      <EmailFactory newWindow emailParts={emailParts}>
+      <EmailFactory newWindow email="email@airbnb.com" emailParts={emailParts}>
         email@airbnb.com
       </EmailFactory>,
       true,
@@ -38,7 +42,7 @@ describe('linkFactory()', () => {
 
   it('sets small prop on link', () => {
     const wrapper = shallowWithStyles(
-      <EmailFactory newWindow small emailParts={emailParts}>
+      <EmailFactory newWindow small email="email@airbnb.com" emailParts={emailParts}>
         email@airbnb.com
       </EmailFactory>,
       true,
@@ -50,7 +54,7 @@ describe('linkFactory()', () => {
 
   it('sets large prop on link', () => {
     const wrapper = shallowWithStyles(
-      <EmailFactory newWindow large emailParts={emailParts}>
+      <EmailFactory newWindow large email="email@airbnb.com" emailParts={emailParts}>
         email@airbnb.com
       </EmailFactory>,
       true,

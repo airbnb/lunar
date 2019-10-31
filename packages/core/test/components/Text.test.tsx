@@ -10,7 +10,7 @@ describe('<Text />', () => {
           Default
         </Text>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('errors when multiple states are used at once', () => {
@@ -20,7 +20,7 @@ describe('<Text />', () => {
           Default
         </Text>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('errors when multiple emphasis are used at once', () => {
@@ -30,7 +30,7 @@ describe('<Text />', () => {
           Default
         </Text>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('errors when multiple sizes are used at once', () => {
@@ -40,7 +40,7 @@ describe('<Text />', () => {
           Default
         </Text>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('can render without children', () => {

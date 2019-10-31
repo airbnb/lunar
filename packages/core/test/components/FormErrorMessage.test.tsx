@@ -4,13 +4,13 @@ import FormErrorMessage from '../../src/components/FormErrorMessage';
 import StatusText from '../../src/components/StatusText';
 
 describe('<FormErrorMessage />', () => {
-  it('renders an error ', () => {
+  it('renders an error', () => {
     const wrapper = shallowWithStyles(<FormErrorMessage id="foo" error="Oops" />);
 
     expect(wrapper.find(StatusText).prop('children')).toEqual('Oops');
   });
 
-  it('renders empty if no error ', () => {
+  it('renders empty if no error', () => {
     const wrapper = shallowWithStyles(<FormErrorMessage id="foo" />);
 
     expect(wrapper.isEmptyRender()).toBe(true);

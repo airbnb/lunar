@@ -19,7 +19,7 @@ export default function EmojiRestrictedPicker(props: Props) {
       {...props}
       rowCount={2}
       stickyGroupHeader={false}
-      whitelist={EMOJI_WHITELIST}
+      allowList={EMOJI_WHITELIST}
     />
   );
 }

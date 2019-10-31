@@ -100,7 +100,7 @@ describe('<ScrollWrapper />', () => {
     expect(() => {
       wrapper.instance().addScrollAnchor('name', anchor);
       wrapper.instance().addScrollAnchor('name', anchor);
-    }).toThrowError('Duplicate anchor id added: name');
+    }).toThrow('Duplicate anchor id added: name');
   });
 
   it('observes new anchors', () => {
