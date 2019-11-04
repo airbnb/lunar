@@ -9,6 +9,7 @@ export type Props = Omit<EmojiProps, 'emojiPath' | 'emojiSource'>;
  */
 export default function Emoji(props: Props) {
   const [, emojiSource] = useEmojiData({
+    avoidFetch: process.env.NODE_ENV === 'test',
     throwErrors: false,
   });
 
