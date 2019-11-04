@@ -611,9 +611,9 @@ export function ATableWithDynamicSortKey() {
         data={dynamicSortKeyData}
         keys={['mix', 'banana', 'grape']}
         renderers={{
-          banana: ({ row: { rowData } }) => <>{rowData.data.banana}</>,
-          grape: ({ row: { rowData } }) => <>{rowData.data.grape}</>,
-          mix: ({ row: { rowData } }) => <>{`${rowData.data.grape}${rowData.data.banana}`}</>,
+          banana: ({ row: { rowData } }) => <div>{rowData.data.banana}</div>,
+          grape: ({ row: { rowData } }) => <div>{rowData.data.grape}</div>,
+          mix: ({ row: { rowData } }) => <div>{`${rowData.data.grape}${rowData.data.banana}`}</div>,
         }}
         columnToLabel={{
           mix: `Mix: Sorting on selection: "${sortByKey} ${sortByKey === 'banana' ? '🍌' : '🍇'}"`,
