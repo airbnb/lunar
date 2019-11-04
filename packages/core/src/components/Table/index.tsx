@@ -20,6 +20,8 @@ export type Props = {
   loading?: boolean;
   /** Applies verticalAlign: middle to child cells. */
   middleAlign?: boolean;
+  /** Disable responsive wrapper. */
+  noWrap?: boolean;
   /** Alternate row background color. */
   striped?: boolean;
   /** A unique name for tracking purposes. */
@@ -39,6 +41,7 @@ export class Table extends React.Component<Props & WithStylesProps> {
     horizontal: false,
     loading: false,
     middleAlign: false,
+    noWrap: false,
     striped: false,
     transparent: false,
     vertical: false,
@@ -54,6 +57,7 @@ export class Table extends React.Component<Props & WithStylesProps> {
       horizontal,
       loading,
       middleAlign,
+      noWrap,
       striped,
       styles,
       transparent,
@@ -61,7 +65,7 @@ export class Table extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <div className={cx(styles.responsive_wrapper)}>
+      <div className={cx(!noWrap && styles.responsive_wrapper)}>
         <table
           className={cx(
             styles.table,
