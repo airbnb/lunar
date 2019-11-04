@@ -1,5 +1,7 @@
 import React from 'react';
 import Text from '../Text';
+import MenuToggle from '../MenuToggle';
+import { Item as MenuItem } from '../Menu';
 import Table, { Cell, Row } from '.';
 
 export default {
@@ -283,4 +285,59 @@ export function cellsWithCenteredContent() {
 
 cellsWithCenteredContent.story = {
   name: 'Cells with centered content.',
+};
+
+export function withoutResponsiveWrapper() {
+  return (
+    <Text>
+      <Table noWrap>
+        <thead>
+          <tr>
+            <th>One</th>
+            <th>Two</th>
+            <th>Three</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Title 1</td>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>
+              <MenuToggle closeOnClick accessibilityLabel="Menu" toggleLabel="Actions">
+                <MenuItem>
+                  <Text>Item</Text>
+                </MenuItem>
+              </MenuToggle>
+            </td>
+          </tr>
+          <tr>
+            <td>Title 2</td>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>
+              <MenuToggle closeOnClick accessibilityLabel="Menu" toggleLabel="Actions">
+                <MenuItem>
+                  <Text>Item</Text>
+                </MenuItem>
+              </MenuToggle>
+            </td>
+          </tr>
+          <tr>
+            <td>Title 3</td>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>
+              <MenuToggle closeOnClick accessibilityLabel="Menu" toggleLabel="Actions">
+                <MenuItem>
+                  <Text>Item</Text>
+                </MenuItem>
+              </MenuToggle>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+    </Text>
+  );
+}
+
+withoutResponsiveWrapper.story = {
+  name: 'Display a table without responsive wrapper (noWrap).',
 };
