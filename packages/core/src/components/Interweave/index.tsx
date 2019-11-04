@@ -63,6 +63,7 @@ export default function Interweave({
   ...props
 }: Props) {
   const [, emojiSource] = useEmojiData({
+    avoidFetch: process.env.NODE_ENV === 'test',
     throwErrors: false,
   });
   const finalFilters = [...globalFilters, ...filters];
