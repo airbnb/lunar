@@ -15,18 +15,37 @@ function TermList({
   children: NonNullable<React.ReactNode>;
 } & WithStylesProps) {
   2;
-  return <dl className={cx(styles.termList, inline && styles.inline)}>{children}</dl>;
+  return (
+    <dl className={cx(styles.termList, inline && styles.horizontal, !inline && styles.vertical)}>
+      {children}
+    </dl>
+  );
 }
 
 export default withStyles(({ unit, font }) => ({
-  inline: {
+  horizontal: {
     // display: 'inline-flex',
+    display: 'inline-grid',
+    gridAutoFlow: 'column',
+    gridTemplateRows: `repeat(2, 1fr)`,
+    flexWrap: 'wrap',
     '@selectors': {
-      '> dd': {
-        // display: 'inline-block',
+      // '> div': {
+      // display: 'inline-block',
+      // },
+      // '> div:not(:last-child)': {
+      // marginRight: unit * 4,
+      // marginBottom: unit * 2,
+      // },
+      '> dd:not(:last-child), > dt:not(:last-child)': {
+        marginRight: unit * 4,
       },
-      '> dt': {
-        // display: 'inline-block',
+    },
+  },
+  vertical: {
+    '@selectors': {
+      '> dd:not(:last-child)': {
+        marginBottom: unit * 2,
       },
     },
   },
@@ -34,10 +53,5 @@ export default withStyles(({ unit, font }) => ({
     // Reset dl styles
     marginBlockStart: 0,
     marginBlockEnd: 0,
-    '@selectors': {
-      '> dd:not(:last-child)': {
-        marginBottom: unit * 2,
-      },
-    },
   },
 }))(TermList);

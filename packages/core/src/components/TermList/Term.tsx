@@ -5,7 +5,7 @@ import Row from '../Row';
 import Spacing from '../Spacing';
 import Text from '../Text';
 
-function Term({
+export function Term({
   label,
   after = '',
   endAlign,

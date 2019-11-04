@@ -105,12 +105,12 @@ listOfTerms.story = {
 
 export function horizontalListOfTerms() {
   return (
-    <div style={{ width: 600 }}>
+    <div style={{ width: '50%' }}>
       <Card>
         <Content>
           <TermList inline>
             <Term label="Total Clusters">16</Term>
-            <Term label="Active Clusters">4</Term>
+            <Term label="Active">123456789</Term>
             <Term label="Inactive Clusters">12</Term>
           </TermList>
         </Content>
