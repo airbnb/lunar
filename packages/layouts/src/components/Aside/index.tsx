@@ -27,11 +27,7 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
   },
 
   wrapper: {
-    opacity: 1,
     padding: unit * 3,
-    position: 'relative',
-    transition: `opacity ${ui.transitionTime} ease-out`,
-    zIndex: 10,
   },
 
   wrapper_noPadding: {
@@ -43,8 +39,8 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
   },
 
   wrapper_scrollable: {
-    overflowY: 'auto',
     maxHeight: '100%',
+    overflowY: 'auto',
   },
 });
 

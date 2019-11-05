@@ -7,19 +7,26 @@ import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight
 
 const ICON_SIZE = 18;
 
-const styleSheet: StyleSheet = ({ color, pattern, ui, unit }) => ({
+const styleSheet: StyleSheet = ({ color, pattern, transition, ui, unit }) => ({
   tab: {
     ...pattern.regularButton,
+    ...transition.box,
     border: ui.border,
     borderColor: color.accent.bg,
     backgroundColor: color.accent.bg,
-    color: color.accent.border,
+    color: color.core.neutral[5],
+    cursor: 'pointer',
     position: 'absolute',
     padding: `${unit}px 0`,
     top: unit * 2,
     transform: 'translate3d(0,0,0)',
     zIndex: 10,
     overflow: 'hidden',
+
+    ':hover': {
+      background: color.accent.bgHover,
+      color: color.core.neutral[4],
+    },
   },
 
   tab_bordered: {
@@ -32,6 +39,10 @@ const styleSheet: StyleSheet = ({ color, pattern, ui, unit }) => ({
     borderLeftColor: color.accent.bg,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
+
+    ':hover': {
+      borderLeftColor: color.accent.bgHover,
+    },
   },
 
   tab_before: {
@@ -39,6 +50,10 @@ const styleSheet: StyleSheet = ({ color, pattern, ui, unit }) => ({
     borderRightColor: color.accent.bg,
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
+
+    ':hover': {
+      borderRightColor: color.accent.bgHover,
+    },
   },
 });
 
