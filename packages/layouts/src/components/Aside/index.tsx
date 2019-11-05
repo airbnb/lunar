@@ -27,7 +27,7 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
   },
 
   wrapper: {
-    padding: unit * 3,
+    padding: `${unit * 2}px ${unit * 3}px`,
   },
 
   wrapper_noPadding: {
