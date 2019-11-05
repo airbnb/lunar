@@ -575,9 +575,12 @@ const dynamicSortKeyData = [
     metadata: {
       children: [
         {
+          // this tests dynamic rows
           data: {
-            banana: '🍌🍌🍌🍌🍌🍌🍌🍌',
-            grape: '🍇🍇🍇🍇🍇🍇🍇🍇',
+            banana:
+              '🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌🍌',
+            grape:
+              '🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇',
           },
         },
       ],
@@ -608,6 +611,8 @@ export function ATableWithDynamicSortKey() {
         showAllRows
         showColumnDividers
         showRowDividers
+        dynamicRowHeight
+        minimumDynamicRowHeight={64}
         data={dynamicSortKeyData}
         keys={['mix', 'banana', 'grape']}
         renderers={{
