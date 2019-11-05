@@ -40,7 +40,10 @@ export type HeaderButton = {
 
 export type DefaultDataTableProps = keyof DataTableProps;
 
-export type SortByValueAccessor<T = GenericRow> = (rowData: T, columnKey: string) => unknown;
+export type SortByValueAccessor<T extends GenericRow = GenericRow> = (
+  row: T,
+  columnKey: string,
+) => unknown;
 
 export interface DataTableProps {
   /** If enabled height will be inferred from parent. */
