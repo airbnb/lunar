@@ -2,7 +2,8 @@ import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
 import iconComponent from '../../prop-types/iconComponent';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import Button from '../Button';
+import BaseButton from '../Button';
+import MutedButton from '../MutedButton';
 import IconButton from '../IconButton';
 import ExpandableIcon from '../ExpandableIcon';
 import Dropdown, { Props as DropdownProps } from '../Dropdown';
@@ -27,6 +28,8 @@ export type Props = {
   large?: boolean;
   /** Props to pass to the `Menu` component. */
   menuProps?: Partial<MenuProps>;
+  /** Use muted button instead of primary button. */
+  muted?: boolean;
   /** Callback fired when the menu popover is closed. */
   onHide?: () => void;
   /** Callback fired when the menu popover is opened. */
@@ -131,6 +134,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
       inverted,
       large,
       menuProps,
+      muted,
       small,
       styles,
       toggleIcon,
@@ -144,6 +148,8 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
     } else if (small) {
       iconSize = '1em';
     }
+
+    const Button = muted ? MutedButton : BaseButton;
 
     return (
       <div ref={this.ref} className={cx(styles.container)}>
