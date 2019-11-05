@@ -39,6 +39,21 @@ withABeforeLeftBorder.story = {
   name: 'With a before (left) border.',
 };
 
+export function withCollapsibleBefore() {
+  return (
+    <Aside before collapsible width={300}>
+      <LoremIpsum />
+      <LoremIpsum />
+      <LoremIpsum />
+      <LoremIpsum />
+    </Aside>
+  );
+}
+
+withCollapsibleBefore.story = {
+  name: 'With a collapsible tab on the right.',
+};
+
 export function withAnAfterRightBorder() {
   return (
     <Aside after width={300}>
@@ -52,6 +67,21 @@ export function withAnAfterRightBorder() {
 
 withAnAfterRightBorder.story = {
   name: 'With an after (right) border.',
+};
+
+export function withCollapsibleAfter() {
+  return (
+    <Aside after collapsible width={300}>
+      <LoremIpsum />
+      <LoremIpsum />
+      <LoremIpsum />
+      <LoremIpsum />
+    </Aside>
+  );
+}
+
+withCollapsibleAfter.story = {
+  name: 'With a collapsible tab on the left.',
 };
 
 export function withNoPadding() {
@@ -84,4 +114,21 @@ export function asAScrollableContainer() {
 
 asAScrollableContainer.story = {
   name: 'As a scrollable container.',
+};
+
+export function asAScrollableContainerWithCollapsibleTab() {
+  return (
+    <div style={{ height: 500 }}>
+      <Aside before collapsible scrollable width={300}>
+        <LoremIpsum />
+        <LoremIpsum />
+        <LoremIpsum />
+        <LoremIpsum />
+      </Aside>
+    </div>
+  );
+}
+
+asAScrollableContainerWithCollapsibleTab.story = {
+  name: 'As a scrollable container with a collapsible tab.',
 };
