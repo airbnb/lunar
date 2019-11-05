@@ -12,7 +12,7 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
 
   aside_animating: {
     pointerEvents: 'none',
-    animationDuration: '300ms',
+    animationDuration: ui.transitionTime,
   },
 
   aside_scrollable: {
