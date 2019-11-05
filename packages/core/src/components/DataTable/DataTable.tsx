@@ -143,6 +143,10 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     const { dynamicRowHeight, data, filterData, width, height, sortByCacheKey } = this.props;
     const { sortBy, sortDirection, selectedRows } = this.state;
     const dimensionsChanged = width !== prevProps.width || height !== prevProps.height;
+    const sortChanged =
+      sortBy !== prevState.sortBy ||
+      sortDirection !== prevState.sortDirection ||
+      sortByCacheKey !== prevProps.sortByCacheKey;
     const sortedData: IndexedParentRow[] = this.getData(
       data!,
       sortBy,
@@ -152,7 +156,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     );
     const filteredData = filterData!(sortedData);
     const oldFilteredData = prevProps.filterData!(sortedData);
-
     const filteredDataChanged =
       filteredData.length > 0 &&
       (filteredData.length !== oldFilteredData.length ||
@@ -161,7 +164,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             x.metadata.originalIndex !== oldFilteredData[i].metadata.originalIndex,
         ));
 
-    if (dynamicRowHeight && (filteredDataChanged || dimensionsChanged)) {
+    if (dynamicRowHeight && (filteredDataChanged || dimensionsChanged || sortChanged)) {
       // We need to make sure the cache is cleared before React tries to re-render.
       setTimeout(() => {
         this.cache.clearAll();
