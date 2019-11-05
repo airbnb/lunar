@@ -38,7 +38,7 @@ export function withLeftAsideAndNoMainPadding() {
 }
 
 withLeftAsideAndNoMainPadding.story = {
-  name: 'With left aside, and no main padding.',
+  name: 'With left aside and no main padding.',
 };
 
 export function withRightAsideAndNoMainBackgroundColor() {
@@ -57,7 +57,7 @@ export function withRightAsideAndNoMainBackgroundColor() {
 }
 
 withRightAsideAndNoMainBackgroundColor.story = {
-  name: 'With right aside, and no main background color.',
+  name: 'With right aside and no main background color.',
 };
 
 export function withBothSides() {
@@ -81,4 +81,27 @@ export function withBothSides() {
 
 withBothSides.story = {
   name: 'With both sides.',
+};
+
+export function withBothAsidesCollapsibleAndMainPadding() {
+  return (
+    <Layout
+      before={
+        <Aside before collapsible width={300}>
+          <LoremIpsum />
+        </Aside>
+      }
+      after={
+        <Aside after collapsible width={300}>
+          <LoremIpsum />
+        </Aside>
+      }
+    >
+      <LoremIpsum />
+    </Layout>
+  );
+}
+
+withBothAsidesCollapsibleAndMainPadding.story = {
+  name: 'With both sides, collapsible.',
 };

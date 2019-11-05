@@ -1,10 +1,11 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
+import DirectionalIcon from '@airbnb/lunar/lib/components/DirectionalIcon';
 import T from '@airbnb/lunar/lib/components/Translate';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 
-const ICON_SIZE = 24;
+const ICON_SIZE = 18;
 
 const styleSheet: StyleSheet = ({ color, pattern, ui, unit }) => ({
   tab: {
@@ -14,10 +15,11 @@ const styleSheet: StyleSheet = ({ color, pattern, ui, unit }) => ({
     backgroundColor: color.accent.bg,
     color: color.accent.border,
     position: 'absolute',
-    padding: `${unit / 2}px 0`,
+    padding: `${unit}px 0`,
     top: unit * 2,
     transform: 'translate3d(0,0,0)',
     zIndex: 10,
+    overflow: 'hidden',
   },
 
   tab_bordered: {
@@ -26,14 +28,14 @@ const styleSheet: StyleSheet = ({ color, pattern, ui, unit }) => ({
   },
 
   tab_after: {
-    right: -ICON_SIZE - ui.borderWidth,
+    right: -ICON_SIZE - ui.borderWidth * 2,
     borderLeftColor: color.accent.bg,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
   },
 
   tab_before: {
-    left: -ICON_SIZE - ui.borderWidth,
+    left: -ICON_SIZE - ui.borderWidth * 2,
     borderRightColor: color.accent.bg,
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
@@ -69,18 +71,9 @@ export default function Tab({ bordered, expanded, position = 'after', onCollapse
     key: 'lunar.common.expand',
   });
 
-  let Icon = expanded ? (
-    <IconChevronLeft accessibilityLabel={labelCollapse} size={ICON_SIZE} />
-  ) : (
-    <IconChevronRight accessibilityLabel={labelExpand} size={ICON_SIZE} />
-  );
-
+  let direction: 'left' | 'right' = expanded ? 'left' : 'right';
   if (position === 'before') {
-    Icon = expanded ? (
-      <IconChevronRight accessibilityLabel={labelCollapse} size={ICON_SIZE} />
-    ) : (
-      <IconChevronLeft accessibilityLabel={labelExpand} size={ICON_SIZE} />
-    );
+    direction = expanded ? 'right' : 'left';
   }
 
   return (
@@ -94,7 +87,13 @@ export default function Tab({ bordered, expanded, position = 'after', onCollapse
       type="button"
       onClick={onCollapseToggle}
     >
-      {Icon}
+      <DirectionalIcon
+        accessibilityLabel={expanded ? labelCollapse : labelExpand}
+        direction={direction}
+        left={IconChevronLeft}
+        right={IconChevronRight}
+        size={ICON_SIZE}
+      />
     </button>
   );
 }

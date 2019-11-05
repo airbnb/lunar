@@ -10,11 +10,6 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
     zIndex: 10,
   },
 
-  aside_animating: {
-    pointerEvents: 'none',
-    animationDuration: ui.transitionTime,
-  },
-
   aside_scrollable: {
     height: '100%',
   },
@@ -29,32 +24,11 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
 
   aside_collapsible: {
     position: 'relative',
-    transition: `transform ${ui.transitionTime} ease-in-out`,
-  },
-
-  aside_expanded: {
-    transform: 'translateX(0)',
-  },
-
-  aside_before_collapsed: {
-    transform: 'translateX(-100%)',
-  },
-
-  aside_after_collapsed: {
-    transform: 'translateX(100%)',
-  },
-
-  aside_collapsed_end: {
-    borderColor: 'transparent',
-  },
-
-  hidden: {
-    display: 'none',
   },
 
   wrapper: {
     opacity: 1,
-    padding: unit * 2,
+    padding: unit * 3,
     position: 'relative',
     transition: `opacity ${ui.transitionTime} ease-out`,
     zIndex: 10,
@@ -65,7 +39,7 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
   },
 
   wrapper_collapsed: {
-    opacity: 0,
+    display: 'none',
   },
 
   wrapper_scrollable: {
@@ -105,17 +79,11 @@ export default function Aside({
   onCollapseToggle,
 }: Props) {
   const [styles, cx] = useStyles(styleSheet);
-  const [animating, setAnimating] = useState(false);
   const [expanded, setExpanded] = useState(true);
-
-  const handleAnimationEnd = () => {
-    setAnimating(false);
-  };
 
   const handleCollapseToggle: React.DOMAttributes<HTMLButtonElement>['onClick'] = collapsible
     ? () => {
         setExpanded(!expanded);
-        setAnimating(true);
 
         if (onCollapseToggle) {
           onCollapseToggle(!expanded);
@@ -129,21 +97,12 @@ export default function Aside({
         styles.aside,
         after && styles.aside_after,
         before && styles.aside_before,
-        scrollable && styles.aside_scrollable,
         collapsible && styles.aside_collapsible,
-        animating && styles.aside_animating,
+        scrollable && styles.aside_scrollable,
         {
-          width,
+          width: collapsible && !expanded ? 0 : width,
         },
-        collapsible && expanded && styles.aside_expanded,
-        collapsible &&
-          !expanded &&
-          (before || (!before && !after)) &&
-          styles.aside_before_collapsed,
-        collapsible && !expanded && after && styles.aside_after_collapsed,
-        collapsible && !animating && !expanded && styles.aside_collapsed_end,
       )}
-      onTransitionEnd={handleAnimationEnd}
     >
       {collapsible && (
         <Tab
@@ -158,15 +117,11 @@ export default function Aside({
         className={cx(
           styles.wrapper,
           noPadding && styles.wrapper_noPadding,
-          scrollable && styles.wrapper_scrollable,
           collapsible && !expanded && styles.wrapper_collapsed,
+          scrollable && styles.wrapper_scrollable,
         )}
       >
-        {collapsible ? (
-          <div className={cx(!animating && !expanded && styles.hidden)}>{children}</div>
-        ) : (
-          children
-        )}
+        {children}
       </div>
     </aside>
   );
