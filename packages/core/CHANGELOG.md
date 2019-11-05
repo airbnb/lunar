@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.40.0 - 2019-11-05
+
+#### 🚀 Updates
+
+- **[MenuToggle]** Add muted menu option. (#230) ([c6675d1](https://github.com/airbnb/lunar/tree/master/packages/core/commit/c6675d1)), closes [#230](https://github.com/airbnb/lunar/tree/master/packages/core/issues/230)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.39.0 - 2019-11-04
 
 #### 🚀 Updates
