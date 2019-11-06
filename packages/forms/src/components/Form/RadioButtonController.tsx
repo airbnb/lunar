@@ -2,15 +2,15 @@ import React from 'react';
 import BaseRadioButtonController, {
   Props,
 } from '@airbnb/lunar/lib/components/RadioButtonController';
-import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm';
+import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
 /** `RadioButtonController` automatically connected to the parent `Form`.  */
-export function FormRadioButtonController(props: Props & ConnectToFormProps<string>) {
-  return <BaseRadioButtonController {...props} />;
-}
+export default function FormRadioButtonController(props: Props & FieldProps<string>) {
+  const fieldProps = useFormField<string, Props>(props, {
+    initialValue: '',
+    parse: toString,
+  });
 
-export default connectToForm<string>({
-  initialValue: '',
-  parse: toString,
-})(FormRadioButtonController);
+  return <BaseRadioButtonController {...fieldProps} />;
+}

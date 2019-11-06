@@ -1,14 +1,14 @@
 import React from 'react';
 import BaseInput, { Props } from '@airbnb/lunar/lib/components/Input';
-import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm';
 import { toString } from '../../helpers';
+import useFormField, { FieldProps } from '../../hooks/useFormField';
 
 /** `Input` automatically connected to the parent `Form`.  */
-export function FormInput(props: Props & ConnectToFormProps<string>) {
-  return <BaseInput {...props} />;
-}
+export default function FormInput(props: Props & FieldProps<string>) {
+  const fieldProps = useFormField<string, Props>(props, {
+    initialValue: '',
+    parse: toString,
+  });
 
-export default connectToForm<string>({
-  initialValue: '',
-  parse: toString,
-})(FormInput);
+  return <BaseInput {...fieldProps} />;
+}

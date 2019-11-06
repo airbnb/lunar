@@ -70,7 +70,7 @@ export default function useFormField<T, P = {}>(
     parse: defaultParse,
     valueProp = 'value',
   }: Options<T>,
-): P & FieldProvidedProps<T> {
+): Omit<P, keyof FieldProps<T>> & FieldProvidedProps<T> {
   const {
     defaultValue = initialValue,
     isEqual,

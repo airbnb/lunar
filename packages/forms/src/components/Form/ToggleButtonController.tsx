@@ -2,15 +2,15 @@ import React from 'react';
 import BaseToggleButtonController, {
   Props,
 } from '@airbnb/lunar/lib/components/ToggleButtonController';
-import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm';
+import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
 /** `ToggleButtonController` automatically connected to the parent `Form`.  */
-export function FormToggleButtonController(props: Props & ConnectToFormProps<string>) {
-  return <BaseToggleButtonController {...props} />;
-}
+export default function FormToggleButtonController(props: Props & FieldProps<string>) {
+  const fieldProps = useFormField<string, Props>(props, {
+    initialValue: '',
+    parse: toString,
+  });
 
-export default connectToForm<string>({
-  initialValue: '',
-  parse: toString,
-})(FormToggleButtonController);
+  return <BaseToggleButtonController {...fieldProps} />;
+}
