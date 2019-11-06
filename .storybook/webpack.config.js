@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('fast-glob');
 const webpack = require('webpack');
 const getChangelogFromGitHistory = require('./helpers/getChangelogFromGitHistory');
-const tsConfig = require('../tsconfig.options.json');
+const tsConfig = require('../tsconfig.json');
 
 module.exports = async ({ config }) => {
   const babelConfig = config.module.rules[0];
