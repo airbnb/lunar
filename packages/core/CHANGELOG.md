@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.40.1 - 2019-11-06
+
+#### 🐞 Fixes
+
+- **[DataTable]** Clear CellMeasureCache on sort change (#231) ([3333362](https://github.com/airbnb/lunar/tree/master/packages/core/commit/3333362)), closes [#231](https://github.com/airbnb/lunar/tree/master/packages/core/issues/231)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.40.0 - 2019-11-05
 
 #### 🚀 Updates
