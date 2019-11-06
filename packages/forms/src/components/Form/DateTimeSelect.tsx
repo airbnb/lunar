@@ -4,8 +4,8 @@ import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
 /** `DateTimeSelect` automatically connected to the parent `Form`.  */
-export default function FormDateTimeSelect(props: Props & FieldProps<string>) {
-  const fieldProps = useFormField<string, Props>(props, {
+export default function FormDateTimeSelect(props: FieldProps<string, Props>) {
+  const fieldProps = useFormField(props, {
     initialValue: new Date().toISOString(),
     parse: toString,
   });

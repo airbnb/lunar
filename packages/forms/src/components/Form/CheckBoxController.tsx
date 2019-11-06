@@ -4,8 +4,8 @@ import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
 /** `CheckBoxController` automatically connected to the parent `Form`.  */
-export default function FormCheckBoxController(props: Props & FieldProps<string[]>) {
-  const fieldProps = useFormField<string[], Props>(props, {
+export default function FormCheckBoxController(props: FieldProps<string[], Props>) {
+  const fieldProps = useFormField(props, {
     initialValue: [],
     multiple: true,
     parse: toString,

@@ -5,9 +5,9 @@ import { toString } from '../../helpers';
 
 /** `Multicomplete` automatically connected to the parent `Form`.  */
 export default function FormMulticomplete<T extends Item = Item>(
-  props: Props<T> & FieldProps<string[]>,
+  props: FieldProps<string[], Props<T>>,
 ) {
-  const fieldProps = useFormField<string[], Props<T>>(props, {
+  const fieldProps = useFormField(props, {
     initialValue: [],
     multiple: true,
     parse: toString,

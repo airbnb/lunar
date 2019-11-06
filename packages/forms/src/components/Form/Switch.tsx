@@ -4,8 +4,8 @@ import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toBool } from '../../helpers';
 
 /** `Switch` automatically connected to the parent `Form`.  */
-export default function FormSwitch(props: Props & FieldProps<boolean>) {
-  const fieldProps = useFormField<boolean, Props>(props, {
+export default function FormSwitch(props: FieldProps<boolean, Props>) {
+  const fieldProps = useFormField(props, {
     initialValue: false,
     parse: toBool,
     valueProp: 'checked',

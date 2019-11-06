@@ -6,8 +6,8 @@ import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
 /** `ToggleButtonController` automatically connected to the parent `Form`.  */
-export default function FormToggleButtonController(props: Props & FieldProps<string>) {
-  const fieldProps = useFormField<string, Props>(props, {
+export default function FormToggleButtonController(props: FieldProps<string, Props>) {
+  const fieldProps = useFormField(props, {
     initialValue: '',
     parse: toString,
   });

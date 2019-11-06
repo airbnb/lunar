@@ -4,8 +4,8 @@ import { toString } from '../../helpers';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 
 /** `Input` automatically connected to the parent `Form`.  */
-export default function FormInput(props: Props & FieldProps<string>) {
-  const fieldProps = useFormField<string, Props>(props, {
+export default function FormInput(props: FieldProps<string, Props>) {
+  const fieldProps = useFormField(props, {
     initialValue: '',
     parse: toString,
   });

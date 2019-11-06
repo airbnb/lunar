@@ -1,21 +1,13 @@
-import React, { useContext } from 'react';
-import { FormState } from 'final-form';
+import React from 'react';
 import BaseFormActions, { Props as BaseProps } from '@airbnb/lunar/lib/components/FormActions';
-import FormContext from '../FormContext';
+import useForm from '../../hooks/useForm';
 
 export type Props = Omit<BaseProps, 'disabled' | 'processing'>;
 
 /** `FormActions` automatically connected to the parent `Form`. */
 export default function FormActions(props: Props) {
-  const context = useContext(FormContext);
-  const baseProps: BaseProps = { ...props };
+  const form = useForm();
+  const { submitting, valid } = form.getState();
 
-  if (context) {
-    const { submitting, valid }: FormState<unknown> = context.getState();
-
-    baseProps.disabled = !valid;
-    baseProps.processing = submitting;
-  }
-
-  return <BaseFormActions {...baseProps} />;
+  return <BaseFormActions {...props} disabled={!valid} processing={submitting} />;
 }
