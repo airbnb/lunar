@@ -61,7 +61,7 @@ export default withStyles(({ breakpoints, color, unit }) => ({
 
   main: {
     flexGrow: 1,
-    padding: unit * 2,
+    padding: `${unit * 2}px ${unit * 3}px`,
     background: color.accent.bgHover,
   },
 
