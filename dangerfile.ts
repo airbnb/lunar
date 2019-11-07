@@ -1,7 +1,7 @@
 import { markdown } from 'danger';
-import fs from 'fs';
-import fetch from 'node-fetch';
-import size from 'filesize';
+import * as fs from 'fs';
+import * as fetch from 'node-fetch';
+import * as size from 'filesize';
 import {
   checkForInvalidLocks,
   checkForConventionalPrefix,
