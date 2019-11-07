@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseTextArea, { Props } from '@airbnb/lunar/lib/components/TextArea';
+import TextArea, { Props } from '@airbnb/lunar/lib/components/TextArea';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
@@ -10,5 +10,5 @@ export default function FormTextArea(props: FieldProps<string, Props>) {
     parse: toString,
   });
 
-  return <BaseTextArea {...fieldProps} />;
+  return <TextArea {...fieldProps} />;
 }

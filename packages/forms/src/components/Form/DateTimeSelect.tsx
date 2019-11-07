@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseDateTimeSelect, { Props } from '@airbnb/lunar/lib/components/DateTimeSelect';
+import DateTimeSelect, { Props } from '@airbnb/lunar/lib/components/DateTimeSelect';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
@@ -10,5 +10,5 @@ export default function FormDateTimeSelect(props: FieldProps<string, Props>) {
     parse: toString,
   });
 
-  return <BaseDateTimeSelect {...fieldProps} />;
+  return <DateTimeSelect {...fieldProps} />;
 }

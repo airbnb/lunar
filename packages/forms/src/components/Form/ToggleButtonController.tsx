@@ -1,7 +1,5 @@
 import React from 'react';
-import BaseToggleButtonController, {
-  Props,
-} from '@airbnb/lunar/lib/components/ToggleButtonController';
+import ToggleButtonController, { Props } from '@airbnb/lunar/lib/components/ToggleButtonController';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
@@ -12,5 +10,5 @@ export default function FormToggleButtonController(props: FieldProps<string, Pro
     parse: toString,
   });
 
-  return <BaseToggleButtonController {...fieldProps} />;
+  return <ToggleButtonController {...fieldProps} />;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseAutocomplete, { Props, Item } from '@airbnb/lunar/lib/components/Autocomplete';
+import Autocomplete, { Props, Item } from '@airbnb/lunar/lib/components/Autocomplete';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
@@ -12,5 +12,5 @@ export default function FormAutocomplete<T extends Item = Item>(
     parse: toString,
   });
 
-  return <BaseAutocomplete<T> {...fieldProps} />;
+  return <Autocomplete<T> {...fieldProps} />;
 }

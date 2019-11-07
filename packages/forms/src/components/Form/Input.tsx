@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseInput, { Props } from '@airbnb/lunar/lib/components/Input';
+import Input, { Props } from '@airbnb/lunar/lib/components/Input';
 import { toString } from '../../helpers';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 
@@ -10,5 +10,5 @@ export default function FormInput(props: FieldProps<string, Props>) {
     parse: toString,
   });
 
-  return <BaseInput {...fieldProps} />;
+  return <Input {...fieldProps} />;
 }

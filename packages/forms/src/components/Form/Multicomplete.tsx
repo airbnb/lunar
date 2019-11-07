@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseMulticomplete, { Props, Item } from '@airbnb/lunar/lib/components/Multicomplete';
+import Multicomplete, { Props, Item } from '@airbnb/lunar/lib/components/Multicomplete';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
@@ -13,5 +13,5 @@ export default function FormMulticomplete<T extends Item = Item>(
     parse: toString,
   });
 
-  return <BaseMulticomplete<T> {...fieldProps} />;
+  return <Multicomplete<T> {...fieldProps} />;
 }

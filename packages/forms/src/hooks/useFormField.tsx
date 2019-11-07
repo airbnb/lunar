@@ -13,6 +13,8 @@ export type Options<T> = {
 
 export type FieldProps<T, P> = Omit<P, 'defaultValue' | 'onChange'> & FieldInternalProps<T>;
 
+export type FieldReturnProps<T, P> = Omit<P, keyof FieldInternalProps<T>> & FieldProvidedProps<T>;
+
 export interface FieldInternalProps<T> extends Field<T> {
   onBatchChange?: (value: T) => object | undefined;
   onBlur?: (event: React.FocusEvent) => void;
@@ -72,7 +74,7 @@ export default function useFormField<T, P>(
     parse: defaultParse,
     valueProp = 'value',
   }: Options<T>,
-): Omit<P, keyof FieldInternalProps<T>> & FieldProvidedProps<T> {
+): FieldReturnProps<T, P> {
   const {
     defaultValue = initialValue,
     isEqual,

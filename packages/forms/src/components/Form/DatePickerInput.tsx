@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseDatePickerInput, { Props } from '@airbnb/lunar/lib/components/DatePickerInput';
+import DatePickerInput, { Props } from '@airbnb/lunar/lib/components/DatePickerInput';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 
 /** `DatePickerInput` automatically connected to the parent `Form`.  */
@@ -16,5 +16,5 @@ export default function FormDatePickerInput(
     initialValue: '',
   });
 
-  return <BaseDatePickerInput {...fieldProps} />;
+  return <DatePickerInput {...fieldProps} />;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseSelect, { Props } from '@airbnb/lunar/lib/components/Select';
+import Select, { Props } from '@airbnb/lunar/lib/components/Select';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
@@ -10,5 +10,5 @@ export default function FormSelect(props: FieldProps<string, Props>) {
     parse: toString,
   });
 
-  return <BaseSelect {...fieldProps} />;
+  return <Select {...fieldProps} />;
 }

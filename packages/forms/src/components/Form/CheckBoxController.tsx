@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseCheckBoxController, { Props } from '@airbnb/lunar/lib/components/CheckBoxController';
+import CheckBoxController, { Props } from '@airbnb/lunar/lib/components/CheckBoxController';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
@@ -11,5 +11,5 @@ export default function FormCheckBoxController(props: FieldProps<string[], Props
     parse: toString,
   });
 
-  return <BaseCheckBoxController {...fieldProps} />;
+  return <CheckBoxController {...fieldProps} />;
 }

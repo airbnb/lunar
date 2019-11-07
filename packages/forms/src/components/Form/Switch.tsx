@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseSwitch, { Props } from '@airbnb/lunar/lib/components/Switch';
+import Switch, { Props } from '@airbnb/lunar/lib/components/Switch';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toBool } from '../../helpers';
 
@@ -11,5 +11,5 @@ export default function FormSwitch(props: FieldProps<boolean, Props>) {
     valueProp: 'checked',
   });
 
-  return <BaseSwitch {...fieldProps} />;
+  return <Switch {...fieldProps} />;
 }
