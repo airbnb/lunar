@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FieldState, fieldSubscriptionItems } from 'final-form';
 import { Parse, Field, DefaultValue } from '../types';
 import useForm from './useForm';
@@ -93,6 +93,7 @@ export default function useFormField<T, P>(
     ...restProps
   } = props;
   const form = useForm();
+  const fieldName = useRef(name);
   const [field, setField] = useState<FieldState<T>>({
     change() {},
     blur() {},
@@ -107,8 +108,13 @@ export default function useFormField<T, P>(
   // Register field in parent form
   useEffect(() => {
     let mounted = true;
+    let unregister: () => void;
 
-    const unregister = form.register(
+    if (name !== fieldName.current && unregister) {
+      unregister();
+    }
+
+    unregister = form.register(
       {
         defaultValue,
         isEqual,
@@ -140,6 +146,8 @@ export default function useFormField<T, P>(
         unregister();
       }
     };
+    // We only want to register/unregister fields when the name changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
   // Handlers
