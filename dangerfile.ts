@@ -34,20 +34,12 @@ async function comparePreviousBuildSizes() {
     prevSizes = nextSizes;
   }
 
-  const output: string[] = [
-    '### Size Changes',
-    'Compared to master. File sizes are unminified and ungzipped.',
-    ' ',
-    '| Package | Diff | ESM | Prev ESM | CJS | Prev CJS |',
-    '| --- | --- | --- | --- | --- | --- |',
-  ];
-
   function calculateDiff(prev: number, next: number): number {
     return (next - prev) / prev;
   }
 
   function formatDiff(diff: number): string {
-    if (!isFinite(diff)) {
+    if (!isFinite(diff) || diff === 0 || diff === 0.0) {
       return 'N/A';
     }
 
@@ -68,6 +60,13 @@ async function comparePreviousBuildSizes() {
     return (prevSizes[name] && prevSizes[name][type]) || 0;
   }
 
+  const output: string[] = [
+    '### Size Changes',
+    '| Package | Diff | ESM | Prev ESM | CJS | Prev CJS |',
+    '| --- | --- | --- | --- | --- | --- |',
+  ];
+  const rows = [];
+
   Object.entries(nextSizes).forEach(([pkgName, stats]) => {
     const prevEsm = getPrevSize(pkgName, 'esm');
     const prevLib = getPrevSize(pkgName, 'lib');
@@ -81,8 +80,14 @@ async function comparePreviousBuildSizes() {
       prevLib === 0 ? 'N/A' : size(prevLib),
     ];
 
-    output.push(`| ${row.join(' | ')} |`);
+    rows.push(`| ${row.join(' | ')} |`);
   });
+
+  // Sort rows before joining to output
+  rows.sort();
+
+  output.push(...rows);
+  output.push('> Compared to master. File sizes are unminified and ungzipped.');
 
   markdown(output.join('\n'));
 }
