@@ -12,7 +12,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - uses: ./.github/actions/setup
+      - name: Building project
+        uses: ./.github/actions/setup
       - name: Build Storybook
         run: yarn run storybook:build
       - name: Publish Storybook to GitHub Pages

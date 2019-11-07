@@ -31,7 +31,7 @@ jobs:
       script: yarn run lint:errors
       node_js: '12'
     - stage: Release Packages
-      script: skip
+      script: yarn run build:sizes
       node_js: '12'
       if: branch = master
       before_deploy:
@@ -40,6 +40,7 @@ jobs:
         - git remote set-url origin "https://${GH_TOKEN}@github.com/airbnb/lunar.git" > /dev/null
           2>&1
         - git checkout master
+        - git add packages/sizes.json
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
       deploy:
         provider: script

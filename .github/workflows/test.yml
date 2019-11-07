@@ -13,7 +13,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: ./.github/actions/setup
+      - name: Building project
+        uses: ./.github/actions/setup
       - name: Run Jest
         run: yarn run jest:coverage
       - name: Run ESLint
@@ -27,7 +28,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - uses: ./.github/actions/setup
+      - name: Building project
+        uses: ./.github/actions/setup
       - name: Using previous SHA
         if: contains(github.event.before, '0000000000') == false
         run: echo ::set-env name=PREVIOUS_SHA::"${{ github.event.before }}"
