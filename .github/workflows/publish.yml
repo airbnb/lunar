@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 12
       - name: Building project
-        uses: .github/actions/setup
+        uses: ./.github/actions/setup
       - name: Build Storybook
         run: yarn run storybook:build
       - name: Publish Storybook to GitHub Pages

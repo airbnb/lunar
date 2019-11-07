@@ -10,7 +10,7 @@ jobs:
         with:
           node-version: 12
       - name: Building project
-        uses: .github/actions/setup
+        uses: ./.github/actions/setup
       - name: Computing build sizes
         run: yarn run build:sizes
       - name: Run Danger CI
