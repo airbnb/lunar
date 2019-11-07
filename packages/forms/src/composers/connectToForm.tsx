@@ -8,28 +8,27 @@ import useFormField, {
   FieldProvidedProps,
 } from '../hooks/useFormField';
 
-export type Options<T> = BaseOptions<T>;
-export type ConnectToFormProps<T> = FieldProvidedProps<T>;
-export type ConnectToFormWrapperProps<T> = FieldInternalProps<T>;
-
 if (__DEV__) {
+  // eslint-disable-next-line no-console
   console.warn(
     '`connectToForm` composer is deprecated. Please migrate to the `useFormField` hook.',
   );
 }
 
+export type Options<T> = BaseOptions<T>;
+export type ConnectToFormProps<T> = FieldProvidedProps<T>;
+export type ConnectToFormWrapperProps<T> = FieldInternalProps<T>;
+
 export default function connectToForm<T>(options: Options<T>) /* infer */ {
   return function connectToFormFactory<P>(
-    WrappedComponent: React.ComponentType<FieldProps<T, P>>,
-  ): React.ComponentType<FieldReturnProps<T, P>> {
+    WrappedComponent: React.ComponentType<FieldReturnProps<T, P>>,
+  ): React.ComponentType<FieldProps<T, P>> {
     function ConnectToForm(props: FieldProps<T, P>) {
       const fieldProps = useFormField<T, P>(props, options);
 
-      // @ts-ignore
       return <WrappedComponent {...fieldProps} />;
     }
 
-    // @ts-ignore
     return finishHOC('connectToForm', ConnectToForm, WrappedComponent);
   };
 }

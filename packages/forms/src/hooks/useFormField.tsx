@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { FieldState, fieldSubscriptionItems } from 'final-form';
+import { FieldState, fieldSubscriptionItems, Unsubscribe } from 'final-form';
 import { Parse, Field, DefaultValue } from '../types';
 import useForm from './useForm';
 
@@ -93,7 +93,6 @@ export default function useFormField<T, P>(
     ...restProps
   } = props;
   const form = useForm();
-  const fieldName = useRef(name);
   const [field, setField] = useState<FieldState<T>>({
     change() {},
     blur() {},
@@ -104,17 +103,19 @@ export default function useFormField<T, P>(
     name,
     value: defaultValue!,
   });
+  const fieldName = useRef(name);
+  const unregister = useRef<Unsubscribe>();
 
   // Register field in parent form
   useEffect(() => {
     let mounted = true;
-    let unregister: () => void;
 
-    if (name !== fieldName.current && unregister) {
-      unregister();
+    // If name changes, unregister old and register new
+    if (name !== fieldName.current && unregister.current) {
+      unregister.current();
     }
 
-    unregister = form.register(
+    unregister.current = form.register(
       {
         defaultValue,
         isEqual,
@@ -142,61 +143,59 @@ export default function useFormField<T, P>(
     return () => {
       mounted = false;
 
-      if (unregisterOnUnmount) {
-        unregister();
+      if (unregisterOnUnmount && unregister.current) {
+        unregister.current();
       }
     };
     // We only want to register/unregister fields when the name changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
-  // Handlers
-  const handleBlur = (event: React.FocusEvent) => {
-    field.blur();
+  // Change value in form if default value changes
+  useEffect(() => {
+    if (defaultValue) {
+      setField(prevField => ({
+        ...prevField,
+        value: defaultValue,
+      }));
 
-    if (onBlur) {
-      onBlur(event);
+      form.change(name, defaultValue);
     }
-  };
+    // We only want to update value when default value changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue]);
 
-  const handleChange = (
-    checkedOrValue: T,
-    valueOrEvent: T | React.ChangeEvent<unknown>,
-    event?: React.ChangeEvent,
-  ) => {
-    form.change(name, checkedOrValue, onBatchChange ? onBatchChange(checkedOrValue) : {});
-
-    if (onChange) {
-      onChange(checkedOrValue, valueOrEvent, event);
-    }
-  };
-
-  const handleFocus = (event: React.FocusEvent) => {
-    field.focus();
-
-    if (onFocus) {
-      onFocus(event);
-    }
-  };
-
-  // Return new props
-  const nextProps: FieldProvidedProps<T> = {
-    name,
-    invalid: field.touched ? field.invalid! : false,
+  return {
+    ...((restProps as unknown) as P),
     errorMessage: field.touched ? formatError(field.error) : '',
     field,
-    onBlur: handleBlur,
-    onChange: handleChange,
-    onFocus: handleFocus,
-  };
+    invalid: field.touched ? field.invalid! : false,
+    name,
+    onBlur(event: React.FocusEvent) {
+      field.blur();
 
-  if (!ignoreValue) {
-    nextProps[valueProp as 'value'] = formatValue(field.value, multiple, parse) as T;
-  }
+      if (onBlur) {
+        onBlur(event);
+      }
+    },
+    onChange(
+      checkedOrValue: T,
+      valueOrEvent: T | React.ChangeEvent<unknown>,
+      event?: React.ChangeEvent,
+    ) {
+      form.change(name, checkedOrValue, onBatchChange ? onBatchChange(checkedOrValue) : {});
 
-  // @ts-ignore
-  return {
-    ...restProps,
-    ...nextProps,
+      if (onChange) {
+        onChange(checkedOrValue, valueOrEvent, event);
+      }
+    },
+    onFocus(event: React.FocusEvent) {
+      field.focus();
+
+      if (onFocus) {
+        onFocus(event);
+      }
+    },
+    [valueProp as 'value']: ignoreValue ? undefined : formatValue(field.value, multiple, parse),
   };
 }

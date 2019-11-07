@@ -1,7 +1,6 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import connectToForm, {
-  PROP_NAMES,
   ConnectToFormWrapperProps,
   ConnectToFormProps,
 } from '../../src/composers/connectToForm';
@@ -74,16 +73,6 @@ describe('connectToForm()', () => {
     const wrapper = unwrap(<HocInitialValue name="foo" validator={() => {}} />);
 
     expect(wrapper.find(BaseField).prop('value')).toBe(123);
-  });
-
-  it('doesnt pass field props to wrapped component', () => {
-    const wrapper = unwrap(<Hoc {...props} />);
-
-    PROP_NAMES.forEach(name => {
-      if (name !== 'name' && name.slice(0, 2) !== 'on') {
-        expect(wrapper.find(BaseField).prop(name)).toBeUndefined();
-      }
-    });
   });
 
   describe('componentDidMount()', () => {
