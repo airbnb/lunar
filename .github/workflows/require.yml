@@ -10,6 +10,8 @@ jobs:
         with:
           node-version: 12
       - uses: ./.github/actions/setup
+      - name: Computing Sizes
+        run: yarn run build:sizes
       - name: Run Danger CI
         run: yarn danger ci --use-github-checks
         env:
