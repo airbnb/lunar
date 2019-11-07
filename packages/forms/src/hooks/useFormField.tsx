@@ -152,18 +152,21 @@ export default function useFormField<T, P>(
   }, [name]);
 
   // Change value in form if default value changes
-  useEffect(() => {
-    if (defaultValue) {
-      setField(prevField => ({
-        ...prevField,
-        value: defaultValue,
-      }));
+  useEffect(
+    () => {
+      if (defaultValue) {
+        setField(prevField => ({
+          ...prevField,
+          value: defaultValue,
+        }));
 
-      form.change(name, defaultValue);
-    }
+        form.change(name, defaultValue);
+      }
+    },
     // We only want to update value when default value changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultValue]);
+    Array.isArray(defaultValue) ? [...defaultValue] : [defaultValue],
+  );
 
   return {
     ...((restProps as unknown) as P),

@@ -8,7 +8,7 @@ import useFormField, {
   FieldProvidedProps,
 } from '../hooks/useFormField';
 
-if (__DEV__) {
+if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line no-console
   console.warn(
     '`connectToForm` composer is deprecated. Please migrate to the `useFormField` hook.',
