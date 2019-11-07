@@ -45,15 +45,14 @@ async function comparePreviousBuildSizes() {
 
     const sum = diff * 100;
     const percent = sum.toFixed(1);
-    const large = sum > 2.5;
 
     // Smaller
     if (percent.startsWith('-')) {
-      return `${large ? ':small_red_triangle_down: ' : ''}${percent}%`;
+      return `${sum > -2.5 ? ':small_red_triangle_down: ' : ''}${percent}%`;
     }
 
     // Larger
-    return `${large ? ':small_red_triangle: ' : ''}+${percent}%`;
+    return `${sum > 2.5 ? ':small_red_triangle: ' : ''}+${percent}%`;
   }
 
   function getPrevSize(name: string, type: string) {
