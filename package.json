@@ -29,7 +29,7 @@
     "release:version": "lerna version --yes --conventional-commits --changelog-preset conventional-changelog-beemo --create-release github --push",
     "sg": "NODE_ENV=development yarn run storybook",
     "test": "yarn run jest:coverage",
-    "ts": "ts-node --skip-project",
+    "ts": "ts-node --project ./tsconfig.node.json",
     "type": "nimbus typescript --build --reference-workspaces",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook"

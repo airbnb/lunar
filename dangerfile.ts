@@ -62,7 +62,7 @@ async function comparePreviousBuildSizes() {
   const output: string[] = [
     '### Size Changes',
     '| Package | Diff | ESM | Prev ESM | CJS | Prev CJS |',
-    '| --- | --- | --- | --- | --- | --- |',
+    '| --- | ---: | ---: | ---: | ---: | ---: |',
   ];
   const rows = [];
 

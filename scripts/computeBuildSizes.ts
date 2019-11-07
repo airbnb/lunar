@@ -1,6 +1,6 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as glob from 'fast-glob';
+import fs from 'fs';
+import path from 'path';
+import glob from 'fast-glob';
 
 async function getTotalSize(fileGlob: string, cwd: string): Promise<number> {
   const files = await glob(fileGlob, { absolute: true, cwd, onlyFiles: true });
