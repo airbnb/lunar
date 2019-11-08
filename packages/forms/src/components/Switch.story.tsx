@@ -18,7 +18,7 @@ export function connectedToTheParentForm() {
         return Promise.resolve();
       }}
     >
-      <Switch name="field" label="Label" validator={() => {}} />
+      <Switch name="field" label="Label" validator={() => {}} onChange={action('onChange')} />
     </Form>
   );
 }

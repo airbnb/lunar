@@ -18,7 +18,7 @@ export function connectedToTheParentForm() {
         return Promise.resolve();
       }}
     >
-      <Select name="field" label="Label" validator={() => {}}>
+      <Select name="field" label="Label" validator={() => {}} onChange={action('onChange')}>
         <option value="foo">Foo</option>
         <option value="bar">Bar</option>
         <option value="baz">Baz</option>

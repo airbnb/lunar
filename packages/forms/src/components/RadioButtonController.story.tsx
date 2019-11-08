@@ -18,7 +18,12 @@ export function connectedToTheParentForm() {
         return Promise.resolve();
       }}
     >
-      <RadioButtonController name="field" label="Label" validator={() => {}}>
+      <RadioButtonController
+        name="field"
+        label="Label"
+        validator={() => {}}
+        onChange={action('onChange')}
+      >
         {RadioButton => (
           <div>
             <RadioButton label="❤️ Red" value="red" />
