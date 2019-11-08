@@ -31,7 +31,9 @@ async function comparePreviousBuildSizes() {
     );
 
     prevSizes = await request.json();
-  } catch {
+  } catch (error) {
+    console.log(error.message);
+
     prevSizes = nextSizes;
     sameBuild = true;
   }
@@ -50,7 +52,7 @@ async function comparePreviousBuildSizes() {
 
     // Smaller
     if (percent.startsWith('-')) {
-      return `${sum < 10 ? ':small_red_triangle_down: ' : ''}${percent}%`;
+      return `${sum < -10 ? ':small_red_triangle_down: ' : ''}${percent}%`;
     }
 
     // Larger
@@ -91,7 +93,7 @@ async function comparePreviousBuildSizes() {
   output.push('> Compared to master. File sizes are unminified and ungzipped.');
 
   // Show dumps for easier debugging
-  if (sameBuild) {
+  if (!sameBuild) {
     output.push(`<details>
   <summary>View raw build stats.</summary>
   Previous (master)
