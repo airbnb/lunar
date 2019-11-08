@@ -2,6 +2,8 @@ import React from 'react';
 import DatePickerInput, { Props } from '@airbnb/lunar/lib/components/DatePickerInput';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 
+// The `react-day-picker` and `final-form` handlers collide a little bit,
+// so let's delay the forms to run after the picker.
 function wrapHandler<T>(cb: (event: T) => void) {
   return (event: T) => {
     setTimeout(() => {

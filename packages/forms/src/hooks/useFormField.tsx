@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FieldState, fieldSubscriptionItems, Unsubscribe } from 'final-form';
+import shallowEqual from 'shallowequal';
 import { Parse, Field, DefaultValue } from '../types';
 import useForm from './useForm';
 
@@ -104,6 +105,7 @@ export default function useFormField<T, P>(
     value: defaultValue!,
   });
   const fieldName = useRef(name);
+  const fieldDefaultValue = useRef(defaultValue);
   const unregister = useRef<Unsubscribe>();
 
   // Register field in parent form
@@ -150,6 +152,19 @@ export default function useFormField<T, P>(
     // We only want to register/unregister fields when the name changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
+
+  // Change value in form if default value changes
+  useEffect(
+    () => {
+      if (defaultValue && !shallowEqual(defaultValue, fieldDefaultValue.current)) {
+        form.change(name, defaultValue);
+        fieldDefaultValue.current = defaultValue;
+      }
+    },
+    // We only want to update the value when the default value changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    Array.isArray(defaultValue) ? [...defaultValue] : [defaultValue],
+  );
 
   return {
     ...((restProps as unknown) as P),

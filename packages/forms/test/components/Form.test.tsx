@@ -537,7 +537,7 @@ describe('<Form />', () => {
         validator() {},
       };
       const fields = { foo: { data: {} } };
-      const formState = { initialValues: {}, values: {} };
+      const formState = { values: {} };
 
       // @ts-ignore
       instance.setFieldConfig(['foo', config], { fields, formState });
@@ -545,16 +545,12 @@ describe('<Form />', () => {
       expect(fields).toEqual({
         foo: {
           data: { config },
-          initial: '123',
           value: '123',
           touched: true,
         },
       });
 
       expect(formState).toEqual({
-        initialValues: {
-          foo: '123',
-        },
         values: {
           foo: '123',
         },

@@ -121,7 +121,7 @@ export default class DatePickerInput extends React.Component<Props, State> {
     return (
       <FormField {...fieldProps} id={id}>
         <PrivatePickerInput
-          keepFocus
+          keepFocus={false}
           value={restProps.value}
           dayPickerProps={pickerProps}
           dropdownProps={dropdownProps}
