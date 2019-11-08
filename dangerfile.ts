@@ -95,11 +95,17 @@ async function comparePreviousBuildSizes() {
   // Show dumps for easier debugging
   if (!sameBuild) {
     output.push(`<details>
-  <summary>View raw build stats.</summary>
-  Previous (master)
-  <code>${JSON.stringify(prevSizes)}</code>
-  Next
-  <code>${JSON.stringify(nextSizes)}</code>
+<summary>View raw build stats</summary>
+
+#### Previous (master)
+\`\`\`json
+${JSON.stringify(prevSizes, null, 2)}
+\`\`\`
+
+#### Current
+\`\`\`json
+${JSON.stringify(nextSizes, null, 2)}
+\`\`\`
 </details>`);
   }
 
