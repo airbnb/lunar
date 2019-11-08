@@ -1,127 +1,11 @@
 import React from 'react';
 import IconRecord from '@airbnb/lunar-icons/lib/interface/IconRecord';
 import IconRemove from '@airbnb/lunar-icons/lib/interface/IconRemove';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { InputProps } from './FormInput';
 import buildInputStyles from '../../themes/buildInputStyles';
 
-export type Props = InputProps & {
-  /** Render the field as a large clickable button. */
-  button?: boolean;
-  /** Content to display when in button mode. Defaults to the current label bolded followed by the label description. */
-  children?: React.ReactNode;
-  /** Hide the native radio button label. */
-  hideLabel?: boolean;
-  /** Callback fired when the value changes. */
-  onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
-  /** Mark the checkbox as greyed out with a dash to indicate an indeterminate state. */
-  indeterminate?: boolean;
-};
-
-class BaseRadioButton extends React.Component<Props & WithStylesProps> {
-  static defaultProps = {
-    checked: false,
-    indeterminate: false,
-  };
-
-  private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.onChange(event.currentTarget.checked, event.currentTarget.value, event);
-  };
-
-  renderRadioButton = () => {
-    const {
-      cx,
-      button,
-      checked,
-      children,
-      compact,
-      disabled,
-      hideLabel,
-      id,
-      invalid,
-      indeterminate,
-      styles,
-      ...restProps
-    } = this.props;
-
-    return (
-      <label htmlFor={id} className={cx(styles.radio, hideLabel && styles.radio_hideLabel)}>
-        <FormInput
-          {...restProps}
-          hidden
-          optional
-          checked={checked}
-          disabled={disabled}
-          id={id}
-          invalid={invalid}
-          tagName="input"
-          type="radio"
-          onChange={this.handleChange}
-        />
-
-        <span
-          className={cx(
-            styles.input,
-            indeterminate && styles.input_indeterminate,
-            checked && styles.input_checked,
-            invalid && styles.input_invalid,
-            disabled && styles.input_disabled,
-          )}
-        >
-          {checked && (
-            <span className={cx(styles.bullet)}>
-              <IconRecord decorative size="1.35em" />
-            </span>
-          )}
-          {indeterminate && (
-            <span className={cx(styles.indeterminate)}>
-              <IconRemove decorative size="1.65em" />
-            </span>
-          )}
-        </span>
-      </label>
-    );
-  };
-
-  render() {
-    const {
-      cx,
-      button,
-      checked,
-      children,
-      compact,
-      disabled,
-      id,
-      invalid,
-      indeterminate,
-      styles,
-    } = this.props;
-
-    if (!button) {
-      return this.renderRadioButton();
-    }
-
-    return (
-      <label
-        htmlFor={id}
-        className={cx(
-          styles.button,
-          indeterminate && styles.input_indeterminate,
-          checked && styles.button_checked,
-          invalid && styles.button_invalid,
-          disabled && styles.button_disabled,
-          compact && styles.button_compact,
-        )}
-      >
-        {this.renderRadioButton()}
-
-        <div className={cx(styles.children)}>{children}</div>
-      </label>
-    );
-  }
-}
-
-export default withStyles(theme => {
+const styleSheet: StyleSheet = theme => {
   const styles = buildInputStyles(theme);
 
   return {
@@ -182,4 +66,97 @@ export default withStyles(theme => {
       width: '100%',
     },
   };
-})(BaseRadioButton);
+};
+
+export type Props = InputProps & {
+  /** Render the field as a large clickable button. */
+  button?: boolean;
+  /** Content to display when in button mode. Defaults to the current label bolded followed by the label description. */
+  children?: React.ReactNode;
+  /** Hide the native radio button label. */
+  hideLabel?: boolean;
+  /** Callback fired when the value changes. */
+  onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Mark the checkbox as greyed out with a dash to indicate an indeterminate state. */
+  indeterminate?: boolean;
+};
+
+export default function BaseRadioButton({
+  button,
+  checked,
+  children,
+  compact,
+  disabled,
+  hideLabel,
+  id,
+  invalid,
+  indeterminate,
+  onChange,
+  ...restProps
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(event.currentTarget.checked, event.currentTarget.value, event);
+  };
+
+  const radioButton = (
+    <label htmlFor={id} className={cx(styles.radio, hideLabel && styles.radio_hideLabel)}>
+      <FormInput
+        {...restProps}
+        hidden
+        optional
+        checked={checked}
+        disabled={disabled}
+        id={id}
+        invalid={invalid}
+        tagName="input"
+        type="radio"
+        onChange={handleChange}
+      />
+
+      <span
+        className={cx(
+          styles.input,
+          indeterminate && styles.input_indeterminate,
+          checked && styles.input_checked,
+          invalid && styles.input_invalid,
+          disabled && styles.input_disabled,
+        )}
+      >
+        {checked && (
+          <span className={cx(styles.bullet)}>
+            <IconRecord decorative size="1.35em" />
+          </span>
+        )}
+        {indeterminate && (
+          <span className={cx(styles.indeterminate)}>
+            <IconRemove decorative size="1.65em" />
+          </span>
+        )}
+      </span>
+    </label>
+  );
+
+  if (!button) {
+    return radioButton;
+  }
+
+  return (
+    <label
+      htmlFor={id}
+      className={cx(
+        styles.button,
+        indeterminate && styles.input_indeterminate,
+        checked && styles.button_checked,
+        invalid && styles.button_invalid,
+        disabled && styles.button_disabled,
+        compact && styles.button_compact,
+      )}
+    >
+      {radioButton}
+
+      <div className={cx(styles.children)}>{children}</div>
+    </label>
+  );
+}

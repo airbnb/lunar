@@ -1,21 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`transformer() replaces a tag with a link 1`] = `
-<Link
+<Text
   baseline={true}
-  href="http://airbnb.com"
-  openInNewWindow={true}
-  withStylesClasses={
-    Array [
-      "link",
-      "link_block",
-      "link_baseline",
-      "link_inverted",
-      "link_muted",
-      "link_disabled",
-    ]
-  }
+  inline={true}
 >
-  Airbnb
-</Link>
+  <ButtonOrLink
+    className="link link_baseline"
+    href="http://airbnb.com"
+    openInNewWindow={true}
+  >
+    Airbnb
+  </ButtonOrLink>
+</Text>
 `;

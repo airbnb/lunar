@@ -1,20 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EmailFactory renders a link 1`] = `
-<Link
+<Text
   baseline={true}
-  href="mailto:email@airbnb.com"
-  withStylesClasses={
-    Array [
-      "link",
-      "link_block",
-      "link_baseline",
-      "link_inverted",
-      "link_muted",
-      "link_disabled",
-    ]
-  }
+  inline={true}
+  large={false}
+  small={false}
 >
-  email@airbnb.com
-</Link>
+  <ButtonOrLink
+    className="link link_baseline"
+    href="mailto:email@airbnb.com"
+  >
+    email@airbnb.com
+  </ButtonOrLink>
+</Text>
 `;

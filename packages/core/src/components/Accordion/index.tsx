@@ -2,6 +2,7 @@ import React from 'react';
 import uuid from 'uuid/v4';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Item, { Props as AccordionItemProps } from './Item';
+import { styleSheet } from './styles';
 
 export { Item };
 
@@ -69,17 +70,4 @@ export class Accordion extends React.Component<Props & WithStylesProps, State> {
   }
 }
 
-export default withStyles(({ color }) => ({
-  container: {
-    borderBottom: '1px solid transparent',
-    borderTop: '1px solid transparent',
-
-    ':empty': {
-      display: 'none',
-    },
-  },
-
-  container_bordered: {
-    borderBottomColor: color.accent.border,
-  },
-}))(Accordion);
+export default withStyles(styleSheet)(Accordion);

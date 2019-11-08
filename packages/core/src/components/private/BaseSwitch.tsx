@@ -1,67 +1,10 @@
 import React from 'react';
 import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { InputProps } from './FormInput';
 import buildInputStyles from '../../themes/buildInputStyles';
 
-export type Props = InputProps & {
-  /** Whether the switch is checked. */
-  checked?: boolean;
-  /** Unique identifier. */
-  id: string;
-  /** Callback fired when the value changes. */
-  onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
-};
-
-class BaseSwitch extends React.Component<Props & WithStylesProps> {
-  static defaultProps = {
-    checked: false,
-  };
-
-  private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.onChange(event.currentTarget.checked, event.currentTarget.value, event);
-  };
-
-  render() {
-    const { cx, checked, disabled, id, invalid, styles, ...restProps } = this.props;
-
-    return (
-      <label htmlFor={id} className={cx(styles.switch)}>
-        <FormInput
-          {...restProps}
-          hidden
-          optional
-          checked={checked}
-          disabled={disabled}
-          id={id}
-          invalid={invalid}
-          tagName="input"
-          type="checkbox"
-          onChange={this.handleChange}
-        />
-
-        <span
-          className={cx(
-            styles.input,
-            checked && styles.input_checked,
-            invalid && styles.input_invalid,
-            disabled && styles.input_disabled,
-          )}
-        >
-          <span className={cx(styles.toggle, checked && styles.toggle_checked)}>
-            {checked && (
-              <span className={cx(styles.checkmark)}>
-                <IconCheck decorative size="1.5em" />
-              </span>
-            )}
-          </span>
-        </span>
-      </label>
-    );
-  }
-}
-
-export default withStyles(theme => {
+const styleSheet: StyleSheet = theme => {
   const { color, ui, unit } = theme;
   const styles = buildInputStyles(theme);
   const width = unit * 5;
@@ -135,4 +78,62 @@ export default withStyles(theme => {
       left: 2.5,
     },
   };
-})(BaseSwitch);
+};
+
+export type Props = InputProps & {
+  /** Whether the switch is checked. */
+  checked?: boolean;
+  /** Unique identifier. */
+  id: string;
+  /** Callback fired when the value changes. */
+  onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+export default function BaseSwitch({
+  checked,
+  disabled,
+  id,
+  invalid,
+  onChange,
+  ...restProps
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(event.currentTarget.checked, event.currentTarget.value, event);
+  };
+
+  return (
+    <label htmlFor={id} className={cx(styles.switch)}>
+      <FormInput
+        {...restProps}
+        hidden
+        optional
+        checked={checked}
+        disabled={disabled}
+        id={id}
+        invalid={invalid}
+        tagName="input"
+        type="checkbox"
+        onChange={handleChange}
+      />
+
+      <span
+        className={cx(
+          styles.input,
+          checked && styles.input_checked,
+          invalid && styles.input_invalid,
+          disabled && styles.input_disabled,
+        )}
+      >
+        <span className={cx(styles.toggle, checked && styles.toggle_checked)}>
+          {checked && (
+            <span className={cx(styles.checkmark)}>
+              <IconCheck decorative size="1.5em" />
+            </span>
+          )}
+        </span>
+      </span>
+    </label>
+  );
+}

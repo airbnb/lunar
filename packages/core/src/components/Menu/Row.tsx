@@ -1,5 +1,6 @@
 import React from 'react';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
+import { styleSheetRow as styleSheet } from './styles';
 
 export type Props = {
   /** Content to display in the row. */
@@ -9,32 +10,12 @@ export type Props = {
 };
 
 /** A non-interactive row within a menu. */
-export class MenuRow extends React.Component<Props & WithStylesProps> {
-  static defaultProps = {
-    spacious: false,
-  };
+export default function MenuRow({ children, spacious }: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  render() {
-    const { cx, children, spacious, styles } = this.props;
-
-    return (
-      <li role="none">
-        <div className={cx(styles.item, spacious && styles.item_spacious)}>{children}</div>
-      </li>
-    );
-  }
+  return (
+    <li role="none">
+      <div className={cx(styles.item, spacious && styles.item_spacious)}>{children}</div>
+    </li>
+  );
 }
-
-export default withStyles(({ unit }) => ({
-  item: {
-    display: 'block',
-    width: '100%',
-    padding: unit,
-    border: 0,
-    textAlign: 'left',
-  },
-
-  item_spacious: {
-    padding: unit * 2,
-  },
-}))(MenuRow);

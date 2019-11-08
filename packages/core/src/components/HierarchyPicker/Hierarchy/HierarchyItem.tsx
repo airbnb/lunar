@@ -2,7 +2,8 @@ import React from 'react';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconCheckmark from '@airbnb/lunar-icons/lib/interface/IconCheck';
-import withStyles, { WithStylesProps } from '../../../composers/withStyles';
+import useStyles from '../../../hooks/useStyles';
+import useTheme from '../../../hooks/useTheme';
 import { ENTER, SPACE, ARROW_RIGHT, ARROW_LEFT } from '../../../keys';
 import DirectionalIcon from '../../DirectionalIcon';
 import Text from '../../Text';
@@ -15,6 +16,9 @@ import {
   ItemShape,
   ItemRenderer,
 } from '../types';
+import { styleSheetItem as styleSheet, ICON_SIZE } from './styles';
+
+export { ICON_SIZE };
 
 export type Props = {
   item: ItemShape;
@@ -28,58 +32,61 @@ export type Props = {
   onDomFocusShallower: ShallowFocusHandler;
 };
 
-const ICON_SIZE = 18;
+export default function HierarchyItem({
+  item,
+  definition,
+  renderItem,
+  selected,
+  focused,
+  onSubtree,
+  onItemPicked,
+  onDomFocusDeeper,
+  onDomFocusShallower,
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
+  const theme = useTheme();
 
-class HierarchyItem extends React.Component<Props & WithStylesProps> {
-  maybePick = () => {
-    const { onItemPicked, item, definition } = this.props;
-
-    if (item.readonly) {
-      onItemPicked(null);
-      this.goDeeper();
-    } else {
-      onItemPicked(definition);
-    }
-  };
-
-  goDeeper = () => {
-    const { onSubtree, onDomFocusDeeper, definition, item } = this.props;
-
+  const goDeeper = () => {
     if (item.items || item.description) {
       onSubtree(definition, onDomFocusDeeper, true);
     }
   };
 
-  goShallower = () => {
-    const { onSubtree, onDomFocusShallower, definition } = this.props;
+  const maybePick = () => {
+    if (item.readonly) {
+      onItemPicked(null);
+      goDeeper();
+    } else {
+      onItemPicked(definition);
+    }
+  };
 
+  const goShallower = () => {
     onDomFocusShallower();
     onSubtree(definition.slice(0, -2), undefined, true);
   };
 
-  private handleClick = () => {
-    this.maybePick();
+  const handleClick = () => {
+    maybePick();
   };
 
-  private handleMouseMove = () => {
-    const { onSubtree, definition } = this.props;
-
+  const handleMouseMove = () => {
     onSubtree(definition);
   };
 
-  private handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     switch (event.key) {
       case ENTER:
       case SPACE:
-        this.maybePick();
+        maybePick();
         break;
 
       case ARROW_RIGHT:
-        this.goDeeper();
+        goDeeper();
         break;
 
       case ARROW_LEFT:
-        this.goShallower();
+        goShallower();
         break;
 
       default:
@@ -87,16 +94,14 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
     }
   };
 
-  renderItem = () => {
-    const { cx, focused, item, styles, selected, renderItem, theme } = this.props;
-
+  const getRenderItem = () => {
     return renderItem ? (
       renderItem(item, selected, focused)
     ) : (
       <>
         {selected && (
           <span className={cx(styles.checkmark)}>
-            <IconCheckmark decorative color={theme!.color.core.primary[3]} size={ICON_SIZE} />
+            <IconCheckmark decorative color={theme.color.core.primary[3]} size={ICON_SIZE} />
           </span>
         )}
 
@@ -107,76 +112,33 @@ class HierarchyItem extends React.Component<Props & WithStylesProps> {
     );
   };
 
-  render() {
-    const { cx, focused, item, styles, selected } = this.props;
+  return (
+    <div
+      className={cx(
+        styles.item,
+        focused && styles.item_focused,
+        item.readonly && styles.item_readonly,
+      )}
+      role="option"
+      aria-selected={selected}
+      tabIndex={focused ? 1 : 0}
+      onMouseMove={handleMouseMove}
+      onClick={handleClick}
+      // this is needed to find a focused parent item in a vertically aligned list
+      onKeyDown={handleKeyDown}
+    >
+      {getRenderItem()}
 
-    return (
-      <div
-        className={cx(
-          styles.item,
-          focused && styles.item_focused,
-          item.readonly && styles.item_readonly,
-        )}
-        role="option"
-        aria-selected={selected}
-        tabIndex={focused ? 1 : 0}
-        onMouseMove={this.handleMouseMove}
-        onClick={this.handleClick}
-        // this is needed to find a focused parent item in a vertically aligned list
-        onKeyDown={this.handleKeyDown}
-      >
-        {this.renderItem()}
-
-        {item.items && (
-          <DirectionalIcon
-            decorative
-            inline
-            direction="right"
-            left={IconChevronLeft}
-            right={IconChevronRight}
-            size="1.4em"
-          />
-        )}
-      </div>
-    );
-  }
+      {item.items && (
+        <DirectionalIcon
+          decorative
+          inline
+          direction="right"
+          left={IconChevronLeft}
+          right={IconChevronRight}
+          size="1.4em"
+        />
+      )}
+    </div>
+  );
 }
-
-export default withStyles(
-  ({ color, unit, ui }) => ({
-    item: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: `${unit}px ${1.5 * unit}px ${unit}px ${2.75 * unit}px`,
-      cursor: 'pointer',
-      position: 'relative',
-      borderRadius: ui.borderRadius,
-
-      '@selectors': {
-        ':hover, :focus': {
-          backgroundColor: color.accent.bgHover,
-          outline: 'none',
-        },
-      },
-    },
-
-    item_focused: {
-      backgroundColor: color.accent.bgHover,
-    },
-
-    item_readonly: {
-      cursor: 'initial',
-    },
-
-    label: {
-      flexGrow: 1,
-    },
-
-    checkmark: {
-      position: 'absolute',
-      left: 0.25 * unit + 1,
-      top: ICON_SIZE / 2 + 1,
-    },
-  }),
-  { passThemeProp: true },
-)(HierarchyItem);
