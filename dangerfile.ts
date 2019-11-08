@@ -23,6 +23,7 @@ type StatMap = {
 async function comparePreviousBuildSizes() {
   const nextSizes: StatMap = JSON.parse(fs.readFileSync('./packages/sizes.json', 'utf8'));
   let prevSizes: StatMap = {};
+  let sameBuild = false;
 
   try {
     const request = await fetch(
@@ -30,8 +31,11 @@ async function comparePreviousBuildSizes() {
     );
 
     prevSizes = await request.json();
-  } catch {
+  } catch (error) {
+    console.log(error.message);
+
     prevSizes = nextSizes;
+    sameBuild = true;
   }
 
   function calculateDiff(prev: number, next: number): number {
@@ -48,11 +52,11 @@ async function comparePreviousBuildSizes() {
 
     // Smaller
     if (percent.startsWith('-')) {
-      return `${sum > -2.5 ? ':small_red_triangle_down: ' : ''}${percent}%`;
+      return `${sum < -10 ? ':small_red_triangle_down: ' : ''}${percent}%`;
     }
 
     // Larger
-    return `${sum > 2.5 ? ':small_red_triangle: ' : ''}+${percent}%`;
+    return `${sum > 10 ? ':small_red_triangle: ' : ''}+${percent}%`;
   }
 
   function getPrevSize(name: string, type: string) {
@@ -87,6 +91,23 @@ async function comparePreviousBuildSizes() {
 
   output.push(...rows);
   output.push('> Compared to master. File sizes are unminified and ungzipped.');
+
+  // Show dumps for easier debugging
+  if (!sameBuild) {
+    output.push(`<details>
+<summary>View raw build stats</summary>
+
+#### Previous (master)
+\`\`\`json
+${JSON.stringify(prevSizes, null, 2)}
+\`\`\`
+
+#### Current
+\`\`\`json
+${JSON.stringify(nextSizes, null, 2)}
+\`\`\`
+</details>`);
+  }
 
   markdown(output.join('\n'));
 }

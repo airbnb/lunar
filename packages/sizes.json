@@ -1,1 +1,1 @@
-{"test-utils":{"esm":4502,"lib":5928},"metrics":{"esm":5302,"lib":7226},"apollo":{"esm":12466,"lib":15663},"icons":{"esm":196874,"lib":244427},"app-shell":{"esm":14959,"lib":21684},"layouts":{"esm":20859,"lib":26095},"forms":{"esm":56153,"lib":70145},"core":{"esm":688582,"lib":811122}}
+{"apollo":{"esm":12466,"lib":15663},"app-shell":{"esm":14959,"lib":21684},"core":{"esm":688582,"lib":811122},"forms":{"esm":52007,"lib":64699},"icons":{"esm":196874,"lib":244427},"layouts":{"esm":20859,"lib":26095},"metrics":{"esm":5302,"lib":7226},"test-utils":{"esm":4502,"lib":5928}}
