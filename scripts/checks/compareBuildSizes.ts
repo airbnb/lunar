@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import * as size from 'filesize';
+import fs from 'fs';
+import size from 'filesize';
 import fetch from 'node-fetch';
 
 type StatMap = {
@@ -56,7 +56,7 @@ async function compareBuildSizes() {
     '| Package | Diff | ESM | Prev ESM | CJS | Prev CJS |',
     '| --- | ---: | ---: | ---: | ---: | ---: |',
   ];
-  const rows = [];
+  const rows: string[] = [];
 
   Object.entries(nextSizes).forEach(([pkgName, stats]) => {
     const prevEsm = getPrevSize(pkgName, 'esm');

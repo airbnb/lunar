@@ -11,15 +11,14 @@ jobs:
   fast_finish: true
   include:
     - stage: Checks
-      name: Build Sizes
-      script: yarn run check:build
-      node_js: '12'
-    - name: Pull Request
+      name: Pull Request
       if: type = pull_request
       script: yarn run check:pr
       node_js: '12'
+    - name: Build Sizes
+      script: yarn run check:build
+      node_js: '12'
     - name: Happo
-      if: type = pull_request
       script: yarn run check:happo
       node_js: '12'
     - stage: Tests
