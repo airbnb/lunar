@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Link from '@airbnb/lunar/lib/components/Link';
 import Menu from '@airbnb/lunar/lib/components/Menu';
@@ -282,7 +282,7 @@ describe('<FilterMenu />', () => {
 
   describe('<Row />', () => {
     it('renders a row with spacious by default', () => {
-      const wrapper = shallowWithStyles(<Row>Hello</Row>);
+      const wrapper = shallow(<Row>Hello</Row>);
 
       expect(wrapper.prop('spacious')).toBe(true);
     });
