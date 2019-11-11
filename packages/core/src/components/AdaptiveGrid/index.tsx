@@ -25,14 +25,16 @@ class AdaptiveGrid extends React.PureComponent<Props> {
     const { breakpoints, children, cx, defaultItemsPerRow, noGutter, styles } = this.props;
 
     const childElements =
-      children &&
+      !!children &&
       React.Children.map(children, (child: React.ReactNode, idx: number) =>
         child ? (
           // These items are generic and don't have a guaranteed id or any unique property
           // eslint-disable-next-line react/no-array-index-key
-          <div key={idx}>{child}</div>
+          <div key={idx} className={cx(styles.item)}>
+            {child}
+          </div>
         ) : null,
-      );
+      ).filter(Boolean);
 
     const breakpointStyles: { [key: string]: { [key: string]: string } } = {};
     const breakpointKeys = Object.keys(breakpoints!);
@@ -71,5 +73,10 @@ export default withStyles(({ unit }) => ({
   },
   container_noGutter: {
     gridGap: 0,
+  },
+  item: {
+    ':empty': {
+      display: 'none',
+    },
   },
 }))(AdaptiveGrid);
