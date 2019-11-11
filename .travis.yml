@@ -10,17 +10,17 @@ before_script:
 jobs:
   fast_finish: true
   include:
-    - stage: Prerequisites
+    - stage: Checks
       name: Build Sizes
       script: yarn run check:build
       node_js: '12'
-    - name: PR
+    - name: Pull Request
       if: type = pull_request
       script: yarn run check:pr
       node_js: '12'
     - name: Happo
       if: type = pull_request
-      script: yarn run happo:ci
+      script: yarn run check:happo
       node_js: '12'
     - stage: Tests
       name: Test @ 10
@@ -36,7 +36,16 @@ jobs:
       script: yarn run lint:errors
       node_js: '12'
     - stage: Release
-      name: NPM
+      name: Storybook
+      node_js: '12'
+      # if: branch = master
+      deploy:
+        provider: script
+        script: yarn run release:storybook
+        skip_cleanup: true
+        # on:
+        #   branch: master
+    - name: NPM
       script: yarn run build:sizes
       node_js: '12'
       if: branch = master

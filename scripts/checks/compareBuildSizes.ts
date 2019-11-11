@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as size from 'filesize';
-import * as fetch from 'node-fetch';
+import fetch from 'node-fetch';
 
 type StatMap = {
   [pkg: string]: {
