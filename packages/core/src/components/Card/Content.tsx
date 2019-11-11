@@ -51,7 +51,7 @@ export type Props = {
 };
 
 /** Content block within a card. */
-export default function CardContent({
+function CardContent({
   after,
   afterImageSrc,
   before,
@@ -186,3 +186,5 @@ CardContent.propTypes = {
   small: imageSizePropType,
   topImageSrc: imageUrlTypePropType,
 };
+
+export default CardContent;

@@ -24,7 +24,7 @@ export type Props = {
 };
 
 /** A grid to contain columns. */
-export default function Grid({
+function Grid({
   bottomAlign,
   centerAlign,
   children,
@@ -68,3 +68,5 @@ Grid.propTypes = {
   startAlign: horizontalAlignProp,
   topAlign: verticalAlignProp,
 };
+
+export default Grid;

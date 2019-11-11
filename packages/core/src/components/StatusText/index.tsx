@@ -23,7 +23,7 @@ export type Props = TextProps & {
 };
 
 /** Display a string of classified text with colorful statuses. */
-export default function StatusText({
+function StatusText({
   children,
   danger,
   info,
@@ -63,3 +63,5 @@ StatusText.propTypes = {
   success: statusPropType,
   warning: statusPropType,
 };
+
+export default StatusText;

@@ -40,7 +40,7 @@ export type Props = {
 };
 
 /** An interactive item within a menu. */
-export default function MenuItem({
+function MenuItem({
   children,
   disabled,
   highlighted,
@@ -122,3 +122,5 @@ export default function MenuItem({
 MenuItem.propTypes = {
   icon: iconComponent,
 };
+
+export default MenuItem;

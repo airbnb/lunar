@@ -22,16 +22,7 @@ export type Props = {
 };
 
 /** A table row that contains multiple cells. */
-export default function TableRow({
-  children,
-  danger,
-  info,
-  muted,
-  notice,
-  success,
-  warning,
-  ...props
-}: Props) {
+function TableRow({ children, danger, info, muted, notice, success, warning, ...props }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
@@ -61,3 +52,5 @@ TableRow.propTypes = {
   success: statusPropType,
   warning: statusPropType,
 };
+
+export default TableRow;

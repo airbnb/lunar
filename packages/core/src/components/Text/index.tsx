@@ -43,7 +43,7 @@ export type Props = {
 };
 
 /** Display a string of text with pre-defined sizing, emphasis, and state styling. */
-export default function Text({
+function Text({
   baseline,
   bold,
   centerAlign,
@@ -121,3 +121,5 @@ Text.propTypes = {
   small: sizingProp,
   startAlign: alignProp,
 };
+
+export default Text;

@@ -33,7 +33,7 @@ export type Props = {
 };
 
 /** Compact component that represents a snippet of information, such as a filter. */
-export default function Chip({
+function Chip({
   active,
   afterIcon,
   beforeIcon,
@@ -125,3 +125,5 @@ Chip.propTypes = {
   ),
   onClick: mutuallyExclusiveProps(PropTypes.func, 'onIconClick'),
 };
+
+export default Chip;

@@ -43,7 +43,7 @@ export type Props = {
 };
 
 /** Classify content through the use of colorful alerts. */
-export default function Alert({
+function Alert({
   children,
   danger,
   hideStatusIcon,
@@ -131,3 +131,5 @@ Alert.propTypes = {
   success: alertColorTypePropType,
   warning: alertColorTypePropType,
 };
+
+export default Alert;

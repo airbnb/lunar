@@ -19,14 +19,7 @@ export type Props = ButtonOrLinkProps & {
 };
 
 /** A button with an icon as content, and an optional tooltip. */
-export default function IconButton({
-  children,
-  active,
-  disabled,
-  inverted,
-  tooltip,
-  ...restProps
-}: Props) {
+function IconButton({ children, active, disabled, inverted, tooltip, ...restProps }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   const button = (
@@ -56,3 +49,5 @@ export default function IconButton({
 IconButton.propTypes = {
   children: iconComponent.isRequired,
 };
+
+export default IconButton;

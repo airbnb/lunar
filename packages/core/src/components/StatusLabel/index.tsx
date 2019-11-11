@@ -40,7 +40,7 @@ export type Props = {
 };
 
 /** Classify content through the use of tiny colorful status labels. */
-export default function StatusLabel({
+function StatusLabel({
   afterIcon,
   beforeIcon,
   bordered,
@@ -100,3 +100,5 @@ StatusLabel.propTypes = {
   success: statusPropType,
   warning: statusPropType,
 };
+
+export default StatusLabel;

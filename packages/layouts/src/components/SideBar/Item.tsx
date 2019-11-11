@@ -19,7 +19,7 @@ export type Props = {
 };
 
 /** A clickable item within the sidebar navigation menu. */
-export default function SideBarItem({ active, label, href, icon, onClick }: Props) {
+function SideBarItem({ active, label, href, icon, onClick }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
@@ -47,3 +47,5 @@ export default function SideBarItem({ active, label, href, icon, onClick }: Prop
 SideBarItem.propTypes = {
   icon: iconComponent.isRequired,
 };
+
+export default SideBarItem;

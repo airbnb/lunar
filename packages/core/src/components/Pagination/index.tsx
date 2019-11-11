@@ -45,7 +45,7 @@ export type Props = {
 };
 
 /** Pagination controls. */
-export default function Pagination({
+function Pagination({
   centerAlign,
   endAlign,
   fetching,
@@ -224,3 +224,5 @@ Pagination.propTypes = {
   onFirst: requiredBy('showBookends', PropTypes.func),
   onLast: requiredBy('showBookends', PropTypes.func),
 };
+
+export default Pagination;

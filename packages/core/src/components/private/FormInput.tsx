@@ -72,7 +72,7 @@ export type PrivateProps = Props & {
   tagName: 'input' | 'select' | 'textarea';
 };
 
-export default function FormInput({
+function FormInput({
   children,
   compact,
   disabled,
@@ -147,3 +147,5 @@ FormInput.propTypes = {
   large: sizingProp,
   small: sizingProp,
 };
+
+export default FormInput;

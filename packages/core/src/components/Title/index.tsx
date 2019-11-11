@@ -23,7 +23,7 @@ export type Props = {
 };
 
 /** Display a string of text as a heading and or section title. */
-export default function Title({
+function Title({
   centerAlign,
   children,
   endAlign,
@@ -67,3 +67,5 @@ Title.propTypes = {
   muted: stateProp,
   primary: stateProp,
 };
+
+export default Title;

@@ -55,7 +55,7 @@ export type Props = {
 };
 
 /** An individual comment within a message thread. */
-export default function MessageItem({
+function MessageItem({
   children,
   disableTitleTranslation,
   email,
@@ -242,3 +242,5 @@ MessageItem.propTypes = {
   info: stripeColorTypePropType,
   warning: stripeColorTypePropType,
 };
+
+export default MessageItem;

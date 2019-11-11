@@ -13,7 +13,7 @@ export type Props = {
 };
 
 /** A bar to represent the progress to completion. */
-export default function ProgressBar({ percent, leading, trailing }: Props) {
+function ProgressBar({ percent, leading, trailing }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
@@ -38,3 +38,5 @@ export default function ProgressBar({ percent, leading, trailing }: Props) {
 ProgressBar.propTypes = {
   percent: between({ gte: 0, lte: 100 }).isRequired,
 };
+
+export default ProgressBar;
