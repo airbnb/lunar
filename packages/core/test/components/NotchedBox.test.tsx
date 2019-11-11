@@ -1,13 +1,12 @@
 import React from 'react';
-import Enzyme from 'enzyme';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import Enzyme, { shallow } from 'enzyme';
 import NotchedBox, { Props } from '../../src/components/NotchedBox';
 
 describe('<NotchedBox />', () => {
   let wrapper: Enzyme.ShallowWrapper<Props>;
 
   beforeEach(() => {
-    wrapper = shallowWithStyles(<NotchedBox>hello world</NotchedBox>);
+    wrapper = shallow(<NotchedBox>hello world</NotchedBox>);
   });
 
   it('can have an offet of 0', () => {

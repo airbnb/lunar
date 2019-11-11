@@ -1,6 +1,5 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ToggleButtonController from '../../src/components/ToggleButtonController';
 
 function clickButton(wrapper: Enzyme.ShallowWrapper, value: unknown): Enzyme.ShallowWrapper {
@@ -54,7 +53,7 @@ describe('<ToggleButtonController />', () => {
 
   it('does not notify of click that does not cause change', () => {
     const onChange = jest.fn();
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <ToggleButtonController {...props} value="1" onChange={onChange}>
         {ProxyButton => (
           <div>

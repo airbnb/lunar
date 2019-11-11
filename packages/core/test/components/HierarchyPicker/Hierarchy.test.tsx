@@ -1,9 +1,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Hierarchy from '../../../src/components/HierarchyPicker/Hierarchy';
 import HierarchyList, {
-  HierarchyList as BaseHierarchyList,
   Props as HierarchyListProps,
 } from '../../../src/components/HierarchyPicker/Hierarchy/HierarchyList';
 import HierarchyItem, {
@@ -67,82 +65,56 @@ describe('<Hierarchy />', () => {
 
   describe('HierarchyList', () => {
     let wrapper: Enzyme.ShallowWrapper<HierarchyListProps>;
-    let instance: BaseHierarchyList;
 
     beforeEach(() => {
-      wrapper = shallowWithStyles(<HierarchyList {...props} focus={['foo']} />);
-      instance = wrapper.instance() as BaseHierarchyList;
-    });
-
-    describe('instance', () => {
-      it('isChosen(definition) correctly matches props.chosen', () => {
-        expect(instance.isChosen(['blah'])).toBe(false);
-        expect(instance.isChosen(['foo'])).toBe(true);
-        expect(instance.isChosen(['foo', 'bar'])).toBe(true);
-        expect(instance.isChosen(['foo', 'bar', 'whatever'])).toBe(false);
-      });
-
-      it('has domFocus functions that do not throw', () => {
-        // @ts-ignore Allow private access
-        expect(instance.handleDomFocusDeeper).not.toThrow();
-        // @ts-ignore Allow private access
-        expect(instance.handleDomFocusShallower).not.toThrow();
-
-        wrapper.setProps({ verticallyAlign: true });
-        instance = wrapper.instance() as BaseHierarchyList;
-
-        // @ts-ignore Allow private access
-        expect(instance.handleDomFocusDeeper).not.toThrow();
-        // @ts-ignore Allow private access
-        expect(instance.handleDomFocusShallower).not.toThrow();
-      });
+      wrapper = shallow(<HierarchyList {...props} focus={['foo']} />);
     });
 
     describe('recursive', () => {
       it('renders nested HierarchyList', () => {
-        expect(wrapper.find(BaseHierarchyList)).toHaveLength(1);
+        expect(wrapper.find(HierarchyList)).toHaveLength(1);
       });
 
       it('renders HierarchyList as <ul> child verticallyAlign=false', () => {
         const ul = wrapper.find('ul');
-        expect(ul.find(BaseHierarchyList)).toHaveLength(1);
+        expect(ul.find(HierarchyList)).toHaveLength(1);
       });
 
       it('renders HierarchyList as <ul> sibling li if verticallyAlign=true', () => {
         wrapper.setProps({ verticallyAlign: true });
         const ul = wrapper.find('ul');
-        expect(ul.find(BaseHierarchyList)).toHaveLength(0);
+        expect(ul.find(HierarchyList)).toHaveLength(0);
       });
     });
 
     describe('ItemDescription', () => {
       it('renders an ItemDescription if a description is focused', () => {
         wrapper.setProps({ focus: ['foo', 'coverage is hard'] });
-        let nestedList = wrapper.find(BaseHierarchyList).dive();
-        expect(nestedList.find(ItemDescription)).toHaveLength(1);
+        let nestedList = wrapper.find(HierarchyList);
+        expect(nestedList.dive().find(ItemDescription)).toHaveLength(1);
 
         wrapper.setProps({ verticallyAlign: true });
-        nestedList = wrapper.find(BaseHierarchyList).dive();
-        expect(nestedList.find(ItemDescription)).toHaveLength(1);
+        nestedList = wrapper.find(HierarchyList);
+        expect(nestedList.dive().find(ItemDescription)).toHaveLength(1);
       });
 
       it('renders null if a description is focused', () => {
         wrapper.setProps({ focus: ['foo', 'hello'] });
-        const nestedList = wrapper.find(BaseHierarchyList).dive();
-        expect(nestedList.find(ItemDescription)).toHaveLength(0);
+        const nestedList = wrapper.find(HierarchyList);
+        expect(nestedList.dive().find(ItemDescription)).toHaveLength(0);
       });
 
       it('renders description text', () => {
         wrapper.setProps({ focus: ['foo', 'coverage is hard'] });
-        const nestedList = wrapper.find(BaseHierarchyList).dive();
-        const description = nestedList.find(ItemDescription);
+        const nestedList = wrapper.find(HierarchyList);
+        const description = nestedList.dive().find(ItemDescription);
         expect(description.prop('item').description).toMatch('very hard');
       });
 
       it('Clicking description invokes onItemPicked', () => {
         wrapper.setProps({ focus: ['foo', 'coverage is hard'] });
-        const nestedList = wrapper.find(BaseHierarchyList).dive();
-        const button = nestedList.find('aside button');
+        const nestedList = wrapper.find(HierarchyList);
+        const button = nestedList.dive().find('.asideButton');
         button.simulate('click');
 
         expect(props.onItemPicked).toHaveBeenCalled();
@@ -166,7 +138,7 @@ describe('<Hierarchy />', () => {
         onDomFocusShallower: jest.fn(),
         renderItem: jest.fn(),
       };
-      wrapper = shallowWithStyles(<HierarchyItem {...itemProps} />);
+      wrapper = shallow(<HierarchyItem {...itemProps} />);
     });
 
     it('calls onDomFocusDeeper on key right', () => {

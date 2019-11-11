@@ -13,9 +13,6 @@ exports[`<FormField /> renders input after the label 1`] = `
     >
       <StatusText
         bold={true}
-        danger={false}
-        muted={false}
-        small={false}
       >
         Label
       </StatusText>
@@ -46,9 +43,6 @@ exports[`<FormField /> renders input after the label 2`] = `
     >
       <StatusText
         bold={true}
-        danger={false}
-        muted={false}
-        small={false}
       >
         Label
       </StatusText>
@@ -88,9 +82,6 @@ exports[`<FormField /> renders input before the label 1`] = `
     >
       <StatusText
         bold={true}
-        danger={false}
-        muted={false}
-        small={false}
       >
         Label
       </StatusText>
@@ -121,9 +112,6 @@ exports[`<FormField /> renders input before the label 2`] = `
     >
       <StatusText
         bold={true}
-        danger={false}
-        muted={false}
-        small={false}
       >
         Label
       </StatusText>

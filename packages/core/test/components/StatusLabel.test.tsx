@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
 import StatusLabel from '../../src/components/StatusLabel';
 import { STATUSES as BASE_STATUSES } from '../../src/constants';
@@ -9,7 +9,7 @@ const STATUSES = [...BASE_STATUSES, 'luxury', 'plus'];
 describe('<StatusLabel />', () => {
   it('errors when multiple states are used at once', () => {
     expect(() => {
-      shallowWithStyles(
+      shallow(
         <StatusLabel danger success>
           Default
         </StatusLabel>,
@@ -19,14 +19,14 @@ describe('<StatusLabel />', () => {
 
   it('renders a before icon', () => {
     const icon = <IconCheck decorative />;
-    const wrapper = shallowWithStyles(<StatusLabel beforeIcon={icon}>Default</StatusLabel>);
+    const wrapper = shallow(<StatusLabel beforeIcon={icon}>Default</StatusLabel>);
 
     expect(wrapper.contains(icon)).toBe(true);
   });
 
   it('renders a after icon', () => {
     const icon = <IconCheck decorative />;
-    const wrapper = shallowWithStyles(<StatusLabel afterIcon={icon}>Default</StatusLabel>);
+    const wrapper = shallow(<StatusLabel afterIcon={icon}>Default</StatusLabel>);
 
     expect(wrapper.contains(icon)).toBe(true);
   });
@@ -34,7 +34,7 @@ describe('<StatusLabel />', () => {
   it('renders both icons', () => {
     const beforeIcon = <IconCheck decorative />;
     const afterIcon = <IconCheck decorative />;
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <StatusLabel beforeIcon={beforeIcon} afterIcon={afterIcon}>
         Default
       </StatusLabel>,
@@ -47,15 +47,13 @@ describe('<StatusLabel />', () => {
   describe('statuses', () => {
     STATUSES.forEach(status => {
       it('renders label', () => {
-        const wrapper = shallowWithStyles(
-          <StatusLabel {...{ [status]: true }}>{status}</StatusLabel>,
-        );
+        const wrapper = shallow(<StatusLabel {...{ [status]: true }}>{status}</StatusLabel>);
 
         expect(wrapper.prop('className')).toMatch('label');
       });
 
       it('renders bordered', () => {
-        const wrapper = shallowWithStyles(
+        const wrapper = shallow(
           <StatusLabel bordered {...{ [status]: true }}>
             {status}
           </StatusLabel>,
@@ -65,7 +63,7 @@ describe('<StatusLabel />', () => {
       });
 
       it('renders inverted state', () => {
-        const wrapper = shallowWithStyles(
+        const wrapper = shallow(
           <StatusLabel inverted {...{ [status]: true }}>
             {status}
           </StatusLabel>,
@@ -75,7 +73,7 @@ describe('<StatusLabel />', () => {
       });
 
       it('renders uppercased state', () => {
-        const wrapper = shallowWithStyles(
+        const wrapper = shallow(
           <StatusLabel uppercased {...{ [status]: true }}>
             {status}
           </StatusLabel>,

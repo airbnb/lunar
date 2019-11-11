@@ -16,7 +16,7 @@ export type Props = {
   spacious?: boolean;
 };
 
-export default function ListItem({ bordered, children, compact, horizontal, spacious }: Props) {
+function ListItem({ bordered, children, compact, horizontal, spacious }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
@@ -41,3 +41,5 @@ ListItem.propTypes = {
   compact: paddingPropType,
   spacious: paddingPropType,
 };
+
+export default ListItem;

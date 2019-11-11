@@ -1,12 +1,7 @@
 import React from 'react';
-import Enzyme from 'enzyme';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import Enzyme, { shallow } from 'enzyme';
 import Autocomplete from '../../../src/components/Autocomplete';
-import Search, {
-  Search as BaseSearch,
-  Props as SearchProps,
-} from '../../../src/components/HierarchyPicker/Search';
-import { SearchResult } from '../../../src/components/HierarchyPicker/Search/SearchResult';
+import Search, { Props as SearchProps } from '../../../src/components/HierarchyPicker/Search';
 import { SearchItemResult, ChoiceDetails } from '../../../src/components/HierarchyPicker/types';
 import testItems from './mockItems';
 
@@ -24,14 +19,14 @@ const props = {
 };
 
 describe('<Search />', () => {
-  let wrapper: Enzyme.ShallowWrapper<SearchProps>;
   let handlePicked: jest.Mock;
-  let instance: BaseSearch;
+  let wrapper: Enzyme.ShallowWrapper<SearchProps>;
+  let instance: React.Component<{}, {}, SearchProps>;
 
   beforeEach(() => {
     handlePicked = jest.fn();
-    wrapper = shallowWithStyles(<Search {...props} onItemPicked={handlePicked} />);
-    instance = wrapper.instance() as BaseSearch;
+    wrapper = shallow(<Search {...props} onItemPicked={handlePicked} />).dive();
+    instance = wrapper.instance();
   });
 
   describe('Autocomplete', () => {
@@ -41,15 +36,14 @@ describe('<Search />', () => {
 
     it('renderItem renders SearchResults', () => {
       const auto = wrapper.find(Autocomplete);
-      const item = shallowWithStyles(
+      const item = shallow(
         auto.prop('renderItem')({
           item: { definition: ['foo'], label: '', formattedParents: '', name: '' },
           matches: [],
         }),
-        true,
       );
 
-      expect(item.type()).toBe(SearchResult);
+      expect(item.type()).toBe('div');
     });
   });
 
@@ -74,42 +68,52 @@ describe('<Search />', () => {
 
   describe('search functionality', () => {
     it('finds child items by name', () => {
+      // @ts-ignore handleSearch
       expect(instance.handleSearch('coverage')).toHaveLength(1);
     });
 
     it('updates items on change and handles empty items', () => {
       wrapper.setProps({ items: [] });
+      // @ts-ignore handleSearch
       expect(instance.handleSearch('coverage')).toHaveLength(0);
     });
 
     it('finds grandchild items by name', () => {
+      // @ts-ignore handleSearch
       expect(instance.handleSearch('whatever')).toHaveLength(1);
     });
 
     it('finds items by description', () => {
+      // @ts-ignore handleSearch
       expect(instance.handleSearch('what I want')).toHaveLength(1);
     });
 
     it('finds items by keywords', () => {
+      // @ts-ignore handleSearch
       expect(instance.handleSearch('bonsoir')).toHaveLength(1);
     });
 
     it('trims the query', () => {
+      // @ts-ignore handleSearch
       expect(instance.handleSearch(' ')).toHaveLength(0);
     });
 
     it('filters non-matching results', () => {
+      // @ts-ignore handleSearch
       expect(instance.handleSearch('nonsense')).toHaveLength(0);
     });
 
     it('filters readonly results', () => {
+      // @ts-ignore handleSearch
       expect(instance.handleSearch('hello')).toHaveLength(0);
     });
 
     it('handleAsyncSearch resolves to handleSearch', async () => {
       expect.assertions(1);
 
+      // @ts-ignore handleSearch
       const syncResult = instance.handleSearch('coverage');
+      // @ts-ignore handleSearch
       const asyncResult = await instance.handleAsyncSearch('coverage');
 
       expect(syncResult).toEqual(asyncResult);
@@ -118,20 +122,23 @@ describe('<Search />', () => {
 
   describe('indexParentPath', () => {
     it('when false, should filter items matching formattedParents', () => {
+      // @ts-ignore handleSearch
       expect(instance.handleSearch('foo bar')).toHaveLength(0);
     });
 
     it('when true, should match items against formattedParents', () => {
-      wrapper = shallowWithStyles(<Search {...props} indexParentPath />);
-      instance = wrapper.instance() as BaseSearch;
+      wrapper = shallow(<Search {...props} indexParentPath />).dive();
+      instance = wrapper.instance();
+      // @ts-ignore handleSearch
       expect(instance.handleSearch('foo bar')).toHaveLength(2); // 'foo > bar >' has 2 children
     });
   });
 
   describe('overriding fuse options with no keys', () => {
     it('shows no results', () => {
-      wrapper = shallowWithStyles(<Search {...props} fuseOptions={{ keys: [] }} />);
-      instance = wrapper.instance() as BaseSearch;
+      wrapper = shallow(<Search {...props} fuseOptions={{ keys: [] }} />).dive();
+      instance = wrapper.instance();
+      // @ts-ignore handleSearch
       expect(instance.handleSearch('coverage')).toHaveLength(0);
     });
   });

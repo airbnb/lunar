@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import List, { Item } from '../../src/components/List';
 import { Props as ItemProps } from '../../src/components/List/Item';
 import proxyComponent from '../../src/utils/proxyComponent';
@@ -9,7 +9,7 @@ describe('<List />', () => {
     const ProxiedItem = proxyComponent(Item, (props: ItemProps) => <Item {...props} />);
 
     expect(() =>
-      shallowWithStyles(
+      shallow(
         <List>
           <ProxiedItem>Item 1</ProxiedItem>
         </List>,
@@ -18,7 +18,7 @@ describe('<List />', () => {
   });
 
   it('renders expected number of List items', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <List>
         <Item>Item 1</Item>
         <Item>Item 2</Item>
@@ -30,7 +30,7 @@ describe('<List />', () => {
   });
 
   it('handles falsey items', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <List>
         {false && <Item>Item 1</Item>}
         {null && <Item>Item 2</Item>}
@@ -42,7 +42,7 @@ describe('<List />', () => {
   });
 
   it('renders a <ul /> by default', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <List>
         <Item>Item 1</Item>
       </List>,
@@ -52,7 +52,7 @@ describe('<List />', () => {
   });
 
   it('renders a <ol /> with `ordered`', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <List ordered>
         <Item>Item 1</Item>
       </List>,
@@ -62,7 +62,7 @@ describe('<List />', () => {
   });
 
   it('renders a list with gutters', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <List gutter>
         <Item>Item 1</Item>
       </List>,
@@ -72,7 +72,7 @@ describe('<List />', () => {
   });
 
   it('renders a horizontal list with gutters', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <List gutter horizontal>
         <Item>Item 1</Item>
       </List>,
@@ -82,7 +82,7 @@ describe('<List />', () => {
   });
 
   it('renders a horizontal list', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <List horizontal>
         <Item>Item 1</Item>
       </List>,

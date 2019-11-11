@@ -1,33 +1,33 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import IconCaretUp from '@airbnb/lunar-icons/lib/interface/IconCaretUp';
 import IconCaretDown from '@airbnb/lunar-icons/lib/interface/IconCaretDown';
 import SortCarets from '../../src/components/SortCarets';
 
 describe('<SortCarets />', () => {
   it('renders up caret', () => {
-    const wrapper = shallowWithStyles(<SortCarets up />);
+    const wrapper = shallow(<SortCarets up />);
 
     expect(wrapper.find(IconCaretUp)).toHaveLength(1);
     expect(wrapper.find(IconCaretDown)).toHaveLength(0);
   });
 
   it('renders down caret', () => {
-    const wrapper = shallowWithStyles(<SortCarets down />);
+    const wrapper = shallow(<SortCarets down />);
 
     expect(wrapper.find(IconCaretUp)).toHaveLength(0);
     expect(wrapper.find(IconCaretDown)).toHaveLength(1);
   });
 
   it('renders both carets', () => {
-    const wrapper = shallowWithStyles(<SortCarets down up />);
+    const wrapper = shallow(<SortCarets down up />);
 
     expect(wrapper.find(IconCaretUp)).toHaveLength(1);
     expect(wrapper.find(IconCaretDown)).toHaveLength(1);
   });
 
   it('sets active on up caret', () => {
-    const wrapper = shallowWithStyles(<SortCarets down up enableUp />);
+    const wrapper = shallow(<SortCarets down up enableUp />);
 
     expect(
       wrapper
@@ -44,7 +44,7 @@ describe('<SortCarets />', () => {
   });
 
   it('sets active on down caret', () => {
-    const wrapper = shallowWithStyles(<SortCarets down up enableDown />);
+    const wrapper = shallow(<SortCarets down up enableDown />);
 
     expect(
       wrapper

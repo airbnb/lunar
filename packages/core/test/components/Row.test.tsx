@@ -1,46 +1,46 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import Row from '../../src/components/Row';
 
 describe('<Row />', () => {
   it('renders with a baseline', () => {
-    const wrapper = shallowWithStyles(<Row baseline>PRIMARY</Row>);
+    const wrapper = shallow(<Row baseline>PRIMARY</Row>);
 
     expect(wrapper.prop('className')).toMatch('row_baseline');
   });
 
   it('renders with a topline', () => {
-    const wrapper = shallowWithStyles(<Row topline>PRIMARY</Row>);
+    const wrapper = shallow(<Row topline>PRIMARY</Row>);
 
     expect(wrapper.prop('className')).toMatch('row_topline');
   });
 
   it('renders as inline', () => {
-    const wrapper = shallowWithStyles(<Row inline>PRIMARY</Row>);
+    const wrapper = shallow(<Row inline>PRIMARY</Row>);
 
     expect(wrapper.find('div > div').prop('className')).toMatch('inline');
   });
 
   it('renders as compact', () => {
-    const wrapper = shallowWithStyles(<Row compact>PRIMARY</Row>);
+    const wrapper = shallow(<Row compact>PRIMARY</Row>);
 
     expect(wrapper.prop('className')).toMatch('row_compact');
   });
 
   it('renders as spacious', () => {
-    const wrapper = shallowWithStyles(<Row spacious>PRIMARY</Row>);
+    const wrapper = shallow(<Row spacious>PRIMARY</Row>);
 
     expect(wrapper.prop('className')).toMatch('row_spacious');
   });
 
   it('renders in middle', () => {
-    const wrapper = shallowWithStyles(<Row middleAlign>PRIMARY</Row>);
+    const wrapper = shallow(<Row middleAlign>PRIMARY</Row>);
 
     expect(wrapper.prop('className')).toMatch('row_middleAlign');
   });
 
   describe('when only primary content is provided', () => {
-    const wrapper = shallowWithStyles(<Row>PRIMARY</Row>);
+    const wrapper = shallow(<Row>PRIMARY</Row>);
 
     it('renders a single div child', () => {
       expect(wrapper.find('div > div')).toHaveLength(1);
@@ -52,8 +52,8 @@ describe('<Row />', () => {
   });
 
   describe('when primary and before or after content is provided', () => {
-    const wrapperWithAfter = shallowWithStyles(<Row after="after">PRIMARY</Row>);
-    const wrapperWithBefore = shallowWithStyles(<Row before="before">PRIMARY</Row>);
+    const wrapperWithAfter = shallow(<Row after="after">PRIMARY</Row>);
+    const wrapperWithBefore = shallow(<Row before="before">PRIMARY</Row>);
 
     it('renders two div children', () => {
       expect(wrapperWithAfter.find('div > div')).toHaveLength(2);
@@ -67,7 +67,7 @@ describe('<Row />', () => {
   });
 
   describe('when primary, before, and after content are all provided', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Row before="before" after="after">
         PRIMARY
       </Row>,

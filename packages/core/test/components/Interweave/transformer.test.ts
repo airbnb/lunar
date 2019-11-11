@@ -1,4 +1,4 @@
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import transformer from '../../../src/components/Interweave/factories/transformer';
 
 describe('transformer()', () => {
@@ -7,7 +7,7 @@ describe('transformer()', () => {
     a.setAttribute('href', 'http://airbnb.com');
 
     // @ts-ignore Need to fix types upstream
-    const wrapper = shallowWithStyles(transformer(a, 'Airbnb'), true);
+    const wrapper = shallow(transformer(a, 'Airbnb'), true);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -18,7 +18,7 @@ describe('transformer()', () => {
     a.textContent = 'Children';
 
     // @ts-ignore Need to fix types upstream
-    const wrapper = shallowWithStyles(transformer(a, []), true);
+    const wrapper = shallow(transformer(a, []), true);
 
     expect(wrapper.prop('children')).toBe('Children');
   });

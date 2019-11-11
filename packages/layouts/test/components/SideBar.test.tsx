@@ -1,11 +1,11 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import IconAdd from '../../../icons/src/interface/IconAdd';
 import SideBar, { Item } from '../../src/components/SideBar';
 
 describe('<SideBar />', () => {
   it('renders a nav with accessibility', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <SideBar accessibilityLabel="Test">
         <Item icon={<IconAdd decorative />} />
       </SideBar>,
@@ -17,7 +17,7 @@ describe('<SideBar />', () => {
   });
 
   it('renders items', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <SideBar accessibilityLabel="Test">
         <Item icon={<IconAdd decorative />} />
         <Item icon={<IconAdd decorative />} />

@@ -1,11 +1,11 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import ButtonGroup from '../../src/components/ButtonGroup';
 import Button from '../../src/components/Button';
 
 describe('<ButtonGroup />', () => {
   it('renders buttons', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <ButtonGroup>
         <Button>One</Button>
         <Button>Two</Button>
@@ -17,7 +17,7 @@ describe('<ButtonGroup />', () => {
   });
 
   it('renders buttons stacked', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <ButtonGroup stacked>
         <Button>One</Button>
         <Button>Two</Button>
@@ -30,7 +30,7 @@ describe('<ButtonGroup />', () => {
   });
 
   it('renders a single button', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <ButtonGroup>
         <Button>One</Button>
       </ButtonGroup>,
@@ -40,7 +40,7 @@ describe('<ButtonGroup />', () => {
   });
 
   it('handles buttons that return falsy values', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <ButtonGroup stacked>
         {false && <Button>One</Button>}
         {true && <Button>Two</Button>}
@@ -56,7 +56,7 @@ describe('<ButtonGroup />', () => {
       return null;
     }
 
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <ButtonGroup stacked>
         <FakeButton />
       </ButtonGroup>,

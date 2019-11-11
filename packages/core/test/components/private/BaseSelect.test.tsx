@@ -1,11 +1,11 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import BaseSelect from '../../../src/components/private/BaseSelect';
 import FormInput from '../../../src/components/private/FormInput';
 
 describe('<BaseSelect />', () => {
   it('renders an input with the correct field', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <BaseSelect name="foo" onChange={() => {}}>
         <option value="bar">Bar</option>
       </BaseSelect>,
@@ -15,7 +15,7 @@ describe('<BaseSelect />', () => {
   });
 
   it('renders disabled', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <BaseSelect disabled name="foo" onChange={() => {}}>
         <option value="bar">Bar</option>
       </BaseSelect>,
@@ -25,7 +25,7 @@ describe('<BaseSelect />', () => {
   });
 
   it('renders invalid', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <BaseSelect invalid name="foo" onChange={() => {}}>
         <option value="bar">Bar</option>
       </BaseSelect>,
@@ -35,7 +35,7 @@ describe('<BaseSelect />', () => {
   });
 
   it('renders compact', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <BaseSelect compact name="foo" onChange={() => {}}>
         <option value="bar">Bar</option>
       </BaseSelect>,
@@ -46,7 +46,7 @@ describe('<BaseSelect />', () => {
 
   it('renders options via children', () => {
     const option = <option value="bar">Bar</option>;
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <BaseSelect name="foo" onChange={() => {}}>
         {option}
       </BaseSelect>,
@@ -56,7 +56,7 @@ describe('<BaseSelect />', () => {
   });
 
   it('supports optgroup', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <BaseSelect name="foo" onChange={() => {}}>
         <optgroup label="Group">
           <option value="bar">Bar</option>
@@ -70,7 +70,7 @@ describe('<BaseSelect />', () => {
   });
 
   it('supports a placeholder option', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <BaseSelect name="foo" placeholder="Select something" onChange={() => {}}>
         <option value="bar">Bar</option>
       </BaseSelect>,
@@ -91,7 +91,7 @@ describe('<BaseSelect />', () => {
 
   it('triggers `onChange` handler', () => {
     const spy = jest.fn();
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <BaseSelect name="foo" onChange={spy}>
         <option value="bar">Bar</option>
       </BaseSelect>,

@@ -1,12 +1,12 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
 import BaseSwitch from '../../../src/components/private/BaseSwitch';
 import FormInput from '../../../src/components/private/FormInput';
 
 describe('<BaseSwitch />', () => {
   it('renders an input with the correct field', () => {
-    const wrapper = shallowWithStyles(<BaseSwitch id="foo" name="foo" onChange={() => {}} />);
+    const wrapper = shallow(<BaseSwitch id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.is('label')).toBe(true);
     expect(wrapper.find(FormInput).prop('tagName')).toBe('input');
@@ -15,23 +15,19 @@ describe('<BaseSwitch />', () => {
   });
 
   it('renders invalid', () => {
-    const wrapper = shallowWithStyles(
-      <BaseSwitch invalid id="foo" name="foo" onChange={() => {}} />,
-    );
+    const wrapper = shallow(<BaseSwitch invalid id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.find(FormInput).prop('invalid')).toBe(true);
   });
 
   it('renders disabled', () => {
-    const wrapper = shallowWithStyles(
-      <BaseSwitch disabled id="foo" name="foo" onChange={() => {}} />,
-    );
+    const wrapper = shallow(<BaseSwitch disabled id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.find(FormInput).prop('disabled')).toBe(true);
   });
 
   it('displays a checkmark when checked', () => {
-    const wrapper = shallowWithStyles(<BaseSwitch id="foo" name="foo" onChange={() => {}} />);
+    const wrapper = shallow(<BaseSwitch id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.find(IconCheck)).toHaveLength(0);
 
@@ -44,7 +40,7 @@ describe('<BaseSwitch />', () => {
 
   it('triggers `onChange` handler', () => {
     const spy = jest.fn();
-    const wrapper = shallowWithStyles(<BaseSwitch id="foo" name="foo" onChange={spy} />);
+    const wrapper = shallow(<BaseSwitch id="foo" name="foo" onChange={spy} />);
     const event = {
       currentTarget: {
         checked: true,
