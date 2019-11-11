@@ -1,18 +1,6 @@
-import { markdown } from 'danger';
 import * as fs from 'fs';
-import * as fetch from 'node-fetch';
 import * as size from 'filesize';
-import {
-  checkForInvalidLocks,
-  checkForConventionalPrefix,
-  checkForConventionalSquashCommit,
-  disableComponentSnapshots,
-} from '@airbnb/config-danger';
-
-checkForInvalidLocks();
-checkForConventionalPrefix();
-checkForConventionalSquashCommit();
-disableComponentSnapshots();
+import * as fetch from 'node-fetch';
 
 type StatMap = {
   [pkg: string]: {
@@ -20,7 +8,28 @@ type StatMap = {
   };
 };
 
-async function comparePreviousBuildSizes() {
+function calculateDiff(prev: number, next: number): number {
+  return (next - prev) / prev;
+}
+
+function formatDiff(diff: number): string {
+  if (!isFinite(diff) || diff === 0 || diff === 0.0) {
+    return 'N/A';
+  }
+
+  const sum = diff * 100;
+  const percent = sum.toFixed(1);
+
+  // Smaller
+  if (percent.startsWith('-')) {
+    return `${sum < -10 ? ':small_red_triangle_down: ' : ''}${percent}%`;
+  }
+
+  // Larger
+  return `${sum > 10 ? ':small_red_triangle: ' : ''}+${percent}%`;
+}
+
+async function compareBuildSizes() {
   const nextSizes: StatMap = JSON.parse(fs.readFileSync('./packages/sizes.json', 'utf8'));
   let prevSizes: StatMap = {};
   let sameBuild = false;
@@ -36,27 +45,6 @@ async function comparePreviousBuildSizes() {
 
     prevSizes = nextSizes;
     sameBuild = true;
-  }
-
-  function calculateDiff(prev: number, next: number): number {
-    return (next - prev) / prev;
-  }
-
-  function formatDiff(diff: number): string {
-    if (!isFinite(diff) || diff === 0 || diff === 0.0) {
-      return 'N/A';
-    }
-
-    const sum = diff * 100;
-    const percent = sum.toFixed(1);
-
-    // Smaller
-    if (percent.startsWith('-')) {
-      return `${sum < -10 ? ':small_red_triangle_down: ' : ''}${percent}%`;
-    }
-
-    // Larger
-    return `${sum > 10 ? ':small_red_triangle: ' : ''}+${percent}%`;
   }
 
   function getPrevSize(name: string, type: string) {
@@ -109,7 +97,10 @@ ${JSON.stringify(nextSizes, null, 2)}
 </details>`);
   }
 
-  markdown(output.join('\n'));
+  // TODO write to file
+  // markdown(output.join('\n'));
 }
 
-comparePreviousBuildSizes();
+(async () => {
+  await compareBuildSizes();
+})();
