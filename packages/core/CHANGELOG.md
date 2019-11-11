@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.40.2 - 2019-11-11
+
+#### 🐞 Fixes
+
+- **[AdaptiveGrid]** Hide/filter out empty grid items. (#238) ([82c5d23](https://github.com/airbnb/lunar/tree/master/packages/core/commit/82c5d23)), closes [#238](https://github.com/airbnb/lunar/tree/master/packages/core/issues/238)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.40.1 - 2019-11-06
 
 #### 🐞 Fixes
