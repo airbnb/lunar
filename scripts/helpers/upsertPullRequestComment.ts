@@ -1,7 +1,7 @@
 import Octokit from '@octokit/rest';
 import createGitHubClient from '@airbnb/nimbus/scripts/helpers/createGitHubClient';
 
-const { GITHUB_USER, TRAVIS_PULL_REQUEST, TRAVIS_PULL_REQUEST_SLUG } = process.env;
+const { GITHUB_USER, TRAVIS_PULL_REQUEST = 'false', TRAVIS_PULL_REQUEST_SLUG = '' } = process.env;
 
 export default async function upsertPullRequestComment(query: string, body: string) {
   if (TRAVIS_PULL_REQUEST === 'false') {

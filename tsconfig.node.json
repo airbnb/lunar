@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.options.json",
   "compilerOptions": {
-    "module": "commonjs"
-  },
-  "include": ["./scripts/**/*", "./types/**/*"]
+    "module": "commonjs",
+    "typeRoots": ["./node_modules/@types", "./types"]
+  }
 }
