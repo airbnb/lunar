@@ -1,7 +1,7 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import { styleSheetItem as styleSheet } from './styles';
 
 export type Props = {
   /** Render with a top/bottom borders. Last item will have both. */
