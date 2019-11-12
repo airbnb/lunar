@@ -42,7 +42,8 @@ jobs:
         provider: script
         script: yarn run release:storybook
         skip_cleanup: true
-        # on:
+        on:
+          branch: travis
         #   branch: master
     - name: NPM
       script: yarn run build:sizes

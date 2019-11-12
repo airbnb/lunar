@@ -5,6 +5,8 @@ const { GITHUB_USER, TRAVIS_PULL_REQUEST = 'false', TRAVIS_PULL_REQUEST_SLUG = '
 
 export default async function upsertPullRequestComment(query: string, body: string) {
   if (TRAVIS_PULL_REQUEST === 'false') {
+    console.log(`No pull request detected (${TRAVIS_PULL_REQUEST}). Avoiding comment.`);
+
     return;
   }
 
@@ -26,8 +28,12 @@ export default async function upsertPullRequestComment(query: string, body: stri
 
   // Update existing comment
   if (previousComments.length > 0) {
+    const { id } = previousComments[0];
+
+    console.log(`Updating comment #${id}`);
+
     await client.issues.updateComment({
-      comment_id: previousComments[0].id,
+      comment_id: id,
       owner,
       repo,
       body,
@@ -35,6 +41,8 @@ export default async function upsertPullRequestComment(query: string, body: stri
 
     // Insert a new comment
   } else {
+    console.log('Adding a new comment');
+
     await client.issues.createComment({
       issue_number: prNumber,
       owner,
