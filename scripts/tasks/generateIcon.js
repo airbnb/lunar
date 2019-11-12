@@ -15,8 +15,8 @@ if (!filePattern) {
   process.exit(1);
 }
 
-const SVG_ROOT = path.join(__dirname, '../svgs');
-const ICON_ROOT = path.join(__dirname, '../packages/icons/src');
+const SVG_ROOT = path.join(__dirname, '../../svgs');
+const ICON_ROOT = path.join(__dirname, '../../packages/icons/src');
 
 const svgo = new Svgo({
   full: true,
