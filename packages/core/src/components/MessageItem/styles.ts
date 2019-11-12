@@ -106,3 +106,5 @@ const styleSheet: StyleSheet = ({ color, font, ui, unit, pattern }) => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

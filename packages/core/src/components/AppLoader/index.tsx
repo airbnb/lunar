@@ -5,7 +5,7 @@ import Loader from '../Loader';
 import Title from '../Title';
 import Text from '../Text';
 import { ErrorType } from '../../types';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Center the loader and content. */

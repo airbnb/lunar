@@ -5,7 +5,7 @@ import iconComponent from '../../prop-types/iconComponent';
 import useStyles from '../../hooks/useStyles';
 import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Renders with a primary background and white text. */

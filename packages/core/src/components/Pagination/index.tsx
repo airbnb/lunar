@@ -10,7 +10,7 @@ import IconButton from '../IconButton';
 import Text from '../Text';
 import T from '../Translate';
 import DirectionalIcon from '../DirectionalIcon';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 import useTheme from '../../hooks/useTheme';
 
 export type Props = {

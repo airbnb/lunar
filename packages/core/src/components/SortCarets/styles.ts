@@ -49,3 +49,5 @@ const styleSheet: StyleSheet = ({ color, unit }) => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

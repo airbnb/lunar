@@ -7,3 +7,5 @@ const styleSheet: StyleSheet = ({ ui }) => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

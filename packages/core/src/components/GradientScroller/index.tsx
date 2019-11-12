@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleBlock } from 'aesthetic';
 import debounce from 'lodash/debounce';
 import throttle from 'lodash/throttle';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import DirectionalIcon from '../DirectionalIcon';
+import { styleSheet } from './styles';
 
 const INCREMENT = 25;
 
@@ -26,11 +26,14 @@ export type State = {
 };
 
 /** A horizontal scroller with gradients on each side. */
-export class GradientScroller extends React.Component<Props & WithStylesProps, State> {
+export class GradientScroller extends React.Component<
+  Props & WithStylesProps,
+  State
+> {
   static defaultProps = {
     children: null,
     hideScrollbar: false,
-    showArrows: false,
+    showArrows: false
   };
 
   contentsRef: HTMLDivElement | null = null;
@@ -43,7 +46,7 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
 
   state = {
     showStartGradient: false,
-    showEndGradient: true,
+    showEndGradient: true
   };
 
   constructor(props: Props & WithStylesProps) {
@@ -70,7 +73,7 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
 
     this.setState({
       showStartGradient: scroller.scrollLeft > 0,
-      showEndGradient: maxChildWidth > scrollerWidth,
+      showEndGradient: maxChildWidth > scrollerWidth
     });
   }
 
@@ -92,7 +95,7 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
   calculateMaxChildWidth(contents: Element) {
     return Array.from(contents.children).reduce(
       (width, child) => Math.max(child.clientWidth, width),
-      contents.clientWidth,
+      contents.clientWidth
     );
   }
 
@@ -171,11 +174,11 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
 
     if (target.scrollLeft > 0 && !showStartGradient) {
       this.setState({
-        showStartGradient: true,
+        showStartGradient: true
       });
     } else if (target.scrollLeft === 0 && showStartGradient) {
       this.setState({
-        showStartGradient: false,
+        showStartGradient: false
       });
     }
 
@@ -185,11 +188,11 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
 
     if (scrolledWidth < maxChildWidth && !showEndGradient) {
       this.setState({
-        showEndGradient: true,
+        showEndGradient: true
       });
     } else if (scrolledWidth >= maxChildWidth && showEndGradient) {
       this.setState({
-        showEndGradient: false,
+        showEndGradient: false
       });
     }
   };
@@ -216,10 +219,18 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
 
     return (
       <div className={cx(styles.container)}>
-        <div className={cx(styles.leftGradient, showStartGradient && styles.gradient_reveal)}>
+        <div
+          className={cx(
+            styles.leftGradient,
+            showStartGradient && styles.gradient_reveal
+          )}
+        >
           {showArrows ? (
             <button
-              className={cx(styles.leftArrow, hideScrollbar && styles.arrow_hideScrollbar)}
+              className={cx(
+                styles.leftArrow,
+                hideScrollbar && styles.arrow_hideScrollbar
+              )}
               type="button"
               onClick={this.handleScrollLeft}
             >
@@ -240,10 +251,18 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
           )}
         </div>
 
-        <div className={cx(styles.rightGradient, showEndGradient && styles.gradient_reveal)}>
+        <div
+          className={cx(
+            styles.rightGradient,
+            showEndGradient && styles.gradient_reveal
+          )}
+        >
           {showArrows ? (
             <button
-              className={cx(styles.rightArrow, hideScrollbar && styles.arrow_hideScrollbar)}
+              className={cx(
+                styles.rightArrow,
+                hideScrollbar && styles.arrow_hideScrollbar
+              )}
               type="button"
               onClick={this.handleScrollRight}
             >
@@ -266,7 +285,10 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
 
         <div
           ref={this.handleScrollerRef}
-          className={cx(styles.scroller, hideScrollbar && styles.scroller_hideScrollbar)}
+          className={cx(
+            styles.scroller,
+            hideScrollbar && styles.scroller_hideScrollbar
+          )}
           onScroll={this.handleScrollThrottled}
         >
           <div ref={this.handleContentsRef} className={cx(styles.contents)}>
@@ -278,107 +300,4 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
   }
 }
 
-export default withStyles(({ color, unit, ui, pattern, transition }) => {
-  const scrollbarHeight = unit * 1.5;
-
-  const gradient: StyleBlock = {
-    ...transition.fade,
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    zIndex: 1,
-    content: "''",
-    opacity: 0,
-    pointerEvents: 'none',
-  };
-
-  const arrow: StyleBlock = {
-    ...pattern.resetButton,
-    position: 'absolute',
-    top: '45%',
-    marginTop: -scrollbarHeight / 2,
-    transform: 'translateY(-50%)',
-    backgroundColor: color.accent.bg,
-    borderRadius: '50%',
-    boxShadow: ui.boxShadow,
-    padding: unit,
-    outline: 'none',
-
-    ':hover': {
-      backgroundColor: color.accent.bgHover,
-    },
-  };
-
-  return {
-    container: {
-      width: '100%',
-      position: 'relative',
-      margin: -unit / 2,
-    },
-
-    leftGradient: {
-      ...gradient,
-      width: unit * 5,
-      left: 0,
-      background: `linear-gradient(to right, ${color.accent.bg} 40%, transparent 100%)`,
-    },
-
-    leftArrow: {
-      ...arrow,
-      left: -unit,
-    },
-
-    rightGradient: {
-      ...gradient,
-      width: unit * 5,
-      right: 0,
-      background: `linear-gradient(to left, ${color.accent.bg} 40%, transparent 100%)`,
-    },
-
-    rightArrow: {
-      ...arrow,
-      right: -unit,
-    },
-
-    arrow_hideScrollbar: {
-      top: '45%',
-      marginTop: 0,
-    },
-
-    gradient_reveal: {
-      opacity: 1,
-      pointerEvents: 'auto',
-    },
-
-    scroller: {
-      overflowX: 'auto',
-      overflowY: 'hidden',
-      display: 'flex',
-      alignItems: 'center',
-      alignContent: 'stretch',
-      paddingBottom: scrollbarHeight,
-      '-webkit-overflow-scrolling': 'touch',
-    },
-
-    scroller_hideScrollbar: {
-      paddingBottom: 0,
-
-      '::-webkit-scrollbar': {
-        display: 'none',
-      },
-    },
-
-    scrollTrigger: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-    },
-
-    contents: {
-      flexBasis: '100%',
-      padding: unit / 2,
-    },
-  };
-})(GradientScroller);
+export default withStyles(styleSheet)(GradientScroller);

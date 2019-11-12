@@ -1,7 +1,7 @@
 import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import StatusText from '../StatusText';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** ID of the input field associated with the error. */

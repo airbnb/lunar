@@ -30,3 +30,5 @@ const styleSheet: StyleSheet = ({ color, pattern, ui, unit, transition }) => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

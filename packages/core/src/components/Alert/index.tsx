@@ -15,7 +15,7 @@ import Text from '../Text';
 import T from '../Translate';
 import IconButton from '../IconButton';
 import { STATUSES } from '../../constants';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 const alertColorTypePropType = mutuallyExclusiveTrueProps(...STATUSES);
 

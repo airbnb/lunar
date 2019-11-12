@@ -11,6 +11,7 @@ import {
   ItemShape,
   TreePath,
 } from '../types';
+import { styleSheet } from './styles';
 
 export type Props = {
   chosen?: TreePath;
@@ -160,17 +161,4 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
   }
 }
 
-export default withStyles(({ ui, unit, color }) => ({
-  pane: {
-    display: 'inline-block',
-    borderRadius: ui.borderRadius,
-    backgroundColor: color.accent.bg,
-    boxShadow: ui.boxShadowMedium,
-    marginBottom: unit,
-  },
-
-  hierarchy: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-}))(Picker);
+export default withStyles(styleSheet)(Picker);

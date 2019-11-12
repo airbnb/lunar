@@ -4,7 +4,7 @@ import useStyles from '../../hooks/useStyles';
 import iconComponent from '../../prop-types/iconComponent';
 import IconAffix from '../private/IconAffix';
 import { STATUSES, BRANDS } from '../../constants';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Icon to display at the end of the content. */

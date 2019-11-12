@@ -24,3 +24,5 @@ const styleSheet: StyleSheet = () => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

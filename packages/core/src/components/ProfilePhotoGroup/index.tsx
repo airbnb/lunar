@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
 import { Props as ProfilePhotoProps } from '../ProfilePhoto';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** List of `ProfilePhoto` components to group. */

@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles from '../../hooks/useStyles';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Content to render as a grid. */

@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** The primary main content. */

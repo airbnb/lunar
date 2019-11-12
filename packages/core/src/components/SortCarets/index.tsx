@@ -2,7 +2,7 @@ import React from 'react';
 import IconCaretUp from '@airbnb/lunar-icons/lib/interface/IconCaretUp';
 import IconCaretDown from '@airbnb/lunar-icons/lib/interface/IconCaretDown';
 import useStyles from '../../hooks/useStyles';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Whether or not to display the bottom caret. */

@@ -3,7 +3,7 @@ import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import useStyles from '../../hooks/useStyles';
 import Text, { Props as TextProps } from '../Text';
 import { STATUSES } from '../../constants';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = TextProps & {
   /** The text to render. */

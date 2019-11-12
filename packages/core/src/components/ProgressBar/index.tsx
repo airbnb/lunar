@@ -1,7 +1,7 @@
 import React from 'react';
 import { between } from 'airbnb-prop-types';
 import useStyles from '../../hooks/useStyles';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Disable leading rounded corners. */

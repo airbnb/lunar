@@ -44,3 +44,5 @@ const styleSheet: StyleSheet = ({ color, font }) => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

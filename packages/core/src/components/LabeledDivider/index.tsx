@@ -1,7 +1,7 @@
 import React from 'react';
 import Text from '../Text';
 import useStyles from '../../hooks/useStyles';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** A label for the divider. Typically a string or i18n T node. */

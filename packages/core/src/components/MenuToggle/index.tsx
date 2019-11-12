@@ -8,6 +8,7 @@ import IconButton from '../IconButton';
 import ExpandableIcon from '../ExpandableIcon';
 import Dropdown, { Props as DropdownProps } from '../Dropdown';
 import Menu, { Item, Separator, Props as MenuProps } from '../Menu';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Accessibility label for menu. */
@@ -211,30 +212,4 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
 
 export { Item, Separator };
 
-export default withStyles(({ unit, transition }) => ({
-  container: {
-    display: 'inline-block',
-    position: 'relative',
-  },
-
-  dropdown: {
-    ...transition.fade,
-    visibility: 'visible',
-    position: 'relative',
-  },
-
-  dropdown_hidden: {
-    opacity: 0,
-    visibility: 'hidden',
-    userSelect: 'none',
-  },
-
-  menu: {
-    marginTop: unit,
-  },
-
-  controls: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-}))(MenuToggle);
+export default withStyles(styleSheet)(MenuToggle);

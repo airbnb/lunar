@@ -49,12 +49,16 @@ export type Props = {
 function Glyph({ children, ...props }: Props) {
   const [, cx] = useStyles(() => ({}));
 
-  return <span className={cx({ fontVariantNumeric: getNumericVariant(props) })}>{children}</span>;
+  return (
+    <span className={cx({ fontVariantNumeric: getNumericVariant(props) })}>
+      {children}
+    </span>
+  );
 }
 
 Glyph.propTypes = {
   diagonal: fractionProp,
-  stacked: fractionProp,
+  stacked: fractionProp
 };
 
 export default Glyph;

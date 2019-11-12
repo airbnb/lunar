@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles from '../../hooks/useStyles';
-import styleSheet, { createPosition, NOTCH_SIZE, NOTCH_SPACING } from './styles';
+import { styleSheet, createPosition, NOTCH_SIZE, NOTCH_SPACING } from './styles';
 
 export { NOTCH_SIZE, NOTCH_SPACING };
 

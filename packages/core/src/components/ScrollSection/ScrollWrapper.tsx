@@ -1,6 +1,7 @@
 import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ScrollSectionContext, { Context } from './ScrollContext';
+import { styleSheetScrollWrapper as styleSheet } from './styles';
 
 export type Props = {
   /** The contents of the wrapper. */
@@ -125,10 +126,4 @@ export class ScrollWrapper extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(() => ({
-  wrapper: {
-    height: '100%',
-    position: 'relative',
-    overflowY: 'auto',
-  },
-}))(ScrollWrapper);
+export default withStyles(styleSheet)(ScrollWrapper);

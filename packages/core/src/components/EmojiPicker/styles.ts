@@ -233,3 +233,5 @@ const styleSheet: StyleSheet = ({ ui, unit, color, font, pattern }) => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

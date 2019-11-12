@@ -128,3 +128,5 @@ const styleSheet: StyleSheet = ({ color, font, pattern, transition, ui, unit }) 
 });
 
 export default styleSheet;
+
+export { styleSheet };

@@ -31,7 +31,7 @@ export default function RotateControls(props: Props) {
         <IconRotateLeft
           accessibilityLabel={T.phrase(
             'Rotate counter clockwise',
-            {},
+            null,
             'Label for button that rotates an image counter clockwise',
           )}
           size="2em"
@@ -42,7 +42,7 @@ export default function RotateControls(props: Props) {
         <IconRotateRight
           accessibilityLabel={T.phrase(
             'Rotate clockwise',
-            {},
+            null,
             'Label for button that rotates an image clockwise',
           )}
           size="2em"

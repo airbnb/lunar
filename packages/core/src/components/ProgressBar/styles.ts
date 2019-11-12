@@ -27,3 +27,5 @@ const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

@@ -15,7 +15,7 @@ import useStyles from '../../hooks/useStyles';
 import Core from '../..';
 import { ESCAPE } from '../../keys';
 import T from '../Translate';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 // Exclude inappropriate or offensive emojis
 const blockList = [

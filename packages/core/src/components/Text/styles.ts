@@ -89,3 +89,5 @@ const styleSheet: StyleSheet = ({ color, font, pattern }) => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

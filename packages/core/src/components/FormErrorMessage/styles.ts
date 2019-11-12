@@ -7,3 +7,5 @@ const styleSheet: StyleSheet = ({ unit }) => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

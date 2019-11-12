@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import space from ':storybook/images/space.jpg';
 import ImageViewer, { ZoomControls, RotateControls } from '.';
 import Row from '../Row';

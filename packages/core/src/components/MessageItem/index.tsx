@@ -7,7 +7,7 @@ import Shimmer from '../Shimmer';
 import Text from '../Text';
 import Spacing from '../Spacing';
 import T from '../Translate';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Message body. */

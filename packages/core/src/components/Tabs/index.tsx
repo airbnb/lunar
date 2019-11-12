@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-
 import React from 'react';
 import withBoundary from '../../composers/withBoundary';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import GradientScroller from '../GradientScroller';
 import Tab, { Props as TabProps } from './Tab';
+import { styleSheet } from './styles';
 
 export { Tab };
 
@@ -176,24 +176,4 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
   }
 }
 
-export default withBoundary('Tabs')(
-  withStyles(({ color, ui, unit }) => ({
-    nav: {
-      borderBottom: ui.borderThick,
-      display: 'flex',
-    },
-
-    nav_noBorder: {
-      borderColor: color.clear,
-    },
-
-    nav_secondary: {
-      alignItems: 'center',
-      borderWidth: 0,
-    },
-
-    panel: {
-      marginTop: unit,
-    },
-  }))(Tabs),
-);
+export default withBoundary('Tabs')(withStyles(styleSheet)(Tabs));

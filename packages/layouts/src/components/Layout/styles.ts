@@ -28,3 +28,5 @@ const styleSheet: StyleSheet = ({ breakpoints, color, unit }) => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

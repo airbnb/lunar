@@ -7,7 +7,7 @@ import FormErrorMessage from '../FormErrorMessage';
 import partitionFieldProps from './partitionFieldProps';
 import Prefix from './Prefix';
 import Suffix from './Suffix';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Decrease label font size and spacing. */

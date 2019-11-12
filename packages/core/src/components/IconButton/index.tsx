@@ -3,7 +3,7 @@ import iconComponent from '../../prop-types/iconComponent';
 import useStyles from '../../hooks/useStyles';
 import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
 import Tooltip from '../Tooltip';
-import styleSheet from './styles';
+import { styleSheet } from './styles';
 
 export type Props = ButtonOrLinkProps & {
   /** @ignore */

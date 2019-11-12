@@ -61,3 +61,5 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
 });
 
 export default styleSheet;
+
+export { styleSheet };

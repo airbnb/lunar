@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-
 import React from 'react';
 import T from '@airbnb/lunar/lib/components/Translate';
 import Button from '@airbnb/lunar/lib/components/Button';
@@ -9,6 +8,7 @@ import ExpandableIcon from '@airbnb/lunar/lib/components/ExpandableIcon';
 import Link from '@airbnb/lunar/lib/components/Link';
 import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
 import Row from './private/Row';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Accessibility label. */
@@ -201,30 +201,4 @@ export class FilterMenu extends React.Component<Props & WithStylesProps, State> 
 
 export { Row };
 
-export default withStyles(({ unit, transition }) => ({
-  container: {
-    display: 'inline-block',
-    position: 'relative',
-  },
-
-  form: {
-    ...transition.fade,
-    visibility: 'visible',
-    position: 'relative',
-  },
-
-  form_hidden: {
-    opacity: 0,
-    visibility: 'hidden',
-    userSelect: 'none',
-  },
-
-  menu: {
-    marginTop: unit,
-  },
-
-  controls: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-}))(FilterMenu);
+export default withStyles(styleSheet)(FilterMenu);

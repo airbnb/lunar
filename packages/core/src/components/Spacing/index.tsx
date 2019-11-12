@@ -1,7 +1,7 @@
 import React from 'react';
 import { ParsedBlock } from 'aesthetic-adapter-aphrodite';
 import useStyles from '../../hooks/useStyles';
-import styleSheet, { cleanClassName } from './styles';
+import { styleSheet, cleanClassName } from './styles';
 
 export type SpacingRange =
   | 0

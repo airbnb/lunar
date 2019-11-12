@@ -3,6 +3,7 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ZoomControls from './ZoomControls';
 import RotateControls from './RotateControls';
 import ResponsiveImage from '../ResponsiveImage';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** An accessible label. */
@@ -142,22 +143,4 @@ export class ImageViewer extends React.Component<Props & WithStylesProps, State>
 
 export { ZoomControls, RotateControls };
 
-export default withStyles(({ ui }) => ({
-  container: {
-    border: ui.border,
-    cursor: 'move',
-    overflow: 'hidden',
-  },
-
-  container_borderless: {
-    borderColor: 'transparent',
-  },
-
-  image: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-}))(ImageViewer);
+export default withStyles(styleSheet)(ImageViewer);

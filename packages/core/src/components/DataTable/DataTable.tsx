@@ -1,7 +1,7 @@
 import React from 'react';
 import { CellMeasurerCache, SortDirection, SortDirectionType, Table } from 'react-virtualized';
 import memoize from 'lodash/memoize';
-
+import { styleSheetDataTable as styleSheet } from './styles';
 import sortData from './helpers/sortData';
 import expandData from './helpers/expandData';
 import { indexData } from './helpers/indexData';
@@ -526,41 +526,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   }
 }
 
-export default withStyles(
-  ({ ui }) => ({
-    table_container: {
-      overflowX: 'auto',
-    },
-    headerRow: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      height: '100%',
-      textTransform: 'none',
-    },
-    column_header: {
-      borderBottom: ui.border,
-      cursor: 'pointer',
-    },
-    column: {
-      height: 'inherit',
-    },
-    column_divider: {
-      borderRight: ui.border,
-    },
-    rowContainer: {
-      height: '100%',
-      display: 'flex',
-      alignItems: 'center',
-    },
-    row: {
-      whiteSpace: 'normal',
-      width: '100%', // this is important for consumers who need full-width cells
-    },
-    expand_caret: {
-      cursor: 'pointer',
-    },
-  }),
-  {
-    passThemeProp: true,
-  },
-)(DataTable);
+export default withStyles(styleSheet, {
+  passThemeProp: true,
+})(DataTable);
