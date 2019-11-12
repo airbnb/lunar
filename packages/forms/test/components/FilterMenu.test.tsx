@@ -1,13 +1,12 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import MenuToggle, { Props } from '@airbnb/lunar/lib/components/MenuToggle';
+import { Props } from '@airbnb/lunar/lib/components/MenuToggle';
 import Link from '@airbnb/lunar/lib/components/Link';
 import T from '@airbnb/lunar/lib/components/Translate';
 import FilterMenu, { Row } from '../../src/components/FilterMenu';
 
 function openFilters(wrapper: Enzyme.ShallowWrapper) {
   wrapper
-
     .dive()
     .childAt(0)
     .simulate('click');
@@ -15,7 +14,6 @@ function openFilters(wrapper: Enzyme.ShallowWrapper) {
 
 function getDropdown(wrapper: Enzyme.ShallowWrapper) {
   return wrapper
-
     .dive()
     .dive()
     .childAt(1)
@@ -24,7 +22,6 @@ function getDropdown(wrapper: Enzyme.ShallowWrapper) {
 
 function getMenu(wrapper: Enzyme.ShallowWrapper) {
   return wrapper
-
     .dive()
     .dive()
     .childAt(1)
