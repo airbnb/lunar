@@ -16,9 +16,11 @@ jobs:
       script: yarn run check:pr
       node_js: '12'
     - name: Build Sizes
+      if: type = pull_request
       script: yarn run check:build
       node_js: '12'
     - name: Happo
+      if: type = pull_request
       script: yarn run check:happo
       node_js: '12'
     - stage: Tests
@@ -36,6 +38,7 @@ jobs:
       node_js: '12'
     - stage: Release
       name: Storybook
+      script: yarn run build:storybook
       node_js: '12'
       # if: branch = master
       deploy:
