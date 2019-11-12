@@ -1,5 +1,4 @@
 import React from 'react';
-import { childrenOfType } from 'airbnb-prop-types';
 import iconComponent from '../../prop-types/iconComponent';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import BaseButton from '../Button';
@@ -52,7 +51,6 @@ export type State = {
 /** A controller for multiple tabs. */
 export class MenuToggle extends React.Component<Props & WithStylesProps, State> {
   static propTypes = {
-    children: childrenOfType(Item, Separator, 'li').isRequired,
     toggleIcon: iconComponent,
   };
 
