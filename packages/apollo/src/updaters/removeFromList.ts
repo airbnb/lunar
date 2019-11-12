@@ -26,7 +26,11 @@ export default function removeFromList<Result, Vars = {}>(
       }
     }
 
-    set(nextResult, listPath, list.filter(item => item[idName] !== id));
+    set(
+      nextResult,
+      listPath,
+      list.filter(item => item[idName] !== id),
+    );
 
     cache.writeQuery({
       ...query,

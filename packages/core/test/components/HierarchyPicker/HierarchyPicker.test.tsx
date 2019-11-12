@@ -98,7 +98,7 @@ describe('<HierarchyPicker />', () => {
     });
 
     describe('handleKeyDown', () => {
-      let event: unknown;
+      let event: object;
 
       beforeEach(() => {
         event = { preventDefault: jest.fn(), target: instance.ref.current };

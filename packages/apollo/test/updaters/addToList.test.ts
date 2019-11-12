@@ -68,7 +68,11 @@ describe('addToList()', () => {
   });
 
   it('adds mutation data to the querys list', () => {
-    addToList(QUERY, 'something.things', 'updateThing')(cache, {
+    addToList(
+      QUERY,
+      'something.things',
+      'updateThing',
+    )(cache, {
       data: {
         updateThing: {
           id: 3,

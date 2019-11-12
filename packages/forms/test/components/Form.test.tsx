@@ -431,9 +431,9 @@ describe('<Form />', () => {
     });
 
     it('passes through unknown fields', () => {
-      expect(instance.prepareData({ foo: ' foo ', bar: '123.45', baz: 1, qux: [1, 2, 3] })).toEqual(
-        { foo: 'foo', bar: 123.45, baz: true, qux: [1, 2, 3] },
-      );
+      expect(
+        instance.prepareData({ foo: ' foo ', bar: '123.45', baz: 1, qux: [1, 2, 3] }),
+      ).toEqual({ foo: 'foo', bar: 123.45, baz: true, qux: [1, 2, 3] });
     });
   });
 

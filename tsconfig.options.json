@@ -19,6 +19,7 @@
     "removeComments": false,
     "strict": true,
     "target": "es2015",
+    "useDefineForClassFields": false,
     "composite": true,
     "declarationMap": true
   }
