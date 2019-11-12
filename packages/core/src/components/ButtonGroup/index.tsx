@@ -1,37 +1,6 @@
 import React from 'react';
-import useStyles, { StyleSheet } from '../../hooks/useStyles';
-
-const styleSheet: StyleSheet = ({ unit }) => ({
-  buttonGroup: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-
-  buttonGroup_stacked: {
-    flexDirection: 'column',
-    alignItems: 'stretch',
-  },
-
-  cell: {
-    marginRight: unit,
-
-    ':last-of-type': {
-      marginRight: 0,
-    },
-
-    ':empty': {
-      display: 'none',
-    },
-  },
-
-  cell_stacked: {
-    marginBottom: unit,
-
-    ':last-of-type': {
-      marginBottom: 0,
-    },
-  },
-});
+import useStyles from '../../hooks/useStyles';
+import styleSheet from './styles';
 
 export type Props = {
   /** List of components to group. */
