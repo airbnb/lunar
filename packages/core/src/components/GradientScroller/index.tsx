@@ -26,14 +26,11 @@ export type State = {
 };
 
 /** A horizontal scroller with gradients on each side. */
-export class GradientScroller extends React.Component<
-  Props & WithStylesProps,
-  State
-> {
+export class GradientScroller extends React.Component<Props & WithStylesProps, State> {
   static defaultProps = {
     children: null,
     hideScrollbar: false,
-    showArrows: false
+    showArrows: false,
   };
 
   contentsRef: HTMLDivElement | null = null;
@@ -46,7 +43,7 @@ export class GradientScroller extends React.Component<
 
   state = {
     showStartGradient: false,
-    showEndGradient: true
+    showEndGradient: true,
   };
 
   constructor(props: Props & WithStylesProps) {
@@ -73,7 +70,7 @@ export class GradientScroller extends React.Component<
 
     this.setState({
       showStartGradient: scroller.scrollLeft > 0,
-      showEndGradient: maxChildWidth > scrollerWidth
+      showEndGradient: maxChildWidth > scrollerWidth,
     });
   }
 
@@ -95,7 +92,7 @@ export class GradientScroller extends React.Component<
   calculateMaxChildWidth(contents: Element) {
     return Array.from(contents.children).reduce(
       (width, child) => Math.max(child.clientWidth, width),
-      contents.clientWidth
+      contents.clientWidth,
     );
   }
 
@@ -174,11 +171,11 @@ export class GradientScroller extends React.Component<
 
     if (target.scrollLeft > 0 && !showStartGradient) {
       this.setState({
-        showStartGradient: true
+        showStartGradient: true,
       });
     } else if (target.scrollLeft === 0 && showStartGradient) {
       this.setState({
-        showStartGradient: false
+        showStartGradient: false,
       });
     }
 
@@ -188,11 +185,11 @@ export class GradientScroller extends React.Component<
 
     if (scrolledWidth < maxChildWidth && !showEndGradient) {
       this.setState({
-        showEndGradient: true
+        showEndGradient: true,
       });
     } else if (scrolledWidth >= maxChildWidth && showEndGradient) {
       this.setState({
-        showEndGradient: false
+        showEndGradient: false,
       });
     }
   };
@@ -219,18 +216,10 @@ export class GradientScroller extends React.Component<
 
     return (
       <div className={cx(styles.container)}>
-        <div
-          className={cx(
-            styles.leftGradient,
-            showStartGradient && styles.gradient_reveal
-          )}
-        >
+        <div className={cx(styles.leftGradient, showStartGradient && styles.gradient_reveal)}>
           {showArrows ? (
             <button
-              className={cx(
-                styles.leftArrow,
-                hideScrollbar && styles.arrow_hideScrollbar
-              )}
+              className={cx(styles.leftArrow, hideScrollbar && styles.arrow_hideScrollbar)}
               type="button"
               onClick={this.handleScrollLeft}
             >
@@ -251,18 +240,10 @@ export class GradientScroller extends React.Component<
           )}
         </div>
 
-        <div
-          className={cx(
-            styles.rightGradient,
-            showEndGradient && styles.gradient_reveal
-          )}
-        >
+        <div className={cx(styles.rightGradient, showEndGradient && styles.gradient_reveal)}>
           {showArrows ? (
             <button
-              className={cx(
-                styles.rightArrow,
-                hideScrollbar && styles.arrow_hideScrollbar
-              )}
+              className={cx(styles.rightArrow, hideScrollbar && styles.arrow_hideScrollbar)}
               type="button"
               onClick={this.handleScrollRight}
             >
@@ -285,10 +266,7 @@ export class GradientScroller extends React.Component<
 
         <div
           ref={this.handleScrollerRef}
-          className={cx(
-            styles.scroller,
-            hideScrollbar && styles.scroller_hideScrollbar
-          )}
+          className={cx(styles.scroller, hideScrollbar && styles.scroller_hideScrollbar)}
           onScroll={this.handleScrollThrottled}
         >
           <div ref={this.handleContentsRef} className={cx(styles.contents)}>

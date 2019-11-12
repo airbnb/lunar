@@ -10,36 +10,36 @@ export const styleSheet: StyleSheet = ({ unit }) => ({
     alignItems: 'stretch',
     justifyContent: 'space-between',
     marginLeft: -unit,
-    marginRight: -unit
+    marginRight: -unit,
   },
 
   grid_reversed: {
-    flexDirection: 'row-reverse'
+    flexDirection: 'row-reverse',
   },
 
   grid_center: {
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
 
   grid_start: {
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
 
   grid_end: {
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
 
   grid_top: {
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
 
   grid_middle: {
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   grid_bottom: {
-    alignItems: 'flex-end'
-  }
+    alignItems: 'flex-end',
+  },
 });
 
 export const styleSheetCol: StyleSheet = ({ unit }) => {
@@ -53,11 +53,11 @@ export const styleSheetCol: StyleSheet = ({ unit }) => {
 
     spans[`span${span}`] = {
       flexBasis: `${width}%`,
-      maxWidth: `${width}%`
+      maxWidth: `${width}%`,
     };
 
     offsets[`offset${offset}`] = {
-      marginLeft: offset > 0 ? `${100 / (12 / offset)}%` : 0
+      marginLeft: offset > 0 ? `${100 / (12 / offset)}%` : 0,
     };
 
     return span;
@@ -67,10 +67,10 @@ export const styleSheetCol: StyleSheet = ({ unit }) => {
     col: {
       flex: '0 0 auto',
       paddingLeft: unit,
-      paddingRight: unit
+      paddingRight: unit,
     },
 
     ...spans,
-    ...offsets
+    ...offsets,
   };
 };
