@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderAndWait } from 'rut';
+import { renderAndWait } from 'rut-dom';
 import BaseInterweave from 'interweave';
 import { UrlMatcher } from 'interweave-autolink';
 import Interweave, {

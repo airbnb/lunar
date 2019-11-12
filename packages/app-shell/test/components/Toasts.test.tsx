@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'rut';
+import { render } from 'rut-dom';
 import { Toast } from '@airbnb/lunar/lib/components/Toast';
 import Toasts from '../../src/components/Toasts';
 import AppContext, { defaultContext } from '../../src/components/AppContext';

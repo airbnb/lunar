@@ -3536,10 +3536,10 @@
   resolved "https://registry.yarnpkg.com/@types/jest-diff/-/jest-diff-20.0.1.tgz#35cc15b9c4f30a18ef21852e255fdb02f6d59b89"
   integrity sha512-yALhelO3i0hqZwhjtcr6dYyaLoCHbAMshwtj6cGxTvHZAKXHsYGdff6E8EPw3xLKY0ELUTQ69Q1rQiJENnccMA==
 
-"@types/jest@*", "@types/jest@^24.0.21":
-  version "24.0.21"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.21.tgz#2c0a25440e025bb265f4a17d8b79b11b231426bf"
-  integrity sha512-uyqFvx78Tuy0h5iLCPWRCvi5HhWwEqhIj30doitp191oYLqlCxUyAJHdWVm5+Nr271/vPnkyt6rWeEIjGowBTg==
+"@types/jest@*", "@types/jest@^24.0.22":
+  version "24.0.22"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.22.tgz#08a50be08e78aba850a1185626e71d31e2336145"
+  integrity sha512-t2OvhNZnrNjlzi2i0/cxbLVM59WN15I2r1Qtb7wDv28PnV9IzrPtagFRey/S9ezdLD0zyh1XGMQIEQND2YEfrw==
   dependencies:
     "@types/jest-diff" "*"
 
@@ -3561,10 +3561,10 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.30.tgz#44cb52f32a809734ca562e685c6473b5754a7818"
   integrity sha512-sqm9g7mHlPY/43fcSNrCYfOeX9zkTTK+euO5E6+CVijSMm5tTjkVdwdqRkY3ljjIAf8679vps5jKUoJBCLsMDA==
 
-"@types/lodash@*", "@types/lodash@^4.14.138", "@types/lodash@^4.14.144":
-  version "4.14.144"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.144.tgz#12e57fc99064bce45e5ab3c8bc4783feb75eab8e"
-  integrity sha512-ogI4g9W5qIQQUhXAclq6zhqgqNUr7UlFaqDHbch7WLSLeeM/7d3CRaw7GLajxvyFvhJqw4Rpcz5bhoaYtIx6Tg==
+"@types/lodash@*", "@types/lodash@^4.14.138", "@types/lodash@^4.14.144", "@types/lodash@^4.14.146":
+  version "4.14.146"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.146.tgz#de0d2c8610012f12a6a796455054cbc654f8fecf"
+  integrity sha512-JzJcmQ/ikHSv7pbvrVNKJU5j9jL9VLf3/gqs048CEnBVVVEv4kve3vLxoPHGvclutS+Il4SBIuQQ087m1eHffw==
 
 "@types/luxon@*", "@types/luxon@^1.15.1":
   version "1.15.2"
@@ -3638,10 +3638,10 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react-dom@*", "@types/react-dom@^16.9.3":
-  version "16.9.3"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.3.tgz#4006ff0e13958af91313869077c04cb20d9b9d04"
-  integrity sha512-FUuZKXPr9qlzUT9lhuzrZgLjH63TvNn28Ch3MvKG4B+F52zQtO8DtE0Opbncy3xaucNZM2WIPfuNTgkbKx5Brg==
+"@types/react-dom@*", "@types/react-dom@^16.9.4":
+  version "16.9.4"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.4.tgz#0b58df09a60961dcb77f62d4f1832427513420df"
+  integrity sha512-fya9xteU/n90tda0s+FtN5Ym4tbgxpq/hb/Af24dvs6uYnYn+fspaxw5USlw0R8apDNwxsqumdRoCoKitckQqw==
   dependencies:
     "@types/react" "*"
 
@@ -7634,10 +7634,10 @@ eslint-plugin-react@^7.16.0:
     prop-types "^15.7.2"
     resolve "^1.12.0"
 
-eslint-plugin-rut@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-rut/-/eslint-plugin-rut-0.1.7.tgz#447ec770068491925dbc2ea99bf991d21d7256d0"
-  integrity sha512-q5Vp6Bp6jO0SojFgao83E2q2m/h7cPAepKYJXLvJKlNHXD8l7T8vDcDfiG8ZoW9TYcN9C0GOIKddHuDW+n1/Jg==
+eslint-plugin-rut@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-rut/-/eslint-plugin-rut-0.1.9.tgz#b383cfd24cd855adcede49b56528f1f2a722e2cd"
+  integrity sha512-mouBwyLwFZj+vJ5lkUi6WQ60vpvi/YBkMex5F2K4lWhy+I1KX6IitOEZoz8edfW0vfk6ZzWtgz+zm/GbkAt2FQ==
 
 eslint-plugin-unicorn@^12.1.0:
   version "12.1.0"
@@ -8090,10 +8090,10 @@ fbjs@^0.8.0:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
-fetch-mock@^7.5.1:
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/fetch-mock/-/fetch-mock-7.7.0.tgz#28c4cef45739b29419e9324637c84965abab979a"
-  integrity sha512-1EqaOdqexYqOx7tp77dltysWaNQybSzIqingcafmQK8w3aK13koNzuvqbEAiKhazo5N46mAkdRpQ6cWZQJUibw==
+fetch-mock@^7.7.3:
+  version "7.7.3"
+  resolved "https://registry.yarnpkg.com/fetch-mock/-/fetch-mock-7.7.3.tgz#6a3f94cfed6e423ab7f5464912982030da605335"
+  integrity sha512-I4OkK90JFQnjH8/n3HDtWxH/I6D1wrxoAM2ri+nb444jpuH3RTcgvXx2el+G20KO873W727/66T7QhOvFxNHPg==
   dependencies:
     babel-polyfill "^6.26.0"
     core-js "^2.6.9"
@@ -8852,10 +8852,10 @@ happo-plugin-storybook@^2.4.0:
     archiver "^3.0.0"
     rimraf "^2.6.3"
 
-happo.io@^3.27.0:
-  version "3.27.0"
-  resolved "https://registry.yarnpkg.com/happo.io/-/happo.io-3.27.0.tgz#9c30292ddb07fd13c304f4fe274a84e71f4da71f"
-  integrity sha512-KDxf+T6JF1F37QY9WRnIFKo+VD4SDsiBGDBZA2bFKBKTjf0zwjnvOUDUNpVz0er59Y+oH+VNmeIXXMAM1Y9PaA==
+happo.io@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/happo.io/-/happo.io-4.0.1.tgz#2cbbb35799561f19383fd9aaa8f9781f1e6da9a4"
+  integrity sha512-41N1WjYrPIGsAghK2sikhQBsqKt9VaGVC2Kii60/Y9xWUHENKBdK/Ass5MQr/SJKGtX+/HigQZDF89ejukoJUw==
   dependencies:
     archiver "^3.0.0"
     babel-plugin-dynamic-import-node "^2.1.0"
@@ -10161,10 +10161,10 @@ jest-runtime@^24.9.0:
     strip-bom "^3.0.0"
     yargs "^13.3.0"
 
-jest-rut@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/jest-rut/-/jest-rut-0.7.1.tgz#13b412651f9754f28ebbe43db1dab8b83fbd7734"
-  integrity sha512-AByGQDAeD45one7tbOM+1Nx5UC7YbTQ9MVVPis2LjGYu+R6R3AOXKoLI4CVB7lFr8s8cGf0I0xKf18nwmegK6A==
+jest-rut@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/jest-rut/-/jest-rut-0.8.1.tgz#ad4e5dfca480f4ef9a52f5ec64d2ca2ab0180848"
+  integrity sha512-7SvJxqlGdbfTKja+T0d4eIk2iXI0Z0gECW0Z/t7X3TAarYgeik//dy7O5dyxg2keTygC/8kkGhjmeXcEGTRlNA==
 
 jest-serializer@^24.9.0:
   version "24.9.0"
@@ -13967,16 +13967,24 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rut@^0.8.2:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/rut/-/rut-0.8.2.tgz#1b2160866ed8c0b80e821dee6516f031d2f42db8"
-  integrity sha512-HHBqpyeC3/LrDgY8/5+75fQiIVjmE2qBuTduFe1DG93PBp5aqVqV5ZqWDXNFOgBo4oNaAbvxSIzOj0WyDO6xFQ==
+rut-dom@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/rut-dom/-/rut-dom-0.1.1.tgz#51697937696e4aafa162ccf1909705f27abf6c40"
+  integrity sha512-xBS5WTFFTtAgQx/GLcEDwu/8jMSK5r+Z/PpMDsR+osxXKxPRLDWkQ1N6EzlzDIKuCcbipvpTZaFbBBe+tFZf9Q==
+  dependencies:
+    "@types/react-dom" "*"
+    rut "^0.9.1"
+
+rut@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/rut/-/rut-0.9.1.tgz#0ac6b327bd01f7c8e3ff9b1923e4d2969768f19a"
+  integrity sha512-QtpN17CILcjoJ5uA6YL3EsSMWIhzDlFSuyQjpMuJrOTmu5yeJbGwpQQseJQDRWu4Q2AbsMnsaD6722eDE9sLbQ==
   dependencies:
     "@types/fetch-mock" "*"
     "@types/react" "*"
     "@types/react-is" "*"
     "@types/react-test-renderer" "*"
-    fetch-mock "^7.5.1"
+    fetch-mock "^7.7.3"
     react-is "^16.11.0"
     react-test-renderer "^16.11.0"
 

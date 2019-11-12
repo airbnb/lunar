@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'rut';
+import { render } from 'rut-dom';
 import Breadcrumbs, { TrackBreadcrumb } from '../../src/components/Breadcrumbs';
 import AppShell, { Props } from '../../src';
 
