@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.6.0 - 2019-11-13
+
+#### 🚀 Updates
+
+- Update simple components to use `useStyles` instead of `withStyles`. (#236) ([761a801](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/761a801)), closes [#236](https://github.com/airbnb/lunar/tree/master/packages/forms/issues/236)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 2.5.3 - 2019-10-31
 
 #### 🐞 Fixes
