@@ -9,7 +9,7 @@
     "babel": "nimbus babel --workspaces=* && nimbus babel --esm --workspaces=*",
     "build": "yarn run type && yarn run babel && yarn run clean:story",
     "build:sizes": "yarn run ts ./scripts/tasks/computeBuildSizes.ts",
-    "build:storybook": "build-storybook --silent",
+    "build:storybook": "build-storybook",
     "check:build": "yarn run ts ./scripts/checks/compareBuildSizes.ts",
     "check:happo": "happo-ci-travis",
     "check:pr": "nimbus run-script pull-request-checks",
