@@ -1,10 +1,11 @@
 import React from 'react';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
 import ErrorMessage from '../ErrorMessage';
 import Loader from '../Loader';
 import Title from '../Title';
 import Text from '../Text';
 import { ErrorType } from '../../types';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Center the loader and content. */
@@ -28,68 +29,36 @@ export type Props = {
 };
 
 /** A loading indicator, representing the state of a request, for applications and landing pages. */
-export class AppLoader extends React.Component<Props & WithStylesProps> {
-  static defaultProps = {
-    centered: false,
-    small: false,
-    subtitle: null,
-  };
+export default function AppLoader({
+  centered,
+  children,
+  error,
+  errorTitle,
+  failureText,
+  fetched,
+  loadingText,
+  small,
+  subtitle,
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  render() {
-    const {
-      cx,
-      centered,
-      children,
-      error,
-      errorTitle,
-      failureText,
-      fetched,
-      loadingText,
-      small,
-      styles,
-      subtitle,
-    } = this.props;
-
-    if (fetched && !error) {
-      return <main>{children}</main>;
-    }
-
-    return (
-      <div className={cx(styles.appLoader, centered && styles.appLoader_centered)}>
-        <Title level={small ? 3 : 1}>{error ? failureText : loadingText}</Title>
-
-        {subtitle && (
-          <div className={cx(styles.subtitle)}>
-            <Text large={!small}>{subtitle}</Text>
-          </div>
-        )}
-
-        <div className={cx(styles.errorOrLoader)}>
-          {error ? <ErrorMessage error={error} title={errorTitle} /> : <Loader inline />}
-        </div>
-      </div>
-    );
+  if (fetched && !error) {
+    return <main>{children}</main>;
   }
+
+  return (
+    <div className={cx(styles.appLoader, centered && styles.appLoader_centered)}>
+      <Title level={small ? 3 : 1}>{error ? failureText : loadingText}</Title>
+
+      {subtitle && (
+        <div className={cx(styles.subtitle)}>
+          <Text large={!small}>{subtitle}</Text>
+        </div>
+      )}
+
+      <div className={cx(styles.errorOrLoader)}>
+        {error ? <ErrorMessage error={error} title={errorTitle} /> : <Loader inline />}
+      </div>
+    </div>
+  );
 }
-
-export default withStyles(({ unit }) => ({
-  appLoader: {
-    padding: unit * 10,
-  },
-
-  appLoader_centered: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  subtitle: {
-    marginTop: unit,
-  },
-
-  errorOrLoader: {
-    marginTop: unit * 1.5,
-    maxWidth: '65%',
-  },
-}))(AppLoader);

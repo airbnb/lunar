@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseEmojiPicker, { PickerProps, SKIN_COLORS } from 'interweave-emoji-picker';
+import BaseEmojiPicker, { PickerProps } from 'interweave-emoji-picker';
 import IconBolt from '@airbnb/lunar-icons/lib/general/IconBolt';
 import IconBulb from '@airbnb/lunar-icons/lib/general/IconBulb';
 import IconClock from '@airbnb/lunar-icons/lib/general/IconClock';
@@ -11,10 +11,11 @@ import IconThumbUp from '@airbnb/lunar-icons/lib/interface/IconThumbUp';
 import IconUtensils from '@airbnb/lunar-icons/lib/general/IconUtensils';
 import IconVideoGame from '@airbnb/lunar-icons/lib/general/IconVideoGame';
 import IconCloseAlt from '@airbnb/lunar-icons/lib/interface/IconCloseAlt';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
 import Core from '../..';
 import { ESCAPE } from '../../keys';
 import T from '../Translate';
+import { styleSheet } from './styles';
 
 // Exclude inappropriate or offensive emojis
 const blockList = [
@@ -61,340 +62,97 @@ export type Props = Partial<PickerProps> & {
  * Display an emoji picker using [interweave-emoji-picker](https://github.com/milesj/interweave/tree/master/packages/interweave-emoji-picker).
  * Should primarily be used for private to public communication.
  */
-export class EmojiPicker extends React.Component<Props & WithStylesProps> {
-  static defaultProps = {
-    disableAutoFocus: false,
-  };
+export default function EmojiPicker({ disableAutoFocus, onClosePicker, ...props }: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  // istanbul ignore next
-  private handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // When the picker wrapper is focused, we need to close on esc
-    if (event.key === ESCAPE) {
-      this.props.onClosePicker();
+    if (event.key === ESCAPE && onClosePicker) {
+      onClosePicker();
     }
   };
 
-  render() {
-    const { cx, styles, disableAutoFocus, ...props } = this.props;
-    const classNames = {
-      picker: cx(styles.picker),
-      emoji: cx(styles.emoji),
-      emojiActive: cx(styles.emoji_active),
-      emojis: cx(styles.emojis),
-      emojisSection: cx(styles.emojisSection),
-      emojisHeader: cx(styles.emojisHeader),
-      emojisHeaderSticky: cx(styles.emojisHeader_sticky),
-      emojisBody: cx(styles.emojisBody),
-      group: cx(styles.group),
-      groupActive: cx(styles.group_active),
-      groups: cx(styles.groups),
-      groupsList: cx(styles.list),
-      skinTone: cx(styles.skinTone),
-      skinToneActive: cx(styles.skinTone_active),
-      skinTones: cx(styles.skinTones),
-      skinTonesList: cx(styles.list),
-      noPreview: cx(styles.noPreview),
-      noResults: cx(styles.noResults),
-      preview: cx(styles.preview),
-      previewEmoji: cx(styles.previewEmoji),
-      previewTitle: cx(styles.previewTitle),
-      previewSubtitle: cx(styles.previewSubtitle),
-      previewShiftMore: cx(styles.previewShiftMore),
-      search: cx(styles.search),
-      searchInput: cx(styles.searchInput),
-      clear: cx(styles.clear),
-    };
+  const classNames = {
+    picker: cx(styles.picker),
+    emoji: cx(styles.emoji),
+    emojiActive: cx(styles.emoji_active),
+    emojis: cx(styles.emojis),
+    emojisSection: cx(styles.emojisSection),
+    emojisHeader: cx(styles.emojisHeader),
+    emojisHeaderSticky: cx(styles.emojisHeader_sticky),
+    emojisBody: cx(styles.emojisBody),
+    group: cx(styles.group),
+    groupActive: cx(styles.group_active),
+    groups: cx(styles.groups),
+    groupsList: cx(styles.list),
+    skinTone: cx(styles.skinTone),
+    skinToneActive: cx(styles.skinTone_active),
+    skinTones: cx(styles.skinTones),
+    skinTonesList: cx(styles.list),
+    noPreview: cx(styles.noPreview),
+    noResults: cx(styles.noResults),
+    preview: cx(styles.preview),
+    previewEmoji: cx(styles.previewEmoji),
+    previewTitle: cx(styles.previewTitle),
+    previewSubtitle: cx(styles.previewSubtitle),
+    previewShiftMore: cx(styles.previewShiftMore),
+    search: cx(styles.search),
+    searchInput: cx(styles.searchInput),
+    clear: cx(styles.clear),
+  };
 
-    const messages = {
-      recentlyUsed: T.phrase('Recently Used', {}, { key: 'lunar.emoji.recentlyUsed' }),
-      frequentlyUsed: T.phrase('Frequently Used', {}, { key: 'lunar.emoji.frequentlyUsed' }),
-      smileysEmotion: T.phrase('Smileys & Emotions', {}, { key: 'lunar.emoji.smileysEmotion' }),
-      peopleBody: T.phrase('People & Bodies', {}, { key: 'lunar.emoji.peopleBody' }),
-      animalsNature: T.phrase('Animals & Nature', {}, { key: 'lunar.emoji.animalsNature' }),
-      foodDrink: T.phrase('Food & Drink', {}, { key: 'lunar.emoji.foodDrink' }),
-      travelPlaces: T.phrase('Travel & Weather', {}, { key: 'lunar.emoji.travelWeather' }),
-      activities: T.phrase('Activities', {}, { key: 'lunar.emoji.activities' }),
-      objects: T.phrase('Objects', {}, { key: 'lunar.emoji.objects' }),
-      symbols: T.phrase('Symbols', {}, { key: 'lunar.emoji.symbols' }),
-      flags: T.phrase('Flags', {}, { key: 'lunar.emoji.flags' }),
-      variations: T.phrase('Variations', {}, { key: 'lunar.emoji.variations' }),
-      searchResults: T.phrase('Search results', {}, { key: 'lunar.emoji.searchResults' }),
-      none: T.phrase('All emojis', {}, { key: 'lunar.emoji.allResults' }),
-      skinNone: T.phrase('No skin tone', {}, { key: 'lunar.emoji.noSkinTone' }),
-      skinLight: T.phrase('Light skin tone', {}, { key: 'lunar.emoji.lightSkinTone' }),
-      skinMediumLight: T.phrase(
-        'Medium-light skin tone',
-        {},
-        { key: 'lunar.emoji.mediumLightSkinTone' },
-      ),
-      skinMedium: T.phrase('Medium skin tone', {}, { key: 'lunar.emoji.mediumSkinTone' }),
-      skinMediumDark: T.phrase(
-        'Medium-dark skin tone',
-        {},
-        { key: 'lunar.emoji.mediumDarkSkinTone' },
-      ),
-      skinDark: T.phrase('Dark skin tone', {}, { key: 'lunar.emoji.darkSkinTone' }),
-      search: T.phrase('Search emojis', {}, { key: 'lunar.emoji.search' }),
-      searchA11y: T.phrase(
-        'Search for emojis by keyword',
-        {},
-        { key: 'lunar.emoji.searchKeyword' },
-      ),
-      noResults: T.phrase('No results, please try again.', {}, { key: 'lunar.emoji.noResults' }),
-      clearUsed: T.phrase('Clear frequently used', {}, { key: 'lunar.emoji.clearFrequentlyUsed' }),
-    };
+  const messages = {
+    recentlyUsed: T.phrase('Recently Used', null, { key: 'lunar.emoji.recentlyUsed' }),
+    frequentlyUsed: T.phrase('Frequently Used', null, { key: 'lunar.emoji.frequentlyUsed' }),
+    smileysEmotion: T.phrase('Smileys & Emotions', null, { key: 'lunar.emoji.smileysEmotion' }),
+    peopleBody: T.phrase('People & Bodies', null, { key: 'lunar.emoji.peopleBody' }),
+    animalsNature: T.phrase('Animals & Nature', null, { key: 'lunar.emoji.animalsNature' }),
+    foodDrink: T.phrase('Food & Drink', null, { key: 'lunar.emoji.foodDrink' }),
+    travelPlaces: T.phrase('Travel & Weather', null, { key: 'lunar.emoji.travelWeather' }),
+    activities: T.phrase('Activities', null, { key: 'lunar.emoji.activities' }),
+    objects: T.phrase('Objects', null, { key: 'lunar.emoji.objects' }),
+    symbols: T.phrase('Symbols', null, { key: 'lunar.emoji.symbols' }),
+    flags: T.phrase('Flags', null, { key: 'lunar.emoji.flags' }),
+    variations: T.phrase('Variations', null, { key: 'lunar.emoji.variations' }),
+    searchResults: T.phrase('Search results', null, { key: 'lunar.emoji.searchResults' }),
+    none: T.phrase('All emojis', null, { key: 'lunar.emoji.allResults' }),
+    skinNone: T.phrase('No skin tone', null, { key: 'lunar.emoji.noSkinTone' }),
+    skinLight: T.phrase('Light skin tone', null, { key: 'lunar.emoji.lightSkinTone' }),
+    skinMediumLight: T.phrase('Medium-light skin tone', null, {
+      key: 'lunar.emoji.mediumLightSkinTone',
+    }),
+    skinMedium: T.phrase('Medium skin tone', null, { key: 'lunar.emoji.mediumSkinTone' }),
+    skinMediumDark: T.phrase('Medium-dark skin tone', null, {
+      key: 'lunar.emoji.mediumDarkSkinTone',
+    }),
+    skinDark: T.phrase('Dark skin tone', null, { key: 'lunar.emoji.darkSkinTone' }),
+    search: T.phrase('Search emojis', null, { key: 'lunar.emoji.search' }),
+    searchA11y: T.phrase('Search for emojis by keyword', null, {
+      key: 'lunar.emoji.searchKeyword',
+    }),
+    noResults: T.phrase('No results, please try again.', null, { key: 'lunar.emoji.noResults' }),
+    clearUsed: T.phrase('Clear frequently used', null, { key: 'lunar.emoji.clearFrequentlyUsed' }),
+  };
 
-    return (
-      <div role="presentation" onKeyUp={this.handleKeyUp}>
-        <BaseEmojiPicker
-          stickyGroupHeader
-          autoFocus={!disableAutoFocus}
-          commonMode="frequently-used"
-          columnCount={10}
-          emojiPadding={5}
-          emojiPath={Core.settings.emojiCDN}
-          emojiSize={20}
-          emojiLargeSize={48}
-          {...props}
-          classNames={classNames}
-          clearIcon={clearIcon}
-          blockList={blockList}
-          displayOrder={['preview', 'emojis', 'search', 'groups']}
-          groupIcons={groupIcons}
-          messages={messages}
-        />
-      </div>
-    );
-  }
+  return (
+    <div role="presentation" onKeyUp={handleKeyUp}>
+      <BaseEmojiPicker
+        stickyGroupHeader
+        autoFocus={!disableAutoFocus}
+        columnCount={10}
+        commonMode="frequently-used"
+        emojiLargeSize={48}
+        emojiPadding={5}
+        emojiPath={Core.settings.emojiCDN}
+        emojiSize={20}
+        {...props}
+        blockList={blockList}
+        classNames={classNames}
+        clearIcon={clearIcon}
+        displayOrder={['preview', 'emojis', 'search', 'groups']}
+        groupIcons={groupIcons}
+        messages={messages}
+      />
+    </div>
+  );
 }
-
-export default withStyles(({ ui, unit, color, font, pattern }) => ({
-  picker: {
-    background: color.accent.bg,
-    border: ui.border,
-    borderRadius: ui.borderRadius,
-  },
-
-  preview: {
-    ...font.textRegular,
-    padding: unit * 1.5,
-    borderBottom: ui.border,
-    display: 'flex',
-    alignItems: 'center',
-
-    ':empty': {
-      display: 'none',
-    },
-  },
-
-  previewEmoji: {
-    flexGrow: 0,
-    marginRight: unit * 2,
-  },
-
-  previewTitle: {
-    ...font.textRegular,
-    marginBottom: unit / 2,
-  },
-
-  previewSubtitle: {
-    ...font.textSmall,
-    fontWeight: font.weights.light,
-    color: color.muted,
-  },
-
-  previewShiftMore: {
-    fontWeight: font.weights.light,
-    color: color.muted,
-    marginLeft: unit,
-  },
-
-  emoji: {
-    background: 'transparent',
-    border: 0,
-    fontSize: 'inherit',
-    float: 'left',
-    cursor: 'pointer',
-
-    ':focus': {
-      outline: 'none',
-    },
-
-    '@selectors': {
-      ':not(:empty) > img': {
-        display: 'block',
-      },
-    },
-  },
-
-  emoji_active: {
-    background: color.accent.bgHover,
-    borderRadius: ui.borderRadius,
-  },
-
-  emojis: {
-    position: 'relative',
-    padding: unit,
-  },
-
-  emojisHeader: {
-    ...font.textMicro,
-    fontWeight: font.weights.bold,
-    textTransform: 'uppercase',
-    color: color.accent.text,
-    background: color.accent.bg,
-    padding: `${unit}px 0`,
-    lineHeight: 1,
-  },
-
-  emojisHeader_sticky: {
-    position: 'absolute',
-    top: unit,
-    left: unit,
-    right: unit,
-    zIndex: 2,
-  },
-
-  list: {
-    display: 'flex',
-    flexWrap: 'nowrap',
-    margin: 0,
-    padding: 0,
-    lineHeight: 1,
-    listStyle: 'none',
-    justifyContent: 'space-between',
-  },
-
-  group: {
-    background: 'transparent',
-    border: '1px solid transparent',
-    borderTop: 0,
-    padding: `${unit}px ${unit * 0.75}px`,
-    fontSize: 16,
-    position: 'relative',
-    cursor: 'pointer',
-    color: color.accent.text,
-    borderBottomLeftRadius: ui.borderRadius,
-    borderBottomRightRadius: ui.borderRadius,
-
-    ':hover': {
-      background: color.core.neutral[2],
-    },
-
-    ':focus': {
-      outline: 'none',
-    },
-  },
-
-  group_active: {
-    background: color.accent.bg,
-    color: color.core.primary[3],
-
-    ':hover': {
-      background: color.accent.bgHover,
-    },
-  },
-
-  groups: {
-    background: color.core.neutral[3],
-    padding: `0 ${unit}px ${unit / 2}px ${unit}px`,
-  },
-
-  skinTone: {
-    borderWidth: 2,
-    borderStyle: 'solid',
-    borderRadius: '50%',
-    width: 12,
-    height: 12,
-    padding: 0,
-    margin: 0,
-    marginLeft: unit / 2,
-    overflow: 'hidden',
-    cursor: 'pointer',
-    display: 'block',
-    opacity: 0.75,
-
-    '@selectors': {
-      ':hover': {
-        opacity: 1,
-      },
-
-      ':focus': {
-        outline: 'none',
-      },
-
-      ...Object.keys(SKIN_COLORS).reduce(
-        (colors, key) => ({
-          ...colors,
-          [`[data-skin-tone="${key}"]`]: {
-            backgroundColor: SKIN_COLORS[key],
-            borderColor: SKIN_COLORS[key],
-          },
-        }),
-        {},
-      ),
-    },
-  },
-
-  skinTone_active: {
-    opacity: 1,
-
-    '@selectors': {
-      ...Object.keys(SKIN_COLORS).reduce(
-        (colors, key) => ({
-          ...colors,
-          [`[data-skin-tone="${key}"]`]: {
-            backgroundColor: color.accent.bg,
-          },
-        }),
-        {},
-      ),
-    },
-  },
-
-  skinTones: {
-    float: 'right',
-    textAlign: 'center',
-  },
-
-  search: {
-    padding: unit,
-    paddingTop: 0,
-  },
-
-  searchInput: {
-    ...font.textSmall,
-    fontWeight: font.weights.light,
-    border: ui.borderThick,
-    borderRadius: ui.borderRadius,
-    backgroundColor: color.accent.bg,
-    padding: unit,
-    zIndex: 0,
-    width: '100%',
-
-    ':focus': {
-      ...pattern.focused,
-    },
-  },
-
-  noPreview: {
-    ...font.textRegular,
-    color: color.muted,
-  },
-
-  noResults: {
-    ...font.textRegular,
-    padding: unit * 1.5,
-  },
-
-  clear: {
-    ...pattern.resetButton,
-    float: 'right',
-    color: color.accent.text,
-    margin: '0 -1px 0 0',
-
-    ':hover': {
-      color: color.core.neutral[4],
-    },
-  },
-}))(EmojiPicker);

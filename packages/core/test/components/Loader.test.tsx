@@ -1,22 +1,22 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import Loader from '../../src/components/Loader';
 
 describe('<Loader />', () => {
   it('renders default', () => {
-    const wrapper = shallowWithStyles(<Loader />);
+    const wrapper = shallow(<Loader />);
 
     expect(wrapper.prop('className')).toMatch('loader loader_absolute');
   });
 
   it('renders inline', () => {
-    const wrapper = shallowWithStyles(<Loader inline />);
+    const wrapper = shallow(<Loader inline />);
 
     expect(wrapper.prop('className')).toMatch('loader_inline');
   });
 
   it('renders inverted', () => {
-    const wrapper = shallowWithStyles(<Loader inverted />);
+    const wrapper = shallow(<Loader inverted />);
 
     expect(
       wrapper
@@ -27,7 +27,7 @@ describe('<Loader />', () => {
   });
 
   it('renders large', () => {
-    const wrapper = shallowWithStyles(<Loader large />);
+    const wrapper = shallow(<Loader large />);
 
     expect(
       wrapper
@@ -38,7 +38,7 @@ describe('<Loader />', () => {
   });
 
   it('renders static', () => {
-    const wrapper = shallowWithStyles(<Loader static />);
+    const wrapper = shallow(<Loader static />);
 
     expect(wrapper.prop('className')).not.toMatch('loader_absolute');
   });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import FormInput from '../../../src/components/private/FormInput';
 
 describe('<FormInput />', () => {
@@ -10,49 +10,49 @@ describe('<FormInput />', () => {
   };
 
   it('renders an `input` tag', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" {...props} />);
+    const wrapper = shallow(<FormInput tagName="input" {...props} />);
 
     expect(wrapper.is('input')).toBe(true);
   });
 
   it('renders a `textarea` tag', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="textarea" {...props} />);
+    const wrapper = shallow(<FormInput tagName="textarea" {...props} />);
 
     expect(wrapper.is('textarea')).toBe(true);
   });
 
   it('renders `noTranslate` className', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="textarea" {...props} noTranslate />);
+    const wrapper = shallow(<FormInput tagName="textarea" {...props} noTranslate />);
 
     expect(wrapper.prop('className')).toContain('notranslate');
   });
 
   it('renders a `select` tag', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="select" {...props} />);
+    const wrapper = shallow(<FormInput tagName="select" {...props} />);
 
     expect(wrapper.is('select')).toBe(true);
   });
 
   it('renders compact', () => {
-    const wrapper = shallowWithStyles(<FormInput compact tagName="input" {...props} />);
+    const wrapper = shallow(<FormInput compact tagName="input" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('input_compact');
   });
 
   it('renders select compact', () => {
-    const wrapper = shallowWithStyles(<FormInput compact tagName="select" {...props} />);
+    const wrapper = shallow(<FormInput compact tagName="select" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('select select_compact');
   });
 
   it('renders important', () => {
-    const wrapper = shallowWithStyles(<FormInput important tagName="input" {...props} />);
+    const wrapper = shallow(<FormInput important tagName="input" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('input_important');
   });
 
   it('renders children in `select` tag as options', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormInput tagName="select" {...props}>
         <option value="a">A</option>
         <option value="b">B</option>
@@ -70,7 +70,7 @@ describe('<FormInput />', () => {
   });
 
   it('doesnt render children for `input` tag', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormInput tagName="input" {...props}>
         Foo
       </FormInput>,
@@ -80,7 +80,7 @@ describe('<FormInput />', () => {
   });
 
   it('doesnt render children for `textarea` tag', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormInput tagName="textarea" {...props}>
         Foo
       </FormInput>,
@@ -90,37 +90,37 @@ describe('<FormInput />', () => {
   });
 
   it('sets disabled', () => {
-    const wrapper = shallowWithStyles(<FormInput disabled tagName="input" {...props} />);
+    const wrapper = shallow(<FormInput disabled tagName="input" {...props} />);
 
     expect(wrapper.prop('disabled')).toBe(true);
   });
 
   it('sets hidden', () => {
-    const wrapper = shallowWithStyles(<FormInput hidden tagName="input" {...props} />);
+    const wrapper = shallow(<FormInput hidden tagName="input" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('input_hidden');
   });
 
   it('sets id', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" {...props} id="foo" />);
+    const wrapper = shallow(<FormInput tagName="input" {...props} id="foo" />);
 
     expect(wrapper.prop('id')).toBe('foo');
   });
 
   it('sets name', () => {
-    const wrapper = shallowWithStyles(<FormInput disabled tagName="input" {...props} />);
+    const wrapper = shallow(<FormInput disabled tagName="input" {...props} />);
 
     expect(wrapper.prop('name')).toBe('test');
   });
 
   it('sets value', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" value="Why?" {...props} />);
+    const wrapper = shallow(<FormInput tagName="input" value="Why?" {...props} />);
 
     expect(wrapper.prop('value')).toBe('Why?');
   });
 
   it('sets required/optional', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" {...props} />);
+    const wrapper = shallow(<FormInput tagName="input" {...props} />);
 
     expect(wrapper.prop('required')).toBe(true);
 
@@ -132,7 +132,7 @@ describe('<FormInput />', () => {
   });
 
   it('sets aria attributes if invalid', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" {...props} />);
+    const wrapper = shallow(<FormInput tagName="input" {...props} />);
 
     expect(wrapper.prop('aria-invalid')).toBeUndefined();
     expect(wrapper.prop('aria-describedby')).toBeUndefined();
@@ -146,25 +146,25 @@ describe('<FormInput />', () => {
   });
 
   it('passes extra props to element', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" type="email" {...props} />);
+    const wrapper = shallow(<FormInput tagName="input" type="email" {...props} />);
 
     expect(wrapper.prop('type')).toBe('email');
   });
 
   it('supports prefixes', () => {
-    const wrapper = shallowWithStyles(<FormInput hasPrefix tagName="input" {...props} />);
+    const wrapper = shallow(<FormInput hasPrefix tagName="input" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('input_hasPrefix');
   });
 
   it('supports suffixes', () => {
-    const wrapper = shallowWithStyles(<FormInput hasSuffix tagName="input" {...props} />);
+    const wrapper = shallow(<FormInput hasSuffix tagName="input" {...props} />);
 
     expect(wrapper.prop('className')).toMatch('input_hasSuffix');
   });
 
   it('sets maxLength', () => {
-    const wrapper = shallowWithStyles(<FormInput tagName="input" maxLength={20} {...props} />);
+    const wrapper = shallow(<FormInput tagName="input" maxLength={20} {...props} />);
 
     expect(wrapper.prop('maxLength')).toBe(20);
   });

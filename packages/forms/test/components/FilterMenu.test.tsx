@@ -1,18 +1,33 @@
 import React from 'react';
-import Enzyme from 'enzyme';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import Enzyme, { shallow } from 'enzyme';
+import { Props } from '@airbnb/lunar/lib/components/MenuToggle';
 import Link from '@airbnb/lunar/lib/components/Link';
-import Menu from '@airbnb/lunar/lib/components/Menu';
-import Button from '@airbnb/lunar/lib/components/Button';
-import Dropdown from '@airbnb/lunar/lib/components/Dropdown';
 import T from '@airbnb/lunar/lib/components/Translate';
 import FilterMenu, { Row } from '../../src/components/FilterMenu';
 
 function openFilters(wrapper: Enzyme.ShallowWrapper) {
   wrapper
-    .find(Button)
-    .first()
-    .simulate('Click');
+    .dive()
+    .childAt(0)
+    .simulate('click');
+}
+
+function getDropdown(wrapper: Enzyme.ShallowWrapper) {
+  return wrapper
+    .dive()
+    .dive()
+    .childAt(1)
+    .childAt(0);
+}
+
+function getMenu(wrapper: Enzyme.ShallowWrapper) {
+  return wrapper
+    .dive()
+    .dive()
+    .childAt(1)
+    .childAt(0)
+    .childAt(0)
+    .childAt(0);
 }
 
 describe('<FilterMenu />', () => {
@@ -20,124 +35,38 @@ describe('<FilterMenu />', () => {
     accessibilityLabel: 'label',
   };
 
-  it('renders a button', () => {
-    const wrapper = shallowWithStyles(
+  it('renders a menu toggle', () => {
+    const wrapper = shallow(
       <FilterMenu {...props}>
         <Row>Foo</Row>
       </FilterMenu>,
     );
 
-    expect(wrapper.find(Button)).toHaveLength(1);
+    expect(wrapper).toHaveLength(1);
   });
 
   it('renders a button with the currently active count', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FilterMenu {...props}>
         <Row>Foo</Row>
       </FilterMenu>,
     );
 
-    expect(
-      wrapper
-        .find(Button)
-        .find(T)
-        .prop('phrase'),
-    ).toBe('Open filters');
+    expect(((wrapper.dive().props() as Props).toggleLabel as T).props.phrase).toBe('Open filters');
 
     wrapper.setProps({
       activeCount: 1,
     });
 
-    expect(
-      wrapper
-        .find(Button)
-        .find(T)
-        .prop('phrase'),
-    ).toBe('%{smartCount} Filter||||%{smartCount} Filters');
-    expect(
-      wrapper
-        .find(Button)
-        .find(T)
-        .prop('smartCount'),
-    ).toBe(1);
-  });
-
-  it('calls onShow when opened', () => {
-    const onShow = jest.fn();
-    const wrapper = shallowWithStyles(
-      <FilterMenu {...props} onShow={onShow}>
-        <Row>Foo</Row>
-      </FilterMenu>,
+    expect(((wrapper.dive().props() as Props).toggleLabel as T).props.phrase).toBe(
+      '%{smartCount} Filter||||%{smartCount} Filters',
     );
 
-    wrapper.find(Button).simulate('click');
-
-    expect(onShow).toHaveBeenCalled();
-  });
-
-  it('hides dropdown initially', () => {
-    const wrapper = shallowWithStyles(
-      <FilterMenu {...props}>
-        <Row>Foo</Row>
-      </FilterMenu>,
-    );
-
-    expect(
-      wrapper
-        .find('div')
-        .at(1)
-        .prop('aria-expanded'),
-    ).toBe(false);
-  });
-
-  it('clicking outside hides dropdown', () => {
-    const onHide = jest.fn();
-    const wrapper = shallowWithStyles(
-      <FilterMenu {...props} onHide={onHide}>
-        <Row>Foo</Row>
-      </FilterMenu>,
-    );
-
-    wrapper.find(Button).simulate('click');
-    wrapper.find(Dropdown).simulate('clickOutside');
-
-    expect(onHide).toHaveBeenCalled();
-  });
-
-  it('clicking outside does not hide dropdown if ignored', () => {
-    const onHide = jest.fn();
-    const wrapper = shallowWithStyles(
-      <FilterMenu {...props} ignoreClickOutside onHide={onHide}>
-        <Row>Foo</Row>
-      </FilterMenu>,
-    );
-
-    wrapper.find(Button).simulate('click');
-    wrapper.find(Dropdown).simulate('clickOutside');
-
-    expect(onHide).not.toHaveBeenCalled();
-  });
-
-  it('clicking filters shows dropdown', () => {
-    const wrapper = shallowWithStyles(
-      <FilterMenu {...props}>
-        <Row>Foo</Row>
-      </FilterMenu>,
-    );
-
-    wrapper.find(Button).simulate('click');
-
-    expect(
-      wrapper
-        .find('div')
-        .at(1)
-        .prop('aria-expanded'),
-    ).toBe(true);
-    expect(wrapper.find(Dropdown)).toHaveLength(1);
+    expect(((wrapper.dive().props() as Props).toggleLabel as T).props.smartCount).toBe(1);
   });
 
   it('clicking apply on a valid form closes the menu', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FilterMenu {...props}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -152,6 +81,8 @@ describe('<FilterMenu />', () => {
 
     expect(
       wrapper
+        .dive()
+        .dive()
         .find('div')
         .at(1)
         .prop('aria-expanded'),
@@ -160,7 +91,7 @@ describe('<FilterMenu />', () => {
 
   it('clicking clear calls reset', () => {
     const onClear = jest.fn();
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FilterMenu {...props} onClear={onClear}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -177,112 +108,90 @@ describe('<FilterMenu />', () => {
   });
 
   it('clicking clear closes the menu', () => {
-    const wrapper = shallowWithStyles(
-      <FilterMenu {...props}>
+    const onHide = jest.fn();
+    const wrapper = shallow(
+      <FilterMenu {...props} onHide={onHide}>
         <Row>Foo</Row>
       </FilterMenu>,
     );
 
     openFilters(wrapper);
 
-    expect(
-      wrapper
-        .find('div')
-        .at(1)
-        .prop('aria-expanded'),
-    ).toBe(true);
-
     wrapper
       .find(Link)
       .at(1)
       .simulate('click');
 
-    expect(
-      wrapper
-        .find('div')
-        .at(1)
-        .prop('aria-expanded'),
-    ).toBe(false);
+    expect(onHide).toHaveBeenCalledTimes(1);
   });
 
   it('clicking clear keeps the menu open when keepOpenOnClear is passed', () => {
-    const wrapper = shallowWithStyles(
-      <FilterMenu keepOpenOnClear {...props}>
+    const onHide = jest.fn();
+    const wrapper = shallow(
+      <FilterMenu keepOpenOnClear {...props} onHide={onHide}>
         <Row>Foo</Row>
       </FilterMenu>,
     );
 
     openFilters(wrapper);
 
-    expect(
-      wrapper
-        .find('div')
-        .at(1)
-        .prop('aria-expanded'),
-    ).toBe(true);
-
     wrapper
       .find(Link)
       .at(1)
       .simulate('click');
 
-    expect(
-      wrapper
-        .find('div')
-        .at(1)
-        .prop('aria-expanded'),
-    ).toBe(true);
+    expect(onHide).toHaveBeenCalledTimes(0);
   });
 
   it('right-aligns by default', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FilterMenu {...props}>
         <Row>Foo</Row>
       </FilterMenu>,
     );
 
-    expect(wrapper.find(Dropdown).prop('right')).toBe(0);
-    expect(wrapper.find(Dropdown).prop('left')).toBeUndefined();
+    expect(getDropdown(wrapper).prop('right')).toBe(0);
+    expect(getDropdown(wrapper).prop('left')).toBeUndefined();
   });
 
   it('optionally aligns to the left', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FilterMenu {...props} dropdownProps={{ left: 0 }}>
         <Row>Foo</Row>
       </FilterMenu>,
     );
 
-    expect(wrapper.find(Dropdown).prop('left')).toBe(0);
-    expect(wrapper.find(Dropdown).prop('right')).toBeUndefined();
+    expect(getDropdown(wrapper).prop('left')).toBe(0);
+    expect(getDropdown(wrapper).prop('right')).toBeUndefined();
   });
 
   it('optionally has visible overflow', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FilterMenu {...props}>
         <Row>Foo</Row>
       </FilterMenu>,
     );
 
-    expect(wrapper.find(Menu).prop('overflow')).toBeUndefined();
+    expect(getMenu(wrapper).prop('overflow')).toBeUndefined();
 
     wrapper.setProps({ menuProps: { overflow: true } });
 
-    expect(wrapper.find(Menu).prop('overflow')).toBe(true);
+    expect(getMenu(wrapper).prop('overflow')).toBe(true);
   });
 
   it('passes min width', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FilterMenu {...props} menuProps={{ minWidth: 400 }}>
         <Row>Foo</Row>
       </FilterMenu>,
     );
 
-    expect(wrapper.find(Menu).prop('minWidth')).toBe(400);
+    expect(getMenu(wrapper).prop('minWidth')).toBe(400);
   });
 
   describe('<Row />', () => {
     it('renders a row with spacious by default', () => {
-      const wrapper = shallowWithStyles(<Row>Hello</Row>);
+      const wrapper = shallow(<Row>Hello</Row>);
 
       expect(wrapper.prop('spacious')).toBe(true);
     });

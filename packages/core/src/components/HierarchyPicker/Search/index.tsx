@@ -12,6 +12,7 @@ import {
   SearchItemResult,
   TreePath,
 } from '../types';
+import { styleSheet } from './styles';
 
 export type Props = {
   items?: ItemShape[];
@@ -196,8 +197,4 @@ export class Search extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(({ unit }) => ({
-  container: {
-    padding: unit,
-  },
-}))(Search);
+export default withStyles(styleSheet)(Search);

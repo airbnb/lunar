@@ -5,13 +5,13 @@ import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconFirst from '@airbnb/lunar-icons/lib/interface/IconFirst';
 import IconLast from '@airbnb/lunar-icons/lib/interface/IconLast';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
 import IconButton from '../IconButton';
 import Text from '../Text';
 import T from '../Translate';
 import DirectionalIcon from '../DirectionalIcon';
-
-const alignProp = mutuallyExclusiveTrueProps('centerAlign', 'endAlign', 'startAlign');
+import { styleSheet } from './styles';
+import useTheme from '../../hooks/useTheme';
 
 export type Props = {
   /** Align arrows in the center */
@@ -45,63 +45,83 @@ export type Props = {
 };
 
 /** Pagination controls. */
-export class Pagination extends React.Component<Props & WithStylesProps> {
-  static defaultProps = {
-    centerAlign: false,
-    endAlign: false,
-    fetching: false,
-    hasNext: false,
-    hasPrev: false,
-    showBookends: false,
-    startAlign: false,
-  };
+function Pagination({
+  centerAlign,
+  endAlign,
+  fetching,
+  hasNext,
+  hasPrev,
+  showBookends,
+  startAlign,
+  pageLabel = T.phrase('Page', {}, { context: 'Label for pages', key: 'lunar.common.page' }),
+  onFirst,
+  onLast,
+  onNext,
+  onPrevious,
+  page,
+  pageCount,
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
+  const theme = useTheme();
 
-  static propTypes = {
-    centerAlign: alignProp,
-    endAlign: alignProp,
-    pageCount: requiredBy('showBookends', PropTypes.number),
-    startAlign: alignProp,
-    onFirst: requiredBy('showBookends', PropTypes.func),
-    onLast: requiredBy('showBookends', PropTypes.func),
-  };
+  if (!(hasNext || hasPrev)) {
+    return null;
+  }
 
-  render() {
-    const {
-      cx,
-      centerAlign,
-      endAlign,
-      fetching,
-      hasNext,
-      hasPrev,
-      showBookends,
-      startAlign,
-      pageLabel = T.phrase('Page', {}, { context: 'Label for pages', key: 'lunar.common.page' }),
-      onFirst,
-      onLast,
-      onNext,
-      onPrevious,
-      page,
-      pageCount,
-      styles,
-      theme,
-    } = this.props;
+  const previousPage = (
+    <IconButton active={hasPrev} disabled={!hasPrev || fetching} onClick={onPrevious}>
+      <DirectionalIcon
+        direction="left"
+        left={IconChevronLeft}
+        right={IconChevronRight}
+        accessibilityLabel={T.phrase(
+          'Load previous page',
+          {},
+          {
+            context: 'Load previous page when paginating sets of data',
+            key: 'lunar.pagination.loadPrevious',
+          },
+        )}
+        size={4 * theme!.unit}
+      />
+    </IconButton>
+  );
 
-    if (!(hasNext || hasPrev)) {
-      return null;
-    }
+  const nextPage = (
+    <IconButton active={hasNext} disabled={!hasNext || fetching} onClick={onNext}>
+      <DirectionalIcon
+        direction="right"
+        left={IconChevronLeft}
+        right={IconChevronRight}
+        accessibilityLabel={T.phrase(
+          'Load next page',
+          {},
+          {
+            context: 'Load next page when paginating sets of data',
+            key: 'lunar.pagination.loadNext',
+          },
+        )}
+        size={4 * theme!.unit}
+      />
+    </IconButton>
+  );
 
-    const previousPage = (
-      <IconButton active={hasPrev} disabled={!hasPrev || fetching} onClick={onPrevious}>
+  let firstPage = null;
+  let lastPage = null;
+
+  if (showBookends && typeof pageCount === 'number') {
+    firstPage = (
+      <IconButton active={hasPrev} disabled={page === 1 || fetching} onClick={onFirst}>
         <DirectionalIcon
           direction="left"
-          left={IconChevronLeft}
-          right={IconChevronRight}
+          left={IconFirst}
+          right={IconLast}
           accessibilityLabel={T.phrase(
-            'Load previous page',
+            'Load first page',
             {},
             {
-              context: 'Load previous page when paginating sets of data',
-              key: 'lunar.pagination.loadPrevious',
+              context: 'Load first page when paginating sets of data',
+              key: 'lunar.pagination.loadFirst',
             },
           )}
           size={4 * theme!.unit}
@@ -109,173 +129,100 @@ export class Pagination extends React.Component<Props & WithStylesProps> {
       </IconButton>
     );
 
-    const nextPage = (
-      <IconButton active={hasNext} disabled={!hasNext || fetching} onClick={onNext}>
+    lastPage = (
+      <IconButton
+        active={hasNext}
+        disabled={pageCount < 2 || pageCount === page || fetching}
+        onClick={onLast}
+      >
         <DirectionalIcon
           direction="right"
-          left={IconChevronLeft}
-          right={IconChevronRight}
+          left={IconFirst}
+          right={IconLast}
           accessibilityLabel={T.phrase(
-            'Load next page',
+            'Load last page',
             {},
             {
-              context: 'Load next page when paginating sets of data',
-              key: 'lunar.pagination.loadNext',
+              context: 'Load last page when paginating sets of data',
+              key: 'lunar.pagination.loadLast',
             },
           )}
           size={4 * theme!.unit}
         />
       </IconButton>
     );
+  }
 
-    let firstPage = null;
-    let lastPage = null;
+  let paginationText =
+    showBookends && pageCount ? (
+      <T
+        k="lunar.pagination.pageCount"
+        phrase={'%{pageNumber} of %{pageCount}'}
+        pageCount={pageCount}
+        pageNumber={page}
+        context="Showing the current page number and total page count"
+      />
+    ) : (
+      page
+    );
 
-    if (showBookends && typeof pageCount === 'number') {
-      firstPage = (
-        <IconButton active={hasPrev} disabled={page === 1 || fetching} onClick={onFirst}>
-          <DirectionalIcon
-            direction="left"
-            left={IconFirst}
-            right={IconLast}
-            accessibilityLabel={T.phrase(
-              'Load first page',
-              {},
-              {
-                context: 'Load first page when paginating sets of data',
-                key: 'lunar.pagination.loadFirst',
-              },
-            )}
-            size={4 * theme!.unit}
-          />
-        </IconButton>
-      );
-
-      lastPage = (
-        <IconButton
-          active={hasNext}
-          disabled={pageCount < 2 || pageCount === page || fetching}
-          onClick={onLast}
-        >
-          <DirectionalIcon
-            direction="right"
-            left={IconFirst}
-            right={IconLast}
-            accessibilityLabel={T.phrase(
-              'Load last page',
-              {},
-              {
-                context: 'Load last page when paginating sets of data',
-                key: 'lunar.pagination.loadLast',
-              },
-            )}
-            size={4 * theme!.unit}
-          />
-        </IconButton>
-      );
-    }
-
-    let paginationText =
+  if (pageLabel) {
+    paginationText =
       showBookends && pageCount ? (
         <T
-          k="lunar.pagination.pageCount"
-          phrase={'%{pageNumber} of %{pageCount}'}
+          k="lunar.pagination.pageCountLabeled"
+          phrase={'%{pageLabel} %{pageNumber} of %{pageCount}'}
+          pageLabel={pageLabel}
           pageCount={pageCount}
           pageNumber={page}
           context="Showing the current page number and total page count"
         />
       ) : (
-        page
+        <T
+          k="lunar.pagination.pageNumberLabeled"
+          phrase={'%{pageLabel} %{pageNumber}'}
+          pageLabel={pageLabel}
+          pageNumber={page}
+          context="Showing the current page number"
+        />
       );
-
-    if (pageLabel) {
-      paginationText =
-        showBookends && pageCount ? (
-          <T
-            k="lunar.pagination.pageCountLabeled"
-            phrase={'%{pageLabel} %{pageNumber} of %{pageCount}'}
-            pageLabel={pageLabel}
-            pageCount={pageCount}
-            pageNumber={page}
-            context="Showing the current page number and total page count"
-          />
-        ) : (
-          <T
-            k="lunar.pagination.pageNumberLabeled"
-            phrase={'%{pageLabel} %{pageNumber}'}
-            pageLabel={pageLabel}
-            pageNumber={page}
-            context="Showing the current page number"
-          />
-        );
-    }
-
-    return (
-      <div
-        className={cx(
-          styles.wrapper,
-          endAlign && styles.wrapper_endAlign,
-          centerAlign && styles.wrapper_centerAlign,
-          startAlign && styles.wrapper_startAlign,
-        )}
-      >
-        <div className={cx(styles.previous)}>
-          {firstPage}
-          {previousPage}
-        </div>
-        <div className={cx(styles.page)}>
-          <Text muted>{paginationText}</Text>
-        </div>
-        <div className={cx(styles.next)}>
-          {nextPage}
-          {lastPage}
-        </div>
-      </div>
-    );
   }
+
+  return (
+    <div
+      className={cx(
+        styles.wrapper,
+        endAlign && styles.wrapper_endAlign,
+        centerAlign && styles.wrapper_centerAlign,
+        startAlign && styles.wrapper_startAlign,
+      )}
+    >
+      <div className={cx(styles.previous)}>
+        {firstPage}
+        {previousPage}
+      </div>
+
+      <div className={cx(styles.page)}>
+        <Text muted>{paginationText}</Text>
+      </div>
+
+      <div className={cx(styles.next)}>
+        {nextPage}
+        {lastPage}
+      </div>
+    </div>
+  );
 }
 
-export default withStyles(
-  ({ unit }) => ({
-    wrapper: {
-      display: 'grid',
-      gridTemplateAreas: '"previous page next"',
-      gridTemplateColumns: 'auto 1fr auto',
-      gridColumnGap: unit * 2,
-      alignItems: 'center',
-      justifyItems: 'center',
-    },
+const alignProp = mutuallyExclusiveTrueProps('centerAlign', 'endAlign', 'startAlign');
 
-    wrapper_endAlign: {
-      gridTemplateAreas: '"page previous next"',
-      gridTemplateColumns: 'auto',
-      justifyContent: 'end',
-    },
+Pagination.propTypes = {
+  centerAlign: alignProp,
+  endAlign: alignProp,
+  pageCount: requiredBy('showBookends', PropTypes.number),
+  startAlign: alignProp,
+  onFirst: requiredBy('showBookends', PropTypes.func),
+  onLast: requiredBy('showBookends', PropTypes.func),
+};
 
-    wrapper_centerAlign: {
-      gridTemplateColumns: 'auto',
-      justifyContent: 'center',
-    },
-
-    wrapper_startAlign: {
-      gridTemplateAreas: '"previous next page"',
-      gridTemplateColumns: 'auto',
-      justifyContent: 'start',
-    },
-
-    page: {
-      gridArea: 'page',
-    },
-
-    previous: {
-      gridArea: 'previous',
-    },
-
-    next: {
-      gridArea: 'next',
-    },
-  }),
-  {
-    passThemeProp: true,
-  },
-)(Pagination);
+export default Pagination;

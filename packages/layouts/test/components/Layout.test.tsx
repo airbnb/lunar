@@ -1,11 +1,11 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import Layout from '../../src/components/Layout';
 import Aside from '../../src/components/Aside';
 
 describe('<Layout />', () => {
   it('renders with main content', () => {
-    const wrapper = shallowWithStyles(<Layout>Child</Layout>);
+    const wrapper = shallow(<Layout>Child</Layout>);
 
     expect(wrapper.find('main')).toHaveLength(1);
     expect(wrapper.find('main').prop('role')).toBe('main');
@@ -13,7 +13,7 @@ describe('<Layout />', () => {
   });
 
   it('renders with props passed', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Layout noBackground noPadding>
         Child
       </Layout>,
@@ -24,7 +24,7 @@ describe('<Layout />', () => {
 
   it('renders a before aside', () => {
     const aside = <div>Before</div>;
-    const wrapper = shallowWithStyles(<Layout before={<Aside>{aside}</Aside>}>Child</Layout>);
+    const wrapper = shallow(<Layout before={<Aside>{aside}</Aside>}>Child</Layout>);
 
     expect(wrapper.find(Aside)).toHaveLength(1);
     expect(wrapper.find(Aside).contains(aside)).toBe(true);
@@ -32,7 +32,7 @@ describe('<Layout />', () => {
 
   it('renders an after aside', () => {
     const aside = <div>After</div>;
-    const wrapper = shallowWithStyles(<Layout after={<Aside>{aside}</Aside>}>Child</Layout>);
+    const wrapper = shallow(<Layout after={<Aside>{aside}</Aside>}>Child</Layout>);
 
     expect(wrapper.find(Aside)).toHaveLength(1);
     expect(wrapper.find(Aside).contains(aside)).toBe(true);
@@ -41,7 +41,7 @@ describe('<Layout />', () => {
   it('renders both asides', () => {
     const before = <div>Before</div>;
     const after = <div>After</div>;
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Layout before={<Aside>{before}</Aside>} after={<Aside>{after}</Aside>}>
         Child
       </Layout>,

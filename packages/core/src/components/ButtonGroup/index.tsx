@@ -1,5 +1,6 @@
 import React from 'react';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** List of components to group. */
@@ -9,54 +10,16 @@ export type Props = {
 };
 
 /** Horizontally align `Button`s with a consistent gutter between each. */
-export class ButtonGroup extends React.Component<Props & WithStylesProps> {
-  static defaultProps = {
-    stacked: false,
-  };
+export default function ButtonGroup({ children, stacked }: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  render() {
-    const { cx, children, stacked, styles } = this.props;
-
-    return (
-      <div className={cx(styles.buttonGroup, stacked && styles.buttonGroup_stacked)}>
-        {React.Children.map(children, child =>
-          child ? (
-            <div className={cx(stacked ? styles.cell_stacked : styles.cell)}>{child}</div>
-          ) : null,
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className={cx(styles.buttonGroup, stacked && styles.buttonGroup_stacked)}>
+      {React.Children.map(children, child =>
+        child ? (
+          <div className={cx(stacked ? styles.cell_stacked : styles.cell)}>{child}</div>
+        ) : null,
+      )}
+    </div>
+  );
 }
-
-export default withStyles(({ unit }) => ({
-  buttonGroup: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-
-  buttonGroup_stacked: {
-    flexDirection: 'column',
-    alignItems: 'stretch',
-  },
-
-  cell: {
-    marginRight: unit,
-
-    ':last-of-type': {
-      marginRight: 0,
-    },
-
-    ':empty': {
-      display: 'none',
-    },
-  },
-
-  cell_stacked: {
-    marginBottom: unit,
-
-    ':last-of-type': {
-      marginBottom: 0,
-    },
-  },
-}))(ButtonGroup);

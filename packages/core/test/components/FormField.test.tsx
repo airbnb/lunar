@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import T from '../../src/components/Translate';
 import FormField, { Prefix, Suffix } from '../../src/components/FormField';
 import FormErrorMessage from '../../src/components/FormErrorMessage';
@@ -8,18 +8,18 @@ import Text from '../../src/components/Text';
 
 describe('<FormField />', () => {
   it('renders a label', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormField id="foo" label="Label">
         Foo
       </FormField>,
     );
 
     expect(wrapper.find('label')).toHaveLength(1);
-    expect(wrapper.find(StatusText).prop('children')).toEqual(['Label', false]);
+    expect(wrapper.find(StatusText).prop('children')).toEqual(['Label', undefined]);
   });
 
   it('renders a label with optional copy', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormField id="foo" label="Label">
         Foo
       </FormField>,
@@ -41,7 +41,7 @@ describe('<FormField />', () => {
   });
 
   it('doesnt renders optional label if `hideOptionalLabel` is true', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormField hideOptionalLabel id="foo" label="Label">
         Foo
       </FormField>,
@@ -57,7 +57,7 @@ describe('<FormField />', () => {
   });
 
   it('renders a label description', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormField id="foo" label="Label">
         Foo
       </FormField>,
@@ -74,7 +74,7 @@ describe('<FormField />', () => {
   });
 
   it('renders input after the label', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormField id="foo" label="Label">
         Foo
       </FormField>,
@@ -90,7 +90,7 @@ describe('<FormField />', () => {
   });
 
   it('renders input before the label', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormField renderBeforeLabel id="foo" label="Label">
         Foo
       </FormField>,
@@ -106,7 +106,7 @@ describe('<FormField />', () => {
   });
 
   it('hides the label', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormField hideLabel id="foo" label="Label">
         Foo
       </FormField>,
@@ -116,7 +116,7 @@ describe('<FormField />', () => {
   });
 
   it('shows error if invalid', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormField invalid id="foo" label="Label" errorMessage="Broken!">
         Foo
       </FormField>,
@@ -132,7 +132,7 @@ describe('<FormField />', () => {
   });
 
   it('supports a prefix', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormField id="foo" label="Label" prefix={<Prefix>Foo</Prefix>}>
         Foo
       </FormField>,
@@ -142,7 +142,7 @@ describe('<FormField />', () => {
   });
 
   it('supports a suffix', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <FormField id="foo" label="Label" suffix={<Suffix>Foo</Suffix>}>
         Foo
       </FormField>,

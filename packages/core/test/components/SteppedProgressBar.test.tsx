@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import SteppedProgressBar, { Step } from '../../src/components/SteppedProgressBar';
 
 describe('<SteppedProgressBar />', () => {
   it('renders steps', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <SteppedProgressBar>
         <Step />
         <Step />
@@ -16,7 +16,7 @@ describe('<SteppedProgressBar />', () => {
   });
 
   it('sets first and last', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <SteppedProgressBar>
         <Step />
         <Step />
@@ -37,7 +37,7 @@ describe('<SteppedProgressBar />', () => {
 
   it('errors if child is not a `Step`', () => {
     expect(() => {
-      shallowWithStyles(<SteppedProgressBar>Foo</SteppedProgressBar>);
+      shallow(<SteppedProgressBar>Foo</SteppedProgressBar>);
     }).toThrow();
   });
 });

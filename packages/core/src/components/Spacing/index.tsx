@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleBlock } from 'aesthetic';
 import { ParsedBlock } from 'aesthetic-adapter-aphrodite';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
+import { styleSheet, cleanClassName } from './styles';
 
 export type SpacingRange =
   | 0
@@ -55,107 +55,64 @@ export type Props = {
   vertical?: SpacingRange;
 };
 
-function cleanClassName(className: string | number) {
-  return String(className).replace('.', 'dot');
-}
-
 /** Common component for arbitray layout structure and spacing. */
-export class Spacing extends React.Component<Props & WithStylesProps> {
-  static defaultProps: Partial<Props> = {
-    all: 0,
-    bottom: 0,
-    horizontal: 0,
-    inline: false,
-    inner: false,
-    left: 0,
-    right: 0,
-    top: 0,
-    vertical: 0,
-  };
+export default function Spacing({
+  all = 0,
+  bottom = 0,
+  children,
+  horizontal = 0,
+  inline,
+  inner,
+  left = 0,
+  right = 0,
+  tag: TagProp = 'div',
+  top = 0,
+  vertical = 0,
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  render() {
-    const {
-      cx,
-      all,
-      bottom,
-      children,
-      horizontal,
-      left,
-      tag: TagProp = 'div',
-      top,
-      inline,
-      inner,
-      right,
-      styles,
-      vertical,
-    } = this.props;
-    const type = inner ? 'inner' : 'outer';
-    const classes: ParsedBlock[] = [];
+  const type = inner ? 'inner' : 'outer';
+  const classes: ParsedBlock[] = [];
 
-    if (all) {
-      const cleaned = cleanClassName(all);
-      classes.push(
-        styles[`${type}Top_${cleaned}`],
-        styles[`${type}Right_${cleaned}`],
-        styles[`${type}Bottom_${cleaned}`],
-        styles[`${type}Left_${cleaned}`],
-      );
+  if (all) {
+    const cleaned = cleanClassName(all);
+    classes.push(
+      styles[`${type}Top_${cleaned}`],
+      styles[`${type}Right_${cleaned}`],
+      styles[`${type}Bottom_${cleaned}`],
+      styles[`${type}Left_${cleaned}`],
+    );
+  } else {
+    if (vertical) {
+      const cleaned = cleanClassName(vertical);
+      classes.push(styles[`${type}Top_${cleaned}`], styles[`${type}Bottom_${cleaned}`]);
     } else {
-      if (vertical) {
-        const cleaned = cleanClassName(vertical);
-        classes.push(styles[`${type}Top_${cleaned}`], styles[`${type}Bottom_${cleaned}`]);
-      } else {
-        if (top) {
-          const cleaned = cleanClassName(top);
-          classes.push(styles[`${type}Top_${cleaned}`]);
-        }
-
-        if (bottom) {
-          const cleaned = cleanClassName(bottom);
-          classes.push(styles[`${type}Bottom_${cleaned}`]);
-        }
+      if (top) {
+        const cleaned = cleanClassName(top);
+        classes.push(styles[`${type}Top_${cleaned}`]);
       }
 
-      if (horizontal) {
-        const cleaned = cleanClassName(horizontal);
-        classes.push(styles[`${type}Left_${cleaned}`], styles[`${type}Right_${cleaned}`]);
-      } else {
-        if (left) {
-          const cleaned = cleanClassName(left);
-          classes.push(styles[`${type}Left_${cleaned}`]);
-        }
-
-        if (right) {
-          const cleaned = cleanClassName(right);
-          classes.push(styles[`${type}Right_${cleaned}`]);
-        }
+      if (bottom) {
+        const cleaned = cleanClassName(bottom);
+        classes.push(styles[`${type}Bottom_${cleaned}`]);
       }
     }
 
-    return (
-      <TagProp className={cx(...classes, inline && styles.spacing_inline)}>{children}</TagProp>
-    );
+    if (horizontal) {
+      const cleaned = cleanClassName(horizontal);
+      classes.push(styles[`${type}Left_${cleaned}`], styles[`${type}Right_${cleaned}`]);
+    } else {
+      if (left) {
+        const cleaned = cleanClassName(left);
+        classes.push(styles[`${type}Left_${cleaned}`]);
+      }
+
+      if (right) {
+        const cleaned = cleanClassName(right);
+        classes.push(styles[`${type}Right_${cleaned}`]);
+      }
+    }
   }
+
+  return <TagProp className={cx(...classes, inline && styles.spacing_inline)}>{children}</TagProp>;
 }
-
-export default withStyles(({ unit }) => {
-  const spacing: { [key: string]: StyleBlock } = {};
-
-  for (let i = 0; i <= 12; i += 0.5) {
-    const size = unit * i;
-
-    ['Top', 'Right', 'Bottom', 'Left'].forEach(side => {
-      const cleaned = cleanClassName(i);
-      spacing[`outer${side}_${cleaned}`] = { [`margin${side}`]: size };
-      spacing[`inner${side}_${cleaned}`] = { [`padding${side}`]: size };
-    });
-  }
-
-  return {
-    ...spacing,
-
-    spacing_inline: {
-      display: 'inline-block',
-    },
-  };
-})(Spacing);

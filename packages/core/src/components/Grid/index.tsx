@@ -1,10 +1,8 @@
 import React from 'react';
 import { childrenOfType, mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
+import { styleSheet } from './styles';
 import Col from './Col';
-
-const horizontalAlignProp = mutuallyExclusiveTrueProps('centerAlign', 'startAlign', 'endAlign');
-const verticalAlignProp = mutuallyExclusiveTrueProps('bottomAlign', 'middleAlign', 'topAlign');
 
 export type Props = {
   /** Vertically align the columns at the bottom. */
@@ -26,99 +24,49 @@ export type Props = {
 };
 
 /** A grid to contain columns. */
-export class Grid extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    bottomAlign: verticalAlignProp,
-    centerAlign: horizontalAlignProp,
-    children: childrenOfType(Col).isRequired,
-    endAlign: horizontalAlignProp,
-    middleAlign: verticalAlignProp,
-    startAlign: horizontalAlignProp,
-    topAlign: verticalAlignProp,
-  };
+function Grid({
+  bottomAlign,
+  centerAlign,
+  children,
+  endAlign,
+  middleAlign,
+  reversed,
+  startAlign,
+  topAlign,
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  static defaultProps = {
-    bottomAlign: false,
-    centerAlign: false,
-    endAlign: false,
-    middleAlign: false,
-    reversed: false,
-    startAlign: false,
-    topAlign: false,
-  };
-
-  render() {
-    const {
-      cx,
-      bottomAlign,
-      centerAlign,
-      children,
-      endAlign,
-      middleAlign,
-      reversed,
-      startAlign,
-      styles,
-      topAlign,
-    } = this.props;
-
-    return (
-      <section
-        className={cx(
-          styles.grid,
-          reversed && styles.grid_reversed,
-          bottomAlign && styles.grid_bottom,
-          middleAlign && styles.grid_middle,
-          topAlign && styles.grid_top,
-          startAlign && styles.grid_start,
-          endAlign && styles.grid_end,
-          centerAlign && styles.grid_center,
-        )}
-      >
-        {children}
-      </section>
-    );
-  }
+  return (
+    <section
+      className={cx(
+        styles.grid,
+        reversed && styles.grid_reversed,
+        bottomAlign && styles.grid_bottom,
+        middleAlign && styles.grid_middle,
+        topAlign && styles.grid_top,
+        startAlign && styles.grid_start,
+        endAlign && styles.grid_end,
+        centerAlign && styles.grid_center,
+      )}
+    >
+      {children}
+    </section>
+  );
 }
 
 export { Col };
 
-export default withStyles(({ unit }) => ({
-  grid: {
-    display: 'flex',
-    flex: '0 1 auto',
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    alignItems: 'stretch',
-    justifyContent: 'space-between',
-    marginLeft: -unit,
-    marginRight: -unit,
-  },
+const horizontalAlignProp = mutuallyExclusiveTrueProps('centerAlign', 'startAlign', 'endAlign');
+const verticalAlignProp = mutuallyExclusiveTrueProps('bottomAlign', 'middleAlign', 'topAlign');
 
-  grid_reversed: {
-    flexDirection: 'row-reverse',
-  },
+Grid.propTypes = {
+  bottomAlign: verticalAlignProp,
+  centerAlign: horizontalAlignProp,
+  children: childrenOfType(Col).isRequired,
+  endAlign: horizontalAlignProp,
+  middleAlign: verticalAlignProp,
+  startAlign: horizontalAlignProp,
+  topAlign: verticalAlignProp,
+};
 
-  grid_center: {
-    justifyContent: 'center',
-  },
-
-  grid_start: {
-    justifyContent: 'flex-start',
-  },
-
-  grid_end: {
-    justifyContent: 'flex-end',
-  },
-
-  grid_top: {
-    alignItems: 'flex-start',
-  },
-
-  grid_middle: {
-    alignItems: 'center',
-  },
-
-  grid_bottom: {
-    alignItems: 'flex-end',
-  },
-}))(Grid);
+export default Grid;

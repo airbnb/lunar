@@ -5,6 +5,7 @@ import ButtonGroup from '../ButtonGroup';
 import Text from '../Text';
 import Translate from '../Translate';
 import { HeaderButton, SelectedRows } from './types';
+import { styleSheetTableHeader as styleSheet } from './styles';
 
 export type Props = {
   /** Specifies whether or not editMode can be enabled */
@@ -133,15 +134,4 @@ export function TableHeader({
   );
 }
 
-export default withStyles(({ unit, color, ui }) => ({
-  tableHeader_inner: {
-    background: color.accent.bg,
-    display: 'flex',
-    alignItems: 'center',
-    height: '100%',
-    justifyContent: 'space-between',
-    paddingLeft: 2 * unit,
-    paddingRight: 2 * unit,
-    borderBottom: ui.border,
-  },
-}))(TableHeader);
+export default withStyles(styleSheet)(TableHeader);

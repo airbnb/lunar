@@ -10,14 +10,14 @@ describe('<LightboxImage />', () => {
   };
 
   it('renders a ResponsiveImage', () => {
-    const wrapper = shallow(<Image {...props} />).dive();
+    const wrapper = shallow(<Image {...props} />);
 
     expect(wrapper.find(ResponsiveImage)).toHaveLength(1);
   });
 
   it('renders aside content', () => {
     const aside = <div>Before</div>;
-    const wrapper = shallow(<Image {...props} aside={aside} />).dive();
+    const wrapper = shallow(<Image {...props} aside={aside} />);
 
     expect(wrapper.find('aside')).toHaveLength(1);
     expect(wrapper.find('aside').contains(aside)).toBe(true);
@@ -25,7 +25,7 @@ describe('<LightboxImage />', () => {
 
   it('hides aside content when hideAside is true', () => {
     const aside = <div>Before</div>;
-    const wrapper = shallow(<Image {...props} hideAside aside={aside} />).dive();
+    const wrapper = shallow(<Image {...props} hideAside aside={aside} />);
 
     expect(wrapper.find('aside')).toHaveLength(0);
     expect(wrapper.find('aside').contains(aside)).toBe(false);

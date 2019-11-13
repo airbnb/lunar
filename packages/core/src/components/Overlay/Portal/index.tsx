@@ -4,8 +4,7 @@ import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import FocusTrap from '../../FocusTrap';
 import BasePortal from '../../Portal';
 import { ESCAPE } from '../../../keys';
-import { Z_INDEX_PORTAL } from '../../../constants';
-import toRGBA from '../../../utils/toRGBA';
+import { styleSheet } from './styles';
 
 export type Props = {
   children?: React.ReactNode;
@@ -112,29 +111,4 @@ export class Portal extends React.Component<Props & WithStylesProps, State> {
   }
 }
 
-export default withStyles(({ color }) => ({
-  container: {
-    position: 'fixed',
-    zIndex: Z_INDEX_PORTAL,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    overflow: 'auto',
-    userSelect: 'none',
-  },
-
-  noBg: {
-    pointerEvents: 'none',
-    overflow: 'hidden',
-  },
-
-  opaque: {
-    backgroundColor: toRGBA(color.core.neutral[6], 30),
-  },
-
-  content: {
-    width: 0,
-    overflow: 'visible',
-  },
-}))(Portal);
+export default withStyles(styleSheet)(Portal);

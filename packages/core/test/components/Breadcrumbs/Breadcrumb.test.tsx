@@ -1,11 +1,11 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import Breadcrumb from '../../../src/components/Breadcrumbs/Breadcrumb';
 import ButtonOrLink from '../../../src/components/private/ButtonOrLink';
 
 describe('<Breadcrumb/>', () => {
   it('renders a button', () => {
-    const wrapper = shallowWithStyles(<Breadcrumb label="Breadcrumb" onClick={() => {}} />)
+    const wrapper = shallow(<Breadcrumb label="Breadcrumb" onClick={() => {}} />)
       .find(ButtonOrLink)
       .dive();
 
@@ -13,7 +13,7 @@ describe('<Breadcrumb/>', () => {
   });
 
   it('renders a link', () => {
-    const wrapper = shallowWithStyles(<Breadcrumb href="#foo" label="Breadcrumb" />)
+    const wrapper = shallow(<Breadcrumb href="#foo" label="Breadcrumb" />)
       .find(ButtonOrLink)
       .dive();
 
@@ -21,23 +21,19 @@ describe('<Breadcrumb/>', () => {
   });
 
   it('renders selected with `aria-current` attribute', () => {
-    const wrapper = shallowWithStyles(
-      <Breadcrumb selected label="Breadcrumb" onClick={() => {}} />,
-    );
+    const wrapper = shallow(<Breadcrumb selected label="Breadcrumb" onClick={() => {}} />);
 
     expect(wrapper.find(ButtonOrLink).prop('aria-current')).toBe('page');
   });
 
   it('renders disabled', () => {
-    const wrapper = shallowWithStyles(
-      <Breadcrumb disabled label="Breadcrumb" onClick={() => {}} />,
-    );
+    const wrapper = shallow(<Breadcrumb disabled label="Breadcrumb" onClick={() => {}} />);
 
     expect(wrapper.find(ButtonOrLink).prop('disabled')).toBeTruthy();
   });
 
   it('renders a passed id for tracking', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Breadcrumb
         id="tracking-breadcrump"
         trackingName="tracking-name"
@@ -51,22 +47,20 @@ describe('<Breadcrumb/>', () => {
   });
 
   it('renders an icon', () => {
-    const wrapper = shallowWithStyles(<Breadcrumb label="Breadcrumb" onClick={() => {}} />);
+    const wrapper = shallow(<Breadcrumb label="Breadcrumb" onClick={() => {}} />);
 
     expect(wrapper.find(ButtonOrLink).prop('afterIcon')).toBeTruthy();
   });
 
   it('doesnt render an icon with `hideIcon`', () => {
-    const wrapper = shallowWithStyles(
-      <Breadcrumb hideIcon label="Breadcrumb" onClick={() => {}} />,
-    );
+    const wrapper = shallow(<Breadcrumb hideIcon label="Breadcrumb" onClick={() => {}} />);
 
     expect(wrapper.find(ButtonOrLink).prop('afterIcon')).toBeFalsy();
   });
 
   it('doesnt render children', () => {
     const child = <div>Foo</div>;
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       // @ts-ignore Allow invalid children
       <Breadcrumb label="Breadcrumb" onClick={() => {}}>
         {child}
@@ -78,7 +72,7 @@ describe('<Breadcrumb/>', () => {
 
   it('triggers `onClick` when clicked', () => {
     const spy = jest.fn();
-    const wrapper = shallowWithStyles(<Breadcrumb label="Breadcrumb" onClick={spy} />);
+    const wrapper = shallow(<Breadcrumb label="Breadcrumb" onClick={spy} />);
 
     wrapper.findWhere(child => child.prop('onClick')).simulate('click');
 

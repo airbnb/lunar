@@ -1,20 +1,9 @@
 import React from 'react';
 import Content from './Content';
-import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import useStyles from '../../hooks/useStyles';
+import { styleSheet } from './styles';
 
 export { Content };
-
-const styleSheet: StyleSheet = ({ color, pattern }) => ({
-  card: {
-    ...pattern.box,
-    background: color.accent.bg,
-    overflow: 'hidden',
-  },
-
-  card_overflow: {
-    overflow: 'visible',
-  },
-});
 
 export type Props = {
   /** List of `Content`s blocks to contain content. */

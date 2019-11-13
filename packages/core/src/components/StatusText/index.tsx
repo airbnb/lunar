@@ -1,10 +1,9 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
 import Text, { Props as TextProps } from '../Text';
 import { STATUSES } from '../../constants';
-
-const statusPropType = mutuallyExclusiveTrueProps(...STATUSES);
+import { styleSheet } from './styles';
 
 export type Props = TextProps & {
   /** The text to render. */
@@ -24,80 +23,45 @@ export type Props = TextProps & {
 };
 
 /** Display a string of classified text with colorful statuses. */
-export class StatusText extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    danger: statusPropType,
-    info: statusPropType,
-    muted: statusPropType,
-    notice: statusPropType,
-    success: statusPropType,
-    warning: statusPropType,
-  };
+function StatusText({
+  children,
+  danger,
+  info,
+  muted,
+  notice,
+  success,
+  warning,
+  ...restProps
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  static defaultProps = {
-    danger: false,
-    info: false,
-    muted: false,
-    notice: false,
-    success: false,
-    warning: false,
-  };
-
-  render() {
-    const {
-      cx,
-      children,
-      danger,
-      info,
-      muted,
-      notice,
-      styles,
-      success,
-      warning,
-      ...restProps
-    } = this.props;
-
-    return (
-      <Text {...restProps}>
-        <span
-          className={cx(
-            danger && styles.text_danger,
-            info && styles.text_info,
-            muted && styles.text_muted,
-            notice && styles.text_notice,
-            success && styles.text_success,
-            warning && styles.text_warning,
-          )}
-        >
-          {children}
-        </span>
-      </Text>
-    );
-  }
+  return (
+    <Text {...restProps}>
+      <span
+        className={cx(
+          danger && styles.text_danger,
+          info && styles.text_info,
+          muted && styles.text_muted,
+          notice && styles.text_notice,
+          success && styles.text_success,
+          warning && styles.text_warning,
+        )}
+      >
+        {children}
+      </span>
+    </Text>
+  );
 }
 
-export default withStyles(({ color }) => ({
-  text_danger: {
-    color: color.core.danger[4],
-  },
+const statusPropType = mutuallyExclusiveTrueProps(...STATUSES);
 
-  text_info: {
-    color: color.core.primary[4],
-  },
+StatusText.propTypes = {
+  danger: statusPropType,
+  info: statusPropType,
+  muted: statusPropType,
+  notice: statusPropType,
+  success: statusPropType,
+  warning: statusPropType,
+};
 
-  text_muted: {
-    color: color.muted,
-  },
-
-  text_notice: {
-    color: color.core.secondary[4],
-  },
-
-  text_success: {
-    color: color.core.success[4],
-  },
-
-  text_warning: {
-    color: color.core.warning[5],
-  },
-}))(StatusText);
+export default StatusText;

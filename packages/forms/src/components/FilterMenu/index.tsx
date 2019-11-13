@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-
-import React from 'react';
+import React, { useState } from 'react';
 import T from '@airbnb/lunar/lib/components/Translate';
-import Button from '@airbnb/lunar/lib/components/Button';
-import Dropdown, { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
-import Menu, { Props as MenuProps } from '@airbnb/lunar/lib/components/Menu';
-import ExpandableIcon from '@airbnb/lunar/lib/components/ExpandableIcon';
+// import MenuToggle from '@airbnb/lunar/lib/components/MenuToggle';
+import { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
+import { Props as MenuProps } from '@airbnb/lunar/lib/components/Menu';
 import Link from '@airbnb/lunar/lib/components/Link';
-import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import Row from './private/Row';
+import { styleSheet } from './styles';
+import MenuToggle from '../../../../core/src/components/MenuToggle';
 
 export type Props = {
   /** Accessibility label. */
@@ -46,185 +46,104 @@ export type State = {
 };
 
 /** A button that opens a dropdown that shows filter options for a table or similar component. */
-export class FilterMenu extends React.Component<Props & WithStylesProps, State> {
-  static defaultProps = {
-    children: null,
-    ignoreClickOutside: false,
-    large: false,
-    onApply() {},
-    onClear() {},
-    onHide() {},
-    onShow() {},
-    small: false,
-    zIndex: 1,
-  };
+export default function FilterMenu({
+  accessibilityLabel,
+  activeCount,
+  children,
+  dropdownProps = { right: 0 },
+  ignoreClickOutside,
+  keepOpenOnClear,
+  large,
+  menuProps,
+  small,
+  zIndex = 1,
+  onApply,
+  onClear,
+  onHide,
+  onShow,
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
+  const [opened, setOpened] = useState(false);
 
-  ref = React.createRef<HTMLDivElement>();
+  const handleShowFilters = () => {
+    setOpened(true);
 
-  state = {
-    opened: false,
-  };
-
-  private handleToggleFilters = () => {
-    if (this.state.opened) {
-      this.handleHideFilters();
-    } else {
-      this.handleShowFilters();
+    if (onShow) {
+      onShow();
     }
   };
 
-  private handleShowFilters = () => {
-    this.setState({
-      opened: true,
-    });
+  const handleHideFilters = () => {
+    setOpened(false);
 
-    this.props.onShow!();
-  };
-
-  private handleHideFilters = () => {
-    this.setState({
-      opened: false,
-    });
-
-    this.props.onHide!();
-  };
-
-  private handleApply = () => {
-    this.props.onApply!();
-    this.handleHideFilters();
-  };
-
-  private handleClear = () => {
-    this.props.onClear!();
-    if (!this.props.keepOpenOnClear) {
-      this.handleHideFilters();
+    if (onHide) {
+      onHide();
     }
   };
 
-  private handleClickOutside = (event: MouseEvent) => {
-    if (this.props.ignoreClickOutside) {
-      return;
+  const handleApply = () => {
+    if (onApply) {
+      onApply();
     }
 
-    // Let the button handle itself
-    const { current } = this.ref;
-
-    if (current && current.contains(event.target as Element)) {
-      return;
-    }
-
-    this.handleHideFilters();
+    handleHideFilters();
   };
 
-  render() {
-    const {
-      cx,
-      accessibilityLabel,
-      activeCount,
-      children,
-      dropdownProps = { right: 0 },
-      large,
-      menuProps,
-      small,
-      styles,
-      zIndex,
-    } = this.props;
-    const { opened } = this.state;
-    const activeCountLabel =
-      activeCount && activeCount > 0 ? (
-        <T
-          k="lunar.filter.filterCount"
-          phrase="%{smartCount} Filter||||%{smartCount} Filters"
-          smartCount={activeCount}
-          context="Number of filters applied within a form"
-        />
-      ) : null;
-    const toggleLabel = opened ? (
-      <T k="lunar.filter.close" phrase="Close filters" context="Filter menu toggle button label" />
-    ) : (
-      <T k="lunar.filter.open" phrase="Open filters" context="Filter menu toggle button label" />
-    );
+  const handleClear = () => {
+    if (onClear) {
+      onClear();
+    }
 
-    return (
-      <div ref={this.ref} className={cx(styles.container)}>
-        <Button
-          inverted
-          large={large}
-          small={small}
-          afterIcon={<ExpandableIcon expanded={opened} size="1.25em" />}
-          onClick={this.handleToggleFilters}
-        >
-          {activeCountLabel || toggleLabel}
-        </Button>
+    if (!keepOpenOnClear) {
+      handleHideFilters();
+    }
+  };
 
-        <div
-          className={cx(styles.form, !opened && styles.form_hidden, { zIndex })}
-          aria-expanded={opened}
-        >
-          <Dropdown {...dropdownProps} visible={opened} onClickOutside={this.handleClickOutside}>
-            <div className={cx(styles.menu)}>
-              <Menu
-                minWidth={250}
-                maxHeight={300}
-                accessibilityLabel={accessibilityLabel}
-                {...menuProps}
-              >
-                {children}
+  const activeCountLabel =
+    activeCount && activeCount > 0 ? (
+      <T
+        k="lunar.filter.filterCount"
+        phrase="%{smartCount} Filter||||%{smartCount} Filters"
+        smartCount={activeCount}
+        context="Number of filters applied within a form"
+      />
+    ) : null;
 
-                <Row>
-                  <section className={cx(styles.controls)}>
-                    <Link type="submit" onClick={this.handleApply}>
-                      <T
-                        k="lunar.common.apply"
-                        phrase="Apply"
-                        context="Apply filters button label"
-                      />
-                    </Link>
+  const toggleLabel = opened ? (
+    <T k="lunar.filter.close" phrase="Close filters" context="Filter menu toggle button label" />
+  ) : (
+    <T k="lunar.filter.open" phrase="Open filters" context="Filter menu toggle button label" />
+  );
 
-                    <Link muted type="reset" onClick={this.handleClear}>
-                      <T
-                        k="lunar.common.reset"
-                        phrase="Reset"
-                        context="Button label to reset a form"
-                      />
-                    </Link>
-                  </section>
-                </Row>
-              </Menu>
-            </div>
-          </Dropdown>
-        </div>
-      </div>
-    );
-  }
+  return (
+    <MenuToggle
+      inverted
+      ignoreClickOutside={ignoreClickOutside}
+      accessibilityLabel={accessibilityLabel}
+      dropdownProps={dropdownProps}
+      large={large}
+      menuProps={menuProps}
+      small={small}
+      toggleLabel={activeCountLabel || toggleLabel}
+      zIndex={zIndex}
+      onHide={handleHideFilters}
+      onShow={handleShowFilters}
+    >
+      {children}
+
+      <Row>
+        <section className={cx(styles.controls)}>
+          <Link type="submit" onClick={handleApply}>
+            <T k="lunar.common.apply" phrase="Apply" context="Apply filters button label" />
+          </Link>
+
+          <Link muted type="reset" onClick={handleClear}>
+            <T k="lunar.common.reset" phrase="Reset" context="Button label to reset a form" />
+          </Link>
+        </section>
+      </Row>
+    </MenuToggle>
+  );
 }
 
 export { Row };
-
-export default withStyles(({ unit, transition }) => ({
-  container: {
-    display: 'inline-block',
-    position: 'relative',
-  },
-
-  form: {
-    ...transition.fade,
-    visibility: 'visible',
-    position: 'relative',
-  },
-
-  form_hidden: {
-    opacity: 0,
-    visibility: 'hidden',
-    userSelect: 'none',
-  },
-
-  menu: {
-    marginTop: unit,
-  },
-
-  controls: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-}))(FilterMenu);

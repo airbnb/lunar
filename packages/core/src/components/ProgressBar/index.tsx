@@ -1,6 +1,7 @@
 import React from 'react';
 import { between } from 'airbnb-prop-types';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Disable leading rounded corners. */
@@ -12,65 +13,30 @@ export type Props = {
 };
 
 /** A bar to represent the progress to completion. */
-export class ProgressBar extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    percent: between({ gte: 0, lte: 100 }).isRequired,
-  };
+function ProgressBar({ percent, leading, trailing }: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  static defaultProps = {
-    leading: false,
-    trailing: false,
-  };
-
-  render() {
-    const { cx, percent, leading, trailing, styles } = this.props;
-
-    return (
-      <div className={cx(styles.wrapper)}>
+  return (
+    <div className={cx(styles.wrapper)}>
+      <div
+        className={cx(styles.bar, !leading && styles.bar_leading, !trailing && styles.bar_trailing)}
+      >
         <div
           className={cx(
             styles.bar,
             !leading && styles.bar_leading,
             !trailing && styles.bar_trailing,
+            styles.progress,
           )}
-        >
-          <div
-            className={cx(
-              styles.bar,
-              !leading && styles.bar_leading,
-              !trailing && styles.bar_trailing,
-              styles.progress,
-            )}
-            style={{ width: `${percent}%` }}
-          />
-        </div>
+          style={{ width: `${percent}%` }}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default withStyles(({ color, unit, ui }) => ({
-  wrapper: {
-    paddingTop: unit / 4,
-    paddingBottom: unit / 4,
-  },
+ProgressBar.propTypes = {
+  percent: between({ gte: 0, lte: 100 }).isRequired,
+};
 
-  bar: {
-    height: unit / 2,
-    background: color.core.primary[1],
-  },
-
-  bar_leading: {
-    borderTopRightRadius: ui.borderRadius,
-    borderBottomRightRadius: ui.borderRadius,
-  },
-
-  bar_trailing: {
-    borderTopLeftRadius: ui.borderRadius,
-    borderBottomLeftRadius: ui.borderRadius,
-  },
-
-  progress: {
-    background: color.core.primary[6],
-  },
-}))(ProgressBar);
+export default ProgressBar;

@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import React from 'react';
 import uuid from 'uuid/v4';
 import Overlay from '../Overlay';
 import NotchedBox, { NOTCH_SIZE, NOTCH_SPACING } from '../NotchedBox';
 import Text from '../Text';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import { styleSheet } from './styles';
 
 const EMPTY_TARGET_RECT: ClientRect = {
   bottom: 0,
@@ -236,59 +236,6 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   }
 }
 
-export default withStyles(
-  ({ unit, color, pattern, ui }) => ({
-    container: {
-      display: 'inline-block',
-    },
-
-    offscreen: {
-      ...pattern.offscreen,
-    },
-
-    underlined: {
-      borderBottom: `1px dotted ${color.core.primary[3]}`,
-      cursor: 'help',
-    },
-
-    tooltip: {
-      animationDuration: '200ms',
-      animationTimingFunction: 'ease-out',
-    },
-
-    tooltip_above: {
-      animationName: {
-        name: 'fadeDown',
-        from: {
-          opacity: 0,
-          transform: `translateY(${unit * 1.5}px)`,
-        },
-        to: {
-          opacity: 1,
-        },
-      },
-    },
-
-    tooltip_below: {
-      animationName: {
-        name: 'fadeUp',
-        from: {
-          opacity: 0,
-          transform: `translateY(-${unit * 1.5}px)`,
-        },
-        to: {
-          opacity: 1,
-        },
-      },
-    },
-
-    shadow: {
-      display: 'inline-block',
-      boxShadow: ui.boxShadowLarge,
-      borderRadius: ui.borderRadius,
-    },
-  }),
-  {
-    passThemeProp: true,
-  },
-)(Tooltip);
+export default withStyles(styleSheet, {
+  passThemeProp: true,
+})(Tooltip);

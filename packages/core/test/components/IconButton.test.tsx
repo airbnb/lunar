@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import IconButton from '../../src/components/IconButton';
 import Tooltip from '../../src/components/Tooltip';
 import IconCheck from '../../../icons/src/interface/IconCheck';
@@ -7,7 +7,7 @@ import IconCheck from '../../../icons/src/interface/IconCheck';
 describe('<IconButton />', () => {
   it('errors if a non-icon is passed', () => {
     expect(() => {
-      shallowWithStyles(
+      shallow(
         <IconButton>
           <div />
         </IconButton>,
@@ -16,7 +16,7 @@ describe('<IconButton />', () => {
   });
 
   it('renders disabled', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <IconButton disabled>
         <IconCheck decorative />
       </IconButton>,
@@ -26,7 +26,7 @@ describe('<IconButton />', () => {
   });
 
   it('wraps in a tooltip', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <IconButton>
         <IconCheck decorative />
       </IconButton>,

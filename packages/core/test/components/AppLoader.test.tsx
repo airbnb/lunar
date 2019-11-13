@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import AppLoader from '../../src/components/AppLoader';
 import ErrorMessage from '../../src/components/ErrorMessage';
 import Loader from '../../src/components/Loader';
@@ -8,7 +8,7 @@ import Text from '../../src/components/Text';
 
 describe('<AppLoader />', () => {
   it('renders `Loader` and `loadingText` while fetching', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <AppLoader failureText="Failed" loadingText="Loading...">
         Content
       </AppLoader>,
@@ -21,7 +21,7 @@ describe('<AppLoader />', () => {
 
   it('renders `ErrorMessage` and `failureText` when failed', () => {
     const error = new Error('Oops');
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <AppLoader fetched error={error} failureText="Failed" loadingText="Loading...">
         Content
       </AppLoader>,
@@ -34,7 +34,7 @@ describe('<AppLoader />', () => {
   });
 
   it('renders content if successful', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <AppLoader fetched failureText="Failed" loadingText="Loading...">
         Content
       </AppLoader>,
@@ -47,7 +47,7 @@ describe('<AppLoader />', () => {
   });
 
   it('renders centered with subtitle', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <AppLoader centered failureText="Failed" loadingText="Loading...">
         Content
       </AppLoader>,
@@ -64,7 +64,7 @@ describe('<AppLoader />', () => {
   });
 
   it('reduces title and subtitle size when `small`', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <AppLoader centered failureText="Failed" loadingText="Loading..." subtitle="Hello">
         Content
       </AppLoader>,

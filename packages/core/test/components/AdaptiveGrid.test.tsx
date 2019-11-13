@@ -12,8 +12,8 @@ describe('<AdaptiveGrid />', () => {
       </AdaptiveGrid>,
     );
 
-    const breakpoints = wrapper.childAt(0).prop('breakpoints');
-    const defaultItemsPerRow = wrapper.childAt(0).prop('defaultItemsPerRow');
+    const breakpoints = wrapper.prop('breakpoints');
+    const defaultItemsPerRow = wrapper.prop('defaultItemsPerRow');
 
     expect(breakpoints[1200]).toEqual(3);
     expect(defaultItemsPerRow).toEqual(2);

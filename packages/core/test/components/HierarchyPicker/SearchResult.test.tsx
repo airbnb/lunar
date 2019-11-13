@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import SearchResult from '../../../src/components/HierarchyPicker/Search/SearchResult';
 import Highlight from '../../../src/components/HierarchyPicker/Search/Highlight';
 
@@ -7,9 +7,7 @@ const item = { name: 'foo', label: 'bar', description: 'baz description' };
 
 describe('<SearchResult />', () => {
   it('renders the item label', () => {
-    const wrapper = shallowWithStyles(
-      <SearchResult item={item} formattedParents="" query="more coverage" />,
-    );
+    const wrapper = shallow(<SearchResult item={item} formattedParents="" query="more coverage" />);
 
     expect(
       wrapper
@@ -20,7 +18,7 @@ describe('<SearchResult />', () => {
   });
 
   it('renders a description', () => {
-    const wrapper = shallowWithStyles(<SearchResult item={item} formattedParents="" />);
+    const wrapper = shallow(<SearchResult item={item} formattedParents="" />);
 
     expect(
       wrapper
@@ -32,9 +30,7 @@ describe('<SearchResult />', () => {
 
   it('renders a keyword match', () => {
     const match = { key: 'keywords', indices: [], value: 'keyword match' };
-    const wrapper = shallowWithStyles(
-      <SearchResult item={item} formattedParents="" matches={[match]} />,
-    );
+    const wrapper = shallow(<SearchResult item={item} formattedParents="" matches={[match]} />);
 
     expect(
       wrapper

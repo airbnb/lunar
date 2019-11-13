@@ -85,6 +85,7 @@ export default function ZoomControls(props: Props) {
           />
         </IconButton>
       </ButtonGroup>
+
       {visible && (
         <Dropdown visible={visible} left="0" zIndex={5} onClickOutside={toggleZoomMenu}>
           <Menu

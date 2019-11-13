@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import ButtonOrLink from '@airbnb/lunar/lib/components/private/ButtonOrLink';
 import IconAdd from '../../../../icons/src/interface/IconAdd';
 import SideBarItem from '../../../src/components/SideBar/Item';
@@ -7,12 +7,12 @@ import SideBarItem from '../../../src/components/SideBar/Item';
 describe('<SideBarItem />', () => {
   it('errors for invalid icon', () => {
     expect(() => {
-      shallowWithStyles(<SideBarItem icon={<div />} />);
+      shallow(<SideBarItem icon={<div />} />);
     }).toThrow();
   });
 
   it('renders a list item with accessibility', () => {
-    const wrapper = shallowWithStyles(<SideBarItem icon={<IconAdd decorative />} />);
+    const wrapper = shallow(<SideBarItem icon={<IconAdd decorative />} />);
 
     expect(wrapper.is('li')).toBe(true);
     expect(wrapper.prop('role')).toBe('none');
@@ -20,9 +20,7 @@ describe('<SideBarItem />', () => {
   });
 
   it('renders an icon and label', () => {
-    const wrapper = shallowWithStyles(
-      <SideBarItem icon={<IconAdd decorative />} label={<i>Label</i>} />,
-    );
+    const wrapper = shallow(<SideBarItem icon={<IconAdd decorative />} label={<i>Label</i>} />);
 
     expect(wrapper.find(IconAdd)).toHaveLength(1);
     expect(wrapper.find('i')).toHaveLength(1);
@@ -30,7 +28,7 @@ describe('<SideBarItem />', () => {
 
   it('passes href and onClick', () => {
     const click = jest.fn();
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <SideBarItem icon={<IconAdd decorative />} href="/test" onClick={click} />,
     );
 
@@ -39,7 +37,7 @@ describe('<SideBarItem />', () => {
   });
 
   it('overrides icon props', () => {
-    const wrapper = shallowWithStyles(<SideBarItem icon={<IconAdd decorative size="5em" />} />);
+    const wrapper = shallow(<SideBarItem icon={<IconAdd decorative size="5em" />} />);
 
     expect(wrapper.find(IconAdd).props()).toEqual(
       expect.objectContaining({

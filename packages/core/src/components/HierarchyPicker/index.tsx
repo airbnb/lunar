@@ -7,7 +7,7 @@ import T from '../Translate';
 import Text from '../Text';
 import Picker from './Picker';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import buildInputStyles from '../../themes/buildInputStyles';
+import { styleSheet } from './styles';
 
 import {
   ItemPickedHandler,
@@ -227,27 +227,4 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
   }
 }
 
-export default withStyles(theme => ({
-  ...buildInputStyles(theme),
-
-  selectlike: {
-    position: 'relative',
-  },
-
-  selectlike_enabled: {
-    cursor: 'pointer',
-  },
-
-  arrow: {
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    bottom: 0,
-    overflow: 'hidden',
-    width: theme.unit * 5,
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-}))(HierarchyPicker);
+export default withStyles(styleSheet)(HierarchyPicker);

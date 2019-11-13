@@ -1,27 +1,23 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import AccordionItem from '../../../src/components/Accordion/Item';
 import ExpandableIcon from '../../../src/components/ExpandableIcon';
 
 describe('<AccordionItem />', () => {
   it('renders a button', () => {
-    const wrapper = shallowWithStyles(
-      <AccordionItem id=".0" index={0} title="Title" onClick={() => {}} />,
-    );
+    const wrapper = shallow(<AccordionItem id=".0" index={0} title="Title" onClick={() => {}} />);
 
     expect(wrapper.find('button')).toHaveLength(1);
   });
 
   it('renders a section', () => {
-    const wrapper = shallowWithStyles(
-      <AccordionItem id=".0" index={0} title="Title" onClick={() => {}} />,
-    );
+    const wrapper = shallow(<AccordionItem id=".0" index={0} title="Title" onClick={() => {}} />);
 
     expect(wrapper.find('section')).toHaveLength(1);
   });
 
   it('renders the title as a string', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <AccordionItem id=".0" index={0} title="unique string" onClick={() => {}} />,
     );
 
@@ -33,7 +29,7 @@ describe('<AccordionItem />', () => {
       return null;
     }
 
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <AccordionItem id=".0" index={0} title={<CustomTitleComponent />} onClick={() => {}} />,
     );
 
@@ -43,7 +39,7 @@ describe('<AccordionItem />', () => {
   it('renders children', () => {
     const child = <div>Foo</div>;
 
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <AccordionItem id=".0" index={0} title="Title" onClick={() => {}}>
         {child}
       </AccordionItem>,
@@ -53,7 +49,7 @@ describe('<AccordionItem />', () => {
   });
 
   it('renders bordered', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <AccordionItem bordered id=".0" index={0} title="Title" onClick={() => {}} />,
     );
 
@@ -61,7 +57,7 @@ describe('<AccordionItem />', () => {
   });
 
   it('renders expanded', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <AccordionItem expanded id=".0" index={0} title="Title" onClick={() => {}} />,
     );
 
@@ -70,7 +66,7 @@ describe('<AccordionItem />', () => {
   });
 
   it('renders without spacing', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <AccordionItem noSpacing id=".0" index={0} title="Title" onClick={() => {}} />,
     );
 
@@ -80,9 +76,7 @@ describe('<AccordionItem />', () => {
 
   it('triggers `onClick` when clicked', () => {
     const spy = jest.fn();
-    const wrapper = shallowWithStyles(
-      <AccordionItem id=".0" index={1} title="Title" onClick={spy} />,
-    );
+    const wrapper = shallow(<AccordionItem id=".0" index={1} title="Title" onClick={spy} />);
 
     wrapper
       .find('button')

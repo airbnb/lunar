@@ -1,5 +1,6 @@
 import React from 'react';
-import withStyles, { WithStylesProps } from '../../../composers/withStyles';
+import useStyles from '../../../hooks/useStyles';
+import { styleSheetImageLayout as styleSheet } from '../styles';
 
 export const MAX_HEIGHT_IMAGE = 720;
 export const MAX_HEIGHT_IMAGE_SMALL = 420;
@@ -20,74 +21,32 @@ export type Props = ModalImageConfig & {
   children: NonNullable<React.ReactNode>;
 };
 
-class ModalImageLayout extends React.Component<Props & WithStylesProps> {
-  render() {
-    const { cx, children, sizes, srcSet, type, url, styles } = this.props;
+export default function ModalImageLayout({ children, sizes, srcSet, type, url }: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-    return (
-      <div className={cx(styles.splitContent)}>
-        <div className={cx(styles.splitContentPane)}>{children}</div>
-        <div className={cx(styles.splitContentPane, styles.splitContentImagePane)}>
-          {type === 'center' && (
-            <img
-              className={cx(styles.image)}
-              src={url}
-              srcSet={srcSet && srcSet.join(',')}
-              sizes={sizes && sizes.join(',')}
-              alt=""
-            />
-          )}
+  return (
+    <div className={cx(styles.splitContent)}>
+      <div className={cx(styles.splitContentPane)}>{children}</div>
+      <div className={cx(styles.splitContentPane, styles.splitContentImagePane)}>
+        {type === 'center' && (
+          <img
+            className={cx(styles.image)}
+            src={url}
+            srcSet={srcSet && srcSet.join(',')}
+            sizes={sizes && sizes.join(',')}
+            alt=""
+          />
+        )}
 
-          {type === 'cover' && (
-            <img
-              className={cx(styles.image, styles.imageCover)}
-              src={url}
-              srcSet={srcSet && srcSet.join(',')}
-              alt=""
-            />
-          )}
-        </div>
+        {type === 'cover' && (
+          <img
+            className={cx(styles.image, styles.imageCover)}
+            src={url}
+            srcSet={srcSet && srcSet.join(',')}
+            alt=""
+          />
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default withStyles(({ responsive, ui, unit }) => ({
-  splitContent: {
-    display: 'flex',
-  },
-
-  splitContentPane: {
-    flex: '1',
-  },
-
-  splitContentImagePane: {
-    borderLeft: ui.border,
-    alignItems: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    position: 'relative',
-
-    '@media': {
-      [responsive.xsmall]: {
-        display: 'none',
-      },
-    },
-  },
-
-  image: {
-    display: 'block',
-    objectFit: 'contain',
-    maxWidth: '100%',
-    maxHeight: '100%',
-    margin: unit * 3,
-  },
-
-  imageCover: {
-    objectFit: 'cover',
-    height: '100%',
-    width: '100%',
-    margin: 0,
-  },
-}))(ModalImageLayout);

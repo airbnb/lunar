@@ -1,7 +1,8 @@
 import React from 'react';
 import IconCaretUp from '@airbnb/lunar-icons/lib/interface/IconCaretUp';
 import IconCaretDown from '@airbnb/lunar-icons/lib/interface/IconCaretDown';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Whether or not to display the bottom caret. */
@@ -15,19 +16,12 @@ export type Props = {
 };
 
 /** Carets to indicate sorting on a table. */
-export class SortCarets extends React.Component<Props & WithStylesProps> {
-  static defaultProps = {
-    down: false,
-    enableDown: false,
-    enableUp: false,
-    up: false,
-  };
+export default function SortCarets({ down, enableDown, enableUp, up }: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  renderCaretUp() {
-    const { cx, up, enableUp, styles } = this.props;
-
-    return (
-      up && (
+  return (
+    <span className={cx(styles.container, up && down && styles.container_full)}>
+      {up && (
         <span
           className={cx(
             styles.caret,
@@ -37,15 +31,9 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
         >
           <IconCaretUp decorative size="1.6em" />
         </span>
-      )
-    );
-  }
+      )}
 
-  renderCaretDown() {
-    const { cx, down, enableDown, styles } = this.props;
-
-    return (
-      down && (
+      {down && (
         <span
           className={cx(
             styles.caret,
@@ -55,66 +43,7 @@ export class SortCarets extends React.Component<Props & WithStylesProps> {
         >
           <IconCaretDown decorative size="1.6em" />
         </span>
-      )
-    );
-  }
-
-  render() {
-    const { cx, styles, up, down } = this.props;
-
-    return (
-      <span className={cx(styles.container, up && down && styles.container_full)}>
-        {this.renderCaretUp()}
-        {this.renderCaretDown()}
-      </span>
-    );
-  }
+      )}
+    </span>
+  );
 }
-
-export default withStyles(({ color, unit }) => ({
-  container: {
-    display: 'inline-block',
-    verticalAlign: 'middle',
-    marginTop: -1,
-    width: unit * 1.5,
-    height: unit,
-  },
-
-  container_full: {
-    height: unit * 2,
-  },
-
-  caret: {
-    display: 'block',
-    position: 'relative',
-    width: unit * 1.5,
-    height: unit,
-    overflow: 'hidden',
-  },
-
-  caret_up: {
-    '@selectors': {
-      '> svg': {
-        margin: '-.4em',
-        marginTop: '-.55em',
-      },
-    },
-  },
-
-  caret_down: {
-    '@selectors': {
-      '> svg': {
-        margin: '-.4em',
-        marginTop: '-.6em',
-      },
-    },
-  },
-
-  caret_inactive: {
-    color: color.core.neutral[3],
-  },
-
-  caret_active: {
-    color: color.core.neutral[4],
-  },
-}))(SortCarets);

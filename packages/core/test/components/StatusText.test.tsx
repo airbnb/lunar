@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import StatusText from '../../src/components/StatusText';
 import { STATUSES } from '../../src/constants';
 import Text from '../../src/components/Text';
@@ -7,7 +7,7 @@ import Text from '../../src/components/Text';
 describe('<StatusText />', () => {
   it('errors when multiple states are used at once', () => {
     expect(() => {
-      shallowWithStyles(
+      shallow(
         <StatusText danger success>
           Default
         </StatusText>,
@@ -18,8 +18,8 @@ describe('<StatusText />', () => {
   describe('statuses', () => {
     STATUSES.forEach(status => {
       it(`renders ${status} text`, () => {
-        const wrapper = shallowWithStyles(
-          shallowWithStyles(<StatusText {...{ [status]: true }}>{status}</StatusText>).getElement(),
+        const wrapper = shallow(
+          shallow(<StatusText {...{ [status]: true }}>{status}</StatusText>).getElement(),
         );
 
         expect(wrapper.find('span').prop('className')).toMatch(`text_${status}`);
@@ -28,7 +28,7 @@ describe('<StatusText />', () => {
   });
 
   it('can pass props to underlying `Text`', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <StatusText large muted>
         Text
       </StatusText>,

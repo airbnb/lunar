@@ -6,6 +6,7 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { ARROW_RIGHT, ARROW_LEFT } from '../../keys';
 import { ZoomControls, RotateControls } from '../ImageViewer';
 import Spacing from '../Spacing';
+import { styleSheetHeader as styleSheet } from './styles';
 
 export type Props = {
   /** Currently active image index. */
@@ -153,23 +154,4 @@ export class Header extends React.PureComponent<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(({ unit }) => ({
-  header: {
-    alignItems: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-
-  pagination: {
-    flexGrow: 1,
-    flexShrink: 1,
-    paddingLeft: unit,
-  },
-
-  infoButton: {
-    flexGrow: 0,
-    flexShrink: 0,
-    paddingRight: unit,
-    textAlign: 'right',
-  },
-}))(Header);
+export default withStyles(styleSheet)(Header);

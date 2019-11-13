@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import Menu, { Item } from '../../src/components/Menu';
 
 describe('<Menu />', () => {
   it('renders a list with the correct role', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Menu accessibilityLabel="Foo">
         <Item>Child</Item>
       </Menu>,
@@ -22,7 +22,7 @@ describe('<Menu />', () => {
   });
 
   it('renders a list with max height', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Menu accessibilityLabel="Foo" maxHeight={200}>
         <Item>Child</Item>
       </Menu>,
