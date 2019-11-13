@@ -1,7 +1,7 @@
 import fs from 'fs';
 import size from 'filesize';
 import fetch from 'node-fetch';
-// import upsertPullRequestComment from '../helpers/upsertPullRequestComment';
+import upsertPullRequestComment from '../helpers/upsertPullRequestComment';
 
 type StatMap = {
   [pkg: string]: {
@@ -99,9 +99,9 @@ ${JSON.stringify(nextSizes, null, 2)}
   }
 
   // Leave a comment on the PR
-  // await upsertPullRequestComment('### Size Changes', output.join('\n'));
+  await upsertPullRequestComment('### Size Changes', output.join('\n'));
 
-  console.log(output.join('\n'));
+  // console.log(output.join('\n'));
 }
 
 (async () => {
