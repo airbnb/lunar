@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.6.0 - 2019-11-13
+
+#### 🚀 Updates
+
+- **[Icons]** Add help and status icons. (#241) ([5f5d233](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/5f5d233)), closes [#241](https://github.com/airbnb/lunar/tree/master/packages/icons/issues/241)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ### 2.5.1 - 2019-10-31
 
 #### 📦 Dependencies
