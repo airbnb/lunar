@@ -55,6 +55,7 @@ async function computeBuildSizes() {
   fs.writeFileSync('./packages/sizes.json', JSON.stringify(sizes), 'utf8');
 }
 
-(async () => {
-  await computeBuildSizes();
-})();
+computeBuildSizes().catch(error => {
+  console.error(error.message);
+  process.exitCode = 1;
+});

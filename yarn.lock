@@ -3451,6 +3451,11 @@
   dependencies:
     filesize "*"
 
+"@types/gh-pages@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/gh-pages/-/gh-pages-2.0.1.tgz#d2a25eb84375053c713cddf304c28bed6ca38388"
+  integrity sha512-Z5CJlEg6xTfLLChYb4/UpYLcN9djv2HzTDz8XJ9I8tasCw8ybkGoA2x+CBU9gyRvi1VeBmdLfcGrEDVYm1L36g==
+
 "@types/glob@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.1.tgz#aa59a1c6e3fbc421e07ccd31a944c30eba521575"

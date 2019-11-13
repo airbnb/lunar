@@ -104,6 +104,7 @@ ${JSON.stringify(nextSizes, null, 2)}
   // console.log(output.join('\n'));
 }
 
-(async () => {
-  await compareBuildSizes();
-})();
+compareBuildSizes().catch(error => {
+  console.error(error.message);
+  process.exitCode = 1;
+});
