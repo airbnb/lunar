@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import chalk from 'chalk';
 import glob from 'fast-glob';
 
 async function getTotalSize(fileGlob: string, cwd: string): Promise<number> {
@@ -56,6 +57,6 @@ async function computeBuildSizes() {
 }
 
 computeBuildSizes().catch(error => {
-  console.error(error.message);
+  console.error(chalk.red(error.message));
   process.exitCode = 1;
 });

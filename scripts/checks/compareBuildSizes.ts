@@ -1,5 +1,6 @@
 import fs from 'fs';
 import size from 'filesize';
+import chalk from 'chalk';
 import fetch from 'node-fetch';
 import upsertPullRequestComment from '../helpers/upsertPullRequestComment';
 
@@ -105,6 +106,6 @@ ${JSON.stringify(nextSizes, null, 2)}
 }
 
 compareBuildSizes().catch(error => {
-  console.error(error.message);
+  console.error(chalk.red(error.message));
   process.exitCode = 1;
 });
