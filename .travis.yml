@@ -7,6 +7,8 @@ install:
   - yarn install --frozen-lockfile --ignore-engines
 before_script:
   - yarn run build
+matrix:
+  fast_finish: true
 jobs:
   fast_finish: true
   include:

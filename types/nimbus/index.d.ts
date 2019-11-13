@@ -1,7 +1,7 @@
 declare module '@airbnb/nimbus/scripts/helpers/createGitHubClient' {
   import Octokit from '@octokit/rest';
 
-  function createGitHubClient(): Octokit;
+  function createGitHubClient(token?: string): Octokit;
 
   export = createGitHubClient;
 }
