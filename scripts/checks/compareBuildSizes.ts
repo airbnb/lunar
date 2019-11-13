@@ -100,9 +100,13 @@ ${JSON.stringify(nextSizes, null, 2)}
   }
 
   // Leave a comment on the PR
-  await upsertPullRequestComment('### Size Changes', output.join('\n'));
+  const breakdown = output.join('\n');
 
-  // console.log(output.join('\n'));
+  try {
+    await upsertPullRequestComment('### Size Changes', breakdown);
+  } catch {
+    console.log(breakdown);
+  }
 }
 
 compareBuildSizes().catch(error => {
