@@ -12,13 +12,15 @@ export type Props = {
   gutter?: boolean;
   /** Horizontal list. */
   horizontal?: boolean;
+  /** Align contents in the middle vertically, to be used with `horizontal`. */
+  middleAlign?: boolean;
   /** Renders an `<ol></ol>`. */
   ordered?: boolean;
   /** Wrap horizontal list. */
   wrap?: boolean;
 };
 
-export default function List({ children, gutter, horizontal, ordered, wrap }: Props) {
+export default function List({ children, gutter, horizontal, middleAlign, ordered, wrap }: Props) {
   const Tag = ordered ? 'ol' : 'ul';
   const [styles, cx] = useStyles(styleSheet);
 
@@ -30,6 +32,7 @@ export default function List({ children, gutter, horizontal, ordered, wrap }: Pr
         horizontal && styles.list_horizontal,
         horizontal && gutter && styles.list_gutter_horizontal,
         horizontal && wrap && styles.list_horizontal_wrap,
+        middleAlign && styles.list_middleAlign,
       )}
     >
       {React.Children.map(children, child => {

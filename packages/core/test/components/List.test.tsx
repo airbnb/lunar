@@ -90,4 +90,14 @@ describe('<List />', () => {
 
     expect(wrapper.prop('className')).toContain('list_horizontal');
   });
+
+  it('renders a list with middleAlign', () => {
+    const wrapper = shallow(
+      <List middleAlign>
+        <Item>Item 1</Item>
+      </List>,
+    );
+
+    expect(wrapper.prop('className')).toContain('list_middleAlign');
+  });
 });
