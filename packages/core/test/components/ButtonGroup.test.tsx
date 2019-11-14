@@ -16,6 +16,19 @@ describe('<ButtonGroup />', () => {
     expect(wrapper.find(Button)).toHaveLength(3);
   });
 
+  it('renders buttons to the end', () => {
+    const wrapper = shallow(
+      <ButtonGroup endAlign>
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>,
+    );
+
+    expect(wrapper.prop('className')).toMatch('buttonGroup_endAlign');
+    expect(wrapper.find(Button)).toHaveLength(3);
+  });
+
   it('renders buttons stacked', () => {
     const wrapper = shallow(
       <ButtonGroup stacked>
