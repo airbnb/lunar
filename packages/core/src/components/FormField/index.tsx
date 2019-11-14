@@ -10,7 +10,7 @@ import Suffix from './Suffix';
 import { styleSheet } from './styles';
 
 export type Props = {
-  /** Decrease label font size and spacing. */
+  /** @deprecated Decrease label font size and spacing. */
   compact?: boolean;
   /** @ignore Decrease bottom margin of the field. (Internal use only) */
   compactSpacing?: boolean;
@@ -32,12 +32,16 @@ export type Props = {
   label: NonNullable<React.ReactNode>;
   /** Small description to display under the label. */
   labelDescription?: React.ReactNode;
+  /** Increase label font size and spacing. */
+  large?: boolean;
   /** Remove bottom margin from field. */
   noSpacing?: boolean;
   /** Mark the field as optional. */
   optional?: boolean;
   /** Content to display before the input field. */
   prefix?: React.ReactNode;
+  /** Decrease label font size and spacing. */
+  small?: boolean;
   /** Content to display after the input field. */
   suffix?: React.ReactNode;
 };
@@ -75,6 +79,7 @@ export default function FormField({
   invalid,
   label,
   labelDescription,
+  large,
   noSpacing,
   optional,
   renderBeforeLabel,
@@ -82,6 +87,7 @@ export default function FormField({
   renderLargeLabel,
   stretchLabel,
   prefix,
+  small,
   suffix,
   topAlign,
 }: PrivateProps) {
@@ -109,7 +115,7 @@ export default function FormField({
     <section
       className={cx(
         styles.field,
-        (compact || compactSpacing) && !noSpacing && styles.field_compactSpacing,
+        (compact || compactSpacing || small) && !noSpacing && styles.field_compactSpacing,
         noSpacing && styles.field_noSpacing,
       )}
     >
@@ -125,7 +131,13 @@ export default function FormField({
             (inline || renderBeforeLabel) && styles.label_noSpacing,
           )}
         >
-          <StatusText danger={invalid} muted={disabled} small={compact} bold={!renderLargeLabel}>
+          <StatusText
+            danger={invalid}
+            muted={disabled}
+            small={compact || small}
+            large={large}
+            bold={!renderLargeLabel}
+          >
             {label}
 
             {optional && !hideOptionalLabel && (
