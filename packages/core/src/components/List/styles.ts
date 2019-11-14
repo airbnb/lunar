@@ -36,6 +36,10 @@ export const styleSheet: StyleSheet = ({ unit }) => ({
     display: 'flex',
   },
 
+  list_middleAlign: {
+    alignItems: 'center',
+  },
+
   list_horizontal_wrap: {
     flexWrap: 'wrap',
   },
