@@ -1,12 +1,10 @@
-#!/usr/bin/env node
-
-const fs = require('fs');
-const path = require('path');
-const chalk = require('chalk');
-const Svgo = require('svgo');
-const glob = require('fast-glob');
-const upperFirst = require('lodash/upperFirst');
-const camelCase = require('lodash/camelCase');
+import fs from 'fs';
+import path from 'path';
+import chalk from 'chalk';
+import Svgo from 'svgo';
+import glob from 'fast-glob';
+import upperFirst from 'lodash/upperFirst';
+import camelCase from 'lodash/camelCase';
 
 const filePattern = process.argv[2];
 
@@ -15,8 +13,8 @@ if (!filePattern) {
   process.exit(1);
 }
 
-const SVG_ROOT = path.join(__dirname, '../svgs');
-const ICON_ROOT = path.join(__dirname, '../packages/icons/src');
+const SVG_ROOT = path.join(__dirname, '../../svgs');
+const ICON_ROOT = path.join(__dirname, '../../packages/icons/src');
 
 const svgo = new Svgo({
   full: true,
@@ -51,7 +49,7 @@ const svgo = new Svgo({
   ],
 });
 
-function createIcon(srcPath) {
+function createIcon(srcPath: string): Promise<void> {
   return svgo.optimize(fs.readFileSync(srcPath, 'utf8')).then(result => {
     if (!result || !result.data) {
       throw new Error('Unable to create optimized SVG.');
@@ -72,20 +70,28 @@ function createIcon(srcPath) {
       .replace(/stroke-width/g, 'strokeWidth')
       .replace(/(<\s*svg[^>]*)(>)/, '$1 {...props}$2');
 
-    fs.writeFileSync(
-      dstPath,
-      `import React from 'react';
-import withIcon, { Props } from '../withIcon';
+    return new Promise((resolve, reject) => {
+      fs.writeFile(
+        dstPath,
+        `import React from 'react';
+  import withIcon, { Props } from '../withIcon';
 
-function ${compName}(props: Props) {
-  return ${svg};
-}
+  function ${compName}(props: Props) {
+    return ${svg};
+  }
 
-export default withIcon('${compName}')(${compName});`,
-      'utf8',
-    );
-
-    console.log(`Generated ${compName}`);
+  export default withIcon('${compName}')(${compName});`,
+        'utf8',
+        error => {
+          if (error) {
+            reject(error);
+          } else {
+            console.log(`Generated ${compName}`);
+            resolve();
+          }
+        },
+      );
+    });
   });
 }
 
@@ -95,6 +101,6 @@ glob(filePattern, {
 })
   .then(svgPaths => Promise.all(svgPaths.map(svgPath => createIcon(svgPath))))
   .catch(error => {
-    console.error(chalk.red(`Failed to generate icons. ${error.message}`));
-    process.exit(1);
+    console.error(chalk.red(`Failed to generate icons: ${error.message}`));
+    process.exitCode = 1;
   });

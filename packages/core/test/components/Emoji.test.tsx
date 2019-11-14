@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderAndWait } from 'rut';
+import { renderAndWait } from 'rut-dom';
 import { Emoji as BaseEmoji } from 'interweave-emoji';
 import Emoji, { Props } from '../../src/components/Emoji';
 

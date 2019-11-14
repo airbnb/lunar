@@ -24,7 +24,14 @@ describe('<Highlight />', () => {
   describe('with indices', () => {
     beforeEach(() => {
       wrapper.setProps({
-        match: { indices: [[0, 5], [12, 14]], value: 'hello world foo', key: 'test' },
+        match: {
+          indices: [
+            [0, 5],
+            [12, 14],
+          ],
+          value: 'hello world foo',
+          key: 'test',
+        },
         word: 'hello',
       });
     });

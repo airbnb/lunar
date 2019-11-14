@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'rut';
+import { render } from 'rut-dom';
 import TrackBreadcrumb, { Props } from '../../../src/components/Breadcrumbs/TrackBreadcrumb';
 import AppContext, { defaultContext } from '../../../src/components/AppContext';
 import { Context } from '../../../src/types';

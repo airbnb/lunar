@@ -195,7 +195,10 @@ describe('<Autocomplete />', () => {
 
     it('supports `ArrowDown` event and sets state', () => {
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         highlightedIndex: null,
       });
 
@@ -218,7 +221,10 @@ describe('<Autocomplete />', () => {
 
     it('supports `ArrowUp` event and sets state', () => {
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         highlightedIndex: null,
       });
 
@@ -309,7 +315,10 @@ describe('<Autocomplete />', () => {
       wrapper.setState({
         highlightedIndex: 1,
         open: true,
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         value: 'foo',
       });
 
@@ -335,7 +344,10 @@ describe('<Autocomplete />', () => {
       });
 
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         highlightedIndex: 1,
       });
 
@@ -350,7 +362,10 @@ describe('<Autocomplete />', () => {
       });
 
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         highlightedIndex: 1,
         value: 'foo',
       });
@@ -366,7 +381,10 @@ describe('<Autocomplete />', () => {
   describe('handleItemMouseDown()', () => {
     it('highlights the item in state', () => {
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         value: 'foo',
         highlightedIndex: 1,
       });
@@ -382,7 +400,10 @@ describe('<Autocomplete />', () => {
   describe('handleItemMouseEnter()', () => {
     it('highlights the item in state', () => {
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         value: 'foo',
         highlightedIndex: 1,
       });
@@ -799,7 +820,10 @@ describe('<Autocomplete />', () => {
 
       const state = {
         ...wrapper.state(),
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
       };
 
       const filteredItems = instance.getFilteredItems(state);

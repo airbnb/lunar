@@ -7,18 +7,24 @@ install:
   - yarn install --frozen-lockfile --ignore-engines
 before_script:
   - yarn run build
-script:
-  - echo "Skip"
-matrix:
-  fast_finish: true
 jobs:
+  fast_finish: true
   include:
-    - stage: Tests
-      name: Happo
-      script: yarn run happo:ci:travis
-      node_js: '12'
+    - stage: Checks
+      name: Pull Request
       if: type = pull_request
-    - name: Test @ 10
+      script: yarn run check:pr
+      node_js: '12'
+    - name: Build Sizes
+      if: type = pull_request
+      script: yarn run check:build
+      node_js: '12'
+    - name: Happo
+      if: type = pull_request
+      script: yarn run check:happo
+      node_js: '12'
+    - stage: Tests
+      name: Test @ 10
       script: yarn run jest:coverage -w 4
       node_js: '10'
     - name: Test @ 12
@@ -30,21 +36,32 @@ jobs:
     - name: Lint @ 12
       script: yarn run lint:errors
       node_js: '12'
-    - stage: Release Packages
+    - stage: Release
+      name: Storybook
+      script: yarn run build:storybook
+      node_js: '12'
+      if: branch = master
+      deploy:
+        provider: script
+        script: yarn run release:storybook
+        skip_cleanup: true
+        on:
+          branch: master
+    - name: NPM
       script: yarn run build:sizes
       node_js: '12'
       if: branch = master
       before_deploy:
         - git config --global user.name ${GITHUB_USER}
         - git config --global user.email ${GITHUB_EMAIL}
-        - git remote set-url origin "https://${GH_TOKEN}@github.com/airbnb/lunar.git" > /dev/null
-          2>&1
+        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/airbnb/lunar.git" >
+          /dev/null 2>&1
         - git checkout master
         - git add packages/sizes.json && git commit -m "Update build size stats."
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
       deploy:
         provider: script
-        script: yarn run deploy:npm
+        script: yarn run release
         skip_cleanup: true
         on:
           branch: master

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'rut';
+import { render } from 'rut-dom';
 import PopToast, { Props } from '../../../src/components/Toasts/PopToast';
 import AppContext, { defaultContext } from '../../../src/components/AppContext';
 import { Context } from '../../../src/types';
