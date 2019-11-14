@@ -6,7 +6,7 @@ import Row from './Row';
 import { styleSheet } from './styles';
 
 export type Props = {
-  /** Apply a wrapping border. */
+  /** Apply a wrapping border (combined with horizontal or vertical). */
   bordered?: boolean;
   /** Table head, body, foot, and rows. */
   children: NonNullable<React.ReactNode>;
