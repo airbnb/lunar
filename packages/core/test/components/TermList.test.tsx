@@ -35,11 +35,10 @@ describe('<TermList />', () => {
       .find('Term')
       .dive();
 
-    console.log(wrapper.debug());
     expect(wrapper.find(Link)).toHaveLength(2);
   });
 
-  it('renders the expected number of detail Links with end alignemtn', () => {
+  it('renders the expected number of detail Links with end alignment', () => {
     const wrapper = shallowWithStyles(
       <TermList>
         <Term
@@ -57,9 +56,12 @@ describe('<TermList />', () => {
       </TermList>,
     )
       .find('Term')
+      .dive()
+      .find('dt')
+      .childAt(0)
+      .dive()
       .dive();
 
-    console.log(wrapper.debug());
     expect(wrapper.find(Link)).toHaveLength(2);
   });
 });
