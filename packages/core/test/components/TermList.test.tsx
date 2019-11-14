@@ -38,30 +38,28 @@ describe('<TermList />', () => {
     console.log(wrapper.debug());
     expect(wrapper.find(Link)).toHaveLength(2);
   });
-});
 
+  it('renders the expected number of detail Links with end alignemtn', () => {
+    const wrapper = shallowWithStyles(
+      <TermList>
+        <Term
+          endAlign
+          label="Clusters"
+          after={
+            <>
+              <Link small>Details</Link>
+              <Link small>Git</Link>
+            </>
+          }
+        >
+          8
+        </Term>
+      </TermList>,
+    )
+      .find('Term')
+      .dive();
 
-it('renders the expected number of detail Links with end alignemtn', () => {
-  const wrapper = shallowWithStyles(
-    <TermList>
-      <Term
-        endAlign
-        label="Clusters"
-        after={
-          <>
-            <Link small>Details</Link>
-            <Link small>Git</Link>
-          </>
-        }
-      >
-        8
-      </Term>
-    </TermList>,
-  )
-    .find('Term')
-    .dive();
-
-  console.log(wrapper.debug());
-  expect(wrapper.find(Link)).toHaveLength(2);
-});
+    console.log(wrapper.debug());
+    expect(wrapper.find(Link)).toHaveLength(2);
+  });
 });
