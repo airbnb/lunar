@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.42.0 - 2019-11-14
+
+#### 🚀 Updates
+
+- **[ButtonGroup]** Add `endAlign` support. (#242) ([4723c32](https://github.com/airbnb/lunar/commit/4723c32)), closes [#242](https://github.com/airbnb/lunar/issues/242)
+- **[FormField]** Support small and large sizes. (#243) ([a461198](https://github.com/airbnb/lunar/commit/a461198)), closes [#243](https://github.com/airbnb/lunar/issues/243)
+
+#### 🛠 Internals
+
+- Migrate to Travis CI. (#239) ([2a62442](https://github.com/airbnb/lunar/commit/2a62442)), closes [#239](https://github.com/airbnb/lunar/issues/239)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.41.0 - 2019-11-13
 
 #### 🚀 Updates
