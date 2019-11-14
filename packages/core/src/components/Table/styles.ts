@@ -47,8 +47,14 @@ export const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
     },
   },
 
-  table_bordered: {
-    border: ui.border,
+  table_bordered_horizontal: {
+    borderTop: ui.border,
+    borderBottom: ui.border,
+  },
+
+  table_bordered_vertical: {
+    borderLeft: ui.border,
+    borderRight: ui.border,
   },
 
   table_compact: {
