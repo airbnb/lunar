@@ -19,15 +19,16 @@ jobs:
       if: type = pull_request
       script: yarn run check:build
       node_js: '12'
+    - name: Happo
+      if: type = pull_request OR branch = master
+      script: yarn run check:happo
+      node_js: '12'
     - stage: Tests
       name: Test @ 10
       script: yarn run jest:coverage -w 4 && yarn run lint:errors
       node_js: '10'
     - name: Test @ 12
       script: yarn run jest:coverage -w 4 && yarn run lint:errors
-      node_js: '12'
-    - name: Happo
-      script: yarn run check:happo
       node_js: '12'
     - stage: Release
       name: Storybook
