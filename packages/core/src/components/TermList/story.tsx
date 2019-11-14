@@ -2,6 +2,7 @@ import React from 'react';
 import TermList, { Term } from '.';
 import Link from '../Link';
 import Spacing from '../Spacing';
+import List, { Item } from '../List';
 
 import Card, { Content } from '../Card';
 
@@ -13,7 +14,11 @@ export default {
 };
 
 export function standaloneTerm() {
-  return <Term label="Clusters">8</Term>;
+  return (
+    <TermList>
+      <Term label="Clusters">8</Term>
+    </TermList>
+  );
 }
 
 standaloneTerm.story = {
@@ -22,9 +27,11 @@ standaloneTerm.story = {
 
 export function standaloneTermWithRegularLabel() {
   return (
-    <Term small={false} label="Clusters">
-      8
-    </Term>
+    <TermList>
+      <Term small={false} label="Clusters">
+        8
+      </Term>
+    </TermList>
   );
 }
 
@@ -34,19 +41,21 @@ standaloneTermWithRegularLabel.story = {
 
 export function standaloneTermWithAfterContent() {
   return (
-    <Term
-      label="Clusters"
-      after={
-        <>
-          <Link small>Details</Link>
-          <Spacing inline left={1}>
-            <Link small>Git</Link>
-          </Spacing>
-        </>
-      }
-    >
-      8
-    </Term>
+    <TermList>
+      <Term
+        label="Clusters"
+        after={
+          <>
+            <Link small>Details</Link>
+            <Spacing inline left={1}>
+              <Link small>Git</Link>
+            </Spacing>
+          </>
+        }
+      >
+        8
+      </Term>
+    </TermList>
   );
 }
 
@@ -59,20 +68,22 @@ export function standaloneTermWithAfterContentEndAligned() {
     <div style={{ width: 300 }}>
       <Card>
         <Content>
-          <Term
-            endAlign
-            label="Clusters"
-            after={
-              <>
-                <Link small>Details</Link>
-                <Spacing inline left={1}>
-                  <Link small>Git</Link>
-                </Spacing>
-              </>
-            }
-          >
-            8
-          </Term>
+          <TermList>
+            <Term
+              endAlign
+              label="Clusters"
+              after={
+                <>
+                  <Link small>Details</Link>
+                  <Spacing inline left={1}>
+                    <Link small>Git</Link>
+                  </Spacing>
+                </>
+              }
+            >
+              8
+            </Term>
+          </TermList>
         </Content>
       </Card>
     </div>
@@ -108,11 +119,23 @@ export function horizontalListOfTerms() {
     <div style={{ width: '50%' }}>
       <Card>
         <Content>
-          <TermList inline>
-            <Term label="Total Clusters">16</Term>
-            <Term label="Active">123456789</Term>
-            <Term label="Inactive Clusters">12</Term>
-          </TermList>
+          <List horizontal gutter>
+            <Item>
+              <TermList>
+                <Term label="Total Clusters">16</Term>
+              </TermList>
+            </Item>
+            <Item>
+              <TermList>
+                <Term label="Inactive Clusters">12</Term>
+              </TermList>
+            </Item>
+            <Item>
+              <TermList>
+                <Term label="Active">123456789</Term>
+              </TermList>
+            </Item>
+          </List>
         </Content>
       </Card>
     </div>
@@ -120,5 +143,5 @@ export function horizontalListOfTerms() {
 }
 
 horizontalListOfTerms.story = {
-  name: 'Horizontal list of terms.',
+  name: 'Horizontal list of terms wrapped in List.',
 };

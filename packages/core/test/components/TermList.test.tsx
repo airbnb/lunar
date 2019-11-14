@@ -1,11 +1,67 @@
 import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
-import TermList from '../../src/components/TermList';
-import Term from '../../src/components/TermList/Term';
+import TermList, { Term } from '../../src/components/TermList';
 import Link from '../../src/components/Link';
 
-describe('<DescriptionList />', () => {
-  it('renders', () => {
-    const wrapper = shallowWithStyles(<Term label="label">Data</Term>);
+describe('<TermList />', () => {
+  it('renders the expected number of Term items', () => {
+    const wrapper = shallowWithStyles(
+      <TermList>
+        <Term label="label">Data</Term>
+        <Term label="label">Data</Term>
+        <Term label="label">Data</Term>
+      </TermList>,
+    );
+
+    expect(wrapper.find(Term)).toHaveLength(3);
   });
+
+  it('renders the expected number of detail Links', () => {
+    const wrapper = shallowWithStyles(
+      <TermList>
+        <Term
+          label="Clusters"
+          after={
+            <>
+              <Link small>Details</Link>
+              <Link small>Git</Link>
+            </>
+          }
+        >
+          8
+        </Term>
+      </TermList>,
+    )
+      .find('Term')
+      .dive();
+
+    console.log(wrapper.debug());
+    expect(wrapper.find(Link)).toHaveLength(2);
+  });
+});
+
+
+it('renders the expected number of detail Links with end alignemtn', () => {
+  const wrapper = shallowWithStyles(
+    <TermList>
+      <Term
+        endAlign
+        label="Clusters"
+        after={
+          <>
+            <Link small>Details</Link>
+            <Link small>Git</Link>
+          </>
+        }
+      >
+        8
+      </Term>
+    </TermList>,
+  )
+    .find('Term')
+    .dive();
+
+  console.log(wrapper.debug());
+  expect(wrapper.find(Link)).toHaveLength(2);
+});
 });
