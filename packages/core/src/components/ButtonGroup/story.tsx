@@ -24,6 +24,19 @@ groupAnArbitraryNumberOfComponents.story = {
   name: 'Group an arbitrary number of components.',
 };
 
+export function endAlignButtons() {
+  return (
+    <ButtonGroup endAlign>
+      <Button inverted>Previous</Button>
+      <Button>Next</Button>
+    </ButtonGroup>
+  );
+}
+
+endAlignButtons.story = {
+  name: 'Align buttons to the end.',
+};
+
 export function stackButtonsVertically() {
   return (
     <div style={{ width: 300 }}>

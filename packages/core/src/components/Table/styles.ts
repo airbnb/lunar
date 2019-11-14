@@ -10,6 +10,17 @@ function createCell(styles: StyleBlock) {
   };
 }
 
+function createRow(hex: string) {
+  return {
+    // Overrides table specificity
+    '@selectors': {
+      ':nth-child(n) > td': {
+        backgroundColor: hex,
+      },
+    },
+  };
+}
+
 export const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
   table: {
     width: '100%',
@@ -134,17 +145,6 @@ export const styleSheetCell: StyleSheet = () => ({
 });
 
 export const styleSheetRow: StyleSheet = ({ color }) => {
-  function createRow(hex: string) {
-    return {
-      // Overrides table specificity
-      '@selectors': {
-        ':nth-child(n) > td': {
-          backgroundColor: hex,
-        },
-      },
-    };
-  }
-
   return {
     row_danger: createRow(color.core.danger[0]),
     row_info: createRow(color.core.primary[0]),

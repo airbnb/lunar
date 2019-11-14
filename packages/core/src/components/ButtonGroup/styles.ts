@@ -11,6 +11,10 @@ const styleSheet: StyleSheet = ({ unit }) => ({
     alignItems: 'stretch',
   },
 
+  buttonGroup_endAlign: {
+    justifyContent: 'flex-end',
+  },
+
   cell: {
     marginRight: unit,
 
