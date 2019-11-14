@@ -10,7 +10,7 @@ export const styleSheet: StyleSheet = ({ unit }) => ({
   list_gutter: {
     '@selectors': {
       '> li': {
-        marginBottom: unit / 2,
+        marginBottom: unit,
       },
 
       '> li:last-child': {
@@ -23,7 +23,7 @@ export const styleSheet: StyleSheet = ({ unit }) => ({
     '@selectors': {
       '> li': {
         marginBottom: 0,
-        marginRight: unit,
+        marginRight: unit * 2,
       },
 
       '> li:last-child': {
