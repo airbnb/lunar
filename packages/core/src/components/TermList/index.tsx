@@ -26,7 +26,7 @@ export default withStyles(({ unit, font }) => ({
         marginInlineStart: 0,
         '@selectors': {
           ':not(:last-child)': {
-            // marginBottom: unit * 2,
+            marginBottom: unit * 2,
           },
         },
       },
