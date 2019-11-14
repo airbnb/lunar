@@ -42,6 +42,7 @@ export const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
         padding: unit * 1.5,
         verticalAlign: 'bottom',
         whiteSpace: 'nowrap',
+        textAlign: 'left',
       },
     },
   },
@@ -103,6 +104,7 @@ export const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
     maxWidth: '100%',
     overflowX: 'auto',
   },
+
   content_middle_align: {
     '@selectors': {
       ':only-child td': {
