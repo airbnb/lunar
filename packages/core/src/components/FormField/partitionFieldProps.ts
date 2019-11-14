@@ -3,13 +3,15 @@ import { Props as FormFieldProps } from '.';
 export type MaybeChildren = { children?: unknown };
 
 export type ExplicitProps = {
-  value: string;
   compact: boolean;
   disabled: boolean;
   hasPrefix: boolean;
   hasSuffix: boolean;
   invalid: boolean;
+  large: boolean;
   optional: boolean;
+  small: boolean;
+  value: string;
 };
 
 export default function partitionFieldProps<Props extends MaybeChildren = {}>(
@@ -35,9 +37,11 @@ export default function partitionFieldProps<Props extends MaybeChildren = {}>(
     invalid = false,
     label,
     labelDescription = '',
+    large = false,
     noSpacing = false,
     optional = false,
     prefix = null,
+    small = false,
     suffix = null,
     ...inputProps
   } = props;
@@ -56,9 +60,11 @@ export default function partitionFieldProps<Props extends MaybeChildren = {}>(
       invalid,
       label,
       labelDescription,
+      large,
       noSpacing,
       optional,
       prefix,
+      small,
       suffix,
     },
     // @ts-ignore Hard to type
@@ -70,7 +76,9 @@ export default function partitionFieldProps<Props extends MaybeChildren = {}>(
       hasPrefix: !!prefix,
       hasSuffix: !!suffix,
       invalid,
+      large,
       optional,
+      small,
     },
   };
 }
