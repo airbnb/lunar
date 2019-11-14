@@ -169,3 +169,21 @@ export function supportsInline() {
 supportsInline.story = {
   name: 'Supports inline.',
 };
+
+export function smallAndLargeSizes() {
+  return (
+    <>
+      <Input small name="size-small" label="Small" onChange={action('onChange')} />
+
+      <Select name="size-normal" label="Medium (normal)" onChange={action('onChange')}>
+        <option value="">Option</option>
+      </Select>
+
+      <TextArea large name="size-large" label="Large" onChange={action('onChange')} />
+    </>
+  );
+}
+
+smallAndLargeSizes.story = {
+  name: 'Small and large sizes.',
+};
