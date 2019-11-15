@@ -6,7 +6,7 @@ import Row from './Row';
 import { styleSheet } from './styles';
 
 export type Props = {
-  /** Apply a wrapping border. */
+  /** Apply a wrapping border (combined with horizontal or vertical). */
   bordered?: boolean;
   /** Table head, body, foot, and rows. */
   children: NonNullable<React.ReactNode>;
@@ -55,8 +55,9 @@ function Table({
           styles.table,
           middleAlign && styles.content_middle_align,
           fixed && styles.table_fixed,
-          bordered && styles.table_bordered,
+          bordered && horizontal && styles.table_bordered_horizontal,
           horizontal && styles.table_horizontal,
+          bordered && vertical && styles.table_bordered_vertical,
           vertical && styles.table_vertical,
           compact && styles.table_compact,
           striped && styles.table_striped,

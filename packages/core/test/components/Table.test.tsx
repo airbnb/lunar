@@ -9,10 +9,24 @@ function unwrap(element: React.ReactElement): Enzyme.ShallowWrapper {
 }
 
 describe('<Table />', () => {
-  it('renders bordered', () => {
-    const wrapper = unwrap(<Table bordered>Bordered</Table>);
+  it('renders bordered (horizontal)', () => {
+    const wrapper = unwrap(
+      <Table bordered horizontal>
+        Bordered
+      </Table>,
+    );
 
-    expect(wrapper.find('table').prop('className')).toMatch('table_bordered');
+    expect(wrapper.find('table').prop('className')).toMatch('table_bordered_horizontal');
+  });
+
+  it('renders bordered (vertical)', () => {
+    const wrapper = unwrap(
+      <Table bordered vertical>
+        Bordered
+      </Table>,
+    );
+
+    expect(wrapper.find('table').prop('className')).toMatch('table_bordered_vertical');
   });
 
   it('renders compact', () => {

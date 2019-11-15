@@ -85,6 +85,43 @@ withABorderAndVerticalDividers.story = {
   name: 'With a border and vertical dividers.',
 };
 
+export function withABorderAndHorizontalDividers() {
+  return (
+    <Text>
+      <Table bordered horizontal>
+        <thead>
+          <tr>
+            <th>One</th>
+            <th>Two</th>
+            <th>Three</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Title 1</td>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>Consectetur adipiscing elit.</td>
+          </tr>
+          <tr>
+            <td>Title 2</td>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>Consectetur adipiscing elit.</td>
+          </tr>
+          <tr>
+            <td>Title 3</td>
+            <td>Lorem ipsum dolor sit amet.</td>
+            <td>Consectetur adipiscing elit.</td>
+          </tr>
+        </tbody>
+      </Table>
+    </Text>
+  );
+}
+
+withABorderAndHorizontalDividers.story = {
+  name: 'With a border and horizontal dividers.',
+};
+
 export function withStripedRowsAndHorizontalDividers() {
   return (
     <Text>

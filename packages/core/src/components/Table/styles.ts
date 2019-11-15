@@ -42,12 +42,19 @@ export const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
         padding: unit * 1.5,
         verticalAlign: 'bottom',
         whiteSpace: 'nowrap',
+        textAlign: 'left',
       },
     },
   },
 
-  table_bordered: {
-    border: ui.border,
+  table_bordered_horizontal: {
+    borderTop: ui.border,
+    borderBottom: ui.border,
+  },
+
+  table_bordered_vertical: {
+    borderLeft: ui.border,
+    borderRight: ui.border,
   },
 
   table_compact: {
@@ -103,6 +110,7 @@ export const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
     maxWidth: '100%',
     overflowX: 'auto',
   },
+
   content_middle_align: {
     '@selectors': {
       ':only-child td': {
