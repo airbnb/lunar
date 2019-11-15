@@ -22,6 +22,7 @@ export const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
 
 export const styleSheetTab: StyleSheet = ({ color, font, pattern, unit, ui, transition }) => ({
   tab: {
+    backgroundColor: color.clear,
     borderBottom: ui.borderThick,
     marginRight: unit * 4,
     marginBottom: -2,
