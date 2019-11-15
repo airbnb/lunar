@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import T from '@airbnb/lunar/lib/components/Translate';
-// import MenuToggle from '@airbnb/lunar/lib/components/MenuToggle';
+import MenuToggle from '@airbnb/lunar/lib/components/MenuToggle';
 import { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
 import { Props as MenuProps } from '@airbnb/lunar/lib/components/Menu';
 import Link from '@airbnb/lunar/lib/components/Link';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import Row from './private/Row';
 import { styleSheet } from './styles';
-import MenuToggle from '../../../../core/src/components/MenuToggle';
 
 export type Props = {
   /** Accessibility label. */
