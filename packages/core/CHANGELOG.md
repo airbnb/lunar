@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.43.0 - 2019-11-15
+
+#### 🚀 Updates
+
+- **[List]** Add `middleAlign` support for `horizontal`. (#244) ([1b58963](https://github.com/airbnb/lunar/commit/1b58963)), closes [#244](https://github.com/airbnb/lunar/issues/244)
+- **[Tab]** Set background color to clear (#247) ([f19dd84](https://github.com/airbnb/lunar/commit/f19dd84)), closes [#247](https://github.com/airbnb/lunar/issues/247)
+- **[Table]** Rework borders and headers. (#246) ([e93c0f4](https://github.com/airbnb/lunar/commit/e93c0f4)), closes [#246](https://github.com/airbnb/lunar/issues/246)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.42.0 - 2019-11-14
 
 #### 🚀 Updates
