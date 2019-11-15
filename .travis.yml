@@ -20,35 +20,29 @@ jobs:
       script: yarn run check:build
       node_js: '12'
     - name: Happo
-      if: type = pull_request
+      if: type = pull_request OR branch = master
       script: yarn run check:happo
       node_js: '12'
     - stage: Tests
       name: Test @ 10
-      script: yarn run jest:coverage -w 4
+      script: yarn run jest:coverage -w 4 && yarn run lint:errors
       node_js: '10'
     - name: Test @ 12
-      script: yarn run jest:coverage -w 4
-      node_js: '12'
-    - name: Lint @ 10
-      script: yarn run lint:errors
-      node_js: '10'
-    - name: Lint @ 12
-      script: yarn run lint:errors
+      script: yarn run jest:coverage -w 4 && yarn run lint:errors
       node_js: '12'
     - stage: Release
       name: Storybook
-      script: yarn run build:storybook
+      script: skip
       node_js: '12'
       if: branch = master
       deploy:
         provider: script
-        script: yarn run release:storybook
+        script: yarn run build:storybook && yarn run release:storybook
         skip_cleanup: true
         on:
           branch: master
     - name: NPM
-      script: yarn run build:sizes
+      script: skip
       node_js: '12'
       if: branch = master
       before_deploy:
@@ -61,7 +55,7 @@ jobs:
         - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
       deploy:
         provider: script
-        script: yarn run release
+        script: yarn run build:sizes && yarn run release
         skip_cleanup: true
         on:
           branch: master
