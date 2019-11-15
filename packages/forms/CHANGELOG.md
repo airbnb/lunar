@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.6.1 - 2019-11-15
+
+#### 🐞 Fixes
+
+- **[FilterMenu]** Fix broken path. (#249) ([6982ac0](https://github.com/airbnb/lunar/commit/6982ac0)), closes [#249](https://github.com/airbnb/lunar/issues/249)
+
+#### 🛠 Internals
+
+- Migrate to Travis CI. (#239) ([2a62442](https://github.com/airbnb/lunar/commit/2a62442)), closes [#239](https://github.com/airbnb/lunar/issues/239)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ## 2.6.0 - 2019-11-13
 
 #### 🚀 Updates
