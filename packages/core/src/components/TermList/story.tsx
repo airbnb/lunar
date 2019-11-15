@@ -28,7 +28,7 @@ standaloneTerm.story = {
 export function standaloneTermWithRegularLabel() {
   return (
     <TermList>
-      <Term small={false} label="Clusters">
+      <Term regular label="Clusters">
         8
       </Term>
     </TermList>

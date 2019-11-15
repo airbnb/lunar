@@ -9,7 +9,6 @@ function TermList({
   cx,
   styles,
 }: {
-  small?: boolean;
   children: NonNullable<React.ReactNode>;
 } & WithStylesProps) {
   return <dl className={cx(styles.termList)}>{children}</dl>;

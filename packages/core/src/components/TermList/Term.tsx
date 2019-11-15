@@ -8,21 +8,20 @@ export default function Term({
   label,
   after = '',
   endAlign,
-  small = true,
+  regular,
   children,
 }: {
   label: string;
   after?: React.ReactNode;
   endAlign?: boolean;
-  small?: boolean;
-  keyTextRegular?: boolean;
+  regular?: boolean;
   children: NonNullable<React.ReactNode>;
 }) {
   return (
     <>
       <dt>
         <Row after={endAlign && after}>
-          <Text inline small={small}>
+          <Text inline small={!regular}>
             {label}
           </Text>
           {!endAlign && after && (
