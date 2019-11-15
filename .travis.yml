@@ -35,11 +35,11 @@ jobs:
       script: skip
       node_js: '12'
       if: branch = master
+      before_deploy:
+        - yarn run build:storybook
       deploy:
         provider: script
-        script:
-          - yarn run build:storybook
-          - yarn run release:storybook
+        script: yarn run release:storybook
         skip_cleanup: true
         on:
           branch: master
@@ -48,18 +48,17 @@ jobs:
       node_js: '12'
       if: branch = master
       before_deploy:
+        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
         - git config --global user.name ${GITHUB_USER}
         - git config --global user.email ${GITHUB_EMAIL}
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/airbnb/lunar.git" >
           /dev/null 2>&1
         - git checkout master
-        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
+        - yarn run build:sizes && git add packages/sizes.json && git commit -m "Update build size
+          stats."
       deploy:
         provider: script
-        script:
-          - yarn run build:sizes
-          - git add packages/sizes.json && git commit -m "Update build size stats."
-          - yarn run release
+        script: yarn run release
         skip_cleanup: true
         on:
           branch: master
