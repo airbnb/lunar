@@ -46,6 +46,10 @@ export type Props = {
   topImageSrc?: string;
   /** To use with text truncation; overflow is hidden. */
   truncated?: boolean;
+  /** If provided, makes the after image clickable, firing this callback. */
+  onAfterImageClick?: () => void;
+  /** If provided, makes the before image clickable, firing this callback. */
+  onBeforeImageClick?: () => void;
   /** If provided, makes the entire content clickable, firing this callback. */
   onClick?: () => void;
 };
@@ -66,6 +70,8 @@ function CardContent({
   small,
   topImageSrc,
   truncated,
+  onAfterImageClick,
+  onBeforeImageClick,
 }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
@@ -98,6 +104,14 @@ function CardContent({
         src={afterImageSrc}
       />
     );
+
+    if (onAfterImageClick) {
+      afterContent = (
+        <button name="AfterContent" className={cx(styles.side_button)} onClick={onAfterImageClick}>
+          {afterContent}
+        </button>
+      );
+    }
   }
 
   let beforeContent = before ? (
@@ -124,6 +138,18 @@ function CardContent({
         src={beforeImageSrc}
       />
     );
+
+    if (onBeforeImageClick) {
+      beforeContent = (
+        <button
+          name="BeforeContent"
+          className={cx(styles.side_button)}
+          onClick={onBeforeImageClick}
+        >
+          {beforeContent}
+        </button>
+      );
+    }
   }
 
   return (
