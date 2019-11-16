@@ -4,13 +4,11 @@ import Term from './Term';
 
 export { Term };
 
-function TermList({
-  children,
-  cx,
-  styles,
-}: {
+export type Props = {
   children: NonNullable<React.ReactNode>;
-} & WithStylesProps) {
+};
+
+function TermList({ children, cx, styles }: Props & WithStylesProps) {
   return <dl className={cx(styles.termList)}>{children}</dl>;
 }
 

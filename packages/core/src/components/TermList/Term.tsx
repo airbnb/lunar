@@ -4,6 +4,14 @@ import Row from '../Row';
 import Spacing from '../Spacing';
 import Text from '../Text';
 
+export type Props = {
+  label: string;
+  after?: React.ReactNode;
+  endAlign?: boolean;
+  regular?: boolean;
+  children: NonNullable<React.ReactNode>;
+};
+
 export default function Term({
   /** Term label describing the value displayed. */
   label,
@@ -14,13 +22,7 @@ export default function Term({
   /** If enabled, term label is regular size instead of small. */
   regular,
   children,
-}: {
-  label: string;
-  after?: React.ReactNode;
-  endAlign?: boolean;
-  regular?: boolean;
-  children: NonNullable<React.ReactNode>;
-}) {
+}: Props) {
   return (
     <>
       <dt>
