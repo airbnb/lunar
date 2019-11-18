@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.44.0 - 2019-11-18
+
+#### 🚀 Updates
+
+- **[Tab]** Set background color for tab button to clear (#251) ([aeeca6a](https://github.com/airbnb/lunar/commit/aeeca6a)), closes [#251](https://github.com/airbnb/lunar/issues/251)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.43.0 - 2019-11-15
 
 #### 🚀 Updates
