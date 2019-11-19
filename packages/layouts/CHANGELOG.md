@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.6.0 - 2019-11-19
+
+#### 🚀 Updates
+
+- **[Layout]** Add custom `minHeight` support. (#250) ([c246ab6](https://github.com/airbnb/lunar/commit/c246ab6)), closes [#250](https://github.com/airbnb/lunar/issues/250)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
 ## 2.5.0 - 2019-11-13
 
 #### 🚀 Updates
