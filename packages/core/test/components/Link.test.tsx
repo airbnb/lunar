@@ -24,6 +24,16 @@ describe('<Link />', () => {
     }).toThrow();
   });
 
+  it('renders micro (passes to `Text`)', () => {
+    const wrapper = shallowWithStyles(
+      <Link micro href="/">
+        Micro
+      </Link>,
+    );
+
+    expect(wrapper.prop('micro')).toBe(true);
+  });
+
   it('renders small (passes to `Text`)', () => {
     const wrapper = shallowWithStyles(
       <Link small href="/">
