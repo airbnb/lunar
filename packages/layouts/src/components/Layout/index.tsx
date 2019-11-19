@@ -35,7 +35,7 @@ export default function Layout({
   const [styles, cx] = useStyles(styleSheet);
 
   return (
-    <div className={cx(styles.layout, { minHeight })}>
+    <div className={cx(styles.layout, { minHeight: minHeight || '100vh' })}>
       {before}
 
       <main
