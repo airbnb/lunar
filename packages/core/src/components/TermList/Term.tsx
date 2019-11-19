@@ -13,15 +13,17 @@ export type Props = {
   endAlign?: boolean;
   /** If enabled, term label is regular size instead of small. */
   regular?: boolean;
+  /** If enabled, term label is uppercased. */
+  uppercased?: boolean;
   children: NonNullable<React.ReactNode>;
 };
 
-export default function Term({ label, after, endAlign, regular, children }: Props) {
+export default function Term({ label, after, endAlign, regular, uppercased, children }: Props) {
   return (
     <>
       <dt>
         <Row after={endAlign && after}>
-          <Text inline small={!regular}>
+          <Text inline small={!regular} uppercased={uppercased}>
             {label}
           </Text>
           {!endAlign && after && (
