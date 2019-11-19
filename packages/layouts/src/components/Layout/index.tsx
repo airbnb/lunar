@@ -7,6 +7,8 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** Expand main content to full width of viewport. */
   fluid?: boolean;
+  /** Min height of the main content. */
+  minHeight?: number | string;
   /** Remove background color from main content. */
   noBackground?: boolean;
   /** Remove padding from main content. */
@@ -26,13 +28,14 @@ export default function Layout({
   before,
   children,
   fluid,
+  minHeight,
   noBackground,
   noPadding,
 }: Props & AsideProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
-    <div className={cx(styles.layout)}>
+    <div className={cx(styles.layout, { minHeight: minHeight || '100vh' })}>
       {before}
 
       <main

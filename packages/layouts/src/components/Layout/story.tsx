@@ -22,6 +22,18 @@ standardLayout.story = {
   name: 'Standard layout.',
 };
 
+export function withAFixedHeight() {
+  return (
+    <Layout minHeight={300}>
+      <LoremIpsum />
+    </Layout>
+  );
+}
+
+withAFixedHeight.story = {
+  name: 'With a custom min-height.',
+};
+
 export function withLeftAsideAndNoMainPadding() {
   return (
     <Layout
