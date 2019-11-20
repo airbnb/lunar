@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Accordion from '../../src/components/Accordion';
 import AccordionItem, { Props as AccordionItemProps } from '../../src/components/Accordion/Item';
 import proxyComponent from '../../src/utils/proxyComponent';
