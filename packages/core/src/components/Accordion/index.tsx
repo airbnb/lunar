@@ -19,37 +19,27 @@ export type Props = {
 
 /** A controller for multiple accordion items. */
 export default function Accordion({ bordered, children, defaultIndex = 0, enableMultiple }: Props) {
-  const [styles, cx] = useStyles(styleSheet);
   const [id] = useState(uuid());
-  const [activeIndex, setActiveIndex] = useState(defaultIndex);
-  const [openIndexes, setOpenIndexes] = useState(new Set<number>());
+  const [styles, cx] = useStyles(styleSheet);
+  const [active, setActive] = useState(
+    new Set<number>([defaultIndex]),
+  );
 
   useEffect(() => {
-    if (enableMultiple) {
-      if (openIndexes.has(defaultIndex)) {
-        openIndexes.delete(defaultIndex);
-      } else {
-        openIndexes.add(defaultIndex);
-      }
-
-      setOpenIndexes(new Set(openIndexes));
-    } else {
-      setActiveIndex(defaultIndex);
-    }
-  }, [defaultIndex, enableMultiple]);
+    setActive(new Set([defaultIndex]));
+  }, [defaultIndex]);
 
   const handleClick = (index: number) => {
     if (enableMultiple) {
-      if (openIndexes.has(index)) {
-        openIndexes.delete(index);
+      if (active.has(index)) {
+        active.delete(index);
       } else {
-        openIndexes.add(index);
+        active.add(index);
       }
 
-      setOpenIndexes(new Set(openIndexes));
+      setActive(new Set(active));
     } else {
-      // close the active one if its been clicked again
-      setActiveIndex(activeIndex === index ? -1 : index);
+      setActive(new Set([active.has(index) ? -1 : index]));
     }
   };
 
@@ -62,7 +52,7 @@ export default function Accordion({ bordered, children, defaultIndex = 0, enable
 
         return React.cloneElement(child as React.ReactElement<AccordionItemProps>, {
           bordered,
-          expanded: enableMultiple ? openIndexes.has(i) : activeIndex === i,
+          expanded: active.has(i),
           id: `${id}-${i}`,
           index: i,
           onClick: handleClick,

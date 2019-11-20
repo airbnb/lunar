@@ -79,7 +79,7 @@ singleItemInitiallyClosed.story = {
 
 export function withEnableMultiple() {
   return (
-    <Accordion bordered enableMultiple defaultIndex={1}>
+    <Accordion bordered enableMultiple defaultIndex={0}>
       <Item title="Item 1">
         <Text>
           <LoremIpsum />

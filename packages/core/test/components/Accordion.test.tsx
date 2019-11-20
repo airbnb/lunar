@@ -214,7 +214,7 @@ describe('<Accordion />', () => {
 
   it('enables multiple items to be open when clicked', () => {
     const wrapper = shallow(
-      <Accordion enableMultiple>
+      <Accordion enableMultiple defaultIndex={-1}>
         <AccordionItem title="One" />
         <AccordionItem title="Two" />
         <AccordionItem title="Three" />
