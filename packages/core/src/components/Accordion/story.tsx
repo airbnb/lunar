@@ -77,9 +77,9 @@ singleItemInitiallyClosed.story = {
   name: 'Single item initially closed.',
 };
 
-export function withEnableMultiple() {
+export function withexpandMultiple() {
   return (
-    <Accordion bordered enableMultiple defaultIndex={0}>
+    <Accordion bordered expandMultiple>
       <Item title="Item 1">
         <Text>
           <LoremIpsum />
@@ -101,7 +101,7 @@ export function withEnableMultiple() {
   );
 }
 
-withEnableMultiple.story = {
+withexpandMultiple.story = {
   name: 'Enable multiple items to be open at once.',
 };
 

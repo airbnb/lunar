@@ -14,32 +14,32 @@ export type Props = {
   /** Index of accordion expanded by default. Provide `-1` to collapse all initially. */
   defaultIndex?: number;
   /** Enable multiple items to be open at once. */
-  enableMultiple?: boolean;
+  expandMultiple?: boolean;
 };
 
 /** A controller for multiple accordion items. */
-export default function Accordion({ bordered, children, defaultIndex = 0, enableMultiple }: Props) {
+export default function Accordion({ bordered, children, defaultIndex = 0, expandMultiple }: Props) {
   const [id] = useState(uuid());
   const [styles, cx] = useStyles(styleSheet);
-  const [active, setActive] = useState(
+  const [expanded, setExpanded] = useState(
     new Set<number>([defaultIndex]),
   );
 
   useEffect(() => {
-    setActive(new Set([defaultIndex]));
+    setExpanded(new Set([defaultIndex]));
   }, [defaultIndex]);
 
   const handleClick = (index: number) => {
-    if (enableMultiple) {
-      if (active.has(index)) {
-        active.delete(index);
+    if (expandMultiple) {
+      if (expanded.has(index)) {
+        expanded.delete(index);
       } else {
-        active.add(index);
+        expanded.add(index);
       }
 
-      setActive(new Set(active));
+      setExpanded(new Set(expanded));
     } else {
-      setActive(new Set([active.has(index) ? -1 : index]));
+      setExpanded(new Set([expanded.has(index) ? -1 : index]));
     }
   };
 
@@ -52,7 +52,7 @@ export default function Accordion({ bordered, children, defaultIndex = 0, enable
 
         return React.cloneElement(child as React.ReactElement<AccordionItemProps>, {
           bordered,
-          expanded: active.has(i),
+          expanded: expanded.has(i),
           id: `${id}-${i}`,
           index: i,
           onClick: handleClick,
