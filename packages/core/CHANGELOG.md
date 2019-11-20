@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.45.0 - 2019-11-20
+
+#### 🚀 Updates
+
+- **[Link]** Add `micro` sizing. (#253) ([7b60e73](https://github.com/airbnb/lunar/commit/7b60e73)), closes [#253](https://github.com/airbnb/lunar/issues/253)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.44.0 - 2019-11-18
 
 #### 🚀 Updates
