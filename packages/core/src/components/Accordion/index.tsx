@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import uuid from 'uuid/v4';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
 import Item, { Props as AccordionItemProps } from './Item';
 import { styleSheet } from './styles';
 
@@ -13,61 +13,61 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** Index of accordion expanded by default. Provide `-1` to collapse all initially. */
   defaultIndex?: number;
-};
-
-export type State = {
-  id: string;
-  index: number;
+  /** Enable multiple items to be open at once. */
+  enableMultiple?: boolean;
 };
 
 /** A controller for multiple accordion items. */
-export class Accordion extends React.Component<Props & WithStylesProps, State> {
-  static defaultProps = {
-    bordered: false,
-    defaultIndex: 0,
-  };
+export default function Accordion({ bordered, children, defaultIndex = 0, enableMultiple }: Props) {
+  const [styles, cx] = useStyles(styleSheet);
+  const [id] = useState(uuid());
+  const [activeIndex, setActiveIndex] = useState(defaultIndex);
+  const [openIndexes, setOpenIndexes] = useState(new Set<number>());
 
-  state = {
-    id: uuid(),
-    index: this.props.defaultIndex || 0,
-  };
+  useEffect(() => {
+    if (enableMultiple) {
+      if (openIndexes.has(defaultIndex)) {
+        openIndexes.delete(defaultIndex);
+      } else {
+        openIndexes.add(defaultIndex);
+      }
 
-  componentDidUpdate(prevProps: Props) {
-    if (this.props.defaultIndex !== prevProps.defaultIndex) {
-      this.setState({
-        index: this.props.defaultIndex!,
-      });
+      setOpenIndexes(new Set(openIndexes));
+    } else {
+      setActiveIndex(defaultIndex);
     }
-  }
+  }, [defaultIndex, enableMultiple]);
 
-  private handleClick = (index: number) => {
-    this.setState(prevState => ({
-      index: index === prevState.index ? -1 : index,
-    }));
+  const handleClick = (index: number) => {
+    if (enableMultiple) {
+      if (openIndexes.has(index)) {
+        openIndexes.delete(index);
+      } else {
+        openIndexes.add(index);
+      }
+
+      setOpenIndexes(new Set(openIndexes));
+    } else {
+      // close the active one if its been clicked again
+      setActiveIndex(activeIndex === index ? -1 : index);
+    }
   };
 
-  render() {
-    const { cx, bordered, children, styles } = this.props;
-    const { id, index } = this.state;
+  return (
+    <div className={cx(styles.container, bordered && styles.container_bordered)} role="tablist">
+      {React.Children.map(children, (child, i) => {
+        if (!child) {
+          return null;
+        }
 
-    return (
-      <div className={cx(styles.container, bordered && styles.container_bordered)} role="tablist">
-        {React.Children.map(children, (child, i) => {
-          if (!child) {
-            return null;
-          }
-
-          return React.cloneElement(child as React.ReactElement<AccordionItemProps>, {
-            bordered,
-            expanded: i === index,
-            id: `${id}-${i}`,
-            index: i,
-            onClick: this.handleClick,
-          });
-        })}
-      </div>
-    );
-  }
+        return React.cloneElement(child as React.ReactElement<AccordionItemProps>, {
+          bordered,
+          expanded: enableMultiple ? openIndexes.has(i) : activeIndex === i,
+          id: `${id}-${i}`,
+          index: i,
+          onClick: handleClick,
+        });
+      })}
+    </div>
+  );
 }
-
-export default withStyles(styleSheet)(Accordion);

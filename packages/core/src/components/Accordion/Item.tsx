@@ -11,8 +11,8 @@ export type Props = {
   children?: React.ReactNode;
   /** Whether the accordion item is expanded or not. */
   expanded?: boolean;
-  /** Unique id of the accordion item. */
-  id: string;
+  /** @ignore Unique id of the accordion item, passed in from parent. */
+  id?: string;
   /** Index amongst a collection of accordion items. */
   index?: number;
   /** Removes horizontal padding from the item and top padding from the item body. */
