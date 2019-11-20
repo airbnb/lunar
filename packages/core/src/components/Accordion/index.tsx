@@ -19,7 +19,7 @@ export type Props = {
 
 /** A controller for multiple accordion items. */
 export default function Accordion({ bordered, children, defaultIndex = 0, expandMultiple }: Props) {
-  const [id] = useState(uuid());
+  const [id] = useState(() => uuid());
   const [styles, cx] = useStyles(styleSheet);
   const [expanded, setExpanded] = useState(
     new Set<number>([defaultIndex]),
