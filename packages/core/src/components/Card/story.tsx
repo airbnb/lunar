@@ -336,7 +336,7 @@ cardAsAButtonWithMiddleAlignment.story = {
 export function asClickableBeforeImage() {
   return (
     <Card>
-      <Content large afterImageSrc={moon} onAfterImageClick={action('onClick before')}>
+      <Content large beforeImageSrc={moon} onBeforeImageClick={action('onClick before')}>
         <Text>
           <LoremIpsum />
         </Text>

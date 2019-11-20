@@ -6,6 +6,7 @@ import Image from '../Image';
 import Row from '../Row';
 import Spacing from '../Spacing';
 import { styleSheetContent as styleSheet } from './styles';
+import ButtonOrLink from '../private/ButtonOrLink';
 
 function getSideImageWidth({ large, small }: { large?: boolean; small?: boolean }): number {
   if (small) {
@@ -107,9 +108,9 @@ function CardContent({
 
     if (onAfterImageClick) {
       afterContent = (
-        <button name="AfterContent" className={cx(styles.side_button)} onClick={onAfterImageClick}>
+        <ButtonOrLink className={cx(styles.sideButton)} onClick={onAfterImageClick}>
           {afterContent}
-        </button>
+        </ButtonOrLink>
       );
     }
   }
@@ -141,13 +142,9 @@ function CardContent({
 
     if (onBeforeImageClick) {
       beforeContent = (
-        <button
-          name="BeforeContent"
-          className={cx(styles.side_button)}
-          onClick={onBeforeImageClick}
-        >
+        <ButtonOrLink className={cx(styles.sideButton)} onClick={onBeforeImageClick}>
           {beforeContent}
-        </button>
+        </ButtonOrLink>
       );
     }
   }
