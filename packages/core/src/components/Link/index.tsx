@@ -5,7 +5,7 @@ import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLin
 import Text from '../Text';
 import { styleSheet } from './styles';
 
-const sizingProp = mutuallyExclusiveTrueProps('small', 'large');
+const sizingProp = mutuallyExclusiveTrueProps('micro', 'small', 'large');
 const stateProp = mutuallyExclusiveTrueProps('disabled', 'muted', 'inverted');
 
 export type Props = ButtonOrLinkProps & {
@@ -17,6 +17,8 @@ export type Props = ButtonOrLinkProps & {
   inverted?: boolean;
   /** Increase font size to large. */
   large?: boolean;
+  /** Decrease font size to micro. */
+  micro?: boolean;
   /** Mark the link as muted. */
   muted?: boolean;
   /** Decrease font size to small. */
@@ -42,6 +44,7 @@ export class Link extends React.Component<Props & WithStylesProps> {
     disabled: false,
     inverted: false,
     large: false,
+    micro: false,
     muted: false,
     small: false,
   };
@@ -55,6 +58,7 @@ export class Link extends React.Component<Props & WithStylesProps> {
       disabled,
       inverted,
       large,
+      micro,
       muted,
       small,
       bold,
@@ -63,7 +67,14 @@ export class Link extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <Text inline={!block} baseline={baseline} small={small} large={large} bold={bold}>
+      <Text
+        inline={!block}
+        baseline={baseline}
+        micro={micro}
+        small={small}
+        large={large}
+        bold={bold}
+      >
         <ButtonOrLink
           {...restProps}
           disabled={disabled}
