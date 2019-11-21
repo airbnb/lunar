@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.46.0 - 2019-11-21
+
+#### 🚀 Updates
+
+- **[Accordion]** Enable multiple items to be open at once. (#254) ([f8bc136](https://github.com/airbnb/lunar/commit/f8bc136)), closes [#254](https://github.com/airbnb/lunar/issues/254)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.45.0 - 2019-11-20
 
 #### 🚀 Updates
