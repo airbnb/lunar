@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.47.0 - 2019-11-21
+
+#### 🚀 Updates
+
+- **[CardContent]** Make before/after images clickable. (#255) ([b20239e](https://github.com/airbnb/lunar/commit/b20239e)), closes [#255](https://github.com/airbnb/lunar/issues/255)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.46.0 - 2019-11-21
 
 #### 🚀 Updates
