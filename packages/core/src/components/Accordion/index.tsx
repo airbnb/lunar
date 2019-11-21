@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import uuid from 'uuid/v4';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
 import Item, { Props as AccordionItemProps } from './Item';
 import { styleSheet } from './styles';
 
@@ -13,61 +13,51 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** Index of accordion expanded by default. Provide `-1` to collapse all initially. */
   defaultIndex?: number;
-};
-
-export type State = {
-  id: string;
-  index: number;
+  /** Enable multiple items to be open at once. */
+  expandMultiple?: boolean;
 };
 
 /** A controller for multiple accordion items. */
-export class Accordion extends React.Component<Props & WithStylesProps, State> {
-  static defaultProps = {
-    bordered: false,
-    defaultIndex: 0,
-  };
+export default function Accordion({ bordered, children, defaultIndex = 0, expandMultiple }: Props) {
+  const [id] = useState(() => uuid());
+  const [styles, cx] = useStyles(styleSheet);
+  const [expanded, setExpanded] = useState(
+    new Set<number>([defaultIndex]),
+  );
 
-  state = {
-    id: uuid(),
-    index: this.props.defaultIndex || 0,
-  };
+  useEffect(() => {
+    setExpanded(new Set([defaultIndex]));
+  }, [defaultIndex]);
 
-  componentDidUpdate(prevProps: Props) {
-    if (this.props.defaultIndex !== prevProps.defaultIndex) {
-      this.setState({
-        index: this.props.defaultIndex!,
-      });
+  const handleClick = (index: number) => {
+    if (expandMultiple) {
+      if (expanded.has(index)) {
+        expanded.delete(index);
+      } else {
+        expanded.add(index);
+      }
+
+      setExpanded(new Set(expanded));
+    } else {
+      setExpanded(new Set([expanded.has(index) ? -1 : index]));
     }
-  }
-
-  private handleClick = (index: number) => {
-    this.setState(prevState => ({
-      index: index === prevState.index ? -1 : index,
-    }));
   };
 
-  render() {
-    const { cx, bordered, children, styles } = this.props;
-    const { id, index } = this.state;
+  return (
+    <div className={cx(styles.container, bordered && styles.container_bordered)} role="tablist">
+      {React.Children.map(children, (child, i) => {
+        if (!child) {
+          return null;
+        }
 
-    return (
-      <div className={cx(styles.container, bordered && styles.container_bordered)} role="tablist">
-        {React.Children.map(children, (child, i) => {
-          if (!child) {
-            return null;
-          }
-
-          return React.cloneElement(child as React.ReactElement<AccordionItemProps>, {
-            bordered,
-            expanded: i === index,
-            id: `${id}-${i}`,
-            index: i,
-            onClick: this.handleClick,
-          });
-        })}
-      </div>
-    );
-  }
+        return React.cloneElement(child as React.ReactElement<AccordionItemProps>, {
+          bordered,
+          expanded: expanded.has(i),
+          id: `${id}-${i}`,
+          index: i,
+          onClick: handleClick,
+        });
+      })}
+    </div>
+  );
 }
-
-export default withStyles(styleSheet)(Accordion);

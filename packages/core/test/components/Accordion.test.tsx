@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import Accordion from '../../src/components/Accordion';
 import AccordionItem, { Props as AccordionItemProps } from '../../src/components/Accordion/Item';
 import proxyComponent from '../../src/utils/proxyComponent';
@@ -11,20 +11,20 @@ describe('<Accordion />', () => {
     ));
 
     expect(() =>
-      shallowWithStyles(
+      shallow(
         <Accordion>
-          <ProxiedAccordionItem id="0" title="Label" />
+          <ProxiedAccordionItem title="Label" />
         </Accordion>,
       ),
     ).not.toThrow();
   });
 
   it('renders expected number of accordion items', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Accordion defaultIndex={1}>
-        <AccordionItem id="0" title="One" />
-        <AccordionItem id="1" title="Two" />
-        <AccordionItem id="2" title="Three" />
+        <AccordionItem title="One" />
+        <AccordionItem title="Two" />
+        <AccordionItem title="Three" />
       </Accordion>,
     );
 
@@ -32,46 +32,33 @@ describe('<Accordion />', () => {
   });
 
   it('renders bordered', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Accordion bordered>
-        <AccordionItem id="0" title="Label" />
+        <AccordionItem title="Label" />
       </Accordion>,
     );
-
-    // id is generated with uuid, need to manually set it for snapshots to match
-    wrapper.setState({
-      id: 0,
-    });
 
     expect(wrapper.prop('className')).toMatch('container_bordered');
   });
 
   it('has accessibility role set', () => {
-    const wrapper = shallowWithStyles(
-      <Accordion defaultIndex={3}>
-        <AccordionItem id="0" title="Label" />
+    const wrapper = shallow(
+      <Accordion defaultIndex={2}>
+        <AccordionItem title="One" />
+        <AccordionItem title="Two" />
+        <AccordionItem title="Three" />
       </Accordion>,
     );
 
     expect(wrapper.prop('role')).toBe('tablist');
   });
 
-  it('sets index state using `defaultIndex`', () => {
-    const wrapper = shallowWithStyles(
-      <Accordion defaultIndex={3}>
-        <AccordionItem id="0" title="Label" />
-      </Accordion>,
-    );
-
-    expect(wrapper.state('index')).toBe(3);
-  });
-
   it('sets expanded state to accordion item by index', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Accordion defaultIndex={1}>
-        <AccordionItem id="0" title="One" />
-        <AccordionItem id="1" title="Two" />
-        <AccordionItem id="2" title="Three" />
+        <AccordionItem title="One" />
+        <AccordionItem title="Two" />
+        <AccordionItem title="Three" />
       </Accordion>,
     );
 
@@ -98,11 +85,11 @@ describe('<Accordion />', () => {
   });
 
   it('adds indices to items', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Accordion>
-        <AccordionItem id="0" title="One" />
-        <AccordionItem id="1" title="Two" />
-        <AccordionItem id="2" title="Three" />
+        <AccordionItem title="One" />
+        <AccordionItem title="Two" />
+        <AccordionItem title="Three" />
       </Accordion>,
     );
 
@@ -129,11 +116,11 @@ describe('<Accordion />', () => {
   });
 
   it('sets expanded state to false for all items if defaultIndex is negative', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Accordion defaultIndex={-1}>
-        <AccordionItem id="0" title="One" />
-        <AccordionItem id="1" title="Two" />
-        <AccordionItem id="2" title="Three" />
+        <AccordionItem title="One" />
+        <AccordionItem title="Two" />
+        <AccordionItem title="Three" />
       </Accordion>,
     );
 
@@ -160,64 +147,135 @@ describe('<Accordion />', () => {
   });
 
   it('handles falsey items', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Accordion>
-        {false && <AccordionItem id="0" title="One" />}
-        {null && <AccordionItem id="0" title="Two" />}
-        <AccordionItem id="0" title="Three" />
+        {false && <AccordionItem title="One" />}
+        {null && <AccordionItem title="Two" />}
+        <AccordionItem title="Three" />
       </Accordion>,
     );
 
     expect(wrapper.find(AccordionItem)).toHaveLength(1);
   });
 
-  it('updates state index when `defaultIndex` changes', () => {
-    const wrapper = shallowWithStyles(
-      <Accordion defaultIndex={3}>
-        <AccordionItem id="0" title="Label" />
-      </Accordion>,
-    );
-
-    expect(wrapper.state('index')).toBe(3);
-
-    wrapper.setProps({
-      defaultIndex: 1,
-    });
-
-    expect(wrapper.state('index')).toBe(1);
-  });
-
   it('updates index when `handleClick` is triggered', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Accordion defaultIndex={3}>
-        <AccordionItem id="0" title="Label" />
+        <AccordionItem title="Label" />
       </Accordion>,
     );
 
-    expect(wrapper.state('index')).toBe(3);
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(0)
+        .prop('expanded'),
+    ).toBe(false);
 
     wrapper
       .find(AccordionItem)
       .at(0)
       .prop('onClick')!(0);
 
-    expect(wrapper.state('index')).toBe(0);
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(0)
+        .prop('expanded'),
+    ).toBe(true);
   });
 
   it('updates index to -1 when current index is clicked', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Accordion defaultIndex={0}>
-        <AccordionItem id="0" title="Label" />
+        <AccordionItem title="Label" />
       </Accordion>,
     );
 
-    expect(wrapper.state('index')).toBe(0);
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(0)
+        .prop('expanded'),
+    ).toBe(true);
 
     wrapper
       .find(AccordionItem)
       .at(0)
       .prop('onClick')!(0);
 
-    expect(wrapper.state('index')).toBe(-1);
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(0)
+        .prop('expanded'),
+    ).toBe(false);
+  });
+
+  it('enables multiple items to be open when clicked', () => {
+    const wrapper = shallow(
+      <Accordion expandMultiple defaultIndex={-1}>
+        <AccordionItem title="One" />
+        <AccordionItem title="Two" />
+        <AccordionItem title="Three" />
+      </Accordion>,
+    );
+
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(0)
+        .prop('expanded'),
+    ).toBe(false);
+
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(1)
+        .prop('expanded'),
+    ).toBe(false);
+
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(2)
+        .prop('expanded'),
+    ).toBe(false);
+
+    wrapper
+      .find(AccordionItem)
+      .at(0)
+      .prop('onClick')!(0);
+
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(0)
+        .prop('expanded'),
+    ).toBe(true);
+
+    wrapper
+      .find(AccordionItem)
+      .at(1)
+      .prop('onClick')!(1);
+
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(1)
+        .prop('expanded'),
+    ).toBe(true);
+
+    wrapper
+      .find(AccordionItem)
+      .at(2)
+      .prop('onClick')!(2);
+
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(2)
+        .prop('expanded'),
+    ).toBe(true);
   });
 });
