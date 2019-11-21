@@ -32,6 +32,7 @@ const styleSheet: StyleSheet = ({ unit }) => ({
   },
 
   cell_stacked: {
+    marginRight: 0,
     marginBottom: unit,
 
     ':last-of-type': {
