@@ -37,6 +37,19 @@ endAlignButtons.story = {
   name: 'Align buttons to the end.',
 };
 
+export function stretchButtons() {
+  return (
+    <ButtonGroup stretched>
+      <Button inverted>Previous</Button>
+      <Button>Next</Button>
+    </ButtonGroup>
+  );
+}
+
+stretchButtons.story = {
+  name: 'Stretched buttons.',
+};
+
 export function stackButtonsVertically() {
   return (
     <div style={{ width: 300 }}>

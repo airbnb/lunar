@@ -27,6 +27,10 @@ const styleSheet: StyleSheet = ({ unit }) => ({
     },
   },
 
+  cell_block: {
+    flex: 1,
+  },
+
   cell_stacked: {
     marginBottom: unit,
 
