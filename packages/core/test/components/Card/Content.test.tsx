@@ -54,6 +54,36 @@ describe('<Card />', () => {
     );
   });
 
+  it('renders before content as clickable', () => {
+    const imageUrl = 'LeftFoo.jpg';
+    const handleClick = jest.fn();
+    const wrapper = shallow(
+      <Content beforeImageSrc={imageUrl} onBeforeImageClick={handleClick}>
+        Sup
+      </Content>,
+    );
+
+    shallow(wrapper.find(Row).prop('before') as React.ReactElement)
+      .find('button')
+      .simulate('click');
+    expect(handleClick).toHaveBeenCalled();
+  });
+
+  it('renders after content as clickable', () => {
+    const imageUrl = 'RightFoo.jpg';
+    const handleClick = jest.fn();
+    const wrapper = shallow(
+      <Content afterImageSrc={imageUrl} onAfterImageClick={handleClick}>
+        Sup
+      </Content>,
+    );
+
+    shallow(wrapper.find(Row).prop('after') as React.ReactElement)
+      .find('button')
+      .simulate('click');
+    expect(handleClick).toHaveBeenCalled();
+  });
+
   it('renders before and after content', () => {
     const after = '~~After~~';
     const before = '~*Before*~';

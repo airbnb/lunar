@@ -332,3 +332,35 @@ export function cardAsAButtonWithMiddleAlignment() {
 cardAsAButtonWithMiddleAlignment.story = {
   name: 'Card as a button with middle alignment.',
 };
+
+export function asClickableBeforeImage() {
+  return (
+    <Card>
+      <Content large beforeImageSrc={moon} onBeforeImageClick={action('onClick before')}>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Content>
+    </Card>
+  );
+}
+
+asClickableBeforeImage.story = {
+  name: 'A card with a clickable before image',
+};
+
+export function asClickableAfterImage() {
+  return (
+    <Card>
+      <Content large afterImageSrc={moon} onAfterImageClick={action('onClick after')}>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Content>
+    </Card>
+  );
+}
+
+asClickableAfterImage.story = {
+  name: 'A card with a clickable after image.',
+};

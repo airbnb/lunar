@@ -6,6 +6,7 @@ import Image from '../Image';
 import Row from '../Row';
 import Spacing from '../Spacing';
 import { styleSheetContent as styleSheet } from './styles';
+import ButtonOrLink from '../private/ButtonOrLink';
 
 function getSideImageWidth({ large, small }: { large?: boolean; small?: boolean }): number {
   if (small) {
@@ -46,6 +47,10 @@ export type Props = {
   topImageSrc?: string;
   /** To use with text truncation; overflow is hidden. */
   truncated?: boolean;
+  /** If provided, makes the after image clickable, firing this callback. */
+  onAfterImageClick?: () => void;
+  /** If provided, makes the before image clickable, firing this callback. */
+  onBeforeImageClick?: () => void;
   /** If provided, makes the entire content clickable, firing this callback. */
   onClick?: () => void;
 };
@@ -66,6 +71,8 @@ function CardContent({
   small,
   topImageSrc,
   truncated,
+  onAfterImageClick,
+  onBeforeImageClick,
 }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
@@ -98,6 +105,14 @@ function CardContent({
         src={afterImageSrc}
       />
     );
+
+    if (onAfterImageClick) {
+      afterContent = (
+        <ButtonOrLink className={cx(styles.sideButton)} onClick={onAfterImageClick}>
+          {afterContent}
+        </ButtonOrLink>
+      );
+    }
   }
 
   let beforeContent = before ? (
@@ -124,6 +139,14 @@ function CardContent({
         src={beforeImageSrc}
       />
     );
+
+    if (onBeforeImageClick) {
+      beforeContent = (
+        <ButtonOrLink className={cx(styles.sideButton)} onClick={onBeforeImageClick}>
+          {beforeContent}
+        </ButtonOrLink>
+      );
+    }
   }
 
   return (

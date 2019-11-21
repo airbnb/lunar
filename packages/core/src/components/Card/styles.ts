@@ -44,6 +44,17 @@ export const styleSheetContent: StyleSheet = ({ color, pattern, ui, unit }) => (
     paddingBottom: unit * 3,
   },
 
+  sideButton: {
+    ...pattern.resetButton,
+    height: '100%',
+    '@selectors': {
+      '> span': {
+        height: '100%',
+        display: 'block',
+      },
+    },
+  },
+
   side_compact: {
     paddingTop: unit * 1.5,
     paddingBottom: unit * 1.5,
