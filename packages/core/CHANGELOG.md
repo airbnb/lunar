@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.48.0 - 2019-11-22
+
+#### 🚀 Updates
+
+- **[ButtonGroup]** Add `stretched` button prop. (#256) ([53bb0dc](https://github.com/airbnb/lunar/commit/53bb0dc)), closes [#256](https://github.com/airbnb/lunar/issues/256)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.47.0 - 2019-11-21
 
 #### 🚀 Updates
