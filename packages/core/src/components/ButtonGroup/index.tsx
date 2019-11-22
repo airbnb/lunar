@@ -9,10 +9,12 @@ export type Props = {
   endAlign?: boolean;
   /** Stack the buttons vertically. */
   stacked?: boolean;
+  /** Stretch buttons to fill the space. */
+  stretched?: boolean;
 };
 
 /** Horizontally align `Button`s with a consistent gutter between each. */
-export default function ButtonGroup({ children, endAlign, stacked }: Props) {
+export default function ButtonGroup({ children, endAlign, stacked, stretched }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
@@ -25,7 +27,15 @@ export default function ButtonGroup({ children, endAlign, stacked }: Props) {
     >
       {React.Children.map(children, child =>
         child ? (
-          <div className={cx(stacked ? styles.cell_stacked : styles.cell)}>{child}</div>
+          <div
+            className={cx(
+              styles.cell,
+              stacked && styles.cell_stacked,
+              stretched && styles.cell_stretched,
+            )}
+          >
+            {child}
+          </div>
         ) : null,
       )}
     </div>

@@ -28,10 +28,21 @@ const styleSheet: StyleSheet = ({ unit }) => ({
   },
 
   cell_stacked: {
+    marginRight: 0,
     marginBottom: unit,
 
     ':last-of-type': {
       marginBottom: 0,
+    },
+  },
+
+  cell_stretched: {
+    flex: 1,
+
+    '@selectors': {
+      '> *': {
+        width: '100%',
+      },
     },
   },
 });

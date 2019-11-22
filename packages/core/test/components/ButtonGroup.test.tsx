@@ -42,6 +42,40 @@ describe('<ButtonGroup />', () => {
     expect(wrapper.find(Button)).toHaveLength(3);
   });
 
+  it('renders stretched buttons', () => {
+    const wrapper = shallow(
+      <ButtonGroup stretched>
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>,
+    );
+
+    expect(
+      wrapper
+        .find(Button)
+        .at(0)
+        .parent()
+        .prop('className'),
+    ).toMatch('cell_stretched');
+
+    expect(
+      wrapper
+        .find(Button)
+        .at(1)
+        .parent()
+        .prop('className'),
+    ).toMatch('cell_stretched');
+
+    expect(
+      wrapper
+        .find(Button)
+        .at(2)
+        .parent()
+        .prop('className'),
+    ).toMatch('cell_stretched');
+  });
+
   it('renders a single button', () => {
     const wrapper = shallow(
       <ButtonGroup>
@@ -75,6 +109,6 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(FakeButton)).toHaveLength(1);
   });
 });
