@@ -40,7 +40,7 @@ const styleSheet: StyleSheet = ({ unit }) => ({
     flex: 1,
 
     '@selectors': {
-      '> button, > a, > div, > span': {
+      '> *': {
         width: '100%',
       },
     },
