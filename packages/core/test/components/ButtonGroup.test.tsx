@@ -55,22 +55,25 @@ describe('<ButtonGroup />', () => {
       wrapper
         .find(Button)
         .at(0)
-        .prop('block'),
-    ).toBeTruthy();
+        .parent()
+        .prop('className'),
+    ).toMatch('cell_stretched');
 
     expect(
       wrapper
         .find(Button)
         .at(1)
-        .prop('block'),
-    ).toBeTruthy();
+        .parent()
+        .prop('className'),
+    ).toMatch('cell_stretched');
 
     expect(
       wrapper
         .find(Button)
         .at(2)
-        .prop('block'),
-    ).toBeTruthy();
+        .parent()
+        .prop('className'),
+    ).toMatch('cell_stretched');
   });
 
   it('renders a single button', () => {

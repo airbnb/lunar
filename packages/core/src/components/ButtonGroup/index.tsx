@@ -1,7 +1,6 @@
 import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import { styleSheet } from './styles';
-import { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
 
 export type Props = {
   /** List of components to group. */
@@ -32,12 +31,10 @@ export default function ButtonGroup({ children, endAlign, stacked, stretched }: 
             className={cx(
               styles.cell,
               stacked && styles.cell_stacked,
-              stretched && styles.cell_block,
+              stretched && styles.cell_stretched,
             )}
           >
-            {React.cloneElement(child as React.ReactElement<ButtonOrLinkProps>, {
-              block: stretched,
-            })}
+            {child}
           </div>
         ) : null,
       )}
