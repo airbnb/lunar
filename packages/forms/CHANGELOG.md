@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.7.0 - 2019-11-25
+
+#### 🚀 Updates
+
+- Refactor form components to use hooks (#233) ([6f7df02](https://github.com/airbnb/lunar/commit/6f7df02)), closes [#233](https://github.com/airbnb/lunar/issues/233)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 2.6.1 - 2019-11-15
 
 #### 🐞 Fixes
