@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 import React from 'react';
 import Spacing from '../Spacing';
 import DatePickerInput from '.';
@@ -11,10 +13,17 @@ class DatePickerInputDemo extends React.Component<{}, State> {
     to: null,
   };
 
-  ref = React.createRef<HTMLInputElement>();
+  fromRef = React.createRef<HTMLInputElement>();
+
+  toRef = React.createRef<HTMLInputElement>();
 
   handleDayClick = () => {
-    window.setTimeout(() => this.ref.current && this.ref.current.focus(), 0);
+    this.toRef.current?.focus();
+    this.toRef.current?.click();
+
+    window.setTimeout(() => {
+      this.fromRef.current?.blur();
+    }, 5);
   };
 
   handleFromChange = (value: string, from: Date | null) => {
@@ -36,6 +45,7 @@ class DatePickerInputDemo extends React.Component<{}, State> {
             hideLabel
             label="From"
             name="from-date"
+            propagateRef={this.fromRef}
             placeholder="Start date"
             value={from || undefined}
             datePickerProps={{
@@ -55,7 +65,7 @@ class DatePickerInputDemo extends React.Component<{}, State> {
             hideLabel
             label="To"
             name="to-date"
-            propagateRef={this.ref}
+            propagateRef={this.toRef}
             placeholder="End date"
             value={to || undefined}
             datePickerProps={{

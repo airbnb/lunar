@@ -356,10 +356,16 @@ export default class Form<Data extends object = {}> extends React.Component<
 
     field.data.config = config;
     // @ts-ignore
+    field.initial = value;
+    // @ts-ignore
     field.value = value;
     field.touched = config.validateDefaultValue || false;
-    // eslint-disable-next-line no-param-reassign
+
+    // These are needed for form "reset" to work correctly!
+    /* eslint-disable no-param-reassign */
+    formState.initialValues = setIn(formState.initialValues!, name, value);
     formState.values = setIn(formState.values, name, value);
+    /* eslint-enable no-param-reassign */
   }
 
   /**
