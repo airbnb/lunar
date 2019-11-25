@@ -18,7 +18,12 @@ export function connectedToTheParentForm() {
         return Promise.resolve();
       }}
     >
-      <CheckBoxController name="field" label="Label" validator={() => {}}>
+      <CheckBoxController
+        name="field"
+        label="Label"
+        validator={() => {}}
+        onChange={action('onChange')}
+      >
         {CheckBox => (
           <div>
             <CheckBox label="❤️ Red" value="red" />

@@ -14,7 +14,6 @@ import Select from './components/Form/Select';
 import Switch from './components/Form/Switch';
 import TextArea from './components/Form/TextArea';
 import ToggleButtonController from './components/Form/ToggleButtonController';
-import connectToForm from './composers/connectToForm';
 
 export * from './types';
 
@@ -32,7 +31,6 @@ export {
   Switch,
   TextArea,
   ToggleButtonController,
-  connectToForm,
   FormActions,
   FormContext,
 };

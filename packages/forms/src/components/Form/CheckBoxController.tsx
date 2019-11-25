@@ -1,15 +1,15 @@
 import React from 'react';
-import BaseCheckBoxController, { Props } from '@airbnb/lunar/lib/components/CheckBoxController';
-import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm';
+import CheckBoxController, { Props } from '@airbnb/lunar/lib/components/CheckBoxController';
+import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
 /** `CheckBoxController` automatically connected to the parent `Form`.  */
-export function FormCheckBoxController(props: Props & ConnectToFormProps<string[]>) {
-  return <BaseCheckBoxController {...props} />;
-}
+export default function FormCheckBoxController(props: FieldProps<string[], Props>) {
+  const fieldProps = useFormField(props, {
+    initialValue: [],
+    multiple: true,
+    parse: toString,
+  });
 
-export default connectToForm<string[]>({
-  initialValue: [],
-  multiple: true,
-  parse: toString,
-})(FormCheckBoxController);
+  return <CheckBoxController {...fieldProps} />;
+}

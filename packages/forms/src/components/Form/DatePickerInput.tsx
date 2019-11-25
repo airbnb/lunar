@@ -1,20 +1,24 @@
 import React from 'react';
-import BaseDatePickerInput, { Props } from '@airbnb/lunar/lib/components/DatePickerInput';
-import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm';
+import DatePickerInput, { Props } from '@airbnb/lunar/lib/components/DatePickerInput';
+import useFormField, { FieldProps } from '../../hooks/useFormField';
 
-/** `DatePickerInput` automatically connected to the parent `Form`.  */
-export function FormDatePickerInput({
-  // Blur and focus events provided by `final-form` break the picker
-  // overlay, so let's omit them for now, as it isn't an easy fix.
-  // Luckily, we can get away with this as it's mostly used for
-  // validation purposes, and dates are deterministic.
-  onBlur,
-  onFocus,
-  ...props
-}: Props & ConnectToFormProps<string | Date>) {
-  return <BaseDatePickerInput {...props} />;
+// The `react-day-picker` and `final-form` handlers collide a little bit,
+// so let's delay the forms to run after the picker.
+function wrapHandler<T>(cb: (event: T) => void) {
+  return (event: T) => {
+    setTimeout(() => {
+      cb(event);
+    }, 0);
+  };
 }
 
-export default connectToForm<string | Date>({
-  initialValue: '',
-})(FormDatePickerInput);
+/** `DatePickerInput` automatically connected to the parent `Form`.  */
+export default function FormDatePickerInput(props: FieldProps<string | Date, Props>) {
+  const { onBlur, onFocus, ...fieldProps } = useFormField(props, {
+    initialValue: '',
+  });
+
+  return (
+    <DatePickerInput {...fieldProps} onBlur={wrapHandler(onBlur)} onFocus={wrapHandler(onFocus)} />
+  );
+}

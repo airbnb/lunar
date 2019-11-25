@@ -74,6 +74,8 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
 
   currentTooltipRef: HTMLDivElement | null = null;
 
+  mounted: boolean = false;
+
   rafHandle?: number;
 
   static getDerivedStateFromProps({ disabled }: Props) {
@@ -87,6 +89,8 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   }
 
   componentDidMount() {
+    this.mounted = true;
+
     // eslint-disable-next-line react/no-did-mount-set-state
     this.setState({
       targetRect: document.body.getBoundingClientRect(),
@@ -100,6 +104,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   }
 
   componentWillUnmount() {
+    this.mounted = false;
     cancelAnimationFrame(this.rafHandle as number);
   }
 
@@ -108,7 +113,10 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     /* istanbul ignore next: refs are hard */
     this.rafHandle = requestAnimationFrame(() => {
       const el = this.currentTooltipRef;
-      this.setState({ tooltipHeight: el ? el.offsetHeight : 0 });
+
+      if (this.mounted) {
+        this.setState({ tooltipHeight: el ? el.offsetHeight : 0 });
+      }
     });
   }
 
