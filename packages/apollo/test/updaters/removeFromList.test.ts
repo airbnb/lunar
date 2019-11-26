@@ -51,19 +51,19 @@ describe('removeFromList()', () => {
         `,
         'things',
         3,
-      )(cache);
+      )(cache, {});
     }).toThrowErrorMatchingSnapshot();
   });
 
   it('errors if property name is not an array', () => {
     expect(() => {
       // Should be `something.things`
-      removeFromList(QUERY, 'something.name', 3)(cache);
+      removeFromList(QUERY, 'something.name', 3)(cache, {});
     }).toThrowErrorMatchingSnapshot();
   });
 
   it('removes item from list based on ID', () => {
-    removeFromList(QUERY, 'something.things', 3)(cache);
+    removeFromList(QUERY, 'something.things', 3)(cache, {});
 
     expect(cache.readQuery({ query: QUERY })).toEqual({
       something: {

@@ -1,20 +1,20 @@
 import { DocumentNode } from 'graphql';
 import get from 'lodash/get';
 import set from 'lodash/set';
-import { DataProxy } from 'apollo-cache';
+import { MutationUpdaterFn } from 'apollo-client';
 import prepareQuery from '../utils/prepareQuery';
 import getQueryName from '../utils/getQueryName';
 
-export default function removeFromList<Result, Vars = {}>(
-  docOrQuery: DocumentNode | DataProxy.Query<Vars>,
+export default function removeFromList<Result = {}>(
+  docOrQuery: DocumentNode,
   listPath: string,
   id: string | number,
   idName: string = 'id',
-) {
-  const query = prepareQuery<Vars>(docOrQuery);
+): MutationUpdaterFn<Result> {
+  const query = prepareQuery(docOrQuery);
 
-  return (cache: DataProxy) => {
-    const queryResult = cache.readQuery<Result>(query);
+  return cache => {
+    const queryResult = cache.readQuery<{}>(query);
     const nextResult = { ...queryResult };
     const list = get(queryResult, listPath);
 
