@@ -2,11 +2,12 @@ import { DocumentNode } from 'graphql';
 import get from 'lodash/get';
 import set from 'lodash/set';
 import { MutationUpdaterFn } from 'apollo-client';
+import { DataProxy } from 'apollo-cache';
 import prepareQuery from '../utils/prepareQuery';
 import getQueryName from '../utils/getQueryName';
 
 export default function addToList<Result = {}>(
-  docOrQuery: DocumentNode,
+  docOrQuery: DocumentNode | DataProxy.Query<{}>,
   listPath: string,
   mutationPath: string,
 ): MutationUpdaterFn {
