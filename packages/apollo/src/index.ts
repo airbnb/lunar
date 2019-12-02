@@ -7,6 +7,7 @@ import { HttpLink } from 'apollo-link-http';
 import Mutation from './components/Mutation';
 import Query from './components/Query';
 import Provider from './components/Provider';
+import DocumentManager from './DocumentManager';
 // @ts-ignore
 import pkg from '../package.json';
 
@@ -28,6 +29,8 @@ class Apollo {
   };
 
   protected client?: ApolloClient<{}>;
+
+  protected documents = new DocumentManager();
 
   initialize(settings?: Settings) {
     this.settings = {
@@ -71,6 +74,10 @@ class Apollo {
     }
 
     return this.client!;
+  }
+
+  getDocumentManager() {
+    return this.documents;
   }
 }
 
