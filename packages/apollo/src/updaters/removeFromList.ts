@@ -6,16 +6,16 @@ import { DataProxy } from 'apollo-cache';
 import prepareQuery from '../utils/prepareQuery';
 import getQueryName from '../utils/getQueryName';
 
-export default function removeFromList<Result = {}>(
-  docOrQuery: DocumentNode | DataProxy.Query<{}>,
+export default function removeFromList(
+  docOrQuery: string | DocumentNode | DataProxy.Query<{}>,
   listPath: string,
   id: string | number,
   idName: string = 'id',
-): MutationUpdaterFn<Result> {
+): MutationUpdaterFn {
   const query = prepareQuery(docOrQuery);
 
   return cache => {
-    const queryResult = cache.readQuery<{}>(query);
+    const queryResult = cache.readQuery<object>(query);
     const nextResult = { ...queryResult };
     const list = get(queryResult, listPath);
 

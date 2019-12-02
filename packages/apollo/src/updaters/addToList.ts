@@ -6,15 +6,15 @@ import { DataProxy } from 'apollo-cache';
 import prepareQuery from '../utils/prepareQuery';
 import getQueryName from '../utils/getQueryName';
 
-export default function addToList<Result = {}>(
-  docOrQuery: DocumentNode | DataProxy.Query<{}>,
+export default function addToList(
+  docOrQuery: string | DocumentNode | DataProxy.Query<{}>,
   listPath: string,
   mutationPath: string,
 ): MutationUpdaterFn {
   const query = prepareQuery(docOrQuery);
 
-  return (cache, result) => {
-    const queryResult = cache.readQuery<Result>(query);
+  return (cache, mutationResult) => {
+    const queryResult = cache.readQuery<object>(query);
     const nextResult = { ...queryResult };
     const list = get(queryResult, listPath);
 
@@ -26,7 +26,7 @@ export default function addToList<Result = {}>(
       }
     }
 
-    const data = get(result.data, mutationPath);
+    const data = get(mutationResult.data, mutationPath);
 
     if (typeof data === 'undefined') {
       if (__DEV__) {
