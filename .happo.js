@@ -6,7 +6,7 @@ module.exports = {
   apiSecret: process.env.HAPPO_API_SECRET,
   project: process.env.THEME,
 
-  compareThreshold: 0.05,
+  // compareThreshold: 0.05,
 
   targets: {
     'chrome-desktop': new RemoteBrowserTarget('chrome', {
