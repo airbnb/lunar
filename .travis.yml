@@ -21,9 +21,13 @@ jobs:
         - yarn run build:sizes
         - yarn run check:build
       node_js: '12'
-    - name: Happo
+    - name: Happo (Dark)
       if: type = pull_request OR branch = master
-      script: yarn run check:happo
+      script: yarn run check:happo:dark
+      node_js: '12'
+    - name: Happo (Light)
+      if: type = pull_request OR branch = master
+      script: yarn run check:happo:light
       node_js: '12'
     - stage: Tests
       name: Test @ 10

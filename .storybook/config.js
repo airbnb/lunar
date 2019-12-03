@@ -18,8 +18,7 @@ addDecorator(story => (
       padding: 24,
     }}
   >
-    {' '}
-    {story()}{' '}
+    {story()}
   </div>
 ));
 addDecorator(withA11y);

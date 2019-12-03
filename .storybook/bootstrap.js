@@ -2,6 +2,8 @@ import 'airbnb-js-shims';
 import { stripHexcode } from 'emojibase';
 import Lunar from '@airbnb/lunar';
 
+const theme = process.env.THEME || localStorage.getItem('lunar.theme') || 'light';
+
 Lunar.initialize({
   name: 'Lunar',
   emojiCDN: (hexcode, large) =>
@@ -9,5 +11,5 @@ Lunar.initialize({
       hexcode,
     ).toLowerCase()}.png`,
   logger: console.log,
-  theme: 'light',
+  theme,
 });
