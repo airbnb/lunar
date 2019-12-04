@@ -21,7 +21,7 @@ export default function SearchResult({ item, formattedParents, matches = [], que
   const [labelMatch = null] = mbk.label || [];
   const [descMatch = null] = mbk.description || [];
   const [keywMatch = null] = mbk.keywords || [];
-  const [longest] = query!.split(/\s{1,}/).sort((a, b) => b.length - a.length);
+  const [longest] = query!.split(/\s+/).sort((a, b) => b.length - a.length);
 
   return (
     <div className={cx(styles.resultItem)}>
