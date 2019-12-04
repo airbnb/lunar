@@ -9,7 +9,7 @@ type IconSet = {
   icons: React.ComponentType<WithIconWrapperProps>[];
 };
 
-const context = require.context('.', true, /Icon[A-Z]+\.tsx/i);
+const context = require.context('.', true, /icon[a-z]+\.tsx/i);
 const iconData: { [key: string]: IconSet } = {
   general: {
     label: 'General Objects',

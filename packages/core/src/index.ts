@@ -156,7 +156,7 @@ class Core {
     }
 
     // Low-level token interpolation
-    return message.replace(/%\{(\w+)\}/g, (match, key) => `${params[key]}`);
+    return message.replace(/%{(\w+)}/g, (match, key) => `${params[key]}`);
   };
 }
 
