@@ -45,6 +45,7 @@ module.exports = async ({ config }) => {
   config.plugins.push(
     new webpack.DefinePlugin({
       COMPONENT_CHANGELOGS: JSON.stringify(getChangelogFromGitHistory()),
+      'process.env.THEME': JSON.stringify(process.env.THEME || 'light'),
     }),
   );
 

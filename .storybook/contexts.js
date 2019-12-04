@@ -1,5 +1,6 @@
 import ThemeProvider from '@airbnb/lunar/lib/providers/ThemeProvider';
 import DirectionProvider from '@airbnb/lunar/lib/providers/DirectionProvider';
+import { THEME } from './constants';
 
 export default [
   {
@@ -10,9 +11,13 @@ export default [
       {
         name: 'Light',
         props: { name: 'light', propagate: true },
-        default: true,
+        default: THEME === 'light',
       },
-      { name: 'Dark', props: { name: 'dark', propagate: true } },
+      {
+        name: 'Dark',
+        props: { name: 'dark', propagate: true },
+        default: THEME === 'dark',
+      },
     ],
   },
   {
