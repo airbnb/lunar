@@ -36,6 +36,7 @@ export default function buildTheme(
     bg: base,
     bgHover: color.neutral[0],
     bgError: color.danger[0],
+    blackout: toRGBA('#000', 75), // Use black regardless of theme
     border: color.neutral[2],
     borderActive: color.primary[3], // Also focus/selected
     borderHover: color.neutral[3],
