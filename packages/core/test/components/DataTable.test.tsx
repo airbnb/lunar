@@ -813,4 +813,16 @@ describe('<DataTable />', () => {
 
     expect(ref.current).not.toBeNull();
   });
+
+  it('Passes the specified overscanRowCount to the underlying Table', () => {
+    const count = 14;
+    const wrapper = shallowWithStyles(<DataTable data={data} overscanRowCount={count} />);
+    const table = wrapper
+      .find(StyledDataTable)
+      .dive() // withStyles
+      .dive() // DataTable
+      .find(Table);
+
+    expect(table.prop('overscanRowCount')).toBe(count);
+  });
 });
