@@ -15,10 +15,6 @@ function calculateDiff(prev: number, next: number): number {
 }
 
 function formatDiff(diff: number): string {
-  if (!isFinite(diff) || diff === 0 || diff === 0.0) {
-    return 'N/A';
-  }
-
   const sum = diff * 100;
   const percent = sum.toFixed(1);
 
@@ -63,10 +59,15 @@ async function compareBuildSizes() {
   Object.entries(nextSizes).forEach(([pkgName, stats]) => {
     const prevEsm = getPrevSize(pkgName, 'esm');
     const prevLib = getPrevSize(pkgName, 'lib');
+    const diff = calculateDiff(prevEsm, stats.esm);
+
+    if (!isFinite(diff) || diff === 0 || diff === 0.0) {
+      return;
+    }
 
     const row = [
       pkgName,
-      formatDiff(calculateDiff(prevEsm, stats.esm)),
+      formatDiff(diff),
       size(stats.esm),
       prevEsm === 0 ? 'N/A' : size(prevEsm),
       size(stats.lib),
@@ -75,6 +76,11 @@ async function compareBuildSizes() {
 
     rows.push(`| ${row.join(' | ')} |`);
   });
+
+  // Dont post anything if no changes
+  if (rows.length === 0) {
+    return;
+  }
 
   // Sort rows before joining to output
   rows.sort();

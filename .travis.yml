@@ -60,8 +60,6 @@ jobs:
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/airbnb/lunar.git" >
           /dev/null 2>&1
         - git checkout master
-        - yarn run build:sizes && git add packages/sizes.json && git commit -m "Update build size
-          stats."
       deploy:
         provider: script
         script: yarn run release
