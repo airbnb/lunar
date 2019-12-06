@@ -95,7 +95,7 @@ export default function buildTheme(
       },
       offscreen: {
         position: 'absolute',
-        right: '105vw',
+        left: '-5vw',
         width: 1,
         height: 1,
         overflow: 'hidden',
