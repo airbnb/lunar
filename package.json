@@ -26,6 +26,7 @@
     "posttest": "yarn run lint",
     "pretest": "yarn run type",
     "prettier": "nimbus prettier",
+    "preversion": "yarn run build:sizes && git add ./packages/sizes.json",
     "release": "nimbus run-script auto-release",
     "release:storybook": "yarn run ts ./scripts/tasks/publishStorybook.ts",
     "sg": "NODE_ENV=development start-storybook -p 6006",
