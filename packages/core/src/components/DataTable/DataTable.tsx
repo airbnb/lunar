@@ -57,6 +57,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     instantEdit: true,
     keys: [],
     minimumDynamicRowHeight: undefined,
+    overscanRowCount: 2,
     renderers: {},
     rowHeight: 'regular',
     selectable: false,
@@ -452,21 +453,22 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   render() {
     const {
       autoHeight,
+      cx,
       data,
       dynamicRowHeight,
       expandable,
       filterData,
+      height,
+      overscanRowCount,
       propagateRef,
       rowHeight,
       selectable,
-      styles,
       selectedRowsFirst,
+      sortByCacheKey,
+      styles,
       tableHeaderHeight,
-      cx,
       showAllRows,
       width,
-      height,
-      sortByCacheKey,
     } = this.props;
 
     const { expandedRows, sortBy, sortDirection, editMode, selectedRows } = this.state;
@@ -513,7 +515,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             headerRowRenderer={ColumnLabels(this.props)}
             rowHeight={dynamicRowHeight ? this.cache.rowHeight : HEIGHT_TO_PX[rowHeight!]}
             rowStyle={this.getRowStyle(expandedData)}
-            overscanRowCount={dynamicRowHeight && showAllRows ? expandedData.length : 2}
+            overscanRowCount={
+              dynamicRowHeight && showAllRows ? expandedData.length : overscanRowCount!
+            }
             onRowClick={this.handleRowClick}
           >
             {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
