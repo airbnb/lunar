@@ -814,7 +814,7 @@ describe('<DataTable />', () => {
     expect(ref.current).not.toBeNull();
   });
 
-  it.only('Passes the specified overscanRowCount to the underlying Table', () => {
+  it('Passes the specified overscanRowCount to the underlying Table', () => {
     const count = 14;
     const wrapper = shallowWithStyles(<DataTable data={data} overscanRowCount={count} />);
     const table = wrapper
