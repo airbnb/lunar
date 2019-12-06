@@ -17,12 +17,14 @@ exports[`<Tooltip /> can underline 1`] = `
       hello world
     </a>
   </div>
-  <div
-    className="offscreen"
-    id="uuid-test-mock"
-  >
-    test
-  </div>
+  <Portal>
+    <div
+      className="offscreen"
+      id="uuid-test-mock"
+    >
+      test
+    </div>
+  </Portal>
   <Overlay
     noBackground={true}
     onClose={[Function]}
@@ -67,12 +69,14 @@ exports[`<Tooltip /> disabled does not underline 1`] = `
       hello world
     </a>
   </div>
-  <div
-    className="offscreen"
-    id="uuid-test-mock"
-  >
-    test
-  </div>
+  <Portal>
+    <div
+      className="offscreen"
+      id="uuid-test-mock"
+    >
+      test
+    </div>
+  </Portal>
   <Overlay
     noBackground={true}
     onClose={[Function]}
@@ -117,12 +121,14 @@ exports[`<Tooltip /> disabled does not up when hovered 1`] = `
       hello world
     </a>
   </div>
-  <div
-    className="offscreen"
-    id="uuid-test-mock"
-  >
-    test
-  </div>
+  <Portal>
+    <div
+      className="offscreen"
+      id="uuid-test-mock"
+    >
+      test
+    </div>
+  </Portal>
   <Overlay
     noBackground={true}
     onClose={[Function]}
@@ -167,12 +173,14 @@ exports[`<Tooltip /> once open supports changing content 1`] = `
       hello world
     </a>
   </div>
-  <div
-    className="offscreen"
-    id="uuid-test-mock"
-  >
-    whatever
-  </div>
+  <Portal>
+    <div
+      className="offscreen"
+      id="uuid-test-mock"
+    >
+      whatever
+    </div>
+  </Portal>
   <Overlay
     noBackground={true}
     onClose={[Function]}
@@ -218,12 +226,14 @@ exports[`<Tooltip /> opens up when hovered 1`] = `
       hello world
     </a>
   </div>
-  <div
-    className="offscreen"
-    id="uuid-test-mock"
-  >
-    test
-  </div>
+  <Portal>
+    <div
+      className="offscreen"
+      id="uuid-test-mock"
+    >
+      test
+    </div>
+  </Portal>
   <Overlay
     noBackground={true}
     onClose={[Function]}
