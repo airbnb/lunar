@@ -156,7 +156,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
       const { current } = this.containerRef;
 
       /* istanbul ignore if: refs are hard */
-      if (current) {
+      if (current && this.mounted) {
         this.setState({ targetRect: current.getBoundingClientRect() });
       }
     });
