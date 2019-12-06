@@ -89,7 +89,7 @@ export interface DataTableProps {
   /**
    * Specify number of additional rows react-virtualized renders in the direction the user is scrolling.
    * The higher the value, the more work react-virtualized needs to do in reaction to each scroll event.
-   * Not respected when
+   * Not respected when both dynamicRowHeight and showAllRows are true.
    */
   overscanRowCount?: number;
   /** Propagated as the 'ref' prop to the underlying react-virtualized Table instance. */
