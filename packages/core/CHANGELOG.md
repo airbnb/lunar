@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.50.0 - 2019-12-07
+
+#### 🚀 Updates
+
+- **[DataTable]** Expose `overscanRowCount` prop (#262) ([b82a769](https://github.com/airbnb/lunar/commit/b82a769)), closes [#262](https://github.com/airbnb/lunar/issues/262)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.49.1 - 2019-12-04
 
 #### 🛠 Internals
