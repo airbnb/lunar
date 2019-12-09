@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.51.0 - 2019-12-09
+
+#### 🚀 Updates
+
+- **[Tooltip]** Reduce offscreen pattern layer size and render a11y content in Portal (#261) ([77642a3](https://github.com/airbnb/lunar/commit/77642a3)), closes [#261](https://github.com/airbnb/lunar/issues/261)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.50.0 - 2019-12-07
 
 #### 🚀 Updates
