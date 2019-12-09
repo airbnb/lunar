@@ -6,6 +6,7 @@ import NotchedBox, { NOTCH_SIZE, NOTCH_SPACING } from '../NotchedBox';
 import Text from '../Text';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { styleSheet } from './styles';
+import Portal from '../Portal';
 
 const EMPTY_TARGET_RECT: ClientRect = {
   bottom: 0,
@@ -76,7 +77,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
 
   mounted: boolean = false;
 
-  rafHandle?: number;
+  rafHandle: number = 0;
 
   static getDerivedStateFromProps({ disabled }: Props) {
     if (disabled) {
@@ -105,7 +106,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
 
   componentWillUnmount() {
     this.mounted = false;
-    cancelAnimationFrame(this.rafHandle as number);
+    cancelAnimationFrame(this.rafHandle);
   }
 
   updateTooltipHeight() {
@@ -150,12 +151,15 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   };
 
   private handleEnter = () => {
-    const { current } = this.containerRef;
+    /* istanbul ignore next: refs are hard */
+    this.rafHandle = requestAnimationFrame(() => {
+      const { current } = this.containerRef;
 
-    /* istanbul ignore if: refs are hard */
-    if (current) {
-      this.setState({ targetRect: current.getBoundingClientRect() });
-    }
+      /* istanbul ignore if: refs are hard */
+      if (current && this.mounted) {
+        this.setState({ targetRect: current.getBoundingClientRect() });
+      }
+    });
 
     if (!this.props.disabled && !this.state.open) {
       this.setState({ open: true });
@@ -213,9 +217,12 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
           {children}
         </div>
 
-        <div id={labelID} className={cx(styles.offscreen)}>
-          {content}
-        </div>
+        {/* render off-screen element in a separate layer */}
+        <Portal>
+          <div id={labelID} className={cx(styles.offscreen)}>
+            {content}
+          </div>
+        </Portal>
 
         <Overlay noBackground open={open} onClose={this.handleClose}>
           <div
