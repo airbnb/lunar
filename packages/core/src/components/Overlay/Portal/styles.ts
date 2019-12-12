@@ -1,6 +1,5 @@
 import { StyleSheet } from '../../../hooks/useStyles';
 import { Z_INDEX_PORTAL } from '../../../constants';
-import toRGBA from '../../../utils/toRGBA';
 
 const styleSheet: StyleSheet = ({ color }) => ({
   container: {
@@ -20,7 +19,7 @@ const styleSheet: StyleSheet = ({ color }) => ({
   },
 
   opaque: {
-    backgroundColor: toRGBA(color.core.neutral[6], 30),
+    backgroundColor: color.accent.blackout,
   },
 
   content: {

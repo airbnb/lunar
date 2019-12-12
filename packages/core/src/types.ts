@@ -105,6 +105,7 @@ export type Theme = {
       bg: Hexcode;
       bgHover: Hexcode;
       bgError: Hexcode;
+      blackout: string;
       border: Hexcode;
       borderActive: Hexcode;
       borderHover: Hexcode;

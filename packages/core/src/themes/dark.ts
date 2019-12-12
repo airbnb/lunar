@@ -1,5 +1,5 @@
 import buildTheme from './buildTheme';
-import { Theme, ColorRange } from '../types';
+import { Theme } from '../types';
 
 const brand: Theme['color']['brand'] = {
   luxury: ['#1E1040', '#2F1A71', '#3D279B', '#4D3CBE', '#665CDA', '#8A88F0', '#BFC1FF'],
@@ -8,47 +8,25 @@ const brand: Theme['color']['brand'] = {
 
 const color: Theme['color']['core'] = {
   // Gray
-  neutral: ['#141414', '#222222', '#303030', '#363839', '#767676', '#9D9D9D', '#F8F8F8'],
+  neutral: ['#2F2F2F', '#373737', '#474747', '#777777', '#B1B1B1', '#D1D1D1', '#F0F0F0'],
   // Blue
-  secondary: [
-    '#E3ECF6',
-    '#B9D0E8',
-    '#8AB0D9',
-    '#1561B2',
-    '#0F4FA2',
-    '#0C4599',
-    '#06338A',
-  ].reverse() as ColorRange,
+  secondary: ['#073260', '#0A437F', '#105094', '#1561B2', '#237CDA', '#8AB0D9', '#B9D0E8'],
   // Any
-  primary: ['#4D00E5', '#581BFF', '#6320FF', '#6f44ff', '#835EFE', '#CABAFE', '#EAE3FF'],
+  primary: ['#38108A', '#41159C', '#5A1FD1', '#9362F9', '#AD87FF', '#CDBCFF', '#DACDFF'],
   // Green
-  success: [
-    '#E9F5E8',
-    '#C9E5C5',
-    '#A5D49F',
-    '#4AA83E',
-    '#3A9730',
-    '#328D28',
-    '#227D1B',
-  ].reverse() as ColorRange,
+  success: ['#0E6208', '#1C7315', '#227D1B', '#4AA83E', '#5ED24F', '#328D28', '#227D1B'],
   // Yellow/Orange
-  warning: [
-    '#FFF5DB',
-    '#FFE196',
-    '#FFDA80',
-    '#FFB400',
-    '#F7A800',
-    '#FF9C00',
-    '#FF8C00',
-  ].reverse() as ColorRange,
+  warning: ['#613806', '#97590E', '#AF6D1C', '#FF8C00', '#F7A800', '#FFB400', '#FFDA80'],
   // Red/Pink
-  danger: ['#A92828', '#B53838', '#BC4141', '#C95252', '#D16C6C', '#D98686', '#EF9191'],
+  danger: ['#5B0606', '#650B0B', '#710909', '#B71C1C', '#EF5D5D', '#FB8585', '#FFA8A8'],
 };
 
 export default (fontFamily: string) =>
   buildTheme({
-    base: '#000',
+    base: '#181818',
+    boxShadowColor: '#000',
     brand,
     color,
+    disabledOpacity: 0.2,
     fontFamily,
   });
