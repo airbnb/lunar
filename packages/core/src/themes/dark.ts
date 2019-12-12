@@ -8,11 +8,11 @@ const brand: Theme['color']['brand'] = {
 
 const color: Theme['color']['core'] = {
   // Gray
-  neutral: ['#222222', '#2B2B2B', '#373737', '#777777', '#B1B1B1', '#D1D1D1', '#F0F0F0'],
+  neutral: ['#2F2F2F', '#373737', '#474747', '#777777', '#B1B1B1', '#D1D1D1', '#F0F0F0'],
   // Blue
   secondary: ['#073260', '#0A437F', '#105094', '#1561B2', '#237CDA', '#8AB0D9', '#B9D0E8'],
   // Any
-  primary: ['#41159C', '#511DBC', '#5A1FD1', '#6B24FF', '#7445FB', '#9478E5', '#CDBCFF'],
+  primary: ['#38108A', '#41159C', '#5A1FD1', '#9362F9', '#AD87FF', '#CDBCFF', '#DACDFF'],
   // Green
   success: ['#0E6208', '#1C7315', '#227D1B', '#4AA83E', '#5ED24F', '#328D28', '#227D1B'],
   // Yellow/Orange
