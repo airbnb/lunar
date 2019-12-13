@@ -12,9 +12,9 @@ const color: Theme['color']['core'] = {
   // Blue
   secondary: ['#073260', '#0A437F', '#105094', '#1561B2', '#237CDA', '#8AB0D9', '#B9D0E8'],
   // Any
-  primary: ['#38108A', '#41159C', '#5A1FD1', '#9362F9', '#AD87FF', '#CDBCFF', '#DACDFF'],
+   primary: ['#38108A', '#41159C', '#5A1FD1', '#9362F9', '#AD87FF', '#CDBCFF', '#DACDFF'],
   // Green
-  success: ['#0E6208', '#1C7315', '#227D1B', '#4AA83E', '#5ED24F', '#328D28', '#227D1B'],
+  success: ['#0E6208', '#1C7315', '#227D1B', '#4AA83E', '#5ED24F', '#AFF3A6', '#C5FFBD'],
   // Yellow/Orange
   warning: ['#613806', '#97590E', '#AF6D1C', '#FF8C00', '#F7A800', '#FFB400', '#FFDA80'],
   // Red/Pink
