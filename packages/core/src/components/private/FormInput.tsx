@@ -148,4 +148,5 @@ FormInput.propTypes = {
   small: sizingProp,
 };
 
-export default FormInput;
+// Proofreader crashes in non-latin languages unless this component is memoized
+export default React.memo(FormInput);
