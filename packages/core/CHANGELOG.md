@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.52.1 - 2019-12-13
+
+#### 🐞 Fixes
+
+- Fix proofreader crashing by memoizing form input. (#264) ([4272bb4](https://github.com/airbnb/lunar/commit/4272bb4)), closes [#264](https://github.com/airbnb/lunar/issues/264)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.52.0 - 2019-12-12
 
 #### 🚀 Updates
