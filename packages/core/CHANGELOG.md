@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.52.2 - 2019-12-16
+
+#### 🎨 Styles
+
+- Minor polish to dark mode. (#266) ([a00805e](https://github.com/airbnb/lunar/commit/a00805e)), closes [#266](https://github.com/airbnb/lunar/issues/266)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.52.1 - 2019-12-13
 
 #### 🐞 Fixes
