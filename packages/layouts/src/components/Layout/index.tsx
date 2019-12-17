@@ -3,6 +3,8 @@ import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import { styleSheet } from './styles';
 
 export type Props = {
+  /** Horizontally center main content. */
+  centerAlign?: boolean;
   /** The primary main content. */
   children: NonNullable<React.ReactNode>;
   /** Expand main content to full width of viewport. */
@@ -26,6 +28,7 @@ export type AsideProps = {
 export default function Layout({
   after,
   before,
+  centerAlign,
   children,
   fluid,
   minHeight,
@@ -46,7 +49,15 @@ export default function Layout({
           noPadding && styles.main_noPadding,
         )}
       >
-        <div className={cx(!fluid && styles.mainContent)}>{children}</div>
+        <div
+          className={cx(
+            styles.mainContent,
+            centerAlign && styles.mainContent_centerAlign,
+            fluid && styles.mainContent_fluid,
+          )}
+        >
+          {children}
+        </div>
       </main>
 
       {after}
