@@ -24,7 +24,7 @@ standardLayout.story = {
 
 export function standardLayoutCentered() {
   return (
-    <Layout fluid>
+    <Layout centerAlign>
       <LoremIpsum />
     </Layout>
   );
