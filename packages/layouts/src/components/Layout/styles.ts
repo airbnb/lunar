@@ -24,6 +24,14 @@ const styleSheet: StyleSheet = ({ breakpoints, color, unit }) => ({
   mainContent: {
     maxWidth: breakpoints.medium,
   },
+
+  mainContent_centerAlign: {
+    margin: '0 auto',
+  },
+
+  mainContent_fluid: {
+    maxWidth: '100%',
+  },
 });
 
 export default styleSheet;
