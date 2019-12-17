@@ -1,9 +1,7 @@
-import { withStylesFactory, WithStylesWrappedProps } from 'aesthetic-react';
-import { NativeBlock, ParsedBlock } from 'aesthetic-adapter-aphrodite';
+import { withStyles, WithStylesWrappedProps } from 'aesthetic-react';
 import { Theme as BaseTheme } from '../types';
-import Core from '..';
 
-export type WithStylesProps = WithStylesWrappedProps<BaseTheme, NativeBlock, ParsedBlock>;
+export type WithStylesProps = WithStylesWrappedProps<BaseTheme>;
 export type Theme = BaseTheme;
 
-export default withStylesFactory(Core.aesthetic);
+export default withStyles;
