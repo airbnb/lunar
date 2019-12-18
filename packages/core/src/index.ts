@@ -80,11 +80,21 @@ class Core {
       // Tests trigger an error, so ignore it
     }
 
-    aesthetic.configure({
-      adapter: new AphroditeAdapter(),
-      rtl,
-      theme,
-    });
+    if (process.env.NODE_ENV === 'test') {
+      // eslint-disable-next-line
+      const { TestAdapter } = require('aesthetic/lib/testing');
+
+      aesthetic.configure({
+        adapter: new TestAdapter(),
+        theme: 'light',
+      });
+    } else {
+      aesthetic.configure({
+        adapter: new AphroditeAdapter(),
+        rtl,
+        theme,
+      });
+    }
   }
 
   bootstrapLuxon() {
@@ -162,16 +172,4 @@ class Core {
   };
 }
 
-const instance = new Core();
-
-if (process.env.NODE_ENV === 'test') {
-  // eslint-disable-next-line
-  const { TestAdapter } = require('aesthetic/lib/testing');
-
-  aesthetic.configure({
-    adapter: new TestAdapter(),
-    theme: 'light',
-  });
-}
-
-export default instance;
+export default new Core();

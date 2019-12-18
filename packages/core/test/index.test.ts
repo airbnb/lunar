@@ -47,7 +47,7 @@ describe('Core', () => {
     it('creates an aesthetic instance', () => {
       Core.bootstrapAesthetic();
 
-      expect(Core.aesthetic).toBeInstanceOf(TestAdapter);
+      expect(Core.aesthetic.getAdapter()).toBeInstanceOf(TestAdapter);
     });
   });
 
