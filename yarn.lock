@@ -3986,10 +3986,10 @@ aesthetic-adapter-aphrodite@^5.0.0-alpha.0:
   dependencies:
     aesthetic-utils "^3.0.0-alpha.0"
 
-aesthetic-react@^2.0.0-alpha.0:
-  version "2.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/aesthetic-react/-/aesthetic-react-2.0.0-alpha.0.tgz#defd74161591543b584cb73bdd5fab007eb51130"
-  integrity sha512-yRJQXzHulor+Wdz/ZyewnpRST8CEYVWh+2PlKANRlC3734ZIyThTgaZIABCKyW81jHKj0oLhV+mrkHmr3gw+aA==
+aesthetic-react@^2.0.0-alpha.1:
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/aesthetic-react/-/aesthetic-react-2.0.0-alpha.1.tgz#09621491213c0531bcfda4d18468190a50429287"
+  integrity sha512-YOML0Y3weuVtwlfL4HECbk6e/ahLxD5ITDmc1qX+hkip/yld1cSn8mFNUQLhdehblG6GCycVE7YqXX7HS2YePw==
   dependencies:
     "@types/react" "*"
     aesthetic-utils "^3.0.0-alpha.0"

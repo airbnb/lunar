@@ -166,10 +166,12 @@ const instance = new Core();
 
 if (process.env.NODE_ENV === 'test') {
   // eslint-disable-next-line
-  const { TestAesthetic } = require('aesthetic/lib/testUtils');
+  const { TestAdapter } = require('aesthetic/lib/testing');
 
-  // @ts-ignore Allow mutation of readonly for testing
-  instance.aesthetic = new TestAesthetic({ theme: 'light' });
+  aesthetic.configure({
+    adapter: new TestAdapter(),
+    theme: 'light',
+  });
 }
 
 export default instance;

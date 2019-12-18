@@ -37,7 +37,7 @@
     "@types/react-virtualized": "*",
     "aesthetic": "^5.0.0-alpha.0",
     "aesthetic-adapter-aphrodite": "^5.0.0-alpha.0",
-    "aesthetic-react": "^2.0.0-alpha.0",
+    "aesthetic-react": "^2.0.0-alpha.1",
     "airbnb-prop-types": "^2.15.0",
     "aphrodite": "^2.4.0",
     "copy-to-clipboard": "^3.2.0",

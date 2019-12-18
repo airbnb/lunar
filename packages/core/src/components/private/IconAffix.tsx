@@ -1,9 +1,9 @@
-import withStyles from '../../composers/withStyles';
+import withStyles, { Theme } from '../../composers/withStyles';
 import BaseAffix, { Props as BaseProps } from './BaseAffix';
 
 export type Props = BaseProps;
 
-export default withStyles(({ unit, pattern }) => ({
+export default withStyles<Theme>(({ unit, pattern }) => ({
   affix: {
     display: 'inline-block',
     verticalAlign: 'middle',

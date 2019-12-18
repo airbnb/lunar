@@ -1,13 +1,13 @@
-import { StyleBlock } from 'aesthetic';
+import { SheetMap, ComponentBlock } from 'aesthetic';
 import { Theme } from '../types';
 
-export default function buildInputStyles({
+const inputStyleSheet = ({
   color,
   pattern,
   ui,
   unit,
   transition,
-}: Theme): { [key: string]: StyleBlock } {
+}: Theme): SheetMap<ComponentBlock> => {
   const common = {
     ...pattern.regularButton,
     ...transition.box,
@@ -199,4 +199,6 @@ export default function buildInputStyles({
       ...commonNeutral,
     },
   };
-}
+};
+
+export default inputStyleSheet;

@@ -11,6 +11,6 @@ describe('withTheme()', () => {
     const Hoc = withTheme()(Foo);
 
     expect(Hoc.displayName).toBe('withTheme(Foo)');
-    expect((Hoc as StyledComponent<{}, {}>).WrappedComponent).toBe(Foo);
+    expect((Hoc as StyledComponent<{}>).WrappedComponent).toBe(Foo);
   });
 });
