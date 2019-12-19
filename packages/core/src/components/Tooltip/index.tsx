@@ -92,9 +92,13 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   componentDidMount() {
     this.mounted = true;
 
-    // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({
-      targetRect: document.body.getBoundingClientRect(),
+    requestAnimationFrame(() => {
+      const targetRect = document.body.getBoundingClientRect();
+
+      // use a second rAF in case setState becomes expensive
+      this.rafHandle = requestAnimationFrame(() => {
+        this.setState({ targetRect });
+      });
     });
   }
 
@@ -190,8 +194,34 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
       inverted,
     } = this.props;
     const { open, targetRect, tooltipHeight, labelID } = this.state;
+
+    if (!open) {
+      return (
+        <span ref={this.containerRef} className={cx(styles.container)}>
+          <div
+            aria-labelledby={labelID}
+            className={cx(!disabled && underlined && styles.underlined)}
+            onMouseEnter={this.handleEnter}
+            onMouseLeave={this.handleClose}
+            onMouseDown={this.handleMouseDown}
+          >
+            {children}
+          </div>
+
+          {/* render off-screen element in a separate layer */}
+          <Portal>
+            <div id={labelID} className={cx(styles.offscreen)}>
+              {content}
+            </div>
+          </Portal>
+        </span>
+      );
+    }
+
     const { unit } = theme!;
     const width = widthProp! * unit;
+
+    // bestPosition will cause a reflow as will `targetRect.width`
     const { align, above } = this.bestPosition(targetRect);
     const targetWidth = targetRect.width;
     const halfNotch = (NOTCH_SIZE * unit) / Math.SQRT2;

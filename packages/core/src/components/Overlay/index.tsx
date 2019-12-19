@@ -32,6 +32,8 @@ export default class Overlay extends React.PureComponent<Props, State> {
     y: 0,
   };
 
+  rafHandle: number = 0;
+
   ref = React.createRef<HTMLDivElement>();
 
   scrollers: ArrayOfScrollables = [];
@@ -41,15 +43,17 @@ export default class Overlay extends React.PureComponent<Props, State> {
 
     /* istanbul ignore next: refs are hard */
     if (current) {
-      const { x, y } = current.getBoundingClientRect() as DOMRect;
+      this.rafHandle = requestAnimationFrame(() => {
+        // getBoundingClientRect casues a reflow
+        const { x, y } = current.getBoundingClientRect() as DOMRect;
+        if (x !== this.state.x) {
+          this.setState({ x });
+        }
 
-      if (x !== this.state.x) {
-        this.setState({ x });
-      }
-
-      if (y !== this.state.y) {
-        this.setState({ y });
-      }
+        if (y !== this.state.y) {
+          this.setState({ y });
+        }
+      });
     }
 
     this.removeScrollListeners();
@@ -61,6 +65,7 @@ export default class Overlay extends React.PureComponent<Props, State> {
 
   componentWillUnmount() {
     this.removeScrollListeners();
+    cancelAnimationFrame(this.rafHandle);
   }
 
   private addScrollListeners = debounce(() => {
