@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.7.0 - 2019-12-19
+
+#### 🚀 Updates
+
+- **[List]** Add `middleAlign` support for `horizontal`. (#244) ([1b58963](https://github.com/airbnb/lunar/commit/1b58963)), closes [#244](https://github.com/airbnb/lunar/issues/244)
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
 ### 2.6.3 - 2019-11-14
 
 #### 🛠 Internals

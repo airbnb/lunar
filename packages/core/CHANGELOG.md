@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.53.0 - 2019-12-19
+
+#### 🚀 Updates
+
+- Upgrade to Aesthetic v5. (#269) ([57e84e5](https://github.com/airbnb/lunar/commit/57e84e5)), closes [#269](https://github.com/airbnb/lunar/issues/269)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.52.2 - 2019-12-16
 
 #### 🎨 Styles

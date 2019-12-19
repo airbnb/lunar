@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-forms",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "Form functionality for Lunar.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -21,7 +21,7 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
-    "@airbnb/lunar-test-utils": "^2.3.1",
+    "@airbnb/lunar-test-utils": "^2.4.0",
     "react": "^16.11.0"
   },
   "dependencies": {

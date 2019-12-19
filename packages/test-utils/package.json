@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-test-utils",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "Utilities for local testing.",
   "license": "MIT",
   "main": "./lib/index.js",
