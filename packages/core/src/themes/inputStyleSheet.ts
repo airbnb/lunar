@@ -1,13 +1,7 @@
-import { SheetMap, ComponentBlock } from 'aesthetic';
+import { SheetMap, Block } from 'aesthetic';
 import { Theme } from '../types';
 
-const inputStyleSheet = ({
-  color,
-  pattern,
-  ui,
-  unit,
-  transition,
-}: Theme): SheetMap<ComponentBlock> => {
+const inputStyleSheet = ({ color, pattern, ui, unit, transition }: Theme): SheetMap<Block> => {
   const common = {
     ...pattern.regularButton,
     ...transition.box,

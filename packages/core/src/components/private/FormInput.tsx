@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles, { Theme } from '../../hooks/useStyles';
+import useStyles from '../../hooks/useStyles';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
 export type IgnoreAttributes =
@@ -90,7 +90,7 @@ function FormInput({
   tagName: Tag,
   ...restProps
 }: PrivateProps) {
-  const [styles, cx] = useStyles<Theme>(theme => inputStyleSheet(theme));
+  const [styles, cx] = useStyles(inputStyleSheet);
   const isSelect = Tag === 'select';
 
   const props: { [key: string]: unknown } = {

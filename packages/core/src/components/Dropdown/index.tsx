@@ -1,6 +1,6 @@
 import React from 'react';
 import { Block } from 'aesthetic';
-import withStyles, { WithStylesProps, Theme } from '../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 export type Props = {
   /** Bottom offset. */
@@ -120,4 +120,4 @@ class Dropdown extends React.PureComponent<Props & WithStylesProps> {
   }
 }
 
-export default withStyles<Theme>(() => ({}))(Dropdown);
+export default withStyles(() => ({}))(Dropdown);

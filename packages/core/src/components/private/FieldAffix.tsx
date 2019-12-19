@@ -1,9 +1,9 @@
-import withStyles, { Theme } from '../../composers/withStyles';
+import withStyles from '../../composers/withStyles';
 import BaseAffix, { Props as BaseProps } from './BaseAffix';
 
 export type Props = BaseProps;
 
-export default withStyles<Theme>(({ color, font, unit, ui, pattern }) => ({
+export default withStyles(({ color, font, unit, ui, pattern }) => ({
   affix: {
     ...font.textRegular,
     height: '100%',
