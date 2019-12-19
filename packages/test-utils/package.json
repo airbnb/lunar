@@ -23,7 +23,7 @@
     "@types/enzyme": "*",
     "@types/jest": "*",
     "@types/react": "*",
-    "aesthetic": "^5.0.0-alpha.0",
-    "aesthetic-react": "^2.0.0-alpha.1"
+    "aesthetic": "^5.0.0-alpha.1",
+    "aesthetic-react": "^2.0.0-alpha.2"
   }
 }
