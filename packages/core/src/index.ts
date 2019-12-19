@@ -1,5 +1,5 @@
-import { Direction, FontFace } from 'aesthetic';
-import AphroditeAesthetic from 'aesthetic-adapter-aphrodite';
+import aesthetic, { Direction, FontFace } from 'aesthetic';
+import AphroditeAdapter from 'aesthetic-adapter-aphrodite';
 import { Settings as LuxonSettings } from 'luxon';
 import { Path as EmojiPath } from 'interweave-emoji';
 import globalStyles from './themes/global';
@@ -15,7 +15,6 @@ import {
   Translator,
   TranslateParams,
   TranslateProps,
-  Theme,
   TranslateOptions,
 } from './types';
 
@@ -29,7 +28,7 @@ export type Settings = {
   logger?: Logger | null;
   name: string;
   rtl?: boolean;
-  theme?: 'light' | 'dark';
+  theme?: string;
   translator?: Translator | null;
   translatorComponent?: React.ComponentType<TranslateProps> | null;
 };
@@ -51,7 +50,7 @@ class Core {
     translatorComponent: null,
   };
 
-  readonly aesthetic = new AphroditeAesthetic<Theme>([], { theme: 'light' });
+  readonly aesthetic = aesthetic;
 
   initialize(settings: Settings) {
     this.settings = {
@@ -69,7 +68,7 @@ class Core {
     const globals = globalStyles(fontFaces);
 
     try {
-      this.aesthetic
+      aesthetic
         .registerTheme('light', lightTheme(fontFamily), globals)
         .registerTheme('dark', darkTheme(fontFamily), globals)
 
@@ -81,8 +80,21 @@ class Core {
       // Tests trigger an error, so ignore it
     }
 
-    this.aesthetic.options.rtl = rtl;
-    this.aesthetic.options.theme = theme;
+    if (process.env.NODE_ENV === 'test') {
+      // eslint-disable-next-line
+      const { TestAdapter } = require('aesthetic/lib/testing');
+
+      aesthetic.configure({
+        adapter: new TestAdapter(),
+        theme: 'light',
+      });
+    } else {
+      aesthetic.configure({
+        adapter: new AphroditeAdapter(),
+        rtl,
+        theme,
+      });
+    }
   }
 
   bootstrapLuxon() {
@@ -160,14 +172,4 @@ class Core {
   };
 }
 
-const instance = new Core();
-
-if (process.env.NODE_ENV === 'test') {
-  // eslint-disable-next-line
-  const { TestAesthetic } = require('aesthetic/lib/testUtils');
-
-  // @ts-ignore Allow mutation of readonly for testing
-  instance.aesthetic = new TestAesthetic({ theme: 'light' });
-}
-
-export default instance;
+export default new Core();
