@@ -92,10 +92,10 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   componentDidMount() {
     this.mounted = true;
 
-    requestAnimationFrame(() => {
+    this.rafHandle = requestAnimationFrame(() => {
       const targetRect = document.body.getBoundingClientRect();
 
-      // use a second rAF in case setState becomes expensive
+      // use a second rAF in case setState causes layout thrashing
       this.rafHandle = requestAnimationFrame(() => {
         this.setState({ targetRect });
       });

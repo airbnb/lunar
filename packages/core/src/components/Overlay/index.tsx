@@ -46,12 +46,11 @@ export default class Overlay extends React.PureComponent<Props, State> {
       this.rafHandle = requestAnimationFrame(() => {
         // getBoundingClientRect casues a reflow
         const { x, y } = current.getBoundingClientRect() as DOMRect;
-        if (x !== this.state.x) {
-          this.setState({ x });
-        }
 
-        if (y !== this.state.y) {
-          this.setState({ y });
+        if (x !== this.state.x || y !== this.state.y) {
+          this.rafHandle = requestAnimationFrame(() => {
+            this.setState({ x, y });
+          });
         }
       });
     }
