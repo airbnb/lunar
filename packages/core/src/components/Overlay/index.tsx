@@ -48,9 +48,8 @@ export default class Overlay extends React.PureComponent<Props, State> {
         const { x, y } = current.getBoundingClientRect() as DOMRect;
 
         if (x !== this.state.x || y !== this.state.y) {
-          this.rafHandle = requestAnimationFrame(() => {
-            this.setState({ x, y });
-          });
+          // wrapping this in a second rAF caused the tooltip to render at 0,0 for a frame
+          this.setState({ x, y });
         }
       });
     }
