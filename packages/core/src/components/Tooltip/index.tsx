@@ -181,42 +181,9 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     this.setState({ open: false });
   };
 
-  render() {
-    const {
-      cx,
-      styles,
-      theme,
-      width: widthProp,
-      children,
-      content,
-      disabled,
-      underlined,
-      inverted,
-    } = this.props;
-    const { open, targetRect, tooltipHeight, labelID } = this.state;
-
-    if (!open) {
-      return (
-        <span ref={this.containerRef} className={cx(styles.container)}>
-          <div
-            aria-labelledby={labelID}
-            className={cx(!disabled && underlined && styles.underlined)}
-            onMouseEnter={this.handleEnter}
-            onMouseLeave={this.handleClose}
-            onMouseDown={this.handleMouseDown}
-          >
-            {children}
-          </div>
-
-          {/* render off-screen element in a separate layer */}
-          <Portal>
-            <div id={labelID} className={cx(styles.offscreen)}>
-              {content}
-            </div>
-          </Portal>
-        </span>
-      );
-    }
+  private renderPopUp() {
+    const { cx, styles, theme, width: widthProp, content, inverted } = this.props;
+    const { open, targetRect, tooltipHeight } = this.state;
 
     const { unit } = theme!;
     const width = widthProp! * unit;
@@ -234,6 +201,38 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
       right: -width + targetWidth,
     };
     const distance = halfNotch + 1;
+
+    return (
+      <Overlay noBackground open={open} onClose={this.handleClose}>
+        <div
+          ref={this.handleTooltipRef}
+          role="tooltip"
+          className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
+            width,
+            marginLeft: marginLeft[align as keyof StyleStruct],
+            marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
+            textAlign: align,
+          })}
+        >
+          <div className={cx(styles.shadow)}>
+            <NotchedBox
+              inverted={!inverted}
+              notchOffset={notchOffset[align as keyof StyleStruct]}
+              notchBelow={above}
+            >
+              <Text inverted={!inverted}>{content}</Text>
+            </NotchedBox>
+          </div>
+        </div>
+      </Overlay>
+    );
+  }
+
+  render() {
+    const { cx, styles, children, content, disabled, underlined } = this.props;
+    const { open, labelID } = this.state;
+
+    const popUp = open ? this.renderPopUp() : null;
 
     return (
       <span ref={this.containerRef} className={cx(styles.container)}>
@@ -254,28 +253,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
           </div>
         </Portal>
 
-        <Overlay noBackground open={open} onClose={this.handleClose}>
-          <div
-            ref={this.handleTooltipRef}
-            role="tooltip"
-            className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
-              width,
-              marginLeft: marginLeft[align as keyof StyleStruct],
-              marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
-              textAlign: align,
-            })}
-          >
-            <div className={cx(styles.shadow)}>
-              <NotchedBox
-                inverted={!inverted}
-                notchOffset={notchOffset[align as keyof StyleStruct]}
-                notchBelow={above}
-              >
-                <Text inverted={!inverted}>{content}</Text>
-              </NotchedBox>
-            </div>
-          </div>
-        </Overlay>
+        {popUp}
       </span>
     );
   }
