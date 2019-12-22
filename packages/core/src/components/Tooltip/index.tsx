@@ -232,8 +232,6 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     const { cx, styles, children, content, disabled, underlined } = this.props;
     const { open, labelID } = this.state;
 
-    const popUp = open ? this.renderPopUp() : null;
-
     return (
       <span ref={this.containerRef} className={cx(styles.container)}>
         <div
@@ -253,7 +251,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
           </div>
         </Portal>
 
-        {popUp}
+        {open ? this.renderPopUp() : null}
       </span>
     );
   }
