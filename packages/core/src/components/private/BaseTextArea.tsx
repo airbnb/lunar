@@ -28,7 +28,7 @@ export default class BaseTextArea extends React.Component<Props> {
   reflowRaf: number | null = null;
 
   componentDidMount() {
-    this.reflowTextarea();
+    this.reflowRaf = window.requestAnimationFrame(this.reflowTextarea);
   }
 
   componentDidUpdate(prevProps: Props) {
