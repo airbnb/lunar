@@ -215,7 +215,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
 
     return this.props
       .onCheckText(params)
-      .then(({ proofread }) => {
+      .then(({ proofread }: ProofreaderResponse) => {
         this.setState({
           errors: [...customErrors, ...proofread.matches],
           loading: false,
@@ -624,8 +624,10 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       important,
       isRuleHighlighted,
       isRuleSecondary,
+      onChange,
       ...props
     } = this.props;
+
     const {
       position,
       errors,
@@ -653,7 +655,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         <div {...highlightsProps}>{this.renderTextWithMarks()}</div>
 
         {/* Track the top/left offset of the caret within the textarea. */}
-        {caretPosition > 0 && (
+        {caretPosition > 0 && text && (
           <div ref={this.caretRef} className={cx(styles.caret)}>
             <span>{text.slice(0, caretPosition)}</span>
             <span>{text.slice(caretPosition)}.</span>
@@ -666,6 +668,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           value={this.state.text}
           propagateRef={this.textareaRef}
           important={important}
+          onChange={onChange}
           onClick={this.handleTextAreaClick}
           onKeyDown={this.handleTextAreaKeyDown}
           onScroll={this.handleScroll}
