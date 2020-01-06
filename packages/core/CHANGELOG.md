@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.53.3 - 2020-01-06
+
+#### 🐞 Fixes
+
+- **[TextArea]** Wrap reflow in requestAnimationFrame (#272) ([5fed96e](https://github.com/airbnb/lunar/commit/5fed96e)), closes [#272](https://github.com/airbnb/lunar/issues/272)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.53.2 - 2020-01-04
 
 #### 🐞 Fixes
