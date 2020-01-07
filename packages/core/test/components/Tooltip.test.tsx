@@ -16,6 +16,7 @@ describe('<Tooltip />', () => {
         <a href="/">hello world</a>
       </Tooltip>,
     );
+    wrapper.setState({ targetRectReady: true });
     childContainer = wrapper.find('div[aria-labelledby]');
   });
 
