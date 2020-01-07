@@ -185,6 +185,11 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     const { cx, styles, theme, width: widthProp, content, inverted } = this.props;
     const { open, targetRect, tooltipHeight } = this.state;
 
+    // render null until targetRect is initialized by cDM
+    if (targetRect.top === 0 && targetRect.left === 0) {
+      return null;
+    }
+
     const { unit } = theme!;
     const width = widthProp! * unit;
 
