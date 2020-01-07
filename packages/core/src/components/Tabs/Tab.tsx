@@ -11,14 +11,11 @@ export type Props = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabl
   borderless?: boolean;
   /** Content to render if the tab is selected. */
   children?: React.ReactNode;
-  /**
-   * Unique key name for this tab.
-   * @ignore
-   */
+  /** @ignore Unique key name for this tab. */
   keyName?: string;
   /** Text to render in the tab. */
   label: NonNullable<React.ReactNode>;
-  /** Callback fired when the tab is clicked. */
+  /** @ignore Callback fired when the tab is clicked. */
   onClick?: (key: string) => void;
   /** Callback fired when the tab is selected. */
   onSelected?: () => void;
