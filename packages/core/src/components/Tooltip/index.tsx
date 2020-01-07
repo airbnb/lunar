@@ -41,6 +41,7 @@ export type State = {
   open: boolean;
   tooltipHeight: number;
   targetRect: ClientRect;
+  targetRectReady: boolean;
 };
 
 export type PositionStruct = {
@@ -69,6 +70,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     open: false,
     tooltipHeight: 0,
     targetRect: EMPTY_TARGET_RECT,
+    targetRectReady: false,
   };
 
   containerRef = React.createRef<HTMLSpanElement>();
@@ -97,7 +99,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
 
       // use a second rAF in case setState causes layout thrashing
       this.rafHandle = requestAnimationFrame(() => {
-        this.setState({ targetRect });
+        this.setState({ targetRect, targetRectReady: true });
       });
     });
   }
@@ -183,7 +185,12 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
 
   private renderPopUp() {
     const { cx, styles, theme, width: widthProp, content, inverted } = this.props;
-    const { open, targetRect, tooltipHeight } = this.state;
+    const { open, targetRect, tooltipHeight, targetRectReady } = this.state;
+
+    // render null until targetRect is initialized by cDM
+    if (!targetRectReady) {
+      return null;
+    }
 
     const { unit } = theme!;
     const width = widthProp! * unit;
