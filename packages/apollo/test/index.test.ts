@@ -27,12 +27,14 @@ describe('Apollo', () => {
       Apollo.initialize({
         links: [link],
         resolvers,
+        cacheConfig: {},
       });
 
       expect(Apollo.settings).toEqual(
         expect.objectContaining({
           links: [link],
           resolvers,
+          cacheConfig: {},
         }),
       );
     });
