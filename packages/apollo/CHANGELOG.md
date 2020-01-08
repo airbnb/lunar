@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.8.0 - 2020-01-08
+
+#### 🚀 Updates
+
+- **[Apollo]** expose cacheConfig (#278) ([3640b30](https://github.com/airbnb/lunar/commit/3640b30)), closes [#278](https://github.com/airbnb/lunar/issues/278)
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
 ## 2.7.0 - 2019-12-19
 
 #### 🚀 Updates
