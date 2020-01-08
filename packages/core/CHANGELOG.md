@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.55.0 - 2020-01-08
+
+#### 🚀 Updates
+
+- **[Accordion]** Add `onChange` and `onToggle` props. (#277) ([a9370ee](https://github.com/airbnb/lunar/commit/a9370ee)), closes [#277](https://github.com/airbnb/lunar/issues/277)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.54.0 - 2020-01-08
 
 #### 🚀 Updates
