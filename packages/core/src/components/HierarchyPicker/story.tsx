@@ -285,8 +285,8 @@ class PickerDemo extends React.Component<Partial<Props>, { chosen: Props['chosen
           searchWidth={400}
           searchPlaceholder="Search all the things"
           noResultsLabel="No results match your query."
-          onItemPicked={(nextChosen: string[] | null) => {
-            action('onItemPicked')(nextChosen);
+          onItemPicked={(nextChosen: string[] | null, item: object | null, details?: object) => {
+            action('onItemPicked')(nextChosen, item, details);
             this.setState({ chosen: nextChosen || undefined });
           }}
           {...passThroughProps}
