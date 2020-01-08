@@ -123,7 +123,8 @@ export class Search extends React.Component<Props & WithStylesProps> {
 
   handleItemPicked = (itemValue: string, result: SearchItemResult | null) => {
     const { query, onItemPicked } = this.props;
-    onItemPicked((result && result.item.definition) || null, {
+
+    onItemPicked(result?.item?.definition ?? null, result?.item ?? null, {
       origin: 'Search',
       charCount: query!.length,
     });

@@ -98,10 +98,14 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
     this.setState({ searchQuery });
   };
 
-  private handleItemPicked = (def: TreePath | null, details?: ChoiceDetails) => {
+  private handleItemPicked = (
+    def: TreePath | null,
+    item: ItemShape | null,
+    details?: ChoiceDetails,
+  ) => {
     if (def) {
       // null if item.readonly
-      this.props.onItemPicked(def, details);
+      this.props.onItemPicked(def, item, details);
       this.props.onClose();
     }
   };
