@@ -56,11 +56,19 @@ describe('<Search />', () => {
       v: string,
       r: SearchItemResult,
     ) => void;
+    const item = {
+      ...testItems[0],
+      definition: ['foo'],
+      label: '',
+      formattedParents: '',
+      name: '',
+    };
+
     onSelectItem('', {
-      item: { definition: ['foo'], label: '', formattedParents: '', name: '' },
+      item,
       matches: [],
     });
-    expect(handlePicked).toHaveBeenCalledWith(['foo'], {
+    expect(handlePicked).toHaveBeenCalledWith(['foo'], item, {
       charCount: query.length,
       origin: 'Search',
     } as ChoiceDetails);
