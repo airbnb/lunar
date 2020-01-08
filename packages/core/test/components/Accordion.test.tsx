@@ -278,4 +278,22 @@ describe('<Accordion />', () => {
         .prop('expanded'),
     ).toBe(true);
   });
+
+  it('triggers `onChange` handler', () => {
+    const spy = jest.fn();
+    const wrapper = shallow(
+      <Accordion onChange={spy}>
+        <AccordionItem title="Label" />
+        <AccordionItem title="Label" />
+        <AccordionItem title="Label" />
+      </Accordion>,
+    );
+
+    wrapper
+      .find(AccordionItem)
+      .at(1)
+      .prop('onClick')!(1);
+
+    expect(spy).toHaveBeenCalledWith(1);
+  });
 });
