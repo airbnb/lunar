@@ -111,7 +111,7 @@ export default function HierarchyList({
           className={cx(styles.asideButton)}
           tabIndex={-1}
           type="button"
-          onClick={() => onItemPicked([...parents, item.name])}
+          onClick={() => onItemPicked([...parents, item.name], item)}
         >
           <ItemDescription item={item} />
         </button>

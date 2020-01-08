@@ -43,8 +43,8 @@ describe('<Hierarchy />', () => {
       const handlePicked = jest.fn();
       const wrapper = shallow(<Hierarchy {...props} onItemPicked={handlePicked} />);
       expect(handlePicked).not.toHaveBeenCalled();
-      wrapper.find(HierarchyList).simulate('itemPicked', ['foo']);
-      expect(handlePicked).toHaveBeenCalledWith(['foo'], {
+      wrapper.find(HierarchyList).simulate('itemPicked', ['foo'], testItems[0]);
+      expect(handlePicked).toHaveBeenCalledWith(['foo'], testItems[0], {
         origin: 'Hierarchy',
       } as ChoiceDetails);
     });
