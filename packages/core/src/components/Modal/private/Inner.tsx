@@ -18,6 +18,8 @@ export type Props = ModalInnerContentProps & {
   image?: ModalImageConfig;
   /** Fluid width, no max width. */
   fluid?: boolean;
+  /** Keep modal open when clicking outside of the modal (in the blackout). */
+  persistOnOutsideClick?: boolean;
 };
 
 /** A Dialog component with a backdrop and a standardized layout. */
@@ -48,7 +50,10 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
   private handleClickOutside = (event: React.MouseEvent | MouseEvent) => {
     const { current } = this.dialogRef;
 
-    if (current && current.contains(event.target as Element)) {
+    if (
+      (current && current.contains(event.target as Element)) ||
+      this.props.persistOnOutsideClick
+    ) {
       return;
     }
 

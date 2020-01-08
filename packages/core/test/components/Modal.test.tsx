@@ -78,6 +78,31 @@ describe('<Modal />', () => {
     expect(closeSpy).toHaveBeenCalled();
   });
 
+  it('doesnt close when clicked outside and persist is enabled', () => {
+    const closeSpy = jest.fn();
+
+    const eventMap: EventMap = {
+      click: null,
+      mouseup: null,
+      mousedown: null,
+    };
+
+    jest.spyOn(document, 'addEventListener').mockImplementation((event, cb) => {
+      // @ts-ignore
+      eventMap[event] = cb;
+    });
+
+    shallowWithStyles(
+      <ModalInner persistOnOutsideClick onClose={closeSpy}>
+        Foo
+      </ModalInner>,
+    );
+
+    eventMap.click!();
+
+    expect(closeSpy).not.toHaveBeenCalled();
+  });
+
   it('does not close when clicked on self', () => {
     const target = document.createElement('div');
     const closeSpy = jest.fn();
