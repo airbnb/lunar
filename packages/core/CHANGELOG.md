@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.54.0 - 2020-01-08
+
+#### 🚀 Updates
+
+- **[Modal]** Add `persistOnOutsideClick` prop. (#276) ([f8f8ff3](https://github.com/airbnb/lunar/commit/f8f8ff3)), closes [#276](https://github.com/airbnb/lunar/issues/276)
+
+#### 🐞 Fixes
+
+- **[Tooltip]** Prevent tooltip from rendering at 0, 0 (#274) ([bc7e6cb](https://github.com/airbnb/lunar/commit/bc7e6cb)), closes [#274](https://github.com/airbnb/lunar/issues/274)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.53.3 - 2020-01-06
 
 #### 🐞 Fixes
