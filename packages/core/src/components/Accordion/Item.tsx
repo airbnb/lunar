@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useStyles from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
 import ExpandableIcon from '../ExpandableIcon';
@@ -9,18 +9,20 @@ export type Props = {
   bordered?: boolean;
   /** Content to render if the accordion item is expanded. */
   children?: React.ReactNode;
-  /** Whether the accordion item is expanded or not. */
+  /** @ignore Whether the accordion item is expanded or not. */
   expanded?: boolean;
   /** @ignore Unique id of the accordion item, passed in from parent. */
   id?: string;
-  /** Index amongst a collection of accordion items. */
+  /** @ignore Index amongst a collection of accordion items. */
   index?: number;
   /** Removes horizontal padding from the item and top padding from the item body. */
   noSpacing?: boolean;
   /** Title of the accordion item. */
   title?: React.ReactNode;
-  /** Callback fired when the accordion item is clicked. */
+  /** @ignore Callback fired when the accordion item is clicked. */
   onClick?: (index: number) => void;
+  /** Callback fired when the item is expanded or collapsed. */
+  onToggle?: (expanded: boolean) => void;
 };
 
 /**
@@ -35,8 +37,10 @@ export default function AccordionItem({
   noSpacing,
   title,
   onClick,
+  onToggle,
 }: Props) {
   const [styles, cx] = useStyles(styleSheet);
+  const [prevExpanded, setExpanded] = useState(expanded);
   const theme = useTheme();
 
   const handleClick = () => {
@@ -44,6 +48,13 @@ export default function AccordionItem({
       onClick(index!);
     }
   };
+
+  useEffect(() => {
+    if (expanded !== undefined && prevExpanded !== expanded && onToggle) {
+      onToggle(expanded);
+      setExpanded(expanded);
+    }
+  }, [prevExpanded, expanded, onToggle]);
 
   return (
     <div className={cx(bordered && styles.item_bordered)}>
