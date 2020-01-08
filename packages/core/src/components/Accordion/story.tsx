@@ -12,20 +12,20 @@ export default {
 
 export function multipleItemsWithBorders() {
   return (
-    <Accordion bordered>
-      <Item title="Item 1">
+    <Accordion bordered onChange={action('onChange')}>
+      <Item title="Item 1" onToggle={action('onToggle')}>
         <Text>
           <LoremIpsum />
         </Text>
       </Item>
 
-      <Item title="Item 2">
+      <Item title="Item 2" onToggle={action('onToggle')}>
         <Text>
           <LoremIpsum />
         </Text>
       </Item>
 
-      <Item title="Item 3">
+      <Item title="Item 3" onToggle={action('onToggle')}>
         <Text>
           <LoremIpsum />
         </Text>
