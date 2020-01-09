@@ -480,6 +480,11 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     if (!value && !force && !loadItemsOnFocus) {
       this.props.onSelectItem!('', null);
 
+      this.setState({
+        loading: false,
+        open: false,
+      });
+
       return Promise.resolve([]);
     }
 
