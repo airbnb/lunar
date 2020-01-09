@@ -90,7 +90,7 @@ export type Props<T extends Item = Item> = Omit<BaseInputProps, 'id'> &
     renderLoading?: RenderableProp;
     /** Render a no results state while items are empty. */
     renderNoResults?: RenderableProp;
-    /** When a value is entered that isnt in the items list, should it be selected when pressing enter. */
+    /** When a value is entered that isn't in the items list, should it be selected when pressing enter. */
     selectUnknownOnEnter?: boolean;
     /**
      * Function in which to determine if an item should render in the menu.
