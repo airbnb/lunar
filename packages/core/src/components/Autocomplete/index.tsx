@@ -11,6 +11,7 @@ import Spacing from '../Spacing';
 import T from '../Translate';
 import Text from '../Text';
 import renderElementOrFunction, { RenderableProp } from '../../utils/renderElementOrFunction';
+import passThroughRef from '../../utils/passThroughRef';
 
 export type Item = {
   disabled?: boolean;
@@ -213,12 +214,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     const { open } = this.state;
     const { current } = this.inputRef;
 
-    if (
-      current &&
-      current.ownerDocument &&
-      current === current.ownerDocument.activeElement &&
-      !open
-    ) {
+    if (current === current?.ownerDocument?.activeElement && !open) {
       this.setState({
         open: true,
       });
@@ -551,6 +547,11 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     this.props.debounce!,
   );
 
+  loadRef = (ref: HTMLInputElement | null) => {
+    passThroughRef(this.inputRef, ref);
+    passThroughRef(this.props.propagateRef, ref);
+  };
+
   maybeAutoCompleteText = (state: State<T>) => {
     const { highlightedIndex, value } = state;
     const { isItemSelectable } = this.props;
@@ -718,7 +719,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
             aria-autocomplete="list"
             aria-expanded={open}
             autoComplete="off"
-            propagateRef={this.inputRef}
+            propagateRef={this.loadRef}
             type="search"
             onClick={this.handleInputClick}
             onFocus={this.handleInputFocus}
