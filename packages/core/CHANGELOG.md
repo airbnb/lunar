@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.57.0 - 2020-01-09
+
+#### 🚀 Updates
+
+- **[Autocomplete, Multicomplete]** Add `selectUnknownOnEnter` prop. (#280) ([cd556d3](https://github.com/airbnb/lunar/commit/cd556d3)), closes [#280](https://github.com/airbnb/lunar/issues/280)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.56.0 - 2020-01-08
 
 #### 🚀 Updates
