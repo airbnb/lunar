@@ -56,7 +56,9 @@ export default class Multicomplete<T extends Item = Item> extends React.Componen
       this.props.onSelectItem(value, item, event);
     }
 
-    if (!value || !item) {
+    console.log(value, item, event);
+
+    if (!value || (!item && !this.props.selectUnknownOnEnter)) {
       return;
     }
 

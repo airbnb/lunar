@@ -90,6 +90,8 @@ export type Props<T extends Item = Item> = Omit<BaseInputProps, 'id'> &
     renderLoading?: RenderableProp;
     /** Render a no results state while items are empty. */
     renderNoResults?: RenderableProp;
+    /** When a value is entered that isnt in the items list, should it be selected when pressing enter. */
+    selectUnknownOnEnter?: boolean;
     /**
      * Function in which to determine if an item should render in the menu.
      * This should be used for item list filtering.
@@ -335,35 +337,43 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     }
 
     const { highlightedIndex } = this.state;
+    let item: T | null = null;
+    let value = '';
 
     if (highlightedIndex === null) {
-      // Input has focus but no menu item is selected + enter is hit -> close the menu, highlight whatever's in input
-      this.setState(
-        {
-          open: false,
-        },
-        () => {
-          if (this.inputRef.current) {
-            this.inputRef.current.select();
-          }
-        },
-      );
+      if (this.props.selectUnknownOnEnter) {
+        value = this.state.value;
+      } else {
+        // Input has focus but no menu item is selected + enter is hit -> close the menu,
+        // highlight whatever's in input
+        this.setState(
+          {
+            open: false,
+          },
+          () => {
+            if (this.inputRef.current) {
+              this.inputRef.current.select();
+            }
+          },
+        );
+      }
     } else {
-      // Text entered + menu item has been highlighted + enter is hit -> update value to that of selected menu item, close the menu
+      // Text entered + menu item has been highlighted + enter is hit -> update value
+      // to that of selected menu item, close the menu
       event.preventDefault();
 
-      const item = this.getFilteredItems(this.state)[highlightedIndex];
-      const value = this.props.getItemValue!(item);
-
-      this.setState(
-        {
-          highlightedIndex: null,
-          open: false,
-          value,
-        },
-        () => this.handleSelect(value, item, event),
-      );
+      item = this.getFilteredItems(this.state)[highlightedIndex];
+      value = this.props.getItemValue!(item);
     }
+
+    this.setState(
+      {
+        highlightedIndex: null,
+        open: false,
+        value,
+      },
+      () => this.handleSelect(value, item, event),
+    );
   };
 
   private handleInputKeyDownEscape = () => {
@@ -404,7 +414,11 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     );
   };
 
-  private handleSelect = (value: string, item: T, event: React.SyntheticEvent<HTMLElement>) => {
+  private handleSelect = (
+    value: string,
+    item: T | null,
+    event: React.SyntheticEvent<HTMLElement>,
+  ) => {
     this.props.onSelectItem!(value, item, event);
     this.props.onChange(value, event);
 
