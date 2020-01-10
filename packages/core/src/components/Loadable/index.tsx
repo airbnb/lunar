@@ -32,6 +32,8 @@ export type Props<T extends object> = {
   noError?: boolean;
   /** Disable the loading state. */
   noLoading?: boolean;
+  /** Do not wrap component with a `React.Suspense` component. */
+  noSuspense?: boolean;
 };
 
 export type State = {
@@ -115,7 +117,7 @@ export default class Loadable<T extends object = {}> extends React.Component<Pro
       return null;
     }
 
-    return renderElementOrFunction(renderable, error) || <ErrorMessage error={error} />;
+    return renderElementOrFunction(renderable, error) ?? <ErrorMessage error={error} />;
   };
 
   renderLoading(): NonNullable<React.ReactNode> | null {
@@ -125,7 +127,7 @@ export default class Loadable<T extends object = {}> extends React.Component<Pro
       return null;
     }
 
-    return renderElementOrFunction(loading) || <Loader static />;
+    return renderElementOrFunction(loading) ?? <Loader static />;
   }
 
   render() {
@@ -133,8 +135,12 @@ export default class Loadable<T extends object = {}> extends React.Component<Pro
       return this.renderError();
     }
 
-    return (
-      <React.Suspense fallback={this.renderLoading()}>{this.renderComponent()}</React.Suspense>
-    );
+    const children = this.renderComponent();
+
+    if (this.props.noSuspense) {
+      return children;
+    }
+
+    return <React.Suspense fallback={this.renderLoading()}>{children}</React.Suspense>;
   }
 }
