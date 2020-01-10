@@ -123,6 +123,7 @@ export default class Loadable<T extends object = {}> extends React.Component<Pro
       loading,
       noError,
       noLoading,
+      noSuspense,
       ...restProps
     } = this.props;
     const Component = lazyComponent ?? React.lazy(component);
