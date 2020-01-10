@@ -23,6 +23,8 @@ export type Props<T extends object> = {
    * When not defined, this defaults to `ErrorMessage`.
    */
   error?: RenderableProp<Error>;
+  /** @ignore The component returned from `React.lazy` (exists for performance gains). */
+  lazyComponent?: React.LazyExoticComponent<React.ComponentType<T>>;
   /**
    * Render an element or a function that returns an element while loading.
    * When not defined, this defaults to `Loader`.
@@ -52,7 +54,10 @@ export default class Loadable<T extends object = {}> extends React.Component<Pro
     loading: null,
     noError: false,
     noLoading: false,
+    noSuspense: false,
   };
+
+  mounted: boolean = false;
 
   state: State = {
     error: null,
@@ -63,8 +68,19 @@ export default class Loadable<T extends object = {}> extends React.Component<Pro
     component: Props<P>['component'],
     initialProps: Omit<Props<P>, 'component'> = {},
   ) {
+    // Start lazy loading the component in the module scope
+    // when the factory is called, instead of when it renders.
+    const lazyComponent = React.lazy(component);
+
     return function LoadableFactory(props: P) {
-      return <Loadable {...initialProps} {...props} component={component} />;
+      return (
+        <Loadable
+          {...initialProps}
+          {...props}
+          component={component}
+          lazyComponent={lazyComponent}
+        />
+      );
     };
   }
 
@@ -76,15 +92,25 @@ export default class Loadable<T extends object = {}> extends React.Component<Pro
   }
 
   componentDidMount() {
+    this.mounted = true;
+
     const { delay } = this.props;
 
     if (delay && delay > 0) {
       window.setTimeout(() => {
+        if (!this.mounted) {
+          return;
+        }
+
         this.setState({
           showLoading: true,
         });
       }, delay);
     }
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   renderComponent = () => {
@@ -93,12 +119,13 @@ export default class Loadable<T extends object = {}> extends React.Component<Pro
       component,
       delay,
       error,
+      lazyComponent,
       loading,
       noError,
       noLoading,
       ...restProps
     } = this.props;
-    const Component = React.lazy(component);
+    const Component = lazyComponent ?? React.lazy(component);
 
     if (typeof children === 'function') {
       // @ts-ignore Bug: https://github.com/Microsoft/TypeScript/issues/26970
