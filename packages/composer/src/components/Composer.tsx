@@ -59,6 +59,8 @@ export type ComposerProps = {
   onChange: ChangeHandler;
   /** Callback fired when the input is submitted. */
   onSubmit: SubmitHandler;
+  /** Placeholder for the private note writing mode. */
+  privateNotePlaceholder?: string;
   /** Default writing mode. */
   writingMode?: WritingMode;
 };
@@ -87,6 +89,7 @@ export default function Composer({
   disabled = false,
   onChange,
   onSubmit,
+  privateNotePlaceholder,
   writingMode,
 }: ComposerProps) {
   const [styles, cx] = useStyles(styleSheet);
@@ -178,6 +181,7 @@ export default function Composer({
               <Input
                 disabled={disabled}
                 invalid={invalid}
+                privateNotePlaceholder={privateNotePlaceholder}
                 onChange={onChange}
                 onSubmit={onSubmit}
               />

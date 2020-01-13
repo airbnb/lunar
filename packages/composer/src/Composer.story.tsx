@@ -286,7 +286,7 @@ withTypeAheadSuggestions.story = {
   name: 'With type ahead suggestions.',
 };
 
-export function withPreviewConfirmation() {
+export function withPreview() {
   return (
     <Wrapper>
       <Composer {...props} defaultValues={{ value: 'Lorem ipsum dolor sit amet.' }}>
@@ -296,8 +296,22 @@ export function withPreviewConfirmation() {
   );
 }
 
+withPreview.story = {
+  name: 'With preview.',
+};
+
+export function withPreviewConfirmation() {
+  return (
+    <Wrapper>
+      <Composer {...props} defaultValues={{ value: 'Lorem ipsum dolor sit amet.' }}>
+        <Preview requireConfirmation />
+      </Composer>
+    </Wrapper>
+  );
+}
+
 withPreviewConfirmation.story = {
-  name: 'With preview confirmation.',
+  name: 'With preview and required confirmation.',
 };
 
 export function withProofreading() {

@@ -38,9 +38,9 @@ export default function Emojis({ internal = false, startAlign = false }: EmojisP
   );
 
   return (
-    <Menu borderless endAlign={!startAlign} name={MENU_EMOJIS} startAlign={startAlign} width={290}>
+    <Menu borderless endAlign={!startAlign} name={MENU_EMOJIS} startAlign={startAlign} width={320}>
       <Picker
-        columnCount={9}
+        columnCount={10}
         rowCount={6}
         onClosePicker={handleClose}
         onSelectEmoji={handleSelect}

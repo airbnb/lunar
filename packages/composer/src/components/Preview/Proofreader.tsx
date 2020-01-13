@@ -11,10 +11,15 @@ import Window from './Window';
 import { ProofreaderLoader, ProofreadConfig } from '../../types';
 
 export type ProofreaderProps = {
+  /** Determines whether a marked mistake is highlighted. */
   isRuleHighlighted?: RendererProps['isRuleHighlighted'];
+  /** Determines whether a marked mistake uses a secondary color. */
   isRuleSecondary?: RendererProps['isRuleSecondary'];
+  /** Locale to query mistakes for. Defaults to "en". */
   locale?: string;
+  /** Callback fired when preview is confirmed. */
   onConfirm: () => void;
+  /** Callback to load spelling and grammar checks from a LanguageTool API. */
   onProofread: ProofreaderLoader;
   value: string;
 };

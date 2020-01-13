@@ -124,7 +124,7 @@ export function checkForAirbnbErrors(text: string): ProofreadConfig[] {
   return customErrors;
 }
 
-export function onSubmitShowPreview(result: DataSet, context: WritableContext) {
+export function onSubmitShowPreview(result: unknown, context: WritableContext) {
   // Preview has been confirmed so pass through submit handlers
   // and reset the current preview state.
   if (context.data.previewConfirmed) {

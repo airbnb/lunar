@@ -11,13 +11,15 @@ import { GroupedActions, ActionConfig } from '../../types';
 export type ActionsProps = {
   /** List of actions to support. */
   actions: ActionConfig[];
+  /** Align on the right instead of the left. */
+  endAlign?: boolean;
   /** Disable the automatic inclusion of writing mode actions. */
   noWritingModes?: boolean;
 };
 
 export { ActionButton };
 
-export default function Actions({ actions, noWritingModes }: ActionsProps) {
+export default function Actions({ actions, endAlign, noWritingModes }: ActionsProps) {
   const context = useContext(ComposerContext);
   const { setMenu } = context;
 
@@ -34,7 +36,7 @@ export default function Actions({ actions, noWritingModes }: ActionsProps) {
   mapActionsIntoGroups(actions, groupedActions);
 
   return (
-    <Menu borderless startAlign name={MENU_ACTIONS} width={215}>
+    <Menu borderless startAlign={!endAlign} endAlign={endAlign} name={MENU_ACTIONS} width={215}>
       <ItemMenu
         overflow
         accessibilityLabel={T.phrase('Actions menu', null, { key: 'composer.actions.label' })}

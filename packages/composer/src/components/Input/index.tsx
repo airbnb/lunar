@@ -102,9 +102,16 @@ export type InputProps = {
   invalid?: boolean;
   onChange: ChangeHandler;
   onSubmit: SubmitHandler;
+  privateNotePlaceholder?: string;
 };
 
-export default function Input({ disabled, invalid, onChange, onSubmit }: InputProps) {
+export default function Input({
+  disabled,
+  invalid,
+  onChange,
+  onSubmit,
+  privateNotePlaceholder,
+}: InputProps) {
   const ref = useRef<HTMLTextAreaElement | null>(null);
   const context = useContext(ComposerContext);
   const { hotkeys } = useContext(HotkeyContext);
@@ -117,7 +124,9 @@ export default function Input({ disabled, invalid, onChange, onSubmit }: InputPr
   if (context.mode === MODE_EMAIL) {
     placeholder = T.phrase('Send email…', null, { key: 'composer.labels.sendEmail' });
   } else if (context.mode === MODE_PRIVATE_NOTE) {
-    placeholder = T.phrase('Private to Airbnb', null, { key: 'composer.labels.privateToAirbnb' });
+    placeholder =
+      privateNotePlaceholder ??
+      T.phrase('Private to Airbnb', null, { key: 'composer.labels.privateToAirbnb' });
   }
 
   // Form handlers
@@ -236,7 +245,7 @@ export default function Input({ disabled, invalid, onChange, onSubmit }: InputPr
           condition={showWhenValueNotEmptyCondition}
           name="submit"
           label={
-            context.flags.preview
+            context.flags.previewConfirm
               ? T.phrase('to preview', null, { key: 'composer.hotkey.returnToPreview' })
               : T.phrase('to send', null, { key: 'composer.hotkey.returnToSend' })
           }
