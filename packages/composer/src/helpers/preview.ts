@@ -2,7 +2,7 @@ import { LT_LOCALES, DEFAULT_LOCALE } from '@airbnb/lunar/lib/constants';
 import { LocaleDefinition } from '@airbnb/lunar/lib/types';
 import T from '@airbnb/lunar/lib/components/Translate';
 import { MENU_PREVIEW } from '../constants';
-import { ProofreadConfig, DataSet, WritableContext } from '../types';
+import { ProofreadConfig, WritableContext } from '../types';
 
 export const NO_LOCALE = 'none';
 export const AUTO_DETECT_LOCALE = 'auto';

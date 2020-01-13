@@ -205,7 +205,7 @@ describe('<Composer />', () => {
       const spy = jest.fn();
       const { root } = render<ComposerProps>(
         <Composer {...props} onSubmit={spy}>
-          <Preview />
+          <Preview requireConfirmation />
         </Composer>,
       );
 
@@ -224,7 +224,7 @@ describe('<Composer />', () => {
     it('renders a proofreader when `onProofread` is passed', async () => {
       const { root } = render<ComposerProps>(
         <Composer {...props}>
-          <Preview onProofread={checkText} />
+          <Preview requireConfirmation onProofread={checkText} />
         </Composer>,
       );
 
@@ -238,7 +238,7 @@ describe('<Composer />', () => {
     it('renders error marks and shows error menu when clicked', async () => {
       const { root } = render<ComposerProps>(
         <Composer {...props}>
-          <Preview onProofread={checkText} />
+          <Preview requireConfirmation onProofread={checkText} />
         </Composer>,
         { mockRef },
       );
@@ -271,7 +271,7 @@ describe('<Composer />', () => {
       const spy = jest.fn();
       const { root } = render<ComposerProps>(
         <Composer {...props} onSubmit={spy}>
-          <Preview />
+          <Preview requireConfirmation />
         </Composer>,
       );
 

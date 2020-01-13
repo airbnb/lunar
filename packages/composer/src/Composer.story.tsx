@@ -159,7 +159,7 @@ export function checkText() {
 }
 
 const props = {
-  onChange: action('onChange'),
+  onChange: typeof action === 'undefined' ? () => {} : action('onChange'),
   onSubmit(result: DataSet) {
     console.log('onSubmit', result);
     alert('Submitted!');

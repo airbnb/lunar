@@ -11,14 +11,24 @@ jest.mock('lodash/debounce', () => (cb: Function) => {
 });
 
 describe('<Preview />', () => {
-  it('registers submit handlers', () => {
+  it('registers submit handlers when confirm is required', () => {
+    const spy = jest.fn();
+
+    render<PreviewProps>(<Preview requireConfirmation />, {
+      wrapper: <Wrapper menu={MENU_PREVIEW} composerContext={{ onSubmit: spy }} />,
+    });
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('doesnt register submit handlers when confirm is optional', () => {
     const spy = jest.fn();
 
     render<PreviewProps>(<Preview />, {
       wrapper: <Wrapper menu={MENU_PREVIEW} composerContext={{ onSubmit: spy }} />,
     });
 
-    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledTimes(0);
   });
 
   it('renders proofreader when `onProofread` is defined', () => {
