@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.58.0 - 2020-01-13
+
+#### 🚀 Updates
+
+- **[Loadable]** Fix layout thrashing and improve performance. (#281) ([b8490af](https://github.com/airbnb/lunar/commit/b8490af)), closes [#281](https://github.com/airbnb/lunar/issues/281)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.57.0 - 2020-01-09
 
 #### 🚀 Updates
