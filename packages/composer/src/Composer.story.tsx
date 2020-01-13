@@ -2,7 +2,6 @@
 
 import React from 'react';
 import IconPhone from '@airbnb/lunar-icons/lib/general/IconPhone';
-import { storiesOf } from '@storybook/react';
 import Composer, {
   Actions,
   ActionButton,
@@ -17,10 +16,6 @@ import Composer, {
   ActionConfig,
   DataSet,
 } from '.';
-
-function log(name: string) {
-  return (...args: unknown[]) => console.log(name, args);
-}
 
 export const actions: ActionConfig[] = [
   {
@@ -164,7 +159,7 @@ export function checkText() {
 }
 
 const props = {
-  onChange: log('onChange'),
+  onChange: action('onChange'),
   onSubmit(result: DataSet) {
     console.log('onSubmit', result);
     alert('Submitted!');
@@ -173,25 +168,47 @@ const props = {
 
 function Wrapper({ children, message }: { children?: React.ReactNode; message?: string }) {
   return (
-    <div style={{ width: 400 }}>
+    <div style={{ width: 450 }}>
       <div style={{ height: 300 }}>{message ?? 'Messages...'}</div>
       {children}
     </div>
   );
 }
 
-storiesOf('Composer', module)
-  .add('Default.', () => (
+export default {
+  title: 'Composer',
+  excludeStories: ['actions', 'shortcuts', 'suggestions', 'loadSuggestions', 'checkText'],
+  parameters: {
+    inspectComponents: [Composer, Actions, Emojis, Hotkey, Preview, Shortcuts, Suggestions],
+  },
+};
+
+export function defaultStory() {
+  return (
     <Wrapper>
       <Composer {...props} />
     </Wrapper>
-  ))
-  .add('Disabled input.', () => (
+  );
+}
+
+defaultStory.story = {
+  name: 'Default.',
+};
+
+export function disabledInput() {
+  return (
     <Wrapper>
       <Composer disabled {...props} />
     </Wrapper>
-  ))
-  .add('Invalid input with error state.', () => (
+  );
+}
+
+disabledInput.story = {
+  name: 'Disabled input.',
+};
+
+export function invalidInputWithErrorState() {
+  return (
     <Wrapper message="Type some characters and try submitting the form.">
       <Composer
         {...props}
@@ -200,22 +217,43 @@ storiesOf('Composer', module)
         }}
       />
     </Wrapper>
-  ))
-  .add('With actions.', () => (
+  );
+}
+
+invalidInputWithErrorState.story = {
+  name: 'Invalid input with error state.',
+};
+
+export function withActions() {
+  return (
     <Wrapper>
       <Composer {...props} beforeButton={<ActionButton />}>
         <Actions actions={actions} />
       </Composer>
     </Wrapper>
-  ))
-  .add('With emojis.', () => (
+  );
+}
+
+withActions.story = {
+  name: 'With actions.',
+};
+
+export function withEmojis() {
+  return (
     <Wrapper>
       <Composer {...props} afterButton={<EmojiButton />}>
         <Emojis internal />
       </Composer>
     </Wrapper>
-  ))
-  .add('With hotkeys.', () => (
+  );
+}
+
+withEmojis.story = {
+  name: 'With emojis.',
+};
+
+export function withHotkeys() {
+  return (
     <Wrapper>
       <Composer {...props}>
         <Hotkey
@@ -227,22 +265,43 @@ storiesOf('Composer', module)
         />
       </Composer>
     </Wrapper>
-  ))
-  .add('With type ahead suggestions.', () => (
+  );
+}
+
+withHotkeys.story = {
+  name: 'With hotkeys.',
+};
+
+export function withTypeAheadSuggestions() {
+  return (
     <Wrapper message={'Start typing "Hello" to load suggestions!'}>
       <Composer {...props}>
         <Suggestions noCache onLoad={loadSuggestions} />
       </Composer>
     </Wrapper>
-  ))
-  .add('With preview confirmation.', () => (
+  );
+}
+
+withTypeAheadSuggestions.story = {
+  name: 'With type ahead suggestions.',
+};
+
+export function withPreviewConfirmation() {
+  return (
     <Wrapper>
       <Composer {...props} defaultValues={{ value: 'Lorem ipsum dolor sit amet.' }}>
         <Preview />
       </Composer>
     </Wrapper>
-  ))
-  .add('With proofreading.', () => (
+  );
+}
+
+withPreviewConfirmation.story = {
+  name: 'With preview confirmation.',
+};
+
+export function withProofreading() {
+  return (
     <Wrapper>
       <Composer
         {...props}
@@ -254,15 +313,29 @@ storiesOf('Composer', module)
         <Preview onProofread={checkText} />
       </Composer>
     </Wrapper>
-  ))
-  .add('With shortcuts.', () => (
+  );
+}
+
+withProofreading.story = {
+  name: 'With proofreading.',
+};
+
+export function withShortcuts() {
+  return (
     <Wrapper message={'Start typing with "/" to open the shortcuts menu!'}>
       <Composer {...props}>
         <Shortcuts shortcuts={shortcuts} />
       </Composer>
     </Wrapper>
-  ))
-  .add('Everything.', () => (
+  );
+}
+
+withShortcuts.story = {
+  name: 'With shortcuts.',
+};
+
+export function everything() {
+  return (
     <Wrapper>
       <Composer
         {...props}
@@ -290,4 +363,9 @@ storiesOf('Composer', module)
         />
       </Composer>
     </Wrapper>
-  ));
+  );
+}
+
+everything.story = {
+  name: 'Everything.',
+};
