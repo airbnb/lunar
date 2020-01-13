@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Renderer /> renders full string if no errors 1`] = `
+"<div>
+  <span>This is a really long input string.</span>
+</div>"
+`;
+
+exports[`<Renderer /> wraps errors with marks 1`] = `
+"<div>
+  <span>This is a </span>
+  <button className=\\"button\\" type=\\"button\\" onClick={onClick()}>
+    <mark className=\\"mark\\">
+      really long
+    </mark>
+  </button>
+  <span> input </span>
+  <button className=\\"button\\" type=\\"button\\" onClick={onClick()}>
+    <mark className=\\"mark\\">
+      string
+    </mark>
+  </button>
+  <span>.</span>
+</div>"
+`;

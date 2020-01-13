@@ -1,0 +1,31 @@
+{
+  "name": "@airbnb/lunar-composer",
+  "version": "0.0.0",
+  "description": "Unified composer for doing all the things.",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "module": "./esm/index.js",
+  "sideEffects": false,
+  "repository": "https://github.com/airbnb/lunar/tree/master/packages/composer",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "yarn run build:cjs && yarn run build:esm",
+    "build:cjs": "BUILD=cjs babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./lib",
+    "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
+  },
+  "peerDependencies": {
+    "@airbnb/lunar": "^2.0.0",
+    "react": "^16.9.0"
+  },
+  "devDependencies": {
+    "@airbnb/lunar": "^2.53.0",
+    "react": "^16.11.0"
+  },
+  "dependencies": {
+    "@airbnb/lunar-icons": "^2.5.1",
+    "lodash": "^4.17.15"
+  }
+}
