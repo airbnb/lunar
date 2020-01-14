@@ -1,44 +1,7 @@
 import React, { useRef } from 'react';
-import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import useScrollIntoView from '../../hooks/useScrollIntoView';
-
-const styleSheet: StyleSheet = ({ color, font, pattern, unit }) => ({
-  button: {
-    ...pattern.resetButton,
-    background: color.accent.bg,
-    display: 'block',
-    padding: `${unit}px ${unit * 2}px`,
-    width: '100%',
-    textAlign: 'left',
-
-    ':hover': {
-      background: color.accent.bgHover,
-    },
-  },
-
-  button_active: {
-    color: color.base,
-    background: color.core.primary[3],
-
-    ':hover': {
-      background: color.core.primary[4],
-    },
-  },
-
-  name: {
-    fontWeight: font.weights.semibold,
-  },
-
-  status: {
-    fontWeight: 'normal',
-    display: 'inline-block',
-    marginLeft: unit / 2,
-  },
-
-  description: {
-    opacity: 0.75,
-  },
-});
+import { selectListItemStyleSheet } from '../../styles';
 
 export type SelectionProps = {
   active: boolean;
@@ -49,7 +12,7 @@ export type SelectionProps = {
 };
 
 export default function Selection({ active, description, name, status, onClick }: SelectionProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(selectListItemStyleSheet);
   const ref = useRef<HTMLLIElement | null>(null);
 
   // Passive hooks

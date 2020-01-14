@@ -1,24 +1,6 @@
 import React from 'react';
-import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
-
-const styleSheet: StyleSheet = ({ color, pattern, unit }) => ({
-  button: {
-    ...pattern.resetButton,
-    color: color.core.primary[3],
-    padding: unit / 2,
-
-    '@selectors': {
-      '[disabled]': {
-        color: color.core.neutral[4],
-        cursor: 'not-allowed',
-      },
-
-      ':not([disabled]):hover': {
-        color: color.core.primary[5],
-      },
-    },
-  },
-});
+import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
+import { iconButtonStyleSheet } from '../styles';
 
 export type IconButtonProps = {
   accessibilityLabel: string;
@@ -35,7 +17,7 @@ export default function IconButton({
   id,
   onClick,
 }: IconButtonProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(iconButtonStyleSheet);
 
   return (
     <button

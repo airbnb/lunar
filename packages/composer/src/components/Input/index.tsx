@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useContext, useRef } from 'react';
-import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
-import inputStyleSheet from '@airbnb/lunar/lib/themes/inputStyleSheet';
+import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import IconPlayAlt from '@airbnb/lunar-icons/lib/interface/IconPlayAlt';
 import Interweave from '@airbnb/lunar/lib/components/Interweave';
 import T from '@airbnb/lunar/lib/components/Translate';
@@ -20,82 +19,7 @@ import { processChangeHandlers, processSubmitHandlers } from '../../helpers/hand
 import { MODE_PRIVATE_NOTE, MODE_EMAIL } from '../../constants';
 import InlineInput from './InlineInput';
 import { ChangeHandler, SubmitHandler } from '../../types';
-
-const styleSheet: StyleSheet = theme => {
-  const inputStyles = inputStyleSheet(theme);
-  const { color, font, transition, ui, unit } = theme;
-
-  return {
-    container: {
-      ...font.textRegular,
-      ...transition.box,
-      border: ui.borderThick,
-      borderRadius: ui.borderRadius,
-      color: color.accent.text,
-      position: 'relative',
-
-      ':hover': {
-        borderColor: color.accent.borderHover,
-      },
-
-      '::placeholder': {
-        color: color.muted,
-      },
-    },
-
-    container_focused: inputStyles.input_focused,
-
-    container_invalid: inputStyles.input_invalid,
-
-    container_disabled: inputStyles.input_disabled,
-
-    container_important: inputStyles.input_important,
-
-    input: {
-      ...transition.box,
-      border: 0,
-      background: 'transparent',
-      color: 'inherit',
-      display: 'block',
-      resize: 'none',
-      margin: 0,
-      padding: unit,
-      paddingRight: unit * 4.5, // Submit button
-      width: '100%',
-
-      // Keep font consistent between original and shadow
-      letterSpacing: 'initial',
-      '-webkit-text-size-adjust': 'none',
-
-      '::placeholder': {
-        color: 'inherit',
-      },
-
-      '::-ms-clear': {
-        display: 'none',
-      },
-    },
-
-    input_shadow: {
-      color: color.core.neutral[3],
-      position: 'absolute',
-      top: 0,
-      zIndex: 0,
-    },
-
-    input_original: {
-      position: 'relative',
-      zIndex: 1,
-    },
-
-    submitButton: {
-      position: 'absolute',
-      bottom: unit / 2 - ui.borderWidth,
-      right: unit / 2,
-      zIndex: 2,
-    },
-  };
-};
+import { inputStyleSheet } from '../../styles';
 
 export type InputProps = {
   disabled?: boolean;
@@ -115,7 +39,7 @@ export default function Input({
   const ref = useRef<HTMLTextAreaElement | null>(null);
   const context = useContext(ComposerContext);
   const { hotkeys } = useContext(HotkeyContext);
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(inputStyleSheet);
   const [focused, setFocused] = useState(false);
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const blocked = disabled || invalid || context.data.value.trim() === '';

@@ -1,27 +1,17 @@
 import React, { useContext } from 'react';
-import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import { SYMBOLS } from '../../helpers/hotkeys';
 import ComposerContext from '../../contexts/ComposerContext';
 import HotkeyContext from '../../contexts/HotkeyContext';
+import { footerStyleSheet } from '../../styles';
 import Tip from './Tip';
 import Mark from './Mark';
 import Symbol from './Symbol';
 
-const styleSheet: StyleSheet = ({ color, font, unit }) => ({
-  footer: {
-    ...font.textSmall,
-    textAlign: 'right',
-    color: color.core.neutral[4],
-    paddingTop: unit / 2,
-    paddingBottom: unit / 2,
-    lineHeight: 1,
-  },
-});
-
 export default function Footer() {
   const context = useContext(ComposerContext);
   const { hotkeys } = useContext(HotkeyContext);
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(footerStyleSheet);
 
   // Select active hotkeys for the current view
   const tips = Array.from(hotkeys.values()).filter(hotkey => hotkey.condition(context));

@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useReducer } from 'react';
-import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
 import ComposerContext from '../contexts/ComposerContext';
 import Footer from './Footer';
@@ -14,35 +14,7 @@ import { isShortcutCommand } from '../helpers/shortcuts';
 import HotkeyManager from './HotkeyManager';
 import { MENU_SHORTCUTS, MODE_MESSAGE } from '../constants';
 import { ChangeHandler, SubmitHandler, WritingMode, Context, DataSet, DataValue } from '../types';
-
-const styleSheet: StyleSheet = ({ ui, unit }) => ({
-  composer: {
-    position: 'relative',
-  },
-
-  field: {
-    display: 'flex',
-    alignItems: 'flex-end',
-  },
-
-  affix: {
-    flexGrow: 0,
-    width: unit * 4,
-    paddingBottom: unit / 2 + ui.borderWidth,
-  },
-
-  input: {
-    flexGrow: 1,
-  },
-
-  footer_before: {
-    paddingLeft: unit * 4,
-  },
-
-  footer_after: {
-    paddingRight: unit * 4,
-  },
-});
+import { composerStyleSheet } from '../styles';
 
 export type ComposerProps = {
   /** Button to display after the input field. */
@@ -92,7 +64,7 @@ export default function Composer({
   privateNotePlaceholder,
   writingMode,
 }: ComposerProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(composerStyleSheet);
   const [menu, setMenu] = useState(isShortcutCommand(defaultValues.value) ? MENU_SHORTCUTS : '');
   const [mode, setMode] = useState<WritingMode>(writingMode ?? MODE_MESSAGE);
   const [error, setError] = useState('');

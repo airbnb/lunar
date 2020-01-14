@@ -1,21 +1,9 @@
 import React from 'react';
-import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import Button from '@airbnb/lunar/lib/components/Button';
 import T from '@airbnb/lunar/lib/components/Translate';
 import Row from '@airbnb/lunar/lib/components/Row';
-
-const styleSheet: StyleSheet = ({ unit }) => ({
-  preview: {
-    position: 'relative',
-    padding: `${unit}px ${unit * 2}px`,
-  },
-
-  footer: {
-    paddingRight: unit,
-    paddingBottom: unit,
-    paddingLeft: unit * 2,
-  },
-});
+import { previewWindowStyleSheet } from '../../styles';
 
 export type WindowProps = {
   children: NonNullable<React.ReactNode>;
@@ -24,7 +12,7 @@ export type WindowProps = {
 };
 
 export default function Window({ children, controls, onConfirm }: WindowProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(previewWindowStyleSheet);
 
   return (
     <>

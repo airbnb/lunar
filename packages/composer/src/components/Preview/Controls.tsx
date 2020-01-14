@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import useTheme from '@airbnb/lunar/lib/hooks/useTheme';
 import Text from '@airbnb/lunar/lib/components/Text';
 import Link from '@airbnb/lunar/lib/components/Link';
@@ -14,13 +14,7 @@ import {
   selectAppropriateLocale,
 } from '../../helpers/preview';
 import { ProofreadConfig } from '../../types';
-
-export const styleSheet: StyleSheet = ({ unit }) => ({
-  cell: {
-    display: 'inline-block',
-    marginRight: unit * 2,
-  },
-});
+import { previewControlsStyleSheet } from '../../styles';
 
 export type ControlsProps = {
   autoDetect?: boolean;
@@ -38,7 +32,7 @@ export default function Controls({
   onSelectLocale,
 }: ControlsProps) {
   const theme = useTheme();
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(previewControlsStyleSheet);
   const [showLocaleMenu, setLocaleMenu] = useState(false);
   const { selectedLocale, unsupportedLocale } = selectAppropriateLocale(locale);
 

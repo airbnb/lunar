@@ -1,40 +1,11 @@
 import React, { useContext, useCallback } from 'react';
-import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import useTheme from '@airbnb/lunar/lib/hooks/useTheme';
 import Dropdown, { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
 import ComposerContext from '../../contexts/ComposerContext';
 import ToggleButton from './ToggleButton';
 import { isElementWithID } from '../../helpers/platform';
-
-const styleSheet: StyleSheet = ({ color, font, ui, unit }) => ({
-  menu: {
-    background: color.accent.bg,
-    border: ui.border,
-    borderRadius: ui.borderRadius,
-    boxShadow: ui.boxShadowMedium,
-    color: color.accent.text,
-    padding: 0,
-    margin: 0,
-  },
-
-  menu_borderless: {
-    borderWidth: 0,
-  },
-
-  menu_centerAlign: {
-    width: '100%',
-  },
-
-  menu_sideAlign: {
-    width: 250,
-  },
-
-  title: {
-    borderBottom: ui.border,
-    padding: `${unit}px ${unit * 2}px`,
-    fontWeight: font.weights.semibold,
-  },
-});
+import { menuStyleSheet } from '../../styles';
 
 export type MenuProps = {
   /** Remove border around menu container. */
@@ -70,7 +41,7 @@ export default function Menu({
   onClickOutside,
   width,
 }: MenuProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(menuStyleSheet);
   const { flags, menu, setMenu } = useContext(ComposerContext);
   const { unit } = useTheme();
 
