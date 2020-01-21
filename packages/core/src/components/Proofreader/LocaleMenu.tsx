@@ -1,9 +1,9 @@
 import React from 'react';
-import T from '../../Translate';
-import Menu, { Row, Item, Separator } from '../../Menu';
-import Text from '../../Text';
-import TrackingBoundary from '../../TrackingBoundary';
-import { LT_LOCALES } from '../../../constants';
+import T from '../Translate';
+import Menu, { Row, Item, Separator } from '../Menu';
+import Text from '../Text';
+import TrackingBoundary from '../TrackingBoundary';
+import { LT_LOCALES } from '../../constants';
 import { DefinitionShape } from './types';
 
 export type Props = {

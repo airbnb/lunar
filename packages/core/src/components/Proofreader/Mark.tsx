@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { WithStylesProps } from '../../../composers/withStyles';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { styleSheetMark as styleSheet } from './styles';
 
 export type Props = {

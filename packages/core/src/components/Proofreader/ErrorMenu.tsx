@@ -1,9 +1,9 @@
 import React from 'react';
-import T from '../../Translate';
-import Menu, { Row, Item } from '../../Menu';
-import Text from '../../Text';
-import Interweave from '../../Interweave';
-import TrackingBoundary from '../../TrackingBoundary';
+import T from '../Translate';
+import Menu, { Row, Item } from '../Menu';
+import Text from '../Text';
+import Interweave from '../Interweave';
+import TrackingBoundary from '../TrackingBoundary';
 import { ProofreadRuleMatch } from './types';
 
 export type Props = {

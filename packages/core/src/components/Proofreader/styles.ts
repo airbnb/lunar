@@ -1,5 +1,5 @@
-import { StyleSheet } from '../../../hooks/useStyles';
-import inputStyleSheet from '../../../themes/inputStyleSheet';
+import { StyleSheet } from '../../hooks/useStyles';
+import inputStyleSheet from '../../themes/inputStyleSheet';
 
 export const styleSheet: StyleSheet = theme => {
   const { input, input_important: inputImportant } = inputStyleSheet(theme);
