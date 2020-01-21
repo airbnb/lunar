@@ -18,7 +18,7 @@ const color: Theme['color']['core'] = {
   // Yellow/Orange
   warning: ['#613806', '#97590E', '#AF6D1C', '#FF8C00', '#F7A800', '#FFB400', '#FFDA80'],
   // Red/Pink
-  danger: ['#5B0606', '#650B0B', '#710909', '#B71C1C', '#EF5D5D', '#FB8585', '#FFA8A8'],
+  danger: ['#350F0F', '#650B0B', '#882018', '#D84141', '#F84747', '#FB8585', '#FFA8A8'],
 };
 
 export default (fontFamily: string) =>
