@@ -81,7 +81,7 @@ export type Props = {
   alignTop?: boolean;
   /** Alternate text if image cannot be displayed */
   alt: string;
-  /** Sets background color to color.core.neutral[0] */
+  /** Sets a neutral background color */
   backdrop?: boolean;
   /** Specified when image is not directly a part of the content */
   background?: boolean;
