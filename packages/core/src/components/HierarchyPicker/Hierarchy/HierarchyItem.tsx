@@ -54,10 +54,10 @@ export default function HierarchyItem({
 
   const maybePick = () => {
     if (item.readonly) {
-      onItemPicked(null);
+      onItemPicked(null, null);
       goDeeper();
     } else {
-      onItemPicked(definition);
+      onItemPicked(definition, item);
     }
   };
 

@@ -115,10 +115,10 @@ describe('<Picker />', () => {
     describe('handleItemPicked', () => {
       it('calls close if passed something', () => {
         const details = { origin: 'Search' };
-        wrapper.find(Search).simulate('itemPicked', ['foo'], details);
+        wrapper.find(Search).simulate('itemPicked', ['foo'], testItems[0], details);
 
         expect(myProps.onClose).toHaveBeenCalled();
-        expect(myProps.onItemPicked).toHaveBeenCalledWith(['foo'], details);
+        expect(myProps.onItemPicked).toHaveBeenCalledWith(['foo'], testItems[0], details);
       });
 
       it('does not call close if passed falsy', () => {

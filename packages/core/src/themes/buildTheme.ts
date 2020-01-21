@@ -7,6 +7,7 @@ export type Options = {
   base: string;
   borderRadius?: number;
   boxShadow?: [number, number];
+  boxShadowColor?: string;
   brand: Theme['color']['brand'];
   color: Theme['color']['core'];
   disabledOpacity?: number;
@@ -25,6 +26,7 @@ export default function buildTheme(
     base,
     borderRadius = 4,
     boxShadow = [2, 3],
+    boxShadowColor = base,
     brand,
     color,
     disabledOpacity = 0.3,
@@ -34,6 +36,7 @@ export default function buildTheme(
     bg: base,
     bgHover: color.neutral[0],
     bgError: color.danger[0],
+    blackout: toRGBA('#000', 75), // Use black regardless of theme
     border: color.neutral[2],
     borderActive: color.primary[3], // Also focus/selected
     borderHover: color.neutral[3],
@@ -51,12 +54,9 @@ export default function buildTheme(
     borderRadiusThick: borderRadius * 2,
     borderWidth,
     borderWidthThick,
-    boxShadow: `0 ${boxShadow[0]}px ${boxShadow[1]}px ${toRGBA(color.neutral[6], 10)}`,
-    boxShadowMedium: `0 ${boxShadow[0] * 3}px ${boxShadow[1] * 2}px ${toRGBA(
-      color.neutral[6],
-      15,
-    )}`,
-    boxShadowLarge: `0 ${boxShadow[0] * 4}px ${boxShadow[1] * 4}px ${toRGBA(color.neutral[6], 20)}`,
+    boxShadow: `0 ${boxShadow[0]}px ${boxShadow[1]}px ${toRGBA(boxShadowColor, 10)}`,
+    boxShadowMedium: `0 ${boxShadow[0] * 3}px ${boxShadow[1] * 2}px ${toRGBA(boxShadowColor, 15)}`,
+    boxShadowLarge: `0 ${boxShadow[0] * 4}px ${boxShadow[1] * 4}px ${toRGBA(boxShadowColor, 20)}`,
     disabledOpacity,
     transitionTime,
   };

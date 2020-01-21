@@ -6,7 +6,7 @@ export const MODAL_MAX_WIDTH_SMALL = 400;
 export const MODAL_MAX_WIDTH_MEDIUM = 600;
 export const MODAL_MAX_WIDTH_LARGE = 800;
 
-export const styleSheet: StyleSheet = ({ color, unit }) => ({
+export const styleSheet: StyleSheet = ({ unit, color }) => ({
   container: {
     bottom: 0,
     left: 0,
@@ -19,7 +19,7 @@ export const styleSheet: StyleSheet = ({ color, unit }) => ({
 
   wrapper: {
     alignItems: 'center',
-    backgroundColor: toRGBA(color.core.neutral[6], 75),
+    backgroundColor: color.accent.blackout,
     display: 'flex',
     justifyContent: 'center',
     minHeight: '100%',

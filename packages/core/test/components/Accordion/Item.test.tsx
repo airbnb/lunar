@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import AccordionItem from '../../../src/components/Accordion/Item';
+import { render } from 'rut-dom';
+import AccordionItem, { Props } from '../../../src/components/Accordion/Item';
 import ExpandableIcon from '../../../src/components/ExpandableIcon';
 
 describe('<AccordionItem />', () => {
@@ -84,5 +85,37 @@ describe('<AccordionItem />', () => {
       .simulate('click');
 
     expect(spy).toHaveBeenCalledWith(1);
+  });
+
+  it('triggers `onToggle` when opening and closing', () => {
+    const spy = jest.fn();
+    const wrapper = render<Props>(<AccordionItem id=".0" index={1} title="Title" onToggle={spy} />);
+
+    expect(spy).not.toHaveBeenCalled();
+
+    wrapper.update({
+      expanded: true,
+    });
+
+    expect(spy).toHaveBeenCalledWith(true);
+
+    wrapper.update({
+      expanded: false,
+    });
+
+    expect(spy).toHaveBeenCalledWith(false);
+  });
+
+  it('doesnt fire `onToggle` effect when other props change', () => {
+    const spy = jest.fn();
+    const wrapper = render<Props>(<AccordionItem id=".0" index={1} title="Title" onToggle={spy} />);
+
+    wrapper.update({ bordered: true });
+
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    wrapper.update({ id: 'foo' });
+
+    expect(spy).toHaveBeenCalledTimes(0);
   });
 });

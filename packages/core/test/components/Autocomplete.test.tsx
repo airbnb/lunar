@@ -305,6 +305,32 @@ describe('<Autocomplete />', () => {
       expect(spy).toHaveBeenCalled();
     });
 
+    it('supports `Enter` event - input has focus  + `selectUnknownOnEnter`', () => {
+      const spy = jest.fn();
+      const input = document.createElement('input');
+      instance.inputRef = { current: input };
+      instance.ignoreBlur = true;
+
+      wrapper.setProps({
+        selectUnknownOnEnter: true,
+        onSelectItem: spy,
+      });
+
+      wrapper.setState({
+        open: true,
+        highlightedIndex: null,
+        value: 'unknown',
+      });
+
+      wrapper
+        .find(BaseInput)
+        .simulate('keydown', { key: 'Enter', keyCode: 13, preventDefault: jest.fn() });
+
+      expect(instance.ignoreBlur).toBe(false);
+      expect(wrapper.state('open')).toBe(false);
+      expect(spy).toHaveBeenCalledWith('unknown', null, expect.anything());
+    });
+
     it('supports `Enter` event - text entered + menu item has been highlighted + enter is hit', () => {
       const spy = jest.fn();
       const input = document.createElement('input');

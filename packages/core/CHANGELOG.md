@@ -3,6 +3,154 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.58.0 - 2020-01-13
+
+#### 🚀 Updates
+
+- **[Loadable]** Fix layout thrashing and improve performance. (#281) ([b8490af](https://github.com/airbnb/lunar/commit/b8490af)), closes [#281](https://github.com/airbnb/lunar/issues/281)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.57.0 - 2020-01-09
+
+#### 🚀 Updates
+
+- **[Autocomplete, Multicomplete]** Add `selectUnknownOnEnter` prop. (#280) ([cd556d3](https://github.com/airbnb/lunar/commit/cd556d3)), closes [#280](https://github.com/airbnb/lunar/issues/280)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.56.0 - 2020-01-08
+
+#### 🚀 Updates
+
+- **[HierarchyPicker]** Pass the current item object to `onItemPicked`. (#279) ([bb5ddc3](https://github.com/airbnb/lunar/commit/bb5ddc3)), closes [#279](https://github.com/airbnb/lunar/issues/279)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.55.0 - 2020-01-08
+
+#### 🚀 Updates
+
+- **[Accordion]** Add `onChange` and `onToggle` props. (#277) ([a9370ee](https://github.com/airbnb/lunar/commit/a9370ee)), closes [#277](https://github.com/airbnb/lunar/issues/277)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.54.0 - 2020-01-08
+
+#### 🚀 Updates
+
+- **[Modal]** Add `persistOnOutsideClick` prop. (#276) ([f8f8ff3](https://github.com/airbnb/lunar/commit/f8f8ff3)), closes [#276](https://github.com/airbnb/lunar/issues/276)
+
+#### 🐞 Fixes
+
+- **[Tooltip]** Prevent tooltip from rendering at 0, 0 (#274) ([bc7e6cb](https://github.com/airbnb/lunar/commit/bc7e6cb)), closes [#274](https://github.com/airbnb/lunar/issues/274)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 2.53.3 - 2020-01-06
+
+#### 🐞 Fixes
+
+- **[TextArea]** Wrap reflow in requestAnimationFrame (#272) ([5fed96e](https://github.com/airbnb/lunar/commit/5fed96e)), closes [#272](https://github.com/airbnb/lunar/issues/272)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 2.53.2 - 2020-01-04
+
+#### 🐞 Fixes
+
+- **[Proofreader, Portal]** Fix misc js errors. (#271) ([a57f24b](https://github.com/airbnb/lunar/commit/a57f24b)), closes [#271](https://github.com/airbnb/lunar/issues/271)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 2.53.1 - 2020-01-02
+
+#### 🐞 Fixes
+
+- **[Tooltip, Overlay]** Fix reflows on cDM, cDU, and render (#270) ([f7fa749](https://github.com/airbnb/lunar/commit/f7fa749)), closes [#270](https://github.com/airbnb/lunar/issues/270)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.53.0 - 2019-12-19
+
+#### 🚀 Updates
+
+- Upgrade to Aesthetic v5. (#269) ([57e84e5](https://github.com/airbnb/lunar/commit/57e84e5)), closes [#269](https://github.com/airbnb/lunar/issues/269)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 2.52.2 - 2019-12-16
+
+#### 🎨 Styles
+
+- Minor polish to dark mode. (#266) ([a00805e](https://github.com/airbnb/lunar/commit/a00805e)), closes [#266](https://github.com/airbnb/lunar/issues/266)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 2.52.1 - 2019-12-13
+
+#### 🐞 Fixes
+
+- Fix proofreader crashing by memoizing form input. (#264) ([4272bb4](https://github.com/airbnb/lunar/commit/4272bb4)), closes [#264](https://github.com/airbnb/lunar/issues/264)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+## 2.52.0 - 2019-12-12
+
+#### 🚀 Updates
+
+- Update dark mode! (#260) ([6996767](https://github.com/airbnb/lunar/commit/6996767)), closes [#260](https://github.com/airbnb/lunar/issues/260)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.51.0 - 2019-12-09
 
 #### 🚀 Updates

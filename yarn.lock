@@ -3979,44 +3979,40 @@ address@1.0.3, address@^1.0.1:
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
   integrity sha512-z55ocwKBRLryBs394Sm3ushTtBeg6VAeuku7utSoSnsJKvKcnXFIyC6vh27n3rXyxSgkJBBCAvyOn7gSUcTYjg==
 
-aesthetic-adapter-aphrodite@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/aesthetic-adapter-aphrodite/-/aesthetic-adapter-aphrodite-4.1.0.tgz#64510b52e023914e262e3d27be0970bcfe29d40d"
-  integrity sha512-6JfXYYvChk2nS4WQWXz1sIn8f5uZLcaxq+u8REYlZe96dQQIT/0W8/Q2ImkJlbaIpyAnnPuA918xImZ9deeSjw==
+aesthetic-adapter-aphrodite@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/aesthetic-adapter-aphrodite/-/aesthetic-adapter-aphrodite-5.0.0.tgz#41a0dcebda8585a41864a3f06f9c1de3dbf09585"
+  integrity sha512-4o6VpYsV9H0o9a36kDrTAzBvIuEtzaw5qVkMaQBsQ06TDhwgY+ZALNUgD+ki+ro/AyCQXdtOw5GR53nlcDZlVg==
   dependencies:
-    aesthetic-utils "^2.0.1"
+    aesthetic-utils "^3.0.0"
 
-aesthetic-react@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/aesthetic-react/-/aesthetic-react-1.1.3.tgz#081f221efabfabb58159b87d4671319813567401"
-  integrity sha512-fawdQsBHdW5GJ7NfaLc1L5emQurYEP+CJQ/SFWKByzun8pIq6Li+RQdQmQ2oHLKfD+HlaaD7LwKiUNQnybKgZQ==
+aesthetic-react@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/aesthetic-react/-/aesthetic-react-2.0.1.tgz#2ad83609ce6cf99ab31ad9638ac97b35b28f087f"
+  integrity sha512-C06OMrpJYuJnR+xGHIyeCRXcL9CSaeDPlqV34SBH2dHpMc51fWK4sNi8uW4DezunREkuEdCZG7m0AgKUL2g8TQ==
   dependencies:
     "@types/react" "*"
-    aesthetic-utils "^2.0.1"
+    aesthetic-utils "^3.0.0"
     direction "^1.0.3"
-    hoist-non-react-statics "^3.3.0"
+    hoist-non-react-statics "^3.3.1"
     prop-types "^15.7.2"
-    utility-types "^3.7.0"
     uuid "^3.3.3"
 
-aesthetic-utils@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/aesthetic-utils/-/aesthetic-utils-2.0.1.tgz#3afd68436a196e5317ddb23e9c5f7151677d4e55"
-  integrity sha512-hMABu/GC5ABBBKGZRxsem+98JWqD2mL9hQItMdKWRiUkYbVUy+KQJpMxJRU/pMNkPjAMSQzKXUpHIP6SH2FBvw==
-  dependencies:
-    utility-types "^3.7.0"
+aesthetic-utils@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/aesthetic-utils/-/aesthetic-utils-3.0.0.tgz#13424234b8f6c025756791c5b3c20ad2e452a055"
+  integrity sha512-Z6+0yDsNawEQETorg8u2HFtS6D1iuntFHEiJsamtQOKBOGVXcviWJJuv/QD38Nn+Eoo/OwzfbfzNqPJv2bprEQ==
 
-aesthetic@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/aesthetic/-/aesthetic-4.1.1.tgz#5ea2ae7f49a8277ca48c93943b408c934fd99672"
-  integrity sha512-kZH+8Mjc/AfzwLoCb/62+BV1k3YstrNFyFtrYzRedRCaSH3Jy9wU4w6rbnzMyF3Oow64eJjDxnIooOkUhWWAOA==
+aesthetic@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/aesthetic/-/aesthetic-5.0.1.tgz#b84fa6426242fed471133d25ecdbbe6824e5d9f1"
+  integrity sha512-c6otw1maR80RLbF9hRnpHJPs8pShNmn59QbmY0Gmhz68VVK2DLDCisHCb+1fGlp00kuHi5pTK7j4js23Jd+Zkw==
   dependencies:
-    aesthetic-utils "^2.0.1"
-    csstype "^2.6.6"
+    aesthetic-utils "^3.0.0"
+    csstype "^2.6.8"
     extend "^3.0.2"
-    rtl-css-js "^1.13.1"
+    rtl-css-js "^1.14.0"
     stylis "^3.5.4"
-    utility-types "^3.7.0"
     uuid "^3.3.3"
 
 agent-base@4, agent-base@^4.1.0, agent-base@~4.2.1:
@@ -6562,10 +6558,10 @@ csstype@^2.2.0, csstype@^2.5.7:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.3.tgz#b701e5968245bf9b08d54ac83d00b624e622a9fa"
   integrity sha512-rINUZXOkcBmoHWEyu7JdHu5JMzkGRoMX4ov9830WNgxf5UYxcBUO0QTKAqeJ5EZfSdlrcJYkC8WwfVW7JYi4yg==
 
-csstype@^2.6.6:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.6.tgz#c34f8226a94bbb10c32cc0d714afdf942291fc41"
-  integrity sha512-RpFbQGUE74iyPgvr46U9t1xoQBM8T4BL8SxrN66Le2xYAPSaDJJKeztV3awugusb3g3G9iL8StmkBBXhcbbXhg==
+csstype@^2.6.8:
+  version "2.6.8"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.8.tgz#0fb6fc2417ffd2816a418c9336da74d7f07db431"
+  integrity sha512-msVS9qTuMT5zwAGCVm4mxfrZ18BNc6Csd0oJAtiFMZ1FAx1CCvy2+5MDmYoix63LM/6NDbNtodCiGYGmFgO0dA==
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
@@ -8969,10 +8965,10 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
-  integrity sha512-0XsbTXxgiaCDYDIWFcwkmerZPSwywfUqYmwT4jzewKTQSWoE6FCMoUVOeBJWK3E/CrWbxRG3m5GzY4lnIwGRBA==
+hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#101685d3aff3b23ea213163f6e8e12f4f111e19f"
+  integrity sha512-wbg3bpgA/ZqWrZuMOeJi8+SKMhr7X9TesL/rXMjTzh0p0JUBo3II8DHboYbuIXWRlttrUFxwcu/5kygrCw8fJw==
   dependencies:
     react-is "^16.7.0"
 
@@ -13920,10 +13916,10 @@ rsvp@^4.8.4:
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
   integrity sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==
 
-rtl-css-js@^1.13.1:
-  version "1.13.1"
-  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.13.1.tgz#80deabf6e8f36d6767d495cd3eb60fecb20c67e1"
-  integrity sha512-jgkIDj6Xi25kAEm5oYM3ZMFiOQhpLEcXi2LY/6bVr91cVz73hciHKneL5AMVPxOcks/JuizSaaNsvNRkeAWe3w==
+rtl-css-js@^1.14.0:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.14.0.tgz#daa4f192a92509e292a0519f4b255e6e3c076b7d"
+  integrity sha512-Dl5xDTeN3e7scU1cWX8c9b6/Nqz3u/HgR4gePc1kWXYiQWVQbKCEyK6+Hxve9LbcJ5EieHy1J9nJCN3grTtGwg==
   dependencies:
     "@babel/runtime" "^7.1.2"
 
@@ -15671,11 +15667,6 @@ utila@^0.4.0, utila@~0.4:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/utila/-/utila-0.4.0.tgz#8a16a05d445657a3aea5eecc5b12a4fa5379772c"
   integrity sha1-ihagXURWV6Oupe7MWxKk+lN5dyw=
-
-utility-types@^3.7.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.8.0.tgz#eaae1c2520c206b5623a4f07af38e3aa31dc2f06"
-  integrity sha512-UoKivAmVw5TL6AHuILieOJjIK9ajS0l5gyN5LbJglPuVwzfYBniDhe+3A5+ZBtS0TAHQs5qUxTwj9jXurINrcw==
 
 utils-merge@1.0.1:
   version "1.0.1"

@@ -15,10 +15,18 @@ export type Props = {
   defaultIndex?: number;
   /** Enable multiple items to be open at once. */
   expandMultiple?: boolean;
+  /** Callback fired when an item is expanded. */
+  onChange?: (index: number) => void;
 };
 
 /** A controller for multiple accordion items. */
-export default function Accordion({ bordered, children, defaultIndex = 0, expandMultiple }: Props) {
+export default function Accordion({
+  bordered,
+  children,
+  defaultIndex = 0,
+  expandMultiple,
+  onChange,
+}: Props) {
   const [id] = useState(() => uuid());
   const [styles, cx] = useStyles(styleSheet);
   const [expanded, setExpanded] = useState(
@@ -40,6 +48,10 @@ export default function Accordion({ bordered, children, defaultIndex = 0, expand
       setExpanded(new Set(expanded));
     } else {
       setExpanded(new Set([expanded.has(index) ? -1 : index]));
+    }
+
+    if (onChange) {
+      onChange(index);
     }
   };
 

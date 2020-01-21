@@ -11,7 +11,7 @@ describe('withStyles()', () => {
     const Hoc = withStyles(() => ({}))(Foo);
 
     expect(Hoc.displayName).toBe('withStyles(Foo)');
-    expect((Hoc as StyledComponent<{}, {}>).styleName).toEqual(expect.stringMatching(/^Foo/));
-    expect((Hoc as StyledComponent<{}, {}>).WrappedComponent).toBe(Foo);
+    expect((Hoc as StyledComponent<{}>).styleName).toEqual(expect.stringMatching(/^Foo/));
+    expect((Hoc as StyledComponent<{}>).WrappedComponent).toBe(Foo);
   });
 });

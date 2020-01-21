@@ -1,8 +1,8 @@
 import { StyleSheet } from '../../hooks/useStyles';
-import buildInputStyles from '../../themes/buildInputStyles';
+import inputStyleSheet from '../../themes/inputStyleSheet';
 
 const styleSheet: StyleSheet = theme => ({
-  ...buildInputStyles(theme),
+  ...inputStyleSheet(theme),
 
   selectlike: {
     position: 'relative',

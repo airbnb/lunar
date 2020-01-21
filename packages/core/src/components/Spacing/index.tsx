@@ -1,5 +1,4 @@
 import React from 'react';
-import { ParsedBlock } from 'aesthetic-adapter-aphrodite';
 import useStyles from '../../hooks/useStyles';
 import { styleSheet, cleanClassName } from './styles';
 
@@ -72,7 +71,7 @@ export default function Spacing({
   const [styles, cx] = useStyles(styleSheet);
 
   const type = inner ? 'inner' : 'outer';
-  const classes: ParsedBlock[] = [];
+  const classes: (string | object)[] = [];
 
   if (all) {
     const cleaned = cleanClassName(all);

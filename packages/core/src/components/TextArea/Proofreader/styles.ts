@@ -1,8 +1,8 @@
 import { StyleSheet } from '../../../hooks/useStyles';
-import buildInputStyles from '../../../themes/buildInputStyles';
+import inputStyleSheet from '../../../themes/inputStyleSheet';
 
 export const styleSheet: StyleSheet = theme => {
-  const { input, input_important: inputImportant } = buildInputStyles(theme);
+  const { input, input_important: inputImportant } = inputStyleSheet(theme);
   const { unit } = theme;
 
   // Add space for controls

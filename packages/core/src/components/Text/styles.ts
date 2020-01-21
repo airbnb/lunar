@@ -44,7 +44,7 @@ const styleSheet: StyleSheet = ({ color, font, pattern }) => ({
   },
 
   text_bold: {
-    fontWeight: font.weights.semibold,
+    fontWeight: font.weights.bold,
   },
 
   text_light: {

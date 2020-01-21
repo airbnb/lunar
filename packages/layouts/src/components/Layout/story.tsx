@@ -22,7 +22,19 @@ standardLayout.story = {
   name: 'Standard layout.',
 };
 
-export function withAFixedHeight() {
+export function standardLayoutCentered() {
+  return (
+    <Layout centerAlign>
+      <LoremIpsum />
+    </Layout>
+  );
+}
+
+standardLayoutCentered.story = {
+  name: 'Wtih `centerAlign`.',
+};
+
+export function withMinHeight() {
   return (
     <Layout minHeight={300}>
       <LoremIpsum />
@@ -30,7 +42,7 @@ export function withAFixedHeight() {
   );
 }
 
-withAFixedHeight.story = {
+withMinHeight.story = {
   name: 'With a custom min-height.',
 };
 

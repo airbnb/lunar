@@ -3,10 +3,10 @@ import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
 import IconRemove from '@airbnb/lunar-icons/lib/interface/IconRemove';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { InputProps } from './FormInput';
-import buildInputStyles from '../../themes/buildInputStyles';
+import inputStyleSheet from '../../themes/inputStyleSheet';
 
 const styleSheet: StyleSheet = theme => {
-  const styles = buildInputStyles(theme);
+  const styles = inputStyleSheet(theme);
 
   return {
     ...styles,

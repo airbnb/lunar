@@ -1,4 +1,4 @@
-import { TestAesthetic } from 'aesthetic/lib/testUtils';
+import { TestAdapter } from 'aesthetic/lib/testing';
 import { Settings as LuxonSettings } from 'luxon';
 import Core, { Settings } from '../src';
 
@@ -47,7 +47,7 @@ describe('Core', () => {
     it('creates an aesthetic instance', () => {
       Core.bootstrapAesthetic();
 
-      expect(Core.aesthetic).toBeInstanceOf(TestAesthetic);
+      expect(Core.aesthetic.getAdapter()).toBeInstanceOf(TestAdapter);
     });
   });
 

@@ -1,10 +1,10 @@
-import { StyleSheetDefinition } from 'aesthetic';
-import { useStylesFactory } from 'aesthetic-react';
+import { StyleSheetFactory } from 'aesthetic';
+import { useStyles as baseUseStyles, UseStylesOptions } from 'aesthetic-react';
 import { Theme as BaseTheme } from '../types';
-import Core from '..';
 
 export type Theme = BaseTheme;
-export type StyleSheet = StyleSheetDefinition<Theme, {}>;
+export type StyleSheet<T = unknown> = StyleSheetFactory<Theme, T>;
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
-export default useStylesFactory(Core.aesthetic);
+export default function useStyles<T>(styleSheet: StyleSheet<T>, options?: UseStylesOptions) {
+  return baseUseStyles<Theme, T>(styleSheet, options);
+}

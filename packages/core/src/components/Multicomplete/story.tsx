@@ -92,3 +92,31 @@ export function loadItemsOnFocusStory() {
 loadItemsOnFocusStory.story = {
   name: 'Load items on focus.',
 };
+
+export function canSelectUnknownValueWhenHittingEnter() {
+  return (
+    <Multicomplete
+      selectUnknownOnEnter
+      accessibilityLabel="Favorite color?"
+      label="Favorite color?"
+      name="autocomplete"
+      renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
+      onChange={action('onChange')}
+      onSelectItem={action('onSelectItem')}
+      onLoadItems={value =>
+        Promise.resolve(
+          [
+            { value: 'red', name: 'Red' },
+            { value: 'black', name: 'Black' },
+            { value: 'blue', name: 'Blue' },
+            { value: 'green', name: 'Green' },
+          ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
+        )
+      }
+    />
+  );
+}
+
+canSelectUnknownValueWhenHittingEnter.story = {
+  name: 'Can select unknown value when hitting enter.',
+};

@@ -20,6 +20,18 @@ describe('<Layout />', () => {
     );
 
     expect(wrapper.find('main')).toHaveLength(1);
+    expect(wrapper.find('main').prop('className')).toMatch('main main_noBackground main_noPadding');
+  });
+
+  it('renders center align', () => {
+    const wrapper = shallow(<Layout centerAlign>Child</Layout>);
+
+    expect(
+      wrapper
+        .find('main')
+        .childAt(0)
+        .prop('className'),
+    ).toMatch('mainContent mainContent_centerAlign');
   });
 
   it('renders a before aside', () => {

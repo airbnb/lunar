@@ -1,6 +1,8 @@
 import { Item as AutocompleteItem } from '../Autocomplete';
 
 export interface ItemShape {
+  /** Unique ID of the item. */
+  id?: string | number;
   /** Identifier used in chosen definition. */
   name: string;
   /** Localized content displayed in lieu of name. */
@@ -50,7 +52,11 @@ export type ItemRenderer = (
   focused: boolean,
 ) => NonNullable<React.ReactNode>;
 
-export type ItemPickedHandler = (chosen: TreePath | null, details?: ChoiceDetails) => void;
+export type ItemPickedHandler = (
+  chosen: TreePath | null,
+  item: ItemShape | null,
+  details?: ChoiceDetails,
+) => void;
 
 export type DeepFocusHandler = () => void;
 
