@@ -189,13 +189,6 @@ export const menuStyleSheet: StyleSheet = ({ color, font, ui, unit }) => ({
   },
 });
 
-export const previewControlsStyleSheet: StyleSheet = ({ unit }) => ({
-  cell: {
-    display: 'inline-block',
-    marginRight: unit * 2,
-  },
-});
-
 export const previewMarkStyleSheet: StyleSheet = ({ color, ui }) => ({
   mark: {
     position: 'relative',

@@ -141,3 +141,10 @@ export const styleSheetSecondryMark: StyleSheet = ({ color }) => ({
     backgroundColor: color.core.warning[2],
   },
 });
+
+export const controlBarStyleSheet: StyleSheet = ({ unit }) => ({
+  cell: {
+    display: 'inline-block',
+    marginRight: unit * 2,
+  },
+});

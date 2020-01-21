@@ -1,18 +1,22 @@
 import React from 'react';
 import debounce from 'lodash/debounce';
-import BaseTextArea from '../../private/BaseTextArea';
-import T from '../../Translate';
-import Text from '../../Text';
-import Link from '../../Link';
-import Loader from '../../Loader';
-import Dropdown from '../../Dropdown';
-import withStyles, { WithStylesProps } from '../../../composers/withStyles';
-import { LT_LOCALES } from '../../../constants';
-import { ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT } from '../../../keys';
+import BaseTextArea from '../private/BaseTextArea';
+import T from '../Translate';
+import Dropdown from '../Dropdown';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import { LT_LOCALES } from '../../constants';
+import {
+  NO_LOCALE,
+  NON_WORD_REGEX,
+  AIRBNB_REGEX,
+  AUTO_DETECT_LOCALE,
+  LOCALE_TO_LT_LOCALE,
+  ARROW_KEYS,
+} from './constants';
 import Mark from './Mark';
 import SecondaryMark from './SecondaryMark';
 import ErrorMenu from './ErrorMenu';
-import LocaleMenu from './LocaleMenu';
+import ControlBar from './ControlBar';
 import {
   ProofreadRuleMatch,
   ProofreaderResponse,
@@ -20,24 +24,8 @@ import {
   ExtraProofreadProps,
   ProofreaderParams,
 } from './types';
-import { Props as FormInputProps } from '../../private/FormInput';
+import { Props as FormInputProps } from '../private/FormInput';
 import { styleSheet } from './styles';
-
-const AIRBNB_REGEX = /\b(((air|ari|iar)[bn]{3})(?!\.com))\b/gi;
-const NON_WORD_REGEX = /\W/;
-
-const ARROW_KEYS = [ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT];
-
-const NO_LOCALE = 'none';
-const AUTO_DETECT_LOCALE = 'auto';
-const LOCALE_TO_LT_LOCALE: { [locale: string]: string } = {
-  de: 'de-DE',
-  en: 'en-US',
-  ja: 'ja-JP',
-  pt: 'pt-PT',
-  ru: 'ru-RU',
-  zh: 'zh-CN',
-};
 
 function defaultIsRuleHighlighted(rule: ProofreadRuleMatch) {
   return false;
@@ -686,57 +674,12 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           ref={this.controlsRef}
           className={cx(styles.controls, important && styles.controls_important)}
         >
-          <span className={cx(styles.cell, { pointerEvents: 'initial' })}>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link small onClick={this.handleToggleLocaleMenu}>
-              {selectedLocale ? (
-                this.getLocaleDefinition(selectedLocale).label
-              ) : (
-                <T
-                  k="lunar.proofreader.unsupportedLanguage"
-                  phrase="Unsupported language %{locale}"
-                  locale={unsupportedLocale || 'unknown'}
-                  context="Language is not supported for spelling detection"
-                />
-              )}
-            </Link>
-
-            {showLocaleMenu && (
-              <Dropdown
-                visible
-                top="80%"
-                left={theme!.unit}
-                zIndex={5}
-                onClickOutside={this.handleToggleLocaleMenu}
-              >
-                <LocaleMenu
-                  // autoDefinition={this.getLocaleDefinition(AUTO_DETECT_LOCALE)}
-                  noneDefinition={this.getLocaleDefinition(NO_LOCALE)}
-                  selectedLocale={selectedLocale}
-                  onSelectLocale={this.handleSelectLocale}
-                />
-              </Dropdown>
-            )}
-          </span>
-
-          {errors.length > 0 && (
-            <span className={cx(styles.cell)}>
-              <Text small muted>
-                <T
-                  k="lunar.proofreader.totalIssues"
-                  phrase="%{smartCount} issue||||%{smartCount} issues"
-                  smartCount={errors.length}
-                  context="Showing the number of misspellings in a paragraph of text"
-                />
-              </Text>
-            </span>
-          )}
-
-          {loading && (
-            <span className={cx(styles.cell)}>
-              <Loader inline />
-            </span>
-          )}
+          <ControlBar
+            loading={loading}
+            locale={selectedLocale!}
+            errors={errors}
+            onSelectLocale={this.handleSelectLocale}
+          />
         </div>
       </div>
     );

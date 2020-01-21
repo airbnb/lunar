@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import debounce from 'lodash/debounce';
 import Dropdown from '@airbnb/lunar/lib/components/Dropdown';
-import ErrorMenu from '@airbnb/lunar/lib/components/TextArea/Proofreader/ErrorMenu';
+import ErrorMenu from '@airbnb/lunar/lib/components/Proofreader/ErrorMenu';
+import ControlBar from '@airbnb/lunar/lib/components/Proofreader/ControlBar';
 import { DEFAULT_LOCALE } from '@airbnb/lunar/lib/constants';
 import { checkForAirbnbErrors, NO_LOCALE } from '../../helpers/preview';
 import ComposerContext from '../../contexts/ComposerContext';
 import Renderer, { RendererProps } from './Renderer';
-import Controls from './Controls';
 import Window from './Window';
 import { ProofreaderLoader, ProofreadConfig } from '../../types';
 
@@ -108,7 +108,7 @@ export default function Proofreader({
   return (
     <Window
       controls={
-        <Controls
+        <ControlBar
           errors={errors}
           loading={loading}
           locale={selectedLocale}
