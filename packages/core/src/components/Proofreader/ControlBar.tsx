@@ -12,7 +12,7 @@ import { getLocaleDefinition, selectAppropriateLocale } from './helpers';
 import { ProofreadRuleMatch } from './types';
 import { controlBarStyleSheet } from './styles';
 
-export type ControlsProps = {
+export type ControlBarProps = {
   autoDetect?: boolean;
   errors: ProofreadRuleMatch[];
   loading?: boolean;
@@ -28,7 +28,7 @@ export default function ControlBar({
   locale,
   top = '80%',
   onSelectLocale,
-}: ControlsProps) {
+}: ControlBarProps) {
   const theme = useTheme();
   const [styles, cx] = useStyles(controlBarStyleSheet);
   const [showLocaleMenu, setLocaleMenu] = useState(false);

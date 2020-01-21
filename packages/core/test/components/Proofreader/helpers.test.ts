@@ -1,4 +1,7 @@
-import { checkForAirbnbErrors, selectAppropriateLocale } from '../../src/helpers/preview';
+import {
+  checkForAirbnbErrors,
+  selectAppropriateLocale,
+} from '../../../src/components/Proofreader/helpers';
 
 describe('selectAppropriateLocale()', () => {
   it('selects none locale', () => {

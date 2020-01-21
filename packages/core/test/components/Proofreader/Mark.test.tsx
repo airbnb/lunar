@@ -1,6 +1,6 @@
 import React from 'react';
 import { mountWithStyles, shallowWithStyles } from '@airbnb/lunar-test-utils';
-import Mark, { Props } from '../../../src/components/TextArea/Proofreader/Mark';
+import Mark, { Props } from '../../../src/components/Proofreader/Mark';
 
 describe('<Mark />', () => {
   const props: Props = {

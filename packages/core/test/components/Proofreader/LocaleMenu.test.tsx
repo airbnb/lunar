@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import LocaleMenu from '../../../src/components/TextArea/Proofreader/LocaleMenu';
+import LocaleMenu from '../../../src/components/Proofreader/LocaleMenu';
 import { Item, Separator } from '../../../src/components/Menu';
 import Text from '../../../src/components/Text';
 
