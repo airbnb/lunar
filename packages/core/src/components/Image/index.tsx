@@ -6,6 +6,10 @@ const backgroundAlignPropType = mutuallyExclusiveTrueProps('alignBottom', 'align
 const objectFitPropType = mutuallyExclusiveTrueProps('contain', 'cover');
 
 const styleSheet: StyleSheet = ({ color, ui }) => ({
+  backdrop: {
+    backgroundColor: color.core.neutral[0],
+  },
+
   background: {
     backgroundPosition: '50% 50%',
     backgroundRepeat: 'no-repeat',
@@ -77,6 +81,8 @@ export type Props = {
   alignTop?: boolean;
   /** Alternate text if image cannot be displayed */
   alt: string;
+  /** Sets a neutral background color */
+  backdrop?: boolean;
   /** Specified when image is not directly a part of the content */
   background?: boolean;
   /** Override default theme border radius */
@@ -104,6 +110,7 @@ function Image({
   alignBottom = false,
   alignTop = false,
   alt,
+  backdrop = false,
   background = false,
   borderRadius,
   contain = false,
@@ -139,6 +146,7 @@ function Image({
             styles.image,
             styles.background,
             styles.fadeIn,
+            backdrop && styles.backdrop,
             cover && styles.backgroundSize_cover,
             contain && styles.backgroundSize_contain,
             alignTop && styles.backgroundPosition_top,
