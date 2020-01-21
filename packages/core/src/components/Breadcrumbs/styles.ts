@@ -39,7 +39,7 @@ export const styleSheetBreadcrumb: StyleSheet = ({ color, font, pattern, transit
   },
 
   breadcrumb_selected: {
-    fontWeight: font.weights.semibold,
+    fontWeight: font.weights.bold,
   },
 
   li: {
