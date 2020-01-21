@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.59.0 - 2020-01-21
+
+#### 🚀 Updates
+
+- **[Image]** Add `backdrop` prop (#265) ([265d553](https://github.com/airbnb/lunar/commit/265d553)), closes [#265](https://github.com/airbnb/lunar/issues/265)
+
+#### 🎨 Styles
+
+- Update dark mode danger colors. (#285) ([d512487](https://github.com/airbnb/lunar/commit/d512487)), closes [#285](https://github.com/airbnb/lunar/issues/285)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.58.1 - 2020-01-21
 
 #### 🎨 Styles

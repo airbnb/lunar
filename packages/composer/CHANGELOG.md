@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.0.2 - 2020-01-21
+
+**Note:** Version bump only for package @airbnb/lunar-composer
+
+
+
+
+
 ### 1.0.1 - 2020-01-21
 
 #### 🎨 Styles
