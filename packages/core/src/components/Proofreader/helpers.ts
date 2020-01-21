@@ -1,7 +1,8 @@
 import T from '../Translate';
 import { DEFAULT_LOCALE, LT_LOCALES } from '../../constants';
-import { LOCALE_TO_LT_LOCALE, NO_LOCALE, AUTO_DETECT_LOCALE } from './constants';
+import { LOCALE_TO_LT_LOCALE, NO_LOCALE, AUTO_DETECT_LOCALE, AIRBNB_REGEX } from './constants';
 import { LocaleDefinition } from '../../types';
+import { ProofreadRuleMatch } from './types';
 
 export function selectAppropriateLocale(
   baseLocale: string = DEFAULT_LOCALE,
@@ -73,4 +74,39 @@ export function getLocaleDefinition(locale: string): LocaleDefinition {
   }
 
   return LT_LOCALES.find(definition => definition.locale === locale)!;
+}
+
+export function checkForAirbnbErrors(text: string): ProofreadRuleMatch[] {
+  const customErrors: ProofreadRuleMatch[] = [];
+
+  if (!text) {
+    return customErrors;
+  }
+
+  let match = AIRBNB_REGEX.exec(text);
+
+  while (match) {
+    if (match[0] !== 'Airbnb') {
+      customErrors.push({
+        short_message: '',
+        message: T.phrase(
+          'Improper company spelling or casing',
+          {},
+          {
+            context: 'Error message when Airbnb is used incorrectly',
+            key: 'lunar.proofreader.misspellingLabel',
+          },
+        ),
+        offset: AIRBNB_REGEX.lastIndex - match[0].length,
+        length: match[0].length,
+        found: match[0],
+        replacements: ['Airbnb'],
+        rule_id: 'AIRBNB_SPELLING_OR_CASING',
+      });
+    }
+
+    match = AIRBNB_REGEX.exec(text);
+  }
+
+  return customErrors;
 }

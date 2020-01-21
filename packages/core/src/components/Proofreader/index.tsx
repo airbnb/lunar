@@ -1,18 +1,9 @@
 import React from 'react';
 import debounce from 'lodash/debounce';
 import BaseTextArea from '../private/BaseTextArea';
-import T from '../Translate';
 import Dropdown from '../Dropdown';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import { LT_LOCALES } from '../../constants';
-import {
-  NO_LOCALE,
-  NON_WORD_REGEX,
-  AIRBNB_REGEX,
-  AUTO_DETECT_LOCALE,
-  LOCALE_TO_LT_LOCALE,
-  ARROW_KEYS,
-} from './constants';
+import { NO_LOCALE, NON_WORD_REGEX, ARROW_KEYS } from './constants';
 import Mark from './Mark';
 import SecondaryMark from './SecondaryMark';
 import ErrorMenu from './ErrorMenu';
@@ -20,12 +11,12 @@ import ControlBar from './ControlBar';
 import {
   ProofreadRuleMatch,
   ProofreaderResponse,
-  DefinitionShape,
   ExtraProofreadProps,
   ProofreaderParams,
 } from './types';
 import { Props as FormInputProps } from '../private/FormInput';
 import { styleSheet } from './styles';
+import { selectAppropriateLocale, checkForAirbnbErrors } from './helpers';
 
 function defaultIsRuleHighlighted(rule: ProofreadRuleMatch) {
   return false;
@@ -57,9 +48,7 @@ export type State = {
   position: Position | null;
   selectedError: ProofreadRuleMatch | null;
   selectedLocale: string | null;
-  showLocaleMenu: boolean;
   text: string;
-  unsupportedLocale: string | null;
 };
 
 export type Snapshot = {
@@ -95,9 +84,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     position: null,
     selectedError: null,
     selectedLocale: null,
-    showLocaleMenu: false,
     text: this.props.value,
-    unsupportedLocale: null,
   };
 
   getSnapshotBeforeUpdate() {
@@ -184,7 +171,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     });
 
     // Check for Airbnb misspellings
-    const customErrors = this.checkForAirbnbErrors(text);
+    const customErrors = checkForAirbnbErrors(text);
 
     if (!text || !selectedLocale || selectedLocale === NO_LOCALE) {
       this.setState({
@@ -233,73 +220,6 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     leading: true,
   });
 
-  checkForAirbnbErrors(text: string): ProofreadRuleMatch[] {
-    const customErrors: ProofreadRuleMatch[] = [];
-
-    if (!text) {
-      return customErrors;
-    }
-
-    let match = AIRBNB_REGEX.exec(text);
-
-    while (match) {
-      if (match[0] !== 'Airbnb') {
-        customErrors.push({
-          short_message: '',
-          message: T.phrase(
-            'Improper company spelling or casing',
-            {},
-            {
-              context: 'Error message when Airbnb is used incorrectly',
-              key: 'lunar.proofreader.misspellingLabel',
-            },
-          ),
-          offset: AIRBNB_REGEX.lastIndex - match[0].length,
-          length: match[0].length,
-          found: match[0],
-          replacements: ['Airbnb'],
-          rule_id: 'AIRBNB_SPELLING_OR_CASING',
-        });
-      }
-
-      match = AIRBNB_REGEX.exec(text);
-    }
-
-    return customErrors;
-  }
-
-  getLocaleDefinition(locale: string): DefinitionShape {
-    if (locale === NO_LOCALE) {
-      return {
-        locale,
-        label: T.phrase(
-          'No language selected',
-          {},
-          {
-            context: 'No language selected for spell and grammar checking',
-            key: 'lunar.proofreader.noLanguageSelected',
-          },
-        ),
-      };
-    }
-
-    if (locale === AUTO_DETECT_LOCALE) {
-      return {
-        locale,
-        label: T.phrase(
-          'Auto-detect language',
-          {},
-          {
-            context: 'Auto-detect language for spell and grammar checking',
-            key: 'lunar.proofreader.autoDetectLanguage',
-          },
-        ),
-      };
-    }
-
-    return LT_LOCALES.find(definition => definition.locale === locale)!;
-  }
-
   getCaretOffset(): Position {
     let top = 0;
     let left = 0;
@@ -315,39 +235,9 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   }
 
   selectAppropriateLocale() {
-    const { locale: baseLocale } = this.props;
-    const locale = LOCALE_TO_LT_LOCALE[baseLocale!] || baseLocale || '';
-    const possibleMatches: DefinitionShape[] = [];
-    let match: string | null = null;
-
-    if (locale === NO_LOCALE) {
-      match = NO_LOCALE;
-    } else if (locale === AUTO_DETECT_LOCALE) {
-      match = AUTO_DETECT_LOCALE;
-    } else {
-      LT_LOCALES.some(definition => {
-        if (locale === definition.locale) {
-          match = definition.locale;
-
-          return true;
-        }
-
-        if (locale.length === 2 && definition.locale.indexOf(locale) === 0) {
-          possibleMatches.push(definition);
-        }
-
-        return false;
-      });
-
-      if (!match && possibleMatches.length > 0) {
-        match = possibleMatches[0].locale;
-      }
-    }
-
     this.setState(
       {
-        selectedLocale: match,
-        unsupportedLocale: match ? null : locale,
+        selectedLocale: selectAppropriateLocale(this.props.locale).selectedLocale,
       },
       () => {
         this.checkTextAndClearErrors();
@@ -536,18 +426,11 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     this.setState(
       {
         selectedLocale: locale,
-        showLocaleMenu: false,
       },
       () => {
         this.checkTextAndClearErrors();
       },
     );
-  };
-
-  private handleToggleLocaleMenu = () => {
-    this.setState(prevState => ({
-      showLocaleMenu: !prevState.showLocaleMenu,
-    }));
   };
 
   renderTextWithMarks() {
@@ -617,16 +500,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       ...props
     } = this.props;
 
-    const {
-      position,
-      errors,
-      loading,
-      selectedError,
-      selectedLocale,
-      showLocaleMenu,
-      unsupportedLocale,
-      text,
-    } = this.state;
+    const { position, errors, loading, selectedError, selectedLocale, text } = this.state;
     const caretPosition =
       (this.textareaRef.current && this.textareaRef.current.selectionStart) || 0;
     const highlightsProps = {
