@@ -185,7 +185,7 @@ export const menuStyleSheet: StyleSheet = ({ color, font, ui, unit }) => ({
   title: {
     borderBottom: ui.border,
     padding: `${unit}px ${unit * 2}px`,
-    fontWeight: font.weights.semibold,
+    fontWeight: font.weights.bold,
   },
 });
 
@@ -299,7 +299,7 @@ export const selectListItemStyleSheet: StyleSheet = ({ color, font, pattern, uni
   },
 
   name: {
-    fontWeight: font.weights.semibold,
+    fontWeight: font.weights.bold,
   },
 
   status: {
