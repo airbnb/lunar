@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, renderAndWait, DomElement, mockFetch } from 'rut-dom';
 import Interweave from '@airbnb/lunar/lib/components/Interweave';
-import ErrorMenu from '@airbnb/lunar/lib/components/TextArea/Proofreader/ErrorMenu';
+import ErrorMenu from '@airbnb/lunar/lib/components/Proofreader/ErrorMenu';
+import Mark from '@airbnb/lunar/lib/components/Proofreader/Mark';
 import Composer, { ComposerProps } from '../../src/components/Composer';
 import Hotkey from '../../src/components/Hotkey';
 import Shortcuts from '../../src/components/Shortcuts';
@@ -15,7 +16,6 @@ import Preview from '../../src/components/Preview';
 import Suggestions from '../../src/components/Suggestions';
 import { MENU_ACTIONS, MENU_EMOJIS, MENU_PREVIEW } from '../../src/constants';
 import Proofreader from '../../src/components/Preview/Proofreader';
-import Mark from '../../src/components/Preview/Mark';
 import Window from '../../src/components/Preview/Window';
 import { ShortcutConfig } from '../../src';
 

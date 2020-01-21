@@ -1,19 +1,21 @@
 import React from 'react';
-import Interweave from '@airbnb/lunar/lib/components/Interweave';
+import Interweave from '../Interweave';
 import Mark, { MarkProps } from './Mark';
-import { ProofreadConfig } from '../../types';
+import { ProofreadRuleMatch } from './types';
 
 export type RendererProps = {
-  errors: ProofreadConfig[];
-  isRuleHighlighted?: (rule: ProofreadConfig) => boolean;
-  isRuleSecondary?: (rule: ProofreadConfig) => boolean;
+  errors: ProofreadRuleMatch[];
+  fakeScroll?: boolean;
+  isRuleHighlighted?: (rule: ProofreadRuleMatch) => boolean;
+  isRuleSecondary?: (rule: ProofreadRuleMatch) => boolean;
   onClickError: MarkProps['onClick'];
-  selectedError?: ProofreadConfig;
+  selectedError?: ProofreadRuleMatch | null;
   value: string;
 };
 
 export default function Renderer({
   errors,
+  fakeScroll = false,
   isRuleHighlighted,
   isRuleSecondary,
   onClickError,
@@ -72,6 +74,12 @@ export default function Renderer({
   const final = value.slice(lastIndex);
 
   content.push(<Interweave key={`${lastIndex}-${lastIndex + final.length}`} content={final} />);
+
+  // Add a fake character to the end of the text. This solves a handful of bugs
+  // in which trailing new lines in combination with scroll position do not work correctly.
+  if (fakeScroll) {
+    content.push('.');
+  }
 
   return <div>{content}</div>;
 }

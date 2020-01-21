@@ -4,8 +4,7 @@ import BaseTextArea from '../private/BaseTextArea';
 import Dropdown from '../Dropdown';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { NO_LOCALE, NON_WORD_REGEX, ARROW_KEYS } from './constants';
-import Mark from './Mark';
-import SecondaryMark from './SecondaryMark';
+import Renderer from './Renderer';
 import ErrorMenu from './ErrorMenu';
 import ControlBar from './ControlBar';
 import {
@@ -330,7 +329,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   /**
    * When a marked/highlighted word is focused, open the error menu with the marks position.
    */
-  private handleOpenErrorMenu = (top: number, left: number) => {
+  private handleOpenErrorMenu = (error: ProofreadRuleMatch, top: number, left: number) => {
     this.setState({
       position: {
         top: top - (this.textareaRef.current ? this.textareaRef.current.scrollTop : 0),
@@ -433,59 +432,6 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     );
   };
 
-  renderTextWithMarks() {
-    const { errors, selectedError, text } = this.state;
-
-    if (errors.length === 0) {
-      return text;
-    }
-
-    // Sort errors by offset otherwise slicing does not work
-    errors.sort((a, b) => (a.offset || 0) - (b.offset || 0));
-
-    const content: NonNullable<React.ReactNode>[] = [];
-    let lastIndex = 0;
-
-    errors.forEach(error => {
-      const offset = error.offset || 0;
-      const length = error.length || 0;
-
-      if (offset > text.length) {
-        return;
-      }
-
-      // Extract previous string
-      content.push(text.slice(lastIndex, offset));
-
-      // Set new last index
-      lastIndex = offset + length;
-
-      // Extract match and wrap in a component
-      const word = text.slice(offset, lastIndex);
-
-      const MarkComponent = this.props.isRuleSecondary!(error) ? SecondaryMark : Mark;
-      content.push(
-        <MarkComponent
-          key={`${word}-${offset}`}
-          selected={error === selectedError}
-          alwaysHighlight={this.props.isRuleHighlighted!(error)}
-          onSelect={this.handleOpenErrorMenu}
-        >
-          {word}
-        </MarkComponent>,
-      );
-    });
-
-    // Extract any remaining text
-    content.push(text.slice(lastIndex));
-
-    // Add a fake character to the end of the text. This solves a handful of bugs
-    // in which trailing new lines in combination with scroll position do not work correctly.
-    content.push('.');
-
-    return content;
-  }
-
   render() {
     const {
       cx,
@@ -499,7 +445,6 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       onChange,
       ...props
     } = this.props;
-
     const { position, errors, loading, selectedError, selectedLocale, text } = this.state;
     const caretPosition =
       (this.textareaRef.current && this.textareaRef.current.selectionStart) || 0;
@@ -515,7 +460,17 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     return (
       <div className={cx(styles.proofread)}>
         {/* Shadow text for displaying underlined words. */}
-        <div {...highlightsProps}>{this.renderTextWithMarks()}</div>
+        <div {...highlightsProps}>
+          <Renderer
+            fakeScroll
+            value={text}
+            errors={errors}
+            selectedError={selectedError}
+            isRuleHighlighted={isRuleHighlighted}
+            isRuleSecondary={isRuleSecondary}
+            onClickError={this.handleOpenErrorMenu}
+          />
+        </div>
 
         {/* Track the top/left offset of the caret within the textarea. */}
         {caretPosition > 0 && text && (

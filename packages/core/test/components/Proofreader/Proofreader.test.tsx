@@ -9,8 +9,6 @@ import Proofreader, {
 import T from '../../../src/components/Translate';
 import ErrorMenu from '../../../src/components/Proofreader/ErrorMenu';
 import LocaleMenu from '../../../src/components/Proofreader/LocaleMenu';
-import Mark, { Props as MarkProps } from '../../../src/components/Proofreader/Mark';
-import SecondaryMark from '../../../src/components/Proofreader/SecondaryMark';
 import Loader from '../../../src/components/Loader';
 import BaseTextArea from '../../../src/components/private/BaseTextArea';
 import { ProofreadRuleMatch } from '../../../src/components/Proofreader/types';
@@ -595,127 +593,6 @@ describe('<Proofreader />', () => {
       wrapper.find(LocaleMenu).simulate('selectLocale', 'en-CA');
 
       expect(spy).toHaveBeenCalled();
-    });
-  });
-
-  describe('renderTextWithMarks()', () => {
-    const markProps: MarkProps = {
-      children: 'Mark children',
-      selected: false,
-      onSelect: expect.anything(),
-      alwaysHighlight: false,
-    };
-
-    it('returns text if no errors', () => {
-      wrapper.setState({
-        text: 'Something foobar',
-      });
-
-      expect(instance.renderTextWithMarks()).toBe('Something foobar');
-    });
-
-    it('wraps errors in a mark', () => {
-      wrapper.setState({
-        text: 'Something foobar',
-        errors: [error],
-      });
-
-      expect(instance.renderTextWithMarks()).toEqual([
-        'Something ',
-        <Mark {...markProps} key="foobar-10">
-          foobar
-        </Mark>,
-        '',
-        '.',
-      ]);
-    });
-
-    it('wraps errors in a secondary mark if isRuleSecondary() is true', () => {
-      wrapper.setState({
-        text: 'Something foobar',
-        errors: [{ ...error }],
-      });
-
-      wrapper.setProps({
-        isRuleSecondary: () => true,
-      });
-
-      expect(instance.renderTextWithMarks()).toEqual([
-        'Something ',
-        <SecondaryMark {...markProps} key="foobar-10">
-          foobar
-        </SecondaryMark>,
-        '',
-        '.',
-      ]);
-    });
-
-    it('sets mark as highlighted if isRuleHighlighted() is true', () => {
-      wrapper.setState({
-        text: 'Something foobar',
-        errors: [{ ...error }],
-      });
-
-      wrapper.setProps({
-        isRuleHighlighted: () => true,
-      });
-
-      expect(instance.renderTextWithMarks()).toEqual([
-        'Something ',
-        <Mark {...markProps} key="foobar-10" alwaysHighlight>
-          foobar
-        </Mark>,
-        '',
-        '.',
-      ]);
-    });
-
-    it('sets mark as selected if errors match', () => {
-      wrapper.setState({
-        text: 'Something foobar',
-        errors: [error],
-        selectedError: error,
-      });
-
-      expect(instance.renderTextWithMarks()).toEqual([
-        'Something ',
-        <Mark {...markProps} key="foobar-10" selected>
-          foobar
-        </Mark>,
-        '',
-        '.',
-      ]);
-    });
-
-    it('orders by offset', () => {
-      wrapper.setState({
-        text: 'something foobar',
-        errors: [
-          error,
-          {
-            message: 'Uncapitalized',
-            short_message: 'Uncapitalized',
-            offset: 0,
-            length: 9,
-            replacements: ['Something'],
-            rule_id: 'UPPERCASE_SENTENCE_START',
-          },
-        ],
-        selectedError: error,
-      });
-
-      expect(instance.renderTextWithMarks()).toEqual([
-        '',
-        <Mark {...markProps} key="something-0">
-          something
-        </Mark>,
-        ' ',
-        <Mark {...markProps} key="foobar-10" selected>
-          foobar
-        </Mark>,
-        '',
-        '.',
-      ]);
     });
   });
 });

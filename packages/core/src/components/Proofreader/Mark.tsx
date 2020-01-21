@@ -1,49 +1,50 @@
-import React from 'react';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import { styleSheetMark as styleSheet } from './styles';
+import React, { useRef } from 'react';
+import useStyles from '../../hooks/useStyles';
+import { ProofreadRuleMatch } from './types';
+import { markStyleSheet } from './styles';
 
-export type Props = {
-  children: NonNullable<React.ReactNode>;
-  selected: boolean;
-  onSelect: (top: number, left: number) => void;
-  alwaysHighlight?: boolean;
+export type MarkProps = {
+  children: string;
+  error: ProofreadRuleMatch;
+  highlighted?: boolean;
+  secondary?: boolean;
+  selected?: boolean;
+  onClick: (error: ProofreadRuleMatch, top: number, left: number) => void;
 };
 
-class Mark extends React.PureComponent<Props & WithStylesProps> {
-  static defaultProps = {
-    alwaysHighlight: false,
-  };
+export default function Mark({
+  children,
+  error,
+  highlighted,
+  secondary,
+  selected,
+  onClick,
+}: MarkProps) {
+  const [styles, cx] = useStyles(markStyleSheet);
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const active = highlighted || selected;
 
-  ref = React.createRef<HTMLSpanElement>();
-
-  componentDidMount() {
-    this.handleSelect();
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    if (this.props.selected !== prevProps.selected) {
-      this.handleSelect();
-    }
-  }
-
-  private handleSelect = () => {
-    const { ref } = this;
-
-    if (this.props.selected && ref.current) {
-      this.props.onSelect(ref.current.offsetTop + ref.current.offsetHeight, ref.current.offsetLeft);
-    }
-  };
-
-  render() {
-    const { cx, children, selected, alwaysHighlight, styles } = this.props;
-    const highlight = selected || alwaysHighlight;
-
-    return (
-      <mark ref={this.ref} className={cx(styles.mark, highlight && styles.mark_highlight)}>
+  return (
+    <button
+      className={cx(styles.button)}
+      type="button"
+      onClick={() => {
+        if (ref.current) {
+          onClick(error, ref.current.offsetTop + ref.current.offsetHeight, ref.current.offsetLeft);
+        }
+      }}
+    >
+      <mark
+        ref={ref}
+        className={cx(
+          styles.mark,
+          active && styles.mark_highlight,
+          secondary && styles.markSecondary,
+          secondary && active && styles.markSecondary_highlight,
+        )}
+      >
         {children}
       </mark>
-    );
-  }
+    </button>
+  );
 }
-
-export default withStyles(styleSheet, { extendable: true })(Mark);

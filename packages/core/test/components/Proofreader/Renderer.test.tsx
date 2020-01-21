@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'rut-dom';
-import Renderer, { RendererProps } from '../../../src/components/Preview/Renderer';
-import { ProofreadConfig } from '../../../src/types';
-import Mark from '../../../src/components/Preview/Mark';
+import Renderer, { RendererProps } from '../../../src/components/Proofreader/Renderer';
+import { ProofreadRuleMatch } from '../../../src/components/Proofreader/types';
+import Mark from '../../../src/components/Proofreader/Mark';
 
 describe('<Renderer />', () => {
   const props: RendererProps = {
@@ -11,7 +11,7 @@ describe('<Renderer />', () => {
     onClickError() {},
   };
 
-  const error: ProofreadConfig = {
+  const error: ProofreadRuleMatch = {
     found: 'really long',
     length: 11,
     message: 'Invalid',
