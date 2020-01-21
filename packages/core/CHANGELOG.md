@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.58.1 - 2020-01-21
+
+#### 🎨 Styles
+
+- Bold, bold, bolder! (#283) ([13f0ecd](https://github.com/airbnb/lunar/commit/13f0ecd)), closes [#283](https://github.com/airbnb/lunar/issues/283)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.58.0 - 2020-01-13
 
 #### 🚀 Updates
