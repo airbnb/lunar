@@ -18,6 +18,7 @@ export type Props = {
 export type State = {
   x: number;
   y: number;
+  targetRectReady: boolean;
 };
 
 /** An overlay that masks the entire viewport and displays a chunk of content over it. */
@@ -30,6 +31,7 @@ export default class Overlay extends React.PureComponent<Props, State> {
   state = {
     x: 0,
     y: 0,
+    targetRectReady: false,
   };
 
   rafHandle: number = 0;
@@ -48,8 +50,9 @@ export default class Overlay extends React.PureComponent<Props, State> {
         const { x, y } = current.getBoundingClientRect() as DOMRect;
 
         if (x !== this.state.x || y !== this.state.y) {
-          // wrapping this in a second rAF caused the tooltip to render at 0,0 for a frame
-          this.setState({ x, y });
+          this.rafHandle = requestAnimationFrame(() => {
+            this.setState({ x, y, targetRectReady: true });
+          });
         }
       });
     }
@@ -96,11 +99,11 @@ export default class Overlay extends React.PureComponent<Props, State> {
 
   render() {
     const { onClose, open, children, noBackground } = this.props as Required<Props>;
-    const { x, y } = this.state;
+    const { x, y, targetRectReady } = this.state;
 
     return (
       <div ref={this.ref}>
-        {open && (
+        {open && targetRectReady && (
           <Portal
             x={x}
             y={y}
