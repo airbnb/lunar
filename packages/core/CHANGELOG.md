@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.59.1 - 2020-01-22
+
+#### 🐞 Fixes
+
+- **[Overlay]** Prevent Overlay from rendering at 0, 0 (#287) ([bdc65d2](https://github.com/airbnb/lunar/commit/bdc65d2)), closes [#287](https://github.com/airbnb/lunar/issues/287)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.59.0 - 2020-01-21
 
 #### 🚀 Updates
