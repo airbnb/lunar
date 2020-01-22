@@ -76,7 +76,7 @@ export default function ControlBar({
         <span className={cx(styles.cell)}>
           <Text small muted>
             <T
-              k="composer.proofreader.totalIssues"
+              k="lunar.proofreader.totalIssues"
               phrase="%{smartCount} issue||||%{smartCount} issues"
               smartCount={errors.length}
               context="Showing the number of misspellings in a paragraph of text"

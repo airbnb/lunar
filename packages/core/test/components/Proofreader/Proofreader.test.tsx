@@ -6,10 +6,8 @@ import Proofreader, {
   State,
   Proofreader as BaseProofreader,
 } from '../../../src/components/Proofreader';
-import T from '../../../src/components/Translate';
 import ErrorMenu from '../../../src/components/Proofreader/ErrorMenu';
-import LocaleMenu from '../../../src/components/Proofreader/LocaleMenu';
-import Loader from '../../../src/components/Loader';
+import ControlBar from '../../../src/components/Proofreader/ControlBar';
 import BaseTextArea from '../../../src/components/private/BaseTextArea';
 import { ProofreadRuleMatch } from '../../../src/components/Proofreader/types';
 
@@ -56,13 +54,6 @@ describe('<Proofreader />', () => {
 
   it('sets correct locale on mount', () => {
     expect(wrapper.state('selectedLocale')).toBe('ja-JP');
-  });
-
-  it('sets unsupported locale on mount', () => {
-    wrapper = shallowWithStyles(<Proofreader {...props} locale="foo" />);
-
-    expect(wrapper.state('selectedLocale')).toBeNull();
-    expect(wrapper.state('unsupportedLocale')).toBe('foo');
   });
 
   it('supports noTranslate', () => {
@@ -149,27 +140,6 @@ describe('<Proofreader />', () => {
       locale: 'ja-JP',
       text: 'Hello',
     });
-  });
-
-  it('shows a loader if request is loading', () => {
-    expect(wrapper.find(Loader)).toHaveLength(0);
-
-    wrapper.setState({
-      loading: true,
-    });
-
-    expect(wrapper.find(Loader)).toHaveLength(1);
-  });
-
-  it('shows error count', () => {
-    expect(wrapper.find(T)).toHaveLength(0);
-
-    wrapper.setState({
-      errors: [error],
-    });
-
-    expect(wrapper.find(T)).toHaveLength(1);
-    expect(wrapper.find(T).prop('smartCount')).toBe(1);
   });
 
   it('shows dropdown if error and position are set', () => {
@@ -410,7 +380,7 @@ describe('<Proofreader />', () => {
       instance.textareaRef = { current: textarea };
 
       // @ts-ignore Allow private access
-      instance.handleOpenErrorMenu(10, 25);
+      instance.handleOpenErrorMenu({}, 10, 25);
 
       expect(wrapper.state('position')).toEqual({ top: 5, left: 25 });
     });
@@ -575,10 +545,9 @@ describe('<Proofreader />', () => {
         selectedLocale: 'en-US',
       });
 
-      wrapper.find(LocaleMenu).simulate('selectLocale', 'en-CA');
+      wrapper.find(ControlBar).simulate('selectLocale', 'en-CA');
 
       expect(wrapper.state('selectedLocale')).toBe('en-CA');
-      expect(wrapper.state('showLocaleMenu')).toBe(false);
     });
 
     it('checks text after setting locale', () => {
@@ -590,7 +559,7 @@ describe('<Proofreader />', () => {
         selectedLocale: 'en-US',
       });
 
-      wrapper.find(LocaleMenu).simulate('selectLocale', 'en-CA');
+      wrapper.find(ControlBar).simulate('selectLocale', 'en-CA');
 
       expect(spy).toHaveBeenCalled();
     });

@@ -1,11 +1,11 @@
 import { MENU_PREVIEW } from '../constants';
-import { WritableContext } from '../types';
+import { WritableContext, DataSet } from '../types';
 
 // eslint-disable-next-line import/prefer-default-export
-export function onSubmitShowPreview(result: unknown, context: WritableContext) {
+export function onSubmitShowPreview(result: DataSet, context: WritableContext) {
   // Preview has been confirmed so pass through submit handlers
   // and reset the current preview state.
-  if (context.data.previewConfirmed) {
+  if (result.previewConfirmed) {
     context.setMenu('');
     context.setData('previewConfirmed', false);
 

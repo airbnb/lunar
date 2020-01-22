@@ -49,7 +49,7 @@ describe('<ControlBar />', () => {
 
   it('shows error count when list is non-empty', () => {
     const { root, update } = render<ControlBarProps>(<ControlBar {...props} />);
-    const k = 'composer.proofreader.totalIssues';
+    const k = 'lunar.proofreader.totalIssues';
 
     expect(root.find(T, { k })).toHaveLength(0);
 
@@ -76,7 +76,7 @@ describe('<ControlBar />', () => {
   it('handles unknown locale', () => {
     const { root } = render<ControlBarProps>(<ControlBar {...props} locale="foo" />);
 
-    expect(root.find(T, { k: 'composer.proofreader.unsupportedLanguage' })).toHaveLength(1);
+    expect(root.find(T, { k: 'lunar.proofreader.unsupportedLanguage' })).toHaveLength(1);
   });
 
   it('handles no locale', () => {

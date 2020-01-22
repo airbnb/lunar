@@ -41,8 +41,9 @@ export default function Proofreader({
   const [errorPosition, setErrorPosition] = useState<{ top: number; left: number }>();
 
   // Load proofreader errors when value changes
-  useEffect(
-    debounce(
+  useEffect(() => {
+    let mounted = true;
+    const timer = debounce(
       () => {
         const customErrors = checkForAirbnbErrors(value);
 
@@ -63,18 +64,27 @@ export default function Proofreader({
           text: value,
         })
           .then(proofreadErrors => {
-            setErrors([...customErrors, ...proofreadErrors]);
-            setLoading(false);
+            if (mounted) {
+              setErrors([...customErrors, ...proofreadErrors]);
+              setLoading(false);
+            }
           })
           .catch(() => {
-            setLoading(false);
+            if (mounted) {
+              setLoading(false);
+            }
           });
       },
       1000,
       { leading: true },
-    ),
-    [onProofread, selectedLocale, value],
-  );
+    );
+
+    timer();
+
+    return () => {
+      mounted = false;
+    };
+  }, [onProofread, selectedLocale, value]);
 
   // Handlers
   const handleSelectError = (error: ProofreadConfig, top: number, left: number) => {
