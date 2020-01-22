@@ -101,13 +101,9 @@ export default class Overlay extends React.PureComponent<Props, State> {
     const { onClose, open, children, noBackground } = this.props as Required<Props>;
     const { x, y, targetRectReady } = this.state;
 
-    if (!targetRectReady) {
-      return null;
-    }
-
     return (
       <div ref={this.ref}>
-        {open && (
+        {open && targetRectReady && (
           <Portal
             x={x}
             y={y}
