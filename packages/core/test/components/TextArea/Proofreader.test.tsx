@@ -87,6 +87,19 @@ describe('<Proofreader />', () => {
     expect(wrapper.state('text')).toBe('bar');
   });
 
+  it('does not error if value is undefined', () => {
+    // @ts-ignore
+    wrapper = shallowWithStyles(<Proofreader {...props} value={undefined} />);
+
+    expect(wrapper.state('text')).toBe('');
+
+    wrapper.setProps({
+      value: 'bar',
+    });
+
+    expect(wrapper.state('text')).toBe('bar');
+  });
+
   it('updates text state and checks new text if it ends with a non-word', () => {
     wrapper.setProps({
       value: 'Hello',
