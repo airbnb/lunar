@@ -83,12 +83,12 @@
     "react-element-to-jsx-string": "^14.1.0"
   },
   "devDependencies": {
-    "@airbnb/config-babel": "^2.1.3",
-    "@airbnb/config-eslint": "^2.3.0",
-    "@airbnb/config-jest": "^2.1.3",
-    "@airbnb/config-prettier": "^2.0.4",
-    "@airbnb/config-typescript": "^2.1.2",
-    "@airbnb/nimbus": "^2.1.4",
+    "@airbnb/config-babel": "^2.2.2",
+    "@airbnb/config-eslint": "^2.5.1",
+    "@airbnb/config-jest": "^2.2.2",
+    "@airbnb/config-prettier": "^2.1.1",
+    "@airbnb/config-typescript": "^2.2.2",
+    "@airbnb/nimbus": "^2.2.3",
     "@types/airbnb-prop-types": "^2.13.1",
     "@types/enzyme": "^3.10.3",
     "@types/filesize": "^5.0.0",
