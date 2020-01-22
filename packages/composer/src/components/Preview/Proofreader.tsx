@@ -91,6 +91,10 @@ export default function Proofreader({
   const handleSelectLocale = (nextLocale: string) => {
     setSelectedLocale(nextLocale);
     handleUnselectError();
+
+    if (nextLocale === NO_LOCALE) {
+      setErrors([]);
+    }
   };
 
   const handleReplaceText = (error: ProofreadConfig, replacement: string) => {
@@ -125,7 +129,7 @@ export default function Proofreader({
         isRuleSecondary={isRuleSecondary}
         selectedError={selectedError}
         value={value}
-        onClickError={handleSelectError}
+        onSelectError={handleSelectError}
       />
 
       {errorPosition && selectedError && (

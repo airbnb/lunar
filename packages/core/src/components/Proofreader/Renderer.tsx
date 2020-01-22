@@ -5,21 +5,21 @@ import { ProofreadRuleMatch } from './types';
 
 export type RendererProps = {
   errors: ProofreadRuleMatch[];
-  fakeScroll?: boolean;
   isRuleHighlighted?: (rule: ProofreadRuleMatch) => boolean;
   isRuleSecondary?: (rule: ProofreadRuleMatch) => boolean;
-  onClickError: MarkProps['onClick'];
+  onSelectError: MarkProps['onSelect'];
   selectedError?: ProofreadRuleMatch | null;
+  shadow?: boolean;
   value: string;
 };
 
 export default function Renderer({
   errors,
-  fakeScroll = false,
   isRuleHighlighted,
   isRuleSecondary,
-  onClickError,
+  onSelectError,
   selectedError,
+  shadow = false,
   value,
 }: RendererProps) {
   // If no errors, return the value without marks
@@ -63,7 +63,8 @@ export default function Renderer({
         highlighted={isRuleHighlighted?.(error)}
         secondary={isRuleSecondary?.(error)}
         selected={error === selectedError}
-        onClick={onClickError}
+        shadow={shadow}
+        onSelect={onSelectError}
       >
         {word}
       </Mark>,
@@ -75,9 +76,9 @@ export default function Renderer({
 
   content.push(<Interweave key={`${lastIndex}-${lastIndex + final.length}`} content={final} />);
 
-  // Add a fake character to the end of the text. This solves a handful of bugs
+  // Add a fake character to the end of the text when a shadow. This solves a handful of bugs
   // in which trailing new lines in combination with scroll position do not work correctly.
-  if (fakeScroll) {
+  if (shadow) {
     content.push('.');
   }
 

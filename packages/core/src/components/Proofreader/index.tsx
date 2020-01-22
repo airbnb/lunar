@@ -258,8 +258,8 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     const selectedError =
       errors.find(
         error =>
-          position >= (error.offset || 0) && position <= (error.offset || 0) + (error.length || 0),
-      ) || null;
+          position >= (error.offset ?? 0) && position <= (error.offset ?? 0) + (error.length ?? 0),
+      ) ?? null;
 
     this.setState({
       selectedError,
@@ -331,6 +331,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
    */
   private handleOpenErrorMenu = (error: ProofreadRuleMatch, top: number, left: number) => {
     this.setState({
+      selectedError: error,
       position: {
         top: top - (this.textareaRef.current ? this.textareaRef.current.scrollTop : 0),
         left,
@@ -462,13 +463,13 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
         {/* Shadow text for displaying underlined words. */}
         <div {...highlightsProps}>
           <Renderer
-            fakeScroll
+            shadow
             value={text}
             errors={errors}
             selectedError={selectedError}
             isRuleHighlighted={isRuleHighlighted}
             isRuleSecondary={isRuleSecondary}
-            onClickError={this.handleOpenErrorMenu}
+            onSelectError={this.handleOpenErrorMenu}
           />
         </div>
 
