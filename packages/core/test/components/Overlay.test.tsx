@@ -128,7 +128,6 @@ describe('<Overlay />', () => {
       wrapper = shallowWithStyles(
         <Portal {...props} noBackground onResize={resizeSpy} onClose={closeSpy} />,
       );
-      wrapper.setState({ targetRectReady: true });
       instance = wrapper.instance();
     });
 
