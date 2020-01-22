@@ -70,7 +70,7 @@ describe('focusElement', () => {
     it('sets the tabindex as negative to allow focus when given an <a> tag without an href', () => {
       const element = document.createElement('a');
       document.body.append(element);
-      expect(element).toHaveProperty('tabIndex', -1);
+      expect(element).toHaveProperty('tabIndex', 0);
 
       focusElement(element);
 
