@@ -84,6 +84,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     isRuleHighlighted: defaultIsRuleHighlighted,
     isRuleSecondary: defaultIsRuleSecondary,
     locale: NO_LOCALE,
+    value: '',
   };
 
   caretRef = React.createRef<HTMLDivElement>();
