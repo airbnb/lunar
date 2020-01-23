@@ -36,6 +36,7 @@ export default class TextArea extends React.Component<Props, State> {
     noTranslate: false,
     proofread: false,
     proofreadProps: undefined,
+    value: '',
   };
 
   state = {
