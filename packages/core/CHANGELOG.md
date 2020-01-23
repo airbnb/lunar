@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.59.2 - 2020-01-23
+
+#### 🐞 Fixes
+
+- **[Proofreader]** Default prop value to empty string (#288) ([3ae7f86](https://github.com/airbnb/lunar/commit/3ae7f86)), closes [#288](https://github.com/airbnb/lunar/issues/288)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.59.1 - 2020-01-22
 
 #### 🐞 Fixes
