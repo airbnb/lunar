@@ -26,6 +26,6 @@
   },
   "dependencies": {
     "shallowequal": "^1.1.0",
-    "uuid": "^3.3.3"
+    "uuid": "^3.4.0"
   }
 }
