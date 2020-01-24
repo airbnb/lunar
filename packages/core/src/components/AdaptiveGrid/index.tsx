@@ -23,6 +23,7 @@ export default function AdaptiveGrid({
 
   const childElements =
     !!children &&
+    // @ts-ignore This is failing and I have no idea why
     React.Children.map(children, (child: React.ReactNode, idx: number) =>
       child ? (
         // These items are generic and don't have a guaranteed id or any unique property

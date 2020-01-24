@@ -87,7 +87,7 @@ export default function Composer({
       state.add(handler);
       return state;
     },
-    new Set([
+    new Set<ChangeHandler>([
       onChangeSyncValue,
       onChangeResetError,
       onChangeResetShadowIfMismatch,
@@ -100,7 +100,7 @@ export default function Composer({
       state.add(handler);
       return state;
     },
-    new Set(),
+    new Set<SubmitHandler>(),
   );
 
   const handleSetData = useCallback<Context['setData']>(
