@@ -24,13 +24,6 @@ export default function withBoundary(name?: string) /* infer */ {
       );
     }
 
-    const result = finishHOC('withBoundary', WithBoundary, WrappedComponent);
-
-    // TEMP, fix hoist upstream
-    // https://github.com/mridgway/hoist-non-react-statics/pull/93
-    // @ts-ignore
-    delete result.$$typeof;
-
-    return result;
+    return finishHOC('withBoundary', WithBoundary, WrappedComponent);
   };
 }
