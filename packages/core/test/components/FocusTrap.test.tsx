@@ -7,6 +7,7 @@ import FocusTrap, { Props } from '../../src/components/FocusTrap';
 // `activeElement` does not change when `focus()` is called.
 // https://github.com/jsdom/jsdom/issues/2723
 // https://blog.whatwg.org/focusing-on-focus
+// eslint-disable-next-line jest/no-disabled-tests
 describe.skip('<FocusTrap>', () => {
   let childAElement: HTMLInputElement | null;
   let childBElement: HTMLInputElement | null;

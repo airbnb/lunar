@@ -6,6 +6,7 @@ import Composer, { ComposerProps } from '../../src/components/Composer';
 import Hotkey from '../../src/components/Hotkey';
 import Shortcuts from '../../src/components/Shortcuts';
 import { Selection } from '../../src/components/SelectList';
+// @ts-ignore dts file not being built for some reason
 import { actions, shortcuts, loadSuggestions, checkText } from '../../src/Composer.story';
 import Menu from '../../src/components/Menu';
 import Actions, { ActionButton } from '../../src/components/Actions';
@@ -16,6 +17,7 @@ import { MENU_ACTIONS, MENU_EMOJIS, MENU_PREVIEW } from '../../src/constants';
 import Proofreader from '../../src/components/Preview/Proofreader';
 import Mark from '../../src/components/Preview/Mark';
 import Window from '../../src/components/Preview/Window';
+import { ShortcutConfig } from '../../src';
 
 // eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('lodash/debounce', () => (cb: Function) => {
@@ -394,7 +396,7 @@ describe('<Composer />', () => {
       }
 
       it('executes shortcut when input is submitted', () => {
-        const cuts = shortcuts.map(cut => ({ ...cut, onRun: jest.fn() }));
+        const cuts = (shortcuts as ShortcutConfig[]).map(cut => ({ ...cut, onRun: jest.fn() }));
         const { root } = render<ComposerProps>(
           <Composer {...props}>
             <Shortcuts shortcuts={cuts} />
