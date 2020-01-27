@@ -122,6 +122,7 @@ export default function FilterMenu({
       dropdownProps={dropdownProps}
       large={large}
       menuProps={menuProps}
+      showDropdown={opened}
       small={small}
       toggleLabel={activeCountLabel || toggleLabel}
       zIndex={zIndex}
