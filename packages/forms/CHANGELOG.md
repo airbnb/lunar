@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.7.2 - 2020-01-27
+
+#### 🐞 Fixes
+
+- **[FilterMenu]** Close dropdown after filters are applied. (#290) ([f9719fc](https://github.com/airbnb/lunar/commit/f9719fc)), closes [#290](https://github.com/airbnb/lunar/issues/290)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 2.7.1 - 2019-12-19
 
 #### 🛠 Internals

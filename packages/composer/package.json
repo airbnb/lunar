@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-composer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Unified composer for doing all the things.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -21,7 +21,7 @@
     "react": "^16.9.0"
   },
   "devDependencies": {
-    "@airbnb/lunar": "^2.59.2",
+    "@airbnb/lunar": "^2.59.3",
     "react": "^16.11.0"
   },
   "dependencies": {
