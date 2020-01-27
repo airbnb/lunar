@@ -42,6 +42,8 @@ export type Props = {
   toggleLabel: NonNullable<React.ReactNode>;
   /** Z-index of the menu. */
   zIndex?: number;
+  /** @ignore @private */
+  showDropdown?: boolean;
 };
 
 export type State = {
@@ -60,6 +62,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
     ignoreClickOutside: false,
     inverted: false,
     large: false,
+    showDropdown: false,
     small: false,
     zIndex: 1,
   };
@@ -67,8 +70,16 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
   ref = React.createRef<HTMLDivElement>();
 
   state = {
-    opened: false,
+    opened: Boolean(this.props.showDropdown),
   };
+
+  componentDidUpdate(prevProp: Props & WithStylesProps, prevState: State) {
+    if (this.props.showDropdown !== prevProp.showDropdown) {
+      this.setState({
+        opened: Boolean(this.props.showDropdown),
+      });
+    }
+  }
 
   private handleItemClick = (onClick: () => void) => {
     if (onClick) {
