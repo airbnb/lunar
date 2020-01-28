@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.59.4 - 2020-01-28
+
+#### 📦 Dependencies
+
+- Audit 2019-01-22 (#289) ([7c1033c](https://github.com/airbnb/lunar/commit/7c1033c)), closes [#289](https://github.com/airbnb/lunar/issues/289)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.59.3 - 2020-01-27
 
 #### 🐞 Fixes
