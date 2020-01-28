@@ -3,6 +3,7 @@ import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import IconPlayAlt from '@airbnb/lunar-icons/lib/interface/IconPlayAlt';
 import Interweave from '@airbnb/lunar/lib/components/Interweave';
 import T from '@airbnb/lunar/lib/components/Translate';
+import passThroughRef from '@airbnb/lunar/lib/utils/passThroughRef';
 import ComposerContext from '../../contexts/ComposerContext';
 import HotkeyContext from '../../contexts/HotkeyContext';
 import Hotkey from '../Hotkey';
@@ -27,6 +28,7 @@ export type InputProps = {
   onChange: ChangeHandler;
   onSubmit: SubmitHandler;
   privateNotePlaceholder?: string;
+  propagateRef?: React.Ref<HTMLTextAreaElement>;
 };
 
 export default function Input({
@@ -35,6 +37,7 @@ export default function Input({
   onChange,
   onSubmit,
   privateNotePlaceholder,
+  propagateRef,
 }: InputProps) {
   const ref = useRef<HTMLTextAreaElement | null>(null);
   const context = useContext(ComposerContext);
@@ -137,7 +140,10 @@ export default function Input({
         </section>
 
         <textarea
-          ref={ref}
+          ref={element => {
+            passThroughRef(ref, element);
+            passThroughRef(propagateRef, element);
+          }}
           className={cx(styles.input, styles.input_original)}
           disabled={disabled}
           id="composer"

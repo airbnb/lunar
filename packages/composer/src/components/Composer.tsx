@@ -3,7 +3,7 @@ import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
 import ComposerContext from '../contexts/ComposerContext';
 import Footer from './Footer';
-import Input from './Input';
+import Input, { InputProps } from './Input';
 import {
   onChangeHideMenusWhenEmpty,
   onChangeResetError,
@@ -27,6 +27,8 @@ export type ComposerProps = {
   defaultValues?: Partial<DataSet>;
   /** Whether the input field is disabled or not. */
   disabled?: boolean;
+  /** Gain a reference to the underlying `textarea`. */
+  propagateRef?: InputProps['propagateRef'];
   /** Callback fired when the input value changes. */
   onChange: ChangeHandler;
   /** Callback fired when the input is submitted. */
@@ -62,6 +64,7 @@ export default function Composer({
   onChange,
   onSubmit,
   privateNotePlaceholder,
+  propagateRef,
   writingMode,
 }: ComposerProps) {
   const [styles, cx] = useStyles(composerStyleSheet);
@@ -154,6 +157,7 @@ export default function Composer({
                 disabled={disabled}
                 invalid={invalid}
                 privateNotePlaceholder={privateNotePlaceholder}
+                propagateRef={propagateRef}
                 onChange={onChange}
                 onSubmit={onSubmit}
               />
