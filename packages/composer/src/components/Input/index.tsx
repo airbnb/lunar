@@ -25,8 +25,8 @@ import { inputStyleSheet } from '../../styles';
 export type InputProps = {
   disabled?: boolean;
   invalid?: boolean;
-  onChange: ChangeHandler;
-  onSubmit: SubmitHandler;
+  onChange?: ChangeHandler;
+  onSubmit?: SubmitHandler;
   emailPlaceholder?: string;
   messagePlaceholder?: string;
   privateNotePlaceholder?: string;

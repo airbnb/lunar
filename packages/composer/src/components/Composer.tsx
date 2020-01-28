@@ -34,9 +34,9 @@ export type ComposerProps = {
   /** Gain a reference to the underlying `textarea`. */
   propagateRef?: InputProps['propagateRef'];
   /** Callback fired when the input value changes. */
-  onChange: ChangeHandler;
+  onChange?: ChangeHandler;
   /** Callback fired when the input is submitted. */
-  onSubmit: SubmitHandler;
+  onSubmit?: SubmitHandler;
   /** Placeholder for the private note writing mode. */
   privateNotePlaceholder?: string;
   /** Default writing mode. */

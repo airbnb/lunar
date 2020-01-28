@@ -1,19 +1,19 @@
 import { ChangeHandler, SubmitHandler, WritableContext, DataSet } from '../types';
 
 export function processChangeHandlers(
-  handlers: ChangeHandler[],
+  handlers: (ChangeHandler | undefined)[],
   nextValue: string,
   context: WritableContext,
 ) {
-  handlers.forEach(handler => handler(nextValue, context));
+  handlers.forEach(handler => handler?.(nextValue, context));
 }
 
 export function processSubmitHandlers(
-  handlers: SubmitHandler[],
+  handlers: (SubmitHandler | undefined)[],
   result: DataSet,
   context: WritableContext,
 ) {
-  handlers.some(handler => handler(result, context) === true);
+  handlers.some(handler => handler?.(result, context) === true);
 }
 
 /**
