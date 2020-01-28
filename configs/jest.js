@@ -18,6 +18,8 @@ module.exports = {
     'apollo/src/components/Query',
     // Deprecated, remove in next major
     'childrenWithComponentName',
+    // Not possible to test because of DOM interactions
+    'composer/src/hooks/useAutoResize',
   ],
   setupFilesAfterEnv: ['@airbnb/config-jest/aphrodite', '@airbnb/config-jest/enzyme', 'jest-rut'],
   timers: 'real',

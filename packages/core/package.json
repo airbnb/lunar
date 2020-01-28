@@ -23,8 +23,8 @@
   },
   "devDependencies": {
     "@airbnb/lunar-test-utils": "^2.4.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "dependencies": {
     "@types/airbnb-prop-types": "*",
@@ -35,28 +35,28 @@
     "@types/react": "*",
     "@types/react-dom": "*",
     "@types/react-virtualized": "*",
-    "aesthetic": "^5.0.1",
-    "aesthetic-adapter-aphrodite": "^5.0.0",
-    "aesthetic-react": "^2.0.1",
+    "aesthetic": "^5.1.0",
+    "aesthetic-adapter-aphrodite": "^5.1.0",
+    "aesthetic-react": "^2.1.0",
     "airbnb-prop-types": "^2.15.0",
     "aphrodite": "^2.4.0",
     "copy-to-clipboard": "^3.2.0",
     "debounce-promise": "^3.1.2",
-    "emojibase": "^3.1.0",
-    "emojibase-regex": "^3.1.0",
-    "fuse.js": "^3.4.5",
-    "hoist-non-react-statics": "^3.3.0",
-    "interweave": "^12.1.0",
-    "interweave-autolink": "^4.0.0",
-    "interweave-emoji": "^5.1.0",
-    "interweave-emoji-picker": "^5.0.0",
+    "emojibase": "^3.2.0",
+    "emojibase-regex": "^3.2.1",
+    "fuse.js": "^3.4.6",
+    "hoist-non-react-statics": "^3.3.2",
+    "interweave": "^12.2.0",
+    "interweave-autolink": "^4.1.0",
+    "interweave-emoji": "^5.2.0",
+    "interweave-emoji-picker": "^5.1.1",
     "lodash": "^4.17.15",
-    "luxon": "^1.21.1",
+    "luxon": "^1.22.0",
     "ms": "^2.1.2",
     "prop-types": "^15.7.2",
     "react-day-picker": "7.3.2",
-    "react-virtualized": "^9.21.1",
+    "react-virtualized": "^9.21.2",
     "shallowequal": "^1.1.0",
-    "uuid": "^3.3.3"
+    "uuid": "^3.4.0"
   }
 }
