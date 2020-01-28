@@ -190,6 +190,7 @@ export default function Input({
         />
 
         <Hotkey
+          preventDefault
           combo="esc"
           condition={activeWhenMenuOpen}
           name="closeMenu"
