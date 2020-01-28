@@ -27,6 +27,10 @@ export type ComposerProps = {
   defaultValues?: Partial<DataSet>;
   /** Whether the input field is disabled or not. */
   disabled?: boolean;
+  /** Placeholder for the email writing mode. */
+  emailPlaceholder?: string;
+  /** Placeholder for the message writing mode. */
+  messagePlaceholder?: string;
   /** Gain a reference to the underlying `textarea`. */
   propagateRef?: InputProps['propagateRef'];
   /** Callback fired when the input value changes. */
@@ -63,6 +67,8 @@ export default function Composer({
   disabled = false,
   onChange,
   onSubmit,
+  emailPlaceholder,
+  messagePlaceholder,
   privateNotePlaceholder,
   propagateRef,
   writingMode,
@@ -156,6 +162,8 @@ export default function Composer({
               <Input
                 disabled={disabled}
                 invalid={invalid}
+                emailPlaceholder={emailPlaceholder}
+                messagePlaceholder={messagePlaceholder}
                 privateNotePlaceholder={privateNotePlaceholder}
                 propagateRef={propagateRef}
                 onChange={onChange}

@@ -37,6 +37,26 @@ describe('<Input />', () => {
     expect(result.root.findOne('textarea')).toHaveProp('placeholder', 'Private to Airbnb');
   });
 
+  it('can customize placeholder based on writing mode', () => {
+    const result = render<InputProps>(<Input {...props} messagePlaceholder="Message!" />, {
+      wrapper: <Wrapper />,
+    });
+
+    expect(result.root.findOne('textarea')).toHaveProp('placeholder', 'Message!');
+
+    result.rerender(<Input {...props} emailPlaceholder="Email!" />, {
+      wrapper: <Wrapper composerContext={{ mode: MODE_EMAIL }} />,
+    });
+
+    expect(result.root.findOne('textarea')).toHaveProp('placeholder', 'Email!');
+
+    result.rerender(<Input {...props} privateNotePlaceholder="Private!" />, {
+      wrapper: <Wrapper composerContext={{ mode: MODE_PRIVATE_NOTE }} />,
+    });
+
+    expect(result.root.findOne('textarea')).toHaveProp('placeholder', 'Private!');
+  });
+
   it('renders subject/to fields when mode is email', () => {
     const result = render<InputProps>(<Input {...props} />, {
       wrapper: <Wrapper />,

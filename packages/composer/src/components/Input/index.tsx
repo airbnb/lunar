@@ -27,6 +27,8 @@ export type InputProps = {
   invalid?: boolean;
   onChange: ChangeHandler;
   onSubmit: SubmitHandler;
+  emailPlaceholder?: string;
+  messagePlaceholder?: string;
   privateNotePlaceholder?: string;
   propagateRef?: React.Ref<HTMLTextAreaElement>;
 };
@@ -36,6 +38,8 @@ export default function Input({
   invalid,
   onChange,
   onSubmit,
+  emailPlaceholder,
+  messagePlaceholder,
   privateNotePlaceholder,
   propagateRef,
 }: InputProps) {
@@ -46,10 +50,12 @@ export default function Input({
   const [focused, setFocused] = useState(false);
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const blocked = disabled || invalid || context.data.value.trim() === '';
-  let placeholder = T.phrase('Send message…', null, { key: 'composer.labels.sendMessage' });
+  let placeholder =
+    messagePlaceholder ?? T.phrase('Send message…', null, { key: 'composer.labels.sendMessage' });
 
   if (context.mode === MODE_EMAIL) {
-    placeholder = T.phrase('Send email…', null, { key: 'composer.labels.sendEmail' });
+    placeholder =
+      emailPlaceholder ?? T.phrase('Send email…', null, { key: 'composer.labels.sendEmail' });
   } else if (context.mode === MODE_PRIVATE_NOTE) {
     placeholder =
       privateNotePlaceholder ??
