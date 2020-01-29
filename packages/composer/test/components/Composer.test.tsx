@@ -70,6 +70,18 @@ describe('<Composer />', () => {
     expect(root).toContainNode(node);
   });
 
+  it('propagates a ref', () => {
+    const spy = jest.fn();
+
+    render<ComposerProps>(<Composer {...props} propagateRef={spy} />, {
+      mockRef() {
+        return { tagName: 'textarea', style: {} };
+      },
+    });
+
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ tagName: 'textarea' }));
+  });
+
   describe('states', () => {
     it('marks invalid if `onChange` throws an error', () => {
       const { root } = render<ComposerProps>(

@@ -3,6 +3,7 @@ import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import IconPlayAlt from '@airbnb/lunar-icons/lib/interface/IconPlayAlt';
 import Interweave from '@airbnb/lunar/lib/components/Interweave';
 import T from '@airbnb/lunar/lib/components/Translate';
+import passThroughRef from '@airbnb/lunar/lib/utils/passThroughRef';
 import ComposerContext from '../../contexts/ComposerContext';
 import HotkeyContext from '../../contexts/HotkeyContext';
 import Hotkey from '../Hotkey';
@@ -24,9 +25,12 @@ import { inputStyleSheet } from '../../styles';
 export type InputProps = {
   disabled?: boolean;
   invalid?: boolean;
-  onChange: ChangeHandler;
-  onSubmit: SubmitHandler;
+  onChange?: ChangeHandler;
+  onSubmit?: SubmitHandler;
+  emailPlaceholder?: string;
+  messagePlaceholder?: string;
   privateNotePlaceholder?: string;
+  propagateRef?: React.Ref<HTMLTextAreaElement>;
 };
 
 export default function Input({
@@ -34,7 +38,10 @@ export default function Input({
   invalid,
   onChange,
   onSubmit,
+  emailPlaceholder,
+  messagePlaceholder,
   privateNotePlaceholder,
+  propagateRef,
 }: InputProps) {
   const ref = useRef<HTMLTextAreaElement | null>(null);
   const context = useContext(ComposerContext);
@@ -43,10 +50,12 @@ export default function Input({
   const [focused, setFocused] = useState(false);
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const blocked = disabled || invalid || context.data.value.trim() === '';
-  let placeholder = T.phrase('Send message…', null, { key: 'composer.labels.sendMessage' });
+  let placeholder =
+    messagePlaceholder ?? T.phrase('Send message…', null, { key: 'composer.labels.sendMessage' });
 
   if (context.mode === MODE_EMAIL) {
-    placeholder = T.phrase('Send email…', null, { key: 'composer.labels.sendEmail' });
+    placeholder =
+      emailPlaceholder ?? T.phrase('Send email…', null, { key: 'composer.labels.sendEmail' });
   } else if (context.mode === MODE_PRIVATE_NOTE) {
     placeholder =
       privateNotePlaceholder ??
@@ -137,7 +146,10 @@ export default function Input({
         </section>
 
         <textarea
-          ref={ref}
+          ref={element => {
+            passThroughRef(ref, element);
+            passThroughRef(propagateRef, element);
+          }}
           className={cx(styles.input, styles.input_original)}
           disabled={disabled}
           id="composer"
@@ -178,6 +190,7 @@ export default function Input({
         />
 
         <Hotkey
+          preventDefault
           combo="esc"
           condition={activeWhenMenuOpen}
           name="closeMenu"

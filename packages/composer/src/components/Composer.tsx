@@ -3,7 +3,7 @@ import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
 import ComposerContext from '../contexts/ComposerContext';
 import Footer from './Footer';
-import Input from './Input';
+import Input, { InputProps } from './Input';
 import {
   onChangeHideMenusWhenEmpty,
   onChangeResetError,
@@ -27,10 +27,16 @@ export type ComposerProps = {
   defaultValues?: Partial<DataSet>;
   /** Whether the input field is disabled or not. */
   disabled?: boolean;
+  /** Placeholder for the email writing mode. */
+  emailPlaceholder?: string;
+  /** Placeholder for the message writing mode. */
+  messagePlaceholder?: string;
+  /** Gain a reference to the underlying `textarea`. */
+  propagateRef?: InputProps['propagateRef'];
   /** Callback fired when the input value changes. */
-  onChange: ChangeHandler;
+  onChange?: ChangeHandler;
   /** Callback fired when the input is submitted. */
-  onSubmit: SubmitHandler;
+  onSubmit?: SubmitHandler;
   /** Placeholder for the private note writing mode. */
   privateNotePlaceholder?: string;
   /** Default writing mode. */
@@ -61,7 +67,10 @@ export default function Composer({
   disabled = false,
   onChange,
   onSubmit,
+  emailPlaceholder,
+  messagePlaceholder,
   privateNotePlaceholder,
+  propagateRef,
   writingMode,
 }: ComposerProps) {
   const [styles, cx] = useStyles(composerStyleSheet);
@@ -153,7 +162,10 @@ export default function Composer({
               <Input
                 disabled={disabled}
                 invalid={invalid}
+                emailPlaceholder={emailPlaceholder}
+                messagePlaceholder={messagePlaceholder}
                 privateNotePlaceholder={privateNotePlaceholder}
+                propagateRef={propagateRef}
                 onChange={onChange}
                 onSubmit={onSubmit}
               />
