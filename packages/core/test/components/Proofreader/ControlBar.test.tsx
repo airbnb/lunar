@@ -1,20 +1,20 @@
 import React from 'react';
 import { render } from 'rut-dom';
-import Link from '@airbnb/lunar/lib/components/Link';
-import Loader from '@airbnb/lunar/lib/components/Loader';
-import Dropdown from '@airbnb/lunar/lib/components/Dropdown';
-import T from '@airbnb/lunar/lib/components/Translate';
-import LocaleMenu from '@airbnb/lunar/lib/components/TextArea/Proofreader/LocaleMenu';
-import Controls, { ControlsProps } from '../../../src/components/Preview/Controls';
+import Link from '../../../src/components/Link';
+import Loader from '../../../src/components/Loader';
+import Dropdown from '../../../src/components/Dropdown';
+import T from '../../../src/components/Translate';
+import LocaleMenu from '../../../src/components/Proofreader/LocaleMenu';
+import ControlBar, { ControlBarProps } from '../../../src/components/Proofreader/ControlBar';
 
-describe('<Controls />', () => {
-  const props: ControlsProps = {
+describe('<ControlBar />', () => {
+  const props: ControlBarProps = {
     errors: [],
     onSelectLocale() {},
   };
 
   it('toggles locale menu open and closed', () => {
-    const { root } = render<ControlsProps>(<Controls {...props} />);
+    const { root } = render<ControlBarProps>(<ControlBar {...props} />);
 
     expect(root.find(Dropdown.WrappedComponent)).toHaveLength(0);
 
@@ -25,7 +25,7 @@ describe('<Controls />', () => {
 
   it('selects locale when clicking an item', () => {
     const spy = jest.fn();
-    const { root } = render<ControlsProps>(<Controls {...props} onSelectLocale={spy} />);
+    const { root } = render<ControlBarProps>(<ControlBar {...props} onSelectLocale={spy} />);
 
     // Open menu
     root.findOne('button').dispatch('onClick');
@@ -38,7 +38,7 @@ describe('<Controls />', () => {
   });
 
   it('sets locale label', () => {
-    const { root, update } = render<ControlsProps>(<Controls {...props} />);
+    const { root, update } = render<ControlBarProps>(<ControlBar {...props} />);
 
     expect(root.findAt(Link.WrappedComponent, 'first')).toContainNode('English (United States)');
 
@@ -48,8 +48,8 @@ describe('<Controls />', () => {
   });
 
   it('shows error count when list is non-empty', () => {
-    const { root, update } = render<ControlsProps>(<Controls {...props} />);
-    const k = 'composer.proofreader.totalIssues';
+    const { root, update } = render<ControlBarProps>(<ControlBar {...props} />);
+    const k = 'lunar.proofreader.totalIssues';
 
     expect(root.find(T, { k })).toHaveLength(0);
 
@@ -62,7 +62,7 @@ describe('<Controls />', () => {
   });
 
   it('shows loader when loading', () => {
-    const { root, update } = render<ControlsProps>(<Controls {...props} />);
+    const { root, update } = render<ControlBarProps>(<ControlBar {...props} />);
 
     expect(root.find(Loader)).toHaveLength(0);
 
@@ -74,32 +74,32 @@ describe('<Controls />', () => {
   });
 
   it('handles unknown locale', () => {
-    const { root } = render<ControlsProps>(<Controls {...props} locale="foo" />);
+    const { root } = render<ControlBarProps>(<ControlBar {...props} locale="foo" />);
 
-    expect(root.find(T, { k: 'composer.proofreader.unsupportedLanguage' })).toHaveLength(1);
+    expect(root.find(T, { k: 'lunar.proofreader.unsupportedLanguage' })).toHaveLength(1);
   });
 
   it('handles no locale', () => {
-    const { root } = render<ControlsProps>(<Controls {...props} locale="none" />);
+    const { root } = render<ControlBarProps>(<ControlBar {...props} locale="none" />);
 
     expect(root).toContainNode('No language selected');
   });
 
   it('handles auto locale', () => {
-    const { root } = render<ControlsProps>(<Controls {...props} locale="auto" />);
+    const { root } = render<ControlBarProps>(<ControlBar {...props} locale="auto" />);
 
     expect(root).toContainNode('Auto-detect language');
   });
 
   it('handles territory locale fallbacks', () => {
     // Locale is actually pt-PT
-    const { root } = render<ControlsProps>(<Controls {...props} locale="pt" />);
+    const { root } = render<ControlBarProps>(<ControlBar {...props} locale="pt" />);
 
     expect(root).toContainNode('Português (Portugal)');
   });
 
   it('supports auto-detect locale', () => {
-    const { root } = render<ControlsProps>(<Controls {...props} autoDetect />);
+    const { root } = render<ControlBarProps>(<ControlBar {...props} autoDetect />);
 
     // Open menu
     root.findOne('button').dispatch('onClick');

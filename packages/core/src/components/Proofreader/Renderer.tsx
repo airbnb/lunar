@@ -1,14 +1,15 @@
 import React from 'react';
-import Interweave from '@airbnb/lunar/lib/components/Interweave';
+import Interweave from '../Interweave';
 import Mark, { MarkProps } from './Mark';
-import { ProofreadConfig } from '../../types';
+import { ProofreadRuleMatch } from './types';
 
 export type RendererProps = {
-  errors: ProofreadConfig[];
-  isRuleHighlighted?: (rule: ProofreadConfig) => boolean;
-  isRuleSecondary?: (rule: ProofreadConfig) => boolean;
-  onClickError: MarkProps['onClick'];
-  selectedError?: ProofreadConfig;
+  errors: ProofreadRuleMatch[];
+  isRuleHighlighted?: (rule: ProofreadRuleMatch) => boolean;
+  isRuleSecondary?: (rule: ProofreadRuleMatch) => boolean;
+  onSelectError: MarkProps['onSelect'];
+  selectedError?: ProofreadRuleMatch | null;
+  shadow?: boolean;
   value: string;
 };
 
@@ -16,8 +17,9 @@ export default function Renderer({
   errors,
   isRuleHighlighted,
   isRuleSecondary,
-  onClickError,
+  onSelectError,
   selectedError,
+  shadow = false,
   value,
 }: RendererProps) {
   // If no errors, return the value without marks
@@ -61,7 +63,8 @@ export default function Renderer({
         highlighted={isRuleHighlighted?.(error)}
         secondary={isRuleSecondary?.(error)}
         selected={error === selectedError}
-        onClick={onClickError}
+        shadow={shadow}
+        onSelect={onSelectError}
       >
         {word}
       </Mark>,
@@ -72,6 +75,12 @@ export default function Renderer({
   const final = value.slice(lastIndex);
 
   content.push(<Interweave key={`${lastIndex}-${lastIndex + final.length}`} content={final} />);
+
+  // Add a fake character to the end of the text when a shadow. This solves a handful of bugs
+  // in which trailing new lines in combination with scroll position do not work correctly.
+  if (shadow) {
+    content.push('.');
+  }
 
   return <div>{content}</div>;
 }

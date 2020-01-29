@@ -5,16 +5,11 @@ import Proofreader, {
   Props,
   State,
   Proofreader as BaseProofreader,
-} from '../../../src/components/TextArea/Proofreader';
-import T from '../../../src/components/Translate';
-import ErrorMenu from '../../../src/components/TextArea/Proofreader/ErrorMenu';
-import LocaleMenu from '../../../src/components/TextArea/Proofreader/LocaleMenu';
-import Mark, { Props as MarkProps } from '../../../src/components/TextArea/Proofreader/Mark';
-import SecondaryMark from '../../../src/components/TextArea/Proofreader/SecondaryMark';
-import Loader from '../../../src/components/Loader';
-import Link from '../../../src/components/Link';
+} from '../../../src/components/Proofreader';
+import ErrorMenu from '../../../src/components/Proofreader/ErrorMenu';
+import ControlBar from '../../../src/components/Proofreader/ControlBar';
 import BaseTextArea from '../../../src/components/private/BaseTextArea';
-import { ProofreadRuleMatch } from '../../../src/components/TextArea/Proofreader/types';
+import { ProofreadRuleMatch } from '../../../src/components/Proofreader/types';
 
 // eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('lodash/debounce', () => (value: unknown) => value);
@@ -59,13 +54,6 @@ describe('<Proofreader />', () => {
 
   it('sets correct locale on mount', () => {
     expect(wrapper.state('selectedLocale')).toBe('ja-JP');
-  });
-
-  it('sets unsupported locale on mount', () => {
-    wrapper = shallowWithStyles(<Proofreader {...props} locale="foo" />);
-
-    expect(wrapper.state('selectedLocale')).toBeNull();
-    expect(wrapper.state('unsupportedLocale')).toBe('foo');
   });
 
   it('supports noTranslate', () => {
@@ -154,27 +142,6 @@ describe('<Proofreader />', () => {
     });
   });
 
-  it('shows a loader if request is loading', () => {
-    expect(wrapper.find(Loader)).toHaveLength(0);
-
-    wrapper.setState({
-      loading: true,
-    });
-
-    expect(wrapper.find(Loader)).toHaveLength(1);
-  });
-
-  it('shows error count', () => {
-    expect(wrapper.find(T)).toHaveLength(0);
-
-    wrapper.setState({
-      errors: [error],
-    });
-
-    expect(wrapper.find(T)).toHaveLength(1);
-    expect(wrapper.find(T).prop('smartCount')).toBe(1);
-  });
-
   it('shows dropdown if error and position are set', () => {
     expect(wrapper.find(ErrorMenu)).toHaveLength(0);
 
@@ -185,19 +152,6 @@ describe('<Proofreader />', () => {
 
     expect(wrapper.find(ErrorMenu)).toHaveLength(1);
     expect(wrapper.find(ErrorMenu).prop('error')).toBe(error);
-  });
-
-  it('shows unsupported locale message', () => {
-    wrapper = shallowWithStyles(<Proofreader {...props} locale="ko" />);
-
-    wrapper.setState({
-      selectedLocale: null,
-      unsupportedLocale: 'foo',
-    });
-
-    expect(wrapper.find(T)).toHaveLength(1);
-    expect(wrapper.find(T).prop('phrase')).toBe('Unsupported language %{locale}');
-    expect(wrapper.find(T).prop('locale')).toBe('foo');
   });
 
   it('resets error state if value is empty', () => {
@@ -256,106 +210,6 @@ describe('<Proofreader />', () => {
 
       expect(wrapper.state('errors')).toEqual([]);
       expect(props.onCheckText).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('checkForAirbnbErrors()', () => {
-    it('doesnt error for normal casing', () => {
-      expect(instance.checkForAirbnbErrors('Something Airbnb something.')).toEqual([]);
-    });
-
-    it('doesnt include URLs', () => {
-      expect(instance.checkForAirbnbErrors('Something airbnb.com something.')).toEqual([]);
-    });
-
-    it('errors for all miscasing', () => {
-      expect(
-        instance.checkForAirbnbErrors(
-          'Something AirBnB something AIRbnb something AirBnb something airbnb something Airbnb.',
-        ),
-      ).toEqual([
-        {
-          short_message: '',
-          message: 'Improper company spelling or casing',
-          offset: 10,
-          length: 6,
-          found: 'AirBnB',
-          replacements: ['Airbnb'],
-          rule_id: 'AIRBNB_SPELLING_OR_CASING',
-        },
-        {
-          short_message: '',
-          message: 'Improper company spelling or casing',
-          offset: 27,
-          length: 6,
-          found: 'AIRbnb',
-          replacements: ['Airbnb'],
-          rule_id: 'AIRBNB_SPELLING_OR_CASING',
-        },
-        {
-          short_message: '',
-          message: 'Improper company spelling or casing',
-          offset: 44,
-          length: 6,
-          found: 'AirBnb',
-          replacements: ['Airbnb'],
-          rule_id: 'AIRBNB_SPELLING_OR_CASING',
-        },
-        {
-          short_message: '',
-          message: 'Improper company spelling or casing',
-          offset: 61,
-          length: 6,
-          found: 'airbnb',
-          replacements: ['Airbnb'],
-          rule_id: 'AIRBNB_SPELLING_OR_CASING',
-        },
-      ]);
-    });
-
-    it('errors for all misspellings', () => {
-      expect(
-        instance.checkForAirbnbErrors(
-          'Something Aribnb something Airbbn something airnbb something iarbnb something Airbnb.',
-        ),
-      ).toEqual([
-        {
-          short_message: '',
-          message: 'Improper company spelling or casing',
-          offset: 10,
-          length: 6,
-          found: 'Aribnb',
-          replacements: ['Airbnb'],
-          rule_id: 'AIRBNB_SPELLING_OR_CASING',
-        },
-        {
-          short_message: '',
-          message: 'Improper company spelling or casing',
-          offset: 27,
-          length: 6,
-          found: 'Airbbn',
-          replacements: ['Airbnb'],
-          rule_id: 'AIRBNB_SPELLING_OR_CASING',
-        },
-        {
-          short_message: '',
-          message: 'Improper company spelling or casing',
-          offset: 44,
-          length: 6,
-          found: 'airnbb',
-          replacements: ['Airbnb'],
-          rule_id: 'AIRBNB_SPELLING_OR_CASING',
-        },
-        {
-          short_message: '',
-          message: 'Improper company spelling or casing',
-          offset: 61,
-          length: 6,
-          found: 'iarbnb',
-          replacements: ['Airbnb'],
-          rule_id: 'AIRBNB_SPELLING_OR_CASING',
-        },
-      ]);
     });
   });
 
@@ -526,7 +380,7 @@ describe('<Proofreader />', () => {
       instance.textareaRef = { current: textarea };
 
       // @ts-ignore Allow private access
-      instance.handleOpenErrorMenu(10, 25);
+      instance.handleOpenErrorMenu({}, 10, 25);
 
       expect(wrapper.state('position')).toEqual({ top: 5, left: 25 });
     });
@@ -689,13 +543,11 @@ describe('<Proofreader />', () => {
     it('sets locale and hides menu', () => {
       wrapper.setState({
         selectedLocale: 'en-US',
-        showLocaleMenu: true,
       });
 
-      wrapper.find(LocaleMenu).simulate('selectLocale', 'en-CA');
+      wrapper.find(ControlBar).simulate('selectLocale', 'en-CA');
 
       expect(wrapper.state('selectedLocale')).toBe('en-CA');
-      expect(wrapper.state('showLocaleMenu')).toBe(false);
     });
 
     it('checks text after setting locale', () => {
@@ -705,229 +557,11 @@ describe('<Proofreader />', () => {
 
       wrapper.setState({
         selectedLocale: 'en-US',
-        showLocaleMenu: true,
       });
 
-      wrapper.find(LocaleMenu).simulate('selectLocale', 'en-CA');
+      wrapper.find(ControlBar).simulate('selectLocale', 'en-CA');
 
       expect(spy).toHaveBeenCalled();
-    });
-  });
-
-  describe('handleToggleLocaleMenu()', () => {
-    it('toggles display of menu', () => {
-      expect(wrapper.state('showLocaleMenu')).toBe(false);
-
-      wrapper.find(Link).simulate('click');
-
-      expect(wrapper.state('showLocaleMenu')).toBe(true);
-
-      wrapper.find(Link).simulate('click');
-
-      expect(wrapper.state('showLocaleMenu')).toBe(false);
-    });
-  });
-
-  describe('selectAppropriateLocale()', () => {
-    it('selects none locale', () => {
-      wrapper.setProps({
-        locale: 'none',
-      });
-
-      instance.selectAppropriateLocale();
-
-      expect(wrapper.state('selectedLocale')).toBe('none');
-      expect(wrapper.state('unsupportedLocale')).toBeNull();
-    });
-
-    it('selects auto locale', () => {
-      wrapper.setProps({
-        locale: 'auto',
-      });
-
-      instance.selectAppropriateLocale();
-
-      expect(wrapper.state('selectedLocale')).toBe('auto');
-      expect(wrapper.state('unsupportedLocale')).toBeNull();
-    });
-
-    it('selects shorthand locale', () => {
-      wrapper.setProps({
-        locale: 'ja',
-      });
-
-      instance.selectAppropriateLocale();
-
-      expect(wrapper.state('selectedLocale')).toBe('ja-JP');
-      expect(wrapper.state('unsupportedLocale')).toBeNull();
-    });
-
-    it('selects full locale', () => {
-      wrapper.setProps({
-        locale: 'ro-RO',
-      });
-
-      instance.selectAppropriateLocale();
-
-      expect(wrapper.state('selectedLocale')).toBe('ro-RO');
-      expect(wrapper.state('unsupportedLocale')).toBeNull();
-    });
-
-    it('selects from possible matches', () => {
-      wrapper.setProps({
-        locale: 'ca',
-      });
-
-      instance.selectAppropriateLocale();
-
-      expect(wrapper.state('selectedLocale')).toBe('ca-ES');
-      expect(wrapper.state('unsupportedLocale')).toBeNull();
-    });
-
-    it('doesnt set unsupported', () => {
-      wrapper.setProps({
-        locale: 'foo',
-      });
-
-      instance.selectAppropriateLocale();
-
-      expect(wrapper.state('selectedLocale')).toBeNull();
-      expect(wrapper.state('unsupportedLocale')).toBe('foo');
-    });
-
-    it('checks text after setting locale', () => {
-      const spy = jest.fn();
-
-      instance.checkTextAndClearErrors = spy;
-
-      wrapper.setProps({
-        locale: 'ca',
-      });
-
-      instance.selectAppropriateLocale();
-
-      expect(spy).toHaveBeenCalled();
-    });
-  });
-
-  describe('renderTextWithMarks()', () => {
-    const markProps: MarkProps = {
-      children: 'Mark children',
-      selected: false,
-      onSelect: expect.anything(),
-      alwaysHighlight: false,
-    };
-
-    it('returns text if no errors', () => {
-      wrapper.setState({
-        text: 'Something foobar',
-      });
-
-      expect(instance.renderTextWithMarks()).toBe('Something foobar');
-    });
-
-    it('wraps errors in a mark', () => {
-      wrapper.setState({
-        text: 'Something foobar',
-        errors: [error],
-      });
-
-      expect(instance.renderTextWithMarks()).toEqual([
-        'Something ',
-        <Mark {...markProps} key="foobar-10">
-          foobar
-        </Mark>,
-        '',
-        '.',
-      ]);
-    });
-
-    it('wraps errors in a secondary mark if isRuleSecondary() is true', () => {
-      wrapper.setState({
-        text: 'Something foobar',
-        errors: [{ ...error }],
-      });
-
-      wrapper.setProps({
-        isRuleSecondary: () => true,
-      });
-
-      expect(instance.renderTextWithMarks()).toEqual([
-        'Something ',
-        <SecondaryMark {...markProps} key="foobar-10">
-          foobar
-        </SecondaryMark>,
-        '',
-        '.',
-      ]);
-    });
-
-    it('sets mark as highlighted if isRuleHighlighted() is true', () => {
-      wrapper.setState({
-        text: 'Something foobar',
-        errors: [{ ...error }],
-      });
-
-      wrapper.setProps({
-        isRuleHighlighted: () => true,
-      });
-
-      expect(instance.renderTextWithMarks()).toEqual([
-        'Something ',
-        <Mark {...markProps} key="foobar-10" alwaysHighlight>
-          foobar
-        </Mark>,
-        '',
-        '.',
-      ]);
-    });
-
-    it('sets mark as selected if errors match', () => {
-      wrapper.setState({
-        text: 'Something foobar',
-        errors: [error],
-        selectedError: error,
-      });
-
-      expect(instance.renderTextWithMarks()).toEqual([
-        'Something ',
-        <Mark {...markProps} key="foobar-10" selected>
-          foobar
-        </Mark>,
-        '',
-        '.',
-      ]);
-    });
-
-    it('orders by offset', () => {
-      wrapper.setState({
-        text: 'something foobar',
-        errors: [
-          error,
-          {
-            message: 'Uncapitalized',
-            short_message: 'Uncapitalized',
-            offset: 0,
-            length: 9,
-            replacements: ['Something'],
-            rule_id: 'UPPERCASE_SENTENCE_START',
-          },
-        ],
-        selectedError: error,
-      });
-
-      expect(instance.renderTextWithMarks()).toEqual([
-        '',
-        <Mark {...markProps} key="something-0">
-          something
-        </Mark>,
-        ' ',
-        <Mark {...markProps} key="foobar-10" selected>
-          foobar
-        </Mark>,
-        '',
-        '.',
-      ]);
     });
   });
 });

@@ -1,43 +1,21 @@
 import React from 'react';
 import debounce from 'lodash/debounce';
-import BaseTextArea from '../../private/BaseTextArea';
-import T from '../../Translate';
-import Text from '../../Text';
-import Link from '../../Link';
-import Loader from '../../Loader';
-import Dropdown from '../../Dropdown';
-import withStyles, { WithStylesProps } from '../../../composers/withStyles';
-import { LT_LOCALES } from '../../../constants';
-import { ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT } from '../../../keys';
-import Mark from './Mark';
-import SecondaryMark from './SecondaryMark';
+import BaseTextArea from '../private/BaseTextArea';
+import Dropdown from '../Dropdown';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import { NO_LOCALE, NON_WORD_REGEX, ARROW_KEYS } from './constants';
+import Renderer from './Renderer';
 import ErrorMenu from './ErrorMenu';
-import LocaleMenu from './LocaleMenu';
+import ControlBar from './ControlBar';
 import {
   ProofreadRuleMatch,
   ProofreaderResponse,
-  DefinitionShape,
   ExtraProofreadProps,
   ProofreaderParams,
 } from './types';
-import { Props as FormInputProps } from '../../private/FormInput';
+import { Props as FormInputProps } from '../private/FormInput';
 import { styleSheet } from './styles';
-
-const AIRBNB_REGEX = /\b(((air|ari|iar)[bn]{3})(?!\.com))\b/gi;
-const NON_WORD_REGEX = /\W/;
-
-const ARROW_KEYS = [ARROW_LEFT, ARROW_UP, ARROW_DOWN, ARROW_RIGHT];
-
-const NO_LOCALE = 'none';
-const AUTO_DETECT_LOCALE = 'auto';
-const LOCALE_TO_LT_LOCALE: { [locale: string]: string } = {
-  de: 'de-DE',
-  en: 'en-US',
-  ja: 'ja-JP',
-  pt: 'pt-PT',
-  ru: 'ru-RU',
-  zh: 'zh-CN',
-};
+import { selectAppropriateLocale, checkForAirbnbErrors } from './helpers';
 
 function defaultIsRuleHighlighted(rule: ProofreadRuleMatch) {
   return false;
@@ -69,9 +47,7 @@ export type State = {
   position: Position | null;
   selectedError: ProofreadRuleMatch | null;
   selectedLocale: string | null;
-  showLocaleMenu: boolean;
   text: string;
-  unsupportedLocale: string | null;
 };
 
 export type Snapshot = {
@@ -107,9 +83,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     position: null,
     selectedError: null,
     selectedLocale: null,
-    showLocaleMenu: false,
     text: this.props.value,
-    unsupportedLocale: null,
   };
 
   getSnapshotBeforeUpdate() {
@@ -196,7 +170,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     });
 
     // Check for Airbnb misspellings
-    const customErrors = this.checkForAirbnbErrors(text);
+    const customErrors = checkForAirbnbErrors(text);
 
     if (!text || !selectedLocale || selectedLocale === NO_LOCALE) {
       this.setState({
@@ -245,73 +219,6 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     leading: true,
   });
 
-  checkForAirbnbErrors(text: string): ProofreadRuleMatch[] {
-    const customErrors: ProofreadRuleMatch[] = [];
-
-    if (!text) {
-      return customErrors;
-    }
-
-    let match = AIRBNB_REGEX.exec(text);
-
-    while (match) {
-      if (match[0] !== 'Airbnb') {
-        customErrors.push({
-          short_message: '',
-          message: T.phrase(
-            'Improper company spelling or casing',
-            {},
-            {
-              context: 'Error message when Airbnb is used incorrectly',
-              key: 'lunar.proofreader.misspellingLabel',
-            },
-          ),
-          offset: AIRBNB_REGEX.lastIndex - match[0].length,
-          length: match[0].length,
-          found: match[0],
-          replacements: ['Airbnb'],
-          rule_id: 'AIRBNB_SPELLING_OR_CASING',
-        });
-      }
-
-      match = AIRBNB_REGEX.exec(text);
-    }
-
-    return customErrors;
-  }
-
-  getLocaleDefinition(locale: string): DefinitionShape {
-    if (locale === NO_LOCALE) {
-      return {
-        locale,
-        label: T.phrase(
-          'No language selected',
-          {},
-          {
-            context: 'No language selected for spell and grammar checking',
-            key: 'lunar.proofreader.noLanguageSelected',
-          },
-        ),
-      };
-    }
-
-    if (locale === AUTO_DETECT_LOCALE) {
-      return {
-        locale,
-        label: T.phrase(
-          'Auto-detect language',
-          {},
-          {
-            context: 'Auto-detect language for spell and grammar checking',
-            key: 'lunar.proofreader.autoDetectLanguage',
-          },
-        ),
-      };
-    }
-
-    return LT_LOCALES.find(definition => definition.locale === locale)!;
-  }
-
   getCaretOffset(): Position {
     let top = 0;
     let left = 0;
@@ -327,39 +234,9 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   }
 
   selectAppropriateLocale() {
-    const { locale: baseLocale } = this.props;
-    const locale = LOCALE_TO_LT_LOCALE[baseLocale!] || baseLocale || '';
-    const possibleMatches: DefinitionShape[] = [];
-    let match: string | null = null;
-
-    if (locale === NO_LOCALE) {
-      match = NO_LOCALE;
-    } else if (locale === AUTO_DETECT_LOCALE) {
-      match = AUTO_DETECT_LOCALE;
-    } else {
-      LT_LOCALES.some(definition => {
-        if (locale === definition.locale) {
-          match = definition.locale;
-
-          return true;
-        }
-
-        if (locale.length === 2 && definition.locale.indexOf(locale) === 0) {
-          possibleMatches.push(definition);
-        }
-
-        return false;
-      });
-
-      if (!match && possibleMatches.length > 0) {
-        match = possibleMatches[0].locale;
-      }
-    }
-
     this.setState(
       {
-        selectedLocale: match,
-        unsupportedLocale: match ? null : locale,
+        selectedLocale: selectAppropriateLocale(this.props.locale).selectedLocale,
       },
       () => {
         this.checkTextAndClearErrors();
@@ -381,8 +258,8 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     const selectedError =
       errors.find(
         error =>
-          position >= (error.offset || 0) && position <= (error.offset || 0) + (error.length || 0),
-      ) || null;
+          position >= (error.offset ?? 0) && position <= (error.offset ?? 0) + (error.length ?? 0),
+      ) ?? null;
 
     this.setState({
       selectedError,
@@ -452,8 +329,9 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
   /**
    * When a marked/highlighted word is focused, open the error menu with the marks position.
    */
-  private handleOpenErrorMenu = (top: number, left: number) => {
+  private handleOpenErrorMenu = (error: ProofreadRuleMatch, top: number, left: number) => {
     this.setState({
+      selectedError: error,
       position: {
         top: top - (this.textareaRef.current ? this.textareaRef.current.scrollTop : 0),
         left,
@@ -548,72 +426,12 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     this.setState(
       {
         selectedLocale: locale,
-        showLocaleMenu: false,
       },
       () => {
         this.checkTextAndClearErrors();
       },
     );
   };
-
-  private handleToggleLocaleMenu = () => {
-    this.setState(prevState => ({
-      showLocaleMenu: !prevState.showLocaleMenu,
-    }));
-  };
-
-  renderTextWithMarks() {
-    const { errors, selectedError, text } = this.state;
-
-    if (errors.length === 0) {
-      return text;
-    }
-
-    // Sort errors by offset otherwise slicing does not work
-    errors.sort((a, b) => (a.offset || 0) - (b.offset || 0));
-
-    const content: NonNullable<React.ReactNode>[] = [];
-    let lastIndex = 0;
-
-    errors.forEach(error => {
-      const offset = error.offset || 0;
-      const length = error.length || 0;
-
-      if (offset > text.length) {
-        return;
-      }
-
-      // Extract previous string
-      content.push(text.slice(lastIndex, offset));
-
-      // Set new last index
-      lastIndex = offset + length;
-
-      // Extract match and wrap in a component
-      const word = text.slice(offset, lastIndex);
-
-      const MarkComponent = this.props.isRuleSecondary!(error) ? SecondaryMark : Mark;
-      content.push(
-        <MarkComponent
-          key={`${word}-${offset}`}
-          selected={error === selectedError}
-          alwaysHighlight={this.props.isRuleHighlighted!(error)}
-          onSelect={this.handleOpenErrorMenu}
-        >
-          {word}
-        </MarkComponent>,
-      );
-    });
-
-    // Extract any remaining text
-    content.push(text.slice(lastIndex));
-
-    // Add a fake character to the end of the text. This solves a handful of bugs
-    // in which trailing new lines in combination with scroll position do not work correctly.
-    content.push('.');
-
-    return content;
-  }
 
   render() {
     const {
@@ -628,17 +446,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
       onChange,
       ...props
     } = this.props;
-
-    const {
-      position,
-      errors,
-      loading,
-      selectedError,
-      selectedLocale,
-      showLocaleMenu,
-      unsupportedLocale,
-      text,
-    } = this.state;
+    const { position, errors, loading, selectedError, selectedLocale, text } = this.state;
     const caretPosition =
       (this.textareaRef.current && this.textareaRef.current.selectionStart) || 0;
     const highlightsProps = {
@@ -653,7 +461,17 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     return (
       <div className={cx(styles.proofread)}>
         {/* Shadow text for displaying underlined words. */}
-        <div {...highlightsProps}>{this.renderTextWithMarks()}</div>
+        <div {...highlightsProps}>
+          <Renderer
+            shadow
+            value={text}
+            errors={errors}
+            selectedError={selectedError}
+            isRuleHighlighted={isRuleHighlighted}
+            isRuleSecondary={isRuleSecondary}
+            onSelectError={this.handleOpenErrorMenu}
+          />
+        </div>
 
         {/* Track the top/left offset of the caret within the textarea. */}
         {caretPosition > 0 && text && (
@@ -686,57 +504,12 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
           ref={this.controlsRef}
           className={cx(styles.controls, important && styles.controls_important)}
         >
-          <span className={cx(styles.cell, { pointerEvents: 'initial' })}>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <Link small onClick={this.handleToggleLocaleMenu}>
-              {selectedLocale ? (
-                this.getLocaleDefinition(selectedLocale).label
-              ) : (
-                <T
-                  k="lunar.proofreader.unsupportedLanguage"
-                  phrase="Unsupported language %{locale}"
-                  locale={unsupportedLocale || 'unknown'}
-                  context="Language is not supported for spelling detection"
-                />
-              )}
-            </Link>
-
-            {showLocaleMenu && (
-              <Dropdown
-                visible
-                top="80%"
-                left={theme!.unit}
-                zIndex={5}
-                onClickOutside={this.handleToggleLocaleMenu}
-              >
-                <LocaleMenu
-                  // autoDefinition={this.getLocaleDefinition(AUTO_DETECT_LOCALE)}
-                  noneDefinition={this.getLocaleDefinition(NO_LOCALE)}
-                  selectedLocale={selectedLocale}
-                  onSelectLocale={this.handleSelectLocale}
-                />
-              </Dropdown>
-            )}
-          </span>
-
-          {errors.length > 0 && (
-            <span className={cx(styles.cell)}>
-              <Text small muted>
-                <T
-                  k="lunar.proofreader.totalIssues"
-                  phrase="%{smartCount} issue||||%{smartCount} issues"
-                  smartCount={errors.length}
-                  context="Showing the number of misspellings in a paragraph of text"
-                />
-              </Text>
-            </span>
-          )}
-
-          {loading && (
-            <span className={cx(styles.cell)}>
-              <Loader inline />
-            </span>
-          )}
+          <ControlBar
+            loading={loading}
+            locale={selectedLocale!}
+            errors={errors}
+            onSelectLocale={this.handleSelectLocale}
+          />
         </div>
       </div>
     );

@@ -1,17 +1,17 @@
 import React from 'react';
 import { render } from 'rut-dom';
-import Renderer, { RendererProps } from '../../../src/components/Preview/Renderer';
-import { ProofreadConfig } from '../../../src/types';
-import Mark from '../../../src/components/Preview/Mark';
+import Renderer, { RendererProps } from '../../../src/components/Proofreader/Renderer';
+import { ProofreadRuleMatch } from '../../../src/components/Proofreader/types';
+import Mark from '../../../src/components/Proofreader/Mark';
 
 describe('<Renderer />', () => {
   const props: RendererProps = {
     errors: [],
     value: 'This is a really long input string.',
-    onClickError() {},
+    onSelectError() {},
   };
 
-  const error: ProofreadConfig = {
+  const error: ProofreadRuleMatch = {
     found: 'really long',
     length: 11,
     message: 'Invalid',
@@ -76,10 +76,10 @@ describe('<Renderer />', () => {
     expect(root.findOne(Mark)).toHaveProp('selected', true);
   });
 
-  it('calls `onClickError` when a mark is clicked', () => {
+  it('calls `onSelectError` when a mark is clicked', () => {
     const spy = jest.fn();
     const { root } = render<RendererProps>(
-      <Renderer {...props} errors={[error]} onClickError={spy} />,
+      <Renderer {...props} errors={[error]} onSelectError={spy} />,
       {
         mockRef: () => ({ offsetTop: 5, offsetRight: 10, offsetLeft: 15, offsetHeight: 100 }),
       },

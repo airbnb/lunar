@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import debounce from 'lodash/debounce';
 import Dropdown from '@airbnb/lunar/lib/components/Dropdown';
-import ErrorMenu from '@airbnb/lunar/lib/components/TextArea/Proofreader/ErrorMenu';
+import ErrorMenu from '@airbnb/lunar/lib/components/Proofreader/ErrorMenu';
+import ControlBar from '@airbnb/lunar/lib/components/Proofreader/ControlBar';
+import Renderer, { RendererProps } from '@airbnb/lunar/lib/components/Proofreader/Renderer';
+import { checkForAirbnbErrors } from '@airbnb/lunar/lib/components/Proofreader/helpers';
+import { NO_LOCALE } from '@airbnb/lunar/lib/components/Proofreader/constants';
 import { DEFAULT_LOCALE } from '@airbnb/lunar/lib/constants';
-import { checkForAirbnbErrors, NO_LOCALE } from '../../helpers/preview';
 import ComposerContext from '../../contexts/ComposerContext';
-import Renderer, { RendererProps } from './Renderer';
-import Controls from './Controls';
 import Window from './Window';
 import { ProofreaderLoader, ProofreadConfig } from '../../types';
 
@@ -40,8 +41,9 @@ export default function Proofreader({
   const [errorPosition, setErrorPosition] = useState<{ top: number; left: number }>();
 
   // Load proofreader errors when value changes
-  useEffect(
-    debounce(
+  useEffect(() => {
+    let mounted = true;
+    const timer = debounce(
       () => {
         const customErrors = checkForAirbnbErrors(value);
 
@@ -62,18 +64,27 @@ export default function Proofreader({
           text: value,
         })
           .then(proofreadErrors => {
-            setErrors([...customErrors, ...proofreadErrors]);
-            setLoading(false);
+            if (mounted) {
+              setErrors([...customErrors, ...proofreadErrors]);
+              setLoading(false);
+            }
           })
           .catch(() => {
-            setLoading(false);
+            if (mounted) {
+              setLoading(false);
+            }
           });
       },
       1000,
       { leading: true },
-    ),
-    [onProofread, selectedLocale, value],
-  );
+    );
+
+    timer();
+
+    return () => {
+      mounted = false;
+    };
+  }, [onProofread, selectedLocale, value]);
 
   // Handlers
   const handleSelectError = (error: ProofreadConfig, top: number, left: number) => {
@@ -90,6 +101,10 @@ export default function Proofreader({
   const handleSelectLocale = (nextLocale: string) => {
     setSelectedLocale(nextLocale);
     handleUnselectError();
+
+    if (nextLocale === NO_LOCALE) {
+      setErrors([]);
+    }
   };
 
   const handleReplaceText = (error: ProofreadConfig, replacement: string) => {
@@ -108,7 +123,8 @@ export default function Proofreader({
   return (
     <Window
       controls={
-        <Controls
+        <ControlBar
+          top="95%"
           errors={errors}
           loading={loading}
           locale={selectedLocale}
@@ -123,7 +139,7 @@ export default function Proofreader({
         isRuleSecondary={isRuleSecondary}
         selectedError={selectedError}
         value={value}
-        onClickError={handleSelectError}
+        onSelectError={handleSelectError}
       />
 
       {errorPosition && selectedError && (

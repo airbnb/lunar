@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ErrorMenu from '../../../src/components/TextArea/Proofreader/ErrorMenu';
+import ErrorMenu from '../../../src/components/Proofreader/ErrorMenu';
 import Interweave from '../../../src/components/Interweave';
 import { Item } from '../../../src/components/Menu';
 import Text from '../../../src/components/Text';

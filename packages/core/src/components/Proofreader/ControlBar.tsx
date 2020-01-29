@@ -1,51 +1,49 @@
 import React, { useState } from 'react';
-import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
-import useTheme from '@airbnb/lunar/lib/hooks/useTheme';
-import Text from '@airbnb/lunar/lib/components/Text';
-import Link from '@airbnb/lunar/lib/components/Link';
-import Loader from '@airbnb/lunar/lib/components/Loader';
-import T from '@airbnb/lunar/lib/components/Translate';
-import Dropdown from '@airbnb/lunar/lib/components/Dropdown';
-import LocaleMenu from '@airbnb/lunar/lib/components/TextArea/Proofreader/LocaleMenu';
-import {
-  AUTO_DETECT_LOCALE,
-  NO_LOCALE,
-  getLocaleDefinition,
-  selectAppropriateLocale,
-} from '../../helpers/preview';
-import { ProofreadConfig } from '../../types';
-import { previewControlsStyleSheet } from '../../styles';
+import useStyles from '../../hooks/useStyles';
+import useTheme from '../../hooks/useTheme';
+import Text from '../Text';
+import Link from '../Link';
+import Loader from '../Loader';
+import T from '../Translate';
+import Dropdown from '../Dropdown';
+import LocaleMenu from './LocaleMenu';
+import { AUTO_DETECT_LOCALE, NO_LOCALE } from './constants';
+import { getLocaleDefinition, selectAppropriateLocale } from './helpers';
+import { ProofreadRuleMatch } from './types';
+import { controlBarStyleSheet } from './styles';
 
-export type ControlsProps = {
+export type ControlBarProps = {
   autoDetect?: boolean;
-  errors: ProofreadConfig[];
+  errors: ProofreadRuleMatch[];
   loading?: boolean;
   locale?: string;
+  top?: string;
   onSelectLocale: (locale: string) => void;
 };
 
-export default function Controls({
+export default function ControlBar({
   autoDetect,
   errors,
   loading,
   locale,
+  top = '80%',
   onSelectLocale,
-}: ControlsProps) {
+}: ControlBarProps) {
   const theme = useTheme();
-  const [styles, cx] = useStyles(previewControlsStyleSheet);
+  const [styles, cx] = useStyles(controlBarStyleSheet);
   const [showLocaleMenu, setLocaleMenu] = useState(false);
   const { selectedLocale, unsupportedLocale } = selectAppropriateLocale(locale);
 
   return (
     <div>
-      <span className={cx(styles.cell)}>
+      <span className={cx(styles.cell, { pointerEvents: 'initial' })}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <Link bold small onClick={() => setLocaleMenu(value => !value)}>
           {selectedLocale ? (
             getLocaleDefinition(selectedLocale).label
           ) : (
             <T
-              k="composer.proofreader.unsupportedLanguage"
+              k="lunar.proofreader.unsupportedLanguage"
               phrase="Unsupported language %{locale}"
               locale={unsupportedLocale ?? 'unknown'}
               context="Language is not supported for spelling detection"
@@ -56,7 +54,7 @@ export default function Controls({
         {showLocaleMenu && (
           <Dropdown
             visible
-            top="95%"
+            top={top}
             left={theme.unit * 2}
             zIndex={5}
             onClickOutside={/* istanbul ignore next */ () => setLocaleMenu(false)}
@@ -78,7 +76,7 @@ export default function Controls({
         <span className={cx(styles.cell)}>
           <Text small muted>
             <T
-              k="composer.proofreader.totalIssues"
+              k="lunar.proofreader.totalIssues"
               phrase="%{smartCount} issue||||%{smartCount} issues"
               smartCount={errors.length}
               context="Showing the number of misspellings in a paragraph of text"

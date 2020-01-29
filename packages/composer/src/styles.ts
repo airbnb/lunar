@@ -189,65 +189,6 @@ export const menuStyleSheet: StyleSheet = ({ color, font, ui, unit }) => ({
   },
 });
 
-export const previewControlsStyleSheet: StyleSheet = ({ unit }) => ({
-  cell: {
-    display: 'inline-block',
-    marginRight: unit * 2,
-  },
-});
-
-export const previewMarkStyleSheet: StyleSheet = ({ color, ui }) => ({
-  mark: {
-    position: 'relative',
-    color: 'inherit',
-    backgroundColor: 'transparent',
-    padding: 1,
-    margin: -1,
-    transition: 'opacity .2s, background .2s',
-    cursor: 'pointer',
-
-    '::after': {
-      position: 'absolute',
-      display: 'block',
-      content: '""',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      height: 2,
-      borderRadius: ui.borderRadius,
-      backgroundColor: color.core.danger[2],
-    },
-  },
-
-  mark_highlight: {
-    borderRadius: ui.borderRadius,
-    backgroundColor: color.core.danger[1],
-
-    '::after': {
-      display: 'none',
-    },
-  },
-
-  markSecondary: {
-    '::after': {
-      backgroundColor: color.core.warning[2],
-    },
-  },
-
-  markSecondary_highlight: {
-    backgroundColor: color.core.warning[1],
-  },
-
-  button: {
-    display: 'inline',
-    background: 'none',
-    margin: 0,
-    padding: 0,
-    border: 0,
-    whiteSpace: 'nowrap',
-  },
-});
-
 export const previewWindowStyleSheet: StyleSheet = ({ unit }) => ({
   preview: {
     position: 'relative',

@@ -1,5 +1,5 @@
-import { StyleSheet } from '../../../hooks/useStyles';
-import inputStyleSheet from '../../../themes/inputStyleSheet';
+import { StyleSheet } from '../../hooks/useStyles';
+import inputStyleSheet from '../../themes/inputStyleSheet';
 
 export const styleSheet: StyleSheet = theme => {
   const { input, input_important: inputImportant } = inputStyleSheet(theme);
@@ -98,15 +98,22 @@ export const styleSheet: StyleSheet = theme => {
   };
 };
 
-export const styleSheetMark: StyleSheet = ({ color, ui }) => ({
+export const controlBarStyleSheet: StyleSheet = ({ unit }) => ({
+  cell: {
+    display: 'inline-block',
+    marginRight: unit * 2,
+  },
+});
+
+export const markStyleSheet: StyleSheet = ({ color, ui }) => ({
   mark: {
     position: 'relative',
-    color: 'transparent',
+    color: 'inherit',
     backgroundColor: 'transparent',
-    opacity: 0.75,
     padding: 1,
     margin: -1,
     transition: 'opacity .2s, background .2s',
+    cursor: 'pointer',
 
     '::after': {
       position: 'absolute',
@@ -122,22 +129,30 @@ export const styleSheetMark: StyleSheet = ({ color, ui }) => ({
   },
 
   mark_highlight: {
-    opacity: ui.disabledOpacity,
-    borderTopLeftRadius: ui.borderRadius,
-    borderTopRightRadius: ui.borderRadius,
-    backgroundColor: color.core.danger[2],
-  },
-});
+    borderRadius: ui.borderRadius,
+    backgroundColor: color.core.danger[1],
 
-export const styleSheetSecondryMark: StyleSheet = ({ color }) => ({
-  mark: {
+    '::after': {
+      display: 'none',
+    },
+  },
+
+  markSecondary: {
     '::after': {
       backgroundColor: color.core.warning[2],
     },
   },
 
-  mark_highlight: {
-    opacity: 0.75,
-    backgroundColor: color.core.warning[2],
+  markSecondary_highlight: {
+    backgroundColor: color.core.warning[1],
+  },
+
+  button: {
+    display: 'inline',
+    background: 'none',
+    margin: 0,
+    padding: 0,
+    border: 0,
+    whiteSpace: 'nowrap',
   },
 });

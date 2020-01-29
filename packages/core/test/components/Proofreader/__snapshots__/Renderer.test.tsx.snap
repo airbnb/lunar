@@ -9,13 +9,13 @@ exports[`<Renderer /> renders full string if no errors 1`] = `
 exports[`<Renderer /> wraps errors with marks 1`] = `
 "<div>
   <span>This is a </span>
-  <button className=\\"button\\" type=\\"button\\" onClick={onClick()}>
+  <button className=\\"button\\" type=\\"button\\" onClick={func()}>
     <mark className=\\"mark\\">
       really long
     </mark>
   </button>
   <span> input </span>
-  <button className=\\"button\\" type=\\"button\\" onClick={onClick()}>
+  <button className=\\"button\\" type=\\"button\\" onClick={func()}>
     <mark className=\\"mark\\">
       string
     </mark>

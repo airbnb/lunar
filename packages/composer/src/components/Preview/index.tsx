@@ -53,7 +53,7 @@ export default function Preview({
         name="showPreview"
         label={T.phrase('to preview', null, { key: 'composer.hotkey.returnToPreview' })}
         order={100}
-        onRun={ctx => onSubmitShowPreview({}, ctx)}
+        onRun={ctx => onSubmitShowPreview(ctx.data, ctx)}
       />
 
       <Menu

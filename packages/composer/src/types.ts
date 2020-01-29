@@ -2,6 +2,10 @@
 
 import React from 'react';
 import { WithIconWrapperProps } from '@airbnb/lunar-icons/lib/withIcon';
+import {
+  ProofreadRuleMatch,
+  ProofreaderParams,
+} from '@airbnb/lunar/lib/components/Proofreader/types';
 
 export type WritingMode = 'message' | 'email' | 'private-note';
 
@@ -84,21 +88,7 @@ export type HotkeyConfig = {
   preventDefault?: boolean;
 };
 
-export type ProofreadConfig = {
-  found?: string;
-  length?: number;
-  message?: string;
-  offset?: number;
-  replacements?: string[];
-  rule_id?: string;
-  short_message?: string;
-};
-
-export type ProofreaderParams = {
-  text: string;
-  locale: string;
-  action: 'check';
-};
+export type ProofreadConfig = ProofreadRuleMatch;
 
 export type ProofreaderLoader = (params: ProofreaderParams) => Promise<ProofreadConfig[]>;
 

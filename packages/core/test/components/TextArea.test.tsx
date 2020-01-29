@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import TextArea from '../../src/components/TextArea';
-import Proofreader from '../../src/components/TextArea/Proofreader';
+import Proofreader from '../../src/components/Proofreader';
 import FormField from '../../src/components/FormField';
 import BaseTextArea from '../../src/components/private/BaseTextArea';
 
