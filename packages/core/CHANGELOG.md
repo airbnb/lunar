@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.60.1 - 2020-01-30
+
+#### 🐞 Fixes
+
+- Stop propagation for composer and autocomplete. (#292) ([9804d5c](https://github.com/airbnb/lunar/commit/9804d5c)), closes [#292](https://github.com/airbnb/lunar/issues/292)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.60.0 - 2020-01-29
 
 #### 🚀 Updates
