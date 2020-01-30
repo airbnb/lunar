@@ -83,6 +83,9 @@ export function processHotkeys(
   readableContext: ReadableContext,
   writableContext: WritableContext,
 ) {
+  // Hotkeys should never bubble up the document
+  event.stopPropagation();
+
   hotkeys.forEach(hotkey => {
     if (!hotkey.condition(readableContext)) {
       return;

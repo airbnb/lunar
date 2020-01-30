@@ -16,7 +16,11 @@ import {
   activeWhenMenuOpen,
 } from '../../helpers/hotkeys';
 import { isMac } from '../../helpers/platform';
-import { processChangeHandlers, processSubmitHandlers } from '../../helpers/handlers';
+import {
+  processChangeHandlers,
+  processSubmitHandlers,
+  onSubmitResetValue,
+} from '../../helpers/handlers';
 import { MODE_PRIVATE_NOTE, MODE_EMAIL } from '../../constants';
 import InlineInput from './InlineInput';
 import { ChangeHandler, SubmitHandler } from '../../types';
@@ -100,7 +104,11 @@ export default function Input({
 
       if (!blocked) {
         // Consumer `onSubmit` should always be last
-        processSubmitHandlers([...context.submitHandlers, onSubmit], context.data, context);
+        processSubmitHandlers(
+          [...context.submitHandlers, onSubmit, onSubmitResetValue],
+          context.data,
+          context,
+        );
       }
     } catch (error) {
       context.setError(error.message);

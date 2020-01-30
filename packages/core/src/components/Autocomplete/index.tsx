@@ -343,6 +343,10 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     if (highlightedIndex === null) {
       if (this.props.selectUnknownOnEnter) {
         value = this.state.value;
+
+        // Avoid submitting the form on accident
+        event.preventDefault();
+        event.stopPropagation();
       } else {
         // Input has focus but no menu item is selected + enter is hit -> close the menu,
         // highlight whatever's in input

@@ -17,6 +17,15 @@ export function processSubmitHandlers(
 }
 
 /**
+ * Once submit is successful, reset and clear the data state.
+ */
+export function onSubmitResetValue(result: unknown, { setError, setData }: WritableContext) {
+  setData('value', '');
+  setData('shadowValue', '');
+  setError('');
+}
+
+/**
  * Sync context value with the value in the input field.
  */
 export function onChangeSyncValue(nextValue: string, { setData }: WritableContext) {
