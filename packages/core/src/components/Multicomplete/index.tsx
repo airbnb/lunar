@@ -9,10 +9,9 @@ import Chip from './private/Chip';
 
 export type Item = AutocompleteItem;
 
-function renderChip(
-  value: string,
-  onRemove: (value: string, event: React.MouseEvent<HTMLElement>) => void,
-): NonNullable<React.ReactNode> {
+type onRemove = (value: string, event: React.MouseEvent<HTMLElement>) => void;
+
+function renderChip(value: string, onRemove: onRemove): NonNullable<React.ReactNode> {
   return (
     <Spacing inline right={1} top={1}>
       <Chip value={value} onClick={onRemove} />
@@ -27,10 +26,7 @@ export type Props<T extends Item = Item> = Omit<
   /** Callback that is triggered when an item is selected. */
   onChange: (values: string[], event: React.SyntheticEvent<HTMLElement>) => void;
   /** Render custom selected item, instead of a Chip. */
-  renderChip?: (
-    value: string,
-    onRemove: (value: string, event: React.MouseEvent<HTMLElement>) => void,
-  ) => NonNullable<React.ReactNode>;
+  renderChip?: (value: string, onRemove: onRemove) => NonNullable<React.ReactNode>;
   /** Default selected values. */
   value?: string[];
 };
@@ -104,10 +100,7 @@ export default class Multicomplete<T extends Item = Item> extends React.Componen
     );
   };
 
-  private renderChip = (
-    value: string,
-    onRemove: (value: string, event: React.MouseEvent<HTMLElement>) => void,
-  ) => {
+  private renderChip = (value: string, onRemove: onRemove) => {
     return this.props.renderChip!(value, onRemove);
   };
 
