@@ -121,5 +121,8 @@ export function onSubmitExecuteShortcut(
   // Everything is good, so execute handler
   shortcut.onRun(context, ...params);
 
+  // Clear the input
+  context.setData('value', '');
+
   return true;
 }

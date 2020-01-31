@@ -48,6 +48,8 @@ describe('<Composer />', () => {
         version: 1,
       },
     ]);
+
+    jest.spyOn(window, 'alert').mockImplementation(() => {});
   });
 
   it('renders', () => {
@@ -419,6 +421,18 @@ describe('<Composer />', () => {
 
         // Verify it was called
         expect(cuts[3].onRun).toHaveBeenCalledWith(expect.anything(), '123');
+      });
+
+      it('clears input field when submitted', () => {
+        const { root } = render<ComposerProps>(
+          <Composer {...props}>
+            <Shortcuts shortcuts={shortcuts} />
+          </Composer>,
+        );
+
+        openAndSubmit(root, '/cancel 123');
+
+        expect(root.findOne('textarea')).toHaveValue('');
       });
 
       it('errors for invalid/unknown shortcut', () => {

@@ -95,6 +95,11 @@ export default function Input({
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      // Shortcuts should never allow multiline
+      if (context.data.value.startsWith('/') && event.key === 'Enter') {
+        event.preventDefault();
+      }
+
       processHotkeys(hotkeys, event, context, context);
     },
     [hotkeys, context],
