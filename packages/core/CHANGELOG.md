@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.61.0 - 2020-01-31
+
+#### 🚀 Updates
+
+- **[Multicomplete]** Add `renderChip` option. (#293) ([60206cb](https://github.com/airbnb/lunar/commit/60206cb)), closes [#293](https://github.com/airbnb/lunar/issues/293)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.60.1 - 2020-01-30
 
 #### 🐞 Fixes
