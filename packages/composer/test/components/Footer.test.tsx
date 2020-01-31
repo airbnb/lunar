@@ -54,12 +54,4 @@ describe('<Footer />', () => {
     expect(root.find(Mark)).toHaveLength(1);
     expect(root.find(Symbol)).toHaveLength(2);
   });
-
-  it('doesnt render hotkeys if not visible', () => {
-    const { root } = render<{}>(<Footer />, {
-      wrapper: <Wrapper hotkeys={hotkeys} hotkeyContext={{ visible: false }} />,
-    });
-
-    expect(root.find(Tip)).toHaveLength(0);
-  });
 });

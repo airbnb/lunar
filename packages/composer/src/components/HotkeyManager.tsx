@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer, useState } from 'react';
+import React, { useCallback, useReducer } from 'react';
 import HotkeyContext from '../contexts/HotkeyContext';
 import { HotkeyConfig } from '../types';
 
@@ -37,7 +37,6 @@ function reducer(state: Map<string, HotkeyConfig>, action: HotkeyAction) {
 
 export default function HotkeyManager({ children }: HotkeyManagerProps) {
   const [hotkeys, processHotkey] = useReducer(reducer, new Map());
-  const [visible, setVisible] = useState(false);
 
   const addHotkey = useCallback(
     (name: string, hotkey: HotkeyConfig) => {
@@ -54,7 +53,7 @@ export default function HotkeyManager({ children }: HotkeyManagerProps) {
   );
 
   return (
-    <HotkeyContext.Provider value={{ hotkeys, addHotkey, removeHotkey, visible, setVisible }}>
+    <HotkeyContext.Provider value={{ hotkeys, addHotkey, removeHotkey }}>
       {children}
     </HotkeyContext.Provider>
   );

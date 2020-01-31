@@ -49,7 +49,7 @@ export default function Input({
 }: InputProps) {
   const ref = useRef<HTMLTextAreaElement | null>(null);
   const context = useContext(ComposerContext);
-  const { hotkeys, setVisible } = useContext(HotkeyContext);
+  const { hotkeys } = useContext(HotkeyContext);
   const [styles, cx] = useStyles(inputStyleSheet);
   const [focused, setFocused] = useState(false);
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
@@ -67,10 +67,9 @@ export default function Input({
   }
 
   // Form handlers
-  const handleBlur = () => {
-    setVisible(false);
+  const handleBlur = useCallback(() => {
     setFocused(false);
-  };
+  }, []);
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -88,10 +87,9 @@ export default function Input({
     [onChange, context],
   );
 
-  const handleFocus = () => {
-    setVisible(true);
+  const handleFocus = useCallback(() => {
     setFocused(true);
-  };
+  }, []);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
