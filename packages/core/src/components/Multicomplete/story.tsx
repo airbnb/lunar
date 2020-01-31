@@ -1,6 +1,10 @@
 import React from 'react';
+import IconCloseAlt from '@airbnb/lunar-icons/src/interface/IconCloseAlt';
 import Text from '../Text';
 import Multicomplete from '.';
+import IconButton from '../IconButton';
+import Row from '../Row';
+import StatusText from '../StatusText';
 
 export default {
   title: 'Core/Multicomplete',
@@ -15,7 +19,11 @@ export function anAutocompleteThatSupportsSelectingMultipleItems() {
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
       name="autocomplete"
-      renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
+      renderItem={(item, highlighted, selected) => (
+        <Text bold={selected} muted={highlighted}>
+          {item.name}
+        </Text>
+      )}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
       onLoadItems={value =>
@@ -42,7 +50,11 @@ export function supportsPrePopulatingMultipleItems() {
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
       name="autocomplete"
-      renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
+      renderItem={(item, highlighted, selected) => (
+        <Text bold={selected} muted={highlighted}>
+          {item.name}
+        </Text>
+      )}
       value={['red', 'green']}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
@@ -71,7 +83,11 @@ export function loadItemsOnFocusStory() {
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
       name="autocomplete"
-      renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
+      renderItem={(item, highlighted, selected) => (
+        <Text bold={selected} muted={highlighted}>
+          {item.name}
+        </Text>
+      )}
       value={['red', 'green']}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
@@ -100,7 +116,11 @@ export function canSelectUnknownValueWhenHittingEnter() {
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
       name="autocomplete"
-      renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
+      renderItem={(item, highlighted, selected) => (
+        <Text bold={selected} muted={highlighted}>
+          {item.name}
+        </Text>
+      )}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
       onLoadItems={value =>
@@ -119,4 +139,56 @@ export function canSelectUnknownValueWhenHittingEnter() {
 
 canSelectUnknownValueWhenHittingEnter.story = {
   name: 'Can select unknown value when hitting enter.',
+};
+
+export function renderACustomChip() {
+  return (
+    <Multicomplete
+      selectUnknownOnEnter
+      accessibilityLabel="Favorite color?"
+      label="Favorite color?"
+      name="autocomplete"
+      renderChip={(value, onRemove) => (
+        <Row
+          compact
+          middleAlign
+          after={
+            <IconButton onClick={event => onRemove(value, event)}>
+              <IconCloseAlt accessibilityLabel="Remove" />
+            </IconButton>
+          }
+        >
+          <StatusText
+            uppercased
+            danger={value === 'red'}
+            success={value === 'green'}
+            notice={value === 'blue'}
+          >
+            {value}
+          </StatusText>
+        </Row>
+      )}
+      renderItem={(item, highlighted, selected) => (
+        <Text bold={selected} muted={highlighted}>
+          {item.name}
+        </Text>
+      )}
+      onChange={action('onChange')}
+      onSelectItem={action('onSelectItem')}
+      onLoadItems={value =>
+        Promise.resolve(
+          [
+            { value: 'red', name: 'Red' },
+            { value: 'black', name: 'Black' },
+            { value: 'blue', name: 'Blue' },
+            { value: 'green', name: 'Green' },
+          ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
+        )
+      }
+    />
+  );
+}
+
+renderACustomChip.story = {
+  name: 'Render a custom selected value instead of a Chip.',
 };
