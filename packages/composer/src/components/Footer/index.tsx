@@ -10,7 +10,7 @@ import Symbol from './Symbol';
 
 export default function Footer() {
   const context = useContext(ComposerContext);
-  const { hotkeys } = useContext(HotkeyContext);
+  const { hotkeys, visible } = useContext(HotkeyContext);
   const [styles, cx] = useStyles(footerStyleSheet);
 
   // Select active hotkeys for the current view
@@ -19,7 +19,7 @@ export default function Footer() {
   // Sort hotkeys by order
   tips.sort((a, b) => a.order! - b.order!);
 
-  if (tips.length === 0) {
+  if (!visible || tips.length === 0) {
     return null;
   }
 

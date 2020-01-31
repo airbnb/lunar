@@ -36,7 +36,14 @@ export function Wrapper({
       }}
     >
       <HotkeyContext.Provider
-        value={{ hotkeys: new Map(map), addHotkey() {}, removeHotkey() {}, ...hotkeyContext }}
+        value={{
+          hotkeys: new Map(map),
+          visible: true,
+          addHotkey() {},
+          removeHotkey() {},
+          setVisible() {},
+          ...hotkeyContext,
+        }}
       >
         {children}
       </HotkeyContext.Provider>

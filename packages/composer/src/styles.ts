@@ -57,6 +57,8 @@ export const footerStyleSheet: StyleSheet = ({ color, font, unit }) => ({
     paddingTop: unit / 2,
     paddingBottom: unit / 2,
     lineHeight: 1,
+    // So it doesnt bounce around
+    minHeight: 25,
   },
 });
 
