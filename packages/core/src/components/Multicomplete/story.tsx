@@ -4,7 +4,6 @@ import Multicomplete from '.';
 import IconCloseAlt from '@airbnb/lunar-icons/src/interface/IconCloseAlt';
 import IconButton from '../IconButton';
 import Row from '../Row';
-import Spacing from '../Spacing';
 import StatusText from '../StatusText';
 
 export default {
