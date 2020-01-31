@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import Autocomplete from '../../src/components/Autocomplete';
 import Multicomplete from '../../src/components/Multicomplete';
 import MulticompleteChip from '../../src/components/Multicomplete/private/Chip';
+import MutedButton from '../../src/components/MutedButton';
 
 describe('<Multicomplete />', () => {
   const props = {
@@ -75,6 +76,38 @@ describe('<Multicomplete />', () => {
       .simulate('click', 'foo', event);
 
     expect(changeSpy).toHaveBeenCalledWith(['baz'], event);
+
+    expect(wrapper.state('values')).toEqual(new Set(['baz']));
+  });
+
+  it('renders a custom chip and removes it when clicked', () => {
+    const removeSpy = jest.fn();
+    const wrapper = shallow(
+      <Multicomplete
+        {...props}
+        renderChip={(value, onRemove) => (
+          <MutedButton
+            onClick={e => {
+              removeSpy();
+              onRemove(value, e);
+            }}
+          >
+            {value}
+          </MutedButton>
+        )}
+      />,
+    );
+
+    wrapper.setProps({
+      value: ['foo', 'baz'],
+    });
+
+    wrapper
+      .find(MutedButton)
+      .at(0)
+      .simulate('click', 'foo', event);
+
+    expect(removeSpy).toHaveBeenCalledTimes(1);
 
     expect(wrapper.state('values')).toEqual(new Set(['baz']));
   });

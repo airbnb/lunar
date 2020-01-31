@@ -9,12 +9,28 @@ import Chip from './private/Chip';
 
 export type Item = AutocompleteItem;
 
+function renderChip(
+  value: string,
+  onRemove: (value: string, event: React.MouseEvent<HTMLElement>) => void,
+): NonNullable<React.ReactNode> {
+  return (
+    <Spacing inline right={1} top={1}>
+      <Chip value={value} onClick={onRemove} />
+    </Spacing>
+  );
+}
+
 export type Props<T extends Item = Item> = Omit<
   AutocompleteProps<T>,
   'children' | 'isItemSelected' | 'onChange' | 'value'
 > & {
   /** Callback that is triggered when an item is selected. */
   onChange: (values: string[], event: React.SyntheticEvent<HTMLElement>) => void;
+  /** Render custom selected item, instead of a Chip. */
+  renderChip?: (
+    value: string,
+    onRemove: (value: string, event: React.MouseEvent<HTMLElement>) => void,
+  ) => NonNullable<React.ReactNode>;
   /** Default selected values. */
   value?: string[];
 };
@@ -26,6 +42,7 @@ export type State = {
 /** An uncontrolled input field for selecting multiple values via an autocomplete. */
 export default class Multicomplete<T extends Item = Item> extends React.Component<Props<T>, State> {
   static defaultProps = {
+    renderChip,
     value: [],
   };
 
@@ -87,6 +104,13 @@ export default class Multicomplete<T extends Item = Item> extends React.Componen
     );
   };
 
+  private renderChip = (
+    value: string,
+    onRemove: (value: string, event: React.MouseEvent<HTMLElement>) => void,
+  ) => {
+    return this.props.renderChip!(value, onRemove);
+  };
+
   render() {
     const { onChange, ...props } = this.props;
     const selected = Array.from(this.state.values);
@@ -102,10 +126,10 @@ export default class Multicomplete<T extends Item = Item> extends React.Componen
       >
         {selected.length > 0 && (
           <div>
-            {selected.map(item => (
-              <Spacing key={item} inline right={1} top={1}>
-                <Chip value={item} onClick={this.handleChipClick} />
-              </Spacing>
+            {selected.map(value => (
+              <React.Fragment key={value}>
+                {this.renderChip(value, this.handleChipClick)}
+              </React.Fragment>
             ))}
           </div>
         )}
