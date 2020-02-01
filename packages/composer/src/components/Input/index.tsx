@@ -25,6 +25,7 @@ import { MODE_PRIVATE_NOTE, MODE_EMAIL } from '../../constants';
 import InlineInput from './InlineInput';
 import { ChangeHandler, SubmitHandler } from '../../types';
 import { inputStyleSheet } from '../../styles';
+import { isShortcutCommand } from '../../helpers/shortcuts';
 
 export type InputProps = {
   disabled?: boolean;
@@ -96,7 +97,7 @@ export default function Input({
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
       // Shortcuts should never allow multiline
-      if (context.data.value.startsWith('/') && event.key === 'Enter') {
+      if (isShortcutCommand(context.data.value) && event.key === 'Enter') {
         event.preventDefault();
       }
 
