@@ -67,9 +67,10 @@ export default function Input({
   }
 
   // Form handlers
-  const handleBlur = useCallback(() => {
+  const handleBlur = () => {
     setFocused(false);
-  }, []);
+    context.setData('focused', false);
+  };
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -87,9 +88,10 @@ export default function Input({
     [onChange, context],
   );
 
-  const handleFocus = useCallback(() => {
+  const handleFocus = () => {
     setFocused(true);
-  }, []);
+    context.setData('focused', true);
+  };
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLTextAreaElement>) => {

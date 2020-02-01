@@ -15,6 +15,7 @@ export type DataSet = {
   [name: string]: DataValue | undefined;
   emailSubject?: string;
   emailTo?: string;
+  focused?: boolean;
   previewConfirmed?: boolean;
   shadowValue: string;
   value: string;

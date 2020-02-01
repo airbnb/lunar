@@ -78,6 +78,7 @@ export default function Composer({
   const [mode, setMode] = useState<WritingMode>(writingMode ?? MODE_MESSAGE);
   const [error, setError] = useState('');
   const [data, setData] = useReducer(reducer, {
+    focused: false,
     shadowValue: '',
     value: '',
     ...defaultValues,

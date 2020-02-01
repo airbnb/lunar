@@ -40,6 +40,7 @@ export default function Emojis({ internal = false, startAlign = false }: EmojisP
   return (
     <Menu borderless endAlign={!startAlign} name={MENU_EMOJIS} startAlign={startAlign} width={320}>
       <Picker
+        disableAutoFocus
         columnCount={10}
         rowCount={6}
         onClosePicker={handleClose}

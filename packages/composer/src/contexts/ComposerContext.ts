@@ -4,7 +4,7 @@ import { MODE_MESSAGE } from '../constants';
 
 export const defaultContext: Context = {
   changeHandlers: new Set(),
-  data: { shadowValue: '', value: '' },
+  data: { focused: false, shadowValue: '', value: '' },
   flags: {},
   menu: '',
   mode: MODE_MESSAGE,

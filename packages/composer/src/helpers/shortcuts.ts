@@ -52,7 +52,11 @@ export function isShortcutCommand(value?: string): boolean {
 }
 
 export function activeWhenShortcutsMenuOpen(context: ReadableContext): boolean {
-  return context.menu === MENU_SHORTCUTS && isShortcutCommand(context.data.value);
+  return (
+    !!context.data.focused &&
+    context.menu === MENU_SHORTCUTS &&
+    isShortcutCommand(context.data.value)
+  );
 }
 
 export function openShortcutsMenu({ setMenu }: WritableContext) {
