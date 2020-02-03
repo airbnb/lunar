@@ -49,6 +49,7 @@ export default function renderDataColumns<T>(
     const { isChild } = metadata;
     const customRenderer = renderers && renderers[key];
     const isLeftmost = columnIndex === 0;
+    const isRightmost = columnIndex === keys.length - 1;
     const indentSize = !expandable || !isLeftmost ? 2 : 2.5;
     const spacing = isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
     const rendererArguments: RendererProps<T> = {
@@ -73,7 +74,7 @@ export default function renderDataColumns<T>(
     const contents = React.createElement(customRenderer || DefaultRenderer, rendererArguments);
 
     return (
-      <Spacing left={spacing} right={2}>
+      <Spacing left={isLeftmost ? 0 : spacing} right={isRightmost ? 0 : 2}>
         {contents || ''}
       </Spacing>
     );

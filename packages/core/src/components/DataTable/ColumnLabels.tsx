@@ -84,7 +84,7 @@ export default function ColumnLabels({
         !columnMetadata || !columnMetadata[key] || columnMetadata[key].disableSorting !== 1;
 
       const newHeader = (
-        <Spacing left={indent ? 2 : 0}>
+        <Spacing left={indent && !isLeftmost ? 2 : 0}>
           <div style={heightStyle} className={cx(showDivider && styles && styles.column_divider)}>
             <div
               style={
