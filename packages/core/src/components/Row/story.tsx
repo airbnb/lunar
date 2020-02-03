@@ -142,6 +142,16 @@ export function allPaddingOptions() {
       <Row baseline after={<Button>Take an action</Button>}>
         <Text>A row with no padding.</Text>
       </Row>
+
+      <Row inline after={<Button>Take an action</Button>}>
+        <Text>An inline row with no vertical padding.</Text>
+      </Row>
+
+      <Row compact inline after={<Button>Take an action</Button>}>
+        <Text>
+          A inline and compact row with no vertical padding and low horizontal padding (4px).
+        </Text>
+      </Row>
     </div>
   );
 }

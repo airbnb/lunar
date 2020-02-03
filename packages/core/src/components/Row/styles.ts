@@ -27,6 +27,11 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
     borderTop: ui.border,
   },
 
+  row_inline: {
+    borderTop: 0,
+    borderBottom: 0,
+  },
+
   after: {
     paddingLeft: unit * 2,
     flexShrink: 0,
@@ -36,6 +41,10 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
     paddingLeft: unit,
   },
 
+  after_compact_inline: {
+    paddingLeft: 0.5 * unit,
+  },
+
   before: {
     paddingRight: unit * 2,
     flexShrink: 0,
@@ -43,6 +52,10 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
 
   before_compact: {
     paddingRight: unit,
+  },
+
+  before_compact_inline: {
+    paddingRight: 0.5 * unit,
   },
 
   primary: {

@@ -51,11 +51,12 @@ export default function Row({
       className={cx(
         styles.row,
         { maxHeight, minHeight },
-        compact && styles.row_compact,
+        compact && !inline && styles.row_compact,
         spacious && styles.row_spacious,
         middleAlign && styles.row_middleAlign,
         baseline && styles.row_baseline,
         topline && styles.row_topline,
+        inline && styles.row_inline,
       )}
     >
       {before && (
@@ -64,6 +65,7 @@ export default function Row({
             styles.before,
             inline && styles.inline,
             (inline || compact) && styles.before_compact,
+            inline && compact && styles.before_compact_inline,
           )}
         >
           {before}
@@ -85,6 +87,7 @@ export default function Row({
             styles.after,
             inline && styles.inline,
             (inline || compact) && styles.after_compact,
+            inline && compact && styles.after_compact_inline,
           )}
         >
           {after}
