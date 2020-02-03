@@ -6,6 +6,8 @@ import MutedButton from '../MutedButton';
 import ButtonGroup from '../ButtonGroup';
 
 export type Props = {
+  /** Render buttons as a block with full width. */
+  block?: boolean;
   /** Text to display in the cancel button. Defaults to "Cancel". */
   cancelText?: React.ReactNode;
   /** Text to display in the continue/submit button. Defaults to "Submit". */
@@ -49,6 +51,7 @@ export default class FormActions extends React.PureComponent<Props> {
 
   render() {
     const {
+      block,
       cancelText,
       continueText,
       danger,
@@ -65,9 +68,10 @@ export default class FormActions extends React.PureComponent<Props> {
     const Button = danger ? DangerButton : NormalButton;
 
     return (
-      <ButtonGroup>
+      <ButtonGroup stacked={block}>
         <Button
           type="submit"
+          block={block}
           disabled={disabled}
           loading={processing}
           small={small}
@@ -87,7 +91,13 @@ export default class FormActions extends React.PureComponent<Props> {
         </Button>
 
         {!hideCancel && (
-          <MutedButton inverted small={small} disabled={processing} onClick={onCancel}>
+          <MutedButton
+            inverted
+            block={block}
+            small={small}
+            disabled={processing}
+            onClick={onCancel}
+          >
             {cancelText || (
               <T
                 k="lunar.common.cancel"
@@ -99,7 +109,7 @@ export default class FormActions extends React.PureComponent<Props> {
         )}
 
         {showReset && (
-          <MutedButton inverted type="reset" small={small} disabled={processing}>
+          <MutedButton inverted block={block} type="reset" small={small} disabled={processing}>
             {resetText || (
               <T k="lunar.common.reset" phrase="Reset" context="Button label to reset a form" />
             )}
