@@ -2,7 +2,6 @@ import React from 'react';
 import TermList, { Term } from '.';
 import Link from '../Link';
 import Spacing from '../Spacing';
-import List, { Item } from '../List';
 
 import Card, { Content } from '../Card';
 
