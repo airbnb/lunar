@@ -1,4 +1,5 @@
 import React from 'react';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
 import Row from '../Row';
 import Spacing from '../Spacing';
@@ -18,10 +19,19 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
 };
 
-export default function Term({ label, after, endAlign, regular, uppercased, children }: Props) {
+function Term({
+  label,
+  after,
+  endAlign,
+  regular,
+  uppercased,
+  children,
+  styles,
+  cx,
+}: Props & WithStylesProps) {
   return (
-    <>
-      <dt>
+    <div className={cx(styles.term)}>
+      <dt className={cx(styles.dt)}>
         <Row after={endAlign && after}>
           <Text inline small={!regular} uppercased={uppercased}>
             {label}
@@ -33,9 +43,15 @@ export default function Term({ label, after, endAlign, regular, uppercased, chil
           )}
         </Row>
       </dt>
-      <dd>
+      <dd className={cx(styles.dd)}>
         <Text>{children}</Text>
       </dd>
-    </>
+    </div>
   );
 }
+
+export default withStyles(({ unit, font }) => ({
+  dd: {
+    marginInlineStart: 0,
+  },
+}))(Term);

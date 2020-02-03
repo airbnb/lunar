@@ -14,11 +14,7 @@ export default {
 };
 
 export function standaloneTerm() {
-  return (
-    <TermList>
-      <Term label="Clusters">8</Term>
-    </TermList>
-  );
+  return <Term label="Clusters">8</Term>;
 }
 
 standaloneTerm.story = {
@@ -27,11 +23,9 @@ standaloneTerm.story = {
 
 export function standaloneTermWithRegularLabel() {
   return (
-    <TermList>
-      <Term regular label="Clusters">
-        8
-      </Term>
-    </TermList>
+    <Term regular label="Clusters">
+      8
+    </Term>
   );
 }
 
@@ -41,21 +35,19 @@ standaloneTermWithRegularLabel.story = {
 
 export function standaloneTermWithAfterContent() {
   return (
-    <TermList>
-      <Term
-        label="Clusters"
-        after={
-          <>
-            <Link small>Details</Link>
-            <Spacing inline left={1}>
-              <Link small>Git</Link>
-            </Spacing>
-          </>
-        }
-      >
-        8
-      </Term>
-    </TermList>
+    <Term
+      label="Clusters"
+      after={
+        <>
+          <Link small>Details</Link>
+          <Spacing inline left={1}>
+            <Link small>Git</Link>
+          </Spacing>
+        </>
+      }
+    >
+      8
+    </Term>
   );
 }
 
@@ -96,17 +88,15 @@ standaloneTermWithAfterContentEndAligned.story = {
 
 export function listOfTerms() {
   return (
-    <div style={{ width: 300 }}>
-      <Card>
-        <Content>
-          <TermList>
-            <Term label="Total Clusters">16</Term>
-            <Term label="Active Clusters">4</Term>
-            <Term label="Inactive Clusters">12</Term>
-          </TermList>
-        </Content>
-      </Card>
-    </div>
+    <Card>
+      <Content>
+        <TermList>
+          <Term label="Total Clusters">16</Term>
+          <Term label="Active Clusters">4</Term>
+          <Term label="Inactive Clusters">12</Term>
+        </TermList>
+      </Content>
+    </Card>
   );
 }
 
@@ -119,23 +109,11 @@ export function horizontalListOfTerms() {
     <div style={{ width: '50%' }}>
       <Card>
         <Content>
-          <List horizontal gutter>
-            <Item>
-              <TermList>
-                <Term label="Total Clusters">16</Term>
-              </TermList>
-            </Item>
-            <Item>
-              <TermList>
-                <Term label="Inactive Clusters">12</Term>
-              </TermList>
-            </Item>
-            <Item>
-              <TermList>
-                <Term label="Active">123456789</Term>
-              </TermList>
-            </Item>
-          </List>
+          <TermList horizontal>
+            <Term label="Total Clusters">16</Term>
+            <Term label="Inactive Clusters">12</Term>
+            <Term label="Active">123456789</Term>
+          </TermList>
         </Content>
       </Card>
     </div>
