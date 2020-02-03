@@ -62,3 +62,11 @@ export function inADangerState() {
 inADangerState.story = {
   name: 'In a danger state.',
 };
+
+export function withBlockButton() {
+  return <FormActions block />;
+}
+
+withBlockButton.story = {
+  name: 'Full width buttons, stacked with `block`.',
+};
