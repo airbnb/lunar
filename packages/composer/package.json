@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-composer",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Unified composer for doing all the things.",
   "license": "MIT",
   "main": "./lib/index.js",
