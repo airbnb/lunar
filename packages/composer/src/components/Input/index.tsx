@@ -25,6 +25,7 @@ import { MODE_PRIVATE_NOTE, MODE_EMAIL } from '../../constants';
 import InlineInput from './InlineInput';
 import { ChangeHandler, SubmitHandler } from '../../types';
 import { inputStyleSheet } from '../../styles';
+import { isShortcutCommand } from '../../helpers/shortcuts';
 
 export type InputProps = {
   disabled?: boolean;
@@ -67,9 +68,10 @@ export default function Input({
   }
 
   // Form handlers
-  const handleBlur = useCallback(() => {
+  const handleBlur = () => {
     setFocused(false);
-  }, []);
+    context.setData('focused', false);
+  };
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -87,12 +89,18 @@ export default function Input({
     [onChange, context],
   );
 
-  const handleFocus = useCallback(() => {
+  const handleFocus = () => {
     setFocused(true);
-  }, []);
+    context.setData('focused', true);
+  };
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      // Shortcuts should never allow multiline
+      if (isShortcutCommand(context.data.value) && event.key === 'Enter') {
+        event.preventDefault();
+      }
+
       processHotkeys(hotkeys, event, context, context);
     },
     [hotkeys, context],

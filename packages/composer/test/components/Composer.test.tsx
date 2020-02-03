@@ -48,6 +48,8 @@ describe('<Composer />', () => {
         version: 1,
       },
     ]);
+
+    jest.spyOn(window, 'alert').mockImplementation(() => {});
   });
 
   it('renders', () => {
@@ -309,11 +311,11 @@ describe('<Composer />', () => {
         .dispatchAndWait('onClick');
 
       expect(spy).toHaveBeenCalledWith(
-        {
+        expect.objectContaining({
           previewConfirmed: true,
           shadowValue: '',
           value: 'Hello',
-        },
+        }),
         expect.any(Object),
       );
 
@@ -348,6 +350,7 @@ describe('<Composer />', () => {
       );
 
       root.findOne('textarea').dispatch('onChange', { target: { value: '/' } });
+      root.findOne('textarea').dispatch('onFocus');
 
       expect(root.findOne(Menu)).toHaveRendered();
 
@@ -365,6 +368,7 @@ describe('<Composer />', () => {
 
       // Open menu
       root.findOne('textarea').dispatch('onChange', { target: { value: '/' } });
+      root.findOne('textarea').dispatch('onFocus');
 
       // Check first is active
       const a = root.findAt(Selection, 0);
@@ -419,6 +423,18 @@ describe('<Composer />', () => {
 
         // Verify it was called
         expect(cuts[3].onRun).toHaveBeenCalledWith(expect.anything(), '123');
+      });
+
+      it('clears input field when submitted', () => {
+        const { root } = render<ComposerProps>(
+          <Composer {...props}>
+            <Shortcuts shortcuts={shortcuts} />
+          </Composer>,
+        );
+
+        openAndSubmit(root, '/cancel 123');
+
+        expect(root.findOne('textarea')).toHaveValue('');
       });
 
       it('errors for invalid/unknown shortcut', () => {

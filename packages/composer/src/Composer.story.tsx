@@ -33,17 +33,23 @@ export const shortcuts: ShortcutConfig[] = [
     name: 'macro',
     description: 'Select a prewritten response',
     arguments: [{ name: 'name', optional: true }],
-    onRun() {},
+    onRun() {
+      alert('Macro!');
+    },
   },
   {
     name: 'upload',
     description: 'Select and share PDFs, images, and more',
-    onRun() {},
+    onRun() {
+      alert('Upload!');
+    },
   },
   {
     name: 'call',
     description: 'Start a call',
-    onRun() {},
+    onRun() {
+      alert('Call!');
+    },
   },
   {
     name: 'cancel',
@@ -58,7 +64,9 @@ export const shortcuts: ShortcutConfig[] = [
         },
       },
     ],
-    onRun() {},
+    onRun() {
+      alert('Cancel!');
+    },
   },
 ];
 

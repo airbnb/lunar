@@ -52,7 +52,11 @@ export function isShortcutCommand(value?: string): boolean {
 }
 
 export function activeWhenShortcutsMenuOpen(context: ReadableContext): boolean {
-  return context.menu === MENU_SHORTCUTS && isShortcutCommand(context.data.value);
+  return (
+    !!context.data.focused &&
+    context.menu === MENU_SHORTCUTS &&
+    isShortcutCommand(context.data.value)
+  );
 }
 
 export function openShortcutsMenu({ setMenu }: WritableContext) {
@@ -120,6 +124,9 @@ export function onSubmitExecuteShortcut(
 
   // Everything is good, so execute handler
   shortcut.onRun(context, ...params);
+
+  // Clear the input
+  context.setData('value', '');
 
   return true;
 }

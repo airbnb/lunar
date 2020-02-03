@@ -114,7 +114,7 @@ export function showWhenNoMenuOrValueCondition(context: ReadableContext): boolea
 }
 
 export function showWhenValueNotEmptyCondition(context: ReadableContext): boolean {
-  return context.data.value !== '';
+  return !!context.data.focused && context.data.value !== '';
 }
 
 export function closeMenu({ menu, setData, setMenu }: WritableContext) {
@@ -126,5 +126,5 @@ export function closeMenu({ menu, setData, setMenu }: WritableContext) {
 }
 
 export function activeWhenMenuOpen(context: ReadableContext): boolean {
-  return !!context.menu;
+  return !!context.data.focused && !!context.menu;
 }

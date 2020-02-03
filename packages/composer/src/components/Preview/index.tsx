@@ -49,7 +49,9 @@ export default function Preview({
       <Hotkey
         preventDefault
         combo={isMac() ? 'cmd+p' : 'ctrl+p'}
-        condition={({ data }) => !requireConfirmation && !data.value.startsWith('/')}
+        condition={({ data }) =>
+          !requireConfirmation && !!data.focused && data.value !== '' && !data.value.startsWith('/')
+        }
         name="showPreview"
         label={T.phrase('to preview', null, { key: 'composer.hotkey.returnToPreview' })}
         order={100}
