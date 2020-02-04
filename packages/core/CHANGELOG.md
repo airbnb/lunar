@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.62.0 - 2020-02-04
+
+#### 🚀 Updates
+
+- **[FormActions]** Add `block` option to buttons. (#298) ([28317db](https://github.com/airbnb/lunar/commit/28317db)), closes [#298](https://github.com/airbnb/lunar/issues/298)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.61.0 - 2020-01-31
 
 #### 🚀 Updates
