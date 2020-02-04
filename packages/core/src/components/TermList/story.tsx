@@ -38,9 +38,13 @@ export function standaloneTermWithAfterContent() {
       label="Clusters"
       after={
         <>
-          <Link small>Details</Link>
+          <Link href="https://github.com/airbnb/lunar" small>
+            Details
+          </Link>
           <Spacing inline left={1}>
-            <Link small>Git</Link>
+            <Link href="https://github.com/airbnb/lunar" small>
+              Git
+            </Link>
           </Spacing>
         </>
       }
@@ -65,9 +69,13 @@ export function standaloneTermWithAfterContentEndAligned() {
               label="Clusters"
               after={
                 <>
-                  <Link small>Details</Link>
+                  <Link href="https://github.com/airbnb/lunar" small>
+                    Details
+                  </Link>
                   <Spacing inline left={1}>
-                    <Link small>Git</Link>
+                    <Link href="https://github.com/airbnb/lunar" small>
+                      Git
+                    </Link>
                   </Spacing>
                 </>
               }
