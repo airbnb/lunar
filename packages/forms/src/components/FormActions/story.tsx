@@ -26,3 +26,21 @@ export function connectedToTheParentForm() {
 connectedToTheParentForm.story = {
   name: 'Connected to the parent `Form`.',
 };
+
+export function withBlockAndConnectedToTheParentForm() {
+  return (
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
+      <FormActions block />
+    </Form>
+  );
+}
+
+withBlockAndConnectedToTheParentForm.story = {
+  name: 'With `block`.',
+};
