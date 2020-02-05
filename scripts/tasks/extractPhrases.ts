@@ -6,6 +6,7 @@ import * as parser from '@babel/parser';
 import traverse from '@babel/traverse';
 
 const { I18N_PREFIX = 'lunar' } = process.env;
+const CWD = process.argv[2] || process.cwd();
 
 interface Phrase {
   key: string;
@@ -16,7 +17,11 @@ interface Phrase {
 type OnExtract = (key: string, phrase: string, context: string) => void;
 
 function parseAndTraverse(filePath: string, cb: OnExtract) {
-  console.log(`  ${chalk.gray(filePath.split('packages/')[1])}`);
+  const shortPath = filePath.includes('packages')
+    ? filePath.split('packages/')[1]
+    : filePath.split('src/')[1];
+
+  console.log(`  ${chalk.gray(shortPath)}`);
 
   const code = fs.readFileSync(filePath, 'utf8');
   const ast = parser.parse(code, {
@@ -116,9 +121,9 @@ function parseAndTraverse(filePath: string, cb: OnExtract) {
   });
 }
 
-glob(['packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'], {
+glob(['src/**/*.ts', 'src/**/*.tsx', 'packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'], {
   absolute: true,
-  cwd: process.cwd(),
+  cwd: CWD,
 })
   .then(files => {
     console.log('Extracting...');
