@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 import chalk from 'chalk';
 import glob from 'fast-glob';
 import * as t from '@babel/types';
@@ -6,7 +7,11 @@ import * as parser from '@babel/parser';
 import traverse from '@babel/traverse';
 
 const I18N_PREFIX = (process.env.I18N_PREFIX || 'lunar').split(',');
-const CWD = process.argv[2] || process.cwd();
+const SEARCH_PATHS = process.argv.slice(2);
+
+if (SEARCH_PATHS.length === 0) {
+  SEARCH_PATHS.push('src', 'packages/*/src');
+}
 
 interface Phrase {
   key: string;
@@ -121,10 +126,13 @@ function parseAndTraverse(filePath: string, cb: OnExtract) {
   });
 }
 
-glob(['src/**/*.{ts,tsx,js,jsx}', 'packages/*/src/**/*.{ts,tsx,js,jsx}'], {
-  absolute: true,
-  cwd: CWD,
-})
+glob(
+  SEARCH_PATHS.map(sp => path.join(sp, '**/*.{ts,tsx,js,jsx}')),
+  {
+    absolute: true,
+    cwd: process.cwd(),
+  },
+)
   .then(files => {
     console.log('Extracting...');
 
