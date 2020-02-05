@@ -5,7 +5,7 @@ import * as t from '@babel/types';
 import * as parser from '@babel/parser';
 import traverse from '@babel/traverse';
 
-const { I18N_PREFIX = 'lunar' } = process.env;
+const I18N_PREFIX = (process.env.I18N_PREFIX || 'lunar').split(',');
 const CWD = process.argv[2] || process.cwd();
 
 interface Phrase {
@@ -121,7 +121,7 @@ function parseAndTraverse(filePath: string, cb: OnExtract) {
   });
 }
 
-glob(['src/**/*.ts', 'src/**/*.tsx', 'packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'], {
+glob(['src/**/*.{ts,tsx,js,jsx}', 'packages/*/src/**/*.{ts,tsx,js,jsx}'], {
   absolute: true,
   cwd: CWD,
 })
@@ -129,13 +129,15 @@ glob(['src/**/*.ts', 'src/**/*.tsx', 'packages/*/src/**/*.ts', 'packages/*/src/*
     console.log('Extracting...');
 
     const phrases: { [key: string]: Phrase } = {};
+    const messages: { [message: string]: string[] } = {};
 
     const handleExtract: OnExtract = (key, message, context) => {
-      if (!key.startsWith(I18N_PREFIX)) {
-        throw new Error(`Key "${key}" does not start with "${I18N_PREFIX}".`);
+      if (!I18N_PREFIX.some(prefix => key.startsWith(prefix))) {
+        throw new Error(`Key "${key}" does not start with "${I18N_PREFIX.join(', ')}".`);
       }
 
       const phrase = phrases[key];
+      const dupe = messages[message];
 
       if (phrase) {
         if (message !== phrase.phrase) {
@@ -145,12 +147,20 @@ glob(['src/**/*.ts', 'src/**/*.tsx', 'packages/*/src/**/*.ts', 'packages/*/src/*
         if (context) {
           phrase.contexts.add(context);
         }
+
+        if (dupe && !dupe.includes(key)) {
+          console.warn(chalk.yellow(`Duplicate phrase message found for keys: ${dupe.join(', ')}`));
+
+          dupe.push(key);
+        }
       } else {
         phrases[key] = {
           key,
           phrase: message,
           contexts: new Set(context ? [context] : []),
         };
+
+        messages[message] = [key];
       }
     };
 
