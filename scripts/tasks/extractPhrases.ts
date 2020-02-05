@@ -9,8 +9,8 @@ const { I18N_PREFIX = 'lunar' } = process.env;
 
 interface Phrase {
   key: string;
-  message: string;
-  contexts: string[];
+  phrase: string;
+  contexts: Set<string>;
 }
 
 type OnExtract = (key: string, phrase: string, context: string) => void;
@@ -61,9 +61,9 @@ function parseAndTraverse(filePath: string, cb: OnExtract) {
           const { value } = prop.value;
 
           if (name === 'key') {
-            key = value;
+            key = value.trim();
           } else if (name === 'context') {
-            context = value;
+            context = value.trim();
           }
         }
       });
@@ -96,11 +96,11 @@ function parseAndTraverse(filePath: string, cb: OnExtract) {
           const { value } = attr.value;
 
           if (name === 'k') {
-            key = value;
+            key = value.trim();
           } else if (name === 'phrase') {
-            phrase = value;
+            phrase = value.trim();
           } else if (name === 'context') {
-            context = value;
+            context = value.trim();
           }
         }
       });
@@ -133,16 +133,18 @@ glob(['packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'], {
       const phrase = phrases[key];
 
       if (phrase) {
-        if (message !== phrase.message) {
+        if (message !== phrase.phrase) {
           throw new Error(`Key "${key}" found with different phrase messages.`);
         }
 
-        phrase.contexts.push(context);
+        if (context) {
+          phrase.contexts.add(context);
+        }
       } else {
         phrases[key] = {
           key,
-          message,
-          contexts: context ? [context] : [],
+          phrase: message,
+          contexts: new Set(context ? [context] : []),
         };
       }
     };
@@ -160,7 +162,15 @@ glob(['packages/*/src/**/*.ts', 'packages/*/src/**/*.tsx'], {
   .then(phrases => {
     console.log(`Found ${Object.keys(phrases).length} phrases`);
 
-    fs.writeFileSync('phrases.json', JSON.stringify(phrases, null, 2), 'utf8');
+    const data = Object.values(phrases).map(row => ({
+      key: row.key,
+      phrase: row.phrase,
+      contexts: Array.from(row.contexts),
+    }));
+
+    data.sort((a, b) => a.key.localeCompare(b.key));
+
+    fs.writeFileSync('phrases.json', JSON.stringify(data, null, 2), 'utf8');
 
     console.log('Complete!');
   })
