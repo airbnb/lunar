@@ -35,6 +35,30 @@ aBasicMenuWithMenuItems.story = {
   name: 'A basic menu with menu items.',
 };
 
+<<<<<<< HEAD
+=======
+export function withCustomTrigger() {
+  return (
+    <MenuToggle
+      accessibilityLabel="Actions"
+      toggleElement={
+        <>
+          Custom <Emoji unicode="🐱" /> Menu <Emoji unicode="🐱" /> Trigger
+        </>
+      }
+      toggleLabel="Actions"
+      zIndex={10}
+    >
+      {children}
+    </MenuToggle>
+  );
+}
+
+withCustomIcon.story = {
+  name: 'With custom icon.',
+};
+
+>>>>>>> 1ca9675... toggleTrigger -> toggleElement
 export function withCustomIcon() {
   return (
     <MenuToggle
