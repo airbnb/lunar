@@ -137,7 +137,6 @@ glob(['src/**/*.{ts,tsx,js,jsx}', 'packages/*/src/**/*.{ts,tsx,js,jsx}'], {
       }
 
       const phrase = phrases[key];
-      const dupe = messages[message];
 
       if (phrase) {
         if (message !== phrase.phrase) {
@@ -147,6 +146,8 @@ glob(['src/**/*.{ts,tsx,js,jsx}', 'packages/*/src/**/*.{ts,tsx,js,jsx}'], {
         if (context) {
           phrase.contexts.add(context);
         }
+
+        const dupe = messages[message.toLocaleLowerCase()];
 
         if (dupe && !dupe.includes(key)) {
           console.warn(chalk.yellow(`Duplicate phrase message found for keys: ${dupe.join(', ')}`));
@@ -160,7 +161,7 @@ glob(['src/**/*.{ts,tsx,js,jsx}', 'packages/*/src/**/*.{ts,tsx,js,jsx}'], {
           contexts: new Set(context ? [context] : []),
         };
 
-        messages[message] = [key];
+        messages[message.toLocaleLowerCase()] = [key];
       }
     };
 
