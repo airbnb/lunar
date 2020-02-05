@@ -174,7 +174,7 @@ glob(
     };
 
     files.forEach(file => {
-      if (file.endsWith('story.tsx')) {
+      if (file.match(/(\.|\/)story\.tsx?$/i)) {
         return;
       }
 
