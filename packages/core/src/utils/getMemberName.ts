@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import Core from '..';
+import T from '../components/Translate';
 
 type Member = {
   first_name?: string;
@@ -13,7 +13,14 @@ export default function getMemberName(
   copy: string = '',
 ): string {
   if (!member.first_name) {
-    return copy || Core.translate('Unknown member', {}, 'Member name does not exist');
+    return (
+      copy ||
+      T.phrase(
+        'Unknown member',
+        {},
+        { key: 'lunar.common.unknownMember', context: 'Member name does not exist' },
+      )
+    );
   }
 
   const firstName = member.first_name;

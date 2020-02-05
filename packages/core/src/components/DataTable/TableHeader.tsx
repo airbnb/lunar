@@ -3,7 +3,7 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import Text from '../Text';
-import Translate from '../Translate';
+import T from '../Translate';
 import { HeaderButton, SelectedRows } from './types';
 import { styleSheetTableHeader as styleSheet } from './styles';
 
@@ -80,23 +80,19 @@ export function TableHeader({
 
   const editModeButtons = instantEdit ? (
     <Button key="Done" small onClick={onDisableEditMode}>
-      <Translate k="lunar.common.done" phrase="Done" context="This button exits edit mode." />
+      <T k="lunar.common.done" phrase="Done" context="This button exits edit mode." />
     </Button>
   ) : (
     [
       <Button key="Cancel" small inverted onClick={onDisableEditMode}>
-        <Translate
+        <T
           k="lunar.common.cancel"
           phrase="Cancel"
           context="This button cancels out of edit mode without applying changes."
         />
       </Button>,
       <Button key="Apply" small onClick={onEnactEdits}>
-        <Translate
-          k="lunar.common.apply"
-          phrase="Apply"
-          context="This button applies all live edits."
-        />
+        <T k="lunar.common.apply" phrase="Apply" context="This button applies all live edits." />
       </Button>,
     ]
   );
@@ -105,7 +101,7 @@ export function TableHeader({
     editModeButtons
   ) : (
     <Button inverted small onClick={onEnableEditMode}>
-      <Translate k="lunar.common.edit" phrase="Edit" context="This button enables edit mode." />
+      <T k="lunar.common.edit" phrase="Edit" context="This button enables edit mode." />
     </Button>
   );
 
