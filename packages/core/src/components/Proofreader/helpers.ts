@@ -53,7 +53,7 @@ export function getLocaleDefinition(locale: string): LocaleDefinition {
         {},
         {
           context: 'No language selected for spell and grammar checking',
-          key: 'composer.proofreader.noLanguageSelected',
+          key: 'lunar.proofreader.noLanguageSelected',
         },
       ),
     };
@@ -67,7 +67,7 @@ export function getLocaleDefinition(locale: string): LocaleDefinition {
         {},
         {
           context: 'Auto-detect language for spell and grammar checking',
-          key: 'composer.proofreader.autoDetectLanguage',
+          key: 'lunar.proofreader.autoDetectLanguage',
         },
       ),
     };
