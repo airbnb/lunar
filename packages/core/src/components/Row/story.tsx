@@ -149,7 +149,7 @@ export function allPaddingOptions() {
 
       <Row compact inline after={<Button>Take an action</Button>}>
         <Text>
-          A inline and compact row with no vertical padding and low horizontal padding (4px).
+          An inline and compact row with no vertical padding and low horizontal padding (4px).
         </Text>
       </Row>
     </div>
