@@ -59,7 +59,7 @@ export default function Suggestions({ noCache = false, throttle = 200, onLoad }:
       combo="tab"
       condition={activeWhenShadowExists}
       name="tabSelectSuggestion"
-      label={T.phrase('to select', null, { key: 'composer.suggestions.hotkey.select' })}
+      label={T.phrase('to select', null, { key: 'lunar.composer.suggestions.hotkey.select' })}
       onRun={selectShadowSuggestion}
     />
   );

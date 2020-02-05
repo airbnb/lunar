@@ -29,22 +29,20 @@ export default function RotateControls(props: Props) {
     <ButtonGroup>
       <IconButton onClick={handleRotateLeft}>
         <IconRotateLeft
-          accessibilityLabel={T.phrase(
-            'Rotate counter clockwise',
-            null,
-            'Label for button that rotates an image counter clockwise',
-          )}
+          accessibilityLabel={T.phrase('Rotate counter clockwise', null, {
+            key: 'lunar.image.rotateCounterClockwise',
+            context: 'Label for button that rotates an image counter clockwise',
+          })}
           size="2em"
         />
       </IconButton>
 
       <IconButton onClick={handleRotateRight}>
         <IconRotateRight
-          accessibilityLabel={T.phrase(
-            'Rotate clockwise',
-            null,
-            'Label for button that rotates an image clockwise',
-          )}
+          accessibilityLabel={T.phrase('Rotate clockwise', null, {
+            key: 'lunar.image.rotateClockwise',
+            context: 'Label for button that rotates an image clockwise',
+          })}
           size="2em"
         />
       </IconButton>

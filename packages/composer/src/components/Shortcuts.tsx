@@ -74,7 +74,7 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
         combo="/"
         condition={showWhenNoMenuOrValueCondition}
         name="openShortcutMenu"
-        label={T.phrase('to shortcuts', null, { key: 'composer.shortcuts.hotkey.toOpen' })}
+        label={T.phrase('to shortcuts', null, { key: 'lunar.composer.shortcuts.hotkey.toOpen' })}
         onRun={openShortcutsMenu}
       />
 
@@ -83,7 +83,7 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
         combo="up"
         condition={activeWhenShortcutsMenuOpen}
         name="moveUpShortcutMenu"
-        label={T.phrase('up', null, { key: 'composer.shortcuts.hotkey.moveUp' })}
+        label={T.phrase('up', null, { key: 'lunar.composer.shortcuts.hotkey.moveUp' })}
         onRun={moveUp}
       />
 
@@ -92,7 +92,7 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
         combo="down"
         condition={activeWhenShortcutsMenuOpen}
         name="moveDownShortcutMenu"
-        label={T.phrase('down', null, { key: 'composer.shortcuts.hotkey.moveDown' })}
+        label={T.phrase('down', null, { key: 'lunar.composer.shortcuts.hotkey.moveDown' })}
         onRun={moveDown}
       />
 
@@ -101,19 +101,19 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
         combo="enter"
         condition={activeWhenShortcutsMenuOpen}
         name="selectShortcut"
-        label={T.phrase('to select', null, { key: 'composer.shortcuts.hotkey.toSelect' })}
+        label={T.phrase('to select', null, { key: 'lunar.composer.shortcuts.hotkey.toSelect' })}
         onRun={selectShortcut}
       />
 
       <Menu
         centerAlign
         name={MENU_SHORTCUTS}
-        title={<T k="composer.shortcuts.title" phrase="Shortcuts" />}
+        title={<T k="lunar.composer.shortcuts.title" phrase="Shortcuts" />}
       >
         <SelectList
           noResults={
             <T
-              k="composer.shortcuts.noResults"
+              k="lunar.composer.shortcuts.noResults"
               phrase="No shortcuts found for %{name}."
               name={inputName}
             />

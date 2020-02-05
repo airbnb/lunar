@@ -8,7 +8,7 @@ export default function EmojiButton() {
   return (
     <ToggleButton
       accessibilityLabel={T.phrase('Open emoji picker', null, {
-        key: 'composer.labels.openEmojiPicker',
+        key: 'lunar.composer.labels.openEmojiPicker',
       })}
       icon={IconStarAlt}
       menu={MENU_EMOJIS}

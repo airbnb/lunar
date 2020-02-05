@@ -26,7 +26,11 @@ export default function InlineInput({ label, name, value }: InlineInputProps) {
       {label}
     </Text>
   );
-  const editLabel = T.phrase('Edit %{name} field', { name }, { key: 'composer.labels.editField' });
+  const editLabel = T.phrase(
+    'Edit %{name} field',
+    { name },
+    { key: 'lunar.composer.labels.editField' },
+  );
   const editButton = (
     <IconButton onClick={() => setEditing(!editing)}>
       {editing ? (

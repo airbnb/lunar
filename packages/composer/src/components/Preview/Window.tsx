@@ -23,7 +23,7 @@ export default function Window({ children, controls, onConfirm }: WindowProps) {
           middleAlign
           after={
             <Button small onClick={onConfirm}>
-              <T phrase="Send" k="composer.labels.send" />
+              <T phrase="Send" k="lunar.composer.labels.send" />
             </Button>
           }
         >

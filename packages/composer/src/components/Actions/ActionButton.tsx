@@ -8,7 +8,7 @@ export default function ActionButton() {
   return (
     <ToggleButton
       accessibilityLabel={T.phrase('Open actions menu', null, {
-        key: 'composer.labels.openActionsMenu',
+        key: 'lunar.composer.labels.openActionsMenu',
       })}
       icon={IconAddAlt}
       menu={MENU_ACTIONS}
