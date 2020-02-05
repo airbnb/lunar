@@ -3,7 +3,7 @@ import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 
 import Row from '../Row';
 import Spacing from '../Spacing';
-import Text from '../Text';
+import Text, { Props as TextProps } from '../Text';
 
 export const styleSheet: StyleSheet = () => ({
   dd: {
@@ -11,7 +11,7 @@ export const styleSheet: StyleSheet = () => ({
   },
 });
 
-export type Props = {
+export type Props = TextProps & {
   /** Detail links to go after Term label. */
   after?: React.ReactNode;
   /** Term content describing the value displayed. */
@@ -19,21 +19,26 @@ export type Props = {
   /** If enabled, detail links at aligned to the right end. */
   endAlign?: boolean;
   /** Term label describing the value displayed. */
-  label: string;
-  /** If enabled, term label is regular size instead of small. */
-  regular?: boolean;
+  label: string | React.ReactNode;
   /** If enabled, term label is uppercased. */
   uppercased?: boolean;
 };
 
-export default function Term({ label, after, endAlign, regular, uppercased, children }: Props) {
+export default function Term({
+  label,
+  after,
+  endAlign,
+  uppercased,
+  children,
+  ...textProps
+}: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
     <div className={cx(styles.term)}>
       <dt className={cx(styles.dt)}>
         <Row after={endAlign && after}>
-          <Text inline small={!regular} uppercased={uppercased}>
+          <Text inline small uppercased={uppercased} {...textProps}>
             {label}
           </Text>
           {!endAlign && after && (
