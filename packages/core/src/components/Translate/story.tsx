@@ -74,11 +74,7 @@ handleContextualMessagesBasedOnCounts.story = {
 export function returnAStringInsteadOfRenderingAComponent() {
   return (
     <div>
-      {Translate.phrase(
-        'Hello %{name}',
-        { name: 'Bruce' },
-        'This message is for translation editors.',
-      )}
+      {T.phrase('Hello %{name}', { name: 'Bruce' }, 'This message is for translation editors.')}
     </div>
   );
 }

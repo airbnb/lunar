@@ -33,7 +33,7 @@ describe('<LightboxHeader />', () => {
           .find(Button)
           .at(0)
           .prop('children'),
-      ).toBe('Hide Info');
+      ).toBe('Hide info');
     });
 
     it('with "Show Info" if hideAside is true', () => {
@@ -44,7 +44,7 @@ describe('<LightboxHeader />', () => {
           .find(Button)
           .at(0)
           .prop('children'),
-      ).toBe('Show Info');
+      ).toBe('Show info');
     });
   });
 
