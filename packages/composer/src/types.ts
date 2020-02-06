@@ -25,6 +25,7 @@ export type Context = {
   changeHandlers: Set<ChangeHandler>;
   data: DataSet;
   flags: { [flag: string]: boolean };
+  id: string;
   menu: string;
   mode: WritingMode;
   onChange: (...handler: ChangeHandler[]) => void;
@@ -36,7 +37,7 @@ export type Context = {
   submitHandlers: Set<SubmitHandler>;
 };
 
-export type ReadableContext = Readonly<Pick<Context, 'data' | 'menu' | 'mode'>>;
+export type ReadableContext = Readonly<Pick<Context, 'data' | 'id' | 'menu' | 'mode'>>;
 
 export type WritableContext = ReadableContext &
   Readonly<Pick<Context, 'setData' | 'setError' | 'setMenu' | 'setMode'>>;

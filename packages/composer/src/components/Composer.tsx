@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useReducer } from 'react';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
+import uuid from 'uuid/v4';
 import ComposerContext from '../contexts/ComposerContext';
 import Footer from './Footer';
 import Input, { InputProps } from './Input';
@@ -80,6 +81,7 @@ export default function Composer({
   const [menu, setMenu] = useState(isShortcutCommand(defaultValues.value) ? MENU_SHORTCUTS : '');
   const [mode, setMode] = useState<WritingMode>(writingMode ?? MODE_MESSAGE);
   const [error, setError] = useState('');
+  const [id] = useState(() => uuid());
   const [data, setData] = useReducer(reducer, {
     focused: false,
     shadowValue: '',
@@ -130,14 +132,14 @@ export default function Composer({
       // Always focus the input when a menu is opened.
       // We need to focus so that hotkeys can be triggered.
       setTimeout(() => {
-        const composer = document.getElementById('composer');
+        const composer = document.getElementById(id);
 
         if (composer && document.activeElement !== composer) {
           composer.focus();
         }
       }, 0);
     },
-    [setMenu],
+    [setMenu, id],
   );
 
   return (
@@ -146,6 +148,7 @@ export default function Composer({
         changeHandlers,
         data,
         flags,
+        id,
         menu,
         mode,
         onChange: handleChange,
@@ -186,7 +189,7 @@ export default function Composer({
               flags.afterButton && styles.footer_after,
             )}
           >
-            {invalid ? <FormErrorMessage id="composer" error={error} /> : <Footer />}
+            {invalid ? <FormErrorMessage id={id} error={error} /> : <Footer />}
             {children}
           </div>
         </div>

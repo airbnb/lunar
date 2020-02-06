@@ -171,7 +171,7 @@ export default function Input({
           }}
           className={cx(styles.input, styles.input_original)}
           disabled={disabled}
-          id="composer"
+          id={context.id}
           name="message"
           placeholder={placeholder}
           rows={context.mode === MODE_EMAIL ? 3 : 1}
@@ -189,7 +189,7 @@ export default function Input({
             })}
             disabled={blocked}
             icon={IconPlayAlt}
-            id="composer-submit-button"
+            id={`${context.id}-submit-button`}
             onClick={handleSubmit}
           />
         </span>
