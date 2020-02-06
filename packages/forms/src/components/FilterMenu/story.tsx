@@ -177,6 +177,19 @@ export function withNonMutedReset() {
               <option value="baz">Baz</option>
             </Select>
           </Row>
+
+          <Row>
+            <CheckBox
+              label="CheckBox"
+              name="checkbox"
+              validator={() => {}}
+              onChange={action('onChange')}
+            />
+          </Row>
+
+          <Row>
+            <div style={{ height: 300 }} />
+          </Row>
         </FilterMenu>
       </div>
     </Form>
