@@ -147,3 +147,55 @@ export function withOverflow() {
 withOverflow.story = {
   name: 'With overflow.',
 };
+
+export function withNonMutedReset() {
+  return (
+    <Form
+      onSubmit={() => {
+        action('onSubmit')();
+
+        return Promise.resolve();
+      }}
+    >
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <FilterMenu
+          accessibilityLabel="Filter menu"
+          menuProps={{ maxHeight: 200 }}
+          zIndex={2}
+          mutedReset={false}
+        >
+          <Row>
+            <Select
+              label="Select"
+              name="select"
+              defaultValue="foo"
+              validator={() => {}}
+              onChange={action('onChange')}
+            >
+              <option value="foo">Foo</option>
+              <option value="bar">Bar</option>
+              <option value="baz">Baz</option>
+            </Select>
+          </Row>
+
+          <Row>
+            <CheckBox
+              label="CheckBox"
+              name="checkbox"
+              validator={() => {}}
+              onChange={action('onChange')}
+            />
+          </Row>
+
+          <Row>
+            <div style={{ height: 300 }} />
+          </Row>
+        </FilterMenu>
+      </div>
+    </Form>
+  );
+}
+
+withNonMutedReset.story = {
+  name: 'With non-muted reset.',
+};

@@ -26,6 +26,8 @@ export type Props = {
   large?: boolean;
   /** Props to pass to the `Menu` component. */
   menuProps?: Partial<MenuProps>;
+  /** False to unmute the reset link. */
+  mutedReset?: boolean;
   /** Callback fired when the apply button is clicked. */
   onApply?: () => void;
   /** Callback fired when the menu is reset and cleared. */
@@ -54,6 +56,7 @@ export default function FilterMenu({
   keepOpenOnClear,
   large,
   menuProps,
+  mutedReset = true,
   small,
   zIndex = 1,
   onApply,
@@ -128,7 +131,7 @@ export default function FilterMenu({
       menuProps={menuProps}
       showDropdown={opened}
       small={small}
-      toggleLabel={activeCountLabel || toggleLabel}
+      toggleLabel={activeCountLabel ?? toggleLabel}
       zIndex={zIndex}
       onHide={handleHideFilters}
       onShow={handleShowFilters}
@@ -141,7 +144,7 @@ export default function FilterMenu({
             <T k="lunar.common.apply" phrase="Apply" context="Apply filters button label" />
           </Link>
 
-          <Link muted type="reset" onClick={handleClear}>
+          <Link muted={mutedReset} type="reset" onClick={handleClear}>
             <T k="lunar.common.reset" phrase="Reset" context="Button label to reset a form" />
           </Link>
         </section>
