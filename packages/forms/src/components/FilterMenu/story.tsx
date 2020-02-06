@@ -159,10 +159,10 @@ export function withNonMutedReset() {
     >
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <FilterMenu
+          unmutedReset
           accessibilityLabel="Filter menu"
           menuProps={{ maxHeight: 200 }}
           zIndex={2}
-          mutedReset={false}
         >
           <Row>
             <Select
