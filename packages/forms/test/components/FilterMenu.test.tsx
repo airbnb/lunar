@@ -2,6 +2,7 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import { Props } from '@airbnb/lunar/lib/components/MenuToggle';
 import Link from '@airbnb/lunar/lib/components/Link';
+import SecondaryLink from '@airbnb/lunar/lib/components/SecondaryLink';
 import T from '@airbnb/lunar/lib/components/Translate';
 import FilterMenu, { Row } from '../../src/components/FilterMenu';
 
@@ -100,8 +101,8 @@ describe('<FilterMenu />', () => {
     openFilters(wrapper);
 
     wrapper
-      .find(Link)
-      .at(1)
+      .find(SecondaryLink)
+      .at(0)
       .simulate('click');
 
     expect(onClear).toHaveBeenCalledTimes(1);
@@ -118,8 +119,8 @@ describe('<FilterMenu />', () => {
     openFilters(wrapper);
 
     wrapper
-      .find(Link)
-      .at(1)
+      .find(SecondaryLink)
+      .at(0)
       .simulate('click');
 
     expect(onHide).toHaveBeenCalledTimes(1);
@@ -136,8 +137,8 @@ describe('<FilterMenu />', () => {
     openFilters(wrapper);
 
     wrapper
-      .find(Link)
-      .at(1)
+      .find(SecondaryLink)
+      .at(0)
       .simulate('click');
 
     expect(onHide).toHaveBeenCalledTimes(0);

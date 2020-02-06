@@ -5,6 +5,7 @@ import MenuToggle from '@airbnb/lunar/lib/components/MenuToggle';
 import { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
 import { Props as MenuProps } from '@airbnb/lunar/lib/components/Menu';
 import Link from '@airbnb/lunar/lib/components/Link';
+import SecondaryLink from '@airbnb/lunar/lib/components/SecondaryLink';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import Row from './private/Row';
 import { styleSheet } from './styles';
@@ -141,9 +142,9 @@ export default function FilterMenu({
             <T k="lunar.common.apply" phrase="Apply" context="Apply filters button label" />
           </Link>
 
-          <Link muted type="reset" onClick={handleClear}>
+          <SecondaryLink type="reset" onClick={handleClear}>
             <T k="lunar.common.reset" phrase="Reset" context="Button label to reset a form" />
-          </Link>
+          </SecondaryLink>
         </section>
       </Row>
     </MenuToggle>
