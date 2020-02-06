@@ -14,8 +14,8 @@ import {
   showWhenValueNotEmptyCondition,
   closeMenu,
   activeWhenMenuOpen,
+  OS_KEY,
 } from '../../helpers/hotkeys';
-import { isMac } from '../../helpers/platform';
 import {
   processChangeHandlers,
   processSubmitHandlers,
@@ -36,6 +36,7 @@ export type InputProps = {
   messagePlaceholder?: string;
   privateNotePlaceholder?: string;
   propagateRef?: React.Ref<HTMLTextAreaElement>;
+  submitOnEnter?: boolean;
 };
 
 export default function Input({
@@ -47,6 +48,7 @@ export default function Input({
   messagePlaceholder,
   privateNotePlaceholder,
   propagateRef,
+  submitOnEnter = false,
 }: InputProps) {
   const ref = useRef<HTMLTextAreaElement | null>(null);
   const context = useContext(ComposerContext);
@@ -194,7 +196,7 @@ export default function Input({
 
         <Hotkey
           preventDefault
-          combo={isMac() ? 'cmd+enter' : 'ctrl+enter'}
+          combo={submitOnEnter ? 'enter+!shift' : `${OS_KEY}+enter`}
           condition={showWhenValueNotEmptyCondition}
           name="submit"
           label={

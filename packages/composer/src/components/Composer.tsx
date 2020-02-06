@@ -39,6 +39,8 @@ export type ComposerProps = {
   onSubmit?: SubmitHandler;
   /** Placeholder for the private note writing mode. */
   privateNotePlaceholder?: string;
+  /** Trigger submit on enter instead of adding a new line. */
+  submitOnEnter?: boolean;
   /** Default writing mode. */
   writingMode?: WritingMode;
 };
@@ -71,6 +73,7 @@ export default function Composer({
   messagePlaceholder,
   privateNotePlaceholder,
   propagateRef,
+  submitOnEnter,
   writingMode,
 }: ComposerProps) {
   const [styles, cx] = useStyles(composerStyleSheet);
@@ -167,6 +170,7 @@ export default function Composer({
                 messagePlaceholder={messagePlaceholder}
                 privateNotePlaceholder={privateNotePlaceholder}
                 propagateRef={propagateRef}
+                submitOnEnter={submitOnEnter}
                 onChange={onChange}
                 onSubmit={onSubmit}
               />

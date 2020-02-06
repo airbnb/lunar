@@ -28,12 +28,18 @@ export default function Footer() {
       {tips.map(tip => (
         <Tip key={tip.name || tip.combo}>
           <Mark>
-            {tip.combo.split('+').map((symbol, i) => (
-              <span key={symbol}>
-                {i !== 0 && ' + '}
-                <Symbol char={SYMBOLS[symbol] || symbol.toLowerCase()} />
-              </span>
-            ))}
+            {tip.combo.split('+').map((symbol, i) => {
+              if (symbol.startsWith('!')) {
+                return null;
+              }
+
+              return (
+                <span key={symbol}>
+                  {i !== 0 && ' + '}
+                  <Symbol char={SYMBOLS[symbol] || symbol.toLowerCase()} />
+                </span>
+              );
+            })}
           </Mark>
 
           {tip.label}
