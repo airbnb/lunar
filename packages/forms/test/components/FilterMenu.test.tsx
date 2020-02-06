@@ -116,7 +116,7 @@ describe('<FilterMenu />', () => {
 
     expect(wrapper.find(Link).at(1)).toHaveProperty('muted', true);
 
-    wrapper.setProps({ unmutedReset: true });
+    wrapper.setProps({ mutedReset: false });
 
     expect(wrapper.find(Link).at(1)).toHaveProperty('muted', false);
   });
