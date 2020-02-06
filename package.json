@@ -10,6 +10,7 @@
     "build": "yarn run type && yarn run babel && yarn run clean:story",
     "build:sizes": "yarn run ts ./scripts/tasks/computeBuildSizes.ts",
     "build:storybook": "build-storybook",
+    "build:phrases": "yarn run ts ./scripts/tasks/extractPhrases.ts",
     "check:build": "yarn run ts ./scripts/checks/compareBuildSizes.ts",
     "check:happo:dark": "THEME=dark happo-ci-travis",
     "check:happo:light": "THEME=light happo-ci-travis",

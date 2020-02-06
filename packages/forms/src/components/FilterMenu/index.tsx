@@ -101,7 +101,7 @@ export default function FilterMenu({
   const activeCountLabel =
     activeCount && activeCount > 0 ? (
       <T
-        k="lunar.filter.filterCount"
+        k="lunar.form.filter.filterCount"
         phrase="%{smartCount} Filter||||%{smartCount} Filters"
         smartCount={activeCount}
         context="Number of filters applied within a form"
@@ -109,9 +109,13 @@ export default function FilterMenu({
     ) : null;
 
   const toggleLabel = opened ? (
-    <T k="lunar.filter.close" phrase="Close filters" context="Filter menu toggle button label" />
+    <T
+      k="lunar.form.filter.close"
+      phrase="Close filters"
+      context="Filter menu toggle button label"
+    />
   ) : (
-    <T k="lunar.filter.open" phrase="Open filters" context="Filter menu toggle button label" />
+    <T k="lunar.form.filter.open" phrase="Open filters" context="Filter menu toggle button label" />
   );
 
   return (

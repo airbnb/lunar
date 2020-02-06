@@ -1,18 +1,18 @@
 import React from 'react';
 import Text from '../Text';
-import Translate from '.';
+import T from '.';
 
 export default {
   title: 'Core/Translate',
   parameters: {
-    inspectComponents: [Translate],
+    inspectComponents: [T],
   },
 };
 
 export function displayAMessageWithAnEditorRelatedContext() {
   return (
     <Text>
-      <Translate
+      <T
         phrase="This content should be translated."
         context="This message is for translation editors."
       />
@@ -27,7 +27,7 @@ displayAMessageWithAnEditorRelatedContext.story = {
 export function interpolateVariablesAlsoSupportHtml() {
   return (
     <Text>
-      <Translate
+      <T
         html
         phrase="Hello %{name}!"
         name={<b>Bruce</b>}
@@ -44,21 +44,21 @@ interpolateVariablesAlsoSupportHtml.story = {
 export function handleContextualMessagesBasedOnCounts() {
   return (
     <Text>
-      <Translate
+      <T
         phrase="%{smartCount} item||||%{smartCount} items"
         smartCount={0}
         context="This message is for translation editors."
       />
       <br />
       <br />
-      <Translate
+      <T
         phrase="%{smartCount} item||||%{smartCount} items"
         smartCount={1}
         context="This message is for translation editors."
       />
       <br />
       <br />
-      <Translate
+      <T
         phrase="%{smartCount} item||||%{smartCount} items"
         smartCount={2}
         context="This message is for translation editors."
@@ -74,11 +74,7 @@ handleContextualMessagesBasedOnCounts.story = {
 export function returnAStringInsteadOfRenderingAComponent() {
   return (
     <div>
-      {Translate.phrase(
-        'Hello %{name}',
-        { name: 'Bruce' },
-        'This message is for translation editors.',
-      )}
+      {T.phrase('Hello %{name}', { name: 'Bruce' }, 'This message is for translation editors.')}
     </div>
   );
 }

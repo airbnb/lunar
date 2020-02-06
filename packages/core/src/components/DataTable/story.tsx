@@ -173,7 +173,8 @@ class SearchDemo extends React.Component {
 export default {
   title: 'Core/DataTable',
   parameters: {
-    happo: { delay: 50 },
+    // Causes OOM errors
+    happo: false,
     inspectComponents: [DataTable],
   },
 };

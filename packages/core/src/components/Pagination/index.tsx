@@ -157,7 +157,7 @@ function Pagination({
     showBookends && pageCount ? (
       <T
         k="lunar.pagination.pageCount"
-        phrase={'%{pageNumber} of %{pageCount}'}
+        phrase="%{pageNumber} of %{pageCount}"
         pageCount={pageCount}
         pageNumber={page}
         context="Showing the current page number and total page count"
@@ -171,7 +171,7 @@ function Pagination({
       showBookends && pageCount ? (
         <T
           k="lunar.pagination.pageCountLabeled"
-          phrase={'%{pageLabel} %{pageNumber} of %{pageCount}'}
+          phrase="%{pageLabel} %{pageNumber} of %{pageCount}"
           pageLabel={pageLabel}
           pageCount={pageCount}
           pageNumber={page}
@@ -180,7 +180,7 @@ function Pagination({
       ) : (
         <T
           k="lunar.pagination.pageNumberLabeled"
-          phrase={'%{pageLabel} %{pageNumber}'}
+          phrase="%{pageLabel} %{pageNumber}"
           pageLabel={pageLabel}
           pageNumber={page}
           context="Showing the current page number"

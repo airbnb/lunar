@@ -56,15 +56,16 @@ export default function Input({
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const blocked = disabled || invalid || context.data.value.trim() === '';
   let placeholder =
-    messagePlaceholder ?? T.phrase('Send message…', null, { key: 'composer.labels.sendMessage' });
+    messagePlaceholder ??
+    T.phrase('Send message…', null, { key: 'lunar.composer.labels.sendMessage' });
 
   if (context.mode === MODE_EMAIL) {
     placeholder =
-      emailPlaceholder ?? T.phrase('Send email…', null, { key: 'composer.labels.sendEmail' });
+      emailPlaceholder ?? T.phrase('Send email…', null, { key: 'lunar.composer.labels.sendEmail' });
   } else if (context.mode === MODE_PRIVATE_NOTE) {
     placeholder =
       privateNotePlaceholder ??
-      T.phrase('Private to Airbnb', null, { key: 'composer.labels.privateToAirbnb' });
+      T.phrase('Private to Airbnb', null, { key: 'lunar.composer.labels.privateToAirbnb' });
   }
 
   // Form handlers
@@ -131,13 +132,13 @@ export default function Input({
       {context.mode === MODE_EMAIL && (
         <>
           <InlineInput
-            label={T.phrase('Re:', null, { key: 'composer.email.subjectLine' })}
+            label={T.phrase('Re:', null, { key: 'lunar.composer.email.subjectLine' })}
             name="emailSubject"
             value={context.data.emailSubject}
           />
 
           <InlineInput
-            label={T.phrase('To:', null, { key: 'composer.email.toLine' })}
+            label={T.phrase('To:', null, { key: 'lunar.composer.email.toLine' })}
             name="emailTo"
             value={context.data.emailTo}
           />
@@ -182,7 +183,7 @@ export default function Input({
         <span className={cx(styles.submitButton)}>
           <IconButton
             accessibilityLabel={T.phrase('Submit composer', null, {
-              key: 'composer.labels.submitComposer',
+              key: 'lunar.composer.labels.submitComposer',
             })}
             disabled={blocked}
             icon={IconPlayAlt}
@@ -198,8 +199,8 @@ export default function Input({
           name="submit"
           label={
             context.flags.previewConfirm
-              ? T.phrase('to preview', null, { key: 'composer.hotkey.returnToPreview' })
-              : T.phrase('to send', null, { key: 'composer.hotkey.returnToSend' })
+              ? T.phrase('to preview', null, { key: 'lunar.composer.hotkey.returnToPreview' })
+              : T.phrase('to send', null, { key: 'lunar.composer.hotkey.returnToSend' })
           }
           order={100}
           onRun={handleSubmit}
@@ -210,7 +211,7 @@ export default function Input({
           combo="esc"
           condition={activeWhenMenuOpen}
           name="closeMenu"
-          label={T.phrase('to dismiss', null, { key: 'composer.hotkey.toDismiss' })}
+          label={T.phrase('to dismiss', null, { key: 'lunar.composer.hotkey.toDismiss' })}
           onRun={closeMenu}
         />
       </div>

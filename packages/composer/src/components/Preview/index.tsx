@@ -53,7 +53,7 @@ export default function Preview({
           !requireConfirmation && !!data.focused && data.value !== '' && !data.value.startsWith('/')
         }
         name="showPreview"
-        label={T.phrase('to preview', null, { key: 'composer.hotkey.returnToPreview' })}
+        label={T.phrase('to preview', null, { key: 'lunar.composer.hotkey.returnToPreview' })}
         order={100}
         onRun={ctx => onSubmitShowPreview(ctx.data, ctx)}
       />
@@ -61,7 +61,7 @@ export default function Preview({
       <Menu
         centerAlign
         name={MENU_PREVIEW}
-        title={<T k="composer.preview.title" phrase="Preview" />}
+        title={<T k="lunar.composer.preview.title" phrase="Preview" />}
       >
         {onProofread ? (
           <Proofreader
