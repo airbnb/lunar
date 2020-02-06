@@ -107,20 +107,6 @@ describe('<FilterMenu />', () => {
     expect(onClear).toHaveBeenCalledTimes(1);
   });
 
-  it('reset can be non-muted', () => {
-    const wrapper = shallow(
-      <FilterMenu {...props}>
-        <Row>Foo</Row>
-      </FilterMenu>,
-    );
-
-    expect(wrapper.find(Link).at(1)).toHaveProperty('muted', true);
-
-    wrapper.setProps({ mutedReset: false });
-
-    expect(wrapper.find(Link).at(1)).toHaveProperty('muted', false);
-  });
-
   it('clicking clear closes the menu', () => {
     const onHide = jest.fn();
     const wrapper = shallow(
