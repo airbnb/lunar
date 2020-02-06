@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.2.6 - 2020-02-06
+
+#### 🐞 Fixes
+
+- Update phrase keys and add extraction script. (#303) ([8d5de71](https://github.com/airbnb/lunar/commit/8d5de71)), closes [#303](https://github.com/airbnb/lunar/issues/303)
+
+**Note:** Version bump only for package @airbnb/lunar-composer
+
+
+
+
+
 ### 1.2.5 - 2020-02-06
 
 **Note:** Version bump only for package @airbnb/lunar-composer
