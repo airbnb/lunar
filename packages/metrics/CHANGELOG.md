@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.2 - 2020-02-07
+
+#### 📦 Dependencies
+
+- Update minor and patch versions. ([cf27d74](https://github.com/airbnb/lunar/commit/cf27d74))
+
+**Note:** Version bump only for package @airbnb/lunar-metrics
+
+
+
+
+
 ### 2.3.1 - 2020-01-28
 
 #### 📦 Dependencies
