@@ -26,7 +26,7 @@
     "@types/enzyme": "*",
     "@types/jest": "*",
     "@types/react": "*",
-    "aesthetic": "^5.1.0",
+    "aesthetic": "^5.1.1",
     "aesthetic-react": "^2.1.0"
   }
 }
