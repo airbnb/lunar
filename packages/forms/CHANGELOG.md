@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.8.0 - 2020-02-07
+
+#### 🚀 Updates
+
+- **[FilterMenu]** Use SecondaryLink for reset. (#305) ([64dd038](https://github.com/airbnb/lunar/commit/64dd038)), closes [#305](https://github.com/airbnb/lunar/issues/305)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 2.7.4 - 2020-02-06
 
 #### 🐞 Fixes
