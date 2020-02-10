@@ -33,8 +33,6 @@ export type BrandType = 'luxury' | 'plus';
 export type TranslateParams = { [param: string]: string | number | undefined };
 
 export type TranslateOptions = {
-  /** Integration context in which to provide writes & editors. */
-  context?: string;
   /** Phrase message contains HTML. */
   html?: boolean;
   /** Unique phrase key. */
@@ -43,13 +41,15 @@ export type TranslateOptions = {
 
 export type TranslateProps = {
   [param: string]: string | number | boolean | undefined | React.ReactNode;
+  /** Phrase message contains HTML. */
+  html?: boolean;
   /** Unique phrase key. */
   k?: string;
   /** Default phrase to translate. */
   phrase: string;
   /** Handle counts using a smart number. */
   smartCount?: number;
-} & Omit<TranslateOptions, 'key'>;
+};
 
 // MONEY
 
