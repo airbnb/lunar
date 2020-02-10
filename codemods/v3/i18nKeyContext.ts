@@ -28,27 +28,57 @@ module.exports = function i18nKeyContext(
 
   // T.phrase()
   mod.source
-    .find(mod.cs.CallExpression, { object: { name: 'T' }, property: { name: 'phrase' } })
+    .find(mod.cs.CallExpression, {
+      callee: { object: { name: 'T' }, property: { name: 'phrase' } },
+    })
     .forEach(({ node }) => {
-      const opts = node.arguments[2];
+      const [, params, opts] = node.arguments;
       let key = '';
 
-      // Extract key from 3rd argument object
+      // Extract key and remove context
       if (opts && opts.type === 'ObjectExpression') {
-        console.log(opts);
         opts.properties = opts.properties.filter(prop => {
-          if (
-            prop.type === 'ObjectProperty' &&
-            prop.key.type === 'Identifier' &&
-            prop.key.name === 'key'
-          ) {
-            // key = prop.value.value;
+          if (prop.type === 'ObjectProperty' && prop.key.type === 'Identifier') {
+            if (prop.key.name === 'context') {
+              return false;
+            }
 
-            return false;
+            if (prop.key.name === 'key') {
+              if (prop.value.type === 'StringLiteral') {
+                key = prop.value.value;
+              }
+
+              return false;
+            }
           }
 
           return true;
         });
+
+        // No more properties in the object, so remove argument
+        if (opts.properties.length === 0) {
+          node.arguments.pop();
+        }
+
+        // Old context so remove
+      } else if (opts && opts.type === 'StringLiteral') {
+        node.arguments.pop();
+      }
+
+      // If params is falsy and theres no 3rd argument, remove it
+      if (
+        node.arguments.length === 2 &&
+        (params.type === 'NullLiteral' ||
+          (params.type === 'ObjectExpression' && params.properties.length === 0))
+      ) {
+        node.arguments.pop();
+      }
+
+      // Add key as the 1st argument
+      if (key) {
+        node.arguments.unshift(mod.createNode(cs => cs.stringLiteral(key)));
+      } else {
+        throw new Error(`T.phrase() found without a key.`);
       }
     });
 
