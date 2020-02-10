@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-// npx jscodeshift --extensions=js,jsx,ts,tsx --parser=babel --transform=./codemods/v3/i18nKeyContext.ts ./src
+// npx jscodeshift --extensions=js,jsx,ts,tsx --parser=tsx --transform=./codemods/v3/i18nKeyContext.ts ./src
 
 import { FileInfo, API, Options } from 'jscodeshift';
 import { Codemod } from '../helpers';
