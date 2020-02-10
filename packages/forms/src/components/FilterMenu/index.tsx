@@ -104,7 +104,8 @@ export default function FilterMenu({
       <T
         k="lunar.form.filter.filterCount"
         phrase="%{smartCount} Filter||||%{smartCount} Filters"
-        smartCount={activeCount} />
+        smartCount={activeCount}
+      />
     ) : null;
 
   const toggleLabel = opened ? (

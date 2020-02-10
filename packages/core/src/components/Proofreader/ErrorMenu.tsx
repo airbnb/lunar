@@ -33,7 +33,10 @@ export default class ErrorMenu extends React.Component<Props> {
     return (
       <TrackingBoundary name="Proofreader/ErrorMenu">
         <Menu
-          accessibilityLabel={T.phrase('lunar.proofreader.replacementLabel', 'Spelling or grammar replacements')}
+          accessibilityLabel={T.phrase(
+            'lunar.proofreader.replacementLabel',
+            'Spelling or grammar replacements',
+          )}
         >
           <Row>
             <Text small muted bold>

@@ -68,69 +68,71 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
     setActiveIndex(0);
   }
 
-  return <>
-    <Hotkey
-      combo="/"
-      condition={showWhenNoMenuOrValueCondition}
-      name="openShortcutMenu"
-      label={T.phrase('lunar.composer.shortcuts.hotkey.toOpen', 'to shortcuts')}
-      onRun={openShortcutsMenu}
-    />
+  return (
+    <>
+      <Hotkey
+        combo="/"
+        condition={showWhenNoMenuOrValueCondition}
+        name="openShortcutMenu"
+        label={T.phrase('lunar.composer.shortcuts.hotkey.toOpen', 'to shortcuts')}
+        onRun={openShortcutsMenu}
+      />
 
-    <Hotkey
-      preventDefault
-      combo="up"
-      condition={activeWhenShortcutsMenuOpen}
-      name="moveUpShortcutMenu"
-      label={T.phrase('lunar.composer.shortcuts.hotkey.moveUp', 'up')}
-      onRun={moveUp}
-    />
+      <Hotkey
+        preventDefault
+        combo="up"
+        condition={activeWhenShortcutsMenuOpen}
+        name="moveUpShortcutMenu"
+        label={T.phrase('lunar.composer.shortcuts.hotkey.moveUp', 'up')}
+        onRun={moveUp}
+      />
 
-    <Hotkey
-      preventDefault
-      combo="down"
-      condition={activeWhenShortcutsMenuOpen}
-      name="moveDownShortcutMenu"
-      label={T.phrase('lunar.composer.shortcuts.hotkey.moveDown', 'down')}
-      onRun={moveDown}
-    />
+      <Hotkey
+        preventDefault
+        combo="down"
+        condition={activeWhenShortcutsMenuOpen}
+        name="moveDownShortcutMenu"
+        label={T.phrase('lunar.composer.shortcuts.hotkey.moveDown', 'down')}
+        onRun={moveDown}
+      />
 
-    <Hotkey
-      preventDefault
-      combo="enter"
-      condition={activeWhenShortcutsMenuOpen}
-      name="selectShortcut"
-      label={T.phrase('lunar.composer.shortcuts.hotkey.toSelect', 'to select')}
-      onRun={selectShortcut}
-    />
+      <Hotkey
+        preventDefault
+        combo="enter"
+        condition={activeWhenShortcutsMenuOpen}
+        name="selectShortcut"
+        label={T.phrase('lunar.composer.shortcuts.hotkey.toSelect', 'to select')}
+        onRun={selectShortcut}
+      />
 
-    <Menu
-      centerAlign
-      name={MENU_SHORTCUTS}
-      title={<T k="lunar.composer.shortcuts.title" phrase="Shortcuts" />}
-    >
-      <SelectList
-        noResults={
-          <T
-            k="lunar.composer.shortcuts.noResults"
-            phrase="No shortcuts found for %{name}."
-            name={inputName}
-          />
-        }
+      <Menu
+        centerAlign
+        name={MENU_SHORTCUTS}
+        title={<T k="lunar.composer.shortcuts.title" phrase="Shortcuts" />}
       >
-        {filteredShortcuts.map((shortcut, i) => (
-          <Selection
-            key={shortcut.name}
-            active={i === activeIndex}
-            description={shortcut.description}
-            name={`/${shortcut.name}`}
-            status={formatArguments(shortcut.arguments)}
-            onClick={() => {
-              context.setData('value', formatConfigIntoCommand(shortcut));
-            }}
-          />
-        ))}
-      </SelectList>
-    </Menu>
-  </>;
+        <SelectList
+          noResults={
+            <T
+              k="lunar.composer.shortcuts.noResults"
+              phrase="No shortcuts found for %{name}."
+              name={inputName}
+            />
+          }
+        >
+          {filteredShortcuts.map((shortcut, i) => (
+            <Selection
+              key={shortcut.name}
+              active={i === activeIndex}
+              description={shortcut.description}
+              name={`/${shortcut.name}`}
+              status={formatArguments(shortcut.arguments)}
+              onClick={() => {
+                context.setData('value', formatConfigIntoCommand(shortcut));
+              }}
+            />
+          ))}
+        </SelectList>
+      </Menu>
+    </>
+  );
 }

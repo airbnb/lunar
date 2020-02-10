@@ -197,11 +197,7 @@ export default class DateTime extends React.PureComponent<Props> {
 
     if (diff > 0 && diff < MINUTE_THRESHOLD) {
       if (!options.style || options.style === 'long') {
-        return T.phrase(
-          'lunar.datetime.in',
-          'in %{time}',
-          { time: fewPhrase },
-        );
+        return T.phrase('lunar.datetime.in', 'in %{time}', { time: fewPhrase });
       }
 
       return fewPhrase;
@@ -209,11 +205,7 @@ export default class DateTime extends React.PureComponent<Props> {
 
     if (diff <= 0 && diff > -MINUTE_THRESHOLD) {
       if (!options.style || options.style === 'long') {
-        return T.phrase(
-          'lunar.datetime.ago',
-          '%{time} ago',
-          { time: fewPhrase },
-        );
+        return T.phrase('lunar.datetime.ago', '%{time} ago', { time: fewPhrase });
       }
 
       return fewPhrase;

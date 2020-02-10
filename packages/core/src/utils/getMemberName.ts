@@ -13,8 +13,7 @@ export default function getMemberName(
   copy: string = '',
 ): string {
   if (!member.first_name) {
-    return copy ||
-    T.phrase('lunar.common.unknownMember', 'Unknown member');
+    return copy || T.phrase('lunar.common.unknownMember', 'Unknown member');
   }
 
   const firstName = member.first_name;

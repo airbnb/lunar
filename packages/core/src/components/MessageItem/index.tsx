@@ -161,11 +161,10 @@ function MessageItem({
   };
 
   const timestamp = source
-    ? T.phrase(
-        'lunar.message.source',
-        '%{time} via %{source}',
-        { time: formattedTimestamp, source },
-      )
+    ? T.phrase('lunar.message.source', '%{time} via %{source}', {
+        time: formattedTimestamp,
+        source,
+      })
     : formattedTimestamp;
 
   return (

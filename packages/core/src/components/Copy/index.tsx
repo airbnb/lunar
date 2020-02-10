@@ -71,9 +71,7 @@ export default class Copy extends React.Component<Props, State> {
           this.state.copied ? (
             <T k="lunar.copy.copied" phrase="Copied!" />
           ) : (
-            prompt || (
-              <T k="lunar.copy.copyToClipboard" phrase="Copy to clipboard" />
-            )
+            prompt || <T k="lunar.copy.copyToClipboard" phrase="Copy to clipboard" />
           )
         }
         underlined={underlined}

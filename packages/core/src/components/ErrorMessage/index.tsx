@@ -74,12 +74,7 @@ export default class ErrorMessage extends React.PureComponent<Props> {
     return (
       <Alert
         danger
-        title={
-          title ||
-          code || (
-            <T k="lunar.error.unknown" phrase="Unknown error" />
-          )
-        }
+        title={title || code || <T k="lunar.error.unknown" phrase="Unknown error" />}
         onClose={onClose}
       >
         {message}

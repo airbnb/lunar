@@ -131,7 +131,8 @@ function Pagination({
         k="lunar.pagination.pageCount"
         phrase="%{pageNumber} of %{pageCount}"
         pageCount={pageCount}
-        pageNumber={page} />
+        pageNumber={page}
+      />
     ) : (
       page
     );
@@ -144,13 +145,15 @@ function Pagination({
           phrase="%{pageLabel} %{pageNumber} of %{pageCount}"
           pageLabel={pageLabel}
           pageCount={pageCount}
-          pageNumber={page} />
+          pageNumber={page}
+        />
       ) : (
         <T
           k="lunar.pagination.pageNumberLabeled"
           phrase="%{pageLabel} %{pageNumber}"
           pageLabel={pageLabel}
-          pageNumber={page} />
+          pageNumber={page}
+        />
       );
   }
 

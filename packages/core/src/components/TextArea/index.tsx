@@ -54,7 +54,8 @@ export default class TextArea extends React.Component<Props, State> {
           k="lunar.form.charsUsed"
           phrase="%{current}/%{max} characters used"
           current={inputProps.value!.length.toLocaleString()}
-          max={inputProps.maxLength.toLocaleString()} />
+          max={inputProps.maxLength.toLocaleString()}
+        />
       ));
 
     return (

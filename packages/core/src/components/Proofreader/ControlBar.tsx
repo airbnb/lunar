@@ -45,7 +45,8 @@ export default function ControlBar({
             <T
               k="lunar.proofreader.unsupportedLanguage"
               phrase="Unsupported language %{locale}"
-              locale={unsupportedLocale ?? 'unknown'} />
+              locale={unsupportedLocale ?? 'unknown'}
+            />
           )}
         </Link>
 
@@ -76,7 +77,8 @@ export default function ControlBar({
             <T
               k="lunar.proofreader.totalIssues"
               phrase="%{smartCount} issue||||%{smartCount} issues"
-              smartCount={errors.length} />
+              smartCount={errors.length}
+            />
           </Text>
         </span>
       )}

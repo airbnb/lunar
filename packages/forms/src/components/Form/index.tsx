@@ -196,13 +196,9 @@ export default class Form<Data extends object = {}> extends React.Component<
     return promise.catch(error => {
       if (setErrors) {
         setErrors({
-          [FORM_ERROR]: T.phrase(
-            'lunar.form.submitFailed',
-            'Failed to submit form. %{error}',
-            {
-              error: getErrorMessage(error),
-            },
-          ),
+          [FORM_ERROR]: T.phrase('lunar.form.submitFailed', 'Failed to submit form. %{error}', {
+            error: getErrorMessage(error),
+          }),
         });
       }
 
@@ -266,7 +262,10 @@ export default class Form<Data extends object = {}> extends React.Component<
     let errorCount = Object.keys(errors).length;
 
     if (!passes && errorCount === 0) {
-      errors[FORM_ERROR] = T.phrase('lunar.form.validateFailed', 'Failed to validate form. Please try again.');
+      errors[FORM_ERROR] = T.phrase(
+        'lunar.form.validateFailed',
+        'Failed to validate form. Please try again.',
+      );
       errorCount += 1;
     }
 

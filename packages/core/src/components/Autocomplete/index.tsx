@@ -469,9 +469,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
       onBlur,
       onFocus,
       optional,
-      placeholder:
-        placeholder ||
-        T.phrase('lunar.common.search', 'Search'),
+      placeholder: placeholder || T.phrase('lunar.common.search', 'Search'),
       small,
       type: 'text',
     };

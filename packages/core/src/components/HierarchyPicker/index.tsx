@@ -197,14 +197,8 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
           <Picker
             {...passThruProps}
             formatter={this.boundFormatter}
-            searchPlaceholder={
-              searchPlaceholder ||
-              T.phrase('lunar.common.search', 'Search')
-            }
-            noResultsLabel={
-              noResultsLabel ||
-              T.phrase('lunar.picker.noResults', 'No results')
-            }
+            searchPlaceholder={searchPlaceholder || T.phrase('lunar.common.search', 'Search')}
+            noResultsLabel={noResultsLabel || T.phrase('lunar.picker.noResults', 'No results')}
             onClose={this.handleClose}
           />
         </Overlay>

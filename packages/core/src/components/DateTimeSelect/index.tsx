@@ -317,12 +317,8 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                     placeholder={T.phrase('lunar.common.meridiem', 'Meridiem')}
                     onChange={this.handleChange}
                   >
-                    <option value="am">
-                      {T.phrase('lunar.common.meridiemAM', 'AM')}
-                    </option>
-                    <option value="pm">
-                      {T.phrase('lunar.common.meridiemPM', 'PM')}
-                    </option>
+                    <option value="am">{T.phrase('lunar.common.meridiemAM', 'AM')}</option>
+                    <option value="pm">{T.phrase('lunar.common.meridiemPM', 'PM')}</option>
                   </BaseSelect>
                 </>
               )}
