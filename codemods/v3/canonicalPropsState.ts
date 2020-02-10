@@ -10,15 +10,16 @@ module.exports = function canonicalPropsState(
   options: Options,
 ): string | null | undefined | void {
   const mod = new Codemod(fileInfo, api);
+  const typeRenames: { [key: string]: string } = {};
 
   mod.source.find(mod.cs.ImportDeclaration).forEach(({ node }) => {
     const source = String(node.source.value);
 
-    if (!source.includes('components')) {
+    if (!source.includes('lunar') && !source.includes('components')) {
       return;
     }
 
-    const compName = source.split('components/')[1].replace(/\//, '');
+    const compName = (source.split('components/')[1] || '').replace(/\//, '');
     let defaultName = '';
 
     node.specifiers.forEach(spec => {
@@ -28,8 +29,24 @@ module.exports = function canonicalPropsState(
         const baseName = spec.imported.name;
 
         if (baseName === 'Props' || baseName === 'State') {
-          spec.imported.name = (defaultName || compName) + spec.imported.name;
+          const newName = (defaultName || compName).replace(/^Base/, '') + baseName;
+
+          spec.imported.name = newName;
+
+          if (spec.local.name === spec.imported.name) {
+            delete spec.local;
+          }
+
+          typeRenames[baseName] = newName;
         }
+      }
+    });
+  });
+
+  mod.source.find(mod.cs.TSTypeReference).forEach(({ node }) => {
+    Object.entries(typeRenames).forEach(([before, after]) => {
+      if (node.typeName.type === 'Identifier' && node.typeName.name === before) {
+        node.typeName.name = after;
       }
     });
   });

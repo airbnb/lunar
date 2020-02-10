@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import T from '@airbnb/lunar/lib/components/Translate';
 import MenuToggle from '@airbnb/lunar/lib/components/MenuToggle';
-import { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
-import { Props as MenuProps } from '@airbnb/lunar/lib/components/Menu';
+import { DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
+import { MenuProps } from '@airbnb/lunar/lib/components/Menu';
 import Link from '@airbnb/lunar/lib/components/Link';
 import SecondaryLink from '@airbnb/lunar/lib/components/SecondaryLink';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';

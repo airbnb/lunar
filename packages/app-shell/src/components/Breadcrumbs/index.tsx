@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import BaseBreadcrumbs, {
   Breadcrumb,
-  Props as BaseProps,
+  BreadcrumbsProps as BaseProps,
 } from '@airbnb/lunar/lib/components/Breadcrumbs';
 import TrackBreadcrumb from './TrackBreadcrumb';
 import AppContext from '../AppContext';

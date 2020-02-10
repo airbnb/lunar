@@ -1,5 +1,7 @@
 import React from 'react';
-import BaseFormActions, { Props as BaseProps } from '@airbnb/lunar/lib/components/FormActions';
+import BaseFormActions, {
+  FormActionsProps as BaseProps,
+} from '@airbnb/lunar/lib/components/FormActions';
 import useForm from '../../hooks/useForm';
 
 export type FormActionsProps = Omit<BaseProps, 'disabled' | 'processing'>;
