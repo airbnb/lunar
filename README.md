@@ -1,7 +1,7 @@
 <div align="center">
 <img src="https://raw.githubusercontent.com/airbnb/lunar/master/.storybook/images/lunar-logo-small.png" />
 
-# Lunar
+# Lunar v3
 
 [![Build Status](https://travis-ci.com/airbnb/lunar.svg?branch=master)](https://travis-ci.com/airbnb/lunar)
 
