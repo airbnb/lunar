@@ -97,11 +97,7 @@ function Alert({
           onClose && (
             <IconButton onClick={onClose}>
               <IconClose
-                accessibilityLabel={T.phrase(
-                  'Close',
-                  {},
-                  { context: 'Close the alert', key: 'lunar.common.close' },
-                )}
+                accessibilityLabel={T.phrase('lunar.common.close', 'Close')}
                 size={unit * 3}
               />
             </IconButton>

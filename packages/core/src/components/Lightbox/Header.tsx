@@ -119,11 +119,7 @@ export class Header extends React.PureComponent<Props & WithStylesProps> {
             hasPrev={activeIndex > 0}
             hasNext={activeIndex < imageCount - 1}
             page={activeIndex + 1}
-            pageLabel={T.phrase(
-              'Photo',
-              {},
-              { key: 'lunar.image.photoLabel', context: 'Label for photo pagination' },
-            )}
+            pageLabel={T.phrase('lunar.image.photoLabel', 'Photo')}
             pageCount={imageCount}
             onNext={this.handleNext}
             onPrevious={this.handlePrev}
@@ -148,22 +144,8 @@ export class Header extends React.PureComponent<Props & WithStylesProps> {
           <div className={cx(styles.infoButton)}>
             <Button small onClick={this.props.onToggleAside}>
               {hideAside
-                ? T.phrase(
-                    'Show info',
-                    {},
-                    {
-                      key: 'lunar.image.showInfo',
-                      context: 'Shows sidebar information in the Lightbox',
-                    },
-                  )
-                : T.phrase(
-                    'Hide info',
-                    {},
-                    {
-                      key: 'lunar.image.hideInfo',
-                      context: 'Hides sidebar information in the Lightbox',
-                    },
-                  )}
+                ? T.phrase('lunar.image.showInfo', 'Show info')
+                : T.phrase('lunar.image.hideInfo', 'Hide info')}
             </Button>
           </div>
         )}

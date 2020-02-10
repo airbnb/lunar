@@ -105,18 +105,13 @@ export default function FilterMenu({
         k="lunar.form.filter.filterCount"
         phrase="%{smartCount} Filter||||%{smartCount} Filters"
         smartCount={activeCount}
-        context="Number of filters applied within a form"
       />
     ) : null;
 
   const toggleLabel = opened ? (
-    <T
-      k="lunar.form.filter.close"
-      phrase="Close filters"
-      context="Filter menu toggle button label"
-    />
+    <T k="lunar.form.filter.close" phrase="Close filters" />
   ) : (
-    <T k="lunar.form.filter.open" phrase="Open filters" context="Filter menu toggle button label" />
+    <T k="lunar.form.filter.open" phrase="Open filters" />
   );
 
   return (
@@ -139,11 +134,11 @@ export default function FilterMenu({
       <Row>
         <section className={cx(styles.controls)}>
           <Link type="submit" onClick={handleApply}>
-            <T k="lunar.common.apply" phrase="Apply" context="Apply filters button label" />
+            <T k="lunar.common.apply" phrase="Apply" />
           </Link>
 
           <SecondaryLink type="reset" onClick={handleClear}>
-            <T k="lunar.common.reset" phrase="Reset" context="Button label to reset a form" />
+            <T k="lunar.common.reset" phrase="Reset" />
           </SecondaryLink>
         </section>
       </Row>

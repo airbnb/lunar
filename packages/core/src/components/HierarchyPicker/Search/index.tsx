@@ -172,14 +172,7 @@ export class Search extends React.Component<Props & WithStylesProps> {
         <Autocomplete<SearchItemResult>
           hideLabel
           optional
-          accessibilityLabel={T.phrase(
-            'Hierarchy item search',
-            {},
-            {
-              context: 'Search functionality to find items within the hierarchy menu.',
-              key: 'lunar.picker.searchLabel',
-            },
-          )}
+          accessibilityLabel={T.phrase('lunar.picker.searchLabel', 'Hierarchy item search')}
           getItemValue={this.getItemValue}
           maxHeight={maxHeight}
           name="autocomplete-search"

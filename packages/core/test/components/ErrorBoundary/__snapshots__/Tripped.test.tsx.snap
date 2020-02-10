@@ -5,7 +5,6 @@ exports[`<Tripped /> will render an alert with a message 1`] = `
   danger={true}
   title={
     <Translate
-      context="Loading a feature crashed"
       html={false}
       k="lunar.error.featureCrashed"
       phrase="This feature has crashed or failed to load."
@@ -13,7 +12,6 @@ exports[`<Tripped /> will render an alert with a message 1`] = `
   }
 >
   <Translate
-    context="Message letting the user known to try again"
     k="lunar.error.tryAgain"
     phrase="Please try again."
   />

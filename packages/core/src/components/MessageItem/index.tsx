@@ -107,14 +107,7 @@ function MessageItem({
           <ProfilePhoto
             imageSrc={imageBadgeSrc}
             size={2}
-            title={T.phrase(
-              'Profile photo badge',
-              {},
-              {
-                context: 'Profile photo descriptive image text within a message bubble',
-                key: 'lunar.message.photoLabel',
-              },
-            )}
+            title={T.phrase('lunar.message.photoLabel', 'Profile photo badge')}
           />
         </div>
       </>
@@ -168,11 +161,10 @@ function MessageItem({
   };
 
   const timestamp = source
-    ? T.phrase(
-        '%{time} via %{source}',
-        { time: formattedTimestamp, source },
-        { context: 'Timestamp and source within a message bubble', key: 'lunar.message.source' },
-      )
+    ? T.phrase('lunar.message.source', '%{time} via %{source}', {
+        time: formattedTimestamp,
+        source,
+      })
     : formattedTimestamp;
 
   return (
@@ -214,13 +206,7 @@ function MessageItem({
 
             {email && (
               <Text small muted>
-                <T
-                  html
-                  k="lunar.message.fromUser"
-                  phrase="From: %{email}"
-                  email={email}
-                  context="Who the message is from"
-                />
+                <T html k="lunar.message.fromUser" phrase="From: %{email}" email={email} />
               </Text>
             )}
           </Spacing>

@@ -23,14 +23,14 @@ describe('<Translate />', () => {
   });
 
   it('renders a translator component', () => {
-    const wrapper = shallow(<Translate phrase="Foo" bar={123} context="Baz" />);
+    const wrapper = shallow(<Translate k="foo" phrase="Foo" bar={123} />);
 
     expect(wrapper.find(T)).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders with a `k` prop', () => {
-    const wrapper = shallow(<Translate k="foo" phrase="Foo" bar={123} context="Baz" />);
+    const wrapper = shallow(<Translate k="foo" phrase="Foo" bar={123} />);
 
     expect(wrapper.find(T).prop('k')).toBe('foo');
   });
@@ -38,7 +38,7 @@ describe('<Translate />', () => {
   it('renders without translator component', () => {
     Core.settings.translatorComponent = null;
 
-    const wrapper = shallow(<Translate phrase="Foo" bar={123} context="Baz" />);
+    const wrapper = shallow(<Translate k="foo" phrase="Foo" bar={123} />);
 
     expect(wrapper.find(T)).toHaveLength(0);
     expect(wrapper).toMatchSnapshot();
@@ -46,19 +46,15 @@ describe('<Translate />', () => {
 
   describe('phrase()', () => {
     it('passes params to translator', () => {
-      Translate.phrase('Foo', { bar: 123 }, 'Baz');
+      Translate.phrase('foo', 'Foo', { bar: 123 });
 
-      expect(Core.settings.translator).toHaveBeenCalledWith('Foo', { bar: 123 }, 'Baz');
+      expect(Core.settings.translator).toHaveBeenCalledWith('foo', 'Foo', { bar: 123 }, {});
     });
 
     it('supports object options', () => {
-      Translate.phrase('Foo', { bar: 123 }, { context: 'Baz', key: 'foo' });
+      Translate.phrase('foo', 'Foo', { bar: 123 });
 
-      expect(Core.settings.translator).toHaveBeenCalledWith(
-        'Foo',
-        { bar: 123 },
-        { context: 'Baz', key: 'foo' },
-      );
+      expect(Core.settings.translator).toHaveBeenCalledWith('foo', 'Foo', { bar: 123 }, {});
     });
   });
 });

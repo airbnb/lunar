@@ -68,14 +68,7 @@ export default function ZoomControls(props: Props) {
     <div className={cx(styles.controls)}>
       <ButtonGroup>
         <IconButton disabled={scale === 1} onClick={handleZoomOut}>
-          <IconRemove
-            accessibilityLabel={T.phrase(
-              'Zoom out',
-              {},
-              { key: 'lunar.image.zoomOut', context: 'Label for zoom out button' },
-            )}
-            size="2em"
-          />
+          <IconRemove accessibilityLabel={T.phrase('lunar.image.zoomOut', 'Zoom out')} size="2em" />
         </IconButton>
 
         <Button borderless onClick={toggleZoomMenu}>
@@ -83,26 +76,13 @@ export default function ZoomControls(props: Props) {
         </Button>
 
         <IconButton onClick={handleZoomIn}>
-          <IconAdd
-            accessibilityLabel={T.phrase(
-              'Zoom in',
-              {},
-              { key: 'lunar.image.zoomIn', context: 'Label for zoom in button' },
-            )}
-            size="2em"
-          />
+          <IconAdd accessibilityLabel={T.phrase('lunar.image.zoomIn', 'Zoom in')} size="2em" />
         </IconButton>
       </ButtonGroup>
 
       {visible && (
         <Dropdown visible={visible} left="0" zIndex={5} onClickOutside={toggleZoomMenu}>
-          <Menu
-            accessibilityLabel={T.phrase(
-              'Zoom dropdown menu',
-              {},
-              { key: 'lunar.image.zoomMenu', context: 'Label for dropdown menu with zoom options' },
-            )}
-          >
+          <Menu accessibilityLabel={T.phrase('lunar.image.zoomMenu', 'Zoom dropdown menu')}>
             {zoomOptions.map(zoom => (
               <Item key={zoom.scale} onClick={zoom.handleOnClick}>
                 {zoom.label}

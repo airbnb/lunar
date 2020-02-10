@@ -76,15 +76,9 @@ export type Props = {
 export default function Tab({ bordered, expanded, position = 'after', onCollapseToggle }: Props) {
   const [styles, cx] = useStyles(styleSheet);
 
-  const labelCollapse = T.phrase('Collapse', null, {
-    context: 'Collapse',
-    key: 'lunar.common.collapse',
-  });
+  const labelCollapse = T.phrase('lunar.common.collapse', 'Collapse');
 
-  const labelExpand = T.phrase('Expand', null, {
-    context: 'Expand',
-    key: 'lunar.common.expand',
-  });
+  const labelExpand = T.phrase('lunar.common.expand', 'Expand');
 
   let direction: 'left' | 'right' = expanded ? 'left' : 'right';
   if (position === 'before') {
