@@ -147,9 +147,7 @@ export default class FileInput extends React.Component<Props, State> {
           <T
             k="lunar.form.chooseFile"
             phrase="Choose file||||Choose files"
-            context="Label when uploading multiple files"
-            smartCount={props.multiple ? 0 : 1}
-          />
+            smartCount={props.multiple ? 0 : 1} />
 
           {files.length > 0 && <span>{` (${files.length})`}</span>}
         </FormInputButton>

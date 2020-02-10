@@ -45,9 +45,7 @@ export default function ControlBar({
             <T
               k="lunar.proofreader.unsupportedLanguage"
               phrase="Unsupported language %{locale}"
-              locale={unsupportedLocale ?? 'unknown'}
-              context="Language is not supported for spelling detection"
-            />
+              locale={unsupportedLocale ?? 'unknown'} />
           )}
         </Link>
 
@@ -78,9 +76,7 @@ export default function ControlBar({
             <T
               k="lunar.proofreader.totalIssues"
               phrase="%{smartCount} issue||||%{smartCount} issues"
-              smartCount={errors.length}
-              context="Showing the number of misspellings in a paragraph of text"
-            />
+              smartCount={errors.length} />
           </Text>
         </span>
       )}

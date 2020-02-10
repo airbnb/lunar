@@ -93,9 +93,7 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
             label={
               <T
                 k="lunar.form.feedback.typeMessage"
-                phrase="What kind of feedback are you giving?"
-                context="Feedback form"
-              />
+                phrase="What kind of feedback are you giving?" />
             }
             defaultValue="bug"
             validator={this.validate}
@@ -106,11 +104,7 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
                   noSpacing
                   value="bug"
                   label={
-                    <T
-                      k="lunar.form.feedback.reportBug"
-                      phrase="Report a bug"
-                      context="Feedback form type option"
-                    />
+                    <T k="lunar.form.feedback.reportBug" phrase="Report a bug" />
                   }
                 />
 
@@ -118,11 +112,7 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
                   noSpacing
                   value="feedback"
                   label={
-                    <T
-                      k="lunar.form.feedback.giveFeedback"
-                      phrase="Give product feedback"
-                      context="Feedback form type option"
-                    />
+                    <T k="lunar.form.feedback.giveFeedback" phrase="Give product feedback" />
                   }
                 />
               </div>
@@ -135,9 +125,7 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
           label={
             <T
               k="lunar.form.feedback.featureMessage"
-              phrase="Which feature is this about?"
-              context="Feedback form"
-            />
+              phrase="Which feature is this about?" />
           }
           placeholder={T.phrase(
             'Select a feature',
@@ -159,11 +147,7 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
         <TextArea
           name="feedback"
           label={
-            <T
-              k="lunar.form.feedback.moreMessage"
-              phrase="Tell us a little bit more"
-              context="Feedback form"
-            />
+            <T k="lunar.form.feedback.moreMessage" phrase="Tell us a little bit more" />
           }
           placeholder={
             data.type === 'bug'
@@ -191,18 +175,10 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
 
         <FormActions
           continueText={
-            <T
-              k="lunar.form.feedback.send"
-              phrase="Send Feedback"
-              context="Feedback form submit button label"
-            />
+            <T k="lunar.form.feedback.send" phrase="Send Feedback" />
           }
           processingText={
-            <T
-              k="lunar.form.feedback.sending"
-              phrase="Sending…"
-              context="Feedback form submit button label"
-            />
+            <T k="lunar.form.feedback.sending" phrase="Sending…" />
           }
           processing={loading}
           onCancel={onCancel}

@@ -214,13 +214,7 @@ function MessageItem({
 
             {email && (
               <Text small muted>
-                <T
-                  html
-                  k="lunar.message.fromUser"
-                  phrase="From: %{email}"
-                  email={email}
-                  context="Who the message is from"
-                />
+                <T html k="lunar.message.fromUser" phrase="From: %{email}" email={email} />
               </Text>
             )}
           </Spacing>

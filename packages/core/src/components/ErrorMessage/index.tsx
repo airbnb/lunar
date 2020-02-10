@@ -77,11 +77,7 @@ export default class ErrorMessage extends React.PureComponent<Props> {
         title={
           title ||
           code || (
-            <T
-              k="lunar.error.unknown"
-              phrase="Unknown error"
-              context="Title for an unknown error occurred"
-            />
+            <T k="lunar.error.unknown" phrase="Unknown error" />
           )
         }
         onClose={onClose}
@@ -91,11 +87,7 @@ export default class ErrorMessage extends React.PureComponent<Props> {
         {id && (
           <Spacing top={1}>
             <MutedButton inverted onClick={createRedirectURL(id, url)}>
-              <T
-                k="lunar.error.viewDetails"
-                phrase="View error details"
-                context="Button label to view details about an error"
-              />
+              <T k="lunar.error.viewDetails" phrase="View error details" />
             </MutedButton>
           </Spacing>
         )}

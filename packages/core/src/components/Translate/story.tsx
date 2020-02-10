@@ -12,10 +12,7 @@ export default {
 export function displayAMessageWithAnEditorRelatedContext() {
   return (
     <Text>
-      <T
-        phrase="This content should be translated."
-        context="This message is for translation editors."
-      />
+      <T phrase="This content should be translated." />
     </Text>
   );
 }
@@ -27,12 +24,7 @@ displayAMessageWithAnEditorRelatedContext.story = {
 export function interpolateVariablesAlsoSupportHtml() {
   return (
     <Text>
-      <T
-        html
-        phrase="Hello %{name}!"
-        name={<b>Bruce</b>}
-        context="This message is for translation editors."
-      />
+      <T html phrase="Hello %{name}!" name={<b>Bruce</b>} />
     </Text>
   );
 }
@@ -44,25 +36,13 @@ interpolateVariablesAlsoSupportHtml.story = {
 export function handleContextualMessagesBasedOnCounts() {
   return (
     <Text>
-      <T
-        phrase="%{smartCount} item||||%{smartCount} items"
-        smartCount={0}
-        context="This message is for translation editors."
-      />
+      <T phrase="%{smartCount} item||||%{smartCount} items" smartCount={0} />
       <br />
       <br />
-      <T
-        phrase="%{smartCount} item||||%{smartCount} items"
-        smartCount={1}
-        context="This message is for translation editors."
-      />
+      <T phrase="%{smartCount} item||||%{smartCount} items" smartCount={1} />
       <br />
       <br />
-      <T
-        phrase="%{smartCount} item||||%{smartCount} items"
-        smartCount={2}
-        context="This message is for translation editors."
-      />
+      <T phrase="%{smartCount} item||||%{smartCount} items" smartCount={2} />
     </Text>
   );
 }

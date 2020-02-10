@@ -143,11 +143,7 @@ export default function FormField({
             {optional && !hideOptionalLabel && (
               <span className={cx(styles.optional)}>
                 <Text inline small muted>
-                  <T
-                    k="lunar.form.optional"
-                    phrase="(optional)"
-                    context="A form field is marked as optional"
-                  />
+                  <T k="lunar.form.optional" phrase="(optional)" />
                 </Text>
               </span>
             )}

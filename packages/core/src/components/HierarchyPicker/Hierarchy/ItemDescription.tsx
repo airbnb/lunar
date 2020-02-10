@@ -12,7 +12,7 @@ export default function ItemDescription({ item }: Props) {
   return (
     <div>
       <Text bold>
-        <T k="lunar.common.description" phrase="Description" context="Description of item" />
+        <T k="lunar.common.description" phrase="Description" />
       </Text>
 
       <Spacing top={0.5}>

@@ -97,13 +97,7 @@ describe('<ErrorMessage />', () => {
     const alert = wrapper.find(Alert);
 
     expect(alert).toHaveLength(1);
-    expect(alert.prop('title')).toEqual(
-      <T
-        k="lunar.error.unknown"
-        phrase="Unknown error"
-        context="Title for an unknown error occurred"
-      />,
-    );
+    expect(alert.prop('title')).toEqual(<T k="lunar.error.unknown" phrase="Unknown error" />);
     expect(alert.contains('Failure')).toBe(true);
   });
 
@@ -166,13 +160,7 @@ describe('<ErrorMessage />', () => {
       wrapper
         .find(Alert)
         .find(MutedButton)
-        .contains(
-          <T
-            k="lunar.error.viewDetails"
-            phrase="View error details"
-            context="Button label to view details about an error"
-          />,
-        ),
+        .contains(<T k="lunar.error.viewDetails" phrase="View error details" />),
     ).toBe(false);
 
     wrapper.setProps({
@@ -186,13 +174,7 @@ describe('<ErrorMessage />', () => {
       wrapper
         .find(Alert)
         .find(MutedButton)
-        .contains(
-          <T
-            k="lunar.error.viewDetails"
-            phrase="View error details"
-            context="Button label to view details about an error"
-          />,
-        ),
+        .contains(<T k="lunar.error.viewDetails" phrase="View error details" />),
     ).toBe(true);
     expect(
       typeof wrapper

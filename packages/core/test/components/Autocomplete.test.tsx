@@ -794,7 +794,6 @@ describe('<Autocomplete />', () => {
         <T
           k="lunar.common.noResults"
           phrase="No results found."
-          context="No results found for autocomplete search"
         />,
       );
     });

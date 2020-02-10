@@ -23,14 +23,14 @@ describe('<Translate />', () => {
   });
 
   it('renders a translator component', () => {
-    const wrapper = shallow(<Translate phrase="Foo" bar={123} context="Baz" />);
+    const wrapper = shallow(<Translate phrase="Foo" bar={123} />);
 
     expect(wrapper.find(T)).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('renders with a `k` prop', () => {
-    const wrapper = shallow(<Translate k="foo" phrase="Foo" bar={123} context="Baz" />);
+    const wrapper = shallow(<Translate k="foo" phrase="Foo" bar={123} />);
 
     expect(wrapper.find(T).prop('k')).toBe('foo');
   });
@@ -38,7 +38,7 @@ describe('<Translate />', () => {
   it('renders without translator component', () => {
     Core.settings.translatorComponent = null;
 
-    const wrapper = shallow(<Translate phrase="Foo" bar={123} context="Baz" />);
+    const wrapper = shallow(<Translate phrase="Foo" bar={123} />);
 
     expect(wrapper.find(T)).toHaveLength(0);
     expect(wrapper).toMatchSnapshot();

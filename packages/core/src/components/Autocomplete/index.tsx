@@ -709,11 +709,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
         {renderElementOrFunction(this.props.renderNoResults) || (
           <Text>
             {this.props.noResultsText || (
-              <T
-                k="lunar.common.noResults"
-                phrase="No results found."
-                context="No results found for autocomplete search"
-              />
+              <T k="lunar.common.noResults" phrase="No results found." />
             )}
           </Text>
         )}
