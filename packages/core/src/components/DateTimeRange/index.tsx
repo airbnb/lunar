@@ -7,7 +7,7 @@ import DateTime from '../DateTime';
 import Empty from '../Empty';
 import createDateTime from '../../utils/createDateTime';
 
-export type Props = {
+export type DateTimeRangeProps = {
   /** The starting timestamp. */
   from?: DateTimeType;
   /** Locale to translate and format the timestamp to. Defaults to "en". */
@@ -21,7 +21,7 @@ export type Props = {
 };
 
 /** Display a range between 2 timestamps. */
-export default class DateTimeRange extends React.PureComponent<Props> {
+export default class DateTimeRange extends React.PureComponent<DateTimeRangeProps> {
   static defaultProps = {
     from: null,
     separator: ' – ',

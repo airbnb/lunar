@@ -13,7 +13,7 @@ import {
 
 export { MODAL_MAX_WIDTH_SMALL, MODAL_MAX_WIDTH_MEDIUM, MODAL_MAX_WIDTH_LARGE };
 
-export type Props = ModalInnerContentProps & {
+export type ModalInnerProps = ModalInnerContentProps & {
   /** Image configuration to be used as the right pane in a dual pane layout. If provided, will force the modal to a `large` layout. */
   image?: ModalImageConfig;
   /** Fluid width, no max width. */
@@ -23,7 +23,7 @@ export type Props = ModalInnerContentProps & {
 };
 
 /** A Dialog component with a backdrop and a standardized layout. */
-export class ModalInner extends React.Component<Props & WithStylesProps> {
+export class ModalInner extends React.Component<ModalInnerProps & WithStylesProps> {
   dialogRef = React.createRef<HTMLDivElement>();
 
   lastActiveElement: HTMLElement | null = null;

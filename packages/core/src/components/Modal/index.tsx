@@ -5,10 +5,10 @@ import ModalInner, { Props as ModalInnerProps } from './private/Inner';
 import { ESCAPE } from '../../keys';
 import { styleSheet } from './styles';
 
-export type Props = ModalInnerProps;
+export type ModalProps = ModalInnerProps;
 
 /** A modal component with a backdrop and a standardized layout. */
-export class Modal extends React.Component<Props & WithStylesProps> {
+export class Modal extends React.Component<ModalProps & WithStylesProps> {
   componentDidMount() {
     document.body.style.overflow = 'hidden';
   }

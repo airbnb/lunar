@@ -74,7 +74,7 @@ const styleSheet: StyleSheet = ({ color, ui }) => ({
   },
 });
 
-export type Props = {
+export type ImageProps = {
   /** Sets background to bottom of image */
   alignBottom?: boolean;
   /** Sets background to top of image */
@@ -121,7 +121,7 @@ function Image({
   srcSet,
   title,
   width = '100%',
-}: Props) {
+}: ImageProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   let backgroundAriaLabel = {};

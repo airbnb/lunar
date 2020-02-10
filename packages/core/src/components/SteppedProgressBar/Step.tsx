@@ -4,7 +4,7 @@ import ProgressBar from '../ProgressBar';
 import Tooltip from '../Tooltip';
 import { styleSheetStep as styleSheet } from './styles';
 
-export type Props = {
+export type StepProps = {
   /** Mark the step as complete. */
   complete?: boolean;
   /** @ignore Mark as the first step. */
@@ -16,7 +16,7 @@ export type Props = {
 };
 
 /** An individual step within a stepped progress bar. */
-export default function Step({ complete, first, last, label }: Props) {
+export default function Step({ complete, first, last, label }: StepProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const bar = (

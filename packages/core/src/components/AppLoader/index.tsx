@@ -7,7 +7,7 @@ import Text from '../Text';
 import { ErrorType } from '../../types';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type AppLoaderProps = {
   /** Center the loader and content. */
   centered?: boolean;
   /** Content to be rendered on a successful request. */
@@ -39,7 +39,7 @@ export default function AppLoader({
   loadingText,
   small,
   subtitle,
-}: Props) {
+}: AppLoaderProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   if (fetched && !error) {

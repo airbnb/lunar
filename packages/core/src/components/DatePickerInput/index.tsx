@@ -11,7 +11,7 @@ import { mdyCalendarBundle } from '../../messages';
 import PrivatePickerInput from './Input';
 import { Locale } from '../../types';
 
-export type Props = Omit<BaseInputProps, 'id' | 'onChange' | 'value'> &
+export type DatePickerInputProps = Omit<BaseInputProps, 'id' | 'onChange' | 'value'> &
   FormFieldProps & {
     /** Clear the input when clicking on a previously selected day. */
     clearOnDayClick?: DayPickerInputProps['clickUnselectsDay'];
@@ -37,12 +37,12 @@ export type Props = Omit<BaseInputProps, 'id' | 'onChange' | 'value'> &
     value?: string | Date;
   };
 
-export type State = {
+export type DatePickerInputState = {
   id: string;
 };
 
 /** A controlled input field that opens a date picker. */
-export default class DatePickerInput extends React.Component<Props, State> {
+export default class DatePickerInput extends React.Component<DatePickerInputProps, DatePickerInputState> {
   static defaultProps = {
     hideOnDayClick: false,
   };

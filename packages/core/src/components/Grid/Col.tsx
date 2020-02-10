@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import { styleSheetCol as styleSheet } from './styles';
 
-export type Props = {
+export type ColProps = {
   /** Content to display in a column. */
   children: NonNullable<React.ReactNode>;
   /** Offset in column widths to push to the right. */
@@ -12,7 +12,7 @@ export type Props = {
 };
 
 /** A column within a grid. */
-export default function Col({ children, offset = 0, span }: Props) {
+export default function Col({ children, offset = 0, span }: ColProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

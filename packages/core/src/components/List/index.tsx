@@ -5,7 +5,7 @@ import { styleSheet } from './styles';
 
 export { Item };
 
-export type Props = {
+export type ListProps = {
   /** List items. */
   children: NonNullable<React.ReactNode>;
   /** Apply gutters between `li`s. */
@@ -20,7 +20,7 @@ export type Props = {
   wrap?: boolean;
 };
 
-export default function List({ children, gutter, horizontal, middleAlign, ordered, wrap }: Props) {
+export default function List({ children, gutter, horizontal, middleAlign, ordered, wrap }: ListProps) {
   const Tag = ordered ? 'ol' : 'ul';
   const [styles, cx] = useStyles(styleSheet);
 

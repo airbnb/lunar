@@ -80,7 +80,7 @@ const styleSheet: StyleSheet = theme => {
   };
 };
 
-export type Props = InputProps & {
+export type BaseSwitchProps = InputProps & {
   /** Whether the switch is checked. */
   checked?: boolean;
   /** Unique identifier. */
@@ -96,7 +96,7 @@ export default function BaseSwitch({
   invalid,
   onChange,
   ...restProps
-}: Props) {
+}: BaseSwitchProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

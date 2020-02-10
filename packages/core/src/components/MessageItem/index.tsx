@@ -9,7 +9,7 @@ import Spacing from '../Spacing';
 import T from '../Translate';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type MessageItemProps = {
   /** Message body. */
   children: NonNullable<React.ReactNode>;
   /** Wraps title in a span to disables translation suggestions from Google Translate. */
@@ -77,7 +77,7 @@ function MessageItem({
   titleTag,
   verticalSpacing,
   warning,
-}: Props) {
+}: MessageItemProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const getAvatar = () => {

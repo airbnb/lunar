@@ -5,7 +5,7 @@ import T from '../Translate';
 import Tooltip from '../Tooltip';
 import Link from '../Link';
 
-export type Props = {
+export type CopyProps = {
   /** Custom element to trigger the click. */
   children?: React.ReactElement;
   /** Pass an HTML element attribute id to the Link. */
@@ -22,12 +22,12 @@ export type Props = {
   underlined?: boolean;
 };
 
-export type State = {
+export type CopyState = {
   copied: boolean;
 };
 
 /** A component for easily copying a string of text to the clipboard. */
-export default class Copy extends React.Component<Props, State> {
+export default class Copy extends React.Component<CopyProps, CopyState> {
   state = {
     copied: false,
   };

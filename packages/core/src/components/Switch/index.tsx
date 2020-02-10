@@ -3,14 +3,14 @@ import uuid from 'uuid/v4';
 import BaseSwitch, { Props as BaseSwitchProps } from '../private/BaseSwitch';
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
 
-export type Props = Omit<BaseSwitchProps, 'id'> & FormFieldProps;
+export type SwitchProps = Omit<BaseSwitchProps, 'id'> & FormFieldProps;
 
-export type State = {
+export type SwitchState = {
   id: string;
 };
 
 /** A controlled switch (fancy checkbox) field. */
-export default class Switch extends React.Component<Props, State> {
+export default class Switch extends React.Component<SwitchProps, SwitchState> {
   static defaultProps = {
     checked: false,
   };

@@ -19,7 +19,7 @@ import { styleSheet } from './styles';
 
 const alertColorTypePropType = mutuallyExclusiveTrueProps(...STATUSES);
 
-export type Props = {
+export type AlertProps = {
   /** Content within the label. */
   children?: React.ReactNode;
   /** Dangerous/failure status (red). */
@@ -54,7 +54,7 @@ function Alert({
   title,
   warning,
   onClose,
-}: Props) {
+}: AlertProps) {
   const [styles, cx] = useStyles(styleSheet);
   const { color, unit } = useTheme();
 

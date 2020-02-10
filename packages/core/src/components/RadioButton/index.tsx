@@ -7,7 +7,7 @@ import Text from '../Text';
 
 const stateProp = mutuallyExclusiveTrueProps('checked', 'indeterminate');
 
-export type Props = Omit<BaseRadioButtonProps, 'value'> &
+export type RadioButtonProps = Omit<BaseRadioButtonProps, 'value'> &
   FormFieldProps & {
     /** Top align content. */
     topAlign?: boolean;
@@ -15,12 +15,12 @@ export type Props = Omit<BaseRadioButtonProps, 'value'> &
     value: string;
   };
 
-export type State = {
+export type RadioButtonState = {
   id: string;
 };
 
 /** A controlled radio button field. */
-export default class RadioButton extends React.Component<Props, State> {
+export default class RadioButton extends React.Component<RadioButtonProps, RadioButtonState> {
   static defaultProps = {
     button: false,
     checked: false,

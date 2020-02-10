@@ -4,7 +4,7 @@ import Menu, { Row } from '../Menu';
 import Text from '../Text';
 import Dropdown, { Props } from '.';
 
-class DropdownDemo extends React.Component<Props, { open: boolean }> {
+class DropdownDemo extends React.Component<DropdownDemoProps, { open: boolean }> {
   state = {
     open: false,
   };

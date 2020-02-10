@@ -5,7 +5,7 @@ import PriceGroup from '../PriceGroup';
 import { Amount } from '../../types';
 import { CommonProps } from '../Price';
 
-export type Props = CommonProps & {
+export type PriceComparisonProps = CommonProps & {
   /** The amount as a number. */
   amount?: Amount | number | null;
   /** The amount in USD. */
@@ -15,7 +15,7 @@ export type Props = CommonProps & {
 };
 
 /** Display a comparison between USD and native amounts. Supports all props in `Price`. */
-export default class PriceComparison extends React.PureComponent<Props> {
+export default class PriceComparison extends React.PureComponent<PriceComparisonProps> {
   static propTypes = {
     amount: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
     amountUSD: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),

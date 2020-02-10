@@ -3,7 +3,7 @@ import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import useStyles from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type TitleProps = {
   /** Align the text in the center. */
   centerAlign?: boolean;
   /** The text to render. */
@@ -32,7 +32,7 @@ function Title({
   level,
   muted,
   primary,
-}: Props) {
+}: TitleProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const Tag: 'h1' | 'h2' | 'h3' = `h${level}` as 'h1';

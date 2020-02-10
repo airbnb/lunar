@@ -13,7 +13,7 @@ import { styleSheet } from './styles';
 
 const statusPropType = mutuallyExclusiveTrueProps('danger', 'success');
 
-export type Props = {
+export type ToastProps = {
   /** Use cross tab events to sync closes for the same toast id across tabs  */
   crosstabClose?: boolean;
   /** Dangerous/failure status (red). */
@@ -41,7 +41,7 @@ export type Props = {
 };
 
 /** Abstract component for displaying a toast message above the pages content. */
-export class Toast extends React.Component<Props & WithStylesProps> {
+export class Toast extends React.Component<ToastProps & WithStylesProps> {
   static propTypes = {
     danger: statusPropType,
     success: statusPropType,

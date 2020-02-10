@@ -3,7 +3,7 @@
 import React from 'react';
 import componentName from '../../prop-types/componentName';
 
-export type Props = {
+export type TrackingBoundaryProps = {
   /** Content to wrap. */
   children: NonNullable<React.ReactNode>;
   /** A unique name to identify this boundary in the context stack. */
@@ -11,7 +11,7 @@ export type Props = {
 };
 
 /** Wraps a component and provides a context stack for click and keydown tracking purposes. */
-export default class TrackingBoundary extends React.Component<Props> {
+export default class TrackingBoundary extends React.Component<TrackingBoundaryProps> {
   static propTypes = {
     name: componentName,
   };

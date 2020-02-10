@@ -17,7 +17,7 @@ const EMPTY_TARGET_RECT: ClientRect = {
   width: 0,
 };
 
-export type Props = {
+export type TooltipProps = {
   /** Width of the tooltip in units. */
   width?: number;
   /** What to show in the tooltip. */
@@ -36,7 +36,7 @@ export type Props = {
   onShow?: () => void;
 };
 
-export type State = {
+export type TooltipState = {
   labelID: string;
   open: boolean;
   tooltipHeight: number;
@@ -55,7 +55,7 @@ export type StyleStruct = {
 };
 
 /** A tooltip that renders in an portal, so it can escape potentially overflowed containers. */
-export class Tooltip extends React.Component<Props & WithStylesProps, State> {
+export class Tooltip extends React.Component<TooltipProps & WithStylesProps, TooltipState> {
   static defaultProps = {
     disabled: false,
     inverted: false,
@@ -81,7 +81,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
 
   rafHandle: number = 0;
 
-  static getDerivedStateFromProps({ disabled }: Props) {
+  static getDerivedStateFromProps({ disabled }: TooltipProps) {
     if (disabled) {
       return {
         open: false,
@@ -104,7 +104,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     });
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: TooltipProps) {
     if (prevProps.content !== this.props.content) {
       this.updateTooltipHeight();
     }
@@ -127,7 +127,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     });
   }
 
-  bestPosition(rect: State['targetRect']): PositionStruct {
+  bestPosition(rect: TooltipState['targetRect']): PositionStruct {
     const output: PositionStruct = { above: false, align: 'left' };
     const { width: widthProp, theme } = this.props;
 

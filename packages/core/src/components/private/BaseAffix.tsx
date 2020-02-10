@@ -4,7 +4,7 @@ import { WithStylesProps } from '../../composers/withStyles';
 
 const dirProp = mutuallyExclusiveTrueProps('after', 'before');
 
-export type Props = {
+export type BaseAffixProps = {
   /** @ignore */
   after?: boolean;
   /** @ignore */
@@ -19,7 +19,7 @@ export type Props = {
   flex?: boolean;
 };
 
-export default class BaseAffix extends React.PureComponent<Props & WithStylesProps> {
+export default class BaseAffix extends React.PureComponent<BaseAffixProps & WithStylesProps> {
   static propTypes = {
     after: dirProp,
     before: dirProp,

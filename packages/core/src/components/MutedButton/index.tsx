@@ -28,6 +28,6 @@ export const StyledMutedButton = Button.extendStyles(({ color }) => ({
 }));
 
 /** A button to use for secondary actions. Supports all the same props as `Button`. */
-export default function MutedButton({ children, ...props }: Props) {
+export default function MutedButton({ children, ...props }: MutedButtonProps) {
   return <StyledMutedButton {...props}>{children}</StyledMutedButton>;
 }

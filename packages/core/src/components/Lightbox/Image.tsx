@@ -5,7 +5,7 @@ import Loader from '../Loader';
 import ImageViewer from '../ImageViewer';
 import { styleSheetImage as styleSheet } from './styles';
 
-export type Props = {
+export type ImageProps = {
   /** Image alt text */
   alt: string;
   /** React node for sidebar. */
@@ -33,7 +33,7 @@ export default function Image({
   showRotateControls,
   scale,
   rotation,
-}: Props) {
+}: ImageProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

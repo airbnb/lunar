@@ -270,7 +270,7 @@ const demoItems2 = [
   },
 ];
 
-class PickerDemo extends React.Component<Partial<Props>, { chosen: Props['chosen'] }> {
+class PickerDemo extends React.Component<Partial<PickerDemoProps>, { chosen: PickerDemoProps['chosen'] }> {
   state = { chosen: undefined };
 
   render() {

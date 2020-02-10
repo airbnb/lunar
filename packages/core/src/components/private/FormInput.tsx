@@ -26,7 +26,7 @@ export type IgnoreAttributes =
   | 'results'
   | 'security';
 
-export type Props<T = unknown> = {
+export type FormInputProps<T = unknown> = {
   /** @deprecated decrease font size and padding to small. */
   compact?: boolean;
   /** Mark the field as important. */
@@ -48,18 +48,18 @@ export type Props<T = unknown> = {
 };
 
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoreAttributes> &
-  Props<HTMLInputElement>;
+  FormInputProps<HTMLInputElement>;
 
 export type SelectProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, IgnoreAttributes> &
-  Props<HTMLSelectElement>;
+  FormInputProps<HTMLSelectElement>;
 
 export type TextAreaProps = Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
   IgnoreAttributes
 > &
-  Props<HTMLTextAreaElement>;
+  FormInputProps<HTMLTextAreaElement>;
 
-export type PrivateProps = Props & {
+export type PrivateProps = FormInputProps & {
   // Support everything for convenience
   [key: string]: unknown;
   /** @ignore */

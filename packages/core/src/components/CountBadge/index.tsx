@@ -2,7 +2,7 @@ import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type CountBadgeProps = {
   /** Accessibility label. */
   accessibilityLabel: string;
   /** Value to show in badge. */
@@ -12,14 +12,14 @@ export type Props = {
 };
 
 /** A badge indicator with a count. */
-export class CountBadge extends React.Component<Props & WithStylesProps> {
+export class CountBadge extends React.Component<CountBadgeProps & WithStylesProps> {
   static defaultProps = {
     waggle: false,
   };
 
   badgeRef = React.createRef<HTMLDivElement>();
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: CountBadgeProps) {
     const { value } = this.props;
 
     if (value && prevProps.value && value !== prevProps.value) {

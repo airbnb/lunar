@@ -10,7 +10,7 @@ export type PropsProvided = Partial<CheckBoxProps> & {
   value: string;
 };
 
-export type Props = FormFieldProps & {
+export type CheckBoxControllerProps = FormFieldProps & {
   /** Function children in which CheckBox components can be rendered. */
   children: (component: React.ComponentType<PropsProvided>, values: string[], id: string) => void;
   /** Unique name of the field. */
@@ -21,13 +21,13 @@ export type Props = FormFieldProps & {
   value?: string[];
 };
 
-export type State = {
+export type CheckBoxControllerState = {
   id: string;
   values: Set<string>;
 };
 
 /** Manage multiple checkboxes with the same input `name`. */
-export default class CheckBoxController extends React.Component<Props, State> {
+export default class CheckBoxController extends React.Component<CheckBoxControllerProps, CheckBoxControllerState> {
   static defaultProps = {
     value: [],
   };
@@ -37,7 +37,7 @@ export default class CheckBoxController extends React.Component<Props, State> {
     values: new Set(this.props.value),
   };
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: CheckBoxControllerProps) {
     if (!shallowEqual(this.props.value, prevProps.value!)) {
       this.setState({
         values: new Set(this.props.value),

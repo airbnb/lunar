@@ -7,7 +7,7 @@ import getWeekdays from '../../utils/getWeekdays';
 import { getClassNames, getCustomModifiers } from '../../utils/datePicker';
 import NavBar from './Picker/NavBar';
 
-export type Props = {
+export type DatePickerProps = {
   /** Day(s) that should appear as disabled. Set a `disabled` modifier. See Matching days for a reference of the accepted value types. */
   disabledDays?: DayPickerProps['disabledDays'];
   /** The day to use as first day of the week, starting from 0 (Sunday) to 6 (Saturday). */
@@ -56,7 +56,7 @@ export type Props = {
  * Display a date picker.
  * Utilizes [react-day-picker](http://react-day-picker.js.org/api/DayPicker/).
  */
-export class DatePicker extends React.Component<Props & WithStylesProps> {
+export class DatePicker extends React.Component<DatePickerProps & WithStylesProps> {
   static defaultProps = {
     firstDayOfWeek: 0,
     numberOfMonths: 1,

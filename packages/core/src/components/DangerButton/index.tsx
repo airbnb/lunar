@@ -28,6 +28,6 @@ const StyledDangerButton = Button.extendStyles(({ color }) => ({
 }));
 
 /** A button to use for primary actions. Supports all the same props as `Button`. */
-export default function DangerButton({ children, ...props }: Props) {
+export default function DangerButton({ children, ...props }: DangerButtonProps) {
   return <StyledDangerButton {...props}>{children}</StyledDangerButton>;
 }

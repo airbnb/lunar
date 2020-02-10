@@ -14,7 +14,7 @@ export type PropsProvided = Partial<ButtonProps> & {
   value: string;
 };
 
-export type Props = FormFieldProps & {
+export type ToggleButtonControllerProps = FormFieldProps & {
   /** Function children in which Button components can be rendered. */
   children: (component: React.ComponentType<PropsProvided>, value: string, id: string) => void;
   /** Unique name of the field. */
@@ -25,13 +25,13 @@ export type Props = FormFieldProps & {
   value?: string;
 };
 
-export type State = {
+export type ToggleButtonControllerState = {
   id: string;
   value: string;
 };
 
 /** Manage a group of buttons with the same input `name`. */
-export default class ToggleButtonController extends React.Component<Props, State> {
+export default class ToggleButtonController extends React.Component<ToggleButtonControllerProps, ToggleButtonControllerState> {
   static defaultProps = {
     value: '',
   };
@@ -41,7 +41,7 @@ export default class ToggleButtonController extends React.Component<Props, State
     value: this.props.value || '',
   };
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: ToggleButtonControllerProps) {
     if (this.props.value !== prevProps.value) {
       this.setState({
         value: this.props.value || '',

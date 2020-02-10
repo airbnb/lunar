@@ -7,7 +7,7 @@ import { styleSheet } from './styles';
 
 const sizingProp = mutuallyExclusiveTrueProps('small', 'large');
 
-export type Props = ButtonOrLinkProps & {
+export type ButtonProps = ButtonOrLinkProps & {
   /** Render as a block with full width. */
   block?: boolean;
   /** Render as borderless. */
@@ -23,7 +23,7 @@ export type Props = ButtonOrLinkProps & {
 };
 
 /** A standard button and or link for common UI interactions. */
-export class Button extends React.Component<Props & WithStylesProps> {
+export class Button extends React.Component<ButtonProps & WithStylesProps> {
   static propTypes = {
     large: sizingProp,
     small: sizingProp,

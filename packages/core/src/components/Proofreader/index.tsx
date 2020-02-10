@@ -30,7 +30,7 @@ export type Position = {
   top: number;
 };
 
-export type Props = Pick<FormInputProps, 'important'> &
+export type ProofreaderProps = Pick<FormInputProps, 'important'> &
   ExtraProofreadProps & {
     locale?: string;
     name: string;
@@ -41,7 +41,7 @@ export type Props = Pick<FormInputProps, 'important'> &
     value: string;
   };
 
-export type State = {
+export type ProofreaderState = {
   errors: ProofreadRuleMatch[];
   loading: boolean;
   position: Position | null;
@@ -55,7 +55,7 @@ export type Snapshot = {
   selectionEnd?: number;
 };
 
-export class Proofreader extends React.Component<Props & WithStylesProps, State, Snapshot> {
+export class Proofreader extends React.Component<ProofreaderProps & WithStylesProps, ProofreaderState, Snapshot> {
   static defaultProps = {
     isRuleHighlighted: defaultIsRuleHighlighted,
     isRuleSecondary: defaultIsRuleSecondary,
@@ -77,7 +77,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
 
   scrollTimeout: number = 0;
 
-  state: State = {
+  state: ProofreaderState = {
     errors: [],
     loading: false,
     position: null,
@@ -101,7 +101,7 @@ export class Proofreader extends React.Component<Props & WithStylesProps, State,
     this.selectAppropriateLocale();
   }
 
-  componentDidUpdate(prevProps: Props, prevState: State, snapshot: Snapshot) {
+  componentDidUpdate(prevProps: ProofreaderProps, prevState: ProofreaderState, snapshot: Snapshot) {
     const { locale, value } = this.props;
 
     if (locale !== prevProps.locale) {

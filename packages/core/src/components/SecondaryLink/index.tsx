@@ -12,6 +12,6 @@ const StyledSecondaryLink = Link.extendStyles(({ color }) => ({
 }));
 
 /** A link to use for secondary actions. Supports all the same props as `Link`. */
-export default function SecondaryLink({ children, ...props }: Props) {
+export default function SecondaryLink({ children, ...props }: SecondaryLinkProps) {
   return <StyledSecondaryLink {...props}>{children}</StyledSecondaryLink>;
 }

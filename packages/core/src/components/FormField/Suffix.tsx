@@ -2,7 +2,7 @@ import React from 'react';
 import FieldAffix, { Props } from '../private/FieldAffix';
 
 /** A suffix to display after an input within a form field. */
-export default class Suffix extends React.PureComponent<Props> {
+export default class Suffix extends React.PureComponent<SuffixProps> {
   render() {
     const { children, compact, disabled } = this.props;
 

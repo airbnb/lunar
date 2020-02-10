@@ -13,7 +13,7 @@ import {
 } from '../types';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type PickerProps = {
   chosen?: TreePath;
   hierarchyMaxHeight?: number;
   hierarchyWidth?: number;
@@ -30,11 +30,11 @@ export type Props = {
   verticallyAlign?: boolean;
 };
 
-export type State = {
+export type PickerState = {
   searchQuery: string;
 };
 
-export class Picker extends React.Component<Props & WithStylesProps, State> {
+export class Picker extends React.Component<PickerProps & WithStylesProps, PickerState> {
   static defaultProps = {
     searchWidth: 300,
   };

@@ -5,7 +5,7 @@ import { EMOJI_WHITELIST } from '../../constants';
 /**
  * Display an emoji picker that utilizes a restricted whitelist of acceptable emojis.
  */
-export default function EmojiRestrictedPicker(props: Props) {
+export default function EmojiRestrictedPicker(props: EmojiRestrictedPickerProps) {
   return (
     <EmojiPicker
       disableCommonlyUsed

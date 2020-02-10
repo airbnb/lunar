@@ -6,14 +6,14 @@ import TrackingBoundary from '../TrackingBoundary';
 import { LT_LOCALES } from '../../constants';
 import { DefinitionShape } from './types';
 
-export type Props = {
+export type LocaleMenuProps = {
   autoDefinition?: DefinitionShape;
   noneDefinition?: DefinitionShape;
   selectedLocale: string | null;
   onSelectLocale: (locale: string) => void;
 };
 
-export default class LocaleMenu extends React.Component<Props> {
+export default class LocaleMenu extends React.Component<LocaleMenuProps> {
   private handleClick = (locale: string) => {
     this.props.onSelectLocale(locale);
   };

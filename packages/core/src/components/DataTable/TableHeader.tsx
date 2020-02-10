@@ -7,7 +7,7 @@ import T from '../Translate';
 import { HeaderButton, SelectedRows } from './types';
 import { styleSheetTableHeader as styleSheet } from './styles';
 
-export type Props = {
+export type TableHeaderProps = {
   /** Specifies whether or not editMode can be enabled */
   editable?: boolean;
   /** Determines which set of header buttons to render. */
@@ -47,7 +47,7 @@ export function TableHeader({
   styles,
   tableHeaderLabel,
   width,
-}: Props & WithStylesProps) {
+}: TableHeaderProps & WithStylesProps) {
   const extraEditButtons = extraHeaderButtons!.map(
     (btnConfig: HeaderButton) =>
       btnConfig.displayEditMode && (

@@ -5,7 +5,7 @@ import Text, { Props as TextProps } from '../Text';
 import { STATUSES } from '../../constants';
 import { styleSheet } from './styles';
 
-export type Props = TextProps & {
+export type StatusTextProps = TextProps & {
   /** The text to render. */
   children: NonNullable<React.ReactNode>;
   /** Dangerous/failure status (red). */
@@ -32,7 +32,7 @@ function StatusText({
   success,
   warning,
   ...restProps
-}: Props) {
+}: StatusTextProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

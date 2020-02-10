@@ -8,7 +8,7 @@ import Text from '../Text';
 import DirectionalIcon from '../DirectionalIcon';
 import { styleSheetItem as styleSheet } from './styles';
 
-export type Props = {
+export type MenuItemProps = {
   /** Content within the menu item. */
   children: NonNullable<React.ReactNode>;
   /** Mark the button as disabled. */
@@ -55,7 +55,7 @@ function MenuItem({
   tabIndex = -1,
   tip,
   trackingName,
-}: Props) {
+}: MenuItemProps) {
   const [styles, cx] = useStyles(styleSheet);
   const [showSubmenu, setShowSubmenu] = useState(false);
 

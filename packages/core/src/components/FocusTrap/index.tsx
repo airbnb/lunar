@@ -2,7 +2,7 @@ import React from 'react';
 import { TAB } from '../../keys';
 import focusableSelector from '../../utils/focusableSelector';
 
-export type Props = {
+export type FocusTrapProps = {
   /** Content to wrap. */
   children: NonNullable<React.ReactNode>;
   /** Disable automatic focusing. */
@@ -10,7 +10,7 @@ export type Props = {
 };
 
 /** Automatically trap and apply focus to elements wrapped within. */
-export default class FocusTrap extends React.PureComponent<Props> {
+export default class FocusTrap extends React.PureComponent<FocusTrapProps> {
   static defaultProps = {
     disabled: false,
   };

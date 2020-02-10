@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type LoaderProps = {
   /** Display inline instead of absolutely positioned. */
   inline?: boolean;
   /** Invert colors. */
@@ -14,7 +14,7 @@ export type Props = {
 };
 
 /** A small 3-dot loading indicator. */
-export default function Loader({ inline, inverted, large, static: isStatic }: Props) {
+export default function Loader({ inline, inverted, large, static: isStatic }: LoaderProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

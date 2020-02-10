@@ -2,7 +2,7 @@ import React from 'react';
 import FormInput, { TextAreaProps } from './FormInput';
 import passThroughRef from '../../utils/passThroughRef';
 
-export type Props = TextAreaProps & {
+export type BaseTextAreaProps = TextAreaProps & {
   /** Auto-resize the textarea while typing. */
   autoResize?: boolean;
   /** Max height of the textarea when auto-resizing. */
@@ -13,7 +13,7 @@ export type Props = TextAreaProps & {
   onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-export default class BaseTextArea extends React.Component<Props> {
+export default class BaseTextArea extends React.Component<BaseTextAreaProps> {
   static defaultProps = {
     autoResize: false,
     maxHeight: 400,
@@ -31,7 +31,7 @@ export default class BaseTextArea extends React.Component<Props> {
     this.reflowRaf = window.requestAnimationFrame(this.reflowTextarea);
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: BaseTextAreaProps) {
     if (this.props.value !== prevProps.value && !this.reflowRaf) {
       this.reflowRaf = window.requestAnimationFrame(this.reflowTextarea);
     }
@@ -48,7 +48,7 @@ export default class BaseTextArea extends React.Component<Props> {
     this.reflowRaf = null;
 
     const ref = this.textareaRef;
-    const { autoResize, minHeight, maxHeight } = this.props as Required<Props>;
+    const { autoResize, minHeight, maxHeight } = this.props as Required<BaseTextAreaProps>;
 
     if (!ref || !autoResize) {
       return;

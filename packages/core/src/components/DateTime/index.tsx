@@ -30,7 +30,7 @@ const formatPropType = mutuallyExclusiveTrueProps(
   'relativeCompact',
 );
 
-export type Props = {
+export type DateTimeProps = {
   /** A timestamp, either a string, number, Date object, or Luxon DateTime object. */
   at?: DateTimeType;
   /** Display the time with no date. */
@@ -68,7 +68,7 @@ export type Props = {
 };
 
 /** Display a formatted and localized timestamp. */
-export default class DateTime extends React.PureComponent<Props> {
+export default class DateTime extends React.PureComponent<DateTimeProps> {
   static propTypes = {
     clock: formatPropType,
     long: formatPropType,
@@ -97,7 +97,7 @@ export default class DateTime extends React.PureComponent<Props> {
     withDay: false,
   };
 
-  static format(props: Props): string {
+  static format(props: DateTimeProps): string {
     const {
       at,
       clock,

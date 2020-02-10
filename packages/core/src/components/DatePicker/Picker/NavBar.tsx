@@ -8,7 +8,7 @@ import DirectionalIcon from '../../DirectionalIcon';
 import IconButton from '../../IconButton';
 import T from '../../Translate';
 
-export type Props = NavBarProps & {
+export type NavBarProps = NavBarProps & {
   /** Callback for a reset button. */
   onResetClick?: () => void;
   /** Show the reset button. */
@@ -17,7 +17,7 @@ export type Props = NavBarProps & {
   noFooter?: boolean;
 };
 
-class NavBar extends React.Component<Props & WithStylesProps> {
+class NavBar extends React.Component<NavBarProps & WithStylesProps> {
   static defaultProps = {
     noFooter: false,
     showResetButton: false,

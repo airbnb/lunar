@@ -5,7 +5,7 @@ import { styleSheet } from './styles';
 
 export { Content };
 
-export type Props = {
+export type CardProps = {
   /** List of `Content`s blocks to contain content. */
   children: NonNullable<React.ReactNode>;
   /** Set overflow to be visible. */
@@ -15,7 +15,7 @@ export type Props = {
 /**
  * An abstract layout to use as a base for cards.
  */
-export default function Card({ children, overflow }: Props) {
+export default function Card({ children, overflow }: CardProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return <div className={cx(styles.card, overflow && styles.card_overflow)}>{children}</div>;

@@ -6,7 +6,7 @@ import ButtonOrLink from '../private/ButtonOrLink';
 import DirectionalIcon from '../DirectionalIcon';
 import { styleSheetBreadcrumb as styleSheet } from './styles';
 
-export type Props = {
+export type BreadcrumbProps = {
   /** Mark the breadcrumb as disabled. */
   disabled?: boolean;
   /** Hide the breadcrumb icon. */
@@ -38,7 +38,7 @@ export default function Breadcrumb({
   onClick,
   selected,
   trackingName,
-}: Props) {
+}: BreadcrumbProps) {
   const [styles, cx] = useStyles(styleSheet);
   const clickable = !disabled && (!!href || !!onClick);
   const aria = selected ? { 'aria-current': 'page' } : {};
