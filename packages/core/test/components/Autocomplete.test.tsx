@@ -791,11 +791,7 @@ describe('<Autocomplete />', () => {
       const row = shallow(instance.renderNoResults());
 
       expect(row.find(Text).prop('children')).toEqual(
-        <T
-          k="lunar.common.noResults"
-          phrase="No results found."
-          context="No results found for autocomplete search"
-        />,
+        <T k="lunar.common.noResults" phrase="No results found." />,
       );
     });
 

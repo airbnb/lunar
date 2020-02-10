@@ -55,11 +55,7 @@ export default function ModalInnerContent({
       <div className={cx(styles.close, !withHeader && styles.close_float)}>
         <IconButton onClick={onClose}>
           <IconClose
-            accessibilityLabel={T.phrase(
-              'Close',
-              {},
-              { context: 'Close a modal popup', key: 'lunar.common.close' },
-            )}
+            accessibilityLabel={T.phrase('lunar.common.close', 'Close')}
             color={theme.color.muted}
             size={theme.unit * 3}
           />

@@ -8,9 +8,5 @@ export default function defaultFormatter(chosen: TreePath, getLabel: Labeler): s
     return labels.join(' > ');
   }
 
-  return T.phrase(
-    'Select from hierarchy',
-    {},
-    { context: 'Placeholder text for HierarchyPicker', key: 'lunar.picker.selectPlaceholder' },
-  );
+  return T.phrase('lunar.picker.selectPlaceholder', 'Select from hierarchy');
 }

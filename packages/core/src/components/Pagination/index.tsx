@@ -53,7 +53,7 @@ function Pagination({
   hasPrev,
   showBookends,
   startAlign,
-  pageLabel = T.phrase('Page', {}, { context: 'Label for pages', key: 'lunar.common.page' }),
+  pageLabel = T.phrase('lunar.common.page', 'Page'),
   onFirst,
   onLast,
   onNext,
@@ -74,14 +74,7 @@ function Pagination({
         direction="left"
         left={IconChevronLeft}
         right={IconChevronRight}
-        accessibilityLabel={T.phrase(
-          'Load previous page',
-          {},
-          {
-            context: 'Load previous page when paginating sets of data',
-            key: 'lunar.pagination.loadPrevious',
-          },
-        )}
+        accessibilityLabel={T.phrase('lunar.pagination.loadPrevious', 'Load previous page')}
         size={4 * theme!.unit}
       />
     </IconButton>
@@ -93,14 +86,7 @@ function Pagination({
         direction="right"
         left={IconChevronLeft}
         right={IconChevronRight}
-        accessibilityLabel={T.phrase(
-          'Load next page',
-          {},
-          {
-            context: 'Load next page when paginating sets of data',
-            key: 'lunar.pagination.loadNext',
-          },
-        )}
+        accessibilityLabel={T.phrase('lunar.pagination.loadNext', 'Load next page')}
         size={4 * theme!.unit}
       />
     </IconButton>
@@ -116,14 +102,7 @@ function Pagination({
           direction="left"
           left={IconFirst}
           right={IconLast}
-          accessibilityLabel={T.phrase(
-            'Load first page',
-            {},
-            {
-              context: 'Load first page when paginating sets of data',
-              key: 'lunar.pagination.loadFirst',
-            },
-          )}
+          accessibilityLabel={T.phrase('lunar.pagination.loadFirst', 'Load first page')}
           size={4 * theme!.unit}
         />
       </IconButton>
@@ -139,14 +118,7 @@ function Pagination({
           direction="right"
           left={IconFirst}
           right={IconLast}
-          accessibilityLabel={T.phrase(
-            'Load last page',
-            {},
-            {
-              context: 'Load last page when paginating sets of data',
-              key: 'lunar.pagination.loadLast',
-            },
-          )}
+          accessibilityLabel={T.phrase('lunar.pagination.loadLast', 'Load last page')}
           size={4 * theme!.unit}
         />
       </IconButton>
@@ -160,7 +132,6 @@ function Pagination({
         phrase="%{pageNumber} of %{pageCount}"
         pageCount={pageCount}
         pageNumber={page}
-        context="Showing the current page number and total page count"
       />
     ) : (
       page
@@ -175,7 +146,6 @@ function Pagination({
           pageLabel={pageLabel}
           pageCount={pageCount}
           pageNumber={page}
-          context="Showing the current page number and total page count"
         />
       ) : (
         <T
@@ -183,7 +153,6 @@ function Pagination({
           phrase="%{pageLabel} %{pageNumber}"
           pageLabel={pageLabel}
           pageNumber={page}
-          context="Showing the current page number"
         />
       );
   }

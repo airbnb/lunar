@@ -74,7 +74,7 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
         combo="/"
         condition={showWhenNoMenuOrValueCondition}
         name="openShortcutMenu"
-        label={T.phrase('to shortcuts', null, { key: 'lunar.composer.shortcuts.hotkey.toOpen' })}
+        label={T.phrase('lunar.composer.shortcuts.hotkey.toOpen', 'to shortcuts')}
         onRun={openShortcutsMenu}
       />
 
@@ -83,7 +83,7 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
         combo="up"
         condition={activeWhenShortcutsMenuOpen}
         name="moveUpShortcutMenu"
-        label={T.phrase('up', null, { key: 'lunar.composer.shortcuts.hotkey.moveUp' })}
+        label={T.phrase('lunar.composer.shortcuts.hotkey.moveUp', 'up')}
         onRun={moveUp}
       />
 
@@ -92,7 +92,7 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
         combo="down"
         condition={activeWhenShortcutsMenuOpen}
         name="moveDownShortcutMenu"
-        label={T.phrase('down', null, { key: 'lunar.composer.shortcuts.hotkey.moveDown' })}
+        label={T.phrase('lunar.composer.shortcuts.hotkey.moveDown', 'down')}
         onRun={moveDown}
       />
 
@@ -101,7 +101,7 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
         combo="tab"
         condition={activeWhenShortcutsMenuOpen}
         name="selectShortcut"
-        label={T.phrase('to select', null, { key: 'lunar.composer.shortcuts.hotkey.toSelect' })}
+        label={T.phrase('lunar.composer.shortcuts.hotkey.toSelect', 'to select')}
         onRun={selectShortcut}
       />
 

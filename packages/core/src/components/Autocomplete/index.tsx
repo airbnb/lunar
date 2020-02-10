@@ -469,16 +469,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
       onBlur,
       onFocus,
       optional,
-      placeholder:
-        placeholder ||
-        T.phrase(
-          'Search',
-          {},
-          {
-            context: 'Search field within an autocomplete input field',
-            key: 'lunar.common.search',
-          },
-        ),
+      placeholder: placeholder || T.phrase('lunar.common.search', 'Search'),
       small,
       type: 'text',
     };
@@ -709,11 +700,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
         {renderElementOrFunction(this.props.renderNoResults) || (
           <Text>
             {this.props.noResultsText || (
-              <T
-                k="lunar.common.noResults"
-                phrase="No results found."
-                context="No results found for autocomplete search"
-              />
+              <T k="lunar.common.noResults" phrase="No results found." />
             )}
           </Text>
         )}

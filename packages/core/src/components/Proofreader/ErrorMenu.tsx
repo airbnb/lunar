@@ -19,23 +19,9 @@ export default class ErrorMenu extends React.Component<Props> {
   private replacementText = (replacement: string) => {
     switch (replacement) {
       case ' ':
-        return T.phrase(
-          '(Space)',
-          {},
-          {
-            context: 'Represents a space character within the spell checker',
-            key: 'lunar.proofreader.whiteSpace',
-          },
-        );
+        return T.phrase('lunar.proofreader.whiteSpace', '(Space)');
       case '':
-        return T.phrase(
-          'Delete',
-          {},
-          {
-            context: 'Represents deleting within the spell checker',
-            key: 'lunar.proofreader.delete',
-          },
-        );
+        return T.phrase('lunar.proofreader.delete', 'Delete');
       default:
         return replacement;
     }
@@ -48,12 +34,8 @@ export default class ErrorMenu extends React.Component<Props> {
       <TrackingBoundary name="Proofreader/ErrorMenu">
         <Menu
           accessibilityLabel={T.phrase(
+            'lunar.proofreader.replacementLabel',
             'Spelling or grammar replacements',
-            {},
-            {
-              context: 'Menu with a list of spelling mistake replacements',
-              key: 'lunar.proofreader.replacementLabel',
-            },
           )}
         >
           <Row>

@@ -53,7 +53,7 @@ export default function Preview({
           !requireConfirmation && !!data.focused && data.value !== '' && !data.value.startsWith('/')
         }
         name="showPreview"
-        label={T.phrase('to preview', null, { key: 'lunar.composer.hotkey.returnToPreview' })}
+        label={T.phrase('lunar.composer.hotkey.returnToPreview', 'to preview')}
         order={100}
         onRun={ctx => onSubmitShowPreview(ctx.data, ctx)}
       />

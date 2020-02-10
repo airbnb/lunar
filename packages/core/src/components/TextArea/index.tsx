@@ -55,7 +55,6 @@ export default class TextArea extends React.Component<Props, State> {
           phrase="%{current}/%{max} characters used"
           current={inputProps.value!.length.toLocaleString()}
           max={inputProps.maxLength.toLocaleString()}
-          context="Showing the current and max characters within a form textarea"
         />
       ));
 

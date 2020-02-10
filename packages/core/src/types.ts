@@ -7,9 +7,10 @@ import { StyleBlock } from 'aesthetic';
 export type Logger = (error: Error, extra: object) => void;
 
 export type Translator = (
+  key: string,
   phrase: string,
-  params?: TranslateParams | null,
-  options?: string | TranslateOptions,
+  params?: TranslateParams,
+  options?: TranslateOptions,
 ) => string;
 
 export type ErrorType =
@@ -33,23 +34,19 @@ export type BrandType = 'luxury' | 'plus';
 export type TranslateParams = { [param: string]: string | number | undefined };
 
 export type TranslateOptions = {
-  /** Integration context in which to provide writes & editors. */
-  context?: string;
   /** Phrase message contains HTML. */
   html?: boolean;
-  /** Unique phrase key. */
-  key?: string;
 };
 
 export type TranslateProps = {
   [param: string]: string | number | boolean | undefined | React.ReactNode;
   /** Unique phrase key. */
-  k?: string;
+  k: string;
   /** Default phrase to translate. */
   phrase: string;
   /** Handle counts using a smart number. */
   smartCount?: number;
-} & Omit<TranslateOptions, 'key'>;
+} & TranslateOptions;
 
 // MONEY
 
