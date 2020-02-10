@@ -48,28 +48,14 @@ export function getLocaleDefinition(locale: string): LocaleDefinition {
   if (locale === NO_LOCALE) {
     return {
       locale,
-      label: T.phrase(
-        'No language selected',
-        {},
-        {
-          context: 'No language selected for spell and grammar checking',
-          key: 'lunar.proofreader.noLanguageSelected',
-        },
-      ),
+      label: T.phrase('lunar.proofreader.noLanguageSelected', 'No language selected'),
     };
   }
 
   if (locale === AUTO_DETECT_LOCALE) {
     return {
       locale,
-      label: T.phrase(
-        'Auto-detect language',
-        {},
-        {
-          context: 'Auto-detect language for spell and grammar checking',
-          key: 'lunar.proofreader.autoDetectLanguage',
-        },
-      ),
+      label: T.phrase('lunar.proofreader.autoDetectLanguage', 'Auto-detect language'),
     };
   }
 
@@ -90,12 +76,8 @@ export function checkForAirbnbErrors(text: string): ProofreadRuleMatch[] {
       customErrors.push({
         short_message: '',
         message: T.phrase(
+          'lunar.proofreader.misspellingLabel',
           'Improper company spelling or casing',
-          {},
-          {
-            context: 'Error message when Airbnb is used incorrectly',
-            key: 'lunar.proofreader.misspellingLabel',
-          },
         ),
         offset: AIRBNB_REGEX.lastIndex - match[0].length,
         length: match[0].length,

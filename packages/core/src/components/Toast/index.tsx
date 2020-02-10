@@ -166,11 +166,7 @@ export class Toast extends React.Component<Props & WithStylesProps> {
           <IconButton inverted onClick={this.handleClosePress}>
             <IconClose
               size="1.5em"
-              accessibilityLabel={T.phrase(
-                'Close',
-                {},
-                { context: 'Close a toast popup', key: 'lunar.common.close' },
-              )}
+              accessibilityLabel={T.phrase('lunar.common.close', 'Close')}
             />
           </IconButton>
         </div>

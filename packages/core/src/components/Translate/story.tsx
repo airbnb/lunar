@@ -52,7 +52,7 @@ handleContextualMessagesBasedOnCounts.story = {
 };
 
 export function returnAStringInsteadOfRenderingAComponent() {
-  return <div>{T.phrase('Hello %{name}', { name: 'Bruce' }, { key: 'key' })}</div>;
+  return <div>{T.phrase('key', 'Hello %{name}', { name: 'Bruce' })}</div>;
 }
 
 returnAStringInsteadOfRenderingAComponent.story = {

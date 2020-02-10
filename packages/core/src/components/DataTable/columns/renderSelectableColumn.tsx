@@ -38,14 +38,7 @@ export default function renderSelectableColumn(
       <Spacing vertical={0.5} right={0.5} left={spacing}>
         <CheckBox
           hideLabel
-          label={T.phrase(
-            'Select row',
-            {},
-            {
-              context: 'Selecting a row from the data table',
-              key: 'lunar.datatable.selectRow',
-            },
-          )}
+          label={T.phrase('lunar.datatable.selectRow', 'Select row')}
           indeterminate={isNeutral}
           checked={isSelected}
           onChange={handleSelection(row.rowData)}

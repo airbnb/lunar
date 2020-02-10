@@ -471,14 +471,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
       optional,
       placeholder:
         placeholder ||
-        T.phrase(
-          'Search',
-          {},
-          {
-            context: 'Search field within an autocomplete input field',
-            key: 'lunar.common.search',
-          },
-        ),
+        T.phrase('lunar.common.search', 'Search'),
       small,
       type: 'text',
     };

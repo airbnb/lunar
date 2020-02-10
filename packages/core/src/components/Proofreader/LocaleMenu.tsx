@@ -27,14 +27,7 @@ export default class LocaleMenu extends React.Component<Props> {
     return (
       <TrackingBoundary name="Proofreader/LocaleMenu">
         <Menu
-          accessibilityLabel={T.phrase(
-            'Language selector',
-            {},
-            {
-              context: 'Language selector for proofreader (spelling and grammer checker)',
-              key: 'lunar.proofreader.languageSelector',
-            },
-          )}
+          accessibilityLabel={T.phrase('lunar.proofreader.languageSelector', 'Language selector')}
         >
           <Row>
             <Text small muted bold>

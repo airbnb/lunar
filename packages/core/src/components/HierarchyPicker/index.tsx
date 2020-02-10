@@ -199,25 +199,11 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
             formatter={this.boundFormatter}
             searchPlaceholder={
               searchPlaceholder ||
-              T.phrase(
-                'Search',
-                {},
-                {
-                  context: 'Search for a topic within the hierarchy picker',
-                  key: 'lunar.common.search',
-                },
-              )
+              T.phrase('lunar.common.search', 'Search')
             }
             noResultsLabel={
               noResultsLabel ||
-              T.phrase(
-                'No results',
-                {},
-                {
-                  context: 'Label to display when no results are found for hierarchy picker search',
-                  key: 'lunar.picker.noResults',
-                },
-              )
+              T.phrase('lunar.picker.noResults', 'No results')
             }
             onClose={this.handleClose}
           />

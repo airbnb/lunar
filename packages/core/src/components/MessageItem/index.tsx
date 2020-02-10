@@ -107,14 +107,7 @@ function MessageItem({
           <ProfilePhoto
             imageSrc={imageBadgeSrc}
             size={2}
-            title={T.phrase(
-              'Profile photo badge',
-              {},
-              {
-                context: 'Profile photo descriptive image text within a message bubble',
-                key: 'lunar.message.photoLabel',
-              },
-            )}
+            title={T.phrase('lunar.message.photoLabel', 'Profile photo badge')}
           />
         </div>
       </>
@@ -169,9 +162,9 @@ function MessageItem({
 
   const timestamp = source
     ? T.phrase(
+        'lunar.message.source',
         '%{time} via %{source}',
         { time: formattedTimestamp, source },
-        { context: 'Timestamp and source within a message bubble', key: 'lunar.message.source' },
       )
     : formattedTimestamp;
 

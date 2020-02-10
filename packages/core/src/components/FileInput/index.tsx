@@ -178,14 +178,7 @@ export default class FileInput extends React.Component<Props, State> {
                           }}
                         >
                           <IconClose
-                            accessibilityLabel={T.phrase(
-                              'Remove chosen file',
-                              {},
-                              {
-                                context: 'Label when removing a chosen file to upload',
-                                key: 'lunar.form.removeFile',
-                              },
-                            )}
+                            accessibilityLabel={T.phrase('lunar.form.removeFile', 'Remove chosen file')}
                           />
                         </IconButton>
                       </Cell>
