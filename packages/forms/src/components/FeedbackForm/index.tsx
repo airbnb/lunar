@@ -51,14 +51,7 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
   validate(value: string) {
     if (!value) {
       throw new Error(
-        T.phrase(
-          'This field is required.',
-          {},
-          {
-            context: 'Generic error when a form field is required',
-            key: 'lunar.form.fieldRequired',
-          },
-        ),
+        T.phrase('lunar.form.fieldRequired', 'This field is required.'),
       );
     }
   }
@@ -127,14 +120,7 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
               k="lunar.form.feedback.featureMessage"
               phrase="Which feature is this about?" />
           }
-          placeholder={T.phrase(
-            'Select a feature',
-            {},
-            {
-              context: 'Selecting a feature within the feedback form',
-              key: 'lunar.form.feedback.selectFeature',
-            },
-          )}
+          placeholder={T.phrase('lunar.form.feedback.selectFeature', 'Select a feature')}
           validator={this.validate}
         >
           {Object.entries(categories).map(([key, label]) => (
@@ -152,23 +138,13 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
           placeholder={
             data.type === 'bug'
               ? T.phrase(
-                  'What happened? Sharing steps to reproduce the problem you experienced can be helpful.',
-                  {},
-                  {
-                    context:
-                      'Default description in the feedback form when submitting a bug report',
-                    key: 'lunar.form.feedback.moreBug',
-                  },
-                )
+              'lunar.form.feedback.moreBug',
+              'What happened? Sharing steps to reproduce the problem you experienced can be helpful.',
+            )
               : T.phrase(
-                  'Share your experience with us. What went well? What could have gone better?',
-                  {},
-                  {
-                    context:
-                      'Default description in the feedback form when submitting general feedback',
-                    key: 'lunar.form.feedback.moreFeedback',
-                  },
-                )
+              'lunar.form.feedback.moreFeedback',
+              'Share your experience with us. What went well? What could have gone better?',
+            )
           }
           validator={this.validate}
         />

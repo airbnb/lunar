@@ -78,7 +78,7 @@ module.exports = function i18nKeyContext(
       if (key) {
         node.arguments.unshift(mod.createNode(cs => cs.stringLiteral(key)));
       } else {
-        throw new Error(`T.phrase() found without a key.`);
+        throw new Error(`T.phrase() found without a key: ${fileInfo.path}`);
       }
     });
 

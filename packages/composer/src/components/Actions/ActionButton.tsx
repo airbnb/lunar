@@ -7,9 +7,7 @@ import { MENU_ACTIONS } from '../../constants';
 export default function ActionButton() {
   return (
     <ToggleButton
-      accessibilityLabel={T.phrase('Open actions menu', null, {
-        key: 'lunar.composer.labels.openActionsMenu',
-      })}
+      accessibilityLabel={T.phrase('lunar.composer.labels.openActionsMenu', 'Open actions menu')}
       icon={IconAddAlt}
       menu={MENU_ACTIONS}
     />

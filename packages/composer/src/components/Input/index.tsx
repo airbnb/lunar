@@ -57,15 +57,15 @@ export default function Input({
   const blocked = disabled || invalid || context.data.value.trim() === '';
   let placeholder =
     messagePlaceholder ??
-    T.phrase('Send message…', null, { key: 'lunar.composer.labels.sendMessage' });
+    T.phrase('lunar.composer.labels.sendMessage', 'Send message…');
 
   if (context.mode === MODE_EMAIL) {
     placeholder =
-      emailPlaceholder ?? T.phrase('Send email…', null, { key: 'lunar.composer.labels.sendEmail' });
+      emailPlaceholder ?? T.phrase('lunar.composer.labels.sendEmail', 'Send email…');
   } else if (context.mode === MODE_PRIVATE_NOTE) {
     placeholder =
       privateNotePlaceholder ??
-      T.phrase('Private to Airbnb', null, { key: 'lunar.composer.labels.privateToAirbnb' });
+      T.phrase('lunar.composer.labels.privateToAirbnb', 'Private to Airbnb');
   }
 
   // Form handlers
@@ -127,94 +127,90 @@ export default function Input({
   // Passive hooks
   useAutoResize(ref.current, context.data.value);
 
-  return (
-    <>
-      {context.mode === MODE_EMAIL && (
-        <>
-          <InlineInput
-            label={T.phrase('Re:', null, { key: 'lunar.composer.email.subjectLine' })}
-            name="emailSubject"
-            value={context.data.emailSubject}
-          />
+  return <>
+    {context.mode === MODE_EMAIL && (
+      <>
+        <InlineInput
+          label={T.phrase('lunar.composer.email.subjectLine', 'Re:')}
+          name="emailSubject"
+          value={context.data.emailSubject}
+        />
 
-          <InlineInput
-            label={T.phrase('To:', null, { key: 'lunar.composer.email.toLine' })}
-            name="emailTo"
-            value={context.data.emailTo}
-          />
-        </>
+        <InlineInput
+          label={T.phrase('lunar.composer.email.toLine', 'To:')}
+          name="emailTo"
+          value={context.data.emailTo}
+        />
+      </>
+    )}
+
+    <div
+      className={cx(
+        styles.container,
+        context.mode === MODE_PRIVATE_NOTE && styles.container_important,
+        focused && styles.container_focused,
+        disabled && styles.container_disabled,
+        invalid && styles.container_invalid,
       )}
-
-      <div
-        className={cx(
-          styles.container,
-          context.mode === MODE_PRIVATE_NOTE && styles.container_important,
-          focused && styles.container_focused,
-          disabled && styles.container_disabled,
-          invalid && styles.container_invalid,
-        )}
-      >
-        <section className={cx(styles.input, styles.input_shadow)}>
-          <Interweave
-            disableFilters
-            disableMatchers
-            content={context.data.value ? context.data.shadowValue : ''}
-          />
-        </section>
-
-        <textarea
-          ref={element => {
-            passThroughRef(ref, element);
-            passThroughRef(propagateRef, element);
-          }}
-          className={cx(styles.input, styles.input_original)}
-          disabled={disabled}
-          id="composer"
-          name="message"
-          placeholder={placeholder}
-          rows={context.mode === MODE_EMAIL ? 3 : 1}
-          value={context.data.value}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          onKeyDown={handleKeyDown}
+    >
+      <section className={cx(styles.input, styles.input_shadow)}>
+        <Interweave
+          disableFilters
+          disableMatchers
+          content={context.data.value ? context.data.shadowValue : ''}
         />
+      </section>
 
-        <span className={cx(styles.submitButton)}>
-          <IconButton
-            accessibilityLabel={T.phrase('Submit composer', null, {
-              key: 'lunar.composer.labels.submitComposer',
-            })}
-            disabled={blocked}
-            icon={IconPlayAlt}
-            id="composer-submit-button"
-            onClick={handleSubmit}
-          />
-        </span>
+      <textarea
+        ref={element => {
+          passThroughRef(ref, element);
+          passThroughRef(propagateRef, element);
+        }}
+        className={cx(styles.input, styles.input_original)}
+        disabled={disabled}
+        id="composer"
+        name="message"
+        placeholder={placeholder}
+        rows={context.mode === MODE_EMAIL ? 3 : 1}
+        value={context.data.value}
+        onBlur={handleBlur}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onKeyDown={handleKeyDown}
+      />
 
-        <Hotkey
-          preventDefault
-          combo={isMac() ? 'cmd+enter' : 'ctrl+enter'}
-          condition={showWhenValueNotEmptyCondition}
-          name="submit"
-          label={
-            context.flags.previewConfirm
-              ? T.phrase('to preview', null, { key: 'lunar.composer.hotkey.returnToPreview' })
-              : T.phrase('to send', null, { key: 'lunar.composer.hotkey.returnToSend' })
-          }
-          order={100}
-          onRun={handleSubmit}
+      <span className={cx(styles.submitButton)}>
+        <IconButton
+          accessibilityLabel={T.phrase('lunar.composer.labels.submitComposer', 'Submit composer')}
+          disabled={blocked}
+          icon={IconPlayAlt}
+          id="composer-submit-button"
+          onClick={handleSubmit}
         />
+      </span>
 
-        <Hotkey
-          preventDefault
-          combo="esc"
-          condition={activeWhenMenuOpen}
-          name="closeMenu"
-          label={T.phrase('to dismiss', null, { key: 'lunar.composer.hotkey.toDismiss' })}
-          onRun={closeMenu}
-        />
-      </div>
-    </>
-  );
+      <Hotkey
+        preventDefault
+        combo={isMac() ? 'cmd+enter' : 'ctrl+enter'}
+        condition={showWhenValueNotEmptyCondition}
+        name="submit"
+        label={
+          context.flags.previewConfirm
+            ? T.phrase('lunar.composer.hotkey.returnToPreview', 'to preview')
+            : T.phrase('lunar.composer.hotkey.returnToSend', 'to send')
+        }
+        order={100}
+        onRun={handleSubmit}
+      />
+
+      <Hotkey
+        preventDefault
+        combo="esc"
+        condition={activeWhenMenuOpen}
+        name="closeMenu"
+        label={T.phrase('lunar.composer.hotkey.toDismiss', 'to dismiss')}
+        onRun={closeMenu}
+      />
+    </div>
+  </>;
 }

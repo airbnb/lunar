@@ -44,38 +44,36 @@ export default function Preview({
     context.onSubmit(onSubmitShowPreview);
   }
 
-  return (
-    <>
-      <Hotkey
-        preventDefault
-        combo={isMac() ? 'cmd+p' : 'ctrl+p'}
-        condition={({ data }) =>
-          !requireConfirmation && !!data.focused && data.value !== '' && !data.value.startsWith('/')
-        }
-        name="showPreview"
-        label={T.phrase('to preview', null, { key: 'lunar.composer.hotkey.returnToPreview' })}
-        order={100}
-        onRun={ctx => onSubmitShowPreview(ctx.data, ctx)}
-      />
+  return <>
+    <Hotkey
+      preventDefault
+      combo={isMac() ? 'cmd+p' : 'ctrl+p'}
+      condition={({ data }) =>
+        !requireConfirmation && !!data.focused && data.value !== '' && !data.value.startsWith('/')
+      }
+      name="showPreview"
+      label={T.phrase('lunar.composer.hotkey.returnToPreview', 'to preview')}
+      order={100}
+      onRun={ctx => onSubmitShowPreview(ctx.data, ctx)}
+    />
 
-      <Menu
-        centerAlign
-        name={MENU_PREVIEW}
-        title={<T k="lunar.composer.preview.title" phrase="Preview" />}
-      >
-        {onProofread ? (
-          <Proofreader
-            {...props}
-            value={context.data.value}
-            onConfirm={handleConfirmPreview}
-            onProofread={onProofread}
-          />
-        ) : (
-          <Window onConfirm={handleConfirmPreview}>
-            <Interweave content={context.data.value} />
-          </Window>
-        )}
-      </Menu>
-    </>
-  );
+    <Menu
+      centerAlign
+      name={MENU_PREVIEW}
+      title={<T k="lunar.composer.preview.title" phrase="Preview" />}
+    >
+      {onProofread ? (
+        <Proofreader
+          {...props}
+          value={context.data.value}
+          onConfirm={handleConfirmPreview}
+          onProofread={onProofread}
+        />
+      ) : (
+        <Window onConfirm={handleConfirmPreview}>
+          <Interweave content={context.data.value} />
+        </Window>
+      )}
+    </Menu>
+  </>;
 }
