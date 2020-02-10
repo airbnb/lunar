@@ -53,7 +53,9 @@ describe('<FilterMenu />', () => {
       </FilterMenu>,
     );
 
-    expect(((wrapper.dive().props() as MenuToggleProps).toggleLabel as T).props.phrase).toBe('Open filters');
+    expect(((wrapper.dive().props() as MenuToggleProps).toggleLabel as T).props.phrase).toBe(
+      'Open filters',
+    );
 
     wrapper.setProps({
       activeCount: 1,

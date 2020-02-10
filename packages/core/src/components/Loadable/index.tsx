@@ -47,7 +47,10 @@ export type LoadableState = {
  * A declarative component for async loading of other components via native `import()` and `React.lazy`.
  * @experimental Requires React.lazy
  */
-export default class Loadable<T extends object = {}> extends React.Component<LoadableProps<T>, LoadableState> {
+export default class Loadable<T extends object = {}> extends React.Component<
+  LoadableProps<T>,
+  LoadableState
+> {
   static defaultProps = {
     delay: 150,
     error: null,

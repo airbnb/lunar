@@ -1,6 +1,8 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import MulticompleteChip, { MulticompleteChipProps } from '../../../src/components/Multicomplete/private/Chip';
+import MulticompleteChip, {
+  MulticompleteChipProps,
+} from '../../../src/components/Multicomplete/private/Chip';
 import Chip from '../../../src/components/Chip';
 
 describe('<MulticompleteChip />', () => {

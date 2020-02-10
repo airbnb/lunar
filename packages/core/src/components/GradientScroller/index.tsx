@@ -26,7 +26,10 @@ export type GradientScrollerState = {
 };
 
 /** A horizontal scroller with gradients on each side. */
-export class GradientScroller extends React.Component<GradientScrollerProps & WithStylesProps, GradientScrollerState> {
+export class GradientScroller extends React.Component<
+  GradientScrollerProps & WithStylesProps,
+  GradientScrollerState
+> {
   static defaultProps = {
     children: null,
     hideScrollbar: false,

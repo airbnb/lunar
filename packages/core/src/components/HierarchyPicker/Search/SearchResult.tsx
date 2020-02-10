@@ -13,7 +13,12 @@ export type SearchResultProps = {
   query?: string;
 };
 
-export default function SearchResult({ item, formattedParents, matches = [], query = '' }: SearchResultProps) {
+export default function SearchResult({
+  item,
+  formattedParents,
+  matches = [],
+  query = '',
+}: SearchResultProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const { description, label, name } = item;

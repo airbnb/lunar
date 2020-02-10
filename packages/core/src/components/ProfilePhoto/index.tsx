@@ -40,7 +40,10 @@ type ProfilePhotoState = {
 };
 
 /** Display a profile photo. */
-export class ProfilePhoto extends React.Component<ProfilePhotoProps & WithStylesProps, ProfilePhotoState> {
+export class ProfilePhoto extends React.Component<
+  ProfilePhotoProps & WithStylesProps,
+  ProfilePhotoState
+> {
   static propTypes = {
     large: namedSizePropType,
     macro: namedSizePropType,

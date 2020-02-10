@@ -18,7 +18,13 @@ export type NotchedBoxProps = {
 };
 
 /** A container with a configurable arrow pointing outward. */
-export default function NotchedBox({ inverted, children, inline, notchBelow, notchOffset }: NotchedBoxProps) {
+export default function NotchedBox({
+  inverted,
+  children,
+  inline,
+  notchBelow,
+  notchOffset,
+}: NotchedBoxProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

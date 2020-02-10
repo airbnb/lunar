@@ -63,7 +63,10 @@ export type HierarchyPickerState = {
   open: boolean;
 };
 
-export class HierarchyPicker extends React.Component<HierarchyPickerProps & WithStylesProps, HierarchyPickerState> {
+export class HierarchyPicker extends React.Component<
+  HierarchyPickerProps & WithStylesProps,
+  HierarchyPickerState
+> {
   static defaultProps = {
     chosen: [],
     disabled: false,

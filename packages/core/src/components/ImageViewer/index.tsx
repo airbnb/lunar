@@ -34,7 +34,10 @@ export type Position = {
 };
 
 /** An image viewer that can zoom, drag, and rotate an image. */
-export class ImageViewer extends React.Component<ImageViewerProps & WithStylesProps, ImageViewerState> {
+export class ImageViewer extends React.Component<
+  ImageViewerProps & WithStylesProps,
+  ImageViewerState
+> {
   static defaultProps = {
     height: 'none',
     rotation: 0,

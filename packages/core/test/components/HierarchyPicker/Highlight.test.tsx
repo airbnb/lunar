@@ -1,6 +1,8 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import Highlight, { HighlightProps } from '../../../src/components/HierarchyPicker/Search/Highlight';
+import Highlight, {
+  HighlightProps,
+} from '../../../src/components/HierarchyPicker/Search/Highlight';
 
 describe('<Highlight />', () => {
   let wrapper: Enzyme.ShallowWrapper<HighlightProps>;

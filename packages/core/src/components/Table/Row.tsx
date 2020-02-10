@@ -22,7 +22,16 @@ export type TableRowProps = {
 };
 
 /** A table row that contains multiple cells. */
-function TableRow({ children, danger, info, muted, notice, success, warning, ...props }: TableRowProps) {
+function TableRow({
+  children,
+  danger,
+  info,
+  muted,
+  notice,
+  success,
+  warning,
+  ...props
+}: TableRowProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

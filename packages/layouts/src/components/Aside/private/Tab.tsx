@@ -73,7 +73,12 @@ export type TabProps = {
 };
 
 /** A tab for toggling an aside. */
-export default function Tab({ bordered, expanded, position = 'after', onCollapseToggle }: TabProps) {
+export default function Tab({
+  bordered,
+  expanded,
+  position = 'after',
+  onCollapseToggle,
+}: TabProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const labelCollapse = T.phrase('lunar.common.collapse', 'Collapse');

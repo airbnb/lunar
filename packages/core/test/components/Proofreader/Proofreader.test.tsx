@@ -14,7 +14,9 @@ import { ProofreadRuleMatch } from '../../../src/components/Proofreader/types';
 // eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('lodash/debounce', () => (value: unknown) => value);
 
-function getInstance(wrapper: Enzyme.ShallowWrapper<ProofreaderProps, ProofreaderState>): BaseProofreader {
+function getInstance(
+  wrapper: Enzyme.ShallowWrapper<ProofreaderProps, ProofreaderState>,
+): BaseProofreader {
   return wrapper.instance() as BaseProofreader;
 }
 

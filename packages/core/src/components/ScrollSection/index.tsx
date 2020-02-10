@@ -17,7 +17,9 @@ export type PrivateProps = {
 };
 
 /** @ignore */
-export class InternalScrollSection extends React.Component<InternalScrollSectionProps & PrivateProps> {
+export class InternalScrollSection extends React.Component<
+  InternalScrollSectionProps & PrivateProps
+> {
   private handleRef = (ref: HTMLDivElement | null) => {
     const { id, scrollContext } = this.props;
 

@@ -44,7 +44,10 @@ export type ResponsiveImageState = {
 };
 
 /** An image that is constrained proportionally in one or both dimensions. */
-export class ResponsiveImage extends React.Component<ResponsiveImageProps & WithStylesProps, ResponsiveImageState> {
+export class ResponsiveImage extends React.Component<
+  ResponsiveImageProps & WithStylesProps,
+  ResponsiveImageState
+> {
   static defaultProps = {
     borderRadius: DEFAULT_BORDER_RADIUS,
     contain: false,

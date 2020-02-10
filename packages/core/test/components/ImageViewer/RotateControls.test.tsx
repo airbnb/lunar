@@ -1,7 +1,9 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import IconButton from '../../../src/components/IconButton';
-import RotateControls, { RotateControlsProps } from '../../../src/components/ImageViewer/RotateControls';
+import RotateControls, {
+  RotateControlsProps,
+} from '../../../src/components/ImageViewer/RotateControls';
 
 describe('<RotateControls />', () => {
   const rotateSpy = jest.fn();

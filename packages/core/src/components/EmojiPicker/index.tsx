@@ -62,7 +62,11 @@ export type EmojiPickerProps = Partial<PickerProps> & {
  * Display an emoji picker using [interweave-emoji-picker](https://github.com/milesj/interweave/tree/master/packages/interweave-emoji-picker).
  * Should primarily be used for private to public communication.
  */
-export default function EmojiPicker({ disableAutoFocus, onClosePicker, ...props }: EmojiPickerProps) {
+export default function EmojiPicker({
+  disableAutoFocus,
+  onClosePicker,
+  ...props
+}: EmojiPickerProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {

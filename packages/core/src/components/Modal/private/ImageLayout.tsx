@@ -21,7 +21,13 @@ export type ModalImageLayoutProps = ModalImageConfig & {
   children: NonNullable<React.ReactNode>;
 };
 
-export default function ModalImageLayout({ children, sizes, srcSet, type, url }: ModalImageLayoutProps) {
+export default function ModalImageLayout({
+  children,
+  sizes,
+  srcSet,
+  type,
+  url,
+}: ModalImageLayoutProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

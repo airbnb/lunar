@@ -46,7 +46,10 @@ export type BaseSheetState = {
 };
 
 /** @ignore */
-export class BaseSheet extends React.Component<BaseSheetProps & PrivateProps & WithStylesProps, BaseSheetState> {
+export class BaseSheet extends React.Component<
+  BaseSheetProps & PrivateProps & WithStylesProps,
+  BaseSheetState
+> {
   static defaultProps = {
     gap: false,
     noAnimation: false,

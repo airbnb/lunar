@@ -41,7 +41,12 @@ export type BaseSelectProps = SelectProps & {
   onChange: (value: string, event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-export default function BaseSelect({ children, placeholder = '', onChange, ...restProps }: BaseSelectProps) {
+export default function BaseSelect({
+  children,
+  placeholder = '',
+  onChange,
+  ...restProps
+}: BaseSelectProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
