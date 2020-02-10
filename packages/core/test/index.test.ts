@@ -147,12 +147,13 @@ describe('Core', () => {
       });
 
       it('returns string as is if no tokens', () => {
-        expect(Core.translate('Hello', {}, '')).toBe('Hello');
+        expect(Core.translate('key', 'Hello')).toBe('Hello');
       });
 
       it('replaces tokens with values', () => {
         expect(
           Core.translate(
+            'key',
             'Normal %{foo} underscore %{bar_baz} camel case %{bazQux} with numbers %{qux123} and undefined %{undef}',
             {
               foo: 123,
@@ -160,7 +161,6 @@ describe('Core', () => {
               bazQux: 'ab12',
               qux123: 456.7,
             },
-            '',
           ),
         ).toBe(
           'Normal 123 underscore abc camel case ab12 with numbers 456.7 and undefined undefined',
@@ -168,10 +168,10 @@ describe('Core', () => {
       });
 
       it('handles singular and places', () => {
-        expect(Core.translate('Item||||Items', {}, '')).toBe('Items');
-        expect(Core.translate('Item||||Items', { smartCount: 0 }, '')).toBe('Items');
-        expect(Core.translate('Item||||Items', { smartCount: 1 }, '')).toBe('Item');
-        expect(Core.translate('Item||||Items', { smartCount: 2 }, '')).toBe('Items');
+        expect(Core.translate('key', 'Item||||Items')).toBe('Items');
+        expect(Core.translate('key', 'Item||||Items', { smartCount: 0 })).toBe('Items');
+        expect(Core.translate('key', 'Item||||Items', { smartCount: 1 })).toBe('Item');
+        expect(Core.translate('key', 'Item||||Items', { smartCount: 2 })).toBe('Items');
       });
     });
   });
