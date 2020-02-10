@@ -3,7 +3,7 @@ import React from 'react';
 import withBoundary from '../../composers/withBoundary';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import GradientScroller from '../GradientScroller';
-import Tab, { Props as TabProps } from './Tab';
+import Tab, { TabProps } from './Tab';
 import { styleSheet } from './styles';
 
 export { Tab };

@@ -1,8 +1,8 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import BaseCheckBox, { Props as BaseCheckBoxProps } from '../private/BaseCheckBox';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import BaseCheckBox, { BaseCheckBoxProps } from '../private/BaseCheckBox';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import Text from '../Text';
 
 const stateProp = mutuallyExclusiveTrueProps('checked', 'indeterminate');

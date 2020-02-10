@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import CheckBox, { Props, State } from '../../src/components/CheckBox';
+import CheckBox, { CheckBoxProps, CheckBoxState } from '../../src/components/CheckBox';
 import FormField from '../../src/components/FormField';
 import BaseCheckBox from '../../src/components/private/BaseCheckBox';
 import Text from '../../src/components/Text';
@@ -57,7 +57,7 @@ describe('<CheckBox />', () => {
   });
 
   describe('button mode', () => {
-    let wrapper: Enzyme.ShallowWrapper<Props, State>;
+    let wrapper: Enzyme.ShallowWrapper<CheckBoxProps, CheckBoxState>;
 
     beforeEach(() => {
       wrapper = shallow(

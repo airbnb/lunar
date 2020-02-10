@@ -1,6 +1,6 @@
 import React from 'react';
 import Sheet from '../Sheet';
-import LightboxImage, { Props as LightboxImageProps } from './Image';
+import LightboxImage, { LightboxImageProps } from './Image';
 import Header from './Header';
 
 export type LightboxProps = {

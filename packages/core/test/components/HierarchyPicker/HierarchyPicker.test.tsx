@@ -3,13 +3,13 @@ import Enzyme from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import HierarchyPicker, {
   HierarchyPicker as BaseHierarchyPicker,
-  Props as HierarchyPickerProps,
-  State as HierarchyPickerState,
+  HierarchyPickerProps,
+  HierarchyPickerState,
 } from '../../../src/components/HierarchyPicker';
 import { SPACE, ENTER } from '../../../src/keys';
 import Overlay from '../../../src/components/Overlay';
 import testItems from './mockItems';
-import Picker, { Props as PickerProps } from '../../../src/components/HierarchyPicker/Picker';
+import Picker, { PickerProps } from '../../../src/components/HierarchyPicker/Picker';
 
 jest.mock('lodash/debounce', () => jest.fn(fn => fn));
 

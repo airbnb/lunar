@@ -1,8 +1,8 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import BaseRadioButton, { Props as BaseRadioButtonProps } from '../private/BaseRadioButton';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import BaseRadioButton, { BaseRadioButtonProps } from '../private/BaseRadioButton';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import Text from '../Text';
 
 const stateProp = mutuallyExclusiveTrueProps('checked', 'indeterminate');

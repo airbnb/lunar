@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import BaseSelect from '../private/BaseSelect';
 import { SelectProps } from '../private/FormInput';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import T from '../Translate';
 import createRange from '../../utils/createRange';
 import createDateTime from '../../utils/createDateTime';
@@ -52,7 +52,10 @@ export type DateTimeSelectState = {
 };
 
 /** An uncontrolled multi-select field for date and time ranges in UTC. */
-export class DateTimeSelect extends React.Component<DateTimeSelectProps & WithStylesProps, DateTimeSelectState> {
+export class DateTimeSelect extends React.Component<
+  DateTimeSelectProps & WithStylesProps,
+  DateTimeSelectState
+> {
   static defaultProps = {
     enable12HourClock: false,
     hideDate: false,

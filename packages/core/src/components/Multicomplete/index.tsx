@@ -1,9 +1,6 @@
 import React from 'react';
 import shallowEqual from 'shallowequal';
-import Autocomplete, {
-  Props as AutocompleteProps,
-  Item as AutocompleteItem,
-} from '../Autocomplete';
+import Autocomplete, { AutocompleteProps, Item as AutocompleteItem } from '../Autocomplete';
 import Spacing from '../Spacing';
 import Chip from './private/Chip';
 
@@ -36,7 +33,10 @@ export type MulticompleteState = {
 };
 
 /** An uncontrolled input field for selecting multiple values via an autocomplete. */
-export default class Multicomplete<T extends Item = Item> extends React.Component<MulticompleteProps<T>, MulticompleteState> {
+export default class Multicomplete<T extends Item = Item> extends React.Component<
+  MulticompleteProps<T>,
+  MulticompleteState
+> {
   static defaultProps = {
     renderChip,
     value: [],

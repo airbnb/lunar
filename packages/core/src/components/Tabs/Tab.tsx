@@ -2,7 +2,7 @@ import React from 'react';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
+import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
 import TrackingBoundary from '../TrackingBoundary';
 import { styleSheetTab as styleSheet } from './styles';
 

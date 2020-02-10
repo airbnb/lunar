@@ -1,8 +1,8 @@
 import React from 'react';
-import { Emoji as BaseEmoji, EmojiProps, useEmojiData } from 'interweave-emoji';
+import { Emoji as BaseEmoji, EmojiProps as BaseEmojiProps, useEmojiData } from 'interweave-emoji';
 import Core from '../..';
 
-export type EmojiProps = Omit<EmojiProps, 'emojiPath' | 'emojiSource'>;
+export type EmojiProps = Omit<BaseEmojiProps, 'emojiPath' | 'emojiSource'>;
 
 /**
  * Display an emoji character using [interweave-emoji](https://github.com/milesj/interweave/tree/master/packages/interweave-emoji).

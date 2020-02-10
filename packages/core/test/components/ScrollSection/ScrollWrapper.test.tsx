@@ -3,13 +3,13 @@ import Enzyme from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import ScrollWrapper, {
   ScrollWrapper as BaseScrollWrapper,
-  Props,
+  ScrollWrapperProps,
 } from '../../../src/components/ScrollSection/ScrollWrapper';
 
 describe('<ScrollWrapper />', () => {
   const anchor = document.createElement('a');
   const savedIntersectionObserver = global.IntersectionObserver;
-  let wrapper: Enzyme.ShallowWrapper<Props, unknown, BaseScrollWrapper>;
+  let wrapper: Enzyme.ShallowWrapper<ScrollWrapperProps, unknown, BaseScrollWrapper>;
   let activeScrollSectionHandler: jest.Mock<unknown>;
   let hideScrollSectionHandler: jest.Mock<unknown>;
 

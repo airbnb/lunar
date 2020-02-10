@@ -13,7 +13,7 @@ import {
   ExtraProofreadProps,
   ProofreaderParams,
 } from './types';
-import { Props as FormInputProps } from '../private/FormInput';
+import { FormInputProps } from '../private/FormInput';
 import { styleSheet } from './styles';
 import { selectAppropriateLocale, checkForAirbnbErrors } from './helpers';
 
@@ -55,7 +55,11 @@ export type Snapshot = {
   selectionEnd?: number;
 };
 
-export class Proofreader extends React.Component<ProofreaderProps & WithStylesProps, ProofreaderState, Snapshot> {
+export class Proofreader extends React.Component<
+  ProofreaderProps & WithStylesProps,
+  ProofreaderState,
+  Snapshot
+> {
   static defaultProps = {
     isRuleHighlighted: defaultIsRuleHighlighted,
     isRuleSecondary: defaultIsRuleSecondary,

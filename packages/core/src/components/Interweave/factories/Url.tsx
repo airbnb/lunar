@@ -1,8 +1,8 @@
 import React from 'react';
-import { UrlProps } from 'interweave-autolink';
+import { UrlProps as BaseUrlProps } from 'interweave-autolink';
 import Link from '../../Link';
 
-export type UrlProps = UrlProps & {
+export type UrlProps = BaseUrlProps & {
   /** Render using large prop on the Link component. */
   large?: boolean;
   /** Render using small prop on the Link component. */

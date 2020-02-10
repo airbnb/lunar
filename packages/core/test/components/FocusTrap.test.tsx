@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
-import FocusTrap, { Props } from '../../src/components/FocusTrap';
+import FocusTrap, { FocusTrapProps } from '../../src/components/FocusTrap';
 
 // `activeElement` does not change when `focus()` is called.
 // https://github.com/jsdom/jsdom/issues/2723
@@ -12,7 +12,7 @@ describe.skip('<FocusTrap>', () => {
   let childAElement: HTMLInputElement | null;
   let childBElement: HTMLInputElement | null;
   let childCElement: HTMLInputElement | null;
-  let wrapper: Enzyme.ReactWrapper<Props, unknown, FocusTrap>;
+  let wrapper: Enzyme.ReactWrapper<FocusTrapProps, unknown, FocusTrap>;
   let preventDefault: jest.Mock;
 
   describe('with all focusable elements', () => {

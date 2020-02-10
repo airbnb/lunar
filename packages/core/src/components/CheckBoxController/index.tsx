@@ -2,8 +2,8 @@ import React from 'react';
 import uuid from 'uuid/v4';
 import shallowEqual from 'shallowequal';
 import proxyComponent from '../../utils/proxyComponent';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
-import CheckBox, { Props as CheckBoxProps } from '../CheckBox';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
+import CheckBox, { CheckBoxProps } from '../CheckBox';
 
 export type PropsProvided = Partial<CheckBoxProps> & {
   label: NonNullable<React.ReactNode>;
@@ -27,7 +27,10 @@ export type CheckBoxControllerState = {
 };
 
 /** Manage multiple checkboxes with the same input `name`. */
-export default class CheckBoxController extends React.Component<CheckBoxControllerProps, CheckBoxControllerState> {
+export default class CheckBoxController extends React.Component<
+  CheckBoxControllerProps,
+  CheckBoxControllerState
+> {
   static defaultProps = {
     value: [],
   };

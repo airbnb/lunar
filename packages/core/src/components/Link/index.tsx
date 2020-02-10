@@ -1,7 +1,7 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
+import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
 import Text from '../Text';
 import { styleSheet } from './styles';
 

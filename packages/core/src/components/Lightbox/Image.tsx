@@ -5,7 +5,7 @@ import Loader from '../Loader';
 import ImageViewer from '../ImageViewer';
 import { styleSheetImage as styleSheet } from './styles';
 
-export type ImageProps = {
+export type LightboxImageProps = {
   /** Image alt text */
   alt: string;
   /** React node for sidebar. */
@@ -24,7 +24,7 @@ export type ImageProps = {
   src: string;
 };
 
-export default function Image({
+export default function LightboxImage({
   alt,
   aside,
   hideAside,
@@ -33,7 +33,7 @@ export default function Image({
   showRotateControls,
   scale,
   rotation,
-}: ImageProps) {
+}: LightboxImageProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

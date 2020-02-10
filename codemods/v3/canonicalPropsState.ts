@@ -37,14 +37,14 @@ module.exports = function canonicalPropsState(
             delete spec.local;
           }
 
-          typeRenames[baseName] = newName;
+          typeRenames[newName] = baseName;
         }
       }
     });
   });
 
   mod.source.find(mod.cs.TSTypeReference).forEach(({ node }) => {
-    Object.entries(typeRenames).forEach(([before, after]) => {
+    Object.entries(typeRenames).forEach(([after, before]) => {
       if (node.typeName.type === 'Identifier' && node.typeName.name === before) {
         node.typeName.name = after;
       }

@@ -2,7 +2,7 @@ import React from 'react';
 import { DayModifiers, DayPickerInputProps } from 'react-day-picker';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import FormInput from '../../private/FormInput';
-import Dropdown, { Props as DropdownProps } from '../../Dropdown';
+import Dropdown, { DropdownProps } from '../../Dropdown';
 import DatePicker from '../../DatePicker';
 
 // The original `DayPickerInput` has very restrictive and problematic

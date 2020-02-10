@@ -5,8 +5,8 @@ import BaseButton from '../Button';
 import MutedButton from '../MutedButton';
 import IconButton from '../IconButton';
 import ExpandableIcon from '../ExpandableIcon';
-import Dropdown, { Props as DropdownProps } from '../Dropdown';
-import Menu, { Item, Separator, Props as MenuProps } from '../Menu';
+import Dropdown, { DropdownProps } from '../Dropdown';
+import Menu, { Item, Separator, MenuProps } from '../Menu';
 import { styleSheet } from './styles';
 
 export type MenuToggleProps = {
@@ -51,7 +51,10 @@ export type MenuToggleState = {
 };
 
 /** A controller for multiple tabs. */
-export class MenuToggle extends React.Component<MenuToggleProps & WithStylesProps, MenuToggleState> {
+export class MenuToggle extends React.Component<
+  MenuToggleProps & WithStylesProps,
+  MenuToggleState
+> {
   static propTypes = {
     toggleIcon: iconComponent,
   };

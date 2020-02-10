@@ -3,7 +3,7 @@ import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import FocusTrap from '../../FocusTrap';
 import focusFirstFocusableChild from '../../../utils/focus/focusFirstFocusableChild';
 import ModalImageLayout, { ModalImageConfig } from './ImageLayout';
-import ModalInnerContent, { Props as ModalInnerContentProps } from './InnerContent';
+import ModalInnerContent, { ModalInnerContentProps } from './InnerContent';
 import {
   styleSheetInner as styleSheet,
   MODAL_MAX_WIDTH_SMALL,

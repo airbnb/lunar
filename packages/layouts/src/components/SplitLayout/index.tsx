@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
-import Layout, { Props as LayoutProps, AsideProps } from '../Layout';
+import Layout, { LayoutProps, AsideProps } from '../Layout';
 import { styleSheet } from './styles';
 
 export type SplitLayoutProps = Required<AsideProps> & Pick<LayoutProps, 'fluid'>;

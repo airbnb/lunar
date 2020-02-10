@@ -1,4 +1,4 @@
-import { Props as FormFieldProps } from '.';
+import { FormFieldProps } from '.';
 
 export type MaybeChildren = { children?: unknown };
 

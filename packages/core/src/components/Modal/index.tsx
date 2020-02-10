@@ -1,7 +1,7 @@
 import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Portal from '../Portal';
-import ModalInner, { Props as ModalInnerProps } from './private/Inner';
+import ModalInner, { ModalInnerProps } from './private/Inner';
 import { ESCAPE } from '../../keys';
 import { styleSheet } from './styles';
 

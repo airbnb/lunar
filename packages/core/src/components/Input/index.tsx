@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'uuid/v4';
-import BaseInput, { Props as BaseInputProps } from '../private/BaseInput';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import BaseInput, { BaseInputProps } from '../private/BaseInput';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 
 export type InputProps = Omit<BaseInputProps, 'id'> & FormFieldProps;
 

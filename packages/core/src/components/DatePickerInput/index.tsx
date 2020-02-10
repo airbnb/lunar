@@ -1,11 +1,11 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import { DayPickerInputProps } from 'react-day-picker';
-import { Props as BaseInputProps } from '../private/BaseInput';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import { BaseInputProps } from '../private/BaseInput';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import DateTime from '../DateTime';
-import { Props as DatePickerProps } from '../DatePicker';
-import { Props as DropdownProps } from '../Dropdown';
+import { DatePickerProps } from '../DatePicker';
+import { DropdownProps } from '../Dropdown';
 import createDateTime from '../../utils/createDateTime';
 import { mdyCalendarBundle } from '../../messages';
 import PrivatePickerInput from './Input';
@@ -42,7 +42,10 @@ export type DatePickerInputState = {
 };
 
 /** A controlled input field that opens a date picker. */
-export default class DatePickerInput extends React.Component<DatePickerInputProps, DatePickerInputState> {
+export default class DatePickerInput extends React.Component<
+  DatePickerInputProps,
+  DatePickerInputState
+> {
   static defaultProps = {
     hideOnDayClick: false,
   };

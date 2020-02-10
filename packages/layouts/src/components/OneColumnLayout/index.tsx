@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout, { Props as LayoutProps } from '../Layout';
+import Layout, { LayoutProps } from '../Layout';
 
 export type OneColumnLayoutProps = LayoutProps;
 

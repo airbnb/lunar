@@ -3,7 +3,7 @@ import { renderAndWait } from 'rut-dom';
 import BaseInterweave from 'interweave';
 import { UrlMatcher } from 'interweave-autolink';
 import Interweave, {
-  Props,
+  InterweaveProps,
   emailMatcher,
   emojiMatcher,
   emojiMatcherWithEmoticons,
@@ -15,19 +15,21 @@ import Link from '../../src/components/Link';
 
 describe('<Interweave />', () => {
   it('passes content', async () => {
-    const { root } = await renderAndWait<Props>(<Interweave content="Foo" />);
+    const { root } = await renderAndWait<InterweaveProps>(<Interweave content="Foo" />);
 
     expect(root.findOne(BaseInterweave)).toHaveProp('content', 'Foo');
   });
 
   it('autolinks urls', async () => {
-    const { root } = await renderAndWait<Props>(<Interweave content="Foo http://test.com bar" />);
+    const { root } = await renderAndWait<InterweaveProps>(
+      <Interweave content="Foo http://test.com bar" />,
+    );
 
     expect(root.find(Link.WrappedComponent)).toHaveLength(1);
   });
 
   it('set large size prop if urls and emails are present', async () => {
-    const { root } = await renderAndWait<Props>(
+    const { root } = await renderAndWait<InterweaveProps>(
       <Interweave large content="Foo http://test.com bar with an email@email.com" />,
     );
 
@@ -38,7 +40,7 @@ describe('<Interweave />', () => {
   });
 
   it('set small size prop if urls and emails are present', async () => {
-    const { root } = await renderAndWait<Props>(
+    const { root } = await renderAndWait<InterweaveProps>(
       <Interweave small content="Foo http://test.com bar with an email@email.com" />,
     );
 
@@ -49,19 +51,25 @@ describe('<Interweave />', () => {
   });
 
   it('autolinks emails', async () => {
-    const { root } = await renderAndWait<Props>(<Interweave content="Foo test@domain.com bar" />);
+    const { root } = await renderAndWait<InterweaveProps>(
+      <Interweave content="Foo test@domain.com bar" />,
+    );
 
     expect(root.find(Link.WrappedComponent)).toHaveLength(1);
   });
 
   it('can pass custom props', async () => {
-    const { root } = await renderAndWait<Props>(<Interweave content="Foo" emojiSize="3em" />);
+    const { root } = await renderAndWait<InterweaveProps>(
+      <Interweave content="Foo" emojiSize="3em" />,
+    );
 
     expect(root.findOne(BaseInterweave)).toHaveProp('emojiSize', '3em');
   });
 
   it('adds url, email, and emoji global matchers by default', async () => {
-    const { root } = await renderAndWait<Props>(<Interweave withEmoticons content="Foo" />);
+    const { root } = await renderAndWait<InterweaveProps>(
+      <Interweave withEmoticons content="Foo" />,
+    );
 
     expect(root.findOne(BaseInterweave)).toHaveProp('matchers', [
       emailMatcher,
@@ -72,7 +80,9 @@ describe('<Interweave />', () => {
 
   it('merges custom matchers with global matchers', async () => {
     const matcher = new UrlMatcher('foo');
-    const { root } = await renderAndWait<Props>(<Interweave content="Foo" matchers={[matcher]} />);
+    const { root } = await renderAndWait<InterweaveProps>(
+      <Interweave content="Foo" matchers={[matcher]} />,
+    );
 
     expect(root.findOne(BaseInterweave)).toHaveProp('matchers', [
       emailMatcher,
@@ -83,7 +93,7 @@ describe('<Interweave />', () => {
   });
 
   it('filters matchers to the only list', async () => {
-    const { root } = await renderAndWait<Props>(
+    const { root } = await renderAndWait<InterweaveProps>(
       <Interweave content="Foo" onlyMatchers={['url', 'emoji']} />,
     );
 

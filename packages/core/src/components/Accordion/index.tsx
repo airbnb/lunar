@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import uuid from 'uuid/v4';
 import useStyles from '../../hooks/useStyles';
-import Item, { Props as AccordionItemProps } from './Item';
+import Item, { AccordionItemProps } from './Item';
 import { styleSheet } from './styles';
 
 export { Item };

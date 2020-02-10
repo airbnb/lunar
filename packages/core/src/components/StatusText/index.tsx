@@ -1,7 +1,7 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import useStyles from '../../hooks/useStyles';
-import Text, { Props as TextProps } from '../Text';
+import Text, { TextProps } from '../Text';
 import { STATUSES } from '../../constants';
 import { styleSheet } from './styles';
 

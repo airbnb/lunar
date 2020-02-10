@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'uuid/v4';
-import BaseSwitch, { Props as BaseSwitchProps } from '../private/BaseSwitch';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import BaseSwitch, { BaseSwitchProps } from '../private/BaseSwitch';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 
 export type SwitchProps = Omit<BaseSwitchProps, 'id'> & FormFieldProps;
 

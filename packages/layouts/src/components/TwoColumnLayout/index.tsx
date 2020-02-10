@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import Layout, { Props as LayoutProps } from '../Layout';
+import Layout, { LayoutProps } from '../Layout';
 
 const asidePropType = mutuallyExclusiveTrueProps('after', 'before');
 

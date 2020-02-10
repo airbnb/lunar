@@ -1,8 +1,8 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
 import uuid from 'uuid/v4';
-import BaseSelect, { Props as BaseSelectProps } from '../private/BaseSelect';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import BaseSelect, { BaseSelectProps } from '../private/BaseSelect';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 
 export type SelectProps = Omit<BaseSelectProps, 'id'> &
   FormFieldProps & {

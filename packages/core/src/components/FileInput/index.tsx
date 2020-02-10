@@ -7,7 +7,7 @@ import IconVideo from '@airbnb/lunar-icons/lib/interface/IconVideo';
 import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import FormInput, { InputProps } from '../private/FormInput';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import Table, { Cell } from '../Table';
 import Spacing from '../Spacing';
 import Text from '../Text';

@@ -1,8 +1,8 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import proxyComponent from '../../utils/proxyComponent';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
-import RadioButton, { Props as RadioButtonProps } from '../RadioButton';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
+import RadioButton, { RadioButtonProps } from '../RadioButton';
 
 export type PropsProvided = Partial<RadioButtonProps> & {
   label: NonNullable<React.ReactNode>;
@@ -26,7 +26,10 @@ export type RadioButtonControllerState = {
 };
 
 /** Manage multiple radio buttons with the same input `name`. */
-export default class RadioButtonController extends React.Component<RadioButtonControllerProps, RadioButtonControllerState> {
+export default class RadioButtonController extends React.Component<
+  RadioButtonControllerProps,
+  RadioButtonControllerState
+> {
   static defaultProps = {
     value: '',
   };

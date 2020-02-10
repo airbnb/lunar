@@ -1,8 +1,8 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import proxyComponent from '../../utils/proxyComponent';
-import FormField, { partitionFieldProps, Props as FormFieldProps } from '../FormField';
-import BaseButton, { Props as ButtonProps } from '../Button';
+import FormField, { partitionFieldProps, FormFieldProps } from '../FormField';
+import BaseButton, { ButtonProps } from '../Button';
 import FormInputButton from '../private/FormInputButton';
 import ButtonGroup from '../ButtonGroup';
 import { ButtonOrLinkTypes } from '../private/ButtonOrLink';
@@ -31,7 +31,10 @@ export type ToggleButtonControllerState = {
 };
 
 /** Manage a group of buttons with the same input `name`. */
-export default class ToggleButtonController extends React.Component<ToggleButtonControllerProps, ToggleButtonControllerState> {
+export default class ToggleButtonController extends React.Component<
+  ToggleButtonControllerProps,
+  ToggleButtonControllerState
+> {
   static defaultProps = {
     value: '',
   };
