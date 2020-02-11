@@ -1,9 +1,9 @@
 import React from 'react';
 import Sheet from '../Sheet';
-import LightboxImage, { Props as LightboxImageProps } from './Image';
+import LightboxImage, { LightboxImageProps } from './Image';
 import Header from './Header';
 
-export type Props = {
+export type LightboxProps = {
   /** Images to show. */
   images: LightboxImageProps[];
   /** Image start index. */
@@ -16,14 +16,14 @@ export type Props = {
   onClose: () => void;
 };
 
-export type State = {
+export type LightboxState = {
   activeIndex: number;
   hideAside: boolean;
   scale: number;
   rotation: number;
 };
 
-export default class Lightbox extends React.PureComponent<Props, State> {
+export default class Lightbox extends React.PureComponent<LightboxProps, LightboxState> {
   static defaultProps = {
     startIndex: 0,
   };

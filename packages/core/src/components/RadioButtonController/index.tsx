@@ -1,15 +1,15 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import proxyComponent from '../../utils/proxyComponent';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
-import RadioButton, { Props as RadioButtonProps } from '../RadioButton';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
+import RadioButton, { RadioButtonProps } from '../RadioButton';
 
 export type PropsProvided = Partial<RadioButtonProps> & {
   label: NonNullable<React.ReactNode>;
   value: string;
 };
 
-export type Props = FormFieldProps & {
+export type RadioButtonControllerProps = FormFieldProps & {
   /** Function children in which RadioButton components can be rendered. */
   children: (component: React.ComponentType<PropsProvided>, value: string, id: string) => void;
   /** Unique name of the field. */
@@ -20,13 +20,16 @@ export type Props = FormFieldProps & {
   value?: string;
 };
 
-export type State = {
+export type RadioButtonControllerState = {
   id: string;
   value: string;
 };
 
 /** Manage multiple radio buttons with the same input `name`. */
-export default class RadioButtonController extends React.Component<Props, State> {
+export default class RadioButtonController extends React.Component<
+  RadioButtonControllerProps,
+  RadioButtonControllerState
+> {
   static defaultProps = {
     value: '',
   };
@@ -36,7 +39,7 @@ export default class RadioButtonController extends React.Component<Props, State>
     value: this.props.value || '',
   };
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: RadioButtonControllerProps) {
     if (this.props.value !== prevProps.value) {
       this.setState({
         value: this.props.value || '',

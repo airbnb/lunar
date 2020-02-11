@@ -2,11 +2,11 @@ import React from 'react';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
+import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
 import TrackingBoundary from '../TrackingBoundary';
 import { styleSheetTab as styleSheet } from './styles';
 
-export type Props = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabled' | 'href'> & {
+export type TabProps = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabled' | 'href'> & {
   /** Hide bottom border of Tab when unselected. */
   borderless?: boolean;
   /** Content to render if the tab is selected. */
@@ -30,7 +30,7 @@ export type Props = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabl
 };
 
 /** A single tab button. Usually rendered amongst a collection of tabs. */
-export class Tab extends React.Component<Props & WithStylesProps> {
+export class Tab extends React.Component<TabProps & WithStylesProps> {
   static defaultProps = {
     borderless: false,
     children: null,
@@ -40,7 +40,7 @@ export class Tab extends React.Component<Props & WithStylesProps> {
     stretched: false,
   };
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: TabProps) {
     if (!prevProps.selected && this.props.selected && this.props.onSelected) {
       this.props.onSelected();
     }

@@ -8,7 +8,7 @@ import { ZoomControls, RotateControls } from '../ImageViewer';
 import Spacing from '../Spacing';
 import { styleSheetHeader as styleSheet } from './styles';
 
-export type Props = {
+export type LightboxHeaderProps = {
   /** Currently active image index. */
   activeIndex: number;
   /** Number of images. */
@@ -35,7 +35,7 @@ export type Props = {
   onZoomImage?: (scale: number) => void;
 };
 
-export class Header extends React.PureComponent<Props & WithStylesProps> {
+export class LightboxHeader extends React.PureComponent<LightboxHeaderProps & WithStylesProps> {
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
   }
@@ -154,4 +154,4 @@ export class Header extends React.PureComponent<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(styleSheet)(Header);
+export default withStyles(styleSheet)(LightboxHeader);

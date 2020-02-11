@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type ShimmerProps = {
   /** Display as block instead of inline. */
   block?: boolean;
   /** Height of the bar. */
@@ -19,7 +19,7 @@ export default function Shimmer({
   height = '1.25ex',
   radius = '0.125em',
   width = '60%',
-}: Props) {
+}: ShimmerProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const randomWidth: string =

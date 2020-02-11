@@ -1,13 +1,17 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
-import Tooltip, { Tooltip as BaseTooltip, Props, State } from '../../src/components/Tooltip';
+import Tooltip, {
+  Tooltip as BaseTooltip,
+  TooltipProps,
+  TooltipState,
+} from '../../src/components/Tooltip';
 
 // eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('uuid/v4', () => () => 'uuid-test-mock');
 
 describe('<Tooltip />', () => {
-  let wrapper: Enzyme.ShallowWrapper<Props, State, BaseTooltip>;
+  let wrapper: Enzyme.ShallowWrapper<TooltipProps, TooltipState, BaseTooltip>;
   let childContainer: Enzyme.ShallowWrapper;
 
   beforeEach(() => {

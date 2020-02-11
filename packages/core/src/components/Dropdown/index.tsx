@@ -2,7 +2,7 @@ import React from 'react';
 import { Block } from 'aesthetic';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 
-export type Props = {
+export type DropdownProps = {
   /** Bottom offset. */
   bottom?: number | string;
   /** Content within the dropdown. */
@@ -32,7 +32,7 @@ export type Props = {
 };
 
 /** An abstract component for displaing menus and overlays over content. */
-class Dropdown extends React.PureComponent<Props & WithStylesProps> {
+class Dropdown extends React.PureComponent<DropdownProps & WithStylesProps> {
   static defaultProps = {
     fixed: false,
     visible: false,
@@ -46,7 +46,7 @@ class Dropdown extends React.PureComponent<Props & WithStylesProps> {
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: DropdownProps) {
     if (prevProps.visible !== this.props.visible) {
       if (this.props.visible) {
         document.addEventListener('click', this.handleClick, true);

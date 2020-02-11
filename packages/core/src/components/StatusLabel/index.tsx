@@ -6,7 +6,7 @@ import IconAffix from '../private/IconAffix';
 import { STATUSES, BRANDS } from '../../constants';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type StatusLabelProps = {
   /** Icon to display at the end of the content. */
   afterIcon?: React.ReactNode;
   /** Icon to display at the start of the content. */
@@ -56,7 +56,7 @@ function StatusLabel({
   success,
   uppercased,
   warning,
-}: Props) {
+}: StatusLabelProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

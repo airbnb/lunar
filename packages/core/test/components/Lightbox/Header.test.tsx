@@ -3,12 +3,12 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Button from '../../../src/components/Button';
 import IconButton from '../../../src/components/IconButton';
 import Pagination from '../../../src/components/Pagination';
-import LightboxHeader, { Props } from '../../../src/components/Lightbox/Header';
+import LightboxHeader, { LightboxHeaderProps } from '../../../src/components/Lightbox/Header';
 import { RotateControls, ZoomControls } from '../../../src/components/ImageViewer';
 import { ARROW_RIGHT, ARROW_LEFT } from '../../../src/keys';
 
 describe('<LightboxHeader />', () => {
-  let wrapper: Enzyme.ShallowWrapper<Props>;
+  let wrapper: Enzyme.ShallowWrapper<LightboxHeaderProps>;
   const onChangeSlideSpy = jest.fn();
   const onToggleAsideSpy = jest.fn();
   const props = {

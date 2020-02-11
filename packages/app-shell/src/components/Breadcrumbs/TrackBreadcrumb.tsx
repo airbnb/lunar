@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
-import { Props as BaseProps } from '@airbnb/lunar/lib/components/Breadcrumbs/Breadcrumb';
+import { BreadcrumbProps } from '@airbnb/lunar/lib/components/Breadcrumbs/Breadcrumb';
 import AppContext from '../AppContext';
 
-export type Props = BaseProps;
+export type TrackBreadcrumbProps = BreadcrumbProps;
 
-export default function TrackBreadcrumb({ label, ...props }: Props) {
+export default function TrackBreadcrumb({ label, ...props }: TrackBreadcrumbProps) {
   const { addBreadcrumb, removeBreadcrumb } = useContext(AppContext);
 
   useEffect(() => {

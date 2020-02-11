@@ -4,7 +4,7 @@ import { styleSheet, createPosition, NOTCH_SIZE, NOTCH_SPACING } from './styles'
 
 export { NOTCH_SIZE, NOTCH_SPACING };
 
-export type Props = {
+export type NotchedBoxProps = {
   /** Content to be displayed. */
   children: NonNullable<React.ReactNode>;
   /** True to use inline-block container. */
@@ -18,7 +18,13 @@ export type Props = {
 };
 
 /** A container with a configurable arrow pointing outward. */
-export default function NotchedBox({ inverted, children, inline, notchBelow, notchOffset }: Props) {
+export default function NotchedBox({
+  inverted,
+  children,
+  inline,
+  notchBelow,
+  notchOffset,
+}: NotchedBoxProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

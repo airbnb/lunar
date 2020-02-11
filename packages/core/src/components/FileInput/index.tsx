@@ -7,7 +7,7 @@ import IconVideo from '@airbnb/lunar-icons/lib/interface/IconVideo';
 import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import FormInput, { InputProps } from '../private/FormInput';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import Table, { Cell } from '../Table';
 import Spacing from '../Spacing';
 import Text from '../Text';
@@ -20,7 +20,7 @@ import toBytes from '../../utils/toBytes';
 
 const acceptProp = mutuallyExclusiveTrueProps('onlyAudio', 'onlyImages', 'onlyVideo');
 
-export type Props = Omit<InputProps, 'id'> &
+export type FileInputProps = Omit<InputProps, 'id'> &
   FormFieldProps & {
     /** Hide file size column in the file preview table. */
     hideFileSize?: boolean;
@@ -41,13 +41,13 @@ export type Props = Omit<InputProps, 'id'> &
     onlyVideo?: boolean;
   };
 
-export type State = {
+export type FileInputState = {
   files: File[];
   id: string;
 };
 
 /** A controlled input field for uploading files. */
-export default class FileInput extends React.Component<Props, State> {
+export default class FileInput extends React.Component<FileInputProps, FileInputState> {
   static propTypes = {
     onlyAudio: acceptProp,
     onlyImages: acceptProp,
@@ -63,7 +63,7 @@ export default class FileInput extends React.Component<Props, State> {
     onlyVideo: false,
   };
 
-  state: State = {
+  state: FileInputState = {
     files: [],
     id: uuid(),
   };

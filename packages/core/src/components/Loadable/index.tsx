@@ -3,7 +3,7 @@ import ErrorMessage from '../ErrorMessage';
 import Loader from '../Loader';
 import renderElementOrFunction, { RenderableProp } from '../../utils/renderElementOrFunction';
 
-export type Props<T extends object> = {
+export type LoadableProps<T extends object> = {
   /** Allow all props since they are piped to the loaded component. */
   [prop: string]: unknown;
   /** Render the component once it has been loaded. */
@@ -38,7 +38,7 @@ export type Props<T extends object> = {
   noSuspense?: boolean;
 };
 
-export type State = {
+export type LoadableState = {
   error: Error | null;
   showLoading: boolean;
 };
@@ -47,7 +47,10 @@ export type State = {
  * A declarative component for async loading of other components via native `import()` and `React.lazy`.
  * @experimental Requires React.lazy
  */
-export default class Loadable<T extends object = {}> extends React.Component<Props<T>, State> {
+export default class Loadable<T extends object = {}> extends React.Component<
+  LoadableProps<T>,
+  LoadableState
+> {
   static defaultProps = {
     delay: 150,
     error: null,
@@ -59,14 +62,14 @@ export default class Loadable<T extends object = {}> extends React.Component<Pro
 
   mounted: boolean = false;
 
-  state: State = {
+  state: LoadableState = {
     error: null,
     showLoading: this.props.delay! <= 0,
   };
 
   static factory<P extends object>(
-    component: Props<P>['component'],
-    initialProps: Omit<Props<P>, 'component'> = {},
+    component: LoadableProps<P>['component'],
+    initialProps: Omit<LoadableProps<P>, 'component'> = {},
   ) {
     // Start lazy loading the component in the module scope
     // when the factory is called, instead of when it renders.

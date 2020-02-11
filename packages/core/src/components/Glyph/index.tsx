@@ -6,7 +6,7 @@ import useStyles from '../../hooks/useStyles';
 const fractionProp = mutuallyExclusiveTrueProps('diagonal', 'stacked');
 
 // istanbul ignore next
-function getNumericVariant(props: Partial<Props>): string {
+function getNumericVariant(props: Partial<GlyphProps>): string {
   const variants: string[] = [];
 
   if (props.diagonal) {
@@ -30,7 +30,7 @@ function getNumericVariant(props: Partial<Props>): string {
   return variants.length > 0 ? variants.join(' ') : 'normal';
 }
 
-export type Props = {
+export type GlyphProps = {
   /** Text to apply glyph to. */
   children: NonNullable<React.ReactNode>;
   /** Display fraction numerators and denominators as smaller and separated by a diagonal slash. */
@@ -46,7 +46,7 @@ export type Props = {
 };
 
 /** Controls hidden and alternative glyphs within the current font. */
-function Glyph({ children, ...props }: Props) {
+function Glyph({ children, ...props }: GlyphProps) {
   const [, cx] = useStyles(() => ({}));
 
   return <span className={cx({ fontVariantNumeric: getNumericVariant(props) })}>{children}</span>;

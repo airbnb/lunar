@@ -1,9 +1,9 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import { AppShell, Props, State } from '../src';
+import { AppShell, AppShellProps, AppShellState } from '../src';
 
 describe('AppShell', () => {
-  let wrapper: Enzyme.ShallowWrapper<Props, State, AppShell>;
+  let wrapper: Enzyme.ShallowWrapper<AppShellProps, AppShellState, AppShell>;
   let instance: AppShell;
 
   beforeEach(() => {

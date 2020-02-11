@@ -14,7 +14,7 @@ const mutuallyExclusiveSizePropType = mutuallyExclusiveProps(
 const namedSizePropType = and([PropTypes.bool, mutuallyExclusiveSizePropType]);
 const unitSizePropType = and([PropTypes.number, mutuallyExclusiveSizePropType]);
 
-export type Props = {
+export type ProfilePhotoProps = {
   /** Fallback image if the image is broken. */
   fallbackImageSrc?: string;
   /** URL of the image to display. */
@@ -35,12 +35,15 @@ export type Props = {
   title: string;
 };
 
-type State = {
+type ProfilePhotoState = {
   src: string;
 };
 
 /** Display a profile photo. */
-export class ProfilePhoto extends React.Component<Props & WithStylesProps, State> {
+export class ProfilePhoto extends React.Component<
+  ProfilePhotoProps & WithStylesProps,
+  ProfilePhotoState
+> {
   static propTypes = {
     large: namedSizePropType,
     macro: namedSizePropType,
@@ -59,7 +62,7 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps, State
     src: this.props.imageSrc || '',
   };
 
-  componentDidUpdate(prevProps: Props & WithStylesProps) {
+  componentDidUpdate(prevProps: ProfilePhotoProps & WithStylesProps) {
     const { imageSrc } = this.props;
 
     if (imageSrc !== prevProps.imageSrc) {

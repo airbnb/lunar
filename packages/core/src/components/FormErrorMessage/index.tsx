@@ -3,7 +3,7 @@ import useStyles from '../../hooks/useStyles';
 import StatusText from '../StatusText';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type FormErrorMessageProps = {
   /** ID of the input field associated with the error. */
   id: string;
   /** The error message. */
@@ -11,7 +11,7 @@ export type Props = {
 };
 
 /** Display a simple error message for use within forms. */
-export default function FormErrorMessage({ id, error }: Props) {
+export default function FormErrorMessage({ id, error }: FormErrorMessageProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   if (!error) {

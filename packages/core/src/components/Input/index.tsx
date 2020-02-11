@@ -1,16 +1,16 @@
 import React from 'react';
 import uuid from 'uuid/v4';
-import BaseInput, { Props as BaseInputProps } from '../private/BaseInput';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import BaseInput, { BaseInputProps } from '../private/BaseInput';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 
-export type Props = Omit<BaseInputProps, 'id'> & FormFieldProps;
+export type InputProps = Omit<BaseInputProps, 'id'> & FormFieldProps;
 
-export type State = {
+export type InputState = {
   id: string;
 };
 
 /** A controlled input field. */
-export default class Input extends React.Component<Props, State> {
+export default class Input extends React.Component<InputProps, InputState> {
   static defaultProps = {
     type: 'text',
   };

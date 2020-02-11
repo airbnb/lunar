@@ -36,7 +36,7 @@ export const ZOOM_OPTIONS = [
   },
 ];
 
-export type Props = {
+export type ZoomControlsProps = {
   /** The current scale / zoom level. 1 by default. */
   scale?: number;
   /** Callback when scale / zoom changes */
@@ -44,7 +44,7 @@ export type Props = {
 };
 
 /** Zoom controls that can be used with an image viewer component */
-export default function ZoomControls(props: Props) {
+export default function ZoomControls(props: ZoomControlsProps) {
   const [styles, cx] = useStyles(styleSheet);
   const [visible, setVisible] = useState(false);
   const { onScale, scale = 1 } = props;

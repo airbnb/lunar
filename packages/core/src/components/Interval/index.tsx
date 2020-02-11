@@ -4,19 +4,19 @@ import React from 'react';
 // the tick anyway, to prevent a poor user experience.
 const FORCE_TICK_CALL = 2000;
 
-export type Props = {
+export type IntervalProps = {
   /** Number of milliseconds for each interval. */
   every: number;
   /** Content to re-render. */
   children: (now: number) => NonNullable<React.ReactNode>;
 };
 
-export type State = {
+export type IntervalState = {
   now: number;
 };
 
 /** Continuously render content at an interval. */
-export default class Interval extends React.PureComponent<Props, State> {
+export default class Interval extends React.PureComponent<IntervalProps, IntervalState> {
   state = {
     now: Date.now(),
   };

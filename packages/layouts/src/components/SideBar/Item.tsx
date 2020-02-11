@@ -5,7 +5,7 @@ import iconComponent from '@airbnb/lunar/lib/prop-types/iconComponent';
 import Text from '@airbnb/lunar/lib/components/Text';
 import { styleSheetItem as styleSheet } from './styles';
 
-export type Props = {
+export type SideBarItemProps = {
   /** Mark the item as active. */
   active?: boolean;
   /** Render as an anchor link with a URL. */
@@ -19,7 +19,7 @@ export type Props = {
 };
 
 /** A clickable item within the sidebar navigation menu. */
-function SideBarItem({ active, label, href, icon, onClick }: Props) {
+function SideBarItem({ active, label, href, icon, onClick }: SideBarItemProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

@@ -7,7 +7,7 @@ import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type ChipProps = {
   /** Renders with a primary background and white text. */
   active?: boolean;
   /** Icon to render to the right of the primary content. */
@@ -45,7 +45,7 @@ function Chip({
   onIconClick,
   profileImageSrc,
   trackingName,
-}: Props) {
+}: ChipProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const Component = onClick ? 'button' : 'div';

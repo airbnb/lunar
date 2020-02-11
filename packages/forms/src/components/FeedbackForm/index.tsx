@@ -7,13 +7,13 @@ import TextArea from '../Form/TextArea';
 import Select from '../Form/Select';
 import RadioButtonController from '../Form/RadioButtonController';
 
-export type Data = {
+export type FeedbackFormData = {
   category: string;
   feedback: string;
   type: string;
 };
 
-export type Props = {
+export type FeedbackFormProps = {
   /** Mapping of unique keys to localized category/feature names. */
   categories: { [key: string]: string };
   /** The name of the feedback channel. */
@@ -27,18 +27,21 @@ export type Props = {
   /** Callback fired when the continue button is clicked. */
   onContinue?: () => void;
   /** Callback fired when the form has been submitted. */
-  onSubmit: (data: Data, props: Props) => Promise<unknown>;
+  onSubmit: (data: FeedbackFormData, props: FeedbackFormProps) => Promise<unknown>;
   /** The team ID within JIRA. */
   teamID: number;
 };
 
-export type State = {
-  data: Data;
+export type FeedbackFormState = {
+  data: FeedbackFormData;
   loading: boolean;
 };
 
 /** A form for providing feedback or reporting bugs. */
-export default class FeedbackForm extends React.PureComponent<Props, State> {
+export default class FeedbackForm extends React.PureComponent<
+  FeedbackFormProps,
+  FeedbackFormState
+> {
   state = {
     data: {
       category: '',
@@ -54,7 +57,7 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
     }
   }
 
-  private handleSubmit = (data: Data) => {
+  private handleSubmit = (data: FeedbackFormData) => {
     this.setState({
       loading: true,
     });
@@ -66,9 +69,9 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
     });
   };
 
-  private handleStateUpdate = (state: FormState<Data>) => {
+  private handleStateUpdate = (state: FormState<FeedbackFormData>) => {
     this.setState({
-      data: state.values as Data,
+      data: state.values as FeedbackFormData,
     });
   };
 

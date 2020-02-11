@@ -4,7 +4,7 @@ import useTheme from '../../hooks/useTheme';
 import ExpandableIcon from '../ExpandableIcon';
 import { styleSheetItem as styleSheet } from './styles';
 
-export type Props = {
+export type AccordionItemProps = {
   /** Apply a border. */
   bordered?: boolean;
   /** Content to render if the accordion item is expanded. */
@@ -38,7 +38,7 @@ export default function AccordionItem({
   title,
   onClick,
   onToggle,
-}: Props) {
+}: AccordionItemProps) {
   const [styles, cx] = useStyles(styleSheet);
   const [prevExpanded, setExpanded] = useState(expanded);
   const theme = useTheme();

@@ -9,7 +9,7 @@ import Text from '../Text';
 const NUMBER_OF_STARS = 5;
 const STARS = new Array(NUMBER_OF_STARS).fill(null);
 
-export type Props = {
+export type RatingProps = {
   /** Increase font size to large. */
   large?: boolean;
   /** Decrease font size to small. */
@@ -23,7 +23,7 @@ export type Props = {
 };
 
 /** Display a star rating and review count. */
-export default function Rating({ large, micro, rating = 0, reviews, small }: Props) {
+export default function Rating({ large, micro, rating = 0, reviews, small }: RatingProps) {
   const theme = useTheme();
 
   return (

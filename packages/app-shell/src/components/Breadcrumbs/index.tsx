@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import BaseBreadcrumbs, {
   Breadcrumb,
-  Props as BaseProps,
+  BreadcrumbsProps as BaseProps,
 } from '@airbnb/lunar/lib/components/Breadcrumbs';
 import TrackBreadcrumb from './TrackBreadcrumb';
 import AppContext from '../AppContext';
 
 export { TrackBreadcrumb };
 
-export type Props = Omit<BaseProps, 'children'>;
+export type BreadcrumbsProps = Omit<BaseProps, 'children'>;
 
-export default function Breadcrumbs(props: Props) {
+export default function Breadcrumbs(props: BreadcrumbsProps) {
   const context = useContext(AppContext);
 
   if (!context || context.breadcrumbs.length === 0) {

@@ -1,10 +1,10 @@
 import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
-import { Props as ProfilePhotoProps } from '../ProfilePhoto';
+import { ProfilePhotoProps } from '../ProfilePhoto';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type ProfilePhotoGroupProps = {
   /** List of `ProfilePhoto` components to group. */
   children: NonNullable<React.ReactNode>;
   /** Max number of photos to display before truncating. */
@@ -14,7 +14,7 @@ export type Props = {
 };
 
 /** Horizontally align `ProfilePhoto`s in a stacked fashion. */
-export default function ProfilePhotoGroup({ children, max = 3, size = 5 }: Props) {
+export default function ProfilePhotoGroup({ children, max = 3, size = 5 }: ProfilePhotoGroupProps) {
   const [styles, cx] = useStyles(styleSheet);
   const { unit } = useTheme();
 

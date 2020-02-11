@@ -3,7 +3,7 @@ import Enzyme, { mount, shallow } from 'enzyme';
 import Button from '../../../src/components/Button';
 import IconButton from '../../../src/components/IconButton';
 import ZoomControls, {
-  Props,
+  ZoomControlsProps,
   ZOOM_OPTIONS,
 } from '../../../src/components/ImageViewer/ZoomControls';
 import Menu, { Item } from '../../../src/components/Menu';
@@ -60,7 +60,7 @@ describe('<ZoomControls />', () => {
   });
 
   describe('zoom menu', () => {
-    let wrapper: Enzyme.ReactWrapper<Props>;
+    let wrapper: Enzyme.ReactWrapper<ZoomControlsProps>;
 
     beforeEach(() => {
       wrapper = mount(<ZoomControls {...props} />);

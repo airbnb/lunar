@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import { styleSheetRow as styleSheet } from './styles';
 
-export type Props = {
+export type MenuRowProps = {
   /** Content to display in the row. */
   children: NonNullable<React.ReactNode>;
   /** Double the padding and spacing. */
@@ -10,7 +10,7 @@ export type Props = {
 };
 
 /** A non-interactive row within a menu. */
-export default function MenuRow({ children, spacious }: Props) {
+export default function MenuRow({ children, spacious }: MenuRowProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

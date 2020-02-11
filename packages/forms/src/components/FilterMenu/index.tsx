@@ -2,15 +2,15 @@
 import React, { useState } from 'react';
 import T from '@airbnb/lunar/lib/components/Translate';
 import MenuToggle from '@airbnb/lunar/lib/components/MenuToggle';
-import { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
-import { Props as MenuProps } from '@airbnb/lunar/lib/components/Menu';
+import { DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
+import { MenuProps } from '@airbnb/lunar/lib/components/Menu';
 import Link from '@airbnb/lunar/lib/components/Link';
 import SecondaryLink from '@airbnb/lunar/lib/components/SecondaryLink';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import Row from './private/Row';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type FilterMenuProps = {
   /** Accessibility label. */
   accessibilityLabel: string;
   /** Number of currently active filters. */
@@ -41,10 +41,6 @@ export type Props = {
   zIndex?: number;
 };
 
-export type State = {
-  opened: Boolean;
-};
-
 /** A button that opens a dropdown that shows filter options for a table or similar component. */
 export default function FilterMenu({
   accessibilityLabel,
@@ -61,7 +57,7 @@ export default function FilterMenu({
   onClear,
   onHide,
   onShow,
-}: Props) {
+}: FilterMenuProps) {
   const [styles, cx] = useStyles(styleSheet);
   const [opened, setOpened] = useState(false);
 

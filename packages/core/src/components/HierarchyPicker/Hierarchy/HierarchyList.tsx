@@ -6,7 +6,7 @@ import ItemDescription from './ItemDescription';
 import { ItemShape, TreePath, SubTreeHandler, ItemPickedHandler, ItemRenderer } from '../types';
 import { styleSheetList as styleSheet } from './styles';
 
-export type Props = {
+export type HierarchyListProps = {
   items?: ItemShape[];
   chosen?: TreePath;
   focus: TreePath;
@@ -30,7 +30,7 @@ export default function HierarchyList({
   onItemPicked,
   width,
   verticallyAlign,
-}: Props) {
+}: HierarchyListProps) {
   const ref = React.createRef<HTMLDivElement>();
   const [styles, cx] = useStyles(styleSheet);
   const passThruProps = { chosen, maxHeight, renderItem, onSubtree, onItemPicked, width };

@@ -39,7 +39,7 @@ export const emojiMatcherWithEmoticons = new EmojiMatcher('emoji', {
   convertEmoticon: true,
 });
 
-export type Props = BaseInterweaveProps & {
+export type InterweaveProps = BaseInterweaveProps & {
   /** Render any found links using large prop. */
   large?: boolean;
   /** Only run these matchers (by name). */
@@ -61,7 +61,7 @@ export default function Interweave({
   onlyMatchers = [],
   withEmoticons,
   ...props
-}: Props) {
+}: InterweaveProps) {
   const [, emojiSource] = useEmojiData({
     avoidFetch: process.env.NODE_ENV === 'test',
     throwErrors: false,

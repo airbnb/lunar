@@ -21,7 +21,7 @@ const styleSheet: StyleSheet = ({ color }) => ({
   },
 });
 
-export type Props = {
+export type LayoutShellProps = {
   /** The page content. */
   children: NonNullable<React.ReactNode>;
   /** Navigation side bar to display before the content. */
@@ -31,7 +31,7 @@ export type Props = {
 };
 
 /** Layout shell that wraps an entire application, providing optional side and top nav bars. */
-export default function LayoutShell({ children, sideBar }: Props) {
+export default function LayoutShell({ children, sideBar }: LayoutShellProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

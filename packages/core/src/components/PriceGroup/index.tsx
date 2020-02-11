@@ -8,7 +8,7 @@ export type PriceAmountDefinition = {
   [currency: string]: number | Amount;
 };
 
-export type Props = CommonProps & {
+export type PriceGroupProps = CommonProps & {
   /** Object of currencies to amounts. */
   amounts: PriceAmountDefinition;
   /** Character to divide the amounts with. */
@@ -16,7 +16,7 @@ export type Props = CommonProps & {
 };
 
 /** Display multiple amounts across different currencies. Supports all props in `Price`. */
-export default class PriceGroup extends React.PureComponent<Props> {
+export default class PriceGroup extends React.PureComponent<PriceGroupProps> {
   static propTypes = {
     amounts: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.object, PropTypes.number]))
       .isRequired,

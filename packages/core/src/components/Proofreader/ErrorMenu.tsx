@@ -6,12 +6,12 @@ import Interweave from '../Interweave';
 import TrackingBoundary from '../TrackingBoundary';
 import { ProofreadRuleMatch } from './types';
 
-export type Props = {
+export type ErrorMenuProps = {
   error: ProofreadRuleMatch;
   onReplaceText: (error: ProofreadRuleMatch, replacement: string) => void;
 };
 
-export default class ErrorMenu extends React.Component<Props> {
+export default class ErrorMenu extends React.Component<ErrorMenuProps> {
   private handleClick = (replacement: string) => {
     this.props.onReplaceText(this.props.error, replacement);
   };

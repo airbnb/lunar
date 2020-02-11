@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type LayoutProps = {
   /** Horizontally center main content. */
   centerAlign?: boolean;
   /** The primary main content. */
@@ -34,7 +34,7 @@ export default function Layout({
   minHeight,
   noBackground,
   noPadding,
-}: Props & AsideProps) {
+}: LayoutProps & AsideProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

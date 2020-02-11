@@ -1,5 +1,7 @@
 import React from 'react';
-import DatePickerInput, { Props } from '@airbnb/lunar/lib/components/DatePickerInput';
+import DatePickerInput, {
+  DatePickerInputProps,
+} from '@airbnb/lunar/lib/components/DatePickerInput';
 import useFormField, { FieldProps } from '../../hooks/useFormField';
 
 // The `react-day-picker` and `final-form` handlers collide a little bit,
@@ -13,7 +15,9 @@ function wrapHandler<T>(cb: (event: T) => void) {
 }
 
 /** `DatePickerInput` automatically connected to the parent `Form`.  */
-export default function FormDatePickerInput(props: FieldProps<string | Date, Props>) {
+export default function FormDatePickerInput(
+  props: FieldProps<string | Date, DatePickerInputProps>,
+) {
   const { onBlur, onFocus, ...fieldProps } = useFormField(props, {
     initialValue: '',
   });

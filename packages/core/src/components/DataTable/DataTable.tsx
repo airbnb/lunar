@@ -26,7 +26,7 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX, SELECTION_OPTIONS } from './constants';
 
-export type State = {
+export type DataTableState = {
   changeLog: ChangeLog;
   expandedRows: Set<number>;
   selectedRows: SelectedRows;
@@ -36,7 +36,7 @@ export type State = {
 };
 
 /** A dynamic and responsive table for displaying tabular data. */
-export class DataTable extends React.Component<DataTableProps & WithStylesProps, State> {
+export class DataTable extends React.Component<DataTableProps & WithStylesProps, DataTableState> {
   static defaultProps: Pick<DataTableProps, DefaultDataTableProps> = {
     autoHeight: false,
     columnHeaderHeight: undefined,
@@ -78,7 +78,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     zebra: false,
   };
 
-  state: State = {
+  state: DataTableState = {
     changeLog: {},
     expandedRows: new Set(),
     selectedRows: {},
@@ -140,7 +140,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     (...args) => JSON.stringify(args),
   );
 
-  componentDidUpdate(prevProps: DataTableProps, prevState: State) {
+  componentDidUpdate(prevProps: DataTableProps, prevState: DataTableState) {
     const { dynamicRowHeight, data, filterData, width, height, sortByCacheKey } = this.props;
     const { sortBy, sortDirection, selectedRows } = this.state;
     const dimensionsChanged = width !== prevProps.width || height !== prevProps.height;

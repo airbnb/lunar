@@ -5,7 +5,7 @@ import Item from './Item';
 import Row from './Row';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type MenuProps = {
   /** List of `Row`s, `Item`s, and `Separator`s to render in the menu. */
   children?: React.ReactNode;
   /** Accessibility label. */
@@ -28,7 +28,7 @@ export default function Menu({
   minWidth = 200,
   overflow,
   role = 'menu',
-}: Props) {
+}: MenuProps) {
   const scrollable = !!maxHeight && !overflow;
   const [styles, cx] = useStyles(styleSheet);
 

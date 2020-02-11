@@ -20,7 +20,7 @@ import {
 
 import defaultFormatter from './defaultFormatter';
 
-export type Props = {
+export type HierarchyPickerProps = {
   /** Content to display in the select button. */
   children?: React.ReactNode;
   /** An array of names define the path to the currently selected item. */
@@ -59,11 +59,14 @@ export type Props = {
   verticallyAlign?: boolean;
 };
 
-export type State = {
+export type HierarchyPickerState = {
   open: boolean;
 };
 
-export class HierarchyPicker extends React.Component<Props & WithStylesProps, State> {
+export class HierarchyPicker extends React.Component<
+  HierarchyPickerProps & WithStylesProps,
+  HierarchyPickerState
+> {
   static defaultProps = {
     chosen: [],
     disabled: false,

@@ -16,12 +16,18 @@ export type ModalImageConfig = {
   url: string;
 };
 
-export type Props = ModalImageConfig & {
+export type ModalImageLayoutProps = ModalImageConfig & {
   /** Left pane content. */
   children: NonNullable<React.ReactNode>;
 };
 
-export default function ModalImageLayout({ children, sizes, srcSet, type, url }: Props) {
+export default function ModalImageLayout({
+  children,
+  sizes,
+  srcSet,
+  type,
+  url,
+}: ModalImageLayoutProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

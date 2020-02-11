@@ -1,5 +1,5 @@
 import React from 'react';
-import HierarchyPicker, { Props } from '.';
+import HierarchyPicker, { HierarchyPickerProps } from '.';
 import Button from '../Button';
 
 const demoItems = [
@@ -270,7 +270,10 @@ const demoItems2 = [
   },
 ];
 
-class PickerDemo extends React.Component<Partial<Props>, { chosen: Props['chosen'] }> {
+class PickerDemo extends React.Component<
+  Partial<HierarchyPickerProps>,
+  { chosen: HierarchyPickerProps['chosen'] }
+> {
   state = { chosen: undefined };
 
   render() {

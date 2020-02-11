@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import uuid from 'uuid/v4';
 import useStyles from '../../hooks/useStyles';
-import Item, { Props as AccordionItemProps } from './Item';
+import Item, { AccordionItemProps } from './Item';
 import { styleSheet } from './styles';
 
 export { Item };
 
-export type Props = {
+export type AccordionProps = {
   /** Apply a border. */
   bordered?: boolean;
   /** Accordion items and their content. */
@@ -26,7 +26,7 @@ export default function Accordion({
   defaultIndex = 0,
   expandMultiple,
   onChange,
-}: Props) {
+}: AccordionProps) {
   const [id] = useState(() => uuid());
   const [styles, cx] = useStyles(styleSheet);
   const [expanded, setExpanded] = useState(

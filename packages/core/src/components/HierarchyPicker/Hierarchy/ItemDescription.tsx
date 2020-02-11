@@ -4,11 +4,11 @@ import Text from '../../Text';
 import T from '../../Translate';
 import { ItemShape } from '../types';
 
-export type Props = {
+export type ItemDescriptionProps = {
   item: ItemShape;
 };
 
-export default function ItemDescription({ item }: Props) {
+export default function ItemDescription({ item }: ItemDescriptionProps) {
   return (
     <div>
       <Text bold>

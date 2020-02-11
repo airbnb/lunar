@@ -51,7 +51,7 @@ const groupIcons = {
 
 const clearIcon = <IconCloseAlt decorative size="1.325em" />;
 
-export type Props = Partial<PickerProps> & {
+export type EmojiPickerProps = Partial<PickerProps> & {
   /** @ignore */
   disableAutoFocus?: boolean;
   /** A function to close the picker. Is triggered by the escape key. */
@@ -62,7 +62,11 @@ export type Props = Partial<PickerProps> & {
  * Display an emoji picker using [interweave-emoji-picker](https://github.com/milesj/interweave/tree/master/packages/interweave-emoji-picker).
  * Should primarily be used for private to public communication.
  */
-export default function EmojiPicker({ disableAutoFocus, onClosePicker, ...props }: Props) {
+export default function EmojiPicker({
+  disableAutoFocus,
+  onClosePicker,
+  ...props
+}: EmojiPickerProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {

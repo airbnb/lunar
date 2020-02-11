@@ -11,7 +11,7 @@ import {
   TreePath,
 } from '../types';
 
-export type Props = {
+export type HierarchyProps = {
   /** An array of names define the path to the currently selected item. */
   chosen?: TreePath;
   /** A function to format the display of choice. */
@@ -30,12 +30,12 @@ export type Props = {
   verticallyAlign?: boolean;
 };
 
-export type State = {
+export type HierarchyState = {
   focusDef: TreePath;
   filteredItems: ItemShape[];
 };
 
-export default class Hierarchy extends React.Component<Props, State> {
+export default class Hierarchy extends React.Component<HierarchyProps, HierarchyState> {
   static defaultProps = {
     chosen: [],
     items: [],
@@ -50,7 +50,7 @@ export default class Hierarchy extends React.Component<Props, State> {
     this.filterItems();
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: HierarchyProps) {
     if (this.props.items !== prevProps.items) {
       this.filterItems();
     }

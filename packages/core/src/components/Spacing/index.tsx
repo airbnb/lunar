@@ -29,7 +29,7 @@ export type SpacingRange =
   | 11.5
   | 12;
 
-export type Props = {
+export type SpacingProps = {
   /** Apply spacing on all sides. */
   all?: SpacingRange;
   /** Apply spacing on the bottom. */
@@ -67,7 +67,7 @@ export default function Spacing({
   tag: TagProp = 'div',
   top = 0,
   vertical = 0,
-}: Props) {
+}: SpacingProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const type = inner ? 'inner' : 'outer';

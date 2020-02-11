@@ -21,7 +21,7 @@ export type CommonProps = {
   trimTrailingZeros?: boolean;
 };
 
-export type Props = CommonProps & {
+export type PriceProps = CommonProps & {
   /** The amount as a number. */
   amount?: Amount | number | null;
   /** Native currency of the amount. */
@@ -29,7 +29,7 @@ export type Props = CommonProps & {
 };
 
 /** Display a formatted and localized currency or price amount. */
-export default class Price extends React.PureComponent<Props> {
+export default class Price extends React.PureComponent<PriceProps> {
   static propTypes = {
     amount: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
     display: PropTypes.oneOf(['symbol', 'code', 'name']),

@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type RowProps = {
   /** The contents following the primary contents. */
   after?: React.ReactNode;
   /** The visibility of the row's baseline. */
@@ -43,7 +43,7 @@ export default function Row({
   spacious,
   topline,
   truncated,
-}: Props) {
+}: RowProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

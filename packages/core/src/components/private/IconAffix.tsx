@@ -1,7 +1,7 @@
 import withStyles from '../../composers/withStyles';
-import BaseAffix, { Props as BaseProps } from './BaseAffix';
+import BaseAffix, { BaseAffixProps } from './BaseAffix';
 
-export type Props = BaseProps;
+export type IconAffixProps = BaseAffixProps;
 
 export default withStyles(({ unit, pattern }) => ({
   affix: {

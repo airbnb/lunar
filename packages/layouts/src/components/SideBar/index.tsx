@@ -3,7 +3,7 @@ import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import Item from './Item';
 import { styleSheetSideBar as styleSheet } from './styles';
 
-export type Props = {
+export type SideBarProps = {
   /** Accessibility label. */
   accessibilityLabel: string;
   /** Navigation items to render within the bar. */
@@ -11,7 +11,7 @@ export type Props = {
 };
 
 /** A vertical sidebar navigation menu. Primarily aligned on the left viewport. */
-export default function SideBar({ accessibilityLabel, children }: Props) {
+export default function SideBar({ accessibilityLabel, children }: SideBarProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

@@ -4,7 +4,7 @@ import IconAffix from './IconAffix';
 
 export type ButtonOrLinkTypes = HTMLAnchorElement | HTMLButtonElement;
 
-export type Props = {
+export type ButtonOrLinkProps = {
   [prop: string]: unknown;
   /** Icon to display at the end the content. */
   afterIcon?: React.ReactNode;
@@ -34,7 +34,7 @@ export type Props = {
   type?: 'button' | 'submit' | 'reset';
 };
 
-export default class ButtonOrLink extends React.Component<Props> {
+export default class ButtonOrLink extends React.Component<ButtonOrLinkProps> {
   static defaultProps = {
     afterIcon: null,
     beforeIcon: null,

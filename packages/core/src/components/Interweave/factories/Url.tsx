@@ -1,8 +1,8 @@
 import React from 'react';
-import { UrlProps } from 'interweave-autolink';
+import { UrlProps as BaseUrlProps } from 'interweave-autolink';
 import Link from '../../Link';
 
-export type Props = UrlProps & {
+export type UrlProps = BaseUrlProps & {
   /** Render using large prop on the Link component. */
   large?: boolean;
   /** Render using small prop on the Link component. */
@@ -16,7 +16,7 @@ export default function Url({
   newWindow,
   small = false,
   url,
-}: Props) {
+}: UrlProps) {
   let nextUrl = href || url || '';
 
   if (!url.match(/^https?:\/\//)) {

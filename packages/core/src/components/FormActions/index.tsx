@@ -5,7 +5,7 @@ import DangerButton from '../DangerButton';
 import MutedButton from '../MutedButton';
 import ButtonGroup from '../ButtonGroup';
 
-export type Props = {
+export type FormActionsProps = {
   /** Render buttons as a block with full width. */
   block?: boolean;
   /** Text to display in the cancel button. Defaults to "Cancel". */
@@ -35,7 +35,7 @@ export type Props = {
 };
 
 /** A pair of action buttons to display at the bottom of a form. */
-export default class FormActions extends React.PureComponent<Props> {
+export default class FormActions extends React.PureComponent<FormActionsProps> {
   static defaultProps = {
     cancelText: null,
     continueText: null,

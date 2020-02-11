@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import { styleSheetCell as styleSheet } from './styles';
 
-export type Props = {
+export type TableCellProps = {
   /** Display in the center horizontally. */
   centerAlign?: boolean;
   /** Content to render. */
@@ -31,7 +31,7 @@ export default function TableCell({
   truncate,
   wrap,
   ...props
-}: Props) {
+}: TableCellProps) {
   const [styles, cx] = useStyles(styleSheet);
   const Tag = header ? 'th' : 'td';
 

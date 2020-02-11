@@ -20,7 +20,7 @@ import { styleSheetItem as styleSheet, ICON_SIZE } from './styles';
 
 export { ICON_SIZE };
 
-export type Props = {
+export type HierarchyItemProps = {
   item: ItemShape;
   definition: TreePath;
   renderItem?: ItemRenderer;
@@ -42,7 +42,7 @@ export default function HierarchyItem({
   onItemPicked,
   onDomFocusDeeper,
   onDomFocusShallower,
-}: Props) {
+}: HierarchyItemProps) {
   const [styles, cx] = useStyles(styleSheet);
   const theme = useTheme();
 

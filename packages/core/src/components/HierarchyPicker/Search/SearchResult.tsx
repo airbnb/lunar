@@ -6,14 +6,19 @@ import Highlight from './Highlight';
 import { ItemShape, FuseMatch } from '../types';
 import { styleSheetSearchResult as styleSheet } from './styles';
 
-export type Props = {
+export type SearchResultProps = {
   item: ItemShape;
   formattedParents: string;
   matches?: FuseMatch[];
   query?: string;
 };
 
-export default function SearchResult({ item, formattedParents, matches = [], query = '' }: Props) {
+export default function SearchResult({
+  item,
+  formattedParents,
+  matches = [],
+  query = '',
+}: SearchResultProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const { description, label, name } = item;

@@ -2,10 +2,10 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Hierarchy from '../../../src/components/HierarchyPicker/Hierarchy';
 import HierarchyList, {
-  Props as HierarchyListProps,
+  HierarchyListProps,
 } from '../../../src/components/HierarchyPicker/Hierarchy/HierarchyList';
 import HierarchyItem, {
-  Props as HierarchyItemProps,
+  HierarchyItemProps,
 } from '../../../src/components/HierarchyPicker/Hierarchy/HierarchyItem';
 import ItemDescription from '../../../src/components/HierarchyPicker/Hierarchy/ItemDescription';
 import { ChoiceDetails } from '../../../src/components/HierarchyPicker/types';

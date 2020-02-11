@@ -1,11 +1,11 @@
 import React from 'react';
 import iconComponent from '../../prop-types/iconComponent';
 import useStyles from '../../hooks/useStyles';
-import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
+import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
 import Tooltip from '../Tooltip';
 import { styleSheet } from './styles';
 
-export type Props = ButtonOrLinkProps & {
+export type IconButtonProps = ButtonOrLinkProps & {
   /** @ignore */
   afterIcon?: React.ReactNode;
   /** @ignore */
@@ -19,7 +19,14 @@ export type Props = ButtonOrLinkProps & {
 };
 
 /** A button with an icon as content, and an optional tooltip. */
-function IconButton({ children, active, disabled, inverted, tooltip, ...restProps }: Props) {
+function IconButton({
+  children,
+  active,
+  disabled,
+  inverted,
+  tooltip,
+  ...restProps
+}: IconButtonProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const button = (

@@ -4,7 +4,7 @@ import space from ':storybook/images/space.jpg';
 import stars from ':storybook/images/stars.jpg';
 import Button from '../Button';
 import Text from '../Text';
-import Lightbox, { Props } from '.';
+import Lightbox, { LightboxProps } from '.';
 
 type AsideDemoProps = {
   title: string;
@@ -31,7 +31,7 @@ const mockImagesWithAside = [
   { src: stars, alt: 'stars', aside: <AsideDemo title="Stars" /> },
 ];
 
-class LightboxDemo extends React.Component<Omit<Props, 'onClose'>, { visible: boolean }> {
+class LightboxDemo extends React.Component<Omit<LightboxProps, 'onClose'>, { visible: boolean }> {
   state = { visible: true };
 
   handleToggle = () => this.setState(prevState => ({ visible: !prevState.visible }));
