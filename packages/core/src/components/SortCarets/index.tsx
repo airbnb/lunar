@@ -4,7 +4,7 @@ import IconCaretDown from '@airbnb/lunar-icons/lib/interface/IconCaretDown';
 import useStyles from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type SortCaretsProps = {
   /** Whether or not to display the bottom caret. */
   down?: boolean;
   /** If enabled, the caret is more pronounced. */
@@ -16,7 +16,7 @@ export type Props = {
 };
 
 /** Carets to indicate sorting on a table. */
-export default function SortCarets({ down, enableDown, enableUp, up }: Props) {
+export default function SortCarets({ down, enableDown, enableUp, up }: SortCaretsProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

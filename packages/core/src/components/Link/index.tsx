@@ -1,14 +1,14 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
+import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
 import Text from '../Text';
 import { styleSheet } from './styles';
 
 const sizingProp = mutuallyExclusiveTrueProps('micro', 'small', 'large');
 const stateProp = mutuallyExclusiveTrueProps('disabled', 'muted', 'inverted');
 
-export type Props = ButtonOrLinkProps & {
+export type LinkProps = ButtonOrLinkProps & {
   /** Display element as block. */
   block?: boolean;
   /** Display element as inline. */
@@ -28,7 +28,7 @@ export type Props = ButtonOrLinkProps & {
 };
 
 /** A standard link for... linking to things. */
-export class Link extends React.Component<Props & WithStylesProps> {
+export class Link extends React.Component<LinkProps & WithStylesProps> {
   static propTypes = {
     disabled: stateProp,
     inverted: stateProp,

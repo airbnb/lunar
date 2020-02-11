@@ -4,7 +4,7 @@ import debounce from 'lodash/debounce';
 import { scrollingParents, ArrayOfScrollables } from '../../utils/isScrollable';
 import Portal from './Portal';
 
-export type Props = {
+export type OverlayProps = {
   /** Content to display within the overlay. */
   children?: React.ReactNode;
   /** True to be visible. */
@@ -15,14 +15,14 @@ export type Props = {
   onClose: () => void;
 };
 
-export type State = {
+export type OverlayState = {
   x: number;
   y: number;
   targetRectReady: boolean;
 };
 
 /** An overlay that masks the entire viewport and displays a chunk of content over it. */
-export default class Overlay extends React.PureComponent<Props, State> {
+export default class Overlay extends React.PureComponent<OverlayProps, OverlayState> {
   static defaultProps = {
     noBackground: false,
     open: false,
@@ -98,7 +98,7 @@ export default class Overlay extends React.PureComponent<Props, State> {
   private handleScroll = throttle(() => this.props.onClose(), 100);
 
   render() {
-    const { onClose, open, children, noBackground } = this.props as Required<Props>;
+    const { onClose, open, children, noBackground } = this.props as Required<OverlayProps>;
     const { x, y, targetRectReady } = this.state;
 
     return (

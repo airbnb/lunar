@@ -1,5 +1,5 @@
-import { Props as BreadcrumbProps } from '@airbnb/lunar/lib/components/Breadcrumbs/Breadcrumb';
-import { Props as ToastProps } from '@airbnb/lunar/lib/components/Toast';
+import { BreadcrumbProps } from '@airbnb/lunar/lib/components/Breadcrumbs/Breadcrumb';
+import { ToastProps } from '@airbnb/lunar/lib/components/Toast';
 
 export type Breadcrumb = {
   id: string;

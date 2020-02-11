@@ -5,7 +5,7 @@ import Cell from './Cell';
 import Row from './Row';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type TableProps = {
   /** Apply a wrapping border (combined with horizontal or vertical). */
   bordered?: boolean;
   /** Table head, body, foot, and rows. */
@@ -45,7 +45,7 @@ function Table({
   striped,
   transparent,
   vertical,
-}: Props) {
+}: TableProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

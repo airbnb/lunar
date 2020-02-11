@@ -1,12 +1,12 @@
 import React from 'react';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
-import Layout, { Props as LayoutProps, AsideProps } from '../Layout';
+import Layout, { LayoutProps, AsideProps } from '../Layout';
 import { styleSheet } from './styles';
 
-export type Props = Required<AsideProps> & Pick<LayoutProps, 'fluid'>;
+export type SplitLayoutProps = Required<AsideProps> & Pick<LayoutProps, 'fluid'>;
 
 /** A symmetrical two-column layout. */
-export default function SplitLayout({ after, before, fluid }: Props) {
+export default function SplitLayout({ after, before, fluid }: SplitLayoutProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

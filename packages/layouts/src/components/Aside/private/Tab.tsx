@@ -57,7 +57,7 @@ const styleSheet: StyleSheet = ({ color, pattern, transition, ui, unit }) => ({
   },
 });
 
-export type Props = {
+export type TabProps = {
   /** Whether to apply bordered styles. */
   bordered?: boolean;
   /** Whether the column is expanded. */
@@ -73,7 +73,12 @@ export type Props = {
 };
 
 /** A tab for toggling an aside. */
-export default function Tab({ bordered, expanded, position = 'after', onCollapseToggle }: Props) {
+export default function Tab({
+  bordered,
+  expanded,
+  position = 'after',
+  onCollapseToggle,
+}: TabProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const labelCollapse = T.phrase('lunar.common.collapse', 'Collapse');

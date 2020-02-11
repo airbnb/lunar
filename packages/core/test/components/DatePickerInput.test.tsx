@@ -7,7 +7,7 @@ import PrivatePickerInput from '../../src/components/DatePickerInput/Input';
 import FormField from '../../src/components/FormField';
 import FormInput from '../../src/components/private/FormInput';
 import { FORMAT_YMD } from '../../src/constants';
-import { Props as BaseInputProps } from '../../src/components/private/BaseInput';
+import { BaseInputProps } from '../../src/components/private/BaseInput';
 
 describe('<DatePickerInput />', () => {
   const props = {

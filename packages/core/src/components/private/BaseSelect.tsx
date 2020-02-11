@@ -32,7 +32,7 @@ const styleSheet: StyleSheet = ({ pattern, unit }) => ({
   },
 });
 
-export type Props = SelectProps & {
+export type BaseSelectProps = SelectProps & {
   /** List of `option`s to render. */
   children: NonNullable<React.ReactNode>;
   /** An empty `option` to render at the top of the list. */
@@ -41,7 +41,12 @@ export type Props = SelectProps & {
   onChange: (value: string, event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-export default function BaseSelect({ children, placeholder = '', onChange, ...restProps }: Props) {
+export default function BaseSelect({
+  children,
+  placeholder = '',
+  onChange,
+  ...restProps
+}: BaseSelectProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

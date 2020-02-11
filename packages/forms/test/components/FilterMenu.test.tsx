@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import { Props } from '@airbnb/lunar/lib/components/MenuToggle';
+import { MenuToggleProps } from '@airbnb/lunar/lib/components/MenuToggle';
 import Link from '@airbnb/lunar/lib/components/Link';
 import SecondaryLink from '@airbnb/lunar/lib/components/SecondaryLink';
 import T from '@airbnb/lunar/lib/components/Translate';
@@ -53,17 +53,19 @@ describe('<FilterMenu />', () => {
       </FilterMenu>,
     );
 
-    expect(((wrapper.dive().props() as Props).toggleLabel as T).props.phrase).toBe('Open filters');
+    expect(((wrapper.dive().props() as MenuToggleProps).toggleLabel as T).props.phrase).toBe(
+      'Open filters',
+    );
 
     wrapper.setProps({
       activeCount: 1,
     });
 
-    expect(((wrapper.dive().props() as Props).toggleLabel as T).props.phrase).toBe(
+    expect(((wrapper.dive().props() as MenuToggleProps).toggleLabel as T).props.phrase).toBe(
       '%{smartCount} Filter||||%{smartCount} Filters',
     );
 
-    expect(((wrapper.dive().props() as Props).toggleLabel as T).props.smartCount).toBe(1);
+    expect(((wrapper.dive().props() as MenuToggleProps).toggleLabel as T).props.smartCount).toBe(1);
   });
 
   it('clicking apply on a valid form closes the menu', () => {

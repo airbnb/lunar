@@ -4,7 +4,7 @@ import Breadcrumb from './Breadcrumb';
 
 export { Breadcrumb };
 
-export type Props = {
+export type BreadcrumbsProps = {
   /** Accessibility label. */
   accessibilityLabel: string;
   /** List of `Breadcrumb`s. */
@@ -12,7 +12,7 @@ export type Props = {
 };
 
 /** A controller for multiple tabs. */
-export default function Breadcrumbs({ accessibilityLabel, children }: Props) {
+export default function Breadcrumbs({ accessibilityLabel, children }: BreadcrumbsProps) {
   return (
     <nav aria-label={accessibilityLabel}>
       <List horizontal ordered>

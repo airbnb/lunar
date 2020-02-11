@@ -6,7 +6,7 @@ import BasePortal from '../../Portal';
 import { ESCAPE } from '../../../keys';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type PortalProps = {
   children?: React.ReactNode;
   /** True removes the background. */
   noBackground: boolean;
@@ -20,11 +20,11 @@ export type Props = {
   y?: number;
 };
 
-export type State = {
+export type PortalState = {
   height: number;
 };
 
-export class Portal extends React.Component<Props & WithStylesProps, State> {
+export class Portal extends React.Component<PortalProps & WithStylesProps, PortalState> {
   state = {
     height: 0,
   };

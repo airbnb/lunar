@@ -3,8 +3,8 @@ import Enzyme from 'enzyme';
 import { mountWithStyles, shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Picker, {
   Picker as BasePicker,
-  Props as PickerProps,
-  State as PickerState,
+  PickerProps,
+  PickerState,
 } from '../../../src/components/HierarchyPicker/Picker';
 import Search from '../../../src/components/HierarchyPicker/Search';
 import Hierarchy from '../../../src/components/HierarchyPicker/Hierarchy';

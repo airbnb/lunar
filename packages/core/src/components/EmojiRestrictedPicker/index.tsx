@@ -1,11 +1,11 @@
 import React from 'react';
-import EmojiPicker, { Props } from '../EmojiPicker';
+import EmojiPicker, { EmojiPickerProps } from '../EmojiPicker';
 import { EMOJI_WHITELIST } from '../../constants';
 
 /**
  * Display an emoji picker that utilizes a restricted whitelist of acceptable emojis.
  */
-export default function EmojiRestrictedPicker(props: Props) {
+export default function EmojiRestrictedPicker(props: EmojiPickerProps) {
   return (
     <EmojiPicker
       disableCommonlyUsed

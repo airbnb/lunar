@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import BaseSelect from '../private/BaseSelect';
 import { SelectProps } from '../private/FormInput';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import T from '../Translate';
 import createRange from '../../utils/createRange';
 import createDateTime from '../../utils/createDateTime';
@@ -17,7 +17,7 @@ type Range = {
   value: string;
 }[];
 
-export type Props = Omit<SelectProps, 'id' | 'value'> &
+export type DateTimeSelectProps = Omit<SelectProps, 'id' | 'value'> &
   FormFieldProps & {
     /** Enable 12-hour clock instead of 24-hour. */
     enable12HourClock?: boolean;
@@ -45,14 +45,17 @@ export type Props = Omit<SelectProps, 'id' | 'value'> &
     value?: string | number | Date | DateTime;
   };
 
-export type State = {
+export type DateTimeSelectState = {
   id: string;
   date: DateTime;
   meridiem: string;
 };
 
 /** An uncontrolled multi-select field for date and time ranges in UTC. */
-export class DateTimeSelect extends React.Component<Props & WithStylesProps, State> {
+export class DateTimeSelect extends React.Component<
+  DateTimeSelectProps & WithStylesProps,
+  DateTimeSelectState
+> {
   static defaultProps = {
     enable12HourClock: false,
     hideDate: false,
@@ -74,7 +77,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
     meridiem: this.date.get('hour') <= 11 ? 'am' : 'pm',
   };
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: DateTimeSelectProps) {
     const { value, locale, timezone } = this.props;
 
     // Don't set minute/second to 0 here, because when used in conjunction with the form kit,

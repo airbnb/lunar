@@ -5,9 +5,9 @@ import Text from '../Text';
 import NotchedBox from '../NotchedBox';
 import Overlay from '.';
 
-type State = { open: boolean };
+type OverlayDemoState = { open: boolean };
 
-class OverlayDemo extends React.Component<{}, State> {
+class OverlayDemo extends React.Component<{}, OverlayDemoState> {
   state = { open: false };
 
   handleToggle = () => this.setState(prevState => ({ open: !prevState.open }));
@@ -29,7 +29,7 @@ class OverlayDemo extends React.Component<{}, State> {
   }
 }
 
-class OverlayNoBgDemo extends React.Component<{}, State> {
+class OverlayNoBgDemo extends React.Component<{}, OverlayDemoState> {
   state = { open: false };
 
   handleToggle = () => this.setState(prevState => ({ open: !prevState.open }));

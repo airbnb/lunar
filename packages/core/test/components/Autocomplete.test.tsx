@@ -3,8 +3,8 @@ import Enzyme, { shallow } from 'enzyme';
 import T from '../../src/components/Translate';
 import Autocomplete, {
   CACHE_DURATION,
-  Props,
-  State,
+  AutocompleteProps,
+  AutocompleteState,
   Item as AutocompleteItem,
 } from '../../src/components/Autocomplete';
 import BaseInput from '../../src/components/private/BaseInput';
@@ -24,7 +24,7 @@ describe('<Autocomplete />', () => {
     onLoadItems: () => Promise.resolve([]),
   };
 
-  let wrapper: Enzyme.ShallowWrapper<Props, State, Autocomplete>;
+  let wrapper: Enzyme.ShallowWrapper<AutocompleteProps, AutocompleteState, Autocomplete>;
   let instance: Autocomplete;
 
   beforeEach(() => {

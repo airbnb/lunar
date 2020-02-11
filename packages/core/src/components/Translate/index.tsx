@@ -1,11 +1,15 @@
 import React from 'react';
 import Core from '../..';
-import { TranslateParams, TranslateProps, TranslateOptions } from '../../types';
+import {
+  TranslateParams,
+  TranslateProps as BaseTranslateProps,
+  TranslateOptions,
+} from '../../types';
 
-export type Props = TranslateProps;
+export type TranslateProps = BaseTranslateProps;
 
 /** Translate a phrase with a key and dynamic params. */
-export default class Translate extends React.PureComponent<Props> {
+export default class Translate extends React.PureComponent<TranslateProps> {
   static defaultProps = {
     html: false,
   };

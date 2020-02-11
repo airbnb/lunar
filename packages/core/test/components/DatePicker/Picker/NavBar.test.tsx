@@ -3,10 +3,10 @@ import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 // @ts-ignore
 import { LocaleUtils } from 'react-day-picker/lib/src/LocaleUtils';
 import DirectionalIcon from '../../../../src/components/DirectionalIcon';
-import NavBar, { Props } from '../../../../src/components/DatePicker/Picker/NavBar';
+import NavBar, { NavBarProps } from '../../../../src/components/DatePicker/Picker/NavBar';
 
 describe('<DatePicker />', () => {
-  const props: Props = {
+  const props: NavBarProps = {
     className: 'navBar_3hmsj',
     classNames: {
       body: 'body_1i2nzqg',

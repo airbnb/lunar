@@ -5,11 +5,11 @@ import BaseButton from '../Button';
 import MutedButton from '../MutedButton';
 import IconButton from '../IconButton';
 import ExpandableIcon from '../ExpandableIcon';
-import Dropdown, { Props as DropdownProps } from '../Dropdown';
-import Menu, { Item, Separator, Props as MenuProps } from '../Menu';
+import Dropdown, { DropdownProps } from '../Dropdown';
+import Menu, { Item, Separator, MenuProps } from '../Menu';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type MenuToggleProps = {
   /** Accessibility label for menu. */
   accessibilityLabel: string;
   /** Menu items to be shown on the expanded view. */
@@ -46,12 +46,15 @@ export type Props = {
   showDropdown?: boolean;
 };
 
-export type State = {
+export type MenuToggleState = {
   opened: Boolean;
 };
 
 /** A controller for multiple tabs. */
-export class MenuToggle extends React.Component<Props & WithStylesProps, State> {
+export class MenuToggle extends React.Component<
+  MenuToggleProps & WithStylesProps,
+  MenuToggleState
+> {
   static propTypes = {
     toggleIcon: iconComponent,
   };
@@ -73,7 +76,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
     opened: Boolean(this.props.showDropdown),
   };
 
-  componentDidUpdate(prevProp: Props & WithStylesProps, prevState: State) {
+  componentDidUpdate(prevProp: MenuToggleProps & WithStylesProps, prevState: MenuToggleState) {
     if (this.props.showDropdown !== prevProp.showDropdown) {
       this.setState({
         opened: Boolean(this.props.showDropdown),

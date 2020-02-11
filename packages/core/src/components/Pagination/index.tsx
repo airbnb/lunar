@@ -13,7 +13,7 @@ import DirectionalIcon from '../DirectionalIcon';
 import { styleSheet } from './styles';
 import useTheme from '../../hooks/useTheme';
 
-export type Props = {
+export type PaginationProps = {
   /** Align arrows in the center */
   centerAlign?: boolean;
   /** Align arrows to the end */
@@ -60,7 +60,7 @@ function Pagination({
   onPrevious,
   page,
   pageCount,
-}: Props) {
+}: PaginationProps) {
   const [styles, cx] = useStyles(styleSheet);
   const theme = useTheme();
 

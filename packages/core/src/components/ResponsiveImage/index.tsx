@@ -6,7 +6,7 @@ import { styleSheet } from './styles';
 export const DEFAULT_BORDER_RADIUS = 6;
 const objectFitPropType = mutuallyExclusiveTrueProps('contain', 'cover');
 
-export type Props = {
+export type ResponsiveImageProps = {
   /** An accessible label. */
   alt: string;
   /** The css border-radius value. Defaults to 6 pixels. */
@@ -39,12 +39,15 @@ export type Props = {
   shimmer?: React.ReactNode;
 };
 
-export type State = {
+export type ResponsiveImageState = {
   imageLoaded: boolean;
 };
 
 /** An image that is constrained proportionally in one or both dimensions. */
-export class ResponsiveImage extends React.Component<Props & WithStylesProps, State> {
+export class ResponsiveImage extends React.Component<
+  ResponsiveImageProps & WithStylesProps,
+  ResponsiveImageState
+> {
   static defaultProps = {
     borderRadius: DEFAULT_BORDER_RADIUS,
     contain: false,
@@ -68,7 +71,7 @@ export class ResponsiveImage extends React.Component<Props & WithStylesProps, St
     this.createAsyncImage();
   }
 
-  componentDidUpdate({ src: previousSrc }: Props) {
+  componentDidUpdate({ src: previousSrc }: ResponsiveImageProps) {
     const { src: currentSrc } = this.props;
 
     if (currentSrc !== previousSrc) {

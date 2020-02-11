@@ -2,7 +2,7 @@ import React from 'react';
 import useStyles from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type ButtonGroupProps = {
   /** List of components to group. */
   children: NonNullable<React.ReactNode>;
   /** Horizontally align the buttons to the end (flex-end). */
@@ -14,7 +14,7 @@ export type Props = {
 };
 
 /** Horizontally align `Button`s with a consistent gutter between each. */
-export default function ButtonGroup({ children, endAlign, stacked, stretched }: Props) {
+export default function ButtonGroup({ children, endAlign, stacked, stretched }: ButtonGroupProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

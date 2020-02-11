@@ -5,7 +5,7 @@ import RotateControls from './RotateControls';
 import ResponsiveImage from '../ResponsiveImage';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type ImageViewerProps = {
   /** An accessible label. */
   alt: string;
   /** Render as borderless. */
@@ -22,7 +22,7 @@ export type Props = {
   width?: number | string;
 };
 
-export type State = {
+export type ImageViewerState = {
   dragging: boolean;
   imageLocation: Position;
   lastMouseLocation: Position;
@@ -34,7 +34,10 @@ export type Position = {
 };
 
 /** An image viewer that can zoom, drag, and rotate an image. */
-export class ImageViewer extends React.Component<Props & WithStylesProps, State> {
+export class ImageViewer extends React.Component<
+  ImageViewerProps & WithStylesProps,
+  ImageViewerState
+> {
   static defaultProps = {
     height: 'none',
     rotation: 0,

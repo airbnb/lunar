@@ -4,7 +4,7 @@ import useStyles from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 import { STATUSES } from '../../constants';
 
-export type Props = {
+export type ProgressBarProps = {
   /** Dangerous/failure status (red). */
   danger?: boolean;
   /** Disable leading rounded corners. */
@@ -33,7 +33,7 @@ function ProgressBar({
   success,
   trailing,
   warning,
-}: Props) {
+}: ProgressBarProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

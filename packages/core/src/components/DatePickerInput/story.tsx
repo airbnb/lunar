@@ -5,10 +5,10 @@ import Spacing from '../Spacing';
 import DatePickerInput from '.';
 import DatePicker from '../DatePicker';
 
-type State = { from: Date | null; to?: Date | null };
+type DatePickerInputDemoState = { from: Date | null; to?: Date | null };
 
-class DatePickerInputDemo extends React.Component<{}, State> {
-  state: State = {
+class DatePickerInputDemo extends React.Component<{}, DatePickerInputDemoState> {
+  state: DatePickerInputDemoState = {
     from: null,
     to: null,
   };

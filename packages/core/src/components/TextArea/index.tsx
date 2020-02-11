@@ -2,13 +2,13 @@ import React from 'react';
 import uuid from 'uuid/v4';
 import PropTypes from 'prop-types';
 import { requiredBy } from 'airbnb-prop-types';
-import BaseTextArea, { Props as BaseTextAreaProps } from '../private/BaseTextArea';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import BaseTextArea, { BaseTextAreaProps } from '../private/BaseTextArea';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import T from '../Translate';
-import Proofreader, { Props as ProofreaderProps } from '../Proofreader';
+import Proofreader, { ProofreaderProps } from '../Proofreader';
 import { ExtraProofreadProps } from '../Proofreader/types';
 
-export type Props = Omit<BaseTextAreaProps, 'id'> &
+export type TextAreaProps = Omit<BaseTextAreaProps, 'id'> &
   FormFieldProps &
   Partial<Pick<ProofreaderProps, 'locale' | 'onCheckText'>> & {
     /** Max characters allowed in this field. Will populate `labelDescription` with the current usage. */
@@ -21,12 +21,12 @@ export type Props = Omit<BaseTextAreaProps, 'id'> &
     proofreadProps?: ExtraProofreadProps;
   };
 
-export type State = {
+export type TextAreaState = {
   id: string;
 };
 
 /** A controlled textarea field. */
-export default class TextArea extends React.Component<Props, State> {
+export default class TextArea extends React.Component<TextAreaProps, TextAreaState> {
   static propTypes = {
     onCheckText: requiredBy('proofread', PropTypes.func),
   };

@@ -15,7 +15,7 @@ import { styleSheet } from './styles';
 
 export { SheetArea, SheetContext };
 
-export type Props = {
+export type BaseSheetProps = {
   /** The contents of the sheet. */
   children: NonNullable<React.ReactNode>;
   /** Render with reduced padding */
@@ -41,12 +41,15 @@ export type PrivateProps = {
   setSheetVisible: Context;
 };
 
-export type State = {
+export type BaseSheetState = {
   animating: boolean;
 };
 
 /** @ignore */
-export class BaseSheet extends React.Component<Props & PrivateProps & WithStylesProps, State> {
+export class BaseSheet extends React.Component<
+  BaseSheetProps & PrivateProps & WithStylesProps,
+  BaseSheetState
+> {
   static defaultProps = {
     gap: false,
     noAnimation: false,
@@ -72,7 +75,7 @@ export class BaseSheet extends React.Component<Props & PrivateProps & WithStyles
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: BaseSheetProps) {
     if (prevProps.visible !== this.props.visible) {
       this.visibilityChange();
     }
@@ -273,7 +276,7 @@ const InternalSheet = withStyles(styleSheet, {
  * component, and it will render at the root of your document. It does not need to be wrapped in a
  * `SheetArea`.
  */
-export default function Sheet(props: Props) {
+export default function Sheet(props: BaseSheetProps) {
   return (
     <SheetContext.Consumer>
       {setSheetVisible => <InternalSheet {...props} setSheetVisible={setSheetVisible} />}

@@ -2,9 +2,9 @@ import React from 'react';
 import uuid from 'uuid/v4';
 import debouncePromise from 'debounce-promise';
 import toMilliseconds from '../../utils/toMilliseconds';
-import BaseInput, { Props as BaseInputProps } from '../private/BaseInput';
+import BaseInput, { BaseInputProps } from '../private/BaseInput';
 import ErrorMessage from '../ErrorMessage';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import Loader from '../Loader';
 import Menu, { Item as MenuItem, Row as MenuRow } from '../Menu';
 import Spacing from '../Spacing';
@@ -34,7 +34,7 @@ function renderItem(item: Item): NonNullable<React.ReactNode> {
 
 export type ItemResponseType<T> = T[] | { items?: T[]; results?: T[] };
 
-export type Props<T extends Item = Item> = Omit<BaseInputProps, 'id'> &
+export type AutocompleteProps<T extends Item = Item> = Omit<BaseInputProps, 'id'> &
   FormFieldProps & {
     /** Accessibility label. */
     accessibilityLabel: string;
@@ -99,7 +99,7 @@ export type Props<T extends Item = Item> = Omit<BaseInputProps, 'id'> &
     shouldItemRender?: (item: T, value: string) => boolean;
   };
 
-export type State<T extends Item = Item> = {
+export type AutocompleteState<T extends Item = Item> = {
   error: Error | null;
   highlightedIndex: number | null;
   id: string;
@@ -111,8 +111,8 @@ export type State<T extends Item = Item> = {
 
 /** An uncontrolled input field that utilizes a search lookup for automatic completion. */
 export default class Autocomplete<T extends Item = Item> extends React.Component<
-  Props<T>,
-  State<T>
+  AutocompleteProps<T>,
+  AutocompleteState<T>
 > {
   static defaultProps = {
     autoFocus: false,
@@ -137,7 +137,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
 
   inputRef = React.createRef<HTMLInputElement>();
 
-  state: State<T> = {
+  state: AutocompleteState<T> = {
     error: null,
     highlightedIndex: null,
     id: uuid(),
@@ -157,7 +157,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     }
   }
 
-  componentDidUpdate(prevProps: Props<T>, prevState: State<T>) {
+  componentDidUpdate(prevProps: AutocompleteProps<T>, prevState: AutocompleteState<T>) {
     const { highlightedIndex, open, value } = this.state;
 
     if (highlightedIndex !== null && highlightedIndex >= this.getFilteredItems(this.state).length) {
@@ -433,7 +433,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     }
   };
 
-  getFilteredItems(state: State<T>) {
+  getFilteredItems(state: AutocompleteState<T>) {
     const { shouldItemRender } = this.props;
     const { value } = state;
     let { items } = state;
@@ -445,7 +445,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     return items;
   }
 
-  getInputProps(props: Props<T>) {
+  getInputProps(props: AutocompleteProps<T>) {
     const {
       compact,
       disabled,
@@ -566,7 +566,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     passThroughRef(this.props.propagateRef, ref);
   };
 
-  maybeAutoCompleteText = (state: State<T>) => {
+  maybeAutoCompleteText = (state: AutocompleteState<T>) => {
     const { highlightedIndex, value } = state;
     const { isItemSelectable } = this.props;
     let index = highlightedIndex === null ? 0 : highlightedIndex;

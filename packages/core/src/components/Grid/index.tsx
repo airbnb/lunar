@@ -4,7 +4,7 @@ import useStyles from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 import Col from './Col';
 
-export type Props = {
+export type GridProps = {
   /** Vertically align the columns at the bottom. */
   bottomAlign?: boolean;
   /** Horizontally align the columns to the center. */
@@ -33,7 +33,7 @@ function Grid({
   reversed,
   startAlign,
   topAlign,
-}: Props) {
+}: GridProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

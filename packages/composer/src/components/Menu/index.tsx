@@ -1,7 +1,7 @@
 import React, { useContext, useCallback } from 'react';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import useTheme from '@airbnb/lunar/lib/hooks/useTheme';
-import Dropdown, { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
+import Dropdown, { DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
 import ComposerContext from '../../contexts/ComposerContext';
 import ToggleButton from './ToggleButton';
 import { isElementWithID } from '../../helpers/platform';

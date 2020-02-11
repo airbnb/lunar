@@ -3,12 +3,12 @@ import React from 'react';
 import withBoundary from '../../composers/withBoundary';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import GradientScroller from '../GradientScroller';
-import Tab, { Props as TabProps } from './Tab';
+import Tab, { TabProps } from './Tab';
 import { styleSheet } from './styles';
 
 export { Tab };
 
-export type Props = {
+export type TabsProps = {
   /** Hide bottom border of Tabs. */
   borderless?: boolean;
   /** Tabs and their content. */
@@ -29,12 +29,12 @@ export type Props = {
   trackingName?: string;
 };
 
-export type State = {
+export type TabsState = {
   selectedKey: string;
 };
 
 /** A controller for multiple tabs. */
-export class Tabs extends React.Component<Props & WithStylesProps, State> {
+export class Tabs extends React.Component<TabsProps & WithStylesProps, TabsState> {
   static defaultProps = {
     borderless: false,
     defaultKey: '',
@@ -74,7 +74,7 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: TabsProps) {
     if (this.props.defaultKey !== prevProps.defaultKey) {
       this.setState({
         selectedKey: this.props.defaultKey!,

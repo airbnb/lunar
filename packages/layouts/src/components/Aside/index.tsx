@@ -44,7 +44,7 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
   },
 });
 
-export type Props = {
+export type AsideProps = {
   /** Column is rendered after content. Applies a left border. */
   after?: boolean;
   /** Column is rendered before content. Applies a right border. */
@@ -76,7 +76,7 @@ export default function Aside({
   scrollable,
   width,
   onCollapseToggle,
-}: Props) {
+}: AsideProps) {
   const [styles, cx] = useStyles(styleSheet);
   const [isExpanded, setExpanded] = useState(true);
 

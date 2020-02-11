@@ -4,13 +4,13 @@ import useStyles from '../../hooks/useStyles';
 import Step from './Step';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type SteppedProgressBarProps = {
   /** List of `Step`s to track progress. */
   children: NonNullable<React.ReactNode>;
 };
 
 /** A progress bar separated into individual steps. */
-function SteppedProgressBar({ children }: Props) {
+function SteppedProgressBar({ children }: SteppedProgressBarProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const steps = React.Children.count(children);

@@ -6,14 +6,14 @@ import IconChevronDown from '@airbnb/lunar-icons/lib/interface/IconChevronDown';
 import DirectionalIcon from '../DirectionalIcon';
 import Core from '../..';
 
-export type Props = {
+export type ExpandableIconProps = {
   /** Whether the content has been expanded or not. */
   expanded: boolean;
   /** Custom size for the icons. */
   size?: string | number;
 };
 
-export default function ExpandableIcon({ expanded, size }: Props) {
+export default function ExpandableIcon({ expanded, size }: ExpandableIconProps) {
   const context = useContext(DirectionContext);
 
   return expanded ? (

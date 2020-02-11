@@ -4,7 +4,7 @@ import useStyles from '../../hooks/useStyles';
 import { STATUSES } from '../../constants';
 import { styleSheetRow as styleSheet } from './styles';
 
-export type Props = {
+export type TableRowProps = {
   /** Table cells to render. */
   children: NonNullable<React.ReactNode>;
   /** Dangerous/failure row (red). */
@@ -22,7 +22,16 @@ export type Props = {
 };
 
 /** A table row that contains multiple cells. */
-function TableRow({ children, danger, info, muted, notice, success, warning, ...props }: Props) {
+function TableRow({
+  children,
+  danger,
+  info,
+  muted,
+  notice,
+  success,
+  warning,
+  ...props
+}: TableRowProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

@@ -1,24 +1,24 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import BaseCheckBox, { Props as BaseCheckBoxProps } from '../private/BaseCheckBox';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import BaseCheckBox, { BaseCheckBoxProps } from '../private/BaseCheckBox';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import Text from '../Text';
 
 const stateProp = mutuallyExclusiveTrueProps('checked', 'indeterminate');
 
-export type Props = BaseCheckBoxProps &
+export type CheckBoxProps = BaseCheckBoxProps &
   FormFieldProps & {
     /** Top align content. */
     topAlign?: boolean;
   };
 
-export type State = {
+export type CheckBoxState = {
   id: string;
 };
 
 /** A controlled checkbox field. */
-export default class CheckBox extends React.Component<Props, State> {
+export default class CheckBox extends React.Component<CheckBoxProps, CheckBoxState> {
   static defaultProps = {
     button: false,
     checked: false,

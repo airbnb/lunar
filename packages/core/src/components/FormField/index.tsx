@@ -9,7 +9,7 @@ import Prefix from './Prefix';
 import Suffix from './Suffix';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type FormFieldProps = {
   /** @deprecated Decrease label font size and spacing. */
   compact?: boolean;
   /** @ignore Decrease bottom margin of the field. (Internal use only) */
@@ -46,7 +46,7 @@ export type Props = {
   suffix?: React.ReactNode;
 };
 
-export type PrivateProps = Props & {
+export type PrivateProps = FormFieldProps & {
   /** Input field to wrap. */
   children: NonNullable<React.ReactNode>;
   /** Unique ID of the field. */

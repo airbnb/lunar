@@ -1,8 +1,8 @@
 import React from 'react';
-import FieldAffix, { Props } from '../private/FieldAffix';
+import FieldAffix, { FieldAffixProps } from '../private/FieldAffix';
 
 /** A prefix to display before an input within a form field. */
-export default class Prefix extends React.PureComponent<Props> {
+export default class Prefix extends React.PureComponent<FieldAffixProps> {
   render() {
     const { children, compact, disabled } = this.props;
 

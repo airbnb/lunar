@@ -3,7 +3,7 @@ import useStyles from '../../hooks/useStyles';
 import Spacing, { SpacingRange } from '../Spacing';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type DividerProps = {
   /** Spacing on the bottom. */
   bottom?: SpacingRange;
   /** Render the divider with a short width. */
@@ -13,7 +13,7 @@ export type Props = {
 };
 
 /** A horizontal divider. */
-export default function Divider({ bottom = 2, short, top = 2 }: Props) {
+export default function Divider({ bottom = 2, short, top = 2 }: DividerProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

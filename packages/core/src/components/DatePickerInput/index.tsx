@@ -1,17 +1,17 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import { DayPickerInputProps } from 'react-day-picker';
-import { Props as BaseInputProps } from '../private/BaseInput';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import { BaseInputProps } from '../private/BaseInput';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import DateTime from '../DateTime';
-import { Props as DatePickerProps } from '../DatePicker';
-import { Props as DropdownProps } from '../Dropdown';
+import { DatePickerProps } from '../DatePicker';
+import { DropdownProps } from '../Dropdown';
 import createDateTime from '../../utils/createDateTime';
 import { mdyCalendarBundle } from '../../messages';
 import PrivatePickerInput from './Input';
 import { Locale } from '../../types';
 
-export type Props = Omit<BaseInputProps, 'id' | 'onChange' | 'value'> &
+export type DatePickerInputProps = Omit<BaseInputProps, 'id' | 'onChange' | 'value'> &
   FormFieldProps & {
     /** Clear the input when clicking on a previously selected day. */
     clearOnDayClick?: DayPickerInputProps['clickUnselectsDay'];
@@ -37,12 +37,15 @@ export type Props = Omit<BaseInputProps, 'id' | 'onChange' | 'value'> &
     value?: string | Date;
   };
 
-export type State = {
+export type DatePickerInputState = {
   id: string;
 };
 
 /** A controlled input field that opens a date picker. */
-export default class DatePickerInput extends React.Component<Props, State> {
+export default class DatePickerInput extends React.Component<
+  DatePickerInputProps,
+  DatePickerInputState
+> {
   static defaultProps = {
     hideOnDayClick: false,
   };

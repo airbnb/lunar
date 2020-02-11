@@ -20,7 +20,7 @@ function getSideImageWidth({ large, small }: { large?: boolean; small?: boolean 
   return 152;
 }
 
-export type Props = {
+export type CardContentProps = {
   /** Content to display following the primary content. Takes priority over `afterImageSrc`. */
   after?: React.ReactNode;
   /** Right image URL. */
@@ -73,7 +73,7 @@ function CardContent({
   truncated,
   onAfterImageClick,
   onBeforeImageClick,
-}: Props) {
+}: CardContentProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   const ContainerTag = onClick ? 'button' : 'div';

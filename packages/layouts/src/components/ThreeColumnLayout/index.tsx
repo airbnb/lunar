@@ -1,7 +1,7 @@
 import React from 'react';
-import Layout, { Props as LayoutProps } from '../Layout';
+import Layout, { LayoutProps } from '../Layout';
 
-export type Props = LayoutProps & {
+export type ThreeColumnLayoutProps = LayoutProps & {
   /** The after aside content. */
   after: NonNullable<React.ReactNode>;
   /** The before aside content. */
@@ -9,6 +9,6 @@ export type Props = LayoutProps & {
 };
 
 /** A three-column layout. */
-export default function ThreeColumnLayout({ children, ...props }: Props) {
+export default function ThreeColumnLayout({ children, ...props }: ThreeColumnLayoutProps) {
   return <Layout {...props}>{children}</Layout>;
 }

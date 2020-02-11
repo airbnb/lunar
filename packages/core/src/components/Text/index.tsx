@@ -3,7 +3,7 @@ import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import useStyles from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type TextProps = {
   /** Render the text inline instead of block. */
   baseline?: boolean;
   /** Apply bold emphasis. */
@@ -62,7 +62,7 @@ function Text({
   startAlign,
   truncated,
   uppercased,
-}: Props) {
+}: TextProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   let Tag: 'div' | 'span' | 'small' | 'h4' = 'div';

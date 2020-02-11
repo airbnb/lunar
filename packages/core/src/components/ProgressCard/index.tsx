@@ -6,7 +6,7 @@ import ProgressBar from '../ProgressBar';
 import SteppedProgressBar from '../SteppedProgressBar';
 import Spacing from '../Spacing';
 
-export type Props = {
+export type ProgressCardProps = {
   /** Content to display below the title. */
   children?: React.ReactNode;
   /** Progress bar to render. */
@@ -16,7 +16,7 @@ export type Props = {
 };
 
 /** A card representing the state of progress. */
-export default class ProgressCard extends React.PureComponent<Props> {
+export default class ProgressCard extends React.PureComponent<ProgressCardProps> {
   static propTypes = {
     progress: childrenOfType(ProgressBar, SteppedProgressBar).isRequired,
   };

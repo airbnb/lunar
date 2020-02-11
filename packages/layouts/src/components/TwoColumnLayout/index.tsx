@@ -1,10 +1,10 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import Layout, { Props as LayoutProps } from '../Layout';
+import Layout, { LayoutProps } from '../Layout';
 
 const asidePropType = mutuallyExclusiveTrueProps('after', 'before');
 
-export type Props = LayoutProps & {
+export type TwoColumnLayoutProps = LayoutProps & {
   /** Display the aside after the content. */
   after?: boolean;
   /** The aside content. */
@@ -14,7 +14,7 @@ export type Props = LayoutProps & {
 };
 
 /** A two-column layout. */
-export default class TwoColumnLayout extends React.Component<Props> {
+export default class TwoColumnLayout extends React.Component<TwoColumnLayoutProps> {
   static propTypes = {
     after: asidePropType,
     before: asidePropType,

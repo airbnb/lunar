@@ -8,7 +8,7 @@ import useStyles from '../../../hooks/useStyles';
 import useTheme from '../../../hooks/useTheme';
 import { styleSheetInnerContent as styleSheet } from '../styles';
 
-export type Props = {
+export type ModalInnerContentProps = {
   /** Dialog content. */
   children: NonNullable<React.ReactNode>;
   /** Footer content. */
@@ -37,7 +37,7 @@ export default function ModalInnerContent({
   scrollable,
   subtitle,
   title,
-}: Props) {
+}: ModalInnerContentProps) {
   const [styles, cx] = useStyles(styleSheet);
   const theme = useTheme();
   const withHeader = Boolean(title || subtitle);
