@@ -4,10 +4,10 @@ import FieldAffix, { FieldAffixProps } from '../private/FieldAffix';
 /** A suffix to display after an input within a form field. */
 export default class Suffix extends React.PureComponent<FieldAffixProps> {
   render() {
-    const { children, compact, disabled } = this.props;
+    const { children, small, large, disabled } = this.props;
 
     return (
-      <FieldAffix after compact={compact} disabled={disabled}>
+      <FieldAffix after small={small} large={large} disabled={disabled}>
         {children}
       </FieldAffix>
     );

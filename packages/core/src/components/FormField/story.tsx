@@ -115,15 +115,15 @@ supportsASuffix.story = {
   name: 'Supports a suffix.',
 };
 
-export function supportsBothAPrefixAndSuffixAndACompactState() {
+export function supportsBothAPrefixAndSuffixAndASmallState() {
   return (
     <>
       <Input
         small
         name="both-input"
         label="Input"
-        prefix={<Prefix compact>http://</Prefix>}
-        suffix={<Suffix compact>.com</Suffix>}
+        prefix={<Prefix small>http://</Prefix>}
+        suffix={<Suffix small>.com</Suffix>}
         onChange={action('onChange')}
       />
 
@@ -133,12 +133,12 @@ export function supportsBothAPrefixAndSuffixAndACompactState() {
         name="both-textarea"
         label="TextArea"
         prefix={
-          <Prefix compact disabled>
+          <Prefix small disabled>
             Hello
           </Prefix>
         }
         suffix={
-          <Suffix compact disabled>
+          <Suffix small disabled>
             Goodbye
           </Suffix>
         }
@@ -148,8 +148,45 @@ export function supportsBothAPrefixAndSuffixAndACompactState() {
   );
 }
 
-supportsBothAPrefixAndSuffixAndACompactState.story = {
+supportsBothAPrefixAndSuffixAndASmallState.story = {
   name: 'Supports both a prefix and suffix in a small state.',
+};
+
+export function supportsBothAPrefixAndSuffixAndALargeState() {
+  return (
+    <>
+      <Input
+        large
+        name="both-input"
+        label="Input"
+        prefix={<Prefix large>http://</Prefix>}
+        suffix={<Suffix large>.com</Suffix>}
+        onChange={action('onChange')}
+      />
+
+      <TextArea
+        large
+        disabled
+        name="both-textarea"
+        label="TextArea"
+        prefix={
+          <Prefix large disabled>
+            Hello
+          </Prefix>
+        }
+        suffix={
+          <Suffix large disabled>
+            Goodbye
+          </Suffix>
+        }
+        onChange={action('onChange')}
+      />
+    </>
+  );
+}
+
+supportsBothAPrefixAndSuffixAndALargeState.story = {
+  name: 'Supports both a prefix and suffix in a large state.',
 };
 
 export function supportsInline() {

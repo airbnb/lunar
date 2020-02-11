@@ -195,7 +195,7 @@ export function displayWithInlineLabelAndAPrefix() {
       inline
       name="both-textarea"
       label="TextArea"
-      prefix={<Prefix compact>Hello</Prefix>}
+      prefix={<Prefix>Hello</Prefix>}
       onChange={action('onChange')}
     />
   );
