@@ -34,23 +34,18 @@ supportsMultipleFilesOfImageOnlyWhileHidingFilePreviewColumns.story = {
   name: 'Supports multiple files, of image only, while hiding file preview columns.',
 };
 
-export function withACompactSmallerViewOnlySupportingAudioAndVideo() {
+export function inDifferentSizesAndFileTypes() {
   return (
     <>
-      <FileInput
-        onlyAudio
-        compact
-        name="input-compact"
-        label="Compact"
-        onChange={action('onChange')}
-      />
+      <FileInput onlyAudio small name="input-small" label="Small" onChange={action('onChange')} />
       <FileInput onlyVideo name="input-regular" label="Regular" onChange={action('onChange')} />
+      <FileInput onlyImages large name="input-large" label="Large" onChange={action('onChange')} />
     </>
   );
 }
 
-withACompactSmallerViewOnlySupportingAudioAndVideo.story = {
-  name: 'With a compact smaller view, only supporting audio and video.',
+inDifferentSizesAndFileTypes.story = {
+  name: 'In different sizes and file types.',
 };
 
 export function withAnErrorMessageInAnInvalidState() {

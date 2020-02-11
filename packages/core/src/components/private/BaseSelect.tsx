@@ -12,7 +12,7 @@ const styleSheet: StyleSheet = ({ pattern, unit }) => ({
 
   arrow: {
     position: 'absolute',
-    right: unit,
+    right: unit / 2,
     top: '50%',
     transform: 'translateY(-50%)',
     pointerEvents: 'none',
@@ -27,8 +27,12 @@ const styleSheet: StyleSheet = ({ pattern, unit }) => ({
     ...pattern.invalid,
   },
 
-  arrow_compact: {
-    right: unit * 0.75,
+  arrow_small: {
+    right: unit * 0.25,
+  },
+
+  arrow_large: {
+    right: unit,
   },
 });
 
@@ -70,7 +74,8 @@ export default function BaseSelect({
           styles.arrow,
           restProps.disabled && styles.arrow_disabled,
           restProps.invalid && styles.arrow_invalid,
-          restProps.compact && styles.arrow_compact,
+          restProps.small && styles.arrow_small,
+          restProps.large && styles.arrow_large,
         )}
       >
         <IconCaretDown decorative size="2em" />

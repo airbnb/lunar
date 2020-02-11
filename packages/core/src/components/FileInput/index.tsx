@@ -139,7 +139,8 @@ export default class FileInput extends React.Component<FileInputProps, FileInput
         <FormInputButton
           inverted
           invalid={fieldProps.invalid}
-          small={fieldProps.compact}
+          small={fieldProps.small}
+          large={fieldProps.large}
           disabled={props.disabled}
           afterIcon={<Icon decorative size="1.25em" />}
           onClick={this.handleClick}
@@ -155,7 +156,7 @@ export default class FileInput extends React.Component<FileInputProps, FileInput
 
         {files.length > 0 && !fieldProps.inline && (
           <Spacing top={1}>
-            <Text small={fieldProps.compact}>
+            <Text small={fieldProps.small}>
               <Table compact striped>
                 <tbody>
                   {files.map((file, i) => (

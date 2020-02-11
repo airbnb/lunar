@@ -128,7 +128,7 @@ disableSelectedItemsWithIsItemSelectable.story = {
   name: 'Disable selected items with `isItemSelectable`.',
 };
 
-export function withCustomStatesInASmallForm() {
+export function withCustomStatesInDifferentSizes() {
   return (
     <>
       <Autocomplete
@@ -136,7 +136,7 @@ export function withCustomStatesInASmallForm() {
         small
         accessibilityLabel="Label"
         name="autocomplete-state-error"
-        label="Error"
+        label="Error (small)"
         renderError={error => <div>{error.message}</div>}
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
@@ -145,10 +145,9 @@ export function withCustomStatesInASmallForm() {
 
       <Autocomplete
         loadItemsOnMount
-        small
         accessibilityLabel="Label"
         name="autocomplete-state-loading"
-        label="Loading"
+        label="Loading (regular)"
         renderLoading={() => <div>Loading...</div>}
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
@@ -157,10 +156,10 @@ export function withCustomStatesInASmallForm() {
 
       <Autocomplete
         loadItemsOnMount
-        small
+        large
         accessibilityLabel="Label"
         name="autocomplete-state-empty"
-        label="No results"
+        label="No results (large)"
         renderNoResults={() => <div>Nothing to see here!</div>}
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
@@ -170,8 +169,8 @@ export function withCustomStatesInASmallForm() {
   );
 }
 
-withCustomStatesInASmallForm.story = {
-  name: 'With custom states in a small form.',
+withCustomStatesInDifferentSizes.story = {
+  name: 'With custom states in different sizes.',
 };
 
 export function canSelectUnknownValueWhenHittingEnter() {

@@ -85,7 +85,7 @@ export default function BaseRadioButton({
   button,
   checked,
   children,
-  compact,
+  small,
   disabled,
   hideLabel,
   id,
@@ -151,7 +151,7 @@ export default function BaseRadioButton({
         checked && styles.button_checked,
         invalid && styles.button_invalid,
         disabled && styles.button_disabled,
-        compact && styles.button_compact,
+        small && styles.button_small,
       )}
     >
       {radioButton}

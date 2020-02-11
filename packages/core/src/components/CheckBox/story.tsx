@@ -16,6 +16,20 @@ aStandardCheckboxField.story = {
   name: 'A standard checkbox field.',
 };
 
+export function inDifferentSizes() {
+  return (
+    <>
+      <CheckBox small name="cb-small" label="Small" onChange={action('onChange')} />
+      <CheckBox name="cb-regular" label="Regular" onChange={action('onChange')} />
+      <CheckBox large name="cb-large" label="Large" onChange={action('onChange')} />
+    </>
+  );
+}
+
+inDifferentSizes.story = {
+  name: 'In different sizes.',
+};
+
 export function withAnErrorMessageInAnInvalidState() {
   return (
     <CheckBox
@@ -137,7 +151,7 @@ export function asACompactClickableButton() {
   return (
     <CheckBox
       button
-      compact
+      small
       name="cb-basic"
       label="Label"
       labelDescription="This is a label description."

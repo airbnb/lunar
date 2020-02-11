@@ -10,8 +10,6 @@ import Suffix from './Suffix';
 import { styleSheet } from './styles';
 
 export type FormFieldProps = {
-  /** @deprecated Decrease label font size and spacing. */
-  compact?: boolean;
   /** @ignore Decrease bottom margin of the field. (Internal use only) */
   compactSpacing?: boolean;
   /** Mark the field as disabled. */
@@ -68,7 +66,6 @@ export { partitionFieldProps, Prefix, Suffix };
 /** A abstract form field wrapper that handles labels, affixes, errors, states, and more. */
 export default function FormField({
   children,
-  compact,
   compactSpacing,
   disabled,
   errorMessage,
@@ -115,7 +112,7 @@ export default function FormField({
     <section
       className={cx(
         styles.field,
-        (compact || compactSpacing || small) && !noSpacing && styles.field_compactSpacing,
+        (compactSpacing || small) && !noSpacing && styles.field_compactSpacing,
         noSpacing && styles.field_noSpacing,
       )}
     >
@@ -134,7 +131,7 @@ export default function FormField({
           <StatusText
             danger={invalid}
             muted={disabled}
-            small={compact || small}
+            small={small}
             large={large}
             bold={!renderLargeLabel}
           >

@@ -58,7 +58,7 @@ export default class DatePickerInput extends React.Component<
     const { value } = event.currentTarget;
     const date = this.parseDate(value);
 
-    this.props.onChange(value, date || null, event);
+    this.props.onChange(value, date ?? null, event);
   };
 
   private handleDayChange = (day?: Date) => {
@@ -79,14 +79,14 @@ export default class DatePickerInput extends React.Component<
   };
 
   getFormat(): string {
-    return this.props.format || mdyCalendarBundle.get(this.props.locale);
+    return this.props.format ?? mdyCalendarBundle.get(this.props.locale);
   }
 
   parseDate = (value: string, format?: string, locale?: string) => {
     try {
       return createDateTime(value, {
-        sourceFormat: format || this.getFormat(),
-        locale: locale || this.props.locale,
+        sourceFormat: format ?? this.getFormat(),
+        locale: locale ?? this.props.locale,
       }).toJSDate();
     } catch (error) {
       return undefined;
@@ -94,13 +94,13 @@ export default class DatePickerInput extends React.Component<
   };
 
   formatDate = (date: Date | string, baseFormat?: string, locale?: string) => {
-    const format = baseFormat || this.getFormat();
+    const format = baseFormat ?? this.getFormat();
 
     return DateTime.format({
       at: date,
       format,
       sourceFormat: format,
-      locale: locale || this.props.locale,
+      locale: locale ?? this.props.locale,
       noTime: true,
       noTimezone: true,
     });
@@ -136,7 +136,7 @@ export default class DatePickerInput extends React.Component<
           format={format}
           clickUnselectsDay={clearOnDayClick}
           hideOnDayClick={hideOnDayClick}
-          placeholder={restProps.placeholder || format.toUpperCase()}
+          placeholder={restProps.placeholder ?? format.toUpperCase()}
           parseDate={this.parseDate}
           formatDate={this.formatDate}
           onDayPickerHide={onHidePicker}

@@ -19,6 +19,32 @@ aStandardRadioButtonField.story = {
   name: 'A standard radio button field.',
 };
 
+export function inDifferentSizes() {
+  return (
+    <>
+      <RadioButton
+        small
+        name="radio-small"
+        label="Small"
+        value="foo"
+        onChange={action('onChange')}
+      />
+      <RadioButton name="radio-regular" label="Regular" value="foo" onChange={action('onChange')} />
+      <RadioButton
+        large
+        name="radio-large"
+        label="Large"
+        value="foo"
+        onChange={action('onChange')}
+      />
+    </>
+  );
+}
+
+inDifferentSizes.story = {
+  name: 'In different sizes.',
+};
+
 export function withAnErrorMessageInAnInvalidState() {
   return (
     <RadioButton
@@ -169,7 +195,7 @@ export function asACompactClickableButton() {
   return (
     <RadioButton
       button
-      compact
+      small
       name="radio-basic"
       label="Label"
       labelDescription="This is a label description."
@@ -182,5 +208,5 @@ export function asACompactClickableButton() {
 }
 
 asACompactClickableButton.story = {
-  name: 'As a compact, clickable button.',
+  name: 'As a small clickable button.',
 };
