@@ -25,8 +25,6 @@ jest.mock('lodash/debounce', () => (cb: Function) => {
   return (...args: unknown[]) => cb(...args);
 });
 
-jest.mock('uuid/v4', () => () => 'composer');
-
 describe('<Composer />', () => {
   const props = {
     onChange() {},

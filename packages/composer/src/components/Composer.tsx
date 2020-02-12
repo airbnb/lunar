@@ -81,7 +81,7 @@ export default function Composer({
   const [menu, setMenu] = useState(isShortcutCommand(defaultValues.value) ? MENU_SHORTCUTS : '');
   const [mode, setMode] = useState<WritingMode>(writingMode ?? MODE_MESSAGE);
   const [error, setError] = useState('');
-  const [id] = useState(() => uuid());
+  const [id] = useState(() => (process.env.NODE_ENV === 'test' ? 'composer' : uuid()));
   const [data, setData] = useReducer(reducer, {
     focused: false,
     shadowValue: '',
