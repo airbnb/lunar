@@ -17,7 +17,7 @@ export default function CountBadge({ accessibilityLabel, value, waggle }: CountB
   const badgeRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (badgeRef.current) {
+    if (badgeRef.current?.animate) {
       badgeRef.current.animate(
         [
           { transform: 'scale(1)' },

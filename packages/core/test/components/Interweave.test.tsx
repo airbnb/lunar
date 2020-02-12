@@ -25,7 +25,7 @@ describe('<Interweave />', () => {
       <Interweave content="Foo http://test.com bar" />,
     );
 
-    expect(root.find(Link.WrappedComponent)).toHaveLength(1);
+    expect(root.find(Link)).toHaveLength(1);
   });
 
   it('set large size prop if urls and emails are present', async () => {
@@ -55,7 +55,7 @@ describe('<Interweave />', () => {
       <Interweave content="Foo test@domain.com bar" />,
     );
 
-    expect(root.find(Link.WrappedComponent)).toHaveLength(1);
+    expect(root.find(Link)).toHaveLength(1);
   });
 
   it('can pass custom props', async () => {

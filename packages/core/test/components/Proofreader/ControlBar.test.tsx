@@ -16,11 +16,11 @@ describe('<ControlBar />', () => {
   it('toggles locale menu open and closed', () => {
     const { root } = render<ControlBarProps>(<ControlBar {...props} />);
 
-    expect(root.find(Dropdown.WrappedComponent)).toHaveLength(0);
+    expect(root.find(Dropdown)).toHaveLength(0);
 
     root.findOne('button').dispatch('onClick');
 
-    expect(root.find(Dropdown.WrappedComponent)).toHaveLength(1);
+    expect(root.find(Dropdown)).toHaveLength(1);
   });
 
   it('selects locale when clicking an item', () => {
@@ -34,17 +34,17 @@ describe('<ControlBar />', () => {
     root.findAt('button', 13, { role: 'menuitem' }).dispatch('onClick');
 
     expect(spy).toHaveBeenCalledWith('it');
-    expect(root.find(Dropdown.WrappedComponent)).toHaveLength(0);
+    expect(root.find(Dropdown)).toHaveLength(0);
   });
 
   it('sets locale label', () => {
     const { root, update } = render<ControlBarProps>(<ControlBar {...props} />);
 
-    expect(root.findAt(Link.WrappedComponent, 'first')).toContainNode('English (United States)');
+    expect(root.findAt(Link, 'first')).toContainNode('English (United States)');
 
     update({ locale: 'ja-JP' });
 
-    expect(root.findAt(Link.WrappedComponent, 'first')).toContainNode('日本語');
+    expect(root.findAt(Link, 'first')).toContainNode('日本語');
   });
 
   it('shows error count when list is non-empty', () => {
