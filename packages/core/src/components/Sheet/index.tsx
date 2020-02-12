@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import { WithStylesProps } from '../../composers/withStyles';
+import { WithThemeProps } from '../../composers/withTheme';
+import useStyles from '../../hooks/useStyles';
+import useTheme from '../../hooks/useTheme';
 import { ESCAPE } from '../../keys';
 import focusableSelector from '../../utils/focusableSelector';
 import FocusTrap from '../FocusTrap';
@@ -45,9 +48,8 @@ export type BaseSheetState = {
   animating: boolean;
 };
 
-/** @ignore */
 export class BaseSheet extends React.Component<
-  BaseSheetProps & PrivateProps & WithStylesProps,
+  BaseSheetProps & PrivateProps & WithStylesProps & WithThemeProps,
   BaseSheetState
 > {
   static defaultProps = {
@@ -189,7 +191,7 @@ export class BaseSheet extends React.Component<
     const closeText = T.phrase('lunar.common.close', 'Close');
     const closeIcon = (
       <IconButton onClick={this.handleClose}>
-        <IconClose accessibilityLabel={closeText} size={3 * theme!.unit} />
+        <IconClose accessibilityLabel={closeText} size={3 * theme.unit} />
       </IconButton>
     );
 
@@ -260,10 +262,6 @@ export class BaseSheet extends React.Component<
   }
 }
 
-const InternalSheet = withStyles(styleSheet, {
-  passThemeProp: true,
-})(BaseSheet);
-
 /**
  * A modal-like UI that is used to display content in a sheet that covers the existing UI. There are
  * two versions of the Sheet: one that displays inline, and one that displays in a portal.
@@ -277,9 +275,11 @@ const InternalSheet = withStyles(styleSheet, {
  * `SheetArea`.
  */
 export default function Sheet(props: BaseSheetProps) {
+  const setSheetVisible = useContext(SheetContext);
+  const [styles, cx] = useStyles(styleSheet);
+  const theme = useTheme();
+
   return (
-    <SheetContext.Consumer>
-      {setSheetVisible => <InternalSheet {...props} setSheetVisible={setSheetVisible} />}
-    </SheetContext.Consumer>
+    <BaseSheet {...props} theme={theme} cx={cx} styles={styles} setSheetVisible={setSheetVisible} />
   );
 }
