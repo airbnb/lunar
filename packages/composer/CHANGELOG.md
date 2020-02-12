@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.3.0 - 2020-02-12
+
+#### 🚀 Updates
+
+- Add `submitOnEnter` prop and hotkey negation. (#306) ([c76b8b6](https://github.com/airbnb/lunar/commit/c76b8b6)), closes [#306](https://github.com/airbnb/lunar/issues/306)
+
+**Note:** Version bump only for package @airbnb/lunar-composer
+
+
+
+
+
 ### 1.2.7 - 2020-02-07
 
 **Note:** Version bump only for package @airbnb/lunar-composer
