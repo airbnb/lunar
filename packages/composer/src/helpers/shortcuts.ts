@@ -1,3 +1,4 @@
+import T from '@airbnb/lunar/lib/components/Translate';
 import { MENU_SHORTCUTS } from '../constants';
 import {
   ShortcutArgument,
@@ -29,7 +30,13 @@ export function filterAndSortShortcuts(
   const usedNames = new Set();
   const filteredShortcuts: Required<ShortcutConfig>[] = shortcuts.map(config => {
     if (usedNames.has(config.name)) {
-      throw new Error(`Shortcut with name "${config.name}" already exists.`);
+      throw new Error(
+        T.phrase(
+          'Shortcut with name "%{name}" already exists.',
+          { name: config.name },
+          { key: 'lunar.composer.shortcuts.nameExists' },
+        ),
+      );
     } else {
       usedNames.add(config.name);
     }
@@ -100,13 +107,23 @@ export function onSubmitExecuteShortcut(
 
   // Validate shortcut
   if (!shortcut) {
-    throw new Error(`Invalid shortcut "${name}".`);
+    throw new Error(
+      T.phrase(
+        'Invalid shortcut "%{name}".',
+        { name },
+        { key: 'lunar.composer.shortcuts.invalidName' },
+      ),
+    );
   }
 
   const args = shortcut.arguments ?? [];
 
   if (params.length > args.length) {
-    throw new Error(`Too many shortcut arguments provided.`);
+    throw new Error(
+      T.phrase('Too many shortcut arguments provided.', null, {
+        key: 'lunar.composer.shortcuts.tooManyArgs',
+      }),
+    );
   }
 
   // Validate arguments
@@ -114,7 +131,15 @@ export function onSubmitExecuteShortcut(
     const param = params[index];
 
     if ((!arg.optional && !param) || param === `[${arg.name}]` || param === `<${arg.name}>`) {
-      throw new Error(`Shortcut argument "${arg.name}" is required.`);
+      throw new Error(
+        T.phrase(
+          'Shortcut argument "%{name}" is required.',
+          { name: arg.name },
+          {
+            key: 'lunar.composer.shortcuts.argRequired',
+          },
+        ),
+      );
     }
 
     if (arg.validator) {
