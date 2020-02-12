@@ -28,7 +28,7 @@ export default function Preview({
 
     // Force a submission after context propagates
     setTimeout(() => {
-      const button = document.getElementById('composer-submit-button');
+      const button = document.getElementById(`${context.id}-submit-button`);
 
       if (button) {
         button.click();

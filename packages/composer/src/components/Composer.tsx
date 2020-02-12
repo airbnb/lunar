@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useReducer } from 'react';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
+import uuid from 'uuid/v4';
 import ComposerContext from '../contexts/ComposerContext';
 import Footer from './Footer';
 import Input, { InputProps } from './Input';
@@ -39,6 +40,8 @@ export type ComposerProps = {
   onSubmit?: SubmitHandler;
   /** Placeholder for the private note writing mode. */
   privateNotePlaceholder?: string;
+  /** Trigger submit on enter instead of adding a new line. */
+  submitOnEnter?: boolean;
   /** Default writing mode. */
   writingMode?: WritingMode;
 };
@@ -71,12 +74,14 @@ export default function Composer({
   messagePlaceholder,
   privateNotePlaceholder,
   propagateRef,
+  submitOnEnter,
   writingMode,
 }: ComposerProps) {
   const [styles, cx] = useStyles(composerStyleSheet);
   const [menu, setMenu] = useState(isShortcutCommand(defaultValues.value) ? MENU_SHORTCUTS : '');
   const [mode, setMode] = useState<WritingMode>(writingMode ?? MODE_MESSAGE);
   const [error, setError] = useState('');
+  const [id] = useState(() => (process.env.NODE_ENV === 'test' ? 'composer' : uuid()));
   const [data, setData] = useReducer(reducer, {
     focused: false,
     shadowValue: '',
@@ -127,14 +132,14 @@ export default function Composer({
       // Always focus the input when a menu is opened.
       // We need to focus so that hotkeys can be triggered.
       setTimeout(() => {
-        const composer = document.getElementById('composer');
+        const composer = document.getElementById(id);
 
         if (composer && document.activeElement !== composer) {
           composer.focus();
         }
       }, 0);
     },
-    [setMenu],
+    [setMenu, id],
   );
 
   return (
@@ -143,6 +148,7 @@ export default function Composer({
         changeHandlers,
         data,
         flags,
+        id,
         menu,
         mode,
         onChange: handleChange,
@@ -167,6 +173,7 @@ export default function Composer({
                 messagePlaceholder={messagePlaceholder}
                 privateNotePlaceholder={privateNotePlaceholder}
                 propagateRef={propagateRef}
+                submitOnEnter={submitOnEnter}
                 onChange={onChange}
                 onSubmit={onSubmit}
               />
@@ -182,7 +189,7 @@ export default function Composer({
               flags.afterButton && styles.footer_after,
             )}
           >
-            {invalid ? <FormErrorMessage id="composer" error={error} /> : <Footer />}
+            {invalid ? <FormErrorMessage id={id} error={error} /> : <Footer />}
             {children}
           </div>
         </div>

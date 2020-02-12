@@ -42,7 +42,7 @@ export default function Menu({
   width,
 }: MenuProps) {
   const [styles, cx] = useStyles(menuStyleSheet);
-  const { flags, menu, setMenu } = useContext(ComposerContext);
+  const { flags, id, menu, setMenu } = useContext(ComposerContext);
   const { unit } = useTheme();
 
   // Handlers
@@ -54,7 +54,7 @@ export default function Menu({
       // Never close when clicking the textarea or the toggle button
       if (
         target &&
-        (isElementWithID(target, 'textarea', 'composer') ||
+        (isElementWithID(target, 'textarea', id) ||
           isElementWithID(target, 'button', `toggle-button-${name}`))
       ) {
         return;
@@ -67,7 +67,7 @@ export default function Menu({
       // Always close active menu
       setMenu('');
     },
-    [onClickOutside, name, setMenu],
+    [onClickOutside, name, setMenu, id],
   );
 
   // Only display if menu is active

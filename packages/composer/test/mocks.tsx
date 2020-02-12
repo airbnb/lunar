@@ -31,6 +31,7 @@ export function Wrapper({
         ...defaultContext,
         data: { shadowValue: '', value },
         menu,
+        id: 'composer',
         ...composerContext,
       }}
     >
