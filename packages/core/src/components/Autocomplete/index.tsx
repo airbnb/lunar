@@ -25,11 +25,11 @@ export type Item = {
 export const CACHE_DURATION = toMilliseconds('5 minutes');
 
 function getItemValue(item: Item): string {
-  return String(item.value || item.id);
+  return String(item.value ?? item.id);
 }
 
 function renderItem(item: Item): NonNullable<React.ReactNode> {
-  return <Text>{item.name || item.title || item.value}</Text>;
+  return <Text>{item.name ?? item.title ?? item.value}</Text>;
 }
 
 export type ItemResponseType<T> = T[] | { items?: T[]; results?: T[] };
@@ -144,7 +144,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     items: [],
     loading: false,
     open: false,
-    value: this.props.value || '',
+    value: this.props.value ?? '',
   };
 
   componentDidMount() {
@@ -167,7 +167,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     }
 
     if (this.props.value !== prevProps.value) {
-      this.loadItems(this.props.value || '');
+      this.loadItems(this.props.value ?? '');
     }
 
     if (value !== prevState.value || (value !== '' && highlightedIndex === null)) {
@@ -446,22 +446,11 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
   }
 
   getInputProps(props: AutocompleteProps<T>) {
-    const {
-      compact,
-      disabled,
-      invalid,
-      name,
-      optional,
-      placeholder,
-      onBlur,
-      onFocus,
-      small,
-    } = props;
+    const { disabled, invalid, name, optional, placeholder, onBlur, onFocus, small, large } = props;
     const { id } = this.state;
 
     // Should match the props passed within `Input`
     return {
-      compact,
       disabled,
       id,
       invalid,
@@ -469,8 +458,9 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
       onBlur,
       onFocus,
       optional,
-      placeholder: placeholder || T.phrase('lunar.common.search', 'Search'),
+      placeholder: placeholder ?? T.phrase('lunar.common.search', 'Search'),
       small,
+      large,
       type: 'text',
     };
   }
@@ -517,7 +507,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
         if (Array.isArray(response)) {
           items = response;
         } else {
-          items = response.results || response.items || [];
+          items = response.results ?? response.items ?? [];
         }
 
         if (!disableCache) {
@@ -711,13 +701,6 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
   render() {
     const { id, open, value } = this.state;
     const { children, fieldProps, inputProps } = partitionFieldProps(this.props);
-
-    if (__DEV__) {
-      if (inputProps.compact) {
-        // eslint-disable-next-line no-console
-        console.log('Autocomplete: `compact` prop is deprecated, please use `small` instead.');
-      }
-    }
 
     return (
       <FormField {...fieldProps} id={id}>

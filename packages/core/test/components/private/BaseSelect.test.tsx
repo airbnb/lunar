@@ -34,14 +34,14 @@ describe('<BaseSelect />', () => {
     expect(wrapper.find('span').prop('className')).toMatch('arrow_invalid');
   });
 
-  it('renders compact', () => {
+  it('renders small', () => {
     const wrapper = shallow(
-      <BaseSelect compact name="foo" onChange={() => {}}>
+      <BaseSelect small name="foo" onChange={() => {}}>
         <option value="bar">Bar</option>
       </BaseSelect>,
     );
 
-    expect(wrapper.find('span').prop('className')).toMatch('arrow_compact');
+    expect(wrapper.find('span').prop('className')).toMatch('arrow_small');
   });
 
   it('renders options via children', () => {

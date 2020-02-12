@@ -15,14 +15,24 @@ describe('<FieldAffix />', () => {
     expect(wrapper.prop('className')).not.toBe(beforeClass);
   });
 
-  it('renders compact', () => {
+  it('renders small', () => {
     const wrapper = shallowWithStyles(
-      <FieldAffix after compact>
+      <FieldAffix after small>
         Child
       </FieldAffix>,
     );
 
-    expect(wrapper.prop('className')).toMatch('affix_compact');
+    expect(wrapper.prop('className')).toMatch('affix_small');
+  });
+
+  it('renders large', () => {
+    const wrapper = shallowWithStyles(
+      <FieldAffix after large>
+        Child
+      </FieldAffix>,
+    );
+
+    expect(wrapper.prop('className')).toMatch('affix_large');
   });
 
   it('errors if both props used', () => {

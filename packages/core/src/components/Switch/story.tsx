@@ -16,6 +16,20 @@ aStandardSwitchField.story = {
   name: 'A standard switch field.',
 };
 
+export function inDifferentSizes() {
+  return (
+    <>
+      <Switch small name="switch-small" label="Small" onChange={action('onChange')} />
+      <Switch name="switch-regular" label="Regular" onChange={action('onChange')} />
+      <Switch large name="switch-large" label="Large" onChange={action('onChange')} />
+    </>
+  );
+}
+
+inDifferentSizes.story = {
+  name: 'In different sizes.',
+};
+
 export function withAnErrorMessageInAnInvalidState() {
   return (
     <Switch

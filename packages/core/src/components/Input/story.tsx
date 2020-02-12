@@ -23,7 +23,7 @@ aStandardTextField.story = {
   name: 'A standard text field.',
 };
 
-export function withDifferentSizingSmallDefaultOrLarge() {
+export function inDifferentSizes() {
   return (
     <>
       <Input
@@ -50,8 +50,8 @@ export function withDifferentSizingSmallDefaultOrLarge() {
   );
 }
 
-withDifferentSizingSmallDefaultOrLarge.story = {
-  name: 'With different sizing: small, default or large.',
+inDifferentSizes.story = {
+  name: 'In different sizes.',
 };
 
 export function withAnErrorMessageInAnInvalidState() {

@@ -25,13 +25,13 @@ standardSelectFieldForDatesAndTimes.story = {
   name: 'Standard select field for dates and times.',
 };
 
-export function withACompactSmallerView() {
+export function inDifferentSizes() {
   return (
     <>
       <DateTimeSelect
-        compact
-        name="dts-compact"
-        label="Compact"
+        small
+        name="dts-small"
+        label="Small"
         value={fixedDate}
         onChange={action('onChange')}
       />
@@ -41,12 +41,19 @@ export function withACompactSmallerView() {
         value={fixedDate}
         onChange={action('onChange')}
       />
+      <DateTimeSelect
+        large
+        name="dts-large"
+        label="Large"
+        value={fixedDate}
+        onChange={action('onChange')}
+      />
     </>
   );
 }
 
-withACompactSmallerView.story = {
-  name: 'With a compact smaller view.',
+inDifferentSizes.story = {
+  name: 'In different sizes.',
 };
 
 export function withAnInvalidState() {

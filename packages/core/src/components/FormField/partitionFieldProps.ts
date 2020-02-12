@@ -26,7 +26,6 @@ export default function partitionFieldProps<Props extends MaybeChildren = {}>(
 } {
   const {
     children,
-    compact = false,
     compactSpacing = false,
     disabled = false,
     errorMessage = '',
@@ -50,7 +49,6 @@ export default function partitionFieldProps<Props extends MaybeChildren = {}>(
     children,
     field,
     fieldProps: {
-      compact,
       compactSpacing,
       disabled,
       errorMessage,
@@ -71,7 +69,6 @@ export default function partitionFieldProps<Props extends MaybeChildren = {}>(
     inputProps: {
       value: '',
       ...inputProps,
-      compact,
       disabled,
       hasPrefix: !!prefix,
       hasSuffix: !!suffix,

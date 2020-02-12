@@ -192,3 +192,67 @@ export function renderACustomChip() {
 renderACustomChip.story = {
   name: 'Render a custom selected value instead of a Chip.',
 };
+
+export function asSmall() {
+  return (
+    <Multicomplete
+      small
+      accessibilityLabel="Favorite color?"
+      label="Favorite color?"
+      name="autocomplete"
+      renderItem={(item, highlighted, selected) => (
+        <Text bold={selected} muted={highlighted}>
+          {item.name}
+        </Text>
+      )}
+      onChange={action('onChange')}
+      onSelectItem={action('onSelectItem')}
+      onLoadItems={value =>
+        Promise.resolve(
+          [
+            { value: 'red', name: 'Red' },
+            { value: 'black', name: 'Black' },
+            { value: 'blue', name: 'Blue' },
+            { value: 'green', name: 'Green' },
+          ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
+        )
+      }
+    />
+  );
+}
+
+asSmall.story = {
+  name: 'As small.',
+};
+
+export function asLarge() {
+  return (
+    <Multicomplete
+      large
+      accessibilityLabel="Favorite color?"
+      label="Favorite color?"
+      name="autocomplete"
+      renderItem={(item, highlighted, selected) => (
+        <Text bold={selected} muted={highlighted}>
+          {item.name}
+        </Text>
+      )}
+      onChange={action('onChange')}
+      onSelectItem={action('onSelectItem')}
+      onLoadItems={value =>
+        Promise.resolve(
+          [
+            { value: 'red', name: 'Red' },
+            { value: 'black', name: 'Black' },
+            { value: 'blue', name: 'Blue' },
+            { value: 'green', name: 'Green' },
+          ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
+        )
+      }
+    />
+  );
+}
+
+asLarge.story = {
+  name: 'As large.',
+};
