@@ -1,6 +1,7 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, pattern, transition }) => ({
+// eslint-disable-next-line import/prefer-default-export
+export const linkStyleSheet: StyleSheet = ({ color, pattern, transition }) => ({
   link: {
     ...pattern.resetButton,
     ...transition.box,
@@ -51,7 +52,3 @@ const styleSheet: StyleSheet = ({ color, pattern, transition }) => ({
     },
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };
