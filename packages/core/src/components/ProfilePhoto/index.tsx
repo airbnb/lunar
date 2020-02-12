@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { and, mutuallyExclusiveProps } from 'airbnb-prop-types';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { styleSheet } from './styles';
+import useStyles from '../../hooks/useStyles';
+import useTheme from '../../hooks/useTheme';
 
 const mutuallyExclusiveSizePropType = mutuallyExclusiveProps(
   PropTypes.any,
@@ -35,75 +36,54 @@ export type ProfilePhotoProps = {
   title: string;
 };
 
-type ProfilePhotoState = {
-  src: string;
-};
-
 /** Display a profile photo. */
-export class ProfilePhoto extends React.Component<
-  ProfilePhotoProps & WithStylesProps,
-  ProfilePhotoState
-> {
-  static propTypes = {
-    large: namedSizePropType,
-    macro: namedSizePropType,
-    size: unitSizePropType,
-    small: namedSizePropType,
-  };
+function ProfilePhoto({
+  fallbackImageSrc,
+  inline,
+  macro,
+  large,
+  small,
+  size,
+  square,
+  title,
+  imageSrc,
+}: ProfilePhotoProps) {
+  const [styles, cx] = useStyles(styleSheet);
+  const { unit } = useTheme();
+  const [src, setSrc] = useState(imageSrc);
 
-  // Do not supply defaults for the mutually exclusive props,
-  // doing so will cause validation errors.
-  static defaultProps = {
-    inline: false,
-    square: false,
-  };
+  useEffect(() => {
+    setSrc(imageSrc);
+  }, [imageSrc]);
 
-  state = {
-    src: this.props.imageSrc || '',
-  };
-
-  componentDidUpdate(prevProps: ProfilePhotoProps & WithStylesProps) {
-    const { imageSrc } = this.props;
-
-    if (imageSrc !== prevProps.imageSrc) {
-      this.setState({
-        src: imageSrc,
-      });
-    }
-  }
-
-  private handleError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const { fallbackImageSrc } = this.props;
-
+  const handleError = () => {
     if (fallbackImageSrc) {
-      this.setState({
-        src: fallbackImageSrc,
-      });
+      setSrc(fallbackImageSrc);
     }
   };
 
-  render() {
-    const { src } = this.state;
-    const {
-      cx,
-      fallbackImageSrc,
-      inline,
-      macro,
-      large,
-      small,
-      size,
-      square,
-      styles,
-      title,
-      theme,
-    } = this.props;
-    const { unit } = theme!;
-
-    return (
-      <div
+  return (
+    <div
+      className={cx(
+        inline && styles.inline,
+        styles.regular,
+        macro && styles.macro,
+        large && styles.large,
+        small && styles.small,
+        !!size &&
+          size > 0 && {
+            height: size * unit,
+            maxHeight: size * unit,
+            maxWidth: size * unit,
+            width: size * unit,
+          },
+      )}
+    >
+      <img
         className={cx(
-          inline && styles.inline,
+          styles.image,
           styles.regular,
+          !square && styles.roundedImage,
           macro && styles.macro,
           large && styles.large,
           small && styles.small,
@@ -115,33 +95,20 @@ export class ProfilePhoto extends React.Component<
               width: size * unit,
             },
         )}
-      >
-        <img
-          className={cx(
-            styles.image,
-            styles.regular,
-            !square && styles.roundedImage,
-            macro && styles.macro,
-            large && styles.large,
-            small && styles.small,
-            !!size &&
-              size > 0 && {
-                height: size * unit,
-                maxHeight: size * unit,
-                maxWidth: size * unit,
-                width: size * unit,
-              },
-          )}
-          src={src}
-          alt={title}
-          title={title}
-          onError={fallbackImageSrc ? this.handleError : undefined}
-        />
-      </div>
-    );
-  }
+        src={src}
+        alt={title}
+        title={title}
+        onError={fallbackImageSrc ? handleError : undefined}
+      />
+    </div>
+  );
 }
 
-export default withStyles(styleSheet, {
-  passThemeProp: true,
-})(ProfilePhoto);
+ProfilePhoto.propTypes = {
+  large: namedSizePropType,
+  macro: namedSizePropType,
+  size: unitSizePropType,
+  small: namedSizePropType,
+};
+
+export default ProfilePhoto;
