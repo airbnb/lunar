@@ -107,6 +107,42 @@ aSingleMonth.story = {
   name: 'A single month.',
 };
 
+export function asSmall() {
+  return (
+    <DatePickerInput
+      small
+      name="date"
+      label="Label"
+      datePickerProps={{
+        onMonthChange: action('onMonthChange'),
+      }}
+      onChange={action('onChange')}
+    />
+  );
+}
+
+asSmall.story = {
+  name: 'As small.',
+};
+
+export function asLarge() {
+  return (
+    <DatePickerInput
+      large
+      name="date"
+      label="Label"
+      datePickerProps={{
+        onMonthChange: action('onMonthChange'),
+      }}
+      onChange={action('onChange')}
+    />
+  );
+}
+
+asLarge.story = {
+  name: 'As large.',
+};
+
 export function aCustomFormat() {
   return (
     <DatePickerInput

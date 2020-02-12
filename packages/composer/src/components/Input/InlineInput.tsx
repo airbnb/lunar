@@ -45,8 +45,8 @@ export default function InlineInput({ label, name, value }: InlineInputProps) {
           hideLabel
           label={label}
           name={name}
-          prefix={<Prefix compact>{textLabel}</Prefix>}
-          suffix={<Suffix compact>{editButton}</Suffix>}
+          prefix={<Prefix small>{textLabel}</Prefix>}
+          suffix={<Suffix small>{editButton}</Suffix>}
           value={value}
           onChange={nextValue => {
             context.setData(name, nextValue);

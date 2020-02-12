@@ -24,10 +24,10 @@ aStandardSelectField.story = {
   name: 'A standard select field.',
 };
 
-export function withACompactSmallerView() {
+export function inDifferentSizes() {
   return (
     <>
-      <Select compact name="select-compact" label="Compact" onChange={action('onChange')}>
+      <Select small name="select-small" label="Small" onChange={action('onChange')}>
         <option value="foo">Foo</option>
         <option disabled value="bar">
           Bar
@@ -42,12 +42,20 @@ export function withACompactSmallerView() {
         </option>
         <option value="baz">Baz</option>
       </Select>
+
+      <Select large name="select-regular" label="Large" onChange={action('onChange')}>
+        <option value="foo">Foo</option>
+        <option disabled value="bar">
+          Bar
+        </option>
+        <option value="baz">Baz</option>
+      </Select>
     </>
   );
 }
 
-withACompactSmallerView.story = {
-  name: 'With a compact smaller view.',
+inDifferentSizes.story = {
+  name: 'In different sizes.',
 };
 
 export function withAnErrorMessageInAnInvalidState() {

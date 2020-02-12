@@ -83,7 +83,7 @@ export default function BaseCheckBox({
   button,
   checked,
   children,
-  compact,
+  small,
   disabled,
   hideLabel,
   id,
@@ -150,7 +150,7 @@ export default function BaseCheckBox({
         checked && styles.button_checked,
         invalid && styles.button_invalid,
         disabled && styles.button_disabled,
-        compact && styles.button_compact,
+        small && styles.button_small,
       )}
     >
       {checkbox}

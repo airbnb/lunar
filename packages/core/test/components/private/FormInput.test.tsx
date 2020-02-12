@@ -33,16 +33,16 @@ describe('<FormInput />', () => {
     expect(wrapper.is('select')).toBe(true);
   });
 
-  it('renders compact', () => {
-    const wrapper = shallow(<FormInput compact tagName="input" {...props} />);
+  it('renders small', () => {
+    const wrapper = shallow(<FormInput small tagName="input" {...props} />);
 
-    expect(wrapper.prop('className')).toMatch('input_compact');
+    expect(wrapper.prop('className')).toMatch('input_small');
   });
 
-  it('renders select compact', () => {
-    const wrapper = shallow(<FormInput compact tagName="select" {...props} />);
+  it('renders select small', () => {
+    const wrapper = shallow(<FormInput small tagName="select" {...props} />);
 
-    expect(wrapper.prop('className')).toMatch('select select_compact');
+    expect(wrapper.prop('className')).toMatch('select select_small');
   });
 
   it('renders important', () => {

@@ -32,6 +32,54 @@ controlsMultipleRadioButtons.story = {
   name: 'Controls multiple radio buttons.',
 };
 
+export function asSmall() {
+  return (
+    <RadioButtonController
+      optional
+      small
+      label="Favorite food?"
+      name="food"
+      onChange={action('onChange')}
+    >
+      {RadioButton => (
+        <div>
+          <RadioButton label="🍕 Pizza" value="pizza" />
+          <RadioButton label="🍔 Burger" value="burger" />
+          <RadioButton label="🍜 Ramen" value="ramen" />
+        </div>
+      )}
+    </RadioButtonController>
+  );
+}
+
+asSmall.story = {
+  name: 'As small.',
+};
+
+export function asLarge() {
+  return (
+    <RadioButtonController
+      optional
+      large
+      label="Favorite food?"
+      name="food"
+      onChange={action('onChange')}
+    >
+      {RadioButton => (
+        <div>
+          <RadioButton label="🍕 Pizza" value="pizza" />
+          <RadioButton label="🍔 Burger" value="burger" />
+          <RadioButton label="🍜 Ramen" value="ramen" />
+        </div>
+      )}
+    </RadioButtonController>
+  );
+}
+
+asLarge.story = {
+  name: 'As large.',
+};
+
 export function handlesInvalidStateWithNoSpacing() {
   return (
     <RadioButtonController invalid label="Favorite food?" name="food" onChange={action('onChange')}>

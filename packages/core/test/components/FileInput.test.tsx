@@ -44,8 +44,8 @@ describe('<FileInput />', () => {
     expect(wrapper.find(FormInputButton).prop('invalid')).toBe(true);
   });
 
-  it('marks button as small when compact', () => {
-    const wrapper = shallow(<FileInput {...props} compact />);
+  it('marks button as small when small', () => {
+    const wrapper = shallow(<FileInput {...props} small />);
 
     expect(wrapper.find(FormInputButton).prop('small')).toBe(true);
   });

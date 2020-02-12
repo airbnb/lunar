@@ -111,17 +111,18 @@ aStandardTextareaField.story = {
   name: 'A standard textarea field.',
 };
 
-export function withACompactSmallerView() {
+export function inDifferentSizes() {
   return (
     <>
-      <TextArea compact name="textarea-compact" label="Compact" onChange={action('onChange')} />
+      <TextArea small name="textarea-small" label="Small" onChange={action('onChange')} />
       <TextArea name="textarea-regular" label="Regular" onChange={action('onChange')} />
+      <TextArea large name="textarea-large" label="Large" onChange={action('onChange')} />
     </>
   );
 }
 
-withACompactSmallerView.story = {
-  name: 'With a compact smaller view.',
+inDifferentSizes.story = {
+  name: 'In different sizes.',
 };
 
 export function withAnErrorMessageInAnInvalidState() {
@@ -194,7 +195,7 @@ export function displayWithInlineLabelAndAPrefix() {
       inline
       name="both-textarea"
       label="TextArea"
-      prefix={<Prefix compact>Hello</Prefix>}
+      prefix={<Prefix>Hello</Prefix>}
       onChange={action('onChange')}
     />
   );

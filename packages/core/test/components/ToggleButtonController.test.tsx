@@ -129,9 +129,9 @@ describe('<ToggleButtonController />', () => {
     ).toBeTruthy();
   });
 
-  it('`compact` renders `small` buttons', () => {
+  it('renders `small` buttons', () => {
     const wrapper = shallow(
-      <ToggleButtonController {...props} compact value="1">
+      <ToggleButtonController {...props} small value="1">
         {ProxyButton => (
           <div>
             <ProxyButton value="1">1</ProxyButton>

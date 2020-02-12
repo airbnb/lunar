@@ -27,8 +27,6 @@ export type IgnoreAttributes =
   | 'security';
 
 export type FormInputProps<T = unknown> = {
-  /** @deprecated decrease font size and padding to small. */
-  compact?: boolean;
   /** Mark the field as important. */
   important?: boolean;
   /** Mark the field as invalid. */
@@ -74,7 +72,6 @@ export type PrivateProps = FormInputProps & {
 
 function FormInput({
   children,
-  compact,
   disabled,
   hasPrefix,
   hasSuffix,
@@ -97,7 +94,8 @@ function FormInput({
     ...restProps,
     className: cx(
       styles.input,
-      (compact || small) && styles.input_compact,
+      small && styles.input_small,
+      large && styles.input_large,
       disabled && styles.input_disabled,
       hasPrefix && styles.input_hasPrefix,
       hasSuffix && styles.input_hasSuffix,
@@ -105,20 +103,13 @@ function FormInput({
       important && styles.input_important,
       invalid && styles.input_invalid,
       isSelect && styles.select,
-      isSelect && compact && styles.select_compact,
-      large && styles.input_large,
+      isSelect && small && styles.select_small,
+      isSelect && large && styles.select_large,
     ),
     disabled,
     id,
     required: !optional,
   };
-
-  if (__DEV__) {
-    if (compact) {
-      // eslint-disable-next-line no-console
-      console.log('Input: `compact` prop is deprecated, please use `small` instead.');
-    }
-  }
 
   // Only populate when invalid, otherwise it will break some CSS selectors
   if (invalid) {
@@ -140,10 +131,9 @@ function FormInput({
   return <Tag {...props} ref={propagateRef} data-gramm="false" data-enable-grammarly="false" />;
 }
 
-const sizingProp = mutuallyExclusiveTrueProps('small', 'compact', 'large');
+const sizingProp = mutuallyExclusiveTrueProps('small', 'large');
 
 FormInput.propTypes = {
-  compact: sizingProp,
   large: sizingProp,
   small: sizingProp,
 };
