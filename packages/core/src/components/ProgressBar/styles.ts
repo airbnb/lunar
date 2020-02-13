@@ -42,27 +42,27 @@ const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
   },
 
   progress: {
-    background: color.core.primary[5],
+    background: color.core.primary[6],
   },
 
   progress_danger: {
-    background: color.core.danger[5],
+    background: color.core.danger[6],
   },
 
   progress_muted: {
-    background: color.core.neutral[5],
+    background: color.core.neutral[6],
   },
 
   progress_notice: {
-    background: color.core.secondary[5],
+    background: color.core.secondary[6],
   },
 
   progress_success: {
-    background: color.core.success[5],
+    background: color.core.success[6],
   },
 
   progress_warning: {
-    background: color.core.warning[5],
+    background: color.core.warning[6],
   },
 });
 
