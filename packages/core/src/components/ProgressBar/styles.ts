@@ -11,6 +11,26 @@ const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
     background: color.core.primary[1],
   },
 
+  bar_danger: {
+    background: color.core.danger[1],
+  },
+
+  bar_muted: {
+    background: color.core.neutral[2],
+  },
+
+  bar_notice: {
+    background: color.core.secondary[1],
+  },
+
+  bar_success: {
+    background: color.core.success[1],
+  },
+
+  bar_warning: {
+    background: color.core.warning[1],
+  },
+
   bar_leading: {
     borderTopRightRadius: ui.borderRadius,
     borderBottomRightRadius: ui.borderRadius,
@@ -22,7 +42,27 @@ const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
   },
 
   progress: {
-    background: color.core.primary[6],
+    background: color.core.primary[5],
+  },
+
+  progress_danger: {
+    background: color.core.danger[5],
+  },
+
+  progress_muted: {
+    background: color.core.neutral[5],
+  },
+
+  progress_notice: {
+    background: color.core.secondary[5],
+  },
+
+  progress_success: {
+    background: color.core.success[5],
+  },
+
+  progress_warning: {
+    background: color.core.warning[5],
   },
 });
 
