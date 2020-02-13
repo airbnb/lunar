@@ -392,7 +392,7 @@ describe('<Composer />', () => {
       expect(root.findAt(Selection, 1)).toHaveProp('active', false);
 
       // Trigger a select
-      root.findOne('textarea').dispatch('onKeyDown', { key: 'Enter' });
+      root.findOne('textarea').dispatch('onKeyDown', { key: 'Tab' });
 
       // Check input has been updated
       expect(root.findOne('textarea')).toHaveValue('/call');
