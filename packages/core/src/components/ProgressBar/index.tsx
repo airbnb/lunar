@@ -1,7 +1,8 @@
 import React from 'react';
-import { between } from 'airbnb-prop-types';
+import { mutuallyExclusiveTrueProps, between } from 'airbnb-prop-types';
 import useStyles from '../../hooks/useStyles';
 import { styleSheet } from './styles';
+import { STATUSES } from '../../constants';
 
 export type Props = {
   /** Dangerous/failure status (red). */
@@ -68,8 +69,16 @@ function ProgressBar({
   );
 }
 
+const statusPropType = mutuallyExclusiveTrueProps(...STATUSES);
+
 ProgressBar.propTypes = {
+  danger: statusPropType,
+  info: statusPropType,
+  muted: statusPropType,
+  notice: statusPropType,
   percent: between({ gte: 0, lte: 100 }).isRequired,
+  success: statusPropType,
+  warning: statusPropType,
 };
 
 export default ProgressBar;
