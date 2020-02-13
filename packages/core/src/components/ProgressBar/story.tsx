@@ -39,3 +39,25 @@ export function canDisableLeadingAndTrailingEdgesNoRoundedCorners() {
 canDisableLeadingAndTrailingEdgesNoRoundedCorners.story = {
   name: 'Can disable leading and trailing edges (no rounded corners).',
 };
+
+export function progressBarWithStatus() {
+  return (
+    <>
+      <ProgressBar percent={8} />
+      <br />
+      <ProgressBar danger percent={16} />
+      <br />
+      <ProgressBar muted percent={48} />
+      <br />
+      <ProgressBar notice percent={64} />
+      <br />
+      <ProgressBar success percent={80} />
+      <br />
+      <ProgressBar warning percent={95} />
+    </>
+  );
+}
+
+progressBarWithStatus.story = {
+  name: 'Progress bar: default, danger, muted, notice, success, and warning.',
+};
