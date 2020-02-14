@@ -1,8 +1,31 @@
 /* eslint-disable no-param-reassign */
 // npx jscodeshift --extensions=js,jsx,ts,tsx --parser=tsx --transform=./codemods/v3/internal/addStyleSheetProp.ts ./src
 
-import { FileInfo, API, Options } from 'jscodeshift';
+import { FileInfo, API, Options, TSTypeAliasDeclaration, TSTypeLiteral } from 'jscodeshift';
 import { Codemod } from '../../helpers';
+
+function addPropToTypeAlias(mod: Codemod, obj: TSTypeLiteral) {
+  const hasStyleSheetProp = obj.members.some(
+    node =>
+      node.type === 'TSPropertySignature' &&
+      node.key.type === 'Identifier' &&
+      node.key.name === 'styleSheet',
+  );
+
+  if (!hasStyleSheetProp) {
+    const prop = mod.createNode(j =>
+      j.tsPropertySignature(
+        j.identifier('styleSheet'),
+        j.tsTypeAnnotation(j.tsTypeReference(j.identifier('StyleSheet'))),
+        true,
+      ),
+    );
+
+    prop.comments.push(mod.createNode(j => j.commentBlock('Custom style sheet.', true)));
+
+    obj.members.push(prop);
+  }
+}
 
 module.exports = function addStyleSheetProp(
   fileInfo: FileInfo,
@@ -39,29 +62,24 @@ module.exports = function addStyleSheetProp(
 
   // Add to `Props` type
   mod.source.find(mod.cs.TSTypeAliasDeclaration).forEach(({ node }) => {
-    if (node.typeAnnotation.type !== 'TSTypeLiteral') {
+    if (!node.id.name.endsWith('Props')) {
       return;
     }
 
-    const hasStyleSheetProp = node.typeAnnotation.members.some(
-      node =>
-        node.type === 'TSPropertySignature' &&
-        node.key.type === 'Identifier' &&
-        node.key.name === 'styleSheet',
-    );
+    switch (node.typeAnnotation.type) {
+      case 'TSTypeLiteral':
+        addPropToTypeAlias(mod, node.typeAnnotation);
+        break;
 
-    if (!hasStyleSheetProp) {
-      const prop = mod.createNode(j =>
-        j.tsPropertySignature(
-          j.identifier('styleSheet'),
-          j.tsTypeAnnotation(j.tsTypeReference(j.identifier('StyleSheet'))),
-          true,
-        ),
-      );
-
-      prop.comments.push(mod.createNode(j => j.commentBlock('Custom style sheet.', true)));
-
-      node.typeAnnotation.members.push(prop);
+      case 'TSIntersectionType':
+      case 'TSUnionType': {
+        node.typeAnnotation.types.forEach(type => {
+          if (type.type === 'TSTypeLiteral') {
+            addPropToTypeAlias(mod, type);
+          }
+        });
+        break;
+      }
     }
   });
 
