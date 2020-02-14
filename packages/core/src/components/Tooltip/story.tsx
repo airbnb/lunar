@@ -79,7 +79,13 @@ export function displaysWhenAnElementIsHovered() {
       <div style={{ textAlign: 'right' }}>
         <Text inline>Also has a tooltip →</Text>
         <Tooltip
-          content="This uncomfortably wide tooltip should probably be right-aligned"
+          content={
+            <Text inverted>
+              This uncomfortably wide tooltip should have a right-notch
+              <br />
+              and left-aligned text.
+            </Text>
+          }
           width={100}
         >
           <Button>Hover Me</Button>
