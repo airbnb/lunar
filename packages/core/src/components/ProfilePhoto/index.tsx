@@ -57,9 +57,7 @@ function ProfilePhoto({
   }, [imageSrc]);
 
   const handleError = () => {
-    if (fallbackImageSrc) {
-      setSrc(fallbackImageSrc);
-    }
+    setSrc(fallbackImageSrc!);
   };
 
   return (

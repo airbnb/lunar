@@ -1,6 +1,7 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { mountUseStyles } from '@airbnb/lunar-test-utils';
 import UrlFactory from '../../../src/components/Interweave/factories/Url';
+import Link from '../../../src/components/Link';
 
 describe('UrlFactory', () => {
   const urlParts = {
@@ -14,69 +15,64 @@ describe('UrlFactory', () => {
   };
 
   it('renders a link', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <UrlFactory url="airbnb.com" urlParts={urlParts}>
         airbnb.com
       </UrlFactory>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Link)).toHaveLength(1);
   });
 
   it('adds http:// to URL', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <UrlFactory url="airbnb.com" urlParts={urlParts}>
         airbnb.com
       </UrlFactory>,
-      true,
     );
 
-    expect(wrapper.prop('href')).toBe('http://airbnb.com');
+    expect(wrapper.find(Link).prop('href')).toBe('http://airbnb.com');
   });
 
   it('doesnt add http:// to URL', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <UrlFactory url="https://airbnb.com" urlParts={urlParts}>
         https://airbnb.com
       </UrlFactory>,
-      true,
     );
 
-    expect(wrapper.prop('href')).toBe('https://airbnb.com');
+    expect(wrapper.find(Link).prop('href')).toBe('https://airbnb.com');
   });
 
   it('sets open in new window', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <UrlFactory newWindow url="airbnb.com" urlParts={urlParts}>
         airbnb.com
       </UrlFactory>,
-      true,
     );
 
-    expect(wrapper.prop('openInNewWindow')).toBe(true);
+    expect(wrapper.find(Link).prop('openInNewWindow')).toBe(true);
   });
 
   it('sets small prop on link', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <UrlFactory small url="airbnb.com" urlParts={urlParts}>
         airbnb.com
       </UrlFactory>,
-      true,
     );
 
-    expect(wrapper.prop('small')).toBe(true);
-    expect(wrapper.prop('large')).toBe(false);
+    expect(wrapper.find(Link).prop('small')).toBe(true);
+    expect(wrapper.find(Link).prop('large')).toBe(false);
   });
 
   it('sets large prop on link', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <UrlFactory large url="airbnb.com" urlParts={urlParts}>
         airbnb.com
       </UrlFactory>,
-      true,
     );
 
-    expect(wrapper.prop('large')).toBe(true);
-    expect(wrapper.prop('small')).toBe(false);
+    expect(wrapper.find(Link).prop('large')).toBe(true);
+    expect(wrapper.find(Link).prop('small')).toBe(false);
   });
 });

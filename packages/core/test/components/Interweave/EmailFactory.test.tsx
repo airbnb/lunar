@@ -1,6 +1,7 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { mountUseStyles } from '@airbnb/lunar-test-utils';
 import EmailFactory from '../../../src/components/Interweave/factories/Email';
+import Link from '../../../src/components/Link';
 
 describe('EmailFactory', () => {
   const emailParts = {
@@ -9,58 +10,54 @@ describe('EmailFactory', () => {
   };
 
   it('renders a link', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <EmailFactory email="email@airbnb.com" emailParts={emailParts}>
         email@airbnb.com
       </EmailFactory>,
     );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Link)).toHaveLength(1);
   });
 
   it('adds mailto: to emails', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <EmailFactory email="email@airbnb.com" emailParts={emailParts}>
         email@airbnb.com
       </EmailFactory>,
-      true,
     );
 
-    expect(wrapper.prop('href')).toBe('mailto:email@airbnb.com');
+    expect(wrapper.find(Link).prop('href')).toBe('mailto:email@airbnb.com');
   });
 
   it('sets open in new window', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <EmailFactory newWindow email="email@airbnb.com" emailParts={emailParts}>
         email@airbnb.com
       </EmailFactory>,
-      true,
     );
 
-    expect(wrapper.prop('openInNewWindow')).toBe(true);
+    expect(wrapper.find(Link).prop('openInNewWindow')).toBe(true);
   });
 
   it('sets small prop on link', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <EmailFactory newWindow small email="email@airbnb.com" emailParts={emailParts}>
         email@airbnb.com
       </EmailFactory>,
-      true,
     );
 
-    expect(wrapper.prop('small')).toBe(true);
-    expect(wrapper.prop('large')).toBe(false);
+    expect(wrapper.find(Link).prop('small')).toBe(true);
+    expect(wrapper.find(Link).prop('large')).toBe(false);
   });
 
   it('sets large prop on link', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <EmailFactory newWindow large email="email@airbnb.com" emailParts={emailParts}>
         email@airbnb.com
       </EmailFactory>,
-      true,
     );
 
-    expect(wrapper.prop('small')).toBe(false);
-    expect(wrapper.prop('large')).toBe(true);
+    expect(wrapper.find(Link).prop('small')).toBe(false);
+    expect(wrapper.find(Link).prop('large')).toBe(true);
   });
 });
