@@ -4,7 +4,7 @@ import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import FocusTrap from '../../FocusTrap';
 import BasePortal from '../../Portal';
 import { ESCAPE } from '../../../keys';
-import { styleSheet } from './styles';
+import { styleSheetPortal } from './styles';
 
 export type PortalProps = {
   children?: React.ReactNode;
@@ -111,4 +111,4 @@ export class Portal extends React.Component<PortalProps & WithStylesProps, Porta
   }
 }
 
-export default withStyles(styleSheet)(Portal);
+export default withStyles(styleSheetPortal)(Portal);

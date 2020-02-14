@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import useStyles from '../../hooks/useStyles';
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric
 const fractionProp = mutuallyExclusiveTrueProps('diagonal', 'stacked');

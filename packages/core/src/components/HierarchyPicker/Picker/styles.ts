@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ ui, unit, color }) => ({
+export const styleSheetPicker: StyleSheet = ({ ui, unit, color }) => ({
   pane: {
     display: 'inline-block',
     borderRadius: ui.borderRadius,
@@ -14,7 +14,3 @@ const styleSheet: StyleSheet = ({ ui, unit, color }) => ({
     flexDirection: 'row',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

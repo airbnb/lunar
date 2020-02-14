@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ ui }) => ({
+export const styleSheetImage: StyleSheet = ({ ui }) => ({
   image: {
     display: 'block',
     boxShadow: ui.boxShadow,
@@ -18,7 +18,3 @@ const styleSheet: StyleSheet = ({ ui }) => ({
     objectFit: 'contain',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

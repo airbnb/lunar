@@ -89,6 +89,7 @@ function FormInput({
   propagateRef,
   small,
   tagName: Tag,
+  styleSheet,
   ...restProps
 }: PrivateProps) {
   const [styles, cx] = useStyles(styleSheet ?? inputStyleSheet);

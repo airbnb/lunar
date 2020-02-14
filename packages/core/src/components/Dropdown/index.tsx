@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useRef } from 'react';
 import { Block } from 'aesthetic';
-import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import useStyles from '../../hooks/useStyles';
 
 export type DropdownProps = {
   /** Bottom offset. */

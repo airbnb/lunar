@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import useStyles from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
 import Text from '../Text';
 import Link from '../Link';
@@ -19,8 +19,6 @@ export type ControlBarProps = {
   locale?: string;
   top?: string;
   onSelectLocale: (locale: string) => void;
-  /** Custom style sheet. */
-  styleSheet?: StyleSheet;
 };
 
 export default function ControlBar({
@@ -32,7 +30,7 @@ export default function ControlBar({
   onSelectLocale,
 }: ControlBarProps) {
   const theme = useTheme();
-  const [styles, cx] = useStyles(styleSheet ?? controlBarStyleSheet);
+  const [styles, cx] = useStyles(controlBarStyleSheet);
   const [showLocaleMenu, setLocaleMenu] = useState(false);
   const { selectedLocale, unsupportedLocale } = selectAppropriateLocale(locale);
 

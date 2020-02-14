@@ -8,7 +8,7 @@ import Link from '@airbnb/lunar/lib/components/Link';
 import SecondaryLink from '@airbnb/lunar/lib/components/SecondaryLink';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import Row from './private/Row';
-import { styleSheet } from './styles';
+import { styleSheetFilterMenu } from './styles';
 
 export type FilterMenuProps = {
   /** Accessibility label. */
@@ -57,8 +57,9 @@ export default function FilterMenu({
   onClear,
   onHide,
   onShow,
+  styleSheet,
 }: FilterMenuProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetFilterMenu);
   const [opened, setOpened] = useState(false);
 
   const handleShowFilters = () => {

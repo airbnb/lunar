@@ -5,7 +5,7 @@ import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import DirectionalIcon from '../DirectionalIcon';
-import { styleSheet } from './styles';
+import { styleSheetGradientScroller } from './styles';
 
 const INCREMENT = 25;
 
@@ -281,4 +281,4 @@ export class GradientScroller extends React.Component<
   }
 }
 
-export default withStyles(styleSheet)(GradientScroller);
+export default withStyles(styleSheetGradientScroller)(GradientScroller);

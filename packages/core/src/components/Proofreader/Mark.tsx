@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import useStyles from '../../hooks/useStyles';
 import { ProofreadRuleMatch } from './types';
 import { markStyleSheet } from './styles';
 
@@ -11,8 +11,6 @@ export type MarkProps = {
   selected?: boolean;
   shadow?: boolean;
   onSelect: (error: ProofreadRuleMatch, top: number, left: number) => void;
-  /** Custom style sheet. */
-  styleSheet?: StyleSheet;
 };
 
 export default function Mark({
@@ -24,7 +22,7 @@ export default function Mark({
   shadow = false,
   onSelect,
 }: MarkProps) {
-  const [styles, cx] = useStyles(styleSheet ?? markStyleSheet);
+  const [styles, cx] = useStyles(markStyleSheet);
   const ref = useRef<HTMLSpanElement | null>(null);
   const active = highlighted || selected;
 
