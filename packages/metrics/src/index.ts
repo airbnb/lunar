@@ -110,7 +110,7 @@ class Metrics {
   isSentryEnabled() {
     const { sentry, sentryKey, sentryProject } = this.settings;
 
-    return (sentry && sentry.dsn) || (sentryKey && sentryProject);
+    return sentry?.dsn || (sentryKey && sentryProject);
   }
 }
 

@@ -377,7 +377,7 @@ export default class Form<Data extends object = {}> extends React.Component<
 
         const { name, data: fieldData } = field;
 
-        if (fieldData && fieldData.config && fieldData.config.validator) {
+        if (fieldData?.config?.validator) {
           const value = getIn(data, name);
 
           if (typeof value !== 'undefined') {

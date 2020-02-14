@@ -1,6 +1,5 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-// eslint-disable-next-line
 export const styleSheetGrid: StyleSheet = ({ unit }) => ({
   container: {
     display: 'grid',

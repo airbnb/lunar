@@ -17,6 +17,9 @@ module.exports = {
       files: ['*.ts', '*.tsx'],
       rules: {
         '@typescript-eslint/consistent-type-assertions': 'off',
+
+        // Is kind of useless because lots of false positives
+        '@typescript-eslint/prefer-nullish-coalescing': 'off',
       },
     },
     {
@@ -25,9 +28,6 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         'jest/require-to-throw-message': 'off', // Prop type errors
         'react/jsx-no-literals': 'off',
-
-        // Is kind of useless because lots of false positives
-        '@typescript-eslint/prefer-nullish-coalescing': 'off',
       },
     },
     {

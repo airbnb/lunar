@@ -128,7 +128,7 @@ export class MenuToggle extends React.Component<
     // Let the button handle itself
     const { current } = this.ref;
 
-    if (current && current.contains(event.target as Element)) {
+    if (current?.contains(event.target as Element)) {
       return;
     }
 

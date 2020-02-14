@@ -41,8 +41,8 @@ export default function ModalImageLayout({
           <img
             className={cx(styles.image)}
             src={url}
-            srcSet={srcSet && srcSet.join(',')}
-            sizes={sizes && sizes.join(',')}
+            srcSet={srcSet?.join(',')}
+            sizes={sizes?.join(',')}
             alt=""
           />
         )}
@@ -51,7 +51,7 @@ export default function ModalImageLayout({
           <img
             className={cx(styles.image, styles.imageCover)}
             src={url}
-            srcSet={srcSet && srcSet.join(',')}
+            srcSet={srcSet?.join(',')}
             alt=""
           />
         )}

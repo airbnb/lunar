@@ -1,6 +1,5 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-// eslint-disable-next-line import/prefer-default-export
 export const buttonStyleSheet: StyleSheet = ({ color, font, pattern, ui, unit, transition }) => ({
   button: {
     ...pattern.resetButton,

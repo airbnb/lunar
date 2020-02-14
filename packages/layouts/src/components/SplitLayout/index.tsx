@@ -3,7 +3,7 @@ import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import Layout, { LayoutProps, AsideProps } from '../Layout';
 import { styleSheetSplitLayout } from './styles';
 
-export type SplitLayoutProps = Required<AsideProps> & Pick<LayoutProps, 'fluid'>;
+export type SplitLayoutProps = Required<AsideProps> & Pick<LayoutProps, 'fluid' | 'styleSheet'>;
 
 /** A symmetrical two-column layout. */
 export default function SplitLayout({ after, before, fluid, styleSheet }: SplitLayoutProps) {

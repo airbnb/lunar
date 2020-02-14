@@ -24,8 +24,6 @@ export type AsideProps = {
   after?: React.ReactNode;
   /** The before aside content. */
   before?: React.ReactNode;
-  /** Custom style sheet. */
-  styleSheet?: StyleSheet;
 };
 
 /** Abstract layout manager that all other layouts extend from. */
