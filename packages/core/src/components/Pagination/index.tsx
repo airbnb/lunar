@@ -10,7 +10,7 @@ import IconButton from '../IconButton';
 import Text from '../Text';
 import T from '../Translate';
 import DirectionalIcon from '../DirectionalIcon';
-import { styleSheet } from './styles';
+import { styleSheetPagination } from './styles';
 import useTheme from '../../hooks/useTheme';
 
 export type PaginationProps = {
@@ -62,8 +62,9 @@ function Pagination({
   onPrevious,
   page,
   pageCount,
+  styleSheet,
 }: PaginationProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetPagination);
   const theme = useTheme();
 
   if (!(hasNext || hasPrev)) {

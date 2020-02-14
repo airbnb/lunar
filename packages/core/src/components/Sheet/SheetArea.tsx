@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import SheetContext from './SheetContext';
-import { styleSheetSheetArea as styleSheet } from './styles';
+import { styleSheetSheetArea } from './styles';
 
 export type SheetAreaProps = {
   /** Content that includes a sheet. */
@@ -11,8 +11,8 @@ export type SheetAreaProps = {
 };
 
 /** Container in which to render sheets. */
-export default function SheetArea({ children }: SheetAreaProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+export default function SheetArea({ children, styleSheet }: SheetAreaProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetSheetArea);
   const [visible, setVisible] = useState(false);
 
   const setSheetVisible = (nextVisible: boolean) => {

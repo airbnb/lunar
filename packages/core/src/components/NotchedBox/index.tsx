@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import { styleSheet, createPosition, NOTCH_SIZE, NOTCH_SPACING } from './styles';
+import { styleSheetNotchedBox, createPosition, NOTCH_SIZE, NOTCH_SPACING } from './styles';
 
 export { NOTCH_SIZE, NOTCH_SPACING };
 
@@ -26,8 +26,9 @@ export default function NotchedBox({
   inline,
   notchBelow,
   notchOffset,
+  styleSheet,
 }: NotchedBoxProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetNotchedBox);
 
   return (
     <div className={cx(styles.box, !inverted && styles.border, inline && styles.box_inline)}>

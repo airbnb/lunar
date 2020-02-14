@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import { styleSheetRow } from './styles';
 
 export type RowProps = {
   /** The contents following the primary contents. */
@@ -45,8 +45,9 @@ export default function Row({
   spacious,
   topline,
   truncated,
+  styleSheet,
 }: RowProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetRow);
 
   return (
     <div

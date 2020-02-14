@@ -29,8 +29,6 @@ export type DropdownProps = {
   visible?: boolean;
   /** Z-index of the dropdown. */
   zIndex?: number | 'auto';
-  /** Custom style sheet. */
-  styleSheet?: StyleSheet;
 };
 
 /** An abstract component for displaing menus and overlays over content. */
@@ -46,7 +44,7 @@ export default function Dropdown({
   onClickOutside,
   ...props
 }: DropdownProps) {
-  const [, cx] = useStyles(styleSheet ?? (() => ({})));
+  const [, cx] = useStyles(() => ({}));
   const ref = useRef<HTMLDivElement | null>(null);
 
   const handleClick = useCallback(

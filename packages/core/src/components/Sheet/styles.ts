@@ -2,7 +2,7 @@ import { StyleSheet } from '../../hooks/useStyles';
 import toRGBA from '../../utils/toRGBA';
 import { Z_INDEX_PORTAL } from '../../constants';
 
-export const styleSheet: StyleSheet = ({ color, pattern, ui, unit }) => ({
+export const styleSheetSheet: StyleSheet = ({ color, pattern, ui, unit }) => ({
   sheet: {
     position: 'absolute',
     top: 0,

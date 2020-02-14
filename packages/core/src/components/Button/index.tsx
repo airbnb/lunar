@@ -38,7 +38,7 @@ function Button({
   styleSheet,
   ...restProps
 }: ButtonProps) {
-  const [styles, cx] = useStyles(styleSheet ?? (styleSheet ?? buttonStyleSheet));
+  const [styles, cx] = useStyles(styleSheet ?? buttonStyleSheet);
 
   return (
     <ButtonOrLink

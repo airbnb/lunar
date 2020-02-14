@@ -2,7 +2,7 @@ import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { STATUSES } from '../../constants';
-import { styleSheetRow as styleSheet } from './styles';
+import { styleSheetRow } from './styles';
 
 export type TableRowProps = {
   /** Table cells to render. */
@@ -32,9 +32,10 @@ function TableRow({
   notice,
   success,
   warning,
+  styleSheet,
   ...props
 }: TableRowProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetRow);
 
   return (
     <tr

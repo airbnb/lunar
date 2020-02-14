@@ -1,7 +1,7 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import { styleSheetText } from './styles';
 
 export type TextProps = {
   /** Render the text inline instead of block. */
@@ -64,8 +64,9 @@ function Text({
   startAlign,
   truncated,
   uppercased,
+  styleSheet,
 }: TextProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetText);
 
   let Tag: 'div' | 'span' | 'small' | 'h4' = 'div';
   if (inline) {

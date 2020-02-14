@@ -14,7 +14,7 @@ import Spacing from '../Spacing';
 import T from '../Translate';
 import SheetArea from './SheetArea';
 import SheetContext, { Context } from './SheetContext';
-import { styleSheet } from './styles';
+import { styleSheetSheet } from './styles';
 
 export { SheetArea, SheetContext };
 
@@ -278,9 +278,9 @@ export class BaseSheet extends React.Component<
  * component, and it will render at the root of your document. It does not need to be wrapped in a
  * `SheetArea`.
  */
-export default function Sheet(props: BaseSheetProps) {
+export default function Sheet({ styleSheet, ...props }: BaseSheetProps) {
   const setSheetVisible = useContext(SheetContext);
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetSheet);
   const theme = useTheme();
 
   return (

@@ -3,7 +3,7 @@ import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Text, { TextProps } from '../Text';
 import { STATUSES } from '../../constants';
-import { styleSheet } from './styles';
+import { styleSheetStatusText } from './styles';
 
 export type StatusTextProps = TextProps & {
   /** The text to render. */
@@ -33,9 +33,10 @@ function StatusText({
   notice,
   success,
   warning,
+  styleSheet,
   ...restProps
 }: StatusTextProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetStatusText);
 
   return (
     <Text {...restProps}>

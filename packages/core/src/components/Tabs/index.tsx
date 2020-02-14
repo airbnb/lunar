@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import withBoundary from '../../composers/withBoundary';
 import GradientScroller from '../GradientScroller';
 import Tab, { TabProps } from './Tab';
-import { styleSheet } from './styles';
+import { styleSheetTabs } from './styles';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export { Tab };
@@ -47,8 +47,9 @@ function Tabs({
   persistWithHash,
   defaultKey,
   onChange,
+  styleSheet,
 }: TabsProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetTabs);
   const [selectedKey, setSelectedKey] = useState(
     () => (persistWithHash && getHashQuery().get(persistWithHash)) || defaultKey || '',
   );

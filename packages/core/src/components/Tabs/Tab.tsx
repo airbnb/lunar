@@ -3,7 +3,7 @@ import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
 import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
 import TrackingBoundary from '../TrackingBoundary';
-import { styleSheetTab as styleSheet } from './styles';
+import { styleSheetTab } from './styles';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type TabProps = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabled' | 'href'> & {
@@ -46,8 +46,9 @@ export default function Tab({
   stretched,
   onClick,
   onSelected,
+  styleSheet,
 }: TabProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetTab);
   const trackingName = upperFirst(camelCase(keyName ?? 'Tab'));
   const noBorder = secondary || borderless;
   const noHover = secondary || (noBorder && disabled);

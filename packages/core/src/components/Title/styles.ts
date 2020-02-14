@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, font }) => ({
+export const styleSheetTitle: StyleSheet = ({ color, font }) => ({
   title: {
     ...font.textReset,
     color: color.accent.text,
@@ -42,7 +42,3 @@ const styleSheet: StyleSheet = ({ color, font }) => ({
     textAlign: 'right',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

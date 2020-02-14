@@ -3,7 +3,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import withBoundary from '../../composers/withBoundary';
 import Cell from './Cell';
 import Row from './Row';
-import { styleSheet } from './styles';
+import { styleSheetTable } from './styles';
 
 export type TableProps = {
   /** Apply a wrapping border (combined with horizontal or vertical). */
@@ -47,8 +47,9 @@ function Table({
   striped,
   transparent,
   vertical,
+  styleSheet,
 }: TableProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetTable);
 
   return (
     <div className={cx(!noWrap && styles.responsive_wrapper)}>

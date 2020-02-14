@@ -4,7 +4,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import iconComponent from '../../prop-types/iconComponent';
 import IconAffix from '../private/IconAffix';
 import { STATUSES, BRANDS } from '../../constants';
-import { styleSheet } from './styles';
+import { styleSheetStatusLabel } from './styles';
 
 export type StatusLabelProps = {
   /** Icon to display at the end of the content. */
@@ -58,8 +58,9 @@ function StatusLabel({
   success,
   uppercased,
   warning,
+  styleSheet,
 }: StatusLabelProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetStatusLabel);
 
   return (
     <span

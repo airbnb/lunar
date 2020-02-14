@@ -2,7 +2,7 @@ import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Step from './Step';
-import { styleSheet } from './styles';
+import { styleSheetBar } from './styles';
 
 export type SteppedProgressBarProps = {
   /** List of `Step`s to track progress. */
@@ -12,8 +12,8 @@ export type SteppedProgressBarProps = {
 };
 
 /** A progress bar separated into individual steps. */
-function SteppedProgressBar({ children }: SteppedProgressBarProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+function SteppedProgressBar({ children, styleSheet }: SteppedProgressBarProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetBar);
 
   const steps = React.Children.count(children);
 

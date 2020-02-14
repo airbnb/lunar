@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import { styleSheetShimmer } from './styles';
 
 export type ShimmerProps = {
   /** Display as block instead of inline. */
@@ -21,8 +21,9 @@ export default function Shimmer({
   height = '1.25ex',
   radius = '0.125em',
   width = '60%',
+  styleSheet,
 }: ShimmerProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetShimmer);
 
   const randomWidth: string =
     width === 'random' ? `${Math.round(Math.random() * (90 - 30) + 30)}%` : '';

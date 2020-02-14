@@ -46,5 +46,11 @@ module.exports = {
         'import/no-unresolved': 'off',
       },
     },
+    {
+      files: ['styles.ts'],
+      rules: {
+        'import/prefer-default-export': 'off',
+      },
+    },
   ],
 };

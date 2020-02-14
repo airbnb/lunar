@@ -3,7 +3,7 @@ import IconCaretDown from '@airbnb/lunar-icons/lib/interface/IconCaretDown';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { SelectProps } from './FormInput';
 
-const styleSheet: StyleSheet = ({ pattern, unit }) => ({
+export const styleSheetSelect: StyleSheet = ({ pattern, unit }) => ({
   select: {
     position: 'relative',
     display: 'block',
@@ -51,9 +51,10 @@ export default function BaseSelect({
   children,
   placeholder = '',
   onChange,
+  styleSheet,
   ...restProps
 }: BaseSelectProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetSelect);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onChange(event.currentTarget.value, event);

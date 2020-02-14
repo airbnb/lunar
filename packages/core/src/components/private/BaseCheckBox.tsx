@@ -5,7 +5,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { InputProps } from './FormInput';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
-const styleSheet: StyleSheet = theme => {
+export const styleSheetCheckbox: StyleSheet = theme => {
   const styles = inputStyleSheet(theme);
 
   return {
@@ -92,9 +92,10 @@ export default function BaseCheckBox({
   invalid,
   indeterminate,
   onChange,
+  styleSheet,
   ...restProps
 }: BaseCheckBoxProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetCheckbox);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.currentTarget.checked, event.currentTarget.value, event);

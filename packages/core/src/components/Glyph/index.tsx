@@ -43,13 +43,11 @@ export type GlyphProps = {
   stacked?: boolean;
   /** Displays numbers as the same size, for easier table/vertical alignment. */
   tabular?: boolean;
-  /** Custom style sheet. */
-  styleSheet?: StyleSheet;
 };
 
 /** Controls hidden and alternative glyphs within the current font. */
 function Glyph({ children, ...props }: GlyphProps) {
-  const [, cx] = useStyles(styleSheet ?? (() => ({})));
+  const [, cx] = useStyles(() => ({}));
 
   return <span className={cx({ fontVariantNumeric: getNumericVariant(props) })}>{children}</span>;
 }

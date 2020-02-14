@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { and, mutuallyExclusiveProps } from 'airbnb-prop-types';
-import { styleSheet } from './styles';
+import { styleSheetProfilePhoto } from './styles';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
 
@@ -49,8 +49,9 @@ function ProfilePhoto({
   square,
   title,
   imageSrc,
+  styleSheet,
 }: ProfilePhotoProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetProfilePhoto);
   const { unit } = useTheme();
   const [src, setSrc] = useState(imageSrc);
 

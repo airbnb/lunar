@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import { styleSheet, cleanClassName } from './styles';
+import { styleSheetSpacing, cleanClassName } from './styles';
 
 export type SpacingRange =
   | 0
@@ -69,8 +69,9 @@ export default function Spacing({
   tag: TagProp = 'div',
   top = 0,
   vertical = 0,
+  styleSheet,
 }: SpacingProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetSpacing);
 
   const type = inner ? 'inner' : 'outer';
   const classes: (string | object)[] = [];

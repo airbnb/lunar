@@ -1,7 +1,7 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import { styleSheetTitle } from './styles';
 
 export type TitleProps = {
   /** Align the text in the center. */
@@ -34,8 +34,9 @@ function Title({
   level,
   muted,
   primary,
+  styleSheet,
 }: TitleProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetTitle);
 
   const Tag: 'h1' | 'h2' | 'h3' = `h${level}` as 'h1';
 
