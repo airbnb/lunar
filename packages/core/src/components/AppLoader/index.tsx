@@ -42,7 +42,7 @@ export default function AppLoader({
   small,
   subtitle,
 }: AppLoaderProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   if (fetched && !error) {
     return <main>{children}</main>;

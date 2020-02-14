@@ -21,7 +21,7 @@ export default function AdaptiveGrid({
   defaultItemsPerRow = 1,
   noGutter,
 }: AdaptiveGridProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const childElements =
     !!children &&

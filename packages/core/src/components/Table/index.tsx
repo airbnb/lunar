@@ -48,7 +48,7 @@ function Table({
   transparent,
   vertical,
 }: TableProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <div className={cx(!noWrap && styles.responsive_wrapper)}>

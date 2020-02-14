@@ -15,7 +15,7 @@ export type ColProps = {
 
 /** A column within a grid. */
 export default function Col({ children, offset = 0, span }: ColProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <div

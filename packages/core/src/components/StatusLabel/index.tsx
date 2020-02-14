@@ -59,7 +59,7 @@ function StatusLabel({
   uppercased,
   warning,
 }: StatusLabelProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <span

@@ -19,7 +19,7 @@ export type ListItemProps = {
 };
 
 function ListItem({ bordered, children, compact, horizontal, spacious }: ListItemProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <li

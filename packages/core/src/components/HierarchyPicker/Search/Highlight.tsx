@@ -12,7 +12,7 @@ export type HighlightProps = {
 };
 
 export default function Highlight({ fallback, match, word: searchWord }: HighlightProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   if (!match) {
     return <span>{fallback}</span>;

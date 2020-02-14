@@ -48,7 +48,7 @@ function Chip({
   profileImageSrc,
   trackingName,
 }: ChipProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const Component = onClick ? 'button' : 'div';
   const props: React.HTMLProps<HTMLButtonElement> =

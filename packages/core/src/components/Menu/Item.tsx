@@ -58,7 +58,7 @@ function MenuItem({
   tip,
   trackingName,
 }: MenuItemProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const [showSubmenu, setShowSubmenu] = useState(false);
 
   const handleMouseEnter = () => {

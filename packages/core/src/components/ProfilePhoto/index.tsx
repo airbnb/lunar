@@ -50,7 +50,7 @@ function ProfilePhoto({
   title,
   imageSrc,
 }: ProfilePhotoProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const { unit } = useTheme();
   const [src, setSrc] = useState(imageSrc);
 

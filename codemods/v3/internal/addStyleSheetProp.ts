@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 // npx jscodeshift --extensions=js,jsx,ts,tsx --parser=tsx --transform=./codemods/v3/internal/addStyleSheetProp.ts ./src
 
-import { FileInfo, API, Options, TSTypeLiteral } from 'jscodeshift';
+import { FileInfo, API, Options, TSTypeLiteral, Identifier } from 'jscodeshift';
 import { Codemod } from '../../helpers';
 
 function addPropToTypeAlias(mod: Codemod, obj: TSTypeLiteral) {
@@ -81,6 +81,15 @@ module.exports = function addStyleSheetProp(
         break;
       }
     }
+  });
+
+  // Add to `useStyles`
+  mod.source.find(mod.cs.CallExpression, { callee: { name: 'useStyles' } }).forEach(({ node }) => {
+    const arg = node.arguments[0] as Identifier;
+
+    node.arguments[0] = mod.createNode(j =>
+      j.logicalExpression('??', j.identifier('styleSheet'), arg),
+    );
   });
 
   return mod.toSource({

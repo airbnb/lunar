@@ -30,7 +30,7 @@ export default function ModalImageLayout({
   type,
   url,
 }: ModalImageLayoutProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <div className={cx(styles.splitContent)}>

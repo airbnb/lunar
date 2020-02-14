@@ -70,7 +70,7 @@ export default function Spacing({
   top = 0,
   vertical = 0,
 }: SpacingProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const type = inner ? 'inner' : 'outer';
   const classes: (string | object)[] = [];

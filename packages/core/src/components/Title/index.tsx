@@ -35,7 +35,7 @@ function Title({
   muted,
   primary,
 }: TitleProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const Tag: 'h1' | 'h2' | 'h3' = `h${level}` as 'h1';
 

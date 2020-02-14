@@ -69,7 +69,7 @@ export default function EmojiPicker({
   onClosePicker,
   ...props
 }: EmojiPickerProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // When the picker wrapper is focused, we need to close on esc

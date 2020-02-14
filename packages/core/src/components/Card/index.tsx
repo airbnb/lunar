@@ -18,7 +18,7 @@ export type CardProps = {
  * An abstract layout to use as a base for cards.
  */
 export default function Card({ children, overflow }: CardProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return <div className={cx(styles.card, overflow && styles.card_overflow)}>{children}</div>;
 }

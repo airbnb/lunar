@@ -19,7 +19,7 @@ export type StepProps = {
 
 /** An individual step within a stepped progress bar. */
 export default function Step({ complete, first, last, label }: StepProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const bar = (
     <ProgressBar

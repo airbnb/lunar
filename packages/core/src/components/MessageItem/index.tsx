@@ -80,7 +80,7 @@ function MessageItem({
   verticalSpacing,
   warning,
 }: MessageItemProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const getAvatar = () => {
     if (loadingAuthor) {

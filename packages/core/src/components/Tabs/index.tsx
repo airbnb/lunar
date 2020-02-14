@@ -48,7 +48,7 @@ function Tabs({
   defaultKey,
   onChange,
 }: TabsProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const [selectedKey, setSelectedKey] = useState(
     () => (persistWithHash && getHashQuery().get(persistWithHash)) || defaultKey || '',
   );

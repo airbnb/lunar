@@ -12,7 +12,7 @@ export type LabeledDividerProps = {
 
 /** A horizontal divider with a label. */
 export default function LabeledDivider({ label }: LabeledDividerProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <div className={cx(styles.rule)}>

@@ -24,7 +24,7 @@ export default function Mark({
   shadow = false,
   onSelect,
 }: MarkProps) {
-  const [styles, cx] = useStyles(markStyleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? markStyleSheet);
   const ref = useRef<HTMLSpanElement | null>(null);
   const active = highlighted || selected;
 

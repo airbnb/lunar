@@ -41,7 +41,7 @@ export default function AccordionItem({
   onClick,
   onToggle,
 }: AccordionItemProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const [prevExpanded, setExpanded] = useState(expanded);
   const theme = useTheme();
 

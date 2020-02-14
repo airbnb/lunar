@@ -280,7 +280,7 @@ export class BaseSheet extends React.Component<
  */
 export default function Sheet(props: BaseSheetProps) {
   const setSheetVisible = useContext(SheetContext);
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const theme = useTheme();
 
   return (

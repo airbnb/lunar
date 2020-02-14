@@ -29,7 +29,7 @@ function IconButton({
   tooltip,
   ...restProps
 }: IconButtonProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const button = (
     <ButtonOrLink

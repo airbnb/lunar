@@ -34,7 +34,7 @@ export default function HierarchyList({
   verticallyAlign,
 }: HierarchyListProps) {
   const ref = React.createRef<HTMLDivElement>();
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const passThruProps = { chosen, maxHeight, renderItem, onSubtree, onItemPicked, width };
 
   const isChosen = (definition: TreePath): boolean =>

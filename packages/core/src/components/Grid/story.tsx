@@ -13,7 +13,7 @@ const styleSheet: StyleSheet = ({ color, unit }) => ({
 });
 
 function Box({ children = null }: { children: React.ReactNode }) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return <div className={cx(styles.box)}>{children}</div>;
 }

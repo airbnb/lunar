@@ -49,7 +49,7 @@ export type GlyphProps = {
 
 /** Controls hidden and alternative glyphs within the current font. */
 function Glyph({ children, ...props }: GlyphProps) {
-  const [, cx] = useStyles(() => ({}));
+  const [, cx] = useStyles(styleSheet ?? (() => ({})));
 
   return <span className={cx({ fontVariantNumeric: getNumericVariant(props) })}>{children}</span>;
 }

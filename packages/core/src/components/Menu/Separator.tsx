@@ -4,7 +4,7 @@ import { styleSheetSeparator as styleSheet } from './styles';
 
 /** A separator between menu items. */
 export default function MenuSeparator() {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <li role="separator">

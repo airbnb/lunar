@@ -31,7 +31,7 @@ export default function List({
   wrap,
 }: ListProps) {
   const Tag = ordered ? 'ol' : 'ul';
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <Tag

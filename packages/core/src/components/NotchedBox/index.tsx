@@ -27,7 +27,7 @@ export default function NotchedBox({
   notchBelow,
   notchOffset,
 }: NotchedBoxProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <div className={cx(styles.box, !inverted && styles.border, inline && styles.box_inline)}>

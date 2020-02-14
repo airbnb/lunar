@@ -40,7 +40,7 @@ export default function ModalInnerContent({
   subtitle,
   title,
 }: ModalInnerContentProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const theme = useTheme();
   const withHeader = Boolean(title || subtitle);
   const withFooter = Boolean(footer);

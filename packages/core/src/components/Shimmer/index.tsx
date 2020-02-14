@@ -22,7 +22,7 @@ export default function Shimmer({
   radius = '0.125em',
   width = '60%',
 }: ShimmerProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const randomWidth: string =
     width === 'random' ? `${Math.round(Math.random() * (90 - 30) + 30)}%` : '';

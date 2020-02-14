@@ -34,7 +34,7 @@ export default function TableCell({
   wrap,
   ...props
 }: TableCellProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const Tag = header ? 'th' : 'td';
 
   return (

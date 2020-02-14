@@ -46,7 +46,7 @@ export default function Dropdown({
   onClickOutside,
   ...props
 }: DropdownProps) {
-  const [, cx] = useStyles(() => ({}));
+  const [, cx] = useStyles(styleSheet ?? (() => ({})));
   const ref = useRef<HTMLDivElement | null>(null);
 
   const handleClick = useCallback(

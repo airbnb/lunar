@@ -96,7 +96,7 @@ export default function BaseRadioButton({
   onChange,
   ...restProps
 }: BaseRadioButtonProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.currentTarget.checked, event.currentTarget.value, event);

@@ -124,7 +124,7 @@ function Image({
   title,
   width = '100%',
 }: ImageProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   let backgroundAriaLabel = {};
 

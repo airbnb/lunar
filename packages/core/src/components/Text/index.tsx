@@ -65,7 +65,7 @@ function Text({
   truncated,
   uppercased,
 }: TextProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   let Tag: 'div' | 'span' | 'small' | 'h4' = 'div';
   if (inline) {

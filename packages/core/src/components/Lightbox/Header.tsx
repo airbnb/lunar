@@ -51,7 +51,7 @@ export default function LightboxHeader({
   onToggleAside,
   onZoomImage,
 }: LightboxHeaderProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const handleNext = () => {
     onChangeSlide(activeIndex + 1);

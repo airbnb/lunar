@@ -36,7 +36,7 @@ function Grid({
   startAlign,
   topAlign,
 }: GridProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <section

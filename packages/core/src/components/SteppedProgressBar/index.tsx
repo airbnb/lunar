@@ -13,7 +13,7 @@ export type SteppedProgressBarProps = {
 
 /** A progress bar separated into individual steps. */
 function SteppedProgressBar({ children }: SteppedProgressBarProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const steps = React.Children.count(children);
 

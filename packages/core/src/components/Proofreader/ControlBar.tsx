@@ -32,7 +32,7 @@ export default function ControlBar({
   onSelectLocale,
 }: ControlBarProps) {
   const theme = useTheme();
-  const [styles, cx] = useStyles(controlBarStyleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? controlBarStyleSheet);
   const [showLocaleMenu, setLocaleMenu] = useState(false);
   const { selectedLocale, unsupportedLocale } = selectAppropriateLocale(locale);
 

@@ -15,7 +15,7 @@ export type CountBadgeProps = {
 
 /** A badge indicator with a count. */
 export default function CountBadge({ accessibilityLabel, value, waggle }: CountBadgeProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const badgeRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

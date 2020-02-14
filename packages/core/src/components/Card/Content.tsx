@@ -76,7 +76,7 @@ function CardContent({
   onAfterImageClick,
   onBeforeImageClick,
 }: CardContentProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const ContainerTag = onClick ? 'button' : 'div';
   const props = onClick ? { type: 'button', onClick } : {};

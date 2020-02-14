@@ -16,7 +16,7 @@ export type DividerProps = {
 
 /** A horizontal divider. */
 export default function Divider({ bottom = 2, short, top = 2 }: DividerProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <Spacing bottom={bottom} top={top}>

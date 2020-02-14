@@ -39,7 +39,7 @@ export default function ImageViewer({
   src,
   width,
 }: ImageViewerProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const [dragging, setDragging] = useState(false);
   const [imageLocation, setImageLocation] = useState<Position>({ x: 0, y: 0 });
   const [lastMouseLocation, setMouseLocation] = useState<Position>({ x: 0, y: 0 });

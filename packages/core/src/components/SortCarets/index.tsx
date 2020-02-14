@@ -19,7 +19,7 @@ export type SortCaretsProps = {
 
 /** Carets to indicate sorting on a table. */
 export default function SortCarets({ down, enableDown, enableUp, up }: SortCaretsProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <span className={cx(styles.container, up && down && styles.container_full)}>

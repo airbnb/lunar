@@ -35,7 +35,7 @@ function StatusText({
   warning,
   ...restProps
 }: StatusTextProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <Text {...restProps}>

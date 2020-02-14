@@ -16,7 +16,7 @@ export type ProgressBarProps = {
 
 /** A bar to represent the progress to completion. */
 function ProgressBar({ percent, leading, trailing }: ProgressBarProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <div className={cx(styles.wrapper)}>

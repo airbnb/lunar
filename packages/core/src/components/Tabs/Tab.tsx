@@ -47,7 +47,7 @@ export default function Tab({
   onClick,
   onSelected,
 }: TabProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const trackingName = upperFirst(camelCase(keyName ?? 'Tab'));
   const noBorder = secondary || borderless;
   const noHover = secondary || (noBorder && disabled);

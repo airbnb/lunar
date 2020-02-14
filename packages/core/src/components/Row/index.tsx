@@ -46,7 +46,7 @@ export default function Row({
   topline,
   truncated,
 }: RowProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <div

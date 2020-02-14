@@ -92,7 +92,7 @@ export default function FormField({
   suffix,
   topAlign,
 }: PrivateProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const content = (
     <div

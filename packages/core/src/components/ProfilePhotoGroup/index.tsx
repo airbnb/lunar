@@ -17,7 +17,7 @@ export type ProfilePhotoGroupProps = {
 
 /** Horizontally align `ProfilePhoto`s in a stacked fashion. */
 export default function ProfilePhotoGroup({ children, max = 3, size = 5 }: ProfilePhotoGroupProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const { unit } = useTheme();
 
   const margin = { marginLeft: -(size * (unit / 2.5)) };

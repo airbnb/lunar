@@ -48,7 +48,7 @@ export default function TableHeader({
   tableHeaderLabel,
   width,
 }: TableHeaderProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const extraEditButtons = extraHeaderButtons!.map(
     (btnConfig: HeaderButton) =>
       btnConfig.displayEditMode && (

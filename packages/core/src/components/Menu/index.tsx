@@ -32,7 +32,7 @@ export default function Menu({
   role = 'menu',
 }: MenuProps) {
   const scrollable = !!maxHeight && !overflow;
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <ul

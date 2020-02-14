@@ -47,7 +47,7 @@ export type ZoomControlsProps = {
 
 /** Zoom controls that can be used with an image viewer component */
 export default function ZoomControls(props: ZoomControlsProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const [visible, setVisible] = useState(false);
   const { onScale, scale = 1 } = props;
 

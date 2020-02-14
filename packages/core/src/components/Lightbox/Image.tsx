@@ -36,7 +36,7 @@ export default function LightboxImage({
   scale,
   rotation,
 }: LightboxImageProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <div className={cx(styles.wrapper)}>

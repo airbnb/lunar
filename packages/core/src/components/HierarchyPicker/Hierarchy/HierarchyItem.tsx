@@ -45,7 +45,7 @@ export default function HierarchyItem({
   onDomFocusDeeper,
   onDomFocusShallower,
 }: HierarchyItemProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const theme = useTheme();
 
   const goDeeper = () => {

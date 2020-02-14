@@ -44,7 +44,7 @@ function Link({
   styleSheet,
   ...restProps
 }: LinkProps) {
-  const [styles, cx] = useStyles(styleSheet ?? linkStyleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? (styleSheet ?? linkStyleSheet));
 
   return (
     <Text inline={!block} baseline={baseline} micro={micro} small={small} large={large} bold={bold}>

@@ -91,7 +91,7 @@ function FormInput({
   tagName: Tag,
   ...restProps
 }: PrivateProps) {
-  const [styles, cx] = useStyles(inputStyleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? inputStyleSheet);
   const isSelect = Tag === 'select';
 
   const props: { [key: string]: unknown } = {

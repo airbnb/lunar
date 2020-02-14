@@ -83,7 +83,7 @@ export default function DatePicker(props: DatePickerProps) {
     todayButton,
     toMonth,
   } = props;
-  const [styles, cx] = useStyles(datePickerStyles);
+  const [styles, cx] = useStyles(styleSheet ?? datePickerStyles);
 
   return (
     <DayPicker

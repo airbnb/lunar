@@ -30,7 +30,7 @@ export default function Accordion({
   onChange,
 }: AccordionProps) {
   const [id] = useState(() => uuid());
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const [expanded, setExpanded] = useState(
     new Set<number>([defaultIndex]),
   );

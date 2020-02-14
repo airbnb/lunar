@@ -57,7 +57,7 @@ function Alert({
   warning,
   onClose,
 }: AlertProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const { color, unit } = useTheme();
 
   let StatusIcon = null;

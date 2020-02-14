@@ -17,7 +17,7 @@ export type LoaderProps = {
 
 /** A small 3-dot loading indicator. */
 export default function Loader({ inline, inverted, large, static: isStatic }: LoaderProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <div

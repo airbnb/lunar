@@ -53,7 +53,7 @@ export default function BaseSelect({
   onChange,
   ...restProps
 }: BaseSelectProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onChange(event.currentTarget.value, event);

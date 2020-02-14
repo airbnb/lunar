@@ -14,7 +14,7 @@ export type FormErrorMessageProps = {
 
 /** Display a simple error message for use within forms. */
 export default function FormErrorMessage({ id, error }: FormErrorMessageProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   if (!error) {
     return null;

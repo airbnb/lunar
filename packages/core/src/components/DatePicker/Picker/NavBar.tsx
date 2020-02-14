@@ -31,7 +31,7 @@ export default function NavBar({
   onPreviousClick,
   onResetClick,
 }: NavBarProps) {
-  const [styles, cx] = useStyles(datePickerStyles);
+  const [styles, cx] = useStyles(styleSheet ?? datePickerStyles);
 
   const handleNextClick = () => {
     onNextClick();

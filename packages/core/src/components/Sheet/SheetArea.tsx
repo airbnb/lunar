@@ -12,7 +12,7 @@ export type SheetAreaProps = {
 
 /** Container in which to render sheets. */
 export default function SheetArea({ children }: SheetAreaProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const [visible, setVisible] = useState(false);
 
   const setSheetVisible = (nextVisible: boolean) => {

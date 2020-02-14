@@ -63,7 +63,7 @@ function Pagination({
   page,
   pageCount,
 }: PaginationProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const theme = useTheme();
 
   if (!(hasNext || hasPrev)) {

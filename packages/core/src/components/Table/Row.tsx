@@ -34,7 +34,7 @@ function TableRow({
   warning,
   ...props
 }: TableRowProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <tr

@@ -21,7 +21,7 @@ export default function SearchResult({
   matches = [],
   query = '',
 }: SearchResultProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const { description, label, name } = item;
   const mbk = groupBy(matches, 'key');

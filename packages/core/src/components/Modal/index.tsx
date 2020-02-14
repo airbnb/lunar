@@ -9,7 +9,7 @@ export type ModalProps = ModalInnerProps;
 
 /** A modal component with a backdrop and a standardized layout. */
 export default function Modal({ onClose, ...props }: ModalProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   const handleClose = (event: React.MouseEvent | React.KeyboardEvent) => {
     onClose(event);

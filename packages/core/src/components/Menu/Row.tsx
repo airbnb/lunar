@@ -13,7 +13,7 @@ export type MenuRowProps = {
 
 /** A non-interactive row within a menu. */
 export default function MenuRow({ children, spacious }: MenuRowProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
 
   return (
     <li role="none">

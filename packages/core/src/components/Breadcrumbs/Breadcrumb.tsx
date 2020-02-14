@@ -41,7 +41,7 @@ export default function Breadcrumb({
   selected,
   trackingName,
 }: BreadcrumbProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
   const clickable = !disabled && (!!href || !!onClick);
   const aria = selected ? { 'aria-current': 'page' } : {};
 
