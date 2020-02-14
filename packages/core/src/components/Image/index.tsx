@@ -103,6 +103,8 @@ export type ImageProps = {
   title?: string;
   /** Width of content */
   width?: number | string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Component that displays an image */

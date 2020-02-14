@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet, createPosition, NOTCH_SIZE, NOTCH_SPACING } from './styles';
 
 export { NOTCH_SIZE, NOTCH_SPACING };
@@ -15,6 +15,8 @@ export type NotchedBoxProps = {
   notchBelow?: boolean;
   /** Offset of the notch (can be a CSS size eg "50%"). */
   notchOffset?: number | string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A container with a configurable arrow pointing outward. */

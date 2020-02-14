@@ -5,7 +5,7 @@ import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconFirst from '@airbnb/lunar-icons/lib/interface/IconFirst';
 import IconLast from '@airbnb/lunar-icons/lib/interface/IconLast';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import IconButton from '../IconButton';
 import Text from '../Text';
 import T from '../Translate';
@@ -42,6 +42,8 @@ export type PaginationProps = {
   onNext: () => void;
   /** Invoked when the previous page button is pressed. */
   onPrevious: () => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Pagination controls. */

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 // npx jscodeshift --extensions=js,jsx,ts,tsx --parser=tsx --transform=./codemods/v3/internal/addStyleSheetProp.ts ./src
 
-import { FileInfo, API, Options, TSTypeAliasDeclaration, TSTypeLiteral } from 'jscodeshift';
+import { FileInfo, API, Options, TSTypeLiteral } from 'jscodeshift';
 import { Codemod } from '../../helpers';
 
 function addPropToTypeAlias(mod: Codemod, obj: TSTypeLiteral) {
@@ -21,7 +21,7 @@ function addPropToTypeAlias(mod: Codemod, obj: TSTypeLiteral) {
       ),
     );
 
-    prop.comments.push(mod.createNode(j => j.commentBlock('Custom style sheet.', true)));
+    prop.comments = [mod.createNode(j => j.commentBlock('* Custom style sheet. ', true))];
 
     obj.members.push(prop);
   }
@@ -83,5 +83,8 @@ module.exports = function addStyleSheetProp(
     }
   });
 
-  return mod.toSource(options);
+  return mod.toSource({
+    ...options,
+    trailingComma: false,
+  });
 };

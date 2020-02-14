@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric
 const fractionProp = mutuallyExclusiveTrueProps('diagonal', 'stacked');
@@ -43,6 +43,8 @@ export type GlyphProps = {
   stacked?: boolean;
   /** Displays numbers as the same size, for easier table/vertical alignment. */
   tabular?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Controls hidden and alternative glyphs within the current font. */

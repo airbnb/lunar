@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import uuid from 'uuid/v4';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Item, { AccordionItemProps } from './Item';
 import { styleSheet } from './styles';
 
@@ -17,6 +17,8 @@ export type AccordionProps = {
   expandMultiple?: boolean;
   /** Callback fired when an item is expanded. */
   onChange?: (index: number) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A controller for multiple accordion items. */

@@ -5,7 +5,7 @@ import getMonths from '../../utils/getMonths';
 import getWeekdays from '../../utils/getWeekdays';
 import { getClassNames, getCustomModifiers } from '../../utils/datePicker';
 import NavBar from './Picker/NavBar';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type DatePickerProps = {
   /** Day(s) that should appear as disabled. Set a `disabled` modifier. See Matching days for a reference of the accepted value types. */
@@ -50,6 +50,8 @@ export type DatePickerProps = {
   onResetClick?: () => void;
   /** Event hander when the user clicks on the today button (when `todayButton` is set). */
   onTodayButtonClick?: DayPickerProps['onTodayButtonClick'];
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /**

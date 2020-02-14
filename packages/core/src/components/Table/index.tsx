@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import withBoundary from '../../composers/withBoundary';
 import Cell from './Cell';
 import Row from './Row';
@@ -30,6 +30,8 @@ export type TableProps = {
   transparent?: boolean;
   /** Apply a vertical border between rows. */
   vertical?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A responsive table for displaying tabular data. */

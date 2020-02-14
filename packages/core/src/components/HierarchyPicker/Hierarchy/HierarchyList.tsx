@@ -1,6 +1,6 @@
 import React from 'react';
 import Text from '../../Text';
-import useStyles from '../../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../../hooks/useStyles';
 import HierarchyItem from './HierarchyItem';
 import ItemDescription from './ItemDescription';
 import { ItemShape, TreePath, SubTreeHandler, ItemPickedHandler, ItemRenderer } from '../types';
@@ -17,6 +17,8 @@ export type HierarchyListProps = {
   onItemPicked: ItemPickedHandler;
   width?: number;
   verticallyAlign?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function HierarchyList({

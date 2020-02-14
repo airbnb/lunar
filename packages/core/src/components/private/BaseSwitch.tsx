@@ -87,6 +87,8 @@ export type BaseSwitchProps = InputProps & {
   id: string;
   /** Callback fired when the value changes. */
   onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function BaseSwitch({

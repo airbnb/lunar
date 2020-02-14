@@ -1,11 +1,13 @@
 import React from 'react';
 import Text from '../Text';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
 export type LabeledDividerProps = {
   /** A label for the divider. Typically a string or i18n T node. */
   label: NonNullable<React.ReactNode>;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A horizontal divider with a label. */

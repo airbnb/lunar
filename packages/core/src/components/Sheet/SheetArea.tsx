@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import SheetContext from './SheetContext';
 import { styleSheetSheetArea as styleSheet } from './styles';
 
 export type SheetAreaProps = {
   /** Content that includes a sheet. */
   children: NonNullable<React.ReactNode>;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Container in which to render sheets. */

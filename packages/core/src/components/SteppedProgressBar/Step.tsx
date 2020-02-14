@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ProgressBar from '../ProgressBar';
 import Tooltip from '../Tooltip';
 import { styleSheetStep as styleSheet } from './styles';
@@ -13,6 +13,8 @@ export type StepProps = {
   label?: React.ReactNode;
   /** @ignore Mark as the last step. */
   last?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** An individual step within a stepped progress bar. */

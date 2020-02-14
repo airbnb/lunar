@@ -1,6 +1,6 @@
 import React from 'react';
 import { between } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
 export type ProgressBarProps = {
@@ -10,6 +10,8 @@ export type ProgressBarProps = {
   percent: number;
   /** Disable trailing rounded corners. */
   trailing?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A bar to represent the progress to completion. */

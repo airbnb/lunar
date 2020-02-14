@@ -1,7 +1,7 @@
 import React from 'react';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
 import DirectionalIcon from '../DirectionalIcon';
 import { styleSheetBreadcrumb as styleSheet } from './styles';
@@ -25,6 +25,8 @@ export type BreadcrumbProps = {
   selected?: boolean;
   /** A tracking name to identify this component. */
   trackingName?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A single breadcrumb button. Usually rendered amongst a collection of breadcrumbs. */

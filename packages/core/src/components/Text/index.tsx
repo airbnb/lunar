@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
 export type TextProps = {
@@ -40,6 +40,8 @@ export type TextProps = {
   truncated?: boolean;
   /** Uppercase all text. */
   uppercased?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Display a string of text with pre-defined sizing, emphasis, and state styling. */

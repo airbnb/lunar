@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ErrorMessage from '../ErrorMessage';
 import Loader from '../Loader';
 import Title from '../Title';
@@ -26,6 +26,8 @@ export type AppLoaderProps = {
   small?: boolean;
   /** Text to display below the title. */
   subtitle?: React.ReactNode;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A loading indicator, representing the state of a request, for applications and landing pages. */

@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
 export type ButtonGroupProps = {
@@ -11,6 +11,8 @@ export type ButtonGroupProps = {
   stacked?: boolean;
   /** Stretch buttons to fill the space. */
   stretched?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Horizontally align `Button`s with a consistent gutter between each. */

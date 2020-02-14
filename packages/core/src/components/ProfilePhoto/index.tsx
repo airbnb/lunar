@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { and, mutuallyExclusiveProps } from 'airbnb-prop-types';
 import { styleSheet } from './styles';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
 
 const mutuallyExclusiveSizePropType = mutuallyExclusiveProps(
@@ -34,6 +34,8 @@ export type ProfilePhotoProps = {
   square?: boolean;
   /** Accessibility text for the Photo. */
   title: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Display a profile photo. */

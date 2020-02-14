@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import T from '../Translate';
 import Text from '../Text';
 import StatusText from '../StatusText';
@@ -42,6 +42,8 @@ export type FormFieldProps = {
   small?: boolean;
   /** Content to display after the input field. */
   suffix?: React.ReactNode;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export type PrivateProps = FormFieldProps & {
@@ -59,6 +61,8 @@ export type PrivateProps = FormFieldProps & {
   stretchLabel?: boolean;
   /** @ignore Top align content. */
   topAlign?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export { partitionFieldProps, Prefix, Suffix };

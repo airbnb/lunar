@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Portal from '../Portal';
 import ModalInner, { ModalInnerProps } from './private/Inner';
 import { ESCAPE } from '../../keys';

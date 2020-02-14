@@ -6,7 +6,7 @@ import datePickerStyles from '../../private/datePickerStyles';
 import DirectionalIcon from '../../DirectionalIcon';
 import IconButton from '../../IconButton';
 import T from '../../Translate';
-import useStyles from '../../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../../hooks/useStyles';
 
 export type NavBarProps = NavbarElementProps & {
   /** Callback for a reset button. */
@@ -15,6 +15,8 @@ export type NavBarProps = NavbarElementProps & {
   showResetButton?: boolean;
   /** Whether there is a footer to account for positioning. */
   noFooter?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function NavBar({

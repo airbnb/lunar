@@ -5,7 +5,7 @@ import Text from '../Text';
 import T from '../Translate';
 import { HeaderButton, SelectedRows } from './types';
 import { styleSheetTableHeader as styleSheet } from './styles';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type TableHeaderProps = {
   /** Specifies whether or not editMode can be enabled */
@@ -30,6 +30,8 @@ export type TableHeaderProps = {
   extraHeaderButtons?: HeaderButton[];
   /** Selected status of all rows, can by used by header buttons. */
   selectedRows: SelectedRows;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Header for the DataTable that displays a title and Table-level buttons. */

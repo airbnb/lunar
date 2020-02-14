@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useRef } from 'react';
 import { Block } from 'aesthetic';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type DropdownProps = {
   /** Bottom offset. */
@@ -29,6 +29,8 @@ export type DropdownProps = {
   visible?: boolean;
   /** Z-index of the dropdown. */
   zIndex?: number | 'auto';
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** An abstract component for displaing menus and overlays over content. */

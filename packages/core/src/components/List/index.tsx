@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Item, { ListItemProps } from './Item';
 import { styleSheet } from './styles';
 
@@ -18,6 +18,8 @@ export type ListProps = {
   ordered?: boolean;
   /** Wrap horizontal list. */
   wrap?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function List({

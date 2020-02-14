@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
 export type TitleProps = {
@@ -20,6 +20,8 @@ export type TitleProps = {
   muted?: boolean;
   /** Render with primary color text. */
   primary?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Display a string of text as a heading and or section title. */

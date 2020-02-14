@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ZoomControls from './ZoomControls';
 import RotateControls from './RotateControls';
 import ResponsiveImage from '../ResponsiveImage';
@@ -20,6 +20,8 @@ export type ImageViewerProps = {
   scale?: number;
   /** Render width. Unconstrained (css value 'none') by default. */
   width?: number | string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export type Position = {

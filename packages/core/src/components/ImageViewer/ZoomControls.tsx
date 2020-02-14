@@ -41,6 +41,8 @@ export type ZoomControlsProps = {
   scale?: number;
   /** Callback when scale / zoom changes */
   onScale: (scale: number) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Zoom controls that can be used with an image viewer component */

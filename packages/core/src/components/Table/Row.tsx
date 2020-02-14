@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { STATUSES } from '../../constants';
 import { styleSheetRow as styleSheet } from './styles';
 
@@ -19,6 +19,8 @@ export type TableRowProps = {
   success?: boolean;
   /** Warning row (yellow). */
   warning?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A table row that contains multiple cells. */

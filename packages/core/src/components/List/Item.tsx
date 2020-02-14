@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheetItem as styleSheet } from './styles';
 
 export type ListItemProps = {
@@ -14,6 +14,8 @@ export type ListItemProps = {
   horizontal?: boolean;
   /** Render with vertical padding. */
   spacious?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 function ListItem({ bordered, children, compact, horizontal, spacious }: ListItemProps) {

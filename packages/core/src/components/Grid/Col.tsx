@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheetCol as styleSheet } from './styles';
 
 export type ColProps = {
@@ -9,6 +9,8 @@ export type ColProps = {
   offset?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
   /** Number of columns this column should span. */
   span: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A column within a grid. */

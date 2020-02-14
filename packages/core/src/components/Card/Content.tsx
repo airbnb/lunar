@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { mutuallyExclusiveProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Image from '../Image';
 import Row from '../Row';
 import Spacing from '../Spacing';
@@ -53,6 +53,8 @@ export type CardContentProps = {
   onBeforeImageClick?: () => void;
   /** If provided, makes the entire content clickable, firing this callback. */
   onClick?: () => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Content block within a card. */

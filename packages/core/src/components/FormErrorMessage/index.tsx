@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import StatusText from '../StatusText';
 import { styleSheet } from './styles';
 
@@ -8,6 +8,8 @@ export type FormErrorMessageProps = {
   id: string;
   /** The error message. */
   error?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Display a simple error message for use within forms. */

@@ -6,7 +6,7 @@ import { ARROW_RIGHT, ARROW_LEFT } from '../../keys';
 import { ZoomControls, RotateControls } from '../ImageViewer';
 import Spacing from '../Spacing';
 import { styleSheetHeader as styleSheet } from './styles';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type LightboxHeaderProps = {
   /** Currently active image index. */
@@ -33,6 +33,8 @@ export type LightboxHeaderProps = {
   onToggleAside: () => void;
   /** Callback fired when the zoom changes. */
   onZoomImage?: (scale: number) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function LightboxHeader({

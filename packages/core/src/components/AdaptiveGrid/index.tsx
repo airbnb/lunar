@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
 export type AdaptiveGridProps = {
@@ -11,6 +11,8 @@ export type AdaptiveGridProps = {
   defaultItemsPerRow?: number;
   /** Removes padding between items. */
   noGutter?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function AdaptiveGrid({

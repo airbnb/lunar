@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
 export type RowProps = {
@@ -27,6 +27,8 @@ export type RowProps = {
   topline?: boolean;
   /** To use with text truncation; overflow is hidden. */
   truncated?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A presentational block element for displaying horizontal content in up to 3 columns. */

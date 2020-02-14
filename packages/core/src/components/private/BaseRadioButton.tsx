@@ -79,6 +79,8 @@ export type BaseRadioButtonProps = InputProps & {
   onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
   /** Mark the checkbox as greyed out with a dash to indicate an indeterminate state. */
   indeterminate?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function BaseRadioButton({

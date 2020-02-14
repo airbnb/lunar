@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Spacing, { SpacingRange } from '../Spacing';
 import { styleSheet } from './styles';
 
@@ -10,6 +10,8 @@ export type DividerProps = {
   short?: boolean;
   /** Spacing on the top. */
   top?: SpacingRange;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A horizontal divider. */

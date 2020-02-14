@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../../hooks/useStyles';
 import { FuseMatch } from '../types';
 import { styleSheetHighlight as styleSheet } from './styles';
 
@@ -7,6 +7,8 @@ export type HighlightProps = {
   fallback?: string;
   match?: FuseMatch | null;
   word?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function Highlight({ fallback, match, word: searchWord }: HighlightProps) {

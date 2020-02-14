@@ -4,7 +4,7 @@ import withBoundary from '../../composers/withBoundary';
 import GradientScroller from '../GradientScroller';
 import Tab, { TabProps } from './Tab';
 import { styleSheet } from './styles';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export { Tab };
 
@@ -27,6 +27,8 @@ export type TabsProps = {
   stretched?: boolean;
   /** A unique name for tracking purposes. */
   trackingName?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 function getHashQuery(): URLSearchParams {

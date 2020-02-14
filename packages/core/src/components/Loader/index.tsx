@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
 export type LoaderProps = {
@@ -11,6 +11,8 @@ export type LoaderProps = {
   large?: boolean;
   /** Position statically instead of absolutely. */
   static?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A small 3-dot loading indicator. */

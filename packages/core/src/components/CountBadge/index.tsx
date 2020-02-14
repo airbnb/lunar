@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
 export type CountBadgeProps = {
@@ -9,6 +9,8 @@ export type CountBadgeProps = {
   value: number;
   /** Play a waggle animation. */
   waggle?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A badge indicator with a count. */

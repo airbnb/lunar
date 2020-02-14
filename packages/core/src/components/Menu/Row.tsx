@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheetRow as styleSheet } from './styles';
 
 export type MenuRowProps = {
@@ -7,6 +7,8 @@ export type MenuRowProps = {
   children: NonNullable<React.ReactNode>;
   /** Double the padding and spacing. */
   spacious?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A non-interactive row within a menu. */

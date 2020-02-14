@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheetCell as styleSheet } from './styles';
 
 export type TableCellProps = {
@@ -19,6 +19,8 @@ export type TableCellProps = {
   truncate?: boolean;
   /** Wrap text and white space. */
   wrap?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** An individual table cell. */

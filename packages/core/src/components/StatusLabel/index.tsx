@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import iconComponent from '../../prop-types/iconComponent';
 import IconAffix from '../private/IconAffix';
 import { STATUSES, BRANDS } from '../../constants';
@@ -37,6 +37,8 @@ export type StatusLabelProps = {
   uppercased?: boolean;
   /** Warning status (yellow). */
   warning?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Classify content through the use of tiny colorful status labels. */

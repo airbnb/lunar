@@ -4,7 +4,7 @@ import Text from '../../Text';
 import Title from '../../Title';
 import IconButton from '../../IconButton';
 import T from '../../Translate';
-import useStyles from '../../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../../hooks/useStyles';
 import useTheme from '../../../hooks/useTheme';
 import { styleSheetInnerContent as styleSheet } from '../styles';
 
@@ -25,6 +25,8 @@ export type ModalInnerContentProps = {
   title?: React.ReactNode;
   /** Callback for when the Dialog should be closed.  */
   onClose: (event: React.MouseEvent | React.KeyboardEvent) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A Dialog component with a backdrop and a standardized layout. */

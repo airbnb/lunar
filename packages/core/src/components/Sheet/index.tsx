@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
 import { WithStylesProps } from '../../composers/withStyles';
 import { WithThemeProps } from '../../composers/withTheme';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
 import { ESCAPE } from '../../keys';
 import focusableSelector from '../../utils/focusableSelector';
@@ -37,11 +37,15 @@ export type BaseSheetProps = {
   portal?: boolean;
   /** Determines if the sheet is currently visible or not. */
   visible?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export type PrivateProps = {
   /** @ignore */
   setSheetVisible: Context;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export type BaseSheetState = {

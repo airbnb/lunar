@@ -43,6 +43,8 @@ export type BaseSelectProps = SelectProps & {
   placeholder?: string;
   /** Callback fired when the value changes. */
   onChange: (value: string, event: React.ChangeEvent<HTMLSelectElement>) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function BaseSelect({

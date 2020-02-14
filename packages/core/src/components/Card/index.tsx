@@ -1,6 +1,6 @@
 import React from 'react';
 import Content from './Content';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
 export { Content };
@@ -10,6 +10,8 @@ export type CardProps = {
   children: NonNullable<React.ReactNode>;
   /** Set overflow to be visible. */
   overflow?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /**

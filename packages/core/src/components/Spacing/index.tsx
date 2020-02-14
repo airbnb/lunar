@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet, cleanClassName } from './styles';
 
 export type SpacingRange =
@@ -52,6 +52,8 @@ export type SpacingProps = {
   top?: SpacingRange;
   /** Apply spacing on the top and bottom. */
   vertical?: SpacingRange;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Common component for arbitray layout structure and spacing. */

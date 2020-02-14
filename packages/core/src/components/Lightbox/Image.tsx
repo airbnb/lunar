@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ResponsiveImage from '../ResponsiveImage';
 import Loader from '../Loader';
 import ImageViewer from '../ImageViewer';
@@ -22,6 +22,8 @@ export type LightboxImageProps = {
   showZoomControls?: boolean;
   /** Image src */
   src: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function LightboxImage({

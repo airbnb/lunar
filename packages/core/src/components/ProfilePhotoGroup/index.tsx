@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
 import { ProfilePhotoProps } from '../ProfilePhoto';
 import { styleSheet } from './styles';
@@ -11,6 +11,8 @@ export type ProfilePhotoGroupProps = {
   max?: number;
   /** Size in units to multiply by. */
   size?: number;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Horizontally align `ProfilePhoto`s in a stacked fashion. */

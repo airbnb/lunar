@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
 import ExpandableIcon from '../ExpandableIcon';
 import { styleSheetItem as styleSheet } from './styles';
@@ -23,6 +23,8 @@ export type AccordionItemProps = {
   onClick?: (index: number) => void;
   /** Callback fired when the item is expanded or collapsed. */
   onToggle?: (expanded: boolean) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /**

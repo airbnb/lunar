@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import removeFocusOnMouseUp from '../../utils/removeFocusOnMouseUp';
 import ProfilePhoto from '../ProfilePhoto';
 import Shimmer from '../Shimmer';
@@ -52,6 +52,8 @@ export type MessageItemProps = {
   verticalSpacing?: boolean;
   /** Mark the message as a warning. */
   warning?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** An individual comment within a message thread. */

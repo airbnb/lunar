@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { mutuallyExclusiveProps, requiredBy } from 'airbnb-prop-types';
 import iconComponent from '../../prop-types/iconComponent';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 import { styleSheet } from './styles';
@@ -30,6 +30,8 @@ export type ChipProps = {
   profileImageSrc?: string;
   /** A tracking name to identify this component when element is clicked. */
   trackingName?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Compact component that represents a snippet of information, such as a filter. */

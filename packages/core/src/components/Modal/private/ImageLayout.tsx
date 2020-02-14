@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../../hooks/useStyles';
 import { styleSheetImageLayout as styleSheet } from '../styles';
 
 export const MAX_HEIGHT_IMAGE = 720;
@@ -19,6 +19,8 @@ export type ModalImageConfig = {
 export type ModalImageLayoutProps = ModalImageConfig & {
   /** Left pane content. */
   children: NonNullable<React.ReactNode>;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function ModalImageLayout({

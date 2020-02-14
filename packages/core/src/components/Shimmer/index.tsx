@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheet } from './styles';
 
 export type ShimmerProps = {
@@ -11,6 +11,8 @@ export type ShimmerProps = {
   width?: number | string;
   /** Border radius of the bar. */
   radius?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A loading indicator bar that shimmers. */

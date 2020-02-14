@@ -4,7 +4,7 @@ import upperFirst from 'lodash/upperFirst';
 import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
 import TrackingBoundary from '../TrackingBoundary';
 import { styleSheetTab as styleSheet } from './styles';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type TabProps = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabled' | 'href'> & {
   /** Hide bottom border of Tab when unselected. */
@@ -27,6 +27,8 @@ export type TabProps = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'dis
   small?: boolean;
   /** Stretch tabs to fill the full width. */
   stretched?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A single tab button. Usually rendered amongst a collection of tabs. */

@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Separator from './Separator';
 import Item from './Item';
 import Row from './Row';
@@ -18,6 +18,8 @@ export type MenuProps = {
   role?: string;
   /** Whether or not the menu has visible overflow. */
   overflow?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** An abstract menu for use within dropdowns, selects, autocompletes, and more. */
