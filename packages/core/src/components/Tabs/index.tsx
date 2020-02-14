@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import withBoundary from '../../composers/withBoundary';
 import GradientScroller from '../GradientScroller';
 import Tab, { TabProps } from './Tab';
@@ -52,7 +52,7 @@ function Tabs({
   );
   const noBorder = borderless || secondary;
 
-  const handlePopstate = () => {
+  const handlePopstate = useCallback(() => {
     if (!persistWithHash) {
       return;
     }
@@ -62,7 +62,7 @@ function Tabs({
     if (query.has(persistWithHash)) {
       setSelectedKey(query.get(persistWithHash)!);
     }
-  };
+  }, [persistWithHash]);
 
   const handleClick = (key: string) => {
     setSelectedKey(key);
@@ -86,11 +86,7 @@ function Tabs({
     return () => {
       window.removeEventListener('popstate', handlePopstate);
     };
-  });
-
-  useEffect(() => {
-    setSelectedKey(defaultKey!);
-  }, [defaultKey]);
+  }, [handlePopstate]);
 
   // Generate content
   let content = null;
