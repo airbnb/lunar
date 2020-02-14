@@ -20,8 +20,6 @@ export type ButtonProps = ButtonOrLinkProps & {
   large?: boolean;
   /** Decrease font size and padding to small. */
   small?: boolean;
-  /** @ignore For extending. */
-  styleSheet?: StyleSheet;
 };
 
 /** A standard button and or link for common UI interactions. */

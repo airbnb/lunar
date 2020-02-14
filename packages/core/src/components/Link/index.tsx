@@ -25,8 +25,6 @@ export type LinkProps = ButtonOrLinkProps & {
   small?: boolean;
   /** Bold font. */
   bold?: boolean;
-  /** @ignore For extending. */
-  styleSheet?: StyleSheet;
 };
 
 /** A standard link for... linking to things. */
