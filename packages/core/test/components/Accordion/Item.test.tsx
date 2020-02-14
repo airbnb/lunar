@@ -57,6 +57,14 @@ describe('<AccordionItem />', () => {
     expect(wrapper.prop('className')).toMatch('item_bordered');
   });
 
+  it('renders secondary', () => {
+    const wrapper = shallow(
+      <AccordionItem secondary id=".0" index={0} title="Title" onClick={() => {}} />,
+    );
+
+    expect(wrapper.prop('className')).toMatch('item_secondary');
+  });
+
   it('renders expanded', () => {
     const wrapper = shallow(
       <AccordionItem expanded id=".0" index={0} title="Title" onClick={() => {}} />,

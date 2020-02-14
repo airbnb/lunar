@@ -126,3 +126,31 @@ export function withNoSpacing() {
 withNoSpacing.story = {
   name: 'With no horizontal spacing.',
 };
+
+export function secondaryAccordion() {
+  return (
+    <Accordion bordered secondary defaultIndex={-1} onChange={action('onChange')}>
+      <Item title="Item 1" onToggle={action('onToggle')}>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Item>
+
+      <Item title="Item 2" onToggle={action('onToggle')}>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Item>
+
+      <Item title="Item 3" onToggle={action('onToggle')}>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Item>
+    </Accordion>
+  );
+}
+
+secondaryAccordion.story = {
+  name: 'Secondary accordion, initially closed.',
+};

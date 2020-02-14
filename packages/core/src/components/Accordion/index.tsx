@@ -17,6 +17,8 @@ export type Props = {
   expandMultiple?: boolean;
   /** Callback fired when an item is expanded. */
   onChange?: (index: number) => void;
+  /** Secondary accordion style. */
+  secondary?: boolean;
 };
 
 /** A controller for multiple accordion items. */
@@ -26,6 +28,7 @@ export default function Accordion({
   defaultIndex = 0,
   expandMultiple,
   onChange,
+  secondary,
 }: Props) {
   const [id] = useState(() => uuid());
   const [styles, cx] = useStyles(styleSheet);
@@ -56,7 +59,14 @@ export default function Accordion({
   };
 
   return (
-    <div className={cx(styles.container, bordered && styles.container_bordered)} role="tablist">
+    <div
+      className={cx(
+        styles.container,
+        bordered && styles.container_bordered,
+        secondary && styles.container_secondary,
+      )}
+      role="tablist"
+    >
       {React.Children.map(children, (child, i) => {
         if (!child) {
           return null;
@@ -68,6 +78,7 @@ export default function Accordion({
           id: `${id}-${i}`,
           index: i,
           onClick: handleClick,
+          secondary,
         });
       })}
     </div>

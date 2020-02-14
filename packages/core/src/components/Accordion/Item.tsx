@@ -23,6 +23,8 @@ export type Props = {
   onClick?: (index: number) => void;
   /** Callback fired when the item is expanded or collapsed. */
   onToggle?: (expanded: boolean) => void;
+  /** Secondary accordion style. */
+  secondary?: boolean;
 };
 
 /**
@@ -35,6 +37,7 @@ export default function AccordionItem({
   id,
   index,
   noSpacing,
+  secondary,
   title,
   onClick,
   onToggle,
@@ -57,9 +60,13 @@ export default function AccordionItem({
   }, [prevExpanded, expanded, onToggle]);
 
   return (
-    <div className={cx(bordered && styles.item_bordered)}>
+    <div className={cx(bordered && styles.item_bordered, secondary && styles.item_secondary)}>
       <button
-        className={cx(styles.title, noSpacing && styles.title_noSpacing)}
+        className={cx(
+          styles.title,
+          noSpacing && styles.title_noSpacing,
+          secondary && styles.title_secondary,
+        )}
         aria-controls={`accordion-body-${id}`}
         aria-selected={expanded}
         id={`accordion-title-${id}`}
@@ -78,6 +85,7 @@ export default function AccordionItem({
           styles.body,
           expanded && styles.body_expanded,
           noSpacing && styles.body_noSpacing,
+          secondary && styles.body_secondary,
         )}
         aria-hidden={!expanded}
         aria-labelledby={`accordion-title-${id}`}

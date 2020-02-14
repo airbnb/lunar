@@ -296,4 +296,35 @@ describe('<Accordion />', () => {
 
     expect(spy).toHaveBeenCalledWith(1);
   });
+
+  it('propagates secondary to all accordion items', () => {
+    const wrapper = shallow(
+      <Accordion secondary>
+        <AccordionItem title="One" />
+        <AccordionItem title="Two" />
+        <AccordionItem title="Three" />
+      </Accordion>,
+    );
+
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(0)
+        .prop('secondary'),
+    ).toBe(true);
+
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(1)
+        .prop('secondary'),
+    ).toBe(true);
+
+    expect(
+      wrapper
+        .find(AccordionItem)
+        .at(2)
+        .prop('secondary'),
+    ).toBe(true);
+  });
 });
