@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import uuid from 'uuid/v4';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Item, { AccordionItemProps } from './Item';
-import { styleSheet } from './styles';
+import { styleSheetAccordion } from './styles';
 
 export { Item };
 
@@ -28,9 +28,10 @@ export default function Accordion({
   defaultIndex = 0,
   expandMultiple,
   onChange,
+  styleSheet,
 }: AccordionProps) {
   const [id] = useState(() => uuid());
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetAccordion);
   const [expanded, setExpanded] = useState(
     new Set<number>([defaultIndex]),
   );

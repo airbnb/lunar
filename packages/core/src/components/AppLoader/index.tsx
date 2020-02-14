@@ -5,7 +5,7 @@ import Loader from '../Loader';
 import Title from '../Title';
 import Text from '../Text';
 import { ErrorType } from '../../types';
-import { styleSheet } from './styles';
+import { styleSheetAppLoader } from './styles';
 
 export type AppLoaderProps = {
   /** Center the loader and content. */
@@ -41,8 +41,9 @@ export default function AppLoader({
   loadingText,
   small,
   subtitle,
+  styleSheet,
 }: AppLoaderProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetAppLoader);
 
   if (fetched && !error) {
     return <main>{children}</main>;

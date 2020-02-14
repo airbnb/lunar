@@ -1,7 +1,7 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Item, { ListItemProps } from './Item';
-import { styleSheet } from './styles';
+import { styleSheetList } from './styles';
 
 export { Item };
 
@@ -29,9 +29,10 @@ export default function List({
   middleAlign,
   ordered,
   wrap,
+  styleSheet,
 }: ListProps) {
   const Tag = ordered ? 'ol' : 'ul';
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetList);
 
   return (
     <Tag

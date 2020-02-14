@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import { styleSheetLoader } from './styles';
 
 export type LoaderProps = {
   /** Display inline instead of absolutely positioned. */
@@ -16,8 +16,14 @@ export type LoaderProps = {
 };
 
 /** A small 3-dot loading indicator. */
-export default function Loader({ inline, inverted, large, static: isStatic }: LoaderProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+export default function Loader({
+  inline,
+  inverted,
+  large,
+  static: isStatic,
+  styleSheet,
+}: LoaderProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetLoader);
 
   return (
     <div

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import { styleSheetItem as styleSheet } from './styles';
+import { styleSheetItem } from './styles';
 
 export type ListItemProps = {
   /** Render with a top/bottom borders. Last item will have both. */
@@ -18,8 +18,15 @@ export type ListItemProps = {
   styleSheet?: StyleSheet;
 };
 
-function ListItem({ bordered, children, compact, horizontal, spacious }: ListItemProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+function ListItem({
+  bordered,
+  children,
+  compact,
+  horizontal,
+  spacious,
+  styleSheet,
+}: ListItemProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetItem);
 
   return (
     <li

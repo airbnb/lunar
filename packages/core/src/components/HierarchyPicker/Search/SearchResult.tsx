@@ -1,6 +1,6 @@
 import React from 'react';
 import groupBy from 'lodash/groupBy';
-import useStyles, { StyleSheet } from '../../../hooks/useStyles';
+import useStyles from '../../../hooks/useStyles';
 import Text from '../../Text';
 import Highlight from './Highlight';
 import { ItemShape, FuseMatch } from '../types';
@@ -11,8 +11,6 @@ export type SearchResultProps = {
   formattedParents: string;
   matches?: FuseMatch[];
   query?: string;
-  /** Custom style sheet. */
-  styleSheet?: StyleSheet;
 };
 
 export default function SearchResult({
@@ -21,7 +19,7 @@ export default function SearchResult({
   matches = [],
   query = '',
 }: SearchResultProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet);
 
   const { description, label, name } = item;
   const mbk = groupBy(matches, 'key');

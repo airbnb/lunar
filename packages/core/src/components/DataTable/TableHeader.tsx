@@ -4,7 +4,7 @@ import ButtonGroup from '../ButtonGroup';
 import Text from '../Text';
 import T from '../Translate';
 import { HeaderButton, SelectedRows } from './types';
-import { styleSheetTableHeader as styleSheet } from './styles';
+import { styleSheetTableHeader } from './styles';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type TableHeaderProps = {
@@ -47,8 +47,9 @@ export default function TableHeader({
   selectedRows,
   tableHeaderLabel,
   width,
+  styleSheet,
 }: TableHeaderProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetTableHeader);
   const extraEditButtons = extraHeaderButtons!.map(
     (btnConfig: HeaderButton) =>
       btnConfig.displayEditMode && (

@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ unit }) => ({
+export const styleSheetAppLoader: StyleSheet = ({ unit }) => ({
   appLoader: {
     padding: unit * 10,
   },
@@ -21,7 +21,3 @@ const styleSheet: StyleSheet = ({ unit }) => ({
     maxWidth: '65%',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '../../../hooks/useStyles';
-import { styleSheetImageLayout as styleSheet } from '../styles';
+import { styleSheetImageLayout } from '../styles';
 
 export const MAX_HEIGHT_IMAGE = 720;
 export const MAX_HEIGHT_IMAGE_SMALL = 420;
@@ -29,8 +29,9 @@ export default function ModalImageLayout({
   srcSet,
   type,
   url,
+  styleSheet,
 }: ModalImageLayoutProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetImageLayout);
 
   return (
     <div className={cx(styles.splitContent)}>

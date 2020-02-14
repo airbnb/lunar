@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import { styleSheetCol as styleSheet } from './styles';
+import { styleSheetCol } from './styles';
 
 export type ColProps = {
   /** Content to display in a column. */
@@ -14,8 +14,8 @@ export type ColProps = {
 };
 
 /** A column within a grid. */
-export default function Col({ children, offset = 0, span }: ColProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+export default function Col({ children, offset = 0, span, styleSheet }: ColProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetCol);
 
   return (
     <div

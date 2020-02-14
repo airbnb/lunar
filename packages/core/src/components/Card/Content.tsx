@@ -5,7 +5,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Image from '../Image';
 import Row from '../Row';
 import Spacing from '../Spacing';
-import { styleSheetContent as styleSheet } from './styles';
+import { styleSheetContent } from './styles';
 import ButtonOrLink from '../private/ButtonOrLink';
 
 function getSideImageWidth({ large, small }: { large?: boolean; small?: boolean }): number {
@@ -75,8 +75,9 @@ function CardContent({
   truncated,
   onAfterImageClick,
   onBeforeImageClick,
+  styleSheet,
 }: CardContentProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetContent);
 
   const ContainerTag = onClick ? 'button' : 'div';
   const props = onClick ? { type: 'button', onClick } : {};

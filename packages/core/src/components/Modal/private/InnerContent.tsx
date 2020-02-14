@@ -6,7 +6,7 @@ import IconButton from '../../IconButton';
 import T from '../../Translate';
 import useStyles, { StyleSheet } from '../../../hooks/useStyles';
 import useTheme from '../../../hooks/useTheme';
-import { styleSheetInnerContent as styleSheet } from '../styles';
+import { styleSheetInnerContent } from '../styles';
 
 export type ModalInnerContentProps = {
   /** Dialog content. */
@@ -39,8 +39,9 @@ export default function ModalInnerContent({
   scrollable,
   subtitle,
   title,
+  styleSheet,
 }: ModalInnerContentProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetInnerContent);
   const theme = useTheme();
   const withHeader = Boolean(title || subtitle);
   const withFooter = Boolean(footer);

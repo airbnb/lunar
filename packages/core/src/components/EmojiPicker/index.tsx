@@ -15,7 +15,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Core from '../..';
 import { ESCAPE } from '../../keys';
 import T from '../Translate';
-import { styleSheet } from './styles';
+import { styleSheetEmojiPicker } from './styles';
 
 // Exclude inappropriate or offensive emojis
 const blockList = [
@@ -67,9 +67,10 @@ export type EmojiPickerProps = Partial<PickerProps> & {
 export default function EmojiPicker({
   disableAutoFocus,
   onClosePicker,
+  styleSheet,
   ...props
 }: EmojiPickerProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetEmojiPicker);
 
   const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // When the picker wrapper is focused, we need to close on esc

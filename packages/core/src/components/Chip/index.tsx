@@ -5,7 +5,7 @@ import iconComponent from '../../prop-types/iconComponent';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
-import { styleSheet } from './styles';
+import { styleSheetChip } from './styles';
 
 export type ChipProps = {
   /** Renders with a primary background and white text. */
@@ -47,8 +47,9 @@ function Chip({
   onIconClick,
   profileImageSrc,
   trackingName,
+  styleSheet,
 }: ChipProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetChip);
 
   const Component = onClick ? 'button' : 'div';
   const props: React.HTMLProps<HTMLButtonElement> =

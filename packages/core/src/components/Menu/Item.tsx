@@ -6,7 +6,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
 import Text from '../Text';
 import DirectionalIcon from '../DirectionalIcon';
-import { styleSheetItem as styleSheet } from './styles';
+import { styleSheetItem } from './styles';
 
 export type MenuItemProps = {
   /** Content within the menu item. */
@@ -57,8 +57,9 @@ function MenuItem({
   tabIndex = -1,
   tip,
   trackingName,
+  styleSheet,
 }: MenuItemProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetItem);
   const [showSubmenu, setShowSubmenu] = useState(false);
 
   const handleMouseEnter = () => {

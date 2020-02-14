@@ -2,7 +2,7 @@ import React from 'react';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconCheckmark from '@airbnb/lunar-icons/lib/interface/IconCheck';
-import useStyles, { StyleSheet } from '../../../hooks/useStyles';
+import useStyles from '../../../hooks/useStyles';
 import useTheme from '../../../hooks/useTheme';
 import { ENTER, SPACE, ARROW_RIGHT, ARROW_LEFT } from '../../../keys';
 import DirectionalIcon from '../../DirectionalIcon';
@@ -30,8 +30,6 @@ export type HierarchyItemProps = {
   onItemPicked: ItemPickedHandler;
   onDomFocusDeeper: DeepFocusHandler;
   onDomFocusShallower: ShallowFocusHandler;
-  /** Custom style sheet. */
-  styleSheet?: StyleSheet;
 };
 
 export default function HierarchyItem({
@@ -45,7 +43,7 @@ export default function HierarchyItem({
   onDomFocusDeeper,
   onDomFocusShallower,
 }: HierarchyItemProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet);
   const theme = useTheme();
 
   const goDeeper = () => {

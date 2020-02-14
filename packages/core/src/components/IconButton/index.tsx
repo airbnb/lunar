@@ -3,7 +3,7 @@ import iconComponent from '../../prop-types/iconComponent';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
 import Tooltip from '../Tooltip';
-import { styleSheet } from './styles';
+import { styleSheetIconButton } from './styles';
 
 export type IconButtonProps = ButtonOrLinkProps & {
   /** @ignore */
@@ -27,9 +27,10 @@ function IconButton({
   disabled,
   inverted,
   tooltip,
+  styleSheet,
   ...restProps
 }: IconButtonProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetIconButton);
 
   const button = (
     <ButtonOrLink

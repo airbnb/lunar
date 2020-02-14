@@ -5,7 +5,7 @@ import T from '../Translate';
 import { ARROW_RIGHT, ARROW_LEFT } from '../../keys';
 import { ZoomControls, RotateControls } from '../ImageViewer';
 import Spacing from '../Spacing';
-import { styleSheetHeader as styleSheet } from './styles';
+import { styleSheetHeader } from './styles';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type LightboxHeaderProps = {
@@ -50,8 +50,9 @@ export default function LightboxHeader({
   onRotateImage,
   onToggleAside,
   onZoomImage,
+  styleSheet,
 }: LightboxHeaderProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetHeader);
 
   const handleNext = () => {
     onChangeSlide(activeIndex + 1);

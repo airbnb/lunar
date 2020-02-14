@@ -7,7 +7,7 @@ import Shimmer from '../Shimmer';
 import Text from '../Text';
 import Spacing from '../Spacing';
 import T from '../Translate';
-import { styleSheet } from './styles';
+import { styleSheetMessageItem } from './styles';
 
 export type MessageItemProps = {
   /** Message body. */
@@ -79,8 +79,9 @@ function MessageItem({
   titleTag,
   verticalSpacing,
   warning,
+  styleSheet,
 }: MessageItemProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetMessageItem);
 
   const getAvatar = () => {
     if (loadingAuthor) {

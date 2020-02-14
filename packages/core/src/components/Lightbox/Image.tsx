@@ -3,7 +3,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ResponsiveImage from '../ResponsiveImage';
 import Loader from '../Loader';
 import ImageViewer from '../ImageViewer';
-import { styleSheetImage as styleSheet } from './styles';
+import { styleSheetImage } from './styles';
 
 export type LightboxImageProps = {
   /** Image alt text */
@@ -35,8 +35,9 @@ export default function LightboxImage({
   showRotateControls,
   scale,
   rotation,
+  styleSheet,
 }: LightboxImageProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetImage);
 
   return (
     <div className={cx(styles.wrapper)}>

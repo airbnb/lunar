@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles, { StyleSheet } from '../../../hooks/useStyles';
+import useStyles from '../../../hooks/useStyles';
 import { FuseMatch } from '../types';
 import { styleSheetHighlight as styleSheet } from './styles';
 
@@ -7,12 +7,10 @@ export type HighlightProps = {
   fallback?: string;
   match?: FuseMatch | null;
   word?: string;
-  /** Custom style sheet. */
-  styleSheet?: StyleSheet;
 };
 
 export default function Highlight({ fallback, match, word: searchWord }: HighlightProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet);
 
   if (!match) {
     return <span>{fallback}</span>;

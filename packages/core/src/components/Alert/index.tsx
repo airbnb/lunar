@@ -15,7 +15,7 @@ import Text from '../Text';
 import T from '../Translate';
 import IconButton from '../IconButton';
 import { STATUSES } from '../../constants';
-import { styleSheet } from './styles';
+import { styleSheetAlert } from './styles';
 
 const alertColorTypePropType = mutuallyExclusiveTrueProps(...STATUSES);
 
@@ -56,8 +56,9 @@ function Alert({
   title,
   warning,
   onClose,
+  styleSheet,
 }: AlertProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetAlert);
   const { color, unit } = useTheme();
 
   let StatusIcon = null;

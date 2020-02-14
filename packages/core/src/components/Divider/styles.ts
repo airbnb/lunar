@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ ui, unit }) => ({
+export const styleSheetDivider: StyleSheet = ({ ui, unit }) => ({
   divider: {
     borderBottom: ui.border,
   },
@@ -9,7 +9,3 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
     width: 4 * unit,
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import { styleSheetRow as styleSheet } from './styles';
+import { styleSheetRow } from './styles';
 
 export type MenuRowProps = {
   /** Content to display in the row. */
@@ -12,8 +12,8 @@ export type MenuRowProps = {
 };
 
 /** A non-interactive row within a menu. */
-export default function MenuRow({ children, spacious }: MenuRowProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+export default function MenuRow({ children, spacious, styleSheet }: MenuRowProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetRow);
 
   return (
     <li role="none">

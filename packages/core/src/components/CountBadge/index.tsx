@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import { styleSheetCountBadge } from './styles';
 
 export type CountBadgeProps = {
   /** Accessibility label. */
@@ -14,8 +14,13 @@ export type CountBadgeProps = {
 };
 
 /** A badge indicator with a count. */
-export default function CountBadge({ accessibilityLabel, value, waggle }: CountBadgeProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+export default function CountBadge({
+  accessibilityLabel,
+  value,
+  waggle,
+  styleSheet,
+}: CountBadgeProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetCountBadge);
   const badgeRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

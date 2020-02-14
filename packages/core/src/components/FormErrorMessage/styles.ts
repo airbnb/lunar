@@ -1,11 +1,7 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ unit }) => ({
+export const styleSheetFormError: StyleSheet = ({ unit }) => ({
   error: {
     marginTop: unit,
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

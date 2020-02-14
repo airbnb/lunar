@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, font, pattern, transition, ui, unit }) => ({
+export const styleSheetChip: StyleSheet = ({ color, font, pattern, transition, ui, unit }) => ({
   chip: {
     ...transition.box,
     ...font.textSmall,
@@ -126,7 +126,3 @@ const styleSheet: StyleSheet = ({ color, font, pattern, transition, ui, unit }) 
     transform: 'translateY(-50%)',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

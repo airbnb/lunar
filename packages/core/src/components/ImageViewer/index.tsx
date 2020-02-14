@@ -3,7 +3,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ZoomControls from './ZoomControls';
 import RotateControls from './RotateControls';
 import ResponsiveImage from '../ResponsiveImage';
-import { styleSheet } from './styles';
+import { styleSheetImageViewer } from './styles';
 
 export type ImageViewerProps = {
   /** An accessible label. */
@@ -38,8 +38,9 @@ export default function ImageViewer({
   scale = 1,
   src,
   width,
+  styleSheet,
 }: ImageViewerProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetImageViewer);
   const [dragging, setDragging] = useState(false);
   const [imageLocation, setImageLocation] = useState<Position>({ x: 0, y: 0 });
   const [lastMouseLocation, setMouseLocation] = useState<Position>({ x: 0, y: 0 });

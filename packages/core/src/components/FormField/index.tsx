@@ -7,7 +7,7 @@ import FormErrorMessage from '../FormErrorMessage';
 import partitionFieldProps from './partitionFieldProps';
 import Prefix from './Prefix';
 import Suffix from './Suffix';
-import { styleSheet } from './styles';
+import { styleSheetFormField } from './styles';
 
 export type FormFieldProps = {
   /** @ignore Decrease bottom margin of the field. (Internal use only) */
@@ -91,8 +91,9 @@ export default function FormField({
   small,
   suffix,
   topAlign,
+  styleSheet,
 }: PrivateProps) {
-  const [styles, cx] = useStyles(styleSheet ?? styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetFormField);
 
   const content = (
     <div

@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, pattern, unit }) => ({
+export const styleSheetAlert: StyleSheet = ({ color, pattern, unit }) => ({
   alert: {
     ...pattern.box,
     display: 'block',
@@ -61,7 +61,3 @@ const styleSheet: StyleSheet = ({ color, pattern, unit }) => ({
     paddingLeft: unit * 2.5,
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };
