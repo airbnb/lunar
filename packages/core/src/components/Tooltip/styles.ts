@@ -45,9 +45,10 @@ export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui }) => (
     },
   },
 
-  shadow: {
+  notchedBoxContainer: {
     display: 'inline-block',
     boxShadow: ui.boxShadowLarge,
     borderRadius: ui.borderRadius,
+    textAlign: 'initial',
   },
 });

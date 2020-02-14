@@ -119,7 +119,7 @@ exports[`<Tooltip /> once open supports changing content 1`] = `
       role="tooltip"
     >
       <div
-        className="shadow"
+        className="notchedBoxContainer"
       >
         <NotchedBox
           inverted={true}
@@ -172,7 +172,7 @@ exports[`<Tooltip /> opens up when hovered 1`] = `
       role="tooltip"
     >
       <div
-        className="shadow"
+        className="notchedBoxContainer"
       >
         <NotchedBox
           inverted={true}

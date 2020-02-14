@@ -222,7 +222,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
             textAlign: align,
           })}
         >
-          <div className={cx(styles.shadow)}>
+          <div className={cx(styles.notchedBoxContainer)}>
             <NotchedBox
               inverted={!inverted}
               notchOffset={notchOffset[align as keyof StyleStruct]}
