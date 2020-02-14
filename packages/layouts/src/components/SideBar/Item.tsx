@@ -1,9 +1,9 @@
 import React from 'react';
-import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 import ButtonOrLink, { ButtonOrLinkTypes } from '@airbnb/lunar/lib/components/private/ButtonOrLink';
 import iconComponent from '@airbnb/lunar/lib/prop-types/iconComponent';
 import Text from '@airbnb/lunar/lib/components/Text';
-import { styleSheetItem as styleSheet } from './styles';
+import { styleSheetItem } from './styles';
 
 export type SideBarItemProps = {
   /** Mark the item as active. */
@@ -16,11 +16,13 @@ export type SideBarItemProps = {
   label?: React.ReactNode;
   /** Callback fired when the element is clicked. */
   onClick?: (event: React.MouseEvent<ButtonOrLinkTypes>) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A clickable item within the sidebar navigation menu. */
-function SideBarItem({ active, label, href, icon, onClick }: SideBarItemProps) {
-  const [styles, cx] = useStyles(styleSheet);
+function SideBarItem({ active, label, href, icon, onClick, styleSheet }: SideBarItemProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetItem);
 
   return (
     <li role="none">

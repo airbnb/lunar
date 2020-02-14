@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 import { styleSheetLayout } from './styles';
 
 export type LayoutProps = {
@@ -15,6 +15,8 @@ export type LayoutProps = {
   noBackground?: boolean;
   /** Remove padding from main content. */
   noPadding?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export type AsideProps = {
@@ -22,6 +24,8 @@ export type AsideProps = {
   after?: React.ReactNode;
   /** The before aside content. */
   before?: React.ReactNode;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Abstract layout manager that all other layouts extend from. */
@@ -34,8 +38,9 @@ export default function Layout({
   minHeight,
   noBackground,
   noPadding,
+  styleSheet,
 }: LayoutProps & AsideProps) {
-  const [styles, cx] = useStyles(styleSheetLayout);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetLayout);
 
   return (
     <div className={cx(styles.layout, { minHeight: minHeight || '100vh' })}>
