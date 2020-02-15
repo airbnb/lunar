@@ -42,7 +42,7 @@ describe('<Picker />', () => {
     const oldGetFocusables = BasePicker.prototype.getFocusables;
 
     beforeEach(() => {
-      window.scrollTo = jest.fn();
+      jest.spyOn(window, 'scrollTo').mockImplementation();
     });
 
     afterEach(() => {
@@ -63,7 +63,7 @@ describe('<Picker />', () => {
       });
 
       it('focusNext() invokes .focus() on focusables', () => {
-        HTMLDivElement.prototype.focus = jest.fn();
+        jest.spyOn(HTMLDivElement.prototype, 'focus').mockImplementation();
         const mockElement = document.createElement('div');
         const mockFocusables = [mockElement];
 
@@ -115,10 +115,10 @@ describe('<Picker />', () => {
     describe('handleItemPicked', () => {
       it('calls close if passed something', () => {
         const details = { origin: 'Search' };
-        wrapper.find(Search).simulate('itemPicked', ['foo'], details);
+        wrapper.find(Search).simulate('itemPicked', ['foo'], testItems[0], details);
 
         expect(myProps.onClose).toHaveBeenCalled();
-        expect(myProps.onItemPicked).toHaveBeenCalledWith(['foo'], details);
+        expect(myProps.onItemPicked).toHaveBeenCalledWith(['foo'], testItems[0], details);
       });
 
       it('does not call close if passed falsy', () => {

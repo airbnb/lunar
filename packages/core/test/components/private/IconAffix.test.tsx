@@ -22,6 +22,6 @@ describe('<IconAffix />', () => {
           Child
         </IconAffix>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 });

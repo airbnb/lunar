@@ -11,7 +11,7 @@ describe('<Link />', () => {
           Default
         </Link>,
       );
-    }).toThrowError();
+    }).toThrow();
   });
 
   it('errors when multiple sizes are used at once', () => {
@@ -21,7 +21,17 @@ describe('<Link />', () => {
           Default
         </Link>,
       );
-    }).toThrowError();
+    }).toThrow();
+  });
+
+  it('renders micro (passes to `Text`)', () => {
+    const wrapper = shallowWithStyles(
+      <Link micro href="/">
+        Micro
+      </Link>,
+    );
+
+    expect(wrapper.prop('micro')).toBe(true);
   });
 
   it('renders small (passes to `Text`)', () => {

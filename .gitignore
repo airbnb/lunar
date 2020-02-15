@@ -29,6 +29,7 @@ storybook-static/
 # Custom
 *.min.js
 *.map
+phrases.json
 
 # Configs (provided by Nimbus)
 .babelrc
@@ -41,5 +42,5 @@ jest.config.js
 prettier.config.js
 tsconfig.json
 tsconfig.eslint.json
-tsconfig.options.json
 *.tsbuildinfo
+.prettierrc

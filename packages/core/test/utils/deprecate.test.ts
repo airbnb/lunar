@@ -31,7 +31,7 @@ describe('deprecate', () => {
     const wrappedFn = deprecate(fn);
     const args = ['one', 'two', 'three'];
     wrappedFn(...args);
-    expect(fn).toBeCalledWith(...args);
+    expect(fn).toHaveBeenCalledWith(...args);
   });
 
   it(

@@ -11,7 +11,7 @@ export default class Portal extends React.PureComponent<Props> {
   private node?: HTMLDivElement;
 
   componentWillUnmount() {
-    if (this.node) {
+    if (this.node && document.body) {
       document.body.removeChild(this.node);
       delete this.node;
     }

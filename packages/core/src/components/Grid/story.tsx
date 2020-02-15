@@ -1,15 +1,21 @@
 import React from 'react';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Text from '../Text';
 import Grid, { Col } from '.';
 
-function Box({ children = null }: { children: React.ReactNode }) {
-  const color = localStorage.getItem('storybook.theme') === 'dark' ? '#222222' : '#EBEBEB';
+const styleSheet: StyleSheet = ({ color, unit }) => ({
+  box: {
+    padding: unit / 2,
+    textAlign: 'center',
+    width: '100%',
+    backgroundColor: color.accent.bgHover,
+  },
+});
 
-  return (
-    <div style={{ padding: 4, textAlign: 'center', width: '100%', backgroundColor: color }}>
-      {children}
-    </div>
-  );
+function Box({ children = null }: { children: React.ReactNode }) {
+  const [styles, cx] = useStyles(styleSheet);
+
+  return <div className={cx(styles.box)}>{children}</div>;
 }
 
 export default {

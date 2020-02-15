@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import Grid, { Col } from '../../src/components/Grid';
 
 describe('<Grid />', () => {
   it('renders by default', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <Grid>
         <Col span={6}>A</Col>
         <Col span={6}>B</Col>
@@ -24,7 +24,7 @@ describe('<Grid />', () => {
     'topAlign',
   ].forEach(type => {
     it(`renders ${type}`, () => {
-      const wrapper = shallowWithStyles(
+      const wrapper = shallow(
         <Grid {...{ [type]: true }}>
           <Col span={4}>A</Col>
           <Col span={4}>B</Col>

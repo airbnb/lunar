@@ -3,6 +3,134 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.8.1 - 2020-02-07
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
+## 2.8.0 - 2020-02-07
+
+#### 🚀 Updates
+
+- **[FilterMenu]** Use SecondaryLink for reset. (#305) ([64dd038](https://github.com/airbnb/lunar/commit/64dd038)), closes [#305](https://github.com/airbnb/lunar/issues/305)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
+### 2.7.4 - 2020-02-06
+
+#### 🐞 Fixes
+
+- Update phrase keys and add extraction script. (#303) ([8d5de71](https://github.com/airbnb/lunar/commit/8d5de71)), closes [#303](https://github.com/airbnb/lunar/issues/303)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
+### 2.7.3 - 2020-01-28
+
+#### 📦 Dependencies
+
+- Audit 2019-01-22 (#289) ([7c1033c](https://github.com/airbnb/lunar/commit/7c1033c)), closes [#289](https://github.com/airbnb/lunar/issues/289)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
+### 2.7.2 - 2020-01-27
+
+#### 🐞 Fixes
+
+- **[FilterMenu]** Close dropdown after filters are applied. (#290) ([f9719fc](https://github.com/airbnb/lunar/commit/f9719fc)), closes [#290](https://github.com/airbnb/lunar/issues/290)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
+### 2.7.1 - 2019-12-19
+
+#### 🛠 Internals
+
+- Update Happo to support light and dark themes. (#259) ([dbb347a](https://github.com/airbnb/lunar/commit/dbb347a)), closes [#259](https://github.com/airbnb/lunar/issues/259)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
+## 2.7.0 - 2019-11-25
+
+#### 🚀 Updates
+
+- Refactor form components to use hooks (#233) ([6f7df02](https://github.com/airbnb/lunar/commit/6f7df02)), closes [#233](https://github.com/airbnb/lunar/issues/233)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
+### 2.6.1 - 2019-11-15
+
+#### 🐞 Fixes
+
+- **[FilterMenu]** Fix broken path. (#249) ([6982ac0](https://github.com/airbnb/lunar/commit/6982ac0)), closes [#249](https://github.com/airbnb/lunar/issues/249)
+
+#### 🛠 Internals
+
+- Migrate to Travis CI. (#239) ([2a62442](https://github.com/airbnb/lunar/commit/2a62442)), closes [#239](https://github.com/airbnb/lunar/issues/239)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
+## 2.6.0 - 2019-11-13
+
+#### 🚀 Updates
+
+- Update simple components to use `useStyles` instead of `withStyles`. (#236) ([761a801](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/761a801)), closes [#236](https://github.com/airbnb/lunar/tree/master/packages/forms/issues/236)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
+### 2.5.3 - 2019-10-31
+
+#### 🐞 Fixes
+
+- Rewrite stories to remove `@emotion/core` unintended import. (#210) ([5976e92](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/5976e92)), closes [#210](https://github.com/airbnb/lunar/tree/master/packages/forms/issues/210)
+
+#### 📦 Dependencies
+
+- **[React]** Update to v16.11. ([07b80dc](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/07b80dc))
+
+#### 🛠 Internals
+
+- Fix lint and test failures. ([f2ccc7f](https://github.com/airbnb/lunar/tree/master/packages/forms/commit/f2ccc7f))
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 2.5.2 - 2019-10-10
 
 #### 📦 Dependencies

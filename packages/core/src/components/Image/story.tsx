@@ -26,6 +26,14 @@ backgroundStory.story = {
   name: 'Background.',
 };
 
+export function backdropStory() {
+  return <Image background backdrop src={lunar} alt="Something descriptive" height={600} />;
+}
+
+backdropStory.story = {
+  name: 'Background with backdrop.',
+};
+
 export function backgroundContain() {
   return <Image background contain src={lunar} alt="Something descriptive" height={600} />;
 }

@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.4.2 - 2020-02-07
+
+#### 📦 Dependencies
+
+- Update minor and patch versions. ([cf27d74](https://github.com/airbnb/lunar/commit/cf27d74))
+
+**Note:** Version bump only for package @airbnb/lunar-test-utils
+
+
+
+
+
+### 2.4.1 - 2020-01-28
+
+#### 📦 Dependencies
+
+- Audit 2019-01-22 (#289) ([7c1033c](https://github.com/airbnb/lunar/commit/7c1033c)), closes [#289](https://github.com/airbnb/lunar/issues/289)
+
+**Note:** Version bump only for package @airbnb/lunar-test-utils
+
+
+
+
+
+## 2.4.0 - 2019-12-19
+
+#### 🚀 Updates
+
+- Upgrade to Aesthetic v5. (#269) ([57e84e5](https://github.com/airbnb/lunar/commit/57e84e5)), closes [#269](https://github.com/airbnb/lunar/issues/269)
+- **[List]** Add `middleAlign` support for `horizontal`. (#244) ([1b58963](https://github.com/airbnb/lunar/commit/1b58963)), closes [#244](https://github.com/airbnb/lunar/issues/244)
+
+**Note:** Version bump only for package @airbnb/lunar-test-utils
+
+
+
+
+
 ### 2.3.1 - 2019-10-10
 
 #### 📦 Dependencies

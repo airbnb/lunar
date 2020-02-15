@@ -1,14 +1,16 @@
 import React from 'react';
-import BaseAutocomplete, { Props } from '@airbnb/lunar/lib/components/Autocomplete';
-import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm';
+import Autocomplete, { Props, Item } from '@airbnb/lunar/lib/components/Autocomplete';
+import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
 /** `Autocomplete` automatically connected to the parent `Form`. */
-export function FormAutocomplete(props: Props & ConnectToFormProps<string>) {
-  return <BaseAutocomplete {...props} />;
-}
+export default function FormAutocomplete<T extends Item = Item>(
+  props: FieldProps<string, Props<T>>,
+) {
+  const fieldProps = useFormField(props, {
+    initialValue: '',
+    parse: toString,
+  });
 
-export default connectToForm<string>({
-  initialValue: '',
-  parse: toString,
-})(FormAutocomplete);
+  return <Autocomplete<T> {...fieldProps} />;
+}

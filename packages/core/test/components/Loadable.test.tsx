@@ -21,7 +21,7 @@ describe('<Loadable />', () => {
     jest.useFakeTimers();
     timeoutSpy = jest.spyOn(window, 'setTimeout');
     // @ts-ignore
-    React.lazy = jest.fn(() => Foo);
+    jest.spyOn(React, 'lazy').mockImplementation(() => Foo);
   });
 
   afterEach(() => {
@@ -42,6 +42,17 @@ describe('<Loadable />', () => {
     jest.runAllTimers();
 
     expect(wrapper.state('showLoading')).toBe(true);
+  });
+
+  it('sets `mounted` state', () => {
+    const wrapper = shallow<Loadable>(<Loadable component={importFunc} delay={300} />);
+    const inst = wrapper.instance();
+
+    expect(inst.mounted).toBe(true);
+
+    wrapper.unmount();
+
+    expect(inst.mounted).toBe(false);
   });
 
   it('doesnt set delay timeout if 0', () => {
@@ -80,6 +91,19 @@ describe('<Loadable />', () => {
     expect(errorSpy).toHaveBeenCalledTimes(1);
     expect(loadingSpy).toHaveBeenCalledTimes(0);
     expect(compSpy).toHaveBeenCalledTimes(0);
+  });
+
+  it('doesnt render `Suspense` if `noSuspense` is set', () => {
+    const wrapper = shallow(<Loadable component={importFunc} delay={0} />);
+
+    // Cant find() a Suspense component
+    expect(wrapper.debug()).toContain('Suspense');
+
+    wrapper.setProps({
+      noSuspense: true,
+    });
+
+    expect(wrapper.debug()).not.toContain('Suspense');
   });
 
   describe('factory()', () => {

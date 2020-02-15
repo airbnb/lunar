@@ -18,6 +18,7 @@ export type Props = {
 export type State = {
   x: number;
   y: number;
+  targetRectReady: boolean;
 };
 
 /** An overlay that masks the entire viewport and displays a chunk of content over it. */
@@ -30,7 +31,10 @@ export default class Overlay extends React.PureComponent<Props, State> {
   state = {
     x: 0,
     y: 0,
+    targetRectReady: false,
   };
+
+  rafHandle: number = 0;
 
   ref = React.createRef<HTMLDivElement>();
 
@@ -41,15 +45,16 @@ export default class Overlay extends React.PureComponent<Props, State> {
 
     /* istanbul ignore next: refs are hard */
     if (current) {
-      const { x, y } = current.getBoundingClientRect() as DOMRect;
+      this.rafHandle = requestAnimationFrame(() => {
+        // getBoundingClientRect casues a reflow
+        const { x, y } = current.getBoundingClientRect() as DOMRect;
 
-      if (x !== this.state.x) {
-        this.setState({ x });
-      }
-
-      if (y !== this.state.y) {
-        this.setState({ y });
-      }
+        if (x !== this.state.x || y !== this.state.y) {
+          this.rafHandle = requestAnimationFrame(() => {
+            this.setState({ x, y, targetRectReady: true });
+          });
+        }
+      });
     }
 
     this.removeScrollListeners();
@@ -61,6 +66,7 @@ export default class Overlay extends React.PureComponent<Props, State> {
 
   componentWillUnmount() {
     this.removeScrollListeners();
+    cancelAnimationFrame(this.rafHandle);
   }
 
   private addScrollListeners = debounce(() => {
@@ -93,11 +99,11 @@ export default class Overlay extends React.PureComponent<Props, State> {
 
   render() {
     const { onClose, open, children, noBackground } = this.props as Required<Props>;
-    const { x, y } = this.state;
+    const { x, y, targetRectReady } = this.state;
 
     return (
       <div ref={this.ref}>
-        {open && (
+        {open && targetRectReady && (
           <Portal
             x={x}
             y={y}

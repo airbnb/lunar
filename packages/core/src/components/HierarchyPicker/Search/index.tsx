@@ -12,6 +12,7 @@ import {
   SearchItemResult,
   TreePath,
 } from '../types';
+import { styleSheet } from './styles';
 
 export type Props = {
   items?: ItemShape[];
@@ -122,7 +123,8 @@ export class Search extends React.Component<Props & WithStylesProps> {
 
   handleItemPicked = (itemValue: string, result: SearchItemResult | null) => {
     const { query, onItemPicked } = this.props;
-    onItemPicked((result && result.item.definition) || null, {
+
+    onItemPicked(result?.item?.definition ?? null, result?.item ?? null, {
       origin: 'Search',
       charCount: query!.length,
     });
@@ -196,8 +198,4 @@ export class Search extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(({ unit }) => ({
-  container: {
-    padding: unit,
-  },
-}))(Search);
+export default withStyles(styleSheet)(Search);

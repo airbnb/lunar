@@ -29,6 +29,7 @@ describe('<Overlay />', () => {
     const eventSpy = jest.spyOn(window, 'addEventListener');
     const closeSpy = jest.fn();
     const wrapper = mountWithStyles(<Overlay onClose={closeSpy}>hello world</Overlay>);
+    wrapper.setState({ targetRectReady: true });
 
     expect(portalSpy).toHaveBeenCalledWith(null, expect.anything());
 
@@ -56,6 +57,7 @@ describe('<Overlay />', () => {
         hello world
       </Overlay>,
     );
+    wrapper.setState({ targetRectReady: true });
     const spy = jest.spyOn(wrapper.instance(), 'forceUpdate');
 
     wrapper.find(Portal).prop('onResize')();
@@ -65,6 +67,7 @@ describe('<Overlay />', () => {
 
   it('does not calls addScrollListeners', () => {
     const wrapper = mountWithStyles<Overlay>(<Overlay {...props}>hello world</Overlay>);
+    wrapper.setState({ targetRectReady: true });
     // @ts-ignore Method not being found on class
     const spy = jest.spyOn(wrapper.instance(), 'addScrollListeners');
 
@@ -84,6 +87,7 @@ describe('<Overlay />', () => {
           hello world
         </Overlay>,
       );
+      wrapper.setState({ targetRectReady: true });
     });
 
     it('calls addScrollListeners when open', () => {

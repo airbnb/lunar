@@ -1,15 +1,15 @@
 import React from 'react';
-import BaseSwitch, { Props } from '@airbnb/lunar/lib/components/Switch';
-import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm';
+import Switch, { Props } from '@airbnb/lunar/lib/components/Switch';
+import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toBool } from '../../helpers';
 
 /** `Switch` automatically connected to the parent `Form`.  */
-export function FormSwitch(props: Props & ConnectToFormProps<boolean>) {
-  return <BaseSwitch {...props} />;
-}
+export default function FormSwitch(props: FieldProps<boolean, Props>) {
+  const fieldProps = useFormField(props, {
+    initialValue: false,
+    parse: toBool,
+    valueProp: 'checked',
+  });
 
-export default connectToForm<boolean>({
-  initialValue: false,
-  parse: toBool,
-  valueProp: 'checked',
-})(FormSwitch);
+  return <Switch {...fieldProps} />;
+}

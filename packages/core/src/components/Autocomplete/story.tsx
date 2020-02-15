@@ -173,3 +173,23 @@ export function withCustomStatesInASmallForm() {
 withCustomStatesInASmallForm.story = {
   name: 'With custom states in a small form.',
 };
+
+export function canSelectUnknownValueWhenHittingEnter() {
+  return (
+    <Autocomplete
+      selectUnknownOnEnter
+      accessibilityLabel="Favorite color?"
+      label="Favorite color?"
+      name="autocomplete"
+      onChange={action('onChange')}
+      onSelectItem={action('onSelectItem')}
+      onLoadItems={value =>
+        Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
+      }
+    />
+  );
+}
+
+canSelectUnknownValueWhenHittingEnter.story = {
+  name: 'Can select unknown value when hitting enter.',
+};

@@ -9,7 +9,7 @@ const componentName: PropTypes.Requireable<string> = (
 ) => {
   const value = props[propName];
 
-  if (!value || (typeof value === 'string' && value.match(/^[A-Z][a-zA-Z/]*$/))) {
+  if (!value || (typeof value === 'string' && value.match(/^[A-Z][/A-Za-z]*$/))) {
     return null;
   }
 

@@ -19,7 +19,12 @@ export function connectedToTheParentForm() {
         return Promise.resolve();
       }}
     >
-      <ToggleButtonController name="field" label="Label" validator={() => {}}>
+      <ToggleButtonController
+        name="field"
+        label="Label"
+        validator={() => {}}
+        onChange={action('onChange')}
+      >
         {ControlledButton => (
           <ButtonGroup>
             <ControlledButton key="red" value="red">

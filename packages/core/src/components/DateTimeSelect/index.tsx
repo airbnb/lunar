@@ -10,6 +10,7 @@ import createRange from '../../utils/createRange';
 import createDateTime from '../../utils/createDateTime';
 import getMonths from '../../utils/getMonths';
 import { Locale } from '../../types';
+import { styleSheet } from './styles';
 
 type Range = {
   label: string;
@@ -371,22 +372,4 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
   }
 }
 
-export default withStyles(({ unit }) => ({
-  selects: {
-    display: 'flex',
-    width: '100%',
-    alignItems: 'center',
-
-    '@selectors': {
-      '> div': {
-        flexGrow: 0,
-        width: 'auto',
-      },
-    },
-  },
-
-  spacer: {
-    paddingLeft: unit / 2,
-    paddingRight: unit / 2,
-  },
-}))(DateTimeSelect);
+export default withStyles(styleSheet)(DateTimeSelect);

@@ -92,4 +92,10 @@ describe('<FormActions />', () => {
 
     wrapper.find(Button).forEach(button => expect(button.prop('small')).toBeFalsy());
   });
+
+  it('renders buttons with block', () => {
+    const wrapper = shallowWithStyles(<FormActions block />);
+
+    expect(wrapper.find(Button).prop('block')).toBe(true);
+  });
 });

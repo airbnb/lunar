@@ -1,7 +1,7 @@
 import React from 'react';
 import { CellMeasurerCache, SortDirection, SortDirectionType, Table } from 'react-virtualized';
 import memoize from 'lodash/memoize';
-
+import { styleSheetDataTable as styleSheet } from './styles';
 import sortData from './helpers/sortData';
 import expandData from './helpers/expandData';
 import { indexData } from './helpers/indexData';
@@ -57,6 +57,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     instantEdit: true,
     keys: [],
     minimumDynamicRowHeight: undefined,
+    overscanRowCount: 2,
     renderers: {},
     rowHeight: 'regular',
     selectable: false,
@@ -120,8 +121,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       sortBy: string,
       sortDirection: SortDirectionType,
       selectedRows: SelectedRows,
+      sortByCacheKey?: string, // used only in the memoize cache key below
     ): IndexedParentRow[] => {
-      const { selectedRowsFirst } = this.props;
+      const { selectedRowsFirst, sortByValue } = this.props;
       const indexedData = indexData(data);
       const sortedData = sortData(
         indexedData,
@@ -130,6 +132,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         selectedRowsFirst!,
         sortBy,
         sortDirection,
+        sortByValue,
       );
 
       return sortedData;
@@ -138,13 +141,22 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   );
 
   componentDidUpdate(prevProps: DataTableProps, prevState: State) {
-    const { dynamicRowHeight, data, filterData, width, height } = this.props;
+    const { dynamicRowHeight, data, filterData, width, height, sortByCacheKey } = this.props;
     const { sortBy, sortDirection, selectedRows } = this.state;
     const dimensionsChanged = width !== prevProps.width || height !== prevProps.height;
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
+    const sortChanged =
+      sortBy !== prevState.sortBy ||
+      sortDirection !== prevState.sortDirection ||
+      sortByCacheKey !== prevProps.sortByCacheKey;
+    const sortedData: IndexedParentRow[] = this.getData(
+      data!,
+      sortBy,
+      sortDirection,
+      selectedRows,
+      sortByCacheKey,
+    );
     const filteredData = filterData!(sortedData);
     const oldFilteredData = prevProps.filterData!(sortedData);
-
     const filteredDataChanged =
       filteredData.length > 0 &&
       (filteredData.length !== oldFilteredData.length ||
@@ -153,7 +165,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             x.metadata.originalIndex !== oldFilteredData[i].metadata.originalIndex,
         ));
 
-    if (dynamicRowHeight && (filteredDataChanged || dimensionsChanged)) {
+    if (dynamicRowHeight && (filteredDataChanged || dimensionsChanged || sortChanged)) {
       // We need to make sure the cache is cleared before React tries to re-render.
       setTimeout(() => {
         this.cache.clearAll();
@@ -308,7 +320,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   };
 
   private handleChildSelection = (row: ExpandedRow) => {
-    const { data, selectCallback } = this.props;
+    const { data, selectCallback, sortByCacheKey } = this.props;
     const {
       selectedRows,
       sortBy,
@@ -319,7 +331,13 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       sortDirection: SortDirectionType;
     } = this.state;
 
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
+    const sortedData: IndexedParentRow[] = this.getData(
+      data!,
+      sortBy,
+      sortDirection,
+      selectedRows,
+      sortByCacheKey,
+    );
 
     const { parentOriginalIndex, parentIndex, originalIndex } = row.metadata;
 
@@ -435,25 +453,33 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   render() {
     const {
       autoHeight,
+      cx,
       data,
       dynamicRowHeight,
       expandable,
       filterData,
+      height,
+      overscanRowCount,
       propagateRef,
       rowHeight,
       selectable,
-      styles,
       selectedRowsFirst,
+      sortByCacheKey,
+      styles,
       tableHeaderHeight,
-      cx,
       showAllRows,
       width,
-      height,
     } = this.props;
 
     const { expandedRows, sortBy, sortDirection, editMode, selectedRows } = this.state;
 
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection, selectedRows);
+    const sortedData: IndexedParentRow[] = this.getData(
+      data!,
+      sortBy,
+      sortDirection,
+      selectedRows,
+      sortByCacheKey,
+    );
 
     const filteredData = filterData!(sortedData);
 
@@ -489,7 +515,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             headerRowRenderer={ColumnLabels(this.props)}
             rowHeight={dynamicRowHeight ? this.cache.rowHeight : HEIGHT_TO_PX[rowHeight!]}
             rowStyle={this.getRowStyle(expandedData)}
-            overscanRowCount={dynamicRowHeight && showAllRows ? expandedData.length : 2}
+            overscanRowCount={
+              dynamicRowHeight && showAllRows ? expandedData.length : overscanRowCount!
+            }
             onRowClick={this.handleRowClick}
           >
             {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
@@ -502,41 +530,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   }
 }
 
-export default withStyles(
-  ({ ui }) => ({
-    table_container: {
-      overflowX: 'auto',
-    },
-    headerRow: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      height: '100%',
-      textTransform: 'none',
-    },
-    column_header: {
-      borderBottom: ui.border,
-      cursor: 'pointer',
-    },
-    column: {
-      height: 'inherit',
-    },
-    column_divider: {
-      borderRight: ui.border,
-    },
-    rowContainer: {
-      height: '100%',
-      display: 'flex',
-      alignItems: 'center',
-    },
-    row: {
-      whiteSpace: 'normal',
-      width: '100%', // this is important for consumers who need full-width cells
-    },
-    expand_caret: {
-      cursor: 'pointer',
-    },
-  }),
-  {
-    passThemeProp: true,
-  },
-)(DataTable);
+export default withStyles(styleSheet, {
+  passThemeProp: true,
+})(DataTable);

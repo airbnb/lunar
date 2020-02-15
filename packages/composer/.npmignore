@@ -1,0 +1,9 @@
+.DS_Store
+*.log
+*.lock
+*.tsbuildinfo
+package-lock.json
+tsconfig.json
+src/
+test/
+types/

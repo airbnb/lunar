@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import React from 'react';
 import uuid from 'uuid/v4';
 import Overlay from '../Overlay';
 import NotchedBox, { NOTCH_SIZE, NOTCH_SPACING } from '../NotchedBox';
 import Text from '../Text';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import { styleSheet } from './styles';
+import Portal from '../Portal';
 
 const EMPTY_TARGET_RECT: ClientRect = {
   bottom: 0,
@@ -40,6 +41,7 @@ export type State = {
   open: boolean;
   tooltipHeight: number;
   targetRect: ClientRect;
+  targetRectReady: boolean;
 };
 
 export type PositionStruct = {
@@ -68,13 +70,16 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     open: false,
     tooltipHeight: 0,
     targetRect: EMPTY_TARGET_RECT,
+    targetRectReady: false,
   };
 
   containerRef = React.createRef<HTMLSpanElement>();
 
   currentTooltipRef: HTMLDivElement | null = null;
 
-  rafHandle?: number;
+  mounted: boolean = false;
+
+  rafHandle: number = 0;
 
   static getDerivedStateFromProps({ disabled }: Props) {
     if (disabled) {
@@ -87,9 +92,15 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   }
 
   componentDidMount() {
-    // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({
-      targetRect: document.body.getBoundingClientRect(),
+    this.mounted = true;
+
+    this.rafHandle = requestAnimationFrame(() => {
+      const targetRect = document.body.getBoundingClientRect();
+
+      // use a second rAF in case setState causes layout thrashing
+      this.rafHandle = requestAnimationFrame(() => {
+        this.setState({ targetRect, targetRectReady: true });
+      });
     });
   }
 
@@ -100,7 +111,8 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   }
 
   componentWillUnmount() {
-    cancelAnimationFrame(this.rafHandle as number);
+    this.mounted = false;
+    cancelAnimationFrame(this.rafHandle);
   }
 
   updateTooltipHeight() {
@@ -108,7 +120,10 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     /* istanbul ignore next: refs are hard */
     this.rafHandle = requestAnimationFrame(() => {
       const el = this.currentTooltipRef;
-      this.setState({ tooltipHeight: el ? el.offsetHeight : 0 });
+
+      if (this.mounted) {
+        this.setState({ tooltipHeight: el ? el.offsetHeight : 0 });
+      }
     });
   }
 
@@ -142,12 +157,15 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   };
 
   private handleEnter = () => {
-    const { current } = this.containerRef;
+    /* istanbul ignore next: refs are hard */
+    this.rafHandle = requestAnimationFrame(() => {
+      const { current } = this.containerRef;
 
-    /* istanbul ignore if: refs are hard */
-    if (current) {
-      this.setState({ targetRect: current.getBoundingClientRect() });
-    }
+      /* istanbul ignore if: refs are hard */
+      if (current && this.mounted) {
+        this.setState({ targetRect: current.getBoundingClientRect() });
+      }
+    });
 
     if (!this.props.disabled && !this.state.open) {
       this.setState({ open: true });
@@ -165,21 +183,19 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     this.setState({ open: false });
   };
 
-  render() {
-    const {
-      cx,
-      styles,
-      theme,
-      width: widthProp,
-      children,
-      content,
-      disabled,
-      underlined,
-      inverted,
-    } = this.props;
-    const { open, targetRect, tooltipHeight, labelID } = this.state;
+  private renderPopUp() {
+    const { cx, styles, theme, width: widthProp, content, inverted } = this.props;
+    const { open, targetRect, tooltipHeight, targetRectReady } = this.state;
+
+    // render null until targetRect is initialized by cDM
+    if (!targetRectReady) {
+      return null;
+    }
+
     const { unit } = theme!;
     const width = widthProp! * unit;
+
+    // bestPosition will cause a reflow as will `targetRect.width`
     const { align, above } = this.bestPosition(targetRect);
     const targetWidth = targetRect.width;
     const halfNotch = (NOTCH_SIZE * unit) / Math.SQRT2;
@@ -194,6 +210,36 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     const distance = halfNotch + 1;
 
     return (
+      <Overlay noBackground open={open} onClose={this.handleClose}>
+        <div
+          ref={this.handleTooltipRef}
+          role="tooltip"
+          className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
+            width,
+            marginLeft: marginLeft[align as keyof StyleStruct],
+            marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
+            textAlign: align,
+          })}
+        >
+          <div className={cx(styles.notchedBoxContainer)}>
+            <NotchedBox
+              inverted={!inverted}
+              notchOffset={notchOffset[align as keyof StyleStruct]}
+              notchBelow={above}
+            >
+              <Text inverted={!inverted}>{content}</Text>
+            </NotchedBox>
+          </div>
+        </div>
+      </Overlay>
+    );
+  }
+
+  render() {
+    const { cx, styles, children, content, disabled, underlined } = this.props;
+    const { open, labelID } = this.state;
+
+    return (
       <span ref={this.containerRef} className={cx(styles.container)}>
         <div
           aria-labelledby={labelID}
@@ -205,90 +251,19 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
           {children}
         </div>
 
-        <div id={labelID} className={cx(styles.offscreen)}>
-          {content}
-        </div>
-
-        <Overlay noBackground open={open} onClose={this.handleClose}>
-          <div
-            ref={this.handleTooltipRef}
-            role="tooltip"
-            className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
-              width,
-              marginLeft: marginLeft[align as keyof StyleStruct],
-              marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
-              textAlign: align,
-            })}
-          >
-            <div className={cx(styles.shadow)}>
-              <NotchedBox
-                inverted={!inverted}
-                notchOffset={notchOffset[align as keyof StyleStruct]}
-                notchBelow={above}
-              >
-                <Text inverted={!inverted}>{content}</Text>
-              </NotchedBox>
-            </div>
+        {/* render off-screen element in a separate layer */}
+        <Portal>
+          <div id={labelID} className={cx(styles.offscreen)}>
+            {content}
           </div>
-        </Overlay>
+        </Portal>
+
+        {open ? this.renderPopUp() : null}
       </span>
     );
   }
 }
 
-export default withStyles(
-  ({ unit, color, pattern, ui }) => ({
-    container: {
-      display: 'inline-block',
-    },
-
-    offscreen: {
-      ...pattern.offscreen,
-    },
-
-    underlined: {
-      borderBottom: `1px dotted ${color.core.primary[3]}`,
-      cursor: 'help',
-    },
-
-    tooltip: {
-      animationDuration: '200ms',
-      animationTimingFunction: 'ease-out',
-    },
-
-    tooltip_above: {
-      animationName: {
-        name: 'fadeDown',
-        from: {
-          opacity: 0,
-          transform: `translateY(${unit * 1.5}px)`,
-        },
-        to: {
-          opacity: 1,
-        },
-      },
-    },
-
-    tooltip_below: {
-      animationName: {
-        name: 'fadeUp',
-        from: {
-          opacity: 0,
-          transform: `translateY(-${unit * 1.5}px)`,
-        },
-        to: {
-          opacity: 1,
-        },
-      },
-    },
-
-    shadow: {
-      display: 'inline-block',
-      boxShadow: ui.boxShadowLarge,
-      borderRadius: ui.borderRadius,
-    },
-  }),
-  {
-    passThemeProp: true,
-  },
-)(Tooltip);
+export default withStyles(styleSheet, {
+  passThemeProp: true,
+})(Tooltip);

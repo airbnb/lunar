@@ -1,5 +1,5 @@
 import { SortDirection, SortDirectionType } from 'react-virtualized';
-import { GenericRow, SelectedRows } from '../types';
+import { GenericRow, SelectedRows, SortByValueAccessor } from '../types';
 
 // https://stackoverflow.com/questions/29829205/sort-an-array-so-that-null-values-always-come-last
 function sort(a: unknown, b: unknown, ascending: boolean = false) {
@@ -26,18 +26,25 @@ function sort(a: unknown, b: unknown, ascending: boolean = false) {
   return a < b ? 1 : -1;
 }
 
+function defaultSortValueAccessor<T extends GenericRow>(d: T, sortByKey: string) {
+  return d.data[sortByKey];
+}
+
 function sortList<T extends GenericRow>(
   list: T[],
   keys: string[],
   sortBy?: string,
   sortDirection?: SortDirectionType,
+  sortByValue: SortByValueAccessor<T> = defaultSortValueAccessor,
 ): T[] {
   if (sortBy && keys.includes(sortBy)) {
     if (sortDirection === SortDirection.ASC) {
-      return list.slice().sort((a: T, b: T) => sort(a.data[sortBy], b.data[sortBy], true));
+      return [...list].sort((a: T, b: T) =>
+        sort(sortByValue(a, sortBy), sortByValue(b, sortBy), true),
+      );
     }
 
-    return list.slice().sort((a: T, b: T) => sort(a.data[sortBy], b.data[sortBy]));
+    return [...list].sort((a: T, b: T) => sort(sortByValue(a, sortBy), sortByValue(b, sortBy)));
   }
 
   return list;
@@ -50,6 +57,7 @@ export default function sortData<T extends GenericRow>(
   selectedRowsFirst: boolean,
   sortBy?: string,
   sortDirection?: SortDirectionType,
+  sortByValue?: SortByValueAccessor<T>,
 ): T[] {
   if (selectedRowsFirst) {
     const selectedList: T[] = [];
@@ -65,11 +73,11 @@ export default function sortData<T extends GenericRow>(
       }
     });
 
-    const sortedSelectedList = sortList(selectedList, keys, sortBy, sortDirection);
-    const sortedUnselectedList = sortList(unselectedList, keys, sortBy, sortDirection);
+    const sortedSelectedList = sortList(selectedList, keys, sortBy, sortDirection, sortByValue);
+    const sortedUnselectedList = sortList(unselectedList, keys, sortBy, sortDirection, sortByValue);
 
     return sortedSelectedList.concat(sortedUnselectedList);
   }
 
-  return sortList(list, keys, sortBy, sortDirection);
+  return sortList(list, keys, sortBy, sortDirection, sortByValue);
 }

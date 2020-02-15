@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import IconCheck from '@airbnb/lunar-icons/lib/interface/IconCheck';
 import IconRemove from '@airbnb/lunar-icons/lib/interface/IconRemove';
 import BaseCheckBox from '../../../src/components/private/BaseCheckBox';
@@ -7,7 +7,7 @@ import FormInput from '../../../src/components/private/FormInput';
 
 describe('<BaseCheckBox />', () => {
   it('renders an input with the correct field', () => {
-    const wrapper = shallowWithStyles(<BaseCheckBox id="foo" name="foo" onChange={() => {}} />);
+    const wrapper = shallow(<BaseCheckBox id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.is('label')).toBe(true);
     expect(wrapper.find(FormInput).prop('tagName')).toBe('input');
@@ -16,23 +16,19 @@ describe('<BaseCheckBox />', () => {
   });
 
   it('renders invalid', () => {
-    const wrapper = shallowWithStyles(
-      <BaseCheckBox invalid id="foo" name="foo" onChange={() => {}} />,
-    );
+    const wrapper = shallow(<BaseCheckBox invalid id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.find(FormInput).prop('invalid')).toBe(true);
   });
 
   it('renders disabled', () => {
-    const wrapper = shallowWithStyles(
-      <BaseCheckBox disabled id="foo" name="foo" onChange={() => {}} />,
-    );
+    const wrapper = shallow(<BaseCheckBox disabled id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.find(FormInput).prop('disabled')).toBe(true);
   });
 
   it('displays a checkmark when checked', () => {
-    const wrapper = shallowWithStyles(<BaseCheckBox id="foo" name="foo" onChange={() => {}} />);
+    const wrapper = shallow(<BaseCheckBox id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.find(IconCheck)).toHaveLength(0);
 
@@ -44,7 +40,7 @@ describe('<BaseCheckBox />', () => {
   });
 
   it('displays a checkmark when indeterminate', () => {
-    const wrapper = shallowWithStyles(<BaseCheckBox id="foo" name="foo" onChange={() => {}} />);
+    const wrapper = shallow(<BaseCheckBox id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.find(IconRemove)).toHaveLength(0);
 
@@ -57,7 +53,7 @@ describe('<BaseCheckBox />', () => {
 
   it('triggers `onChange` handler', () => {
     const spy = jest.fn();
-    const wrapper = shallowWithStyles(<BaseCheckBox id="foo" name="foo" onChange={spy} />);
+    const wrapper = shallow(<BaseCheckBox id="foo" name="foo" onChange={spy} />);
     const event = {
       currentTarget: {
         checked: true,
@@ -72,7 +68,7 @@ describe('<BaseCheckBox />', () => {
 
   it('renders in button mode', () => {
     const child = <div>Child</div>;
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <BaseCheckBox button id="foo" name="foo" onChange={() => {}}>
         {child}
       </BaseCheckBox>,

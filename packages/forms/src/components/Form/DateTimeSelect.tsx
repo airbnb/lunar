@@ -1,14 +1,14 @@
 import React from 'react';
-import BaseDateTimeSelect, { Props } from '@airbnb/lunar/lib/components/DateTimeSelect';
-import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm';
+import DateTimeSelect, { Props } from '@airbnb/lunar/lib/components/DateTimeSelect';
+import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
 /** `DateTimeSelect` automatically connected to the parent `Form`.  */
-export function FormDateTimeSelect(props: Props & ConnectToFormProps<string>) {
-  return <BaseDateTimeSelect {...props} />;
-}
+export default function FormDateTimeSelect(props: FieldProps<string, Props>) {
+  const fieldProps = useFormField(props, {
+    initialValue: new Date().toISOString(),
+    parse: toString,
+  });
 
-export default connectToForm<string>({
-  initialValue: new Date().toISOString(),
-  parse: toString,
-})(FormDateTimeSelect);
+  return <DateTimeSelect {...fieldProps} />;
+}

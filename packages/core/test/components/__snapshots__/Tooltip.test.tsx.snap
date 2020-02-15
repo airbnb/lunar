@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Tooltip /> can underline  1`] = `
+exports[`<Tooltip /> can underline 1`] = `
 <span
   className="container"
 >
@@ -17,36 +17,14 @@ exports[`<Tooltip /> can underline  1`] = `
       hello world
     </a>
   </div>
-  <div
-    className="offscreen"
-    id="uuid-test-mock"
-  >
-    test
-  </div>
-  <Overlay
-    noBackground={true}
-    onClose={[Function]}
-  >
+  <Portal>
     <div
-      className="tooltip tooltip_below inline-0"
-      role="tooltip"
+      className="offscreen"
+      id="uuid-test-mock"
     >
-      <div
-        className="shadow"
-      >
-        <NotchedBox
-          inverted={true}
-          notchBelow={false}
-        >
-          <Text
-            inverted={true}
-          >
-            test
-          </Text>
-        </NotchedBox>
-      </div>
+      test
     </div>
-  </Overlay>
+  </Portal>
 </span>
 `;
 
@@ -67,36 +45,14 @@ exports[`<Tooltip /> disabled does not underline 1`] = `
       hello world
     </a>
   </div>
-  <div
-    className="offscreen"
-    id="uuid-test-mock"
-  >
-    test
-  </div>
-  <Overlay
-    noBackground={true}
-    onClose={[Function]}
-  >
+  <Portal>
     <div
-      className="tooltip tooltip_below inline-0"
-      role="tooltip"
+      className="offscreen"
+      id="uuid-test-mock"
     >
-      <div
-        className="shadow"
-      >
-        <NotchedBox
-          inverted={true}
-          notchBelow={false}
-        >
-          <Text
-            inverted={true}
-          >
-            test
-          </Text>
-        </NotchedBox>
-      </div>
+      test
     </div>
-  </Overlay>
+  </Portal>
 </span>
 `;
 
@@ -117,36 +73,14 @@ exports[`<Tooltip /> disabled does not up when hovered 1`] = `
       hello world
     </a>
   </div>
-  <div
-    className="offscreen"
-    id="uuid-test-mock"
-  >
-    test
-  </div>
-  <Overlay
-    noBackground={true}
-    onClose={[Function]}
-  >
+  <Portal>
     <div
-      className="tooltip tooltip_below inline-0"
-      role="tooltip"
+      className="offscreen"
+      id="uuid-test-mock"
     >
-      <div
-        className="shadow"
-      >
-        <NotchedBox
-          inverted={true}
-          notchBelow={false}
-        >
-          <Text
-            inverted={true}
-          >
-            test
-          </Text>
-        </NotchedBox>
-      </div>
+      test
     </div>
-  </Overlay>
+  </Portal>
 </span>
 `;
 
@@ -167,12 +101,14 @@ exports[`<Tooltip /> once open supports changing content 1`] = `
       hello world
     </a>
   </div>
-  <div
-    className="offscreen"
-    id="uuid-test-mock"
-  >
-    whatever
-  </div>
+  <Portal>
+    <div
+      className="offscreen"
+      id="uuid-test-mock"
+    >
+      whatever
+    </div>
+  </Portal>
   <Overlay
     noBackground={true}
     onClose={[Function]}
@@ -183,7 +119,7 @@ exports[`<Tooltip /> once open supports changing content 1`] = `
       role="tooltip"
     >
       <div
-        className="shadow"
+        className="notchedBoxContainer"
       >
         <NotchedBox
           inverted={true}
@@ -218,12 +154,14 @@ exports[`<Tooltip /> opens up when hovered 1`] = `
       hello world
     </a>
   </div>
-  <div
-    className="offscreen"
-    id="uuid-test-mock"
-  >
-    test
-  </div>
+  <Portal>
+    <div
+      className="offscreen"
+      id="uuid-test-mock"
+    >
+      test
+    </div>
+  </Portal>
   <Overlay
     noBackground={true}
     onClose={[Function]}
@@ -234,7 +172,7 @@ exports[`<Tooltip /> opens up when hovered 1`] = `
       role="tooltip"
     >
       <div
-        className="shadow"
+        className="notchedBoxContainer"
       >
         <NotchedBox
           inverted={true}

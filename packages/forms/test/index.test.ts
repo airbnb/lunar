@@ -20,7 +20,6 @@ describe('forms', () => {
       'Switch',
       'TextArea',
       'ToggleButtonController',
-      'connectToForm',
     ]);
   });
 });

@@ -38,16 +38,16 @@ export default class About extends React.Component {
   render() {
     const { changelog, name, metadata, storyPath } = this.props;
 
-    if (!metadata) {
+    if (!metadata || Object.keys(metadata).length === 0) {
       return <Placeholder>No component information found for {name}.</Placeholder>;
     }
 
-    const { description } = metadata.docgenInfo;
+    const info = metadata.docgenInfo || { description: '', props: {} };
     const requiredProps = [];
     const optionalProps = [];
     const alphaSort = (a, b) => a.name.localeCompare(b.name);
 
-    Object.values(metadata.docgenInfo.props).forEach(prop => {
+    Object.values(info.props).forEach(prop => {
       if (prop.description.includes('@ignore')) {
         return;
       }
@@ -69,9 +69,9 @@ export default class About extends React.Component {
           importPath={getImportPath(metadata.path, metadata.name)}
         />
 
-        {description && (
+        {info.description && (
           <Description>
-            <Markdown>{description}</Markdown>
+            <Markdown>{info.description}</Markdown>
           </Description>
         )}
 

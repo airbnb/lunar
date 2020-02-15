@@ -431,9 +431,9 @@ describe('<Form />', () => {
     });
 
     it('passes through unknown fields', () => {
-      expect(instance.prepareData({ foo: ' foo ', bar: '123.45', baz: 1, qux: [1, 2, 3] })).toEqual(
-        { foo: 'foo', bar: 123.45, baz: true, qux: [1, 2, 3] },
-      );
+      expect(
+        instance.prepareData({ foo: ' foo ', bar: '123.45', baz: 1, qux: [1, 2, 3] }),
+      ).toEqual({ foo: 'foo', bar: 123.45, baz: true, qux: [1, 2, 3] });
     });
   });
 
@@ -517,7 +517,7 @@ describe('<Form />', () => {
       expect(spy).toHaveBeenCalledWith('foo', expect.objectContaining({ name: 'foo' }));
     });
 
-    it('it only calls mutator once for consecutive registers', () => {
+    it('only calls mutator once for consecutive registers', () => {
       const spy = jest.spyOn(instance.form.mutators, 'setFieldConfig');
 
       instance.registerField({ name: 'foo', validator() {} }, () => {});
@@ -671,6 +671,7 @@ describe('<Form />', () => {
 
       expect(spy).not.toHaveBeenCalled();
 
+      // eslint-disable-next-line jest/no-test-return-statement
       return promise;
     });
 
@@ -696,6 +697,7 @@ describe('<Form />', () => {
 
       expect(spy).not.toHaveBeenCalled();
 
+      // eslint-disable-next-line jest/no-test-return-statement
       return promise;
     });
   });

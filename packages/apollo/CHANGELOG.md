@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.8.2 - 2020-02-07
+
+#### 📦 Dependencies
+
+- Update minor and patch versions. ([cf27d74](https://github.com/airbnb/lunar/commit/cf27d74))
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
+### 2.8.1 - 2020-01-28
+
+#### 📦 Dependencies
+
+- Audit 2019-01-22 (#289) ([7c1033c](https://github.com/airbnb/lunar/commit/7c1033c)), closes [#289](https://github.com/airbnb/lunar/issues/289)
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
+## 2.8.0 - 2020-01-08
+
+#### 🚀 Updates
+
+- **[Apollo]** expose cacheConfig (#278) ([3640b30](https://github.com/airbnb/lunar/commit/3640b30)), closes [#278](https://github.com/airbnb/lunar/issues/278)
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
+## 2.7.0 - 2019-12-19
+
+#### 🚀 Updates
+
+- **[List]** Add `middleAlign` support for `horizontal`. (#244) ([1b58963](https://github.com/airbnb/lunar/commit/1b58963)), closes [#244](https://github.com/airbnb/lunar/issues/244)
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
+### 2.6.3 - 2019-11-14
+
+#### 🛠 Internals
+
+- Migrate to Travis CI. (#239) ([2a62442](https://github.com/airbnb/lunar/commit/2a62442)), closes [#239](https://github.com/airbnb/lunar/issues/239)
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
+### 2.6.2 - 2019-10-31
+
+#### 📦 Dependencies
+
+- **[React]** Update to v16.11. ([07b80dc](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/07b80dc))
+
+#### 🛠 Internals
+
+- Fix lint and test failures. ([f2ccc7f](https://github.com/airbnb/lunar/tree/master/packages/apollo/commit/f2ccc7f))
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
 ### 2.6.1 - 2019-10-10
 
 #### 📦 Dependencies

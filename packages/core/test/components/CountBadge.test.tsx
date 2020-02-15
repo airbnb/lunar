@@ -36,6 +36,7 @@ describe('<CountBadge />', () => {
     const wrapper = mount(<CountBadge {...props} waggle />);
     const div = wrapper.find('div').getDOMNode() as HTMLDivElement;
 
+    // eslint-disable-next-line jest/prefer-spy-on
     div.animate = jest.fn();
 
     wrapper.setProps({ value: 10 });

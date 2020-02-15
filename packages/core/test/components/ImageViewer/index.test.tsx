@@ -76,7 +76,7 @@ describe('<ImageViewer />', () => {
         mousemove: null,
       };
 
-      document.addEventListener = jest.fn((event, cb) => {
+      jest.spyOn(document, 'addEventListener').mockImplementation((event, cb) => {
         eventMap[event as 'mousemove'] = cb as () => void;
       });
 

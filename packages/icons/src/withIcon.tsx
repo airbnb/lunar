@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SVGAttributes } from 'react';
 
 export type WithIconWrapperProps = {
   /** Accessibility label. Required if `decorative` not defined. */
@@ -18,7 +18,7 @@ export type WithIconWrapperProps = {
 };
 
 export type Props = {
-  focusable: string;
+  focusable: SVGAttributes<unknown>['focusable'];
   role: string;
   style: React.CSSProperties;
 };

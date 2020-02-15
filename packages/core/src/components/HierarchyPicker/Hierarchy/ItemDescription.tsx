@@ -1,5 +1,5 @@
 import React from 'react';
-import withStyles, { WithStylesProps } from '../../../composers/withStyles';
+import Spacing from '../../Spacing';
 import Text from '../../Text';
 import T from '../../Translate';
 import { ItemShape } from '../types';
@@ -8,26 +8,16 @@ export type Props = {
   item: ItemShape;
 };
 
-export class ItemDescription extends React.Component<Props & WithStylesProps> {
-  render() {
-    const { cx, item, styles } = this.props;
+export default function ItemDescription({ item }: Props) {
+  return (
+    <div>
+      <Text bold>
+        <T k="lunar.common.description" phrase="Description" context="Description of item" />
+      </Text>
 
-    return (
-      <div>
-        <Text bold>
-          <T k="lunar.common.description" phrase="Description" context="Description of item" />
-        </Text>
-
-        <div className={cx(styles.description)}>
-          <Text>{item.description}</Text>
-        </div>
-      </div>
-    );
-  }
+      <Spacing top={0.5}>
+        <Text>{item.description}</Text>
+      </Spacing>
+    </div>
+  );
 }
-
-export default withStyles(({ unit }) => ({
-  description: {
-    marginTop: unit / 2,
-  },
-}))(ItemDescription);

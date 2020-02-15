@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import Separator from '../../../src/components/Menu/Separator';
 
 describe('<MenuSeparator />', () => {
   it('renders a list with the correct role', () => {
-    const wrapper = shallowWithStyles(<Separator />);
+    const wrapper = shallow(<Separator />);
 
     expect(wrapper.is('li')).toBe(true);
     expect(wrapper.prop('role')).toBe('separator');

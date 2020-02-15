@@ -3,6 +3,110 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.8.1 - 2020-02-07
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
+## 2.8.0 - 2020-02-06
+
+#### 🚀 Updates
+
+- **[Icons]** Add return icon. (#301) ([54ba77d](https://github.com/airbnb/lunar/commit/54ba77d)), closes [#301](https://github.com/airbnb/lunar/issues/301)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
+### 2.7.1 - 2020-01-28
+
+#### 📦 Dependencies
+
+- Audit 2019-01-22 (#289) ([7c1033c](https://github.com/airbnb/lunar/commit/7c1033c)), closes [#289](https://github.com/airbnb/lunar/issues/289)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
+## 2.7.0 - 2019-12-19
+
+#### 🚀 Updates
+
+- **[List]** Add `middleAlign` support for `horizontal`. (#244) ([1b58963](https://github.com/airbnb/lunar/commit/1b58963)), closes [#244](https://github.com/airbnb/lunar/issues/244)
+
+#### 🛠 Internals
+
+- Update Happo to support light and dark themes. (#259) ([dbb347a](https://github.com/airbnb/lunar/commit/dbb347a)), closes [#259](https://github.com/airbnb/lunar/issues/259)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
+## 2.6.0 - 2019-11-13
+
+#### 🚀 Updates
+
+- **[Icons]** Add help and status icons. (#241) ([5f5d233](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/5f5d233)), closes [#241](https://github.com/airbnb/lunar/tree/master/packages/icons/issues/241)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
+### 2.5.1 - 2019-10-31
+
+#### 📦 Dependencies
+
+- **[React]** Update to v16.11. ([07b80dc](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/07b80dc))
+
+#### 🛠 Internals
+
+- Fix lint and test failures. ([f2ccc7f](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/f2ccc7f))
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
+## 2.5.0 - 2019-10-25
+
+#### 🚀 Updates
+
+- **[Icons]** Update gen:icon script and remove unused paths and fills. (#222) ([7440f0b](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/7440f0b)), closes [#222](https://github.com/airbnb/lunar/tree/master/packages/icons/issues/222)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
+## 2.4.0 - 2019-10-23
+
+#### 🚀 Updates
+
+- **[Icons]** Add IconVariable, IconViewList, IconZoomToFit icons. (#217) ([baeefdd](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/baeefdd)), closes [#217](https://github.com/airbnb/lunar/tree/master/packages/icons/issues/217)
+
+#### 🐞 Fixes
+
+- Rewrite stories to remove `@emotion/core` unintended import. (#210) ([5976e92](https://github.com/airbnb/lunar/tree/master/packages/icons/commit/5976e92)), closes [#210](https://github.com/airbnb/lunar/tree/master/packages/icons/issues/210)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ### 2.3.1 - 2019-10-10
 
 #### 📦 Dependencies

@@ -1,16 +1,13 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
 import removeFocusOnMouseUp from '../../utils/removeFocusOnMouseUp';
-import toRGBA from '../../utils/toRGBA';
 import ProfilePhoto from '../ProfilePhoto';
 import Shimmer from '../Shimmer';
 import Text from '../Text';
 import Spacing from '../Spacing';
 import T from '../Translate';
-
-// add color flags here
-const stripeColorTypePropType = mutuallyExclusiveTrueProps('important', 'info', 'warning');
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Message body. */
@@ -58,113 +55,34 @@ export type Props = {
 };
 
 /** An individual comment within a message thread. */
-export class MessageItem extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    important: stripeColorTypePropType,
-    info: stripeColorTypePropType,
-    warning: stripeColorTypePropType,
-  };
+function MessageItem({
+  children,
+  disableTitleTranslation,
+  email,
+  formattedTimestamp,
+  horizontalSpacing,
+  icon,
+  imageBadgeSrc,
+  imageDescription,
+  imageSrc,
+  important,
+  info,
+  loadingAuthor,
+  onClickImage,
+  onClickTitle,
+  sending,
+  source,
+  title,
+  titleClickDescription,
+  titleTag,
+  verticalSpacing,
+  warning,
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  static defaultProps = {
-    disableTitleTranslation: false,
-    email: null,
-    horizontalSpacing: false,
-    imageBadgeSrc: '',
-    imageDescription: '',
-    important: false,
-    info: false,
-    loadingAuthor: false,
-    sending: false,
-    source: '',
-    titleClickDescription: '',
-    titleTag: '',
-    verticalSpacing: false,
-    warning: false,
-  };
-
-  render() {
-    const {
-      cx,
-      children,
-      disableTitleTranslation,
-      email,
-      formattedTimestamp,
-      horizontalSpacing,
-      icon,
-      imageBadgeSrc,
-      imageDescription,
-      imageSrc,
-      important,
-      info,
-      loadingAuthor,
-      onClickImage,
-      onClickTitle,
-      sending,
-      source,
-      styles,
-      title,
-      titleClickDescription,
-      titleTag,
-      verticalSpacing,
-      warning,
-    } = this.props;
-
-    const timestamp = source
-      ? T.phrase(
-          '%{time} via %{source}',
-          { time: formattedTimestamp, source },
-          { context: 'Timestamp and source within a message bubble', key: 'lunar.message.source' },
-        )
-      : formattedTimestamp;
-
-    const striped = !!(important || info || warning);
-
-    const containerStyles = cx(
-      styles.container,
-      horizontalSpacing && styles.container_horizontalSpacing,
-      verticalSpacing && styles.container_verticalSpacing,
-      striped && styles.container_withStripe,
-      important && styles.container_important,
-      info && styles.container_info,
-      warning && styles.container_warning,
-    );
-
-    const formatedTitle = disableTitleTranslation ? (
-      <span className="notranslate">{title}</span>
-    ) : (
-      title
-    );
-
+  const getAvatar = () => {
     if (loadingAuthor) {
-      return (
-        <div className={containerStyles}>
-          <div className={cx(styles.grid)}>
-            <div>
-              <Shimmer width={32} height={32} radius="50%" />
-            </div>
-
-            <div>
-              <Spacing bottom={0.5}>
-                <div className={cx(styles.title)}>
-                  <Spacing inline bottom={0.5} right={1}>
-                    <Shimmer width={175} height={14} />
-                  </Spacing>
-
-                  <Text small muted>
-                    {timestamp}
-                  </Text>
-                </div>
-
-                {email && <Shimmer height={12} width={225} />}
-              </Spacing>
-
-              {children}
-            </div>
-          </div>
-
-          {sending && <div className={cx(styles.sendingOverlay)} />}
-        </div>
-      );
+      return <Shimmer width={32} height={32} radius="50%" />;
     }
 
     let profilePhoto = null;
@@ -204,182 +122,125 @@ export class MessageItem extends React.Component<Props & WithStylesProps> {
       profilePhoto
     );
 
-    return (
-      <div className={containerStyles}>
-        <div className={cx(styles.grid)}>
-          <div className={cx(styles.relative)}>
-            {onClickImage ? (
-              <button
-                className={cx(styles.resetButton)}
-                type="button"
-                title={imageDescription || title}
-                onClick={onClickImage}
-                onMouseUp={removeFocusOnMouseUp}
-              >
-                {avatar}
-              </button>
-            ) : (
-              avatar
-            )}
-          </div>
+    if (onClickImage) {
+      return (
+        <button
+          className={cx(styles.resetButton)}
+          type="button"
+          title={imageDescription || title}
+          onClick={onClickImage}
+          onMouseUp={removeFocusOnMouseUp}
+        >
+          {avatar}
+        </button>
+      );
+    }
 
-          <div>
-            <Spacing bottom={0.5}>
-              <div className={cx(styles.title)}>
-                <Spacing inline bottom={0.5} right={1}>
-                  {onClickTitle ? (
-                    <button
-                      className={cx(styles.resetButton)}
-                      type="button"
-                      title={titleClickDescription || title}
-                      onClick={onClickTitle}
-                      onMouseUp={removeFocusOnMouseUp}
-                    >
-                      <Text bold>{formatedTitle}</Text>
-                    </button>
-                  ) : (
-                    <Text bold>{formatedTitle}</Text>
-                  )}
-                </Spacing>
+    return avatar;
+  };
 
-                {titleTag && (
-                  <Spacing inline bottom={0.5} right={1}>
-                    <div className={cx(styles.tag)}>
-                      <Text micro muted>
-                        {titleTag}
-                      </Text>
-                    </div>
-                  </Spacing>
-                )}
+  const getTitle = () => {
+    if (loadingAuthor) {
+      return <Shimmer width={150} height={14} />;
+    }
 
-                <Text small muted>
-                  {timestamp}
-                </Text>
-              </div>
-
-              {email && (
-                <Text small muted>
-                  <T
-                    html
-                    k="lunar.message.fromUser"
-                    phrase="From: %{email}"
-                    email={email}
-                    context="Who the message is from"
-                  />
-                </Text>
-              )}
-            </Spacing>
-
-            <div className={cx(styles.wordBreak)}>{children}</div>
-          </div>
-        </div>
-
-        {sending && <div className={cx(styles.sendingOverlay)} />}
-      </div>
+    const formatedTitle = disableTitleTranslation ? (
+      <span className="notranslate">{title}</span>
+    ) : (
+      title
     );
-  }
+
+    if (onClickTitle) {
+      return (
+        <button
+          className={cx(styles.resetButton)}
+          type="button"
+          title={titleClickDescription || title}
+          onClick={onClickTitle}
+          onMouseUp={removeFocusOnMouseUp}
+        >
+          <Text bold>{formatedTitle}</Text>
+        </button>
+      );
+    }
+
+    return <Text bold>{formatedTitle}</Text>;
+  };
+
+  const timestamp = source
+    ? T.phrase(
+        '%{time} via %{source}',
+        { time: formattedTimestamp, source },
+        { context: 'Timestamp and source within a message bubble', key: 'lunar.message.source' },
+      )
+    : formattedTimestamp;
+
+  return (
+    <div
+      className={cx(
+        styles.container,
+        horizontalSpacing && styles.container_horizontalSpacing,
+        verticalSpacing && styles.container_verticalSpacing,
+        !!(important || info || warning) && styles.container_withStripe,
+        important && styles.container_important,
+        info && styles.container_info,
+        warning && styles.container_warning,
+      )}
+    >
+      <div className={cx(styles.grid)}>
+        <div className={cx(styles.relative)}>{getAvatar()}</div>
+
+        <div>
+          <Spacing bottom={0.5}>
+            <div className={cx(styles.title)}>
+              <Spacing inline bottom={0.5} right={1}>
+                {getTitle()}
+              </Spacing>
+
+              {titleTag && (
+                <Spacing inline bottom={0.5} right={1}>
+                  <div className={cx(styles.tag)}>
+                    <Text micro muted>
+                      {titleTag}
+                    </Text>
+                  </div>
+                </Spacing>
+              )}
+
+              <Text small muted>
+                {timestamp}
+              </Text>
+            </div>
+
+            {email && (
+              <Text small muted>
+                <T
+                  html
+                  k="lunar.message.fromUser"
+                  phrase="From: %{email}"
+                  email={email}
+                  context="Who the message is from"
+                />
+              </Text>
+            )}
+          </Spacing>
+
+          <div className={cx(styles.wordBreak)}>{children}</div>
+        </div>
+      </div>
+
+      {sending && <div className={cx(styles.sendingOverlay)} />}
+    </div>
+  );
 }
 
-export default withStyles(({ color, font, ui, unit, pattern }) => ({
-  relative: {
-    position: 'relative',
-  },
+// add color flags here
+const stripeColorTypePropType = mutuallyExclusiveTrueProps('important', 'info', 'warning');
 
-  container: {
-    position: 'relative',
-    border: '1px solid transparent',
-    borderRadius: ui.borderRadius,
-    margin: 0,
-    padding: 0,
-  },
+MessageItem.propTypes = {
+  important: stripeColorTypePropType,
+  info: stripeColorTypePropType,
+  warning: stripeColorTypePropType,
+};
 
-  container_horizontalSpacing: {
-    paddingLeft: unit * 2,
-    paddingRight: unit * 2,
-  },
-
-  container_verticalSpacing: {
-    marginBottom: unit * 2,
-    marginTop: unit * 2,
-  },
-
-  container_withStripe: {
-    borderColor: color.accent.border,
-    borderWidth: `1px 1px 1px ${unit * 0.5}px`,
-    padding: `${unit * 2}px ${unit * 2}px ${unit * 2}px ${unit * 1.5 + 1}px`,
-  },
-
-  container_important: {
-    backgroundColor: color.core.danger[0],
-    borderLeftColor: color.core.danger[3],
-  },
-
-  container_info: {
-    backgroundColor: color.accent.bg,
-    borderLeftColor: color.core.primary[3],
-  },
-
-  container_warning: {
-    backgroundColor: color.core.warning[0],
-    borderLeftColor: color.core.warning[3],
-  },
-
-  grid: {
-    display: 'grid',
-    gridGap: unit,
-    gridTemplateColumns: `${unit * 4}px 1fr`,
-    width: '100%',
-  },
-
-  profileBadge: {
-    position: 'absolute',
-    transform: `translate(50%, ${-unit}px)`,
-  },
-
-  wordBreak: {
-    wordBreak: 'break-word',
-  },
-
-  resetButton: {
-    ...pattern.resetButton,
-    display: 'block',
-    width: '100%',
-    textAlign: 'left',
-
-    ':focus': {
-      outline: 'none',
-    },
-  },
-
-  sendingOverlay: {
-    backgroundColor: toRGBA(color.core.neutral[1], 50),
-    position: 'absolute',
-    top: '0',
-    left: '0',
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'all',
-    zIndex: 1,
-  },
-
-  tag: {
-    alignSelf: 'stretch',
-    alignItems: 'center',
-    display: 'flex',
-    border: ui.border,
-    borderRadius: unit / 4,
-    lineHeight: 1,
-    maxWidth: '5em',
-    overflow: 'hidden',
-    padding: `0 ${unit / 2}px`,
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  },
-
-  title: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'baseline',
-    justifyContent: 'flex-start',
-  },
-}))(MessageItem);
+export default MessageItem;

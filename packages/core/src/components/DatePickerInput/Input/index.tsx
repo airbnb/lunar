@@ -68,6 +68,12 @@ export default class PrivatePickerInput extends DayPickerInput {
     this.updateState(new Date(), this.props.formatDate(new Date()), this.hideAfterDayClick);
   };
 
+  private handleClickOutside = ({ target }: MouseEvent) => {
+    if (target !== this.input) {
+      this.hideDayPicker();
+    }
+  };
+
   renderOverlay = () => {
     const { dayPickerProps = {}, dropdownProps = {} } = this.props;
     const { selectedDays, value } = this.state;
@@ -86,12 +92,14 @@ export default class PrivatePickerInput extends DayPickerInput {
 
     return (
       <Dropdown
+        visible
         top="100%"
         tabIndex={0}
         zIndex={100}
         {...dropdownProps}
         onFocus={this.handleOverlayFocus}
         onBlur={this.handleOverlayBlur}
+        onClickOutside={this.handleClickOutside}
       >
         <DatePicker
           {...dayPickerProps}

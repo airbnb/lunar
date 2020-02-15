@@ -25,7 +25,7 @@ describe('<FileInput />', () => {
     expect(wrapper.find(FormInput)).toHaveLength(1);
   });
 
-  it('it generates a unique ID', () => {
+  it('generates a unique ID', () => {
     const wrapper = shallow(<FileInput {...props} />);
 
     expect(wrapper.find(FormField).prop('id')).toBe(wrapper.find(FormInput).prop('id'));

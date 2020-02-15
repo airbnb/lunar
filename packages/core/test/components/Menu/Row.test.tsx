@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import Row from '../../../src/components/Menu/Row';
 
 describe('<MenuRow />', () => {
   it('renders a list with the correct role', () => {
-    const wrapper = shallowWithStyles(<Row>Foo</Row>);
+    const wrapper = shallow(<Row>Foo</Row>);
 
     expect(wrapper.is('li')).toBe(true);
     expect(wrapper.prop('role')).toBe('none');
@@ -12,7 +12,7 @@ describe('<MenuRow />', () => {
   });
 
   it('renders spacious', () => {
-    const wrapper = shallowWithStyles(<Row spacious>Foo</Row>);
+    const wrapper = shallow(<Row spacious>Foo</Row>);
 
     expect(
       wrapper

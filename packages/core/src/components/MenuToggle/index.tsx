@@ -1,12 +1,13 @@
 import React from 'react';
-import { childrenOfType } from 'airbnb-prop-types';
 import iconComponent from '../../prop-types/iconComponent';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import Button from '../Button';
+import BaseButton from '../Button';
+import MutedButton from '../MutedButton';
 import IconButton from '../IconButton';
 import ExpandableIcon from '../ExpandableIcon';
 import Dropdown, { Props as DropdownProps } from '../Dropdown';
 import Menu, { Item, Separator, Props as MenuProps } from '../Menu';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Accessibility label for menu. */
@@ -27,6 +28,8 @@ export type Props = {
   large?: boolean;
   /** Props to pass to the `Menu` component. */
   menuProps?: Partial<MenuProps>;
+  /** Use muted button instead of primary button. */
+  muted?: boolean;
   /** Callback fired when the menu popover is closed. */
   onHide?: () => void;
   /** Callback fired when the menu popover is opened. */
@@ -39,6 +42,8 @@ export type Props = {
   toggleLabel: NonNullable<React.ReactNode>;
   /** Z-index of the menu. */
   zIndex?: number;
+  /** @ignore @private */
+  showDropdown?: boolean;
 };
 
 export type State = {
@@ -48,7 +53,6 @@ export type State = {
 /** A controller for multiple tabs. */
 export class MenuToggle extends React.Component<Props & WithStylesProps, State> {
   static propTypes = {
-    children: childrenOfType(Item, Separator, 'li').isRequired,
     toggleIcon: iconComponent,
   };
 
@@ -58,6 +62,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
     ignoreClickOutside: false,
     inverted: false,
     large: false,
+    showDropdown: false,
     small: false,
     zIndex: 1,
   };
@@ -65,8 +70,16 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
   ref = React.createRef<HTMLDivElement>();
 
   state = {
-    opened: false,
+    opened: Boolean(this.props.showDropdown),
   };
+
+  componentDidUpdate(prevProp: Props & WithStylesProps, prevState: State) {
+    if (this.props.showDropdown !== prevProp.showDropdown) {
+      this.setState({
+        opened: Boolean(this.props.showDropdown),
+      });
+    }
+  }
 
   private handleItemClick = (onClick: () => void) => {
     if (onClick) {
@@ -131,6 +144,7 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
       inverted,
       large,
       menuProps,
+      muted,
       small,
       styles,
       toggleIcon,
@@ -144,6 +158,8 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
     } else if (small) {
       iconSize = '1em';
     }
+
+    const Button = muted ? MutedButton : BaseButton;
 
     return (
       <div ref={this.ref} className={cx(styles.container)}>
@@ -205,30 +221,4 @@ export class MenuToggle extends React.Component<Props & WithStylesProps, State> 
 
 export { Item, Separator };
 
-export default withStyles(({ unit, transition }) => ({
-  container: {
-    display: 'inline-block',
-    position: 'relative',
-  },
-
-  dropdown: {
-    ...transition.fade,
-    visibility: 'visible',
-    position: 'relative',
-  },
-
-  dropdown_hidden: {
-    opacity: 0,
-    visibility: 'hidden',
-    userSelect: 'none',
-  },
-
-  menu: {
-    marginTop: unit,
-  },
-
-  controls: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-}))(MenuToggle);
+export default withStyles(styleSheet)(MenuToggle);

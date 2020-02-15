@@ -1,15 +1,17 @@
 import React from 'react';
-import BaseMulticomplete, { Props } from '@airbnb/lunar/lib/components/Multicomplete';
-import connectToForm, { ConnectToFormProps } from '../../composers/connectToForm';
+import Multicomplete, { Props, Item } from '@airbnb/lunar/lib/components/Multicomplete';
+import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toString } from '../../helpers';
 
 /** `Multicomplete` automatically connected to the parent `Form`.  */
-export function FormMulticomplete(props: Props & ConnectToFormProps<string[]>) {
-  return <BaseMulticomplete {...props} />;
-}
+export default function FormMulticomplete<T extends Item = Item>(
+  props: FieldProps<string[], Props<T>>,
+) {
+  const fieldProps = useFormField(props, {
+    initialValue: [],
+    multiple: true,
+    parse: toString,
+  });
 
-export default connectToForm<string[]>({
-  initialValue: [],
-  multiple: true,
-  parse: toString,
-})(FormMulticomplete);
+  return <Multicomplete<T> {...fieldProps} />;
+}

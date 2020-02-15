@@ -502,6 +502,66 @@ describe('<DataTable /> renders and sorts data', () => {
 
     expect(text).toBe('Product Percy');
   });
+
+  it('should use the output of sortByValue for sorting', () => {
+    const sortByLowHigh = jest.fn(({ data: d }, key) => d[key]);
+    const sortByHighLow = jest.fn(({ data: d }, key) => -d[key]);
+
+    const table = mountWithStyles(
+      <DataTable
+        {...simpleProps}
+        sortOverride
+        expandable={false} // affects cell index
+        selectable={false}
+        sortByOverride="cats"
+        sortDirectionOverride="ASC"
+        sortByCacheKey="a"
+        keys={['cats']}
+        sortByValue={sortByLowHigh}
+      />,
+    );
+
+    expect(
+      getCell(table, 1, 1)
+        .find(Text)
+        .text(),
+    ).toBe('1');
+
+    table.setProps({ sortByValue: sortByHighLow, sortByCacheKey: 'b' });
+
+    expect(
+      getCell(table, 1, 1)
+        .find(Text)
+        .text(),
+    ).toBe('3');
+  });
+
+  it('should re-sort upon sortCacheKey change', () => {
+    const sortByValue = jest.fn(() => 1);
+    const table = mountWithStyles(
+      <DataTable
+        {...simpleProps}
+        expandable={false}
+        selectable={false}
+        keys={['cats']}
+        sortByCacheKey="a"
+        sortByValue={sortByValue}
+      />,
+    );
+
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
+    nameHeader.simulate('click');
+
+    const callCount = sortByValue.mock.calls.length;
+    expect(callCount).toBeGreaterThan(0);
+
+    // setting the same cache key should do nothing
+    table.setProps({ sortByCacheKey: 'a' });
+    expect(sortByValue.mock.calls).toHaveLength(callCount);
+
+    table.setProps({ sortByCacheKey: 'b' });
+    expect(sortByValue.mock.calls.length).toBeGreaterThan(callCount);
+  });
 });
 
 describe('<DataTable /> renders column labels', () => {
@@ -752,5 +812,17 @@ describe('<DataTable />', () => {
     mountWithStyles(<DataTable data={data} propagateRef={ref} />);
 
     expect(ref.current).not.toBeNull();
+  });
+
+  it('Passes the specified overscanRowCount to the underlying Table', () => {
+    const count = 14;
+    const wrapper = shallowWithStyles(<DataTable data={data} overscanRowCount={count} />);
+    const table = wrapper
+      .find(StyledDataTable)
+      .dive() // withStyles
+      .dive() // DataTable
+      .find(Table);
+
+    expect(table.prop('overscanRowCount')).toBe(count);
   });
 });

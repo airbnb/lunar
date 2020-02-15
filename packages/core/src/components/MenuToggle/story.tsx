@@ -145,3 +145,27 @@ export function withDisabled() {
 withDisabled.story = {
   name: 'With disabled.',
 };
+
+export function aBasicMutedMenuWithMenuItems() {
+  return (
+    <MenuToggle muted accessibilityLabel="Actions" toggleLabel="Actions" zIndex={10}>
+      {children}
+    </MenuToggle>
+  );
+}
+
+aBasicMutedMenuWithMenuItems.story = {
+  name: 'With muted.',
+};
+
+export function aBasicMutedInvertedMenuWithMenuItems() {
+  return (
+    <MenuToggle muted inverted accessibilityLabel="Actions" toggleLabel="Actions" zIndex={10}>
+      {children}
+    </MenuToggle>
+  );
+}
+
+aBasicMutedInvertedMenuWithMenuItems.story = {
+  name: 'With muted and inverted.',
+};

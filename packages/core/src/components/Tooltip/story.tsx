@@ -65,43 +65,47 @@ export default {
 
 export function displaysWhenAnElementIsHovered() {
   return (
-    <>
-      <div>
-        <Tooltip content="Tooltips are an anti-pattern! Please think carefully about accessibility before using them. Do not use tooltips for content that cannot be discovered by other means.">
+    <div>
+      <Tooltip content="Tooltips are an anti-pattern! Please think carefully about accessibility before using them. Do not use tooltips for content that cannot be discovered by other means.">
+        <Button>Hover Me</Button>
+      </Tooltip>
+
+      <Text inline>← Has a tooltip</Text>
+
+      <Text>
+        <LoremIpsum />
+      </Text>
+
+      <div style={{ textAlign: 'right' }}>
+        <Text inline>Also has a tooltip →</Text>
+        <Tooltip
+          content={
+            <Text inverted>
+              This uncomfortably wide tooltip should have a right-notch
+              <br />
+              and left-aligned text.
+            </Text>
+          }
+          width={100}
+        >
           <Button>Hover Me</Button>
         </Tooltip>
-
-        <Text inline>← Has a tooltip</Text>
-
-        <Text>
-          <LoremIpsum />
-        </Text>
-
-        <div style={{ textAlign: 'right' }}>
-          <Text inline>Also has a tooltip →</Text>
-          <Tooltip
-            content="This uncomfortably wide tooltip should probably be right-aligned"
-            width={100}
-          >
-            <Button>Hover Me</Button>
-          </Tooltip>
-        </div>
-
-        <Text>
-          <LoremIpsum />
-        </Text>
-
-        <div style={{ textAlign: 'center' }}>
-          <Tooltip content="This tooltip should most definitely be centered" width={20}>
-            <Button>
-              Hover Me too
-              <br />
-              please
-            </Button>
-          </Tooltip>
-        </div>
       </div>
-    </>
+
+      <Text>
+        <LoremIpsum />
+      </Text>
+
+      <div style={{ textAlign: 'center' }}>
+        <Tooltip content="This tooltip should most definitely be centered" width={20}>
+          <Button>
+            Hover Me too
+            <br />
+            please
+          </Button>
+        </Tooltip>
+      </div>
+    </div>
   );
 }
 
@@ -119,15 +123,13 @@ supressDismissalOnMouseDown.story = {
 
 export function addAnUnderlineToTheTrigger() {
   return (
-    <>
-      <Text>
-        <Tooltip underlined content="Hello">
-          I have a tooltip
-        </Tooltip>
-        ...
-        <Tooltip content="Goodbye">and I have a tooltip too</Tooltip>
-      </Text>
-    </>
+    <Text>
+      <Tooltip underlined content="Hello">
+        I have a tooltip
+      </Tooltip>
+      ...
+      <Tooltip content="Goodbye">and I have a tooltip too</Tooltip>
+    </Text>
   );
 }
 
@@ -137,15 +139,13 @@ addAnUnderlineToTheTrigger.story = {
 
 export function useLightBackgroundWithDarkText() {
   return (
-    <>
-      <Text>
-        <Tooltip inverted content="Hello">
-          I have a light background tooltip
-        </Tooltip>
-        ...
-        <Tooltip content="Goodbye">and I have the default dark background tooltip</Tooltip>
-      </Text>
-    </>
+    <Text>
+      <Tooltip inverted content="Hello">
+        I have a light background tooltip
+      </Tooltip>
+      ...
+      <Tooltip content="Goodbye">and I have the default dark background tooltip</Tooltip>
+    </Text>
   );
 }
 

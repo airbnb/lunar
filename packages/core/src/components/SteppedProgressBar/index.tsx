@@ -1,7 +1,8 @@
 import React from 'react';
 import { childrenOfType } from 'airbnb-prop-types';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
 import Step from './Step';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** List of `Step`s to track progress. */
@@ -9,32 +10,27 @@ export type Props = {
 };
 
 /** A progress bar separated into individual steps. */
-export class SteppedProgressBar extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    children: childrenOfType(Step).isRequired,
-  };
+function SteppedProgressBar({ children }: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  render() {
-    const { cx, children, styles } = this.props;
-    const steps = React.Children.count(children);
+  const steps = React.Children.count(children);
 
-    return (
-      <div className={cx(styles.bar)}>
-        {React.Children.map(children, (child, index) =>
-          React.cloneElement(child as React.ReactElement, {
-            first: index === 0,
-            last: index === steps - 1,
-          }),
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className={cx(styles.bar)}>
+      {React.Children.map(children, (child, index) =>
+        React.cloneElement(child as React.ReactElement, {
+          first: index === 0,
+          last: index === steps - 1,
+        }),
+      )}
+    </div>
+  );
 }
+
+SteppedProgressBar.propTypes = {
+  children: childrenOfType(Step).isRequired,
+};
 
 export { Step };
 
-export default withStyles(() => ({
-  bar: {
-    display: 'flex',
-  },
-}))(SteppedProgressBar);
+export default SteppedProgressBar;

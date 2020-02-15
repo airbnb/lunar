@@ -80,8 +80,8 @@ export default class Hierarchy extends React.Component<Props, State> {
     }
   };
 
-  private handleItemPicked = (chosen: TreePath | null) => {
-    this.props.onItemPicked(chosen, { origin: 'Hierarchy' });
+  private handleItemPicked = (chosen: TreePath | null, item: ItemShape | null) => {
+    this.props.onItemPicked(chosen, item, { origin: 'Hierarchy' });
   };
 
   render() {

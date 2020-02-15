@@ -1,9 +1,7 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
-
-const stateProp = mutuallyExclusiveTrueProps('muted', 'inverted', 'primary');
-const alignProp = mutuallyExclusiveTrueProps('centerAlign', 'endAlign');
+import useStyles from '../../hooks/useStyles';
+import { styleSheet } from './styles';
 
 export type Props = {
   /** Align the text in the center. */
@@ -25,100 +23,49 @@ export type Props = {
 };
 
 /** Display a string of text as a heading and or section title. */
-export class Title extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    centerAlign: alignProp,
-    endAlign: alignProp,
-    inverted: stateProp,
-    muted: stateProp,
-    primary: stateProp,
-  };
+function Title({
+  centerAlign,
+  children,
+  endAlign,
+  inline,
+  inverted,
+  level,
+  muted,
+  primary,
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  static defaultProps = {
-    centerAlign: false,
-    children: null,
-    endAlign: false,
-    inline: false,
-    inverted: false,
-    muted: false,
-    primary: false,
-  };
+  const Tag: 'h1' | 'h2' | 'h3' = `h${level}` as 'h1';
 
-  render() {
-    const {
-      cx,
-      centerAlign,
-      children,
-      endAlign,
-      inline,
-      inverted,
-      level,
-      muted,
-      primary,
-      styles,
-    } = this.props;
-    const Tag: 'h1' | 'h2' | 'h3' = `h${level}` as 'h1';
-
-    return (
-      <Tag
-        className={cx(
-          styles.title,
-          level === 1 && styles.title_level1,
-          level === 2 && styles.title_level2,
-          level === 3 && styles.title_level3,
-          inline && styles.title_inline,
-          inverted && styles.title_inverted,
-          muted && styles.title_muted,
-          primary && styles.title_primary,
-          centerAlign && styles.title_center,
-          endAlign && styles.title_right,
-        )}
-      >
-        {children}
-      </Tag>
-    );
-  }
+  return (
+    <Tag
+      className={cx(
+        styles.title,
+        level === 1 && styles.title_level1,
+        level === 2 && styles.title_level2,
+        level === 3 && styles.title_level3,
+        inline && styles.title_inline,
+        inverted && styles.title_inverted,
+        muted && styles.title_muted,
+        primary && styles.title_primary,
+        centerAlign && styles.title_center,
+        endAlign && styles.title_right,
+      )}
+    >
+      {children}
+    </Tag>
+  );
 }
 
-export default withStyles(({ color, font }) => ({
-  title: {
-    ...font.textReset,
-    color: color.accent.text,
-  },
+const stateProp = mutuallyExclusiveTrueProps('muted', 'inverted', 'primary');
+const alignProp = mutuallyExclusiveTrueProps('centerAlign', 'endAlign');
 
-  title_inline: {
-    display: 'inline',
-  },
+Title.propTypes = {
+  centerAlign: alignProp,
+  endAlign: alignProp,
+  inverted: stateProp,
+  muted: stateProp,
+  primary: stateProp,
+};
 
-  title_level1: {
-    ...font.title1,
-  },
-
-  title_level2: {
-    ...font.title2,
-  },
-
-  title_level3: {
-    ...font.title3,
-  },
-
-  title_inverted: {
-    color: color.base,
-  },
-
-  title_muted: {
-    color: color.muted,
-  },
-
-  title_primary: {
-    color: color.core.primary[3],
-  },
-
-  title_center: {
-    textAlign: 'center',
-  },
-
-  title_right: {
-    textAlign: 'right',
-  },
-}))(Title);
+export default Title;

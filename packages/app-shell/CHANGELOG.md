@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.2 - 2020-02-07
+
+**Note:** Version bump only for package @airbnb/lunar-app-shell
+
+
+
+
+
+### 2.3.1 - 2020-01-28
+
+#### 📦 Dependencies
+
+- Audit 2019-01-22 (#289) ([7c1033c](https://github.com/airbnb/lunar/commit/7c1033c)), closes [#289](https://github.com/airbnb/lunar/issues/289)
+
+**Note:** Version bump only for package @airbnb/lunar-app-shell
+
+
+
+
+
+## 2.3.0 - 2019-12-19
+
+#### 🚀 Updates
+
+- **[List]** Add `middleAlign` support for `horizontal`. (#244) ([1b58963](https://github.com/airbnb/lunar/commit/1b58963)), closes [#244](https://github.com/airbnb/lunar/issues/244)
+
+**Note:** Version bump only for package @airbnb/lunar-app-shell
+
+
+
+
+
+### 2.2.2 - 2019-10-31
+
+#### 📦 Dependencies
+
+- **[React]** Update to v16.11. ([07b80dc](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/07b80dc))
+
+#### 🛠 Internals
+
+- Fix lint and test failures. ([f2ccc7f](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/f2ccc7f))
+- Integrate rut. ([1ca54a6](https://github.com/airbnb/lunar/tree/master/packages/app-shell/commit/1ca54a6))
+
+**Note:** Version bump only for package @airbnb/lunar-app-shell
+
+
+
+
+
 ### 2.2.1 - 2019-10-10
 
 #### 📦 Dependencies

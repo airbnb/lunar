@@ -97,12 +97,10 @@ withDifferentStatesDisabledAndLoading.story = {
 
 export function withBeforeAndOrAfterIcons() {
   return (
-    <>
-      <div>
-        <Button beforeIcon={<IconAddAlt decorative />}>Before icon</Button>{' '}
-        <Button afterIcon={<IconAddAlt decorative />}>After icon</Button>
-      </div>
-    </>
+    <div>
+      <Button beforeIcon={<IconAddAlt decorative />}>Before icon</Button>{' '}
+      <Button afterIcon={<IconAddAlt decorative />}>After icon</Button>
+    </div>
   );
 }
 
@@ -112,17 +110,15 @@ withBeforeAndOrAfterIcons.story = {
 
 export function withBorderless() {
   return (
-    <>
-      <div>
-        <Button borderless>Button</Button>{' '}
-        <Button borderless inverted>
-          Button
-        </Button>{' '}
-        <Button borderless disabled>
-          Button
-        </Button>
-      </div>
-    </>
+    <div>
+      <Button borderless>Button</Button>{' '}
+      <Button borderless inverted>
+        Button
+      </Button>{' '}
+      <Button borderless disabled>
+        Button
+      </Button>
+    </div>
   );
 }
 

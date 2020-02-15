@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.7.3 - 2020-02-07
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
+### 2.7.2 - 2020-01-28
+
+#### 📦 Dependencies
+
+- Audit 2019-01-22 (#289) ([7c1033c](https://github.com/airbnb/lunar/commit/7c1033c)), closes [#289](https://github.com/airbnb/lunar/issues/289)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
+### 2.7.1 - 2019-12-19
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
+## 2.7.0 - 2019-12-17
+
+#### 🚀 Updates
+
+- **[Layout]** Add `centerAlign` prop to layouts. (#268) ([e356142](https://github.com/airbnb/lunar/commit/e356142)), closes [#268](https://github.com/airbnb/lunar/issues/268)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
+## 2.6.0 - 2019-11-19
+
+#### 🚀 Updates
+
+- **[Layout]** Add custom `minHeight` support. (#250) ([c246ab6](https://github.com/airbnb/lunar/commit/c246ab6)), closes [#250](https://github.com/airbnb/lunar/issues/250)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
+## 2.5.0 - 2019-11-13
+
+#### 🚀 Updates
+
+- Update simple components to use `useStyles` instead of `withStyles`. (#236) ([761a801](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/761a801)), closes [#236](https://github.com/airbnb/lunar/tree/master/packages/layouts/issues/236)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
+## 2.4.0 - 2019-11-06
+
+#### 🚀 Updates
+
+- **[Aside]** Add collapsible tab. (#229) ([163c3a1](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/163c3a1)), closes [#229](https://github.com/airbnb/lunar/tree/master/packages/layouts/issues/229)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
+### 2.3.2 - 2019-10-31
+
+#### 📦 Dependencies
+
+- **[React]** Update to v16.11. ([07b80dc](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/07b80dc))
+
+#### 🛠 Internals
+
+- Fix lint and test failures. ([f2ccc7f](https://github.com/airbnb/lunar/tree/master/packages/layouts/commit/f2ccc7f))
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
 ### 2.3.1 - 2019-10-10
 
 #### 📦 Dependencies

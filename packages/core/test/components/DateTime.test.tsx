@@ -29,7 +29,7 @@ describe('<DateTime />', () => {
   });
 
   it('errors for an invalid time', () => {
-    expect(() => shallow(<DateTime at="2016-02-33" timezone="UTC" />)).toThrowError(
+    expect(() => shallow(<DateTime at="2016-02-33" timezone="UTC" />)).toThrow(
       'Invalid DateTime: unit out of range: you specified 33 (of type number) as a day, which is invalid',
     );
   });

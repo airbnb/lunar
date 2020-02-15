@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { shallow } from 'enzyme';
 import IconRecord from '@airbnb/lunar-icons/lib/interface/IconRecord';
 import IconRemove from '@airbnb/lunar-icons/lib/interface/IconRemove';
 import BaseRadioButton from '../../../src/components/private/BaseRadioButton';
@@ -7,7 +7,7 @@ import FormInput from '../../../src/components/private/FormInput';
 
 describe('<BaseRadioButton />', () => {
   it('renders an input with the correct field', () => {
-    const wrapper = shallowWithStyles(<BaseRadioButton id="foo" name="foo" onChange={() => {}} />);
+    const wrapper = shallow(<BaseRadioButton id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.is('label')).toBe(true);
     expect(wrapper.find(FormInput).prop('tagName')).toBe('input');
@@ -16,23 +16,19 @@ describe('<BaseRadioButton />', () => {
   });
 
   it('renders invalid', () => {
-    const wrapper = shallowWithStyles(
-      <BaseRadioButton invalid id="foo" name="foo" onChange={() => {}} />,
-    );
+    const wrapper = shallow(<BaseRadioButton invalid id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.find(FormInput).prop('invalid')).toBe(true);
   });
 
   it('renders disabled', () => {
-    const wrapper = shallowWithStyles(
-      <BaseRadioButton disabled id="foo" name="foo" onChange={() => {}} />,
-    );
+    const wrapper = shallow(<BaseRadioButton disabled id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.find(FormInput).prop('disabled')).toBe(true);
   });
 
   it('displays a bullet when checked', () => {
-    const wrapper = shallowWithStyles(<BaseRadioButton id="foo" name="foo" onChange={() => {}} />);
+    const wrapper = shallow(<BaseRadioButton id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.find(IconRecord)).toHaveLength(0);
 
@@ -44,7 +40,7 @@ describe('<BaseRadioButton />', () => {
   });
 
   it('displays a dash when indeterminate', () => {
-    const wrapper = shallowWithStyles(<BaseRadioButton id="foo" name="foo" onChange={() => {}} />);
+    const wrapper = shallow(<BaseRadioButton id="foo" name="foo" onChange={() => {}} />);
 
     expect(wrapper.find(IconRemove)).toHaveLength(0);
 
@@ -57,7 +53,7 @@ describe('<BaseRadioButton />', () => {
 
   it('triggers `onChange` handler', () => {
     const spy = jest.fn();
-    const wrapper = shallowWithStyles(<BaseRadioButton id="foo" name="foo" onChange={spy} />);
+    const wrapper = shallow(<BaseRadioButton id="foo" name="foo" onChange={spy} />);
     const event = {
       currentTarget: {
         checked: true,
@@ -72,7 +68,7 @@ describe('<BaseRadioButton />', () => {
 
   it('renders in button mode', () => {
     const child = <div>Child</div>;
-    const wrapper = shallowWithStyles(
+    const wrapper = shallow(
       <BaseRadioButton button id="foo" name="foo" onChange={() => {}}>
         {child}
       </BaseRadioButton>,

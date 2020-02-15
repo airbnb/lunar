@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import TextArea from '../../src/components/TextArea';
-import Proofreader from '../../src/components/TextArea/Proofreader';
+import Proofreader from '../../src/components/Proofreader';
 import FormField from '../../src/components/FormField';
 import BaseTextArea from '../../src/components/private/BaseTextArea';
 
@@ -13,7 +13,7 @@ describe('<TextArea />', () => {
     expect(wrapper.find(BaseTextArea)).toHaveLength(1);
   });
 
-  it('it generates a unique ID', () => {
+  it('generates a unique ID', () => {
     const wrapper = shallow(<TextArea name="foo" label="Label" onChange={() => {}} />);
 
     expect(wrapper.find(FormField).prop('id')).toBe(wrapper.find(BaseTextArea).prop('id'));

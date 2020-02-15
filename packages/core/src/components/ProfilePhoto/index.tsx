@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { and, mutuallyExclusiveProps } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import { styleSheet } from './styles';
 
 const mutuallyExclusiveSizePropType = mutuallyExclusiveProps(
   PropTypes.any,
@@ -138,52 +139,6 @@ export class ProfilePhoto extends React.Component<Props & WithStylesProps, State
   }
 }
 
-export default withStyles(
-  ({ color }) => ({
-    inline: {
-      display: 'inline-block',
-    },
-
-    image: {
-      display: 'block',
-      background: color.core.neutral[6],
-      color: color.base,
-      objectFit: 'cover',
-      overflow: 'hidden',
-    },
-
-    roundedImage: {
-      borderRadius: '50%',
-    },
-
-    small: {
-      height: 24,
-      width: 24,
-      maxHeight: 24,
-      maxWidth: 24,
-    },
-    regular: {
-      height: 48,
-      width: 48,
-      maxHeight: 48,
-      maxWidth: 48,
-    },
-
-    large: {
-      height: 96,
-      width: 96,
-      maxHeight: 96,
-      maxWidth: 96,
-    },
-
-    macro: {
-      height: 160,
-      width: 160,
-      maxHeight: 160,
-      maxWidth: 160,
-    },
-  }),
-  {
-    passThemeProp: true,
-  },
-)(ProfilePhoto);
+export default withStyles(styleSheet, {
+  passThemeProp: true,
+})(ProfilePhoto);

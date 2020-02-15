@@ -6,6 +6,7 @@ import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { ARROW_RIGHT, ARROW_LEFT } from '../../keys';
 import { ZoomControls, RotateControls } from '../ImageViewer';
 import Spacing from '../Spacing';
+import { styleSheetHeader as styleSheet } from './styles';
 
 export type Props = {
   /** Currently active image index. */
@@ -118,7 +119,11 @@ export class Header extends React.PureComponent<Props & WithStylesProps> {
             hasPrev={activeIndex > 0}
             hasNext={activeIndex < imageCount - 1}
             page={activeIndex + 1}
-            pageLabel={T.phrase('Photo', {}, 'Label for photo pagination')}
+            pageLabel={T.phrase(
+              'Photo',
+              {},
+              { key: 'lunar.image.photoLabel', context: 'Label for photo pagination' },
+            )}
             pageCount={imageCount}
             onNext={this.handleNext}
             onPrevious={this.handlePrev}
@@ -143,8 +148,22 @@ export class Header extends React.PureComponent<Props & WithStylesProps> {
           <div className={cx(styles.infoButton)}>
             <Button small onClick={this.props.onToggleAside}>
               {hideAside
-                ? T.phrase('Show Info', {}, 'Shows sidebar information in the Lightbox')
-                : T.phrase('Hide Info', {}, 'Hides sidebar information in the Lightbox')}
+                ? T.phrase(
+                    'Show info',
+                    {},
+                    {
+                      key: 'lunar.image.showInfo',
+                      context: 'Shows sidebar information in the Lightbox',
+                    },
+                  )
+                : T.phrase(
+                    'Hide info',
+                    {},
+                    {
+                      key: 'lunar.image.hideInfo',
+                      context: 'Hides sidebar information in the Lightbox',
+                    },
+                  )}
             </Button>
           </div>
         )}
@@ -153,23 +172,4 @@ export class Header extends React.PureComponent<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(({ unit }) => ({
-  header: {
-    alignItems: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-
-  pagination: {
-    flexGrow: 1,
-    flexShrink: 1,
-    paddingLeft: unit,
-  },
-
-  infoButton: {
-    flexGrow: 0,
-    flexShrink: 0,
-    paddingRight: unit,
-    textAlign: 'right',
-  },
-}))(Header);
+export default withStyles(styleSheet)(Header);

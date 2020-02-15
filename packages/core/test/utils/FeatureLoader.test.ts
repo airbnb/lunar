@@ -56,7 +56,7 @@ describe('FeatureLoader', () => {
       expect(value).toBe('123');
     });
 
-    it('sets a promise when fetching', () => {
+    it('sets a promise when fetching', async () => {
       expect(loader.promises.has('foo')).toBe(false);
 
       const promise = new Promise(resolve => {
@@ -70,7 +70,7 @@ describe('FeatureLoader', () => {
 
       expect(loader.promises.has('foo')).toBe(true);
 
-      return promise;
+      await promise;
     });
 
     it('deletes a promise when fetched and returns the value', async () => {
@@ -88,7 +88,7 @@ describe('FeatureLoader', () => {
       expect(loader.promises.has('foo')).toBe(false);
     });
 
-    it('re-uses promises if one is pending', () => {
+    it('re-uses promises if one is pending', async () => {
       let callCount = 0;
 
       loader.fetch = () => {
@@ -100,14 +100,14 @@ describe('FeatureLoader', () => {
       // Should be the identical promise:
       expect(loader.loadFeature('eq', true)).toEqual(loader.loadFeature('eq'));
 
-      return Promise.all([
+      await Promise.all([
         loader.loadFeature('something'),
         loader.loadFeature('something'),
         loader.loadFeature('something'),
         loader.loadFeature('something-else'),
-      ]).then(() => {
-        expect(callCount).toEqual(3);
-      });
+      ]);
+
+      expect(callCount).toEqual(3);
     });
   });
 

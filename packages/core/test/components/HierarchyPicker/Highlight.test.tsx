@@ -1,13 +1,12 @@
 import React from 'react';
-import Enzyme from 'enzyme';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import Enzyme, { shallow } from 'enzyme';
 import Highlight, { Props } from '../../../src/components/HierarchyPicker/Search/Highlight';
 
 describe('<Highlight />', () => {
   let wrapper: Enzyme.ShallowWrapper<Props>;
 
   beforeEach(() => {
-    wrapper = shallowWithStyles(<Highlight fallback="fallback" />);
+    wrapper = shallow(<Highlight fallback="fallback" />);
   });
 
   it('shows fallback by default', () => {
@@ -25,7 +24,14 @@ describe('<Highlight />', () => {
   describe('with indices', () => {
     beforeEach(() => {
       wrapper.setProps({
-        match: { indices: [[0, 5], [12, 14]], value: 'hello world foo', key: 'test' },
+        match: {
+          indices: [
+            [0, 5],
+            [12, 14],
+          ],
+          value: 'hello world foo',
+          key: 'test',
+        },
         word: 'hello',
       });
     });

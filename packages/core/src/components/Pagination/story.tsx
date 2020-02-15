@@ -1,6 +1,5 @@
 import React from 'react';
 import Pagination from '.';
-import T from '../Translate';
 
 export default {
   title: 'Core/Pagination',
@@ -58,7 +57,7 @@ export function withLabel() {
     <Pagination
       hasPrev
       hasNext
-      pageLabel={T.phrase('Photo', {}, 'Label for photo pagination')}
+      pageLabel="Photo"
       page={2}
       onNext={action('onNext')}
       onPrevious={action('onPrevious')}

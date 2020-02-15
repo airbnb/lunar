@@ -27,9 +27,12 @@ aButtonLink.story = {
   name: 'A button link.',
 };
 
-export function withDifferentSizingSmallRegularDefaultAndLarge() {
+export function withDifferentSizingMicroSmallRegularDefaultAndLarge() {
   return (
     <>
+      <Link micro href="https://github.com/airbnb/lunar">
+        Link
+      </Link>{' '}
       <Link small href="https://github.com/airbnb/lunar">
         Link
       </Link>{' '}
@@ -41,7 +44,7 @@ export function withDifferentSizingSmallRegularDefaultAndLarge() {
   );
 }
 
-withDifferentSizingSmallRegularDefaultAndLarge.story = {
+withDifferentSizingMicroSmallRegularDefaultAndLarge.story = {
   name: 'With different sizing: small, regular (default), and large.',
 };
 
@@ -67,17 +70,15 @@ withDifferentStatesMutedDisabledAndInverted.story = {
 
 export function withBeforeAndOrAfterIcons() {
   return (
-    <>
-      <div>
-        <Link href="https://github.com/airbnb/lunar" beforeIcon={<IconAddAlt decorative />}>
-          Link
-        </Link>
-        <br />
-        <Link href="https://github.com/airbnb/lunar" afterIcon={<IconAddAlt decorative />}>
-          Link
-        </Link>
-      </div>
-    </>
+    <div>
+      <Link href="https://github.com/airbnb/lunar" beforeIcon={<IconAddAlt decorative />}>
+        Link
+      </Link>
+      <br />
+      <Link href="https://github.com/airbnb/lunar" afterIcon={<IconAddAlt decorative />}>
+        Link
+      </Link>
+    </div>
   );
 }
 

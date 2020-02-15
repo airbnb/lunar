@@ -3,8 +3,9 @@ import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
 import Text from '../Text';
+import { styleSheet } from './styles';
 
-const sizingProp = mutuallyExclusiveTrueProps('small', 'large');
+const sizingProp = mutuallyExclusiveTrueProps('micro', 'small', 'large');
 const stateProp = mutuallyExclusiveTrueProps('disabled', 'muted', 'inverted');
 
 export type Props = ButtonOrLinkProps & {
@@ -16,6 +17,8 @@ export type Props = ButtonOrLinkProps & {
   inverted?: boolean;
   /** Increase font size to large. */
   large?: boolean;
+  /** Decrease font size to micro. */
+  micro?: boolean;
   /** Mark the link as muted. */
   muted?: boolean;
   /** Decrease font size to small. */
@@ -41,6 +44,7 @@ export class Link extends React.Component<Props & WithStylesProps> {
     disabled: false,
     inverted: false,
     large: false,
+    micro: false,
     muted: false,
     small: false,
   };
@@ -54,6 +58,7 @@ export class Link extends React.Component<Props & WithStylesProps> {
       disabled,
       inverted,
       large,
+      micro,
       muted,
       small,
       bold,
@@ -62,7 +67,14 @@ export class Link extends React.Component<Props & WithStylesProps> {
     } = this.props;
 
     return (
-      <Text inline={!block} baseline={baseline} small={small} large={large} bold={bold}>
+      <Text
+        inline={!block}
+        baseline={baseline}
+        micro={micro}
+        small={small}
+        large={large}
+        bold={bold}
+      >
         <ButtonOrLink
           {...restProps}
           disabled={disabled}
@@ -82,59 +94,6 @@ export class Link extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(
-  ({ color, pattern, transition }) => ({
-    link: {
-      ...pattern.resetButton,
-      ...transition.box,
-      color: color.core.primary[3],
-      textAlign: 'left',
-      verticalAlign: 'baseline',
-
-      ':active': {
-        outline: 'none',
-      },
-
-      ':hover': {
-        color: color.core.primary[4],
-        textDecoration: 'underline',
-      },
-    },
-
-    link_block: {
-      display: 'block',
-      width: '100%',
-    },
-
-    link_baseline: {
-      display: 'inline',
-    },
-
-    link_inverted: {
-      color: color.accent.bg,
-
-      ':hover': {
-        color: color.accent.bgHover,
-      },
-    },
-
-    link_muted: {
-      color: color.core.neutral[3],
-
-      ':hover': {
-        color: color.core.neutral[4],
-      },
-    },
-
-    link_disabled: {
-      ...pattern.disabled,
-
-      ':hover': {
-        textDecoration: 'none',
-      },
-    },
-  }),
-  {
-    extendable: true,
-  },
-)(Link);
+export default withStyles(styleSheet, {
+  extendable: true,
+})(Link);

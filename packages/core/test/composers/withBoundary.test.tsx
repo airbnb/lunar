@@ -14,7 +14,7 @@ describe('withBoundary()', () => {
     const Hoc = withBoundary('Test')(Foo);
 
     expect(Hoc.displayName).toBe('withBoundary(Foo)');
-    expect((Hoc as StyledComponent<{}, {}>).WrappedComponent).toBe(Foo);
+    expect((Hoc as StyledComponent<{}>).WrappedComponent).toBe(Foo);
   });
 
   it('can render without a `name`', () => {

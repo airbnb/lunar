@@ -1,11 +1,16 @@
 import React from 'react';
-import withStyles, { WithStylesProps } from '@airbnb/lunar/lib/composers/withStyles';
+import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
+import { styleSheet } from './styles';
 
 export type Props = {
+  /** Horizontally center main content. */
+  centerAlign?: boolean;
   /** The primary main content. */
   children: NonNullable<React.ReactNode>;
   /** Expand main content to full width of viewport. */
   fluid?: boolean;
+  /** Min height of the main content. */
+  minHeight?: number | string;
   /** Remove background color from main content. */
   noBackground?: boolean;
   /** Remove padding from main content. */
@@ -20,60 +25,42 @@ export type AsideProps = {
 };
 
 /** Abstract layout manager that all other layouts extend from. */
-export class Layout extends React.Component<Props & AsideProps & WithStylesProps> {
-  static defaultProps = {
-    fluid: false,
-    noBackground: false,
-    noPadding: false,
-  };
+export default function Layout({
+  after,
+  before,
+  centerAlign,
+  children,
+  fluid,
+  minHeight,
+  noBackground,
+  noPadding,
+}: Props & AsideProps) {
+  const [styles, cx] = useStyles(styleSheet);
 
-  render() {
-    const { cx, after, before, children, fluid, noBackground, noPadding, styles } = this.props;
+  return (
+    <div className={cx(styles.layout, { minHeight: minHeight || '100vh' })}>
+      {before}
 
-    return (
-      <div className={cx(styles.layout)}>
-        {before}
-
-        <main
-          role="main"
+      <main
+        role="main"
+        className={cx(
+          styles.main,
+          noBackground && styles.main_noBackground,
+          noPadding && styles.main_noPadding,
+        )}
+      >
+        <div
           className={cx(
-            styles.main,
-            noBackground && styles.main_noBackground,
-            noPadding && styles.main_noPadding,
+            styles.mainContent,
+            centerAlign && styles.mainContent_centerAlign,
+            fluid && styles.mainContent_fluid,
           )}
         >
-          <div className={cx(!fluid && styles.mainContent)}>{children}</div>
-        </main>
+          {children}
+        </div>
+      </main>
 
-        {after}
-      </div>
-    );
-  }
+      {after}
+    </div>
+  );
 }
-
-export default withStyles(({ breakpoints, color, unit }) => ({
-  layout: {
-    display: 'flex',
-    width: '100%',
-    minHeight: '100vh',
-    justifyContent: 'space-between',
-  },
-
-  main: {
-    flexGrow: 1,
-    padding: unit * 2,
-    background: color.accent.bgHover,
-  },
-
-  main_noBackground: {
-    background: 'transparent',
-  },
-
-  main_noPadding: {
-    padding: 0,
-  },
-
-  mainContent: {
-    maxWidth: breakpoints.medium,
-  },
-}))(Layout);

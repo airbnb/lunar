@@ -5,8 +5,8 @@ import { requiredBy } from 'airbnb-prop-types';
 import BaseTextArea, { Props as BaseTextAreaProps } from '../private/BaseTextArea';
 import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
 import T from '../Translate';
-import Proofreader, { Props as ProofreaderProps } from './Proofreader';
-import { ExtraProofreadProps } from './Proofreader/types';
+import Proofreader, { Props as ProofreaderProps } from '../Proofreader';
+import { ExtraProofreadProps } from '../Proofreader/types';
 
 export type Props = Omit<BaseTextAreaProps, 'id'> &
   FormFieldProps &
@@ -36,6 +36,7 @@ export default class TextArea extends React.Component<Props, State> {
     noTranslate: false,
     proofread: false,
     proofreadProps: undefined,
+    value: '',
   };
 
   state = {

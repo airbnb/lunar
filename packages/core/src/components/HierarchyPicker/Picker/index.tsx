@@ -11,6 +11,7 @@ import {
   ItemShape,
   TreePath,
 } from '../types';
+import { styleSheet } from './styles';
 
 export type Props = {
   chosen?: TreePath;
@@ -97,10 +98,14 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
     this.setState({ searchQuery });
   };
 
-  private handleItemPicked = (def: TreePath | null, details?: ChoiceDetails) => {
+  private handleItemPicked = (
+    def: TreePath | null,
+    item: ItemShape | null,
+    details?: ChoiceDetails,
+  ) => {
     if (def) {
       // null if item.readonly
-      this.props.onItemPicked(def, details);
+      this.props.onItemPicked(def, item, details);
       this.props.onClose();
     }
   };
@@ -160,17 +165,4 @@ export class Picker extends React.Component<Props & WithStylesProps, State> {
   }
 }
 
-export default withStyles(({ ui, unit, color }) => ({
-  pane: {
-    display: 'inline-block',
-    borderRadius: ui.borderRadius,
-    backgroundColor: color.accent.bg,
-    boxShadow: ui.boxShadowMedium,
-    marginBottom: unit,
-  },
-
-  hierarchy: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-}))(Picker);
+export default withStyles(styleSheet)(Picker);

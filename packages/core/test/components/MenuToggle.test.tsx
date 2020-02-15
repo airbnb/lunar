@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Button from '../../src/components/Button';
+import MutedButton from '../../src/components/MutedButton';
 import IconButton from '../../src/components/IconButton';
 import Dropdown from '../../src/components/Dropdown';
 import MenuToggle from '../../src/components/MenuToggle';
@@ -12,7 +13,6 @@ describe('<MenuToggle />', () => {
     const wrapper = shallowWithStyles(
       <MenuToggle accessibilityLabel="Foo" toggleLabel="Foo">
         <Item>Child</Item>
-        {''}
       </MenuToggle>,
     );
 
@@ -197,5 +197,15 @@ describe('<MenuToggle />', () => {
     );
 
     expect(wrapper.find(Button).prop('disabled')).toBe(true);
+  });
+
+  it('renders a muted button', () => {
+    const wrapper = shallowWithStyles(
+      <MenuToggle muted accessibilityLabel="Foo" toggleLabel="Foo">
+        <Item>Child</Item>
+      </MenuToggle>,
+    );
+
+    expect(wrapper.find(MutedButton)).toHaveLength(1);
   });
 });

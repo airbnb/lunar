@@ -119,7 +119,37 @@ export function listWithHorizontalAndGutter() {
 }
 
 listWithHorizontalAndGutter.story = {
-  name: 'List  with `horizontal` and `gutter`.',
+  name: 'List with `horizontal` and `gutter`.',
+};
+
+export function listWithHorizontalMiddleAlignAndGutter() {
+  return (
+    <List gutter horizontal middleAlign>
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+          <br />
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+    </List>
+  );
+}
+
+listWithHorizontalMiddleAlignAndGutter.story = {
+  name: 'List with `horizontal`, `middleAlign`, and `gutter`.',
 };
 
 export function listWithHorizontalAndWrap() {

@@ -9,10 +9,24 @@ function unwrap(element: React.ReactElement): Enzyme.ShallowWrapper {
 }
 
 describe('<Table />', () => {
-  it('renders bordered', () => {
-    const wrapper = unwrap(<Table bordered>Bordered</Table>);
+  it('renders bordered (horizontal)', () => {
+    const wrapper = unwrap(
+      <Table bordered horizontal>
+        Bordered
+      </Table>,
+    );
 
-    expect(wrapper.find('table').prop('className')).toMatch('table_bordered');
+    expect(wrapper.find('table').prop('className')).toMatch('table_bordered_horizontal');
+  });
+
+  it('renders bordered (vertical)', () => {
+    const wrapper = unwrap(
+      <Table bordered vertical>
+        Bordered
+      </Table>,
+    );
+
+    expect(wrapper.find('table').prop('className')).toMatch('table_bordered_vertical');
   });
 
   it('renders compact', () => {
@@ -61,5 +75,19 @@ describe('<Table />', () => {
     const wrapper = unwrap(<Table middleAlign>Vertical</Table>);
 
     expect(wrapper.find('table').prop('className')).toMatch('content_middle_align');
+  });
+
+  describe('responsive wrapper', () => {
+    it('renders wrapper', () => {
+      const wrapper = unwrap(<Table>Wrap</Table>);
+
+      expect(wrapper.find('div').prop('className')).toMatch('responsive_wrapper');
+    });
+
+    it('renders without wrapper', () => {
+      const wrapper = unwrap(<Table noWrap>No Wrap</Table>);
+
+      expect(wrapper.find('div').prop('className')).not.toMatch('responsive_wrapper');
+    });
   });
 });

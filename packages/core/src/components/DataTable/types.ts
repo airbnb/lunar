@@ -40,6 +40,11 @@ export type HeaderButton = {
 
 export type DefaultDataTableProps = keyof DataTableProps;
 
+export type SortByValueAccessor<T extends GenericRow = GenericRow> = (
+  row: T,
+  columnKey: string,
+) => unknown;
+
 export interface DataTableProps {
   /** If enabled height will be inferred from parent. */
   autoHeight?: boolean;
@@ -53,6 +58,8 @@ export interface DataTableProps {
   columnMetadata?: ColumnMetadata;
   /** Array of data rows. */
   data?: ParentRow[];
+  /** Ref to the underlying DataTable instance. */
+  dataTableRef?: DataTableRef;
   /** If dynamicRowHeight is enabled, this sets the default value for measured row height. */
   defaultDynamicRowHeight?: number;
   /** Default callback on all edits. */
@@ -79,8 +86,12 @@ export interface DataTableProps {
   keys?: string[];
   /** If dynamicRowHeight is enabled, this sets the minimum value for measured row height. */
   minimumDynamicRowHeight?: number;
-  /** Ref to the underlying DataTable instance. */
-  dataTableRef?: DataTableRef;
+  /**
+   * Specify number of additional rows react-virtualized renders in the direction the user is scrolling.
+   * The higher the value, the more work react-virtualized needs to do in reaction to each scroll event.
+   * Not respected when both dynamicRowHeight and showAllRows are true.
+   */
+  overscanRowCount?: number;
   /** Propagated as the 'ref' prop to the underlying react-virtualized Table instance. */
   propagateRef?: TableRef;
   /** Custom renderers mapped to column keys. */
@@ -100,8 +111,8 @@ export interface DataTableProps {
   /**
    * If true, will set Table height to accomodate showing _all_ rows.
    * This effectively _disables_ virtualized row rendering and may have detrimental
-+  * performance implications for rendering many rows.
-   * */
+   * performance implications for rendering many rows.
+   */
   showAllRows?: boolean;
   /** If enabled, renders a border between each column. */
   showColumnDividers?: boolean;
@@ -111,6 +122,10 @@ export interface DataTableProps {
   sortOverride?: boolean;
   /** sortBy value if override is enabled. */
   sortByOverride?: string;
+  /** Key used as part of the sort cache key, can be used to force re-sorting without a full sortOverride. */
+  sortByCacheKey?: string;
+  /** Given rowData and a column key, returns the value used for sorting rows. Defaults to rowData.data[columnKey]. */
+  sortByValue?: SortByValueAccessor;
   /** sortDirection value if override is enabled. */
   sortDirectionOverride?: SortDirectionType;
   /** sortCallback if override is enabled. */

@@ -1,6 +1,5 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import T from '../../src/components/Translate';
 import Autocomplete, {
   CACHE_DURATION,
@@ -12,7 +11,6 @@ import BaseInput from '../../src/components/private/BaseInput';
 import FormField from '../../src/components/FormField';
 import Text from '../../src/components/Text';
 import Menu, { Item } from '../../src/components/Menu';
-import { MenuRow } from '../../src/components/Menu/Row';
 import ErrorMessage from '../../src/components/ErrorMessage';
 import Loader from '../../src/components/Loader';
 
@@ -120,7 +118,7 @@ describe('<Autocomplete />', () => {
 
   describe('handleChange()', () => {
     it('sets state and loads items', () => {
-      instance.loadItems = jest.fn();
+      jest.spyOn(instance, 'loadItems').mockImplementation();
 
       expect(wrapper.state('value')).toBe('');
 
@@ -197,7 +195,10 @@ describe('<Autocomplete />', () => {
 
     it('supports `ArrowDown` event and sets state', () => {
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         highlightedIndex: null,
       });
 
@@ -220,7 +221,10 @@ describe('<Autocomplete />', () => {
 
     it('supports `ArrowUp` event and sets state', () => {
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         highlightedIndex: null,
       });
 
@@ -301,6 +305,39 @@ describe('<Autocomplete />', () => {
       expect(spy).toHaveBeenCalled();
     });
 
+    it('supports `Enter` event - input has focus  + `selectUnknownOnEnter`', () => {
+      const spy = jest.fn();
+      const pdSpy = jest.fn();
+      const spSpy = jest.fn();
+      const input = document.createElement('input');
+      instance.inputRef = { current: input };
+      instance.ignoreBlur = true;
+
+      wrapper.setProps({
+        selectUnknownOnEnter: true,
+        onSelectItem: spy,
+      });
+
+      wrapper.setState({
+        open: true,
+        highlightedIndex: null,
+        value: 'unknown',
+      });
+
+      wrapper.find(BaseInput).simulate('keydown', {
+        key: 'Enter',
+        keyCode: 13,
+        preventDefault: pdSpy,
+        stopPropagation: spSpy,
+      });
+
+      expect(instance.ignoreBlur).toBe(false);
+      expect(wrapper.state('open')).toBe(false);
+      expect(spy).toHaveBeenCalledWith('unknown', null, expect.anything());
+      expect(pdSpy).toHaveBeenCalled();
+      expect(spSpy).toHaveBeenCalled();
+    });
+
     it('supports `Enter` event - text entered + menu item has been highlighted + enter is hit', () => {
       const spy = jest.fn();
       const input = document.createElement('input');
@@ -311,7 +348,10 @@ describe('<Autocomplete />', () => {
       wrapper.setState({
         highlightedIndex: 1,
         open: true,
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         value: 'foo',
       });
 
@@ -337,7 +377,10 @@ describe('<Autocomplete />', () => {
       });
 
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         highlightedIndex: 1,
       });
 
@@ -352,7 +395,10 @@ describe('<Autocomplete />', () => {
       });
 
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         highlightedIndex: 1,
         value: 'foo',
       });
@@ -368,7 +414,10 @@ describe('<Autocomplete />', () => {
   describe('handleItemMouseDown()', () => {
     it('highlights the item in state', () => {
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         value: 'foo',
         highlightedIndex: 1,
       });
@@ -384,7 +433,10 @@ describe('<Autocomplete />', () => {
   describe('handleItemMouseEnter()', () => {
     it('highlights the item in state', () => {
       wrapper.setState({
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
         value: 'foo',
         highlightedIndex: 1,
       });
@@ -399,9 +451,11 @@ describe('<Autocomplete />', () => {
 
   describe('loadItems()', () => {
     beforeEach(() => {
-      instance.loadItemsDebounced = jest.fn(() =>
-        Promise.resolve({ input: 'foo', response: [{ id: 4 }, { id: 5 }, { id: 6 }] }),
-      );
+      jest
+        .spyOn(instance, 'loadItemsDebounced')
+        .mockImplementation(() =>
+          Promise.resolve({ input: 'foo', response: [{ id: 4 }, { id: 5 }, { id: 6 }] }),
+        );
     });
 
     it('resets state at start of load', () => {
@@ -510,14 +564,14 @@ describe('<Autocomplete />', () => {
         );
       }));
 
-    it('doesnt cache if `disableCache` is set', () => {
+    it('doesnt cache if `disableCache` is set', async () => {
       wrapper.setProps({
         disableCache: true,
       });
 
-      return instance.loadItems('foo').then(() => {
-        expect(instance.cache.foo).toBeUndefined();
-      });
+      await instance.loadItems('foo');
+
+      expect(instance.cache.foo).toBeUndefined();
     });
 
     it('handles success', () =>
@@ -530,59 +584,68 @@ describe('<Autocomplete />', () => {
         );
       }));
 
-    it('handles success using `results` property', () => {
-      instance.loadItemsDebounced = jest.fn(() =>
-        Promise.resolve({ input: 'foo', response: { results: [{ id: 7 }, { id: 8 }, { id: 9 }] } }),
+    it('handles success using `results` property', async () => {
+      jest.spyOn(instance, 'loadItemsDebounced').mockImplementation(() =>
+        Promise.resolve({
+          input: 'foo',
+          response: { results: [{ id: 7 }, { id: 8 }, { id: 9 }] },
+        }),
       );
 
-      return instance.loadItems('foo').then(() => {
-        expect(wrapper.state()).toEqual(
-          expect.objectContaining({
-            items: [{ id: 7 }, { id: 8 }, { id: 9 }],
-            loading: false,
-          }),
-        );
-      });
-    });
+      await instance.loadItems('foo');
 
-    it('handles success using `items` property', () => {
-      instance.loadItemsDebounced = jest.fn(() =>
-        Promise.resolve({ input: 'foo', response: { items: [{ id: 7 }, { id: 8 }, { id: 9 }] } }),
+      expect(wrapper.state()).toEqual(
+        expect.objectContaining({
+          items: [{ id: 7 }, { id: 8 }, { id: 9 }],
+          loading: false,
+        }),
       );
-
-      return instance.loadItems('foo').then(() => {
-        expect(wrapper.state()).toEqual(
-          expect.objectContaining({
-            items: [{ id: 7 }, { id: 8 }, { id: 9 }],
-            loading: false,
-          }),
-        );
-      });
     });
 
-    it('handles error', () => {
-      instance.loadItemsDebounced = jest.fn(() => Promise.reject(new Error('Oops')));
+    it('handles success using `items` property', async () => {
+      jest
+        .spyOn(instance, 'loadItemsDebounced')
+        .mockImplementation(() =>
+          Promise.resolve({ input: 'foo', response: { items: [{ id: 7 }, { id: 8 }, { id: 9 }] } }),
+        );
 
-      return instance.loadItems('foo').catch(error => {
+      await instance.loadItems('foo');
+
+      expect(wrapper.state()).toEqual(
+        expect.objectContaining({
+          items: [{ id: 7 }, { id: 8 }, { id: 9 }],
+          loading: false,
+        }),
+      );
+    });
+
+    it('handles error', async () => {
+      jest
+        .spyOn(instance, 'loadItemsDebounced')
+        .mockImplementation(() => Promise.reject(new Error('Oops')));
+
+      try {
+        await instance.loadItems('foo');
+      } catch (error) {
         expect(wrapper.state()).toEqual(
           expect.objectContaining({
             error,
             loading: false,
           }),
         );
-      });
+      }
     });
   });
 
   describe('renderError()', () => {
     it('wraps in a menu `Row`', () => {
-      const row = shallowWithStyles(instance.renderError(new Error('Oops')), true);
+      const row = shallow(instance.renderError(new Error('Oops')));
 
-      expect(row.type()).toEqual(MenuRow);
+      expect(row.type()).toEqual('li');
     });
 
     it('renders an error message by default', () => {
-      const row = shallowWithStyles(instance.renderError(new Error('Oops')));
+      const row = shallow(instance.renderError(new Error('Oops')));
 
       expect(row.find(ErrorMessage)).toHaveLength(1);
       expect(row.find(ErrorMessage).prop('error')).toEqual(new Error('Oops'));
@@ -593,7 +656,7 @@ describe('<Autocomplete />', () => {
         renderError: () => <div>Broken!</div>,
       });
 
-      const row = shallowWithStyles(instance.renderError(new Error('Oops')));
+      const row = shallow(instance.renderError(new Error('Oops')));
 
       expect(row.find(ErrorMessage)).toHaveLength(0);
       expect(shallow(row.prop('children')).contains('Broken!')).toBe(true);
@@ -634,13 +697,13 @@ describe('<Autocomplete />', () => {
 
   describe('renderLoading()', () => {
     it('wraps in a menu `Row`', () => {
-      const row = shallowWithStyles(instance.renderLoading(), true);
+      const row = shallow(instance.renderLoading());
 
-      expect(row.type()).toEqual(MenuRow);
+      expect(row.type()).toEqual('li');
     });
 
     it('renders a loader by default', () => {
-      const row = shallowWithStyles(instance.renderLoading());
+      const row = shallow(instance.renderLoading());
 
       expect(row.find(Loader)).toHaveLength(1);
     });
@@ -650,7 +713,7 @@ describe('<Autocomplete />', () => {
         renderLoading: () => <div>Loading!</div>,
       });
 
-      const row = shallowWithStyles(instance.renderLoading());
+      const row = shallow(instance.renderLoading());
 
       expect(row.find(Loader)).toHaveLength(0);
       expect(shallow(row.prop('children')).contains('Loading!')).toBe(true);
@@ -719,13 +782,13 @@ describe('<Autocomplete />', () => {
 
   describe('renderNoResults()', () => {
     it('wraps in a menu `Row`', () => {
-      const row = shallowWithStyles(instance.renderNoResults(), true);
+      const row = shallow(instance.renderNoResults());
 
-      expect(row.type()).toEqual(MenuRow);
+      expect(row.type()).toEqual('li');
     });
 
     it('renders a message by default', () => {
-      const row = shallowWithStyles(instance.renderNoResults());
+      const row = shallow(instance.renderNoResults());
 
       expect(row.find(Text).prop('children')).toEqual(
         <T
@@ -741,7 +804,7 @@ describe('<Autocomplete />', () => {
         renderNoResults: () => <div>Empty!</div>,
       });
 
-      const row = shallowWithStyles(instance.renderNoResults());
+      const row = shallow(instance.renderNoResults());
 
       expect(row.find(Text)).toHaveLength(0);
       expect(shallow(row.prop('children')).contains('Empty!')).toBe(true);
@@ -752,7 +815,7 @@ describe('<Autocomplete />', () => {
         noResultsText: 'Nothing here...',
       });
 
-      const menu = shallowWithStyles(instance.renderNoResults());
+      const menu = shallow(instance.renderNoResults());
 
       expect(menu.find(Text).prop('children')).toBe('Nothing here...');
     });
@@ -790,7 +853,10 @@ describe('<Autocomplete />', () => {
 
       const state = {
         ...wrapper.state(),
-        items: [{ value: 'bar', name: 'Bar' }, { value: 'foo', name: 'Foo' }],
+        items: [
+          { value: 'bar', name: 'Bar' },
+          { value: 'foo', name: 'Foo' },
+        ],
       };
 
       const filteredItems = instance.getFilteredItems(state);

@@ -4,16 +4,22 @@ import FocusTrap from '../../FocusTrap';
 import focusFirstFocusableChild from '../../../utils/focus/focusFirstFocusableChild';
 import ModalImageLayout, { ModalImageConfig } from './ImageLayout';
 import ModalInnerContent, { Props as ModalInnerContentProps } from './InnerContent';
+import {
+  styleSheetInner as styleSheet,
+  MODAL_MAX_WIDTH_SMALL,
+  MODAL_MAX_WIDTH_MEDIUM,
+  MODAL_MAX_WIDTH_LARGE,
+} from '../styles';
 
-export const MODAL_MAX_WIDTH_SMALL = 400;
-export const MODAL_MAX_WIDTH_MEDIUM = 600;
-export const MODAL_MAX_WIDTH_LARGE = 800;
+export { MODAL_MAX_WIDTH_SMALL, MODAL_MAX_WIDTH_MEDIUM, MODAL_MAX_WIDTH_LARGE };
 
 export type Props = ModalInnerContentProps & {
   /** Image configuration to be used as the right pane in a dual pane layout. If provided, will force the modal to a `large` layout. */
   image?: ModalImageConfig;
   /** Fluid width, no max width. */
   fluid?: boolean;
+  /** Keep modal open when clicking outside of the modal (in the blackout). */
+  persistOnOutsideClick?: boolean;
 };
 
 /** A Dialog component with a backdrop and a standardized layout. */
@@ -44,7 +50,10 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
   private handleClickOutside = (event: React.MouseEvent | MouseEvent) => {
     const { current } = this.dialogRef;
 
-    if (current && current.contains(event.target as Element)) {
+    if (
+      (current && current.contains(event.target as Element)) ||
+      this.props.persistOnOutsideClick
+    ) {
       return;
     }
 
@@ -120,35 +129,4 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(({ color, responsive, ui }) => ({
-  content: {
-    backgroundColor: color.accent.bg,
-    borderRadius: ui.borderRadius,
-    boxShadow: ui.boxShadowLarge,
-    maxWidth: MODAL_MAX_WIDTH_MEDIUM,
-    position: 'relative',
-    width: '100%',
-
-    ':focus': {
-      outline: 'none',
-    },
-  },
-
-  content_small: {
-    maxWidth: MODAL_MAX_WIDTH_SMALL,
-  },
-
-  content_large: {
-    maxWidth: MODAL_MAX_WIDTH_LARGE,
-  },
-
-  content_fluid: {
-    maxWidth: '70%',
-
-    '@media': {
-      [responsive.small]: {
-        maxWidth: '85%',
-      },
-    },
-  },
-}))(ModalInner);
+export default withStyles(styleSheet)(ModalInner);

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IconCaretLeft from '@airbnb/lunar-icons/lib/interface/IconCaretLeft';
 import IconCaretRight from '@airbnb/lunar-icons/lib/interface/IconCaretRight';
 import iconComponent from '../../prop-types/iconComponent';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
 import Text from '../Text';
 import DirectionalIcon from '../DirectionalIcon';
+import { styleSheetItem as styleSheet } from './styles';
 
 export type Props = {
   /** Content within the menu item. */
@@ -39,167 +40,87 @@ export type Props = {
 };
 
 /** An interactive item within a menu. */
-export class MenuItem extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    icon: iconComponent,
-  };
+function MenuItem({
+  children,
+  disabled,
+  highlighted,
+  href = '',
+  icon,
+  id,
+  onClick,
+  openInNewWindow,
+  role = 'menuitem',
+  spacious,
+  submenu,
+  tabIndex = -1,
+  tip,
+  trackingName,
+}: Props) {
+  const [styles, cx] = useStyles(styleSheet);
+  const [showSubmenu, setShowSubmenu] = useState(false);
 
-  static defaultProps = {
-    disabled: false,
-    highlighted: false,
-    href: '',
-    icon: null,
-    openInNewWindow: false,
-    role: 'menuitem',
-    spacious: false,
-    submenu: null,
-    tabIndex: -1,
-    tip: null,
-  };
-
-  state = {
-    showSubmenu: false,
-  };
-
-  private handleMouseEnter = () => {
-    if (this.props.submenu) {
-      this.setState({
-        showSubmenu: true,
-      });
+  const handleMouseEnter = () => {
+    if (submenu) {
+      setShowSubmenu(true);
     }
   };
 
-  private handleMouseLeave = () => {
-    if (this.props.submenu) {
-      this.setState({
-        showSubmenu: false,
-      });
+  const handleMouseLeave = () => {
+    if (submenu) {
+      setShowSubmenu(false);
     }
   };
 
-  render() {
-    const {
-      cx,
-      children,
-      disabled,
-      highlighted,
-      href,
-      icon,
-      id,
-      onClick,
-      openInNewWindow,
-      role,
-      spacious,
-      styles,
-      submenu,
-      tabIndex,
-      tip,
-      trackingName,
-    } = this.props;
-    const { showSubmenu } = this.state;
-    const after = submenu ? (
-      <DirectionalIcon
-        decorative
-        direction="right"
-        left={IconCaretLeft}
-        right={IconCaretRight}
-        size="1.5em"
-      />
-    ) : (
-      tip
-    );
+  const after = submenu ? (
+    <DirectionalIcon
+      decorative
+      direction="right"
+      left={IconCaretLeft}
+      right={IconCaretRight}
+      size="1.5em"
+    />
+  ) : (
+    tip
+  );
 
-    return (
-      <li role="none" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-        <ButtonOrLink
-          afterIcon={
-            after ? (
-              <Text muted small>
-                {after}
-              </Text>
-            ) : null
-          }
-          className={cx(
-            styles.item,
-            (showSubmenu || highlighted) && styles.item_highlighted,
-            disabled && styles.item_disabled,
-            spacious && styles.item_spacious,
-          )}
-          disabled={disabled}
-          href={href}
-          trackingName={trackingName}
-          id={id}
-          beforeIcon={icon}
-          openInNewWindow={openInNewWindow}
-          role={role}
-          tabIndex={tabIndex}
-          aria-haspopup={!!submenu}
-          aria-expanded={showSubmenu}
-          onClick={onClick}
-        >
-          {children}
-        </ButtonOrLink>
+  return (
+    <li role="none" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <ButtonOrLink
+        className={cx(
+          styles.item,
+          (showSubmenu || highlighted) && styles.item_highlighted,
+          disabled && styles.item_disabled,
+          spacious && styles.item_spacious,
+        )}
+        afterIcon={
+          after ? (
+            <Text muted small>
+              {after}
+            </Text>
+          ) : null
+        }
+        aria-expanded={showSubmenu}
+        aria-haspopup={!!submenu}
+        beforeIcon={icon}
+        disabled={disabled}
+        href={href}
+        id={id}
+        openInNewWindow={openInNewWindow}
+        role={role}
+        tabIndex={tabIndex}
+        trackingName={trackingName}
+        onClick={onClick}
+      >
+        {children}
+      </ButtonOrLink>
 
-        {showSubmenu && <div className={cx(styles.submenu)}>{submenu}</div>}
-      </li>
-    );
-  }
+      {showSubmenu && <div className={cx(styles.submenu)}>{submenu}</div>}
+    </li>
+  );
 }
 
-export default withStyles(({ color, font, pattern, unit, transition }) => ({
-  item: {
-    ...transition.box,
-    ...font.textRegular,
-    width: '100%',
-    padding: `${unit}px ${1.5 * unit}px`,
-    border: 0,
-    textAlign: 'left',
-    backgroundColor: 'transparent',
-    cursor: 'pointer',
-    textDecoration: 'none',
-    outlineOffset: '-3px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    color: color.accent.text,
+MenuItem.propTypes = {
+  icon: iconComponent,
+};
 
-    ':hover': {
-      backgroundColor: color.accent.bgHover,
-      color: color.core.neutral[6],
-    },
-
-    '@selectors': {
-      // Fix content
-      '> span': {
-        flexGrow: 1,
-      },
-
-      // Fix icons
-      '> div': {
-        flexGrow: 0,
-        margin: 0,
-
-        ':first-child': { marginRight: unit },
-        ':last-child': { marginLeft: unit },
-      },
-    },
-  },
-
-  item_spacious: {
-    padding: unit * 2,
-  },
-
-  item_disabled: {
-    ...pattern.disabled,
-  },
-
-  item_highlighted: {
-    backgroundColor: color.accent.bgHover,
-  },
-
-  submenu: {
-    position: 'absolute',
-    top: -1,
-    left: '99%',
-  },
-}))(MenuItem);
+export default MenuItem;

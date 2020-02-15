@@ -16,6 +16,7 @@ describe('<Tooltip />', () => {
         <a href="/">hello world</a>
       </Tooltip>,
     );
+    wrapper.setState({ targetRectReady: true });
     childContainer = wrapper.find('div[aria-labelledby]');
   });
 
@@ -32,7 +33,7 @@ describe('<Tooltip />', () => {
     expect(onShowSpy).toHaveBeenCalled();
   });
 
-  it('can underline ', () => {
+  it('can underline', () => {
     wrapper.setProps({ underlined: true });
     expect(wrapper).toMatchSnapshot();
   });

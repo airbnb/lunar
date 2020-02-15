@@ -1,10 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`linkFactory() renders a link 1`] = `
+exports[`EmailFactory renders a link 1`] = `
 <Link
   baseline={true}
   href="mailto:email@airbnb.com"
-  openInNewWindow={false}
   withStylesClasses={
     Array [
       "link",

@@ -113,7 +113,7 @@ describe('<Tabs/>', () => {
     ).toBe('c');
   });
 
-  it('it renders a nav', () => {
+  it('renders a nav', () => {
     const wrapper = unwrap(
       <Tabs>
         <Tab key="a" label="Label" />
@@ -123,7 +123,7 @@ describe('<Tabs/>', () => {
     expect(wrapper.find('nav')).toHaveLength(1);
   });
 
-  it('it renders a stretched nav', () => {
+  it('renders a stretched nav', () => {
     const wrapper = unwrap(
       <Tabs stretched>
         <Tab key="a" label="One" />
@@ -140,7 +140,7 @@ describe('<Tabs/>', () => {
     ).toBe(true);
   });
 
-  it('it renders a section when a tab is active and has children', () => {
+  it('renders a section when a tab is active and has children', () => {
     const wrapper = unwrap(
       <Tabs>
         <Tab key="a" label="Label">
@@ -236,7 +236,7 @@ describe('<Tabs/>', () => {
     expect(location.hash).toBe('#tab=c');
   });
 
-  it('it passes the borderless prop to Tab children', () => {
+  it('passes the borderless prop to Tab children', () => {
     const wrapper = unwrap(
       <Tabs borderless>
         <Tab key="a" label="One" />
@@ -251,7 +251,7 @@ describe('<Tabs/>', () => {
     ).toBe(true);
   });
 
-  it('it passes the secondary prop to Tab children', () => {
+  it('passes the secondary prop to Tab children', () => {
     const wrapper = unwrap(
       <Tabs secondary>
         <Tab key="a" label="One" />

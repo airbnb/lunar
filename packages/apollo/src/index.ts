@@ -1,6 +1,6 @@
 import Core from '@airbnb/lunar';
 import { ApolloClient, ApolloClientOptions } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import { InMemoryCache, InMemoryCacheConfig } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { HttpLink } from 'apollo-link-http';
@@ -11,6 +11,7 @@ import Provider from './components/Provider';
 import pkg from '../package.json';
 
 export * from 'apollo-client';
+export * from 'apollo-cache-inmemory';
 
 export { onError, HttpLink, Mutation, Query, Provider };
 
@@ -18,6 +19,7 @@ export type Settings = {
   links?: ApolloLink[];
   resolvers?: ApolloClientOptions<null>['resolvers'];
   typeDefs?: ApolloClientOptions<null>['typeDefs'];
+  cacheConfig?: InMemoryCacheConfig;
 };
 
 class Apollo {
@@ -25,6 +27,7 @@ class Apollo {
     links: [],
     resolvers: {},
     typeDefs: '',
+    cacheConfig: {},
   };
 
   protected client?: ApolloClient<{}>;
@@ -43,10 +46,10 @@ class Apollo {
       return;
     }
 
-    const { links, resolvers, typeDefs } = this.settings;
+    const { links, resolvers, typeDefs, cacheConfig } = this.settings;
 
     this.client = new ApolloClient({
-      cache: new InMemoryCache(),
+      cache: new InMemoryCache(cacheConfig),
       connectToDevTools: __DEV__,
       link: ApolloLink.from(links),
       name: Core.settings.name,

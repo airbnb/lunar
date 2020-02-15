@@ -45,7 +45,10 @@ describe('<Lightbox />', () => {
     });
 
     it('preloads images when image count > 1', () => {
-      const images = [{ alt: 'requestIdleTest', src: 'bar' }, { alt: 'foo2', src: 'bar2' }];
+      const images = [
+        { alt: 'requestIdleTest', src: 'bar' },
+        { alt: 'foo2', src: 'bar2' },
+      ];
       shallow(<Lightbox {...props} images={images} />);
 
       expect(requestIdleCallbackSpy).toHaveBeenCalled();
@@ -56,7 +59,10 @@ describe('<Lightbox />', () => {
     it('sets activeIndex to startIndex if they are not equal', () => {
       const newProps = {
         ...props,
-        images: [{ alt: 'foo', src: 'bar' }, { alt: 'foo2', src: 'bar2' }],
+        images: [
+          { alt: 'foo', src: 'bar' },
+          { alt: 'foo2', src: 'bar2' },
+        ],
         startIndex: 1,
       };
       wrapper = shallow(<Lightbox {...newProps} />);
