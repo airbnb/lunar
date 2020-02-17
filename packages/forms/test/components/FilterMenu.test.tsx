@@ -1,30 +1,26 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme from 'enzyme';
+import { mountUseStyles } from '@airbnb/lunar-test-utils';
 import { MenuToggleProps } from '@airbnb/lunar/lib/components/MenuToggle';
 import Link from '@airbnb/lunar/lib/components/Link';
+import Button from '@airbnb/lunar/lib/components/Button';
 import SecondaryLink from '@airbnb/lunar/lib/components/SecondaryLink';
 import T from '@airbnb/lunar/lib/components/Translate';
 import FilterMenu, { Row } from '../../src/components/FilterMenu';
 
-function openFilters(wrapper: Enzyme.ShallowWrapper) {
+function openFilters(wrapper: Enzyme.ReactWrapper) {
   wrapper
-    .dive()
-    .childAt(0)
+    .find(Button)
+    .at(0)
     .simulate('click');
 }
 
-function getDropdown(wrapper: Enzyme.ShallowWrapper) {
-  return wrapper
-    .dive()
-    .dive()
-    .childAt(1)
-    .childAt(0);
+function getDropdown(wrapper: Enzyme.ReactWrapper) {
+  return wrapper.childAt(1).childAt(0);
 }
 
-function getMenu(wrapper: Enzyme.ShallowWrapper) {
+function getMenu(wrapper: Enzyme.ReactWrapper) {
   return wrapper
-    .dive()
-    .dive()
     .childAt(1)
     .childAt(0)
     .childAt(0)
@@ -37,7 +33,7 @@ describe('<FilterMenu />', () => {
   };
 
   it('renders a menu toggle', () => {
-    const wrapper = shallow(
+    const wrapper = mountUseStyles(
       <FilterMenu {...props}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -47,7 +43,7 @@ describe('<FilterMenu />', () => {
   });
 
   it('renders a button with the currently active count', () => {
-    const wrapper = shallow(
+    const wrapper = mountUseStyles(
       <FilterMenu {...props}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -69,7 +65,7 @@ describe('<FilterMenu />', () => {
   });
 
   it('clicking apply on a valid form closes the menu', () => {
-    const wrapper = shallow(
+    const wrapper = mountUseStyles(
       <FilterMenu {...props}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -82,19 +78,12 @@ describe('<FilterMenu />', () => {
       .at(0)
       .simulate('click');
 
-    expect(
-      wrapper
-        .dive()
-        .dive()
-        .find('div')
-        .at(1)
-        .prop('aria-expanded'),
-    ).toBe(false);
+    expect(wrapper.find('div[aria-expanded=true]')).toHaveLength(1);
   });
 
   it('clicking clear calls reset', () => {
     const onClear = jest.fn();
-    const wrapper = shallow(
+    const wrapper = mountUseStyles(
       <FilterMenu {...props} onClear={onClear}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -112,7 +101,7 @@ describe('<FilterMenu />', () => {
 
   it('clicking clear closes the menu', () => {
     const onHide = jest.fn();
-    const wrapper = shallow(
+    const wrapper = mountUseStyles(
       <FilterMenu {...props} onHide={onHide}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -130,7 +119,7 @@ describe('<FilterMenu />', () => {
 
   it('clicking clear keeps the menu open when keepOpenOnClear is passed', () => {
     const onHide = jest.fn();
-    const wrapper = shallow(
+    const wrapper = mountUseStyles(
       <FilterMenu keepOpenOnClear {...props} onHide={onHide}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -147,7 +136,7 @@ describe('<FilterMenu />', () => {
   });
 
   it('right-aligns by default', () => {
-    const wrapper = shallow(
+    const wrapper = mountUseStyles(
       <FilterMenu {...props}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -158,7 +147,7 @@ describe('<FilterMenu />', () => {
   });
 
   it('optionally aligns to the left', () => {
-    const wrapper = shallow(
+    const wrapper = mountUseStyles(
       <FilterMenu {...props} dropdownProps={{ left: 0 }}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -169,7 +158,7 @@ describe('<FilterMenu />', () => {
   });
 
   it('optionally has visible overflow', () => {
-    const wrapper = shallow(
+    const wrapper = mountUseStyles(
       <FilterMenu {...props}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -183,7 +172,7 @@ describe('<FilterMenu />', () => {
   });
 
   it('passes min width', () => {
-    const wrapper = shallow(
+    const wrapper = mountUseStyles(
       <FilterMenu {...props} menuProps={{ minWidth: 400 }}>
         <Row>Foo</Row>
       </FilterMenu>,
@@ -194,7 +183,7 @@ describe('<FilterMenu />', () => {
 
   describe('<Row />', () => {
     it('renders a row with spacious by default', () => {
-      const wrapper = shallow(<Row>Hello</Row>);
+      const wrapper = mountUseStyles(<Row>Hello</Row>);
 
       expect(wrapper.prop('spacious')).toBe(true);
     });

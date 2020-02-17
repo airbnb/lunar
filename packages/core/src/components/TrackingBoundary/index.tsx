@@ -12,11 +12,12 @@ export type TrackingBoundaryProps = {
 
 /** Wraps a component and provides a context stack for click and keydown tracking purposes. */
 function TrackingBoundary({ children, name }: TrackingBoundaryProps) {
-  const handleTrackContext = ({ nativeEvent }: { nativeEvent: MouseEvent | KeyboardEvent }) => {
-    if (!name) {
-      return;
-    }
+  if (!name) {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <>{children}</>;
+  }
 
+  const handleTrackContext = ({ nativeEvent }: { nativeEvent: MouseEvent | KeyboardEvent }) => {
     if (nativeEvent.trackingContext) {
       nativeEvent.trackingContext.push(name);
     } else {

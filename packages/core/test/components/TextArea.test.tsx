@@ -83,7 +83,6 @@ describe('<TextArea />', () => {
       phrase: '%{current}/%{max} characters used',
       current: '5',
       max: '1,000',
-      html: false,
     });
 
     wrapper.setProps({

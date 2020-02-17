@@ -3,7 +3,6 @@
 exports[`<Translate /> renders a translator component 1`] = `
 <T
   bar={123}
-  html={false}
   k="foo"
   phrase="Foo"
 />

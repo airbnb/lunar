@@ -24,7 +24,7 @@ export type DateTimeRangeProps = {
 export default function DateTimeRange({
   from,
   locale,
-  separator = ' - ',
+  separator = ' – ',
   timezone,
   to,
 }: DateTimeRangeProps) {
