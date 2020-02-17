@@ -66,7 +66,7 @@ export const styleSheetCheckbox: StyleSheet = theme => {
   };
 };
 
-export type BaseCheckBoxProps = InputProps & {
+export type BaseCheckBoxProps<T extends string> = InputProps<T> & {
   /** Render the field as a large clickable button. */
   button?: boolean;
   /** Content to display when in button mode. Defaults to the current label bolded followed by the label description. */
@@ -74,14 +74,14 @@ export type BaseCheckBoxProps = InputProps & {
   /** Hide the native checkbox label. */
   hideLabel?: boolean;
   /** Callback fired when the value changes. */
-  onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (checked: boolean, value: T, event: React.ChangeEvent<HTMLInputElement>) => void;
   /** Mark the checkbox as greyed out with a dash to indicate an indeterminate state. */
   indeterminate?: boolean;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
 };
 
-export default function BaseCheckBox({
+export default function BaseCheckBox<T extends string = string>({
   button,
   checked,
   children,
@@ -94,11 +94,11 @@ export default function BaseCheckBox({
   onChange,
   styleSheet,
   ...restProps
-}: BaseCheckBoxProps) {
+}: BaseCheckBoxProps<T>) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetCheckbox);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.currentTarget.checked, event.currentTarget.value, event);
+    onChange(event.currentTarget.checked, event.currentTarget.value as T, event);
   };
 
   const checkbox = (

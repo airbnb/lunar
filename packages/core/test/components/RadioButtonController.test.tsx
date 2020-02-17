@@ -108,7 +108,11 @@ describe('<RadioButtonController />', () => {
 
   it('handles checked', () => {
     const wrapper = shallow<RadioButtonController>(
-      <RadioButtonController {...props} onChange={() => {}}>
+      <RadioButtonController<'foo' | 'bar' | 'baz' | 'qux'>
+        {...props}
+        value="foo"
+        onChange={() => {}}
+      >
         {RB => (
           <div>
             <RB value="foo" label="Foo" />

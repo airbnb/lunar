@@ -1,32 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import uuid from 'uuid/v4';
 import BaseSwitch, { BaseSwitchProps } from '../private/BaseSwitch';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 
-export type SwitchProps = Omit<BaseSwitchProps, 'id'> & FormFieldProps;
-
-export type SwitchState = {
-  id: string;
-};
+export type SwitchProps<T extends string> = Omit<BaseSwitchProps<T>, 'id'> & FormFieldProps;
 
 /** A controlled switch (fancy checkbox) field. */
-export default class Switch extends React.Component<SwitchProps, SwitchState> {
-  static defaultProps = {
-    checked: false,
-  };
+export default function Switch<T extends string = string>(props: SwitchProps<T>) {
+  const { fieldProps, inputProps } = partitionFieldProps<T, SwitchProps<T>>(props);
+  const [id] = useState(() => uuid());
 
-  state = {
-    id: uuid(),
-  };
-
-  render() {
-    const { fieldProps, inputProps } = partitionFieldProps(this.props);
-    const { id } = this.state;
-
-    return (
-      <FormField {...fieldProps} inline stretchLabel id={id}>
-        <BaseSwitch value="1" {...inputProps} id={id} />
-      </FormField>
-    );
-  }
+  return (
+    <FormField {...fieldProps} inline stretchLabel id={id}>
+      <BaseSwitch<T> value="1" {...inputProps} id={id} />
+    </FormField>
+  );
 }

@@ -6,17 +6,20 @@ import TrackingBoundary from '../TrackingBoundary';
 import { styleSheetTab } from './styles';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
-export type TabProps = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabled' | 'href'> & {
+export type TabProps<T extends string> = Pick<
+  ButtonOrLinkProps,
+  'afterIcon' | 'beforeIcon' | 'disabled' | 'href'
+> & {
   /** Hide bottom border of Tab when unselected. */
   borderless?: boolean;
   /** Content to render if the tab is selected. */
   children?: React.ReactNode;
   /** @ignore Unique key name for this tab. */
-  keyName?: string;
+  keyName?: T;
   /** Text to render in the tab. */
   label: NonNullable<React.ReactNode>;
   /** @ignore Callback fired when the tab is clicked. */
-  onClick?: (key: string) => void;
+  onClick?: (key: T) => void;
   /** Callback fired when the tab is selected. */
   onSelected?: () => void;
   /** Secondary tab style, implies borderless. */
@@ -32,7 +35,7 @@ export type TabProps = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'dis
 };
 
 /** A single tab button. Usually rendered amongst a collection of tabs. */
-export default function Tab({
+export default function Tab<T extends string = string>({
   afterIcon,
   beforeIcon,
   borderless,
@@ -47,7 +50,7 @@ export default function Tab({
   onClick,
   onSelected,
   styleSheet,
-}: TabProps) {
+}: TabProps<T>) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetTab);
   const trackingName = upperFirst(camelCase(keyName ?? 'Tab'));
   const noBorder = secondary || borderless;

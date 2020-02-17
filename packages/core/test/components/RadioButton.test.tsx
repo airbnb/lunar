@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import RadioButton, { RadioButtonProps, RadioButtonState } from '../../src/components/RadioButton';
+import RadioButton, { RadioButtonProps } from '../../src/components/RadioButton';
 import FormField from '../../src/components/FormField';
 import BaseRadioButton from '../../src/components/private/BaseRadioButton';
 import Text from '../../src/components/Text';
@@ -45,7 +45,7 @@ describe('<RadioButton />', () => {
       <RadioButton name="foo" label="Label" value="foo" onChange={() => {}} />,
     );
 
-    expect(wrapper.find(BaseRadioButton).prop('checked')).toBe(false);
+    expect(wrapper.find(BaseRadioButton).prop('checked')).toBeUndefined();
 
     wrapper.setProps({
       checked: true,
@@ -59,7 +59,7 @@ describe('<RadioButton />', () => {
       <RadioButton name="foo" label="Label" value="foo" onChange={() => {}} />,
     );
 
-    expect(wrapper.find(BaseRadioButton).prop('indeterminate')).toBe(false);
+    expect(wrapper.find(BaseRadioButton).prop('indeterminate')).toBeUndefined();
 
     wrapper.setProps({
       indeterminate: true,
@@ -69,7 +69,7 @@ describe('<RadioButton />', () => {
   });
 
   describe('button mode', () => {
-    let wrapper: Enzyme.ShallowWrapper<RadioButtonProps, RadioButtonState>;
+    let wrapper: Enzyme.ShallowWrapper<RadioButtonProps<string>>;
 
     beforeEach(() => {
       wrapper = shallow(

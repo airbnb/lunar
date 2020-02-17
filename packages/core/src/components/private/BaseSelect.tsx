@@ -36,28 +36,28 @@ export const styleSheetSelect: StyleSheet = ({ pattern, unit }) => ({
   },
 });
 
-export type BaseSelectProps = SelectProps & {
+export type BaseSelectProps<T extends string> = SelectProps<T> & {
   /** List of `option`s to render. */
   children: NonNullable<React.ReactNode>;
   /** An empty `option` to render at the top of the list. */
   placeholder?: string;
   /** Callback fired when the value changes. */
-  onChange: (value: string, event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (value: T, event: React.ChangeEvent<HTMLSelectElement>) => void;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
 };
 
-export default function BaseSelect({
+export default function BaseSelect<T extends string = string>({
   children,
   placeholder = '',
   onChange,
   styleSheet,
   ...restProps
-}: BaseSelectProps) {
+}: BaseSelectProps<T>) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetSelect);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    onChange(event.currentTarget.value, event);
+    onChange(event.currentTarget.value as T, event);
   };
 
   return (

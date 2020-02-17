@@ -34,7 +34,7 @@ describe('<Switch />', () => {
   it('can set checked', () => {
     const wrapper = shallow(<Switch name="foo" label="Label" onChange={() => {}} />);
 
-    expect(wrapper.find(BaseSwitch).prop('checked')).toBe(false);
+    expect(wrapper.find(BaseSwitch).prop('checked')).toBeUndefined();
 
     wrapper.setProps({
       checked: true,

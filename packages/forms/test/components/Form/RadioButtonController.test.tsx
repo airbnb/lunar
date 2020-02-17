@@ -13,9 +13,16 @@ describe('<RadioButtonController />', () => {
     context = createFormContext();
   });
 
+  type Value = 'foo' | 'bar' | 'baz';
+
   it('connects to the form', () => {
     const wrapper = mount(
-      <RadioButtonController label="Label" name="foo" defaultValue="bar" validator={() => {}}>
+      <RadioButtonController<Value>
+        label="Label"
+        name="foo"
+        defaultValue="bar"
+        validator={() => {}}
+      >
         {RB => (
           <div>
             <RB value="foo" label="Foo" />
