@@ -38,26 +38,39 @@ export const styleSheetContent: StyleSheet = ({ color, pattern, ui, unit }) => (
 
   side: {
     display: 'flex',
-    alignItems: 'center',
     height: '100%',
+    alignItems: 'flex-start',
     paddingTop: unit * 3,
     paddingBottom: unit * 3,
   },
 
-  sideButton: {
-    ...pattern.resetButton,
-    height: '100%',
-    '@selectors': {
-      '> span': {
-        height: '100%',
-        display: 'block',
-      },
-    },
+  side_middleAlign: {
+    alignItems: 'center',
   },
 
   side_compact: {
     paddingTop: unit * 1.5,
     paddingBottom: unit * 1.5,
+  },
+
+  side_noPadding: {
+    padding: 0,
+  },
+
+  sideButton: {
+    ...pattern.resetButton,
+    height: '100%',
+
+    '@selectors': {
+      ':hover, :focus': {
+        outline: 'none',
+      },
+
+      '> span': {
+        height: '100%',
+        display: 'block',
+      },
+    },
   },
 
   after: {
@@ -74,18 +87,5 @@ export const styleSheetContent: StyleSheet = ({ color, pattern, ui, unit }) => (
 
   before_compact: {
     paddingLeft: unit * 1.5,
-  },
-
-  image: {
-    display: 'block',
-    objectFit: 'cover',
-  },
-
-  topImage: {
-    height: 105,
-  },
-
-  topImage_large: {
-    height: 195,
   },
 });
