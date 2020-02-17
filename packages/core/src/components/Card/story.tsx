@@ -6,6 +6,7 @@ import stars from ':storybook/images/stars.jpg';
 import moon from ':storybook/images/moon.png';
 import Text from '../Text';
 import ResponsiveImage from '../ResponsiveImage';
+import Image from '../Image';
 import Card, { Content } from '.';
 
 export default {
@@ -116,7 +117,10 @@ withAMinHeight.story = {
 export function aCardWithATopFeaturedImage() {
   return (
     <Card>
-      <Content topImageSrc={stars}>
+      <Content
+        noPaddingTop
+        top={<Image background cover alt="" height={105} width="100%" src={stars} />}
+      >
         <Text>
           <LoremIpsum />
         </Text>
@@ -132,7 +136,10 @@ aCardWithATopFeaturedImage.story = {
 export function aCardWithALargeTopFeaturedImage() {
   return (
     <Card>
-      <Content large topImageSrc={stars}>
+      <Content
+        noPaddingTop
+        top={<Image background cover alt="" height={195} width="100%" src={stars} />}
+      >
         <Text>
           <LoremIpsum />
         </Text>
@@ -148,7 +155,10 @@ aCardWithALargeTopFeaturedImage.story = {
 export function aCardWithASmallLeftFeaturedImage() {
   return (
     <Card>
-      <Content small beforeImageSrc={moon}>
+      <Content
+        noPaddingBefore
+        before={<Image background cover alt="" height="100%" width={80} src={moon} />}
+      >
         <Text>
           <LoremIpsum />
         </Text>
@@ -164,7 +174,10 @@ aCardWithASmallLeftFeaturedImage.story = {
 export function aCardWithALeftFeaturedImage() {
   return (
     <Card>
-      <Content beforeImageSrc={moon}>
+      <Content
+        noPaddingBefore
+        before={<Image background cover alt="" height="100%" width={152} src={moon} />}
+      >
         <Text>
           <LoremIpsum />
         </Text>
@@ -180,7 +193,10 @@ aCardWithALeftFeaturedImage.story = {
 export function aCardWithALargeLeftFeaturedImage() {
   return (
     <Card>
-      <Content large beforeImageSrc={moon}>
+      <Content
+        noPaddingBefore
+        before={<Image background cover alt="" height="100%" width={195} src={moon} />}
+      >
         <Text>
           <LoremIpsum />
         </Text>
@@ -196,7 +212,10 @@ aCardWithALargeLeftFeaturedImage.story = {
 export function aCardWithASmallRightFeaturedImage() {
   return (
     <Card>
-      <Content small afterImageSrc={moon}>
+      <Content
+        noPaddingAfter
+        after={<Image background cover alt="" height="100%" width={80} src={moon} />}
+      >
         <Text>
           <LoremIpsum />
         </Text>
@@ -212,7 +231,10 @@ aCardWithASmallRightFeaturedImage.story = {
 export function aCardWithARightFeaturedImage() {
   return (
     <Card>
-      <Content afterImageSrc={moon}>
+      <Content
+        noPaddingAfter
+        after={<Image background cover alt="" height="100%" width={152} src={moon} />}
+      >
         <Text>
           <LoremIpsum />
         </Text>
@@ -228,7 +250,10 @@ aCardWithARightFeaturedImage.story = {
 export function aCardWithALargeRightFeaturedImage() {
   return (
     <Card>
-      <Content large afterImageSrc={moon}>
+      <Content
+        noPaddingAfter
+        after={<Image background cover alt="" height="100%" width={195} src={moon} />}
+      >
         <Text>
           <LoremIpsum />
         </Text>
@@ -244,7 +269,11 @@ aCardWithALargeRightFeaturedImage.story = {
 export function aCardWithTextTruncation() {
   return (
     <Card>
-      <Content truncated beforeImageSrc={stars}>
+      <Content
+        truncated
+        noPaddingBefore
+        before={<Image background cover alt="" height="100%" width={152} src={moon} />}
+      >
         <Text truncated>
           <LoremIpsum />
         </Text>
@@ -261,7 +290,7 @@ aCardWithTextTruncation.story = {
   name: 'A card with text truncation.',
 };
 
-export function clickAble() {
+export function clickableCard() {
   return (
     <Card>
       <Content
@@ -277,7 +306,7 @@ export function clickAble() {
   );
 }
 
-clickAble.story = {
+clickableCard.story = {
   name: 'Click-able.',
 };
 
@@ -336,7 +365,11 @@ cardAsAButtonWithMiddleAlignment.story = {
 export function asClickableBeforeImage() {
   return (
     <Card>
-      <Content large beforeImageSrc={moon} onBeforeImageClick={action('onClick before')}>
+      <Content
+        noPaddingBefore
+        before={<Image background cover alt="" height="100%" width={152} src={moon} />}
+        onBeforeClick={action('onClick before')}
+      >
         <Text>
           <LoremIpsum />
         </Text>
@@ -352,7 +385,11 @@ asClickableBeforeImage.story = {
 export function asClickableAfterImage() {
   return (
     <Card>
-      <Content large afterImageSrc={moon} onAfterImageClick={action('onClick after')}>
+      <Content
+        noPaddingAfter
+        after={<Image background cover alt="" height="100%" width={152} src={moon} />}
+        onAfterClick={action('onClick after')}
+      >
         <Text>
           <LoremIpsum />
         </Text>
@@ -363,4 +400,37 @@ export function asClickableAfterImage() {
 
 asClickableAfterImage.story = {
   name: 'A card with a clickable after image.',
+};
+
+export function aCardWithAllTheExtraContentAndAlignMents() {
+  return (
+    <>
+      <Card>
+        <Content
+          after={<Text>After</Text>}
+          before={<Image background cover alt="" height={80} width={80} src={moon} />}
+          top={<Text centerAlign>Top</Text>}
+        >
+          <Text>Default alignment</Text>
+        </Content>
+      </Card>
+
+      <br />
+
+      <Card>
+        <Content
+          middleAlign
+          after={<Text>After</Text>}
+          before={<Image background cover alt="" height={80} width={80} src={moon} />}
+          top={<Text centerAlign>Top</Text>}
+        >
+          <Text>Middle alignment</Text>
+        </Content>
+      </Card>
+    </>
+  );
+}
+
+aCardWithAllTheExtraContentAndAlignMents.story = {
+  name: 'Cards with before, after, and top content showing different alignments.',
 };
