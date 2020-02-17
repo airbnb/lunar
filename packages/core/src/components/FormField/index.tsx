@@ -59,7 +59,7 @@ export type PrivateProps = FormFieldProps & {
   renderLargeLabel?: boolean;
   /** @ignore Stretches the label to 100%. */
   stretchLabel?: boolean;
-  /** @ignore Top align content. */
+  /** @ignore Middle align content. */
   middleAlign?: boolean;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
