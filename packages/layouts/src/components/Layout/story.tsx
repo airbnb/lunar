@@ -31,7 +31,7 @@ export function standardLayoutCentered() {
 }
 
 standardLayoutCentered.story = {
-  name: 'Wtih `centerAlign`.',
+  name: 'With `centerAlign`.',
 };
 
 export function withMinHeight() {

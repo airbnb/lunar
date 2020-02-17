@@ -195,14 +195,19 @@ describe('<Tabs/>', () => {
   it('triggers `onChange` when clicking', () => {
     const spy = jest.fn();
     const wrapper = mountUseStyles(
-      <Tabs onChange={spy}>
+      <Tabs<'a' | 'b' | 'c'> onChange={spy}>
         <Tab key="a" label="Label" />
+        <Tab key="b" label="Label" />
+        <Tab key="c" label="Label" />
       </Tabs>,
     );
 
-    wrapper.find(ButtonOrLink).simulate('click');
+    wrapper
+      .find(ButtonOrLink)
+      .at(1)
+      .simulate('click');
 
-    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith('b');
   });
 
   it('wraps in scroller when using `scrollable`', () => {

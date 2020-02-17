@@ -10,9 +10,11 @@ export default {
   },
 };
 
+type Value = 'red' | 'green' | 'blue';
+
 export function aListOfSingleSelectToggleButtons() {
   return (
-    <ToggleButtonController
+    <ToggleButtonController<Value>
       value="red"
       name="button-group-controller"
       label="Favorite color?"
@@ -41,7 +43,7 @@ aListOfSingleSelectToggleButtons.story = {
 
 export function handlesInvalidState() {
   return (
-    <ToggleButtonController
+    <ToggleButtonController<Value>
       invalid
       value="red"
       name="button-group-controller"
@@ -71,7 +73,7 @@ handlesInvalidState.story = {
 
 export function handlesDisabledState() {
   return (
-    <ToggleButtonController
+    <ToggleButtonController<Value>
       disabled
       value="red"
       name="button-group-controller"
@@ -101,7 +103,7 @@ handlesDisabledState.story = {
 
 export function asSmall() {
   return (
-    <ToggleButtonController
+    <ToggleButtonController<Value>
       small
       value="red"
       name="button-group-controller"
@@ -131,7 +133,7 @@ asSmall.story = {
 
 export function asLarge() {
   return (
-    <ToggleButtonController
+    <ToggleButtonController<Value>
       large
       value="red"
       name="button-group-controller"
@@ -161,7 +163,7 @@ asLarge.story = {
 
 export function withInline() {
   return (
-    <ToggleButtonController
+    <ToggleButtonController<Value>
       inline
       value="red"
       name="button-group-controller"

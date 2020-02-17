@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 import CheckBoxController from '../../src/components/CheckBoxController';
 
 describe('<CheckBoxController />', () => {
+  type Value = 'foo' | 'bar' | 'baz' | 'qux';
+
   const props = {
     name: 'cb',
     value: ['foo'],
@@ -101,7 +103,7 @@ describe('<CheckBoxController />', () => {
 
   it('handles checked', () => {
     const wrapper = shallow<CheckBoxController>(
-      <CheckBoxController {...props}>
+      <CheckBoxController<Value> {...props} value={['foo']}>
         {CB => (
           <div>
             <CB value="foo" label="Foo" />

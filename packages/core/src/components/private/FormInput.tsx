@@ -26,7 +26,7 @@ export type IgnoreAttributes =
   | 'results'
   | 'security';
 
-export type FormInputProps<T = unknown> = {
+export type FormInputProps<T extends string = string, R = unknown> = {
   /** Mark the field as important. */
   important?: boolean;
   /** Mark the field as invalid. */
@@ -38,28 +38,34 @@ export type FormInputProps<T = unknown> = {
   /** Mark the field as optional. */
   optional?: boolean;
   /** Reference to access the underlying input DOM element. */
-  propagateRef?: React.Ref<T>;
+  propagateRef?: React.Ref<R>;
   /** Decrease font size and padding to small. */
   small?: boolean;
   /** Current value. */
-  value?: string;
+  value?: T;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
 };
 
-export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoreAttributes> &
-  FormInputProps<HTMLInputElement>;
+export type InputProps<T extends string = string> = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  IgnoreAttributes
+> &
+  FormInputProps<T, HTMLInputElement>;
 
-export type SelectProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, IgnoreAttributes> &
-  FormInputProps<HTMLSelectElement>;
+export type SelectProps<T extends string = string> = Omit<
+  React.SelectHTMLAttributes<HTMLSelectElement>,
+  IgnoreAttributes
+> &
+  FormInputProps<T, HTMLSelectElement>;
 
-export type TextAreaProps = Omit<
+export type TextAreaProps<T extends string = string> = Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
   IgnoreAttributes
 > &
-  FormInputProps<HTMLTextAreaElement>;
+  FormInputProps<T, HTMLTextAreaElement>;
 
-export type PrivateProps = FormInputProps & {
+export type PrivateProps<T extends string> = FormInputProps<T> & {
   // Support everything for convenience
   [key: string]: unknown;
   /** @ignore */
@@ -74,7 +80,7 @@ export type PrivateProps = FormInputProps & {
   styleSheet?: StyleSheet;
 };
 
-function FormInput({
+function FormInput<T extends string = string>({
   children,
   disabled,
   hasPrefix,
@@ -91,7 +97,7 @@ function FormInput({
   tagName: Tag,
   styleSheet,
   ...restProps
-}: PrivateProps) {
+}: PrivateProps<T>) {
   const [styles, cx] = useStyles(styleSheet ?? inputStyleSheet);
   const isSelect = Tag === 'select';
 

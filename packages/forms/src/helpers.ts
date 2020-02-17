@@ -18,8 +18,8 @@ export function isPrimitive(value: unknown): boolean {
 /**
  * Return an empty string for non-primitives, otherwise cast to a string.
  */
-export function toString(value: unknown): string {
-  return isPrimitive(value) ? String(value) : '';
+export function toString<T extends string = string>(value: unknown): T {
+  return (isPrimitive(value) ? String(value) : '') as T;
 }
 
 /**

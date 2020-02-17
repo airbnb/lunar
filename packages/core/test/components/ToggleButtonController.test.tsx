@@ -10,6 +10,8 @@ function clickButton(wrapper: Enzyme.ShallowWrapper, value: unknown): Enzyme.Sha
 }
 
 describe('<ToggleButtonController />', () => {
+  type Value = '1' | '2' | '3';
+
   const props = {
     id: 'foo',
     name: 'bg',
@@ -54,7 +56,7 @@ describe('<ToggleButtonController />', () => {
   it('does not notify of click that does not cause change', () => {
     const onChange = jest.fn();
     const wrapper = shallow(
-      <ToggleButtonController {...props} value="1" onChange={onChange}>
+      <ToggleButtonController<Value> {...props} value="1" onChange={onChange}>
         {ProxyButton => (
           <div>
             <ProxyButton value="1">1</ProxyButton>
@@ -96,7 +98,7 @@ describe('<ToggleButtonController />', () => {
 
   it('inverts inactive buttons', () => {
     const wrapper = shallow(
-      <ToggleButtonController {...props} value="1">
+      <ToggleButtonController<Value> {...props} value="1">
         {ProxyButton => (
           <div>
             <ProxyButton value="1">1</ProxyButton>
@@ -131,7 +133,7 @@ describe('<ToggleButtonController />', () => {
 
   it('renders `small` buttons', () => {
     const wrapper = shallow(
-      <ToggleButtonController {...props} small value="1">
+      <ToggleButtonController<Value> {...props} small value="1">
         {ProxyButton => (
           <div>
             <ProxyButton value="1">1</ProxyButton>

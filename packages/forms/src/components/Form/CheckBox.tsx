@@ -4,12 +4,14 @@ import useFormField, { FieldProps } from '../../hooks/useFormField';
 import { toBool } from '../../helpers';
 
 /** `CheckBox` automatically connected to the parent `Form`.  */
-export default function FormCheckBox(props: FieldProps<boolean, CheckBoxProps>) {
+export default function FormCheckBox<T extends string = string>(
+  props: FieldProps<boolean, CheckBoxProps<T>>,
+) {
   const fieldProps = useFormField(props, {
     initialValue: false,
     parse: toBool,
     valueProp: 'checked',
   });
 
-  return <CheckBox {...fieldProps} />;
+  return <CheckBox<T> {...fieldProps} />;
 }
