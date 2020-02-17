@@ -237,7 +237,7 @@ export function withAllFields() {
         onChange={action('onChange')}
       />
 
-      <CheckBoxController
+      <CheckBoxController<'foo' | 'bar' | 'baz'>
         unregisterOnUnmount
         label="Checkboxes"
         name="multiple_checkbox"
@@ -283,7 +283,7 @@ export function withAllFields() {
         )}
       </CheckBoxController>
 
-      <RadioButtonController
+      <RadioButtonController<'foo' | 'bar' | 'baz'>
         unregisterOnUnmount
         label="Radio buttons (in button mode)"
         name="multiple_radio"
@@ -300,7 +300,7 @@ export function withAllFields() {
         )}
       </RadioButtonController>
 
-      <ToggleButtonController
+      <ToggleButtonController<'foo' | 'bar' | 'baz'>
         unregisterOnUnmount
         label="Toggle buttons"
         name="mutliple_buttons"

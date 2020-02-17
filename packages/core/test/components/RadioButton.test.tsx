@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import RadioButton, { RadioButtonProps, RadioButtonState } from '../../src/components/RadioButton';
+import RadioButton, { RadioButtonProps } from '../../src/components/RadioButton';
 import FormField from '../../src/components/FormField';
 import BaseRadioButton from '../../src/components/private/BaseRadioButton';
 import Text from '../../src/components/Text';
@@ -69,7 +69,7 @@ describe('<RadioButton />', () => {
   });
 
   describe('button mode', () => {
-    let wrapper: Enzyme.ShallowWrapper<RadioButtonProps, RadioButtonState>;
+    let wrapper: Enzyme.ShallowWrapper<RadioButtonProps<string>>;
 
     beforeEach(() => {
       wrapper = shallow(

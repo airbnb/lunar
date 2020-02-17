@@ -5,16 +5,20 @@ import proxyComponent from '../../utils/proxyComponent';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import CheckBox, { CheckBoxProps } from '../CheckBox';
 
-export type PropsProvided<T extends string> = Omit<
-  CheckBoxProps<T>,
-  'checked' | 'hideOptionalLabel' | 'id' | 'onChange' | 'value'
+export type CheckBoxControlledProps<T extends string> = Partial<
+  Omit<CheckBoxProps<T>, 'label' | 'value'>
 > & {
+  label: NonNullable<React.ReactNode>;
   value: T;
 };
 
 export type CheckBoxControllerProps<T extends string> = FormFieldProps & {
   /** Function children in which CheckBox components can be rendered. */
-  children: (component: React.ComponentType<PropsProvided<T>>, values: T[], id: string) => void;
+  children: (
+    component: React.ComponentType<CheckBoxControlledProps<T>>,
+    values: T[],
+    id: string,
+  ) => void;
   /** Unique name of the field. */
   name: string;
   /** Callback that is triggered when a child CheckBox is clicked. */
@@ -75,7 +79,7 @@ export default class CheckBoxController<T extends string = string> extends React
     );
   };
 
-  renderCheckBox = proxyComponent<PropsProvided<T>>(CheckBox, ({ value, ...props }) => {
+  renderCheckBox = proxyComponent<CheckBoxControlledProps<T>>(CheckBox, ({ value, ...props }) => {
     const { inputProps } = partitionFieldProps<T, CheckBoxControllerProps<T>>(this.props);
     const { id, values } = this.state;
 
@@ -94,7 +98,7 @@ export default class CheckBoxController<T extends string = string> extends React
   });
 
   render() {
-    const { children, fieldProps } = partitionFieldProps(this.props);
+    const { children, fieldProps } = partitionFieldProps<T, CheckBoxControllerProps<T>>(this.props);
     const { id, values } = this.state;
 
     return (

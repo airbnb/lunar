@@ -21,6 +21,7 @@
     "target": "es2015",
     "useDefineForClassFields": false,
     "composite": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "noErrorTruncation": false
   }
 }

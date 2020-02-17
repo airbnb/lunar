@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function proxyComponent<T>(
   Component: React.ComponentType<any>,
-  implementation: (props: T) => React.ReactElement<T>,
+  implementation: (props: T) => React.ReactElement<any>,
 ): React.ComponentType<T> {
   function Proxy(props: T) {
     return implementation(props);

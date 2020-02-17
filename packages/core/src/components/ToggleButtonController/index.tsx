@@ -9,31 +9,35 @@ import { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
 export { ButtonGroup };
 
-export type PropsProvided = Partial<ButtonProps> & {
+export type ToggleButtonControlledProps<T extends string> = Partial<ButtonProps> & {
   children: NonNullable<React.ReactNode>;
-  value: string;
+  value: T;
 };
 
-export type ToggleButtonControllerProps = FormFieldProps & {
+export type ToggleButtonControllerProps<T extends string> = FormFieldProps & {
   /** Function children in which Button components can be rendered. */
-  children: (component: React.ComponentType<PropsProvided>, value: string, id: string) => void;
+  children: (
+    component: React.ComponentType<ToggleButtonControlledProps<T>>,
+    value: T,
+    id: string,
+  ) => void;
   /** Unique name of the field. */
   name: string;
   /** Callback that is triggered when a child Button is clicked. */
-  onChange: (value: string, event: React.MouseEvent<HTMLButtonElement>) => void;
+  onChange: (value: T, event: React.MouseEvent<HTMLButtonElement>) => void;
   /** Default value. */
-  value?: string;
+  value?: T;
 };
 
-export type ToggleButtonControllerState = {
+export type ToggleButtonControllerState<T extends string> = {
   id: string;
-  value: string;
+  value: T;
 };
 
 /** Manage a group of buttons with the same input `name`. */
-export default class ToggleButtonController extends React.Component<
-  ToggleButtonControllerProps,
-  ToggleButtonControllerState
+export default class ToggleButtonController<T extends string = string> extends React.Component<
+  ToggleButtonControllerProps<T>,
+  ToggleButtonControllerState<T>
 > {
   static defaultProps = {
     value: '',
@@ -41,19 +45,19 @@ export default class ToggleButtonController extends React.Component<
 
   state = {
     id: uuid(),
-    value: this.props.value || '',
+    value: this.props.value || ('' as T),
   };
 
-  componentDidUpdate(prevProps: ToggleButtonControllerProps) {
+  componentDidUpdate(prevProps: ToggleButtonControllerProps<T>) {
     if (this.props.value !== prevProps.value) {
       this.setState({
-        value: this.props.value || '',
+        value: this.props.value || ('' as T),
       });
     }
   }
 
   private handleClick = (event: React.MouseEvent<ButtonOrLinkTypes>) => {
-    const newValue = event.currentTarget.dataset.value!;
+    const newValue = event.currentTarget.dataset.value! as T;
     const { value } = this.state;
 
     if (newValue === value) {
@@ -67,31 +71,36 @@ export default class ToggleButtonController extends React.Component<
     });
   };
 
-  renderButton = proxyComponent(BaseButton, ({ children, value, ...props }: PropsProvided) => {
-    const { small, disabled, invalid, large } = this.props;
-    const { id, value: selectedValue } = this.state;
-    const selected = value === selectedValue;
+  renderButton = proxyComponent<ToggleButtonControlledProps<T>>(
+    BaseButton,
+    ({ children, value, ...props }) => {
+      const { small, disabled, invalid, large } = this.props;
+      const { id, value: selectedValue } = this.state;
+      const selected = value === selectedValue;
 
-    return (
-      <FormInputButton
-        {...props}
-        data-value={value}
-        id={`${id}-${value}`}
-        name={name}
-        disabled={disabled}
-        inverted={!selected}
-        invalid={invalid}
-        small={small}
-        large={large}
-        onClick={this.handleClick}
-      >
-        {children}
-      </FormInputButton>
-    );
-  });
+      return (
+        <FormInputButton
+          {...props}
+          data-value={value}
+          id={`${id}-${value}`}
+          name={name}
+          disabled={disabled}
+          inverted={!selected}
+          invalid={invalid}
+          small={small}
+          large={large}
+          onClick={this.handleClick}
+        >
+          {children}
+        </FormInputButton>
+      );
+    },
+  );
 
   render() {
-    const { children, fieldProps } = partitionFieldProps(this.props);
+    const { children, fieldProps } = partitionFieldProps<T, ToggleButtonControllerProps<T>>(
+      this.props,
+    );
     const { id, value } = this.state;
 
     return (

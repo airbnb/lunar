@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import uuid from 'uuid/v4';
-import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import BaseCheckBox, { BaseCheckBoxProps } from '../private/BaseCheckBox';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import Text from '../Text';
-
-const stateProp = mutuallyExclusiveTrueProps('checked', 'indeterminate');
 
 export type CheckBoxProps<T extends string> = BaseCheckBoxProps<T> &
   FormFieldProps & {
@@ -14,7 +11,7 @@ export type CheckBoxProps<T extends string> = BaseCheckBoxProps<T> &
   };
 
 /** A controlled checkbox field. */
-function CheckBox<T extends string = string>(props: CheckBoxProps<T>) {
+export default function CheckBox<T extends string = string>(props: CheckBoxProps<T>) {
   const { children, fieldProps, inputProps } = partitionFieldProps<T, CheckBoxProps<T>>(props);
   const { topAlign, ...restProps } = inputProps;
   const [id] = useState(() => uuid());
@@ -31,7 +28,12 @@ function CheckBox<T extends string = string>(props: CheckBoxProps<T>) {
       renderFullWidth={inputProps.button}
       topAlign={topAlign}
     >
-      <BaseCheckBox<T> {...restProps} id={props.id || id} hideLabel={fieldProps.hideLabel}>
+      <BaseCheckBox<T>
+        value="1"
+        {...restProps}
+        id={props.id || id}
+        hideLabel={fieldProps.hideLabel}
+      >
         {children || (
           <>
             <Text bold>{fieldProps.label}</Text>
@@ -42,10 +44,3 @@ function CheckBox<T extends string = string>(props: CheckBoxProps<T>) {
     </FormField>
   );
 }
-
-CheckBox.propTypes = {
-  checked: stateProp,
-  indeterminate: stateProp,
-};
-
-export default CheckBox;

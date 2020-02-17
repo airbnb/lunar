@@ -82,7 +82,7 @@ export default class FeedbackForm extends React.PureComponent<
     return (
       <Form onSubmit={this.handleSubmit} onStateUpdate={this.handleStateUpdate}>
         {!disableBugReporting && (
-          <RadioButtonController
+          <RadioButtonController<'bug' | 'feedback'>
             name="type"
             label={
               <T
