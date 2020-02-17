@@ -33,9 +33,9 @@ describe('<Card />', () => {
       true,
     );
 
-    expect(shallow(wrapper.find(Row).prop('after') as React.ReactElement).hasClass('side_noPadding')).toBe(
-      true,
-    );
+    expect(
+      shallow(wrapper.find(Row).prop('after') as React.ReactElement).hasClass('side_noPadding'),
+    ).toBe(true);
   });
 
   it('renders before content', () => {
@@ -59,9 +59,9 @@ describe('<Card />', () => {
       true,
     );
 
-    expect(shallow(wrapper.find(Row).prop('before') as React.ReactElement).hasClass('side_noPadding')).toBe(
-      true,
-    );
+    expect(
+      shallow(wrapper.find(Row).prop('before') as React.ReactElement).hasClass('side_noPadding'),
+    ).toBe(true);
   });
 
   it('renders top content', () => {
@@ -71,8 +71,6 @@ describe('<Card />', () => {
     expect(wrapper.contains(top)).toBe(true);
   });
 
-
-
   it('renders top content with no padding', () => {
     const top = '~~Top~~';
     const wrapper = shallow(
@@ -81,13 +79,19 @@ describe('<Card />', () => {
       </Content>,
     );
 
-    expect(wrapper.find(Spacing).at(0).prop('horizontal')).toBe(
-      0,
-    );
+    expect(
+      wrapper
+        .find(Spacing)
+        .at(0)
+        .prop('horizontal'),
+    ).toBe(0);
 
-    expect(wrapper.find(Spacing).at(0).prop('top')).toBe(
-      0,
-    );
+    expect(
+      wrapper
+        .find(Spacing)
+        .at(0)
+        .prop('top'),
+    ).toBe(0);
   });
 
   it('renders before content as clickable', () => {
