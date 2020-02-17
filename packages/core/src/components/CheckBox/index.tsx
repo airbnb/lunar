@@ -7,7 +7,7 @@ import Text from '../Text';
 
 const stateProp = mutuallyExclusiveTrueProps('checked', 'indeterminate');
 
-export type CheckBoxProps = BaseCheckBoxProps &
+export type CheckBoxProps<T extends string> = BaseCheckBoxProps<T> &
   FormFieldProps & {
     /** Top align content. */
     topAlign?: boolean;
@@ -18,7 +18,10 @@ export type CheckBoxState = {
 };
 
 /** A controlled checkbox field. */
-export default class CheckBox extends React.Component<CheckBoxProps, CheckBoxState> {
+export default class CheckBox<T extends string = string> extends React.Component<
+  CheckBoxProps<T>,
+  CheckBoxState
+> {
   static defaultProps = {
     button: false,
     checked: false,
@@ -39,7 +42,9 @@ export default class CheckBox extends React.Component<CheckBoxProps, CheckBoxSta
   };
 
   render() {
-    const { children, fieldProps, inputProps } = partitionFieldProps(this.props);
+    const { children, fieldProps, inputProps } = partitionFieldProps<T, CheckBoxProps<T>>(
+      this.props,
+    );
     const { topAlign, ...restProps } = inputProps;
     const { id } = this.state;
     const { hideLabel } = fieldProps;
@@ -56,7 +61,7 @@ export default class CheckBox extends React.Component<CheckBoxProps, CheckBoxSta
         renderFullWidth={inputProps.button}
         topAlign={topAlign}
       >
-        <BaseCheckBox {...restProps} id={id} hideLabel={hideLabel}>
+        <BaseCheckBox<T> {...restProps} id={id} hideLabel={hideLabel}>
           {children || (
             <>
               <Text bold>{fieldProps.label}</Text>
