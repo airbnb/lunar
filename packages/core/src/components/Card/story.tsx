@@ -408,12 +408,10 @@ export function aCardWithAllTheExtraContentAndAlignMents() {
       <Card>
         <Content
           after={<Text>After</Text>}
-          before={<Text>Before</Text>}
+          before={<Image background cover alt="" height={80} width={80} src={moon} />}
           top={<Text centerAlign>Top</Text>}
         >
-          <Text>
-            <LoremIpsum />
-          </Text>
+          <Text>Default alignment</Text>
         </Content>
       </Card>
 
@@ -423,14 +421,13 @@ export function aCardWithAllTheExtraContentAndAlignMents() {
         <Content
           middleAlign
           after={<Text>After</Text>}
-          before={<Text>Before</Text>}
+          before={<Image background cover alt="" height={80} width={80} src={moon} />}
           top={<Text centerAlign>Top</Text>}
         >
-          <Text>
-            <LoremIpsum />
-          </Text>
+          <Text>Middle alignment</Text>
         </Content>
       </Card>
+
     </>
   );
 }
