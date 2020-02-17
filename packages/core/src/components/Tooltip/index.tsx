@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React from 'react';
 import uuid from 'uuid/v4';
 import Overlay from '../Overlay';
 import NotchedBox, { NOTCH_SIZE, NOTCH_SPACING } from '../NotchedBox';
 import Text from '../Text';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import { styleSheet } from './styles';
+import { styleSheetTooltip } from './styles';
 import Portal from '../Portal';
 
 const EMPTY_TARGET_RECT: ClientRect = {
@@ -264,6 +265,6 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   }
 }
 
-export default withStyles(styleSheet, {
+export default withStyles(styleSheetTooltip, {
   passThemeProp: true,
 })(Tooltip);

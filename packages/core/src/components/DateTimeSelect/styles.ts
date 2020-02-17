@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ unit }) => ({
+export const styleSheetDateTimeSelect: StyleSheet = ({ unit }) => ({
   selects: {
     display: 'flex',
     width: '100%',
@@ -19,7 +19,3 @@ const styleSheet: StyleSheet = ({ unit }) => ({
     paddingRight: unit / 2,
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

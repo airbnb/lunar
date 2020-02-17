@@ -1,6 +1,6 @@
 import { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 
-const styleSheet: StyleSheet = () => ({
+export const styleSheetSplitLayout: StyleSheet = () => ({
   wrapper: {
     display: 'flex',
     height: '100%',
@@ -10,7 +10,3 @@ const styleSheet: StyleSheet = () => ({
     width: '50%',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

@@ -7,7 +7,7 @@ import T from '../Translate';
 import Text from '../Text';
 import Picker from './Picker';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import { styleSheet } from './styles';
+import { styleSheetPicker } from './styles';
 
 import {
   ItemPickedHandler,
@@ -210,4 +210,4 @@ export class HierarchyPicker extends React.Component<
   }
 }
 
-export default withStyles(styleSheet)(HierarchyPicker);
+export default withStyles(styleSheetPicker)(HierarchyPicker);

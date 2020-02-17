@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheet: StyleSheet = ({ color, pattern }) => ({
+export const styleSheetCard: StyleSheet = ({ color, pattern }) => ({
   card: {
     ...pattern.box,
     background: color.accent.bg,

@@ -7,7 +7,7 @@ import IconButton from '../IconButton';
 import ExpandableIcon from '../ExpandableIcon';
 import Dropdown, { DropdownProps } from '../Dropdown';
 import Menu, { Item, Separator, MenuProps } from '../Menu';
-import { styleSheet } from './styles';
+import { styleSheetMenuToggle } from './styles';
 
 export type MenuToggleProps = {
   /** Accessibility label for menu. */
@@ -128,7 +128,7 @@ export class MenuToggle extends React.Component<
     // Let the button handle itself
     const { current } = this.ref;
 
-    if (current && current.contains(event.target as Element)) {
+    if (current?.contains(event.target as Element)) {
       return;
     }
 
@@ -224,4 +224,4 @@ export class MenuToggle extends React.Component<
 
 export { Item, Separator };
 
-export default withStyles(styleSheet)(MenuToggle);
+export default withStyles(styleSheetMenuToggle)(MenuToggle);

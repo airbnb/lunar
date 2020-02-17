@@ -1,6 +1,6 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetButtonGroup } from './styles';
 
 export type ButtonGroupProps = {
   /** List of components to group. */
@@ -11,11 +11,19 @@ export type ButtonGroupProps = {
   stacked?: boolean;
   /** Stretch buttons to fill the space. */
   stretched?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Horizontally align `Button`s with a consistent gutter between each. */
-export default function ButtonGroup({ children, endAlign, stacked, stretched }: ButtonGroupProps) {
-  const [styles, cx] = useStyles(styleSheet);
+export default function ButtonGroup({
+  children,
+  endAlign,
+  stacked,
+  stretched,
+  styleSheet,
+}: ButtonGroupProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetButtonGroup);
 
   return (
     <div

@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, font, ui, unit }) => ({
+export const styleSheetStatusLabel: StyleSheet = ({ color, font, ui, unit }) => ({
   label: {
     ...font.textMicro,
     display: 'inline-block',
@@ -108,7 +108,3 @@ const styleSheet: StyleSheet = ({ color, font, ui, unit }) => ({
     color: color.core.warning[6],
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

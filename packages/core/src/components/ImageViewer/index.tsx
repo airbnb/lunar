@@ -1,9 +1,9 @@
-import React from 'react';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import React, { useState, useEffect } from 'react';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ZoomControls from './ZoomControls';
 import RotateControls from './RotateControls';
 import ResponsiveImage from '../ResponsiveImage';
-import { styleSheet } from './styles';
+import { styleSheetImageViewer } from './styles';
 
 export type ImageViewerProps = {
   /** An accessible label. */
@@ -20,12 +20,8 @@ export type ImageViewerProps = {
   scale?: number;
   /** Render width. Unconstrained (css value 'none') by default. */
   width?: number | string;
-};
-
-export type ImageViewerState = {
-  dragging: boolean;
-  imageLocation: Position;
-  lastMouseLocation: Position;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export type Position = {
@@ -34,116 +30,99 @@ export type Position = {
 };
 
 /** An image viewer that can zoom, drag, and rotate an image. */
-export class ImageViewer extends React.Component<
-  ImageViewerProps & WithStylesProps,
-  ImageViewerState
-> {
-  static defaultProps = {
-    height: 'none',
-    rotation: 0,
-    scale: 1,
-    width: 'none',
-  };
+export default function ImageViewer({
+  alt,
+  borderless,
+  height = 'none',
+  rotation = 0,
+  scale = 1,
+  src,
+  width,
+  styleSheet,
+}: ImageViewerProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetImageViewer);
+  const [dragging, setDragging] = useState(false);
+  const [imageLocation, setImageLocation] = useState<Position>({ x: 0, y: 0 });
+  const [lastMouseLocation, setMouseLocation] = useState<Position>({ x: 0, y: 0 });
 
-  state = {
-    dragging: false,
-    imageLocation: { x: 0, y: 0 },
-    lastMouseLocation: { x: 0, y: 0 },
-  };
-
-  componentDidMount() {
-    document.addEventListener('mousemove', this.handleMouseMove, false);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousemove', this.handleMouseMove, false);
-  }
-
-  private handleMouseDown = (event: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleMouseDown = (event: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.preventDefault();
-    this.setState({
-      dragging: true,
-      lastMouseLocation: {
-        x: event.pageX,
-        y: event.pageY,
-      },
+
+    setDragging(true);
+    setMouseLocation({
+      x: event.pageX,
+      y: event.pageY,
     });
   };
 
-  private handleMouseUp = (event: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleMouseUp = (event: MouseEvent | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.preventDefault();
-    this.setState({
-      dragging: false,
-      lastMouseLocation: { x: 0, y: 0 },
+
+    setDragging(false);
+    setMouseLocation({
+      x: 0,
+      y: 0,
     });
   };
 
-  private handleMouseMove = (event: MouseEvent) => {
+  const handleMouseMove = (event: MouseEvent) => {
     event.preventDefault();
-    if (this.state.dragging) {
-      this.setState(({ dragging, imageLocation, lastMouseLocation }) => {
-        const xDiff = lastMouseLocation.x - event.pageX;
-        const yDiff = lastMouseLocation.y - event.pageY;
 
-        return {
-          imageLocation: {
-            x: imageLocation.x - xDiff,
-            y: imageLocation.y - yDiff,
-          },
-          lastMouseLocation: {
-            x: event.pageX,
-            y: event.pageY,
-          },
-        };
-      });
+    if (!dragging) {
+      return;
     }
+
+    const xDiff = lastMouseLocation.x - event.pageX;
+    const yDiff = lastMouseLocation.y - event.pageY;
+
+    setImageLocation(prev => ({
+      x: prev.x - xDiff,
+      y: prev.y - yDiff,
+    }));
+
+    setMouseLocation({
+      x: event.pageX,
+      y: event.pageY,
+    });
   };
 
-  getTransformStyle() {
-    const {
-      imageLocation: { x, y },
-    } = this.state;
-    const { scale, rotation } = this.props;
+  useEffect(() => {
+    document.addEventListener('mousemove', handleMouseMove, false);
 
-    // rotation and scale have defaultProp values
-    const radian = (rotation! / 180) * Math.PI;
-    const sinRotation = Math.sin(radian);
-    const cosRotation = Math.cos(radian);
-    const translateX = (y * sinRotation + x * cosRotation) / scale!;
-    const translateY = (y * cosRotation - x * sinRotation) / scale!;
-
-    return {
-      transform: `scale(${scale}) rotate(${rotation}deg) translateY(${translateY}px) translateX(${translateX}px)`,
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove, false);
     };
-  }
+  });
 
-  render() {
-    const { alt, borderless, height, src, width, cx, styles } = this.props;
+  const { x, y } = imageLocation;
+  const radian = (rotation / 180) * Math.PI;
+  const sinRotation = Math.sin(radian);
+  const cosRotation = Math.cos(radian);
+  const translateX = (y * sinRotation + x * cosRotation) / scale;
+  const translateY = (y * cosRotation - x * sinRotation) / scale;
+  const transform = `scale(${scale}) rotate(${rotation}deg) translateY(${translateY}px) translateX(${translateX}px)`;
 
-    return (
-      <div
-        className={cx(styles.container, borderless && styles.container_borderless)}
-        role="presentation"
-        style={{ width, height }}
-        onMouseDown={this.handleMouseDown}
-        onMouseUp={this.handleMouseUp}
-      >
-        <div className={cx(styles.image)} style={this.getTransformStyle()}>
-          <ResponsiveImage
-            contain
-            noShadow
-            alt={alt}
-            borderRadius={0}
-            maxWidth={width}
-            maxHeight={height}
-            src={src}
-          />
-        </div>
+  return (
+    <div
+      className={cx(styles.container, borderless && styles.container_borderless)}
+      role="presentation"
+      style={{ width, height }}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+    >
+      <div className={cx(styles.image)} style={{ transform }}>
+        <ResponsiveImage
+          contain
+          noShadow
+          alt={alt}
+          borderRadius={0}
+          maxWidth={width}
+          maxHeight={height}
+          src={src}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export { ZoomControls, RotateControls };
-
-export default withStyles(styleSheet)(ImageViewer);

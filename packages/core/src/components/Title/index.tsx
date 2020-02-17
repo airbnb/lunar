@@ -1,7 +1,7 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetTitle } from './styles';
 
 export type TitleProps = {
   /** Align the text in the center. */
@@ -20,6 +20,8 @@ export type TitleProps = {
   muted?: boolean;
   /** Render with primary color text. */
   primary?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Display a string of text as a heading and or section title. */
@@ -32,8 +34,9 @@ function Title({
   level,
   muted,
   primary,
+  styleSheet,
 }: TitleProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetTitle);
 
   const Tag: 'h1' | 'h2' | 'h3' = `h${level}` as 'h1';
 

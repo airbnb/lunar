@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, pattern, transition }) => ({
+export const linkStyleSheet: StyleSheet = ({ color, pattern, transition }) => ({
   link: {
     ...pattern.resetButton,
     ...transition.box,
@@ -51,7 +51,3 @@ const styleSheet: StyleSheet = ({ color, pattern, transition }) => ({
     },
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

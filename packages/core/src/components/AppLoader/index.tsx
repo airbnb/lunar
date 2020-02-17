@@ -1,11 +1,11 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ErrorMessage from '../ErrorMessage';
 import Loader from '../Loader';
 import Title from '../Title';
 import Text from '../Text';
 import { ErrorType } from '../../types';
-import { styleSheet } from './styles';
+import { styleSheetAppLoader } from './styles';
 
 export type AppLoaderProps = {
   /** Center the loader and content. */
@@ -26,6 +26,8 @@ export type AppLoaderProps = {
   small?: boolean;
   /** Text to display below the title. */
   subtitle?: React.ReactNode;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A loading indicator, representing the state of a request, for applications and landing pages. */
@@ -39,8 +41,9 @@ export default function AppLoader({
   loadingText,
   small,
   subtitle,
+  styleSheet,
 }: AppLoaderProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetAppLoader);
 
   if (fetched && !error) {
     return <main>{children}</main>;

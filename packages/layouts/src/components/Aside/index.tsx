@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 import Tab from './private/Tab';
 
-const styleSheet: StyleSheet = ({ ui, unit }) => ({
+export const styleSheetAside: StyleSheet = ({ ui, unit }) => ({
   aside: {
     display: 'block',
     flexGrow: 0,
@@ -63,6 +63,8 @@ export type AsideProps = {
   width?: number | string;
   /** Callback when column is toggled. */
   onCollapseToggle?: (expanded: boolean) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** An aside column within a layout. */
@@ -76,8 +78,9 @@ export default function Aside({
   scrollable,
   width,
   onCollapseToggle,
+  styleSheet,
 }: AsideProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetAside);
   const [isExpanded, setExpanded] = useState(true);
 
   const handleCollapseToggle: React.DOMAttributes<HTMLButtonElement>['onClick'] = collapsible

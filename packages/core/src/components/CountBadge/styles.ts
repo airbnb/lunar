@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, font, unit }) => {
+export const styleSheetCountBadge: StyleSheet = ({ color, font, unit }) => {
   const waggleDuration = 300;
   const totalDuration = 2000 + waggleDuration;
   const wagglePercent = (waggleDuration / totalDuration) * 100;
@@ -58,7 +58,3 @@ const styleSheet: StyleSheet = ({ color, font, unit }) => {
     },
   };
 };
-
-export default styleSheet;
-
-export { styleSheet };

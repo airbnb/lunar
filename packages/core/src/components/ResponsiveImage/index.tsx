@@ -1,7 +1,7 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import { styleSheet } from './styles';
+import { styleSheetImage } from './styles';
 
 export const DEFAULT_BORDER_RADIUS = 6;
 const objectFitPropType = mutuallyExclusiveTrueProps('contain', 'cover');
@@ -154,4 +154,4 @@ export class ResponsiveImage extends React.Component<
   }
 }
 
-export default withStyles(styleSheet)(ResponsiveImage);
+export default withStyles(styleSheetImage)(ResponsiveImage);

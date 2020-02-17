@@ -11,7 +11,6 @@ export type WrapperProps = {
   value?: string;
 } & Partial<ReadableContext>;
 
-// eslint-disable-next-line
 export function Wrapper({
   children,
   composerContext,

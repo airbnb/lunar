@@ -5,7 +5,7 @@ export function cleanClassName(className: string | number) {
   return String(className).replace('.', 'dot');
 }
 
-const styleSheet: StyleSheet = ({ unit }) => {
+export const styleSheetSpacing: StyleSheet = ({ unit }) => {
   const spacing: { [key: string]: StyleBlock } = {};
 
   for (let i = 0; i <= 12; i += 0.5) {
@@ -26,7 +26,3 @@ const styleSheet: StyleSheet = ({ unit }) => {
     },
   };
 };
-
-export default styleSheet;
-
-export { styleSheet };

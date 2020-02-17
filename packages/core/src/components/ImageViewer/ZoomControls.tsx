@@ -9,14 +9,15 @@ import Menu, { Item } from '../Menu';
 import T from '../Translate';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = () => ({
+export const styleSheetZoomControls: StyleSheet = () => ({
   controls: {
     position: 'relative',
     display: 'inline-block',
   },
 });
 
-const ZOOM_FACTOR = 0.5;
+export const ZOOM_FACTOR = 0.5;
+
 export const ZOOM_OPTIONS = [
   {
     label: '100%',
@@ -41,11 +42,13 @@ export type ZoomControlsProps = {
   scale?: number;
   /** Callback when scale / zoom changes */
   onScale: (scale: number) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Zoom controls that can be used with an image viewer component */
-export default function ZoomControls(props: ZoomControlsProps) {
-  const [styles, cx] = useStyles(styleSheet);
+export default function ZoomControls({ styleSheet, ...props }: ZoomControlsProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetZoomControls);
   const [visible, setVisible] = useState(false);
   const { onScale, scale = 1 } = props;
 

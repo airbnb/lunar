@@ -1,8 +1,8 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { STATUSES } from '../../constants';
-import { styleSheetRow as styleSheet } from './styles';
+import { styleSheetRow } from './styles';
 
 export type TableRowProps = {
   /** Table cells to render. */
@@ -19,6 +19,8 @@ export type TableRowProps = {
   success?: boolean;
   /** Warning row (yellow). */
   warning?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A table row that contains multiple cells. */
@@ -30,9 +32,10 @@ function TableRow({
   notice,
   success,
   warning,
+  styleSheet,
   ...props
 }: TableRowProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetRow);
 
   return (
     <tr

@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 import React from 'react';
 import { SortDirection } from 'react-virtualized';
 import SortCarets from '../SortCarets';
@@ -87,12 +89,8 @@ export default function ColumnLabels({
         <Spacing left={indent ? 2 : 0}>
           <div style={heightStyle} className={cx(showDivider && styles && styles.column_divider)}>
             <div
-              style={
-                columnMetadata && columnMetadata[key] && columnMetadata[key].rightAlign
-                  ? rightAlignmentStyle
-                  : {}
-              }
-              className={cx(styles && styles.headerRow)}
+              style={columnMetadata?.[key]?.rightAlign ? rightAlignmentStyle : {}}
+              className={cx(styles?.headerRow)}
             >
               <Text micro muted>
                 {label}
@@ -117,7 +115,7 @@ export default function ColumnLabels({
     });
 
     return (
-      <div role="row" style={style} className={cx(className, styles && styles.column_header)}>
+      <div role="row" style={style} className={cx(className, styles?.column_header)}>
         {newColumns}
       </div>
     );

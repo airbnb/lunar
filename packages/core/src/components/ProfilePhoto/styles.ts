@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color }) => ({
+export const styleSheetProfilePhoto: StyleSheet = ({ color }) => ({
   inline: {
     display: 'inline-block',
   },
@@ -44,7 +44,3 @@ const styleSheet: StyleSheet = ({ color }) => ({
     maxWidth: 160,
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

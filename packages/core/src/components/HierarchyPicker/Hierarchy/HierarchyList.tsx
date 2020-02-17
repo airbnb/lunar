@@ -55,14 +55,14 @@ export default function HierarchyList({
     let deeper;
     if (verticallyAlign) {
       // next HierarchyList is a sibling
-      const ul = li && li.parentElement;
-      const parentDiv = ul && ul.parentElement;
-      const nextMenu = parentDiv && parentDiv.nextElementSibling;
-      deeper = nextMenu && nextMenu.querySelector('[tabindex]');
+      const ul = li?.parentElement;
+      const parentDiv = ul?.parentElement;
+      const nextMenu = parentDiv?.nextElementSibling;
+      deeper = nextMenu?.querySelector('[tabindex]');
     } else {
       // next HierarchyList is a child
-      const ul = li && li.lastElementChild;
-      deeper = ul && ul.querySelector('[tabindex]');
+      const ul = li?.lastElementChild;
+      deeper = ul?.querySelector('[tabindex]');
     }
 
     if (deeper) {
@@ -76,15 +76,15 @@ export default function HierarchyList({
     let shallower;
     if (verticallyAlign) {
       // prev HierarchyList is a sibling
-      const ul = li && li.parentElement;
-      const parentDiv = ul && ul.parentElement;
-      const prevMenu = parentDiv && parentDiv.previousElementSibling;
+      const ul = li?.parentElement;
+      const parentDiv = ul?.parentElement;
+      const prevMenu = parentDiv?.previousElementSibling;
       // focused parent tabIndex is higher than other parents
-      shallower = prevMenu && prevMenu.querySelector('[tabindex="1"]');
+      shallower = prevMenu?.querySelector('[tabindex="1"]');
     } else {
       // prev HierarchyList is a parent
-      const parentLi = li && li.parentElement && li.parentElement.closest('li');
-      shallower = parentLi && parentLi.querySelector('[tabindex]');
+      const parentLi = li?.parentElement?.closest('li');
+      shallower = parentLi?.querySelector('[tabindex]');
     }
 
     if (shallower) {

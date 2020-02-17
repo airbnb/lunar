@@ -1,6 +1,6 @@
 import { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ breakpoints, color, unit }) => ({
+export const styleSheetLayout: StyleSheet = ({ breakpoints, color, unit }) => ({
   layout: {
     display: 'flex',
     width: '100%',
@@ -33,7 +33,3 @@ const styleSheet: StyleSheet = ({ breakpoints, color, unit }) => ({
     maxWidth: '100%',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

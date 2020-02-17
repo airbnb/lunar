@@ -1,11 +1,11 @@
 import React from 'react';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import Text from '../Text';
 import T from '../Translate';
 import { HeaderButton, SelectedRows } from './types';
-import { styleSheetTableHeader as styleSheet } from './styles';
+import { styleSheetTableHeader } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type TableHeaderProps = {
   /** Specifies whether or not editMode can be enabled */
@@ -30,11 +30,12 @@ export type TableHeaderProps = {
   extraHeaderButtons?: HeaderButton[];
   /** Selected status of all rows, can by used by header buttons. */
   selectedRows: SelectedRows;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Header for the DataTable that displays a title and Table-level buttons. */
-export function TableHeader({
-  cx,
+export default function TableHeader({
   editable,
   editMode,
   extraHeaderButtons,
@@ -44,10 +45,11 @@ export function TableHeader({
   onEnableEditMode,
   onDisableEditMode,
   selectedRows,
-  styles,
   tableHeaderLabel,
   width,
-}: TableHeaderProps & WithStylesProps) {
+  styleSheet,
+}: TableHeaderProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetTableHeader);
   const extraEditButtons = extraHeaderButtons!.map(
     (btnConfig: HeaderButton) =>
       btnConfig.displayEditMode && (
@@ -125,5 +127,3 @@ export function TableHeader({
     </div>
   );
 }
-
-export default withStyles(styleSheet)(TableHeader);

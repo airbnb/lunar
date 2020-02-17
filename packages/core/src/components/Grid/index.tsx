@@ -1,7 +1,7 @@
 import React from 'react';
 import { childrenOfType, mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetGrid } from './styles';
 import Col from './Col';
 
 export type GridProps = {
@@ -21,6 +21,8 @@ export type GridProps = {
   startAlign?: boolean;
   /** Vertically align the columns at the top. */
   topAlign?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A grid to contain columns. */
@@ -33,8 +35,9 @@ function Grid({
   reversed,
   startAlign,
   topAlign,
+  styleSheet,
 }: GridProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetGrid);
 
   return (
     <section

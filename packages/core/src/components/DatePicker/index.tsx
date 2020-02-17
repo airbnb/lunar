@@ -1,11 +1,11 @@
 import React from 'react';
 import DayPicker, { DayPickerProps } from 'react-day-picker';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import datePickerStyles from '../private/datePickerStyles';
 import getMonths from '../../utils/getMonths';
 import getWeekdays from '../../utils/getWeekdays';
 import { getClassNames, getCustomModifiers } from '../../utils/datePicker';
 import NavBar from './Picker/NavBar';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type DatePickerProps = {
   /** Day(s) that should appear as disabled. Set a `disabled` modifier. See Matching days for a reference of the accepted value types. */
@@ -50,83 +50,76 @@ export type DatePickerProps = {
   onResetClick?: () => void;
   /** Event hander when the user clicks on the today button (when `todayButton` is set). */
   onTodayButtonClick?: DayPickerProps['onTodayButtonClick'];
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /**
  * Display a date picker.
  * Utilizes [react-day-picker](http://react-day-picker.js.org/api/DayPicker/).
  */
-export class DatePicker extends React.Component<DatePickerProps & WithStylesProps> {
-  static defaultProps = {
-    firstDayOfWeek: 0,
-    numberOfMonths: 1,
-    pagedNavigation: false,
-  };
 
-  render() {
-    const {
-      cx,
-      disabledDays,
-      firstDayOfWeek,
-      fromMonth,
-      initialMonth,
-      locale,
-      modifiers,
-      month,
-      numberOfMonths,
-      onBlur,
-      onDayClick,
-      onDayMouseEnter,
-      onFocus,
-      onMonthChange,
-      onResetClick,
-      onTodayButtonClick,
-      pagedNavigation,
-      pickerRef,
-      selectedDays,
-      showResetButton,
-      styles,
-      todayButton,
-      toMonth,
-    } = this.props;
+export default function DatePicker(props: DatePickerProps) {
+  const {
+    disabledDays,
+    firstDayOfWeek = 0,
+    fromMonth,
+    initialMonth,
+    locale,
+    modifiers,
+    month,
+    numberOfMonths = 1,
+    onBlur,
+    onDayClick,
+    onDayMouseEnter,
+    onFocus,
+    onMonthChange,
+    onResetClick,
+    onTodayButtonClick,
+    pagedNavigation,
+    pickerRef,
+    selectedDays,
+    showResetButton,
+    todayButton,
+    toMonth,
+    styleSheet,
+  } = props;
+  const [styles, cx] = useStyles(styleSheet ?? datePickerStyles);
 
-    return (
-      <DayPicker
-        ref={pickerRef}
-        weekdaysShort={getWeekdays('short', true)}
-        classNames={getClassNames('calendar', styles, this.props)}
-        disabledDays={disabledDays}
-        firstDayOfWeek={firstDayOfWeek}
-        fromMonth={fromMonth}
-        initialMonth={initialMonth}
-        locale={locale}
-        modifiers={getCustomModifiers(modifiers, styles, cx)}
-        month={month}
-        months={getMonths()}
-        navbarElement={props => (
-          <NavBar
-            {...props}
-            noFooter={!todayButton}
-            showResetButton={showResetButton}
-            onResetClick={onResetClick}
-          />
-        )}
-        fixedWeeks={Boolean(numberOfMonths && numberOfMonths > 1)}
-        weekdaysLong={getWeekdays('long', true)}
-        toMonth={toMonth}
-        todayButton={todayButton}
-        selectedDays={selectedDays}
-        pagedNavigation={pagedNavigation}
-        numberOfMonths={numberOfMonths}
-        onTodayButtonClick={onTodayButtonClick}
-        onMonthChange={onMonthChange}
-        onFocus={onFocus}
-        onDayMouseEnter={onDayMouseEnter}
-        onDayClick={onDayClick}
-        onBlur={onBlur}
-      />
-    );
-  }
+  return (
+    <DayPicker
+      ref={pickerRef}
+      weekdaysShort={getWeekdays('short', true)}
+      classNames={getClassNames('calendar', styles, { ...props, cx, styles })}
+      disabledDays={disabledDays}
+      firstDayOfWeek={firstDayOfWeek}
+      fromMonth={fromMonth}
+      initialMonth={initialMonth}
+      locale={locale}
+      modifiers={getCustomModifiers(modifiers, styles, cx)}
+      month={month}
+      months={getMonths()}
+      navbarElement={navProps => (
+        <NavBar
+          {...navProps}
+          noFooter={!todayButton}
+          showResetButton={showResetButton}
+          onResetClick={onResetClick}
+        />
+      )}
+      fixedWeeks={Boolean(numberOfMonths && numberOfMonths > 1)}
+      weekdaysLong={getWeekdays('long', true)}
+      toMonth={toMonth}
+      todayButton={todayButton}
+      selectedDays={selectedDays}
+      pagedNavigation={pagedNavigation}
+      numberOfMonths={numberOfMonths}
+      onTodayButtonClick={onTodayButtonClick}
+      onMonthChange={onMonthChange}
+      onFocus={onFocus}
+      onDayMouseEnter={onDayMouseEnter}
+      onDayClick={onDayClick}
+      onBlur={onBlur}
+    />
+  );
 }
-
-export default withStyles(datePickerStyles)(DatePicker);

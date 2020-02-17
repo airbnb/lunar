@@ -11,7 +11,7 @@ export function createPosition(offset: number | string) {
   return { left: offset };
 }
 
-const styleSheet: StyleSheet = ({ ui, color, unit }) => {
+export const styleSheetNotchedBox: StyleSheet = ({ ui, color, unit }) => {
   const { border, borderRadius } = ui;
   const notchSide = NOTCH_SIZE * unit;
   const offset = -notchSide / 2;
@@ -58,7 +58,3 @@ const styleSheet: StyleSheet = ({ ui, color, unit }) => {
     },
   };
 };
-
-export default styleSheet;
-
-export { styleSheet };

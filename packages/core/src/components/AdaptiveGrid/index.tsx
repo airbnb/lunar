@@ -1,6 +1,6 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetGrid } from './styles';
 
 export type AdaptiveGridProps = {
   /** Content to render as a grid. */
@@ -11,6 +11,8 @@ export type AdaptiveGridProps = {
   defaultItemsPerRow?: number;
   /** Removes padding between items. */
   noGutter?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function AdaptiveGrid({
@@ -18,8 +20,9 @@ export default function AdaptiveGrid({
   children,
   defaultItemsPerRow = 1,
   noGutter,
+  styleSheet,
 }: AdaptiveGridProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetGrid);
 
   const childElements =
     !!children &&

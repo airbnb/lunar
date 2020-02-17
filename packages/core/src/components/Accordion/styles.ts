@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheet: StyleSheet = ({ color }) => ({
+export const styleSheetAccordion: StyleSheet = ({ color }) => ({
   container: {
     borderBottom: '1px solid transparent',
     borderTop: '1px solid transparent',

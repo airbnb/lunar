@@ -4,7 +4,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { InputProps } from './FormInput';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
-const styleSheet: StyleSheet = theme => {
+export const styleSheetSwitch: StyleSheet = theme => {
   const { color, ui, unit } = theme;
   const styles = inputStyleSheet(theme);
   const width = unit * 5;
@@ -87,6 +87,8 @@ export type BaseSwitchProps = InputProps & {
   id: string;
   /** Callback fired when the value changes. */
   onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function BaseSwitch({
@@ -95,9 +97,10 @@ export default function BaseSwitch({
   id,
   invalid,
   onChange,
+  styleSheet,
   ...restProps
 }: BaseSwitchProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetSwitch);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.currentTarget.checked, event.currentTarget.value, event);

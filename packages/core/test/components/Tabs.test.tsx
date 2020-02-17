@@ -1,62 +1,79 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
-import { unwrapHOCs } from '@airbnb/lunar-test-utils';
+import { act } from 'react-dom/test-utils';
+import { mountUseStyles, mockResizeObserver } from '@airbnb/lunar-test-utils';
 import Tabs from '../../src/components/Tabs';
 import Tab from '../../src/components/Tabs/Tab';
 import GradientScroller from '../../src/components/GradientScroller';
-
-function unwrap(element: React.ReactElement): Enzyme.ShallowWrapper {
-  // Dont use shallowWithStyles because of TrackingBoundary
-  return unwrapHOCs(shallow(element), 'Tabs', {}, { render: true });
-}
+import ButtonOrLink from '../../src/components/private/ButtonOrLink';
 
 describe('<Tabs/>', () => {
-  it('errors if a tab does not have a `key`', () => {
-    expect(() =>
-      unwrap(
-        <Tabs>
-          <Tab label="One" />
-        </Tabs>,
-      ),
-    ).toThrowErrorMatchingSnapshot();
+  let unmockObserver: () => void;
+
+  beforeEach(() => {
+    unmockObserver = mockResizeObserver();
+  });
+
+  afterEach(() => {
+    unmockObserver();
   });
 
   it('sets selected key state using `defaultKey`', () => {
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs defaultKey="c">
         <Tab key="a" label="Label" />
+        <Tab key="b" label="Label" />
+        <Tab key="c" label="Label" />
       </Tabs>,
     );
 
-    expect(wrapper.state('selectedKey')).toBe('c');
+    expect(
+      wrapper
+        .find(Tab)
+        .at(2)
+        .prop('selected'),
+    ).toBe(true);
   });
 
   it('sets selected key state using hash', () => {
     location.hash = '#tab=c';
 
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs persistWithHash="tab">
         <Tab key="a" label="Label" />
+        <Tab key="b" label="Label" />
+        <Tab key="c" label="Label" />
       </Tabs>,
     );
 
-    expect(wrapper.state('selectedKey')).toBe('c');
+    expect(
+      wrapper
+        .find(Tab)
+        .at(2)
+        .prop('selected'),
+    ).toBe(true);
   });
 
   it('doesnt set selected key state using hash if names dont match', () => {
     location.hash = '#othertab=c';
 
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs persistWithHash="tab">
         <Tab key="a" label="Label" />
+        <Tab key="b" label="Label" />
+        <Tab key="c" label="Label" />
       </Tabs>,
     );
 
-    expect(wrapper.state('selectedKey')).toBe('');
+    expect(
+      wrapper
+        .find(Tab)
+        .at(2)
+        .prop('selected'),
+    ).toBe(false);
   });
 
   it('passes selected key state to each tab', () => {
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs defaultKey="b">
         <Tab key="a" label="One" />
         <Tab key="b" label="Two" />
@@ -85,7 +102,7 @@ describe('<Tabs/>', () => {
   });
 
   it('adds `keyName`s to tabs', () => {
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs>
         <Tab key="a" label="One" />
         <Tab key="b" label="Two" />
@@ -114,7 +131,7 @@ describe('<Tabs/>', () => {
   });
 
   it('renders a nav', () => {
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs>
         <Tab key="a" label="Label" />
       </Tabs>,
@@ -124,7 +141,7 @@ describe('<Tabs/>', () => {
   });
 
   it('renders a stretched nav', () => {
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs stretched>
         <Tab key="a" label="One" />
         <Tab key="b" label="Two" />
@@ -141,7 +158,7 @@ describe('<Tabs/>', () => {
   });
 
   it('renders a section when a tab is active and has children', () => {
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs>
         <Tab key="a" label="Label">
           Foo
@@ -154,7 +171,7 @@ describe('<Tabs/>', () => {
   });
 
   it('doesnt render a section if the tab has no children', () => {
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs>
         <Tab key="a" label="Label" />
       </Tabs>,
@@ -164,7 +181,7 @@ describe('<Tabs/>', () => {
   });
 
   it('handles falsey tabs', () => {
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs>
         {false && <Tab key="a" label="One" />}
         {null && <Tab key="b" label="Two" />}
@@ -175,49 +192,33 @@ describe('<Tabs/>', () => {
     expect(wrapper.find(Tab)).toHaveLength(1);
   });
 
-  it('updates state index when `defaultKey` changes', () => {
-    const wrapper = unwrap(
-      <Tabs defaultKey="c">
-        <Tab key="a" label="Label" />
-      </Tabs>,
-    );
-
-    expect(wrapper.state('selectedKey')).toBe('c');
-
-    wrapper.setProps({
-      defaultKey: 'b',
-    });
-
-    expect(wrapper.state('selectedKey')).toBe('b');
-  });
-
   it('triggers `onChange` when clicking', () => {
     const spy = jest.fn();
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs onChange={spy}>
         <Tab key="a" label="Label" />
       </Tabs>,
     );
 
-    wrapper.find(Tab).simulate('click');
+    wrapper.find(ButtonOrLink).simulate('click');
 
     expect(spy).toHaveBeenCalled();
   });
 
   it('wraps in scroller when using `scrollable`', () => {
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs scrollable>
         <Tab key="a" label="Label" />
       </Tabs>,
     );
 
-    expect(wrapper.find(GradientScroller)).toHaveLength(1);
+    expect(wrapper.find(GradientScroller.WrappedComponent)).toHaveLength(1);
   });
 
   it('updated hash when tab is clicked', () => {
     location.hash = '#tab=a';
 
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs persistWithHash="tab">
         <Tab key="a" label="Label" />
         <Tab key="b" label="Label" />
@@ -225,19 +226,16 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    expect(wrapper.state('selectedKey')).toBe('a');
-
     wrapper
-      .find(Tab)
+      .find(ButtonOrLink)
       .at(2)
       .simulate('click', 'c');
 
-    expect(wrapper.state('selectedKey')).toBe('c');
     expect(location.hash).toBe('#tab=c');
   });
 
   it('passes the borderless prop to Tab children', () => {
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs borderless>
         <Tab key="a" label="One" />
       </Tabs>,
@@ -252,7 +250,7 @@ describe('<Tabs/>', () => {
   });
 
   it('passes the secondary prop to Tab children', () => {
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs secondary>
         <Tab key="a" label="One" />
       </Tabs>,
@@ -266,11 +264,11 @@ describe('<Tabs/>', () => {
     ).toBe(true);
   });
 
-  it('Persist with hash and back button.', () => {
+  it('persist with hash and back button.', () => {
     const addSpy = jest.spyOn(window, 'addEventListener');
     const rmSpy = jest.spyOn(window, 'removeEventListener');
 
-    const wrapper = unwrap(
+    const wrapper = mountUseStyles(
       <Tabs persistWithHash="tab">
         <Tab key="a" label="One" />
         <Tab key="b" label="Two" />
@@ -280,18 +278,19 @@ describe('<Tabs/>', () => {
     expect(addSpy).toHaveBeenCalledWith('popstate', expect.any(Function));
 
     wrapper
-      .find(Tab)
+      .find(ButtonOrLink)
       .at(1)
       .simulate('click', 'b');
-    expect(wrapper.state('selectedKey')).toBe('b');
+
     expect(location.hash).toBe('#tab=b');
 
-    location.hash = '#tab=a';
-    window.dispatchEvent(new Event('popstate'));
-    expect(wrapper.state('selectedKey')).toBe('a');
+    // eslint-disable-next-line rut/no-act
+    act(() => {
+      location.hash = '#tab=a';
+      window.dispatchEvent(new Event('popstate'));
+    });
 
-    // @ts-ignore
-    wrapper.instance().componentWillUnmount();
+    wrapper.unmount();
 
     expect(rmSpy).toHaveBeenCalledWith('popstate', expect.any(Function));
   });

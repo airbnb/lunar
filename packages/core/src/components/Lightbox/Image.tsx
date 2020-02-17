@@ -1,9 +1,9 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ResponsiveImage from '../ResponsiveImage';
 import Loader from '../Loader';
 import ImageViewer from '../ImageViewer';
-import { styleSheetImage as styleSheet } from './styles';
+import { styleSheetImage } from './styles';
 
 export type LightboxImageProps = {
   /** Image alt text */
@@ -22,6 +22,8 @@ export type LightboxImageProps = {
   showZoomControls?: boolean;
   /** Image src */
   src: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function LightboxImage({
@@ -33,8 +35,9 @@ export default function LightboxImage({
   showRotateControls,
   scale,
   rotation,
+  styleSheet,
 }: LightboxImageProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetImage);
 
   return (
     <div className={cx(styles.wrapper)}>

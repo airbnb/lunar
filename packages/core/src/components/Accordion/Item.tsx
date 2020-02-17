@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
 import ExpandableIcon from '../ExpandableIcon';
-import { styleSheetItem as styleSheet } from './styles';
+import { styleSheetItem } from './styles';
 
 export type AccordionItemProps = {
   /** Apply a border. */
@@ -23,6 +23,8 @@ export type AccordionItemProps = {
   onClick?: (index: number) => void;
   /** Callback fired when the item is expanded or collapsed. */
   onToggle?: (expanded: boolean) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /**
@@ -38,8 +40,9 @@ export default function AccordionItem({
   title,
   onClick,
   onToggle,
+  styleSheet,
 }: AccordionItemProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetItem);
   const [prevExpanded, setExpanded] = useState(expanded);
   const theme = useTheme();
 

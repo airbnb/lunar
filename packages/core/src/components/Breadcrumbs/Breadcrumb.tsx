@@ -1,10 +1,10 @@
 import React from 'react';
 import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
 import DirectionalIcon from '../DirectionalIcon';
-import { styleSheetBreadcrumb as styleSheet } from './styles';
+import { styleSheetBreadcrumb } from './styles';
 
 export type BreadcrumbProps = {
   /** Mark the breadcrumb as disabled. */
@@ -25,6 +25,8 @@ export type BreadcrumbProps = {
   selected?: boolean;
   /** A tracking name to identify this component. */
   trackingName?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A single breadcrumb button. Usually rendered amongst a collection of breadcrumbs. */
@@ -38,8 +40,9 @@ export default function Breadcrumb({
   onClick,
   selected,
   trackingName,
+  styleSheet,
 }: BreadcrumbProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetBreadcrumb);
   const clickable = !disabled && (!!href || !!onClick);
   const aria = selected ? { 'aria-current': 'page' } : {};
 

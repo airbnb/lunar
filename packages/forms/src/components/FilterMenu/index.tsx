@@ -6,9 +6,9 @@ import { DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
 import { MenuProps } from '@airbnb/lunar/lib/components/Menu';
 import Link from '@airbnb/lunar/lib/components/Link';
 import SecondaryLink from '@airbnb/lunar/lib/components/SecondaryLink';
-import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 import Row from './private/Row';
-import { styleSheet } from './styles';
+import { styleSheetFilterMenu } from './styles';
 
 export type FilterMenuProps = {
   /** Accessibility label. */
@@ -39,6 +39,8 @@ export type FilterMenuProps = {
   small?: boolean;
   /** Z-index of the menu. */
   zIndex?: number;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A button that opens a dropdown that shows filter options for a table or similar component. */
@@ -57,8 +59,9 @@ export default function FilterMenu({
   onClear,
   onHide,
   onShow,
+  styleSheet,
 }: FilterMenuProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetFilterMenu);
   const [opened, setOpened] = useState(false);
 
   const handleShowFilters = () => {

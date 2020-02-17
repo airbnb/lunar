@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ unit, color, pattern, ui }) => ({
+export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui }) => ({
   container: {
     display: 'inline-block',
   },
@@ -52,7 +52,3 @@ const styleSheet: StyleSheet = ({ unit, color, pattern, ui }) => ({
     textAlign: 'initial',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

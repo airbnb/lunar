@@ -248,7 +248,7 @@ const getTable = (wrapper: Enzyme.ShallowWrapper) => {
 };
 
 const getHeaderFromStyledDataTable = (styledDataTable: Enzyme.ShallowWrapper) =>
-  shallowWithStyles(styledDataTable.find(TableHeader).getElement());
+  shallowWithStyles(styledDataTable.find(TableHeader).getElement(), true);
 
 const selectRow = (table: Enzyme.ReactWrapper<any, any>, row: number) => {
   (getCheckbox(table, row).prop('onChange') as () => void)();

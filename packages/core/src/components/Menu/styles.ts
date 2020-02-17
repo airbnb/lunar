@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheet: StyleSheet = ({ color, ui, pattern, unit }) => ({
+export const styleSheetMenu: StyleSheet = ({ color, ui, pattern, unit }) => ({
   menu: {
     ...pattern.box,
     margin: 0,

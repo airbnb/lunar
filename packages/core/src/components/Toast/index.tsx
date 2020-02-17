@@ -9,7 +9,7 @@ import Text from '../Text';
 import T from '../Translate';
 import Spacing from '../Spacing';
 import crosstab from '../../crosstab';
-import { styleSheet } from './styles';
+import { styleSheetToast } from './styles';
 
 const statusPropType = mutuallyExclusiveTrueProps('danger', 'success');
 
@@ -172,4 +172,4 @@ export class Toast extends React.Component<ToastProps & WithStylesProps> {
   }
 }
 
-export default withStyles(styleSheet)(Toast);
+export default withStyles(styleSheetToast)(Toast);

@@ -1,13 +1,13 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import removeFocusOnMouseUp from '../../utils/removeFocusOnMouseUp';
 import ProfilePhoto from '../ProfilePhoto';
 import Shimmer from '../Shimmer';
 import Text from '../Text';
 import Spacing from '../Spacing';
 import T from '../Translate';
-import { styleSheet } from './styles';
+import { styleSheetMessageItem } from './styles';
 
 export type MessageItemProps = {
   /** Message body. */
@@ -52,6 +52,8 @@ export type MessageItemProps = {
   verticalSpacing?: boolean;
   /** Mark the message as a warning. */
   warning?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** An individual comment within a message thread. */
@@ -77,8 +79,9 @@ function MessageItem({
   titleTag,
   verticalSpacing,
   warning,
+  styleSheet,
 }: MessageItemProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetMessageItem);
 
   const getAvatar = () => {
     if (loadingAuthor) {

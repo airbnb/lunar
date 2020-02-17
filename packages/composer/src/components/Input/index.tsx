@@ -55,7 +55,6 @@ export default function Input({
   const { hotkeys } = useContext(HotkeyContext);
   const [styles, cx] = useStyles(inputStyleSheet);
   const [focused, setFocused] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const blocked = disabled || invalid || context.data.value.trim() === '';
   let placeholder =
     messagePlaceholder ?? T.phrase('lunar.composer.labels.sendMessage', 'Send message…');

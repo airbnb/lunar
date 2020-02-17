@@ -1,14 +1,13 @@
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
+import { mountUseStyles } from '@airbnb/lunar-test-utils';
 import Button from '../../../src/components/Button';
 import IconButton from '../../../src/components/IconButton';
 import Pagination from '../../../src/components/Pagination';
-import LightboxHeader, { LightboxHeaderProps } from '../../../src/components/Lightbox/Header';
+import LightboxHeader from '../../../src/components/Lightbox/Header';
 import { RotateControls, ZoomControls } from '../../../src/components/ImageViewer';
 import { ARROW_RIGHT, ARROW_LEFT } from '../../../src/keys';
 
 describe('<LightboxHeader />', () => {
-  let wrapper: Enzyme.ShallowWrapper<LightboxHeaderProps>;
   const onChangeSlideSpy = jest.fn();
   const onToggleAsideSpy = jest.fn();
   const props = {
@@ -19,14 +18,14 @@ describe('<LightboxHeader />', () => {
   };
 
   it('renders a Pagination component', () => {
-    wrapper = shallow(<LightboxHeader {...props} />).dive();
+    const wrapper = mountUseStyles(<LightboxHeader {...props} />);
 
     expect(wrapper.find(Pagination)).toHaveLength(1);
   });
 
   describe('renders a toggle info Button', () => {
     it('with "Hide Info" if hideAside is false', () => {
-      wrapper = shallow(<LightboxHeader {...props} hasAside />).dive();
+      const wrapper = mountUseStyles(<LightboxHeader {...props} hasAside />);
 
       expect(
         wrapper
@@ -37,7 +36,7 @@ describe('<LightboxHeader />', () => {
     });
 
     it('with "Show Info" if hideAside is true', () => {
-      wrapper = shallow(<LightboxHeader {...props} hasAside hideAside />).dive();
+      const wrapper = mountUseStyles(<LightboxHeader {...props} hasAside hideAside />);
 
       expect(
         wrapper
@@ -52,10 +51,11 @@ describe('<LightboxHeader />', () => {
     const spy = jest.fn();
 
     beforeEach(() => {
-      wrapper = shallow(<LightboxHeader {...props} onChangeSlide={spy} />).dive();
+      spy.mockReset();
     });
 
     it('changes slide to next on right arrow', () => {
+      mountUseStyles(<LightboxHeader {...props} onChangeSlide={spy} />);
       const event = new KeyboardEvent('keydown', {
         key: ARROW_RIGHT,
       });
@@ -65,6 +65,7 @@ describe('<LightboxHeader />', () => {
     });
 
     it('changes slide to previous on left arrow', () => {
+      const wrapper = mountUseStyles(<LightboxHeader {...props} onChangeSlide={spy} />);
       wrapper.setProps({ activeIndex: 1, imageCount: 2 });
       const event = new KeyboardEvent('keydown', {
         key: ARROW_LEFT,
@@ -75,6 +76,7 @@ describe('<LightboxHeader />', () => {
     });
 
     it('changes slide to first on shift + left arrow', () => {
+      const wrapper = mountUseStyles(<LightboxHeader {...props} onChangeSlide={spy} />);
       wrapper.setProps({ activeIndex: 2, imageCount: 3 });
       const event = new KeyboardEvent('keydown', {
         key: ARROW_LEFT,
@@ -86,6 +88,7 @@ describe('<LightboxHeader />', () => {
     });
 
     it('changes slide to first on shift + right arrow', () => {
+      const wrapper = mountUseStyles(<LightboxHeader {...props} onChangeSlide={spy} />);
       wrapper.setProps({ activeIndex: 0, imageCount: 3 });
       const event = new KeyboardEvent('keydown', {
         key: ARROW_RIGHT,
@@ -100,10 +103,9 @@ describe('<LightboxHeader />', () => {
   describe('componentWillUnmount()', () => {
     it('removes event listener for keydown on umount', () => {
       const eventSpy = jest.spyOn(window, 'removeEventListener');
+      const wrapper = mountUseStyles(<LightboxHeader {...props} />);
 
-      wrapper = shallow(<LightboxHeader {...props} />).dive();
-      // @ts-ignore
-      wrapper.instance().componentWillUnmount();
+      wrapper.unmount();
 
       expect(eventSpy).toHaveBeenCalled();
     });
@@ -113,15 +115,15 @@ describe('<LightboxHeader />', () => {
     const spy = jest.fn();
 
     it('renders rotate controls', () => {
-      wrapper = shallow(
+      const wrapper = mountUseStyles(
         <LightboxHeader {...props} showRotateControls onRotateImage={spy} />,
-      ).dive();
+      );
 
       expect(wrapper.find(RotateControls)).toHaveLength(1);
     });
 
     it('calls onRotateImage', () => {
-      const wrapperMount = mount(
+      const wrapperMount = mountUseStyles(
         <LightboxHeader {...props} showRotateControls onRotateImage={spy} />,
       );
       wrapperMount
@@ -138,13 +140,17 @@ describe('<LightboxHeader />', () => {
     const spy = jest.fn();
 
     it('renders zoom controls', () => {
-      wrapper = shallow(<LightboxHeader {...props} showZoomControls onZoomImage={spy} />).dive();
+      const wrapper = mountUseStyles(
+        <LightboxHeader {...props} showZoomControls onZoomImage={spy} />,
+      );
 
       expect(wrapper.find(ZoomControls)).toHaveLength(1);
     });
 
     it('calls onZoomImage', () => {
-      const wrapperMount = mount(<LightboxHeader {...props} showZoomControls onZoomImage={spy} />);
+      const wrapperMount = mountUseStyles(
+        <LightboxHeader {...props} showZoomControls onZoomImage={spy} />,
+      );
       wrapperMount
         .find(ZoomControls)
         .find(IconButton)

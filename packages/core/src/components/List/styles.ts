@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheet: StyleSheet = ({ unit }) => ({
+export const styleSheetList: StyleSheet = ({ unit }) => ({
   list: {
     listStyle: 'none',
     margin: 0,

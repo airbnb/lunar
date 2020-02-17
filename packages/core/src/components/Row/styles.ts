@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ ui, unit }) => ({
+export const styleSheetRow: StyleSheet = ({ ui, unit }) => ({
   row: {
     display: 'flex',
   },
@@ -59,7 +59,3 @@ const styleSheet: StyleSheet = ({ ui, unit }) => ({
     alignSelf: 'initial',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

@@ -1,6 +1,6 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
-import { styleSheetCell as styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetCell } from './styles';
 
 export type TableCellProps = {
   /** Display in the center horizontally. */
@@ -19,6 +19,8 @@ export type TableCellProps = {
   truncate?: boolean;
   /** Wrap text and white space. */
   wrap?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** An individual table cell. */
@@ -30,9 +32,10 @@ export default function TableCell({
   endAlign,
   truncate,
   wrap,
+  styleSheet,
   ...props
 }: TableCellProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetCell);
   const Tag = header ? 'th' : 'td';
 
   return (

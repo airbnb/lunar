@@ -1,9 +1,9 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Text, { TextProps } from '../Text';
 import { STATUSES } from '../../constants';
-import { styleSheet } from './styles';
+import { styleSheetStatusText } from './styles';
 
 export type StatusTextProps = TextProps & {
   /** The text to render. */
@@ -20,6 +20,8 @@ export type StatusTextProps = TextProps & {
   success?: boolean;
   /** Warning status (yellow). */
   warning?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Display a string of classified text with colorful statuses. */
@@ -31,9 +33,10 @@ function StatusText({
   notice,
   success,
   warning,
+  styleSheet,
   ...restProps
 }: StatusTextProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetStatusText);
 
   return (
     <Text {...restProps}>
