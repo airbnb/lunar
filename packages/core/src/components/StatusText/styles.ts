@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color }) => ({
+export const styleSheetStatusText: StyleSheet = ({ color }) => ({
   text_danger: {
     color: color.core.danger[4],
   },
@@ -25,7 +25,3 @@ const styleSheet: StyleSheet = ({ color }) => ({
     color: color.core.warning[5],
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

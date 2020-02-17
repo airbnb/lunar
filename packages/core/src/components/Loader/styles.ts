@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, unit }) => ({
+export const styleSheetLoader: StyleSheet = ({ color, unit }) => ({
   loader: {
     margin: '0 auto',
     textAlign: 'center',
@@ -58,7 +58,3 @@ const styleSheet: StyleSheet = ({ color, unit }) => ({
     animationDelay: '-0.15s',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

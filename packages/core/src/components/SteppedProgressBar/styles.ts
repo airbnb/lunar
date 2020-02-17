@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheet: StyleSheet = () => ({
+export const styleSheetBar: StyleSheet = () => ({
   bar: {
     display: 'flex',
   },

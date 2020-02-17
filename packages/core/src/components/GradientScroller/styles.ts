@@ -1,7 +1,13 @@
 import { StyleBlock } from 'aesthetic';
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, unit, ui, pattern, transition }) => {
+export const styleSheetGradientScroller: StyleSheet = ({
+  color,
+  unit,
+  ui,
+  pattern,
+  transition,
+}) => {
   const scrollbarHeight = unit * 1.5;
 
   const gradient: StyleBlock = {
@@ -105,7 +111,3 @@ const styleSheet: StyleSheet = ({ color, unit, ui, pattern, transition }) => {
     },
   };
 };
-
-export default styleSheet;
-
-export { styleSheet };

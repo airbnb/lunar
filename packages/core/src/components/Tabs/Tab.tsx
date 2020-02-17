@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
 import TrackingBoundary from '../TrackingBoundary';
-import { styleSheetTab as styleSheet } from './styles';
+import { styleSheetTab } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type TabProps = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'disabled' | 'href'> & {
   /** Hide bottom border of Tab when unselected. */
@@ -27,88 +27,78 @@ export type TabProps = Pick<ButtonOrLinkProps, 'afterIcon' | 'beforeIcon' | 'dis
   small?: boolean;
   /** Stretch tabs to fill the full width. */
   stretched?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A single tab button. Usually rendered amongst a collection of tabs. */
-export class Tab extends React.Component<TabProps & WithStylesProps> {
-  static defaultProps = {
-    borderless: false,
-    children: null,
-    secondary: false,
-    selected: false,
-    small: false,
-    stretched: false,
+export default function Tab({
+  afterIcon,
+  beforeIcon,
+  borderless,
+  disabled,
+  href,
+  keyName,
+  label,
+  secondary,
+  selected,
+  small,
+  stretched,
+  onClick,
+  onSelected,
+  styleSheet,
+}: TabProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetTab);
+  const trackingName = upperFirst(camelCase(keyName ?? 'Tab'));
+  const noBorder = secondary || borderless;
+  const noHover = secondary || (noBorder && disabled);
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(keyName!);
+    }
   };
 
-  componentDidUpdate(prevProps: TabProps) {
-    if (!prevProps.selected && this.props.selected && this.props.onSelected) {
-      this.props.onSelected();
+  useEffect(() => {
+    if (selected && onSelected) {
+      onSelected();
     }
-  }
+  }, [selected, onSelected]);
 
-  private handleClick = () => {
-    if (this.props.onClick) {
-      this.props.onClick(this.props.keyName!);
-    }
-  };
-
-  render() {
-    const {
-      cx,
-      afterIcon,
-      beforeIcon,
-      borderless,
-      disabled,
-      href,
-      keyName,
-      label,
-      secondary,
-      selected,
-      small,
-      stretched,
-      styles,
-    } = this.props;
-    const trackingName = upperFirst(camelCase(keyName || 'Tab'));
-    const noBorder = secondary || borderless;
-    const noHover = secondary || (noBorder && disabled);
-
-    return (
-      <span
-        className={cx(
-          styles.tab,
-          secondary && styles.tab_secondary,
-          disabled && styles.tab_disabled,
-          noBorder && styles.tab_noBorder,
-          noHover && styles.tab_noHover,
-          selected && !secondary && styles.tab_selected,
-          stretched && styles.tab_stretched,
-        )}
-      >
-        <TrackingBoundary name={trackingName}>
-          <ButtonOrLink
-            flexAlign
-            aria-selected={selected}
-            afterIcon={afterIcon}
-            beforeIcon={beforeIcon}
-            disabled={disabled}
-            href={href}
-            role="tab"
-            className={cx(
-              styles.tabButton,
-              secondary && styles.tabButton_secondary,
-              selected && styles.tabButton_selected,
-              selected && secondary && styles.tabButton_secondary_selected,
-              small && styles.tabButton_small,
-              disabled && styles.tabButton_disabled,
-            )}
-            onClick={disabled ? undefined : this.handleClick}
-          >
-            {label}
-          </ButtonOrLink>
-        </TrackingBoundary>
-      </span>
-    );
-  }
+  return (
+    <span
+      className={cx(
+        styles.tab,
+        secondary && styles.tab_secondary,
+        disabled && styles.tab_disabled,
+        noBorder && styles.tab_noBorder,
+        noHover && styles.tab_noHover,
+        selected && !secondary && styles.tab_selected,
+        stretched && styles.tab_stretched,
+      )}
+    >
+      <TrackingBoundary name={trackingName}>
+        <ButtonOrLink
+          flexAlign
+          aria-selected={selected}
+          afterIcon={afterIcon}
+          beforeIcon={beforeIcon}
+          disabled={disabled}
+          href={href}
+          role="tab"
+          className={cx(
+            styles.tabButton,
+            secondary && styles.tabButton_secondary,
+            selected && styles.tabButton_selected,
+            selected && secondary && styles.tabButton_secondary_selected,
+            small && styles.tabButton_small,
+            disabled && styles.tabButton_disabled,
+          )}
+          onClick={disabled ? undefined : handleClick}
+        >
+          {label}
+        </ButtonOrLink>
+      </TrackingBoundary>
+    </span>
+  );
 }
-
-export default withStyles(styleSheet)(Tab);

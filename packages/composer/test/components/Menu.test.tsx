@@ -44,7 +44,7 @@ describe('<Menu />', () => {
         wrapper: <Wrapper menu="foo" />,
       },
     );
-    const drop = root.findOne(Dropdown.WrappedComponent);
+    const drop = root.findOne(Dropdown);
 
     expect(drop).toHaveProp('left', 4);
     expect(drop).toHaveProp('right', 'auto');
@@ -60,7 +60,7 @@ describe('<Menu />', () => {
         wrapper: <Wrapper menu="foo" />,
       },
     );
-    const drop = root.findOne(Dropdown.WrappedComponent);
+    const drop = root.findOne(Dropdown);
 
     expect(drop).toHaveProp('left', 'auto');
     expect(drop).toHaveProp('right', 4);
@@ -82,7 +82,7 @@ describe('<Menu />', () => {
       },
     );
 
-    const drop = root.findOne(Dropdown.WrappedComponent);
+    const drop = root.findOne(Dropdown);
 
     expect(drop).toHaveProp('left', 32);
     expect(drop).toHaveProp('right', 32);

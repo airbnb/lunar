@@ -1,7 +1,7 @@
 import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ScrollSectionContext, { Context } from './ScrollContext';
-import { styleSheetScrollWrapper as styleSheet } from './styles';
+import { styleSheetScrollWrapper } from './styles';
 
 export type ScrollWrapperProps = {
   /** The contents of the wrapper. */
@@ -126,4 +126,4 @@ export class ScrollWrapper extends React.Component<ScrollWrapperProps & WithStyl
   }
 }
 
-export default withStyles(styleSheet)(ScrollWrapper);
+export default withStyles(styleSheetScrollWrapper)(ScrollWrapper);

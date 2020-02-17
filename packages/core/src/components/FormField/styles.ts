@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ unit }) => ({
+export const styleSheetFormField: StyleSheet = ({ unit }) => ({
   field: {
     marginBottom: unit * 3,
 
@@ -82,7 +82,3 @@ const styleSheet: StyleSheet = ({ unit }) => ({
     flexGrow: 1,
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

@@ -17,6 +17,9 @@ module.exports = {
       files: ['*.ts', '*.tsx'],
       rules: {
         '@typescript-eslint/consistent-type-assertions': 'off',
+
+        // Is kind of useless because lots of false positives
+        '@typescript-eslint/prefer-nullish-coalescing': 'off',
       },
     },
     {
@@ -41,6 +44,12 @@ module.exports = {
         // Webpack alias imports
         'import/extensions': 'off',
         'import/no-unresolved': 'off',
+      },
+    },
+    {
+      files: ['styles.ts'],
+      rules: {
+        'import/prefer-default-export': 'off',
       },
     },
   ],

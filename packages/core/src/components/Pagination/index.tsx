@@ -5,12 +5,12 @@ import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconFirst from '@airbnb/lunar-icons/lib/interface/IconFirst';
 import IconLast from '@airbnb/lunar-icons/lib/interface/IconLast';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import IconButton from '../IconButton';
 import Text from '../Text';
 import T from '../Translate';
 import DirectionalIcon from '../DirectionalIcon';
-import { styleSheet } from './styles';
+import { styleSheetPagination } from './styles';
 import useTheme from '../../hooks/useTheme';
 
 export type PaginationProps = {
@@ -42,6 +42,8 @@ export type PaginationProps = {
   onNext: () => void;
   /** Invoked when the previous page button is pressed. */
   onPrevious: () => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Pagination controls. */
@@ -60,8 +62,9 @@ function Pagination({
   onPrevious,
   page,
   pageCount,
+  styleSheet,
 }: PaginationProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetPagination);
   const theme = useTheme();
 
   if (!(hasNext || hasPrev)) {

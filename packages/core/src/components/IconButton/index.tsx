@@ -1,9 +1,9 @@
 import React from 'react';
 import iconComponent from '../../prop-types/iconComponent';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
 import Tooltip from '../Tooltip';
-import { styleSheet } from './styles';
+import { styleSheetIconButton } from './styles';
 
 export type IconButtonProps = ButtonOrLinkProps & {
   /** @ignore */
@@ -16,6 +16,8 @@ export type IconButtonProps = ButtonOrLinkProps & {
   inverted?: boolean;
   /** Wrap the button in a tooltip. */
   tooltip?: React.ReactNode;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A button with an icon as content, and an optional tooltip. */
@@ -25,9 +27,10 @@ function IconButton({
   disabled,
   inverted,
   tooltip,
+  styleSheet,
   ...restProps
 }: IconButtonProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetIconButton);
 
   const button = (
     <ButtonOrLink

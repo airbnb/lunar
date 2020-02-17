@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import IconCaretLeft from '@airbnb/lunar-icons/lib/interface/IconCaretLeft';
 import IconCaretRight from '@airbnb/lunar-icons/lib/interface/IconCaretRight';
 import iconComponent from '../../prop-types/iconComponent';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ButtonOrLink from '../private/ButtonOrLink';
 import Text from '../Text';
 import DirectionalIcon from '../DirectionalIcon';
-import { styleSheetItem as styleSheet } from './styles';
+import { styleSheetItem } from './styles';
 
 export type MenuItemProps = {
   /** Content within the menu item. */
@@ -37,6 +37,8 @@ export type MenuItemProps = {
   tip?: React.ReactNode;
   /** A tracking name to identify this component. */
   trackingName?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** An interactive item within a menu. */
@@ -55,8 +57,9 @@ function MenuItem({
   tabIndex = -1,
   tip,
   trackingName,
+  styleSheet,
 }: MenuItemProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetItem);
   const [showSubmenu, setShowSubmenu] = useState(false);
 
   const handleMouseEnter = () => {

@@ -1,7 +1,7 @@
 import { SKIN_COLORS } from 'interweave-emoji-picker';
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ ui, unit, color, font, pattern }) => ({
+export const styleSheetEmojiPicker: StyleSheet = ({ ui, unit, color, font, pattern }) => ({
   picker: {
     background: color.accent.bg,
     border: ui.border,
@@ -231,7 +231,3 @@ const styleSheet: StyleSheet = ({ ui, unit, color, font, pattern }) => ({
     },
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

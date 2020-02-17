@@ -11,7 +11,7 @@ import {
   ItemShape,
   TreePath,
 } from '../types';
-import { styleSheet } from './styles';
+import { styleSheetPicker } from './styles';
 
 export type PickerProps = {
   chosen?: TreePath;
@@ -165,4 +165,4 @@ export class Picker extends React.Component<PickerProps & WithStylesProps, Picke
   }
 }
 
-export default withStyles(styleSheet)(Picker);
+export default withStyles(styleSheetPicker)(Picker);

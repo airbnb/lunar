@@ -7,7 +7,7 @@ import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
 import IconError from '@airbnb/lunar-icons/lib/interface/IconError';
 import IconInfo from '@airbnb/lunar-icons/lib/interface/IconInfo';
 import IconWarning from '@airbnb/lunar-icons/lib/interface/IconWarning';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
 import Row from '../Row';
 import Spacing from '../Spacing';
@@ -15,7 +15,7 @@ import Text from '../Text';
 import T from '../Translate';
 import IconButton from '../IconButton';
 import { STATUSES } from '../../constants';
-import { styleSheet } from './styles';
+import { styleSheetAlert } from './styles';
 
 const alertColorTypePropType = mutuallyExclusiveTrueProps(...STATUSES);
 
@@ -40,6 +40,8 @@ export type AlertProps = {
   warning?: boolean;
   /** Callback fired when the alert is closed. */
   onClose?: () => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Classify content through the use of colorful alerts. */
@@ -54,8 +56,9 @@ function Alert({
   title,
   warning,
   onClose,
+  styleSheet,
 }: AlertProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetAlert);
   const { color, unit } = useTheme();
 
   let StatusIcon = null;

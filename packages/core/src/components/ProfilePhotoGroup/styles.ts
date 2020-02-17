@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, font }) => ({
+export const styleSheetProfilePhotoGroup: StyleSheet = ({ color, font }) => ({
   group: {
     display: 'flex',
     alignItems: 'stretch',
@@ -33,7 +33,3 @@ const styleSheet: StyleSheet = ({ color, font }) => ({
     color: color.base,
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

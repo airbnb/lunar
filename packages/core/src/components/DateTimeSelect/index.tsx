@@ -10,7 +10,7 @@ import createRange from '../../utils/createRange';
 import createDateTime from '../../utils/createDateTime';
 import getMonths from '../../utils/getMonths';
 import { Locale } from '../../types';
-import { styleSheet } from './styles';
+import { styleSheetDateTimeSelect } from './styles';
 
 type Range = {
   label: string;
@@ -333,4 +333,4 @@ export class DateTimeSelect extends React.Component<
   }
 }
 
-export default withStyles(styleSheet)(DateTimeSelect);
+export default withStyles(styleSheetDateTimeSelect)(DateTimeSelect);

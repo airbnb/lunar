@@ -5,7 +5,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { InputProps } from './FormInput';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
-const styleSheet: StyleSheet = theme => {
+export const styleSheetRadioButton: StyleSheet = theme => {
   const styles = inputStyleSheet(theme);
 
   return {
@@ -79,6 +79,8 @@ export type BaseRadioButtonProps = InputProps & {
   onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
   /** Mark the checkbox as greyed out with a dash to indicate an indeterminate state. */
   indeterminate?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function BaseRadioButton({
@@ -92,9 +94,10 @@ export default function BaseRadioButton({
   invalid,
   indeterminate,
   onChange,
+  styleSheet,
   ...restProps
 }: BaseRadioButtonProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetRadioButton);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.currentTarget.checked, event.currentTarget.value, event);

@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ unit }) => ({
+export const styleSheetButtonGroup: StyleSheet = ({ unit }) => ({
   buttonGroup: {
     display: 'flex',
     alignItems: 'center',
@@ -46,7 +46,3 @@ const styleSheet: StyleSheet = ({ unit }) => ({
     },
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

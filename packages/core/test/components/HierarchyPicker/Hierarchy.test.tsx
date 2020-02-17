@@ -132,7 +132,7 @@ describe('<Hierarchy />', () => {
         definition: ['foo', 'bar'],
         selected: false,
         focused: false,
-        onSubtree: jest.fn((d, cb) => cb && cb()),
+        onSubtree: jest.fn((d, cb) => cb?.()),
         onItemPicked: jest.fn(),
         onDomFocusDeeper: jest.fn(),
         onDomFocusShallower: jest.fn(),

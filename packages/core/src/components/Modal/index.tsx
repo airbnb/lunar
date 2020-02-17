@@ -1,45 +1,44 @@
-import React from 'react';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import React, { useEffect } from 'react';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Portal from '../Portal';
 import ModalInner, { ModalInnerProps } from './private/Inner';
 import { ESCAPE } from '../../keys';
-import { styleSheet } from './styles';
+import { styleSheetModal } from './styles';
 
-export type ModalProps = ModalInnerProps;
+export type ModalProps = ModalInnerProps & {
+  /** Custom style sheet. */
+  innerStyleSheet?: StyleSheet;
+};
 
 /** A modal component with a backdrop and a standardized layout. */
-export class Modal extends React.Component<ModalProps & WithStylesProps> {
-  componentDidMount() {
-    document.body.style.overflow = 'hidden';
-  }
+export default function Modal({ onClose, styleSheet, innerStyleSheet, ...props }: ModalProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetModal);
 
-  componentWillUnmount() {
-    document.body.style.overflow = '';
-  }
-
-  private handleClose = (event: React.MouseEvent | React.KeyboardEvent) => {
-    this.props.onClose(event);
+  const handleClose = (event: React.MouseEvent | React.KeyboardEvent) => {
+    onClose(event);
   };
 
-  private handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === ESCAPE) {
-      this.handleClose(event);
+      handleClose(event);
     }
   };
 
-  render() {
-    const { cx, styles, ...otherProps } = this.props;
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
 
-    return (
-      <Portal>
-        <div className={cx(styles.container)}>
-          <div role="presentation" className={cx(styles.wrapper)} onKeyUp={this.handleKeyUp}>
-            <ModalInner {...otherProps} />
-          </div>
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  return (
+    <Portal>
+      <div className={cx(styles.container)}>
+        <div role="presentation" className={cx(styles.wrapper)} onKeyUp={handleKeyUp}>
+          <ModalInner {...props} styleSheet={innerStyleSheet} onClose={onClose} />
         </div>
-      </Portal>
-    );
-  }
+      </div>
+    </Portal>
+  );
 }
-
-export default withStyles(styleSheet)(Modal);

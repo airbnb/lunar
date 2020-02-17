@@ -1,7 +1,10 @@
 import React from 'react';
+import aesthetic from 'aesthetic';
+import { StyleSheet } from '../../hooks/useStyles';
 import Button, { ButtonProps } from '../Button';
+import { buttonStyleSheet } from '../Button/styles';
 
-const StyledDangerButton = Button.extendStyles(({ color }) => ({
+const styleSheet: StyleSheet = aesthetic.extendStyles(buttonStyleSheet, ({ color }) => ({
   button: {
     backgroundColor: color.core.danger[5],
     border: `2px solid ${color.core.danger[5]}`,
@@ -29,5 +32,9 @@ const StyledDangerButton = Button.extendStyles(({ color }) => ({
 
 /** A button to use for primary actions. Supports all the same props as `Button`. */
 export default function DangerButton({ children, ...props }: ButtonProps) {
-  return <StyledDangerButton {...props}>{children}</StyledDangerButton>;
+  return (
+    <Button {...props} styleSheet={styleSheet}>
+      {children}
+    </Button>
+  );
 }

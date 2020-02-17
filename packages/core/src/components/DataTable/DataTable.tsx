@@ -276,7 +276,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       defaultEditCallback(row, key, newVal, event);
     }
 
-    if (editCallbacks && editCallbacks[key]) {
+    if (editCallbacks?.[key]) {
       editCallbacks[key](row, key, newVal, event);
     }
 

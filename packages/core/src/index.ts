@@ -86,11 +86,13 @@ class Core {
 
       aesthetic.configure({
         adapter: new TestAdapter(),
+        extendable: true,
         theme: 'light',
       });
     } else {
       aesthetic.configure({
         adapter: new AphroditeAdapter(),
+        extendable: true,
         rtl,
         theme,
       });

@@ -52,20 +52,20 @@ describe('<DatePicker />', () => {
   };
 
   it('renders next & previous icons', () => {
-    const wrapper = shallowWithStyles(<NavBar {...props} />);
+    const wrapper = shallowWithStyles(<NavBar {...props} />, true);
 
     expect(wrapper.find(DirectionalIcon)).toHaveLength(2);
   });
 
   it('renders a reset button', () => {
-    const wrapper = shallowWithStyles(<NavBar {...props} showResetButton />);
+    const wrapper = shallowWithStyles(<NavBar {...props} showResetButton />, true);
 
     expect(wrapper.find('button')).toHaveLength(1);
   });
 
   it('call `onPreviousClick` when next button is clicked', () => {
     const spy = jest.fn();
-    const wrapper = shallowWithStyles(<NavBar {...props} onPreviousClick={spy} />);
+    const wrapper = shallowWithStyles(<NavBar {...props} onPreviousClick={spy} />, true);
 
     wrapper
       .find(DirectionalIcon)
@@ -78,7 +78,7 @@ describe('<DatePicker />', () => {
 
   it('call `onNextClick` when next button is clicked', () => {
     const spy = jest.fn();
-    const wrapper = shallowWithStyles(<NavBar {...props} onNextClick={spy} />);
+    const wrapper = shallowWithStyles(<NavBar {...props} onNextClick={spy} />, true);
 
     wrapper
       .find(DirectionalIcon)
@@ -99,6 +99,7 @@ describe('<DatePicker />', () => {
         showNextButton={false}
         onResetClick={spy}
       />,
+      true,
     );
 
     wrapper.find('button').simulate('click');

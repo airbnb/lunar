@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
 export type IgnoreAttributes =
@@ -43,6 +43,8 @@ export type FormInputProps<T = unknown> = {
   small?: boolean;
   /** Current value. */
   value?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoreAttributes> &
@@ -68,6 +70,8 @@ export type PrivateProps = FormInputProps & {
   hasSuffix?: boolean;
   /** @ignore */
   tagName: 'input' | 'select' | 'textarea';
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 function FormInput({
@@ -85,9 +89,10 @@ function FormInput({
   propagateRef,
   small,
   tagName: Tag,
+  styleSheet,
   ...restProps
 }: PrivateProps) {
-  const [styles, cx] = useStyles(inputStyleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? inputStyleSheet);
   const isSelect = Tag === 'select';
 
   const props: { [key: string]: unknown } = {

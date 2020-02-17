@@ -1,9 +1,9 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Separator from './Separator';
 import Item from './Item';
 import Row from './Row';
-import { styleSheet } from './styles';
+import { styleSheetMenu } from './styles';
 
 export type MenuProps = {
   /** List of `Row`s, `Item`s, and `Separator`s to render in the menu. */
@@ -18,6 +18,8 @@ export type MenuProps = {
   role?: string;
   /** Whether or not the menu has visible overflow. */
   overflow?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** An abstract menu for use within dropdowns, selects, autocompletes, and more. */
@@ -28,9 +30,10 @@ export default function Menu({
   minWidth = 200,
   overflow,
   role = 'menu',
+  styleSheet,
 }: MenuProps) {
   const scrollable = !!maxHeight && !overflow;
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetMenu);
 
   return (
     <ul

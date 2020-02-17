@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ unit }) => ({
+export const styleSheetGrid: StyleSheet = ({ unit }) => ({
   container: {
     display: 'grid',
     gridGap: unit * 2,
@@ -16,7 +16,3 @@ const styleSheet: StyleSheet = ({ unit }) => ({
     },
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

@@ -1,7 +1,7 @@
 import { StyleSheet } from '../../../hooks/useStyles';
 import { Z_INDEX_PORTAL } from '../../../constants';
 
-const styleSheet: StyleSheet = ({ color }) => ({
+export const styleSheetPortal: StyleSheet = ({ color }) => ({
   container: {
     position: 'fixed',
     zIndex: Z_INDEX_PORTAL,
@@ -27,7 +27,3 @@ const styleSheet: StyleSheet = ({ color }) => ({
     overflow: 'visible',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

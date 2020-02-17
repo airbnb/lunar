@@ -1,8 +1,8 @@
 import React from 'react';
 import IconCaretUp from '@airbnb/lunar-icons/lib/interface/IconCaretUp';
 import IconCaretDown from '@airbnb/lunar-icons/lib/interface/IconCaretDown';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetSortCarets } from './styles';
 
 export type SortCaretsProps = {
   /** Whether or not to display the bottom caret. */
@@ -13,11 +13,19 @@ export type SortCaretsProps = {
   enableUp?: boolean;
   /** Whether or not to display the top caret. */
   up?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Carets to indicate sorting on a table. */
-export default function SortCarets({ down, enableDown, enableUp, up }: SortCaretsProps) {
-  const [styles, cx] = useStyles(styleSheet);
+export default function SortCarets({
+  down,
+  enableDown,
+  enableUp,
+  up,
+  styleSheet,
+}: SortCaretsProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetSortCarets);
 
   return (
     <span className={cx(styles.container, up && down && styles.container_full)}>

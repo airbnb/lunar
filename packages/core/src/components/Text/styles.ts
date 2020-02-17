@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, font, pattern }) => ({
+export const styleSheetText: StyleSheet = ({ color, font, pattern }) => ({
   text: {
     ...font.textReset,
     ...font.textRegular,
@@ -87,7 +87,3 @@ const styleSheet: StyleSheet = ({ color, font, pattern }) => ({
     whiteSpace: 'nowrap',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

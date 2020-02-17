@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { Block } from 'aesthetic';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import useStyles from '../../hooks/useStyles';
 
 export type DropdownProps = {
   /** Bottom offset. */
@@ -32,92 +32,71 @@ export type DropdownProps = {
 };
 
 /** An abstract component for displaing menus and overlays over content. */
-class Dropdown extends React.PureComponent<DropdownProps & WithStylesProps> {
-  static defaultProps = {
-    fixed: false,
-    visible: false,
-  };
+export default function Dropdown({
+  children,
+  fixed,
+  onBlur,
+  onFocus,
+  tabIndex,
+  zIndex,
+  visible,
+  onClickInside,
+  onClickOutside,
+  ...props
+}: DropdownProps) {
+  const [, cx] = useStyles(() => ({}));
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  ref = React.createRef<HTMLDivElement>();
+  const handleClick = useCallback(
+    (event: MouseEvent) => {
+      const { current } = ref;
 
-  componentDidMount() {
-    if (this.props.visible) {
-      document.addEventListener('click', this.handleClick, true);
-    }
-  }
+      if (current?.contains(event.target as Element)) {
+        if (onClickInside) {
+          onClickInside(event);
+        }
 
-  componentDidUpdate(prevProps: DropdownProps) {
-    if (prevProps.visible !== this.props.visible) {
-      if (this.props.visible) {
-        document.addEventListener('click', this.handleClick, true);
-      } else {
-        document.removeEventListener('click', this.handleClick, true);
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleClick, true);
-  }
-
-  private handleClick = (event: MouseEvent) => {
-    const { current } = this.ref;
-
-    if (current && current.contains(event.target as Element)) {
-      if (this.props.onClickInside) {
-        this.props.onClickInside(event);
+        return;
       }
 
-      return;
+      if (onClickOutside) {
+        onClickOutside(event);
+      }
+    },
+    [ref, onClickInside, onClickOutside],
+  );
+
+  useEffect(() => {
+    if (visible) {
+      document.addEventListener('click', handleClick, true);
+    } else {
+      document.removeEventListener('click', handleClick, true);
     }
 
-    if (this.props.onClickOutside) {
-      this.props.onClickOutside(event);
-    }
-  };
-
-  render() {
-    const {
-      cx,
-      children,
-      fixed,
-      onBlur,
-      onFocus,
-      tabIndex,
-      zIndex,
-      visible,
-      onClickOutside,
-      styles, // do not pass the withStyles prop in
-      ...props
-    } = this.props;
-    const style: Block = {
-      position: fixed ? 'fixed' : 'absolute',
-      zIndex: zIndex || 'auto',
-      ...props,
+    return () => {
+      document.removeEventListener('click', handleClick, true);
     };
+  }, [visible, handleClick]);
 
-    // Set top by default if neither are defined
-    if (!('bottom' in props) && !('top' in props)) {
-      style.top = '100%';
-    }
+  const style: Block = {
+    position: fixed ? 'fixed' : 'absolute',
+    zIndex: zIndex ?? 'auto',
+    ...props,
+  };
 
-    // Set left by default if neither are defined
-    if (!('left' in props) && !('right' in props)) {
-      style.left = 0;
-    }
-
-    return (
-      <div
-        ref={this.ref}
-        className={cx(style)}
-        tabIndex={tabIndex}
-        onBlur={onBlur}
-        onFocus={onFocus}
-      >
-        {children}
-      </div>
-    );
+  // Set top by default if neither are defined
+  if (!('bottom' in props) && !('top' in props)) {
+    style.top = '100%';
   }
-}
 
-export default withStyles(() => ({}))(Dropdown);
+  // Set left by default if neither are defined
+  if (!('left' in props) && !('right' in props)) {
+    style.left = 0;
+  }
+
+  return (
+    <div ref={ref} className={cx(style)} tabIndex={tabIndex} onBlur={onBlur} onFocus={onFocus}>
+      {children}
+    </div>
+  );
+}

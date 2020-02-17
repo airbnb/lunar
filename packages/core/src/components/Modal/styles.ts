@@ -6,7 +6,7 @@ export const MODAL_MAX_WIDTH_SMALL = 400;
 export const MODAL_MAX_WIDTH_MEDIUM = 600;
 export const MODAL_MAX_WIDTH_LARGE = 800;
 
-export const styleSheet: StyleSheet = ({ unit, color }) => ({
+export const styleSheetModal: StyleSheet = ({ unit, color }) => ({
   container: {
     bottom: 0,
     left: 0,

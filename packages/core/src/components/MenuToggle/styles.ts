@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ unit, transition }) => ({
+export const styleSheetMenuToggle: StyleSheet = ({ unit, transition }) => ({
   container: {
     display: 'inline-block',
     position: 'relative',
@@ -27,7 +27,3 @@ const styleSheet: StyleSheet = ({ unit, transition }) => ({
     justifyContent: 'space-between',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };
