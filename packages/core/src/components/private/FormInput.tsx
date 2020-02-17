@@ -150,6 +150,4 @@ FormInput.propTypes = {
 };
 
 // Proofreader crashes in non-latin languages unless this component is memoized
-const MemoFormInput = React.memo(FormInput);
-
-export default MemoFormInput;
+export default React.memo(FormInput);

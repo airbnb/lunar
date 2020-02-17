@@ -45,7 +45,7 @@ describe('<RadioButton />', () => {
       <RadioButton name="foo" label="Label" value="foo" onChange={() => {}} />,
     );
 
-    expect(wrapper.find(BaseRadioButton).prop('checked')).toBe(false);
+    expect(wrapper.find(BaseRadioButton).prop('checked')).toBeUndefined();
 
     wrapper.setProps({
       checked: true,
@@ -59,7 +59,7 @@ describe('<RadioButton />', () => {
       <RadioButton name="foo" label="Label" value="foo" onChange={() => {}} />,
     );
 
-    expect(wrapper.find(BaseRadioButton).prop('indeterminate')).toBe(false);
+    expect(wrapper.find(BaseRadioButton).prop('indeterminate')).toBeUndefined();
 
     wrapper.setProps({
       indeterminate: true,

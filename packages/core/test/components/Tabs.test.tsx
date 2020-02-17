@@ -202,9 +202,12 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    wrapper.find(ButtonOrLink).simulate('click');
+    wrapper
+      .find(ButtonOrLink)
+      .at(1)
+      .simulate('click');
 
-    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith('b');
   });
 
   it('wraps in scroller when using `scrollable`', () => {

@@ -83,7 +83,7 @@ export type BaseRadioButtonProps<T extends string> = InputProps<T> & {
   styleSheet?: StyleSheet;
 };
 
-export default function BaseRadioButton<T extends string>({
+export default function BaseRadioButton<T extends string = string>({
   button,
   checked,
   children,

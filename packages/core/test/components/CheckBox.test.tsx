@@ -37,7 +37,7 @@ describe('<CheckBox />', () => {
   it('can set checked', () => {
     const wrapper = shallow(<CheckBox name="foo" label="Label" value="1" onChange={() => {}} />);
 
-    expect(wrapper.find(BaseCheckBox).prop('checked')).toBe(false);
+    expect(wrapper.find(BaseCheckBox).prop('checked')).toBeUndefined();
 
     wrapper.setProps({
       checked: true,
@@ -49,7 +49,7 @@ describe('<CheckBox />', () => {
   it('can set indeterminate', () => {
     const wrapper = shallow(<CheckBox name="foo" label="Label" value="1" onChange={() => {}} />);
 
-    expect(wrapper.find(BaseCheckBox).prop('indeterminate')).toBe(false);
+    expect(wrapper.find(BaseCheckBox).prop('indeterminate')).toBeUndefined();
 
     wrapper.setProps({
       indeterminate: true,
