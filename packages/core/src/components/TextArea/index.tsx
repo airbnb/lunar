@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import uuid from 'uuid/v4';
 import PropTypes from 'prop-types';
 import { requiredBy } from 'airbnb-prop-types';
@@ -21,58 +21,42 @@ export type TextAreaProps = Omit<BaseTextAreaProps, 'id'> &
     proofreadProps?: ExtraProofreadProps;
   };
 
-export type TextAreaState = {
-  id: string;
+/** A controlled textarea field. */
+function TextArea(props: TextAreaProps) {
+  const { fieldProps, inputProps } = partitionFieldProps(props);
+  const { locale, name, proofread, proofreadProps, onCheckText, ...textareaProps } = inputProps;
+  const [id] = useState(() => uuid());
+  const description =
+    fieldProps.labelDescription ||
+    (inputProps.maxLength && (
+      <T
+        k="lunar.form.charsUsed"
+        phrase="%{current}/%{max} characters used"
+        current={inputProps.value!.length.toLocaleString()}
+        max={inputProps.maxLength.toLocaleString()}
+      />
+    ));
+
+  return (
+    <FormField {...fieldProps} id={id} labelDescription={description}>
+      {proofread && onCheckText ? (
+        <Proofreader
+          {...textareaProps}
+          {...proofreadProps}
+          id={id}
+          locale={locale}
+          name={name!}
+          onCheckText={onCheckText}
+        />
+      ) : (
+        <BaseTextArea {...textareaProps} id={id} name={name} />
+      )}
+    </FormField>
+  );
+}
+
+TextArea.propTypes = {
+  onCheckText: requiredBy('proofread', PropTypes.func),
 };
 
-/** A controlled textarea field. */
-export default class TextArea extends React.Component<TextAreaProps, TextAreaState> {
-  static propTypes = {
-    onCheckText: requiredBy('proofread', PropTypes.func),
-  };
-
-  static defaultProps = {
-    locale: 'none',
-    noTranslate: false,
-    proofread: false,
-    proofreadProps: undefined,
-    value: '',
-  };
-
-  state = {
-    id: uuid(),
-  };
-
-  render() {
-    const { fieldProps, inputProps } = partitionFieldProps(this.props);
-    const { locale, name, proofread, proofreadProps, onCheckText, ...textareaProps } = inputProps;
-    const { id } = this.state;
-    const description =
-      fieldProps.labelDescription ||
-      (inputProps.maxLength && (
-        <T
-          k="lunar.form.charsUsed"
-          phrase="%{current}/%{max} characters used"
-          current={inputProps.value!.length.toLocaleString()}
-          max={inputProps.maxLength.toLocaleString()}
-        />
-      ));
-
-    return (
-      <FormField {...fieldProps} id={id} labelDescription={description}>
-        {proofread && onCheckText ? (
-          <Proofreader
-            {...textareaProps}
-            {...proofreadProps}
-            id={id}
-            locale={locale}
-            name={name!}
-            onCheckText={onCheckText}
-          />
-        ) : (
-          <BaseTextArea {...textareaProps} id={id} name={name} />
-        )}
-      </FormField>
-    );
-  }
-}
+export default TextArea;

@@ -195,8 +195,10 @@ describe('<Tabs/>', () => {
   it('triggers `onChange` when clicking', () => {
     const spy = jest.fn();
     const wrapper = mountUseStyles(
-      <Tabs onChange={spy}>
+      <Tabs<'a' | 'b' | 'c'> onChange={spy}>
         <Tab key="a" label="Label" />
+        <Tab key="b" label="Label" />
+        <Tab key="c" label="Label" />
       </Tabs>,
     );
 

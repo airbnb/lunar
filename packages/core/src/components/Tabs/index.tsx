@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import React, { useState, useEffect, useCallback } from 'react';
-import withBoundary from '../../composers/withBoundary';
+import withBoundary, { WithBoundaryWrapperProps } from '../../composers/withBoundary';
 import GradientScroller from '../GradientScroller';
 import Tab, { TabProps } from './Tab';
 import { styleSheetTabs } from './styles';
@@ -8,15 +8,15 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export { Tab };
 
-export type TabsProps = {
+export type TabsProps<T extends string> = {
   /** Hide bottom border of Tabs. */
   borderless?: boolean;
   /** Tabs and their content. */
   children: NonNullable<React.ReactNode>;
   /** Key of tab selected by default. */
-  defaultKey?: string;
+  defaultKey?: T;
   /** Callback fired when a tab changes. */
-  onChange?: (key: string) => void;
+  onChange?: (key: T) => void;
   /** Persist the selected tab through the defined URL hash. */
   persistWithHash?: string;
   /** Secondary tab style, implies borderless. */
@@ -38,7 +38,7 @@ function getHashQuery(): URLSearchParams {
 }
 
 /** A controller for multiple tabs. */
-function Tabs({
+function Tabs<T extends string = string>({
   borderless,
   children,
   secondary,
@@ -48,7 +48,7 @@ function Tabs({
   defaultKey,
   onChange,
   styleSheet,
-}: TabsProps) {
+}: TabsProps<T>) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetTabs);
   const [selectedKey, setSelectedKey] = useState(
     () => (persistWithHash && getHashQuery().get(persistWithHash)) || defaultKey || '',
@@ -67,7 +67,7 @@ function Tabs({
     }
   }, [persistWithHash]);
 
-  const handleClick = (key: string) => {
+  const handleClick = (key: T) => {
     setSelectedKey(key);
 
     if (onChange) {
@@ -114,9 +114,9 @@ function Tabs({
           content = props.children;
         }
 
-        return React.cloneElement(child as React.ReactElement<TabProps>, {
+        return React.cloneElement(child as React.ReactElement<TabProps<T>>, {
           borderless,
-          keyName: String(key),
+          keyName: String(key) as T,
           secondary,
           selected,
           stretched,
@@ -145,4 +145,9 @@ function Tabs({
   );
 }
 
-export default withBoundary('Tabs')(Tabs);
+// Required to pass generics around HOCs
+const BoundaryTabs = withBoundary('Tabs')(Tabs) as <T extends string = string>(
+  props: TabsProps<T> & WithBoundaryWrapperProps,
+) => React.ReactElement<TabsProps<T>>;
+
+export default BoundaryTabs;

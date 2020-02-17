@@ -5,9 +5,11 @@ import FormField from '../../src/components/FormField';
 import BaseSelect from '../../src/components/private/BaseSelect';
 
 describe('<Select />', () => {
+  type Value = 'foo' | 'bar' | 'baz';
+
   it('renders a field and input', () => {
     const wrapper = shallow(
-      <Select name="foo" label="Label" onChange={() => {}}>
+      <Select<Value> name="foo" label="Label" onChange={() => {}}>
         <option value="">Option</option>
       </Select>,
     );

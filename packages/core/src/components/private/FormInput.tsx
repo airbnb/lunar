@@ -26,7 +26,7 @@ export type IgnoreAttributes =
   | 'results'
   | 'security';
 
-export type FormInputProps<T extends string, R = unknown> = {
+export type FormInputProps<T extends string = string, R = unknown> = {
   /** Mark the field as important. */
   important?: boolean;
   /** Mark the field as invalid. */
@@ -47,19 +47,19 @@ export type FormInputProps<T extends string, R = unknown> = {
   styleSheet?: StyleSheet;
 };
 
-export type InputProps<T extends string> = Omit<
+export type InputProps<T extends string = string> = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   IgnoreAttributes
 > &
   FormInputProps<T, HTMLInputElement>;
 
-export type SelectProps<T extends string> = Omit<
+export type SelectProps<T extends string = string> = Omit<
   React.SelectHTMLAttributes<HTMLSelectElement>,
   IgnoreAttributes
 > &
   FormInputProps<T, HTMLSelectElement>;
 
-export type TextAreaProps<T extends string> = Omit<
+export type TextAreaProps<T extends string = string> = Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
   IgnoreAttributes
 > &
