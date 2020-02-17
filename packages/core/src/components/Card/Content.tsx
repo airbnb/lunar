@@ -31,9 +31,9 @@ export type CardContentProps = {
   top?: React.ReactNode;
   /** To use with text truncation; overflow is hidden. */
   truncated?: boolean;
-  /** If provided, makes the after image clickable, firing this callback. */
+  /** If provided, makes the after content clickable, firing this callback. */
   onAfterClick?: () => void;
-  /** If provided, makes the before image clickable, firing this callback. */
+  /** If provided, makes the before content clickable, firing this callback. */
   onBeforeClick?: () => void;
   /** If provided, makes the entire content clickable, firing this callback. */
   onClick?: () => void;
