@@ -8,7 +8,13 @@ type CardSideProps = Partial<Pick<CardContentProps, 'children' | 'compact' | 'mi
   type: 'before' | 'after';
 };
 
-export default function CardSide({ children, compact, middleAlign, noPadding, type }: CardSideProps) {
+export default function CardSide({
+  children,
+  compact,
+  middleAlign,
+  noPadding,
+  type,
+}: CardSideProps) {
   const [styles, cx] = useStyles(styleSheetContent);
   const isAfter = type === 'after';
   const isBefore = type === 'before';

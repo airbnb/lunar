@@ -427,7 +427,6 @@ export function aCardWithAllTheExtraContentAndAlignMents() {
           <Text>Middle alignment</Text>
         </Content>
       </Card>
-
     </>
   );
 }
