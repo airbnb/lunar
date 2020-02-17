@@ -22,39 +22,39 @@ export type BaseAffixProps = {
   small?: boolean;
 };
 
-export default class BaseAffix extends React.PureComponent<BaseAffixProps & WithStylesProps> {
-  static propTypes = {
-    after: dirProp,
-    before: dirProp,
-    large: sizeProp,
-    small: sizeProp,
-  };
-
-  static defaultProps = {
-    after: false,
-    before: false,
-    compact: false,
-    disabled: false,
-    flex: false,
-  };
-
-  render() {
-    const { cx, after, before, children, small, large, disabled, flex, styles } = this.props;
-
-    return (
-      <div
-        className={cx(
-          styles.affix,
-          small && styles.affix_small,
-          large && styles.affix_large,
-          before && styles.affix_before,
-          after && styles.affix_after,
-          disabled && styles.affix_disabled,
-          flex && styles.affix_flex,
-        )}
-      >
-        {children}
-      </div>
-    );
-  }
+function BaseAffix({
+  cx,
+  after,
+  before,
+  children,
+  small,
+  large,
+  disabled,
+  flex,
+  styles,
+}: BaseAffixProps & WithStylesProps) {
+  return (
+    <div
+      className={cx(
+        styles.affix,
+        small && styles.affix_small,
+        large && styles.affix_large,
+        before && styles.affix_before,
+        after && styles.affix_after,
+        disabled && styles.affix_disabled,
+        flex && styles.affix_flex,
+      )}
+    >
+      {children}
+    </div>
+  );
 }
+
+BaseAffix.propTypes = {
+  after: dirProp,
+  before: dirProp,
+  large: sizeProp,
+  small: sizeProp,
+};
+
+export default BaseAffix;

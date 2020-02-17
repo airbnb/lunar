@@ -11,18 +11,8 @@ export type TrackingBoundaryProps = {
 };
 
 /** Wraps a component and provides a context stack for click and keydown tracking purposes. */
-export default class TrackingBoundary extends React.Component<TrackingBoundaryProps> {
-  static propTypes = {
-    name: componentName,
-  };
-
-  static defaultProps = {
-    name: '',
-  };
-
-  private handleTrackContext = ({ nativeEvent }: { nativeEvent: MouseEvent | KeyboardEvent }) => {
-    const { name } = this.props;
-
+function TrackingBoundary({ children, name }: TrackingBoundaryProps) {
+  const handleTrackContext = ({ nativeEvent }: { nativeEvent: MouseEvent | KeyboardEvent }) => {
     if (!name) {
       return;
     }
@@ -34,21 +24,19 @@ export default class TrackingBoundary extends React.Component<TrackingBoundaryPr
     }
   };
 
-  render() {
-    const { children, name } = this.props;
-
-    if (!name) {
-      return children;
-    }
-
-    return (
-      <tracking-boundary
-        data-tracking-name={name}
-        onClick={this.handleTrackContext}
-        onKeyDown={this.handleTrackContext}
-      >
-        {children}
-      </tracking-boundary>
-    );
-  }
+  return (
+    <tracking-boundary
+      data-tracking-name={name}
+      onClick={handleTrackContext}
+      onKeyDown={handleTrackContext}
+    >
+      {children}
+    </tracking-boundary>
+  );
 }
+
+TrackingBoundary.propTypes = {
+  name: componentName,
+};
+
+export default TrackingBoundary;

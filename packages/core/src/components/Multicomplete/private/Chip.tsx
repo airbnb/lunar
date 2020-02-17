@@ -9,18 +9,14 @@ export type MulticompleteChipProps = {
   onClick: (value: string, event: React.MouseEvent<HTMLElement>) => void;
 };
 
-export default class MulticompleteChip extends React.Component<MulticompleteChipProps> {
-  private handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    this.props.onClick(this.props.value, event);
+export default function MulticompleteChip({ value, onClick }: MulticompleteChipProps) {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    onClick(value, event);
   };
 
-  render() {
-    const { value } = this.props;
-
-    return (
-      <Chip afterIcon={<IconCloseAlt decorative size="2em" />} onIconClick={this.handleClick}>
-        {value}
-      </Chip>
-    );
-  }
+  return (
+    <Chip afterIcon={<IconCloseAlt decorative size="2em" />} onIconClick={handleClick}>
+      {value}
+    </Chip>
+  );
 }

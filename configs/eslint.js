@@ -9,7 +9,6 @@ module.exports = {
 
     // Disabled until we migrate to hooks
     'react/no-did-update-set-state': 'off',
-    'react/prefer-stateless-function': 'off',
   },
 
   overrides: [
