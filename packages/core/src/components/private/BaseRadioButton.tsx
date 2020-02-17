@@ -13,8 +13,7 @@ export const styleSheetRadioButton: StyleSheet = theme => {
 
     radio: {
       padding: 0,
-      margin: 0,
-      marginTop: 2,
+      margin: '2px 0px',
       width: 18,
       height: 18,
       display: 'block',

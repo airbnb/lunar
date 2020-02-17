@@ -60,7 +60,7 @@ export type PrivateProps = FormFieldProps & {
   /** @ignore Stretches the label to 100%. */
   stretchLabel?: boolean;
   /** @ignore Top align content. */
-  topAlign?: boolean;
+  middleAlign?: boolean;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
 };
@@ -90,7 +90,7 @@ export default function FormField({
   prefix,
   small,
   suffix,
-  topAlign,
+  middleAlign,
   styleSheet,
 }: PrivateProps) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetFormField);
@@ -121,7 +121,7 @@ export default function FormField({
         noSpacing && styles.field_noSpacing,
       )}
     >
-      <div className={cx(inline && styles.content_inline, topAlign && styles.content_topAlign)}>
+      <div className={cx(inline && styles.content_inline, middleAlign && styles.content_middleAlign)}>
         {renderBeforeLabel && content}
 
         <label

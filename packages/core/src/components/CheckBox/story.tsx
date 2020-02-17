@@ -78,12 +78,12 @@ withALabelDescriptionInAnIndeterminateState.story = {
   name: 'With a label description in an indeterminate state.',
 };
 
-export function withATopAlignment() {
+export function withAMiddleAlignment() {
   return (
     <>
-      <CheckBox checked topAlign name="cb-topalign" label="Label" onChange={action('onChange')} />
+      <CheckBox checked middleAlign name="cb-topalign" label="Label" onChange={action('onChange')} />
       <CheckBox
-        topAlign
+        middleAlign
         name="cb-topalign"
         label="Label"
         labelDescription="This is a small label description."
@@ -93,8 +93,8 @@ export function withATopAlignment() {
   );
 }
 
-withATopAlignment.story = {
-  name: 'With a top alignment.',
+withAMiddleAlignment.story = {
+  name: 'With a middle alignment.',
 };
 
 export function markedAsOptional() {
