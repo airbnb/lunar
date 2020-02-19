@@ -36,7 +36,7 @@ export function basicFunctionality() {
 
       <Item secondary>
         <Text small muted>
-          Simple timeline items don't show their{' '}
+          Secondary timeline items don't show their{' '}
           <Text inline small bold>
             Timestamps
           </Text>
