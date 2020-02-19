@@ -1,4 +1,5 @@
 import React from 'react';
+import List from '../List';
 
 export type TimelineProps = {
   /** Collection of timeline items. */
@@ -7,5 +8,5 @@ export type TimelineProps = {
 
 /** A chronologically ordered list of items. Ordering is determined by caller. */
 export default function Timeline({ children }: TimelineProps) {
-  return <>{children}</>;
+  return <List ordered>{children}</List>;
 }

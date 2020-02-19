@@ -3,14 +3,13 @@ import LoremIpsum from ':storybook/components/LoremIpsum';
 import Text from '../Text';
 import Timeline from '.';
 import Item from './Item';
-import SimpleItem from './SimpleItem';
 import Button from '../Button';
 import StatusLabel from '../StatusLabel';
 
 export default {
   title: 'Core/Timeline',
   parameters: {
-    inspectComponents: [Timeline, Item, SimpleItem],
+    inspectComponents: [Timeline, Item],
   },
 };
 
@@ -35,14 +34,14 @@ export function basicFunctionality() {
         <StatusLabel warning>Warning label</StatusLabel>
       </Item>
 
-      <SimpleItem>
+      <Item secondary>
         <Text small muted>
           Simple timeline items don't show their{' '}
           <Text inline small bold>
             Timestamps
           </Text>
         </Text>
-      </SimpleItem>
+      </Item>
 
       <Item at={now}>
         <Button>Does nothing</Button>

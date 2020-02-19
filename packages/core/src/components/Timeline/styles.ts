@@ -1,27 +1,23 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheetItem: StyleSheet = ({ color, unit }) => ({
+export const styleSheetItem: StyleSheet = ({ color, ui, unit }) => ({
   wrapper: {
     marginLeft: unit * 0.5 - 1,
-    borderLeft: `2px solid ${color.core.neutral[3]}`,
+    borderLeft: ui.borderThick,
     paddingLeft: unit * 2.5,
     paddingBottom: unit * 7,
+  },
+
+  wrapper_secondary: {
+    paddingBottom: 0,
+    height: unit * 2.75,
   },
 
   wrapper_oldest: {
     paddingLeft: unit * 3,
   },
-});
 
-export const styleSheetSimpleItem: StyleSheet = ({ color, unit }) => ({
-  wrapper: {
-    marginLeft: unit * 0.5 - 1,
-    borderLeft: `2px solid ${color.core.neutral[3]}`,
-    paddingLeft: unit * 2.5,
-    height: unit * 2.75,
-  },
-
-  iconWrapper: {
+  iconWrapper_secondary: {
     marginLeft: unit * 0.25,
     marginRight: unit * 0.25,
   },
