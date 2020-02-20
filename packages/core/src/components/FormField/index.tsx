@@ -121,7 +121,9 @@ export default function FormField({
         noSpacing && styles.field_noSpacing,
       )}
     >
-      <div className={cx(inline && styles.content_inline, middleAlign && styles.content_middleAlign)}>
+      <div
+        className={cx(inline && styles.content_inline, middleAlign && styles.content_middleAlign)}
+      >
         {renderBeforeLabel && content}
 
         <label

@@ -81,7 +81,13 @@ withALabelDescriptionInAnIndeterminateState.story = {
 export function withAMiddleAlignment() {
   return (
     <>
-      <CheckBox checked middleAlign name="cb-topalign" label="Label" onChange={action('onChange')} />
+      <CheckBox
+        checked
+        middleAlign
+        name="cb-topalign"
+        label="Label"
+        onChange={action('onChange')}
+      />
       <CheckBox
         middleAlign
         name="cb-topalign"
