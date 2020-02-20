@@ -50,20 +50,4 @@ describe('<Copy />', () => {
     expect(spy).toHaveBeenCalledWith('foo', true);
     expect(copy).toHaveBeenCalledWith('foo');
   });
-
-  it('toggles copied state', () => {
-    const wrapper = shallow(<Copy text="foo" />);
-
-    wrapper.find(Link).simulate('click', {
-      preventDefault() {},
-    });
-
-    expect(wrapper.state('copied')).toBe(true);
-
-    wrapper.find(Link).simulate('mouseLeave');
-
-    jest.advanceTimersByTime(600);
-
-    expect(wrapper.state('copied')).toBe(false);
-  });
 });

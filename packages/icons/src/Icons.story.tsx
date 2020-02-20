@@ -32,7 +32,7 @@ context.keys().forEach(file => {
   iconData[category].icons.push(Icon);
 });
 
-class IconGrid extends React.Component<{
+function IconGrid(props: {
   category: string;
   color: string;
   flip: boolean;
@@ -40,53 +40,51 @@ class IconGrid extends React.Component<{
   icons: IconSet['icons'];
   size: string;
   title: string;
-}> {
-  render() {
-    const { category, title, icons, color, size, flip, flipVertical } = this.props;
+}) {
+  const { category, title, icons, color, size, flip, flipVertical } = props;
 
-    return (
-      <div style={{ marginBottom: 16 }}>
-        <h3 style={{ marginTop: 0 }}>{title}</h3>
+  return (
+    <div style={{ marginBottom: 16 }}>
+      <h3 style={{ marginTop: 0 }}>{title}</h3>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 16 }}>
-          {icons.map(Icon => (
-            <button
-              key={Icon.displayName}
-              type="button"
-              title={Icon.displayName}
-              style={{
-                fontSize: 15,
-                padding: '1rem .5rem',
-                margin: 0,
-                border: 0,
-                background: 'none',
-                cursor: 'pointer',
-                color: '#484848',
-                textAlign: 'center',
-                width: 90,
-              }}
-              onClick={() => {
-                const icon = Icon.displayName!;
+      <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 16 }}>
+        {icons.map(Icon => (
+          <button
+            key={Icon.displayName}
+            type="button"
+            title={Icon.displayName}
+            style={{
+              fontSize: 15,
+              padding: '1rem .5rem',
+              margin: 0,
+              border: 0,
+              background: 'none',
+              cursor: 'pointer',
+              color: '#484848',
+              textAlign: 'center',
+              width: 90,
+            }}
+            onClick={() => {
+              const icon = Icon.displayName!;
 
-                action(icon)(`import ${icon} from '@airbnb/lunar-icons/lib/${category}/${icon}';`);
-              }}
-            >
-              <Icon
-                inline
-                decorative
-                size={size}
-                color={color || undefined}
-                flip={flip}
-                flipVertical={flipVertical}
-              />
+              action(icon)(`import ${icon} from '@airbnb/lunar-icons/lib/${category}/${icon}';`);
+            }}
+          >
+            <Icon
+              inline
+              decorative
+              size={size}
+              color={color || undefined}
+              flip={flip}
+              flipVertical={flipVertical}
+            />
 
-              <div style={{ fontSize: 11, marginTop: 4 }}>{Icon.displayName!.slice(4)}</div>
-            </button>
-          ))}
-        </div>
+            <div style={{ fontSize: 11, marginTop: 4 }}>{Icon.displayName!.slice(4)}</div>
+          </button>
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 class IconList extends React.Component<

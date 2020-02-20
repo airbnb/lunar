@@ -9,24 +9,19 @@ import {
 export type TranslateProps = BaseTranslateProps;
 
 /** Translate a phrase with a key and dynamic params. */
-export default class Translate extends React.PureComponent<TranslateProps> {
-  static defaultProps = {
-    html: false,
-  };
+function Translate({ children, k: key, phrase, html, ...params }: TranslateProps) {
+  const { translatorComponent: Translator } = Core.settings;
+  const options: TranslateOptions = { html };
 
-  static phrase(key: string, phrase: string, params?: TranslateParams): string {
-    return Core.translate(key, phrase, params);
+  if (!Translator) {
+    return <span>{Core.translate(key, phrase, params as TranslateParams, options)}</span>;
   }
 
-  render() {
-    const { translatorComponent: Translator } = Core.settings;
-    const { children, k: key, phrase, html, ...params } = this.props;
-    const options: TranslateOptions = { html };
-
-    if (!Translator) {
-      return <span>{Core.translate(key, phrase, params as TranslateParams, options)}</span>;
-    }
-
-    return <Translator k={key} phrase={phrase} html={html} {...(params as {})} />;
-  }
+  return <Translator k={key} phrase={phrase} html={html} {...(params as {})} />;
 }
+
+Translate.phrase = function phrase(key: string, msg: string, params?: TranslateParams): string {
+  return Core.translate(key, msg, params);
+};
+
+export default Translate;
