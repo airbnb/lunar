@@ -1,26 +1,52 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheetItem: StyleSheet = ({ ui, unit }) => ({
-  wrapper: {
-    marginLeft: unit * 0.5 - 1,
-    borderLeft: ui.borderThick,
-    paddingLeft: unit * 2.5,
-    paddingBottom: unit * 7,
-  },
+export const styleSheetItem: StyleSheet = ({ color, ui, unit }) => {
+  const maxDotWidth = unit;
+  const maxDotHeight = unit * 2.25;
 
-  wrapper_secondary: {
-    paddingBottom: 0,
-    height: unit * 2.75,
-  },
+  return {
+    wrapper: {
+      display: 'grid',
+      gridColumnGap: unit * 2.5,
+      gridTemplateAreas: '"bar content" "bar content"',
+      gridTemplateColumns: `${maxDotWidth}px 1fr`,
+      gridTemplateRows: `minmax(${maxDotHeight}px, 1fr) 1fr`,
+      justifyContent: 'flex-start',
+    },
 
-  wrapper_oldest: {
-    paddingLeft: unit * 3,
-  },
+    barWrapper: {
+      gridArea: 'bar',
+      width: maxDotWidth,
+    },
 
-  iconWrapper_secondary: {
-    marginLeft: unit * 0.25,
-    marginRight: unit * 0.25,
-  },
-});
+    bar: {
+      background: color.accent.border,
+      width: ui.borderWidthThick,
+      height: `calc(100% - ${maxDotHeight}px)`,
+      margin: 'auto',
+    },
+
+    content: {
+      gridArea: 'content',
+      paddingBottom: unit * 7,
+    },
+
+    content_secondary: {
+      paddingBottom: unit * 2.75,
+    },
+
+    content_oldest: {
+      paddingBottom: 0,
+    },
+
+    iconWrapper: {
+      width: maxDotWidth,
+      height: maxDotHeight,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  };
+};
 
 export default styleSheetItem;

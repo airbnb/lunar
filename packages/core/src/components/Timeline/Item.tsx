@@ -2,7 +2,6 @@ import React from 'react';
 import IconRecord from '@airbnb/lunar-icons/src/interface/IconRecord';
 import useStyles from '../../hooks/useStyles';
 import { styleSheetItem } from './styles';
-import Row from '../Row';
 import Text from '../Text';
 import useTheme from '../../hooks/useTheme';
 import DateTime from '../DateTime';
@@ -31,35 +30,41 @@ export default function Item({ at, oldest = false, secondary = false, children }
 
   return (
     <ListItem>
-      <Row
-        middleAlign
-        before={
-          <div className={cx(secondary && styles.iconWrapper_secondary)}>
-            <IconRecord decorative size={secondary ? 4 : 8} color={theme.color.core.neutral[3]} />
-          </div>
-        }
-      >
-        {secondary ? (
-          children
-        ) : (
-          <Text small muted>
-            <T
-              phrase="%{mediumDate} (%{relativeDate})"
-              k="lunar.timeline.date"
-              mediumDate={DateTime.format({ at, medium: true })}
-              relativeDate={DateTime.relative(at!)}
+      <div className={cx(styles.wrapper)}>
+        <div className={cx(styles.barWrapper)}>
+          <div className={cx(styles.iconWrapper)}>
+            <IconRecord
+              decorative
+              size={secondary ? theme.unit * 0.5 : theme.unit}
+              color={theme.color.core.neutral[3]}
             />
-          </Text>
-        )}
-      </Row>
-      <div
-        className={cx(
-          oldest && styles.wrapper_oldest,
-          !oldest && styles.wrapper,
-          !oldest && secondary && styles.wrapper_secondary,
-        )}
-      >
-        {!secondary && children}
+          </div>
+
+          {!oldest && <div className={cx(styles.bar)} />}
+        </div>
+
+        <div
+          className={cx(
+            styles.content,
+            secondary && styles.content_secondary,
+            oldest && styles.content_oldest,
+          )}
+        >
+          {secondary && children}
+          {!secondary && (
+            <>
+              <Text small muted>
+                <T
+                  phrase="%{mediumDate} (%{relativeDate})"
+                  k="lunar.timeline.date"
+                  mediumDate={DateTime.format({ at, medium: true })}
+                  relativeDate={DateTime.relative(at!)}
+                />
+              </Text>
+              {children}
+            </>
+          )}
+        </div>
       </div>
     </ListItem>
   );
