@@ -48,45 +48,41 @@ export type ErrorMessageProps = {
 };
 
 /** Display an error message from an `Error` instance or API endpoint. */
-export default class ErrorMessage extends React.PureComponent<ErrorMessageProps> {
-  static defaultProps = {
-    inline: false,
-    subtitle: null,
-    title: null,
-  };
-
-  render() {
-    const { error, inline, title, subtitle, onClose } = this.props;
-
-    if (!error) {
-      return null;
-    }
-
-    const message = subtitle || getErrorMessage(error);
-    const code = error instanceof Error ? null : error.error_code;
-    const id = error instanceof Error ? null : error.error_id;
-    const url = error instanceof Error ? '' : error.error_url;
-
-    if (inline) {
-      return <StatusText danger>{message}</StatusText>;
-    }
-
-    return (
-      <Alert
-        danger
-        title={title || code || <T k="lunar.error.unknown" phrase="Unknown error" />}
-        onClose={onClose}
-      >
-        {message}
-
-        {id && (
-          <Spacing top={1}>
-            <MutedButton inverted onClick={createRedirectURL(id, url)}>
-              <T k="lunar.error.viewDetails" phrase="View error details" />
-            </MutedButton>
-          </Spacing>
-        )}
-      </Alert>
-    );
+export default function ErrorMessage({
+  error,
+  inline,
+  title,
+  subtitle,
+  onClose,
+}: ErrorMessageProps) {
+  if (!error) {
+    return null;
   }
+
+  const message = subtitle || getErrorMessage(error);
+  const code = error instanceof Error ? null : error.error_code;
+  const id = error instanceof Error ? null : error.error_id;
+  const url = error instanceof Error ? '' : error.error_url;
+
+  if (inline) {
+    return <StatusText danger>{message}</StatusText>;
+  }
+
+  return (
+    <Alert
+      danger
+      title={title || code || <T k="lunar.error.unknown" phrase="Unknown error" />}
+      onClose={onClose}
+    >
+      {message}
+
+      {id && (
+        <Spacing top={1}>
+          <MutedButton inverted onClick={createRedirectURL(id, url)}>
+            <T k="lunar.error.viewDetails" phrase="View error details" />
+          </MutedButton>
+        </Spacing>
+      )}
+    </Alert>
+  );
 }

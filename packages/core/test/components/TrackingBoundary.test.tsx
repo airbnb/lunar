@@ -19,7 +19,6 @@ describe('<TrackingBoundary />', () => {
     const child = 'Foo';
     const wrapper = shallow(<TrackingBoundary>{child}</TrackingBoundary>);
 
-    expect(wrapper.type()).toBeUndefined();
     expect(wrapper.contains(child)).toBe(true);
   });
 

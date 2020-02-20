@@ -14,19 +14,17 @@ export type TwoColumnLayoutProps = LayoutProps & {
 };
 
 /** A two-column layout. */
-export default class TwoColumnLayout extends React.Component<TwoColumnLayoutProps> {
-  static propTypes = {
-    after: asidePropType,
-    before: asidePropType,
-  };
-
-  render() {
-    const { aside, after, before, children, ...props } = this.props;
-
-    return (
-      <Layout {...props} after={after ? aside : null} before={before ? aside : null}>
-        {children}
-      </Layout>
-    );
-  }
+function TwoColumnLayout({ aside, after, before, children, ...props }: TwoColumnLayoutProps) {
+  return (
+    <Layout {...props} after={after ? aside : null} before={before ? aside : null}>
+      {children}
+    </Layout>
+  );
 }
+
+TwoColumnLayout.propTypes = {
+  after: asidePropType,
+  before: asidePropType,
+};
+
+export default TwoColumnLayout;

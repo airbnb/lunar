@@ -4,10 +4,6 @@ import Layout, { LayoutProps } from '../Layout';
 export type OneColumnLayoutProps = LayoutProps;
 
 /** A one-column layout. */
-export default class OneColumnLayout extends React.Component<OneColumnLayoutProps> {
-  render() {
-    const { children, ...props } = this.props;
-
-    return <Layout {...props}>{children}</Layout>;
-  }
+export default function OneColumnLayout({ children, ...props }: OneColumnLayoutProps) {
+  return <Layout {...props}>{children}</Layout>;
 }
