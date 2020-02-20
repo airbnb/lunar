@@ -2,7 +2,7 @@ import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
-import Text from '../Text';
+import Text, { TextProps } from '../Text';
 import { linkStyleSheet } from './styles';
 
 const sizingProp = mutuallyExclusiveTrueProps('micro', 'small', 'large');
@@ -27,6 +27,8 @@ export type LinkProps = ButtonOrLinkProps & {
   bold?: boolean;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
+  /** Pass text props to the underlying text. */
+  textProps?: Omit<TextProps, 'children' | 'styleSheet'>;
 };
 
 /** A standard link for... linking to things. */
@@ -42,12 +44,13 @@ function Link({
   small,
   bold,
   styleSheet,
+  textProps = {},
   ...restProps
 }: LinkProps) {
   const [styles, cx] = useStyles(styleSheet ?? linkStyleSheet);
 
   return (
-    <Text inline={!block} baseline={baseline} micro={micro} small={small} large={large} bold={bold}>
+    <Text {...{ baseline, micro, small, large, bold, inline: !block, ...textProps }}>
       <ButtonOrLink
         {...restProps}
         disabled={disabled}
