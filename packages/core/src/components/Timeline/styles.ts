@@ -8,15 +8,14 @@ export const styleSheetItem: StyleSheet = ({ color, ui, unit }) => {
     wrapper: {
       display: 'grid',
       gridColumnGap: unit * 2.5,
-      gridTemplateAreas: '"bar content" "bar content"',
+      gridTemplateAreas: '"bar content"',
       gridTemplateColumns: `${maxDotWidth}px 1fr`,
-      gridTemplateRows: `minmax(${maxDotHeight}px, 1fr) 1fr`,
+      gridTemplateRows: `minmax(${maxDotHeight}px, 1fr)`,
       justifyContent: 'flex-start',
     },
 
     barWrapper: {
       gridArea: 'bar',
-      width: maxDotWidth,
     },
 
     bar: {
