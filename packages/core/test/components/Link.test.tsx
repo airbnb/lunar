@@ -104,4 +104,14 @@ describe('<Link />', () => {
 
     expect(wrapper.prop('bold')).toBe(true);
   });
+
+  it('passes text props', () => {
+    const wrapper = mountUseStyles(
+      <Link textProps={{ noWrap: true, preserveWhitespace: true }} href="/foo">
+        foo
+      </Link>,
+    );
+
+    expect(wrapper.find(Text).prop('preserveWhitespace')).toBe(true);
+  });
 });
