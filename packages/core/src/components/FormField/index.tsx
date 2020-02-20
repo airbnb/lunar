@@ -44,6 +44,8 @@ export type FormFieldProps = {
   suffix?: React.ReactNode;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
+  /** @ignore Top align. (Internal use only) */
+  topAlign?: boolean;
 };
 
 export type PrivateProps = FormFieldProps & {
@@ -59,8 +61,8 @@ export type PrivateProps = FormFieldProps & {
   renderLargeLabel?: boolean;
   /** @ignore Stretches the label to 100%. */
   stretchLabel?: boolean;
-  /** @ignore Top align content. */
-  topAlign?: boolean;
+  /** @ignore Middle align content. */
+  middleAlign?: boolean;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
 };
@@ -90,8 +92,9 @@ export default function FormField({
   prefix,
   small,
   suffix,
-  topAlign,
+  middleAlign,
   styleSheet,
+  topAlign,
 }: PrivateProps) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetFormField);
 

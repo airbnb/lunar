@@ -9,8 +9,8 @@ const stateProp = mutuallyExclusiveTrueProps('checked', 'indeterminate');
 
 export type RadioButtonProps<T extends string> = Omit<BaseRadioButtonProps<T>, 'value'> &
   FormFieldProps & {
-    /** Top align content. */
-    topAlign?: boolean;
+    /** Middle align content. */
+    middleAlign?: boolean;
     /** Unique value for this radio. */
     value: string;
   };
@@ -18,7 +18,7 @@ export type RadioButtonProps<T extends string> = Omit<BaseRadioButtonProps<T>, '
 /** A controlled radio button field. */
 function RadioButton<T extends string = string>(props: RadioButtonProps<T>) {
   const { children, fieldProps, inputProps } = partitionFieldProps<T, RadioButtonProps<T>>(props);
-  const { topAlign, ...restProps } = inputProps;
+  const { middleAlign, ...restProps } = inputProps;
   const [id] = useState(() => uuid());
 
   return (
@@ -31,7 +31,7 @@ function RadioButton<T extends string = string>(props: RadioButtonProps<T>) {
       id={props.id || id}
       hideLabel={fieldProps.hideLabel || inputProps.button}
       renderFullWidth={inputProps.button}
-      topAlign={topAlign}
+      topAlign={!middleAlign}
     >
       <BaseRadioButton {...restProps} id={props.id || id} hideLabel={fieldProps.hideLabel}>
         {children || (
