@@ -12,13 +12,10 @@ import { Item as ListItem } from '../List';
 export type ItemProps = {
   /** Datetime occurence of the item. Not used for secondary items. */
   at?: DateTimeType;
-
   /** Whether an item is the oldest (chronologically) in the collection of items. */
   oldest?: boolean;
-
   /** Whether an item should be visually deemphasized. */
   secondary?: boolean;
-
   /** Content to render for an item. */
   children: NonNullable<React.ReactNode>;
 };
@@ -50,20 +47,18 @@ export default function Item({ at, oldest = false, secondary = false, children }
             oldest && styles.content_oldest,
           )}
         >
-          {secondary && children}
           {!secondary && (
-            <>
-              <Text small muted>
-                <T
-                  phrase="%{mediumDate} (%{relativeDate})"
-                  k="lunar.timeline.date"
-                  mediumDate={DateTime.format({ at, medium: true })}
-                  relativeDate={DateTime.relative(at!)}
-                />
-              </Text>
-              {children}
-            </>
+            <Text small muted>
+              <T
+                phrase="%{mediumDate} (%{relativeDate})"
+                k="lunar.timeline.date"
+                mediumDate={DateTime.format({ at, medium: true })}
+                relativeDate={DateTime.relative(at!)}
+              />
+            </Text>
           )}
+
+          {children}
         </div>
       </div>
     </ListItem>
