@@ -7,7 +7,7 @@ export const styleSheetItem: StyleSheet = ({ color, ui, unit }) => {
   return {
     wrapper: {
       display: 'grid',
-      gridColumnGap: unit * 2.5,
+      gridColumnGap: unit * 2,
       gridTemplateAreas: '"bar content"',
       gridTemplateColumns: `${maxDotWidth}px 1fr`,
       gridTemplateRows: `minmax(${maxDotHeight}px, 1fr)`,
