@@ -24,14 +24,22 @@ export function inDifferentSizes() {
     <>
       <RadioButton
         small
+        middleAlign
         name="radio-small"
         label="Small"
         value="foo"
         onChange={action('onChange')}
       />
-      <RadioButton name="radio-regular" label="Regular" value="foo" onChange={action('onChange')} />
+      <RadioButton
+        middleAlign
+        name="radio-regular"
+        label="Regular"
+        value="foo"
+        onChange={action('onChange')}
+      />
       <RadioButton
         large
+        middleAlign
         name="radio-large"
         label="Large"
         value="foo"

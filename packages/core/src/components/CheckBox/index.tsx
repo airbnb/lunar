@@ -26,7 +26,7 @@ export default function CheckBox<T extends string = string>(props: CheckBoxProps
       id={props.id || id}
       hideLabel={fieldProps.hideLabel || inputProps.button}
       renderFullWidth={inputProps.button}
-      middleAlign={middleAlign}
+      topAlign={!middleAlign}
     >
       <BaseCheckBox<T>
         value="1"

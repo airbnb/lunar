@@ -21,11 +21,11 @@ export const styleSheetFormField: StyleSheet = ({ unit }) => ({
 
   content_inline: {
     display: 'flex',
-    alignItems: 'flex-start',
+    alignItems: 'center',
   },
 
-  content_middleAlign: {
-    alignItems: 'center',
+  content_topAlign: {
+    alignItems: 'flex-start',
   },
 
   label: {

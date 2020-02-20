@@ -44,6 +44,8 @@ export type FormFieldProps = {
   suffix?: React.ReactNode;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
+  /** @ignore Top align. (Internal use only) */
+  topAlign?: boolean;
 };
 
 export type PrivateProps = FormFieldProps & {
@@ -92,6 +94,7 @@ export default function FormField({
   suffix,
   middleAlign,
   styleSheet,
+  topAlign,
 }: PrivateProps) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetFormField);
 
@@ -121,9 +124,7 @@ export default function FormField({
         noSpacing && styles.field_noSpacing,
       )}
     >
-      <div
-        className={cx(inline && styles.content_inline, middleAlign && styles.content_middleAlign)}
-      >
+      <div className={cx(inline && styles.content_inline, topAlign && styles.content_topAlign)}>
         {renderBeforeLabel && content}
 
         <label

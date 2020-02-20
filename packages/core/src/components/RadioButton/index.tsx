@@ -31,7 +31,7 @@ function RadioButton<T extends string = string>(props: RadioButtonProps<T>) {
       id={props.id || id}
       hideLabel={fieldProps.hideLabel || inputProps.button}
       renderFullWidth={inputProps.button}
-      middleAlign={middleAlign}
+      topAlign={!middleAlign}
     >
       <BaseRadioButton {...restProps} id={props.id || id} hideLabel={fieldProps.hideLabel}>
         {children || (
