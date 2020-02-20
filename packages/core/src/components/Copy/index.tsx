@@ -27,7 +27,15 @@ export type CopyState = {
 };
 
 /** A component for easily copying a string of text to the clipboard. */
-export default function Copy({ children, text, id, trackingName, underlined, onCopy }: CopyProps) {
+export default function Copy({
+  children,
+  text,
+  id,
+  trackingName,
+  underlined,
+  prompt,
+  onCopy,
+}: CopyProps) {
   const [copied, setCopied] = useState(false);
 
   const handleClick = (event: React.MouseEvent) => {
