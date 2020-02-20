@@ -230,7 +230,7 @@ describe('<DateTime />', () => {
           <DateTime relative at={createDateTime().plus({ years: 70 })} timezone="UTC" />,
         ).dive();
 
-        expect(wrapper.text()).toBe('in 70 years');
+        expect(wrapper.text()).toBe('in 69 years');
       });
 
       it('uses the current time when noFuture is set and the time is in the future', () => {
