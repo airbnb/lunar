@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheetItem: StyleSheet = ({ color, ui, unit }) => ({
+export const styleSheetItem: StyleSheet = ({ ui, unit }) => ({
   wrapper: {
     marginLeft: unit * 0.5 - 1,
     borderLeft: ui.borderThick,
@@ -22,3 +22,5 @@ export const styleSheetItem: StyleSheet = ({ color, ui, unit }) => ({
     marginRight: unit * 0.25,
   },
 });
+
+export default styleSheetItem;

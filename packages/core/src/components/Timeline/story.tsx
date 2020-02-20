@@ -36,7 +36,7 @@ export function basicFunctionality() {
 
       <Item secondary>
         <Text small muted>
-          Secondary timeline items don't show their{' '}
+          Secondary timeline items do not show their{' '}
           <Text inline small bold>
             Timestamps
           </Text>
@@ -54,7 +54,7 @@ export function basicFunctionality() {
       </Item>
 
       <Item oldest at={lastYear}>
-        <Text>This is the oldest item, so it doesn't have a "line" next to it, neat.</Text>
+        <Text>This is the oldest item, so it does not have a line next to it, neat.</Text>
       </Item>
     </Timeline>
   );
