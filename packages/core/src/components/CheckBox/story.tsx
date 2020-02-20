@@ -19,9 +19,9 @@ aStandardCheckboxField.story = {
 export function inDifferentSizes() {
   return (
     <>
-      <CheckBox small name="cb-small" label="Small" onChange={action('onChange')} />
-      <CheckBox name="cb-regular" label="Regular" onChange={action('onChange')} />
-      <CheckBox large name="cb-large" label="Large" onChange={action('onChange')} />
+      <CheckBox small middleAlign name="cb-small" label="Small" onChange={action('onChange')} />
+      <CheckBox middleAlign name="cb-regular" label="Regular" onChange={action('onChange')} />
+      <CheckBox large middleAlign name="cb-large" label="Large" onChange={action('onChange')} />
     </>
   );
 }
@@ -78,12 +78,18 @@ withALabelDescriptionInAnIndeterminateState.story = {
   name: 'With a label description in an indeterminate state.',
 };
 
-export function withATopAlignment() {
+export function withAMiddleAlignment() {
   return (
     <>
-      <CheckBox checked topAlign name="cb-topalign" label="Label" onChange={action('onChange')} />
       <CheckBox
-        topAlign
+        checked
+        middleAlign
+        name="cb-topalign"
+        label="Label"
+        onChange={action('onChange')}
+      />
+      <CheckBox
+        middleAlign
         name="cb-topalign"
         label="Label"
         labelDescription="This is a small label description."
@@ -93,8 +99,8 @@ export function withATopAlignment() {
   );
 }
 
-withATopAlignment.story = {
-  name: 'With a top alignment.',
+withAMiddleAlignment.story = {
+  name: 'With a middle alignment.',
 };
 
 export function markedAsOptional() {

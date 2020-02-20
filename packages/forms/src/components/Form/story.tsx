@@ -248,7 +248,6 @@ export function withAllFields() {
         {CB => (
           <div>
             <CB
-              topAlign
               value="foo"
               label="Foo"
               labelDescription={
@@ -259,7 +258,6 @@ export function withAllFields() {
             />
 
             <CB
-              topAlign
               value="bar"
               label="Bar"
               labelDescription={
@@ -270,7 +268,6 @@ export function withAllFields() {
             />
 
             <CB
-              topAlign
               value="baz"
               label="Baz"
               labelDescription={

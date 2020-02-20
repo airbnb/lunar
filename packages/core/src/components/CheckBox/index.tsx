@@ -6,14 +6,14 @@ import Text from '../Text';
 
 export type CheckBoxProps<T extends string> = BaseCheckBoxProps<T> &
   FormFieldProps & {
-    /** Top align content. */
-    topAlign?: boolean;
+    /** Middle align content. */
+    middleAlign?: boolean;
   };
 
 /** A controlled checkbox field. */
 export default function CheckBox<T extends string = string>(props: CheckBoxProps<T>) {
   const { children, fieldProps, inputProps } = partitionFieldProps<T, CheckBoxProps<T>>(props);
-  const { topAlign, ...restProps } = inputProps;
+  const { middleAlign, ...restProps } = inputProps;
   const [id] = useState(() => uuid());
 
   return (
@@ -26,7 +26,7 @@ export default function CheckBox<T extends string = string>(props: CheckBoxProps
       id={props.id || id}
       hideLabel={fieldProps.hideLabel || inputProps.button}
       renderFullWidth={inputProps.button}
-      topAlign={topAlign}
+      topAlign={!middleAlign}
     >
       <BaseCheckBox<T>
         value="1"
