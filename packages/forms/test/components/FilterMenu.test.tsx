@@ -1,11 +1,11 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import { mountUseStyles } from '@airbnb/lunar-test-utils';
-import { MenuToggleProps } from '@airbnb/lunar/lib/components/MenuToggle';
 import Link from '@airbnb/lunar/lib/components/Link';
 import Button from '@airbnb/lunar/lib/components/Button';
+import Menu from '@airbnb/lunar/lib/components/Menu';
+import Dropdown from '@airbnb/lunar/lib/components/Dropdown';
 import SecondaryLink from '@airbnb/lunar/lib/components/SecondaryLink';
-import T from '@airbnb/lunar/lib/components/Translate';
 import FilterMenu, { Row } from '../../src/components/FilterMenu';
 
 function openFilters(wrapper: Enzyme.ReactWrapper) {
@@ -16,15 +16,11 @@ function openFilters(wrapper: Enzyme.ReactWrapper) {
 }
 
 function getDropdown(wrapper: Enzyme.ReactWrapper) {
-  return wrapper.childAt(1).childAt(0);
+  return wrapper.find(Dropdown).at(0);
 }
 
 function getMenu(wrapper: Enzyme.ReactWrapper) {
-  return wrapper
-    .childAt(1)
-    .childAt(0)
-    .childAt(0)
-    .childAt(0);
+  return wrapper.find(Menu).at(0);
 }
 
 describe('<FilterMenu />', () => {
@@ -40,28 +36,6 @@ describe('<FilterMenu />', () => {
     );
 
     expect(wrapper).toHaveLength(1);
-  });
-
-  it('renders a button with the currently active count', () => {
-    const wrapper = mountUseStyles(
-      <FilterMenu {...props}>
-        <Row>Foo</Row>
-      </FilterMenu>,
-    );
-
-    expect(((wrapper.dive().props() as MenuToggleProps).toggleLabel as T).props.phrase).toBe(
-      'Open filters',
-    );
-
-    wrapper.setProps({
-      activeCount: 1,
-    });
-
-    expect(((wrapper.dive().props() as MenuToggleProps).toggleLabel as T).props.phrase).toBe(
-      '%{smartCount} Filter||||%{smartCount} Filters',
-    );
-
-    expect(((wrapper.dive().props() as MenuToggleProps).toggleLabel as T).props.smartCount).toBe(1);
   });
 
   it('clicking apply on a valid form closes the menu', () => {
@@ -94,6 +68,8 @@ describe('<FilterMenu />', () => {
     wrapper
       .find(SecondaryLink)
       .at(0)
+      .find('button')
+      .at(0)
       .simulate('click');
 
     expect(onClear).toHaveBeenCalledTimes(1);
@@ -111,6 +87,8 @@ describe('<FilterMenu />', () => {
 
     wrapper
       .find(SecondaryLink)
+      .at(0)
+      .find('button')
       .at(0)
       .simulate('click');
 
@@ -179,13 +157,5 @@ describe('<FilterMenu />', () => {
     );
 
     expect(getMenu(wrapper).prop('minWidth')).toBe(400);
-  });
-
-  describe('<Row />', () => {
-    it('renders a row with spacious by default', () => {
-      const wrapper = mountUseStyles(<Row>Hello</Row>);
-
-      expect(wrapper.prop('spacious')).toBe(true);
-    });
   });
 });

@@ -6,6 +6,7 @@ import Spacing from '../../../src/components/Spacing';
 
 describe('<Card />', () => {
   it('renders a button if `onClick` is provided', () => {
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     const onClick = () => {};
     const wrapper = shallow(<Content onClick={onClick}>Sup</Content>);
 
