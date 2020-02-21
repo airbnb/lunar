@@ -24,6 +24,8 @@ type ColumnLabelsProps = {
   style: React.CSSProperties;
 };
 
+const { ASC, DESC } = SortDirection;
+
 /** See https://github.com/bvaughn/react-virtualized/blob/master/source/Table/defaultHeaderRowRenderer.js.
     In order to overwrite the existing labels and carets in defaultHeaderRowRenderer,
     we clone them from props (children[0] = label, children[1] = carets), build around their data. */
@@ -57,67 +59,56 @@ export default function ColumnLabels({
       height: getHeight(rowHeight, columnHeaderHeight),
     };
 
-    const rightAlignmentStyle: React.CSSProperties = {
-      justifyContent: 'flex-end',
-      width: '100%',
-    };
-
     const newColumns = columns.map((col, idx) => {
       if (!React.isValidElement(col)) {
         return col;
       }
 
       const { children } = col.props;
+      const isLeftmost = idx === leftmostIdx;
+      const isRightmost = idx === columns.length - 1;
       const key = children[0].props.children;
       const label = columnToLabel[key]
         ? columnToLabel[key]
         : key && caseColumnLabel(key, columnLabelCase!);
-      const sort = children[1] && children[1].props.sortDirection;
-
-      const isLeftmost = idx === leftmostIdx;
-      const isRightmost = idx === columns.length - 1;
+      const sortDirection = children[1] && children[1].props.sortDirection;
       const indent = !((expandable || selectable) && isLeftmost);
-
       const showDivider = showColumnDividers && !!label && !isRightmost;
-
       const sortable =
         !columnMetadata || !columnMetadata[key] || columnMetadata[key].disableSorting !== 1;
 
       const newHeader = (
-        <Spacing left={indent ? 2 : 0}>
-          <div style={heightStyle} className={cx(showDivider && styles && styles.column_divider)}>
-            <div
-              style={
-                columnMetadata && columnMetadata[key] && columnMetadata[key].rightAlign
-                  ? rightAlignmentStyle
-                  : {}
-              }
-              className={cx(styles && styles.headerRow)}
-            >
-              <Text micro muted>
-                {label}
-              </Text>
+        <div
+          style={heightStyle}
+          className={cx(
+            styles?.headerRow,
+            !!columnMetadata?.[key]?.rightAlign && styles?.columnLabelRightAligned,
+            indent && styles?.columnLabelIndented,
+            showDivider && styles?.columnDivider,
+          )}
+        >
+          <Text micro muted>
+            {label}
+          </Text>
 
-              {label && sortable && (
-                <Spacing inline left={0.5}>
-                  <SortCarets
-                    down
-                    up
-                    enableDown={sort === SortDirection.DESC}
-                    enableUp={sort === SortDirection.ASC}
-                  />
-                </Spacing>
-              )}
-            </div>
-          </div>
-        </Spacing>
+          {label && sortable && (
+            <Spacing inline left={0.5}>
+              <SortCarets
+                down
+                up
+                enableDown={sortDirection === DESC}
+                enableUp={sortDirection === ASC}
+              />
+            </Spacing>
+          )}
+        </div>
       );
 
       return React.cloneElement(col, col.props, newHeader);
     });
 
     return (
-      <div role="row" style={style} className={cx(className, styles && styles.column_header)}>
+      <div role="row" style={style} className={cx(className, styles?.columnHeader)}>
         {newColumns}
       </div>
     );

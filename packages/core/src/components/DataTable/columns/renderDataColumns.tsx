@@ -47,7 +47,7 @@ export default function renderDataColumns<T>(
   const renderCell = (key: string, columnIndex: number, row: VirtualRow<T>) => {
     const { metadata } = row.rowData;
     const { isChild } = metadata;
-    const customRenderer = renderers && renderers[key];
+    const customRenderer = renderers?.[key];
     const isLeftmost = columnIndex === 0;
     const indentSize = !expandable || !isLeftmost ? 2 : 2.5;
     const spacing = isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
@@ -55,12 +55,12 @@ export default function renderDataColumns<T>(
       row,
       keyName: key as keyof T,
       onEdit,
-      zebra: zebra || false,
+      zebra: zebra ?? false,
       editMode,
       theme,
     };
 
-    if (metadata && metadata.colSpanKey && renderers) {
+    if (metadata?.colSpanKey && renderers) {
       if (isLeftmost) {
         const colSpanRenderer = renderers[metadata.colSpanKey];
 
@@ -70,7 +70,7 @@ export default function renderDataColumns<T>(
       }
     }
 
-    const contents = React.createElement(customRenderer || DefaultRenderer, rendererArguments);
+    const contents = React.createElement(customRenderer ?? DefaultRenderer, rendererArguments);
 
     return (
       <Spacing left={spacing} right={2}>
@@ -113,11 +113,9 @@ export default function renderDataColumns<T>(
     const widthProperties: WidthProperties = {};
     widthPropertiesOptions.forEach(property => {
       widthProperties[property] =
-        columnMetadata &&
-        columnMetadata[key] !== undefined &&
-        columnMetadata[key][property] !== undefined
-          ? columnMetadata[key][property]
-          : DEFAULT_WIDTH_PROPERTIES[property];
+        columnMetadata?.[key]?.[property] === undefined
+          ? DEFAULT_WIDTH_PROPERTIES[property]
+          : columnMetadata[key][property];
     });
 
     const isRightmost = idx === keys.length - 1;
@@ -133,10 +131,7 @@ export default function renderDataColumns<T>(
         maxWidth={widthProperties.maxWidth}
         minWidth={widthProperties.minWidth}
         cellRenderer={columnCellRenderer(idx)}
-        className={cx(
-          styles && styles.column,
-          showColumnDividers && !isRightmost && styles && styles.column_divider,
-        )}
+        className={cx(styles?.column, showColumnDividers && !isRightmost && styles?.columnDivider)}
       />
     );
   });

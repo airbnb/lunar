@@ -104,7 +104,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     background: getRowColor(
       expandedDataList[index],
       index,
-      this.props.zebra || false,
+      this.props.zebra ?? false,
       this.props.theme,
     ),
     display: 'flex',
@@ -501,7 +501,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     return (
       <>
         {this.shouldRenderTableHeader() && this.renderTableHeader(width!)}
-        <div className={cx(styles.table_container, { width })}>
+        <div className={cx(styles.tableContainer, { width })}>
           <Table
             ref={propagateRef}
             height={tableHeight}

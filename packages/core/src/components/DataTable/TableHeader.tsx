@@ -122,7 +122,7 @@ export function TableHeader({
 
   return (
     <div style={dimensionStyles}>
-      <div className={cx(styles.tableHeader_inner)}>
+      <div className={cx(styles.tableHeaderInner)}>
         {label}
         {headerButtons}
       </div>

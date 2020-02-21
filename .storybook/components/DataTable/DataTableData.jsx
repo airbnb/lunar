@@ -1,15 +1,15 @@
 import { STATUS_OPTIONS } from '@airbnb/lunar/src/components/DataTable/constants';
 
-export function generateRandomData() {
-  return new Array(50).fill(0).map((x, i) => ({
+export function generateRandomData(n = 500) {
+  return new Array(n).fill(0).map((x, i) => ({
     data: {
-      number: `${i + 1} `.repeat(i + 1),
+      number: `${i + 1} `.repeat(Math.round(Math.random() * 100)),
       zero: x,
     },
     metadata: {
       children: new Array(2).fill(0).map((x, j) => ({
         data: {
-          number: `${j + 1} `.repeat(i + 1),
+          number: `${j + 1} `.repeat(Math.round(Math.random() * i) + 1),
           zero: x,
         },
       })),
@@ -88,6 +88,24 @@ export default function getData() {
               tenureDays: 1095,
               menu: '',
               cats: 3,
+            },
+          },
+          {
+            data: {
+              name: 'Random Staff',
+              jobTitle: 'Sales',
+              tenureDays: 105,
+              menu: '',
+              cats: 3,
+            },
+          },
+          {
+            data: {
+              name: 'Joe Doe',
+              jobTitle: 'Operational',
+              tenureDays: 183,
+              menu: '',
+              cats: 50,
             },
           },
         ],

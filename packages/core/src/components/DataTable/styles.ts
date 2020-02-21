@@ -1,7 +1,7 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheetDataTable: StyleSheet = ({ ui }) => ({
-  table_container: {
+export const styleSheetDataTable: StyleSheet = ({ ui, unit }) => ({
+  tableContainer: {
     overflowX: 'auto',
   },
   headerRow: {
@@ -10,15 +10,22 @@ export const styleSheetDataTable: StyleSheet = ({ ui }) => ({
     height: '100%',
     textTransform: 'none',
   },
-  column_header: {
+  columnHeader: {
     borderBottom: ui.border,
     cursor: 'pointer',
   },
   column: {
     height: 'inherit',
   },
-  column_divider: {
+  columnDivider: {
     borderRight: ui.border,
+  },
+  columnLabelIndented: {
+    marginLeft: 2 * unit,
+  },
+  columnLabelRightAligned: {
+    justifyContent: 'flex-end',
+    width: '100%',
   },
   rowContainer: {
     height: '100%',
@@ -29,13 +36,20 @@ export const styleSheetDataTable: StyleSheet = ({ ui }) => ({
     whiteSpace: 'normal',
     width: '100%', // this is important for consumers who need full-width cells
   },
-  expand_caret: {
+  expandCaret: {
     cursor: 'pointer',
+    marginLeft: 1.5 * unit,
+    '@selectors': {
+      '> svg': {
+        width: '1.6em',
+        height: '1.6em',
+      },
+    },
   },
 });
 
 export const styleSheetTableHeader: StyleSheet = ({ unit, color, ui }) => ({
-  tableHeader_inner: {
+  tableHeaderInner: {
     background: color.accent.bg,
     display: 'flex',
     alignItems: 'center',

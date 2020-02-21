@@ -1,6 +1,5 @@
 import React from 'react';
 import { Column } from 'react-virtualized';
-import Spacing from '../../Spacing';
 import ExpandableIcon from '../../ExpandableIcon';
 import { WithStylesProps } from '../../../composers/withStyles';
 import { EXPANDABLE_COLUMN_WIDTH } from '../constants';
@@ -18,15 +17,13 @@ export default function renderExpandableColumn(
     if (children && children.length > 0) {
       return (
         <div
-          className={cx(styles.expand_caret)}
+          className={cx(styles.expandCaret)}
           role="button"
           tabIndex={0}
           onClick={expandRow(originalIndex)}
           onKeyPress={expandRow(originalIndex)}
         >
-          <Spacing left={1.5}>
-            <ExpandableIcon expanded={expandedRows.has(originalIndex)} size="1.6em" />
-          </Spacing>
+          <ExpandableIcon expanded={expandedRows.has(originalIndex)} />
         </div>
       );
     }
