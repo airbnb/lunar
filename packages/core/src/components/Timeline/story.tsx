@@ -14,15 +14,15 @@ export default {
 };
 
 export function basicFunctionality() {
-  const now = new Date();
+  const now = new Date(2020, 2, 2, 10, 15);
 
-  const nextMonth = new Date();
+  const nextMonth = new Date(now);
   nextMonth.setMonth(now.getMonth() + 1);
 
-  const lastMonth = new Date();
+  const lastMonth = new Date(now);
   lastMonth.setMonth(now.getMonth() - 1);
 
-  const lastYear = new Date();
+  const lastYear = new Date(now);
   lastYear.setFullYear(now.getFullYear() - 1);
 
   return (
