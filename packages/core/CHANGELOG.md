@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.64.0 - 2020-02-21
+
+#### 🚀 Updates
+
+- **[Timeline]** Add Timeline component (#322) ([dd30a0c](https://github.com/airbnb/lunar/commit/dd30a0c)), closes [#322](https://github.com/airbnb/lunar/issues/322)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.63.1 - 2020-02-14
 
 #### 🐞 Fixes
