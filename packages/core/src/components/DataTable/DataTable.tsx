@@ -82,7 +82,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     changeLog: {},
     expandedRows: new Set(),
     selectedRows: {},
-    sortBy: this.props.sortByOverride || '',
+    sortBy: this.props.sortByOverride ?? '',
     sortDirection: this.props.sortDirectionOverride!,
     editMode: false,
   };
