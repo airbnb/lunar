@@ -99,7 +99,12 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   });
 
   private getData = memoize(
-    (data: ParentRow[], sortBy: string, sortDirection: SortDirectionType): IndexedParentRow[] => {
+    (
+      data: ParentRow[],
+      sortBy: string,
+      sortDirection: SortDirectionType,
+      sortByCacheKey?: string, // used only in the memoize cache key below
+    ): IndexedParentRow[] => {
       const { sortByValue } = this.props;
       const indexedData = indexData(data);
       const sortedData = sortData(indexedData, this.keys, sortBy, sortDirection, sortByValue);
