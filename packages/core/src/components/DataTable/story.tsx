@@ -381,7 +381,6 @@ aStandardTableWithInitialSorting.story = {
 export function aTableWithFilteredData() {
   return (
     <DataTable
-      selectable
       tableHeaderLabel="My Engineer Table"
       data={getData()}
       keys={['name', 'jobTitle']}
