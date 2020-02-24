@@ -202,11 +202,9 @@ describe('<DataTable /> renders and sorts data', () => {
   it('should sort data in Descending order by jobTitle', () => {
     const table = mountWithStyles(<DataTable {...simpleProps} />);
 
-    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(3);
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(2);
     nameHeader.simulate('click');
     nameHeader.simulate('click');
-
-    console.log(table.debug());
 
     const firstRow = getCell(table, 1, NAME_COL + 1)
       .find(Text)
@@ -220,7 +218,7 @@ describe('<DataTable /> renders and sorts data', () => {
   it('should sort data in Descending order by tenureDays', () => {
     const table = mountWithStyles(<DataTable {...simpleProps} />);
 
-    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(4);
+    const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(3);
     nameHeader.simulate('click');
     nameHeader.simulate('click');
 
