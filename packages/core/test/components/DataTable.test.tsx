@@ -4,22 +4,11 @@ import React from 'react';
 import Enzyme from 'enzyme';
 import { Grid, Table } from 'react-virtualized';
 import { shallowWithStyles, mountWithStyles } from '@airbnb/lunar-test-utils';
-import DataTable, {
-  ParentRow,
-  VirtualRow,
-  DataTableProps,
-  RendererProps,
-} from '../../src/components/DataTable';
+import DataTable, { ParentRow } from '../../src/components/DataTable';
 import StyledDataTable, {
   DataTable as InnerDataTable,
 } from '../../src/components/DataTable/DataTable';
-import Input from '../../src/components/Input';
-import FormInput from '../../src/components/private/FormInput';
-import TableHeader from '../../src/components/DataTable/TableHeader';
 import Text from '../../src/components/Text';
-import Translate from '../../src/components/Translate';
-import Button from '../../src/components/Button';
-import Checkbox from '../../src/components/CheckBox';
 import { STATUS_OPTIONS } from '../../src/components/DataTable/constants';
 
 const data: ParentRow[] = [
@@ -133,17 +122,11 @@ const simpleProps = {
   showAllRows: true,
 };
 
-const getRow = (table: Enzyme.ReactWrapper<any, any>, row: number) =>
-  table.find(Grid).find(`[aria-rowindex=${row}]`);
-
 const getCell = (wrapper: Enzyme.ReactWrapper<any, any>, row: number, col: number) =>
   wrapper
     .find(Grid)
     .find(`[aria-rowindex=${row}]`)
     .find(`[aria-colindex=${col}]`);
-
-const getCheckbox = (table: Enzyme.ReactWrapper<any, any>, row: number) =>
-  getRow(table, row).find(Checkbox);
 
 const getCaret = (table: Enzyme.ReactWrapper<any, any>, row: number) => getCell(table, row, 1);
 
@@ -156,17 +139,13 @@ const getTable = (wrapper: Enzyme.ShallowWrapper) => {
     .dive();
 };
 
-const getHeaderFromStyledDataTable = (styledDataTable: Enzyme.ShallowWrapper) =>
-  shallowWithStyles(styledDataTable.find(TableHeader).getElement(), true);
-
 const expandRow = (table: Enzyme.ReactWrapper<any, any>, row: number) => {
   getCaret(table, row)
     .childAt(0)
     .simulate('click');
 };
 
-const NAME_COL = 3;
-const ROW = 3;
+const NAME_COL = 2;
 const PARENT_ROW = 5;
 const CHILD_ROW = 6;
 
@@ -177,7 +156,7 @@ describe('<DataTable /> rows can be expanded', () => {
     expandRow(table, PARENT_ROW);
 
     expect(
-      getCell(table, CHILD_ROW, 3)
+      getCell(table, CHILD_ROW, NAME_COL)
         .find(Text)
         .text(),
     ).toBe(data[4].metadata!.children![0].data.name);
@@ -190,7 +169,7 @@ describe('<DataTable /> rows can be expanded', () => {
     expandRow(table, PARENT_ROW);
 
     expect(
-      getCell(table, 6, 3)
+      getCell(table, 6, NAME_COL)
         .find(Text)
         .text(),
     ).toBe(data[5].data.name);
@@ -226,6 +205,9 @@ describe('<DataTable /> renders and sorts data', () => {
     const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').at(3);
     nameHeader.simulate('click');
     nameHeader.simulate('click');
+
+    console.log(table.debug());
+
     const firstRow = getCell(table, 1, NAME_COL + 1)
       .find(Text)
       .text();
@@ -443,7 +425,6 @@ describe('<DataTable /> does not break with weird props', () => {
     tableHeaderHeight: 'large',
     keys: ['name'],
     showRowDividers: true,
-    extraHeaderButtons: headerButtons,
   };
 
   it('should render with a lot of props', () => {
