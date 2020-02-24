@@ -98,7 +98,7 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
 
       <Hotkey
         preventDefault
-        combo="tab"
+        combo="enter"
         condition={activeWhenShortcutsMenuOpen}
         name="selectShortcut"
         label={T.phrase('lunar.composer.shortcuts.hotkey.toSelect', 'to select')}

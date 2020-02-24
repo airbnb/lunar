@@ -6,7 +6,6 @@ export const defaultContext: Context = {
   changeHandlers: new Set(),
   data: { focused: false, shadowValue: '', value: '' },
   flags: {},
-  id: 'composer',
   menu: '',
   mode: MODE_MESSAGE,
   onChange() {},

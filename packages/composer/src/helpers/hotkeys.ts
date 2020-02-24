@@ -1,7 +1,6 @@
 import React from 'react';
 import { MENU_SHORTCUTS } from '../constants';
 import { HotkeyComparator, HotkeyConfig, ReadableContext, WritableContext } from '../types';
-import { isMac } from './platform';
 
 export const SYMBOLS: { [key: string]: string } = {
   cmd: '⌘',
@@ -21,8 +20,6 @@ export const SYMBOLS: { [key: string]: string } = {
   right: '>',
 };
 
-export const OS_KEY = isMac() ? 'cmd' : 'ctrl';
-
 export function parseComboIntoComparator(hotkey: string): HotkeyComparator {
   const comp: HotkeyComparator = {};
 
@@ -30,32 +27,24 @@ export function parseComboIntoComparator(hotkey: string): HotkeyComparator {
     .toLowerCase()
     .replace(/\s/g, '')
     .split('+')
-    .forEach(k => {
-      let key = k;
-      let pressed = true;
-
-      if (key.startsWith('!')) {
-        pressed = false;
-        key = key.slice(1);
-      }
-
+    .forEach(key => {
       // istanbul ignore next
       switch (key) {
         case 'cmd':
         case 'command':
-          comp.metaKey = pressed;
+          comp.metaKey = true;
           break;
         case 'ctrl':
         case 'control':
-          comp.ctrlKey = pressed;
+          comp.ctrlKey = true;
           break;
         case 'alt':
         case 'opt':
         case 'option':
-          comp.altKey = pressed;
+          comp.altKey = true;
           break;
         case 'shift':
-          comp.shiftKey = pressed;
+          comp.shiftKey = true;
           break;
         case 'enter':
         case 'return':

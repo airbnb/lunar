@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/consistent-function-scoping */
-
 import React from 'react';
 import { render, renderAndWait, DomElement, mockFetch } from 'rut-dom';
 import Interweave from '@airbnb/lunar/lib/components/Interweave';
@@ -9,7 +7,7 @@ import Composer, { ComposerProps } from '../../src/components/Composer';
 import Hotkey from '../../src/components/Hotkey';
 import Shortcuts from '../../src/components/Shortcuts';
 import { Selection } from '../../src/components/SelectList';
-// @ts-ignore Our build deletes story.d.ts files
+// @ts-ignore dts file not being built for some reason
 import { actions, shortcuts, loadSuggestions, checkText } from '../../src/Composer.story';
 import Menu from '../../src/components/Menu';
 import Actions, { ActionButton } from '../../src/components/Actions';
@@ -21,6 +19,7 @@ import Proofreader from '../../src/components/Preview/Proofreader';
 import Window from '../../src/components/Preview/Window';
 import { ShortcutConfig } from '../../src';
 
+// eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('lodash/debounce', () => (cb: Function) => {
   return (...args: unknown[]) => cb(...args);
 });
@@ -392,7 +391,7 @@ describe('<Composer />', () => {
       expect(root.findAt(Selection, 1)).toHaveProp('active', false);
 
       // Trigger a select
-      root.findOne('textarea').dispatch('onKeyDown', { key: 'Tab' });
+      root.findOne('textarea').dispatch('onKeyDown', { key: 'Enter' });
 
       // Check input has been updated
       expect(root.findOne('textarea')).toHaveValue('/call');

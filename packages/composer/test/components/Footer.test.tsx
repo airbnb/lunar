@@ -30,13 +30,6 @@ describe('<Footer />', () => {
       condition: ctx => ctx.menu === '',
       onRun() {},
     },
-    {
-      name: 'qux',
-      combo: 'cmd+!shift',
-      comparator: {},
-      condition: ctx => ctx.menu === 'negate',
-      onRun() {},
-    },
   ];
 
   it('renders nothing when no hotkeys defined', () => {
@@ -60,13 +53,5 @@ describe('<Footer />', () => {
 
     expect(root.find(Mark)).toHaveLength(1);
     expect(root.find(Symbol)).toHaveLength(2);
-  });
-
-  it('doesnt render negaqted symbols', () => {
-    const { root } = render<{}>(<Footer />, {
-      wrapper: <Wrapper hotkeys={hotkeys} menu="negative" />,
-    });
-
-    expect(root).not.toContainNode('!shift');
   });
 });
