@@ -217,7 +217,6 @@ const simpleProps = {
   data,
   width: 500,
   height: 300,
-  selectable: true,
   expandable: true,
   editable: true,
   tableHeaderLabel: 'My Great Table',
@@ -267,31 +266,6 @@ const PARENT_ROW = 5;
 const CHILD_ROW = 6;
 
 describe('<DataTable /> rows can be selected', () => {
-  it('should be selectable', () => {
-    const table = mountWithStyles(<DataTable {...simpleProps} />);
-
-    selectRow(table, ROW);
-    expect(getCheckbox(table, ROW).prop('checked')).toBe(true);
-  });
-
-  it('should be unselectable', () => {
-    const table = mountWithStyles(<DataTable {...simpleProps} />);
-
-    selectRow(table, ROW);
-    selectRow(table, ROW);
-
-    expect(getCheckbox(table, ROW).prop('checked')).toBe(false);
-  });
-
-  it('should be selectable by row click', () => {
-    const table = mountWithStyles(<DataTable {...simpleProps} selectOnRowClick />);
-
-    getRow(table, ROW).simulate('click');
-    table.update();
-
-    expect(getCheckbox(table, ROW).prop('checked')).toBe(true);
-  });
-
   it('should trigger callbacks on selection', () => {
     const table = mountWithStyles(<DataTable {...simpleProps} selectCallback={selectCallback} />);
 
@@ -323,15 +297,6 @@ describe('<DataTable /> rows can be selected', () => {
         .find(Text)
         .text(),
     ).toBe(data[5].data.name);
-  });
-
-  it('should have selectable children', () => {
-    const table = mountWithStyles(<DataTable {...simpleProps} />);
-
-    expandRow(table, PARENT_ROW);
-    selectRow(table, CHILD_ROW);
-
-    expect(getCheckbox(table, CHILD_ROW).prop('checked')).toBe(true);
   });
 
   it('selecting the parent should select the children', () => {
@@ -512,7 +477,6 @@ describe('<DataTable /> renders and sorts data', () => {
         {...simpleProps}
         sortOverride
         expandable={false} // affects cell index
-        selectable={false}
         sortByOverride="cats"
         sortDirectionOverride="ASC"
         sortByCacheKey="a"
@@ -542,7 +506,6 @@ describe('<DataTable /> renders and sorts data', () => {
       <DataTable
         {...simpleProps}
         expandable={false}
-        selectable={false}
         keys={['cats']}
         sortByCacheKey="a"
         sortByValue={sortByValue}
@@ -753,7 +716,6 @@ describe('<DataTable /> does not break with weird props', () => {
       name: 'CUSTOM NAME',
     },
     expandable: true,
-    selectable: true,
     columnHeaderHeight: 'micro',
     tableHeaderHeight: 'large',
     keys: ['name'],

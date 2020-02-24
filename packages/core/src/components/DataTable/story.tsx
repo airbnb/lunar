@@ -378,23 +378,6 @@ aStandardTableWithInitialSorting.story = {
   name: 'A standard table with initial sorting.',
 };
 
-export function aTableWithSelectableAndExandableRowsThatDisplaysSelectedRowsFirst() {
-  return (
-    <DataTable
-      expandable
-      selectable
-      selectedRowsFirst
-      tableHeaderLabel="My Great Table"
-      data={getData()}
-      keys={['name', 'jobTitle']}
-    />
-  );
-}
-
-aTableWithSelectableAndExandableRowsThatDisplaysSelectedRowsFirst.story = {
-  name: 'A table with selectable and exandable rows that displays selected rows first.',
-};
-
 export function aTableWithFilteredData() {
   return (
     <DataTable
@@ -425,7 +408,6 @@ export function aTableThatShowsAllRows() {
     <div style={{ background: '#835EFE', padding: 8 }}>
       <DataTable
         expandable
-        selectable
         showAllRows
         showRowDividers
         tableHeaderLabel="All rows"
@@ -443,7 +425,6 @@ aTableThatShowsAllRows.story = {
 export function anEditableTable() {
   return (
     <DataTable
-      selectable
       expandable
       editable
       showRowDividers
@@ -463,7 +444,6 @@ anEditableTable.story = {
 export function anTableWithZebraColoringAColspanInferredKeysAndRenderers() {
   return (
     <DataTable
-      selectable
       expandable
       editable
       zebra
@@ -481,7 +461,6 @@ anTableWithZebraColoringAColspanInferredKeysAndRenderers.story = {
 export function aTableWithDifferentRowColumnHeaderAndTableHeaderHeights() {
   return (
     <DataTable
-      selectable
       expandable
       editable
       zebra
@@ -502,7 +481,6 @@ aTableWithDifferentRowColumnHeaderAndTableHeaderHeights.story = {
 export function aTableThatLogsCustomEditCallbacksAndSelectCallback() {
   return (
     <DataTable
-      selectable
       expandable
       tableHeaderLabel="My Great Table"
       data={getData()}
@@ -520,7 +498,6 @@ aTableThatLogsCustomEditCallbacksAndSelectCallback.story = {
 export function aComplexTableWithAllFeaturesEnabled() {
   return (
     <DataTable
-      selectable
       expandable
       showColumnDividers
       showRowDividers
