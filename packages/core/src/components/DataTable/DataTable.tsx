@@ -27,7 +27,6 @@ export type DataTableState = {
   expandedRows: Set<number>;
   sortBy: string;
   sortDirection: SortDirectionType;
-  editMode: boolean;
 };
 
 /** A dynamic and responsive table for displaying tabular data. */
@@ -69,7 +68,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     expandedRows: new Set(),
     sortBy: this.props.sortByOverride || '',
     sortDirection: this.props.sortDirectionOverride!,
-    editMode: false,
   };
 
   constructor(props: DataTableProps & WithStylesProps) {
@@ -267,7 +265,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       width,
     } = this.props;
 
-    const { expandedRows, sortBy, sortDirection, editMode } = this.state;
+    const { expandedRows, sortBy, sortDirection } = this.state;
 
     const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection);
 
