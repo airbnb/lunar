@@ -122,7 +122,12 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       sortBy !== prevState.sortBy ||
       sortDirection !== prevState.sortDirection ||
       sortByCacheKey !== prevProps.sortByCacheKey;
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection);
+    const sortedData: IndexedParentRow[] = this.getData(
+      data!,
+      sortBy,
+      sortDirection,
+      sortByCacheKey,
+    );
     const filteredData = filterData!(sortedData);
     const oldFilteredData = prevProps.filterData!(sortedData);
     const filteredDataChanged =
@@ -264,6 +269,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       propagateRef,
       rowHeight,
       rowClickCallback,
+      sortByCacheKey,
       styles,
       tableHeaderHeight,
       showAllRows,
@@ -272,7 +278,12 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     const { expandedRows, sortBy, sortDirection } = this.state;
 
-    const sortedData: IndexedParentRow[] = this.getData(data!, sortBy, sortDirection);
+    const sortedData: IndexedParentRow[] = this.getData(
+      data!,
+      sortBy,
+      sortDirection,
+      sortByCacheKey,
+    );
 
     const filteredData = filterData!(sortedData);
 
