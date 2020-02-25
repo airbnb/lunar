@@ -1,6 +1,7 @@
 import React from 'react';
-import { WithStylesProps } from '../../composers/withStyles';
 import Text from '../Text';
+import { styleSheetTableHeader } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type Props = {
   /** Height of the TableHeader, falls back to RowHeight if not specified. */
@@ -9,16 +10,14 @@ export type Props = {
   tableHeaderLabel?: string;
   /** Width of the header. */
   width: number;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Header for the DataTable that displays a title. */
-export default function TableHeader({
-  cx,
-  height,
-  styles,
-  tableHeaderLabel,
-  width,
-}: Props & WithStylesProps) {
+export default function TableHeader({ height, tableHeaderLabel, width, styleSheet }: Props) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetTableHeader);
+
   const dimensionStyles: React.CSSProperties = {
     width,
     height,
