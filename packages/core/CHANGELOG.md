@@ -3,8 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<<<<<<< HEAD
-=======
 ### 2.63.1 - 2020-02-14
 
 #### 🐞 Fixes
@@ -29,7 +27,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
->>>>>>> parent of 645f0ca... Release [ci skip]
 ### 2.62.2 - 2020-02-07
 
 #### 📦 Dependencies
