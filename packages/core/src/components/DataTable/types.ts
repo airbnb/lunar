@@ -9,14 +9,6 @@ export type RowHeightOptions = string;
 export type HeightOptions = RowHeightOptions | undefined;
 export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '';
 
-export type ChangeLog = {
-  [idx: number]: {
-    [key: string]: {
-      newVal: string;
-    };
-  };
-};
-
 export type DefaultDataTableProps = keyof DataTableProps;
 
 export type SortByValueAccessor<T extends GenericRow = GenericRow> = (
