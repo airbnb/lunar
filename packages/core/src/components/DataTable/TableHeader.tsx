@@ -12,7 +12,7 @@ export type Props = {
 };
 
 /** Header for the DataTable that displays a title. */
-export function TableHeader({
+export default function TableHeader({
   cx,
   height,
   styles,

@@ -6,7 +6,6 @@ import sortData from './helpers/sortData';
 import expandData from './helpers/expandData';
 import { indexData } from './helpers/indexData';
 import {
-  ChangeLog,
   DataTableProps,
   DefaultDataTableProps,
   ExpandedRow,
@@ -23,7 +22,6 @@ import { getRowColor, getHeight, getKeys } from './helpers';
 import { HEIGHT_TO_PX } from './constants';
 
 export type DataTableState = {
-  changeLog: ChangeLog;
   expandedRows: Set<number>;
   sortBy: string;
   sortDirection: SortDirectionType;
@@ -64,7 +62,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
   };
 
   state: DataTableState = {
-    changeLog: {},
     expandedRows: new Set(),
     sortBy: this.props.sortByOverride || '',
     sortDirection: this.props.sortDirectionOverride!,
