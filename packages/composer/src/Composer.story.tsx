@@ -202,18 +202,6 @@ defaultStory.story = {
   name: 'Default.',
 };
 
-export function submitsOnEnter() {
-  return (
-    <Wrapper>
-      <Composer {...props} submitOnEnter />
-    </Wrapper>
-  );
-}
-
-submitsOnEnter.story = {
-  name: 'Submits on enter.',
-};
-
 export function disabledInput() {
   return (
     <Wrapper>
