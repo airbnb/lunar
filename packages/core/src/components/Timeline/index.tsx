@@ -1,5 +1,8 @@
 import React from 'react';
 import List from '../List';
+import Item from './Item';
+
+export { Item }; // This confuses Storybook and causes Timeline's props to be Timeline/Item's.
 
 export type TimelineProps = {
   /** Collection of timeline items. */

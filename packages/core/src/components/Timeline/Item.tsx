@@ -1,5 +1,5 @@
 import React from 'react';
-import IconRecord from '@airbnb/lunar-icons/src/interface/IconRecord';
+import IconRecord from '@airbnb/lunar-icons/lib/interface/IconRecord';
 import useStyles from '../../hooks/useStyles';
 import { styleSheetItem } from './styles';
 import Text from '../Text';
