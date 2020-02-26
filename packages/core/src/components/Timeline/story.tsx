@@ -62,4 +62,7 @@ export function basicFunctionality() {
 
 basicFunctionality.story = {
   name: 'Basic functionality',
+
+  // Since Timeline uses relative datetime, this will _always_ render a happo visual diff.
+  parameters: { happo: false },
 };
