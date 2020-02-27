@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.64.1 - 2020-02-27
+
+#### 🐞 Fixes
+
+- **[Timeline]** Correctly import IconRecord and export Timeline/Item (#327) ([d2ba453](https://github.com/airbnb/lunar/commit/d2ba453)), closes [#327](https://github.com/airbnb/lunar/issues/327)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 2.64.0 - 2020-02-21
 
 #### 🚀 Updates
