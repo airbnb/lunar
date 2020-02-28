@@ -6,6 +6,17 @@ import Item from './Item';
 import Button from '../Button';
 import StatusLabel from '../StatusLabel';
 
+const fixedDate = new Date(2019, 1, 1, 0, 0, 0);
+
+const future = new Date();
+future.setDate(fixedDate.getDate() + 12);
+
+const lastMonth = new Date();
+lastMonth.setMonth(fixedDate.getMonth() - 1);
+
+const lastYear = new Date();
+lastYear.setFullYear(fixedDate.getFullYear() - 1);
+
 export default {
   title: 'Core/Timeline',
   parameters: {
@@ -14,20 +25,9 @@ export default {
 };
 
 export function basicFunctionality() {
-  const now = new Date();
-
-  const nextMonth = new Date();
-  nextMonth.setMonth(now.getMonth() + 1);
-
-  const lastMonth = new Date();
-  lastMonth.setMonth(now.getMonth() - 1);
-
-  const lastYear = new Date();
-  lastYear.setFullYear(now.getFullYear() - 1);
-
   return (
     <Timeline>
-      <Item at={nextMonth}>
+      <Item at={future}>
         <Text>
           <LoremIpsum />
         </Text>
@@ -43,7 +43,7 @@ export function basicFunctionality() {
         </Text>
       </Item>
 
-      <Item at={now}>
+      <Item at={fixedDate}>
         <Button>Does nothing</Button>
       </Item>
 
@@ -62,7 +62,4 @@ export function basicFunctionality() {
 
 basicFunctionality.story = {
   name: 'Basic functionality',
-
-  // Since Timeline uses relative datetime, this will _always_ render a happo visual diff.
-  parameters: { happo: false },
 };
