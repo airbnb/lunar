@@ -99,12 +99,8 @@ export default function Aside({
 
         return expanded;
       });
-
-      if (onCollapseToggle) {
-        onCollapseToggle(expanded);
-      }
     }
-  }, [expanded, onCollapseToggle]);
+  }, [expanded]);
 
   return (
     <aside
