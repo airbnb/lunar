@@ -3,7 +3,7 @@ import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 
 import Row from '../Row';
 import Spacing from '../Spacing';
-import Text, { Props as TextProps } from '../Text';
+import Text, { TextProps } from '../Text';
 
 export const styleSheet: StyleSheet = () => ({
   dd: {

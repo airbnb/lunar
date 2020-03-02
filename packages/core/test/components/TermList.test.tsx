@@ -31,9 +31,7 @@ describe('<TermList />', () => {
   it('renders the expected number of Terms with different props', () => {
     const wrapper = shallowWithStyles(
       <TermList horizontal>
-        <Term regular label="label">
-          Data
-        </Term>
+        <Term label="label">Data</Term>
         <Term uppercased label="label">
           Data
         </Term>
@@ -52,8 +50,12 @@ describe('<TermList />', () => {
         label="Clusters"
         after={
           <>
-            <Link small>Details</Link>
-            <Link small>Git</Link>
+            <Link small href="/">
+              Details
+            </Link>
+            <Link small href="/">
+              Git
+            </Link>
           </>
         }
       >
