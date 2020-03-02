@@ -141,16 +141,16 @@ export function useLightBackgroundWithDarkText() {
   return (
     <Text>
       <Tooltip inverted content="Hello">
-        I have a light background tooltip
+        I have a dark background tooltip
       </Tooltip>
       ...
-      <Tooltip content="Goodbye">and I have the default dark background tooltip</Tooltip>
+      <Tooltip content="Goodbye">and I have the default light background tooltip</Tooltip>
     </Text>
   );
 }
 
 useLightBackgroundWithDarkText.story = {
-  name: 'Use light background with dark text.',
+  name: 'Use dark background with light text.',
 };
 
 export function callbackFiredWhenTheTooltipIsShown() {

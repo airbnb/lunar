@@ -3,7 +3,6 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import Overlay from '../Overlay';
-import NotchedBox, { NOTCH_SIZE, NOTCH_SPACING } from '../NotchedBox';
 import Text from '../Text';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { styleSheetTooltip } from './styles';
@@ -57,6 +56,8 @@ export type StyleStruct = {
 
 /** A tooltip that renders in an portal, so it can escape potentially overflowed containers. */
 export class Tooltip extends React.Component<TooltipProps & WithStylesProps, TooltipState> {
+  static inverted: boolean = false;
+
   static defaultProps = {
     disabled: false,
     inverted: false,
@@ -199,16 +200,12 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
     // bestPosition will cause a reflow as will `targetRect.width`
     const { align, above } = this.bestPosition(targetRect);
     const targetWidth = targetRect.width;
-    const halfNotch = (NOTCH_SIZE * unit) / Math.SQRT2;
-    const notchOffset: StyleStruct = {
-      center: '50%',
-      right: -(unit * NOTCH_SPACING + halfNotch),
-    };
     const marginLeft: StyleStruct = {
       center: -width / 2 + targetWidth / 2,
       right: -width + targetWidth,
     };
-    const distance = halfNotch + 1;
+    const distance = unit / 2;
+    const invert = inverted || Tooltip.inverted;
 
     return (
       <Overlay noBackground open={open} onClose={this.handleClose}>
@@ -222,14 +219,8 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
             textAlign: align,
           })}
         >
-          <div className={cx(styles.notchedBoxContainer)}>
-            <NotchedBox
-              inverted={!inverted}
-              notchOffset={notchOffset[align as keyof StyleStruct]}
-              notchBelow={above}
-            >
-              <Text inverted={!inverted}>{content}</Text>
-            </NotchedBox>
+          <div className={cx(styles.content, invert && styles.content_inverted)}>
+            <Text inverted={invert}>{content}</Text>
           </div>
         </div>
       </Overlay>

@@ -45,10 +45,16 @@ export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui }) => (
     },
   },
 
-  notchedBoxContainer: {
+  content: {
     display: 'inline-block',
-    boxShadow: ui.boxShadowLarge,
+    padding: unit,
+    backgroundColor: color.accent.bg,
+    boxShadow: ui.boxShadowMedium,
     borderRadius: ui.borderRadius,
     textAlign: 'initial',
+  },
+
+  content_inverted: {
+    backgroundColor: color.accent.blackout,
   },
 });
