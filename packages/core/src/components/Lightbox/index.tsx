@@ -140,7 +140,7 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
     );
 
     return (
-      <Sheet compact noAnimation portal visible header={header} onClose={onClose}>
+      <Sheet compact headerShadow noAnimation portal visible header={header} onClose={onClose}>
         <LightboxImage
           aside={aside}
           alt={alt}
