@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Term from './Term';
 
 export { Term };
