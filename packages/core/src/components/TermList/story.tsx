@@ -21,11 +21,7 @@ standaloneTerm.story = {
 };
 
 export function standaloneTermWithRegularLabel() {
-  return (
-    <Term regular label="Clusters">
-      8
-    </Term>
-  );
+  return <Term label="Clusters">8</Term>;
 }
 
 standaloneTermWithRegularLabel.story = {
