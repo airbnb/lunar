@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 import Tab from './private/Tab';
 
@@ -53,6 +53,8 @@ export type Props = {
   collapsible?: boolean;
   /** Content within the column. */
   children: NonNullable<React.ReactNode>;
+  /** Externally control the expanded state. Typically not required. */
+  expanded?: boolean;
   /** Remove padding from column. */
   noPadding?: boolean;
   /** Convert column to a scrollable container. */
@@ -69,23 +71,40 @@ export default function Aside({
   before,
   children,
   collapsible,
+  expanded,
   noPadding,
   scrollable,
   width,
   onCollapseToggle,
 }: Props) {
   const [styles, cx] = useStyles(styleSheet);
-  const [expanded, setExpanded] = useState(true);
+  const [isExpanded, setExpanded] = useState(true);
 
   const handleCollapseToggle: React.DOMAttributes<HTMLButtonElement>['onClick'] = collapsible
     ? () => {
         setExpanded(prev => !prev);
 
         if (onCollapseToggle) {
-          onCollapseToggle(!expanded);
+          onCollapseToggle(!isExpanded);
         }
       }
     : undefined;
+
+  useEffect(() => {
+    if (expanded !== undefined) {
+      setExpanded(prev => {
+        if (expanded === prev) {
+          return !expanded;
+        }
+
+        return expanded;
+      });
+
+      if (onCollapseToggle) {
+        onCollapseToggle(expanded);
+      }
+    }
+  }, [expanded, onCollapseToggle]);
 
   return (
     <aside
@@ -96,14 +115,14 @@ export default function Aside({
         collapsible && styles.aside_collapsible,
         scrollable && styles.aside_scrollable,
         {
-          width: collapsible && !expanded ? 0 : width,
+          width: collapsible && !isExpanded ? 0 : width,
         },
       )}
     >
       {collapsible && (
         <Tab
           bordered={!!before || !!after}
-          expanded={expanded}
+          expanded={isExpanded}
           position={before || (!before && !after) ? 'after' : 'before'}
           onCollapseToggle={handleCollapseToggle}
         />
@@ -113,7 +132,7 @@ export default function Aside({
         className={cx(
           styles.wrapper,
           noPadding && styles.wrapper_noPadding,
-          collapsible && !expanded && styles.wrapper_collapsed,
+          collapsible && !isExpanded && styles.wrapper_collapsed,
           scrollable && styles.wrapper_scrollable,
         )}
       >
