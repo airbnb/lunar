@@ -45,9 +45,15 @@ export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui }) => (
     },
   },
 
-  shadow: {
+  content: {
     display: 'inline-block',
-    boxShadow: ui.boxShadowLarge,
+    padding: unit,
+    backgroundColor: color.accent.bg,
+    boxShadow: ui.boxShadowMedium,
     borderRadius: ui.borderRadius,
+  },
+
+  content_inverted: {
+    backgroundColor: color.accent.blackout,
   },
 });
