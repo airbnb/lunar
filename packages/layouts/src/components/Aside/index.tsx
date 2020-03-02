@@ -92,15 +92,13 @@ export default function Aside({
 
   useEffect(() => {
     if (expanded !== undefined) {
-      setExpanded(prev => {
-        if (expanded === prev) {
-          return !expanded;
-        }
+      setExpanded(expanded);
 
-        return expanded;
-      });
+      if (onCollapseToggle) {
+        onCollapseToggle(expanded);
+      }
     }
-  }, [expanded]);
+  }, [expanded, onCollapseToggle]);
 
   return (
     <aside

@@ -148,7 +148,18 @@ export function CanExternallyControlExpandedState() {
       </Button>
 
       <div style={{ height: 500 }}>
-        <Aside before collapsible scrollable expanded={expanded} width={300}>
+        <Aside
+          before
+          collapsible
+          scrollable
+          expanded={expanded}
+          width={300}
+          onCollapseToggle={ex => {
+            if (ex !== expanded) {
+              setExpanded(ex);
+            }
+          }}
+        >
           <LoremIpsum />
           <LoremIpsum />
           <LoremIpsum />
@@ -161,4 +172,81 @@ export function CanExternallyControlExpandedState() {
 
 CanExternallyControlExpandedState.story = {
   name: 'Can externally control expanded state.',
+};
+
+export function CanControlMultipleAsides() {
+  const [expanded, setExpanded] = useState('left');
+
+  return (
+    <div>
+      <div>
+        <Button
+          onClick={() => {
+            setExpanded('left');
+          }}
+        >
+          Expand left
+        </Button>{' '}
+        <Button
+          onClick={() => {
+            setExpanded('right');
+          }}
+        >
+          Expand right
+        </Button>
+      </div>
+
+      <div style={{ height: 500, display: 'flex' }}>
+        <div>
+          <Aside
+            before
+            collapsible
+            scrollable
+            width={300}
+            expanded={expanded === 'left'}
+            onCollapseToggle={exp => {
+              if (exp) {
+                setExpanded('left');
+              } else {
+                setExpanded('right');
+              }
+            }}
+          >
+            <LoremIpsum />
+            <LoremIpsum />
+            <LoremIpsum />
+            <LoremIpsum />
+          </Aside>
+        </div>
+
+        <div style={{ width: 100 }}> </div>
+
+        <div>
+          <Aside
+            after
+            collapsible
+            scrollable
+            width={300}
+            expanded={expanded === 'right'}
+            onCollapseToggle={exp => {
+              if (exp) {
+                setExpanded('right');
+              } else {
+                setExpanded('left');
+              }
+            }}
+          >
+            <LoremIpsum />
+            <LoremIpsum />
+            <LoremIpsum />
+            <LoremIpsum />
+          </Aside>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+CanControlMultipleAsides.story = {
+  name: 'Can externally control multiple asides.',
 };
