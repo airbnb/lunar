@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Button from '@airbnb/lunar/lib/components/Button';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Aside from '.';
 
@@ -131,4 +132,33 @@ export function asAScrollableContainerWithCollapsibleTab() {
 
 asAScrollableContainerWithCollapsibleTab.story = {
   name: 'As a scrollable container with a collapsible tab.',
+};
+
+export function CanExternallyControlExpandedState() {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div>
+      <Button
+        onClick={() => {
+          setExpanded(prev => !prev);
+        }}
+      >
+        Toggle
+      </Button>
+
+      <div style={{ height: 500 }}>
+        <Aside before collapsible scrollable expanded={expanded} width={300}>
+          <LoremIpsum />
+          <LoremIpsum />
+          <LoremIpsum />
+          <LoremIpsum />
+        </Aside>
+      </div>
+    </div>
+  );
+}
+
+CanExternallyControlExpandedState.story = {
+  name: 'Can externally control expanded state.',
 };
