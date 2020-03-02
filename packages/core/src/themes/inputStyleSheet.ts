@@ -167,7 +167,6 @@ const inputStyleSheet = ({ color, pattern, ui, unit, transition }: Theme): Sheet
       ...common,
       padding: unit * 3,
       borderRadius: ui.borderRadiusThick,
-      boxShadow: ui.boxShadow,
       cursor: 'pointer',
       display: 'flex',
       width: '100%',
