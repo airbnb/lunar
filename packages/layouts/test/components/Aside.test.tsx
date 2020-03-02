@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Aside from '../../src/components/Aside';
+import { render } from 'rut-dom';
+import Aside, { Props } from '../../src/components/Aside';
 import Tab from '../../src/components/Aside/private/Tab';
 
 describe('<Aside />', () => {
@@ -38,5 +39,21 @@ describe('<Aside />', () => {
     );
 
     expect(wrapper.find(Tab)).toHaveLength(1);
+  });
+
+  it('can externally change expanded state', () => {
+    const { root, update } = render<Props>(
+      <Aside after collapsible>
+        Child
+      </Aside>,
+    );
+
+    expect(root.findOne(Tab)).toHaveProp('expanded', true);
+
+    update({
+      expanded: false,
+    });
+
+    expect(root.findOne(Tab)).toHaveProp('expanded', false);
   });
 });
