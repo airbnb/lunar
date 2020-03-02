@@ -57,4 +57,8 @@ export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui }) => (
   content_inverted: {
     backgroundColor: color.accent.blackout,
   },
+
+  content_inverted: {
+    backgroundColor: color.accent.blackout,
+  },
 });
