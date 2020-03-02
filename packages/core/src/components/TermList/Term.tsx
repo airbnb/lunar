@@ -35,8 +35,8 @@ export default function Term({
   const [styles, cx] = useStyles(styleSheet);
 
   return (
-    <div className={cx(styles.term)}>
-      <dt className={cx(styles.dt)}>
+    <div>
+      <dt>
         <Row after={endAlign && after}>
           <Text inline small uppercased={uppercased} {...textProps}>
             {label}
