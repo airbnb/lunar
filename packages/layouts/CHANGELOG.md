@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.8.1 - 2020-03-03
+
+#### 🐞 Fixes
+
+- **[Aside]** Clean up side-effects. (#330) ([d91a1df](https://github.com/airbnb/lunar/commit/d91a1df)), closes [#330](https://github.com/airbnb/lunar/issues/330)
+
+**Note:** Version bump only for package @airbnb/lunar-layouts
+
+
+
+
+
 ## 2.8.0 - 2020-03-02
 
 #### 🚀 Updates
