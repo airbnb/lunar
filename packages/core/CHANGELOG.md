@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.64.2 - 2020-03-03
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.64.1 - 2020-02-27
 
 #### 🐞 Fixes
