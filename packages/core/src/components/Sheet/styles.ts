@@ -147,7 +147,7 @@ export const styleSheetSheet: StyleSheet = ({ color, pattern, ui, unit }) => ({
   },
 
   headerShadow: {
-    borderBottom: ui.borderThick,
+    borderBottom: ui.border,
   },
 });
 
