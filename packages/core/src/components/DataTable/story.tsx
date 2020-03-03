@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/consistent-function-scoping */
-
 import React from 'react';
 import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
 import getData, { generateRandomData } from ':storybook/components/DataTable/DataTableData';

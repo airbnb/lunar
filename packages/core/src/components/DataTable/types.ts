@@ -40,7 +40,7 @@ export interface DataTableProps {
   /** Filter function to handle searching and filtering.. */
   filterData?: (data: IndexedParentRow[]) => IndexedParentRow[];
   /** Function that gets called on row click. */
-  handleRowClick?: (rowData: ExpandedRow) => () => void;
+  onRowClick?: (rowData: ExpandedRow) => void;
   /** Height of the entire table. */
   height?: number;
   /** References row fields to render as columns, infered from data if not specified. */

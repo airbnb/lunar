@@ -40,10 +40,10 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     dynamicRowHeight: false,
     expandable: false,
     filterData: (data: IndexedParentRow[]) => data,
-    handleRowClick: () => () => {},
     height: 400,
     keys: [],
     minimumDynamicRowHeight: undefined,
+    onRowClick: () => {},
     overscanRowCount: 2,
     renderers: {},
     rowHeight: 'regular',
@@ -230,6 +230,9 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     }
   };
 
+  private handleRowClick = ({ rowData }: { rowData: ExpandedRow }) =>
+    this.props.onRowClick && this.props.onRowClick(rowData);
+
   renderTableHeader(parentWidth: number) {
     const { rowHeight, tableHeaderLabel, tableHeaderHeight } = this.props;
 
@@ -264,7 +267,6 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       overscanRowCount,
       propagateRef,
       rowHeight,
-      handleRowClick,
       sortByCacheKey,
       styles,
       tableHeaderHeight,
@@ -310,7 +312,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             overscanRowCount={
               dynamicRowHeight && showAllRows ? expandedData.length : overscanRowCount!
             }
-            onRowClick={() => handleRowClick}
+            onRowClick={this.handleRowClick}
           >
             {expandable && renderExpandableColumn(cx, styles, expandedRows, this.expandRow)}
             {renderDataColumns(this.keys, this.cache, this.props)}
