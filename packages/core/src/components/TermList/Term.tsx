@@ -22,6 +22,8 @@ export type Props = TextProps & {
   label: string | React.ReactNode;
   /** If enabled, term label is uppercased. */
   uppercased?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function Term({

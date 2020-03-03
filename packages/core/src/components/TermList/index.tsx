@@ -32,6 +32,8 @@ export type Props = {
   children: NonNullable<React.ReactNode>;
   /** If enabled, terms are laid out horizontally. */
   horizontal?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function TermList({ horizontal, children }: Props) {
