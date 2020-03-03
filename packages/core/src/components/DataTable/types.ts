@@ -39,6 +39,8 @@ export interface DataTableProps {
   expandable?: boolean;
   /** Filter function to handle searching and filtering.. */
   filterData?: (data: IndexedParentRow[]) => IndexedParentRow[];
+  /** Function that gets called on row click. */
+  handleRowClick?: (rowData: ExpandedRow) => () => void;
   /** Height of the entire table. */
   height?: number;
   /** References row fields to render as columns, infered from data if not specified. */
@@ -59,8 +61,6 @@ export interface DataTableProps {
   renderers?: Renderers<any>;
   /** Height of table rows, default for table header and column header height. */
   rowHeight?: RowHeightOptions;
-  /** Function that gets called on row click. */
-  rowClickCallback?: (rowData: ExpandedRow) => () => void;
   /**
    * If true, will set Table height to accomodate showing _all_ rows.
    * This effectively _disables_ virtualized row rendering and may have detrimental

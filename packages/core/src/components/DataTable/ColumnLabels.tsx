@@ -51,7 +51,7 @@ export default function ColumnLabels({
   columnLabelCase?: ColumnLabelCase;
 }) {
   return ({ className, columns, style }: ColumnLabelsProps) => {
-    const leftmostIdx = Number(expandable);
+    const leftmostIdx = expandable ? 1 : 0;
 
     const heightStyle: React.CSSProperties = {
       height: getHeight(rowHeight, columnHeaderHeight),
