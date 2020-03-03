@@ -9,35 +9,6 @@ export type RowHeightOptions = string;
 export type HeightOptions = RowHeightOptions | undefined;
 export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '';
 
-export type SelectedRows = {
-  [key: number]: {
-    status: string;
-    selectedChildren: Set<number>;
-  };
-};
-
-export type ChangeLog = {
-  [idx: number]: {
-    [key: string]: {
-      newVal: string;
-    };
-  };
-};
-
-export type EditCallback<T = RowData> = (
-  row: VirtualRow<T>,
-  key: keyof T,
-  newVal: string,
-  event: React.SyntheticEvent<EventTarget>,
-) => void;
-
-export type HeaderButton = {
-  label: string;
-  onClick: (selectedRows: SelectedRows) => () => void;
-  display?: boolean;
-  displayEditMode?: boolean;
-};
-
 export type DefaultDataTableProps = keyof DataTableProps;
 
 export type SortByValueAccessor<T extends GenericRow = GenericRow> = (
@@ -62,26 +33,16 @@ export interface DataTableProps {
   dataTableRef?: DataTableRef;
   /** If dynamicRowHeight is enabled, this sets the default value for measured row height. */
   defaultDynamicRowHeight?: number;
-  /** Default callback on all edits. */
-  defaultEditCallback?: EditCallback;
   /** When enabled, row height is set dynamically to accomodate content. */
   dynamicRowHeight?: boolean;
-  /** Specifies whether or not editMode can be enabled. */
-  editable?: boolean;
-  /** Callback for any specific key, called on all edits. */
-  editCallbacks?: { [key: string]: EditCallback };
-  /** When instant edit is disabled, callback that gets trigged on edit application. */
-  enactEditsCallback?: (changeLog: ChangeLog) => void;
   /** If enabled, a special column is rendered that allows row to be expanded. */
   expandable?: boolean;
-  /** Extra buttons to render in the header during non-edit mode. */
-  extraHeaderButtons?: HeaderButton[];
   /** Filter function to handle searching and filtering.. */
   filterData?: (data: IndexedParentRow[]) => IndexedParentRow[];
+  /** Function that gets called on row click. */
+  onRowClick?: (rowData: ExpandedRow) => void;
   /** Height of the entire table. */
   height?: number;
-  /** Renders a Done button. Defaults to Cancel and Apply buttons. */
-  instantEdit?: boolean;
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];
   /** If dynamicRowHeight is enabled, this sets the minimum value for measured row height. */
@@ -100,14 +61,6 @@ export interface DataTableProps {
   renderers?: Renderers<any>;
   /** Height of table rows, default for table header and column header height. */
   rowHeight?: RowHeightOptions;
-  /** If enabled, a special column is rendered to allows rows to be selected. */
-  selectable?: boolean;
-  /** Function that gets called on row selection. */
-  selectCallback?: (rowData: ExpandedRow, selectedRows: SelectedRows) => () => void;
-  /** Display selected rows above everything else, regardless of sort order. */
-  selectedRowsFirst?: boolean;
-  /** If enabled, clicking the row triggers the same function as click the selection checkbox. */
-  selectOnRowClick?: boolean;
   /**
    * If true, will set Table height to accomodate showing _all_ rows.
    * This effectively _disables_ virtualized row rendering and may have detrimental
@@ -252,10 +205,6 @@ export type RendererProps<T = RowData> = {
   row: VirtualRow<T>;
   /** Key being rendered. */
   keyName: keyof T;
-  /** Whether or not edit mode is enabled. */
-  editMode: boolean;
-  /** Callback to trigger on cell edit. */
-  onEdit: EditCallback<T>;
   /** Whether or not zebra mode is enabled. */
   zebra: boolean;
   /** Theme from Lunar. */

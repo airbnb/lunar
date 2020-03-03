@@ -37,7 +37,6 @@ export default function ColumnLabels({
   rowHeight,
   columnHeaderHeight,
   expandable,
-  selectable,
   columnMetadata,
   columnLabelCase,
 }: {
@@ -48,12 +47,11 @@ export default function ColumnLabels({
   rowHeight?: RowHeightOptions;
   columnHeaderHeight?: HeightOptions;
   expandable?: boolean;
-  selectable?: boolean;
   columnMetadata?: ColumnMetadata;
   columnLabelCase?: ColumnLabelCase;
 }) {
   return ({ className, columns, style }: ColumnLabelsProps) => {
-    const leftmostIdx = Number(expandable) + Number(selectable);
+    const leftmostIdx = expandable ? 1 : 0;
 
     const heightStyle: React.CSSProperties = {
       height: getHeight(rowHeight, columnHeaderHeight),
@@ -78,7 +76,7 @@ export default function ColumnLabels({
 
       const isLeftmost = idx === leftmostIdx;
       const isRightmost = idx === columns.length - 1;
-      const indent = !((expandable || selectable) && isLeftmost);
+      const indent = !(expandable && isLeftmost);
 
       const showDivider = showColumnDividers && !!label && !isRightmost;
 

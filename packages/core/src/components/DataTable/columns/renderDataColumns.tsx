@@ -6,7 +6,6 @@ import {
   ColumnMetadata,
   DataTableProps,
   VirtualRow,
-  EditCallback,
   WidthProperties,
   RendererProps,
 } from '../types';
@@ -21,21 +20,17 @@ type ArgumentsFromProps = {
   renderers?: DataTableProps['renderers'];
   zebra?: boolean;
   theme?: WithStylesProps['theme'];
-  selectable?: boolean;
   expandable?: boolean;
   dynamicRowHeight?: boolean;
 };
 
 export default function renderDataColumns<T>(
   keys: string[],
-  editMode: boolean,
-  onEdit: EditCallback<T>,
   cache: CellMeasurerCache,
   {
     columnMetadata,
     expandable,
     renderers,
-    selectable,
     showColumnDividers,
     zebra,
     dynamicRowHeight,
@@ -50,13 +45,11 @@ export default function renderDataColumns<T>(
     const customRenderer = renderers?.[key];
     const isLeftmost = columnIndex === 0;
     const indentSize = !expandable || !isLeftmost ? 2 : 2.5;
-    const spacing = isChild || !((expandable || selectable) && isLeftmost) ? indentSize : 0;
+    const spacing = isChild || !(expandable && isLeftmost) ? indentSize : 0;
     const rendererArguments: RendererProps<T> = {
       row,
       keyName: key as keyof T,
-      onEdit,
       zebra: zebra || false,
-      editMode,
       theme,
     };
 

@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/consistent-function-scoping */
-
 import React from 'react';
 import IconStar from '@airbnb/lunar-icons/lib/interface/IconStar';
 import getData, { generateRandomData } from ':storybook/components/DataTable/DataTableData';
@@ -7,14 +5,13 @@ import TenureRenderer from ':storybook/components/DataTable/DataTableRenderers/T
 import ColSpanRenderer from ':storybook/components/DataTable/DataTableRenderers/ColSpanRenderer';
 import CatRenderer from ':storybook/components/DataTable/DataTableRenderers/CatRenderer';
 import MenuRenderer from ':storybook/components/DataTable/DataTableRenderers/MenuRenderer';
-import EditableTextRenderer from ':storybook/components/DataTable/DataTableRenderers/EditableTextRenderer';
 import DataTable from '.';
 import Button from '../Button';
 import Input from '../Input';
 import Row from '../Row';
 import Spacing from '../Spacing';
 import Text from '../Text';
-import { RendererProps, SelectedRows, IndexedParentRow } from './types';
+import { RendererProps, IndexedParentRow } from './types';
 import { DataTable as StyledDataTable } from './DataTable';
 import Tabs, { Tab } from '../Tabs';
 
@@ -31,7 +28,6 @@ function CustomRenderer({ row, keyName }: RendererProps<CustomShape>) {
 }
 
 const renderers = {
-  name: EditableTextRenderer,
   colSpan: ColSpanRenderer,
   cats: CatRenderer,
   tenureDays: TenureRenderer,
@@ -52,31 +48,6 @@ const columnMetadata = {
   },
 };
 
-const headerButtonClick = (selectedRows: SelectedRows) => () => {
-  action('this callback has access to the selected rows');
-};
-
-const headerButtons = [
-  {
-    label: 'Always Displayed',
-    display: true,
-    displayEditMode: true,
-    onClick: headerButtonClick,
-  },
-  {
-    label: 'Extra Non Edit Button',
-    display: true,
-    displayEditMode: false,
-    onClick: headerButtonClick,
-  },
-  {
-    label: 'Extra Edit Mode Button',
-    display: false,
-    displayEditMode: true,
-    onClick: headerButtonClick,
-  },
-];
-
 const columnToLabel = {
   tenureDays: (
     <span>
@@ -86,24 +57,8 @@ const columnToLabel = {
   ),
 };
 
-const catsCallback = () => {
-  action('meow');
-};
-
-const editCallbacks = {
-  cats: catsCallback,
-};
-
 const filterData = (data: IndexedParentRow[]) => {
   return data.filter(row => row.data.jobTitle === 'Engineer');
-};
-
-const defaultEditCallback = () => {
-  action('this callback has access to row, key, newVal and event');
-};
-
-const selectCallback = () => () => {
-  action('this callback has access to the newly selected row and all selected row');
 };
 
 class SearchDemo extends React.Component {
@@ -378,27 +333,9 @@ aStandardTableWithInitialSorting.story = {
   name: 'A standard table with initial sorting.',
 };
 
-export function aTableWithSelectableAndExandableRowsThatDisplaysSelectedRowsFirst() {
-  return (
-    <DataTable
-      expandable
-      selectable
-      selectedRowsFirst
-      tableHeaderLabel="My Great Table"
-      data={getData()}
-      keys={['name', 'jobTitle']}
-    />
-  );
-}
-
-aTableWithSelectableAndExandableRowsThatDisplaysSelectedRowsFirst.story = {
-  name: 'A table with selectable and exandable rows that displays selected rows first.',
-};
-
 export function aTableWithFilteredData() {
   return (
     <DataTable
-      selectable
       tableHeaderLabel="My Engineer Table"
       data={getData()}
       keys={['name', 'jobTitle']}
@@ -425,7 +362,6 @@ export function aTableThatShowsAllRows() {
     <div style={{ background: '#835EFE', padding: 8 }}>
       <DataTable
         expandable
-        selectable
         showAllRows
         showRowDividers
         tableHeaderLabel="All rows"
@@ -440,32 +376,10 @@ aTableThatShowsAllRows.story = {
   name: 'A table that shows all rows.',
 };
 
-export function anEditableTable() {
-  return (
-    <DataTable
-      selectable
-      expandable
-      editable
-      showRowDividers
-      tableHeaderLabel="My Great Table"
-      data={getData()}
-      keys={['name', 'jobTitle']}
-      defaultEditCallback={defaultEditCallback}
-      renderers={renderers}
-    />
-  );
-}
-
-anEditableTable.story = {
-  name: 'An editable table.',
-};
-
 export function anTableWithZebraColoringAColspanInferredKeysAndRenderers() {
   return (
     <DataTable
-      selectable
       expandable
-      editable
       zebra
       tableHeaderLabel="My Great Table"
       data={getData()}
@@ -481,9 +395,7 @@ anTableWithZebraColoringAColspanInferredKeysAndRenderers.story = {
 export function aTableWithDifferentRowColumnHeaderAndTableHeaderHeights() {
   return (
     <DataTable
-      selectable
       expandable
-      editable
       zebra
       tableHeaderLabel="My Great Table"
       data={getData()}
@@ -499,47 +411,23 @@ aTableWithDifferentRowColumnHeaderAndTableHeaderHeights.story = {
   name: 'A table with different row, column header and table header heights.',
 };
 
-export function aTableThatLogsCustomEditCallbacksAndSelectCallback() {
-  return (
-    <DataTable
-      selectable
-      expandable
-      tableHeaderLabel="My Great Table"
-      data={getData()}
-      defaultEditCallback={defaultEditCallback}
-      editCallbacks={editCallbacks}
-      selectCallback={selectCallback}
-    />
-  );
-}
-
-aTableThatLogsCustomEditCallbacksAndSelectCallback.story = {
-  name: 'A table that logs custom edit callbacks and select callback.',
-};
-
 export function aComplexTableWithAllFeaturesEnabled() {
   return (
     <DataTable
-      selectable
       expandable
       showColumnDividers
       showRowDividers
       zebra
-      selectOnRowClick
-      editable
       data={getData()}
       columnToLabel={columnToLabel}
       columnMetadata={columnMetadata}
       renderers={renderers}
-      extraHeaderButtons={headerButtons}
       height={300}
       width={1000}
       tableHeaderLabel="My Great Table"
       rowHeight="regular"
       columnHeaderHeight="micro"
       tableHeaderHeight="large"
-      defaultEditCallback={defaultEditCallback}
-      editCallbacks={editCallbacks}
       keys={['name', 'cats', 'tenureDays']}
     />
   );
