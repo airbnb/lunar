@@ -191,7 +191,7 @@ export class MenuToggle extends React.Component<
 
     if (toggleElement) {
       toggleButton = (
-        <button className={cx(styles.customToggle)} onClick={this.handleToggleMenu}>
+        <button type="button" className={cx(styles.customToggle)} onClick={this.handleToggleMenu}>
           {toggleElement}
         </button>
       );

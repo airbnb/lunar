@@ -53,8 +53,8 @@ export function withCustomTrigger() {
   );
 }
 
-withCustomIcon.story = {
-  name: 'With custom icon.',
+withCustomTrigger.story = {
+  name: 'With custom trigger.',
 };
 
 export function withCustomIcon() {
