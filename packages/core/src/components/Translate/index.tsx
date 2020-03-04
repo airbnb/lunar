@@ -1,32 +1,27 @@
 import React from 'react';
 import Core from '../..';
-import { TranslateParams, TranslateProps, TranslateOptions } from '../../types';
+import {
+  TranslateParams,
+  TranslateProps as BaseTranslateProps,
+  TranslateOptions,
+} from '../../types';
 
-export type Props = TranslateProps;
+export type TranslateProps = BaseTranslateProps;
 
-/** Translate a phrase with a key, informational context, and dynamic params. */
-export default class Translate extends React.PureComponent<Props> {
-  static defaultProps = {
-    html: false,
-  };
+/** Translate a phrase with a key and dynamic params. */
+function Translate({ children, k: key, phrase, html, ...params }: TranslateProps) {
+  const { translatorComponent: Translator } = Core.settings;
+  const options: TranslateOptions = { html };
 
-  static phrase(
-    phrase: string,
-    params?: TranslateParams | null,
-    options?: string | TranslateOptions,
-  ): string {
-    return Core.translate(phrase, params, options);
+  if (!Translator) {
+    return <span>{Core.translate(key, phrase, params as TranslateParams, options)}</span>;
   }
 
-  render() {
-    const { translatorComponent: Translator } = Core.settings;
-    const { children, k: key, phrase, context, html, ...params } = this.props;
-    const options: TranslateOptions = { context, html, key };
-
-    if (!Translator) {
-      return <span>{Core.translate(phrase, params as {}, options)}</span>;
-    }
-
-    return <Translator k={key} phrase={phrase} context={context} html={html} {...(params as {})} />;
-  }
+  return <Translator k={key} phrase={phrase} html={html} {...(params as {})} />;
 }
+
+Translate.phrase = function phrase(key: string, msg: string, params?: TranslateParams): string {
+  return Core.translate(key, msg, params);
+};
+
+export default Translate;

@@ -21,7 +21,7 @@ function createRow(hex: string) {
   };
 }
 
-export const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
+export const styleSheetTable: StyleSheet = ({ color, ui, unit }) => ({
   table: {
     width: '100%',
     maxWidth: '100%',

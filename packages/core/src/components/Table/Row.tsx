@@ -1,10 +1,10 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { STATUSES } from '../../constants';
-import { styleSheetRow as styleSheet } from './styles';
+import { styleSheetRow } from './styles';
 
-export type Props = {
+export type TableRowProps = {
   /** Table cells to render. */
   children: NonNullable<React.ReactNode>;
   /** Dangerous/failure row (red). */
@@ -19,11 +19,23 @@ export type Props = {
   success?: boolean;
   /** Warning row (yellow). */
   warning?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A table row that contains multiple cells. */
-function TableRow({ children, danger, info, muted, notice, success, warning, ...props }: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+function TableRow({
+  children,
+  danger,
+  info,
+  muted,
+  notice,
+  success,
+  warning,
+  styleSheet,
+  ...props
+}: TableRowProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetRow);
 
   return (
     <tr

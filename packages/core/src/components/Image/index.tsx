@@ -5,7 +5,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 const backgroundAlignPropType = mutuallyExclusiveTrueProps('alignBottom', 'alignTop');
 const objectFitPropType = mutuallyExclusiveTrueProps('contain', 'cover');
 
-const styleSheet: StyleSheet = ({ color, ui }) => ({
+export const styleSheetImage: StyleSheet = ({ color, ui }) => ({
   backdrop: {
     backgroundColor: color.core.neutral[0],
   },
@@ -74,7 +74,7 @@ const styleSheet: StyleSheet = ({ color, ui }) => ({
   },
 });
 
-export type Props = {
+export type ImageProps = {
   /** Sets background to bottom of image */
   alignBottom?: boolean;
   /** Sets background to top of image */
@@ -103,6 +103,8 @@ export type Props = {
   title?: string;
   /** Width of content */
   width?: number | string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Component that displays an image */
@@ -121,8 +123,9 @@ function Image({
   srcSet,
   title,
   width = '100%',
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: ImageProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetImage);
 
   let backgroundAriaLabel = {};
 

@@ -14,7 +14,7 @@ import {
 } from '../types';
 import { styleSheet } from './styles';
 
-export type Props = {
+export type SearchProps = {
   items?: ItemShape[];
   onItemPicked: ItemPickedHandler;
   formatter: Formatter;
@@ -57,7 +57,7 @@ const defaultFuseKeys: FuseKey[] = [
   },
 ];
 
-export class Search extends React.Component<Props & WithStylesProps> {
+export class Search extends React.Component<SearchProps & WithStylesProps> {
   static defaultProps = {
     fuseOptions: {},
     items: [],
@@ -70,7 +70,7 @@ export class Search extends React.Component<Props & WithStylesProps> {
     this.buildIndex(this.props.items);
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: SearchProps) {
     const { items, indexParentPath } = this.props;
 
     if (items !== prevProps.items || indexParentPath !== prevProps.indexParentPath) {
@@ -172,14 +172,7 @@ export class Search extends React.Component<Props & WithStylesProps> {
         <Autocomplete<SearchItemResult>
           hideLabel
           optional
-          accessibilityLabel={T.phrase(
-            'Hierarchy item search',
-            {},
-            {
-              context: 'Search functionality to find items within the hierarchy menu.',
-              key: 'lunar.picker.searchLabel',
-            },
-          )}
+          accessibilityLabel={T.phrase('lunar.picker.searchLabel', 'Hierarchy item search')}
           getItemValue={this.getItemValue}
           maxHeight={maxHeight}
           name="autocomplete-search"

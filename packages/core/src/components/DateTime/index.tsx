@@ -30,7 +30,7 @@ const formatPropType = mutuallyExclusiveTrueProps(
   'relativeCompact',
 );
 
-export type Props = {
+export type DateTimeProps = {
   /** A timestamp, either a string, number, Date object, or Luxon DateTime object. */
   at?: DateTimeType;
   /** Display the time with no date. */
@@ -68,7 +68,7 @@ export type Props = {
 };
 
 /** Display a formatted and localized timestamp. */
-export default class DateTime extends React.PureComponent<Props> {
+export default class DateTime extends React.PureComponent<DateTimeProps> {
   static propTypes = {
     clock: formatPropType,
     long: formatPropType,
@@ -97,7 +97,7 @@ export default class DateTime extends React.PureComponent<Props> {
     withDay: false,
   };
 
-  static format(props: Props): string {
+  static format(props: DateTimeProps): string {
     const {
       at,
       clock,
@@ -192,27 +192,12 @@ export default class DateTime extends React.PureComponent<Props> {
     const diff = DateTime.diff(relative, options.base);
     const fewPhrase =
       options.style === 'narrow'
-        ? T.phrase(
-            'a few sec.',
-            {},
-            { context: 'Relative time within a minute', key: 'lunar.datetime.secsAgoNarrow' },
-          )
-        : T.phrase(
-            'a few seconds',
-            {},
-            { context: 'Relative time within a minute', key: 'lunar.datetime.secsAgo' },
-          );
+        ? T.phrase('lunar.datetime.secsAgoNarrow', 'a few sec.')
+        : T.phrase('lunar.datetime.secsAgo', 'a few seconds');
 
     if (diff > 0 && diff < MINUTE_THRESHOLD) {
       if (!options.style || options.style === 'long') {
-        return T.phrase(
-          'in %{time}',
-          { time: fewPhrase },
-          {
-            context: 'Relative time explaining something will happen soon',
-            key: 'lunar.datetime.in',
-          },
-        );
+        return T.phrase('lunar.datetime.in', 'in %{time}', { time: fewPhrase });
       }
 
       return fewPhrase;
@@ -220,14 +205,7 @@ export default class DateTime extends React.PureComponent<Props> {
 
     if (diff <= 0 && diff > -MINUTE_THRESHOLD) {
       if (!options.style || options.style === 'long') {
-        return T.phrase(
-          '%{time} ago',
-          { time: fewPhrase },
-          {
-            context: 'Relative time explaining something recently happened',
-            key: 'lunar.datetime.ago',
-          },
-        );
+        return T.phrase('lunar.datetime.ago', '%{time} ago', { time: fewPhrase });
       }
 
       return fewPhrase;

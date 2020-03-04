@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'rut-dom';
-import PopToast, { Props } from '../../../src/components/Toasts/PopToast';
+import PopToast, { PopToastProps } from '../../../src/components/Toasts/PopToast';
 import AppContext, { defaultContext } from '../../../src/components/AppContext';
 import { Context } from '../../../src/types';
 
@@ -22,7 +22,7 @@ describe('PopToast', () => {
   }
 
   it('adds a failure toast', () => {
-    render<Props>(<PopToast danger message="Hello" delay={123} />, {
+    render<PopToastProps>(<PopToast danger message="Hello" delay={123} />, {
       wrapper: <WrappingComponent />,
     });
 
@@ -30,7 +30,7 @@ describe('PopToast', () => {
   });
 
   it('adds a success toast', () => {
-    render<Props>(<PopToast success message="Hello" duration={123} />, {
+    render<PopToastProps>(<PopToast success message="Hello" duration={123} />, {
       wrapper: <WrappingComponent />,
     });
 
@@ -38,7 +38,7 @@ describe('PopToast', () => {
   });
 
   it('adds a refresh toast', () => {
-    render<Props>(<PopToast refresh message="Hello" />, { wrapper: <WrappingComponent /> });
+    render<PopToastProps>(<PopToast refresh message="Hello" />, { wrapper: <WrappingComponent /> });
 
     expect(context.addRefreshToast).toHaveBeenCalledWith('Hello', { refresh: true });
   });
@@ -46,7 +46,9 @@ describe('PopToast', () => {
   it('adds an info toast by default', () => {
     const spy = jest.fn();
 
-    render<Props>(<PopToast message="Hello" onClose={spy} />, { wrapper: <WrappingComponent /> });
+    render<PopToastProps>(<PopToast message="Hello" onClose={spy} />, {
+      wrapper: <WrappingComponent />,
+    });
 
     expect(context.addInfoToast).toHaveBeenCalledWith('Hello', { onClose: spy });
   });
@@ -54,13 +56,15 @@ describe('PopToast', () => {
   it('adds an error toast if message is an `Error`', () => {
     const error = new Error('Oops');
 
-    render<Props>(<PopToast message={error} />, { wrapper: <WrappingComponent /> });
+    render<PopToastProps>(<PopToast message={error} />, { wrapper: <WrappingComponent /> });
 
     expect(context.addFailureToast).toHaveBeenCalledWith(error, {});
   });
 
   it('only adds the toast once', () => {
-    const { update } = render<Props>(<PopToast message="Hi" />, { wrapper: <WrappingComponent /> });
+    const { update } = render<PopToastProps>(<PopToast message="Hi" />, {
+      wrapper: <WrappingComponent />,
+    });
 
     update({ message: 'Hi' });
     update({ message: 'Hi' });
@@ -70,7 +74,7 @@ describe('PopToast', () => {
   });
 
   it('doesnt add a toast if no context', () => {
-    render<Props>(<PopToast message="Hi" />);
+    render<PopToastProps>(<PopToast message="Hi" />);
 
     expect(context.addInfoToast).not.toHaveBeenCalled();
   });

@@ -1,15 +1,15 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import removeFocusOnMouseUp from '../../utils/removeFocusOnMouseUp';
 import ProfilePhoto from '../ProfilePhoto';
 import Shimmer from '../Shimmer';
 import Text from '../Text';
 import Spacing from '../Spacing';
 import T from '../Translate';
-import { styleSheet } from './styles';
+import { styleSheetMessageItem } from './styles';
 
-export type Props = {
+export type MessageItemProps = {
   /** Message body. */
   children: NonNullable<React.ReactNode>;
   /** Wraps title in a span to disables translation suggestions from Google Translate. */
@@ -52,6 +52,8 @@ export type Props = {
   verticalSpacing?: boolean;
   /** Mark the message as a warning. */
   warning?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** An individual comment within a message thread. */
@@ -77,8 +79,9 @@ function MessageItem({
   titleTag,
   verticalSpacing,
   warning,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: MessageItemProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetMessageItem);
 
   const getAvatar = () => {
     if (loadingAuthor) {
@@ -107,14 +110,7 @@ function MessageItem({
           <ProfilePhoto
             imageSrc={imageBadgeSrc}
             size={2}
-            title={T.phrase(
-              'Profile photo badge',
-              {},
-              {
-                context: 'Profile photo descriptive image text within a message bubble',
-                key: 'lunar.message.photoLabel',
-              },
-            )}
+            title={T.phrase('lunar.message.photoLabel', 'Profile photo badge')}
           />
         </div>
       </>
@@ -168,11 +164,10 @@ function MessageItem({
   };
 
   const timestamp = source
-    ? T.phrase(
-        '%{time} via %{source}',
-        { time: formattedTimestamp, source },
-        { context: 'Timestamp and source within a message bubble', key: 'lunar.message.source' },
-      )
+    ? T.phrase('lunar.message.source', '%{time} via %{source}', {
+        time: formattedTimestamp,
+        source,
+      })
     : formattedTimestamp;
 
   return (
@@ -214,13 +209,7 @@ function MessageItem({
 
             {email && (
               <Text small muted>
-                <T
-                  html
-                  k="lunar.message.fromUser"
-                  phrase="From: %{email}"
-                  email={email}
-                  context="Who the message is from"
-                />
+                <T html k="lunar.message.fromUser" phrase="From: %{email}" email={email} />
               </Text>
             )}
           </Spacing>

@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
-import { Props as BaseProps } from '@airbnb/lunar/lib/components/Toast';
+import { ToastProps } from '@airbnb/lunar/lib/components/Toast';
 import AppContext from '../AppContext';
 
-export type Props = Omit<BaseProps, 'id' | 'onRemove'>;
+export type PopToastProps = Omit<ToastProps, 'id' | 'onRemove'>;
 
-export default function PopToast({ message, ...props }: Props) {
+export default function PopToast({ message, ...props }: PopToastProps) {
   const { addFailureToast, addRefreshToast, addSuccessToast, addInfoToast } = useContext(
     AppContext,
   );

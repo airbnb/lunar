@@ -13,9 +13,16 @@ describe('<CheckBoxController />', () => {
     context = createFormContext();
   });
 
+  type Value = 'foo' | 'bar' | 'baz';
+
   it('connects to the form', () => {
     const wrapper = mount(
-      <CheckBoxController label="Label" name="foo" defaultValue={['bar']} validator={() => {}}>
+      <CheckBoxController<Value>
+        label="Label"
+        name="foo"
+        defaultValue={['bar']}
+        validator={() => {}}
+      >
         {CB => (
           <div>
             <CB value="foo" label="Foo" />
@@ -40,7 +47,12 @@ describe('<CheckBoxController />', () => {
 
   it('passes value as an array', () => {
     const wrapper = mount(
-      <CheckBoxController label="Label" name="foo" defaultValue={['bar']} validator={() => {}}>
+      <CheckBoxController<Value>
+        label="Label"
+        name="foo"
+        defaultValue={['bar']}
+        validator={() => {}}
+      >
         {CB => (
           <div>
             <CB value="foo" label="Foo" />

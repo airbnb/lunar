@@ -99,7 +99,7 @@ const inputStyleSheet = ({ color, pattern, ui, unit, transition }: Theme): Sheet
       backgroundColor: color.core.danger[0],
     },
 
-    input_compact: {
+    input_small: {
       ...pattern.smallButton,
     },
 
@@ -152,18 +152,21 @@ const inputStyleSheet = ({ color, pattern, ui, unit, transition }: Theme): Sheet
 
     select: {
       appearance: 'none',
-      paddingRight: unit * 4.5,
+      paddingRight: unit * 4,
     },
 
-    select_compact: {
+    select_small: {
       paddingRight: unit * 3,
+    },
+
+    select_large: {
+      paddingRight: unit * 5,
     },
 
     button: {
       ...common,
       padding: unit * 3,
       borderRadius: ui.borderRadiusThick,
-      boxShadow: ui.boxShadow,
       cursor: 'pointer',
       display: 'flex',
       width: '100%',
@@ -173,7 +176,7 @@ const inputStyleSheet = ({ color, pattern, ui, unit, transition }: Theme): Sheet
       ...commonChecked,
     },
 
-    button_compact: {
+    button_small: {
       padding: unit * 2,
     },
 

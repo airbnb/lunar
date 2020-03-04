@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
+export const styleSheetProgressBar: StyleSheet = ({ color, ui, unit }) => ({
   wrapper: {
     paddingTop: unit / 4,
     paddingBottom: unit / 4,
@@ -65,7 +65,3 @@ const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
     background: color.core.warning[6],
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

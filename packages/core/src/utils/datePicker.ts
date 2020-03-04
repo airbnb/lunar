@@ -1,6 +1,6 @@
 import { DayPickerProps } from 'react-day-picker';
 import { WithStylesProps } from '../composers/withStyles';
-import { Props } from '../components/DatePicker';
+import { DatePickerProps } from '../components/DatePicker';
 
 export function getCustomModifiers(
   modifiers: DayPickerProps['modifiers'],
@@ -24,7 +24,7 @@ export function getCustomModifiers(
 export function getClassNames(
   type: 'input' | 'calendar',
   styles: WithStylesProps['styles'],
-  props: Props & WithStylesProps,
+  props: DatePickerProps & WithStylesProps,
 ) {
   const { cx, showResetButton, todayButton } = props;
   const baseClassNames = {

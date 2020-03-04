@@ -9,14 +9,15 @@ import Menu, { Item } from '../Menu';
 import T from '../Translate';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = () => ({
+export const styleSheetZoomControls: StyleSheet = () => ({
   controls: {
     position: 'relative',
     display: 'inline-block',
   },
 });
 
-const ZOOM_FACTOR = 0.5;
+export const ZOOM_FACTOR = 0.5;
+
 export const ZOOM_OPTIONS = [
   {
     label: '100%',
@@ -36,16 +37,18 @@ export const ZOOM_OPTIONS = [
   },
 ];
 
-export type Props = {
+export type ZoomControlsProps = {
   /** The current scale / zoom level. 1 by default. */
   scale?: number;
   /** Callback when scale / zoom changes */
   onScale: (scale: number) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Zoom controls that can be used with an image viewer component */
-export default function ZoomControls(props: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+export default function ZoomControls({ styleSheet, ...props }: ZoomControlsProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetZoomControls);
   const [visible, setVisible] = useState(false);
   const { onScale, scale = 1 } = props;
 
@@ -68,14 +71,7 @@ export default function ZoomControls(props: Props) {
     <div className={cx(styles.controls)}>
       <ButtonGroup>
         <IconButton disabled={scale === 1} onClick={handleZoomOut}>
-          <IconRemove
-            accessibilityLabel={T.phrase(
-              'Zoom out',
-              {},
-              { key: 'lunar.image.zoomOut', context: 'Label for zoom out button' },
-            )}
-            size="2em"
-          />
+          <IconRemove accessibilityLabel={T.phrase('lunar.image.zoomOut', 'Zoom out')} size="2em" />
         </IconButton>
 
         <Button borderless onClick={toggleZoomMenu}>
@@ -83,26 +79,13 @@ export default function ZoomControls(props: Props) {
         </Button>
 
         <IconButton onClick={handleZoomIn}>
-          <IconAdd
-            accessibilityLabel={T.phrase(
-              'Zoom in',
-              {},
-              { key: 'lunar.image.zoomIn', context: 'Label for zoom in button' },
-            )}
-            size="2em"
-          />
+          <IconAdd accessibilityLabel={T.phrase('lunar.image.zoomIn', 'Zoom in')} size="2em" />
         </IconButton>
       </ButtonGroup>
 
       {visible && (
         <Dropdown visible={visible} left="0" zIndex={5} onClickOutside={toggleZoomMenu}>
-          <Menu
-            accessibilityLabel={T.phrase(
-              'Zoom dropdown menu',
-              {},
-              { key: 'lunar.image.zoomMenu', context: 'Label for dropdown menu with zoom options' },
-            )}
-          >
+          <Menu accessibilityLabel={T.phrase('lunar.image.zoomMenu', 'Zoom dropdown menu')}>
             {zoomOptions.map(zoom => (
               <Item key={zoom.scale} onClick={zoom.handleOnClick}>
                 {zoom.label}

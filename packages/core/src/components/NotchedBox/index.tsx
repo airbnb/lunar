@@ -1,10 +1,10 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet, createPosition, NOTCH_SIZE, NOTCH_SPACING } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetNotchedBox, createPosition, NOTCH_SIZE, NOTCH_SPACING } from './styles';
 
 export { NOTCH_SIZE, NOTCH_SPACING };
 
-export type Props = {
+export type NotchedBoxProps = {
   /** Content to be displayed. */
   children: NonNullable<React.ReactNode>;
   /** True to use inline-block container. */
@@ -15,11 +15,20 @@ export type Props = {
   notchBelow?: boolean;
   /** Offset of the notch (can be a CSS size eg "50%"). */
   notchOffset?: number | string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A container with a configurable arrow pointing outward. */
-export default function NotchedBox({ inverted, children, inline, notchBelow, notchOffset }: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+export default function NotchedBox({
+  inverted,
+  children,
+  inline,
+  notchBelow,
+  notchOffset,
+  styleSheet,
+}: NotchedBoxProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetNotchedBox);
 
   return (
     <div className={cx(styles.box, !inverted && styles.border, inline && styles.box_inline)}>

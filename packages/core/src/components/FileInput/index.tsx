@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import IconUpload from '@airbnb/lunar-icons/lib/interface/IconUpload';
 import IconAudio from '@airbnb/lunar-icons/lib/interface/IconAudio';
 import IconPhoto from '@airbnb/lunar-icons/lib/interface/IconPhoto';
@@ -7,7 +7,7 @@ import IconVideo from '@airbnb/lunar-icons/lib/interface/IconVideo';
 import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import FormInput, { InputProps } from '../private/FormInput';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import Table, { Cell } from '../Table';
 import Spacing from '../Spacing';
 import Text from '../Text';
@@ -20,7 +20,7 @@ import toBytes from '../../utils/toBytes';
 
 const acceptProp = mutuallyExclusiveTrueProps('onlyAudio', 'onlyImages', 'onlyVideo');
 
-export type Props = Omit<InputProps, 'id'> &
+export type FileInputProps = Omit<InputProps, 'id'> &
   FormFieldProps & {
     /** Hide file size column in the file preview table. */
     hideFileSize?: boolean;
@@ -41,13 +41,13 @@ export type Props = Omit<InputProps, 'id'> &
     onlyVideo?: boolean;
   };
 
-export type State = {
+export type FileInputState = {
   files: File[];
   id: string;
 };
 
 /** A controlled input field for uploading files. */
-export default class FileInput extends React.Component<Props, State> {
+export default class FileInput extends React.Component<FileInputProps, FileInputState> {
   static propTypes = {
     onlyAudio: acceptProp,
     onlyImages: acceptProp,
@@ -63,7 +63,7 @@ export default class FileInput extends React.Component<Props, State> {
     onlyVideo: false,
   };
 
-  state: State = {
+  state: FileInputState = {
     files: [],
     id: uuid(),
   };
@@ -139,7 +139,8 @@ export default class FileInput extends React.Component<Props, State> {
         <FormInputButton
           inverted
           invalid={fieldProps.invalid}
-          small={fieldProps.compact}
+          small={fieldProps.small}
+          large={fieldProps.large}
           disabled={props.disabled}
           afterIcon={<Icon decorative size="1.25em" />}
           onClick={this.handleClick}
@@ -147,7 +148,6 @@ export default class FileInput extends React.Component<Props, State> {
           <T
             k="lunar.form.chooseFile"
             phrase="Choose file||||Choose files"
-            context="Label when uploading multiple files"
             smartCount={props.multiple ? 0 : 1}
           />
 
@@ -156,7 +156,7 @@ export default class FileInput extends React.Component<Props, State> {
 
         {files.length > 0 && !fieldProps.inline && (
           <Spacing top={1}>
-            <Text small={fieldProps.compact}>
+            <Text small={fieldProps.small}>
               <Table compact striped>
                 <tbody>
                   {files.map((file, i) => (
@@ -181,12 +181,8 @@ export default class FileInput extends React.Component<Props, State> {
                         >
                           <IconClose
                             accessibilityLabel={T.phrase(
+                              'lunar.form.removeFile',
                               'Remove chosen file',
-                              {},
-                              {
-                                context: 'Label when removing a chosen file to upload',
-                                key: 'lunar.form.removeFile',
-                              },
                             )}
                           />
                         </IconButton>

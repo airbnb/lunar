@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useRef } from 'react';
+import React, { useContext, useCallback, useRef, useEffect } from 'react';
 import debounce from 'lodash/debounce';
 import T from '@airbnb/lunar/lib/components/Translate';
 import Hotkey from './Hotkey';
@@ -50,8 +50,11 @@ export default function Suggestions({ noCache = false, throttle = 200, onLoad }:
 
   // Enable feature
   context.flags.suggestions = true;
-  context.onChange(handleLoadSuggestions);
-  context.onChange(handleShadowMatch);
+
+  useEffect(() => {
+    context.onChange(handleLoadSuggestions);
+    context.onChange(handleShadowMatch);
+  }, [context, handleLoadSuggestions, handleShadowMatch]);
 
   return (
     <Hotkey
@@ -59,7 +62,7 @@ export default function Suggestions({ noCache = false, throttle = 200, onLoad }:
       combo="tab"
       condition={activeWhenShadowExists}
       name="tabSelectSuggestion"
-      label={T.phrase('to select', null, { key: 'lunar.composer.suggestions.hotkey.select' })}
+      label={T.phrase('lunar.composer.suggestions.hotkey.select', 'to select')}
       onRun={selectShadowSuggestion}
     />
   );

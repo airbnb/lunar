@@ -1,7 +1,7 @@
 import { StyleBlock } from 'aesthetic';
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheet: StyleSheet = ({ unit }) => ({
+export const styleSheetGrid: StyleSheet = ({ unit }) => ({
   grid: {
     display: 'flex',
     flex: '0 1 auto',

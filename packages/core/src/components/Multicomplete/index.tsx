@@ -1,9 +1,6 @@
 import React from 'react';
 import shallowEqual from 'shallowequal';
-import Autocomplete, {
-  Props as AutocompleteProps,
-  Item as AutocompleteItem,
-} from '../Autocomplete';
+import Autocomplete, { AutocompleteProps, Item as AutocompleteItem } from '../Autocomplete';
 import Spacing from '../Spacing';
 import Chip from './private/Chip';
 
@@ -19,7 +16,7 @@ function renderChip(value: string, onRemove: onRemove): NonNullable<React.ReactN
   );
 }
 
-export type Props<T extends Item = Item> = Omit<
+export type MulticompleteProps<T extends Item = Item> = Omit<
   AutocompleteProps<T>,
   'children' | 'isItemSelected' | 'onChange' | 'value'
 > & {
@@ -31,12 +28,15 @@ export type Props<T extends Item = Item> = Omit<
   value?: string[];
 };
 
-export type State = {
+export type MulticompleteState = {
   values: Set<string>;
 };
 
 /** An uncontrolled input field for selecting multiple values via an autocomplete. */
-export default class Multicomplete<T extends Item = Item> extends React.Component<Props<T>, State> {
+export default class Multicomplete<T extends Item = Item> extends React.Component<
+  MulticompleteProps<T>,
+  MulticompleteState
+> {
   static defaultProps = {
     renderChip,
     value: [],
@@ -46,7 +46,7 @@ export default class Multicomplete<T extends Item = Item> extends React.Componen
     values: new Set(this.props.value),
   };
 
-  componentDidUpdate(prevProps: Props<T>) {
+  componentDidUpdate(prevProps: MulticompleteProps<T>) {
     if (!shallowEqual(this.props.value, prevProps.value!)) {
       this.setState({
         values: new Set(this.props.value),

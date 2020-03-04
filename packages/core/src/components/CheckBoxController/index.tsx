@@ -1,33 +1,42 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import shallowEqual from 'shallowequal';
 import proxyComponent from '../../utils/proxyComponent';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
-import CheckBox, { Props as CheckBoxProps } from '../CheckBox';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
+import CheckBox, { CheckBoxProps } from '../CheckBox';
 
-export type PropsProvided = Partial<CheckBoxProps> & {
+export type CheckBoxControlledProps<T extends string> = Partial<
+  Omit<CheckBoxProps<T>, 'label' | 'value'>
+> & {
   label: NonNullable<React.ReactNode>;
-  value: string;
+  value: T;
 };
 
-export type Props = FormFieldProps & {
+export type CheckBoxControllerProps<T extends string> = FormFieldProps & {
   /** Function children in which CheckBox components can be rendered. */
-  children: (component: React.ComponentType<PropsProvided>, values: string[], id: string) => void;
+  children: (
+    component: React.ComponentType<CheckBoxControlledProps<T>>,
+    values: T[],
+    id: string,
+  ) => void;
   /** Unique name of the field. */
   name: string;
   /** Callback that is triggered when a child CheckBox is clicked. */
-  onChange: (values: string[], event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (values: T[], event: React.ChangeEvent<HTMLInputElement>) => void;
   /** Default checked values. */
-  value?: string[];
+  value?: T[];
 };
 
-export type State = {
+export type CheckBoxControllerState<T extends string> = {
   id: string;
-  values: Set<string>;
+  values: Set<T>;
 };
 
 /** Manage multiple checkboxes with the same input `name`. */
-export default class CheckBoxController extends React.Component<Props, State> {
+export default class CheckBoxController<T extends string = string> extends React.Component<
+  CheckBoxControllerProps<T>,
+  CheckBoxControllerState<T>
+> {
   static defaultProps = {
     value: [],
   };
@@ -37,7 +46,7 @@ export default class CheckBoxController extends React.Component<Props, State> {
     values: new Set(this.props.value),
   };
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: CheckBoxControllerProps<T>) {
     if (!shallowEqual(this.props.value, prevProps.value!)) {
       this.setState({
         values: new Set(this.props.value),
@@ -47,7 +56,7 @@ export default class CheckBoxController extends React.Component<Props, State> {
 
   private handleChange = (
     checked: boolean,
-    value: string,
+    value: T,
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     this.setState(
@@ -70,12 +79,12 @@ export default class CheckBoxController extends React.Component<Props, State> {
     );
   };
 
-  renderCheckBox = proxyComponent(CheckBox, ({ value, ...props }: PropsProvided) => {
-    const { inputProps } = partitionFieldProps(this.props);
+  renderCheckBox = proxyComponent<CheckBoxControlledProps<T>>(CheckBox, ({ value, ...props }) => {
+    const { inputProps } = partitionFieldProps<T, CheckBoxControllerProps<T>>(this.props);
     const { id, values } = this.state;
 
     return (
-      <CheckBox
+      <CheckBox<T>
         compactSpacing
         {...props}
         {...inputProps}
@@ -89,7 +98,7 @@ export default class CheckBoxController extends React.Component<Props, State> {
   });
 
   render() {
-    const { children, fieldProps } = partitionFieldProps(this.props);
+    const { children, fieldProps } = partitionFieldProps<T, CheckBoxControllerProps<T>>(this.props);
     const { id, values } = this.state;
 
     return (

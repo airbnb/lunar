@@ -3,8 +3,7 @@
 exports[`<Translate /> renders a translator component 1`] = `
 <T
   bar={123}
-  context="Baz"
-  html={false}
+  k="foo"
   phrase="Foo"
 />
 `;

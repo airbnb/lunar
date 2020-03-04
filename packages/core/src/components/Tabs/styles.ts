@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
+export const styleSheetTabs: StyleSheet = ({ color, ui, unit }) => ({
   nav: {
     borderBottom: ui.borderThick,
     display: 'flex',

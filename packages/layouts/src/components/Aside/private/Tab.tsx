@@ -57,7 +57,7 @@ const styleSheet: StyleSheet = ({ color, pattern, transition, ui, unit }) => ({
   },
 });
 
-export type Props = {
+export type TabProps = {
   /** Whether to apply bordered styles. */
   bordered?: boolean;
   /** Whether the column is expanded. */
@@ -73,18 +73,17 @@ export type Props = {
 };
 
 /** A tab for toggling an aside. */
-export default function Tab({ bordered, expanded, position = 'after', onCollapseToggle }: Props) {
+export default function Tab({
+  bordered,
+  expanded,
+  position = 'after',
+  onCollapseToggle,
+}: TabProps) {
   const [styles, cx] = useStyles(styleSheet);
 
-  const labelCollapse = T.phrase('Collapse', null, {
-    context: 'Collapse',
-    key: 'lunar.common.collapse',
-  });
+  const labelCollapse = T.phrase('lunar.common.collapse', 'Collapse');
 
-  const labelExpand = T.phrase('Expand', null, {
-    context: 'Expand',
-    key: 'lunar.common.expand',
-  });
+  const labelExpand = T.phrase('lunar.common.expand', 'Expand');
 
   let direction: 'left' | 'right' = expanded ? 'left' : 'right';
   if (position === 'before') {

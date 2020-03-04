@@ -83,8 +83,6 @@ describe('<TextArea />', () => {
       phrase: '%{current}/%{max} characters used',
       current: '5',
       max: '1,000',
-      html: false,
-      context: 'Showing the current and max characters within a form textarea',
     });
 
     wrapper.setProps({

@@ -5,15 +5,15 @@ import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import IconFirst from '@airbnb/lunar-icons/lib/interface/IconFirst';
 import IconLast from '@airbnb/lunar-icons/lib/interface/IconLast';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import IconButton from '../IconButton';
 import Text from '../Text';
 import T from '../Translate';
 import DirectionalIcon from '../DirectionalIcon';
-import { styleSheet } from './styles';
+import { styleSheetPagination } from './styles';
 import useTheme from '../../hooks/useTheme';
 
-export type Props = {
+export type PaginationProps = {
   /** Align arrows in the center */
   centerAlign?: boolean;
   /** Align arrows to the end */
@@ -42,6 +42,8 @@ export type Props = {
   onNext: () => void;
   /** Invoked when the previous page button is pressed. */
   onPrevious: () => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Pagination controls. */
@@ -53,15 +55,16 @@ function Pagination({
   hasPrev,
   showBookends,
   startAlign,
-  pageLabel = T.phrase('Page', {}, { context: 'Label for pages', key: 'lunar.common.page' }),
+  pageLabel = T.phrase('lunar.common.page', 'Page'),
   onFirst,
   onLast,
   onNext,
   onPrevious,
   page,
   pageCount,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: PaginationProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetPagination);
   const theme = useTheme();
 
   if (!(hasNext || hasPrev)) {
@@ -74,14 +77,7 @@ function Pagination({
         direction="left"
         left={IconChevronLeft}
         right={IconChevronRight}
-        accessibilityLabel={T.phrase(
-          'Load previous page',
-          {},
-          {
-            context: 'Load previous page when paginating sets of data',
-            key: 'lunar.pagination.loadPrevious',
-          },
-        )}
+        accessibilityLabel={T.phrase('lunar.pagination.loadPrevious', 'Load previous page')}
         size={4 * theme!.unit}
       />
     </IconButton>
@@ -93,14 +89,7 @@ function Pagination({
         direction="right"
         left={IconChevronLeft}
         right={IconChevronRight}
-        accessibilityLabel={T.phrase(
-          'Load next page',
-          {},
-          {
-            context: 'Load next page when paginating sets of data',
-            key: 'lunar.pagination.loadNext',
-          },
-        )}
+        accessibilityLabel={T.phrase('lunar.pagination.loadNext', 'Load next page')}
         size={4 * theme!.unit}
       />
     </IconButton>
@@ -116,14 +105,7 @@ function Pagination({
           direction="left"
           left={IconFirst}
           right={IconLast}
-          accessibilityLabel={T.phrase(
-            'Load first page',
-            {},
-            {
-              context: 'Load first page when paginating sets of data',
-              key: 'lunar.pagination.loadFirst',
-            },
-          )}
+          accessibilityLabel={T.phrase('lunar.pagination.loadFirst', 'Load first page')}
           size={4 * theme!.unit}
         />
       </IconButton>
@@ -139,14 +121,7 @@ function Pagination({
           direction="right"
           left={IconFirst}
           right={IconLast}
-          accessibilityLabel={T.phrase(
-            'Load last page',
-            {},
-            {
-              context: 'Load last page when paginating sets of data',
-              key: 'lunar.pagination.loadLast',
-            },
-          )}
+          accessibilityLabel={T.phrase('lunar.pagination.loadLast', 'Load last page')}
           size={4 * theme!.unit}
         />
       </IconButton>
@@ -160,7 +135,6 @@ function Pagination({
         phrase="%{pageNumber} of %{pageCount}"
         pageCount={pageCount}
         pageNumber={page}
-        context="Showing the current page number and total page count"
       />
     ) : (
       page
@@ -175,7 +149,6 @@ function Pagination({
           pageLabel={pageLabel}
           pageCount={pageCount}
           pageNumber={page}
-          context="Showing the current page number and total page count"
         />
       ) : (
         <T
@@ -183,7 +156,6 @@ function Pagination({
           phrase="%{pageLabel} %{pageNumber}"
           pageLabel={pageLabel}
           pageNumber={page}
-          context="Showing the current page number"
         />
       );
   }

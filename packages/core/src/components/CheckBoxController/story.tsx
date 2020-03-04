@@ -9,9 +9,11 @@ export default {
   },
 };
 
+type Value = 'red' | 'green' | 'blue';
+
 export function controlsMultipleCheckboxes() {
   return (
-    <CheckBoxController
+    <CheckBoxController<Value>
       optional
       label="Favorite colors?"
       name="color"
@@ -35,7 +37,7 @@ controlsMultipleCheckboxes.story = {
 
 export function handlesInvalidStateWithNoSpacing() {
   return (
-    <CheckBoxController
+    <CheckBoxController<Value>
       invalid
       label="Favorite colors?"
       name="color"
@@ -59,7 +61,7 @@ handlesInvalidStateWithNoSpacing.story = {
 
 export function handlesDisabledStateWithNoSpacing() {
   return (
-    <CheckBoxController
+    <CheckBoxController<Value>
       disabled
       label="Favorite colors?"
       name="color"
@@ -79,4 +81,54 @@ export function handlesDisabledStateWithNoSpacing() {
 
 handlesDisabledStateWithNoSpacing.story = {
   name: 'Handles disabled state, with no spacing.',
+};
+
+export function asSmall() {
+  return (
+    <CheckBoxController<Value>
+      optional
+      small
+      label="Favorite colors?"
+      name="color"
+      value={['green']}
+      onChange={action('onChange')}
+    >
+      {CheckBox => (
+        <div>
+          <CheckBox label="❤️ Red" value="red" />
+          <CheckBox label="💙 Blue" value="blue" />
+          <CheckBox label="💚 Green" value="green" />
+        </div>
+      )}
+    </CheckBoxController>
+  );
+}
+
+asSmall.story = {
+  name: 'As small.',
+};
+
+export function asLarge() {
+  return (
+    <CheckBoxController<Value>
+      optional
+      large
+      label="Favorite colors?"
+      name="color"
+      value={['green']}
+      onChange={action('onChange')}
+    >
+      {CheckBox => (
+        <div>
+          <CheckBox label="❤️ Red" value="red" />
+          <CheckBox label="💙 Blue" value="blue" />
+          <CheckBox label="💚 Green" value="green" />
+        </div>
+      )}
+    </CheckBoxController>
+  );
+}
+
+asLarge.story = {
+  name: 'As large.',
 };

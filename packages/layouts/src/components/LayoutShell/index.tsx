@@ -1,7 +1,7 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color }) => ({
+export const styleSheetShell: StyleSheet = ({ color }) => ({
   shell: {
     display: 'flex',
     width: '100%',
@@ -21,18 +21,20 @@ const styleSheet: StyleSheet = ({ color }) => ({
   },
 });
 
-export type Props = {
+export type LayoutShellProps = {
   /** The page content. */
   children: NonNullable<React.ReactNode>;
   /** Navigation side bar to display before the content. */
   sideBar?: React.ReactNode;
   /** Navigation top bar to display above the content. */
   // topBar?: React.ReactNode;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Layout shell that wraps an entire application, providing optional side and top nav bars. */
-export default function LayoutShell({ children, sideBar }: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+export default function LayoutShell({ children, sideBar, styleSheet }: LayoutShellProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetShell);
 
   return (
     <div className={cx(styles.shell)}>

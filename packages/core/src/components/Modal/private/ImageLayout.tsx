@@ -1,6 +1,6 @@
 import React from 'react';
-import useStyles from '../../../hooks/useStyles';
-import { styleSheetImageLayout as styleSheet } from '../styles';
+import useStyles, { StyleSheet } from '../../../hooks/useStyles';
+import { styleSheetImageLayout } from '../styles';
 
 export const MAX_HEIGHT_IMAGE = 720;
 export const MAX_HEIGHT_IMAGE_SMALL = 420;
@@ -16,13 +16,22 @@ export type ModalImageConfig = {
   url: string;
 };
 
-export type Props = ModalImageConfig & {
+export type ModalImageLayoutProps = ModalImageConfig & {
   /** Left pane content. */
   children: NonNullable<React.ReactNode>;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
-export default function ModalImageLayout({ children, sizes, srcSet, type, url }: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+export default function ModalImageLayout({
+  children,
+  sizes,
+  srcSet,
+  type,
+  url,
+  styleSheet,
+}: ModalImageLayoutProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetImageLayout);
 
   return (
     <div className={cx(styles.splitContent)}>
@@ -32,8 +41,8 @@ export default function ModalImageLayout({ children, sizes, srcSet, type, url }:
           <img
             className={cx(styles.image)}
             src={url}
-            srcSet={srcSet && srcSet.join(',')}
-            sizes={sizes && sizes.join(',')}
+            srcSet={srcSet?.join(',')}
+            sizes={sizes?.join(',')}
             alt=""
           />
         )}
@@ -42,7 +51,7 @@ export default function ModalImageLayout({ children, sizes, srcSet, type, url }:
           <img
             className={cx(styles.image, styles.imageCover)}
             src={url}
-            srcSet={srcSet && srcSet.join(',')}
+            srcSet={srcSet?.join(',')}
             alt=""
           />
         )}

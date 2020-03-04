@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type Props = {
+export type BrowserNotificationProps = {
   /** Title of the notification. */
   title: string;
   /** Unique ID. */
@@ -16,7 +16,7 @@ export type Props = {
 };
 
 /** Display a browser notification through a declarative component. */
-export default class BrowserNotification extends React.PureComponent<Props> {
+export default class BrowserNotification extends React.PureComponent<BrowserNotificationProps> {
   static defaultProps = {
     onClick: null,
     timeout: null,

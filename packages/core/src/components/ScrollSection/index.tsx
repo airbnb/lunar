@@ -1,54 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ScrollWrapper from './ScrollWrapper';
-import ScrollSectionContext, { Context } from './ScrollContext';
+import ScrollSectionContext from './ScrollContext';
 
 export { ScrollWrapper, ScrollSectionContext };
 
-export type Props = {
+export type ScrollSectionProps = {
   /** A globally unique ID for this scroll section. Will be the ID of the wrapper. */
   id: string;
   /** The contents of the section. */
   children: NonNullable<React.ReactNode>;
 };
 
-export type PrivateProps = {
-  /** @ignore */
-  scrollContext: Context;
-};
-
-/** @ignore */
-export class InternalScrollSection extends React.Component<Props & PrivateProps> {
-  private handleRef = (ref: HTMLDivElement | null) => {
-    const { id, scrollContext } = this.props;
-
-    scrollContext.removeScrollAnchor(id);
-
-    if (ref) {
-      scrollContext.addScrollAnchor(id, ref);
-    }
-  };
-
-  render() {
-    const { children, id } = this.props;
-
-    return (
-      <section ref={this.handleRef} id={id}>
-        {children}
-      </section>
-    );
-  }
-}
-
 /**
  * A section of the page that's measured for active scrolling by wrapping children in section
  * tag that can be scrolled to. Used in conjunction with `ScrollWrapper`.
  */
-export default function ScrollSection(props: Props) {
+export default function ScrollSection({ children, id }: ScrollSectionProps) {
+  const context = useContext(ScrollSectionContext);
+
+  if (!context) {
+    return null;
+  }
+
+  const handleRef = (ref: HTMLDivElement | null) => {
+    context.removeScrollAnchor(id);
+
+    if (ref) {
+      context.addScrollAnchor(id, ref);
+    }
+  };
+
   return (
-    <ScrollSectionContext.Consumer>
-      {scrollContext =>
-        scrollContext && <InternalScrollSection {...props} scrollContext={scrollContext} />
-      }
-    </ScrollSectionContext.Consumer>
+    <section ref={handleRef} id={id}>
+      {children}
+    </section>
   );
 }

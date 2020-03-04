@@ -5,7 +5,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { InputProps } from './FormInput';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
-const styleSheet: StyleSheet = theme => {
+export const styleSheetCheckbox: StyleSheet = theme => {
   const styles = inputStyleSheet(theme);
 
   return {
@@ -13,8 +13,7 @@ const styleSheet: StyleSheet = theme => {
 
     checkbox: {
       padding: 0,
-      margin: 0,
-      marginTop: 2,
+      margin: '2px 0px',
       width: 18,
       height: 18,
       display: 'block',
@@ -66,7 +65,7 @@ const styleSheet: StyleSheet = theme => {
   };
 };
 
-export type Props = InputProps & {
+export type BaseCheckBoxProps<T extends string> = InputProps<T> & {
   /** Render the field as a large clickable button. */
   button?: boolean;
   /** Content to display when in button mode. Defaults to the current label bolded followed by the label description. */
@@ -74,28 +73,31 @@ export type Props = InputProps & {
   /** Hide the native checkbox label. */
   hideLabel?: boolean;
   /** Callback fired when the value changes. */
-  onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (checked: boolean, value: T, event: React.ChangeEvent<HTMLInputElement>) => void;
   /** Mark the checkbox as greyed out with a dash to indicate an indeterminate state. */
   indeterminate?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
-export default function BaseCheckBox({
+export default function BaseCheckBox<T extends string = string>({
   button,
   checked,
   children,
-  compact,
+  small,
   disabled,
   hideLabel,
   id,
   invalid,
   indeterminate,
   onChange,
+  styleSheet,
   ...restProps
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+}: BaseCheckBoxProps<T>) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetCheckbox);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.currentTarget.checked, event.currentTarget.value, event);
+    onChange(event.currentTarget.checked, event.currentTarget.value as T, event);
   };
 
   const checkbox = (
@@ -150,7 +152,7 @@ export default function BaseCheckBox({
         checked && styles.button_checked,
         invalid && styles.button_invalid,
         disabled && styles.button_disabled,
-        compact && styles.button_compact,
+        small && styles.button_small,
       )}
     >
       {checkbox}

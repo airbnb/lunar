@@ -2,14 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Enzyme from 'enzyme';
 import { mountWithStyles, shallowWithStyles } from '@airbnb/lunar-test-utils';
-import Overlay, {
-  Props as OverlayProps,
-  State as OverlayState,
-} from '../../src/components/Overlay';
+import Overlay, { OverlayProps, OverlayState } from '../../src/components/Overlay';
 import Portal, {
   Portal as BasePortal,
-  Props as PortalProps,
-  State as PortalState,
+  PortalProps,
+  PortalState,
 } from '../../src/components/Overlay/Portal';
 import { ESCAPE } from '../../src/keys';
 

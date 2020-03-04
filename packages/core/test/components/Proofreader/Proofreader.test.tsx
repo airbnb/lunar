@@ -2,8 +2,8 @@ import React from 'react';
 import Enzyme from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import Proofreader, {
-  Props,
-  State,
+  ProofreaderProps,
+  ProofreaderState,
   Proofreader as BaseProofreader,
 } from '../../../src/components/Proofreader';
 import ErrorMenu from '../../../src/components/Proofreader/ErrorMenu';
@@ -14,13 +14,15 @@ import { ProofreadRuleMatch } from '../../../src/components/Proofreader/types';
 // eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('lodash/debounce', () => (value: unknown) => value);
 
-function getInstance(wrapper: Enzyme.ShallowWrapper<Props, State>): BaseProofreader {
+function getInstance(
+  wrapper: Enzyme.ShallowWrapper<ProofreaderProps, ProofreaderState>,
+): BaseProofreader {
   return wrapper.instance() as BaseProofreader;
 }
 
 describe('<Proofreader />', () => {
-  let props: Props;
-  let wrapper: Enzyme.ShallowWrapper<Props, State>;
+  let props: ProofreaderProps;
+  let wrapper: Enzyme.ShallowWrapper<ProofreaderProps, ProofreaderState>;
   let instance: BaseProofreader;
 
   const error: ProofreadRuleMatch = {
@@ -328,8 +330,8 @@ describe('<Proofreader />', () => {
       };
       // @ts-ignore Allow non-element
       instance.caretRef = {
-        // @ts-ignore
         current: {
+          // @ts-ignore
           children: [{}, { offsetTop: 950 }],
         },
       };
@@ -469,6 +471,7 @@ describe('<Proofreader />', () => {
         // @ts-ignore Allow non-element
         current: {
           scrollTop: 100,
+          // @ts-ignore
           style: {},
           setSelectionRange: spy,
         },
@@ -493,6 +496,7 @@ describe('<Proofreader />', () => {
         // @ts-ignore Allow non-element
         current: {
           scrollTop: 100,
+          // @ts-ignore
           style: {},
           setSelectionRange: () => {},
         },

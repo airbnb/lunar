@@ -1,18 +1,20 @@
 import React from 'react';
-import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 import Item from './Item';
-import { styleSheetSideBar as styleSheet } from './styles';
+import { styleSheetSideBar } from './styles';
 
-export type Props = {
+export type SideBarProps = {
   /** Accessibility label. */
   accessibilityLabel: string;
   /** Navigation items to render within the bar. */
   children: NonNullable<React.ReactNode>;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A vertical sidebar navigation menu. Primarily aligned on the left viewport. */
-export default function SideBar({ accessibilityLabel, children }: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+export default function SideBar({ accessibilityLabel, children, styleSheet }: SideBarProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetSideBar);
 
   return (
     <nav className={cx(styles.bar)}>

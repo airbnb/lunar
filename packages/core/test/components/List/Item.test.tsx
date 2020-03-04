@@ -3,13 +3,6 @@ import { mount, shallow } from 'enzyme';
 import ListItem from '../../../src/components/List/Item';
 
 describe('<ListItem />', () => {
-  it('errors if no children', () => {
-    expect(() => {
-      // @ts-ignore
-      mount(<ListItem />);
-    }).toThrow();
-  });
-
   it('renders a <li /> by default', () => {
     const wrapper = shallow(<ListItem>Content</ListItem>);
     expect(wrapper.type()).toEqual('li');

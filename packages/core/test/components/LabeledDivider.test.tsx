@@ -12,7 +12,7 @@ describe('<LabeledDivider />', () => {
   });
 
   it('renders a translation node as expected', () => {
-    const t = <T phrase="Lorum ipsum" context="Foo" />;
+    const t = <T k="key" phrase="Lorum ipsum" />;
     const wrapper = shallow(<LabeledDivider label={t} />);
 
     expect(wrapper.contains(t)).toBe(true);

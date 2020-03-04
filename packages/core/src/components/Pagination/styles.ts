@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ unit }) => ({
+export const styleSheetPagination: StyleSheet = ({ unit }) => ({
   wrapper: {
     display: 'grid',
     gridTemplateAreas: '"previous page next"',
@@ -39,7 +39,3 @@ const styleSheet: StyleSheet = ({ unit }) => ({
     gridArea: 'next',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

@@ -1,8 +1,8 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetShimmer } from './styles';
 
-export type Props = {
+export type ShimmerProps = {
   /** Display as block instead of inline. */
   block?: boolean;
   /** Height of the bar. */
@@ -11,6 +11,8 @@ export type Props = {
   width?: number | string;
   /** Border radius of the bar. */
   radius?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A loading indicator bar that shimmers. */
@@ -19,8 +21,9 @@ export default function Shimmer({
   height = '1.25ex',
   radius = '0.125em',
   width = '60%',
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: ShimmerProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetShimmer);
 
   const randomWidth: string =
     width === 'random' ? `${Math.round(Math.random() * (90 - 30) + 30)}%` : '';

@@ -1,8 +1,8 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetGrid } from './styles';
 
-export type Props = {
+export type AdaptiveGridProps = {
   /** Content to render as a grid. */
   children?: React.ReactNode;
   /** List of width/item pairs, describes how many items to display for windows of at least that width. */
@@ -11,6 +11,8 @@ export type Props = {
   defaultItemsPerRow?: number;
   /** Removes padding between items. */
   noGutter?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export default function AdaptiveGrid({
@@ -18,8 +20,9 @@ export default function AdaptiveGrid({
   children,
   defaultItemsPerRow = 1,
   noGutter,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: AdaptiveGridProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetGrid);
 
   const childElements =
     !!children &&

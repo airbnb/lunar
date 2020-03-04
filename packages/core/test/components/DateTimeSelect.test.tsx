@@ -3,14 +3,14 @@ import Enzyme from 'enzyme';
 import { shallowWithStyles } from '@airbnb/lunar-test-utils';
 import DateTimeSelect, {
   DateTimeSelect as BaseDateTimeSelect,
-  Props,
+  DateTimeSelectProps,
 } from '../../src/components/DateTimeSelect';
 import FormField from '../../src/components/FormField';
 import BaseSelect from '../../src/components/private/BaseSelect';
 
 describe('<DateTimeSelect />', () => {
   const date = new Date(Date.UTC(1988, 1, 26, 16, 12, 5));
-  const props: Props = {
+  const props: DateTimeSelectProps = {
     name: 'foo',
     label: 'Label',
     value: '',

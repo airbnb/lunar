@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useReducer } from 'react';
 import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import ComposerContext from '../contexts/ComposerContext';
 import Footer from './Footer';
 import Input, { InputProps } from './Input';

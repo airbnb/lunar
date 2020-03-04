@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ unit, color, pattern, ui }) => ({
+export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui }) => ({
   container: {
     display: 'inline-block',
   },
@@ -45,14 +45,16 @@ const styleSheet: StyleSheet = ({ unit, color, pattern, ui }) => ({
     },
   },
 
-  notchedBoxContainer: {
+  content: {
     display: 'inline-block',
-    boxShadow: ui.boxShadowLarge,
+    padding: unit,
+    backgroundColor: color.accent.bg,
+    boxShadow: ui.boxShadowMedium,
     borderRadius: ui.borderRadius,
     textAlign: 'initial',
   },
+
+  content_inverted: {
+    backgroundColor: color.accent.blackout,
+  },
 });
-
-export default styleSheet;
-
-export { styleSheet };

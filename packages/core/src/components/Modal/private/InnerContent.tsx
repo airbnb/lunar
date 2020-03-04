@@ -4,11 +4,11 @@ import Text from '../../Text';
 import Title from '../../Title';
 import IconButton from '../../IconButton';
 import T from '../../Translate';
-import useStyles from '../../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../../hooks/useStyles';
 import useTheme from '../../../hooks/useTheme';
-import { styleSheetInnerContent as styleSheet } from '../styles';
+import { styleSheetInnerContent } from '../styles';
 
-export type Props = {
+export type ModalInnerContentProps = {
   /** Dialog content. */
   children: NonNullable<React.ReactNode>;
   /** Footer content. */
@@ -25,6 +25,8 @@ export type Props = {
   title?: React.ReactNode;
   /** Callback for when the Dialog should be closed.  */
   onClose: (event: React.MouseEvent | React.KeyboardEvent) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A Dialog component with a backdrop and a standardized layout. */
@@ -37,8 +39,9 @@ export default function ModalInnerContent({
   scrollable,
   subtitle,
   title,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: ModalInnerContentProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetInnerContent);
   const theme = useTheme();
   const withHeader = Boolean(title || subtitle);
   const withFooter = Boolean(footer);
@@ -55,11 +58,7 @@ export default function ModalInnerContent({
       <div className={cx(styles.close, !withHeader && styles.close_float)}>
         <IconButton onClick={onClose}>
           <IconClose
-            accessibilityLabel={T.phrase(
-              'Close',
-              {},
-              { context: 'Close a modal popup', key: 'lunar.common.close' },
-            )}
+            accessibilityLabel={T.phrase('lunar.common.close', 'Close')}
             color={theme.color.muted}
             size={theme.unit * 3}
           />

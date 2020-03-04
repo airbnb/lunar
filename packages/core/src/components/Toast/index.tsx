@@ -9,11 +9,11 @@ import Text from '../Text';
 import T from '../Translate';
 import Spacing from '../Spacing';
 import crosstab from '../../crosstab';
-import { styleSheet } from './styles';
+import { styleSheetToast } from './styles';
 
 const statusPropType = mutuallyExclusiveTrueProps('danger', 'success');
 
-export type Props = {
+export type ToastProps = {
   /** Use cross tab events to sync closes for the same toast id across tabs  */
   crosstabClose?: boolean;
   /** Dangerous/failure status (red). */
@@ -41,7 +41,7 @@ export type Props = {
 };
 
 /** Abstract component for displaying a toast message above the pages content. */
-export class Toast extends React.Component<Props & WithStylesProps> {
+export class Toast extends React.Component<ToastProps & WithStylesProps> {
   static propTypes = {
     danger: statusPropType,
     success: statusPropType,
@@ -146,11 +146,7 @@ export class Toast extends React.Component<Props & WithStylesProps> {
 
             <Spacing top={0.5}>
               <Button small onClick={this.handleRefreshPress}>
-                <T
-                  k="lunar.common.refresh"
-                  phrase="Refresh"
-                  context="Refresh the page that was triggerd by a toast"
-                />
+                <T k="lunar.common.refresh" phrase="Refresh" />
               </Button>
             </Spacing>
           </div>
@@ -168,14 +164,7 @@ export class Toast extends React.Component<Props & WithStylesProps> {
 
         <div className={cx(styles.right)}>
           <IconButton inverted onClick={this.handleClosePress}>
-            <IconClose
-              size="1.5em"
-              accessibilityLabel={T.phrase(
-                'Close',
-                {},
-                { context: 'Close a toast popup', key: 'lunar.common.close' },
-              )}
-            />
+            <IconClose size="1.5em" accessibilityLabel={T.phrase('lunar.common.close', 'Close')} />
           </IconButton>
         </div>
       </div>
@@ -183,4 +172,4 @@ export class Toast extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(styleSheet)(Toast);
+export default withStyles(styleSheetToast)(Toast);

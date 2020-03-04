@@ -2,15 +2,15 @@
 import React, { useState } from 'react';
 import T from '@airbnb/lunar/lib/components/Translate';
 import MenuToggle from '@airbnb/lunar/lib/components/MenuToggle';
-import { Props as DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
-import { Props as MenuProps } from '@airbnb/lunar/lib/components/Menu';
+import { DropdownProps } from '@airbnb/lunar/lib/components/Dropdown';
+import { MenuProps } from '@airbnb/lunar/lib/components/Menu';
 import Link from '@airbnb/lunar/lib/components/Link';
 import SecondaryLink from '@airbnb/lunar/lib/components/SecondaryLink';
-import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
+import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
 import Row from './private/Row';
-import { styleSheet } from './styles';
+import { styleSheetFilterMenu } from './styles';
 
-export type Props = {
+export type FilterMenuProps = {
   /** Accessibility label. */
   accessibilityLabel: string;
   /** Number of currently active filters. */
@@ -39,10 +39,8 @@ export type Props = {
   small?: boolean;
   /** Z-index of the menu. */
   zIndex?: number;
-};
-
-export type State = {
-  opened: Boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A button that opens a dropdown that shows filter options for a table or similar component. */
@@ -61,8 +59,9 @@ export default function FilterMenu({
   onClear,
   onHide,
   onShow,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: FilterMenuProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetFilterMenu);
   const [opened, setOpened] = useState(false);
 
   const handleShowFilters = () => {
@@ -105,18 +104,13 @@ export default function FilterMenu({
         k="lunar.form.filter.filterCount"
         phrase="%{smartCount} Filter||||%{smartCount} Filters"
         smartCount={activeCount}
-        context="Number of filters applied within a form"
       />
     ) : null;
 
   const toggleLabel = opened ? (
-    <T
-      k="lunar.form.filter.close"
-      phrase="Close filters"
-      context="Filter menu toggle button label"
-    />
+    <T k="lunar.form.filter.close" phrase="Close filters" />
   ) : (
-    <T k="lunar.form.filter.open" phrase="Open filters" context="Filter menu toggle button label" />
+    <T k="lunar.form.filter.open" phrase="Open filters" />
   );
 
   return (
@@ -139,11 +133,11 @@ export default function FilterMenu({
       <Row>
         <section className={cx(styles.controls)}>
           <Link type="submit" onClick={handleApply}>
-            <T k="lunar.common.apply" phrase="Apply" context="Apply filters button label" />
+            <T k="lunar.common.apply" phrase="Apply" />
           </Link>
 
           <SecondaryLink type="reset" onClick={handleClear}>
-            <T k="lunar.common.reset" phrase="Reset" context="Button label to reset a form" />
+            <T k="lunar.common.reset" phrase="Reset" />
           </SecondaryLink>
         </section>
       </Row>

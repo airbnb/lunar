@@ -1,14 +1,14 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import ButtonOrLink, { Props as ButtonOrLinkProps } from '../private/ButtonOrLink';
-import Text from '../Text';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import ButtonOrLink, { ButtonOrLinkProps } from '../private/ButtonOrLink';
+import Text, { TextProps } from '../Text';
+import { linkStyleSheet } from './styles';
 
 const sizingProp = mutuallyExclusiveTrueProps('micro', 'small', 'large');
 const stateProp = mutuallyExclusiveTrueProps('disabled', 'muted', 'inverted');
 
-export type Props = ButtonOrLinkProps & {
+export type LinkProps = ButtonOrLinkProps & {
   /** Display element as block. */
   block?: boolean;
   /** Display element as inline. */
@@ -25,75 +25,56 @@ export type Props = ButtonOrLinkProps & {
   small?: boolean;
   /** Bold font. */
   bold?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
+  /** Pass text props to the underlying text. */
+  textProps?: Omit<TextProps, 'children' | 'styleSheet'>;
 };
 
 /** A standard link for... linking to things. */
-export class Link extends React.Component<Props & WithStylesProps> {
-  static propTypes = {
-    disabled: stateProp,
-    inverted: stateProp,
-    large: sizingProp,
-    muted: stateProp,
-    small: sizingProp,
-  };
+function Link({
+  block,
+  baseline,
+  children,
+  disabled,
+  inverted,
+  large,
+  micro,
+  muted,
+  small,
+  bold,
+  styleSheet,
+  textProps = {},
+  ...restProps
+}: LinkProps) {
+  const [styles, cx] = useStyles(styleSheet ?? linkStyleSheet);
 
-  static defaultProps = {
-    baseline: false,
-    block: false,
-    bold: false,
-    disabled: false,
-    inverted: false,
-    large: false,
-    micro: false,
-    muted: false,
-    small: false,
-  };
-
-  render() {
-    const {
-      cx,
-      block,
-      baseline,
-      children,
-      disabled,
-      inverted,
-      large,
-      micro,
-      muted,
-      small,
-      bold,
-      styles,
-      ...restProps
-    } = this.props;
-
-    return (
-      <Text
-        inline={!block}
-        baseline={baseline}
-        micro={micro}
-        small={small}
-        large={large}
-        bold={bold}
+  return (
+    <Text {...{ baseline, micro, small, large, bold, inline: !block, ...textProps }}>
+      <ButtonOrLink
+        {...restProps}
+        disabled={disabled}
+        className={cx(
+          styles.link,
+          inverted && styles.link_inverted,
+          muted && styles.link_muted,
+          disabled && styles.link_disabled,
+          block && styles.link_block,
+          baseline && styles.link_baseline,
+        )}
       >
-        <ButtonOrLink
-          {...restProps}
-          disabled={disabled}
-          className={cx(
-            styles.link,
-            inverted && styles.link_inverted,
-            muted && styles.link_muted,
-            disabled && styles.link_disabled,
-            block && styles.link_block,
-            baseline && styles.link_baseline,
-          )}
-        >
-          {children}
-        </ButtonOrLink>
-      </Text>
-    );
-  }
+        {children}
+      </ButtonOrLink>
+    </Text>
+  );
 }
 
-export default withStyles(styleSheet, {
-  extendable: true,
-})(Link);
+Link.propTypes = {
+  disabled: stateProp,
+  inverted: stateProp,
+  large: sizingProp,
+  muted: stateProp,
+  small: sizingProp,
+};
+
+export default Link;

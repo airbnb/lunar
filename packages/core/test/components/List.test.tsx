@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import List, { Item } from '../../src/components/List';
-import { Props as ItemProps } from '../../src/components/List/Item';
+import { ListItemProps } from '../../src/components/List/Item';
 import proxyComponent from '../../src/utils/proxyComponent';
 
 describe('<List />', () => {
   it('does not error if a proxyComponent wrapping a Item is passed', () => {
-    const ProxiedItem = proxyComponent(Item, (props: ItemProps) => <Item {...props} />);
+    const ProxiedItem = proxyComponent(Item, (props: ListItemProps) => <Item {...props} />);
 
     expect(() =>
       shallow(

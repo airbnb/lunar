@@ -1,11 +1,11 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
-import Item, { Props as ItemProps } from './Item';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import Item, { ListItemProps } from './Item';
+import { styleSheetList } from './styles';
 
 export { Item };
 
-export type Props = {
+export type ListProps = {
   /** List items. */
   children: NonNullable<React.ReactNode>;
   /** Apply gutters between `li`s. */
@@ -18,11 +18,21 @@ export type Props = {
   ordered?: boolean;
   /** Wrap horizontal list. */
   wrap?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
-export default function List({ children, gutter, horizontal, middleAlign, ordered, wrap }: Props) {
+export default function List({
+  children,
+  gutter,
+  horizontal,
+  middleAlign,
+  ordered,
+  wrap,
+  styleSheet,
+}: ListProps) {
   const Tag = ordered ? 'ol' : 'ul';
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetList);
 
   return (
     <Tag
@@ -41,7 +51,7 @@ export default function List({ children, gutter, horizontal, middleAlign, ordere
         }
 
         if (horizontal) {
-          return React.cloneElement(child as React.ReactElement<ItemProps>, { horizontal });
+          return React.cloneElement(child as React.ReactElement<ListItemProps>, { horizontal });
         }
 
         return child;

@@ -3,7 +3,7 @@ import componentName from '../../prop-types/componentName';
 import Loadable from '../Loadable';
 import { Logger } from '../../types';
 
-export type Props = {
+export type ErrorBoundaryProps = {
   /** Content to wrap. */
   children: NonNullable<React.ReactNode>;
   /** A unique name to identify this boundary in errors and stack traces. */
@@ -12,12 +12,12 @@ export type Props = {
   onCatch: Logger;
 };
 
-export type State = {
+export type ErrorBoundaryState = {
   error: Error | null;
 };
 
 /** Wraps a component and catches errors thrown within its React tree. */
-export default class ErrorBoundary extends React.Component<Props, State> {
+export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   static propTypes = {
     name: componentName,
   };

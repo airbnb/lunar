@@ -1,7 +1,7 @@
 import { StyleSheet } from '../../hooks/useStyles';
 import toRGBA from '../../utils/toRGBA';
 
-const styleSheet: StyleSheet = ({ color, font, ui, unit, pattern }) => ({
+export const styleSheetMessageItem: StyleSheet = ({ color, font, ui, unit, pattern }) => ({
   relative: {
     position: 'relative',
   },
@@ -104,7 +104,3 @@ const styleSheet: StyleSheet = ({ color, font, ui, unit, pattern }) => ({
     justifyContent: 'flex-start',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

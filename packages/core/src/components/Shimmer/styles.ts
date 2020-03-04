@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = () => ({
+export const styleSheetShimmer: StyleSheet = () => ({
   shimmer: {
     animationDirection: 'alternate',
     animationDuration: '1s',
@@ -22,7 +22,3 @@ const styleSheet: StyleSheet = () => ({
     display: 'block',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

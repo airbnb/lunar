@@ -13,9 +13,16 @@ describe('<ToggleButtonController />', () => {
     context = createFormContext();
   });
 
+  type Value = 'foo' | 'bar' | 'baz';
+
   it('connects to the form', () => {
     const wrapper = mount(
-      <ToggleButtonController label="Label" name="foo" defaultValue="bar" validator={() => {}}>
+      <ToggleButtonController<Value>
+        label="Label"
+        name="foo"
+        defaultValue="bar"
+        validator={() => {}}
+      >
         {ProxyButton => (
           <div>
             <ProxyButton value="foo">Foo</ProxyButton>

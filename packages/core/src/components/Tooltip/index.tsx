@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import Overlay from '../Overlay';
-import NotchedBox, { NOTCH_SIZE, NOTCH_SPACING } from '../NotchedBox';
 import Text from '../Text';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import { styleSheet } from './styles';
+import { styleSheetTooltip } from './styles';
 import Portal from '../Portal';
 
 const EMPTY_TARGET_RECT: ClientRect = {
@@ -17,7 +17,7 @@ const EMPTY_TARGET_RECT: ClientRect = {
   width: 0,
 };
 
-export type Props = {
+export type TooltipProps = {
   /** Width of the tooltip in units. */
   width?: number;
   /** What to show in the tooltip. */
@@ -36,7 +36,7 @@ export type Props = {
   onShow?: () => void;
 };
 
-export type State = {
+export type TooltipState = {
   labelID: string;
   open: boolean;
   tooltipHeight: number;
@@ -55,7 +55,9 @@ export type StyleStruct = {
 };
 
 /** A tooltip that renders in an portal, so it can escape potentially overflowed containers. */
-export class Tooltip extends React.Component<Props & WithStylesProps, State> {
+export class Tooltip extends React.Component<TooltipProps & WithStylesProps, TooltipState> {
+  static inverted: boolean = false;
+
   static defaultProps = {
     disabled: false,
     inverted: false,
@@ -81,7 +83,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
 
   rafHandle: number = 0;
 
-  static getDerivedStateFromProps({ disabled }: Props) {
+  static getDerivedStateFromProps({ disabled }: TooltipProps) {
     if (disabled) {
       return {
         open: false,
@@ -104,7 +106,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     });
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: TooltipProps) {
     if (prevProps.content !== this.props.content) {
       this.updateTooltipHeight();
     }
@@ -127,7 +129,7 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     });
   }
 
-  bestPosition(rect: State['targetRect']): PositionStruct {
+  bestPosition(rect: TooltipState['targetRect']): PositionStruct {
     const output: PositionStruct = { above: false, align: 'left' };
     const { width: widthProp, theme } = this.props;
 
@@ -198,16 +200,12 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
     // bestPosition will cause a reflow as will `targetRect.width`
     const { align, above } = this.bestPosition(targetRect);
     const targetWidth = targetRect.width;
-    const halfNotch = (NOTCH_SIZE * unit) / Math.SQRT2;
-    const notchOffset: StyleStruct = {
-      center: '50%',
-      right: -(unit * NOTCH_SPACING + halfNotch),
-    };
     const marginLeft: StyleStruct = {
       center: -width / 2 + targetWidth / 2,
       right: -width + targetWidth,
     };
-    const distance = halfNotch + 1;
+    const distance = unit / 2;
+    const invert = inverted || Tooltip.inverted;
 
     return (
       <Overlay noBackground open={open} onClose={this.handleClose}>
@@ -221,14 +219,8 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
             textAlign: align,
           })}
         >
-          <div className={cx(styles.notchedBoxContainer)}>
-            <NotchedBox
-              inverted={!inverted}
-              notchOffset={notchOffset[align as keyof StyleStruct]}
-              notchBelow={above}
-            >
-              <Text inverted={!inverted}>{content}</Text>
-            </NotchedBox>
+          <div className={cx(styles.content, invert && styles.content_inverted)}>
+            <Text inverted={invert}>{content}</Text>
           </div>
         </div>
       </Overlay>
@@ -264,6 +256,6 @@ export class Tooltip extends React.Component<Props & WithStylesProps, State> {
   }
 }
 
-export default withStyles(styleSheet, {
+export default withStyles(styleSheetTooltip, {
   passThemeProp: true,
 })(Tooltip);

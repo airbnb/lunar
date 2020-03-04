@@ -5,10 +5,10 @@ import Spacing from '../Spacing';
 import DatePickerInput from '.';
 import DatePicker from '../DatePicker';
 
-type State = { from: Date | null; to?: Date | null };
+type DatePickerInputDemoState = { from: Date | null; to?: Date | null };
 
-class DatePickerInputDemo extends React.Component<{}, State> {
-  state: State = {
+class DatePickerInputDemo extends React.Component<{}, DatePickerInputDemoState> {
+  state: DatePickerInputDemoState = {
     from: null,
     to: null,
   };
@@ -105,6 +105,42 @@ export function aSingleMonth() {
 
 aSingleMonth.story = {
   name: 'A single month.',
+};
+
+export function asSmall() {
+  return (
+    <DatePickerInput
+      small
+      name="date"
+      label="Label"
+      datePickerProps={{
+        onMonthChange: action('onMonthChange'),
+      }}
+      onChange={action('onChange')}
+    />
+  );
+}
+
+asSmall.story = {
+  name: 'As small.',
+};
+
+export function asLarge() {
+  return (
+    <DatePickerInput
+      large
+      name="date"
+      label="Label"
+      datePickerProps={{
+        onMonthChange: action('onMonthChange'),
+      }}
+      onChange={action('onChange')}
+    />
+  );
+}
+
+asLarge.story = {
+  name: 'As large.',
 };
 
 export function aCustomFormat() {

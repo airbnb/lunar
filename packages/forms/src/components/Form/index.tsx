@@ -1,6 +1,6 @@
 import React from 'react';
 import shallowEqual from 'shallowequal';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import {
   createForm,
   formSubscriptionItems,
@@ -33,9 +33,11 @@ function mapSubscriptions(subscriptions: string[]): { [sub: string]: boolean } {
   );
 }
 
-export type Props<Data extends object> = {
+export type FormProps<Data extends object> = {
   /** Form fields that will be registered and managed by the current form instance. */
-  children: NonNullable<React.ReactNode> | ((state: State<Data>) => NonNullable<React.ReactNode>);
+  children:
+    | NonNullable<React.ReactNode>
+    | ((state: FormState<Data>) => NonNullable<React.ReactNode>);
   /** @ignore Initial values for form fields. Optional, as default values are injected when fields are rendered. */
   initialValues?: Data;
   /** Type of HTTP method. */
@@ -45,7 +47,7 @@ export type Props<Data extends object> = {
   /** Callback fired when the form data has failed validation. */
   onFailedValidate?: (data: Data, errors: Errors) => void;
   /** Callback fired when the form state updates, including field updates. */
-  onStateUpdate?: (state: State<Data>) => void;
+  onStateUpdate?: (state: FormState<Data>) => void;
   /**
    * Callback fired when the form has passed validation and data is ready to be submitted.
    * Return a `Promise` to automatically handle form error states.
@@ -62,7 +64,7 @@ export type Props<Data extends object> = {
   subscriptions?: (keyof FormSubscription)[];
 };
 
-export type State<Data extends object> = FinalFormState<Data> & {
+export type FormState<Data extends object> = FinalFormState<Data> & {
   id: string;
 };
 
@@ -70,8 +72,8 @@ export type State<Data extends object> = FinalFormState<Data> & {
  * A form manager built on [final-form](https://github.com/final-form/final-form).
  */
 export default class Form<Data extends object = {}> extends React.Component<
-  Props<Data>,
-  State<Data>
+  FormProps<Data>,
+  FormState<Data>
 > {
   static defaultProps = {
     initialValues: {},
@@ -88,7 +90,7 @@ export default class Form<Data extends object = {}> extends React.Component<
 
   registeredFields: { [name: string]: Unsubscribe } = {};
 
-  constructor(props: Props<Data>) {
+  constructor(props: FormProps<Data>) {
     super(props);
 
     const { initialValues, subscriptions } = props;
@@ -114,7 +116,7 @@ export default class Form<Data extends object = {}> extends React.Component<
     this.form.resumeValidation();
   }
 
-  componentDidUpdate({ initialValues }: Props<Data>) {
+  componentDidUpdate({ initialValues }: FormProps<Data>) {
     if (!shallowEqual(initialValues, this.props.initialValues!)) {
       this.form.initialize(this.props.initialValues!);
     }
@@ -196,16 +198,9 @@ export default class Form<Data extends object = {}> extends React.Component<
     return promise.catch(error => {
       if (setErrors) {
         setErrors({
-          [FORM_ERROR]: T.phrase(
-            'Failed to submit form. %{error}',
-            {
-              error: getErrorMessage(error),
-            },
-            {
-              context: 'A generic error when a form failed to submit',
-              key: 'lunar.form.submitFailed',
-            },
-          ),
+          [FORM_ERROR]: T.phrase('lunar.form.submitFailed', 'Failed to submit form. %{error}', {
+            error: getErrorMessage(error),
+          }),
         });
       }
 
@@ -270,12 +265,8 @@ export default class Form<Data extends object = {}> extends React.Component<
 
     if (!passes && errorCount === 0) {
       errors[FORM_ERROR] = T.phrase(
+        'lunar.form.validateFailed',
         'Failed to validate form. Please try again.',
-        {},
-        {
-          context: 'A generic error when a form failed validation in any way',
-          key: 'lunar.form.validateFailed',
-        },
       );
       errorCount += 1;
     }
@@ -386,7 +377,7 @@ export default class Form<Data extends object = {}> extends React.Component<
 
         const { name, data: fieldData } = field;
 
-        if (fieldData && fieldData.config && fieldData.config.validator) {
+        if (fieldData?.config?.validator) {
           const value = getIn(data, name);
 
           if (typeof value !== 'undefined') {

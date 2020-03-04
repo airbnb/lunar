@@ -36,6 +36,16 @@ export function mountWithStyles<C extends React.Component, P = C['props'], S = C
   });
 }
 
+export function mountUseStyles<C extends React.Component, P = C['props'], S = C['state']>(
+  element: React.ReactElement<P>,
+  props: WrappingProps = {},
+): Enzyme.ReactWrapper<P, S, C> {
+  return mount(element, {
+    wrappingComponent: WrappingComponent,
+    wrappingComponentProps: props,
+  });
+}
+
 export function shallowWithStyles<C extends React.Component, P = C['props'], S = C['state']>(
   element: React.ReactElement<P>,
   self: boolean = false,

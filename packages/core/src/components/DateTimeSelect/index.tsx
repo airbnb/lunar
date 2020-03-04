@@ -1,23 +1,23 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import { DateTime } from 'luxon';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import BaseSelect from '../private/BaseSelect';
 import { SelectProps } from '../private/FormInput';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import T from '../Translate';
 import createRange from '../../utils/createRange';
 import createDateTime from '../../utils/createDateTime';
 import getMonths from '../../utils/getMonths';
 import { Locale } from '../../types';
-import { styleSheet } from './styles';
+import { styleSheetDateTimeSelect } from './styles';
 
 type Range = {
   label: string;
   value: string;
 }[];
 
-export type Props = Omit<SelectProps, 'id' | 'value'> &
+export type DateTimeSelectProps = Omit<SelectProps, 'id' | 'value'> &
   FormFieldProps & {
     /** Enable 12-hour clock instead of 24-hour. */
     enable12HourClock?: boolean;
@@ -45,14 +45,17 @@ export type Props = Omit<SelectProps, 'id' | 'value'> &
     value?: string | number | Date | DateTime;
   };
 
-export type State = {
+export type DateTimeSelectState = {
   id: string;
   date: DateTime;
   meridiem: string;
 };
 
 /** An uncontrolled multi-select field for date and time ranges in UTC. */
-export class DateTimeSelect extends React.Component<Props & WithStylesProps, State> {
+export class DateTimeSelect extends React.Component<
+  DateTimeSelectProps & WithStylesProps,
+  DateTimeSelectState
+> {
   static defaultProps = {
     enable12HourClock: false,
     hideDate: false,
@@ -74,7 +77,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
     meridiem: this.date.get('hour') <= 11 ? 'am' : 'pm',
   };
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: DateTimeSelectProps) {
     const { value, locale, timezone } = this.props;
 
     // Don't set minute/second to 0 here, because when used in conjunction with the form kit,
@@ -216,11 +219,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 id={`${id}_month`}
                 name={`${name}[month]`}
                 value={this.getCurrentValue(date, 'month')}
-                placeholder={T.phrase(
-                  'Month',
-                  {},
-                  { context: 'Month dropdown in a form datetime field', key: 'lunar.common.month' },
-                )}
+                placeholder={T.phrase('lunar.common.month', 'Month')}
                 onChange={this.handleChange}
               >
                 {this.getMonthRange().map(month => (
@@ -237,11 +236,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 id={`${id}_day`}
                 name={`${name}[day]`}
                 value={this.getCurrentValue(date, 'day')}
-                placeholder={T.phrase(
-                  'Day',
-                  {},
-                  { context: 'Day dropdown in a form datetime field', key: 'lunar.common.day' },
-                )}
+                placeholder={T.phrase('lunar.common.day', 'Day')}
                 onChange={this.handleChange}
               >
                 {this.getDayRange().map(day => (
@@ -259,11 +254,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                   id={`${id}_year`}
                   name={`${name}[year]`}
                   value={this.getCurrentValue(date, 'year')}
-                  placeholder={T.phrase(
-                    'Year',
-                    {},
-                    { context: 'Year dropdown in a form datetime field', key: 'lunar.common.year' },
-                  )}
+                  placeholder={T.phrase('lunar.common.year', 'Year')}
                   onChange={this.handleChange}
                 >
                   {this.getYearRange().map(year => (
@@ -290,11 +281,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 id={`${id}_hour`}
                 name={`${name}[hour]`}
                 value={this.getCurrentValue(date, 'hour')}
-                placeholder={T.phrase(
-                  'Hour',
-                  {},
-                  { context: 'Hour dropdown in a form datetime field', key: 'lunar.common.hour' },
-                )}
+                placeholder={T.phrase('lunar.common.hour', 'Hour')}
                 onChange={this.handleChange}
               >
                 {this.getHourRange().map(hour => (
@@ -311,14 +298,7 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                 id={`${id}_minute`}
                 name={`${name}[minute]`}
                 value={this.getCurrentValue(date, 'minute')}
-                placeholder={T.phrase(
-                  'Minute',
-                  {},
-                  {
-                    context: 'Minute dropdown in a form datetime field',
-                    key: 'lunar.common.minute',
-                  },
-                )}
+                placeholder={T.phrase('lunar.common.minute', 'Minute')}
                 onChange={this.handleChange}
               >
                 {this.getMinuteRange().map(minute => (
@@ -337,30 +317,11 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
                     id={`${id}_meridiem`}
                     name={`${name}[meridiem]`}
                     value={this.getCurrentValue(date, 'meridiem')}
-                    placeholder={T.phrase(
-                      'Meridiem',
-                      {},
-                      {
-                        context: 'Meridiem (AM/PM) dropdown in a form datetime field',
-                        key: 'lunar.common.meridiem',
-                      },
-                    )}
+                    placeholder={T.phrase('lunar.common.meridiem', 'Meridiem')}
                     onChange={this.handleChange}
                   >
-                    <option value="am">
-                      {T.phrase(
-                        'AM',
-                        {},
-                        { context: 'Meridiem for timestamps', key: 'lunar.common.meridiemAM' },
-                      )}
-                    </option>
-                    <option value="pm">
-                      {T.phrase(
-                        'PM',
-                        {},
-                        { context: 'Meridiem for timestamps', key: 'lunar.common.meridiemPM' },
-                      )}
-                    </option>
+                    <option value="am">{T.phrase('lunar.common.meridiemAM', 'AM')}</option>
+                    <option value="pm">{T.phrase('lunar.common.meridiemPM', 'PM')}</option>
                   </BaseSelect>
                 </>
               )}
@@ -372,4 +333,4 @@ export class DateTimeSelect extends React.Component<Props & WithStylesProps, Sta
   }
 }
 
-export default withStyles(styleSheet)(DateTimeSelect);
+export default withStyles(styleSheetDateTimeSelect)(DateTimeSelect);

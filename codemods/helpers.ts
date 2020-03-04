@@ -1,4 +1,11 @@
-import { API, FileInfo, JSCodeshift, Options } from 'jscodeshift';
+import {
+  API,
+  FileInfo,
+  JSCodeshift,
+  Options,
+  FunctionDeclaration,
+  ClassDeclaration,
+} from 'jscodeshift';
 import { Collection } from 'jscodeshift/src/Collection';
 
 export class Codemod {
@@ -51,6 +58,55 @@ export class Codemod {
       });
 
     return names;
+  }
+
+  findReactComponent(): undefined | ClassDeclaration | FunctionDeclaration {
+    let decl;
+
+    // class Foo extends React.Component {}
+    this.source
+      .find(this.cs.ClassDeclaration, { superClass: { object: { name: 'React' } } })
+      .forEach(({ node }) => {
+        if (!decl) {
+          decl = node;
+        }
+      });
+
+    if (decl) {
+      return decl;
+    }
+
+    const handleFunctionComponent = (func: FunctionDeclaration) => {
+      if (
+        !decl &&
+        func.type === 'FunctionDeclaration' &&
+        func.id.type === 'Identifier' &&
+        func.id.name &&
+        func.id.name.match(/^[A-Z]/)
+      ) {
+        decl = func;
+      }
+    };
+
+    // export default function Foo() {}
+    this.source
+      .find(this.cs.ExportDefaultDeclaration, {
+        declaration: { type: 'FunctionDeclaration' },
+      })
+      .forEach(({ node: { declaration } }) => {
+        handleFunctionComponent(declaration as FunctionDeclaration);
+      });
+
+    if (decl) {
+      return decl;
+    }
+
+    // function Foo() {}
+    this.source.find(this.cs.FunctionDeclaration).forEach(({ node }) => {
+      handleFunctionComponent(node);
+    });
+
+    return decl;
   }
 
   toSource(options: Options) {

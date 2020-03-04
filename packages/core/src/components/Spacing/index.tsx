@@ -1,6 +1,6 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet, cleanClassName } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetSpacing, cleanClassName } from './styles';
 
 export type SpacingRange =
   | 0
@@ -29,7 +29,7 @@ export type SpacingRange =
   | 11.5
   | 12;
 
-export type Props = {
+export type SpacingProps = {
   /** Apply spacing on all sides. */
   all?: SpacingRange;
   /** Apply spacing on the bottom. */
@@ -52,6 +52,8 @@ export type Props = {
   top?: SpacingRange;
   /** Apply spacing on the top and bottom. */
   vertical?: SpacingRange;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Common component for arbitray layout structure and spacing. */
@@ -67,8 +69,9 @@ export default function Spacing({
   tag: TagProp = 'div',
   top = 0,
   vertical = 0,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: SpacingProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetSpacing);
 
   const type = inner ? 'inner' : 'outer';
   const classes: (string | object)[] = [];

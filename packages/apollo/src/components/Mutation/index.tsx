@@ -13,7 +13,7 @@ import renderElementOrFunction, {
   RenderableProp,
 } from '@airbnb/lunar/lib/utils/renderElementOrFunction';
 
-export type Props<Data, Vars> = Omit<MutationComponentOptions<Data, Vars>, 'client'> & {
+export type MutationProps<Data, Vars> = Omit<MutationComponentOptions<Data, Vars>, 'client'> & {
   /**
    * Render an element or a function that returns an element when an error occurs.
    * The function is passed the `ApolloError` as an argument.
@@ -37,7 +37,7 @@ export type Props<Data, Vars> = Omit<MutationComponentOptions<Data, Vars>, 'clie
  * Based on Apollo's [Mutation](https://www.apollographql.com/docs/react/essentials/mutations.html#props) component.
  */
 export default class Mutation<Data = {}, Vars = OperationVariables> extends React.Component<
-  Props<Data, Vars>
+  MutationProps<Data, Vars>
 > {
   static defaultProps = {
     awaitRefetchQueries: false,

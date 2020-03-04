@@ -2,10 +2,10 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Hierarchy from '../../../src/components/HierarchyPicker/Hierarchy';
 import HierarchyList, {
-  Props as HierarchyListProps,
+  HierarchyListProps,
 } from '../../../src/components/HierarchyPicker/Hierarchy/HierarchyList';
 import HierarchyItem, {
-  Props as HierarchyItemProps,
+  HierarchyItemProps,
 } from '../../../src/components/HierarchyPicker/Hierarchy/HierarchyItem';
 import ItemDescription from '../../../src/components/HierarchyPicker/Hierarchy/ItemDescription';
 import { ChoiceDetails } from '../../../src/components/HierarchyPicker/types';
@@ -132,7 +132,7 @@ describe('<Hierarchy />', () => {
         definition: ['foo', 'bar'],
         selected: false,
         focused: false,
-        onSubtree: jest.fn((d, cb) => cb && cb()),
+        onSubtree: jest.fn((d, cb) => cb?.()),
         onItemPicked: jest.fn(),
         onDomFocusDeeper: jest.fn(),
         onDomFocusShallower: jest.fn(),

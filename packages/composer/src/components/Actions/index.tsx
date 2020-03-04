@@ -39,7 +39,7 @@ export default function Actions({ actions, endAlign, noWritingModes }: ActionsPr
     <Menu borderless startAlign={!endAlign} endAlign={endAlign} name={MENU_ACTIONS} width={215}>
       <ItemMenu
         overflow
-        accessibilityLabel={T.phrase('Actions menu', null, { key: 'lunar.composer.actions.label' })}
+        accessibilityLabel={T.phrase('lunar.composer.actions.label', 'Actions menu')}
         maxHeight={MAX_MENU_HEIGHT}
       >
         {Object.entries(groupedActions).map(([group, acts], index) => (

@@ -1,10 +1,15 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
-import { styleSheetSeparator as styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetSeparator } from './styles';
+
+export type MenuSeparatorProps = {
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
+};
 
 /** A separator between menu items. */
-export default function MenuSeparator() {
-  const [styles, cx] = useStyles(styleSheet);
+export default function MenuSeparator({ styleSheet }: MenuSeparatorProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetSeparator);
 
   return (
     <li role="separator">

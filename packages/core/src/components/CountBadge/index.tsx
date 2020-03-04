@@ -1,36 +1,31 @@
-import React from 'react';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import { styleSheet } from './styles';
+import React, { useEffect, useRef } from 'react';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetCountBadge } from './styles';
 
-export type Props = {
+export type CountBadgeProps = {
   /** Accessibility label. */
   accessibilityLabel: string;
   /** Value to show in badge. */
   value: number;
   /** Play a waggle animation. */
   waggle?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A badge indicator with a count. */
-export class CountBadge extends React.Component<Props & WithStylesProps> {
-  static defaultProps = {
-    waggle: false,
-  };
+export default function CountBadge({
+  accessibilityLabel,
+  value,
+  waggle,
+  styleSheet,
+}: CountBadgeProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetCountBadge);
+  const badgeRef = useRef<HTMLDivElement | null>(null);
 
-  badgeRef = React.createRef<HTMLDivElement>();
-
-  componentDidUpdate(prevProps: Props) {
-    const { value } = this.props;
-
-    if (value && prevProps.value && value !== prevProps.value) {
-      this.runPopAnimation();
-    }
-  }
-
-  runPopAnimation() {
-    if (this.badgeRef.current) {
-      this.badgeRef.current.animate(
-        // @ts-ignore Bug: https://github.com/Microsoft/TypeScript/issues/26073
+  useEffect(() => {
+    if (badgeRef.current?.animate) {
+      badgeRef.current.animate(
         [
           { transform: 'scale(1)' },
           { transform: 'scale(1.1)', offset: 0.3 },
@@ -40,25 +35,19 @@ export class CountBadge extends React.Component<Props & WithStylesProps> {
         300,
       );
     }
+  }, [value]);
+
+  if (!value) {
+    return null;
   }
 
-  render() {
-    const { cx, accessibilityLabel, styles, value, waggle } = this.props;
-
-    if (!value) {
-      return null;
-    }
-
-    return (
-      <div
-        ref={this.badgeRef}
-        className={cx(styles.badge, waggle ? styles.animateInAndWaggle : styles.animateIn)}
-        aria-label={accessibilityLabel}
-      >
-        {value.toLocaleString()}
-      </div>
-    );
-  }
+  return (
+    <div
+      ref={badgeRef}
+      className={cx(styles.badge, waggle ? styles.animateInAndWaggle : styles.animateIn)}
+      aria-label={accessibilityLabel}
+    >
+      {value.toLocaleString()}
+    </div>
+  );
 }
-
-export default withStyles(styleSheet)(CountBadge);

@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 import React from 'react';
 import { WithIconWrapperProps } from '@airbnb/lunar-icons/lib/withIcon';
 import {

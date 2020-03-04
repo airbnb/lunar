@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import Core from '@airbnb/lunar';
 import withBoundary from '@airbnb/lunar/lib/composers/withBoundary';
 import componentName from '@airbnb/lunar/lib/prop-types/componentName';
@@ -10,14 +10,14 @@ import { Breadcrumb, ToastType, Toast } from './types';
 
 export * from './types';
 
-export type Props = {
+export type AppShellProps = {
   /** Application to render. */
   children: NonNullable<React.ReactNode>;
   /** Name of the entire application or project. */
   name: string;
 };
 
-export type State = {
+export type AppShellState = {
   breadcrumbs: Breadcrumb[];
   data: { [id: string]: object };
   toasts: Toast[];
@@ -25,7 +25,7 @@ export type State = {
 
 export { AppContext };
 
-export class AppShell extends React.Component<Props, State> {
+export class AppShell extends React.Component<AppShellProps, AppShellState> {
   static propTypes = {
     name: componentName.isRequired,
   };

@@ -7,11 +7,11 @@ export const styleSheet: StyleSheet = () => ({
   },
 });
 
-export type Props = {
+export type ShellLayoutProps = {
   children: NonNullable<React.ReactNode>;
 };
 
-function ShellLayout({ children }: Props) {
+function ShellLayout({ children }: ShellLayoutProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return <div className={cx(styles.layout)}>{children}</div>;

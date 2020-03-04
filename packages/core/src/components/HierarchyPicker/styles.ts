@@ -1,7 +1,7 @@
 import { StyleSheet } from '../../hooks/useStyles';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
-const styleSheet: StyleSheet = theme => ({
+export const styleSheetPicker: StyleSheet = theme => ({
   ...inputStyleSheet(theme),
 
   selectlike: {
@@ -25,7 +25,3 @@ const styleSheet: StyleSheet = theme => ({
     justifyContent: 'center',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

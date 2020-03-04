@@ -1,10 +1,10 @@
 import React from 'react';
 import { childrenOfType, mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetGrid } from './styles';
 import Col from './Col';
 
-export type Props = {
+export type GridProps = {
   /** Vertically align the columns at the bottom. */
   bottomAlign?: boolean;
   /** Horizontally align the columns to the center. */
@@ -21,6 +21,8 @@ export type Props = {
   startAlign?: boolean;
   /** Vertically align the columns at the top. */
   topAlign?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A grid to contain columns. */
@@ -33,8 +35,9 @@ function Grid({
   reversed,
   startAlign,
   topAlign,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: GridProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetGrid);
 
   return (
     <section

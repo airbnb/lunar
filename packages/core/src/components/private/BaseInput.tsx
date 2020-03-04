@@ -1,12 +1,12 @@
 import React from 'react';
 import FormInput, { InputProps } from './FormInput';
 
-export type Props = InputProps & {
+export type BaseInputProps = InputProps & {
   /** Callback fired when the value changes. */
   onChange: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default class BaseInput extends React.Component<Props> {
+export default class BaseInput extends React.Component<BaseInputProps> {
   private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.props.onChange(event.currentTarget.value, event);
   };

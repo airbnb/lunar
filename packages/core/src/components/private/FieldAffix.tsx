@@ -1,7 +1,7 @@
 import withStyles from '../../composers/withStyles';
-import BaseAffix, { Props as BaseProps } from './BaseAffix';
+import BaseAffix, { BaseAffixProps } from './BaseAffix';
 
-export type Props = BaseProps;
+export type FieldAffixProps = BaseAffixProps;
 
 export default withStyles(({ color, font, unit, ui, pattern }) => ({
   affix: {
@@ -16,10 +16,16 @@ export default withStyles(({ color, font, unit, ui, pattern }) => ({
     paddingRight: unit * 1.5,
   },
 
-  affix_compact: {
+  affix_small: {
     ...font.textSmall,
     paddingLeft: unit,
     paddingRight: unit,
+  },
+
+  affix_large: {
+    ...font.textLarge,
+    paddingLeft: unit * 2,
+    paddingRight: unit * 2,
   },
 
   affix_after: {

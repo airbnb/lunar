@@ -12,10 +12,7 @@ export default {
 export function displayAMessageWithAnEditorRelatedContext() {
   return (
     <Text>
-      <T
-        phrase="This content should be translated."
-        context="This message is for translation editors."
-      />
+      <T k="key" phrase="This content should be translated." />
     </Text>
   );
 }
@@ -27,12 +24,7 @@ displayAMessageWithAnEditorRelatedContext.story = {
 export function interpolateVariablesAlsoSupportHtml() {
   return (
     <Text>
-      <T
-        html
-        phrase="Hello %{name}!"
-        name={<b>Bruce</b>}
-        context="This message is for translation editors."
-      />
+      <T html k="key" phrase="Hello %{name}!" name={<b>Bruce</b>} />
     </Text>
   );
 }
@@ -44,25 +36,13 @@ interpolateVariablesAlsoSupportHtml.story = {
 export function handleContextualMessagesBasedOnCounts() {
   return (
     <Text>
-      <T
-        phrase="%{smartCount} item||||%{smartCount} items"
-        smartCount={0}
-        context="This message is for translation editors."
-      />
+      <T k="key" phrase="%{smartCount} item||||%{smartCount} items" smartCount={0} />
       <br />
       <br />
-      <T
-        phrase="%{smartCount} item||||%{smartCount} items"
-        smartCount={1}
-        context="This message is for translation editors."
-      />
+      <T k="key" phrase="%{smartCount} item||||%{smartCount} items" smartCount={1} />
       <br />
       <br />
-      <T
-        phrase="%{smartCount} item||||%{smartCount} items"
-        smartCount={2}
-        context="This message is for translation editors."
-      />
+      <T k="key" phrase="%{smartCount} item||||%{smartCount} items" smartCount={2} />
     </Text>
   );
 }
@@ -72,11 +52,7 @@ handleContextualMessagesBasedOnCounts.story = {
 };
 
 export function returnAStringInsteadOfRenderingAComponent() {
-  return (
-    <div>
-      {T.phrase('Hello %{name}', { name: 'Bruce' }, 'This message is for translation editors.')}
-    </div>
-  );
+  return <div>{T.phrase('key', 'Hello %{name}', { name: 'Bruce' })}</div>;
 }
 
 returnAStringInsteadOfRenderingAComponent.story = {

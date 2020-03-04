@@ -47,5 +47,3 @@ export const styleSheetItem: StyleSheet = ({ color, ui, unit }) => {
     },
   };
 };
-
-export default styleSheetItem;

@@ -3,7 +3,7 @@ import Button from '../Button';
 import Input from '../Input';
 import BrowserNotification from '.';
 
-type State = {
+type BrowserNotificationExampleState = {
   showNotification: boolean;
   title: string;
   body: string;
@@ -11,7 +11,7 @@ type State = {
   tag: string;
 };
 
-class BrowserNotificationExample extends React.Component<{}, State> {
+class BrowserNotificationExample extends React.Component<{}, BrowserNotificationExampleState> {
   state = {
     showNotification: false,
     title: '',
@@ -24,7 +24,7 @@ class BrowserNotificationExample extends React.Component<{}, State> {
     this.setState(({ showNotification }) => ({ showNotification: !showNotification }));
   }
 
-  handleChange(field: keyof State, value: string) {
+  handleChange(field: keyof BrowserNotificationExampleState, value: string) {
     this.setState(prevState => ({
       ...prevState,
       [field]: value,

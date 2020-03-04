@@ -4,7 +4,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { InputProps } from './FormInput';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
-const styleSheet: StyleSheet = theme => {
+export const styleSheetSwitch: StyleSheet = theme => {
   const { color, ui, unit } = theme;
   const styles = inputStyleSheet(theme);
   const width = unit * 5;
@@ -80,27 +80,30 @@ const styleSheet: StyleSheet = theme => {
   };
 };
 
-export type Props = InputProps & {
+export type BaseSwitchProps<T extends string> = InputProps<T> & {
   /** Whether the switch is checked. */
   checked?: boolean;
   /** Unique identifier. */
   id: string;
   /** Callback fired when the value changes. */
-  onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (checked: boolean, value: T, event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
-export default function BaseSwitch({
+export default function BaseSwitch<T extends string = string>({
   checked,
   disabled,
   id,
   invalid,
   onChange,
+  styleSheet,
   ...restProps
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+}: BaseSwitchProps<T>) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetSwitch);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.currentTarget.checked, event.currentTarget.value, event);
+    onChange(event.currentTarget.checked, event.currentTarget.value as T, event);
   };
 
   return (

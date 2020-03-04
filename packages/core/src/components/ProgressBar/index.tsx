@@ -1,10 +1,10 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps, between } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetProgressBar } from './styles';
 import { STATUSES } from '../../constants';
 
-export type Props = {
+export type ProgressBarProps = {
   /** Dangerous/failure status (red). */
   danger?: boolean;
   /** Disable leading rounded corners. */
@@ -21,6 +21,8 @@ export type Props = {
   trailing?: boolean;
   /** Warning status (yellow). */
   warning?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A bar to represent the progress to completion. */
@@ -33,8 +35,9 @@ function ProgressBar({
   success,
   trailing,
   warning,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: ProgressBarProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetProgressBar);
 
   return (
     <div className={cx(styles.wrapper)}>

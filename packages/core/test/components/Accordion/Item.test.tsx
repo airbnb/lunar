@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { render } from 'rut-dom';
-import AccordionItem, { Props } from '../../../src/components/Accordion/Item';
+import AccordionItem, { AccordionItemProps } from '../../../src/components/Accordion/Item';
 import ExpandableIcon from '../../../src/components/ExpandableIcon';
 
 describe('<AccordionItem />', () => {
@@ -89,7 +89,9 @@ describe('<AccordionItem />', () => {
 
   it('triggers `onToggle` when opening and closing', () => {
     const spy = jest.fn();
-    const wrapper = render<Props>(<AccordionItem id=".0" index={1} title="Title" onToggle={spy} />);
+    const wrapper = render<AccordionItemProps>(
+      <AccordionItem id=".0" index={1} title="Title" onToggle={spy} />,
+    );
 
     expect(spy).not.toHaveBeenCalled();
 
@@ -108,7 +110,9 @@ describe('<AccordionItem />', () => {
 
   it('doesnt fire `onToggle` effect when other props change', () => {
     const spy = jest.fn();
-    const wrapper = render<Props>(<AccordionItem id=".0" index={1} title="Title" onToggle={spy} />);
+    const wrapper = render<AccordionItemProps>(
+      <AccordionItem id=".0" index={1} title="Title" onToggle={spy} />,
+    );
 
     wrapper.update({ bordered: true });
 

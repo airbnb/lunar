@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ ui }) => ({
+export const styleSheetImageViewer: StyleSheet = ({ ui }) => ({
   container: {
     border: ui.border,
     cursor: 'move',
@@ -19,7 +19,3 @@ const styleSheet: StyleSheet = ({ ui }) => ({
     justifyContent: 'center',
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

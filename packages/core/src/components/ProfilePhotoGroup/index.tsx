@@ -1,21 +1,28 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import useTheme from '../../hooks/useTheme';
-import { Props as ProfilePhotoProps } from '../ProfilePhoto';
-import { styleSheet } from './styles';
+import { ProfilePhotoProps } from '../ProfilePhoto';
+import { styleSheetProfilePhotoGroup } from './styles';
 
-export type Props = {
+export type ProfilePhotoGroupProps = {
   /** List of `ProfilePhoto` components to group. */
   children: NonNullable<React.ReactNode>;
   /** Max number of photos to display before truncating. */
   max?: number;
   /** Size in units to multiply by. */
   size?: number;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Horizontally align `ProfilePhoto`s in a stacked fashion. */
-export default function ProfilePhotoGroup({ children, max = 3, size = 5 }: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+export default function ProfilePhotoGroup({
+  children,
+  max = 3,
+  size = 5,
+  styleSheet,
+}: ProfilePhotoGroupProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetProfilePhotoGroup);
   const { unit } = useTheme();
 
   const margin = { marginLeft: -(size * (unit / 2.5)) };

@@ -5,7 +5,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { InputProps } from './FormInput';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
-const styleSheet: StyleSheet = theme => {
+export const styleSheetRadioButton: StyleSheet = theme => {
   const styles = inputStyleSheet(theme);
 
   return {
@@ -13,8 +13,7 @@ const styleSheet: StyleSheet = theme => {
 
     radio: {
       padding: 0,
-      margin: 0,
-      marginTop: 2,
+      margin: '2px 0px',
       width: 18,
       height: 18,
       display: 'block',
@@ -68,7 +67,7 @@ const styleSheet: StyleSheet = theme => {
   };
 };
 
-export type Props = InputProps & {
+export type BaseRadioButtonProps<T extends string> = InputProps<T> & {
   /** Render the field as a large clickable button. */
   button?: boolean;
   /** Content to display when in button mode. Defaults to the current label bolded followed by the label description. */
@@ -76,28 +75,31 @@ export type Props = InputProps & {
   /** Hide the native radio button label. */
   hideLabel?: boolean;
   /** Callback fired when the value changes. */
-  onChange: (checked: boolean, value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (checked: boolean, value: T, event: React.ChangeEvent<HTMLInputElement>) => void;
   /** Mark the checkbox as greyed out with a dash to indicate an indeterminate state. */
   indeterminate?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
-export default function BaseRadioButton({
+export default function BaseRadioButton<T extends string = string>({
   button,
   checked,
   children,
-  compact,
+  small,
   disabled,
   hideLabel,
   id,
   invalid,
   indeterminate,
   onChange,
+  styleSheet,
   ...restProps
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+}: BaseRadioButtonProps<T>) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetRadioButton);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.currentTarget.checked, event.currentTarget.value, event);
+    onChange(event.currentTarget.checked, event.currentTarget.value as T, event);
   };
 
   const radioButton = (
@@ -151,7 +153,7 @@ export default function BaseRadioButton({
         checked && styles.button_checked,
         invalid && styles.button_invalid,
         disabled && styles.button_disabled,
-        compact && styles.button_compact,
+        small && styles.button_small,
       )}
     >
       {radioButton}

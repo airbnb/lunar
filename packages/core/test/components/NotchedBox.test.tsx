@@ -1,9 +1,9 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import NotchedBox, { Props } from '../../src/components/NotchedBox';
+import NotchedBox, { NotchedBoxProps } from '../../src/components/NotchedBox';
 
 describe('<NotchedBox />', () => {
-  let wrapper: Enzyme.ShallowWrapper<Props>;
+  let wrapper: Enzyme.ShallowWrapper<NotchedBoxProps>;
 
   beforeEach(() => {
     wrapper = shallow(<NotchedBox>hello world</NotchedBox>);

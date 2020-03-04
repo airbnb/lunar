@@ -1,9 +1,9 @@
 import React from 'react';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import ScrollSectionContext, { Context } from './ScrollContext';
-import { styleSheetScrollWrapper as styleSheet } from './styles';
+import { styleSheetScrollWrapper } from './styles';
 
-export type Props = {
+export type ScrollWrapperProps = {
   /** The contents of the wrapper. */
   children: NonNullable<React.ReactNode>;
   /**
@@ -20,7 +20,7 @@ export type Props = {
 };
 
 /** Wrapper that measures location of `ScrollSection`s. */
-export class ScrollWrapper extends React.Component<Props & WithStylesProps> {
+export class ScrollWrapper extends React.Component<ScrollWrapperProps & WithStylesProps> {
   static defaultProps = {
     intersectionMargin: '0% 0% -99% 0%',
   };
@@ -39,7 +39,7 @@ export class ScrollWrapper extends React.Component<Props & WithStylesProps> {
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: ScrollWrapperProps) {
     if (this.props.intersectionMargin !== prevProps.intersectionMargin) {
       this.setupObserver();
     }
@@ -126,4 +126,4 @@ export class ScrollWrapper extends React.Component<Props & WithStylesProps> {
   }
 }
 
-export default withStyles(styleSheet)(ScrollWrapper);
+export default withStyles(styleSheetScrollWrapper)(ScrollWrapper);

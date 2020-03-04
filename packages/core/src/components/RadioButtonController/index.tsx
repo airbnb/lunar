@@ -1,52 +1,61 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import proxyComponent from '../../utils/proxyComponent';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
-import RadioButton, { Props as RadioButtonProps } from '../RadioButton';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
+import RadioButton, { RadioButtonProps } from '../RadioButton';
 
-export type PropsProvided = Partial<RadioButtonProps> & {
+export type RadioButtonControlledProps<T extends string> = Partial<
+  Omit<RadioButtonProps<T>, 'label' | 'value'>
+> & {
   label: NonNullable<React.ReactNode>;
-  value: string;
+  value: T;
 };
 
-export type Props = FormFieldProps & {
+export type RadioButtonControllerProps<T extends string> = FormFieldProps & {
   /** Function children in which RadioButton components can be rendered. */
-  children: (component: React.ComponentType<PropsProvided>, value: string, id: string) => void;
+  children: (
+    component: React.ComponentType<RadioButtonControlledProps<T>>,
+    value: T,
+    id: string,
+  ) => void;
   /** Unique name of the field. */
   name: string;
   /** Callback that is triggered when a child RadioButton is clicked. */
-  onChange: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: T, event: React.ChangeEvent<HTMLInputElement>) => void;
   /** Default checked value. */
-  value?: string;
+  value?: T;
 };
 
-export type State = {
+export type RadioButtonControllerState<T extends string> = {
   id: string;
-  value: string;
+  value: T;
 };
 
 /** Manage multiple radio buttons with the same input `name`. */
-export default class RadioButtonController extends React.Component<Props, State> {
+export default class RadioButtonController<T extends string = string> extends React.Component<
+  RadioButtonControllerProps<T>,
+  RadioButtonControllerState<T>
+> {
   static defaultProps = {
     value: '',
   };
 
   state = {
     id: uuid(),
-    value: this.props.value || '',
+    value: this.props.value || ('' as T),
   };
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: RadioButtonControllerProps<T>) {
     if (this.props.value !== prevProps.value) {
       this.setState({
-        value: this.props.value || '',
+        value: this.props.value || ('' as T),
       });
     }
   }
 
   private handleChange = (
     checked: boolean,
-    value: string,
+    value: T,
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (value !== this.state.value) {
@@ -58,26 +67,31 @@ export default class RadioButtonController extends React.Component<Props, State>
     }
   };
 
-  renderRadioButton = proxyComponent(RadioButton, ({ value, ...props }: PropsProvided) => {
-    const { inputProps } = partitionFieldProps(this.props);
-    const { id, value: currentValue } = this.state;
+  renderRadioButton = proxyComponent<RadioButtonControlledProps<T>>(
+    RadioButton,
+    ({ value, ...props }) => {
+      const { inputProps } = partitionFieldProps<T, RadioButtonControllerProps<T>>(this.props);
+      const { id, value: currentValue } = this.state;
 
-    return (
-      <RadioButton
-        compactSpacing
-        {...props}
-        {...inputProps}
-        hideOptionalLabel
-        id={`${id}-${value}`}
-        value={value}
-        checked={value === currentValue}
-        onChange={this.handleChange}
-      />
-    );
-  });
+      return (
+        <RadioButton<T>
+          compactSpacing
+          {...props}
+          {...inputProps}
+          hideOptionalLabel
+          id={`${id}-${value}`}
+          value={value}
+          checked={value === currentValue}
+          onChange={this.handleChange}
+        />
+      );
+    },
+  );
 
   render() {
-    const { children, fieldProps } = partitionFieldProps(this.props);
+    const { children, fieldProps } = partitionFieldProps<T, RadioButtonControllerProps<T>>(
+      this.props,
+    );
     const { id, value } = this.state;
 
     return (

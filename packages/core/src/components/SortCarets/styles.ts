@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, unit }) => ({
+export const styleSheetSortCarets: StyleSheet = ({ color, unit }) => ({
   container: {
     display: 'inline-block',
     verticalAlign: 'middle',
@@ -47,7 +47,3 @@ const styleSheet: StyleSheet = ({ color, unit }) => ({
     color: color.core.neutral[4],
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

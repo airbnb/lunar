@@ -1,8 +1,8 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetLoader } from './styles';
 
-export type Props = {
+export type LoaderProps = {
   /** Display inline instead of absolutely positioned. */
   inline?: boolean;
   /** Invert colors. */
@@ -11,11 +11,19 @@ export type Props = {
   large?: boolean;
   /** Position statically instead of absolutely. */
   static?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A small 3-dot loading indicator. */
-export default function Loader({ inline, inverted, large, static: isStatic }: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+export default function Loader({
+  inline,
+  inverted,
+  large,
+  static: isStatic,
+  styleSheet,
+}: LoaderProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetLoader);
 
   return (
     <div

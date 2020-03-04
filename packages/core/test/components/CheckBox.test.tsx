@@ -1,13 +1,15 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import CheckBox, { Props, State } from '../../src/components/CheckBox';
+import CheckBox, { CheckBoxProps } from '../../src/components/CheckBox';
 import FormField from '../../src/components/FormField';
 import BaseCheckBox from '../../src/components/private/BaseCheckBox';
 import Text from '../../src/components/Text';
 
 describe('<CheckBox />', () => {
   it('renders a field and input', () => {
-    const wrapper = shallow(<CheckBox name="foo" label="Label" value="1" onChange={() => {}} />);
+    const wrapper = shallow(
+      <CheckBox<'a' | 'b' | 'c'> name="foo" label="Label" value="a" onChange={() => {}} />,
+    );
 
     expect(wrapper.find(FormField)).toHaveLength(1);
     expect(wrapper.find(BaseCheckBox)).toHaveLength(1);
@@ -35,7 +37,7 @@ describe('<CheckBox />', () => {
   it('can set checked', () => {
     const wrapper = shallow(<CheckBox name="foo" label="Label" value="1" onChange={() => {}} />);
 
-    expect(wrapper.find(BaseCheckBox).prop('checked')).toBe(false);
+    expect(wrapper.find(BaseCheckBox).prop('checked')).toBeUndefined();
 
     wrapper.setProps({
       checked: true,
@@ -47,7 +49,7 @@ describe('<CheckBox />', () => {
   it('can set indeterminate', () => {
     const wrapper = shallow(<CheckBox name="foo" label="Label" value="1" onChange={() => {}} />);
 
-    expect(wrapper.find(BaseCheckBox).prop('indeterminate')).toBe(false);
+    expect(wrapper.find(BaseCheckBox).prop('indeterminate')).toBeUndefined();
 
     wrapper.setProps({
       indeterminate: true,
@@ -57,7 +59,7 @@ describe('<CheckBox />', () => {
   });
 
   describe('button mode', () => {
-    let wrapper: Enzyme.ShallowWrapper<Props, State>;
+    let wrapper: Enzyme.ShallowWrapper<CheckBoxProps<string>>;
 
     beforeEach(() => {
       wrapper = shallow(

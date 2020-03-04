@@ -5,7 +5,7 @@ import IconButton from '../IconButton';
 import ButtonGroup from '../ButtonGroup';
 import T from '../Translate';
 
-export type Props = {
+export type RotateControlsProps = {
   /** The current rotation. 0 by default. */
   rotation?: number;
   /** Callback when rotation changes */
@@ -13,7 +13,7 @@ export type Props = {
 };
 
 /** Rotate controls that can be used with an image viewer component */
-export default function RotateControls(props: Props) {
+export default function RotateControls(props: RotateControlsProps) {
   const { onRotation, rotation = 0 } = props;
 
   const handleRotateLeft = useCallback(() => onRotation(rotation - 90 < 0 ? 270 : rotation - 90), [
@@ -29,20 +29,17 @@ export default function RotateControls(props: Props) {
     <ButtonGroup>
       <IconButton onClick={handleRotateLeft}>
         <IconRotateLeft
-          accessibilityLabel={T.phrase('Rotate counter clockwise', null, {
-            key: 'lunar.image.rotateCounterClockwise',
-            context: 'Label for button that rotates an image counter clockwise',
-          })}
+          accessibilityLabel={T.phrase(
+            'lunar.image.rotateCounterClockwise',
+            'Rotate counter clockwise',
+          )}
           size="2em"
         />
       </IconButton>
 
       <IconButton onClick={handleRotateRight}>
         <IconRotateRight
-          accessibilityLabel={T.phrase('Rotate clockwise', null, {
-            key: 'lunar.image.rotateClockwise',
-            context: 'Label for button that rotates an image clockwise',
-          })}
+          accessibilityLabel={T.phrase('lunar.image.rotateClockwise', 'Rotate clockwise')}
           size="2em"
         />
       </IconButton>

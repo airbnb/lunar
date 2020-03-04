@@ -32,5 +32,3 @@ export const DEFAULT_WIDTH_PROPERTIES: WidthProperties = {
 };
 
 export const EXPANDABLE_COLUMN_WIDTH = 50;
-
-export const SELECTABLE_COLUMN_WIDTH = 50;

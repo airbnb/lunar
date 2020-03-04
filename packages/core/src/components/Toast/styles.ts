@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
+export const styleSheetToast: StyleSheet = ({ color, ui, unit }) => ({
   container: {
     marginTop: unit * 1.5,
     padding: unit * 2,
@@ -36,7 +36,3 @@ const styleSheet: StyleSheet = ({ color, ui, unit }) => ({
     marginLeft: unit,
   },
 });
-
-export default styleSheet;
-
-export { styleSheet };

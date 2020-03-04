@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'rut-dom';
-import TrackBreadcrumb, { Props } from '../../../src/components/Breadcrumbs/TrackBreadcrumb';
+import TrackBreadcrumb, {
+  TrackBreadcrumbProps,
+} from '../../../src/components/Breadcrumbs/TrackBreadcrumb';
 import AppContext, { defaultContext } from '../../../src/components/AppContext';
 import { Context } from '../../../src/types';
 
@@ -20,13 +22,15 @@ describe('TrackBreadcrumb', () => {
   }
 
   it('adds a crumb', () => {
-    render<Props>(<TrackBreadcrumb label="Foo" href="/foo" />, { wrapper: <WrappingComponent /> });
+    render<TrackBreadcrumbProps>(<TrackBreadcrumb label="Foo" href="/foo" />, {
+      wrapper: <WrappingComponent />,
+    });
 
     expect(context.addBreadcrumb).toHaveBeenCalledWith('Foo', { href: '/foo' });
   });
 
   it('removes a crumb when unmounted', () => {
-    const { unmount } = render<Props>(<TrackBreadcrumb label="Foo" href="/foo" />, {
+    const { unmount } = render<TrackBreadcrumbProps>(<TrackBreadcrumb label="Foo" href="/foo" />, {
       wrapper: <WrappingComponent />,
     });
 
@@ -36,7 +40,7 @@ describe('TrackBreadcrumb', () => {
   });
 
   it('only adds the crumb once', () => {
-    const { update } = render<Props>(<TrackBreadcrumb label="Foo" />, {
+    const { update } = render<TrackBreadcrumbProps>(<TrackBreadcrumb label="Foo" />, {
       wrapper: <WrappingComponent />,
     });
 
@@ -48,7 +52,7 @@ describe('TrackBreadcrumb', () => {
   });
 
   it('doesnt add a crumb if no context', () => {
-    render<Props>(<TrackBreadcrumb label="Foo" />);
+    render<TrackBreadcrumbProps>(<TrackBreadcrumb label="Foo" />);
 
     expect(context.addBreadcrumb).not.toHaveBeenCalled();
   });

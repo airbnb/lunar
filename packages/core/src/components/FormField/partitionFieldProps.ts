@@ -1,8 +1,6 @@
-import { Props as FormFieldProps } from '.';
+import { FormFieldProps } from '.';
 
-export type MaybeChildren = { children?: unknown };
-
-export type ExplicitProps = {
+export type ExplicitProps<T extends string> = {
   compact: boolean;
   disabled: boolean;
   hasPrefix: boolean;
@@ -11,10 +9,10 @@ export type ExplicitProps = {
   large: boolean;
   optional: boolean;
   small: boolean;
-  value: string;
+  value: T;
 };
 
-export default function partitionFieldProps<Props extends MaybeChildren = {}>(
+export default function partitionFieldProps<T extends string, Props extends object = {}>(
   props: FormFieldProps & Props,
 ): {
   // Need any for consumers to work correctly
@@ -22,11 +20,11 @@ export default function partitionFieldProps<Props extends MaybeChildren = {}>(
   children: any;
   field: object;
   fieldProps: FormFieldProps;
-  inputProps: Omit<Props, 'children'> & ExplicitProps;
+  inputProps: Omit<Props, 'children' | keyof ExplicitProps<T>> & ExplicitProps<T>;
 } {
   const {
+    // @ts-ignore
     children,
-    compact = false,
     compactSpacing = false,
     disabled = false,
     errorMessage = '',
@@ -50,7 +48,6 @@ export default function partitionFieldProps<Props extends MaybeChildren = {}>(
     children,
     field,
     fieldProps: {
-      compact,
       compactSpacing,
       disabled,
       errorMessage,
@@ -71,7 +68,6 @@ export default function partitionFieldProps<Props extends MaybeChildren = {}>(
     inputProps: {
       value: '',
       ...inputProps,
-      compact,
       disabled,
       hasPrefix: !!prefix,
       hasSuffix: !!suffix,

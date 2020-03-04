@@ -1,9 +1,9 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetText } from './styles';
 
-export type Props = {
+export type TextProps = {
   /** Render the text inline instead of block. */
   baseline?: boolean;
   /** Apply bold emphasis. */
@@ -40,6 +40,8 @@ export type Props = {
   truncated?: boolean;
   /** Uppercase all text. */
   uppercased?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Display a string of text with pre-defined sizing, emphasis, and state styling. */
@@ -62,8 +64,9 @@ function Text({
   startAlign,
   truncated,
   uppercased,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: TextProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetText);
 
   let Tag: 'div' | 'span' | 'small' | 'h4' = 'div';
   if (inline) {

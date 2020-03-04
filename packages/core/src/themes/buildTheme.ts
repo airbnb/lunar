@@ -25,7 +25,7 @@ export default function buildTheme(
   const {
     base,
     borderRadius = 4,
-    boxShadow = [2, 3],
+    boxShadow = [2, 4],
     boxShadowColor = base,
     brand,
     color,
@@ -54,9 +54,9 @@ export default function buildTheme(
     borderRadiusThick: borderRadius * 2,
     borderWidth,
     borderWidthThick,
-    boxShadow: `0 ${boxShadow[0]}px ${boxShadow[1]}px ${toRGBA(boxShadowColor, 10)}`,
-    boxShadowMedium: `0 ${boxShadow[0] * 3}px ${boxShadow[1] * 2}px ${toRGBA(boxShadowColor, 15)}`,
-    boxShadowLarge: `0 ${boxShadow[0] * 4}px ${boxShadow[1] * 4}px ${toRGBA(boxShadowColor, 20)}`,
+    boxShadow: `0 ${boxShadow[0] * 2}px ${boxShadow[1] * 4}px ${toRGBA(boxShadowColor, 12)}`,
+    boxShadowMedium: `0 ${boxShadow[0] * 3}px ${boxShadow[1] * 5}px ${toRGBA(boxShadowColor, 20)}`,
+    boxShadowLarge: `0 ${boxShadow[0] * 4}px ${boxShadow[1] * 7}px ${toRGBA(boxShadowColor, 28)}`,
     disabledOpacity,
     transitionTime,
   };

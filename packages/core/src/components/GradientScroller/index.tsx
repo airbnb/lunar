@@ -5,11 +5,11 @@ import IconChevronLeft from '@airbnb/lunar-icons/lib/interface/IconChevronLeft';
 import IconChevronRight from '@airbnb/lunar-icons/lib/interface/IconChevronRight';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import DirectionalIcon from '../DirectionalIcon';
-import { styleSheet } from './styles';
+import { styleSheetGradientScroller } from './styles';
 
 const INCREMENT = 25;
 
-export type Props = {
+export type GradientScrollerProps = {
   /** How much to scroll when hovering above gradient. Defaults to 15% of the container width. */
   autoScrollIncrement?: number;
   /** Children to be positioned in a vertically centered fashion. */
@@ -20,13 +20,16 @@ export type Props = {
   showArrows?: boolean;
 };
 
-export type State = {
+export type GradientScrollerState = {
   showStartGradient: boolean;
   showEndGradient: boolean;
 };
 
 /** A horizontal scroller with gradients on each side. */
-export class GradientScroller extends React.Component<Props & WithStylesProps, State> {
+export class GradientScroller extends React.Component<
+  GradientScrollerProps & WithStylesProps,
+  GradientScrollerState
+> {
   static defaultProps = {
     children: null,
     hideScrollbar: false,
@@ -46,7 +49,7 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
     showEndGradient: true,
   };
 
-  constructor(props: Props & WithStylesProps) {
+  constructor(props: GradientScrollerProps & WithStylesProps) {
     super(props);
 
     // Register resize observer before mounting
@@ -278,4 +281,4 @@ export class GradientScroller extends React.Component<Props & WithStylesProps, S
   }
 }
 
-export default withStyles(styleSheet)(GradientScroller);
+export default withStyles(styleSheetGradientScroller)(GradientScroller);

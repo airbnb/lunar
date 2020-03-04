@@ -8,13 +8,6 @@ import useFormField, {
   FieldProvidedProps,
 } from '../hooks/useFormField';
 
-if (process.env.NODE_ENV === 'development') {
-  // eslint-disable-next-line no-console
-  console.warn(
-    '`connectToForm` composer is deprecated. Please migrate to the `useFormField` hook.',
-  );
-}
-
 export type Options<T> = BaseOptions<T>;
 export type ConnectToFormProps<T> = FieldProvidedProps<T>;
 export type ConnectToFormWrapperProps<T> = FieldInternalProps<T>;

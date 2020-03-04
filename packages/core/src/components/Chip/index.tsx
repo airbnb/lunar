@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { mutuallyExclusiveProps, requiredBy } from 'airbnb-prop-types';
 import iconComponent from '../../prop-types/iconComponent';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ProfilePhoto from '../ProfilePhoto';
 import ButtonOrLink, { ButtonOrLinkTypes } from '../private/ButtonOrLink';
-import { styleSheet } from './styles';
+import { styleSheetChip } from './styles';
 
-export type Props = {
+export type ChipProps = {
   /** Renders with a primary background and white text. */
   active?: boolean;
   /** Icon to render to the right of the primary content. */
@@ -30,6 +30,8 @@ export type Props = {
   profileImageSrc?: string;
   /** A tracking name to identify this component when element is clicked. */
   trackingName?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Compact component that represents a snippet of information, such as a filter. */
@@ -45,8 +47,9 @@ function Chip({
   onIconClick,
   profileImageSrc,
   trackingName,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: ChipProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetChip);
 
   const Component = onClick ? 'button' : 'div';
   const props: React.HTMLProps<HTMLButtonElement> =

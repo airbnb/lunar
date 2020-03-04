@@ -1,17 +1,17 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import { DayPickerInputProps } from 'react-day-picker';
-import { Props as BaseInputProps } from '../private/BaseInput';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import { BaseInputProps } from '../private/BaseInput';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import DateTime from '../DateTime';
-import { Props as DatePickerProps } from '../DatePicker';
-import { Props as DropdownProps } from '../Dropdown';
+import { DatePickerProps } from '../DatePicker';
+import { DropdownProps } from '../Dropdown';
 import createDateTime from '../../utils/createDateTime';
 import { mdyCalendarBundle } from '../../messages';
 import PrivatePickerInput from './Input';
 import { Locale } from '../../types';
 
-export type Props = Omit<BaseInputProps, 'id' | 'onChange' | 'value'> &
+export type DatePickerInputProps = Omit<BaseInputProps, 'id' | 'onChange' | 'value'> &
   FormFieldProps & {
     /** Clear the input when clicking on a previously selected day. */
     clearOnDayClick?: DayPickerInputProps['clickUnselectsDay'];
@@ -37,12 +37,15 @@ export type Props = Omit<BaseInputProps, 'id' | 'onChange' | 'value'> &
     value?: string | Date;
   };
 
-export type State = {
+export type DatePickerInputState = {
   id: string;
 };
 
 /** A controlled input field that opens a date picker. */
-export default class DatePickerInput extends React.Component<Props, State> {
+export default class DatePickerInput extends React.Component<
+  DatePickerInputProps,
+  DatePickerInputState
+> {
   static defaultProps = {
     hideOnDayClick: false,
   };
@@ -55,7 +58,7 @@ export default class DatePickerInput extends React.Component<Props, State> {
     const { value } = event.currentTarget;
     const date = this.parseDate(value);
 
-    this.props.onChange(value, date || null, event);
+    this.props.onChange(value, date ?? null, event);
   };
 
   private handleDayChange = (day?: Date) => {
@@ -76,14 +79,14 @@ export default class DatePickerInput extends React.Component<Props, State> {
   };
 
   getFormat(): string {
-    return this.props.format || mdyCalendarBundle.get(this.props.locale);
+    return this.props.format ?? mdyCalendarBundle.get(this.props.locale);
   }
 
   parseDate = (value: string, format?: string, locale?: string) => {
     try {
       return createDateTime(value, {
-        sourceFormat: format || this.getFormat(),
-        locale: locale || this.props.locale,
+        sourceFormat: format ?? this.getFormat(),
+        locale: locale ?? this.props.locale,
       }).toJSDate();
     } catch (error) {
       return undefined;
@@ -91,13 +94,13 @@ export default class DatePickerInput extends React.Component<Props, State> {
   };
 
   formatDate = (date: Date | string, baseFormat?: string, locale?: string) => {
-    const format = baseFormat || this.getFormat();
+    const format = baseFormat ?? this.getFormat();
 
     return DateTime.format({
       at: date,
       format,
       sourceFormat: format,
-      locale: locale || this.props.locale,
+      locale: locale ?? this.props.locale,
       noTime: true,
       noTimezone: true,
     });
@@ -133,7 +136,7 @@ export default class DatePickerInput extends React.Component<Props, State> {
           format={format}
           clickUnselectsDay={clearOnDayClick}
           hideOnDayClick={hideOnDayClick}
-          placeholder={restProps.placeholder || format.toUpperCase()}
+          placeholder={restProps.placeholder ?? format.toUpperCase()}
           parseDate={this.parseDate}
           formatDate={this.formatDate}
           onDayPickerHide={onHidePicker}

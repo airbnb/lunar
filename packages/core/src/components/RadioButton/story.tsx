@@ -19,6 +19,40 @@ aStandardRadioButtonField.story = {
   name: 'A standard radio button field.',
 };
 
+export function inDifferentSizes() {
+  return (
+    <>
+      <RadioButton
+        small
+        middleAlign
+        name="radio-small"
+        label="Small"
+        value="foo"
+        onChange={action('onChange')}
+      />
+      <RadioButton
+        middleAlign
+        name="radio-regular"
+        label="Regular"
+        value="foo"
+        onChange={action('onChange')}
+      />
+      <RadioButton
+        large
+        middleAlign
+        name="radio-large"
+        label="Large"
+        value="foo"
+        onChange={action('onChange')}
+      />
+    </>
+  );
+}
+
+inDifferentSizes.story = {
+  name: 'In different sizes.',
+};
+
 export function withAnErrorMessageInAnInvalidState() {
   return (
     <RadioButton
@@ -70,19 +104,19 @@ withALabelDescriptionInAIndeterminateState.story = {
   name: 'With a label description in a indeterminate state.',
 };
 
-export function withATopAlignment() {
+export function withAMiddleAlignment() {
   return (
     <>
       <RadioButton
         checked
-        topAlign
+        middleAlign
         name="radio-topalign"
         label="Label"
         value="foo"
         onChange={action('onChange')}
       />
       <RadioButton
-        topAlign
+        middleAlign
         name="radio-topalign"
         label="Label"
         value="foo"
@@ -93,8 +127,8 @@ export function withATopAlignment() {
   );
 }
 
-withATopAlignment.story = {
-  name: 'With a top alignment.',
+withAMiddleAlignment.story = {
+  name: 'With a middle alignment.',
 };
 
 export function markedAsOptional() {
@@ -151,7 +185,7 @@ export function asAClickableButton() {
   return (
     <RadioButton
       button
-      topAlign
+      middleAlign
       name="radio-basic"
       label="Label"
       labelDescription="This is a label description."
@@ -169,7 +203,7 @@ export function asACompactClickableButton() {
   return (
     <RadioButton
       button
-      compact
+      small
       name="radio-basic"
       label="Label"
       labelDescription="This is a label description."
@@ -182,5 +216,5 @@ export function asACompactClickableButton() {
 }
 
 asACompactClickableButton.story = {
-  name: 'As a compact, clickable button.',
+  name: 'As a small clickable button.',
 };

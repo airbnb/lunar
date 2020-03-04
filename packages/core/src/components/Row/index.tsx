@@ -1,8 +1,8 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetRow } from './styles';
 
-export type Props = {
+export type RowProps = {
   /** The contents following the primary contents. */
   after?: React.ReactNode;
   /** The visibility of the row's baseline. */
@@ -27,6 +27,8 @@ export type Props = {
   topline?: boolean;
   /** To use with text truncation; overflow is hidden. */
   truncated?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A presentational block element for displaying horizontal content in up to 3 columns. */
@@ -43,8 +45,9 @@ export default function Row({
   spacious,
   topline,
   truncated,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: RowProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetRow);
 
   return (
     <div

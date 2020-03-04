@@ -26,11 +26,7 @@ export default function InlineInput({ label, name, value }: InlineInputProps) {
       {label}
     </Text>
   );
-  const editLabel = T.phrase(
-    'Edit %{name} field',
-    { name },
-    { key: 'lunar.composer.labels.editField' },
-  );
+  const editLabel = T.phrase('lunar.composer.labels.editField', 'Edit %{name} field', { name });
   const editButton = (
     <IconButton onClick={() => setEditing(!editing)}>
       {editing ? (
@@ -49,8 +45,8 @@ export default function InlineInput({ label, name, value }: InlineInputProps) {
           hideLabel
           label={label}
           name={name}
-          prefix={<Prefix compact>{textLabel}</Prefix>}
-          suffix={<Suffix compact>{editButton}</Suffix>}
+          prefix={<Prefix small>{textLabel}</Prefix>}
+          suffix={<Suffix small>{editButton}</Suffix>}
           value={value}
           onChange={nextValue => {
             context.setData(name, nextValue);

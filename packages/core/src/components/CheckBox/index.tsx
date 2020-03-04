@@ -1,70 +1,46 @@
-import React from 'react';
-import uuid from 'uuid/v4';
-import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import BaseCheckBox, { Props as BaseCheckBoxProps } from '../private/BaseCheckBox';
-import FormField, { Props as FormFieldProps, partitionFieldProps } from '../FormField';
+import React, { useState } from 'react';
+import { v4 as uuid } from 'uuid';
+import BaseCheckBox, { BaseCheckBoxProps } from '../private/BaseCheckBox';
+import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import Text from '../Text';
 
-const stateProp = mutuallyExclusiveTrueProps('checked', 'indeterminate');
-
-export type Props = BaseCheckBoxProps &
+export type CheckBoxProps<T extends string> = BaseCheckBoxProps<T> &
   FormFieldProps & {
-    /** Top align content. */
-    topAlign?: boolean;
+    /** Middle align content. */
+    middleAlign?: boolean;
   };
-
-export type State = {
-  id: string;
-};
 
 /** A controlled checkbox field. */
-export default class CheckBox extends React.Component<Props, State> {
-  static defaultProps = {
-    button: false,
-    checked: false,
-    children: null,
-    indeterminate: false,
-    topAlign: false,
-    value: '1',
-  };
+export default function CheckBox<T extends string = string>(props: CheckBoxProps<T>) {
+  const { children, fieldProps, inputProps } = partitionFieldProps<T, CheckBoxProps<T>>(props);
+  const { middleAlign, ...restProps } = inputProps;
+  const [id] = useState(() => uuid());
 
-  static propTypes = {
-    checked: stateProp,
-    indeterminate: stateProp,
-  };
-
-  state = {
-    // Support for CheckBoxController
-    id: this.props.id || uuid(),
-  };
-
-  render() {
-    const { children, fieldProps, inputProps } = partitionFieldProps(this.props);
-    const { topAlign, ...restProps } = inputProps;
-    const { id } = this.state;
-    const { hideLabel } = fieldProps;
-
-    return (
-      <FormField
-        {...fieldProps}
-        inline
-        renderBeforeLabel
-        renderLargeLabel
-        stretchLabel
-        id={id}
-        hideLabel={fieldProps.hideLabel || inputProps.button}
-        renderFullWidth={inputProps.button}
-        topAlign={topAlign}
+  return (
+    <FormField
+      {...fieldProps}
+      inline
+      renderBeforeLabel
+      renderLargeLabel
+      stretchLabel
+      id={props.id || id}
+      hideLabel={fieldProps.hideLabel || inputProps.button}
+      renderFullWidth={inputProps.button}
+      topAlign={!middleAlign}
+    >
+      <BaseCheckBox<T>
+        value="1"
+        {...restProps}
+        id={props.id || id}
+        hideLabel={fieldProps.hideLabel}
       >
-        <BaseCheckBox {...restProps} id={id} hideLabel={hideLabel}>
-          {children || (
-            <>
-              <Text bold>{fieldProps.label}</Text>
-              {fieldProps.labelDescription && <Text>{fieldProps.labelDescription}</Text>}
-            </>
-          )}
-        </BaseCheckBox>
-      </FormField>
-    );
-  }
+        {children || (
+          <>
+            <Text bold>{fieldProps.label}</Text>
+            {fieldProps.labelDescription && <Text>{fieldProps.labelDescription}</Text>}
+          </>
+        )}
+      </BaseCheckBox>
+    </FormField>
+  );
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import useStyles from '@airbnb/lunar/lib/hooks/useStyles';
-import { styleSheet } from './styles';
+import useStyles, { StyleSheet } from '@airbnb/lunar/lib/hooks/useStyles';
+import { styleSheetLayout } from './styles';
 
-export type Props = {
+export type LayoutProps = {
   /** Horizontally center main content. */
   centerAlign?: boolean;
   /** The primary main content. */
@@ -15,6 +15,8 @@ export type Props = {
   noBackground?: boolean;
   /** Remove padding from main content. */
   noPadding?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export type AsideProps = {
@@ -34,8 +36,9 @@ export default function Layout({
   minHeight,
   noBackground,
   noPadding,
-}: Props & AsideProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: LayoutProps & AsideProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetLayout);
 
   return (
     <div className={cx(styles.layout, { minHeight: minHeight || '100vh' })}>

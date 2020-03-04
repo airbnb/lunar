@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import uuid from 'uuid/v4';
-import useStyles from '../../hooks/useStyles';
-import Item, { Props as AccordionItemProps } from './Item';
-import { styleSheet } from './styles';
+import { v4 as uuid } from 'uuid';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import Item, { AccordionItemProps } from './Item';
+import { styleSheetAccordion } from './styles';
 
 export { Item };
 
-export type Props = {
+export type AccordionProps = {
   /** Apply a border. */
   bordered?: boolean;
   /** Accordion items and their content. */
@@ -17,6 +17,8 @@ export type Props = {
   expandMultiple?: boolean;
   /** Callback fired when an item is expanded. */
   onChange?: (index: number) => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** A controller for multiple accordion items. */
@@ -26,9 +28,10 @@ export default function Accordion({
   defaultIndex = 0,
   expandMultiple,
   onChange,
-}: Props) {
+  styleSheet,
+}: AccordionProps) {
   const [id] = useState(() => uuid());
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetAccordion);
   const [expanded, setExpanded] = useState(
     new Set<number>([defaultIndex]),
   );

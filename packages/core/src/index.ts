@@ -86,11 +86,13 @@ class Core {
 
       aesthetic.configure({
         adapter: new TestAdapter(),
+        extendable: true,
         theme: 'light',
       });
     } else {
       aesthetic.configure({
         adapter: new AphroditeAdapter(),
+        extendable: true,
         rtl,
         theme,
       });
@@ -147,17 +149,17 @@ class Core {
   }
 
   translate = (
+    key: string,
     phrase: string,
-    baseParams?: TranslateParams | null,
-    options?: string | TranslateOptions,
+    params: TranslateParams = {},
+    options: TranslateOptions = {},
   ) => {
     const { translator } = this.settings;
 
     if (translator) {
-      return translator(phrase, baseParams, options);
+      return translator(key, phrase, params, options);
     }
 
-    const params = baseParams || {};
     let message = phrase;
 
     if (phrase.includes('||||')) {
@@ -168,7 +170,7 @@ class Core {
     }
 
     // Low-level token interpolation
-    return message.replace(/%{(\w+)}/g, (match, key) => `${params[key]}`);
+    return message.replace(/%{(\w+)}/g, (match, k) => `${params[k]}`);
   };
 }
 

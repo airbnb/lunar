@@ -1,4 +1,4 @@
-/* eslint-disable no-alert, no-console */
+/* eslint-disable no-alert */
 
 import React from 'react';
 import IconPhone from '@airbnb/lunar-icons/lib/general/IconPhone';

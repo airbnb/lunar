@@ -11,11 +11,11 @@ import IconThumbUp from '@airbnb/lunar-icons/lib/interface/IconThumbUp';
 import IconUtensils from '@airbnb/lunar-icons/lib/general/IconUtensils';
 import IconVideoGame from '@airbnb/lunar-icons/lib/general/IconVideoGame';
 import IconCloseAlt from '@airbnb/lunar-icons/lib/interface/IconCloseAlt';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Core from '../..';
 import { ESCAPE } from '../../keys';
 import T from '../Translate';
-import { styleSheet } from './styles';
+import { styleSheetEmojiPicker } from './styles';
 
 // Exclude inappropriate or offensive emojis
 const blockList = [
@@ -51,19 +51,26 @@ const groupIcons = {
 
 const clearIcon = <IconCloseAlt decorative size="1.325em" />;
 
-export type Props = Partial<PickerProps> & {
+export type EmojiPickerProps = Partial<PickerProps> & {
   /** @ignore */
   disableAutoFocus?: boolean;
   /** A function to close the picker. Is triggered by the escape key. */
   onClosePicker: () => void;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /**
  * Display an emoji picker using [interweave-emoji-picker](https://github.com/milesj/interweave/tree/master/packages/interweave-emoji-picker).
  * Should primarily be used for private to public communication.
  */
-export default function EmojiPicker({ disableAutoFocus, onClosePicker, ...props }: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+export default function EmojiPicker({
+  disableAutoFocus,
+  onClosePicker,
+  styleSheet,
+  ...props
+}: EmojiPickerProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetEmojiPicker);
 
   const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // When the picker wrapper is focused, we need to close on esc
@@ -102,36 +109,30 @@ export default function EmojiPicker({ disableAutoFocus, onClosePicker, ...props 
   };
 
   const messages = {
-    recentlyUsed: T.phrase('Recently Used', null, { key: 'lunar.emoji.recentlyUsed' }),
-    frequentlyUsed: T.phrase('Frequently Used', null, { key: 'lunar.emoji.frequentlyUsed' }),
-    smileysEmotion: T.phrase('Smileys & Emotions', null, { key: 'lunar.emoji.smileysEmotion' }),
-    peopleBody: T.phrase('People & Bodies', null, { key: 'lunar.emoji.peopleBody' }),
-    animalsNature: T.phrase('Animals & Nature', null, { key: 'lunar.emoji.animalsNature' }),
-    foodDrink: T.phrase('Food & Drink', null, { key: 'lunar.emoji.foodDrink' }),
-    travelPlaces: T.phrase('Travel & Weather', null, { key: 'lunar.emoji.travelWeather' }),
-    activities: T.phrase('Activities', null, { key: 'lunar.emoji.activities' }),
-    objects: T.phrase('Objects', null, { key: 'lunar.emoji.objects' }),
-    symbols: T.phrase('Symbols', null, { key: 'lunar.emoji.symbols' }),
-    flags: T.phrase('Flags', null, { key: 'lunar.emoji.flags' }),
-    variations: T.phrase('Variations', null, { key: 'lunar.emoji.variations' }),
-    searchResults: T.phrase('Search results', null, { key: 'lunar.emoji.searchResults' }),
-    none: T.phrase('All emojis', null, { key: 'lunar.emoji.allResults' }),
-    skinNone: T.phrase('No skin tone', null, { key: 'lunar.emoji.noSkinTone' }),
-    skinLight: T.phrase('Light skin tone', null, { key: 'lunar.emoji.lightSkinTone' }),
-    skinMediumLight: T.phrase('Medium-light skin tone', null, {
-      key: 'lunar.emoji.mediumLightSkinTone',
-    }),
-    skinMedium: T.phrase('Medium skin tone', null, { key: 'lunar.emoji.mediumSkinTone' }),
-    skinMediumDark: T.phrase('Medium-dark skin tone', null, {
-      key: 'lunar.emoji.mediumDarkSkinTone',
-    }),
-    skinDark: T.phrase('Dark skin tone', null, { key: 'lunar.emoji.darkSkinTone' }),
-    search: T.phrase('Search emojis', null, { key: 'lunar.emoji.search' }),
-    searchA11y: T.phrase('Search for emojis by keyword', null, {
-      key: 'lunar.emoji.searchKeyword',
-    }),
-    noResults: T.phrase('No results, please try again.', null, { key: 'lunar.emoji.noResults' }),
-    clearUsed: T.phrase('Clear frequently used', null, { key: 'lunar.emoji.clearFrequentlyUsed' }),
+    recentlyUsed: T.phrase('lunar.emoji.recentlyUsed', 'Recently Used'),
+    frequentlyUsed: T.phrase('lunar.emoji.frequentlyUsed', 'Frequently Used'),
+    smileysEmotion: T.phrase('lunar.emoji.smileysEmotion', 'Smileys & Emotions'),
+    peopleBody: T.phrase('lunar.emoji.peopleBody', 'People & Bodies'),
+    animalsNature: T.phrase('lunar.emoji.animalsNature', 'Animals & Nature'),
+    foodDrink: T.phrase('lunar.emoji.foodDrink', 'Food & Drink'),
+    travelPlaces: T.phrase('lunar.emoji.travelWeather', 'Travel & Weather'),
+    activities: T.phrase('lunar.emoji.activities', 'Activities'),
+    objects: T.phrase('lunar.emoji.objects', 'Objects'),
+    symbols: T.phrase('lunar.emoji.symbols', 'Symbols'),
+    flags: T.phrase('lunar.emoji.flags', 'Flags'),
+    variations: T.phrase('lunar.emoji.variations', 'Variations'),
+    searchResults: T.phrase('lunar.emoji.searchResults', 'Search results'),
+    none: T.phrase('lunar.emoji.allResults', 'All emojis'),
+    skinNone: T.phrase('lunar.emoji.noSkinTone', 'No skin tone'),
+    skinLight: T.phrase('lunar.emoji.lightSkinTone', 'Light skin tone'),
+    skinMediumLight: T.phrase('lunar.emoji.mediumLightSkinTone', 'Medium-light skin tone'),
+    skinMedium: T.phrase('lunar.emoji.mediumSkinTone', 'Medium skin tone'),
+    skinMediumDark: T.phrase('lunar.emoji.mediumDarkSkinTone', 'Medium-dark skin tone'),
+    skinDark: T.phrase('lunar.emoji.darkSkinTone', 'Dark skin tone'),
+    search: T.phrase('lunar.emoji.search', 'Search emojis'),
+    searchA11y: T.phrase('lunar.emoji.searchKeyword', 'Search for emojis by keyword'),
+    noResults: T.phrase('lunar.emoji.noResults', 'No results, please try again.'),
+    clearUsed: T.phrase('lunar.emoji.clearFrequentlyUsed', 'Clear frequently used'),
   };
 
   return (

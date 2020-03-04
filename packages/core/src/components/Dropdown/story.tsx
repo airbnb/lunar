@@ -2,9 +2,9 @@ import React from 'react';
 import Button from '../Button';
 import Menu, { Row } from '../Menu';
 import Text from '../Text';
-import Dropdown, { Props } from '.';
+import Dropdown, { DropdownProps } from '.';
 
-class DropdownDemo extends React.Component<Props, { open: boolean }> {
+class DropdownDemo extends React.Component<DropdownProps, { open: boolean }> {
   state = {
     open: false,
   };

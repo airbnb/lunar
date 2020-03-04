@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-export type Props = {
+export type PortalProps = {
   /** Content to render in the portal. */
   children: NonNullable<React.ReactNode>;
 };
 
 /** Render within a portal using a declarative component API. */
-export default class Portal extends React.PureComponent<Props> {
+export default class Portal extends React.PureComponent<PortalProps> {
   private node?: HTMLDivElement;
 
   componentWillUnmount() {

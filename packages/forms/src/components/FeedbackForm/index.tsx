@@ -7,13 +7,13 @@ import TextArea from '../Form/TextArea';
 import Select from '../Form/Select';
 import RadioButtonController from '../Form/RadioButtonController';
 
-export type Data = {
+export type FeedbackFormData = {
   category: string;
   feedback: string;
   type: string;
 };
 
-export type Props = {
+export type FeedbackFormProps = {
   /** Mapping of unique keys to localized category/feature names. */
   categories: { [key: string]: string };
   /** The name of the feedback channel. */
@@ -27,18 +27,21 @@ export type Props = {
   /** Callback fired when the continue button is clicked. */
   onContinue?: () => void;
   /** Callback fired when the form has been submitted. */
-  onSubmit: (data: Data, props: Props) => Promise<unknown>;
+  onSubmit: (data: FeedbackFormData, props: FeedbackFormProps) => Promise<unknown>;
   /** The team ID within JIRA. */
   teamID: number;
 };
 
-export type State = {
-  data: Data;
+export type FeedbackFormState = {
+  data: FeedbackFormData;
   loading: boolean;
 };
 
 /** A form for providing feedback or reporting bugs. */
-export default class FeedbackForm extends React.PureComponent<Props, State> {
+export default class FeedbackForm extends React.PureComponent<
+  FeedbackFormProps,
+  FeedbackFormState
+> {
   state = {
     data: {
       category: '',
@@ -50,20 +53,11 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
 
   validate(value: string) {
     if (!value) {
-      throw new Error(
-        T.phrase(
-          'This field is required.',
-          {},
-          {
-            context: 'Generic error when a form field is required',
-            key: 'lunar.form.fieldRequired',
-          },
-        ),
-      );
+      throw new Error(T.phrase('lunar.form.fieldRequired', 'This field is required.'));
     }
   }
 
-  private handleSubmit = (data: Data) => {
+  private handleSubmit = (data: FeedbackFormData) => {
     this.setState({
       loading: true,
     });
@@ -75,9 +69,9 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
     });
   };
 
-  private handleStateUpdate = (state: FormState<Data>) => {
+  private handleStateUpdate = (state: FormState<FeedbackFormData>) => {
     this.setState({
-      data: state.values as Data,
+      data: state.values as FeedbackFormData,
     });
   };
 
@@ -88,13 +82,12 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
     return (
       <Form onSubmit={this.handleSubmit} onStateUpdate={this.handleStateUpdate}>
         {!disableBugReporting && (
-          <RadioButtonController
+          <RadioButtonController<'bug' | 'feedback'>
             name="type"
             label={
               <T
                 k="lunar.form.feedback.typeMessage"
                 phrase="What kind of feedback are you giving?"
-                context="Feedback form"
               />
             }
             defaultValue="bug"
@@ -105,25 +98,13 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
                 <RadioButton
                   noSpacing
                   value="bug"
-                  label={
-                    <T
-                      k="lunar.form.feedback.reportBug"
-                      phrase="Report a bug"
-                      context="Feedback form type option"
-                    />
-                  }
+                  label={<T k="lunar.form.feedback.reportBug" phrase="Report a bug" />}
                 />
 
                 <RadioButton
                   noSpacing
                   value="feedback"
-                  label={
-                    <T
-                      k="lunar.form.feedback.giveFeedback"
-                      phrase="Give product feedback"
-                      context="Feedback form type option"
-                    />
-                  }
+                  label={<T k="lunar.form.feedback.giveFeedback" phrase="Give product feedback" />}
                 />
               </div>
             )}
@@ -132,21 +113,8 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
 
         <Select
           name="category"
-          label={
-            <T
-              k="lunar.form.feedback.featureMessage"
-              phrase="Which feature is this about?"
-              context="Feedback form"
-            />
-          }
-          placeholder={T.phrase(
-            'Select a feature',
-            {},
-            {
-              context: 'Selecting a feature within the feedback form',
-              key: 'lunar.form.feedback.selectFeature',
-            },
-          )}
+          label={<T k="lunar.form.feedback.featureMessage" phrase="Which feature is this about?" />}
+          placeholder={T.phrase('lunar.form.feedback.selectFeature', 'Select a feature')}
           validator={this.validate}
         >
           {Object.entries(categories).map(([key, label]) => (
@@ -158,52 +126,24 @@ export default class FeedbackForm extends React.PureComponent<Props, State> {
 
         <TextArea
           name="feedback"
-          label={
-            <T
-              k="lunar.form.feedback.moreMessage"
-              phrase="Tell us a little bit more"
-              context="Feedback form"
-            />
-          }
+          label={<T k="lunar.form.feedback.moreMessage" phrase="Tell us a little bit more" />}
           placeholder={
             data.type === 'bug'
               ? T.phrase(
+                  'lunar.form.feedback.moreBug',
                   'What happened? Sharing steps to reproduce the problem you experienced can be helpful.',
-                  {},
-                  {
-                    context:
-                      'Default description in the feedback form when submitting a bug report',
-                    key: 'lunar.form.feedback.moreBug',
-                  },
                 )
               : T.phrase(
+                  'lunar.form.feedback.moreFeedback',
                   'Share your experience with us. What went well? What could have gone better?',
-                  {},
-                  {
-                    context:
-                      'Default description in the feedback form when submitting general feedback',
-                    key: 'lunar.form.feedback.moreFeedback',
-                  },
                 )
           }
           validator={this.validate}
         />
 
         <FormActions
-          continueText={
-            <T
-              k="lunar.form.feedback.send"
-              phrase="Send Feedback"
-              context="Feedback form submit button label"
-            />
-          }
-          processingText={
-            <T
-              k="lunar.form.feedback.sending"
-              phrase="Sending…"
-              context="Feedback form submit button label"
-            />
-          }
+          continueText={<T k="lunar.form.feedback.send" phrase="Send Feedback" />}
+          processingText={<T k="lunar.form.feedback.sending" phrase="Sending…" />}
           processing={loading}
           onCancel={onCancel}
           onContinue={onContinue}

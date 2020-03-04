@@ -4,14 +4,14 @@ import Sheet from '../../../src/components/Sheet';
 import Button from '../../../src/components/Button';
 import IconButton from '../../../src/components/IconButton';
 import { ZoomControls, RotateControls } from '../../../src/components/ImageViewer';
-import Lightbox, { Props, State } from '../../../src/components/Lightbox';
+import Lightbox, { LightboxProps, LightboxState } from '../../../src/components/Lightbox';
 import LightboxImage from '../../../src/components/Lightbox/Image';
 import LightboxHeader from '../../../src/components/Lightbox/Header';
 
 describe('<Lightbox />', () => {
   const requestIdleCallbackSpy = jest.fn();
   const oldRIC = window.requestIdleCallback;
-  let wrapper: Enzyme.ShallowWrapper<Props, State>;
+  let wrapper: Enzyme.ShallowWrapper<LightboxProps, LightboxState>;
 
   const props = {
     onClose: () => {},

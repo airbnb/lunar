@@ -3,8 +3,8 @@ import Enzyme, { shallow } from 'enzyme';
 import T from '../../src/components/Translate';
 import Autocomplete, {
   CACHE_DURATION,
-  Props,
-  State,
+  AutocompleteProps,
+  AutocompleteState,
   Item as AutocompleteItem,
 } from '../../src/components/Autocomplete';
 import BaseInput from '../../src/components/private/BaseInput';
@@ -24,7 +24,7 @@ describe('<Autocomplete />', () => {
     onLoadItems: () => Promise.resolve([]),
   };
 
-  let wrapper: Enzyme.ShallowWrapper<Props, State, Autocomplete>;
+  let wrapper: Enzyme.ShallowWrapper<AutocompleteProps, AutocompleteState, Autocomplete>;
   let instance: Autocomplete;
 
   beforeEach(() => {
@@ -791,11 +791,7 @@ describe('<Autocomplete />', () => {
       const row = shallow(instance.renderNoResults());
 
       expect(row.find(Text).prop('children')).toEqual(
-        <T
-          k="lunar.common.noResults"
-          phrase="No results found."
-          context="No results found for autocomplete search"
-        />,
+        <T k="lunar.common.noResults" phrase="No results found." />,
       );
     });
 

@@ -1,7 +1,7 @@
-import { ThemeProvider, ThemeProviderProps, ThemeContext } from 'aesthetic-react';
+import { ThemeProvider, ThemeProviderProps as BaseProps, ThemeContext } from 'aesthetic-react';
 
 export { ThemeContext };
 
-export type Props = ThemeProviderProps;
+export type ThemeProviderProps = BaseProps;
 
 export default ThemeProvider;

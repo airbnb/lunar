@@ -1,11 +1,11 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import ResponsiveImage from '../ResponsiveImage';
 import Loader from '../Loader';
 import ImageViewer from '../ImageViewer';
-import { styleSheetImage as styleSheet } from './styles';
+import { styleSheetImage } from './styles';
 
-export type Props = {
+export type LightboxImageProps = {
   /** Image alt text */
   alt: string;
   /** React node for sidebar. */
@@ -22,9 +22,11 @@ export type Props = {
   showZoomControls?: boolean;
   /** Image src */
   src: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
-export default function Image({
+export default function LightboxImage({
   alt,
   aside,
   hideAside,
@@ -33,8 +35,9 @@ export default function Image({
   showRotateControls,
   scale,
   rotation,
-}: Props) {
-  const [styles, cx] = useStyles(styleSheet);
+  styleSheet,
+}: LightboxImageProps) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetImage);
 
   return (
     <div className={cx(styles.wrapper)}>

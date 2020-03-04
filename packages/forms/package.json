@@ -1,6 +1,7 @@
 {
   "name": "@airbnb/lunar-forms",
   "version": "2.8.1",
+  "release": "1583350587083",
   "description": "Form functionality for Lunar.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -17,12 +18,12 @@
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
   },
   "peerDependencies": {
-    "@airbnb/lunar": "^2.0.0",
+    "@airbnb/lunar": "^3.0.0",
     "react": "^16.8.0"
   },
   "devDependencies": {
     "@airbnb/lunar-test-utils": "^2.4.2",
-    "react": "^16.12.0"
+    "react": "^16.13.0"
   },
   "dependencies": {
     "@types/airbnb-prop-types": "*",
@@ -31,6 +32,6 @@
     "final-form": "^4.18.7",
     "lodash": "^4.17.15",
     "shallowequal": "^1.1.0",
-    "uuid": "^3.4.0"
+    "uuid": "^7.0.2"
   }
 }

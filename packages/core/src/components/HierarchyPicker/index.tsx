@@ -7,7 +7,7 @@ import T from '../Translate';
 import Text from '../Text';
 import Picker from './Picker';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
-import { styleSheet } from './styles';
+import { styleSheetPicker } from './styles';
 
 import {
   ItemPickedHandler,
@@ -20,7 +20,7 @@ import {
 
 import defaultFormatter from './defaultFormatter';
 
-export type Props = {
+export type HierarchyPickerProps = {
   /** Content to display in the select button. */
   children?: React.ReactNode;
   /** An array of names define the path to the currently selected item. */
@@ -59,11 +59,14 @@ export type Props = {
   verticallyAlign?: boolean;
 };
 
-export type State = {
+export type HierarchyPickerState = {
   open: boolean;
 };
 
-export class HierarchyPicker extends React.Component<Props & WithStylesProps, State> {
+export class HierarchyPicker extends React.Component<
+  HierarchyPickerProps & WithStylesProps,
+  HierarchyPickerState
+> {
   static defaultProps = {
     chosen: [],
     disabled: false,
@@ -197,28 +200,8 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
           <Picker
             {...passThruProps}
             formatter={this.boundFormatter}
-            searchPlaceholder={
-              searchPlaceholder ||
-              T.phrase(
-                'Search',
-                {},
-                {
-                  context: 'Search for a topic within the hierarchy picker',
-                  key: 'lunar.common.search',
-                },
-              )
-            }
-            noResultsLabel={
-              noResultsLabel ||
-              T.phrase(
-                'No results',
-                {},
-                {
-                  context: 'Label to display when no results are found for hierarchy picker search',
-                  key: 'lunar.picker.noResults',
-                },
-              )
-            }
+            searchPlaceholder={searchPlaceholder || T.phrase('lunar.common.search', 'Search')}
+            noResultsLabel={noResultsLabel || T.phrase('lunar.picker.noResults', 'No results')}
             onClose={this.handleClose}
           />
         </Overlay>
@@ -227,4 +210,4 @@ export class HierarchyPicker extends React.Component<Props & WithStylesProps, St
   }
 }
 
-export default withStyles(styleSheet)(HierarchyPicker);
+export default withStyles(styleSheetPicker)(HierarchyPicker);

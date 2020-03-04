@@ -10,9 +10,11 @@ export default {
   },
 };
 
+type Value = 'red' | 'green' | 'blue';
+
 export function aListOfSingleSelectToggleButtons() {
   return (
-    <ToggleButtonController
+    <ToggleButtonController<Value>
       value="red"
       name="button-group-controller"
       label="Favorite color?"
@@ -41,7 +43,7 @@ aListOfSingleSelectToggleButtons.story = {
 
 export function handlesInvalidState() {
   return (
-    <ToggleButtonController
+    <ToggleButtonController<Value>
       invalid
       value="red"
       name="button-group-controller"
@@ -71,7 +73,7 @@ handlesInvalidState.story = {
 
 export function handlesDisabledState() {
   return (
-    <ToggleButtonController
+    <ToggleButtonController<Value>
       disabled
       value="red"
       name="button-group-controller"
@@ -99,10 +101,10 @@ handlesDisabledState.story = {
   name: 'Handles disabled state.',
 };
 
-export function withCompact() {
+export function asSmall() {
   return (
-    <ToggleButtonController
-      compact
+    <ToggleButtonController<Value>
+      small
       value="red"
       name="button-group-controller"
       label="Favorite color?"
@@ -125,13 +127,43 @@ export function withCompact() {
   );
 }
 
-withCompact.story = {
-  name: 'With `compact`',
+asSmall.story = {
+  name: 'As small.',
+};
+
+export function asLarge() {
+  return (
+    <ToggleButtonController<Value>
+      large
+      value="red"
+      name="button-group-controller"
+      label="Favorite color?"
+      onChange={action('onChange')}
+    >
+      {ControlledButton => (
+        <ButtonGroup>
+          <ControlledButton key="red" value="red">
+            Red
+          </ControlledButton>
+          <ControlledButton key="blue" value="blue">
+            Blue
+          </ControlledButton>
+          <ControlledButton key="green" value="green">
+            Green
+          </ControlledButton>
+        </ButtonGroup>
+      )}
+    </ToggleButtonController>
+  );
+}
+
+asLarge.story = {
+  name: 'As large.',
 };
 
 export function withInline() {
   return (
-    <ToggleButtonController
+    <ToggleButtonController<Value>
       inline
       value="red"
       name="button-group-controller"

@@ -12,7 +12,10 @@ import renderElementOrFunction, {
   RenderableProp,
 } from '@airbnb/lunar/lib/utils/renderElementOrFunction';
 
-export type Props<Data, Vars> = Omit<QueryComponentOptions<Data, Vars>, 'children' | 'client'> & {
+export type QueryProps<Data, Vars> = Omit<
+  QueryComponentOptions<Data, Vars>,
+  'children' | 'client'
+> & {
   /** Child function to render when the data has been received. */
   children: (data: Data | null, result: QueryResult<Data, Vars>) => React.ReactNode;
   /**
@@ -38,7 +41,7 @@ export type Props<Data, Vars> = Omit<QueryComponentOptions<Data, Vars>, 'childre
  * Based on Apollo's [Query](https://www.apollographql.com/docs/react/essentials/queries.html#props) component.
  */
 export default class Query<Data = {}, Vars = OperationVariables> extends React.Component<
-  Props<Data, Vars>
+  QueryProps<Data, Vars>
 > {
   static defaultProps = {
     ignoreGraphQLErrors: false,

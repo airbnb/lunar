@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { mountWithStyles, shallowWithStyles } from '@airbnb/lunar-test-utils';
-import Modal, { Props } from '../../src/components/Modal';
+import Modal, { ModalProps } from '../../src/components/Modal';
 import ModalImageLayout from '../../src/components/Modal/private/ImageLayout';
 import ModalInner from '../../src/components/Modal/private/Inner';
 import ModalInnerContent from '../../src/components/Modal/private/InnerContent';
@@ -16,7 +16,7 @@ type EventMap = { [key: string]: ((event?: Event) => void) | null };
 
 describe('<Modal />', () => {
   function setup(override = {}, isShallow = true) {
-    const props: Props = {
+    const props: ModalProps = {
       children: 'Modal content',
       onClose() {},
       title: 'Modal test',

@@ -1,22 +1,22 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import React from 'react';
-import withBoundary from '../../composers/withBoundary';
-import withStyles, { WithStylesProps } from '../../composers/withStyles';
+import React, { useState, useEffect, useCallback } from 'react';
+import withBoundary, { WithBoundaryWrapperProps } from '../../composers/withBoundary';
 import GradientScroller from '../GradientScroller';
-import Tab, { Props as TabProps } from './Tab';
-import { styleSheet } from './styles';
+import Tab, { TabProps } from './Tab';
+import { styleSheetTabs } from './styles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export { Tab };
 
-export type Props = {
+export type TabsProps<T extends string> = {
   /** Hide bottom border of Tabs. */
   borderless?: boolean;
   /** Tabs and their content. */
   children: NonNullable<React.ReactNode>;
   /** Key of tab selected by default. */
-  defaultKey?: string;
+  defaultKey?: T;
   /** Callback fired when a tab changes. */
-  onChange?: (key: string) => void;
+  onChange?: (key: T) => void;
   /** Persist the selected tab through the defined URL hash. */
   persistWithHash?: string;
   /** Secondary tab style, implies borderless. */
@@ -27,84 +27,55 @@ export type Props = {
   stretched?: boolean;
   /** A unique name for tracking purposes. */
   trackingName?: string;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
-export type State = {
-  selectedKey: string;
-};
+function getHashQuery(): URLSearchParams {
+  const { hash } = location;
+
+  return new URLSearchParams(hash.length > 1 ? hash.slice(1) : '');
+}
 
 /** A controller for multiple tabs. */
-export class Tabs extends React.Component<Props & WithStylesProps, State> {
-  static defaultProps = {
-    borderless: false,
-    defaultKey: '',
-    onChange() {},
-    persistWithHash: '',
-    scrollable: false,
-    secondary: false,
-    stretched: false,
-  };
+function Tabs<T extends string = string>({
+  borderless,
+  children,
+  secondary,
+  scrollable,
+  stretched,
+  persistWithHash,
+  defaultKey,
+  onChange,
+  styleSheet,
+}: TabsProps<T>) {
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetTabs);
+  const [selectedKey, setSelectedKey] = useState(
+    () => (persistWithHash && getHashQuery().get(persistWithHash)) || defaultKey || '',
+  );
+  const noBorder = borderless || secondary;
 
-  state = {
-    selectedKey: this.getDefaultSelectedKey(),
-  };
+  const handlePopstate = useCallback(() => {
+    if (!persistWithHash) {
+      return;
+    }
 
-  handlePopstate = () => {
-    const { persistWithHash } = this.props;
+    const query = getHashQuery();
+
+    if (query.has(persistWithHash)) {
+      setSelectedKey(query.get(persistWithHash)!);
+    }
+  }, [persistWithHash]);
+
+  const handleClick = (key: T) => {
+    setSelectedKey(key);
+
+    if (onChange) {
+      onChange(key);
+    }
 
     if (persistWithHash) {
-      const query = this.getHashQuery();
-      if (query.has(persistWithHash)) {
-        this.setState({
-          selectedKey: query.get(persistWithHash)!,
-        });
-      }
-    }
-  };
-
-  componentDidMount() {
-    if (this.props.persistWithHash) {
-      window.addEventListener('popstate', this.handlePopstate);
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.props.persistWithHash) {
-      window.removeEventListener('popstate', this.handlePopstate);
-    }
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    if (this.props.defaultKey !== prevProps.defaultKey) {
-      this.setState({
-        selectedKey: this.props.defaultKey!,
-      });
-    }
-  }
-
-  getDefaultSelectedKey(): string {
-    const { defaultKey, persistWithHash } = this.props;
-
-    return (persistWithHash && this.getHashQuery().get(persistWithHash)) || defaultKey || '';
-  }
-
-  getHashQuery(): URLSearchParams {
-    const { hash } = location;
-
-    return new URLSearchParams(hash.length > 1 ? hash.slice(1) : '');
-  }
-
-  private handleClick = (key: string) => {
-    const { persistWithHash } = this.props;
-
-    this.setState({
-      selectedKey: key,
-    });
-
-    this.props.onChange!(key);
-
-    if (persistWithHash) {
-      const query = this.getHashQuery();
+      const query = getHashQuery();
 
       query.set(persistWithHash, key);
 
@@ -112,68 +83,71 @@ export class Tabs extends React.Component<Props & WithStylesProps, State> {
     }
   };
 
-  render() {
-    const { cx, borderless, children, secondary, scrollable, stretched, styles } = this.props;
-    const { selectedKey } = this.state;
-    const noBorder = borderless || secondary;
+  useEffect(() => {
+    window.addEventListener('popstate', handlePopstate);
 
-    // Generate content
-    let content = null;
-    const nav = (
-      <nav
-        role="tablist"
-        className={cx(
-          styles.nav,
-          noBorder && styles.nav_noBorder,
-          secondary && styles.nav_secondary,
-        )}
-      >
-        {React.Children.map(children, (child, i) => {
-          if (!child) {
-            return null;
-          }
+    return () => {
+      window.removeEventListener('popstate', handlePopstate);
+    };
+  }, [handlePopstate]);
 
-          const { key, props } = child as React.ReactElement;
-          const selected = key === selectedKey || (!selectedKey && i === 0);
+  // Generate content
+  let content = null;
+  const nav = (
+    <nav
+      role="tablist"
+      className={cx(styles.nav, noBorder && styles.nav_noBorder, secondary && styles.nav_secondary)}
+    >
+      {React.Children.map(children, (child, i) => {
+        if (!child) {
+          return null;
+        }
 
-          if (__DEV__ && !key) {
-            throw new Error('Tab components require a unique `key`.');
-          }
+        const { key, props } = child as React.ReactElement;
+        const selected = key === selectedKey || (!selectedKey && i === 0);
 
-          if (selected && props && props.children) {
-            content = props.children;
-          }
+        if (__DEV__ && !key) {
+          throw new Error('Tab components require a unique `key`.');
+        }
 
-          return React.cloneElement(child as React.ReactElement<TabProps>, {
-            borderless,
-            keyName: String(key),
-            secondary,
-            selected,
-            stretched,
-            onClick: this.handleClick,
-          });
-        })}
-      </nav>
-    );
+        if (selected && props && props.children) {
+          content = props.children;
+        }
 
-    return (
-      <div>
-        {scrollable ? (
-          <GradientScroller hideScrollbar showArrows>
-            {nav}
-          </GradientScroller>
-        ) : (
-          nav
-        )}
+        return React.cloneElement(child as React.ReactElement<TabProps<T>>, {
+          borderless,
+          keyName: String(key) as T,
+          secondary,
+          selected,
+          stretched,
+          onClick: handleClick,
+        });
+      })}
+    </nav>
+  );
 
-        {content && (
-          <section role="tabpanel" className={cx(styles.panel)}>
-            {content}
-          </section>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {scrollable ? (
+        <GradientScroller hideScrollbar showArrows>
+          {nav}
+        </GradientScroller>
+      ) : (
+        nav
+      )}
+
+      {content && (
+        <section role="tabpanel" className={cx(styles.panel)}>
+          {content}
+        </section>
+      )}
+    </div>
+  );
 }
 
-export default withBoundary('Tabs')(withStyles(styleSheet)(Tabs));
+// Required to pass generics around HOCs
+const BoundaryTabs = withBoundary('Tabs')(Tabs) as <T extends string = string>(
+  props: TabsProps<T> & WithBoundaryWrapperProps,
+) => React.ReactElement<TabsProps<T>>;
+
+export default BoundaryTabs;

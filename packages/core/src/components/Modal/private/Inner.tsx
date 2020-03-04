@@ -3,7 +3,7 @@ import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import FocusTrap from '../../FocusTrap';
 import focusFirstFocusableChild from '../../../utils/focus/focusFirstFocusableChild';
 import ModalImageLayout, { ModalImageConfig } from './ImageLayout';
-import ModalInnerContent, { Props as ModalInnerContentProps } from './InnerContent';
+import ModalInnerContent, { ModalInnerContentProps } from './InnerContent';
 import {
   styleSheetInner as styleSheet,
   MODAL_MAX_WIDTH_SMALL,
@@ -13,7 +13,7 @@ import {
 
 export { MODAL_MAX_WIDTH_SMALL, MODAL_MAX_WIDTH_MEDIUM, MODAL_MAX_WIDTH_LARGE };
 
-export type Props = ModalInnerContentProps & {
+export type ModalInnerProps = ModalInnerContentProps & {
   /** Image configuration to be used as the right pane in a dual pane layout. If provided, will force the modal to a `large` layout. */
   image?: ModalImageConfig;
   /** Fluid width, no max width. */
@@ -23,7 +23,7 @@ export type Props = ModalInnerContentProps & {
 };
 
 /** A Dialog component with a backdrop and a standardized layout. */
-export class ModalInner extends React.Component<Props & WithStylesProps> {
+export class ModalInner extends React.Component<ModalInnerProps & WithStylesProps> {
   dialogRef = React.createRef<HTMLDivElement>();
 
   lastActiveElement: HTMLElement | null = null;
@@ -50,10 +50,7 @@ export class ModalInner extends React.Component<Props & WithStylesProps> {
   private handleClickOutside = (event: React.MouseEvent | MouseEvent) => {
     const { current } = this.dialogRef;
 
-    if (
-      (current && current.contains(event.target as Element)) ||
-      this.props.persistOnOutsideClick
-    ) {
+    if (current?.contains(event.target as Element) || this.props.persistOnOutsideClick) {
       return;
     }
 

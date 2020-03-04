@@ -3,13 +3,13 @@ import useStyles from '../../../hooks/useStyles';
 import { FuseMatch } from '../types';
 import { styleSheetHighlight as styleSheet } from './styles';
 
-export type Props = {
+export type HighlightProps = {
   fallback?: string;
   match?: FuseMatch | null;
   word?: string;
 };
 
-export default function Highlight({ fallback, match, word: searchWord }: Props) {
+export default function Highlight({ fallback, match, word: searchWord }: HighlightProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   if (!match) {

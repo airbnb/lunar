@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import T from '../Translate';
 import Text from '../Text';
 import StatusText from '../StatusText';
@@ -7,11 +7,9 @@ import FormErrorMessage from '../FormErrorMessage';
 import partitionFieldProps from './partitionFieldProps';
 import Prefix from './Prefix';
 import Suffix from './Suffix';
-import { styleSheet } from './styles';
+import { styleSheetFormField } from './styles';
 
-export type Props = {
-  /** @deprecated Decrease label font size and spacing. */
-  compact?: boolean;
+export type FormFieldProps = {
   /** @ignore Decrease bottom margin of the field. (Internal use only) */
   compactSpacing?: boolean;
   /** Mark the field as disabled. */
@@ -44,9 +42,13 @@ export type Props = {
   small?: boolean;
   /** Content to display after the input field. */
   suffix?: React.ReactNode;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
+  /** @ignore Top align. (Internal use only) */
+  topAlign?: boolean;
 };
 
-export type PrivateProps = Props & {
+export type PrivateProps = FormFieldProps & {
   /** Input field to wrap. */
   children: NonNullable<React.ReactNode>;
   /** Unique ID of the field. */
@@ -59,8 +61,10 @@ export type PrivateProps = Props & {
   renderLargeLabel?: boolean;
   /** @ignore Stretches the label to 100%. */
   stretchLabel?: boolean;
-  /** @ignore Top align content. */
-  topAlign?: boolean;
+  /** @ignore Middle align content. */
+  middleAlign?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 export { partitionFieldProps, Prefix, Suffix };
@@ -68,7 +72,6 @@ export { partitionFieldProps, Prefix, Suffix };
 /** A abstract form field wrapper that handles labels, affixes, errors, states, and more. */
 export default function FormField({
   children,
-  compact,
   compactSpacing,
   disabled,
   errorMessage,
@@ -89,9 +92,11 @@ export default function FormField({
   prefix,
   small,
   suffix,
+  middleAlign,
+  styleSheet,
   topAlign,
 }: PrivateProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetFormField);
 
   const content = (
     <div
@@ -115,7 +120,7 @@ export default function FormField({
     <section
       className={cx(
         styles.field,
-        (compact || compactSpacing || small) && !noSpacing && styles.field_compactSpacing,
+        (compactSpacing || small) && !noSpacing && styles.field_compactSpacing,
         noSpacing && styles.field_noSpacing,
       )}
     >
@@ -134,7 +139,7 @@ export default function FormField({
           <StatusText
             danger={invalid}
             muted={disabled}
-            small={compact || small}
+            small={small}
             large={large}
             bold={!renderLargeLabel}
           >
@@ -143,11 +148,7 @@ export default function FormField({
             {optional && !hideOptionalLabel && (
               <span className={cx(styles.optional)}>
                 <Text inline small muted>
-                  <T
-                    k="lunar.form.optional"
-                    phrase="(optional)"
-                    context="A form field is marked as optional"
-                  />
+                  <T k="lunar.form.optional" phrase="(optional)" />
                 </Text>
               </span>
             )}

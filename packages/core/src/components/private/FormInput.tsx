@@ -1,6 +1,6 @@
 import React from 'react';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
 export type IgnoreAttributes =
@@ -26,9 +26,7 @@ export type IgnoreAttributes =
   | 'results'
   | 'security';
 
-export type Props<T = unknown> = {
-  /** @deprecated decrease font size and padding to small. */
-  compact?: boolean;
+export type FormInputProps<T extends string = string, R = unknown> = {
   /** Mark the field as important. */
   important?: boolean;
   /** Mark the field as invalid. */
@@ -40,26 +38,34 @@ export type Props<T = unknown> = {
   /** Mark the field as optional. */
   optional?: boolean;
   /** Reference to access the underlying input DOM element. */
-  propagateRef?: React.Ref<T>;
+  propagateRef?: React.Ref<R>;
   /** Decrease font size and padding to small. */
   small?: boolean;
   /** Current value. */
-  value?: string;
+  value?: T;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
-export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoreAttributes> &
-  Props<HTMLInputElement>;
+export type InputProps<T extends string = string> = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  IgnoreAttributes
+> &
+  FormInputProps<T, HTMLInputElement>;
 
-export type SelectProps = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, IgnoreAttributes> &
-  Props<HTMLSelectElement>;
+export type SelectProps<T extends string = string> = Omit<
+  React.SelectHTMLAttributes<HTMLSelectElement>,
+  IgnoreAttributes
+> &
+  FormInputProps<T, HTMLSelectElement>;
 
-export type TextAreaProps = Omit<
+export type TextAreaProps<T extends string = string> = Omit<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
   IgnoreAttributes
 > &
-  Props<HTMLTextAreaElement>;
+  FormInputProps<T, HTMLTextAreaElement>;
 
-export type PrivateProps = Props & {
+export type PrivateProps<T extends string> = FormInputProps<T> & {
   // Support everything for convenience
   [key: string]: unknown;
   /** @ignore */
@@ -70,11 +76,12 @@ export type PrivateProps = Props & {
   hasSuffix?: boolean;
   /** @ignore */
   tagName: 'input' | 'select' | 'textarea';
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
-function FormInput({
+function FormInput<T extends string = string>({
   children,
-  compact,
   disabled,
   hasPrefix,
   hasSuffix,
@@ -88,16 +95,18 @@ function FormInput({
   propagateRef,
   small,
   tagName: Tag,
+  styleSheet,
   ...restProps
-}: PrivateProps) {
-  const [styles, cx] = useStyles(inputStyleSheet);
+}: PrivateProps<T>) {
+  const [styles, cx] = useStyles(styleSheet ?? inputStyleSheet);
   const isSelect = Tag === 'select';
 
   const props: { [key: string]: unknown } = {
     ...restProps,
     className: cx(
       styles.input,
-      (compact || small) && styles.input_compact,
+      small && styles.input_small,
+      large && styles.input_large,
       disabled && styles.input_disabled,
       hasPrefix && styles.input_hasPrefix,
       hasSuffix && styles.input_hasSuffix,
@@ -105,20 +114,13 @@ function FormInput({
       important && styles.input_important,
       invalid && styles.input_invalid,
       isSelect && styles.select,
-      isSelect && compact && styles.select_compact,
-      large && styles.input_large,
+      isSelect && small && styles.select_small,
+      isSelect && large && styles.select_large,
     ),
     disabled,
     id,
     required: !optional,
   };
-
-  if (__DEV__) {
-    if (compact) {
-      // eslint-disable-next-line no-console
-      console.log('Input: `compact` prop is deprecated, please use `small` instead.');
-    }
-  }
 
   // Only populate when invalid, otherwise it will break some CSS selectors
   if (invalid) {
@@ -140,10 +142,9 @@ function FormInput({
   return <Tag {...props} ref={propagateRef} data-gramm="false" data-enable-grammarly="false" />;
 }
 
-const sizingProp = mutuallyExclusiveTrueProps('small', 'compact', 'large');
+const sizingProp = mutuallyExclusiveTrueProps('small', 'large');
 
 FormInput.propTypes = {
-  compact: sizingProp,
   large: sizingProp,
   small: sizingProp,
 };

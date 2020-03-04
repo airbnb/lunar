@@ -8,16 +8,9 @@ class InnerCatRenderer extends React.Component {
   };
 
   renderCounter() {
-    const { row, onEdit } = this.props;
+    const { row } = this.props;
 
-    return (
-      <IncrementableBadge
-        value={row.rowData.data.cats}
-        row={row}
-        colKey="cats"
-        onChange={onEdit(row, 'cats')}
-      />
-    );
+    return <IncrementableBadge value={row.rowData.data.cats} row={row} colKey="cats" />;
   }
 
   renderCats() {
@@ -28,7 +21,7 @@ class InnerCatRenderer extends React.Component {
   }
 
   renderContent() {
-    return this.state.hovered || this.props.editMode ? this.renderCounter() : this.renderCats();
+    return this.state.hovered ? this.renderCounter() : this.renderCats();
   }
 
   render() {
@@ -47,8 +40,8 @@ class InnerCatRenderer extends React.Component {
   }
 }
 
-export default function CatRenderer({ row, keyName, editMode, onEdit }) {
-  return <InnerCatRenderer row={row} key={keyName} editMode={editMode} onEdit={onEdit} />;
+export default function CatRenderer({ row, keyName }) {
+  return <InnerCatRenderer row={row} key={keyName} />;
 }
 
 export class IncrementableBadge extends React.Component {
