@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 - 2020-03-04
+
+#### 🎉 Release
+
+- Update peers to v3. ([1732307](https://github.com/airbnb/lunar/commit/1732307))
+
+#### 💥 Breaking
+
+- Remove i18n context and make key required. (#309) ([f78d90e](https://github.com/airbnb/lunar/commit/f78d90e)), closes [#309](https://github.com/airbnb/lunar/issues/309)
+- Replace form fields `compact` with `small` and `large`. (#311) ([841258d](https://github.com/airbnb/lunar/commit/841258d)), closes [#311](https://github.com/airbnb/lunar/issues/311)
+- Use long canonical names for props and state types. (#310) ([d326e3e](https://github.com/airbnb/lunar/commit/d326e3e)), closes [#310](https://github.com/airbnb/lunar/issues/310)
+
+#### 🚀 Updates
+
+- Migrate some `withStyles` usage to `useStyles`. Add a `styleSheet` prop to all hook components. (#312) ([19f82f4](https://github.com/airbnb/lunar/commit/19f82f4)), closes [#312](https://github.com/airbnb/lunar/issues/312)
+
+#### 📦 Dependencies
+
+- Update to latest. ([db08613](https://github.com/airbnb/lunar/commit/db08613))
+- **[react]** Update to v16.13. ([dc7902a](https://github.com/airbnb/lunar/commit/dc7902a))
+
+#### 🛠 Internals
+
+- Fix build based on rebase. ([b8e18fc](https://github.com/airbnb/lunar/commit/b8e18fc))
+
+**Note:** Version bump only for package @airbnb/lunar-composer
+
+
+
+
+
 ### 1.3.6 - 2020-03-03
 
 **Note:** Version bump only for package @airbnb/lunar-composer

@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 - 2020-03-04
+
+#### 🎉 Release
+
+- Update peers to v3. ([1732307](https://github.com/airbnb/lunar/commit/1732307))
+
+#### 💥 Breaking
+
+- **[CardContent]** Consolidate before/after props. Remove afterImageSrc, beforeImageSrc, small, and large props. Generalize other props. (#318) ([988ba64](https://github.com/airbnb/lunar/commit/988ba64)), closes [#318](https://github.com/airbnb/lunar/issues/318)
+- **[CheckBox, FormField, RadioButton]** Remove topAlign and default to top alignment. Add middleAlign option. (#320) ([16e7245](https://github.com/airbnb/lunar/commit/16e7245)), closes [#320](https://github.com/airbnb/lunar/issues/320)
+- **[DataTable]** Remove edit mode, header buttons, and selectable state. (#326) ([1227364](https://github.com/airbnb/lunar/commit/1227364)), closes [#326](https://github.com/airbnb/lunar/issues/326) [#306](https://github.com/airbnb/lunar/issues/306) [#313](https://github.com/airbnb/lunar/issues/313) [#314](https://github.com/airbnb/lunar/issues/314) [#316](https://github.com/airbnb/lunar/issues/316) [#322](https://github.com/airbnb/lunar/issues/322)
+- Add generics to components that may use it. (#317) ([32f7afe](https://github.com/airbnb/lunar/commit/32f7afe)), closes [#317](https://github.com/airbnb/lunar/issues/317)
+- Remove i18n context and make key required. (#309) ([f78d90e](https://github.com/airbnb/lunar/commit/f78d90e)), closes [#309](https://github.com/airbnb/lunar/issues/309)
+- Replace form fields `compact` with `small` and `large`. (#311) ([841258d](https://github.com/airbnb/lunar/commit/841258d)), closes [#311](https://github.com/airbnb/lunar/issues/311)
+- Use long canonical names for props and state types. (#310) ([d326e3e](https://github.com/airbnb/lunar/commit/d326e3e)), closes [#310](https://github.com/airbnb/lunar/issues/310)
+
+#### 🚀 Updates
+
+- Add `Term` and `TermList` components. (#297) ([5f8cbf5](https://github.com/airbnb/lunar/commit/5f8cbf5)), closes [#297](https://github.com/airbnb/lunar/issues/297)
+- **[Link]** Add `textProps` prop. (#324) ([d375de1](https://github.com/airbnb/lunar/commit/d375de1)), closes [#324](https://github.com/airbnb/lunar/issues/324)
+- **[Tooltip]** Remove notched box and invert styles. (#323) ([dd29828](https://github.com/airbnb/lunar/commit/dd29828)), closes [#323](https://github.com/airbnb/lunar/issues/323)
+- Migrate some `withStyles` usage to `useStyles`. Add a `styleSheet` prop to all hook components. (#312) ([19f82f4](https://github.com/airbnb/lunar/commit/19f82f4)), closes [#312](https://github.com/airbnb/lunar/issues/312)
+- Migrate some class components to function components. (#319) ([25a969a](https://github.com/airbnb/lunar/commit/25a969a)), closes [#319](https://github.com/airbnb/lunar/issues/319)
+
+#### 🎨 Styles
+
+- Update shadows to new style. (#329) ([a619e0a](https://github.com/airbnb/lunar/commit/a619e0a)), closes [#329](https://github.com/airbnb/lunar/issues/329)
+
+#### 📦 Dependencies
+
+- Update to latest. ([db08613](https://github.com/airbnb/lunar/commit/db08613))
+- **[nimbus]** Update to v3. ([177f8d7](https://github.com/airbnb/lunar/commit/177f8d7))
+- **[react]** Update to v16.13. ([dc7902a](https://github.com/airbnb/lunar/commit/dc7902a))
+
+#### 🛠 Internals
+
+- Fix build based on rebase. ([b8e18fc](https://github.com/airbnb/lunar/commit/b8e18fc))
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 2.64.2 - 2020-03-03
 
 **Note:** Version bump only for package @airbnb/lunar

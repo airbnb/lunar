@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 - 2020-03-04
+
+#### 🎉 Release
+
+- Update peers to v3. ([1732307](https://github.com/airbnb/lunar/commit/1732307))
+
+#### 🚀 Updates
+
+- Migrate some `withStyles` usage to `useStyles`. Add a `styleSheet` prop to all hook components. (#312) ([19f82f4](https://github.com/airbnb/lunar/commit/19f82f4)), closes [#312](https://github.com/airbnb/lunar/issues/312)
+
+#### 📦 Dependencies
+
+- Update to latest. ([db08613](https://github.com/airbnb/lunar/commit/db08613))
+- **[react]** Update to v16.13. ([dc7902a](https://github.com/airbnb/lunar/commit/dc7902a))
+
+**Note:** Version bump only for package @airbnb/lunar-test-utils
+
+
+
+
+
 ### 2.4.2 - 2020-02-07
 
 #### 📦 Dependencies

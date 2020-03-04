@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 - 2020-03-04
+
+#### 🎉 Release
+
+- Update peers to v3. ([1732307](https://github.com/airbnb/lunar/commit/1732307))
+
+#### 🚀 Updates
+
+- Migrate some class components to function components. (#319) ([25a969a](https://github.com/airbnb/lunar/commit/25a969a)), closes [#319](https://github.com/airbnb/lunar/issues/319)
+
+#### 📦 Dependencies
+
+- **[nimbus]** Update to v3. ([177f8d7](https://github.com/airbnb/lunar/commit/177f8d7))
+- **[react]** Update to v16.13. ([dc7902a](https://github.com/airbnb/lunar/commit/dc7902a))
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ### 2.8.1 - 2020-02-07
 
 **Note:** Version bump only for package @airbnb/lunar-icons
