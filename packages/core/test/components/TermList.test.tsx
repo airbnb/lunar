@@ -1,11 +1,11 @@
 import React from 'react';
-import { shallowWithStyles } from '@airbnb/lunar-test-utils';
+import { mountUseStyles } from '@airbnb/lunar-test-utils';
 import TermList, { Term } from '../../src/components/TermList';
 import Link from '../../src/components/Link';
 
 describe('<TermList />', () => {
   it('renders the expected number of Term items', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <TermList>
         <Term label="label">Data</Term>
         <Term label="label">Data</Term>
@@ -17,7 +17,7 @@ describe('<TermList />', () => {
   });
 
   it('renders the expected number of Term items horizontally', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <TermList horizontal>
         <Term label="label">Data</Term>
         <Term label="label">Data</Term>
@@ -29,7 +29,7 @@ describe('<TermList />', () => {
   });
 
   it('renders the expected number of Terms with different props', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <TermList horizontal>
         <Term label="label">Data</Term>
         <Term uppercased label="label">
@@ -45,7 +45,7 @@ describe('<TermList />', () => {
   });
 
   it('renders the expected number of detail Links', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountUseStyles(
       <Term
         label="Clusters"
         after={

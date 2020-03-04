@@ -1,6 +1,6 @@
 import React from 'react';
 import IconRecord from '@airbnb/lunar-icons/lib/interface/IconRecord';
-import useStyles from '../../hooks/useStyles';
+import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import { styleSheetItem } from './styles';
 import Text from '../Text';
 import useTheme from '../../hooks/useTheme';
@@ -9,7 +9,7 @@ import { DateTimeType } from '../../types';
 import T from '../Translate';
 import { Item as ListItem } from '../List';
 
-export type ItemProps = {
+export type TimelineItemProps = {
   /** Datetime occurence of the item. Not used for secondary items. */
   at?: DateTimeType;
   /** Whether an item is the oldest (chronologically) in the collection of items. */
@@ -18,12 +18,20 @@ export type ItemProps = {
   secondary?: boolean;
   /** Content to render for an item. */
   children: NonNullable<React.ReactNode>;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
 };
 
 /** Represents a single item in a collection of chronologically items. */
-export default function Item({ at, oldest = false, secondary = false, children }: ItemProps) {
+export default function TimelineItem({
+  at,
+  oldest = false,
+  secondary = false,
+  children,
+  styleSheet,
+}: TimelineItemProps) {
   const theme = useTheme();
-  const [styles, cx] = useStyles(styleSheetItem);
+  const [styles, cx] = useStyles(styleSheet ?? styleSheetItem);
 
   return (
     <ListItem>

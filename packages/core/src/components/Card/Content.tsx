@@ -61,14 +61,19 @@ export default function CardContent({
   styleSheet,
 }: CardContentProps) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetContent);
-
   const ContainerTag = onClick ? 'button' : 'div';
   const containerProps = onClick ? { type: 'button', onClick } : {};
   const spacing = compact ? 1.5 : 3;
   const horizontalSpacing = compact ? 0 : 1;
 
   let afterContent = after ? (
-    <CardSide type="after" compact={compact} middleAlign={middleAlign} noPadding={noPaddingAfter}>
+    <CardSide
+      type="after"
+      compact={compact}
+      middleAlign={middleAlign}
+      noPadding={noPaddingAfter}
+      styleSheet={styleSheet}
+    >
       {after}
     </CardSide>
   ) : null;
@@ -82,7 +87,13 @@ export default function CardContent({
   }
 
   let beforeContent = before ? (
-    <CardSide type="before" compact={compact} middleAlign={middleAlign} noPadding={noPaddingBefore}>
+    <CardSide
+      type="before"
+      compact={compact}
+      middleAlign={middleAlign}
+      noPadding={noPaddingBefore}
+      styleSheet={styleSheet}
+    >
       {before}
     </CardSide>
   ) : null;

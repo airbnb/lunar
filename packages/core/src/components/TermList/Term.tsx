@@ -1,15 +1,9 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-
 import Row from '../Row';
 import Spacing from '../Spacing';
 import Text, { TextProps } from '../Text';
-
-export const styleSheet: StyleSheet = () => ({
-  dd: {
-    marginInlineStart: 0,
-  },
-});
+import { termStyleSheet } from './styles';
 
 export type TermProps = TextProps & {
   /** Detail links to go after Term label. */
@@ -32,9 +26,10 @@ export default function Term({
   endAlign,
   uppercased,
   children,
+  styleSheet,
   ...textProps
 }: TermProps) {
-  const [styles, cx] = useStyles(styleSheet);
+  const [styles, cx] = useStyles(styleSheet ?? termStyleSheet);
 
   return (
     <div>

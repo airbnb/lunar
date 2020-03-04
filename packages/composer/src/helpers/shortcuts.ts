@@ -32,9 +32,9 @@ export function filterAndSortShortcuts(
     if (usedNames.has(config.name)) {
       throw new Error(
         T.phrase(
+          'lunar.composer.shortcuts.nameExists',
           'Shortcut with name "%{name}" already exists.',
           { name: config.name },
-          { key: 'lunar.composer.shortcuts.nameExists' },
         ),
       );
     } else {
@@ -108,11 +108,7 @@ export function onSubmitExecuteShortcut(
   // Validate shortcut
   if (!shortcut) {
     throw new Error(
-      T.phrase(
-        'Invalid shortcut "%{name}".',
-        { name },
-        { key: 'lunar.composer.shortcuts.invalidName' },
-      ),
+      T.phrase('lunar.composer.shortcuts.invalidName', 'Invalid shortcut "%{name}".', { name }),
     );
   }
 
@@ -120,9 +116,7 @@ export function onSubmitExecuteShortcut(
 
   if (params.length > args.length) {
     throw new Error(
-      T.phrase('Too many shortcut arguments provided.', null, {
-        key: 'lunar.composer.shortcuts.tooManyArgs',
-      }),
+      T.phrase('lunar.composer.shortcuts.tooManyArgs', 'Too many shortcut arguments provided.'),
     );
   }
 
@@ -133,11 +127,9 @@ export function onSubmitExecuteShortcut(
     if ((!arg.optional && !param) || param === `[${arg.name}]` || param === `<${arg.name}>`) {
       throw new Error(
         T.phrase(
+          'lunar.composer.shortcuts.argRequired',
           'Shortcut argument "%{name}" is required.',
           { name: arg.name },
-          {
-            key: 'lunar.composer.shortcuts.argRequired',
-          },
         ),
       );
     }

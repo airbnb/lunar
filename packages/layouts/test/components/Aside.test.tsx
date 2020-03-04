@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { render } from 'rut-dom';
-import Aside, { Props } from '../../src/components/Aside';
+import Aside, { AsideProps } from '../../src/components/Aside';
 import Tab from '../../src/components/Aside/private/Tab';
 
 describe('<Aside />', () => {
@@ -42,7 +42,7 @@ describe('<Aside />', () => {
   });
 
   it('can externally change expanded state', () => {
-    const { root, update } = render<Props>(
+    const { root, update } = render<AsideProps>(
       <Aside after collapsible>
         Child
       </Aside>,
