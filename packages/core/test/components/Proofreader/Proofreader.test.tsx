@@ -330,8 +330,8 @@ describe('<Proofreader />', () => {
       };
       // @ts-ignore Allow non-element
       instance.caretRef = {
-        // @ts-ignore
         current: {
+          // @ts-ignore
           children: [{}, { offsetTop: 950 }],
         },
       };
@@ -471,6 +471,7 @@ describe('<Proofreader />', () => {
         // @ts-ignore Allow non-element
         current: {
           scrollTop: 100,
+          // @ts-ignore
           style: {},
           setSelectionRange: spy,
         },
@@ -495,6 +496,7 @@ describe('<Proofreader />', () => {
         // @ts-ignore Allow non-element
         current: {
           scrollTop: 100,
+          // @ts-ignore
           style: {},
           setSelectionRange: () => {},
         },
