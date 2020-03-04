@@ -27,7 +27,7 @@ export const styleSheet: StyleSheet = ({ unit }) => ({
   },
 });
 
-export type Props = {
+export type TermListProps = {
   /** Terms to be rendered inside the list. */
   children: NonNullable<React.ReactNode>;
   /** If enabled, terms are laid out horizontally. */
@@ -36,7 +36,7 @@ export type Props = {
   styleSheet?: StyleSheet;
 };
 
-export default function TermList({ horizontal, children }: Props) {
+export default function TermList({ horizontal, children }: TermListProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (

@@ -11,7 +11,7 @@ export const styleSheet: StyleSheet = () => ({
   },
 });
 
-export type Props = TextProps & {
+export type TermProps = TextProps & {
   /** Detail links to go after Term label. */
   after?: React.ReactNode;
   /** Term content describing the value displayed. */
@@ -33,7 +33,7 @@ export default function Term({
   uppercased,
   children,
   ...textProps
-}: Props) {
+}: TermProps) {
   const [styles, cx] = useStyles(styleSheet);
 
   return (
