@@ -1,6 +1,7 @@
 import React from 'react';
 import IconMenuDots from '@airbnb/lunar-icons/lib/interface/IconMenuDots';
 import MenuToggle, { Item } from '.';
+import Emoji from '../Emoji';
 
 const children = [
   <Item key="0" onClick={() => console.log('onClick')}>
@@ -35,8 +36,6 @@ aBasicMenuWithMenuItems.story = {
   name: 'A basic menu with menu items.',
 };
 
-<<<<<<< HEAD
-=======
 export function withCustomTrigger() {
   return (
     <MenuToggle
@@ -58,7 +57,6 @@ withCustomIcon.story = {
   name: 'With custom icon.',
 };
 
->>>>>>> 1ca9675... toggleTrigger -> toggleElement
 export function withCustomIcon() {
   return (
     <MenuToggle

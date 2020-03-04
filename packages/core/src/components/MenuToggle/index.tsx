@@ -190,32 +190,16 @@ export class MenuToggle extends React.Component<
     );
 
     if (toggleElement) {
-      toggleButton = <span onClick={this.handleToggleMenu}>{toggleElement}</span>;
+      toggleButton = (
+        <button className={cx(styles.customToggle)} onClick={this.handleToggleMenu}>
+          {toggleElement}
+        </button>
+      );
     }
 
     return (
       <div ref={this.ref} className={cx(styles.container)}>
-        {toggleIcon ? (
-          <IconButton
-            disabled={disabled}
-            aria-label={accessibilityLabel}
-            onClick={this.handleToggleMenu}
-          >
-            {toggleIcon}
-          </IconButton>
-        ) : (
-          <Button
-            disabled={disabled}
-            afterIcon={<ExpandableIcon expanded={opened} size={iconSize} />}
-            inverted={inverted}
-            large={large}
-            small={small}
-            onClick={this.handleToggleMenu}
-          >
-            {toggleLabel}
-          </Button>
-        )}
-
+        {toggleButton}
         <div
           className={cx(styles.dropdown, !opened && styles.dropdown_hidden, { zIndex })}
           aria-expanded={opened}
