@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import PropTypes from 'prop-types';
 import { requiredBy } from 'airbnb-prop-types';
 import BaseTextArea, { BaseTextAreaProps } from '../private/BaseTextArea';

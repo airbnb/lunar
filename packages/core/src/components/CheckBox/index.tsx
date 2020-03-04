@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import BaseCheckBox, { BaseCheckBoxProps } from '../private/BaseCheckBox';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import Text from '../Text';

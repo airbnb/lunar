@@ -79,6 +79,7 @@ export function displaysWhenAnElementIsHovered() {
       <div style={{ textAlign: 'right' }}>
         <Text inline>Also has a tooltip →</Text>
         <Tooltip
+          inverted
           content={
             <Text inverted>
               This uncomfortably wide tooltip should have a right-notch

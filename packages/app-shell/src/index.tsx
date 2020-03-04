@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import Core from '@airbnb/lunar';
 import withBoundary from '@airbnb/lunar/lib/composers/withBoundary';
 import componentName from '@airbnb/lunar/lib/prop-types/componentName';

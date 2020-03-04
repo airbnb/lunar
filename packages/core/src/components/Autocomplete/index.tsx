@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import debouncePromise from 'debounce-promise';
 import toMilliseconds from '../../utils/toMilliseconds';
 import BaseInput, { BaseInputProps } from '../private/BaseInput';

@@ -1,6 +1,6 @@
 import React from 'react';
 import shallowEqual from 'shallowequal';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import {
   createForm,
   formSubscriptionItems,

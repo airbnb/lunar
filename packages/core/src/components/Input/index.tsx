@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import BaseInput, { BaseInputProps } from '../private/BaseInput';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 

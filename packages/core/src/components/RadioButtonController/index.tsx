@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import proxyComponent from '../../utils/proxyComponent';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import RadioButton, { RadioButtonProps } from '../RadioButton';

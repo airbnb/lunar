@@ -23,7 +23,7 @@
     "@airbnb/lunar-test-utils": "^2.4.2"
   },
   "dependencies": {
-    "@sentry/browser": "^5.12.1",
+    "@sentry/browser": "^5.13.0",
     "@types/new-relic-browser": "0.1072.1"
   }
 }

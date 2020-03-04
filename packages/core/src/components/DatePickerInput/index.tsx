@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import { DayPickerInputProps } from 'react-day-picker';
 import { BaseInputProps } from '../private/BaseInput';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';

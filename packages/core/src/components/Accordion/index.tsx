@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import Item, { AccordionItemProps } from './Item';
 import { styleSheetAccordion } from './styles';

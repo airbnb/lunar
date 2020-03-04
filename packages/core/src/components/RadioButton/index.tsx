@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import { mutuallyExclusiveTrueProps } from 'airbnb-prop-types';
 import BaseRadioButton, { BaseRadioButtonProps } from '../private/BaseRadioButton';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';

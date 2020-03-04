@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import T from '@airbnb/lunar/lib/components/Translate';
 import Interweave from '@airbnb/lunar/lib/components/Interweave';
 import Menu from '../Menu';
@@ -40,9 +40,11 @@ export default function Preview({
   context.flags.preview = true;
   context.flags.previewConfirm = requireConfirmation;
 
-  if (requireConfirmation) {
-    context.onSubmit(onSubmitShowPreview);
-  }
+  useEffect(() => {
+    if (requireConfirmation) {
+      context.onSubmit(onSubmitShowPreview);
+    }
+  }, [context, requireConfirmation]);
 
   return (
     <>

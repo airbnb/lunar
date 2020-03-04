@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import { DateTime } from 'luxon';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import BaseSelect from '../private/BaseSelect';

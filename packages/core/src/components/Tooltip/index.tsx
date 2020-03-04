@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import Overlay from '../Overlay';
 import Text from '../Text';
 import withStyles, { WithStylesProps } from '../../composers/withStyles';

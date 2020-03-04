@@ -7,8 +7,7 @@ import Tooltip, {
   TooltipState,
 } from '../../src/components/Tooltip';
 
-// eslint-disable-next-line unicorn/consistent-function-scoping
-jest.mock('uuid/v4', () => () => 'uuid-test-mock');
+jest.mock('uuid', () => ({ v4: () => 'uuid-test-mock' }));
 
 describe('<Tooltip />', () => {
   let wrapper: Enzyme.ShallowWrapper<TooltipProps, TooltipState, BaseTooltip>;

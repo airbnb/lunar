@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useState, useEffect } from 'react';
 import T from '@airbnb/lunar/lib/components/Translate';
 import Menu from './Menu';
 import SelectList, { Selection } from './SelectList';
@@ -52,8 +52,11 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
 
   // Enable feature
   context.flags.shortcuts = true;
-  context.onChange(onChangeToggleShortcutsMenu);
-  context.onSubmit(handleSubmit);
+
+  useEffect(() => {
+    context.onChange(onChangeToggleShortcutsMenu);
+    context.onSubmit(handleSubmit);
+  }, [context, handleSubmit]);
 
   // If only 1 shortcut, then we have an exact match and can hide the menu
   if (filteredShortcuts.length === 1 && filteredShortcuts[0].name === inputName) {
