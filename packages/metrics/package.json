@@ -1,6 +1,7 @@
 {
   "name": "@airbnb/lunar-metrics",
   "version": "2.3.2",
+  "release": "1583350587083",
   "description": "Metrics handling for Lunar.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -17,7 +18,7 @@
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
   },
   "peerDependencies": {
-    "@airbnb/lunar": "^2.0.0"
+    "@airbnb/lunar": "^3.0.0"
   },
   "devDependencies": {
     "@airbnb/lunar-test-utils": "^2.4.2"

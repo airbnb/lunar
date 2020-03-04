@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "lunar-root",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "React toolkit and design language for Airbnb open source and internal projects.",
   "license": "MIT",
   "scripts": {

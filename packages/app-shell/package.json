@@ -1,6 +1,7 @@
 {
   "name": "@airbnb/lunar-app-shell",
   "version": "2.3.2",
+  "release": "1583350587083",
   "description": "Application shell powered by Lunar.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -17,7 +18,7 @@
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
   },
   "peerDependencies": {
-    "@airbnb/lunar": "^2.0.0",
+    "@airbnb/lunar": "^3.0.0",
     "react": "^16.8.0"
   },
   "devDependencies": {

@@ -1,6 +1,7 @@
 {
   "name": "@airbnb/lunar-apollo",
   "version": "2.8.2",
+  "release": "1583350587083",
   "description": "Apollo and GraphQL utilities.",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -17,7 +18,7 @@
     "build:esm": "BUILD=esm babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./esm"
   },
   "peerDependencies": {
-    "@airbnb/lunar": "^2.0.0",
+    "@airbnb/lunar": "^3.0.0",
     "graphql": "^14.1.0",
     "graphql-tag": "^2.10.0",
     "react": "^16.8.0",
