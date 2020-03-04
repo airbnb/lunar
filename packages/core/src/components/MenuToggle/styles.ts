@@ -26,4 +26,11 @@ export const styleSheetMenuToggle: StyleSheet = ({ unit, transition }) => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
+
+  customToggle: {
+    border: 'none',
+    margin: 0,
+    padding: 0,
+    width: 'auto',
+  },
 });
