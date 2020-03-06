@@ -5,14 +5,14 @@ import proxyComponent from '../../utils/proxyComponent';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import CheckBox, { CheckBoxProps } from '../CheckBox';
 
-export type CheckBoxControlledProps<T extends string> = Partial<
+export type CheckBoxControlledProps<T extends string = string> = Partial<
   Omit<CheckBoxProps<T>, 'label' | 'value'>
 > & {
   label: NonNullable<React.ReactNode>;
   value: T;
 };
 
-export type CheckBoxControllerProps<T extends string> = FormFieldProps & {
+export type CheckBoxControllerProps<T extends string = string> = FormFieldProps & {
   /** Function children in which CheckBox components can be rendered. */
   children: (
     component: React.ComponentType<CheckBoxControlledProps<T>>,
@@ -27,7 +27,7 @@ export type CheckBoxControllerProps<T extends string> = FormFieldProps & {
   value?: T[];
 };
 
-export type CheckBoxControllerState<T extends string> = {
+export type CheckBoxControllerState<T extends string = string> = {
   id: string;
   values: Set<T>;
 };

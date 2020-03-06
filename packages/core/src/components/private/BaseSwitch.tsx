@@ -80,7 +80,7 @@ export const styleSheetSwitch: StyleSheet = theme => {
   };
 };
 
-export type BaseSwitchProps<T extends string> = InputProps<T> & {
+export type BaseSwitchProps<T extends string = string> = InputProps<T> & {
   /** Whether the switch is checked. */
   checked?: boolean;
   /** Unique identifier. */

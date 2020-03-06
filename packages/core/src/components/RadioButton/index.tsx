@@ -7,7 +7,7 @@ import Text from '../Text';
 
 const stateProp = mutuallyExclusiveTrueProps('checked', 'indeterminate');
 
-export type RadioButtonProps<T extends string> = Omit<BaseRadioButtonProps<T>, 'value'> &
+export type RadioButtonProps<T extends string = string> = Omit<BaseRadioButtonProps<T>, 'value'> &
   FormFieldProps & {
     /** Middle align content. */
     middleAlign?: boolean;

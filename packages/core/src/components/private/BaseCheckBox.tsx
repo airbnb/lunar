@@ -65,7 +65,7 @@ export const styleSheetCheckbox: StyleSheet = theme => {
   };
 };
 
-export type BaseCheckBoxProps<T extends string> = InputProps<T> & {
+export type BaseCheckBoxProps<T extends string = string> = InputProps<T> & {
   /** Render the field as a large clickable button. */
   button?: boolean;
   /** Content to display when in button mode. Defaults to the current label bolded followed by the label description. */

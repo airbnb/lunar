@@ -32,8 +32,13 @@ module.exports = function i18nKeyContext(
       callee: { object: { name: 'T' }, property: { name: 'phrase' } },
     })
     .forEach(({ node }) => {
-      const [, params, opts] = node.arguments;
+      const [phrase, params, opts] = node.arguments;
       let key = '';
+
+      // Already converted
+      if (phrase?.type === 'StringLiteral' && params?.type === 'StringLiteral') {
+        return;
+      }
 
       // Extract key and remove context
       if (opts && opts.type === 'ObjectExpression') {

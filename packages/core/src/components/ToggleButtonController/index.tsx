@@ -9,12 +9,12 @@ import { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
 export { ButtonGroup };
 
-export type ToggleButtonControlledProps<T extends string> = Partial<ButtonProps> & {
+export type ToggleButtonControlledProps<T extends string = string> = Partial<ButtonProps> & {
   children: NonNullable<React.ReactNode>;
   value: T;
 };
 
-export type ToggleButtonControllerProps<T extends string> = FormFieldProps & {
+export type ToggleButtonControllerProps<T extends string = string> = FormFieldProps & {
   /** Function children in which Button components can be rendered. */
   children: (
     component: React.ComponentType<ToggleButtonControlledProps<T>>,
@@ -29,7 +29,7 @@ export type ToggleButtonControllerProps<T extends string> = FormFieldProps & {
   value?: T;
 };
 
-export type ToggleButtonControllerState<T extends string> = {
+export type ToggleButtonControllerState<T extends string = string> = {
   id: string;
   value: T;
 };

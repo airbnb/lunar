@@ -15,7 +15,10 @@ module.exports = function canonicalPropsState(
   mod.source.find(mod.cs.ImportDeclaration).forEach(({ node }) => {
     const source = String(node.source.value);
 
-    if (!source.includes('lunar') && !source.includes('components')) {
+    if (
+      (!source.includes('lunar') && !source.includes('components')) ||
+      source.endsWith('withIcon')
+    ) {
       return;
     }
 
