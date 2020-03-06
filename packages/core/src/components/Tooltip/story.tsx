@@ -2,6 +2,7 @@ import React from 'react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import Button from '../Button';
 import Text from '../Text';
+import Spacing from '../Spacing';
 import Tooltip from '.';
 
 class TooltipDemo extends React.Component<{}, { text: string; clicked: boolean }> {
@@ -160,4 +161,37 @@ export function callbackFiredWhenTheTooltipIsShown() {
 
 callbackFiredWhenTheTooltipIsShown.story = {
   name: 'Callback fired when the tooltip is shown.',
+};
+
+export function overrideAlign() {
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <Tooltip
+        align="right"
+        content="This is an example of a tooltip that manually overrides the align prop with the value right"
+        width={40}
+      >
+        <Button>Right align value</Button>
+      </Tooltip>
+      <Spacing inline horizontal={5}>
+        <Tooltip
+          content="This is an example of a tooltip that does not manually override the align value"
+          width={40}
+        >
+          <Button>No override</Button>
+        </Tooltip>
+      </Spacing>
+      <Tooltip
+        align="left"
+        content="This is an example of a tooltip that manually overrides the align prop with the value left"
+        width={40}
+      >
+        <Button>Left align value</Button>
+      </Tooltip>
+    </div>
+  );
+}
+
+overrideAlign.story = {
+  name: 'Manually override the align of the tooltip',
 };

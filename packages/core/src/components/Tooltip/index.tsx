@@ -18,22 +18,24 @@ const EMPTY_TARGET_RECT: ClientRect = {
 };
 
 export type TooltipProps = {
-  /** Width of the tooltip in units. */
-  width?: number;
-  /** What to show in the tooltip. */
-  content: NonNullable<React.ReactNode>;
+  /** Manually override calculated align */
+  align?: 'center' | 'left' | 'right';
   /** Inline content to hover. */
   children: NonNullable<React.ReactNode>;
+  /** What to show in the tooltip. */
+  content: NonNullable<React.ReactNode>;
   /** True to disable tooltip but still show children. */
   disabled?: boolean;
   /** True to use a light background with dark text. */
   inverted?: boolean;
+  /** Callback fired when the tooltip is shown. */
+  onShow?: () => void;
   /** True to prevent dismissmal on mouse down. */
   remainOnMouseDown?: boolean;
   /** True to add a dotted bottom border. */
   underlined?: boolean;
-  /** Callback fired when the tooltip is shown. */
-  onShow?: () => void;
+  /** Width of the tooltip in units. */
+  width?: number;
 };
 
 export type TooltipState = {
@@ -186,7 +188,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   };
 
   private renderPopUp() {
-    const { cx, styles, theme, width: widthProp, content, inverted } = this.props;
+    const { align: alignProp, cx, styles, theme, width: widthProp, content, inverted } = this.props;
     const { open, targetRect, tooltipHeight, targetRectReady } = this.state;
 
     // render null until targetRect is initialized by cDM
@@ -214,9 +216,9 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
           role="tooltip"
           className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
             width,
-            marginLeft: marginLeft[align as keyof StyleStruct],
+            marginLeft: marginLeft[(alignProp ?? align) as keyof StyleStruct],
             marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
-            textAlign: align,
+            textAlign: alignProp ?? align,
           })}
         >
           <div className={cx(styles.content, invert && styles.content_inverted)}>
