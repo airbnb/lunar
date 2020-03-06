@@ -8,7 +8,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export { Tab };
 
-export type TabsProps<T extends string> = {
+export type TabsProps<T extends string = string> = {
   /** Hide bottom border of Tabs. */
   borderless?: boolean;
   /** Tabs and their content. */

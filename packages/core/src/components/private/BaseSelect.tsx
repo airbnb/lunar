@@ -36,7 +36,7 @@ export const styleSheetSelect: StyleSheet = ({ pattern, unit }) => ({
   },
 });
 
-export type BaseSelectProps<T extends string> = SelectProps<T> & {
+export type BaseSelectProps<T extends string = string> = SelectProps<T> & {
   /** List of `option`s to render. */
   children: NonNullable<React.ReactNode>;
   /** An empty `option` to render at the top of the list. */

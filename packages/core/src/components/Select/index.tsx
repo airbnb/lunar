@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import BaseSelect, { BaseSelectProps } from '../private/BaseSelect';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 
-export type SelectProps<T extends string> = Omit<BaseSelectProps<T>, 'id'> &
+export type SelectProps<T extends string = string> = Omit<BaseSelectProps<T>, 'id'> &
   FormFieldProps & {
     /** Dropdown options. Supports `option` and `optgroup`. */
     children: NonNullable<React.ReactNode>;

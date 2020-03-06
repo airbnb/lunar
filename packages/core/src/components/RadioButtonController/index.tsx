@@ -4,14 +4,14 @@ import proxyComponent from '../../utils/proxyComponent';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import RadioButton, { RadioButtonProps } from '../RadioButton';
 
-export type RadioButtonControlledProps<T extends string> = Partial<
+export type RadioButtonControlledProps<T extends string = string> = Partial<
   Omit<RadioButtonProps<T>, 'label' | 'value'>
 > & {
   label: NonNullable<React.ReactNode>;
   value: T;
 };
 
-export type RadioButtonControllerProps<T extends string> = FormFieldProps & {
+export type RadioButtonControllerProps<T extends string = string> = FormFieldProps & {
   /** Function children in which RadioButton components can be rendered. */
   children: (
     component: React.ComponentType<RadioButtonControlledProps<T>>,
@@ -26,7 +26,7 @@ export type RadioButtonControllerProps<T extends string> = FormFieldProps & {
   value?: T;
 };
 
-export type RadioButtonControllerState<T extends string> = {
+export type RadioButtonControllerState<T extends string = string> = {
   id: string;
   value: T;
 };

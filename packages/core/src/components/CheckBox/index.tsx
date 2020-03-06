@@ -4,7 +4,7 @@ import BaseCheckBox, { BaseCheckBoxProps } from '../private/BaseCheckBox';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import Text from '../Text';
 
-export type CheckBoxProps<T extends string> = BaseCheckBoxProps<T> &
+export type CheckBoxProps<T extends string = string> = BaseCheckBoxProps<T> &
   FormFieldProps & {
     /** Middle align content. */
     middleAlign?: boolean;

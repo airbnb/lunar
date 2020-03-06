@@ -6,7 +6,7 @@ import TrackingBoundary from '../TrackingBoundary';
 import { styleSheetTab } from './styles';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
-export type TabProps<T extends string> = Pick<
+export type TabProps<T extends string = string> = Pick<
   ButtonOrLinkProps,
   'afterIcon' | 'beforeIcon' | 'disabled' | 'href'
 > & {
