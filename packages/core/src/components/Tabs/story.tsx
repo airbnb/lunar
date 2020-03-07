@@ -188,6 +188,29 @@ persistWithHashAndBackButton.story = {
   name: 'Persist with hash and back button.',
 };
 
+export function customPushState() {
+  return (
+    // eslint-disable-next-line no-console
+    <Tabs persistWithHash="tab" customPushState={(...args) => console.log(args)}>
+      <Tab key="a" label="Bruce W.">
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Tab>
+
+      <Tab key="b" label="Clark K.">
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Tab>
+    </Tabs>
+  );
+}
+
+customPushState.story = {
+  name: 'Custom pushState function.',
+};
+
 export function withScrollableVariableHeightTabs() {
   return (
     <div style={{ width: '325px' }}>
