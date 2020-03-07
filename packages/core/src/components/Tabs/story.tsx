@@ -188,10 +188,11 @@ persistWithHashAndBackButton.story = {
   name: 'Persist with hash and back button.',
 };
 
-export function customPushState() {
+const customPushState = (...args: Array<unknown>) => action('customPushState')(args);
+
+export function persistWithHashAndCustomPushState() {
   return (
-    // eslint-disable-next-line no-console
-    <Tabs persistWithHash="tab" customPushState={(...args) => console.log(args)}>
+    <Tabs persistWithHash="tab" customPushState={customPushState}>
       <Tab key="a" label="Bruce W.">
         <Text>
           <LoremIpsum />
@@ -207,7 +208,7 @@ export function customPushState() {
   );
 }
 
-customPushState.story = {
+persistWithHashAndCustomPushState.story = {
   name: 'Custom pushState function.',
 };
 
