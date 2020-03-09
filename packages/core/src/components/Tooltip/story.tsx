@@ -172,7 +172,7 @@ export function overrideAlign() {
           content="This is an example of a tooltip that manually overrides the align prop with the value right"
           width={40}
         >
-          <Button>Right align value</Button>
+          <Button>Horizontal align right</Button>
         </Tooltip>
         <Spacing inline horizontal={5}>
           <Tooltip
@@ -180,7 +180,7 @@ export function overrideAlign() {
             verticalAlign="above"
             width={40}
           >
-            <Button>Vertical override</Button>
+            <Button>Vertical align above</Button>
           </Tooltip>
         </Spacing>
         <Tooltip
@@ -188,7 +188,7 @@ export function overrideAlign() {
           content="This is an example of a tooltip that manually overrides the align prop with the value left"
           width={40}
         >
-          <Button>Left align value</Button>
+          <Button>Horizontal align left</Button>
         </Tooltip>
       </Spacing>
     </div>
