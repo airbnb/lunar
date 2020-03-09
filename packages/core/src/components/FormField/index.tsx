@@ -93,8 +93,8 @@ export default function FormField({
   small,
   suffix,
   middleAlign,
-  topAlign,
   styleSheet,
+  topAlign,
 }: PrivateProps) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetFormField);
 
