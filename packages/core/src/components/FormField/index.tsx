@@ -93,7 +93,6 @@ export default function FormField({
   small,
   suffix,
   middleAlign,
-  styleSheet,
   topAlign,
   styleSheet,
 }: PrivateProps) {
