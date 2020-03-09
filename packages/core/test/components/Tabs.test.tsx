@@ -276,7 +276,7 @@ describe('<Tabs/>', () => {
     const pushFn = jest.fn((a, b, url) => history.pushState(null, '', url));
 
     const wrapper = mountUseStyles(
-      <Tabs persistWithHash="tab" customPushState={pushFn}>
+      <Tabs persistWithHash="tab" onPushState={pushFn}>
         <Tab key="a" label="One" />
         <Tab key="b" label="Two" />
       </Tabs>,

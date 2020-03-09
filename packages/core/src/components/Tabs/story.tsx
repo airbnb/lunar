@@ -188,11 +188,11 @@ persistWithHashAndBackButton.story = {
   name: 'Persist with hash and back button.',
 };
 
-const customPushState = (...args: Array<unknown>) => action('customPushState')(args);
+const onPushState = (...args: Array<unknown>) => action('onPushState')(args);
 
-export function persistWithHashAndCustomPushState() {
+export function persistWithHashAndonPushState() {
   return (
-    <Tabs persistWithHash="tab" customPushState={customPushState}>
+    <Tabs persistWithHash="tab" onPushState={onPushState}>
       <Tab key="a" label="Bruce W.">
         <Text>
           <LoremIpsum />
@@ -208,7 +208,7 @@ export function persistWithHashAndCustomPushState() {
   );
 }
 
-persistWithHashAndCustomPushState.story = {
+persistWithHashAndonPushState.story = {
   name: 'Custom pushState function.',
 };
 
