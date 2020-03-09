@@ -31,4 +31,4 @@ export const DEFAULT_WIDTH_PROPERTIES: WidthProperties = {
   minWidth: 0,
 };
 
-export const EXPANDABLE_COLUMN_WIDTH = 50;
+export const EXPANDABLE_COLUMN_WIDTH = 32;

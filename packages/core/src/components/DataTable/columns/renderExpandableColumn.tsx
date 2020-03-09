@@ -24,7 +24,7 @@ export default function renderExpandableColumn(
           onClick={expandRow(originalIndex)}
           onKeyPress={expandRow(originalIndex)}
         >
-          <Spacing left={1.5}>
+          <Spacing left={0.5}>
             <ExpandableIcon expanded={expandedRows.has(originalIndex)} size="1.6em" />
           </Spacing>
         </div>
