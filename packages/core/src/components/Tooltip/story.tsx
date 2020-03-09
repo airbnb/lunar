@@ -67,10 +67,7 @@ export default {
 export function displaysWhenAnElementIsHovered() {
   return (
     <div>
-      <Tooltip
-        width={16}
-        content="Tooltips are an anti-pattern! Please think carefully about accessibility before using them. Do not use tooltips for content that cannot be discovered by other means."
-      >
+      <Tooltip content="Tooltips are an anti-pattern! Please think carefully about accessibility before using them. Do not use tooltips for content that cannot be discovered by other means.">
         <Button>Hover Me</Button>
       </Tooltip>
 
