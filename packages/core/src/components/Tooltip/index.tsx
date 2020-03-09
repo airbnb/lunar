@@ -18,14 +18,14 @@ const EMPTY_TARGET_RECT: ClientRect = {
 };
 
 export type TooltipProps = {
-  /** Manually override calculated align */
-  align?: 'center' | 'left' | 'right';
   /** Inline content to hover. */
   children: NonNullable<React.ReactNode>;
   /** What to show in the tooltip. */
   content: NonNullable<React.ReactNode>;
   /** True to disable tooltip but still show children. */
   disabled?: boolean;
+  /** Manually override calculated horizontal align */
+  horizontalAlign?: 'center' | 'left' | 'right';
   /** True to use a light background with dark text. */
   inverted?: boolean;
   /** Callback fired when the tooltip is shown. */
@@ -34,6 +34,8 @@ export type TooltipProps = {
   remainOnMouseDown?: boolean;
   /** True to add a dotted bottom border. */
   underlined?: boolean;
+  /** Manually override calculated vertical align */
+  verticalAlign?: 'above' | 'below';
   /** Width of the tooltip in units. */
   width?: number;
 };
@@ -188,7 +190,16 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   };
 
   private renderPopUp() {
-    const { align: alignProp, cx, styles, theme, width: widthProp, content, inverted } = this.props;
+    const {
+      horizontalAlign,
+      cx,
+      styles,
+      theme,
+      width: widthProp,
+      content,
+      inverted,
+      verticalAlign,
+    } = this.props;
     const { open, targetRect, tooltipHeight, targetRectReady } = this.state;
 
     // render null until targetRect is initialized by cDM
@@ -200,7 +211,9 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
     const width = widthProp! * unit;
 
     // bestPosition will cause a reflow as will `targetRect.width`
-    const { align, above } = this.bestPosition(targetRect);
+    const { align: bestAlign, above: bestAbove } = this.bestPosition(targetRect);
+    const align = horizontalAlign ?? bestAlign;
+    const above = verticalAlign ? verticalAlign === 'above' : bestAbove;
     const targetWidth = targetRect.width;
     const marginLeft: StyleStruct = {
       center: -width / 2 + targetWidth / 2,
@@ -216,9 +229,9 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
           role="tooltip"
           className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
             width,
-            marginLeft: marginLeft[(alignProp ?? align) as keyof StyleStruct],
+            marginLeft: marginLeft[align as keyof StyleStruct],
             marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
-            textAlign: alignProp ?? align,
+            textAlign: align,
           })}
         >
           <div className={cx(styles.content, invert && styles.content_inverted)}>
