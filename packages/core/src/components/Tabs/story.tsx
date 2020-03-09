@@ -188,6 +188,30 @@ persistWithHashAndBackButton.story = {
   name: 'Persist with hash and back button.',
 };
 
+const onPushState = (...args: Array<unknown>) => action('onPushState')(args);
+
+export function persistWithHashAndonPushState() {
+  return (
+    <Tabs persistWithHash="tab" onPushState={onPushState}>
+      <Tab key="a" label="Bruce W.">
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Tab>
+
+      <Tab key="b" label="Clark K.">
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Tab>
+    </Tabs>
+  );
+}
+
+persistWithHashAndonPushState.story = {
+  name: 'Custom pushState function.',
+};
+
 export function withScrollableVariableHeightTabs() {
   return (
     <div style={{ width: '325px' }}>

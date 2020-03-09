@@ -273,8 +273,10 @@ describe('<Tabs/>', () => {
     const addSpy = jest.spyOn(window, 'addEventListener');
     const rmSpy = jest.spyOn(window, 'removeEventListener');
 
+    const pushFn = jest.fn((a, b, url) => history.pushState(null, '', url));
+
     const wrapper = mountUseStyles(
-      <Tabs persistWithHash="tab">
+      <Tabs persistWithHash="tab" onPushState={pushFn}>
         <Tab key="a" label="One" />
         <Tab key="b" label="Two" />
       </Tabs>,
@@ -282,12 +284,15 @@ describe('<Tabs/>', () => {
 
     expect(addSpy).toHaveBeenCalledWith('popstate', expect.any(Function));
 
+    expect(pushFn).not.toHaveBeenCalled();
+
     wrapper
       .find(ButtonOrLink)
       .at(1)
       .simulate('click', 'b');
 
     expect(location.hash).toBe('#tab=b');
+    expect(pushFn).toHaveBeenCalledWith(null, '', '#tab=b');
 
     // eslint-disable-next-line rut/no-act
     act(() => {

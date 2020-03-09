@@ -19,6 +19,8 @@ export type TabsProps<T extends string = string> = {
   onChange?: (key: T) => void;
   /** Persist the selected tab through the defined URL hash. */
   persistWithHash?: string;
+  /** A function to use in lieu of the native pushState. */
+  onPushState?: typeof history.pushState;
   /** Secondary tab style, implies borderless. */
   secondary?: boolean;
   /** Wrap tabs in a scrollable region. */
@@ -45,6 +47,7 @@ function Tabs<T extends string = string>({
   scrollable,
   stretched,
   persistWithHash,
+  onPushState,
   defaultKey,
   onChange,
   styleSheet,
@@ -79,7 +82,11 @@ function Tabs<T extends string = string>({
 
       query.set(persistWithHash, key);
 
-      history.pushState(null, '', `#${String(query)}`);
+      if (onPushState) {
+        onPushState(null, '', `#${String(query)}`);
+      } else {
+        history.pushState(null, '', `#${String(query)}`);
+      }
     }
   };
 
