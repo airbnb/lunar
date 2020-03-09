@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.0 - 2020-03-09
+
+#### 🚀 Updates
+
+- **[Tabs]** Add onPushState prop (#335) ([409b4c7](https://github.com/airbnb/lunar/commit/409b4c7)), closes [#335](https://github.com/airbnb/lunar/issues/335)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.0.1 - 2020-03-06
 
 #### 🐞 Fixes
