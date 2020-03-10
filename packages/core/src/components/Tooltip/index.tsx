@@ -18,22 +18,26 @@ const EMPTY_TARGET_RECT: ClientRect = {
 };
 
 export type TooltipProps = {
-  /** Width of the tooltip in units. */
-  width?: number;
-  /** What to show in the tooltip. */
-  content: NonNullable<React.ReactNode>;
   /** Inline content to hover. */
   children: NonNullable<React.ReactNode>;
+  /** What to show in the tooltip. */
+  content: NonNullable<React.ReactNode>;
   /** True to disable tooltip but still show children. */
   disabled?: boolean;
+  /** Manually override calculated horizontal align */
+  horizontalAlign?: 'center' | 'left' | 'right';
   /** True to use a light background with dark text. */
   inverted?: boolean;
+  /** Callback fired when the tooltip is shown. */
+  onShow?: () => void;
   /** True to prevent dismissmal on mouse down. */
   remainOnMouseDown?: boolean;
   /** True to add a dotted bottom border. */
   underlined?: boolean;
-  /** Callback fired when the tooltip is shown. */
-  onShow?: () => void;
+  /** Manually override calculated vertical align */
+  verticalAlign?: 'above' | 'below';
+  /** Width of the tooltip in units. */
+  width?: number;
 };
 
 export type TooltipState = {
@@ -186,7 +190,16 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   };
 
   private renderPopUp() {
-    const { cx, styles, theme, width: widthProp, content, inverted } = this.props;
+    const {
+      horizontalAlign,
+      cx,
+      styles,
+      theme,
+      width: widthProp,
+      content,
+      inverted,
+      verticalAlign,
+    } = this.props;
     const { open, targetRect, tooltipHeight, targetRectReady } = this.state;
 
     // render null until targetRect is initialized by cDM
@@ -198,7 +211,9 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
     const width = widthProp! * unit;
 
     // bestPosition will cause a reflow as will `targetRect.width`
-    const { align, above } = this.bestPosition(targetRect);
+    const { align: bestAlign, above: bestAbove } = this.bestPosition(targetRect);
+    const align = horizontalAlign ?? bestAlign;
+    const above = verticalAlign ? verticalAlign === 'above' : bestAbove;
     const targetWidth = targetRect.width;
     const marginLeft: StyleStruct = {
       center: -width / 2 + targetWidth / 2,
