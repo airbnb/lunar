@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.2.0 - 2020-03-10
+
+#### 🚀 Updates
+
+- **[Row]** Reduce padding for inline and compact. (#299) ([d808c9a](https://github.com/airbnb/lunar/commit/d808c9a)), closes [#299](https://github.com/airbnb/lunar/issues/299)
+- **[Tooltip]** Add `horizontalAlign` and `verticalAlign` props. (#333) ([e87b79d](https://github.com/airbnb/lunar/commit/e87b79d)), closes [#333](https://github.com/airbnb/lunar/issues/333)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.1.1 - 2020-03-09
 
 **Note:** Version bump only for package @airbnb/lunar
