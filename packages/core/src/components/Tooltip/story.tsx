@@ -198,3 +198,19 @@ export function overrideAlign() {
 overrideAlign.story = {
   name: 'Manually override the align of the tooltip',
 };
+
+export function toggleWithClick() {
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <Spacing top={10}>
+        <Tooltip toggleOnClick content="This tooltip's display is toggled on click.">
+          <Button>Toggle on click</Button>
+        </Tooltip>
+      </Spacing>
+    </div>
+  );
+}
+
+toggleWithClick.story = {
+  name: 'Toggle tooltip on click',
+};

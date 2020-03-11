@@ -32,6 +32,8 @@ export type TooltipProps = {
   onShow?: () => void;
   /** True to prevent dismissmal on mouse down. */
   remainOnMouseDown?: boolean;
+  /** True to toggle tooltip display on click.  */
+  toggleOnClick?: boolean;
   /** True to add a dotted bottom border. */
   underlined?: boolean;
   /** Manually override calculated vertical align */
@@ -67,6 +69,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
     inverted: false,
     onShow() {},
     remainOnMouseDown: false,
+    toggleOnClick: false,
     underlined: false,
     width: 35,
   };
@@ -162,7 +165,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
     this.updateTooltipHeight();
   };
 
-  private handleEnter = () => {
+  private handleOpen = () => {
     /* istanbul ignore next: refs are hard */
     this.rafHandle = requestAnimationFrame(() => {
       const { current } = this.containerRef;
@@ -179,14 +182,33 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
     }
   };
 
-  private handleMouseDown = () => {
-    if (!this.props.remainOnMouseDown) {
-      this.handleClose();
+  private handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  private handleMouseEnter = () => {
+    if (!this.props.toggleOnClick) {
+      this.handleOpen();
     }
   };
 
-  private handleClose = () => {
-    this.setState({ open: false });
+  private handleMouseDown = () => {
+    if (!this.props.remainOnMouseDown && !this.props.toggleOnClick) {
+      this.handleClose();
+    }
+    if (this.props.toggleOnClick) {
+      if (this.state.open) {
+        this.handleClose();
+      } else {
+        this.handleOpen();
+      }
+    }
+  };
+
+  private handleMouseLeave = () => {
+    if (!this.props.toggleOnClick) {
+      this.handleClose();
+    }
   };
 
   private renderPopUp() {
@@ -251,8 +273,8 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
         <div
           aria-labelledby={labelID}
           className={cx(!disabled && underlined && styles.underlined)}
-          onMouseEnter={this.handleEnter}
-          onMouseLeave={this.handleClose}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
           onMouseDown={this.handleMouseDown}
         >
           {children}
