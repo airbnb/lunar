@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.3.0 - 2020-03-13
+
+#### 🚀 Updates
+
+- **[Tooltip]** Add  prop. (#337) ([95cddae](https://github.com/airbnb/lunar/commit/95cddae)), closes [#337](https://github.com/airbnb/lunar/issues/337)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.2.0 - 2020-03-10
 
 #### 🚀 Updates
