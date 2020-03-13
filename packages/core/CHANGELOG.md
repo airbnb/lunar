@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.3.1 - 2020-03-13
+
+#### 🐞 Fixes
+
+- **[TextArea, Proofreader]** Fix double link render. ([1a67704](https://github.com/airbnb/lunar/commit/1a67704))
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.3.0 - 2020-03-13
 
 #### 🚀 Updates
