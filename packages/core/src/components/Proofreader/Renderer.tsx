@@ -26,7 +26,7 @@ export default function Renderer({
   if (errors.length === 0) {
     return (
       <div>
-        <Interweave content={value} />
+        <Interweave disableMatchers content={value} />
       </div>
     );
   }
@@ -47,7 +47,11 @@ export default function Renderer({
 
     // Extract previous string
     content.push(
-      <Interweave key={`${lastIndex}-${offset}`} content={value.slice(lastIndex, offset)} />,
+      <Interweave
+        key={`${lastIndex}-${offset}`}
+        disableMatchers
+        content={value.slice(lastIndex, offset)}
+      />,
     );
 
     // Set new last index
@@ -74,7 +78,9 @@ export default function Renderer({
   // Extract any remaining value
   const final = value.slice(lastIndex);
 
-  content.push(<Interweave key={`${lastIndex}-${lastIndex + final.length}`} content={final} />);
+  content.push(
+    <Interweave key={`${lastIndex}-${lastIndex + final.length}`} disableMatchers content={final} />,
+  );
 
   // Add a fake character to the end of the text when a shadow. This solves a handful of bugs
   // in which trailing new lines in combination with scroll position do not work correctly.
