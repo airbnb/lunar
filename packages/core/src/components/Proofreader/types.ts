@@ -30,4 +30,5 @@ export type DefinitionShape = {
 export type ExtraProofreadProps = {
   isRuleHighlighted?: (rule: ProofreadRuleMatch) => boolean;
   isRuleSecondary?: (rule: ProofreadRuleMatch) => boolean;
+  localeMenuMaxHeight?: number;
 };

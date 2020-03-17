@@ -30,12 +30,11 @@ export type Position = {
   top: number;
 };
 
-export type ProofreaderProps = Pick<FormInputProps, 'important'> &
+export type ProofreaderProps = Pick<FormInputProps, 'important' | 'noTranslate'> &
   ExtraProofreadProps & {
+    id: string;
     locale?: string;
     name: string;
-    id: string;
-    noTranslate?: boolean;
     onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
     onCheckText: (params: ProofreaderParams) => Promise<ProofreaderResponse>;
     value: string;
@@ -439,15 +438,16 @@ export class Proofreader extends React.Component<
 
   render() {
     const {
-      cx,
       children,
-      styles,
-      onCheckText,
-      theme,
+      cx,
       important,
       isRuleHighlighted,
       isRuleSecondary,
+      localeMenuMaxHeight,
       onChange,
+      onCheckText,
+      styles,
+      theme,
       ...props
     } = this.props;
     const { position, errors, loading, selectedError, selectedLocale, text } = this.state;
@@ -511,6 +511,7 @@ export class Proofreader extends React.Component<
           <ControlBar
             loading={loading}
             locale={selectedLocale!}
+            localeMenuMaxHeight={localeMenuMaxHeight}
             errors={errors}
             onSelectLocale={this.handleSelectLocale}
           />

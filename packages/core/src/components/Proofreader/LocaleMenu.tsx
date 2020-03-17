@@ -8,6 +8,7 @@ import { DefinitionShape } from './types';
 
 export type LocaleMenuProps = {
   autoDefinition?: DefinitionShape;
+  maxHeight?: number;
   noneDefinition?: DefinitionShape;
   selectedLocale: string | null;
   onSelectLocale: (locale: string) => void;
@@ -19,7 +20,7 @@ export default class LocaleMenu extends React.Component<LocaleMenuProps> {
   };
 
   render() {
-    const { autoDefinition, noneDefinition, selectedLocale } = this.props;
+    const { autoDefinition, maxHeight, noneDefinition, selectedLocale } = this.props;
     const locales = [...LT_LOCALES];
 
     locales.sort((a, b) => a.label.localeCompare(b.label));
@@ -28,6 +29,7 @@ export default class LocaleMenu extends React.Component<LocaleMenuProps> {
       <TrackingBoundary name="Proofreader/LocaleMenu">
         <Menu
           accessibilityLabel={T.phrase('lunar.proofreader.languageSelector', 'Language selector')}
+          maxHeight={maxHeight}
         >
           <Row>
             <Text small muted bold>
