@@ -88,6 +88,9 @@ class ProofreaderDemo extends React.Component<{}, { value: string }> {
         label="Proofread"
         rows={5}
         maxLength={10000}
+        proofreadProps={{
+          localeMenuMaxHeight: 220,
+        }}
         value={this.state.value}
         onChange={this.handleChange}
         onCheckText={onCheckText}

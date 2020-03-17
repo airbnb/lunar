@@ -17,6 +17,7 @@ export type ControlBarProps = {
   errors: ProofreadRuleMatch[];
   loading?: boolean;
   locale?: string;
+  localeMenuMaxHeight?: number;
   top?: string;
   onSelectLocale: (locale: string) => void;
 };
@@ -26,6 +27,7 @@ export default function ControlBar({
   errors,
   loading,
   locale,
+  localeMenuMaxHeight,
   top = '80%',
   onSelectLocale,
 }: ControlBarProps) {
@@ -60,6 +62,7 @@ export default function ControlBar({
           >
             <LocaleMenu
               autoDefinition={autoDetect ? getLocaleDefinition(AUTO_DETECT_LOCALE) : undefined}
+              maxHeight={localeMenuMaxHeight}
               noneDefinition={getLocaleDefinition(NO_LOCALE)}
               selectedLocale={selectedLocale}
               onSelectLocale={nextLocale => {
