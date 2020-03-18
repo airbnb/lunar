@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.4.1 - 2020-03-18
+
+#### ⚙️ Types
+
+- Export from index. (#340) ([7d85a18](https://github.com/airbnb/lunar/commit/7d85a18)), closes [#340](https://github.com/airbnb/lunar/issues/340)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.4.0 - 2020-03-17
 
 #### 🚀 Updates
