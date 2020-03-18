@@ -4,6 +4,8 @@ import hasGoogleAnalytics from './utils/hasGoogleAnalytics';
 
 export { Sentry };
 
+export * from './types';
+
 export type IgnoreError = string | RegExp;
 
 export type Settings = {
