@@ -18,6 +18,8 @@ import {
   TranslateOptions,
 } from './types';
 
+export * from './types';
+
 export type Settings = {
   defaultLocale?: Locale;
   defaultTimezone?: TimeZone;
