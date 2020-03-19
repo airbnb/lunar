@@ -4,7 +4,11 @@ import { Locale } from '../types';
 export default function getLocaleFromClient(): Locale | undefined {
   let locale: Locale | undefined;
 
-  (navigator.languages || [navigator.language]).some(lang => {
+  if (typeof global.navigator === 'undefined') {
+    return locale;
+  }
+
+  (global.navigator.languages || [global.navigator.language]).some(lang => {
     locale = parseLocale(lang);
 
     return !!locale;

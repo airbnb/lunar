@@ -27,7 +27,7 @@ export default function Preview({
     context.setData('previewConfirmed', true);
 
     // Force a submission after context propagates
-    setTimeout(() => {
+    window.setTimeout(() => {
       const button = document.getElementById(`${context.id}-submit-button`);
 
       if (button) {

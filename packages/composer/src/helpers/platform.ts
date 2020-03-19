@@ -1,5 +1,9 @@
 export function isMac(): boolean {
-  return navigator.platform.toLowerCase().includes('mac');
+  if (typeof global.navigator === 'undefined') {
+    return false;
+  }
+
+  return global.navigator.platform.toLowerCase().includes('mac');
 }
 
 export function isElementWithID(element: HTMLElement, tagName: string, id: string): boolean {

@@ -8,7 +8,7 @@ import useFormField, { FieldProps } from '../../hooks/useFormField';
 // so let's delay the forms to run after the picker.
 function wrapHandler<T>(cb: (event: T) => void) {
   return (event: T) => {
-    setTimeout(() => {
+    window.setTimeout(() => {
       cb(event);
     }, 0);
   };

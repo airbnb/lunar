@@ -45,8 +45,11 @@ class Metrics {
       return;
     }
 
-    newrelic.setCustomAttribute('browser-locale', global.navigator.language);
-    newrelic.setCustomAttribute('user-agent', global.navigator.userAgent);
+    if (typeof global.navigator !== 'undefined') {
+      newrelic.setCustomAttribute('browser-locale', global.navigator.language);
+      newrelic.setCustomAttribute('user-agent', global.navigator.userAgent);
+    }
+
     newrelic.setCustomAttribute('user-id', userID ? String(userID) : 'N/A');
 
     Object.keys(context).forEach(key => {
@@ -69,11 +72,12 @@ class Metrics {
 
   bootstrapSentry() {
     const { context, ignoreErrors, sentry, sentryKey, sentryProject, userID } = this.settings;
-    const { host, protocol } = global.location;
 
-    if (!this.isSentryEnabled()) {
+    if (!this.isSentryEnabled() || typeof global.location === 'undefined') {
       return;
     }
+
+    const { host, protocol } = global.location;
 
     Sentry.init({
       dsn: `${protocol}//${sentryKey}@${host}/${sentryProject}`,
@@ -86,8 +90,11 @@ class Metrics {
 
     Sentry.configureScope(scope => {
       scope.setUser({ id: userID ? String(userID) : 'N/A' });
-      scope.setTag('browser.locale', global.navigator.language);
       scope.setExtras(context);
+
+      if (typeof global.navigator !== 'undefined') {
+        scope.setTag('browser.locale', global.navigator.language);
+      }
     });
   }
 

@@ -136,7 +136,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     if (dynamicRowHeight && (filteredDataChanged || dimensionsChanged || sortChanged)) {
       // We need to make sure the cache is cleared before React tries to re-render.
-      setTimeout(() => {
+      window.setTimeout(() => {
         this.cache.clearAll();
         this.forceUpdate();
       }, 0);
@@ -221,9 +221,10 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
         expandedRows: newExpandedRows,
       };
     });
+
     if (dynamicRowHeight) {
       // We need to make sure the cache is cleared before React tries to re-render.
-      setTimeout(() => {
+      window.setTimeout(() => {
         this.cache.clearAll();
         this.forceUpdate();
       }, 0);
