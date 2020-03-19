@@ -70,6 +70,18 @@ withLeftAndRightArrows.story = {
   name: 'With left and right arrows.',
 };
 
+export function withArrowsButNotShown() {
+  return (
+    <GradientScroller showArrows hideScrollbar>
+      <Text>{"Hello"}</Text>
+    </GradientScroller>
+  );
+}
+
+withArrowsButNotShown.story = {
+  name: 'With arrows but not shown.',
+};
+
 export function withNoScrollbarAndVariableWidthChildren() {
   return (
     <GradientScroller hideScrollbar>

@@ -14,7 +14,7 @@ exports[`<GradientScroller /> has the correct default sizing 1`] = `
     />
   </div>
   <div
-    className="rightGradient gradient_reveal"
+    className="rightGradient"
   >
     <span
       className="scrollTrigger"

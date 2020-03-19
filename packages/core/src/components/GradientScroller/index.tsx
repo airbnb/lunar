@@ -46,7 +46,7 @@ export class GradientScroller extends React.Component<
 
   state = {
     showStartGradient: false,
-    showEndGradient: true,
+    showEndGradient: false,
   };
 
   componentWillUnmount() {
