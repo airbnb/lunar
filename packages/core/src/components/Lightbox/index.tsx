@@ -41,8 +41,8 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
     const { startIndex = 0, images } = this.props;
     const { activeIndex } = this.state;
     const index = startIndex < images.length ? startIndex : activeIndex;
-
     const totalImages = images.length;
+
     if (totalImages > 0) {
       this.preloadedUrls.set(images[index].src, true);
 

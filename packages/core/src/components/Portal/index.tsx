@@ -18,9 +18,14 @@ export default class Portal extends React.PureComponent<PortalProps> {
   }
 
   render() {
-    if (!this.node) {
+    // SSR check
+    if (!this.node && typeof document !== 'undefined') {
       this.node = document.createElement('div');
       document.body.append(this.node);
+    }
+
+    if (!this.node) {
+      return null;
     }
 
     return ReactDOM.createPortal(this.props.children, this.node);

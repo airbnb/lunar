@@ -131,7 +131,7 @@ export default function Composer({
 
       // Always focus the input when a menu is opened.
       // We need to focus so that hotkeys can be triggered.
-      setTimeout(() => {
+      window.setTimeout(() => {
         const composer = document.getElementById(id);
 
         if (composer && document.activeElement !== composer) {

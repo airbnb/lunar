@@ -32,6 +32,7 @@ export class ModalInner extends React.Component<ModalInnerProps & WithStylesProp
 
   componentDidMount() {
     this.handleOpen();
+
     document.addEventListener('click', this.handleClickOutside, true);
   }
 

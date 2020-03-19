@@ -38,7 +38,7 @@ export class GradientScroller extends React.Component<
 
   contentsRef: HTMLDivElement | null = null;
 
-  observer: ResizeObserver;
+  observer?: ResizeObserver;
 
   scrollInterval: number = 0;
 
@@ -49,15 +49,9 @@ export class GradientScroller extends React.Component<
     showEndGradient: true,
   };
 
-  constructor(props: GradientScrollerProps & WithStylesProps) {
-    super(props);
-
-    // Register resize observer before mounting
-    this.observer = new window.ResizeObserver(this.handleObserver);
-  }
-
   componentWillUnmount() {
-    this.observer.disconnect();
+    // eslint-disable-next-line no-unused-expressions
+    this.getObserver()?.disconnect();
   }
 
   calculate() {
@@ -117,21 +111,37 @@ export class GradientScroller extends React.Component<
     }
   }
 
+  getObserver(): ResizeObserver | undefined {
+    if (!this.observer && typeof window !== 'undefined') {
+      this.observer = new window.ResizeObserver(this.handleObserver);
+    }
+
+    return this.observer;
+  }
+
   private handleContentsRef = (ref: HTMLDivElement) => {
-    if (ref) {
-      this.observer.observe(ref);
-    } else if (this.contentsRef) {
-      this.observer.unobserve(this.contentsRef);
+    const observer = this.getObserver();
+
+    if (observer) {
+      if (ref) {
+        observer.observe(ref);
+      } else if (this.contentsRef) {
+        observer.unobserve(this.contentsRef);
+      }
     }
 
     this.contentsRef = ref;
   };
 
   private handleScrollerRef = (ref: HTMLDivElement) => {
-    if (ref) {
-      this.observer.observe(ref);
-    } else if (this.scrollerRef) {
-      this.observer.unobserve(this.scrollerRef);
+    const observer = this.getObserver();
+
+    if (observer) {
+      if (ref) {
+        observer.observe(ref);
+      } else if (this.scrollerRef) {
+        observer.unobserve(this.scrollerRef);
+      }
     }
 
     this.scrollerRef = ref;
