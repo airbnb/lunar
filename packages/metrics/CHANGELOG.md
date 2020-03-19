@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.2 - 2020-03-19
+
+#### 🐞 Fixes
+
+- Minor changes to support SSR. (#341) ([7810102](https://github.com/airbnb/lunar/commit/7810102)), closes [#341](https://github.com/airbnb/lunar/issues/341)
+
+**Note:** Version bump only for package @airbnb/lunar-metrics
+
+
+
+
+
 ### 3.0.1 - 2020-03-18
 
 #### ⚙️ Types
