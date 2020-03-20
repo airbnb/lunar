@@ -33,7 +33,7 @@ export default {
   title: 'Core/GradientScroller',
   parameters: {
     inspectComponents: [GradientScroller],
-    happo: { delay: 100 },
+    happo: { delay: 500 },
   },
 };
 
