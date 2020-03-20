@@ -46,6 +46,10 @@ export class ScrollWrapper extends React.Component<ScrollWrapperProps & WithStyl
   }
 
   setupObserver() {
+    if (typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
     if (this.observer) {
       this.observer.disconnect();
       this.observer = null;
