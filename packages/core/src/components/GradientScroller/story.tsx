@@ -74,7 +74,7 @@ withLeftAndRightArrows.story = {
 export function withArrowsButNotShown() {
   return (
     <GradientScroller showArrows hideScrollbar>
-      <Text>{"Hello"}</Text>
+      <Text><LoremIpsum short /></Text>
     </GradientScroller>
   );
 }
