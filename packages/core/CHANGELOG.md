@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.4.3 - 2020-03-20
+
+#### 🐞 Fixes
+
+- Lazy-load `BroadcastChannel`. (#343) ([b57374a](https://github.com/airbnb/lunar/commit/b57374a)), closes [#343](https://github.com/airbnb/lunar/issues/343)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.4.2 - 2020-03-19
 
 #### 🐞 Fixes
