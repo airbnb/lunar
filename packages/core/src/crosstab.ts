@@ -9,25 +9,34 @@ export type Message = {
 };
 
 export class Crosstab {
-  channel: BroadcastChannel;
+  channel?: BroadcastChannel;
 
-  handlers: Map<string, Set<Handler>>;
+  handlers = new Map<string, Set<Handler>>();
 
-  constructor() {
+  getChannel(): BroadcastChannel | undefined {
+    if (typeof BroadcastChannel === 'undefined') {
+      return undefined;
+    }
+
     this.channel = new BroadcastChannel('crosstab');
     this.channel.addEventListener('message', this.handleMessage);
 
-    this.handlers = new Map();
+    return this.channel;
   }
 
   on(key: string, handler: Handler) {
+    this.getChannel(); // Load
+
     const set = this.handlers.get(key) || new Set();
 
     set.add(handler);
+
     this.handlers.set(key, set);
   }
 
   off(key: string, handler?: Handler) {
+    this.getChannel(); // Load
+
     if (handler) {
       const handlersForKey = this.handlers.get(key);
 
@@ -45,10 +54,14 @@ export class Crosstab {
       value,
     };
 
-    this.channel.postMessage(message);
+    const channel = this.getChannel();
 
-    if (selfEmit) {
-      this.handleMessage({ data: message });
+    if (channel) {
+      channel.postMessage(message);
+
+      if (selfEmit) {
+        this.handleMessage({ data: message });
+      }
     }
   }
 
