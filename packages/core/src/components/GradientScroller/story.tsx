@@ -33,6 +33,7 @@ export default {
   title: 'Core/GradientScroller',
   parameters: {
     inspectComponents: [GradientScroller],
+    happo: { delay: 500 },
   },
 };
 
@@ -68,6 +69,20 @@ export function withLeftAndRightArrows() {
 
 withLeftAndRightArrows.story = {
   name: 'With left and right arrows.',
+};
+
+export function withArrowsButNotShown() {
+  return (
+    <GradientScroller showArrows hideScrollbar>
+      <Text>
+        <LoremIpsum short />
+      </Text>
+    </GradientScroller>
+  );
+}
+
+withArrowsButNotShown.story = {
+  name: 'With arrows but not shown.',
 };
 
 export function withNoScrollbarAndVariableWidthChildren() {
