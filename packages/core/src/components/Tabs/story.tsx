@@ -9,6 +9,7 @@ export default {
   title: 'Core/Tabs',
   parameters: {
     inspectComponents: [Tabs, Tab],
+    happo: { delay: 500 },
   },
 };
 
