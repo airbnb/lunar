@@ -119,7 +119,7 @@
     "full-icu": "^1.3.1",
     "gh-pages": "^2.2.0",
     "happo-plugin-storybook": "^2.5.3",
-    "happo.io": "^5.1.5",
+    "happo.io": "^5.2.0",
     "jest-rut": "^1.0.1",
     "lerna": "^3.20.2",
     "moment": "^2.24.0",
@@ -129,7 +129,7 @@
     "rimraf": "^3.0.1",
     "rut-dom": "^1.0.1",
     "svgo": "^1.3.2",
-    "ts-node": "^8.6.2",
+    "ts-node": "^8.8.1",
     "url-loader": "^4.0.0"
   },
   "resolutions": {
