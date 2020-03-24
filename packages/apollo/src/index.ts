@@ -55,7 +55,7 @@ class Apollo {
       name: Core.settings.name,
       resolvers,
       typeDefs,
-      version: pkg.version,
+      version: (pkg as { version: string }).version,
     });
 
     if (__DEV__) {

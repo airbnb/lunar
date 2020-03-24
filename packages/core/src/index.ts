@@ -87,6 +87,7 @@ class Core {
       const { TestAdapter } = require('aesthetic/lib/testing');
 
       aesthetic.configure({
+        // eslint-disable-next-line
         adapter: new TestAdapter(),
         extendable: true,
         theme: 'light',
@@ -172,7 +173,7 @@ class Core {
     }
 
     // Low-level token interpolation
-    return message.replace(/%{(\w+)}/g, (match, k) => `${params[k]}`);
+    return message.replace(/%{(\w+)}/g, (match, k) => `${params[String(k)]}`);
   };
 }
 

@@ -26,6 +26,11 @@ type ColumnLabelsProps = {
   style: React.CSSProperties;
 };
 
+type ColumnChildrenProps = {
+  children: React.ReactElement<ColumnChildrenProps>[];
+  sortDirection: string;
+};
+
 /** See https://github.com/bvaughn/react-virtualized/blob/master/source/Table/defaultHeaderRowRenderer.js.
     In order to overwrite the existing labels and carets in defaultHeaderRowRenderer,
     we clone them from props (children[0] = label, children[1] = carets), build around their data. */
@@ -63,12 +68,13 @@ export default function ColumnLabels({
     };
 
     const newColumns = columns.map((col, idx) => {
-      if (!React.isValidElement(col)) {
+      if (!React.isValidElement<ColumnChildrenProps>(col)) {
         return col;
       }
 
+      // TODO: The types here are very wrong and confusing.
       const { children } = col.props;
-      const key = children[0].props.children;
+      const key = String(children[0].props.children);
       const label = columnToLabel[key]
         ? columnToLabel[key]
         : key && caseColumnLabel(key, columnLabelCase!);

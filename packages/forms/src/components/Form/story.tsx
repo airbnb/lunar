@@ -39,7 +39,7 @@ function isEmail(value: string) {
 function isDate(value: string | Date) {
   isRequired(value);
 
-  // eslint-disable-next-line unicorn/regex-shorthand
+  // eslint-disable-next-line unicorn/better-regex
   if (typeof value === 'string' && !value.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
     throw new Error('Invalid date.');
   }

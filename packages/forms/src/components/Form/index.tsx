@@ -20,7 +20,7 @@ import T from '@airbnb/lunar/lib/components/Translate';
 import { getErrorMessage } from '@airbnb/lunar/lib/components/ErrorMessage';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
 import FormContext from '../FormContext';
-import { Errors, Parse, Field } from '../../types';
+import { Errors, Parse, Field, FieldData } from '../../types';
 import { throttleToSinglePromise } from '../../helpers';
 
 function mapSubscriptions(subscriptions: string[]): { [sub: string]: boolean } {
@@ -282,7 +282,8 @@ export default class Form<Data extends object = {}> extends React.Component<
    * Trim and type cast the dataset.
    */
   prepareData(initialData: Partial<Data>): Data {
-    return this.getFields().reduce((data, { name, data: fieldData }) => {
+    return this.getFields().reduce((data, { name, data: rawData }) => {
+      const fieldData = rawData as FieldData;
       let value = getIn(data, name);
 
       if (!fieldData || !fieldData.config) {
@@ -375,7 +376,8 @@ export default class Form<Data extends object = {}> extends React.Component<
       fields.map(async (field) => {
         if (!field) return;
 
-        const { name, data: fieldData } = field;
+        const { name, data: rawData } = field;
+        const fieldData = rawData as FieldData;
 
         if (fieldData?.config?.validator) {
           const value = getIn(data, name);
@@ -384,7 +386,7 @@ export default class Form<Data extends object = {}> extends React.Component<
             try {
               await fieldData.config.validator(value, data);
             } catch (error) {
-              errors = setIn(errors, name, error.message);
+              errors = setIn(errors, name, (error as Error).message);
             }
           }
         }
@@ -403,7 +405,7 @@ export default class Form<Data extends object = {}> extends React.Component<
         try {
           await validator(value, data);
         } catch (error) {
-          return error.message;
+          return (error as Error).message;
         }
       }
 

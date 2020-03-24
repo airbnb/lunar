@@ -9,6 +9,12 @@ import { ButtonOrLinkTypes } from '../private/ButtonOrLink';
 
 export { ButtonGroup };
 
+type Renderer<T extends string> = (
+  component: React.ComponentType<ToggleButtonControlledProps<T>>,
+  value: T,
+  id: string,
+) => React.ReactElement;
+
 export type ToggleButtonControlledProps<T extends string = string> = Partial<ButtonProps> & {
   children: NonNullable<React.ReactNode>;
   value: T;
@@ -16,11 +22,7 @@ export type ToggleButtonControlledProps<T extends string = string> = Partial<But
 
 export type ToggleButtonControllerProps<T extends string = string> = FormFieldProps & {
   /** Function children in which Button components can be rendered. */
-  children: (
-    component: React.ComponentType<ToggleButtonControlledProps<T>>,
-    value: T,
-    id: string,
-  ) => void;
+  children: Renderer<T>;
   /** Unique name of the field. */
   name: string;
   /** Callback that is triggered when a child Button is clicked. */
@@ -105,7 +107,7 @@ export default class ToggleButtonController<T extends string = string> extends R
 
     return (
       <FormField {...fieldProps} id={id}>
-        {children(this.renderButton, value)}
+        {(children as Renderer<T>)(this.renderButton, value, id)}
       </FormField>
     );
   }

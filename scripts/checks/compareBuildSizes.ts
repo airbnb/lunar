@@ -115,7 +115,7 @@ ${JSON.stringify(nextSizes, null, 2)}
   }
 }
 
-compareBuildSizes().catch(error => {
+compareBuildSizes().catch((error) => {
   console.error(chalk.red(error.message));
   process.exitCode = 1;
 });

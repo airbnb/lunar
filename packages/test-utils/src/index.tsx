@@ -1,4 +1,4 @@
-/* eslint-disable no-console, import/no-extraneous-dependencies, @typescript-eslint/no-explicit-any */
+/* eslint-disable no-console, import/no-extraneous-dependencies, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */
 
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';

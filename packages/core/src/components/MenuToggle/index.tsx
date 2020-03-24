@@ -8,6 +8,7 @@ import ExpandableIcon from '../ExpandableIcon';
 import Dropdown, { DropdownProps } from '../Dropdown';
 import Menu, { Item, Separator, MenuProps } from '../Menu';
 import { styleSheetMenuToggle } from './styles';
+import { MenuItemProps } from '../Menu/Item';
 
 export type MenuToggleProps = {
   /** Accessibility label for menu. */
@@ -208,7 +209,8 @@ export class MenuToggle extends React.Component<
                         }
 
                         return React.cloneElement(child, {
-                          onClick: () => this.handleItemClick(child.props.onClick),
+                          onClick: () =>
+                            this.handleItemClick((child.props as MenuItemProps).onClick!),
                         });
                       },
                     )

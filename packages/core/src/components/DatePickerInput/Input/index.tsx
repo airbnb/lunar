@@ -50,7 +50,8 @@ export default class PrivatePickerInput extends DayPickerInput {
     this.input = ref;
 
     if (propagateRef) {
-      propagateRef.current = ref;
+      // @ts-ignore
+      (propagateRef as React.RefObject<HTMLInputElement>).current = ref;
     }
   };
 

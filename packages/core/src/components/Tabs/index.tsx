@@ -110,7 +110,7 @@ function Tabs<T extends string = string>({
           return null;
         }
 
-        const { key, props } = child as React.ReactElement;
+        const { key, props } = child as React.ReactElement<{ children?: React.ReactNode }>;
         const selected = key === selectedKey || (!selectedKey && i === 0);
 
         if (__DEV__ && !key) {

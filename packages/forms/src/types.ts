@@ -49,3 +49,7 @@ export type Field<T> = {
   validateFields?: string[];
   validator: FieldValidator<T>;
 };
+
+export type FieldData<T = unknown> = {
+  config: Field<T>;
+};

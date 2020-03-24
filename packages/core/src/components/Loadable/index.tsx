@@ -3,13 +3,13 @@ import ErrorMessage from '../ErrorMessage';
 import Loader from '../Loader';
 import renderElementOrFunction, { RenderableProp } from '../../utils/renderElementOrFunction';
 
+type Renderer<T> = (component: React.ComponentType<T>, ownProps: T) => React.ReactElement;
+
 export type LoadableProps<T extends object> = {
   /** Allow all props since they are piped to the loaded component. */
   [prop: string]: unknown;
   /** Render the component once it has been loaded. */
-  children?:
-    | React.ReactNode
-    | ((component: React.ComponentType<T>, ownProps: T) => React.ReactElement);
+  children?: React.ReactNode | Renderer<T>;
   /** A function that `import()`s a component and returns a promise. */
   component: () => Promise<{ default: React.ComponentType<T> }>;
   /**
@@ -116,7 +116,7 @@ export default class Loadable<T extends object = {}> extends React.Component<
     this.mounted = false;
   }
 
-  renderComponent = () => {
+  renderComponent = (): React.ReactElement => {
     const {
       children,
       component,
@@ -133,7 +133,7 @@ export default class Loadable<T extends object = {}> extends React.Component<
 
     if (typeof children === 'function') {
       // @ts-ignore Bug: https://github.com/Microsoft/TypeScript/issues/26970
-      return children(Component, restProps);
+      return (children as Renderer<T>)(Component, restProps);
     }
 
     // @ts-ignore Props spreading
