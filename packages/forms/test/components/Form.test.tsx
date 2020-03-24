@@ -9,7 +9,7 @@ describe('<Form />', () => {
   let instance: Form;
 
   beforeEach(() => {
-    wrapper = shallow(<Form onSubmit={data => Promise.resolve(data)}>Hello</Form>);
+    wrapper = shallow(<Form onSubmit={(data) => Promise.resolve(data)}>Hello</Form>);
     instance = wrapper.instance();
   });
 

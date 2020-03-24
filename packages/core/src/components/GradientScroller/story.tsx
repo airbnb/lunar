@@ -9,7 +9,7 @@ class ButtonGroupDemo extends React.Component<{}, { buttons: number[] }> {
   state = { buttons: [] };
 
   handleClick = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       buttons: [...prevState.buttons, prevState.buttons.length],
     }));
   };
@@ -20,7 +20,7 @@ class ButtonGroupDemo extends React.Component<{}, { buttons: number[] }> {
         <ButtonGroup>
           <Button onClick={this.handleClick}>Add</Button>
 
-          {this.state.buttons.map(count => (
+          {this.state.buttons.map((count) => (
             <Button key={count}>{count}</Button>
           ))}
         </ButtonGroup>

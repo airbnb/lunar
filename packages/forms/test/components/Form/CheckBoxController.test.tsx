@@ -23,7 +23,7 @@ describe('<CheckBoxController />', () => {
         defaultValue={['bar']}
         validator={() => {}}
       >
-        {CB => (
+        {(CB) => (
           <div>
             <CB value="foo" label="Foo" />
             <CB value="bar" label="Bar" />
@@ -53,7 +53,7 @@ describe('<CheckBoxController />', () => {
         defaultValue={['bar']}
         validator={() => {}}
       >
-        {CB => (
+        {(CB) => (
           <div>
             <CB value="foo" label="Foo" />
             <CB value="bar" label="Bar" />

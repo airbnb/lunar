@@ -34,7 +34,7 @@ const mockImagesWithAside = [
 class LightboxDemo extends React.Component<Omit<LightboxProps, 'onClose'>, { visible: boolean }> {
   state = { visible: true };
 
-  handleToggle = () => this.setState(prevState => ({ visible: !prevState.visible }));
+  handleToggle = () => this.setState((prevState) => ({ visible: !prevState.visible }));
 
   handleClose = () => this.setState({ visible: false });
 

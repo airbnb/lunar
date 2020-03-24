@@ -51,7 +51,7 @@ export default function Actions({ actions, endAlign, noWritingModes }: ActionsPr
             </Row>
 
             {acts
-              .filter(action => (action.condition ? action.condition(context) : true))
+              .filter((action) => (action.condition ? action.condition(context) : true))
               .map((action, i) => {
                 const Icon = action.icon;
                 const onClick = () => {

@@ -29,34 +29,14 @@ describe('<SortCarets />', () => {
   it('sets active on up caret', () => {
     const wrapper = shallow(<SortCarets down up enableUp />);
 
-    expect(
-      wrapper
-        .find('span')
-        .at(1)
-        .prop('className'),
-    ).toMatch('caret_active');
-    expect(
-      wrapper
-        .find('span')
-        .at(2)
-        .prop('className'),
-    ).toMatch('caret_inactive');
+    expect(wrapper.find('span').at(1).prop('className')).toMatch('caret_active');
+    expect(wrapper.find('span').at(2).prop('className')).toMatch('caret_inactive');
   });
 
   it('sets active on down caret', () => {
     const wrapper = shallow(<SortCarets down up enableDown />);
 
-    expect(
-      wrapper
-        .find('span')
-        .at(1)
-        .prop('className'),
-    ).toMatch('caret_inactive');
-    expect(
-      wrapper
-        .find('span')
-        .at(2)
-        .prop('className'),
-    ).toMatch('caret_active');
+    expect(wrapper.find('span').at(1).prop('className')).toMatch('caret_inactive');
+    expect(wrapper.find('span').at(2).prop('className')).toMatch('caret_active');
   });
 });

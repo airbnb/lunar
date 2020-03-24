@@ -220,7 +220,7 @@ describe('Query', () => {
 
       mount(
         <Query query={QUERY}>
-          {data => {
+          {(data) => {
             expect(data).toBeNull();
 
             return null;

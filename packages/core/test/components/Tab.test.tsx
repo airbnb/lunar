@@ -9,12 +9,7 @@ describe('<Tab/>', () => {
   it('renders a button', () => {
     const wrapper = mountUseStyles(<Tab keyName="default" label="Tab" onClick={() => {}} />);
 
-    expect(
-      wrapper
-        .find('span')
-        .at(0)
-        .prop('className'),
-    ).toBe('tab');
+    expect(wrapper.find('span').at(0).prop('className')).toBe('tab');
   });
 
   it('renders a before icon', () => {
@@ -40,12 +35,7 @@ describe('<Tab/>', () => {
       <Tab disabled keyName="default" label="Tab" onClick={() => {}} />,
     );
 
-    expect(
-      wrapper
-        .find('span')
-        .at(0)
-        .prop('className'),
-    ).toMatch('tab_disabled');
+    expect(wrapper.find('span').at(0).prop('className')).toMatch('tab_disabled');
   });
 
   it('renders secondary', () => {
@@ -53,10 +43,7 @@ describe('<Tab/>', () => {
       <Tab secondary keyName="default" label="Tab" onClick={() => {}} />,
     );
 
-    const className = wrapper
-      .find('span')
-      .at(0)
-      .prop('className');
+    const className = wrapper.find('span').at(0).prop('className');
     expect(className).toMatch('tab_secondary');
     expect(className).toMatch('tab_noBorder');
   });
@@ -66,12 +53,7 @@ describe('<Tab/>', () => {
       <Tab selected keyName="default" label="Tab" onClick={() => {}} />,
     );
 
-    expect(
-      wrapper
-        .find('span')
-        .at(0)
-        .prop('className'),
-    ).toMatch('tab_selected');
+    expect(wrapper.find('span').at(0).prop('className')).toMatch('tab_selected');
   });
 
   it('renders stretched', () => {
@@ -79,12 +61,7 @@ describe('<Tab/>', () => {
       <Tab stretched keyName="default" label="Tab" onClick={() => {}} />,
     );
 
-    expect(
-      wrapper
-        .find('span')
-        .at(0)
-        .prop('className'),
-    ).toMatch('tab_stretched');
+    expect(wrapper.find('span').at(0).prop('className')).toMatch('tab_stretched');
   });
 
   it('doesnt render children', () => {
@@ -102,10 +79,7 @@ describe('<Tab/>', () => {
     const spy = jest.fn();
     const wrapper = mountUseStyles(<Tab keyName="foo" label="Tab" onClick={spy} />);
 
-    wrapper
-      .find(ButtonOrLink)
-      .at(0)
-      .simulate('click');
+    wrapper.find(ButtonOrLink).at(0).simulate('click');
 
     expect(spy).toHaveBeenCalledWith('foo');
   });

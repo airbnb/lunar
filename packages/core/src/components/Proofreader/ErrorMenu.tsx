@@ -44,7 +44,7 @@ export default class ErrorMenu extends React.Component<ErrorMenuProps> {
             </Text>
           </Row>
 
-          {error.replacements!.map(replacement => (
+          {error.replacements!.map((replacement) => (
             <Item key={replacement!} onClick={() => this.handleClick(replacement)}>
               <Text>{this.replacementText(replacement)}</Text>
             </Item>

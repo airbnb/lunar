@@ -5,7 +5,7 @@ export function processChangeHandlers(
   nextValue: string,
   context: WritableContext,
 ) {
-  handlers.forEach(handler => handler?.(nextValue, context));
+  handlers.forEach((handler) => handler?.(nextValue, context));
 }
 
 export function processSubmitHandlers(
@@ -13,7 +13,7 @@ export function processSubmitHandlers(
   result: DataSet,
   context: WritableContext,
 ) {
-  handlers.some(handler => handler?.(result, context) === true);
+  handlers.some((handler) => handler?.(result, context) === true);
 }
 
 /**

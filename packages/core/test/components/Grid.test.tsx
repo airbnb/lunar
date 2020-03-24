@@ -22,7 +22,7 @@ describe('<Grid />', () => {
     'reversed',
     'startAlign',
     'topAlign',
-  ].forEach(type => {
+  ].forEach((type) => {
     it(`renders ${type}`, () => {
       const wrapper = shallow(
         <Grid {...{ [type]: true }}>

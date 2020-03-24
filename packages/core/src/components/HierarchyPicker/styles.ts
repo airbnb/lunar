@@ -1,7 +1,7 @@
 import { StyleSheet } from '../../hooks/useStyles';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
-export const styleSheetPicker: StyleSheet = theme => ({
+export const styleSheetPicker: StyleSheet = (theme) => ({
   ...inputStyleSheet(theme),
 
   selectlike: {

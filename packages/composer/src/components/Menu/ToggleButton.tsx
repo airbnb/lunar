@@ -14,7 +14,7 @@ export type ToggleButtonProps = {
 export default function ToggleButton({ accessibilityLabel, icon, menu }: ToggleButtonProps) {
   const { setMenu } = useContext(ComposerContext);
   const handleToggle = useCallback(() => {
-    setMenu(activeMenu => (activeMenu === menu ? '' : menu));
+    setMenu((activeMenu) => (activeMenu === menu ? '' : menu));
   }, [setMenu, menu]);
 
   return (

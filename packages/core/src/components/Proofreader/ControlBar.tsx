@@ -40,7 +40,7 @@ export default function ControlBar({
     <div>
       <span className={cx(styles.cell, { pointerEvents: 'initial' })}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <Link bold small onClick={() => setLocaleMenu(value => !value)}>
+        <Link bold small onClick={() => setLocaleMenu((value) => !value)}>
           {selectedLocale ? (
             getLocaleDefinition(selectedLocale).label
           ) : (
@@ -65,7 +65,7 @@ export default function ControlBar({
               maxHeight={localeMenuMaxHeight}
               noneDefinition={getLocaleDefinition(NO_LOCALE)}
               selectedLocale={selectedLocale}
-              onSelectLocale={nextLocale => {
+              onSelectLocale={(nextLocale) => {
                 onSelectLocale(nextLocale);
                 setLocaleMenu(false);
               }}

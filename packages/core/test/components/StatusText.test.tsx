@@ -16,7 +16,7 @@ describe('<StatusText />', () => {
   });
 
   describe('statuses', () => {
-    STATUSES.forEach(status => {
+    STATUSES.forEach((status) => {
       it(`renders ${status} text`, () => {
         const wrapper = shallow(
           shallow(<StatusText {...{ [status]: true }}>{status}</StatusText>).getElement(),

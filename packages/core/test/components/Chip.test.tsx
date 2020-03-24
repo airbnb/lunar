@@ -37,17 +37,9 @@ describe('<Chip />', () => {
         Potato
       </Chip>,
     );
+    expect(wrapper.find('div').first().prop('id')).toBe('tracking-chip');
     expect(
-      wrapper
-        .find('div')
-        .first()
-        .prop('id'),
-    ).toBe('tracking-chip');
-    expect(
-      wrapper
-        .find('div')
-        .find({ id: 'tracking-chip' })
-        .prop('data-tracking-name'),
+      wrapper.find('div').find({ id: 'tracking-chip' }).prop('data-tracking-name'),
     ).toBeUndefined();
   });
 

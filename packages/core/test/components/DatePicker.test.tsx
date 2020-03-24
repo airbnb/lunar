@@ -19,12 +19,6 @@ describe('<DatePicker />', () => {
   it('renders a reset button in the navbar element', () => {
     const wrapper = shallowWithStyles(<DatePicker showResetButton />);
 
-    expect(
-      wrapper
-        .find('navbarElement')
-        .dive()
-        .dive()
-        .find('button'),
-    ).toHaveLength(1);
+    expect(wrapper.find('navbarElement').dive().dive().find('button')).toHaveLength(1);
   });
 });

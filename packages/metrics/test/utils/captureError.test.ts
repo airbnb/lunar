@@ -20,7 +20,7 @@ describe('captureError()', () => {
     // eslint-disable-next-line jest/prefer-spy-on
     global.newrelic.noticeError = jest.fn();
 
-    (withScope as jest.Mock).mockImplementation(cb => cb(scope));
+    (withScope as jest.Mock).mockImplementation((cb) => cb(scope));
   });
 
   it('does nothing if no error', () => {

@@ -15,7 +15,7 @@ describe('<TableRow />', () => {
   });
 
   describe('statuses', () => {
-    STATUSES.forEach(status => {
+    STATUSES.forEach((status) => {
       it('renders row', () => {
         const wrapper = shallow(<TableRow {...{ [status]: true }}>{status}</TableRow>);
 

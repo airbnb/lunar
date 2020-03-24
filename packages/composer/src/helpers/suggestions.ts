@@ -80,7 +80,7 @@ export function loadSuggestionsIntoTrie(
   suggestions.forEach(({ suggestion }) => {
     let prefix = '';
 
-    suggestion.split(' ').forEach(word => {
+    suggestion.split(' ').forEach((word) => {
       trie.set(prefix + word, suggestion.startsWith(phrase) ? suggestion : phrase + suggestion);
 
       prefix += word;

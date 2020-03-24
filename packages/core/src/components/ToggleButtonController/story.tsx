@@ -20,7 +20,7 @@ export function aListOfSingleSelectToggleButtons() {
       label="Favorite color?"
       onChange={action('onChange')}
     >
-      {ControlledButton => (
+      {(ControlledButton) => (
         <ButtonGroup>
           <ControlledButton key="red" value="red">
             Red
@@ -50,7 +50,7 @@ export function handlesInvalidState() {
       label="Favorite color?"
       onChange={action('onChange')}
     >
-      {ControlledButton => (
+      {(ControlledButton) => (
         <ButtonGroup>
           <ControlledButton key="red" value="red">
             Red
@@ -80,7 +80,7 @@ export function handlesDisabledState() {
       label="Favorite color?"
       onChange={action('onChange')}
     >
-      {ControlledButton => (
+      {(ControlledButton) => (
         <ButtonGroup>
           <ControlledButton key="red" value="red">
             Red
@@ -110,7 +110,7 @@ export function asSmall() {
       label="Favorite color?"
       onChange={action('onChange')}
     >
-      {ControlledButton => (
+      {(ControlledButton) => (
         <ButtonGroup>
           <ControlledButton key="red" value="red">
             Red
@@ -140,7 +140,7 @@ export function asLarge() {
       label="Favorite color?"
       onChange={action('onChange')}
     >
-      {ControlledButton => (
+      {(ControlledButton) => (
         <ButtonGroup>
           <ControlledButton key="red" value="red">
             Red
@@ -170,7 +170,7 @@ export function withInline() {
       label="Favorite color?"
       onChange={action('onChange')}
     >
-      {ControlledButton => (
+      {(ControlledButton) => (
         <ButtonGroup>
           <ControlledButton key="red" value="red">
             Red

@@ -105,7 +105,7 @@ export default function renderDataColumns<T>(
   return keys.map((key, idx: number) => {
     const widthPropertiesOptions = ['maxWidth', 'minWidth', 'width', 'flexGrow', 'flexShrink'];
     const widthProperties: WidthProperties = {};
-    widthPropertiesOptions.forEach(property => {
+    widthPropertiesOptions.forEach((property) => {
       widthProperties[property] =
         columnMetadata?.[key]?.[property] === undefined
           ? DEFAULT_WIDTH_PROPERTIES[property]

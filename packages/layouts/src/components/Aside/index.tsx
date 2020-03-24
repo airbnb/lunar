@@ -85,7 +85,7 @@ export default function Aside({
 
   const handleCollapseToggle: React.DOMAttributes<HTMLButtonElement>['onClick'] = collapsible
     ? () => {
-        setExpanded(prev => !prev);
+        setExpanded((prev) => !prev);
 
         if (onCollapseToggle) {
           onCollapseToggle(!isExpanded);

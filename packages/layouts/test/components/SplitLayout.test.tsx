@@ -37,18 +37,8 @@ describe('<SplitLayout />', () => {
       <SplitLayout before={<Aside>Left</Aside>} after={<Aside>Right</Aside>} />,
     );
 
-    expect(
-      wrapper
-        .find(Aside)
-        .at(0)
-        .prop('children'),
-    ).toBe('Left');
+    expect(wrapper.find(Aside).at(0).prop('children')).toBe('Left');
 
-    expect(
-      wrapper
-        .find(Aside)
-        .at(1)
-        .prop('children'),
-    ).toBe('Right');
+    expect(wrapper.find(Aside).at(1).prop('children')).toBe('Right');
   });
 });

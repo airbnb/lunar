@@ -18,7 +18,7 @@ class CountExample extends React.Component<{}, { count: number }> {
         <ButtonGroup>
           <Button
             small
-            onClick={() => this.setState(prevState => ({ count: prevState.count + 1 }))}
+            onClick={() => this.setState((prevState) => ({ count: prevState.count + 1 }))}
           >
             Increment badge count
           </Button>

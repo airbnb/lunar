@@ -60,7 +60,7 @@ export default class CheckBoxController<T extends string = string> extends React
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     this.setState(
-      prevState => {
+      (prevState) => {
         const values = new Set(prevState.values);
 
         if (checked) {

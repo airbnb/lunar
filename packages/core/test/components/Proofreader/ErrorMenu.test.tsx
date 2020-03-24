@@ -43,12 +43,7 @@ describe('<ErrorMenu />', () => {
       <ErrorMenu error={{ ...error, replacements: [' '] }} onReplaceText={() => {}} />,
     );
 
-    expect(
-      wrapper
-        .find(Item)
-        .find(Text)
-        .prop('children'),
-    ).toBe('(Space)');
+    expect(wrapper.find(Item).find(Text).prop('children')).toBe('(Space)');
   });
 
   it('shows a message when a replacement is an empty string', () => {
@@ -56,11 +51,6 @@ describe('<ErrorMenu />', () => {
       <ErrorMenu error={{ ...error, replacements: [''] }} onReplaceText={() => {}} />,
     );
 
-    expect(
-      wrapper
-        .find(Item)
-        .find(Text)
-        .prop('children'),
-    ).toBe('Delete');
+    expect(wrapper.find(Item).find(Text).prop('children')).toBe('Delete');
   });
 });

@@ -67,11 +67,7 @@ describe('<DatePicker />', () => {
     const spy = jest.fn();
     const wrapper = shallowWithStyles(<NavBar {...props} onPreviousClick={spy} />, true);
 
-    wrapper
-      .find(DirectionalIcon)
-      .at(0)
-      .parent()
-      .simulate('click');
+    wrapper.find(DirectionalIcon).at(0).parent().simulate('click');
 
     expect(spy).toHaveBeenCalled();
   });
@@ -80,11 +76,7 @@ describe('<DatePicker />', () => {
     const spy = jest.fn();
     const wrapper = shallowWithStyles(<NavBar {...props} onNextClick={spy} />, true);
 
-    wrapper
-      .find(DirectionalIcon)
-      .at(1)
-      .parent()
-      .simulate('click');
+    wrapper.find(DirectionalIcon).at(1).parent().simulate('click');
 
     expect(spy).toHaveBeenCalled();
   });

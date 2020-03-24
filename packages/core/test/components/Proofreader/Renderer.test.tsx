@@ -54,7 +54,7 @@ describe('<Renderer />', () => {
 
   it('can mark as secondary', () => {
     const { root } = render<RendererProps>(
-      <Renderer {...props} errors={[error]} isRuleSecondary={rule => rule.rule_id === 'TEST'} />,
+      <Renderer {...props} errors={[error]} isRuleSecondary={(rule) => rule.rule_id === 'TEST'} />,
     );
 
     expect(root.findOne(Mark)).toHaveProp('secondary', true);
@@ -62,7 +62,11 @@ describe('<Renderer />', () => {
 
   it('can mark as highlighted', () => {
     const { root } = render<RendererProps>(
-      <Renderer {...props} errors={[error]} isRuleHighlighted={rule => rule.rule_id === 'TEST'} />,
+      <Renderer
+        {...props}
+        errors={[error]}
+        isRuleHighlighted={(rule) => rule.rule_id === 'TEST'}
+      />,
     );
 
     expect(root.findOne(Mark)).toHaveProp('highlighted', true);

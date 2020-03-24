@@ -89,12 +89,7 @@ describe('<MenuToggle />', () => {
       </MenuToggle>,
     );
 
-    expect(
-      wrapper
-        .find(Button)
-        .children()
-        .text(),
-    ).toBe(label);
+    expect(wrapper.find(Button).children().text()).toBe(label);
   });
 
   it('can render an icon button', () => {
@@ -150,10 +145,7 @@ describe('<MenuToggle />', () => {
       </MenuToggle>,
     );
 
-    wrapper
-      .find(Item)
-      .at(0)
-      .simulate('click');
+    wrapper.find(Item).at(0).simulate('click');
 
     expect(onClick).toHaveBeenCalled();
     expect(wrapper.state('opened')).toBe(false);

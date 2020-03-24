@@ -42,7 +42,7 @@ const STYLE: SheetMap<NativeBlock> = {
 function cx(...styles: any[]): string {
   return styles
     .filter(Boolean)
-    .map(style => JSON.stringify(style))
+    .map((style) => JSON.stringify(style))
     .join('-');
 }
 

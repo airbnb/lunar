@@ -11,7 +11,7 @@ import Overlay from '../../../src/components/Overlay';
 import testItems from './mockItems';
 import Picker, { PickerProps } from '../../../src/components/HierarchyPicker/Picker';
 
-jest.mock('lodash/debounce', () => jest.fn(fn => fn));
+jest.mock('lodash/debounce', () => jest.fn((fn) => fn));
 
 const props = {
   chosen: ['foo', 'bar'],

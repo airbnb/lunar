@@ -35,7 +35,7 @@ export default function Toasts() {
 
   return (
     <div className={cx(styles.toasts)}>
-      {toasts.map(toast => (
+      {toasts.map((toast) => (
         <Toast
           {...toast.props}
           key={toast.id}

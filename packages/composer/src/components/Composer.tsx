@@ -126,7 +126,7 @@ export default function Composer({
   );
 
   const handleSetMenu = useCallback<Context['setMenu']>(
-    nextMenu => {
+    (nextMenu) => {
       setMenu(nextMenu);
 
       // Always focus the input when a menu is opened.

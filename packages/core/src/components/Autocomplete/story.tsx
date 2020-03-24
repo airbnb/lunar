@@ -23,8 +23,8 @@ export function standardAutocompleteUsedForSearching() {
       name="autocomplete"
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value =>
-        Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
+      onLoadItems={(value) =>
+        Promise.resolve(items.filter((item) => item.name.toLowerCase().match(value.toLowerCase())))
       }
     />
   );
@@ -42,7 +42,7 @@ export function supportsErrorsThrownWithinPromises() {
       name="autocomplete-reject"
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value => Promise.reject(new Error('Failed to load.'))}
+      onLoadItems={(value) => Promise.reject(new Error('Failed to load.'))}
     />
   );
 }
@@ -61,7 +61,7 @@ export function withAnErrorMessageInAnInvalidState() {
       errorMessage="This field is required."
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value => Promise.resolve([])}
+      onLoadItems={(value) => Promise.resolve([])}
     />
   );
 }
@@ -80,7 +80,7 @@ export function withALabelDescriptionInADisabledState() {
       labelDescription="This is a small label description."
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value => Promise.resolve([])}
+      onLoadItems={(value) => Promise.resolve([])}
     />
   );
 }
@@ -117,8 +117,8 @@ export function disableSelectedItemsWithIsItemSelectable() {
       isItemSelectable={(item, selected) => !selected}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value =>
-        Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
+      onLoadItems={(value) =>
+        Promise.resolve(items.filter((item) => item.name.toLowerCase().match(value.toLowerCase())))
       }
     />
   );
@@ -137,10 +137,10 @@ export function withCustomStatesInDifferentSizes() {
         accessibilityLabel="Label"
         name="autocomplete-state-error"
         label="Error (small)"
-        renderError={error => <div>{error.message}</div>}
+        renderError={(error) => <div>{error.message}</div>}
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
-        onLoadItems={value => Promise.reject(new Error('Failed to load.'))}
+        onLoadItems={(value) => Promise.reject(new Error('Failed to load.'))}
       />
 
       <Autocomplete
@@ -151,7 +151,7 @@ export function withCustomStatesInDifferentSizes() {
         renderLoading={() => <div>Loading...</div>}
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
-        onLoadItems={value => new Promise(() => {})}
+        onLoadItems={(value) => new Promise(() => {})}
       />
 
       <Autocomplete
@@ -163,7 +163,7 @@ export function withCustomStatesInDifferentSizes() {
         renderNoResults={() => <div>Nothing to see here!</div>}
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
-        onLoadItems={value => Promise.resolve([])}
+        onLoadItems={(value) => Promise.resolve([])}
       />
     </>
   );
@@ -182,8 +182,8 @@ export function canSelectUnknownValueWhenHittingEnter() {
       name="autocomplete"
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value =>
-        Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
+      onLoadItems={(value) =>
+        Promise.resolve(items.filter((item) => item.name.toLowerCase().match(value.toLowerCase())))
       }
     />
   );

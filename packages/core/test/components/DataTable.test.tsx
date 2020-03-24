@@ -123,10 +123,7 @@ const simpleProps = {
 };
 
 const getCell = (wrapper: Enzyme.ReactWrapper<any, any>, row: number, col: number) =>
-  wrapper
-    .find(Grid)
-    .find(`[aria-rowindex=${row}]`)
-    .find(`[aria-colindex=${col}]`);
+  wrapper.find(Grid).find(`[aria-rowindex=${row}]`).find(`[aria-colindex=${col}]`);
 
 const getCaret = (table: Enzyme.ReactWrapper<any, any>, row: number) => getCell(table, row, 1);
 
@@ -140,9 +137,7 @@ const getTable = (wrapper: Enzyme.ShallowWrapper) => {
 };
 
 const expandRow = (table: Enzyme.ReactWrapper<any, any>, row: number) => {
-  getCaret(table, row)
-    .childAt(0)
-    .simulate('click');
+  getCaret(table, row).childAt(0).simulate('click');
 };
 
 const NAME_COL = 2;
@@ -155,11 +150,9 @@ describe('<DataTable /> rows can be expanded', () => {
 
     expandRow(table, PARENT_ROW);
 
-    expect(
-      getCell(table, CHILD_ROW, NAME_COL)
-        .find(Text)
-        .text(),
-    ).toBe(data[4].metadata!.children![0].data.name);
+    expect(getCell(table, CHILD_ROW, NAME_COL).find(Text).text()).toBe(
+      data[4].metadata!.children![0].data.name,
+    );
   });
 
   it('should be unexpandable', () => {
@@ -168,20 +161,14 @@ describe('<DataTable /> rows can be expanded', () => {
     expandRow(table, PARENT_ROW);
     expandRow(table, PARENT_ROW);
 
-    expect(
-      getCell(table, 6, NAME_COL)
-        .find(Text)
-        .text(),
-    ).toBe(data[5].data.name);
+    expect(getCell(table, 6, NAME_COL).find(Text).text()).toBe(data[5].data.name);
   });
 });
 
 describe('<DataTable /> renders and sorts data', () => {
   it('should render data', () => {
     const table = mountWithStyles(<DataTable {...simpleProps} />);
-    const text = getCell(table, 1, NAME_COL)
-      .find(Text)
-      .text();
+    const text = getCell(table, 1, NAME_COL).find(Text).text();
 
     expect(text).toBe(data[0].data.name);
   });
@@ -192,9 +179,7 @@ describe('<DataTable /> renders and sorts data', () => {
     const nameHeader = table.find('.ReactVirtualized__Table__headerColumn').first();
     nameHeader.simulate('click');
     nameHeader.simulate('click');
-    const text = getCell(table, 1, NAME_COL)
-      .find(Text)
-      .text();
+    const text = getCell(table, 1, NAME_COL).find(Text).text();
 
     expect(text).toBe('Product Percy');
   });
@@ -239,9 +224,7 @@ describe('<DataTable /> renders and sorts data', () => {
     nameHeader.simulate('click');
     table.update();
 
-    const text = getCell(table, 1, NAME_COL)
-      .find(Text)
-      .text();
+    const text = getCell(table, 1, NAME_COL).find(Text).text();
 
     expect(text).toBe('Dev Ops Danny');
   });
@@ -251,9 +234,7 @@ describe('<DataTable /> renders and sorts data', () => {
       <DataTable {...simpleProps} sortByOverride="name" sortDirectionOverride="ASC" />,
     );
 
-    const text = getCell(table, 1, NAME_COL)
-      .find(Text)
-      .text();
+    const text = getCell(table, 1, NAME_COL).find(Text).text();
 
     expect(text).toBe('Dev Ops Danny');
   });
@@ -263,9 +244,7 @@ describe('<DataTable /> renders and sorts data', () => {
       <DataTable {...simpleProps} sortByOverride="name" sortDirectionOverride="DESC" />,
     );
 
-    const text = getCell(table, 1, NAME_COL)
-      .find(Text)
-      .text();
+    const text = getCell(table, 1, NAME_COL).find(Text).text();
 
     expect(text).toBe('Product Percy');
   });
@@ -287,19 +266,11 @@ describe('<DataTable /> renders and sorts data', () => {
       />,
     );
 
-    expect(
-      getCell(table, 1, 1)
-        .find(Text)
-        .text(),
-    ).toBe('1');
+    expect(getCell(table, 1, 1).find(Text).text()).toBe('1');
 
     table.setProps({ sortByValue: sortByHighLow, sortByCacheKey: 'b' });
 
-    expect(
-      getCell(table, 1, 1)
-        .find(Text)
-        .text(),
-    ).toBe('3');
+    expect(getCell(table, 1, 1).find(Text).text()).toBe('3');
   });
 
   it('should re-sort upon sortCacheKey change', () => {
@@ -427,9 +398,7 @@ describe('<DataTable /> does not break with weird props', () => {
 
   it('should render with a lot of props', () => {
     const table = mountWithStyles(<DataTable {...props} />);
-    const text = getCell(table, 1, NAME_COL)
-      .find(Text)
-      .text();
+    const text = getCell(table, 1, NAME_COL).find(Text).text();
 
     expect(text).toBe(data[0].data.name);
   });

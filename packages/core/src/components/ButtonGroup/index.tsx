@@ -33,7 +33,7 @@ export default function ButtonGroup({
         stacked && styles.buttonGroup_stacked,
       )}
     >
-      {React.Children.map(children, child =>
+      {React.Children.map(children, (child) =>
         child ? (
           <div
             className={cx(

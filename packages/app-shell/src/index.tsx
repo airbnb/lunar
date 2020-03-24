@@ -43,7 +43,7 @@ export class AppShell extends React.Component<AppShellProps, AppShellState> {
   addBreadcrumb = (label: string, props: Breadcrumb['props'] = {}) => {
     const id = uuid();
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       breadcrumbs: [
         ...prevState.breadcrumbs,
         {
@@ -60,7 +60,7 @@ export class AppShell extends React.Component<AppShellProps, AppShellState> {
   addPageData = (data: object, customID: string = '') => {
     const id = customID || uuid();
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       data: {
         ...prevState.data,
         [id]: data,
@@ -73,9 +73,9 @@ export class AppShell extends React.Component<AppShellProps, AppShellState> {
   addToast = (message: string | Error, type: ToastType, props: Toast['props'] = {}) => {
     const id = props.id || uuid();
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       toasts: [
-        ...prevState.toasts.filter(toast => toast.id !== id),
+        ...prevState.toasts.filter((toast) => toast.id !== id),
         {
           id,
           message,
@@ -101,13 +101,13 @@ export class AppShell extends React.Component<AppShellProps, AppShellState> {
     this.addToast(message, 'danger', props);
 
   removeBreadcrumb = (id: string) => {
-    this.setState(prevState => ({
-      breadcrumbs: prevState.breadcrumbs.filter(crumb => crumb.id !== id),
+    this.setState((prevState) => ({
+      breadcrumbs: prevState.breadcrumbs.filter((crumb) => crumb.id !== id),
     }));
   };
 
   removePageData = (id: string) => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const data = { ...prevState.data };
 
       delete data[id];
@@ -117,8 +117,8 @@ export class AppShell extends React.Component<AppShellProps, AppShellState> {
   };
 
   removeToast = (id: string) => {
-    this.setState(prevState => ({
-      toasts: prevState.toasts.filter(toast => toast.id !== id),
+    this.setState((prevState) => ({
+      toasts: prevState.toasts.filter((toast) => toast.id !== id),
     }));
   };
 

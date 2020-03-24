@@ -54,12 +54,7 @@ describe('<Multicomplete />', () => {
     });
 
     expect(wrapper.find(MulticompleteChip)).toHaveLength(2);
-    expect(
-      wrapper
-        .find(MulticompleteChip)
-        .at(1)
-        .prop('value'),
-    ).toBe('baz');
+    expect(wrapper.find(MulticompleteChip).at(1).prop('value')).toBe('baz');
   });
 
   it('clicking a chip removes it as a selected value', () => {
@@ -70,10 +65,7 @@ describe('<Multicomplete />', () => {
       value: ['foo', 'baz'],
     });
 
-    wrapper
-      .find(MulticompleteChip)
-      .at(0)
-      .simulate('click', 'foo', event);
+    wrapper.find(MulticompleteChip).at(0).simulate('click', 'foo', event);
 
     expect(changeSpy).toHaveBeenCalledWith(['baz'], event);
 
@@ -87,7 +79,7 @@ describe('<Multicomplete />', () => {
         {...props}
         renderChip={(value, onRemove) => (
           <MutedButton
-            onClick={e => {
+            onClick={(e) => {
               removeSpy();
               onRemove(value, e);
             }}
@@ -102,10 +94,7 @@ describe('<Multicomplete />', () => {
       value: ['foo', 'baz'],
     });
 
-    wrapper
-      .find(MutedButton)
-      .at(0)
-      .simulate('click', 'foo', event);
+    wrapper.find(MutedButton).at(0).simulate('click', 'foo', event);
 
     expect(removeSpy).toHaveBeenCalledTimes(1);
 

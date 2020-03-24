@@ -35,11 +35,11 @@ export default function Shortcuts({ shortcuts }: ShortcutsProps) {
   );
 
   const moveUp = useCallback(() => {
-    setActiveIndex(i => (i === 0 ? filteredShortcuts.length - 1 : i - 1));
+    setActiveIndex((i) => (i === 0 ? filteredShortcuts.length - 1 : i - 1));
   }, [filteredShortcuts]);
 
   const moveDown = useCallback(() => {
-    setActiveIndex(i => (i >= filteredShortcuts.length - 1 ? 0 : i + 1));
+    setActiveIndex((i) => (i >= filteredShortcuts.length - 1 ? 0 : i + 1));
   }, [filteredShortcuts]);
 
   const selectShortcut = useCallback(

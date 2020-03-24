@@ -9,7 +9,7 @@ import {
 } from '../types';
 
 export function formatArguments(args: ShortcutArgument[]): string {
-  return args.map(arg => (arg.optional ? `[${arg.name}]` : `<${arg.name}>`)).join(' ');
+  return args.map((arg) => (arg.optional ? `[${arg.name}]` : `<${arg.name}>`)).join(' ');
 }
 
 export function formatConfigIntoCommand(shortcut: Required<ShortcutConfig>): string {
@@ -28,7 +28,7 @@ export function filterAndSortShortcuts(
   enteredName: string,
 ): Required<ShortcutConfig>[] {
   const usedNames = new Set();
-  const filteredShortcuts: Required<ShortcutConfig>[] = shortcuts.map(config => {
+  const filteredShortcuts: Required<ShortcutConfig>[] = shortcuts.map((config) => {
     if (usedNames.has(config.name)) {
       throw new Error(
         T.phrase(
@@ -51,7 +51,7 @@ export function filterAndSortShortcuts(
   filteredShortcuts.sort((a, b) => a.name.localeCompare(b.name));
 
   // Filter by name entered in input
-  return filteredShortcuts.filter(a => a.name.startsWith(enteredName));
+  return filteredShortcuts.filter((a) => a.name.startsWith(enteredName));
 }
 
 export function isShortcutCommand(value?: string): boolean {
@@ -103,7 +103,7 @@ export function onSubmitExecuteShortcut(
 
   // Remove slash and split into command and arguments
   const [name, ...params] = value.slice(1).split(' ');
-  const shortcut = shortcuts.find(sc => sc.name === name);
+  const shortcut = shortcuts.find((sc) => sc.name === name);
 
   // Validate shortcut
   if (!shortcut) {

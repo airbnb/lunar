@@ -76,7 +76,7 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
     // Preload two images ahead
     const indices = [activeIndex + 1, activeIndex + 2];
 
-    let preloadUrls = indices.map(preloadIndex => {
+    let preloadUrls = indices.map((preloadIndex) => {
       const index = (preloadIndex + totalImages) % totalImages;
 
       return images[index] && images[index].src;
@@ -84,11 +84,11 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
 
     // Filter out already preloaded images.
     preloadUrls = preloadUrls.filter(
-      preloadUrl => preloadUrl && !this.preloadedUrls.has(preloadUrl),
+      (preloadUrl) => preloadUrl && !this.preloadedUrls.has(preloadUrl),
     );
 
     // Preload each of the remaining images.
-    preloadUrls.forEach(preloadUrl => {
+    preloadUrls.forEach((preloadUrl) => {
       const img = new Image();
       img.src = preloadUrl;
 
@@ -120,7 +120,7 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
     const { activeIndex, hideAside, scale, rotation } = this.state;
     const image = images[activeIndex];
     const { alt, aside, src } = image;
-    const hasAside = images.some(img => !!img.aside);
+    const hasAside = images.some((img) => !!img.aside);
 
     const header = (
       <Header

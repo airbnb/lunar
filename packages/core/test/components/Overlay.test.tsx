@@ -36,10 +36,7 @@ describe('<Overlay />', () => {
     expect(eventSpy).toHaveBeenCalledWith('keydown', expect.any(Function));
     expect(closeSpy).not.toHaveBeenCalled();
 
-    wrapper
-      .find(Portal)
-      .find('div[role="presentation"]')
-      .simulate('click');
+    wrapper.find(Portal).find('div[role="presentation"]').simulate('click');
 
     expect(closeSpy).toHaveBeenCalled();
 
@@ -134,10 +131,7 @@ describe('<Overlay />', () => {
 
         instance.ref = { current: target };
 
-        wrapper
-          .find('div')
-          .at(0)
-          .simulate('click', { target });
+        wrapper.find('div').at(0).simulate('click', { target });
 
         wrapper
           .find('div')
@@ -187,10 +181,7 @@ describe('<Overlay />', () => {
 
         instance.ref = { current: ref };
 
-        wrapper
-          .find('div')
-          .at(0)
-          .simulate('scroll');
+        wrapper.find('div').at(0).simulate('scroll');
 
         expect(closeSpy).not.toHaveBeenCalled();
         expect(wrapper.state('height')).toBe(1000);

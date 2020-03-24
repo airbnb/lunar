@@ -62,7 +62,7 @@ export class ScrollWrapper extends React.Component<ScrollWrapperProps & WithStyl
         threshold: this.props.intersectionThreshold,
       });
 
-      this.anchors.forEach(anchor => {
+      this.anchors.forEach((anchor) => {
         this.observer!.observe(anchor);
       });
     }

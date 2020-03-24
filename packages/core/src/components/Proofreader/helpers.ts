@@ -19,7 +19,7 @@ export function selectAppropriateLocale(
   } else if (locale === AUTO_DETECT_LOCALE) {
     match = AUTO_DETECT_LOCALE;
   } else {
-    LT_LOCALES.some(definition => {
+    LT_LOCALES.some((definition) => {
       if (locale === definition.locale) {
         match = definition.locale;
 
@@ -59,7 +59,7 @@ export function getLocaleDefinition(locale: string): LocaleDefinition {
     };
   }
 
-  return LT_LOCALES.find(definition => definition.locale === locale)!;
+  return LT_LOCALES.find((definition) => definition.locale === locale)!;
 }
 
 export function checkForAirbnbErrors(text: string): ProofreadRuleMatch[] {

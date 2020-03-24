@@ -52,7 +52,7 @@ class DatePickerResetDemo extends React.Component<{}, ResetState> {
   handleDayClick = (day: Date) => {
     const { selectedDays } = this.state;
 
-    const selectedIndex = selectedDays.findIndex(selectedDay =>
+    const selectedIndex = selectedDays.findIndex((selectedDay) =>
       // @ts-ignore
       DateUtils.isSameDay(selectedDay, day),
     );

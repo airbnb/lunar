@@ -25,7 +25,7 @@ class BrowserNotificationExample extends React.Component<{}, BrowserNotification
   }
 
   handleChange(field: keyof BrowserNotificationExampleState, value: string) {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       ...prevState,
       [field]: value,
     }));
@@ -44,24 +44,29 @@ class BrowserNotificationExample extends React.Component<{}, BrowserNotification
           name="title"
           label="Title"
           value={title}
-          onChange={val => this.handleChange('title', val)}
+          onChange={(val) => this.handleChange('title', val)}
         />
 
         <Input
           name="body"
           label="Body"
           value={body}
-          onChange={val => this.handleChange('body', val)}
+          onChange={(val) => this.handleChange('body', val)}
         />
 
         <Input
           name="icon"
           label="Icon"
           value={icon}
-          onChange={val => this.handleChange('icon', val)}
+          onChange={(val) => this.handleChange('icon', val)}
         />
 
-        <Input name="tag" label="Tag" value={tag} onChange={val => this.handleChange('tag', val)} />
+        <Input
+          name="tag"
+          label="Tag"
+          value={tag}
+          onChange={(val) => this.handleChange('tag', val)}
+        />
 
         <Button onClick={() => this.toggleNotification()}>Toggle notification</Button>
       </div>

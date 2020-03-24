@@ -39,10 +39,7 @@ describe('<GradientScroller />', () => {
 
     (wrapper.instance() as BaseGradientScroller).doScroll = spy;
 
-    wrapper
-      .find('button')
-      .at(0)
-      .simulate('click', { type: 'click' });
+    wrapper.find('button').at(0).simulate('click', { type: 'click' });
 
     expect(spy).toHaveBeenCalled();
   });
@@ -53,10 +50,7 @@ describe('<GradientScroller />', () => {
 
     (wrapper.instance() as BaseGradientScroller).doScroll = spy;
 
-    wrapper
-      .find('button')
-      .at(1)
-      .simulate('click', { type: 'click' });
+    wrapper.find('button').at(1).simulate('click', { type: 'click' });
 
     expect(spy).toHaveBeenCalled();
   });

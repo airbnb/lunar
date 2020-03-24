@@ -164,8 +164,8 @@ export default class Form<Data extends object = {}> extends React.Component<
     // @ts-ignore Not undefined
     return this.form
       .getRegisteredFields()
-      .map(name => this.form.getFieldState(name))
-      .filter(field => typeof field !== 'undefined');
+      .map((name) => this.form.getFieldState(name))
+      .filter((field) => typeof field !== 'undefined');
   };
 
   /**
@@ -195,7 +195,7 @@ export default class Form<Data extends object = {}> extends React.Component<
       promise = Promise.resolve(promise);
     }
 
-    return promise.catch(error => {
+    return promise.catch((error) => {
       if (setErrors) {
         setErrors({
           [FORM_ERROR]: T.phrase('lunar.form.submitFailed', 'Failed to submit form. %{error}', {
@@ -236,7 +236,7 @@ export default class Form<Data extends object = {}> extends React.Component<
     // and on subsequent updates use `setState`.
     if (this.state) {
       this.setState(
-        prevState => ({
+        (prevState) => ({
           ...prevState,
           ...state,
         }),
@@ -372,7 +372,7 @@ export default class Form<Data extends object = {}> extends React.Component<
     let errors = {};
 
     await Promise.all(
-      fields.map(async field => {
+      fields.map(async (field) => {
         if (!field) return;
 
         const { name, data: fieldData } = field;

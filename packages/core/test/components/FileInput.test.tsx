@@ -96,12 +96,7 @@ describe('<FileInput />', () => {
     });
 
     expect(wrapper.find(FormInputButton).find('span')).toHaveLength(1);
-    expect(
-      wrapper
-        .find(FormInputButton)
-        .find('span')
-        .prop('children'),
-    ).toBe(' (1)');
+    expect(wrapper.find(FormInputButton).find('span').prop('children')).toBe(' (1)');
   });
 
   it('shows a table with 4 columns when files exist', () => {

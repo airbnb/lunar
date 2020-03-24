@@ -9,10 +9,7 @@ import SecondaryLink from '@airbnb/lunar/lib/components/SecondaryLink';
 import FilterMenu, { Row } from '../../src/components/FilterMenu';
 
 function openFilters(wrapper: Enzyme.ReactWrapper) {
-  wrapper
-    .find(Button)
-    .at(0)
-    .simulate('click');
+  wrapper.find(Button).at(0).simulate('click');
 }
 
 function getDropdown(wrapper: Enzyme.ReactWrapper) {
@@ -47,10 +44,7 @@ describe('<FilterMenu />', () => {
 
     openFilters(wrapper);
 
-    wrapper
-      .find(Link)
-      .at(0)
-      .simulate('click');
+    wrapper.find(Link).at(0).simulate('click');
 
     expect(wrapper.find('div[aria-expanded=true]')).toHaveLength(1);
   });
@@ -65,12 +59,7 @@ describe('<FilterMenu />', () => {
 
     openFilters(wrapper);
 
-    wrapper
-      .find(SecondaryLink)
-      .at(0)
-      .find('button')
-      .at(0)
-      .simulate('click');
+    wrapper.find(SecondaryLink).at(0).find('button').at(0).simulate('click');
 
     expect(onClear).toHaveBeenCalledTimes(1);
   });
@@ -85,12 +74,7 @@ describe('<FilterMenu />', () => {
 
     openFilters(wrapper);
 
-    wrapper
-      .find(SecondaryLink)
-      .at(0)
-      .find('button')
-      .at(0)
-      .simulate('click');
+    wrapper.find(SecondaryLink).at(0).find('button').at(0).simulate('click');
 
     expect(onHide).toHaveBeenCalledTimes(1);
   });
@@ -105,10 +89,7 @@ describe('<FilterMenu />', () => {
 
     openFilters(wrapper);
 
-    wrapper
-      .find(SecondaryLink)
-      .at(0)
-      .simulate('click');
+    wrapper.find(SecondaryLink).at(0).simulate('click');
 
     expect(onHide).toHaveBeenCalledTimes(0);
   });

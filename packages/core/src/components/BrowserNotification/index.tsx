@@ -49,7 +49,7 @@ export default class BrowserNotification extends React.PureComponent<BrowserNoti
       return;
     }
 
-    Notification.requestPermission().then(permission => {
+    Notification.requestPermission().then((permission) => {
       if (permission === 'granted') {
         const { title, tag, body, icon, timeout, onClick } = this.props;
 

@@ -5,7 +5,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { InputProps } from './FormInput';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
-export const styleSheetRadioButton: StyleSheet = theme => {
+export const styleSheetRadioButton: StyleSheet = (theme) => {
   const styles = inputStyleSheet(theme);
 
   return {

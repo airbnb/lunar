@@ -14,11 +14,6 @@ describe('<MenuRow />', () => {
   it('renders spacious', () => {
     const wrapper = shallow(<Row spacious>Foo</Row>);
 
-    expect(
-      wrapper
-        .find('div')
-        .at(0)
-        .prop('className'),
-    ).toMatch('item_spacious');
+    expect(wrapper.find('div').at(0).prop('className')).toMatch('item_spacious');
   });
 });

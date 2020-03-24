@@ -16,11 +16,13 @@ export function reRendersAtAnInterval() {
   return (
     <Text>
       {/* A fast timer, to demonstrate the deferred scheduling */}
-      <Interval every={100}>{now => <div>Interval last time: {now}</div>}</Interval>
+      <Interval every={100}>{(now) => <div>Interval last time: {now}</div>}</Interval>
 
       {/* A second timer */}
       <Interval every={1000}>
-        {now => <div>Interval has been running for {Math.floor((now - start) / 1000)} seconds</div>}
+        {(now) => (
+          <div>Interval has been running for {Math.floor((now - start) / 1000)} seconds</div>
+        )}
       </Interval>
     </Text>
   );

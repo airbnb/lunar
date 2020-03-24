@@ -27,23 +27,13 @@ describe('<LightboxHeader />', () => {
     it('with "Hide Info" if hideAside is false', () => {
       const wrapper = mountUseStyles(<LightboxHeader {...props} hasAside />);
 
-      expect(
-        wrapper
-          .find(Button)
-          .at(0)
-          .prop('children'),
-      ).toBe('Hide info');
+      expect(wrapper.find(Button).at(0).prop('children')).toBe('Hide info');
     });
 
     it('with "Show Info" if hideAside is true', () => {
       const wrapper = mountUseStyles(<LightboxHeader {...props} hasAside hideAside />);
 
-      expect(
-        wrapper
-          .find(Button)
-          .at(0)
-          .prop('children'),
-      ).toBe('Show info');
+      expect(wrapper.find(Button).at(0).prop('children')).toBe('Show info');
     });
   });
 
@@ -126,11 +116,7 @@ describe('<LightboxHeader />', () => {
       const wrapperMount = mountUseStyles(
         <LightboxHeader {...props} showRotateControls onRotateImage={spy} />,
       );
-      wrapperMount
-        .find(RotateControls)
-        .find(IconButton)
-        .at(1)
-        .simulate('click');
+      wrapperMount.find(RotateControls).find(IconButton).at(1).simulate('click');
 
       expect(spy).toHaveBeenCalledWith(90);
     });
@@ -151,11 +137,7 @@ describe('<LightboxHeader />', () => {
       const wrapperMount = mountUseStyles(
         <LightboxHeader {...props} showZoomControls onZoomImage={spy} />,
       );
-      wrapperMount
-        .find(ZoomControls)
-        .find(IconButton)
-        .at(1)
-        .simulate('click');
+      wrapperMount.find(ZoomControls).find(IconButton).at(1).simulate('click');
 
       expect(spy).toHaveBeenCalledWith(1.5);
     });

@@ -57,7 +57,7 @@ describe('<ToggleButtonController />', () => {
     const onChange = jest.fn();
     const wrapper = shallow(
       <ToggleButtonController<Value> {...props} value="1" onChange={onChange}>
-        {ProxyButton => (
+        {(ProxyButton) => (
           <div>
             <ProxyButton value="1">1</ProxyButton>
             <ProxyButton value="2">2</ProxyButton>
@@ -76,7 +76,7 @@ describe('<ToggleButtonController />', () => {
     const onChange = jest.fn();
     const wrapper = shallow(
       <ToggleButtonController {...props} onChange={onChange}>
-        {ProxyButton => (
+        {(ProxyButton) => (
           <div>
             <ProxyButton value="1">1</ProxyButton>
             <ProxyButton value="2">2</ProxyButton>
@@ -99,7 +99,7 @@ describe('<ToggleButtonController />', () => {
   it('inverts inactive buttons', () => {
     const wrapper = shallow(
       <ToggleButtonController<Value> {...props} value="1">
-        {ProxyButton => (
+        {(ProxyButton) => (
           <div>
             <ProxyButton value="1">1</ProxyButton>
             <ProxyButton value="2">2</ProxyButton>
@@ -109,32 +109,17 @@ describe('<ToggleButtonController />', () => {
       </ToggleButtonController>,
     );
 
-    expect(
-      wrapper
-        .find({ value: '1' })
-        .dive()
-        .prop('inverted'),
-    ).toBeFalsy();
+    expect(wrapper.find({ value: '1' }).dive().prop('inverted')).toBeFalsy();
 
-    expect(
-      wrapper
-        .find({ value: '2' })
-        .dive()
-        .prop('inverted'),
-    ).toBeTruthy();
+    expect(wrapper.find({ value: '2' }).dive().prop('inverted')).toBeTruthy();
 
-    expect(
-      wrapper
-        .find({ value: '3' })
-        .dive()
-        .prop('inverted'),
-    ).toBeTruthy();
+    expect(wrapper.find({ value: '3' }).dive().prop('inverted')).toBeTruthy();
   });
 
   it('renders `small` buttons', () => {
     const wrapper = shallow(
       <ToggleButtonController<Value> {...props} small value="1">
-        {ProxyButton => (
+        {(ProxyButton) => (
           <div>
             <ProxyButton value="1">1</ProxyButton>
             <ProxyButton value="2">2</ProxyButton>
@@ -144,25 +129,10 @@ describe('<ToggleButtonController />', () => {
       </ToggleButtonController>,
     );
 
-    expect(
-      wrapper
-        .find({ value: '1' })
-        .dive()
-        .prop('small'),
-    ).toBeTruthy();
+    expect(wrapper.find({ value: '1' }).dive().prop('small')).toBeTruthy();
 
-    expect(
-      wrapper
-        .find({ value: '2' })
-        .dive()
-        .prop('small'),
-    ).toBeTruthy();
+    expect(wrapper.find({ value: '2' }).dive().prop('small')).toBeTruthy();
 
-    expect(
-      wrapper
-        .find({ value: '3' })
-        .dive()
-        .prop('small'),
-    ).toBeTruthy();
+    expect(wrapper.find({ value: '3' }).dive().prop('small')).toBeTruthy();
   });
 });

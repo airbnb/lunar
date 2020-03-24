@@ -44,7 +44,7 @@ export default function AdaptiveGrid({
     10000,
   );
 
-  breakpointKeys.forEach(breakpoint => {
+  breakpointKeys.forEach((breakpoint) => {
     breakpointStyles[`@media (min-width: ${breakpoint}px)`] = {
       gridTemplateColumns: `repeat(${breakpoints![breakpoint]}, 1fr)`,
     };

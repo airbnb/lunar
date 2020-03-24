@@ -11,7 +11,7 @@ export const styleSheetSpacing: StyleSheet = ({ unit }) => {
   for (let i = 0; i <= 12; i += 0.5) {
     const size = unit * i;
 
-    ['Top', 'Right', 'Bottom', 'Left'].forEach(side => {
+    ['Top', 'Right', 'Bottom', 'Left'].forEach((side) => {
       const cleaned = cleanClassName(i);
       spacing[`outer${side}_${cleaned}`] = { [`margin${side}`]: size };
       spacing[`inner${side}_${cleaned}`] = { [`padding${side}`]: size };

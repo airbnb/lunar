@@ -45,7 +45,7 @@ describe('<LocaleMenu />', () => {
 
   it('highlights selected locale', () => {
     const wrapper = shallow(<LocaleMenu selectedLocale="en-US" onSelectLocale={() => {}} />);
-    const item = wrapper.findWhere(node => node.type() === Item && node.key() === 'en-US');
+    const item = wrapper.findWhere((node) => node.type() === Item && node.key() === 'en-US');
 
     expect(item.prop('highlighted')).toBe(true);
   });
@@ -56,10 +56,7 @@ describe('<LocaleMenu />', () => {
       <LocaleMenu noneDefinition={noneLocale} selectedLocale="en-US" onSelectLocale={spy} />,
     );
 
-    wrapper
-      .find(Item)
-      .at(0)
-      .simulate('click');
+    wrapper.find(Item).at(0).simulate('click');
 
     expect(spy).toHaveBeenCalledWith('none');
   });
@@ -70,10 +67,7 @@ describe('<LocaleMenu />', () => {
       <LocaleMenu autoDefinition={autoLocale} selectedLocale="en-US" onSelectLocale={spy} />,
     );
 
-    wrapper
-      .find(Item)
-      .at(0)
-      .simulate('click');
+    wrapper.find(Item).at(0).simulate('click');
 
     expect(spy).toHaveBeenCalledWith('auto');
   });
@@ -82,10 +76,7 @@ describe('<LocaleMenu />', () => {
     const spy = jest.fn();
     const wrapper = shallow(<LocaleMenu selectedLocale="en-US" onSelectLocale={spy} />);
 
-    wrapper
-      .find(Item)
-      .at(0)
-      .simulate('click');
+    wrapper.find(Item).at(0).simulate('click');
 
     expect(spy).toHaveBeenCalledWith('ca-ES');
   });

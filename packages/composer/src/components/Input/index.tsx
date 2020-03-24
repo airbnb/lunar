@@ -162,7 +162,7 @@ export default function Input({
         </section>
 
         <textarea
-          ref={element => {
+          ref={(element) => {
             passThroughRef(ref, element);
             passThroughRef(propagateRef, element);
           }}

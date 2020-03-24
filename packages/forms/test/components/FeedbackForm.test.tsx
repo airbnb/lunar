@@ -31,18 +31,8 @@ describe('<FeedbackForm />', () => {
     const wrapper = shallow(<FeedbackForm {...props} />);
 
     expect(wrapper.find('option')).toHaveLength(2);
-    expect(
-      wrapper
-        .find('option')
-        .at(0)
-        .prop('value'),
-    ).toBe('chat');
-    expect(
-      wrapper
-        .find('option')
-        .at(1)
-        .prop('value'),
-    ).toBe('phone');
+    expect(wrapper.find('option').at(0).prop('value')).toBe('chat');
+    expect(wrapper.find('option').at(1).prop('value')).toBe('phone');
   });
 
   it('passes handlers to form actions', () => {

@@ -58,7 +58,7 @@ const columnToLabel = {
 };
 
 const filterData = (data: IndexedParentRow[]) => {
-  return data.filter(row => row.data.jobTitle === 'Engineer');
+  return data.filter((row) => row.data.jobTitle === 'Engineer');
 };
 
 class SearchDemo extends React.Component {
@@ -487,7 +487,7 @@ export function ATableWithDynamicSortKey() {
         <Tabs
           secondary
           defaultKey={sortByKey}
-          onChange={key => {
+          onChange={(key) => {
             setSortByKey(key as 'banana' | 'grape');
           }}
         >

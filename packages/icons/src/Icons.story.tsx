@@ -25,7 +25,7 @@ const iconData: { [key: string]: IconSet } = {
   },
 };
 
-context.keys().forEach(file => {
+context.keys().forEach((file) => {
   const Icon = context(file).default;
   const [category] = file.slice(2).split('/Icon');
 
@@ -48,7 +48,7 @@ function IconGrid(props: {
       <h3 style={{ marginTop: 0 }}>{title}</h3>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 16 }}>
-        {icons.map(Icon => (
+        {icons.map((Icon) => (
           <button
             key={Icon.displayName}
             type="button"
@@ -105,13 +105,13 @@ class IconList extends React.Component<
   };
 
   handleFlipXChange = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       flipX: !prevState.flipX,
     }));
   };
 
   handleFlipYChange = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       flipY: !prevState.flipY,
     }));
   };
@@ -170,7 +170,7 @@ class IconList extends React.Component<
           </div>
         </div>
 
-        {Object.keys(iconData).map(category => (
+        {Object.keys(iconData).map((category) => (
           <IconGrid
             key={category}
             category={category}

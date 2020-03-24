@@ -8,7 +8,7 @@ export default function getLocaleFromClient(): Locale | undefined {
     return locale;
   }
 
-  (global.navigator.languages || [global.navigator.language]).some(lang => {
+  (global.navigator.languages || [global.navigator.language]).some((lang) => {
     locale = parseLocale(lang);
 
     return !!locale;

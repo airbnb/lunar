@@ -86,7 +86,7 @@ export default function ZoomControls({ styleSheet, ...props }: ZoomControlsProps
       {visible && (
         <Dropdown visible={visible} left="0" zIndex={5} onClickOutside={toggleZoomMenu}>
           <Menu accessibilityLabel={T.phrase('lunar.image.zoomMenu', 'Zoom dropdown menu')}>
-            {zoomOptions.map(zoom => (
+            {zoomOptions.map((zoom) => (
               <Item key={zoom.scale} onClick={zoom.handleOnClick}>
                 {zoom.label}
               </Item>

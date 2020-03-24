@@ -65,7 +65,7 @@ describe('<RadioButtonController />', () => {
     const spy = jest.fn();
     const wrapper = shallow(
       <RadioButtonController {...props} onChange={spy}>
-        {RB => (
+        {(RB) => (
           <div>
             <RB value="foo" label="Foo" />
             <RB value="bar" label="Bar" />
@@ -77,31 +77,19 @@ describe('<RadioButtonController />', () => {
     );
     const buttons = wrapper.find('Proxy(RadioButton)');
 
-    buttons
-      .at(1)
-      .shallow()
-      .simulate('change', true, 'bar', event);
+    buttons.at(1).shallow().simulate('change', true, 'bar', event);
 
     expect(spy).toHaveBeenCalledWith('bar', event);
 
-    buttons
-      .at(0)
-      .shallow()
-      .simulate('change', false, 'foo', event);
+    buttons.at(0).shallow().simulate('change', false, 'foo', event);
 
     expect(spy).toHaveBeenCalledWith('foo', event);
 
-    buttons
-      .at(1)
-      .shallow()
-      .simulate('change', false, 'bar', event);
+    buttons.at(1).shallow().simulate('change', false, 'bar', event);
 
     expect(spy).toHaveBeenCalledWith('bar', event);
 
-    buttons
-      .at(1)
-      .shallow()
-      .simulate('change', false, 'bar', event); // again
+    buttons.at(1).shallow().simulate('change', false, 'bar', event); // again
 
     expect(spy).toHaveBeenCalledWith('bar', event);
   });
@@ -113,7 +101,7 @@ describe('<RadioButtonController />', () => {
         value="foo"
         onChange={() => {}}
       >
-        {RB => (
+        {(RB) => (
           <div>
             <RB value="foo" label="Foo" />
             <RB value="bar" label="Bar" />
@@ -125,17 +113,11 @@ describe('<RadioButtonController />', () => {
     );
     const buttons = wrapper.find('Proxy(RadioButton)');
 
-    buttons
-      .at(1)
-      .shallow()
-      .simulate('change', true, 'bar', event);
+    buttons.at(1).shallow().simulate('change', true, 'bar', event);
 
     expect(wrapper.state('value')).toBe('bar');
 
-    buttons
-      .at(0)
-      .shallow()
-      .simulate('change', true, 'foo', event);
+    buttons.at(0).shallow().simulate('change', true, 'foo', event);
 
     expect(wrapper.state('value')).toBe('foo');
   });
@@ -144,7 +126,7 @@ describe('<RadioButtonController />', () => {
     const spy = jest.fn();
     const wrapper = shallow<RadioButtonController>(
       <RadioButtonController {...props} onChange={spy}>
-        {RB => (
+        {(RB) => (
           <div>
             <RB value="foo" label="Foo" />
             <RB value="bar" label="Bar" />
@@ -155,11 +137,7 @@ describe('<RadioButtonController />', () => {
       </RadioButtonController>,
     );
 
-    wrapper
-      .find('Proxy(RadioButton)')
-      .at(0)
-      .shallow()
-      .simulate('change', true, 'foo', event);
+    wrapper.find('Proxy(RadioButton)').at(0).shallow().simulate('change', true, 'foo', event);
 
     expect(wrapper.state('value')).toBe('foo');
 
@@ -169,7 +147,7 @@ describe('<RadioButtonController />', () => {
   it('hides optional label for children', () => {
     const wrapper = shallow(
       <RadioButtonController {...props} optional>
-        {RB => (
+        {(RB) => (
           <div>
             <RB value="foo" label="Foo" />
           </div>
@@ -177,11 +155,6 @@ describe('<RadioButtonController />', () => {
       </RadioButtonController>,
     );
 
-    expect(
-      wrapper
-        .find('Proxy(RadioButton)')
-        .shallow()
-        .prop('hideOptionalLabel'),
-    ).toBe(true);
+    expect(wrapper.find('Proxy(RadioButton)').shallow().prop('hideOptionalLabel')).toBe(true);
   });
 });

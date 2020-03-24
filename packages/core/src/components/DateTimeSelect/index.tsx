@@ -96,7 +96,7 @@ export class DateTimeSelect extends React.Component<
   }
 
   getDayRange(): Range {
-    return createRange(1, this.state.date.daysInMonth).map(day => ({
+    return createRange(1, this.state.date.daysInMonth).map((day) => ({
       label: day,
       value: String(day),
     }));
@@ -119,14 +119,14 @@ export class DateTimeSelect extends React.Component<
   }
 
   getHourRange(): Range {
-    return (this.props.enable12HourClock ? createRange(1, 12) : createRange(0, 23)).map(hour => ({
+    return (this.props.enable12HourClock ? createRange(1, 12) : createRange(0, 23)).map((hour) => ({
       label: hour,
       value: hour,
     }));
   }
 
   getMinuteRange(): Range {
-    return createRange(0, 59, this.props.minuteStep).map(minute => ({
+    return createRange(0, 59, this.props.minuteStep).map((minute) => ({
       label: minute.padStart(2, '0'),
       value: minute,
     }));
@@ -147,7 +147,7 @@ export class DateTimeSelect extends React.Component<
       now.year + this.props.yearFutureBuffer!,
     )
       .reverse()
-      .map(year => ({
+      .map((year) => ({
         label: year,
         value: year,
       }));
@@ -158,7 +158,7 @@ export class DateTimeSelect extends React.Component<
     const key = id.split('_')[1];
 
     this.setState(
-      prevState => {
+      (prevState) => {
         let { date } = prevState;
         const meridiem = key === 'meridiem' ? value : prevState.meridiem;
 
@@ -222,7 +222,7 @@ export class DateTimeSelect extends React.Component<
                 placeholder={T.phrase('lunar.common.month', 'Month')}
                 onChange={this.handleChange}
               >
-                {this.getMonthRange().map(month => (
+                {this.getMonthRange().map((month) => (
                   <option key={month.value} value={month.value}>
                     {month.label}
                   </option>
@@ -239,7 +239,7 @@ export class DateTimeSelect extends React.Component<
                 placeholder={T.phrase('lunar.common.day', 'Day')}
                 onChange={this.handleChange}
               >
-                {this.getDayRange().map(day => (
+                {this.getDayRange().map((day) => (
                   <option key={day.value} value={day.value}>
                     {day.label}
                   </option>
@@ -257,7 +257,7 @@ export class DateTimeSelect extends React.Component<
                   placeholder={T.phrase('lunar.common.year', 'Year')}
                   onChange={this.handleChange}
                 >
-                  {this.getYearRange().map(year => (
+                  {this.getYearRange().map((year) => (
                     <option key={year.value} value={year.value}>
                       {year.label}
                     </option>
@@ -284,7 +284,7 @@ export class DateTimeSelect extends React.Component<
                 placeholder={T.phrase('lunar.common.hour', 'Hour')}
                 onChange={this.handleChange}
               >
-                {this.getHourRange().map(hour => (
+                {this.getHourRange().map((hour) => (
                   <option key={hour.value} value={hour.value}>
                     {hour.label}
                   </option>
@@ -301,7 +301,7 @@ export class DateTimeSelect extends React.Component<
                 placeholder={T.phrase('lunar.common.minute', 'Minute')}
                 onChange={this.handleChange}
               >
-                {this.getMinuteRange().map(minute => (
+                {this.getMinuteRange().map((minute) => (
                   <option key={minute.value} value={minute.value}>
                     {minute.label}
                   </option>

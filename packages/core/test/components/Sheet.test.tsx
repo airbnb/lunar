@@ -124,12 +124,7 @@ describe('<Sheet />', () => {
       jest.runAllTimers();
       jest.useRealTimers();
 
-      expect(
-        wrapper
-          .find(BaseSheet)
-          .getDOMNode()
-          .contains(document.activeElement),
-      ).toBe(true);
+      expect(wrapper.find(BaseSheet).getDOMNode().contains(document.activeElement)).toBe(true);
 
       wrapper.setProps({ visible: false });
 

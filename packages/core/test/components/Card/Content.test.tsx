@@ -80,19 +80,9 @@ describe('<Card />', () => {
       </Content>,
     );
 
-    expect(
-      wrapper
-        .find(Spacing)
-        .at(0)
-        .prop('horizontal'),
-    ).toBe(0);
+    expect(wrapper.find(Spacing).at(0).prop('horizontal')).toBe(0);
 
-    expect(
-      wrapper
-        .find(Spacing)
-        .at(0)
-        .prop('top'),
-    ).toBe(0);
+    expect(wrapper.find(Spacing).at(0).prop('top')).toBe(0);
   });
 
   it('renders before content as clickable', () => {
