@@ -3667,9 +3667,9 @@ acorn-walk@^6.0.1:
   integrity sha512-OtUw6JUTgxA2QoqqmrmQ7F2NYqiBPi/L2jqHyFtllhOUvXYQXf0Z1CYUinIfyT4bTCGmrA7gX9FvHA81uzCoVw==
 
 acorn@^6.0.1, acorn@^6.2.1:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.2.1.tgz#3ed8422d6dec09e6121cc7a843ca86a330a86b51"
-  integrity sha512-JD0xT5FCRDNyjDda3Lrg/IxFscp9q4tiYtxE1/nOzlKCk7hIRuYjhq1kCNkbPjMRMZuFq20HNQn1I9k8Oj0E+Q==
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
+  integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 acorn@^7.1.0:
   version "7.1.0"
@@ -7084,10 +7084,10 @@ eslint-plugin-react@^7.19.0:
     string.prototype.matchall "^4.0.2"
     xregexp "^4.3.0"
 
-eslint-plugin-rut@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-rut/-/eslint-plugin-rut-1.0.0.tgz#374d07548ca509edc40a304b451cb51fa934522e"
-  integrity sha512-Zwg9xnvAmzQQbMY/z5zpuEnIsbN2I9QBEJld/9jLfoOiQ4TpqkyuY2kX+UCjkwS3y7vbxTzqcrYKjA6NOnxPPQ==
+eslint-plugin-rut@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-rut/-/eslint-plugin-rut-1.0.1.tgz#48f28e7a394ffedbba56c7749ec65982ee4ab257"
+  integrity sha512-13eKGAS383odhQrhM78oilgDEmAuUHimt3G4/TiAH2VbIB9oS6YD8v8oBuE9UHFTBb/uuAINBCFE8AsqTTHaww==
 
 eslint-plugin-unicorn@^17.2.0:
   version "17.2.0"
@@ -7534,10 +7534,10 @@ fbjs@^0.8.0:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
-fetch-mock@^9.0.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/fetch-mock/-/fetch-mock-9.1.0.tgz#13527b5f33956359e961f0c1f7aa8d92c4d37d8a"
-  integrity sha512-s6mHgPwAdoQ1EDWFkPOD6vmhN1Pmp87csGO+3B91MRh/EdkVFKYIyDNQO1YaJv6TnaAI4qiJY5Gq/5h/i2yXNg==
+fetch-mock@^9.1.1:
+  version "9.3.1"
+  resolved "https://registry.yarnpkg.com/fetch-mock/-/fetch-mock-9.3.1.tgz#39685ed6aaa833580cc4e88c8282942950b9a5d5"
+  integrity sha512-zt2QUNYuR1kVCG8vGV+awxe/dtH/ufjpu2EA08v04eAVu3Rnt1P8Df8//VJrtxIx6tAdH+NHuCkb/Z69HUOT9A==
   dependencies:
     babel-runtime "^6.26.0"
     core-js "^3.0.0"
@@ -9683,10 +9683,10 @@ jest-runtime@^25.1.0:
     strip-bom "^4.0.0"
     yargs "^15.0.0"
 
-jest-rut@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/jest-rut/-/jest-rut-1.0.0.tgz#54f43665f37de0967be1211f9e7f594d63e9f18d"
-  integrity sha512-kioT6c5SGnbbKdcuI8WbrLQPvSGES3p9z479gYywqlXxR++tQnGCOi+/DFNVR8mE/+ok9tc/vT2OUIrzndLgbw==
+jest-rut@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jest-rut/-/jest-rut-1.0.1.tgz#ddb51b41d4aa4fbdde0d11a92365d6498e6358fd"
+  integrity sha512-d44oBRa6t2Pj5hqupo+jBHxWovqBIW4nSiWz8SzUCaKso/wb/D0RF5xmo2SZrQVJVEOl6W1jCPsUhtTNcXrSsw==
 
 jest-serializer@^25.1.0:
   version "25.1.0"
@@ -12529,10 +12529,10 @@ react-dev-utils@^9.0.0:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-docgen-typescript-loader@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/react-docgen-typescript-loader/-/react-docgen-typescript-loader-3.6.0.tgz#5515f03f869e66d49e287c5f1e7ec10f2084f7bb"
-  integrity sha512-+uEsM3VYCdlcBGxF3tBqI5XWL1phvrh8dkiIfdpciKlM1BDHW+d82kKJI9hX6zk9H8TL+3Th/j/JAEaKb5FFNw==
+react-docgen-typescript-loader@^3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/react-docgen-typescript-loader/-/react-docgen-typescript-loader-3.7.1.tgz#4a361d0b8ea1557a007c54bb5eea74bb6ca85c4b"
+  integrity sha512-GdQ/Jts6frqbRNXDRtC1M3N89dfZeMZYuVsxZ2H0i00PKUhbUPgZyiWCaVPJfwUQDxMraCmF7m79BAPgIW2zKA==
   dependencies:
     "@webpack-contrib/schema-utils" "^1.0.0-beta.0"
     loader-utils "^1.2.3"
@@ -12557,15 +12557,15 @@ react-docgen@^5.0.0:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@^16.13.0, react-dom@^16.8.3:
-  version "16.13.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.0.tgz#cdde54b48eb9e8a0ca1b3dc9943d9bb409b81866"
-  integrity sha512-y09d2c4cG220DzdlFkPTnVvGTszVvNpC73v+AaLGLHbkpy3SSgvYq8x0rNwPJ/Rk/CicTNgk0hbHNw1gMEZAXg==
+react-dom@^16.13.0, react-dom@^16.13.1, react-dom@^16.8.3:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
+  integrity sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.19.0"
+    scheduler "^0.19.1"
 
 react-draggable@^4.0.3:
   version "4.0.3"
@@ -12696,15 +12696,15 @@ react-syntax-highlighter@^11.0.2:
     prismjs "^1.8.4"
     refractor "^2.4.1"
 
-react-test-renderer@^16.0.0-0, react-test-renderer@^16.13.0:
-  version "16.13.0"
-  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.13.0.tgz#39ba3bf72cedc8210c3f81983f0bb061b14a3014"
-  integrity sha512-NQ2S9gdMUa7rgPGpKGyMcwl1d6D9MCF0lftdI3kts6kkiX+qvpC955jNjAZXlIDTjnN9jwFI8A8XhRh/9v0spA==
+react-test-renderer@^16.0.0-0, react-test-renderer@^16.13.0, react-test-renderer@^16.13.1:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.13.1.tgz#de25ea358d9012606de51e012d9742e7f0deabc1"
+  integrity sha512-Sn2VRyOK2YJJldOqoh8Tn/lWQ+ZiKhyZTPtaO0Q6yNj+QDbmRkVFap6pZPy3YQk8DScRDfyqm/KxKYP9gCMRiQ==
   dependencies:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     react-is "^16.8.6"
-    scheduler "^0.19.0"
+    scheduler "^0.19.1"
 
 react-textarea-autosize@^7.1.0:
   version "7.1.0"
@@ -12734,10 +12734,10 @@ react-window@^1.8.5:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react@^16.13.0, react@^16.8.3:
-  version "16.13.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.13.0.tgz#d046eabcdf64e457bbeed1e792e235e1b9934cf7"
-  integrity sha512-TSavZz2iSLkq5/oiE7gnFzmURKZMltmi193rm5HEoUDAXpzT9Kzw6oNZnGoai/4+fUnm7FqS5dwgUL34TujcWQ==
+react@^16.13.0, react@^16.13.1, react@^16.8.3:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
+  integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -13344,23 +13344,23 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rut-dom@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/rut-dom/-/rut-dom-1.0.0.tgz#5c0c3052180deac3288402844ab1450dc8c23be0"
-  integrity sha512-sLCCD8ZVM5DuUJZyAK4GnnwtabuzrK07I0zn9NrT1nU/25b54vtK0yoy2DQkMOtQUfemUJkGujvTFyPH0UofpA==
+rut-dom@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rut-dom/-/rut-dom-1.0.1.tgz#c3faca99233bf714f14da44196092125248682c5"
+  integrity sha512-lPgNpa0tYsWFvANKEMco+kFx589ISDqVLyMHHhEhrKkR10cJNxAr3ytsosSGKk1ZhKYEhyxIqokWlSoZkgdZLw==
   dependencies:
     "@types/react-dom" "*"
-    rut "^1.0.0"
+    rut "^1.0.1"
 
-rut@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/rut/-/rut-1.0.0.tgz#24147e4fb18f57de53b0c3277930d7b5c67c0a01"
-  integrity sha512-NodmOKZFVLdTt13veLDKUpKv/btFvaa5dd3Ap+3MvSwK3/PsKi+wZ/HOkPLrYqO9hYX/U1SLKPJdUc4rfNdEzA==
+rut@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rut/-/rut-1.0.1.tgz#ea15e0d6bddfbfdccc9e748671bb541c4b3039ce"
+  integrity sha512-FzKD2gUhgEM2lJwedo5t1mU8/9f/rmEF56BpcWBzqBtWrr5F5e+Y4QtQBc6FO8M5ev+DwyxlX38+03JLEtT1eQ==
   dependencies:
     "@types/react" "*"
     "@types/react-is" "*"
     "@types/react-test-renderer" "*"
-    fetch-mock "^9.0.0"
+    fetch-mock "^9.1.1"
     react-is "^16.13.0"
     react-test-renderer "^16.13.0"
 
@@ -13432,10 +13432,10 @@ saxes@^3.1.9:
   dependencies:
     xmlchars "^2.1.1"
 
-scheduler@^0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.0.tgz#a715d56302de403df742f4a9be11975b32f5698d"
-  integrity sha512-xowbVaTPe9r7y7RUejcK73/j8tt2jfiyTednOvHbA8JoClvMYCp+r8QegLwK/n8zWQAtZb1fFnER4XLBZXrCxA==
+scheduler@^0.19.1:
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
+  integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
