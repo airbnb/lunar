@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.4.4 - 2020-03-24
+
+#### 🐞 Fixes
+
+- **[GradientScroller]** Initially hide gradient end. (#342) ([d3c5bf7](https://github.com/airbnb/lunar/commit/d3c5bf7)), closes [#342](https://github.com/airbnb/lunar/issues/342)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.4.3 - 2020-03-20
 
 #### 🐞 Fixes
