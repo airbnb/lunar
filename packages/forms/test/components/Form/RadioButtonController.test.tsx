@@ -23,7 +23,7 @@ describe('<RadioButtonController />', () => {
         defaultValue="bar"
         validator={() => {}}
       >
-        {RB => (
+        {(RB) => (
           <div>
             <RB value="foo" label="Foo" />
             <RB value="bar" label="Bar" />

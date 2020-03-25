@@ -176,11 +176,6 @@ describe('<ErrorMessage />', () => {
         .find(MutedButton)
         .contains(<T k="lunar.error.viewDetails" phrase="View error details" />),
     ).toBe(true);
-    expect(
-      typeof wrapper
-        .find(Alert)
-        .find(MutedButton)
-        .prop('onClick'),
-    ).toBe('function');
+    expect(typeof wrapper.find(Alert).find(MutedButton).prop('onClick')).toBe('function');
   });
 });

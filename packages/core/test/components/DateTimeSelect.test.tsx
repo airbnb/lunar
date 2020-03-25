@@ -241,7 +241,7 @@ describe('<DateTimeSelect />', () => {
       };
 
       wrapper
-        .findWhere(node => node.type() === BaseSelect && node.prop('name') === `foo[${type}]`)
+        .findWhere((node) => node.type() === BaseSelect && node.prop('name') === `foo[${type}]`)
         .simulate('change', value, event);
 
       return event;

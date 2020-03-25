@@ -76,7 +76,7 @@ export default function Interweave({
   ];
 
   if (onlyMatchers.length > 0) {
-    finalMatchers = finalMatchers.filter(matcher => onlyMatchers.includes(matcher.propName));
+    finalMatchers = finalMatchers.filter((matcher) => onlyMatchers.includes(matcher.propName));
   }
 
   return (

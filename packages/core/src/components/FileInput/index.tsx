@@ -88,7 +88,7 @@ export default class FileInput extends React.Component<FileInputProps, FileInput
 
   private handleRemoveFile = (event: React.MouseEvent<ButtonOrLinkTypes>, index: number) => {
     this.setState(
-      prevState => ({
+      (prevState) => ({
         files: prevState.files.filter((file, i) => i !== index),
       }),
       () => {
@@ -175,7 +175,7 @@ export default class FileInput extends React.Component<FileInputProps, FileInput
 
                       <Cell endAlign>
                         <IconButton
-                          onClick={event => {
+                          onClick={(event) => {
                             this.handleRemoveFile(event, i);
                           }}
                         >

@@ -24,12 +24,7 @@ describe('<ImageViewer />', () => {
   it('renders borderless', () => {
     const wrapper = mountUseStyles(<ImageViewer borderless {...props} />);
 
-    expect(
-      wrapper
-        .find('div')
-        .at(0)
-        .prop('className'),
-    ).toMatch('container_borderless');
+    expect(wrapper.find('div').at(0).prop('className')).toMatch('container_borderless');
   });
 
   describe('componentWillUnmount()', () => {

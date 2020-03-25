@@ -74,7 +74,7 @@ export default class Multicomplete<T extends Item = Item> extends React.Componen
     }
 
     this.setState(
-      prevState => ({
+      (prevState) => ({
         values: new Set(prevState.values).add(value),
       }),
       () => {
@@ -85,7 +85,7 @@ export default class Multicomplete<T extends Item = Item> extends React.Componen
 
   private handleChipClick = (value: string, event: React.MouseEvent<HTMLElement>) => {
     this.setState(
-      prevState => {
+      (prevState) => {
         const values = new Set(prevState.values);
 
         values.delete(value);
@@ -119,7 +119,7 @@ export default class Multicomplete<T extends Item = Item> extends React.Componen
       >
         {selected.length > 0 && (
           <div>
-            {selected.map(value => (
+            {selected.map((value) => (
               <React.Fragment key={value}>
                 {this.renderChip(value, this.handleChipClick)}
               </React.Fragment>

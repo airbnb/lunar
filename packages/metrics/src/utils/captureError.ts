@@ -25,9 +25,9 @@ export default function captureError(
   }
 
   if (Metrics.isSentryEnabled()) {
-    withScope(scope => {
+    withScope((scope) => {
       if (options.contexts) {
-        Object.keys(options.contexts).forEach(key => {
+        Object.keys(options.contexts).forEach((key) => {
           scope.setContext(key, options.contexts![key]);
         });
       }

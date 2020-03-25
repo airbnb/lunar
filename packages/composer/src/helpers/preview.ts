@@ -12,7 +12,7 @@ export function onSubmitShowPreview(result: DataSet, context: WritableContext) {
     return false;
   }
 
-  context.setMenu(menu => (menu === MENU_PREVIEW ? '' : MENU_PREVIEW));
+  context.setMenu((menu) => (menu === MENU_PREVIEW ? '' : MENU_PREVIEW));
 
   // Abort so subsequent submit handlers are not called
   return true;

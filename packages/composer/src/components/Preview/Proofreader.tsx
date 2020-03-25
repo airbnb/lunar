@@ -63,7 +63,7 @@ export default function Proofreader({
           locale: selectedLocale,
           text: value,
         })
-          .then(proofreadErrors => {
+          .then((proofreadErrors) => {
             if (mounted) {
               setErrors([...customErrors, ...proofreadErrors]);
               setLoading(false);
@@ -116,7 +116,7 @@ export default function Proofreader({
     nextValue += value.slice(offset + error.length!);
 
     handleUnselectError();
-    setErrors(errors.filter(e => e !== error));
+    setErrors(errors.filter((e) => e !== error));
     context.setData('value', nextValue);
   };
 

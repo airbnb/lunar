@@ -52,18 +52,18 @@ class Metrics {
 
     newrelic.setCustomAttribute('user-id', userID ? String(userID) : 'N/A');
 
-    Object.keys(context).forEach(key => {
+    Object.keys(context).forEach((key) => {
       newrelic.setCustomAttribute(
-        key.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`),
+        key.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`),
         String(context[key]),
       );
     });
 
     newrelic.setErrorHandler(
-      /* istanbul ignore next */ error => {
+      /* istanbul ignore next */ (error) => {
         const errorString = String(error);
 
-        return ignoreErrors.some(filter =>
+        return ignoreErrors.some((filter) =>
           typeof filter === 'string' ? errorString.includes(filter) : filter.test(errorString),
         );
       },
@@ -88,7 +88,7 @@ class Metrics {
       ...sentry,
     });
 
-    Sentry.configureScope(scope => {
+    Sentry.configureScope((scope) => {
       scope.setUser({ id: userID ? String(userID) : 'N/A' });
       scope.setExtras(context);
 

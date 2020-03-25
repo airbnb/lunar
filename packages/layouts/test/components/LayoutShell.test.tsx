@@ -7,12 +7,7 @@ describe('<LayoutShell />', () => {
   it('renders with content', () => {
     const wrapper = shallow(<LayoutShell>Child</LayoutShell>);
 
-    expect(
-      wrapper
-        .find('div')
-        .at(1)
-        .text(),
-    ).toBe('Child');
+    expect(wrapper.find('div').at(1).text()).toBe('Child');
   });
 
   it('renders a sidebar', () => {

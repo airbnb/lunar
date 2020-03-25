@@ -10,7 +10,7 @@ type OverlayDemoState = { open: boolean };
 class OverlayDemo extends React.Component<{}, OverlayDemoState> {
   state = { open: false };
 
-  handleToggle = () => this.setState(prevState => ({ open: !prevState.open }));
+  handleToggle = () => this.setState((prevState) => ({ open: !prevState.open }));
 
   render() {
     return (
@@ -32,7 +32,7 @@ class OverlayDemo extends React.Component<{}, OverlayDemoState> {
 class OverlayNoBgDemo extends React.Component<{}, OverlayDemoState> {
   state = { open: false };
 
-  handleToggle = () => this.setState(prevState => ({ open: !prevState.open }));
+  handleToggle = () => this.setState((prevState) => ({ open: !prevState.open }));
 
   render() {
     return (

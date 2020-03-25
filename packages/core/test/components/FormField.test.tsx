@@ -32,12 +32,7 @@ describe('<FormField />', () => {
     });
 
     expect(wrapper.find('label').find(T)).toHaveLength(1);
-    expect(
-      wrapper
-        .find('label')
-        .find(T)
-        .prop('phrase'),
-    ).toBe('(optional)');
+    expect(wrapper.find('label').find(T).prop('phrase')).toBe('(optional)');
   });
 
   it('doesnt renders optional label if `hideOptionalLabel` is true', () => {

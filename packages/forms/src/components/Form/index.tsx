@@ -20,7 +20,7 @@ import T from '@airbnb/lunar/lib/components/Translate';
 import { getErrorMessage } from '@airbnb/lunar/lib/components/ErrorMessage';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
 import FormContext from '../FormContext';
-import { Errors, Parse, Field } from '../../types';
+import { Errors, Parse, Field, FieldData } from '../../types';
 import { throttleToSinglePromise } from '../../helpers';
 
 function mapSubscriptions(subscriptions: string[]): { [sub: string]: boolean } {
@@ -164,8 +164,8 @@ export default class Form<Data extends object = {}> extends React.Component<
     // @ts-ignore Not undefined
     return this.form
       .getRegisteredFields()
-      .map(name => this.form.getFieldState(name))
-      .filter(field => typeof field !== 'undefined');
+      .map((name) => this.form.getFieldState(name))
+      .filter((field) => typeof field !== 'undefined');
   };
 
   /**
@@ -195,7 +195,7 @@ export default class Form<Data extends object = {}> extends React.Component<
       promise = Promise.resolve(promise);
     }
 
-    return promise.catch(error => {
+    return promise.catch((error) => {
       if (setErrors) {
         setErrors({
           [FORM_ERROR]: T.phrase('lunar.form.submitFailed', 'Failed to submit form. %{error}', {
@@ -236,7 +236,7 @@ export default class Form<Data extends object = {}> extends React.Component<
     // and on subsequent updates use `setState`.
     if (this.state) {
       this.setState(
-        prevState => ({
+        (prevState) => ({
           ...prevState,
           ...state,
         }),
@@ -282,7 +282,8 @@ export default class Form<Data extends object = {}> extends React.Component<
    * Trim and type cast the dataset.
    */
   prepareData(initialData: Partial<Data>): Data {
-    return this.getFields().reduce((data, { name, data: fieldData }) => {
+    return this.getFields().reduce((data, { name, data: rawData }) => {
+      const fieldData = rawData as FieldData;
       let value = getIn(data, name);
 
       if (!fieldData || !fieldData.config) {
@@ -372,10 +373,11 @@ export default class Form<Data extends object = {}> extends React.Component<
     let errors = {};
 
     await Promise.all(
-      fields.map(async field => {
+      fields.map(async (field) => {
         if (!field) return;
 
-        const { name, data: fieldData } = field;
+        const { name, data: rawData } = field;
+        const fieldData = rawData as FieldData;
 
         if (fieldData?.config?.validator) {
           const value = getIn(data, name);
@@ -384,7 +386,7 @@ export default class Form<Data extends object = {}> extends React.Component<
             try {
               await fieldData.config.validator(value, data);
             } catch (error) {
-              errors = setIn(errors, name, error.message);
+              errors = setIn(errors, name, (error as Error).message);
             }
           }
         }
@@ -403,7 +405,7 @@ export default class Form<Data extends object = {}> extends React.Component<
         try {
           await validator(value, data);
         } catch (error) {
-          return error.message;
+          return (error as Error).message;
         }
       }
 

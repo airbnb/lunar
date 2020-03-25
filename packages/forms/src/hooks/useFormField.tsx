@@ -128,9 +128,9 @@ export default function useFormField<T, P>(
         validateFields,
         validator,
       },
-      state => {
+      (state) => {
         if (mounted) {
-          setField(prevField => ({
+          setField((prevField) => ({
             ...prevField,
             ...state,
           }));

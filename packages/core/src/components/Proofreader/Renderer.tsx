@@ -37,7 +37,7 @@ export default function Renderer({
   const content: NonNullable<React.ReactNode>[] = [];
   let lastIndex = 0;
 
-  errors.forEach(error => {
+  errors.forEach((error) => {
     const offset = error.offset ?? 0;
     const length = error.length ?? 0;
 

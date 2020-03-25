@@ -62,26 +62,11 @@ describe('<Accordion />', () => {
       </Accordion>,
     );
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(0)
-        .prop('expanded'),
-    ).toBe(false);
+    expect(wrapper.find(AccordionItem).at(0).prop('expanded')).toBe(false);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(1)
-        .prop('expanded'),
-    ).toBe(true);
+    expect(wrapper.find(AccordionItem).at(1).prop('expanded')).toBe(true);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(2)
-        .prop('expanded'),
-    ).toBe(false);
+    expect(wrapper.find(AccordionItem).at(2).prop('expanded')).toBe(false);
   });
 
   it('adds indices to items', () => {
@@ -93,26 +78,11 @@ describe('<Accordion />', () => {
       </Accordion>,
     );
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(0)
-        .prop('index'),
-    ).toBe(0);
+    expect(wrapper.find(AccordionItem).at(0).prop('index')).toBe(0);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(1)
-        .prop('index'),
-    ).toBe(1);
+    expect(wrapper.find(AccordionItem).at(1).prop('index')).toBe(1);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(2)
-        .prop('index'),
-    ).toBe(2);
+    expect(wrapper.find(AccordionItem).at(2).prop('index')).toBe(2);
   });
 
   it('sets expanded state to false for all items if defaultIndex is negative', () => {
@@ -124,26 +94,11 @@ describe('<Accordion />', () => {
       </Accordion>,
     );
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(0)
-        .prop('expanded'),
-    ).toBe(false);
+    expect(wrapper.find(AccordionItem).at(0).prop('expanded')).toBe(false);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(1)
-        .prop('expanded'),
-    ).toBe(false);
+    expect(wrapper.find(AccordionItem).at(1).prop('expanded')).toBe(false);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(2)
-        .prop('expanded'),
-    ).toBe(false);
+    expect(wrapper.find(AccordionItem).at(2).prop('expanded')).toBe(false);
   });
 
   it('handles falsey items', () => {
@@ -165,24 +120,11 @@ describe('<Accordion />', () => {
       </Accordion>,
     );
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(0)
-        .prop('expanded'),
-    ).toBe(false);
+    expect(wrapper.find(AccordionItem).at(0).prop('expanded')).toBe(false);
 
-    wrapper
-      .find(AccordionItem)
-      .at(0)
-      .prop('onClick')!(0);
+    wrapper.find(AccordionItem).at(0).prop('onClick')!(0);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(0)
-        .prop('expanded'),
-    ).toBe(true);
+    expect(wrapper.find(AccordionItem).at(0).prop('expanded')).toBe(true);
   });
 
   it('updates index to -1 when current index is clicked', () => {
@@ -192,24 +134,11 @@ describe('<Accordion />', () => {
       </Accordion>,
     );
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(0)
-        .prop('expanded'),
-    ).toBe(true);
+    expect(wrapper.find(AccordionItem).at(0).prop('expanded')).toBe(true);
 
-    wrapper
-      .find(AccordionItem)
-      .at(0)
-      .prop('onClick')!(0);
+    wrapper.find(AccordionItem).at(0).prop('onClick')!(0);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(0)
-        .prop('expanded'),
-    ).toBe(false);
+    expect(wrapper.find(AccordionItem).at(0).prop('expanded')).toBe(false);
   });
 
   it('enables multiple items to be open when clicked', () => {
@@ -221,62 +150,23 @@ describe('<Accordion />', () => {
       </Accordion>,
     );
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(0)
-        .prop('expanded'),
-    ).toBe(false);
+    expect(wrapper.find(AccordionItem).at(0).prop('expanded')).toBe(false);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(1)
-        .prop('expanded'),
-    ).toBe(false);
+    expect(wrapper.find(AccordionItem).at(1).prop('expanded')).toBe(false);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(2)
-        .prop('expanded'),
-    ).toBe(false);
+    expect(wrapper.find(AccordionItem).at(2).prop('expanded')).toBe(false);
 
-    wrapper
-      .find(AccordionItem)
-      .at(0)
-      .prop('onClick')!(0);
+    wrapper.find(AccordionItem).at(0).prop('onClick')!(0);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(0)
-        .prop('expanded'),
-    ).toBe(true);
+    expect(wrapper.find(AccordionItem).at(0).prop('expanded')).toBe(true);
 
-    wrapper
-      .find(AccordionItem)
-      .at(1)
-      .prop('onClick')!(1);
+    wrapper.find(AccordionItem).at(1).prop('onClick')!(1);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(1)
-        .prop('expanded'),
-    ).toBe(true);
+    expect(wrapper.find(AccordionItem).at(1).prop('expanded')).toBe(true);
 
-    wrapper
-      .find(AccordionItem)
-      .at(2)
-      .prop('onClick')!(2);
+    wrapper.find(AccordionItem).at(2).prop('onClick')!(2);
 
-    expect(
-      wrapper
-        .find(AccordionItem)
-        .at(2)
-        .prop('expanded'),
-    ).toBe(true);
+    expect(wrapper.find(AccordionItem).at(2).prop('expanded')).toBe(true);
   });
 
   it('triggers `onChange` handler', () => {
@@ -289,10 +179,7 @@ describe('<Accordion />', () => {
       </Accordion>,
     );
 
-    wrapper
-      .find(AccordionItem)
-      .at(1)
-      .prop('onClick')!(1);
+    wrapper.find(AccordionItem).at(1).prop('onClick')!(1);
 
     expect(spy).toHaveBeenCalledWith(1);
   });

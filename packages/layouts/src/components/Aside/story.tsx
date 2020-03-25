@@ -141,7 +141,7 @@ export function CanExternallyControlExpandedState() {
     <div>
       <Button
         onClick={() => {
-          setExpanded(prev => !prev);
+          setExpanded((prev) => !prev);
         }}
       >
         Toggle
@@ -154,7 +154,7 @@ export function CanExternallyControlExpandedState() {
           scrollable
           expanded={expanded}
           width={300}
-          onCollapseToggle={ex => {
+          onCollapseToggle={(ex) => {
             if (ex !== expanded) {
               setExpanded(ex);
             }
@@ -204,7 +204,7 @@ export function CanControlMultipleAsides() {
             scrollable
             width={300}
             expanded={expanded === 'left'}
-            onCollapseToggle={exp => {
+            onCollapseToggle={(exp) => {
               if (exp) {
                 setExpanded('left');
               } else {
@@ -228,7 +228,7 @@ export function CanControlMultipleAsides() {
             scrollable
             width={300}
             expanded={expanded === 'right'}
-            onCollapseToggle={exp => {
+            onCollapseToggle={(exp) => {
               if (exp) {
                 setExpanded('right');
               } else {

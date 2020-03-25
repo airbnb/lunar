@@ -24,7 +24,7 @@ export function connectedToTheParentForm() {
         validator={() => {}}
         onChange={action('onChange')}
       >
-        {CheckBox => (
+        {(CheckBox) => (
           <div>
             <CheckBox label="❤️ Red" value="red" />
             <CheckBox label="💙 Blue" value="blue" />

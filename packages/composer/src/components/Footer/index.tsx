@@ -14,7 +14,7 @@ export default function Footer() {
   const [styles, cx] = useStyles(footerStyleSheet);
 
   // Select active hotkeys for the current view
-  const tips = Array.from(hotkeys.values()).filter(hotkey => hotkey.condition(context));
+  const tips = Array.from(hotkeys.values()).filter((hotkey) => hotkey.condition(context));
 
   // Sort hotkeys by order
   tips.sort((a, b) => a.order! - b.order!);
@@ -25,7 +25,7 @@ export default function Footer() {
 
   return (
     <footer className={cx(styles.footer)}>
-      {tips.map(tip => (
+      {tips.map((tip) => (
         <Tip key={tip.name || tip.combo}>
           <Mark>
             {tip.combo.split('+').map((symbol, i) => {

@@ -83,7 +83,9 @@ export default function Input({
           context,
         );
       } catch (error) {
-        context.setError(error.message);
+        if (error instanceof Error) {
+          context.setError(error.message);
+        }
       }
     },
     [onChange, context],
@@ -119,7 +121,9 @@ export default function Input({
         );
       }
     } catch (error) {
-      context.setError(error.message);
+      if (error instanceof Error) {
+        context.setError(error.message);
+      }
     }
   }, [blocked, onSubmit, context]);
 
@@ -162,7 +166,7 @@ export default function Input({
         </section>
 
         <textarea
-          ref={element => {
+          ref={(element) => {
             passThroughRef(ref, element);
             passThroughRef(propagateRef, element);
           }}

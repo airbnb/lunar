@@ -57,7 +57,7 @@ export default function Preview({
         name="showPreview"
         label={T.phrase('lunar.composer.hotkey.returnToPreview', 'to preview')}
         order={100}
-        onRun={ctx => onSubmitShowPreview(ctx.data, ctx)}
+        onRun={(ctx) => onSubmitShowPreview(ctx.data, ctx)}
       />
 
       <Menu

@@ -90,12 +90,7 @@ describe('<MessageItem>', () => {
     );
 
     expect(wrapper.find('button')).toHaveLength(1);
-    expect(
-      wrapper
-        .find('button')
-        .find(Text)
-        .prop('children'),
-    ).toBe(title);
+    expect(wrapper.find('button').find(Text).prop('children')).toBe(title);
   });
 
   it('renders the profile photo with a `button` when `onClickImage` is given', () => {
@@ -107,12 +102,7 @@ describe('<MessageItem>', () => {
       </MessageItem>,
     );
 
-    expect(
-      wrapper
-        .find(ProfilePhoto)
-        .parent()
-        .is('button'),
-    ).toEqual(true);
+    expect(wrapper.find(ProfilePhoto).parent().is('button')).toEqual(true);
   });
 
   it('renders an icon when given', () => {

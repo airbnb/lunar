@@ -6,7 +6,7 @@ describe('crosstab', () => {
 
     const inData = { foo: 'bar' };
 
-    crosstab.on('foobar', outData1 => {
+    crosstab.on('foobar', (outData1) => {
       expect(outData1).toBe(inData);
     });
 
@@ -16,11 +16,11 @@ describe('crosstab', () => {
   it('supports multiple listeners', () => {
     expect.assertions(2);
 
-    crosstab.on('foo', out1 => {
+    crosstab.on('foo', (out1) => {
       expect(out1).toBe('bar');
     });
 
-    crosstab.on('foo', out2 => {
+    crosstab.on('foo', (out2) => {
       expect(out2).toBe('bar');
     });
 
@@ -79,7 +79,7 @@ describe('crosstab', () => {
   it('supports selfEmit', () => {
     expect.assertions(2);
 
-    crosstab.on('selfEmit', out => {
+    crosstab.on('selfEmit', (out) => {
       expect(out).toBe('yep');
     });
 

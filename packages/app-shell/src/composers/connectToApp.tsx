@@ -79,7 +79,7 @@ export default function connectToApp(scope: string) /* infer */ {
 
     function ConnectToAppWrapper(props: Props) {
       return (
-        <AppContext.Consumer>{app => <ConnectToApp {...props} app={app} />}</AppContext.Consumer>
+        <AppContext.Consumer>{(app) => <ConnectToApp {...props} app={app} />}</AppContext.Consumer>
       );
     }
 

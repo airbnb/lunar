@@ -26,7 +26,7 @@ export type Props = {
 export default function withIcon(
   name: string,
 ): (WrappedComponent: React.ComponentType<Props>) => React.ComponentType<WithIconWrapperProps> {
-  return WrappedComponent => {
+  return (WrappedComponent) => {
     function Icon({
       accessibilityLabel,
       color = 'currentColor',

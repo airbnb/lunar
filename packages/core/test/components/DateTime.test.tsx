@@ -173,7 +173,7 @@ describe('<DateTime />', () => {
   });
 
   describe('localized messages', () => {
-    LOCALES.forEach(locale => {
+    LOCALES.forEach((locale) => {
       it(`${getLanguageFromLocale(locale)} - ${locale}`, () => {
         const props = {
           at: date,

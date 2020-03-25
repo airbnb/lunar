@@ -306,10 +306,7 @@ describe('<Composer />', () => {
       );
 
       // Confirm preview and submit
-      await root
-        .findOne(Window)
-        .findOne('button')
-        .dispatchAndWait('onClick');
+      await root.findOne(Window).findOne('button').dispatchAndWait('onClick');
 
       expect(spy).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -413,7 +410,7 @@ describe('<Composer />', () => {
       }
 
       it('executes shortcut when input is submitted', () => {
-        const cuts = (shortcuts as ShortcutConfig[]).map(cut => ({ ...cut, onRun: jest.fn() }));
+        const cuts = (shortcuts as ShortcutConfig[]).map((cut) => ({ ...cut, onRun: jest.fn() }));
         const { root } = render<ComposerProps>(
           <Composer {...props}>
             <Shortcuts shortcuts={cuts} />

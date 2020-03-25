@@ -31,9 +31,7 @@ export function toBool(value: unknown): boolean {
     return false;
   }
 
-  const bool = String(value)
-    .toLowerCase()
-    .trim();
+  const bool = String(value).toLowerCase().trim();
 
   return bool === 'true' || bool === '1' || bool === 'on';
 }

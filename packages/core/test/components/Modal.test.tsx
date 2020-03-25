@@ -312,12 +312,7 @@ describe('<Modal />', () => {
 
     expect(wrapper.find('header')).toHaveLength(1);
 
-    expect(
-      wrapper
-        .find('header')
-        .find(Text)
-        .prop('children'),
-    ).toBe('Subtitle');
+    expect(wrapper.find('header').find(Text).prop('children')).toBe('Subtitle');
   });
 
   it('no header if no title is provided', () => {

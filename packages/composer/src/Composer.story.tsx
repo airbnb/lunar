@@ -89,7 +89,7 @@ export const suggestions: { [phrase: string]: SuggestionConfig[] } = {
 };
 
 export function loadSuggestions(phrase: string): Promise<SuggestionConfig[]> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(
       () => {
         const key = phrase.toLowerCase();

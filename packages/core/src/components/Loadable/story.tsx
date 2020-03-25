@@ -19,7 +19,7 @@ renderAComponentAfterImportingIt.story = {
 export function renderAComponentUsingFunctionChildren() {
   return (
     <Loadable component={() => import('../Text')}>
-      {Text => <Text>Loaded the `Text` component and rendered it.</Text>}
+      {(Text) => <Text>Loaded the `Text` component and rendered it.</Text>}
     </Loadable>
   );
 }

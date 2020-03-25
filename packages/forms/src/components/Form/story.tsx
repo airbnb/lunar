@@ -39,7 +39,7 @@ function isEmail(value: string) {
 function isDate(value: string | Date) {
   isRequired(value);
 
-  // eslint-disable-next-line unicorn/regex-shorthand
+  // eslint-disable-next-line unicorn/better-regex
   if (typeof value === 'string' && !value.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
     throw new Error('Invalid date.');
   }
@@ -63,7 +63,7 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
   };
 
   handleToggleMount = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       mounted: !prevState.mounted,
     }));
   };
@@ -74,7 +74,7 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
     return (
       <Form
         onFailedSubmit={action('onFailedSubmit')}
-        onSubmit={data => {
+        onSubmit={(data) => {
           action('onSubmit')(data);
 
           return Promise.resolve();
@@ -122,7 +122,7 @@ export function withAllFields() {
     <Form
       initialValues={values}
       onFailedSubmit={action('onFailedSubmit')}
-      onSubmit={data => {
+      onSubmit={(data) => {
         action('onSubmit')(data);
 
         return Promise.resolve();
@@ -201,8 +201,8 @@ export function withAllFields() {
         defaultValue="black"
         validator={isRequired}
         onChange={action('onChange')}
-        onLoadItems={value =>
-          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value)))
+        onLoadItems={(value) =>
+          Promise.resolve(items.filter((item) => item.name.toLowerCase().match(value)))
         }
       />
 
@@ -216,8 +216,8 @@ export function withAllFields() {
         renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
         validator={isRequired}
         onChange={action('onChange')}
-        onLoadItems={value =>
-          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value)))
+        onLoadItems={(value) =>
+          Promise.resolve(items.filter((item) => item.name.toLowerCase().match(value)))
         }
       />
 
@@ -245,7 +245,7 @@ export function withAllFields() {
         validator={isRequired}
         onChange={action('onChange')}
       >
-        {CB => (
+        {(CB) => (
           <div>
             <CB
               value="foo"
@@ -288,7 +288,7 @@ export function withAllFields() {
         validator={isRequired}
         onChange={action('onChange')}
       >
-        {RB => (
+        {(RB) => (
           <div>
             <RB button value="foo" label="Foo" />
             <RB button value="bar" label="Bar" />
@@ -305,7 +305,7 @@ export function withAllFields() {
         validator={isRequired}
         onChange={action('onChange')}
       >
-        {B => (
+        {(B) => (
           <ButtonGroup>
             <B value="foo">Foo</B>
             <B value="bar">Bar</B>

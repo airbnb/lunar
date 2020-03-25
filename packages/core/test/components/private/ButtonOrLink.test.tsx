@@ -175,17 +175,7 @@ describe('<ButtonOrLink />', () => {
       </ButtonOrLink>,
     );
 
-    expect(
-      wrapper
-        .find(IconAffix)
-        .at(0)
-        .prop('flex'),
-    ).toBe(true);
-    expect(
-      wrapper
-        .find(IconAffix)
-        .at(1)
-        .prop('flex'),
-    ).toBe(true);
+    expect(wrapper.find(IconAffix).at(0).prop('flex')).toBe(true);
+    expect(wrapper.find(IconAffix).at(1).prop('flex')).toBe(true);
   });
 });

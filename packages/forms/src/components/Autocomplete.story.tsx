@@ -32,8 +32,10 @@ export function connectedToTheParentForm() {
         validator={() => {}}
         onChange={action('onChange')}
         onSelectItem={action('onSelectItem')}
-        onLoadItems={value =>
-          Promise.resolve(items.filter(item => item.name.toLowerCase().match(value.toLowerCase())))
+        onLoadItems={(value) =>
+          Promise.resolve(
+            items.filter((item) => item.name.toLowerCase().match(value.toLowerCase())),
+          )
         }
       />
     </Form>

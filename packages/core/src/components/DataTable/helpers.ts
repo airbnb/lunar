@@ -75,7 +75,7 @@ export const getKeys = memoize((keys: string[], data: ParentRow[]) => {
     ? keys
     : Array.from(
         data!.reduce((keySet: Set<string>, row: ParentRow) => {
-          Object.keys(row.data).forEach(key => {
+          Object.keys(row.data).forEach((key) => {
             if (row.metadata === undefined || row.metadata.colSpanKey !== key) {
               keySet.add(key);
             }

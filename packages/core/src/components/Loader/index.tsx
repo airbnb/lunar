@@ -33,7 +33,7 @@ export default function Loader({
         !isStatic && !inline && styles.loader_absolute,
       )}
     >
-      {[1, 2, 3].map(no => (
+      {[1, 2, 3].map((no) => (
         <span
           key={no}
           className={cx(

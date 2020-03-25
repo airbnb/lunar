@@ -45,7 +45,7 @@ describe('<StatusLabel />', () => {
   });
 
   describe('statuses', () => {
-    STATUSES.forEach(status => {
+    STATUSES.forEach((status) => {
       it('renders label', () => {
         const wrapper = shallow(<StatusLabel {...{ [status]: true }}>{status}</StatusLabel>);
 

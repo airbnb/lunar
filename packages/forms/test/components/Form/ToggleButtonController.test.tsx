@@ -23,7 +23,7 @@ describe('<ToggleButtonController />', () => {
         defaultValue="bar"
         validator={() => {}}
       >
-        {ProxyButton => (
+        {(ProxyButton) => (
           <div>
             <ProxyButton value="foo">Foo</ProxyButton>
             <ProxyButton value="bar">Bar</ProxyButton>

@@ -30,30 +30,21 @@ describe('<ZoomControls />', () => {
 
     it('zooms out', () => {
       const wrapper = shallow(<ZoomControls {...props} scale={1.5} />);
-      wrapper
-        .find(IconButton)
-        .at(0)
-        .simulate('click');
+      wrapper.find(IconButton).at(0).simulate('click');
 
       expect(setScaleSpy).toHaveBeenCalledWith(1);
     });
 
     it('zooms out to 1', () => {
       const wrapper = shallow(<ZoomControls {...props} scale={1.25} />);
-      wrapper
-        .find(IconButton)
-        .at(0)
-        .simulate('click');
+      wrapper.find(IconButton).at(0).simulate('click');
 
       expect(setScaleSpy).toHaveBeenCalledWith(1);
     });
 
     it('zooms in', () => {
       const wrapper = shallow(<ZoomControls {...props} />);
-      wrapper
-        .find(IconButton)
-        .at(1)
-        .simulate('click');
+      wrapper.find(IconButton).at(1).simulate('click');
 
       expect(setScaleSpy).toHaveBeenCalledWith(1.5);
     });
@@ -64,10 +55,7 @@ describe('<ZoomControls />', () => {
 
     beforeEach(() => {
       wrapper = mount(<ZoomControls {...props} />);
-      wrapper
-        .find(Button)
-        .at(0)
-        .simulate('click');
+      wrapper.find(Button).at(0).simulate('click');
     });
 
     it('renders options', () => {
@@ -76,10 +64,7 @@ describe('<ZoomControls />', () => {
     });
 
     it('sets the zoom level when clicked', () => {
-      wrapper
-        .find(Item)
-        .at(0)
-        .simulate('click');
+      wrapper.find(Item).at(0).simulate('click');
 
       expect(setScaleSpy).toHaveBeenCalledWith(ZOOM_OPTIONS[0].scale);
     });

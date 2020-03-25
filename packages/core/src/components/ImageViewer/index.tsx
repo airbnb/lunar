@@ -75,7 +75,7 @@ export default function ImageViewer({
     const xDiff = lastMouseLocation.x - event.pageX;
     const yDiff = lastMouseLocation.y - event.pageY;
 
-    setImageLocation(prev => ({
+    setImageLocation((prev) => ({
       x: prev.x - xDiff,
       y: prev.y - yDiff,
     }));

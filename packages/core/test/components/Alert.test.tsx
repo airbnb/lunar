@@ -39,7 +39,7 @@ describe('<Alert />', () => {
   });
 
   describe('renders statuses', () => {
-    STATUSES.forEach(status => {
+    STATUSES.forEach((status) => {
       it(`renders ${status} alert`, () => {
         const wrapper = shallow(<Alert {...{ [status]: true }} title={status} />);
 

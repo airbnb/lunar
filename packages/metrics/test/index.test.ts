@@ -94,7 +94,7 @@ describe('Metrics', () => {
         setExtras: jest.fn(),
       };
 
-      (configureScope as jest.Mock).mockImplementation(cb => cb(scope));
+      (configureScope as jest.Mock).mockImplementation((cb) => cb(scope));
 
       Metrics.settings = {
         ...settings,

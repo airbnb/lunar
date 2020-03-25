@@ -60,7 +60,7 @@ export function executeAGraphQlQueryAndRenderTheResponseWhenReceived() {
   return (
     <MockedProvider mocks={[mock]} addTypename={false}>
       <Query<{ user: User }> query={QUERY} variables={{ id: 123 }}>
-        {data => data && <div>Loaded user: {data.user.name}</div>}
+        {(data) => data && <div>Loaded user: {data.user.name}</div>}
       </Query>
     </MockedProvider>
   );
@@ -87,7 +87,7 @@ customLoadingComponent.story = {
 export function customErrorComponent() {
   return (
     <MockedProvider mocks={[errorMock]} addTypename={false}>
-      <Query query={QUERY} error={error => <ErrorMessage error={error} />}>
+      <Query query={QUERY} error={(error) => <ErrorMessage error={error} />}>
         {() => null}
       </Query>
     </MockedProvider>

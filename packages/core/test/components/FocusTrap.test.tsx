@@ -19,7 +19,7 @@ describe.skip('<FocusTrap>', () => {
     beforeEach(() => {
       const childA = (
         <input
-          ref={ref => {
+          ref={(ref) => {
             childAElement = ref;
           }}
           type="text"
@@ -27,7 +27,7 @@ describe.skip('<FocusTrap>', () => {
       );
       const childB = (
         <input
-          ref={ref => {
+          ref={(ref) => {
             childBElement = ref;
           }}
           type="text"
@@ -35,7 +35,7 @@ describe.skip('<FocusTrap>', () => {
       );
       const childC = (
         <input
-          ref={ref => {
+          ref={(ref) => {
             childCElement = ref;
           }}
           type="text"
@@ -147,7 +147,7 @@ describe.skip('<FocusTrap>', () => {
     beforeEach(() => {
       const hiddenChild = (
         <input
-          ref={ref => {
+          ref={(ref) => {
             if (ref) {
               jest.spyOn(ref, 'focus').mockImplementation();
             }
@@ -158,7 +158,7 @@ describe.skip('<FocusTrap>', () => {
       );
       const childA = (
         <input
-          ref={ref => {
+          ref={(ref) => {
             childAElement = ref;
           }}
           type="text"
@@ -166,7 +166,7 @@ describe.skip('<FocusTrap>', () => {
       );
       const childB = (
         <input
-          ref={ref => {
+          ref={(ref) => {
             childBElement = ref;
           }}
           type="text"
@@ -174,7 +174,7 @@ describe.skip('<FocusTrap>', () => {
       );
       const childC = (
         <input
-          ref={ref => {
+          ref={(ref) => {
             childCElement = ref;
           }}
           type="text"

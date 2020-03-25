@@ -26,14 +26,14 @@ export function anAutocompleteThatSupportsSelectingMultipleItems() {
       )}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value =>
+      onLoadItems={(value) =>
         Promise.resolve(
           [
             { value: 'red', name: 'Red' },
             { value: 'black', name: 'Black' },
             { value: 'blue', name: 'Blue' },
             { value: 'green', name: 'Green' },
-          ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
+          ].filter((item) => item.name.toLowerCase().match(value.toLowerCase())),
         )
       }
     />
@@ -58,14 +58,14 @@ export function supportsPrePopulatingMultipleItems() {
       value={['red', 'green']}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value =>
+      onLoadItems={(value) =>
         Promise.resolve(
           [
             { value: 'red', name: 'Red' },
             { value: 'black', name: 'Black' },
             { value: 'blue', name: 'Blue' },
             { value: 'green', name: 'Green' },
-          ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
+          ].filter((item) => item.name.toLowerCase().match(value.toLowerCase())),
         )
       }
     />
@@ -91,14 +91,14 @@ export function loadItemsOnFocusStory() {
       value={['red', 'green']}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value =>
+      onLoadItems={(value) =>
         Promise.resolve(
           [
             { value: 'red', name: 'Red' },
             { value: 'black', name: 'Black' },
             { value: 'blue', name: 'Blue' },
             { value: 'green', name: 'Green' },
-          ].filter(item => !value || item.name.toLowerCase().match(value.toLowerCase())),
+          ].filter((item) => !value || item.name.toLowerCase().match(value.toLowerCase())),
         )
       }
     />
@@ -123,14 +123,14 @@ export function canSelectUnknownValueWhenHittingEnter() {
       )}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value =>
+      onLoadItems={(value) =>
         Promise.resolve(
           [
             { value: 'red', name: 'Red' },
             { value: 'black', name: 'Black' },
             { value: 'blue', name: 'Blue' },
             { value: 'green', name: 'Green' },
-          ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
+          ].filter((item) => item.name.toLowerCase().match(value.toLowerCase())),
         )
       }
     />
@@ -153,7 +153,7 @@ export function renderACustomChip() {
           compact
           middleAlign
           after={
-            <IconButton onClick={event => onRemove(value, event)}>
+            <IconButton onClick={(event) => onRemove(value, event)}>
               <IconCloseAlt accessibilityLabel="Remove" />
             </IconButton>
           }
@@ -175,14 +175,14 @@ export function renderACustomChip() {
       )}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value =>
+      onLoadItems={(value) =>
         Promise.resolve(
           [
             { value: 'red', name: 'Red' },
             { value: 'black', name: 'Black' },
             { value: 'blue', name: 'Blue' },
             { value: 'green', name: 'Green' },
-          ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
+          ].filter((item) => item.name.toLowerCase().match(value.toLowerCase())),
         )
       }
     />
@@ -207,14 +207,14 @@ export function asSmall() {
       )}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value =>
+      onLoadItems={(value) =>
         Promise.resolve(
           [
             { value: 'red', name: 'Red' },
             { value: 'black', name: 'Black' },
             { value: 'blue', name: 'Blue' },
             { value: 'green', name: 'Green' },
-          ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
+          ].filter((item) => item.name.toLowerCase().match(value.toLowerCase())),
         )
       }
     />
@@ -239,14 +239,14 @@ export function asLarge() {
       )}
       onChange={action('onChange')}
       onSelectItem={action('onSelectItem')}
-      onLoadItems={value =>
+      onLoadItems={(value) =>
         Promise.resolve(
           [
             { value: 'red', name: 'Red' },
             { value: 'black', name: 'Black' },
             { value: 'blue', name: 'Blue' },
             { value: 'green', name: 'Green' },
-          ].filter(item => item.name.toLowerCase().match(value.toLowerCase())),
+          ].filter((item) => item.name.toLowerCase().match(value.toLowerCase())),
         )
       }
     />

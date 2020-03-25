@@ -72,7 +72,7 @@ describe('<FormActions />', () => {
     // loading disables the button, so we test for loading or disabled
     wrapper
       .find(Button)
-      .forEach(button => expect(button.prop('disabled') || button.prop('loading')).toBeTruthy());
+      .forEach((button) => expect(button.prop('disabled') || button.prop('loading')).toBeTruthy());
   });
 
   it('shows processing text while processing', () => {
@@ -84,13 +84,13 @@ describe('<FormActions />', () => {
   it('has small buttons when small', () => {
     const wrapper = shallowWithStyles(<FormActions showReset small />);
 
-    wrapper.find(Button).forEach(button => expect(button.prop('small')).toBeTruthy());
+    wrapper.find(Button).forEach((button) => expect(button.prop('small')).toBeTruthy());
   });
 
   it('does not habe small buttons when not small', () => {
     const wrapper = shallowWithStyles(<FormActions showReset />);
 
-    wrapper.find(Button).forEach(button => expect(button.prop('small')).toBeFalsy());
+    wrapper.find(Button).forEach((button) => expect(button.prop('small')).toBeFalsy());
   });
 
   it('renders buttons with block', () => {

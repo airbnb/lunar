@@ -1,6 +1,6 @@
 import React from 'react';
 import componentName from '../../prop-types/componentName';
-import Loadable from '../Loadable';
+import Tripped from './private/Tripped';
 import { Logger } from '../../types';
 
 export type ErrorBoundaryProps = {
@@ -49,15 +49,6 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
       return this.props.children;
     }
 
-    // NOTE: This component is generally not hit in production so we'll code split to keep some code
-    // out of bundles in the optimistic case.
-    return (
-      <Loadable
-        component={
-          /* istanbul ignore next */ () =>
-            import(/* webpackChunkName: "error-boundary-tripped" */ './private/Tripped')
-        }
-      />
-    );
+    return <Tripped />;
   }
 }

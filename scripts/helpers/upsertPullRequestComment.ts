@@ -1,4 +1,3 @@
-import Octokit from '@octokit/rest';
 import createGitHubClient from '@airbnb/nimbus/lib/helpers/createGitHubClient';
 
 export default async function upsertPullRequestComment(query: string, body: string) {
@@ -12,7 +11,7 @@ export default async function upsertPullRequestComment(query: string, body: stri
 
   const [owner, repo] = TRAVIS_PULL_REQUEST_SLUG.split('/');
   const prNumber = Number(TRAVIS_PULL_REQUEST);
-  const client: Octokit = createGitHubClient();
+  const client = createGitHubClient();
 
   // Load all comments
   const { data: comments } = await client.issues.listComments({
@@ -23,7 +22,7 @@ export default async function upsertPullRequestComment(query: string, body: stri
 
   // Find a previously created comment by our bot
   const previousComments = comments.filter(
-    comment => comment.body.includes(query) && comment.user.login === GITHUB_USER,
+    (comment) => comment.body.includes(query) && comment.user.login === GITHUB_USER,
   );
 
   // Update existing comment

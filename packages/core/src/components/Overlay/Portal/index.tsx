@@ -74,7 +74,7 @@ export class Portal extends React.Component<PortalProps & WithStylesProps, Porta
     const { current } = this.ref;
 
     if (current && !this.props.noBackground) {
-      this.setState(state => ({
+      this.setState((state) => ({
         height: Math.max(current.scrollHeight, state.height),
       }));
     }

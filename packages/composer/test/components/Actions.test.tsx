@@ -17,7 +17,7 @@ describe('<Actions />', () => {
       onRun() {},
     },
     {
-      condition: ctx => ctx.data.value === '',
+      condition: (ctx) => ctx.data.value === '',
       label: 'Write',
       group: 'Do…',
       icon: IconPhone,

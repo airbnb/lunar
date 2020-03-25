@@ -59,7 +59,7 @@ export default class LocaleMenu extends React.Component<LocaleMenuProps> {
 
           {(noneDefinition || autoDefinition) && <Separator />}
 
-          {locales.map(definition => (
+          {locales.map((definition) => (
             <Item
               key={definition.locale}
               highlighted={selectedLocale === definition.locale}

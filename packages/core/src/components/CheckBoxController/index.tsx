@@ -5,6 +5,12 @@ import proxyComponent from '../../utils/proxyComponent';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import CheckBox, { CheckBoxProps } from '../CheckBox';
 
+type Renderer<T extends string> = (
+  component: React.ComponentType<CheckBoxControlledProps<T>>,
+  values: T[],
+  id: string,
+) => NonNullable<React.ReactNode>;
+
 export type CheckBoxControlledProps<T extends string = string> = Partial<
   Omit<CheckBoxProps<T>, 'label' | 'value'>
 > & {
@@ -14,11 +20,7 @@ export type CheckBoxControlledProps<T extends string = string> = Partial<
 
 export type CheckBoxControllerProps<T extends string = string> = FormFieldProps & {
   /** Function children in which CheckBox components can be rendered. */
-  children: (
-    component: React.ComponentType<CheckBoxControlledProps<T>>,
-    values: T[],
-    id: string,
-  ) => void;
+  children: Renderer<T>;
   /** Unique name of the field. */
   name: string;
   /** Callback that is triggered when a child CheckBox is clicked. */
@@ -60,7 +62,7 @@ export default class CheckBoxController<T extends string = string> extends React
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     this.setState(
-      prevState => {
+      (prevState) => {
         const values = new Set(prevState.values);
 
         if (checked) {
@@ -103,7 +105,7 @@ export default class CheckBoxController<T extends string = string> extends React
 
     return (
       <FormField {...fieldProps} id={id}>
-        {children(this.renderCheckBox, Array.from(values), id)}
+        {(children as Renderer<T>)(this.renderCheckBox, Array.from(values), id)}
       </FormField>
     );
   }

@@ -260,7 +260,7 @@ export class Proofreader extends React.Component<
 
     const selectedError =
       errors.find(
-        error =>
+        (error) =>
           position >= (error.offset ?? 0) && position <= (error.offset ?? 0) + (error.length ?? 0),
       ) ?? null;
 
@@ -359,7 +359,7 @@ export class Proofreader extends React.Component<
       {
         text: newText,
         // Filter out this error
-        errors: errors.filter(e => e !== error),
+        errors: errors.filter((e) => e !== error),
         // Close the error menu
         position: null,
         selectedError: null,

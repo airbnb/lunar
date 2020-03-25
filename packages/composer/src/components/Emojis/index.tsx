@@ -32,7 +32,7 @@ export default function Emojis({ internal = false, startAlign = false }: EmojisP
   const handleSelect = useCallback(
     (emoji: CanonicalEmoji) => {
       // istanbul ignore next
-      setData('value', value => `${value} ${emoji.unicode}`);
+      setData('value', (value) => `${value} ${emoji.unicode}`);
     },
     [setData],
   );

@@ -10,7 +10,7 @@ class DropdownDemo extends React.Component<DropdownProps, { open: boolean }> {
   };
 
   handleToggle = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       open: !prevState.open,
     }));
   };

@@ -21,7 +21,7 @@ export function Wrapper({
 }: WrapperProps) {
   const map: [string, HotkeyConfig][] = [];
 
-  hotkeys.forEach(hotkey => {
+  hotkeys.forEach((hotkey) => {
     map.push([hotkey.name, hotkey]);
   });
 

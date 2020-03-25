@@ -115,7 +115,7 @@ export class HierarchyPicker extends React.Component<
     }
 
     this.setState(
-      state => ({ open: !state.open }),
+      (state) => ({ open: !state.open }),
       () => {
         const { open } = this.state;
         if (open) {

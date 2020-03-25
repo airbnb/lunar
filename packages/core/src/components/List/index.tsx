@@ -45,7 +45,7 @@ export default function List({
         middleAlign && styles.list_middleAlign,
       )}
     >
-      {React.Children.map(children, child => {
+      {React.Children.map(children, (child) => {
         if (!child) {
           return null;
         }

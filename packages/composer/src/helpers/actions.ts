@@ -40,7 +40,7 @@ export function getWritingModeActions(): ActionConfig[] {
 }
 
 export function mapActionsIntoGroups(actions: ActionConfig[], groupedActions: GroupedActions) {
-  actions.forEach(action => {
+  actions.forEach((action) => {
     // eslint-disable-next-line no-param-reassign
     groupedActions[action.group] = (groupedActions[action.group] || []).concat(action);
   });

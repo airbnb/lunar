@@ -26,7 +26,7 @@ export default function ProfilePhotoGroup({
   const { unit } = useTheme();
 
   const margin = { marginLeft: -(size * (unit / 2.5)) };
-  let photos = React.Children.toArray(children).filter(child => !!child);
+  let photos = React.Children.toArray(children).filter((child) => !!child);
   let remainder = 0;
 
   if (max && photos.length > max) {

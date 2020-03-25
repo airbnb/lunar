@@ -4,6 +4,12 @@ import proxyComponent from '../../utils/proxyComponent';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
 import RadioButton, { RadioButtonProps } from '../RadioButton';
 
+type Renderer<T extends string> = (
+  component: React.ComponentType<RadioButtonControlledProps<T>>,
+  value: T,
+  id: string,
+) => React.ReactElement;
+
 export type RadioButtonControlledProps<T extends string = string> = Partial<
   Omit<RadioButtonProps<T>, 'label' | 'value'>
 > & {
@@ -13,11 +19,7 @@ export type RadioButtonControlledProps<T extends string = string> = Partial<
 
 export type RadioButtonControllerProps<T extends string = string> = FormFieldProps & {
   /** Function children in which RadioButton components can be rendered. */
-  children: (
-    component: React.ComponentType<RadioButtonControlledProps<T>>,
-    value: T,
-    id: string,
-  ) => void;
+  children: Renderer<T>;
   /** Unique name of the field. */
   name: string;
   /** Callback that is triggered when a child RadioButton is clicked. */
@@ -96,7 +98,7 @@ export default class RadioButtonController<T extends string = string> extends Re
 
     return (
       <FormField {...fieldProps} id={id}>
-        {children(this.renderRadioButton, value, id)}
+        {(children as Renderer<T>)(this.renderRadioButton, value, id)}
       </FormField>
     );
   }

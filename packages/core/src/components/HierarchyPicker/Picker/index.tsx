@@ -68,7 +68,7 @@ export class Picker extends React.Component<PickerProps & WithStylesProps, Picke
 
   focusNext(forward: boolean = true) {
     const f = this.getFocusables();
-    const index = f.findIndex(el => el === document.activeElement);
+    const index = f.findIndex((el) => el === document.activeElement);
 
     if (index >= 0) {
       if (forward) {

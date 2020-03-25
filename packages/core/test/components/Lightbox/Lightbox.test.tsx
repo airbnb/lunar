@@ -95,11 +95,7 @@ describe('<Lightbox />', () => {
     const wrapperMount = mount(<Lightbox {...props} showZoomControls />);
     expect(wrapperMount.state('scale')).toBe(1);
 
-    wrapperMount
-      .find(ZoomControls)
-      .find(IconButton)
-      .at(1)
-      .simulate('click');
+    wrapperMount.find(ZoomControls).find(IconButton).at(1).simulate('click');
 
     expect(wrapperMount.state('scale')).toBe(1.5);
   });
@@ -108,11 +104,7 @@ describe('<Lightbox />', () => {
     const wrapperMount = mount(<Lightbox {...props} showRotateControls />);
     expect(wrapperMount.state('rotation')).toBe(0);
 
-    wrapperMount
-      .find(RotateControls)
-      .find(IconButton)
-      .at(1)
-      .simulate('click');
+    wrapperMount.find(RotateControls).find(IconButton).at(1).simulate('click');
 
     expect(wrapperMount.state('rotation')).toBe(90);
   });

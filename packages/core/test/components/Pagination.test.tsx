@@ -106,12 +106,7 @@ describe('<Pagination />', () => {
 
       const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />);
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .first()
-          .prop('disabled'),
-      ).toBe(true);
+      expect(wrapper.find(IconButton).first().prop('disabled')).toBe(true);
     });
 
     it('is disabled when fetching new results', () => {
@@ -124,12 +119,7 @@ describe('<Pagination />', () => {
 
       const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />);
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .first()
-          .prop('disabled'),
-      ).toBe(true);
+      expect(wrapper.find(IconButton).first().prop('disabled')).toBe(true);
     });
 
     it('calls the onPrevious function when the previous button is pressed', () => {
@@ -141,10 +131,7 @@ describe('<Pagination />', () => {
       const onPrevious = jest.fn();
       const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={onPrevious} />);
 
-      wrapper
-        .find(IconButton)
-        .first()
-        .simulate('click');
+      wrapper.find(IconButton).first().simulate('click');
 
       expect(onPrevious).toHaveBeenCalled();
     });
@@ -158,12 +145,7 @@ describe('<Pagination />', () => {
 
       const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />);
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .first()
-          .prop('disabled'),
-      ).toBe(false);
+      expect(wrapper.find(IconButton).first().prop('disabled')).toBe(false);
     });
   });
 
@@ -177,12 +159,7 @@ describe('<Pagination />', () => {
 
       const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />);
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .last()
-          .prop('disabled'),
-      ).toBe(true);
+      expect(wrapper.find(IconButton).last().prop('disabled')).toBe(true);
     });
 
     it('is disabled when fetching new results', () => {
@@ -195,12 +172,7 @@ describe('<Pagination />', () => {
 
       const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />);
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .last()
-          .prop('disabled'),
-      ).toBe(true);
+      expect(wrapper.find(IconButton).last().prop('disabled')).toBe(true);
     });
 
     it('is enabled when there is a next page of results', () => {
@@ -211,12 +183,7 @@ describe('<Pagination />', () => {
 
       const wrapper = shallow(<Pagination {...request} onNext={noop} onPrevious={noop} />);
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .last()
-          .prop('disabled'),
-      ).toBe(false);
+      expect(wrapper.find(IconButton).last().prop('disabled')).toBe(false);
     });
 
     it('calls the onNext function when the next button is pressed', () => {
@@ -228,10 +195,7 @@ describe('<Pagination />', () => {
       const onNext = jest.fn();
       const wrapper = shallow(<Pagination {...request} onNext={onNext} onPrevious={noop} />);
 
-      wrapper
-        .find(IconButton)
-        .last()
-        .simulate('click');
+      wrapper.find(IconButton).last().simulate('click');
 
       expect(onNext).toHaveBeenCalled();
     });
@@ -269,12 +233,7 @@ describe('<Pagination />', () => {
         />,
       );
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .first()
-          .prop('disabled'),
-      ).toBe(true);
+      expect(wrapper.find(IconButton).first().prop('disabled')).toBe(true);
     });
 
     it('is disabled when fetching new results', () => {
@@ -299,12 +258,7 @@ describe('<Pagination />', () => {
         />,
       );
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .first()
-          .prop('disabled'),
-      ).toBe(true);
+      expect(wrapper.find(IconButton).first().prop('disabled')).toBe(true);
     });
 
     it('calls the onFirst function when pressed', () => {
@@ -328,10 +282,7 @@ describe('<Pagination />', () => {
         />,
       );
 
-      wrapper
-        .find(IconButton)
-        .first()
-        .simulate('click');
+      wrapper.find(IconButton).first().simulate('click');
 
       expect(onFirst).toHaveBeenCalled();
     });
@@ -358,12 +309,7 @@ describe('<Pagination />', () => {
         />,
       );
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .first()
-          .prop('disabled'),
-      ).toBe(false);
+      expect(wrapper.find(IconButton).first().prop('disabled')).toBe(false);
     });
   });
 
@@ -399,12 +345,7 @@ describe('<Pagination />', () => {
         />,
       );
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .last()
-          .prop('disabled'),
-      ).toBe(true);
+      expect(wrapper.find(IconButton).last().prop('disabled')).toBe(true);
     });
 
     it('is disabled when fetching new results', () => {
@@ -429,12 +370,7 @@ describe('<Pagination />', () => {
         />,
       );
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .last()
-          .prop('disabled'),
-      ).toBe(true);
+      expect(wrapper.find(IconButton).last().prop('disabled')).toBe(true);
     });
 
     it('calls the onLast function when pressed', () => {
@@ -458,10 +394,7 @@ describe('<Pagination />', () => {
         />,
       );
 
-      wrapper
-        .find(IconButton)
-        .last()
-        .simulate('click');
+      wrapper.find(IconButton).last().simulate('click');
 
       expect(onLast).toHaveBeenCalled();
     });
@@ -487,12 +420,7 @@ describe('<Pagination />', () => {
         />,
       );
 
-      expect(
-        wrapper
-          .find(IconButton)
-          .last()
-          .prop('disabled'),
-      ).toBe(false);
+      expect(wrapper.find(IconButton).last().prop('disabled')).toBe(false);
     });
   });
 });

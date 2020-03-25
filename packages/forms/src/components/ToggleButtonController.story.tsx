@@ -25,7 +25,7 @@ export function connectedToTheParentForm() {
         validator={() => {}}
         onChange={action('onChange')}
       >
-        {ControlledButton => (
+        {(ControlledButton) => (
           <ButtonGroup>
             <ControlledButton key="red" value="red">
               Red

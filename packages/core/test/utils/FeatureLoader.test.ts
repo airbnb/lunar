@@ -59,7 +59,7 @@ describe('FeatureLoader', () => {
     it('sets a promise when fetching', async () => {
       expect(loader.promises.has('foo')).toBe(false);
 
-      const promise = new Promise(resolve => {
+      const promise = new Promise((resolve) => {
         setTimeout(() => {
           resolve();
         }, 50);

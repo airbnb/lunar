@@ -60,7 +60,7 @@ describe('<CheckBoxController />', () => {
     const spy = jest.fn();
     const wrapper = shallow(
       <CheckBoxController {...props} onChange={spy}>
-        {CB => (
+        {(CB) => (
           <div>
             <CB value="foo" label="Foo" />
             <CB value="bar" label="Bar" />
@@ -72,31 +72,19 @@ describe('<CheckBoxController />', () => {
     );
     const buttons = wrapper.find('Proxy(CheckBox)');
 
-    buttons
-      .at(1)
-      .shallow()
-      .simulate('change', true, 'bar', event);
+    buttons.at(1).shallow().simulate('change', true, 'bar', event);
 
     expect(spy).toHaveBeenCalledWith(['foo', 'bar'], event);
 
-    buttons
-      .at(1)
-      .shallow()
-      .simulate('change', true, 'bar', event); // Dupe
+    buttons.at(1).shallow().simulate('change', true, 'bar', event); // Dupe
 
     expect(spy).toHaveBeenCalledWith(['foo', 'bar'], event);
 
-    buttons
-      .at(0)
-      .shallow()
-      .simulate('change', false, 'foo', event);
+    buttons.at(0).shallow().simulate('change', false, 'foo', event);
 
     expect(spy).toHaveBeenCalledWith(['bar'], event);
 
-    buttons
-      .at(1)
-      .shallow()
-      .simulate('change', false, 'bar', event);
+    buttons.at(1).shallow().simulate('change', false, 'bar', event);
 
     expect(spy).toHaveBeenCalledWith([], event);
   });
@@ -104,7 +92,7 @@ describe('<CheckBoxController />', () => {
   it('handles checked', () => {
     const wrapper = shallow<CheckBoxController>(
       <CheckBoxController<Value> {...props} value={['foo']}>
-        {CB => (
+        {(CB) => (
           <div>
             <CB value="foo" label="Foo" />
             <CB value="bar" label="Bar" />
@@ -116,25 +104,16 @@ describe('<CheckBoxController />', () => {
     );
     const buttons = wrapper.find('Proxy(CheckBox)');
 
-    buttons
-      .at(1)
-      .shallow()
-      .simulate('change', true, 'bar', event);
+    buttons.at(1).shallow().simulate('change', true, 'bar', event);
 
     expect(wrapper.state('values').has('bar')).toBe(true);
     expect(wrapper.state('values').has('foo')).toBe(true);
 
-    buttons
-      .at(1)
-      .shallow()
-      .simulate('change', false, 'bar', event);
+    buttons.at(1).shallow().simulate('change', false, 'bar', event);
 
     expect(wrapper.state('values').has('bar')).toBe(false);
 
-    buttons
-      .at(0)
-      .shallow()
-      .simulate('change', false, 'foo', event);
+    buttons.at(0).shallow().simulate('change', false, 'foo', event);
 
     expect(wrapper.state('values').has('foo')).toBe(false);
   });
@@ -142,7 +121,7 @@ describe('<CheckBoxController />', () => {
   it('hides optional label for children', () => {
     const wrapper = shallow(
       <CheckBoxController {...props} optional>
-        {CB => (
+        {(CB) => (
           <div>
             <CB value="foo" label="Foo" />
           </div>
@@ -150,11 +129,6 @@ describe('<CheckBoxController />', () => {
       </CheckBoxController>,
     );
 
-    expect(
-      wrapper
-        .find('Proxy(CheckBox)')
-        .shallow()
-        .prop('hideOptionalLabel'),
-    ).toBe(true);
+    expect(wrapper.find('Proxy(CheckBox)').shallow().prop('hideOptionalLabel')).toBe(true);
   });
 });

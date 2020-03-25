@@ -18,23 +18,13 @@ describe('<Loader />', () => {
   it('renders inverted', () => {
     const wrapper = shallow(<Loader inverted />);
 
-    expect(
-      wrapper
-        .find('span')
-        .at(0)
-        .prop('className'),
-    ).toMatch('dot_inverted');
+    expect(wrapper.find('span').at(0).prop('className')).toMatch('dot_inverted');
   });
 
   it('renders large', () => {
     const wrapper = shallow(<Loader large />);
 
-    expect(
-      wrapper
-        .find('span')
-        .at(0)
-        .prop('className'),
-    ).toMatch('dot_large');
+    expect(wrapper.find('span').at(0).prop('className')).toMatch('dot_large');
   });
 
   it('renders static', () => {

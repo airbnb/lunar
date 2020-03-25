@@ -22,7 +22,7 @@ export default class MockFeatureLoader<T> {
   }
 
   extendOnlyForUseInTests(extension: { [key: string]: T }) {
-    Object.keys(extension).forEach(key => {
+    Object.keys(extension).forEach((key) => {
       this.cache.set(key, extension[key]);
     });
   }

@@ -82,7 +82,7 @@ export function executeAGraphQlMutationAndHandleTheResponseWhenReceived() {
   return (
     <MockedProvider mocks={[mock]} addTypename={false}>
       <Mutation mutation={MUTATION} variables={variables}>
-        {updateUser => <UpdateButton onUpdate={updateUser} />}
+        {(updateUser) => <UpdateButton onUpdate={updateUser} />}
       </Mutation>
     </MockedProvider>
   );
@@ -96,7 +96,7 @@ export function customLoadingComponent() {
   return (
     <MockedProvider mocks={[loadingMock]} addTypename={false}>
       <Mutation mutation={MUTATION} variables={variables} loading={<Shimmer />}>
-        {updateUser => <UpdateButton onUpdate={updateUser} />}
+        {(updateUser) => <UpdateButton onUpdate={updateUser} />}
       </Mutation>
     </MockedProvider>
   );
@@ -109,8 +109,8 @@ customLoadingComponent.story = {
 export function customErrorComponent() {
   return (
     <MockedProvider mocks={[errorMock]} addTypename={false}>
-      <Mutation mutation={MUTATION} error={error => <ErrorMessage error={error} />}>
-        {updateUser => <UpdateButton onUpdate={updateUser} />}
+      <Mutation mutation={MUTATION} error={(error) => <ErrorMessage error={error} />}>
+        {(updateUser) => <UpdateButton onUpdate={updateUser} />}
       </Mutation>
     </MockedProvider>
   );

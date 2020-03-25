@@ -48,7 +48,7 @@ export default function InlineInput({ label, name, value }: InlineInputProps) {
           prefix={<Prefix small>{textLabel}</Prefix>}
           suffix={<Suffix small>{editButton}</Suffix>}
           value={value}
-          onChange={nextValue => {
+          onChange={(nextValue) => {
             context.setData(name, nextValue);
           }}
         />

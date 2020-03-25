@@ -83,7 +83,7 @@ export const footerTipStyleSheet: StyleSheet = ({ unit }) => ({
   },
 });
 
-export const inputStyleSheet: StyleSheet = theme => {
+export const inputStyleSheet: StyleSheet = (theme) => {
   const inputStyles = baseInputStyleSheet(theme);
   const { color, font, transition, ui, unit } = theme;
 

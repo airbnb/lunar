@@ -61,12 +61,7 @@ describe('<FormInput />', () => {
     );
 
     expect(wrapper.children()).toHaveLength(3);
-    expect(
-      wrapper
-        .children()
-        .at(0)
-        .is('option'),
-    ).toBe(true);
+    expect(wrapper.children().at(0).is('option')).toBe(true);
   });
 
   it('doesnt render children for `input` tag', () => {

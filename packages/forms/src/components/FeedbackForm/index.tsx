@@ -93,7 +93,7 @@ export default class FeedbackForm extends React.PureComponent<
             defaultValue="bug"
             validator={this.validate}
           >
-            {RadioButton => (
+            {(RadioButton) => (
               <div>
                 <RadioButton
                   noSpacing

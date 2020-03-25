@@ -146,6 +146,7 @@ export default function EmojiPicker({
         emojiPadding={5}
         emojiPath={Core.settings.emojiCDN}
         emojiSize={20}
+        maxEmojiVersion={12}
         {...props}
         blockList={blockList}
         classNames={classNames}

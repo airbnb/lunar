@@ -24,7 +24,7 @@ export function connectedToTheParentForm() {
         validator={() => {}}
         onChange={action('onChange')}
       >
-        {RadioButton => (
+        {(RadioButton) => (
           <div>
             <RadioButton label="❤️ Red" value="red" />
             <RadioButton label="💙 Blue" value="blue" />

@@ -5,7 +5,7 @@ import useStyles, { StyleSheet } from '../../hooks/useStyles';
 import FormInput, { InputProps } from './FormInput';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
-export const styleSheetCheckbox: StyleSheet = theme => {
+export const styleSheetCheckbox: StyleSheet = (theme) => {
   const styles = inputStyleSheet(theme);
 
   return {

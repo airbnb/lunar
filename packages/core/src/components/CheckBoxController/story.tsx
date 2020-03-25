@@ -20,7 +20,7 @@ export function controlsMultipleCheckboxes() {
       value={['green']}
       onChange={action('onChange')}
     >
-      {CheckBox => (
+      {(CheckBox) => (
         <div>
           <CheckBox label="❤️ Red" value="red" />
           <CheckBox label="💙 Blue" value="blue" />
@@ -44,7 +44,7 @@ export function handlesInvalidStateWithNoSpacing() {
       value={['green']}
       onChange={action('onChange')}
     >
-      {CheckBox => (
+      {(CheckBox) => (
         <div>
           <CheckBox noSpacing label="❤️ Red" value="red" />
           <CheckBox noSpacing label="💙 Blue" value="blue" />
@@ -68,7 +68,7 @@ export function handlesDisabledStateWithNoSpacing() {
       value={['green']}
       onChange={action('onChange')}
     >
-      {CheckBox => (
+      {(CheckBox) => (
         <div>
           <CheckBox noSpacing label="❤️ Red" value="red" />
           <CheckBox noSpacing label="💙 Blue" value="blue" />
@@ -93,7 +93,7 @@ export function asSmall() {
       value={['green']}
       onChange={action('onChange')}
     >
-      {CheckBox => (
+      {(CheckBox) => (
         <div>
           <CheckBox label="❤️ Red" value="red" />
           <CheckBox label="💙 Blue" value="blue" />
@@ -118,7 +118,7 @@ export function asLarge() {
       value={['green']}
       onChange={action('onChange')}
     >
-      {CheckBox => (
+      {(CheckBox) => (
         <div>
           <CheckBox label="❤️ Red" value="red" />
           <CheckBox label="💙 Blue" value="blue" />

@@ -74,7 +74,7 @@ describe('<Breadcrumb/>', () => {
     const spy = jest.fn();
     const wrapper = shallow(<Breadcrumb label="Breadcrumb" onClick={spy} />);
 
-    wrapper.findWhere(child => child.prop('onClick')).simulate('click');
+    wrapper.findWhere((child) => child.prop('onClick')).simulate('click');
 
     expect(spy).toHaveBeenCalled();
   });

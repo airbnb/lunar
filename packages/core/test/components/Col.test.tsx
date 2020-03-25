@@ -5,7 +5,7 @@ import Col, { ColProps } from '../../src/components/Grid/Col';
 describe('<Col />', () => {
   const range = Array.from({ length: 12 }, (v, k) => k + 1);
 
-  range.forEach(span => {
+  range.forEach((span) => {
     it(`renders span ${span}`, () => {
       const wrapper = shallow(<Col span={span as ColProps['span']}>Child</Col>);
 

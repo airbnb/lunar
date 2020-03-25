@@ -30,7 +30,7 @@ export function parseComboIntoComparator(hotkey: string): HotkeyComparator {
     .toLowerCase()
     .replace(/\s/g, '')
     .split('+')
-    .forEach(k => {
+    .forEach((k) => {
       let key = k;
       let pressed = true;
 
@@ -97,7 +97,7 @@ export function processHotkeys(
   // Hotkeys should never bubble up the document
   event.stopPropagation();
 
-  hotkeys.forEach(hotkey => {
+  hotkeys.forEach((hotkey) => {
     if (!hotkey.condition(readableContext)) {
       return;
     }

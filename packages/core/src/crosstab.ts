@@ -69,7 +69,7 @@ export class Crosstab {
     const handlersForKey = this.handlers.get(data.key);
 
     if (handlersForKey) {
-      handlersForKey.forEach(handler => {
+      handlersForKey.forEach((handler) => {
         handler(data.value);
       });
     }

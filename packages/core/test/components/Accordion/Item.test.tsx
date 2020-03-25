@@ -79,10 +79,7 @@ describe('<AccordionItem />', () => {
     const spy = jest.fn();
     const wrapper = shallow(<AccordionItem id=".0" index={1} title="Title" onClick={spy} />);
 
-    wrapper
-      .find('button')
-      .at(0)
-      .simulate('click');
+    wrapper.find('button').at(0).simulate('click');
 
     expect(spy).toHaveBeenCalledWith(1);
   });

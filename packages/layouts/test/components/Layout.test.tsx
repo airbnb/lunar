@@ -26,12 +26,9 @@ describe('<Layout />', () => {
   it('renders center align', () => {
     const wrapper = shallow(<Layout centerAlign>Child</Layout>);
 
-    expect(
-      wrapper
-        .find('main')
-        .childAt(0)
-        .prop('className'),
-    ).toMatch('mainContent mainContent_centerAlign');
+    expect(wrapper.find('main').childAt(0).prop('className')).toMatch(
+      'mainContent mainContent_centerAlign',
+    );
   });
 
   it('renders a before aside', () => {

@@ -27,6 +27,9 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         'jest/require-to-throw-message': 'off', // Prop type errors
         'react/jsx-no-literals': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-unsafe-return': 'off',
       },
     },
     {

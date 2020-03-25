@@ -26,12 +26,7 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    expect(
-      wrapper
-        .find(Tab)
-        .at(2)
-        .prop('selected'),
-    ).toBe(true);
+    expect(wrapper.find(Tab).at(2).prop('selected')).toBe(true);
   });
 
   it('sets selected key state using hash', () => {
@@ -45,12 +40,7 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    expect(
-      wrapper
-        .find(Tab)
-        .at(2)
-        .prop('selected'),
-    ).toBe(true);
+    expect(wrapper.find(Tab).at(2).prop('selected')).toBe(true);
   });
 
   it('doesnt set selected key state using hash if names dont match', () => {
@@ -64,12 +54,7 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    expect(
-      wrapper
-        .find(Tab)
-        .at(2)
-        .prop('selected'),
-    ).toBe(false);
+    expect(wrapper.find(Tab).at(2).prop('selected')).toBe(false);
   });
 
   it('passes selected key state to each tab', () => {
@@ -81,24 +66,9 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    expect(
-      wrapper
-        .find(Tab)
-        .at(0)
-        .prop('selected'),
-    ).toBe(false);
-    expect(
-      wrapper
-        .find(Tab)
-        .at(1)
-        .prop('selected'),
-    ).toBe(true);
-    expect(
-      wrapper
-        .find(Tab)
-        .at(2)
-        .prop('selected'),
-    ).toBe(false);
+    expect(wrapper.find(Tab).at(0).prop('selected')).toBe(false);
+    expect(wrapper.find(Tab).at(1).prop('selected')).toBe(true);
+    expect(wrapper.find(Tab).at(2).prop('selected')).toBe(false);
   });
 
   it('adds `keyName`s to tabs', () => {
@@ -110,24 +80,9 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    expect(
-      wrapper
-        .find(Tab)
-        .at(0)
-        .prop('keyName'),
-    ).toBe('a');
-    expect(
-      wrapper
-        .find(Tab)
-        .at(1)
-        .prop('keyName'),
-    ).toBe('b');
-    expect(
-      wrapper
-        .find(Tab)
-        .at(2)
-        .prop('keyName'),
-    ).toBe('c');
+    expect(wrapper.find(Tab).at(0).prop('keyName')).toBe('a');
+    expect(wrapper.find(Tab).at(1).prop('keyName')).toBe('b');
+    expect(wrapper.find(Tab).at(2).prop('keyName')).toBe('c');
   });
 
   it('renders a nav', () => {
@@ -149,12 +104,7 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    expect(
-      wrapper
-        .find(Tab)
-        .at(0)
-        .prop('stretched'),
-    ).toBe(true);
+    expect(wrapper.find(Tab).at(0).prop('stretched')).toBe(true);
   });
 
   it('renders a section when a tab is active and has children', () => {
@@ -202,10 +152,7 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    wrapper
-      .find(ButtonOrLink)
-      .at(1)
-      .simulate('click');
+    wrapper.find(ButtonOrLink).at(1).simulate('click');
 
     expect(spy).toHaveBeenCalledWith('b');
   });
@@ -231,10 +178,7 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    wrapper
-      .find(ButtonOrLink)
-      .at(2)
-      .simulate('click', 'c');
+    wrapper.find(ButtonOrLink).at(2).simulate('click', 'c');
 
     expect(location.hash).toBe('#tab=c');
   });
@@ -246,12 +190,7 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    expect(
-      wrapper
-        .find(Tab)
-        .at(0)
-        .prop('borderless'),
-    ).toBe(true);
+    expect(wrapper.find(Tab).at(0).prop('borderless')).toBe(true);
   });
 
   it('passes the secondary prop to Tab children', () => {
@@ -261,12 +200,7 @@ describe('<Tabs/>', () => {
       </Tabs>,
     );
 
-    expect(
-      wrapper
-        .find(Tab)
-        .at(0)
-        .prop('secondary'),
-    ).toBe(true);
+    expect(wrapper.find(Tab).at(0).prop('secondary')).toBe(true);
   });
 
   it('persist with hash and back button.', () => {
@@ -286,10 +220,7 @@ describe('<Tabs/>', () => {
 
     expect(pushFn).not.toHaveBeenCalled();
 
-    wrapper
-      .find(ButtonOrLink)
-      .at(1)
-      .simulate('click', 'b');
+    wrapper.find(ButtonOrLink).at(1).simulate('click', 'b');
 
     expect(location.hash).toBe('#tab=b');
     expect(pushFn).toHaveBeenCalledWith(null, '', '#tab=b');

@@ -30,8 +30,10 @@ export default function createDateTime(
   }
 
   // Support moment objects for backwards compat
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const moment = value as any;
+  const moment = (value as unknown) as {
+    _isAMomentObject: boolean;
+    toISOString: () => string;
+  };
 
   if (moment && typeof moment === 'object' && '_isAMomentObject' in moment) {
     return DateTime.fromISO(moment.toISOString(), options);

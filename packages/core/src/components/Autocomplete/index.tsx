@@ -439,7 +439,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     let { items } = state;
 
     if (shouldItemRender) {
-      items = items.filter(item => shouldItemRender(item, value || ''));
+      items = items.filter((item) => shouldItemRender(item, value || ''));
     }
 
     return items;
@@ -544,7 +544,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
   }>(
     /* istanbul ignore next */
     (input: string) =>
-      Promise.resolve(this.props.onLoadItems(input)).then(response => ({
+      Promise.resolve(this.props.onLoadItems(input)).then((response) => ({
         input,
         response,
       })),

@@ -29,7 +29,7 @@ export default function removeFromList<Result, Vars = {}>(
     set(
       nextResult,
       listPath,
-      list.filter(item => item[idName] !== id),
+      list.filter((item) => (item as { [key: string]: unknown })[idName] !== id),
     );
 
     cache.writeQuery({

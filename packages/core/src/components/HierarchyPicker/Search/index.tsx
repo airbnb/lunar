@@ -95,11 +95,11 @@ export class Search extends React.Component<SearchProps & WithStylesProps> {
         });
       }
 
-      (items || []).forEach(sub => walk(sub, definition));
+      (items || []).forEach((sub) => walk(sub, definition));
     };
 
     if (inputItems) {
-      inputItems.forEach(item => walk(item));
+      inputItems.forEach((item) => walk(item));
     }
 
     const fuseKeys = [...defaultFuseKeys];
