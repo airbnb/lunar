@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-test-utils",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "release": "1583350587083",
   "description": "Utilities for local testing.",
   "license": "MIT",
