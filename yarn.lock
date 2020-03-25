@@ -90,10 +90,10 @@
     execa "^4.0.0"
     fast-glob "^3.2.2"
 
-"@airbnb/nimbus@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@airbnb/nimbus/-/nimbus-3.0.1.tgz#d24c1fb165d3b691ac2e7df3abd7ef163419a4ff"
-  integrity sha512-lKA8dRmtNslhTVXD73idSDeNObXq4oTkMQ1L/hk+afkEG6iS55uMyP9gQlxuVfgnAJiu+bQtT2kLdMAM+8BENA==
+"@airbnb/nimbus@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@airbnb/nimbus/-/nimbus-3.1.0.tgz#306e9c2ac23632379104356d1a7e0a0d9837c2d6"
+  integrity sha512-7RYP6B1R51X+pFRxjHsun81oHiwwXzsO2jybXpnlgcv+aNTaReXzzdzRO5jb4qSv/pngDSx5QU65JBG9evJdZA==
   dependencies:
     "@airbnb/nimbus-common" "^3.0.1"
     "@beemo/cli" "^1.0.10"
@@ -8907,10 +8907,10 @@ interweave-autolink@^4.2.1:
     "@types/react" "*"
     prop-types "^15.7.2"
 
-interweave-emoji-picker@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/interweave-emoji-picker/-/interweave-emoji-picker-5.2.0.tgz#728de7bf6a5e339f5cfa6c2dbb4153d31d8147ad"
-  integrity sha512-apeafa1Ma2PQkjjDFhJ8we9skBl9/5ctZlKlUSHrfvlezrsY57IZZOARTxdO1GCYg5xzLpDXFvv4lcOE5wG2lA==
+interweave-emoji-picker@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/interweave-emoji-picker/-/interweave-emoji-picker-5.2.1.tgz#1ba95d64598fb15b87fce0996d32217de7e75d1d"
+  integrity sha512-t2AhV9xj7D08uQWowxSLcAzoVvPp+00EGwRDNIGnmLh2C1W/uNLi0T9JhHtJ0B4eG+MKvzd4WhEfzpFQoqzY1Q==
   dependencies:
     "@types/react" "*"
     "@types/react-window" "*"
@@ -8918,10 +8918,10 @@ interweave-emoji-picker@^5.2.0:
     prop-types "^15.7.2"
     react-window "^1.8.5"
 
-interweave-emoji@^5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/interweave-emoji/-/interweave-emoji-5.3.0.tgz#a41eb8116d511ec108c25f26782cbb160f70744a"
-  integrity sha512-rm9E/bdv9qwdSlUGsUhFmuG+x1zJyEXgYvymDi3Ir7CIdgwHK/x18UBNpHJuWstwcJfxeuxU3fasaWszXSgIbA==
+interweave-emoji@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/interweave-emoji/-/interweave-emoji-5.3.1.tgz#c0a293db96d30979fe86bedc0427680aedb0c714"
+  integrity sha512-4IPdVMdtqLp0zYtJsy+LnqgrhM5pm+Dz/LMuqNADjA6NfQ4zCzEophb0qveIdm+GlsS1VPd1qsvFNZ14IQPjUg==
   dependencies:
     "@types/react" "*"
     emojibase-regex "^4.0.0"
