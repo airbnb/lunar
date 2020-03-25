@@ -40,9 +40,6 @@ export default (fontFaces: { [fontFamily: string]: FontFace[] }) => ({ color, fo
         display: 'inline-block',
         verticalAlign: 'middle',
       },
-      'tracking-boundary': {
-        display: 'block',
-      },
     },
     '@font-face': fontFaces,
   } as GlobalSheet);

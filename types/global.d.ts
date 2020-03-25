@@ -53,15 +53,6 @@ interface WindowEventMap {
   paste: ClipboardEvent;
 }
 
-declare namespace JSX {
-  interface IntrinsicElements {
-    'tracking-boundary': React.DetailedHTMLProps<
-      React.HTMLAttributes<HTMLDivElement>,
-      HTMLDivElement
-    >;
-  }
-}
-
 interface MouseEvent {
   trackingContext?: string[];
 }
