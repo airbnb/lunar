@@ -26,13 +26,15 @@ function TrackingBoundary({ children, name }: TrackingBoundaryProps) {
   };
 
   return (
-    <tracking-boundary
+    <div
+      data-tracking-boundary
       data-tracking-name={name}
+      role="none"
       onClick={handleTrackContext}
       onKeyDown={handleTrackContext}
     >
       {children}
-    </tracking-boundary>
+    </div>
   );
 }
 

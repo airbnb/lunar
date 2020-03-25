@@ -3,10 +3,10 @@ import { shallow } from 'enzyme';
 import TrackingBoundary from '../../src/components/TrackingBoundary';
 
 describe('<TrackingBoundary />', () => {
-  it('renders a spy HTML tag', () => {
+  it('renders a div', () => {
     const wrapper = shallow(<TrackingBoundary name="Foo">Foo</TrackingBoundary>);
 
-    expect(wrapper.type()).toBe('tracking-boundary');
+    expect(wrapper.type()).toBe('div');
   });
 
   it('adds data tag to HTML tag', () => {
