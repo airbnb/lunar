@@ -4,7 +4,7 @@ import withIcon, { Props } from '../withIcon';
 function IconInstagram(props: Props) {
   return (
     <svg viewBox="0 0 64 64" xmlnsXlink="http://www.w3.org/1999/xlink" {...props}>
-      <path fill="url(#pattern0)" d="M0 0H64V64H0z" />
+      <path opacity=".75" d="M56 8H8v48h48V8z" fill="url(#pattern0)" />
       <defs>
         <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
           <use xlinkHref="#image0" transform="scale(.01563)" />
