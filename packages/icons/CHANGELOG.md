@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.0.2 - 2020-03-27
+
+#### 🐞 Fixes
+
+- Add index file to resolve imports. (#348) ([94cf430](https://github.com/airbnb/lunar/commit/94cf430)), closes [#348](https://github.com/airbnb/lunar/issues/348)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ### 3.0.1 - 2020-03-25
 
 #### 📦 Dependencies
