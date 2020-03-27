@@ -90,10 +90,10 @@ export const styleSheetTab: StyleSheet = ({ color, font, pattern, unit, ui, tran
     fontWeight: font.weights.bold,
     borderTopLeftRadius: ui.borderRadius,
     borderTopRightRadius: ui.borderRadius,
-    borderBottom: `${ui.borderWidthThick}px solid transparent`,
 
     ':focus': {
-      borderBottomColor: color.accent.borderActive,
+      background: color.accent.bgHover,
+      boxShadow: 'none',
     },
   },
 
@@ -124,6 +124,7 @@ export const styleSheetTab: StyleSheet = ({ color, font, pattern, unit, ui, tran
   tabButton_secondary_selected: {
     borderColor: color.accent.borderActive,
     backgroundColor: color.accent.bg,
+
     ':hover': {
       borderColor: color.core.primary[4],
       backgroundColor: color.accent.bgHover,

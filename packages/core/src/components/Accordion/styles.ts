@@ -15,7 +15,7 @@ export const styleSheetAccordion: StyleSheet = ({ color }) => ({
   },
 });
 
-export const styleSheetItem: StyleSheet = ({ pattern, ui, unit }) => ({
+export const styleSheetItem: StyleSheet = ({ color, pattern, ui, unit }) => ({
   body: {
     display: 'none',
     padding: `${unit}px ${unit * 2}px ${unit * 2}px`,
@@ -35,11 +35,20 @@ export const styleSheetItem: StyleSheet = ({ pattern, ui, unit }) => ({
 
   title: {
     ...pattern.resetButton,
+    border: `${ui.borderWidth}px solid transparent`,
     display: 'flex',
     alignItems: 'center',
     padding: unit * 2,
     textAlign: 'left',
     width: '100%',
+
+    '@selectors': {
+      ':not([disabled]):focus': {
+        boxShadow: 'none',
+        borderBottomColor: color.accent.borderActive,
+        borderTopColor: color.accent.borderActive,
+      },
+    },
   },
 
   title_noSpacing: {

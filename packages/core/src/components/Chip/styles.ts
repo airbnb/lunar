@@ -30,11 +30,7 @@ export const styleSheetChip: StyleSheet = ({ color, font, pattern, transition, u
 
   chip_active_button: {
     '@selectors': {
-      ':focus': {
-        backgroundColor: color.core.primary[4],
-      },
-
-      ':not([disabled]):hover': {
+      ':not([disabled]):hover, :not([disabled]):focus': {
         backgroundColor: color.core.primary[4],
       },
     },
@@ -57,19 +53,11 @@ export const styleSheetChip: StyleSheet = ({ color, font, pattern, transition, u
     padding: 0,
 
     '@selectors': {
-      ':focus': {
-        backgroundColor: color.accent.bgHover,
-      },
-
-      ':focus:not(:focus-visible)': {
-        outline: 'none',
-      },
-
       ':not([disabled]):active': {
         boxShadow: ui.boxShadow,
       },
 
-      ':not([disabled]):hover': {
+      ':not([disabled]):hover, :not([disabled]):focus': {
         backgroundColor: color.accent.bgHover,
       },
     },

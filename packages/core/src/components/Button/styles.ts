@@ -21,14 +21,13 @@ export const buttonStyleSheet: StyleSheet = ({ color, font, pattern, ui, unit, t
       },
 
       // Only show hover states on non-disabled
-      ':not([disabled]):hover': {
+      ':not([disabled]):hover, :not([disabled]):focus': {
         backgroundColor: color.core.primary[4],
         borderColor: color.core.primary[4],
       },
 
-      ':focus': {
-        ...pattern.themedFocus,
-        backgroundColor: color.core.primary[4],
+      ':not([disabled]):focus': {
+        ...pattern.themedFocus, // needed for `a`
       },
     },
   },
@@ -44,7 +43,7 @@ export const buttonStyleSheet: StyleSheet = ({ color, font, pattern, ui, unit, t
     borderColor: 'transparent',
 
     '@selectors': {
-      ':not([disabled]):hover': {
+      ':not([disabled]):hover, :not([disabled]):focus': {
         borderColor: color.accent.bgHover,
       },
     },
@@ -61,12 +60,8 @@ export const buttonStyleSheet: StyleSheet = ({ color, font, pattern, ui, unit, t
     backgroundColor: color.accent.bg,
 
     '@selectors': {
-      ':not([disabled]):hover': {
+      ':not([disabled]):hover, :not([disabled]):focus': {
         color: color.core.primary[4],
-        backgroundColor: color.accent.bgHover,
-      },
-
-      ':focus': {
         backgroundColor: color.accent.bgHover,
       },
     },

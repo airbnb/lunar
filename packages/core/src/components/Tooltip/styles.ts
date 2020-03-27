@@ -47,7 +47,7 @@ export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui }) => (
 
   content: {
     display: 'inline-block',
-    padding: unit,
+    padding: unit * 1.5,
     backgroundColor: color.accent.bg,
     boxShadow: ui.boxShadowMedium,
     borderRadius: ui.borderRadius,

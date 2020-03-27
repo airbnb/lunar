@@ -43,8 +43,10 @@ export default (fontFaces: { [fontFamily: string]: FontFace[] }) => ({
       },
 
       a: {
-        ':focus': {
-          outline: 'none',
+        '@selectors': {
+          ':focus, :focus:not(:focus-visible)': {
+            outline: 'none',
+          },
         },
       },
 

@@ -12,7 +12,7 @@ const styleSheet: StyleSheet = aesthetic.extendStyles(
       border: `${ui.borderWidthThick}px solid ${color.core.neutral[5]}`,
 
       '@selectors': {
-        ':not([disabled]):hover': {
+        ':not([disabled]):hover, :not([disabled]):focus': {
           backgroundColor: color.core.neutral[6],
           borderColor: color.core.neutral[6],
         },
@@ -24,7 +24,7 @@ const styleSheet: StyleSheet = aesthetic.extendStyles(
       borderColor: color.accent.border,
 
       '@selectors': {
-        ':not([disabled]):hover': {
+        ':not([disabled]):hover, :not([disabled]):focus': {
           color: color.accent.text,
           borderColor: color.accent.borderHover,
         },
@@ -35,7 +35,7 @@ const styleSheet: StyleSheet = aesthetic.extendStyles(
       ...pattern.invalid,
 
       '@selectors': {
-        ':not([disabled]):hover': {
+        ':not([disabled]):hover, :not([disabled]):focus': {
           ...pattern.invalid,
         },
       },

@@ -228,6 +228,10 @@ export const selectListItemStyleSheet: StyleSheet = ({ color, font, pattern, uni
     ':hover': {
       background: color.accent.bgHover,
     },
+
+    ':focus': {
+      background: color.accent.bgHover,
+    },
   },
 
   button_active: {
@@ -235,6 +239,10 @@ export const selectListItemStyleSheet: StyleSheet = ({ color, font, pattern, uni
     background: color.core.primary[3],
 
     ':hover': {
+      background: color.core.primary[4],
+    },
+
+    ':focus': {
       background: color.core.primary[4],
     },
   },

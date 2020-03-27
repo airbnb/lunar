@@ -44,12 +44,15 @@ export const styleSheetEmojiPicker: StyleSheet = ({ ui, unit, color, font, patte
 
   emoji: {
     background: 'transparent',
+    borderRadius: ui.borderRadius,
     border: 0,
     fontSize: 'inherit',
     float: 'left',
     cursor: 'pointer',
 
     ':focus': {
+      background: color.accent.bgHover,
+      boxShadow: 'none',
       outline: 'none',
     },
 
@@ -62,7 +65,6 @@ export const styleSheetEmojiPicker: StyleSheet = ({ ui, unit, color, font, patte
 
   emoji_active: {
     background: color.accent.bgHover,
-    borderRadius: ui.borderRadius,
   },
 
   emojis: {
@@ -115,6 +117,8 @@ export const styleSheetEmojiPicker: StyleSheet = ({ ui, unit, color, font, patte
     },
 
     ':focus': {
+      background: color.core.neutral[2],
+      boxShadow: 'none',
       outline: 'none',
     },
   },
@@ -153,6 +157,8 @@ export const styleSheetEmojiPicker: StyleSheet = ({ ui, unit, color, font, patte
       },
 
       ':focus': {
+        opacity: 1,
+        boxShadow: 'none',
         outline: 'none',
       },
 
