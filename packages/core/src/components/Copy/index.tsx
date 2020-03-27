@@ -56,7 +56,7 @@ export default function Copy({
   };
 
   const element = children || (
-    <IconButton trackingName={trackingName} id={id}>
+    <IconButton active trackingName={trackingName} id={id}>
       <IconCopy decorative />
     </IconButton>
   );
