@@ -2,9 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ButtonOrLink from '../../../src/components/private/ButtonOrLink';
 import IconAffix from '../../../src/components/private/IconAffix';
-import removeFocusOnMouseUp from '../../../src/utils/removeFocusOnMouseUp';
-
-jest.mock('../../../src/utils/removeFocusOnMouseUp');
 
 describe('<ButtonOrLink />', () => {
   it('returns button props when no `href`', () => {
@@ -103,14 +100,6 @@ describe('<ButtonOrLink />', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('calls `removeFocusOnMouseUp` on mouse up', () => {
-    const wrapper = shallow(<ButtonOrLink href="/">Default</ButtonOrLink>);
-
-    wrapper.simulate('mouseup', {});
-
-    expect(removeFocusOnMouseUp).toHaveBeenCalled();
-  });
-
   it('calls prevent default when disabled', () => {
     const spy = jest.fn();
     const wrapper = shallow(
@@ -175,7 +164,17 @@ describe('<ButtonOrLink />', () => {
       </ButtonOrLink>,
     );
 
-    expect(wrapper.find(IconAffix).at(0).prop('flex')).toBe(true);
-    expect(wrapper.find(IconAffix).at(1).prop('flex')).toBe(true);
+    expect(
+      wrapper
+        .find(IconAffix)
+        .at(0)
+        .prop('flex'),
+    ).toBe(true);
+    expect(
+      wrapper
+        .find(IconAffix)
+        .at(1)
+        .prop('flex'),
+    ).toBe(true);
   });
 });
