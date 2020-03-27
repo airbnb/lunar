@@ -119,7 +119,7 @@ export function withProfilePhotoClick() {
       imageDescription="Link - Click to open Nova profile"
       imageSrc={lunar}
       title="Some custom title"
-      onClickImage={action('onClickImage')}
+      onClickImage={() => console.log('onClickImage')}
     >
       <Text>
         <LoremIpsum />
@@ -140,7 +140,7 @@ export function withAClickableTitle() {
       imageSrc={lunar}
       title="Some custom title"
       titleClickDescription="Real name: Link - Click to chat"
-      onClickTitle={action('onClickTitle')}
+      onClickTitle={() => console.log('onClickTitle')}
     >
       <Text>
         <LoremIpsum />
@@ -372,7 +372,7 @@ export function withAllOfTheThings() {
         source="email"
         titleTag="Specialist"
         title="Long title lorem ipsum dolor sit amet, consectetur adipiscing elit"
-        onClickImage={action('onClickImage')}
+        onClickImage={() => console.log('onClickImage')}
       >
         <Text>
           <LoremIpsum />
@@ -391,7 +391,7 @@ export function withAllOfTheThings() {
         titleTag="Specialist"
         title="Long title lorem ipsum dolor sit amet, consectetur adipiscing elit"
         titleClickDescription="Real name: Link - Click to chat"
-        onClickTitle={action('onClickTitle')}
+        onClickTitle={() => console.log('onClickTitle')}
       >
         <Text>
           <LoremIpsum />

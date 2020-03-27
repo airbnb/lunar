@@ -21,8 +21,8 @@ export function standardAutocompleteUsedForSearching() {
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
       name="autocomplete"
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) =>
         Promise.resolve(items.filter((item) => item.name.toLowerCase().match(value.toLowerCase())))
       }
@@ -40,8 +40,8 @@ export function supportsErrorsThrownWithinPromises() {
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
       name="autocomplete-reject"
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) => Promise.reject(new Error('Failed to load.'))}
     />
   );
@@ -59,8 +59,8 @@ export function withAnErrorMessageInAnInvalidState() {
       name="autocomplete-error"
       label="Label"
       errorMessage="This field is required."
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) => Promise.resolve([])}
     />
   );
@@ -78,8 +78,8 @@ export function withALabelDescriptionInADisabledState() {
       name="autocomplete-disabled"
       label="Label"
       labelDescription="This is a small label description."
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) => Promise.resolve([])}
     />
   );
@@ -97,8 +97,8 @@ export function loadItemsOnFocusStory() {
       name="autocomplete-load-on-focus"
       label="Label"
       labelDescription="Load some items on focus."
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={() => Promise.resolve(items)}
     />
   );
@@ -115,8 +115,8 @@ export function disableSelectedItemsWithIsItemSelectable() {
       label="Favorite color?"
       name="autocomplete"
       isItemSelectable={(item, selected) => !selected}
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) =>
         Promise.resolve(items.filter((item) => item.name.toLowerCase().match(value.toLowerCase())))
       }
@@ -138,8 +138,8 @@ export function withCustomStatesInDifferentSizes() {
         name="autocomplete-state-error"
         label="Error (small)"
         renderError={(error) => <div>{error.message}</div>}
-        onChange={action('onChange')}
-        onSelectItem={action('onSelectItem')}
+        onChange={() => console.log('onChange')}
+        onSelectItem={() => console.log('onSelectItem')}
         onLoadItems={(value) => Promise.reject(new Error('Failed to load.'))}
       />
 
@@ -149,8 +149,8 @@ export function withCustomStatesInDifferentSizes() {
         name="autocomplete-state-loading"
         label="Loading (regular)"
         renderLoading={() => <div>Loading...</div>}
-        onChange={action('onChange')}
-        onSelectItem={action('onSelectItem')}
+        onChange={() => console.log('onChange')}
+        onSelectItem={() => console.log('onSelectItem')}
         onLoadItems={(value) => new Promise(() => {})}
       />
 
@@ -161,8 +161,8 @@ export function withCustomStatesInDifferentSizes() {
         name="autocomplete-state-empty"
         label="No results (large)"
         renderNoResults={() => <div>Nothing to see here!</div>}
-        onChange={action('onChange')}
-        onSelectItem={action('onSelectItem')}
+        onChange={() => console.log('onChange')}
+        onSelectItem={() => console.log('onSelectItem')}
         onLoadItems={(value) => Promise.resolve([])}
       />
     </>
@@ -180,8 +180,8 @@ export function canSelectUnknownValueWhenHittingEnter() {
       accessibilityLabel="Favorite color?"
       label="Favorite color?"
       name="autocomplete"
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) =>
         Promise.resolve(items.filter((item) => item.name.toLowerCase().match(value.toLowerCase())))
       }

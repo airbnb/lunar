@@ -17,7 +17,7 @@ export default {
 
 export function wrapsAndCatchesAnError() {
   return (
-    <ErrorBoundary onCatch={action('onCatch')}>
+    <ErrorBoundary onCatch={() => console.log('onCatch')}>
       <TestComponent />
     </ErrorBoundary>
   );

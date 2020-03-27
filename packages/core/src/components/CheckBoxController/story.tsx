@@ -18,7 +18,7 @@ export function controlsMultipleCheckboxes() {
       label="Favorite colors?"
       name="color"
       value={['green']}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(CheckBox) => (
         <div>
@@ -42,7 +42,7 @@ export function handlesInvalidStateWithNoSpacing() {
       label="Favorite colors?"
       name="color"
       value={['green']}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(CheckBox) => (
         <div>
@@ -66,7 +66,7 @@ export function handlesDisabledStateWithNoSpacing() {
       label="Favorite colors?"
       name="color"
       value={['green']}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(CheckBox) => (
         <div>
@@ -91,7 +91,7 @@ export function asSmall() {
       label="Favorite colors?"
       name="color"
       value={['green']}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(CheckBox) => (
         <div>
@@ -116,7 +116,7 @@ export function asLarge() {
       label="Favorite colors?"
       name="color"
       value={['green']}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(CheckBox) => (
         <div>

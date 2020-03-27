@@ -107,7 +107,7 @@ export default {
 };
 
 export function aStandardTextareaField() {
-  return <TextArea name="textarea-basic" label="Label" onChange={action('onChange')} />;
+  return <TextArea name="textarea-basic" label="Label" onChange={() => console.log('onChange')} />;
 }
 
 aStandardTextareaField.story = {
@@ -117,9 +117,19 @@ aStandardTextareaField.story = {
 export function inDifferentSizes() {
   return (
     <>
-      <TextArea small name="textarea-small" label="Small" onChange={action('onChange')} />
-      <TextArea name="textarea-regular" label="Regular" onChange={action('onChange')} />
-      <TextArea large name="textarea-large" label="Large" onChange={action('onChange')} />
+      <TextArea
+        small
+        name="textarea-small"
+        label="Small"
+        onChange={() => console.log('onChange')}
+      />
+      <TextArea name="textarea-regular" label="Regular" onChange={() => console.log('onChange')} />
+      <TextArea
+        large
+        name="textarea-large"
+        label="Large"
+        onChange={() => console.log('onChange')}
+      />
     </>
   );
 }
@@ -135,7 +145,7 @@ export function withAnErrorMessageInAnInvalidState() {
       name="textarea-error"
       label="Label"
       errorMessage="This field is required."
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -151,7 +161,7 @@ export function withALabelDescriptionInADisabledState() {
       name="textarea-disabled"
       label="Label"
       labelDescription="This is a small label description."
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -167,7 +177,7 @@ export function withAHiddenLabelAndDifferentRowHeight() {
       name="textarea-custom"
       label="Label"
       rows={5}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -183,7 +193,7 @@ export function markedAsOptionalWithAPlaceholder() {
       name="textarea-optional"
       label="Label"
       placeholder="Tell us how you feel..."
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -199,7 +209,7 @@ export function displayWithInlineLabelAndAPrefix() {
       name="both-textarea"
       label="TextArea"
       prefix={<Prefix>Hello</Prefix>}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }

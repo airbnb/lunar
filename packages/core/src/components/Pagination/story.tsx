@@ -9,7 +9,13 @@ export default {
 };
 
 export function noPreviousOrNextPages() {
-  return <Pagination page={1} onNext={action('onNext')} onPrevious={action('onPrevious')} />;
+  return (
+    <Pagination
+      page={1}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
+    />
+  );
 }
 
 noPreviousOrNextPages.story = {
@@ -18,7 +24,12 @@ noPreviousOrNextPages.story = {
 
 export function nextPages() {
   return (
-    <Pagination hasNext page={1} onNext={action('onNext')} onPrevious={action('onPrevious')} />
+    <Pagination
+      hasNext
+      page={1}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
+    />
   );
 }
 
@@ -28,7 +39,12 @@ nextPages.story = {
 
 export function previousPages() {
   return (
-    <Pagination hasPrev page={2} onNext={action('onNext')} onPrevious={action('onPrevious')} />
+    <Pagination
+      hasPrev
+      page={2}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
+    />
   );
 }
 
@@ -42,8 +58,8 @@ export function bothNextAndPages() {
       hasPrev
       hasNext
       page={2}
-      onNext={action('onNext')}
-      onPrevious={action('onPrevious')}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
     />
   );
 }
@@ -59,8 +75,8 @@ export function withLabel() {
       hasNext
       pageLabel="Photo"
       page={2}
-      onNext={action('onNext')}
-      onPrevious={action('onPrevious')}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
     />
   );
 }
@@ -78,8 +94,8 @@ export function withNoLabel() {
       page={2}
       pageLabel=""
       pageCount={3}
-      onNext={action('onNext')}
-      onPrevious={action('onPrevious')}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
     />
   );
 }
@@ -95,10 +111,10 @@ export function bookendsFirstPage() {
       showBookends
       page={1}
       pageCount={3}
-      onFirst={action('onFirst')}
-      onLast={action('onLast')}
-      onNext={action('onNext')}
-      onPrevious={action('onPrevious')}
+      onFirst={() => console.log('onFirst')}
+      onLast={() => console.log('onLast')}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
     />
   );
 }
@@ -114,10 +130,10 @@ export function bookendsLastPage() {
       showBookends
       page={3}
       pageCount={3}
-      onFirst={action('onFirst')}
-      onLast={action('onLast')}
-      onNext={action('onNext')}
-      onPrevious={action('onPrevious')}
+      onFirst={() => console.log('onFirst')}
+      onLast={() => console.log('onLast')}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
     />
   );
 }
@@ -134,10 +150,10 @@ export function bookendsMiddlePage() {
       showBookends
       page={2}
       pageCount={3}
-      onFirst={action('onFirst')}
-      onLast={action('onLast')}
-      onNext={action('onNext')}
-      onPrevious={action('onPrevious')}
+      onFirst={() => console.log('onFirst')}
+      onLast={() => console.log('onLast')}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
     />
   );
 }
@@ -155,10 +171,10 @@ export function alignArrowsAtTheStart() {
       startAlign
       page={2}
       pageCount={3}
-      onFirst={action('onFirst')}
-      onLast={action('onLast')}
-      onNext={action('onNext')}
-      onPrevious={action('onPrevious')}
+      onFirst={() => console.log('onFirst')}
+      onLast={() => console.log('onLast')}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
     />
   );
 }
@@ -176,10 +192,10 @@ export function alignArrowsInTheCenter() {
       showBookends
       page={2}
       pageCount={3}
-      onFirst={action('onFirst')}
-      onLast={action('onLast')}
-      onNext={action('onNext')}
-      onPrevious={action('onPrevious')}
+      onFirst={() => console.log('onFirst')}
+      onLast={() => console.log('onLast')}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
     />
   );
 }
@@ -197,10 +213,10 @@ export function alignArrowsAtTheEnd() {
       showBookends
       page={2}
       pageCount={3}
-      onFirst={action('onFirst')}
-      onLast={action('onLast')}
-      onNext={action('onNext')}
-      onPrevious={action('onPrevious')}
+      onFirst={() => console.log('onFirst')}
+      onLast={() => console.log('onLast')}
+      onNext={() => console.log('onNext')}
+      onPrevious={() => console.log('onPrevious')}
     />
   );
 }

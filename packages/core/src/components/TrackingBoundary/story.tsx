@@ -13,7 +13,7 @@ export function trackClicksAndKeypressesInAnArea() {
   return (
     <TrackingBoundary name="ReservationsTable">
       {/* eslint-disable-next-line */}
-      <div onClick={action('onClick')} onKeyDown={action('onKeyDown')}>
+      <div onClick={() => console.log('onClick')} onKeyDown={() => console.log('onKeyDown')}>
         <LoremIpsum />
       </div>
     </TrackingBoundary>

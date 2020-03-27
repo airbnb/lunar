@@ -119,13 +119,7 @@ function Chip({
 Chip.propTypes = {
   afterIcon: requiredBy('onIconClick', iconComponent),
   beforeIcon: mutuallyExclusiveProps(PropTypes.node, 'beforeIcon', 'profileImageSrc'),
-  compact: mutuallyExclusiveProps(PropTypes.any, 'profileImageSrc', 'compact'),
-  profileImageSrc: mutuallyExclusiveProps(
-    PropTypes.any,
-    'beforeIcon',
-    'profileImageSrc',
-    'compact',
-  ),
+  profileImageSrc: mutuallyExclusiveProps(PropTypes.any, 'beforeIcon', 'profileImageSrc'),
   onClick: mutuallyExclusiveProps(PropTypes.func, 'onIconClick'),
 };
 

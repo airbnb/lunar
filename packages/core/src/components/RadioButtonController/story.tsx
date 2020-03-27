@@ -15,7 +15,7 @@ export function controlsMultipleRadioButtons() {
       optional
       label="Favorite food?"
       name="food"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(RadioButton) => (
         <div>
@@ -39,7 +39,7 @@ export function asSmall() {
       small
       label="Favorite food?"
       name="food"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(RadioButton) => (
         <div>
@@ -63,7 +63,7 @@ export function asLarge() {
       large
       label="Favorite food?"
       name="food"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(RadioButton) => (
         <div>
@@ -82,7 +82,12 @@ asLarge.story = {
 
 export function handlesInvalidStateWithNoSpacing() {
   return (
-    <RadioButtonController invalid label="Favorite food?" name="food" onChange={action('onChange')}>
+    <RadioButtonController
+      invalid
+      label="Favorite food?"
+      name="food"
+      onChange={() => console.log('onChange')}
+    >
       {(RadioButton) => (
         <div>
           <RadioButton noSpacing label="🍕 Pizza" value="pizza" />
@@ -104,7 +109,7 @@ export function handlesDisabledStateWithNoSpacing() {
       disabled
       label="Favorite food?"
       name="food"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(RadioButton) => (
         <div>

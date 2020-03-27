@@ -25,6 +25,11 @@ export const buttonStyleSheet: StyleSheet = ({ color, font, pattern, ui, unit, t
         backgroundColor: color.core.primary[4],
         borderColor: color.core.primary[4],
       },
+
+      ':focus': {
+        ...pattern.themedFocus,
+        backgroundColor: color.core.primary[4],
+      },
     },
   },
 
@@ -58,6 +63,10 @@ export const buttonStyleSheet: StyleSheet = ({ color, font, pattern, ui, unit, t
     '@selectors': {
       ':not([disabled]):hover': {
         color: color.core.primary[4],
+        backgroundColor: color.accent.bgHover,
+      },
+
+      ':focus': {
         backgroundColor: color.accent.bgHover,
       },
     },

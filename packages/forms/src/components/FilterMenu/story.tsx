@@ -25,8 +25,8 @@ export function formInADropdown() {
         <FilterMenu
           accessibilityLabel="Filter menu"
           zIndex={2}
-          onShow={action('onShow')}
-          onHide={action('onHide')}
+          onShow={() => console.log('onShow')}
+          onHide={() => console.log('onHide')}
         >
           <Row>
             <Select
@@ -34,7 +34,7 @@ export function formInADropdown() {
               name="select"
               defaultValue="foo"
               validator={() => {}}
-              onChange={action('onChange')}
+              onChange={() => console.log('onChange')}
             >
               <option value="foo">Foo</option>
               <option value="bar">Bar</option>
@@ -47,7 +47,7 @@ export function formInADropdown() {
               label="CheckBox"
               name="checkbox"
               validator={() => {}}
-              onChange={action('onChange')}
+              onChange={() => console.log('onChange')}
             />
           </Row>
         </FilterMenu>
@@ -76,7 +76,7 @@ export function leftAlignedMenu() {
             name="select"
             defaultValue="foo"
             validator={() => {}}
-            onChange={action('onChange')}
+            onChange={() => console.log('onChange')}
           >
             <option value="foo">Foo</option>
             <option value="bar">Bar</option>
@@ -89,7 +89,7 @@ export function leftAlignedMenu() {
             label="CheckBox"
             name="checkbox"
             validator={() => {}}
-            onChange={action('onChange')}
+            onChange={() => console.log('onChange')}
           />
         </Row>
       </FilterMenu>
@@ -118,7 +118,7 @@ export function withOverflow() {
               name="select"
               defaultValue="foo"
               validator={() => {}}
-              onChange={action('onChange')}
+              onChange={() => console.log('onChange')}
             >
               <option value="foo">Foo</option>
               <option value="bar">Bar</option>
@@ -131,7 +131,7 @@ export function withOverflow() {
               label="CheckBox"
               name="checkbox"
               validator={() => {}}
-              onChange={action('onChange')}
+              onChange={() => console.log('onChange')}
             />
           </Row>
 

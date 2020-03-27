@@ -98,7 +98,7 @@ export function aSingleMonth() {
       datePickerProps={{
         onMonthChange: action('onMonthChange'),
       }}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -116,7 +116,7 @@ export function asSmall() {
       datePickerProps={{
         onMonthChange: action('onMonthChange'),
       }}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -134,7 +134,7 @@ export function asLarge() {
       datePickerProps={{
         onMonthChange: action('onMonthChange'),
       }}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -152,7 +152,7 @@ export function aCustomFormat() {
       datePickerProps={{
         onMonthChange: action('onMonthChange'),
       }}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -170,7 +170,7 @@ export function withNoLabel() {
       datePickerProps={{
         onMonthChange: action('onMonthChange'),
       }}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -188,7 +188,7 @@ export function withInlineLabel() {
       datePickerProps={{
         onMonthChange: action('onMonthChange'),
       }}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -206,7 +206,7 @@ export function withDropdownRightAligned() {
       datePickerProps={{
         onMonthChange: action('onMonthChange'),
       }}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -225,7 +225,7 @@ export function withAnErrorMessageInAnInvalidState() {
       datePickerProps={{
         onMonthChange: action('onMonthChange'),
       }}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -244,7 +244,7 @@ export function withALabelDescriptionInADisabledState() {
       datePickerProps={{
         onMonthChange: action('onMonthChange'),
       }}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }

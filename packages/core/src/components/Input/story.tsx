@@ -14,7 +14,7 @@ export function aStandardTextField() {
       name="input-basic"
       label="Label"
       placeholder="Placeholder"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -31,20 +31,20 @@ export function inDifferentSizes() {
         name="input-small"
         label="Small"
         placeholder="Placeholder"
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
       <Input
         name="input-regular"
         label="Regular"
         placeholder="Placeholder"
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
       <Input
         large
         name="input-large"
         label="Large"
         placeholder="Placeholder"
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
     </>
   );
@@ -61,7 +61,7 @@ export function withAnErrorMessageInAnInvalidState() {
       name="input-error"
       label="Label"
       errorMessage="This field is required."
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -77,7 +77,7 @@ export function withALabelDescriptionInADisabledState() {
       name="input-disabled"
       label="Label"
       labelDescription="This is a small label description."
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -94,7 +94,7 @@ export function withAHiddenLabelAndPasswordType() {
       label="Label"
       type="password"
       value="foobar"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -104,7 +104,9 @@ withAHiddenLabelAndPasswordType.story = {
 };
 
 export function markedAsOptional() {
-  return <Input optional name="input-optional" label="Label" onChange={action('onChange')} />;
+  return (
+    <Input optional name="input-optional" label="Label" onChange={() => console.log('onChange')} />
+  );
 }
 
 markedAsOptional.story = {
@@ -119,7 +121,7 @@ export function displayWithInlineLabel() {
       name="input-optional"
       label="Label"
       labelDescription="This is a small label description."
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }

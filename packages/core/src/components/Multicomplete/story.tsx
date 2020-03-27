@@ -24,8 +24,8 @@ export function anAutocompleteThatSupportsSelectingMultipleItems() {
           {item.name}
         </Text>
       )}
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) =>
         Promise.resolve(
           [
@@ -56,8 +56,8 @@ export function supportsPrePopulatingMultipleItems() {
         </Text>
       )}
       value={['red', 'green']}
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) =>
         Promise.resolve(
           [
@@ -89,8 +89,8 @@ export function loadItemsOnFocusStory() {
         </Text>
       )}
       value={['red', 'green']}
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) =>
         Promise.resolve(
           [
@@ -121,8 +121,8 @@ export function canSelectUnknownValueWhenHittingEnter() {
           {item.name}
         </Text>
       )}
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) =>
         Promise.resolve(
           [
@@ -173,8 +173,8 @@ export function renderACustomChip() {
           {item.name}
         </Text>
       )}
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) =>
         Promise.resolve(
           [
@@ -205,8 +205,8 @@ export function asSmall() {
           {item.name}
         </Text>
       )}
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) =>
         Promise.resolve(
           [
@@ -237,8 +237,8 @@ export function asLarge() {
           {item.name}
         </Text>
       )}
-      onChange={action('onChange')}
-      onSelectItem={action('onSelectItem')}
+      onChange={() => console.log('onChange')}
+      onSelectItem={() => console.log('onSelectItem')}
       onLoadItems={(value) =>
         Promise.resolve(
           [

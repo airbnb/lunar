@@ -216,7 +216,7 @@ export default function datePickerStyles({
       ...pattern.regularButton,
       ...transition.box,
       fontWeight: font.weights.bold,
-      border: '2px solid transparent',
+      border: `${ui.borderWidthThick}px solid transparent`,
       borderRadius: ui.borderRadius,
       color: color.core.primary[3],
       cursor: 'pointer',
@@ -224,6 +224,10 @@ export default function datePickerStyles({
 
       ':hover': {
         color: color.core.primary[4],
+      },
+
+      ':focus': {
+        backgroundColor: color.accent.bgHover,
       },
     },
 

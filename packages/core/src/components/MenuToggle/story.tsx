@@ -3,13 +3,13 @@ import IconMenuDots from '@airbnb/lunar-icons/lib/interface/IconMenuDots';
 import MenuToggle, { Item } from '.';
 
 const children = [
-  <Item key="0" onClick={action('onClick')}>
+  <Item key="0" onClick={() => console.log('onClick')}>
     Profile
   </Item>,
-  <Item key="1" onClick={action('onClick')}>
+  <Item key="1" onClick={() => console.log('onClick')}>
     Settings
   </Item>,
-  <Item key="2" onClick={action('onClick')}>
+  <Item key="2" onClick={() => console.log('onClick')}>
     Log Out
   </Item>,
 ];

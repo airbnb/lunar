@@ -6,7 +6,7 @@ export const styleSheetChip: StyleSheet = ({ color, font, pattern, transition, u
     ...font.textSmall,
     backgroundColor: color.accent.bg,
     border: ui.border,
-    borderRadius: unit * 4,
+    borderRadius: ui.borderRadiusRounded,
     display: 'inline-block',
     height: unit * 4,
     overflow: 'hidden',
@@ -30,6 +30,10 @@ export const styleSheetChip: StyleSheet = ({ color, font, pattern, transition, u
 
   chip_active_button: {
     '@selectors': {
+      ':focus': {
+        backgroundColor: color.core.primary[4],
+      },
+
       ':not([disabled]):hover': {
         backgroundColor: color.core.primary[4],
       },
@@ -53,6 +57,14 @@ export const styleSheetChip: StyleSheet = ({ color, font, pattern, transition, u
     padding: 0,
 
     '@selectors': {
+      ':focus': {
+        backgroundColor: color.accent.bgHover,
+      },
+
+      ':focus:not(:focus-visible)': {
+        outline: 'none',
+      },
+
       ':not([disabled]):active': {
         boxShadow: ui.boxShadow,
       },
@@ -60,11 +72,6 @@ export const styleSheetChip: StyleSheet = ({ color, font, pattern, transition, u
       ':not([disabled]):hover': {
         backgroundColor: color.accent.bgHover,
       },
-    },
-
-    ':focus': {
-      backgroundColor: color.accent.bgHover,
-      outline: 'none',
     },
   },
 
@@ -98,13 +105,13 @@ export const styleSheetChip: StyleSheet = ({ color, font, pattern, transition, u
     ...transition.box,
     color: color.core.neutral[6],
 
-    ':hover': {
-      color: color.core.primary[3],
-    },
-
     ':focus': {
       color: color.core.primary[3],
       outline: 'none',
+    },
+
+    ':hover': {
+      color: color.core.primary[3],
     },
   },
 
@@ -124,5 +131,11 @@ export const styleSheetChip: StyleSheet = ({ color, font, pattern, transition, u
     position: 'relative',
     top: '50%',
     transform: 'translateY(-50%)',
+
+    '@selectors': {
+      '> button': {
+        boxShadow: 'none',
+      },
+    },
   },
 });

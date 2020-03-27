@@ -14,8 +14,8 @@ export function standardEmojiPicker() {
       <div style={{ position: 'absolute', bottom: 0, left: 0 }}>
         <EmojiPicker
           disableAutoFocus
-          onClosePicker={action('onClosePicker')}
-          onSelectEmoji={action('onSelectEmoji')}
+          onClosePicker={() => console.log('onClosePicker')}
+          onSelectEmoji={() => console.log('onSelectEmoji')}
         />
       </div>
     </div>

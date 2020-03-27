@@ -30,8 +30,8 @@ export function connectedToTheParentForm() {
         label="Label"
         accessibilityLabel="Autocomplete"
         validator={() => {}}
-        onChange={action('onChange')}
-        onSelectItem={action('onSelectItem')}
+        onChange={() => console.log('onChange')}
+        onSelectItem={() => console.log('onSelectItem')}
         onLoadItems={(value) =>
           Promise.resolve(
             items.filter((item) => item.name.toLowerCase().match(value.toLowerCase())),

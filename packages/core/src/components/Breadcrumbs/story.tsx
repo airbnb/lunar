@@ -12,7 +12,7 @@ export function breadcrumbsWithHighlightedAndOptionalHrefOrOnClick() {
   return (
     <Breadcrumbs accessibilityLabel="Breadcrumb">
       <Breadcrumb label="Galaxy" href="#cool" />
-      <Breadcrumb label="Milky Way" onClick={action('onClick')} />
+      <Breadcrumb label="Milky Way" onClick={() => console.log('onClick')} />
       <Breadcrumb highlighted selected label="Solar System" />
     </Breadcrumbs>
   );
@@ -25,7 +25,7 @@ breadcrumbsWithHighlightedAndOptionalHrefOrOnClick.story = {
 export function breadcrumbsWithDisabledAndHideIconOnLastBreadcrumb() {
   return (
     <Breadcrumbs accessibilityLabel="Progress">
-      <Breadcrumb label="Step 1" onClick={action('onClick')} />
+      <Breadcrumb label="Step 1" onClick={() => console.log('onClick')} />
       <Breadcrumb selected label="Step 2" />
       <Breadcrumb disabled hideIcon label="Step 3" />
     </Breadcrumbs>

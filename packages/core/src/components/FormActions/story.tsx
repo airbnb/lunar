@@ -21,8 +21,8 @@ export function withCustomTextAndClickHandlers() {
     <FormActions
       cancelText="Close"
       continueText="Send"
-      onCancel={action('onCancel')}
-      onContinue={action('onContinue')}
+      onCancel={() => console.log('onCancel')}
+      onContinue={() => console.log('onContinue')}
     />
   );
 }

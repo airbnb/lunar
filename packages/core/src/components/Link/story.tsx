@@ -20,7 +20,7 @@ aStandardLink.story = {
 };
 
 export function aButtonLink() {
-  return <Link onClick={action('onClick')}>Button</Link>;
+  return <Link onClick={() => console.log('onClick')}>Button</Link>;
 }
 
 aButtonLink.story = {
@@ -88,7 +88,7 @@ withBeforeAndOrAfterIcons.story = {
 
 export function stopClickAndDefaultEventsWhenDisabled() {
   return (
-    <Link disabled href="https://github.com/airbnb/lunar" onClick={action('onClick')}>
+    <Link disabled href="https://github.com/airbnb/lunar" onClick={() => console.log('onClick')}>
       Link
     </Link>
   );
@@ -105,7 +105,7 @@ export function boldText() {
         Link
       </Link>
       <br />
-      <Link bold onClick={action('onClick')}>
+      <Link bold onClick={() => console.log('onClick')}>
         Button
       </Link>
     </>

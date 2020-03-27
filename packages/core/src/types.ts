@@ -107,6 +107,7 @@ export type Theme = {
       borderActive: Hexcode;
       borderHover: Hexcode;
       borderError: Hexcode;
+      outline: Hexcode;
       text: Hexcode;
       textActive: Hexcode;
       textError: Hexcode;
@@ -150,6 +151,7 @@ export type Theme = {
     box: StyleBlock;
     disabled: StyleBlock;
     focused: StyleBlock;
+    themedFocus: StyleBlock;
     invalid: StyleBlock;
     offscreen: StyleBlock;
     resetButton: StyleBlock;
@@ -174,6 +176,7 @@ export type Theme = {
     border: string;
     borderThick: string;
     borderRadius: number;
+    borderRadiusRounded: number;
     borderRadiusThick: number;
     borderWidth: number;
     borderWidthThick: number;

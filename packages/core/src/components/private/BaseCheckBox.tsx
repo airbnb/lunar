@@ -7,6 +7,7 @@ import inputStyleSheet from '../../themes/inputStyleSheet';
 
 export const styleSheetCheckbox: StyleSheet = (theme) => {
   const styles = inputStyleSheet(theme);
+  const { pattern } = theme;
 
   return {
     ...styles,
@@ -18,10 +19,11 @@ export const styleSheetCheckbox: StyleSheet = (theme) => {
       height: 18,
       display: 'block',
       lineHeight: 0,
+
       // Add focus styling to the checkbox icons
       '@selectors': {
         '> input:focus + span': {
-          boxShadow: `0 0 3px 3px ${theme.color.core.primary[2]}`,
+          ...pattern.themedFocus,
         },
       },
     },

@@ -1,6 +1,7 @@
 import React from 'react';
 import IconAddAlt from '@airbnb/lunar-icons/lib/interface/IconAddAlt';
 import Button from '.';
+import ButtonGroup from '../ButtonGroup';
 
 export default {
   title: 'Core/Button',
@@ -11,9 +12,10 @@ export default {
 
 export function standardButtonWithAnInvertedVariant() {
   return (
-    <>
-      <Button>Button</Button> <Button inverted>Button</Button>
-    </>
+    <ButtonGroup>
+      <Button>Button</Button>
+      <Button inverted>Button</Button>
+    </ButtonGroup>
   );
 }
 
@@ -23,14 +25,14 @@ standardButtonWithAnInvertedVariant.story = {
 
 export function renderAnAnchorLinkWhenPassingHref() {
   return (
-    <>
+    <ButtonGroup>
       <Button openInNewWindow href="https://github.com/airbnb/lunar">
         Link
-      </Button>{' '}
+      </Button>
       <Button openInNewWindow inverted href="https://github.com/airbnb/lunar">
         Link
       </Button>
-    </>
+    </ButtonGroup>
   );
 }
 
@@ -41,9 +43,9 @@ renderAnAnchorLinkWhenPassingHref.story = {
 export function withEventHandlers() {
   return (
     <Button
-      onClick={action('onClick')}
-      onMouseOver={action('onMouseOver')}
-      onFocus={action('onFocus')}
+      onClick={() => console.log('onClick')}
+      onMouseOver={() => console.log('onMouseOver')}
+      onFocus={() => console.log('onFocus')}
     >
       Button
     </Button>
@@ -57,16 +59,23 @@ withEventHandlers.story = {
 export function withDifferentSizingSmallRegularDefaultAndLarge() {
   return (
     <>
-      <Button small>Button</Button> <Button>Button</Button> <Button large>Button</Button>
+      <ButtonGroup>
+        <Button small>Button</Button>
+        <Button>Button</Button>
+        <Button large>Button</Button>
+      </ButtonGroup>
+
       <br />
-      <br />
-      <Button inverted small>
-        Button
-      </Button>{' '}
-      <Button inverted>Button</Button>{' '}
-      <Button inverted large>
-        Button
-      </Button>
+
+      <ButtonGroup>
+        <Button inverted small>
+          Button
+        </Button>
+        <Button inverted>Button</Button>
+        <Button inverted large>
+          Button
+        </Button>
+      </ButtonGroup>
     </>
   );
 }
@@ -78,15 +87,21 @@ withDifferentSizingSmallRegularDefaultAndLarge.story = {
 export function withDifferentStatesDisabledAndLoading() {
   return (
     <>
-      <Button disabled>Button</Button> <Button loading>Button</Button>
+      <ButtonGroup>
+        <Button disabled>Button</Button>
+        <Button loading>Button</Button>
+      </ButtonGroup>
+
       <br />
-      <br />
-      <Button inverted disabled>
-        Button
-      </Button>{' '}
-      <Button inverted loading>
-        Button
-      </Button>
+
+      <ButtonGroup>
+        <Button inverted disabled>
+          Button
+        </Button>
+        <Button inverted loading>
+          Button
+        </Button>
+      </ButtonGroup>
     </>
   );
 }
@@ -97,10 +112,10 @@ withDifferentStatesDisabledAndLoading.story = {
 
 export function withBeforeAndOrAfterIcons() {
   return (
-    <div>
-      <Button beforeIcon={<IconAddAlt decorative />}>Before icon</Button>{' '}
+    <ButtonGroup>
+      <Button beforeIcon={<IconAddAlt decorative />}>Before icon</Button>
       <Button afterIcon={<IconAddAlt decorative />}>After icon</Button>
-    </div>
+    </ButtonGroup>
   );
 }
 
@@ -110,15 +125,15 @@ withBeforeAndOrAfterIcons.story = {
 
 export function withBorderless() {
   return (
-    <div>
-      <Button borderless>Button</Button>{' '}
+    <ButtonGroup>
+      <Button borderless>Button</Button>
       <Button borderless inverted>
         Button
-      </Button>{' '}
+      </Button>
       <Button borderless disabled>
         Button
       </Button>
-    </div>
+    </ButtonGroup>
   );
 }
 

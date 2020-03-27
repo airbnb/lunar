@@ -296,7 +296,7 @@ export function clickableCard() {
       <Content
         truncated
         after={<IconChevronRight decorative size={24} />}
-        onClick={action('onClick Card')}
+        onClick={() => console.log('onClick Card')}
       >
         <Text truncated>
           <LoremIpsum />
@@ -344,7 +344,7 @@ export function cardAsAButtonWithMiddleAlignment() {
             src={lunar}
           />
         }
-        onClick={action('onClick')}
+        onClick={() => console.log('onClick')}
       >
         <Text bold>Suspendisse vitae dui elit?</Text>
 
@@ -368,7 +368,7 @@ export function asClickableBeforeImage() {
       <Content
         noPaddingBefore
         before={<Image background cover alt="" height="100%" width={152} src={moon} />}
-        onBeforeClick={action('onClick before')}
+        onBeforeClick={() => console.log('onClick before')}
       >
         <Text>
           <LoremIpsum />
@@ -388,7 +388,7 @@ export function asClickableAfterImage() {
       <Content
         noPaddingAfter
         after={<Image background cover alt="" height="100%" width={152} src={moon} />}
-        onAfterClick={action('onClick after')}
+        onAfterClick={() => console.log('onClick after')}
       >
         <Text>
           <LoremIpsum />
