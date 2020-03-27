@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.0 - 2020-03-27
+
+#### 🚀 Updates
+
+- **[IconInstagram, IconTwitter]** Add new social icons. (#347) ([a94f5d7](https://github.com/airbnb/lunar/commit/a94f5d7)), closes [#347](https://github.com/airbnb/lunar/issues/347)
+
+**Note:** Version bump only for package @airbnb/lunar-icons
+
+
+
+
+
 ### 3.0.2 - 2020-03-27
 
 #### 🐞 Fixes
