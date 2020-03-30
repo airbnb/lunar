@@ -83,7 +83,11 @@ withBeforeAndOrAfterIcons.story = {
 
 export function stopClickAndDefaultEventsWhenDisabled() {
   return (
-    <SecondaryLink disabled href="https://github.com/airbnb/lunar" onClick={action('onClick')}>
+    <SecondaryLink
+      disabled
+      href="https://github.com/airbnb/lunar"
+      onClick={() => console.log('onClick')}
+    >
       Link
     </SecondaryLink>
   );

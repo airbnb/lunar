@@ -7,6 +7,7 @@ import inputStyleSheet from '../../themes/inputStyleSheet';
 
 export const styleSheetRadioButton: StyleSheet = (theme) => {
   const styles = inputStyleSheet(theme);
+  const { pattern } = theme;
 
   return {
     ...styles,
@@ -19,10 +20,11 @@ export const styleSheetRadioButton: StyleSheet = (theme) => {
       display: 'block',
       position: 'relative',
       lineHeight: 0,
+
       // Add focus styling to the radio icons
       '@selectors': {
         '> input:focus + span': {
-          boxShadow: `0 0 3px 3px ${theme.color.core.primary[2]}`,
+          ...pattern.themedFocus,
         },
       },
     },

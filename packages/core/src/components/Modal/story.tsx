@@ -159,6 +159,14 @@ scrollableContent.story = {
   name: 'Scrollable content',
 };
 
+export function scrollableContentWithoutFooter() {
+  return <ModalDemo showTitle showScrollable />;
+}
+
+scrollableContentWithoutFooter.story = {
+  name: 'Scrollable content without footer',
+};
+
 export function smallScrollableContent() {
   return <ModalDemo showSmall showFooter showTitle showScrollable />;
 }

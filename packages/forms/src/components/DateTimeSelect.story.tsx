@@ -25,7 +25,7 @@ export function connectedToTheParentForm() {
         label="Label"
         validator={() => {}}
         defaultValue={fixedDate.toISOString()}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
     </Form>
   );

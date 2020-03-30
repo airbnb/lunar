@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import copy from 'copy-to-clipboard';
 import IconCopy from '@airbnb/lunar-icons/lib/interface/IconCopy';
 import Copy from '../../src/components/Copy';
-import Link from '../../src/components/Link';
+import IconButton from '../../src/components/IconButton';
 
 jest.mock('copy-to-clipboard', () => jest.fn(() => true));
 
@@ -20,14 +20,14 @@ describe('<Copy />', () => {
     const wrapper = shallow(<Copy text="foo" />);
 
     expect(wrapper.find(IconCopy)).toHaveLength(1);
-    expect(wrapper.find(Link)).toHaveLength(1);
+    expect(wrapper.find(IconButton)).toHaveLength(1);
   });
 
-  it('can add an id and trackingName to the Link', () => {
+  it('can add an id and trackingName to the IconButton', () => {
     const wrapper = shallow(<Copy text="foo" id="tracking-id" trackingName="tracking-name" />);
 
-    expect(wrapper.find(Link).prop('id')).toBe('tracking-id');
-    expect(wrapper.find(Link).prop('trackingName')).toBe('tracking-name');
+    expect(wrapper.find(IconButton).prop('id')).toBe('tracking-id');
+    expect(wrapper.find(IconButton).prop('trackingName')).toBe('tracking-name');
   });
 
   it('can customize the child', () => {
@@ -35,7 +35,7 @@ describe('<Copy />', () => {
     const wrapper = shallow(<Copy text="foo">{child}</Copy>);
 
     expect(wrapper.find(IconCopy)).toHaveLength(0);
-    expect(wrapper.find(Link)).toHaveLength(0);
+    expect(wrapper.find(IconButton)).toHaveLength(0);
     expect(wrapper.find('button')).toHaveLength(1);
   });
 
@@ -43,7 +43,7 @@ describe('<Copy />', () => {
     const spy = jest.fn();
     const wrapper = shallow(<Copy text="foo" onCopy={spy} />);
 
-    wrapper.find(Link).simulate('click', {
+    wrapper.find(IconButton).simulate('click', {
       preventDefault() {},
     });
 

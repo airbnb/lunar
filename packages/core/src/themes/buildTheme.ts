@@ -32,6 +32,7 @@ export default function buildTheme(
     disabledOpacity = 0.3,
     transitionTime = '300ms',
   } = options;
+
   const accent = {
     bg: base,
     bgHover: color.neutral[0],
@@ -41,6 +42,7 @@ export default function buildTheme(
     borderActive: color.primary[3], // Also focus/selected
     borderHover: color.neutral[3],
     borderError: color.danger[3],
+    outline: color.primary[3],
     text: color.neutral[5],
     textActive: color.primary[3],
     textError: color.danger[3],
@@ -51,6 +53,7 @@ export default function buildTheme(
     border: `${borderWidth}px solid ${accent.border}`,
     borderThick: `${borderWidthThick}px solid ${accent.border}`,
     borderRadius,
+    borderRadiusRounded: borderRadius * 8,
     borderRadiusThick: borderRadius * 2,
     borderWidth,
     borderWidthThick,
@@ -80,19 +83,31 @@ export default function buildTheme(
         borderRadius,
         boxShadow: ui.boxShadow,
       },
+
       disabled: {
         opacity: disabledOpacity,
         cursor: 'normal',
       },
+
       focused: {
         borderColor: accent.borderActive,
         outline: 'none',
       },
+
+      themedFocus: {
+        outline: 'none',
+        boxShadow: `${accent.bg} 0px 0px 0px 2px, ${accent.outline} 0px 0px 0px 3px, ${toRGBA(
+          accent.bg,
+          50,
+        )} 0px 0px 0px 4px`,
+      },
+
       invalid: {
         color: accent.textError,
         backgroundColor: accent.bgError,
         borderColor: accent.borderError,
       },
+
       offscreen: {
         position: 'absolute',
         left: '-5vw',
@@ -100,6 +115,7 @@ export default function buildTheme(
         height: 1,
         overflow: 'hidden',
       },
+
       resetButton: {
         appearance: 'none',
         background: 'transparent',
@@ -113,14 +129,17 @@ export default function buildTheme(
         verticalAlign: 'middle',
         display: 'inline-block',
       },
+
       smallButton: {
         ...font.textSmall,
         padding: `${unit - borderWidthThick}px ${unit * 1.5 - borderWidthThick}px`,
       },
+
       regularButton: {
         ...font.textRegular,
         padding: `${unit * 1.25 - borderWidthThick}px ${unit * 1.5 - borderWidthThick}px`,
       },
+
       largeButton: {
         ...font.textLarge,
         padding: `${unit * 1.5 - borderWidthThick}px ${unit * 2 - borderWidthThick}px`,
@@ -132,6 +151,7 @@ export default function buildTheme(
       box: {
         transition: `background ${transitionTime}, border ${transitionTime}, color ${transitionTime}`,
       },
+
       fade: {
         opacity: 1,
         transition: `opacity ${transitionTime}`,

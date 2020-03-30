@@ -1,5 +1,4 @@
 import React from 'react';
-import removeFocusOnMouseUp from '../../utils/removeFocusOnMouseUp';
 import IconAffix from './IconAffix';
 
 export type ButtonOrLinkTypes = HTMLAnchorElement | HTMLButtonElement;
@@ -55,10 +54,7 @@ export default class ButtonOrLink extends React.Component<ButtonOrLinkProps> {
     }
   };
 
-  // Remove outline after click
   private handleMouseUp = (event: React.MouseEvent<ButtonOrLinkTypes>) => {
-    removeFocusOnMouseUp(event);
-
     if (this.props.onMouseUp) {
       this.props.onMouseUp(event);
     }

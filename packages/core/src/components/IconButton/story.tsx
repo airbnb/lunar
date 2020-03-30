@@ -12,12 +12,12 @@ export default {
 export function aStandardButtonWithDifferentSizes() {
   return (
     <>
-      <IconButton onClick={action('onClick')}>
+      <IconButton onClick={() => console.log('onClick')}>
         <IconCheck decorative />
       </IconButton>
       <br />
       <br />
-      <IconButton onClick={action('onClick')}>
+      <IconButton onClick={() => console.log('onClick')}>
         <IconCheck decorative size="2em" />
       </IconButton>
     </>
@@ -30,7 +30,11 @@ aStandardButtonWithDifferentSizes.story = {
 
 export function anAnchorLinkWhenPassingHref() {
   return (
-    <IconButton openInNewWindow href="https://github.com/airbnb/lunar" onClick={action('onClick')}>
+    <IconButton
+      openInNewWindow
+      href="https://github.com/airbnb/lunar"
+      onClick={() => console.log('onClick')}
+    >
       <IconCheck decorative />
     </IconButton>
   );
@@ -42,7 +46,7 @@ anAnchorLinkWhenPassingHref.story = {
 
 export function wrappedInATooltip() {
   return (
-    <IconButton tooltip="This does something cool." onClick={action('onClick')}>
+    <IconButton tooltip="This does something cool." onClick={() => console.log('onClick')}>
       <IconCheck decorative />
     </IconButton>
   );
@@ -54,7 +58,7 @@ wrappedInATooltip.story = {
 
 export function withADisabledState() {
   return (
-    <IconButton disabled onClick={action('onClick')}>
+    <IconButton disabled onClick={() => console.log('onClick')}>
       <IconCheck decorative />
     </IconButton>
   );

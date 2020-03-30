@@ -18,7 +18,12 @@ export function connectedToTheParentForm() {
         return Promise.resolve();
       }}
     >
-      <TextArea name="field" label="Label" validator={() => {}} onChange={action('onChange')} />
+      <TextArea
+        name="field"
+        label="Label"
+        validator={() => {}}
+        onChange={() => console.log('onChange')}
+      />
     </Form>
   );
 }

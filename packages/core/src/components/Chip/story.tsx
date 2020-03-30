@@ -6,6 +6,7 @@ import IconSettings from '@airbnb/lunar-icons/lib/interface/IconSettings';
 import lunar from ':storybook/images/lunar-logo.png';
 import Spacing from '../Spacing';
 import Chip from '.';
+import ButtonGroup from '../ButtonGroup';
 import Text from '../Text';
 
 export default {
@@ -37,20 +38,19 @@ export function withAIconsBeforeAndOrAfter() {
       <Spacing bottom={1}>
         <Text>Note that before/after padding is not symetrical</Text>
       </Spacing>
-      <Spacing inline right={1}>
+
+      <ButtonGroup>
         <Chip afterIcon={<IconCloseAlt decorative size="2em" />}>Chip</Chip>
-      </Spacing>
-      <Spacing inline right={1}>
+
         <Chip beforeIcon={<IconCalendar decorative size="1.2em" />}>Calendar</Chip>
-      </Spacing>
-      <Spacing inline right={1}>
+
         <Chip
           afterIcon={<IconCalendar decorative size="1.2em" />}
           beforeIcon={<IconCalendar decorative size="1.2em" />}
         >
           Calendar
         </Chip>
-      </Spacing>
+      </ButtonGroup>
     </>
   );
 }
@@ -66,27 +66,27 @@ export function compactChip() {
         <Text>Note that before/after padding is not symetrical</Text>
       </Spacing>
 
-      <Spacing inline right={1}>
-        <Chip compact beforeIcon={<IconUser decorative size="1.2em" />} onClick={action('onClick')}>
-          Chip
-        </Chip>
-      </Spacing>
-
-      <Spacing inline right={1}>
+      <ButtonGroup>
         <Chip
           compact
-          afterIcon={<IconCalendar decorative size="1.2em" />}
-          onClick={action('onClick')}
+          beforeIcon={<IconUser decorative size="1.2em" />}
+          onClick={() => console.log('onClick')}
         >
           Chip
         </Chip>
-      </Spacing>
 
-      <Spacing inline right={0}>
-        <Chip compact active onClick={action('onClick')}>
+        <Chip
+          compact
+          afterIcon={<IconCalendar decorative size="1.2em" />}
+          onClick={() => console.log('onClick')}
+        >
           Chip
         </Chip>
-      </Spacing>
+
+        <Chip compact active onClick={() => console.log('onClick')}>
+          Chip
+        </Chip>
+      </ButtonGroup>
     </>
   );
 }
@@ -97,26 +97,22 @@ compactChip.story = {
 
 export function withAnIconButton() {
   return (
-    <>
-      <Spacing inline right={1}>
-        <Chip
-          afterIcon={<IconCloseAlt decorative size="2em" />}
-          onIconClick={action('onIconClick')}
-        >
-          Close
-        </Chip>
-      </Spacing>
+    <ButtonGroup>
+      <Chip
+        afterIcon={<IconCloseAlt decorative size="2em" />}
+        onIconClick={() => console.log('onIconClick')}
+      >
+        Close
+      </Chip>
 
-      <Spacing inline right={0}>
-        <Chip
-          disabled
-          afterIcon={<IconCloseAlt decorative size="2em" />}
-          onIconClick={action('onIconClick')}
-        >
-          Close
-        </Chip>
-      </Spacing>
-    </>
+      <Chip
+        disabled
+        afterIcon={<IconCloseAlt decorative size="2em" />}
+        onIconClick={() => console.log('onIconClick')}
+      >
+        Close
+      </Chip>
+    </ButtonGroup>
   );
 }
 
@@ -146,23 +142,17 @@ withBothAProfilePhotoAndAnIcon.story = {
 
 export function disabledChips() {
   return (
-    <>
-      <Spacing inline right={1}>
-        <Chip disabled>Chip</Chip>
-      </Spacing>
+    <ButtonGroup>
+      <Chip disabled>Chip</Chip>
 
-      <Spacing inline right={1}>
-        <Chip disabled afterIcon={<IconSettings decorative size="2em" />} profileImageSrc={lunar}>
-          User
-        </Chip>
-      </Spacing>
+      <Chip disabled afterIcon={<IconSettings decorative size="2em" />} profileImageSrc={lunar}>
+        User
+      </Chip>
 
-      <Spacing inline right={0}>
-        <Chip disabled afterIcon={<IconSettings decorative size="2em" />}>
-          Settings
-        </Chip>
-      </Spacing>
-    </>
+      <Chip disabled afterIcon={<IconSettings decorative size="2em" />}>
+        Settings
+      </Chip>
+    </ButtonGroup>
   );
 }
 
@@ -172,27 +162,24 @@ disabledChips.story = {
 
 export function asButtons() {
   return (
-    <>
-      <Spacing inline right={1}>
-        <Chip onClick={action('onClick')}>Chip</Chip>
-      </Spacing>
+    <ButtonGroup>
+      <Chip onClick={() => console.log('onClick')}>Chip</Chip>
 
-      <Spacing inline right={1}>
-        <Chip
-          afterIcon={<IconSettings decorative size="2em" />}
-          profileImageSrc={lunar}
-          onClick={action('onClick')}
-        >
-          User
-        </Chip>
-      </Spacing>
+      <Chip
+        afterIcon={<IconSettings decorative size="2em" />}
+        profileImageSrc={lunar}
+        onClick={() => console.log('onClick')}
+      >
+        User
+      </Chip>
 
-      <Spacing inline right={0}>
-        <Chip afterIcon={<IconSettings decorative size="2em" />} onClick={action('onClick')}>
-          Settings
-        </Chip>
-      </Spacing>
-    </>
+      <Chip
+        afterIcon={<IconSettings decorative size="2em" />}
+        onClick={() => console.log('onClick')}
+      >
+        Settings
+      </Chip>
+    </ButtonGroup>
   );
 }
 

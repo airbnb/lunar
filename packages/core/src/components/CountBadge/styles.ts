@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheetCountBadge: StyleSheet = ({ color, font, unit }) => {
+export const styleSheetCountBadge: StyleSheet = ({ color, font, ui, unit }) => {
   const waggleDuration = 300;
   const totalDuration = 2000 + waggleDuration;
   const wagglePercent = (waggleDuration / totalDuration) * 100;
@@ -39,7 +39,7 @@ export const styleSheetCountBadge: StyleSheet = ({ color, font, unit }) => {
       textAlign: 'center',
       fontWeight: 'bold',
       padding: unit / 4,
-      borderRadius: unit * 2,
+      borderRadius: ui.borderRadiusRounded,
       minWidth: unit * 4,
       boxSizing: 'border-box',
       display: 'inline-block',

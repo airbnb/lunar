@@ -16,13 +16,28 @@ export default {
 export function supportsADisabledState() {
   return (
     <>
-      <Input disabled name="disabled-input" label="Input" onChange={action('onChange')} />
+      <Input
+        disabled
+        name="disabled-input"
+        label="Input"
+        onChange={() => console.log('onChange')}
+      />
 
-      <Select disabled name="disabled-select" label="Select" onChange={action('onChange')}>
+      <Select
+        disabled
+        name="disabled-select"
+        label="Select"
+        onChange={() => console.log('onChange')}
+      >
         <option value="">Option</option>
       </Select>
 
-      <TextArea disabled name="disabled-textarea" label="Textarea" onChange={action('onChange')} />
+      <TextArea
+        disabled
+        name="disabled-textarea"
+        label="Textarea"
+        onChange={() => console.log('onChange')}
+      />
     </>
   );
 }
@@ -34,9 +49,9 @@ supportsADisabledState.story = {
 export function supportsAnInvalidErrorState() {
   return (
     <>
-      <Input invalid name="invalid-input" label="Input" onChange={action('onChange')} />
+      <Input invalid name="invalid-input" label="Input" onChange={() => console.log('onChange')} />
 
-      <Select invalid name="invalid-select" label="Select" onChange={action('onChange')}>
+      <Select invalid name="invalid-select" label="Select" onChange={() => console.log('onChange')}>
         <option value="">Option</option>
       </Select>
 
@@ -45,7 +60,7 @@ export function supportsAnInvalidErrorState() {
         name="invalid-textarea"
         label="Textarea"
         errorMessage="With an optional error message."
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
     </>
   );
@@ -62,7 +77,7 @@ export function supportsAPrefx() {
         name="prefix-input"
         label="Input"
         prefix={<Prefix>http://</Prefix>}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
 
       <Select
@@ -73,7 +88,7 @@ export function supportsAPrefx() {
             <IconCurrency decorative size="1.25em" />
           </Prefix>
         }
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       >
         <option value="">USD</option>
       </Select>
@@ -92,7 +107,7 @@ export function supportsASuffix() {
         name="suffix-input"
         label="Input"
         suffix={<Suffix>.com</Suffix>}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
 
       <Select
@@ -103,7 +118,7 @@ export function supportsASuffix() {
             <IconTranslate decorative size="1.25em" />
           </Suffix>
         }
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       >
         <option value="">English</option>
       </Select>
@@ -124,7 +139,7 @@ export function supportsBothAPrefixAndSuffixAndASmallState() {
         label="Input"
         prefix={<Prefix small>http://</Prefix>}
         suffix={<Suffix small>.com</Suffix>}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
 
       <TextArea
@@ -142,7 +157,7 @@ export function supportsBothAPrefixAndSuffixAndASmallState() {
             Goodbye
           </Suffix>
         }
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
     </>
   );
@@ -161,7 +176,7 @@ export function supportsBothAPrefixAndSuffixAndALargeState() {
         label="Input"
         prefix={<Prefix large>http://</Prefix>}
         suffix={<Suffix large>.com</Suffix>}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
 
       <TextArea
@@ -179,7 +194,7 @@ export function supportsBothAPrefixAndSuffixAndALargeState() {
             Goodbye
           </Suffix>
         }
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
     </>
   );
@@ -192,13 +207,18 @@ supportsBothAPrefixAndSuffixAndALargeState.story = {
 export function supportsInline() {
   return (
     <>
-      <Input inline name="disabled-input" label="Input" onChange={action('onChange')} />
+      <Input inline name="disabled-input" label="Input" onChange={() => console.log('onChange')} />
 
-      <Select inline name="disabled-select" label="Select" onChange={action('onChange')}>
+      <Select inline name="disabled-select" label="Select" onChange={() => console.log('onChange')}>
         <option value="">Option</option>
       </Select>
 
-      <TextArea inline name="disabled-textarea" label="Textarea" onChange={action('onChange')} />
+      <TextArea
+        inline
+        name="disabled-textarea"
+        label="Textarea"
+        onChange={() => console.log('onChange')}
+      />
     </>
   );
 }
@@ -210,13 +230,13 @@ supportsInline.story = {
 export function smallAndLargeSizes() {
   return (
     <>
-      <Input small name="size-small" label="Small" onChange={action('onChange')} />
+      <Input small name="size-small" label="Small" onChange={() => console.log('onChange')} />
 
-      <Select name="size-normal" label="Medium (normal)" onChange={action('onChange')}>
+      <Select name="size-normal" label="Medium (normal)" onChange={() => console.log('onChange')}>
         <option value="">Option</option>
       </Select>
 
-      <TextArea large name="size-large" label="Large" onChange={action('onChange')} />
+      <TextArea large name="size-large" label="Large" onChange={() => console.log('onChange')} />
     </>
   );
 }

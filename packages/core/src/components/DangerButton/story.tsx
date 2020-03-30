@@ -1,5 +1,6 @@
 import React from 'react';
 import DangerButton from '.';
+import ButtonGroup from '../ButtonGroup';
 
 export default {
   title: 'Core/DangerButton',
@@ -10,9 +11,10 @@ export default {
 
 export function buttonWithAnInvertedVariant() {
   return (
-    <>
-      <DangerButton>Button</DangerButton> <DangerButton inverted>Button</DangerButton>
-    </>
+    <ButtonGroup>
+      <DangerButton>Button</DangerButton>
+      <DangerButton inverted>Button</DangerButton>
+    </ButtonGroup>
   );
 }
 
@@ -22,14 +24,15 @@ buttonWithAnInvertedVariant.story = {
 
 export function anAnchorLinkWhenPassingHref() {
   return (
-    <>
+    <ButtonGroup>
       <DangerButton openInNewWindow href="https://github.com/airbnb/lunar">
         Link
-      </DangerButton>{' '}
+      </DangerButton>
+
       <DangerButton openInNewWindow inverted href="https://github.com/airbnb/lunar">
         Link
       </DangerButton>
-    </>
+    </ButtonGroup>
   );
 }
 
@@ -40,9 +43,9 @@ anAnchorLinkWhenPassingHref.story = {
 export function withEventHandlers() {
   return (
     <DangerButton
-      onClick={action('onClick')}
-      onMouseOver={action('onMouseOver')}
-      onFocus={action('onFocus')}
+      onClick={() => console.log('onClick')}
+      onMouseOver={() => console.log('onMouseOver')}
+      onFocus={() => console.log('onFocus')}
     >
       Button
     </DangerButton>
@@ -56,17 +59,25 @@ withEventHandlers.story = {
 export function withDifferentSizingSmallRegularDefaultAndLarge() {
   return (
     <>
-      <DangerButton small>Button</DangerButton> <DangerButton>Button</DangerButton>{' '}
-      <DangerButton large>Button</DangerButton>
+      <ButtonGroup>
+        <DangerButton small>Button</DangerButton>
+        <DangerButton>Button</DangerButton>
+        <DangerButton large>Button</DangerButton>
+      </ButtonGroup>
+
       <br />
-      <br />
-      <DangerButton inverted small>
-        Button
-      </DangerButton>{' '}
-      <DangerButton inverted>Button</DangerButton>{' '}
-      <DangerButton inverted large>
-        Button
-      </DangerButton>
+
+      <ButtonGroup>
+        <DangerButton inverted small>
+          Button
+        </DangerButton>
+
+        <DangerButton inverted>Button</DangerButton>
+
+        <DangerButton inverted large>
+          Button
+        </DangerButton>
+      </ButtonGroup>
     </>
   );
 }
@@ -78,15 +89,22 @@ withDifferentSizingSmallRegularDefaultAndLarge.story = {
 export function withDifferentStatesDisabledAndLoading() {
   return (
     <>
-      <DangerButton disabled>Button</DangerButton> <DangerButton loading>Button</DangerButton>
+      <ButtonGroup>
+        <DangerButton disabled>Button</DangerButton>
+        <DangerButton loading>Button</DangerButton>
+      </ButtonGroup>
+
       <br />
-      <br />
-      <DangerButton inverted disabled>
-        Button
-      </DangerButton>{' '}
-      <DangerButton inverted loading>
-        Button
-      </DangerButton>
+
+      <ButtonGroup>
+        <DangerButton inverted disabled>
+          Button
+        </DangerButton>
+
+        <DangerButton inverted loading>
+          Button
+        </DangerButton>
+      </ButtonGroup>
     </>
   );
 }

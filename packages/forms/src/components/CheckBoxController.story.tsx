@@ -22,7 +22,7 @@ export function connectedToTheParentForm() {
         name="field"
         label="Label"
         validator={() => {}}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       >
         {(CheckBox) => (
           <div>

@@ -59,17 +59,17 @@ withNoIcons.story = {
 export function withACloseButton() {
   return (
     <div>
-      <Alert title="Alert title" onClose={action('onClose')} />
+      <Alert title="Alert title" onClose={() => console.log('onClose')} />
 
       <br />
 
-      <Alert title="Alert title" onClose={action('onClose')}>
+      <Alert title="Alert title" onClose={() => console.log('onClose')}>
         <Text>Supporting content that is descriptive and helpful would go here</Text>
       </Alert>
 
       <br />
 
-      <Alert danger title="Danger alert title" onClose={action('onClose')}>
+      <Alert danger title="Danger alert title" onClose={() => console.log('onClose')}>
         <Text>Supporting content that is descriptive and helpful would go here</Text>
       </Alert>
     </div>
@@ -94,8 +94,8 @@ inlineStory.story = {
 
 export function withSupportingContent() {
   return (
-    <Alert danger title="Something failed horribly" onClose={action('onClose')}>
-      <MutedButton inverted onClick={action('onClick')}>
+    <Alert danger title="Something failed horribly" onClose={() => console.log('onClose')}>
+      <MutedButton inverted onClick={() => console.log('onClick')}>
         Retry the thing
       </MutedButton>
     </Alert>
@@ -108,13 +108,13 @@ withSupportingContent.story = {
 
 export function withWrappingContent() {
   return (
-    <Alert info title="Something failed horribly" onClose={action('onClose')}>
+    <Alert info title="Something failed horribly" onClose={() => console.log('onClose')}>
       <Text>
         <LoremIpsum />
       </Text>
 
       <Spacing top={1}>
-        <MutedButton inverted onClick={action('onClick')}>
+        <MutedButton inverted onClick={() => console.log('onClick')}>
           Retry the thing
         </MutedButton>
       </Spacing>

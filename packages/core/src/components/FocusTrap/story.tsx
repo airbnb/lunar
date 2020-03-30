@@ -14,9 +14,9 @@ export default {
 export function trapsFocusTryTabbingAround() {
   return (
     <FocusTrap>
-      <Input name="trap-input" label="Input" onChange={action('onChange')} />
+      <Input name="trap-input" label="Input" onChange={() => console.log('onChange')} />
 
-      <TextArea name="trap-textarea" label="Textarea" onChange={action('onChange')} />
+      <TextArea name="trap-textarea" label="Textarea" onChange={() => console.log('onChange')} />
 
       <Button>Action</Button>
     </FocusTrap>

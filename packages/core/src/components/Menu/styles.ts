@@ -48,12 +48,16 @@ export const styleSheetItem: StyleSheet = ({ color, font, pattern, unit, transit
     alignItems: 'center',
     color: color.accent.text,
 
-    ':hover': {
-      backgroundColor: color.accent.bgHover,
-      color: color.core.neutral[6],
-    },
-
     '@selectors': {
+      ':hover, :focus': {
+        backgroundColor: color.accent.bgHover,
+        color: color.core.neutral[6],
+      },
+
+      ':focus': {
+        boxShadow: 'none',
+      },
+
       // Fix content
       '> span': {
         flexGrow: 1,

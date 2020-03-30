@@ -9,7 +9,21 @@ export default {
 };
 
 export function aStandardCheckboxField() {
-  return <CheckBox name="cb-basic" label="Label" onChange={action('onChange')} />;
+  return (
+    <>
+      <CheckBox
+        name="cb-basic"
+        label="Label"
+        onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
+      />
+      <CheckBox
+        checked
+        name="cb-basic"
+        label="Label when checked"
+        onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
+      />
+    </>
+  );
 }
 
 aStandardCheckboxField.story = {
@@ -19,9 +33,28 @@ aStandardCheckboxField.story = {
 export function inDifferentSizes() {
   return (
     <>
-      <CheckBox small middleAlign name="cb-small" label="Small" onChange={action('onChange')} />
-      <CheckBox middleAlign name="cb-regular" label="Regular" onChange={action('onChange')} />
-      <CheckBox large middleAlign name="cb-large" label="Large" onChange={action('onChange')} />
+      <CheckBox
+        small
+        middleAlign
+        name="cb-small"
+        label="Small"
+        onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
+      />
+
+      <CheckBox
+        middleAlign
+        name="cb-regular"
+        label="Regular"
+        onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
+      />
+
+      <CheckBox
+        large
+        middleAlign
+        name="cb-large"
+        label="Large"
+        onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
+      />
     </>
   );
 }
@@ -37,7 +70,7 @@ export function withAnErrorMessageInAnInvalidState() {
       name="cb-error"
       label="Label"
       errorMessage="This field is required."
-      onChange={action('onChange')}
+      onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
     />
   );
 }
@@ -53,7 +86,7 @@ export function withALabelDescriptionInADisabledState() {
       name="cb-disabled"
       label="Label"
       labelDescription="This is a small label description."
-      onChange={action('onChange')}
+      onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
     />
   );
 }
@@ -69,7 +102,7 @@ export function withALabelDescriptionInAnIndeterminateState() {
       name="cb-disabled"
       label="Label"
       labelDescription="This is a small label description."
-      onChange={action('onChange')}
+      onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
     />
   );
 }
@@ -86,14 +119,15 @@ export function withAMiddleAlignment() {
         middleAlign
         name="cb-topalign"
         label="Label"
-        onChange={action('onChange')}
+        onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
       />
+
       <CheckBox
         middleAlign
         name="cb-topalign"
         label="Label"
         labelDescription="This is a small label description."
-        onChange={action('onChange')}
+        onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
       />
     </>
   );
@@ -104,7 +138,14 @@ withAMiddleAlignment.story = {
 };
 
 export function markedAsOptional() {
-  return <CheckBox optional name="cb-optional" label="Label" onChange={action('onChange')} />;
+  return (
+    <CheckBox
+      optional
+      name="cb-optional"
+      label="Label"
+      onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
+    />
+  );
 }
 
 markedAsOptional.story = {
@@ -114,20 +155,25 @@ markedAsOptional.story = {
 export function markedAsCheckedInDifferentStates() {
   return (
     <>
-      <CheckBox checked name="cb-checked" label="Label" onChange={action('onChange')} />{' '}
+      <CheckBox
+        checked
+        name="cb-checked"
+        label="Label"
+        onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
+      />{' '}
       <CheckBox
         checked
         disabled
         name="cb-checked-disabled"
         label="Label"
-        onChange={action('onChange')}
+        onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
       />{' '}
       <CheckBox
         checked
         invalid
         name="cb-checked-invalid"
         label="Label"
-        onChange={action('onChange')}
+        onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
       />
     </>
   );
@@ -144,7 +190,7 @@ export function asAClickableButton() {
       name="cb-basic"
       label="Label"
       labelDescription="This is a label description."
-      onChange={action('onChange')}
+      onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
     />
   );
 }
@@ -161,7 +207,7 @@ export function asACompactClickableButton() {
       name="cb-basic"
       label="Label"
       labelDescription="This is a label description."
-      onChange={action('onChange')}
+      onChange={(checked) => console.log('onChange', `checked: ${checked}`)}
     />
   );
 }

@@ -3,7 +3,7 @@ import copy from 'copy-to-clipboard';
 import IconCopy from '@airbnb/lunar-icons/lib/interface/IconCopy';
 import T from '../Translate';
 import Tooltip from '../Tooltip';
-import Link from '../Link';
+import IconButton from '../IconButton';
 
 export type CopyProps = {
   /** Custom element to trigger the click. */
@@ -56,10 +56,9 @@ export default function Copy({
   };
 
   const element = children || (
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <Link trackingName={trackingName} id={id}>
+    <IconButton active trackingName={trackingName} id={id}>
       <IconCopy decorative />
-    </Link>
+    </IconButton>
   );
 
   return (

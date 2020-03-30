@@ -90,6 +90,11 @@ export const styleSheetTab: StyleSheet = ({ color, font, pattern, unit, ui, tran
     fontWeight: font.weights.bold,
     borderTopLeftRadius: ui.borderRadius,
     borderTopRightRadius: ui.borderRadius,
+
+    ':focus': {
+      background: color.accent.bgHover,
+      boxShadow: 'none',
+    },
   },
 
   tabButton_secondary: {
@@ -101,9 +106,14 @@ export const styleSheetTab: StyleSheet = ({ color, font, pattern, unit, ui, tran
     border: `${ui.borderWidth}px solid ${color.clear}`,
     backgroundColor: color.clear,
     borderRadius: ui.borderRadius,
+
     ':hover': {
       borderColor: color.accent.borderHover,
       backgroundColor: color.core.neutral[1],
+    },
+
+    ':focus': {
+      ...pattern.themedFocus,
     },
   },
 
@@ -114,6 +124,7 @@ export const styleSheetTab: StyleSheet = ({ color, font, pattern, unit, ui, tran
   tabButton_secondary_selected: {
     borderColor: color.accent.borderActive,
     backgroundColor: color.accent.bg,
+
     ':hover': {
       borderColor: color.core.primary[4],
       backgroundColor: color.accent.bgHover,

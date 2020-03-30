@@ -9,7 +9,7 @@ export default {
 };
 
 export function aStandardSwitchField() {
-  return <Switch name="switch-basic" label="Label" onChange={action('onChange')} />;
+  return <Switch name="switch-basic" label="Label" onChange={() => console.log('onChange')} />;
 }
 
 aStandardSwitchField.story = {
@@ -19,9 +19,9 @@ aStandardSwitchField.story = {
 export function inDifferentSizes() {
   return (
     <>
-      <Switch small name="switch-small" label="Small" onChange={action('onChange')} />
-      <Switch name="switch-regular" label="Regular" onChange={action('onChange')} />
-      <Switch large name="switch-large" label="Large" onChange={action('onChange')} />
+      <Switch small name="switch-small" label="Small" onChange={() => console.log('onChange')} />
+      <Switch name="switch-regular" label="Regular" onChange={() => console.log('onChange')} />
+      <Switch large name="switch-large" label="Large" onChange={() => console.log('onChange')} />
     </>
   );
 }
@@ -37,7 +37,7 @@ export function withAnErrorMessageInAnInvalidState() {
       name="switch-error"
       label="Label"
       errorMessage="This field is required."
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -53,7 +53,7 @@ export function withALabelDescriptionInADisabledState() {
       name="switch-disabled"
       label="Label"
       labelDescription="This is a small label description."
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -63,7 +63,14 @@ withALabelDescriptionInADisabledState.story = {
 };
 
 export function markedAsOptional() {
-  return <Switch optional name="switch-optional" label="Label" onChange={action('onChange')} />;
+  return (
+    <Switch
+      optional
+      name="switch-optional"
+      label="Label"
+      onChange={() => console.log('onChange')}
+    />
+  );
 }
 
 markedAsOptional.story = {
@@ -73,20 +80,25 @@ markedAsOptional.story = {
 export function markedAsCheckedInDifferentStates() {
   return (
     <>
-      <Switch checked name="switch-checked" label="Label" onChange={action('onChange')} />
+      <Switch
+        checked
+        name="switch-checked"
+        label="Label"
+        onChange={() => console.log('onChange')}
+      />
       <Switch
         checked
         disabled
         name="switch-checked-disabled"
         label="Label"
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
       <Switch
         checked
         invalid
         name="switch-checked-invalid"
         label="Label"
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
     </>
   );

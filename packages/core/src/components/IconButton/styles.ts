@@ -9,9 +9,13 @@ export const styleSheetIconButton: StyleSheet = ({ color, pattern, ui, unit, tra
     borderRadius: ui.borderRadius,
 
     '@selectors': {
-      ':not([disabled]):hover': {
+      ':not([disabled]):hover, :not([disabled]):focus': {
         color: color.core.primary[3],
         backgroundColor: color.accent.bgHover,
+      },
+
+      ':not([disabled]):focus': {
+        ...pattern.themedFocus, // needed for `a`
       },
     },
   },

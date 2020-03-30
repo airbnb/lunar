@@ -18,7 +18,7 @@ export function aListOfSingleSelectToggleButtons() {
       value="red"
       name="button-group-controller"
       label="Favorite color?"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(ControlledButton) => (
         <ButtonGroup>
@@ -48,7 +48,7 @@ export function handlesInvalidState() {
       value="red"
       name="button-group-controller"
       label="Favorite color?"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(ControlledButton) => (
         <ButtonGroup>
@@ -78,7 +78,7 @@ export function handlesDisabledState() {
       value="red"
       name="button-group-controller"
       label="Favorite color?"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(ControlledButton) => (
         <ButtonGroup>
@@ -108,7 +108,7 @@ export function asSmall() {
       value="red"
       name="button-group-controller"
       label="Favorite color?"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(ControlledButton) => (
         <ButtonGroup>
@@ -138,7 +138,7 @@ export function asLarge() {
       value="red"
       name="button-group-controller"
       label="Favorite color?"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(ControlledButton) => (
         <ButtonGroup>
@@ -168,7 +168,7 @@ export function withInline() {
       value="red"
       name="button-group-controller"
       label="Favorite color?"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     >
       {(ControlledButton) => (
         <ButtonGroup>

@@ -23,7 +23,12 @@ class DropdownDemo extends React.Component<DropdownProps, { open: boolean }> {
         <Button onClick={this.handleToggle}>{children!}</Button>
 
         {this.state.open && (
-          <Dropdown {...props} visible zIndex={5} onClickOutside={action('onClickOutside')}>
+          <Dropdown
+            {...props}
+            visible
+            zIndex={5}
+            onClickOutside={() => console.log('onClickOutside')}
+          >
             <Menu accessibilityLabel="Dropdown demo">
               <Row>
                 <Text>Dropdown menu is open!</Text>

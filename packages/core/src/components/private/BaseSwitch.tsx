@@ -5,7 +5,7 @@ import FormInput, { InputProps } from './FormInput';
 import inputStyleSheet from '../../themes/inputStyleSheet';
 
 export const styleSheetSwitch: StyleSheet = (theme) => {
-  const { color, ui, unit } = theme;
+  const { color, pattern, ui, unit } = theme;
   const styles = inputStyleSheet(theme);
   const width = unit * 5;
   const height = unit * 3;
@@ -20,8 +20,18 @@ export const styleSheetSwitch: StyleSheet = (theme) => {
       height,
       display: 'inline-block',
       position: 'relative',
-      overflow: 'hidden',
       lineHeight: 0,
+      borderRadius: ui.borderRadiusRounded,
+
+      ':active': {
+        ...pattern.themedFocus,
+      },
+
+      '@selectors': {
+        '> input:focus + span': {
+          ...pattern.themedFocus,
+        },
+      },
     },
 
     toggle: {

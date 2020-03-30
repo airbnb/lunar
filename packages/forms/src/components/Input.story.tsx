@@ -18,7 +18,12 @@ export function connectedToTheParentForm() {
         return Promise.resolve();
       }}
     >
-      <Input name="field" label="Label" validator={() => {}} onChange={action('onChange')} />
+      <Input
+        name="field"
+        label="Label"
+        validator={() => {}}
+        onChange={() => console.log('onChange')}
+      />
     </Form>
   );
 }

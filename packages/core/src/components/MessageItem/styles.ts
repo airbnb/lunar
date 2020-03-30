@@ -66,10 +66,6 @@ export const styleSheetMessageItem: StyleSheet = ({ color, font, ui, unit, patte
     display: 'block',
     width: '100%',
     textAlign: 'left',
-
-    ':focus': {
-      outline: 'none',
-    },
   },
 
   sendingOverlay: {

@@ -25,7 +25,7 @@ export function connectedToTheParentForm() {
         datePickerProps={{
           onMonthChange: action('onMonthChange'),
         }}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
     </Form>
   );

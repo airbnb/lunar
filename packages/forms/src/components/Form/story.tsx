@@ -73,13 +73,13 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
 
     return (
       <Form
-        onFailedSubmit={action('onFailedSubmit')}
+        onFailedSubmit={() => console.log('onFailedSubmit')}
         onSubmit={(data) => {
           action('onSubmit')(data);
 
           return Promise.resolve();
         }}
-        onStateUpdate={action('onStateUpdate')}
+        onStateUpdate={() => console.log('onStateUpdate')}
       >
         {mounted && (
           <Input
@@ -87,7 +87,7 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
             label="Prefills other field on change"
             name="text_base"
             validator={isRequired}
-            onChange={action('onChange')}
+            onChange={() => console.log('onChange')}
             onBatchChange={() => ({
               text_other: 'Prefilled',
             })}
@@ -99,7 +99,7 @@ class UnmountExample extends React.Component<{}, { mounted: boolean }> {
           label="Cannot be empty"
           name="text_other"
           validator={isRequired}
-          onChange={action('onChange')}
+          onChange={() => console.log('onChange')}
         />
 
         <Button onClick={this.handleToggleMount}>
@@ -121,13 +121,13 @@ export function withAllFields() {
   return (
     <Form
       initialValues={values}
-      onFailedSubmit={action('onFailedSubmit')}
+      onFailedSubmit={() => console.log('onFailedSubmit')}
       onSubmit={(data) => {
         action('onSubmit')(data);
 
         return Promise.resolve();
       }}
-      onStateUpdate={action('onStateUpdate')}
+      onStateUpdate={() => console.log('onStateUpdate')}
     >
       <Input
         unregisterOnUnmount
@@ -136,7 +136,7 @@ export function withAllFields() {
         // defaultValue="Lunar"
         name="text[base]"
         validator={isRequired}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
 
       <Input
@@ -147,7 +147,7 @@ export function withAllFields() {
         type="email"
         defaultValue="lunar@domain.com"
         validator={isEmail}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
 
       <TextArea
@@ -158,7 +158,7 @@ export function withAllFields() {
         name="textarea"
         defaultValue="Type something..."
         validator={isRequired}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
 
       <Select
@@ -167,7 +167,7 @@ export function withAllFields() {
         name="select"
         defaultValue="foo"
         validator={isRequired}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       >
         <option value="">---</option>
         <option value="foo">Foo</option>
@@ -181,7 +181,7 @@ export function withAllFields() {
         name="datetime"
         validator={isRequired}
         defaultValue={fixedDate.toISOString()}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
 
       <DatePickerInput
@@ -190,7 +190,7 @@ export function withAllFields() {
         name="date"
         validator={isDate}
         defaultValue={fixedDate}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
 
       <Autocomplete
@@ -200,7 +200,7 @@ export function withAllFields() {
         name="autocomplete"
         defaultValue="black"
         validator={isRequired}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
         onLoadItems={(value) =>
           Promise.resolve(items.filter((item) => item.name.toLowerCase().match(value)))
         }
@@ -215,7 +215,7 @@ export function withAllFields() {
         name="multicomplete"
         renderItem={(item, highlighted, selected) => <Text bold={selected}>{item.name}</Text>}
         validator={isRequired}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
         onLoadItems={(value) =>
           Promise.resolve(items.filter((item) => item.name.toLowerCase().match(value)))
         }
@@ -226,7 +226,7 @@ export function withAllFields() {
         label="Switch"
         name="switch"
         validator={isRequired}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
 
       <CheckBox
@@ -234,7 +234,7 @@ export function withAllFields() {
         label="Single checkbox"
         name="single_checkbox"
         validator={isRequired}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
 
       <CheckBoxController<'foo' | 'bar' | 'baz'>
@@ -243,7 +243,7 @@ export function withAllFields() {
         name="multiple_checkbox"
         defaultValue={['foo', 'baz']}
         validator={isRequired}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       >
         {(CB) => (
           <div>
@@ -286,7 +286,7 @@ export function withAllFields() {
         name="multiple_radio"
         defaultValue="foo"
         validator={isRequired}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       >
         {(RB) => (
           <div>
@@ -303,7 +303,7 @@ export function withAllFields() {
         name="mutliple_buttons"
         defaultValue="foo"
         validator={isRequired}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       >
         {(B) => (
           <ButtonGroup>

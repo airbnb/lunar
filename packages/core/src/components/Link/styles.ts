@@ -8,12 +8,14 @@ export const linkStyleSheet: StyleSheet = ({ color, pattern, transition }) => ({
     textAlign: 'left',
     verticalAlign: 'baseline',
 
-    ':active': {
-      outline: 'none',
-    },
-
     ':hover': {
       color: color.core.primary[4],
+      textDecoration: 'underline',
+    },
+
+    ':focus': {
+      color: color.core.primary[4],
+      boxShadow: 'none',
       textDecoration: 'underline',
     },
   },
@@ -33,6 +35,10 @@ export const linkStyleSheet: StyleSheet = ({ color, pattern, transition }) => ({
     ':hover': {
       color: color.accent.bgHover,
     },
+
+    ':focus': {
+      color: color.accent.bgHover,
+    },
   },
 
   link_muted: {
@@ -41,12 +47,21 @@ export const linkStyleSheet: StyleSheet = ({ color, pattern, transition }) => ({
     ':hover': {
       color: color.core.neutral[4],
     },
+
+    ':focus': {
+      color: color.core.neutral[4],
+    },
   },
 
   link_disabled: {
     ...pattern.disabled,
+    cursor: 'default',
 
     ':hover': {
+      textDecoration: 'none',
+    },
+
+    ':focus': {
       textDecoration: 'none',
     },
   },

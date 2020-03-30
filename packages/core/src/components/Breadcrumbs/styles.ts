@@ -10,6 +10,12 @@ export const styleSheetBreadcrumb: StyleSheet = ({ color, font, pattern, transit
     color: color.core.neutral[5],
     cursor: 'default',
     outline: 'none',
+
+    '@selectors': {
+      ':not([disabled]):focus': {
+        boxShadow: 'none',
+      },
+    },
   },
 
   breadcrumb_clickable: {
@@ -18,6 +24,7 @@ export const styleSheetBreadcrumb: StyleSheet = ({ color, font, pattern, transit
     '@selectors': {
       ':not([disabled]):hover, :not([disabled]):focus': {
         color: color.core.neutral[4],
+        textDecoration: 'underline',
       },
     },
   },

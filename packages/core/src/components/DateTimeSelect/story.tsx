@@ -16,7 +16,7 @@ export function standardSelectFieldForDatesAndTimes() {
       name="dts-basic"
       label="Label"
       value={fixedDate}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -33,20 +33,20 @@ export function inDifferentSizes() {
         name="dts-small"
         label="Small"
         value={fixedDate}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
       <DateTimeSelect
         name="dts-regular"
         label="Regular"
         value={fixedDate}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
       <DateTimeSelect
         large
         name="dts-large"
         label="Large"
         value={fixedDate}
-        onChange={action('onChange')}
+        onChange={() => console.log('onChange')}
       />
     </>
   );
@@ -63,7 +63,7 @@ export function withAnInvalidState() {
       name="dts-invalid"
       label="Label"
       value={fixedDate}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -80,7 +80,7 @@ export function withADisabledStateAndLabelDescription() {
       label="Label"
       labelDescription="Please choose a date"
       value={fixedDate}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -96,7 +96,7 @@ export function withTheYearHidden() {
       name="dts-noyear"
       label="No year"
       value={fixedDate}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -112,7 +112,7 @@ export function orAllDatesHidden() {
       name="dts-nodate"
       label="Time"
       value={fixedDate}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -128,7 +128,7 @@ export function orAllTimesHidden() {
       name="dts-notime"
       label="Date"
       value={fixedDate}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -144,7 +144,7 @@ export function with12HourDaysInsteadOf24() {
       name="dts-12"
       label="12-hour clock"
       value={fixedDate}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -161,7 +161,7 @@ export function withInlineLabel() {
       name="dts-notime"
       label="Date"
       value={fixedDate}
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }

@@ -10,6 +10,10 @@ const styleSheet = aesthetic.extendStyles(linkStyleSheet, ({ color }) => ({
     ':hover': {
       color: color.core.neutral[6],
     },
+
+    ':focus': {
+      color: color.core.neutral[6],
+    },
   },
 }));
 

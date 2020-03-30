@@ -12,7 +12,28 @@ export default {
 };
 
 export function aStandardRadioButtonField() {
-  return <RadioButton name="radio-basic" label="Label" value="foo" onChange={action('onChange')} />;
+  return (
+    <>
+      <RadioButton
+        name="radio-basic-basic"
+        label="Label"
+        value="basic"
+        onChange={(checked, value) =>
+          console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+        }
+      />
+
+      <RadioButton
+        checked
+        name="radio-basic-checked"
+        label="Label when checked"
+        value="checked"
+        onChange={(checked, value) =>
+          console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+        }
+      />
+    </>
+  );
 }
 
 aStandardRadioButtonField.story = {
@@ -27,23 +48,29 @@ export function inDifferentSizes() {
         middleAlign
         name="radio-small"
         label="Small"
-        value="foo"
-        onChange={action('onChange')}
+        value="small"
+        onChange={(checked, value) =>
+          console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+        }
       />
       <RadioButton
         middleAlign
         name="radio-regular"
         label="Regular"
-        value="foo"
-        onChange={action('onChange')}
+        value="regular"
+        onChange={(checked, value) =>
+          console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+        }
       />
       <RadioButton
         large
         middleAlign
         name="radio-large"
         label="Large"
-        value="foo"
-        onChange={action('onChange')}
+        value="large"
+        onChange={(checked, value) =>
+          console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+        }
       />
     </>
   );
@@ -59,9 +86,11 @@ export function withAnErrorMessageInAnInvalidState() {
       invalid
       name="radio-error"
       label="Label"
-      value="foo"
+      value="error"
       errorMessage="This field is required."
-      onChange={action('onChange')}
+      onChange={(checked, value) =>
+        console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+      }
     />
   );
 }
@@ -76,9 +105,11 @@ export function withALabelDescriptionInADisabledState() {
       disabled
       name="radio-disabled"
       label="Label"
-      value="foo"
+      value="disabled"
       labelDescription="This is a small label description."
-      onChange={action('onChange')}
+      onChange={(checked, value) =>
+        console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+      }
     />
   );
 }
@@ -93,9 +124,11 @@ export function withALabelDescriptionInAIndeterminateState() {
       indeterminate
       name="radio-neutral"
       label="Label"
-      value="foo"
+      value="neutral"
       labelDescription="This is a small label description."
-      onChange={action('onChange')}
+      onChange={(checked, value) =>
+        console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+      }
     />
   );
 }
@@ -112,16 +145,20 @@ export function withAMiddleAlignment() {
         middleAlign
         name="radio-topalign"
         label="Label"
-        value="foo"
-        onChange={action('onChange')}
+        value="topalign"
+        onChange={(checked, value) =>
+          console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+        }
       />
       <RadioButton
         middleAlign
-        name="radio-topalign"
+        name="radio-middlealign"
         label="Label"
-        value="foo"
+        value="middlealign"
         labelDescription="This is a small label description."
-        onChange={action('onChange')}
+        onChange={(checked, value) =>
+          console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+        }
       />
     </>
   );
@@ -137,8 +174,10 @@ export function markedAsOptional() {
       optional
       name="radio-optional"
       label="Label"
-      value="foo"
-      onChange={action('onChange')}
+      value="optional"
+      onChange={(checked, value) =>
+        console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+      }
     />
   );
 }
@@ -154,24 +193,30 @@ export function markedAsCheckedInDifferentStates() {
         checked
         name="radio-checked"
         label="Label"
-        value="foo"
-        onChange={action('onChange')}
+        value="checked"
+        onChange={(checked, value) =>
+          console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+        }
       />
       <RadioButton
         checked
         disabled
         name="radio-checked-disabled"
         label="Label"
-        value="foo"
-        onChange={action('onChange')}
+        value="checked-disabled"
+        onChange={(checked, value) =>
+          console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+        }
       />
       <RadioButton
         checked
         invalid
         name="radio-checked-invalid"
         label="Label"
-        value="foo"
-        onChange={action('onChange')}
+        value="checked-invalid"
+        onChange={(checked, value) =>
+          console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+        }
       />
     </>
   );
@@ -189,8 +234,10 @@ export function asAClickableButton() {
       name="radio-basic"
       label="Label"
       labelDescription="This is a label description."
-      value="foo"
-      onChange={action('onChange')}
+      value="basic"
+      onChange={(checked, value) =>
+        console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+      }
     />
   );
 }
@@ -207,8 +254,10 @@ export function asACompactClickableButton() {
       name="radio-basic"
       label="Label"
       labelDescription="This is a label description."
-      value="foo"
-      onChange={action('onChange')}
+      value="basic"
+      onChange={(checked, value) =>
+        console.log('onChange', `checked: ${checked}`, `value: ${value}`)
+      }
     >
       <Row after={<ProfilePhoto small imageSrc={lunar} title="Photo" />}>Label from children</Row>
     </RadioButton>

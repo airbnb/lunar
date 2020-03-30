@@ -9,7 +9,7 @@ export default {
 };
 
 export function aStandardFileUploadField() {
-  return <FileInput name="input-basic" label="Label" onChange={action('onChange')} />;
+  return <FileInput name="input-basic" label="Label" onChange={() => console.log('onChange')} />;
 }
 
 aStandardFileUploadField.story = {
@@ -25,7 +25,7 @@ export function supportsMultipleFilesOfImageOnlyWhileHidingFilePreviewColumns() 
       hideLastModified
       name="input-multiple"
       label="Label"
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -37,9 +37,26 @@ supportsMultipleFilesOfImageOnlyWhileHidingFilePreviewColumns.story = {
 export function inDifferentSizesAndFileTypes() {
   return (
     <>
-      <FileInput onlyAudio small name="input-small" label="Small" onChange={action('onChange')} />
-      <FileInput onlyVideo name="input-regular" label="Regular" onChange={action('onChange')} />
-      <FileInput onlyImages large name="input-large" label="Large" onChange={action('onChange')} />
+      <FileInput
+        onlyAudio
+        small
+        name="input-small"
+        label="Small"
+        onChange={() => console.log('onChange')}
+      />
+      <FileInput
+        onlyVideo
+        name="input-regular"
+        label="Regular"
+        onChange={() => console.log('onChange')}
+      />
+      <FileInput
+        onlyImages
+        large
+        name="input-large"
+        label="Large"
+        onChange={() => console.log('onChange')}
+      />
     </>
   );
 }
@@ -55,7 +72,7 @@ export function withAnErrorMessageInAnInvalidState() {
       name="input-error"
       label="Label"
       errorMessage="This field is required."
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -71,7 +88,7 @@ export function withALabelDescriptionInADisabledState() {
       name="input-disabled"
       label="Label"
       labelDescription="This is a small label description."
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }
@@ -81,7 +98,14 @@ withALabelDescriptionInADisabledState.story = {
 };
 
 export function markedAsOptional() {
-  return <FileInput optional name="input-optional" label="Label" onChange={action('onChange')} />;
+  return (
+    <FileInput
+      optional
+      name="input-optional"
+      label="Label"
+      onChange={() => console.log('onChange')}
+    />
+  );
 }
 
 markedAsOptional.story = {
@@ -96,7 +120,7 @@ export function displayWithInlineLabelDoesNotDisplayFileTable() {
       name="input-optional"
       label="Label"
       labelDescription="This is a small label description."
-      onChange={action('onChange')}
+      onChange={() => console.log('onChange')}
     />
   );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button';
+import Text from '../Text';
 import Copy from '.';
 
 export default {
@@ -15,6 +16,18 @@ export function copyAStringOfTextToTheClipboard() {
 
 copyAStringOfTextToTheClipboard.story = {
   name: 'Copy a string of text to the clipboard.',
+};
+
+export function copyAsInlineWithText() {
+  return (
+    <Text>
+      Hello, please copy <Copy text="This string has been copied." /> your text.
+    </Text>
+  );
+}
+
+copyAsInlineWithText.story = {
+  name: 'Copy inline with text.',
 };
 
 export function withACustomPromptMessage() {
