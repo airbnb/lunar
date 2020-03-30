@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.5.0 - 2020-03-30
+
+#### 🚀 Updates
+
+- New focus styles throughout. (#349) ([7ea005b](https://github.com/airbnb/lunar/commit/7ea005b)), closes [#349](https://github.com/airbnb/lunar/issues/349)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.4.6 - 2020-03-25
 
 #### 🐞 Fixes
