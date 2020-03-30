@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.6.0 - 2020-03-30
+
+#### 🚀 Updates
+
+- **[MenuToggle]** Add prop for custom trigger element. (#304) ([9f3ea04](https://github.com/airbnb/lunar/commit/9f3ea04)), closes [#304](https://github.com/airbnb/lunar/issues/304)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.5.0 - 2020-03-30
 
 #### 🚀 Updates
