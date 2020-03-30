@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheetMenuToggle: StyleSheet = ({ unit, transition }) => ({
+export const styleSheetMenuToggle: StyleSheet = ({ pattern, unit, transition }) => ({
   container: {
     display: 'inline-block',
     position: 'relative',
@@ -25,5 +25,9 @@ export const styleSheetMenuToggle: StyleSheet = ({ unit, transition }) => ({
   controls: {
     display: 'flex',
     justifyContent: 'space-between',
+  },
+
+  customToggle: {
+    ...pattern.resetButton,
   },
 });

@@ -41,6 +41,8 @@ export type MenuToggleProps = {
   toggleIcon?: React.ReactNode;
   /** Toggle button text. */
   toggleLabel: NonNullable<React.ReactNode>;
+  /** Custom toggle trigger. */
+  toggleElement?: React.ReactNode;
   /** Z-index of the menu. */
   zIndex?: number;
   /** @ignore @private */
@@ -153,6 +155,7 @@ export class MenuToggle extends React.Component<
       styles,
       toggleIcon,
       toggleLabel,
+      toggleElement,
       zIndex,
     } = this.props;
     let iconSize = '1.5em';
@@ -165,29 +168,38 @@ export class MenuToggle extends React.Component<
 
     const Button = muted ? MutedButton : BaseButton;
 
+    let toggleButton = toggleIcon ? (
+      <IconButton
+        disabled={disabled}
+        aria-label={accessibilityLabel}
+        onClick={this.handleToggleMenu}
+      >
+        {toggleIcon}
+      </IconButton>
+    ) : (
+      <Button
+        disabled={disabled}
+        afterIcon={<ExpandableIcon expanded={opened} size={iconSize} />}
+        inverted={inverted}
+        large={large}
+        small={small}
+        onClick={this.handleToggleMenu}
+      >
+        {toggleLabel}
+      </Button>
+    );
+
+    if (toggleElement) {
+      toggleButton = (
+        <button type="button" className={cx(styles.customToggle)} onClick={this.handleToggleMenu}>
+          {toggleElement}
+        </button>
+      );
+    }
+
     return (
       <div ref={this.ref} className={cx(styles.container)}>
-        {toggleIcon ? (
-          <IconButton
-            disabled={disabled}
-            aria-label={accessibilityLabel}
-            onClick={this.handleToggleMenu}
-          >
-            {toggleIcon}
-          </IconButton>
-        ) : (
-          <Button
-            disabled={disabled}
-            afterIcon={<ExpandableIcon expanded={opened} size={iconSize} />}
-            inverted={inverted}
-            large={large}
-            small={small}
-            onClick={this.handleToggleMenu}
-          >
-            {toggleLabel}
-          </Button>
-        )}
-
+        {toggleButton}
         <div
           className={cx(styles.dropdown, !opened && styles.dropdown_hidden, { zIndex })}
           aria-expanded={opened}

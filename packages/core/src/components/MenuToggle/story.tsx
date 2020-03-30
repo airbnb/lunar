@@ -1,6 +1,7 @@
 import React from 'react';
 import IconMenuDots from '@airbnb/lunar-icons/lib/interface/IconMenuDots';
 import MenuToggle, { Item } from '.';
+import Emoji from '../Emoji';
 
 const children = [
   <Item key="0" onClick={() => console.log('onClick')}>
@@ -33,6 +34,27 @@ export function aBasicMenuWithMenuItems() {
 
 aBasicMenuWithMenuItems.story = {
   name: 'A basic menu with menu items.',
+};
+
+export function withCustomTrigger() {
+  return (
+    <MenuToggle
+      accessibilityLabel="Actions"
+      toggleElement={
+        <>
+          Custom <Emoji unicode="🐱" /> Menu <Emoji unicode="🐱" /> Trigger
+        </>
+      }
+      toggleLabel="Actions"
+      zIndex={10}
+    >
+      {children}
+    </MenuToggle>
+  );
+}
+
+withCustomTrigger.story = {
+  name: 'With custom trigger.',
 };
 
 export function withCustomIcon() {
