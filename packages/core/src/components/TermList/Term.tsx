@@ -14,6 +14,8 @@ export type TermProps = TextProps & {
   endAlign?: boolean;
   /** Term label describing the value displayed. */
   label: string | React.ReactNode;
+  /** Mark the label as muted. */
+  muted?: boolean;
   /** If enabled, term label is uppercased. */
   uppercased?: boolean;
   /** Custom style sheet. */
@@ -25,6 +27,7 @@ export default function Term({
   after,
   endAlign,
   uppercased,
+  muted = true,
   children,
   styleSheet,
   ...textProps
@@ -35,7 +38,7 @@ export default function Term({
     <div>
       <dt>
         <Row after={endAlign && after}>
-          <Text inline small uppercased={uppercased} {...textProps}>
+          <Text inline small muted={muted} uppercased={uppercased} {...textProps}>
             {label}
           </Text>
           {!endAlign && after && (
