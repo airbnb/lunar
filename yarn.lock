@@ -3756,36 +3756,36 @@ address@1.0.3, address@^1.0.1:
   resolved "https://registry.yarnpkg.com/address/-/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
   integrity sha512-z55ocwKBRLryBs394Sm3ushTtBeg6VAeuku7utSoSnsJKvKcnXFIyC6vh27n3rXyxSgkJBBCAvyOn7gSUcTYjg==
 
-aesthetic-adapter-aphrodite@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/aesthetic-adapter-aphrodite/-/aesthetic-adapter-aphrodite-5.1.2.tgz#2f6b0405ea2f1c877c4657ff28dcf6bb65f844c3"
-  integrity sha512-DjUTKlKDTJsLyHpIqv4Jvv7ReNC2iVb3KijztXTwLaMUgfq88VC5AwxCk/nzRNGoC+FWzZPUSdyFuQA4TEk0tg==
+aesthetic-adapter-aphrodite@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/aesthetic-adapter-aphrodite/-/aesthetic-adapter-aphrodite-5.2.0.tgz#d34048e05164fed3fe3b7adc58f3df0b3ee1a4d1"
+  integrity sha512-Er5rgDUNEBwlzAbEng2zozor1BRRa4HIQO8eYnmwOzL0TJaa4H8B6qCi+bybfuE4Xpqc/TZwavAkXbFBAfTF0g==
   dependencies:
-    aesthetic-utils "^3.0.2"
+    aesthetic-utils "^3.1.0"
 
-aesthetic-react@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/aesthetic-react/-/aesthetic-react-2.1.3.tgz#11f618e2712e3a7582fe4e7cc627a97503f7e29d"
-  integrity sha512-m3wQtKMIczPRFYMwUB/2TCcQlqlU40jYtEgVq1zW8BsWfEGSq0QjYWag83vkl/x19fwXvQxFLg+XRnxKHdC9Zg==
+aesthetic-react@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/aesthetic-react/-/aesthetic-react-2.2.1.tgz#f9835ee4a39e20d330015d2e7bdab8cdeac96b21"
+  integrity sha512-BC5c4EHvHL1L3mrqTHnrRYONC1uH4E1MlI7/59wEMTGAAtMzYQUPnOezxO72JEQqeWijxP0DgXyd9Eiv7bySzg==
   dependencies:
     "@types/react" "*"
-    aesthetic-utils "^3.0.2"
+    aesthetic-utils "^3.1.0"
     direction "^1.0.4"
     hoist-non-react-statics "^3.3.2"
     prop-types "^15.7.2"
     uuid "^7.0.1"
 
-aesthetic-utils@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/aesthetic-utils/-/aesthetic-utils-3.0.2.tgz#e74f27538e95bcda3b5419ec851a13968d19c35a"
-  integrity sha512-LwZVjmsom2bjtDVUwyWzhUzu5sKzqGI58iaeI+qWaxBhNYxRybpAQ7QlYoGvv7EN2fS8gGfnUcYh174DtPeyvQ==
+aesthetic-utils@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/aesthetic-utils/-/aesthetic-utils-3.1.0.tgz#11f02f6eef56bc23fd597d222299feecf3a38bcf"
+  integrity sha512-3+/2pv0TKw945d3Hfz0Hn2ocOj8jDE1GlZMF+X8txilMgQ+cnQJVD6iL43srzY4M0Z8EljTgCfo8Z1lp7c8Gbw==
 
-aesthetic@^5.1.4:
-  version "5.1.4"
-  resolved "https://registry.yarnpkg.com/aesthetic/-/aesthetic-5.1.4.tgz#2b6ebf41a69abf0a0e96261a20102685fe35fbec"
-  integrity sha512-UAVp4NER0W3Iu9trfcwKa+cIRCb442z4qY8iFk7Mg8DxidQ8SE2joEKxHqLPKS/vxUO4oP6+ozO5WeWp2JqWDA==
+aesthetic@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/aesthetic/-/aesthetic-5.2.0.tgz#f03204ac6bc201042ae03b39f1ab2e4b5dc02f38"
+  integrity sha512-cYE3n/KSCkb8SiN6lbNprMnJHA4SeDUN3oKNy+pUMq61OidNK047iKMtY0tD2K6k6sTDB7nHOF9C4/EAh6PhzA==
   dependencies:
-    aesthetic-utils "^3.0.2"
+    aesthetic-utils "^3.1.0"
     csstype "^2.6.9"
     extend "^3.0.2"
     rtl-css-js "^1.14.0"
@@ -15204,10 +15204,10 @@ uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
-uuid@^7.0.1, uuid@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.2.tgz#7ff5c203467e91f5e0d85cfcbaaf7d2ebbca9be6"
-  integrity sha512-vy9V/+pKG+5ZTYKf+VcphF5Oc6EFiu3W8Nv3P3zIh0EqVI80ZxOzuPfe9EHjkFNvf8+xuTHVeei4Drydlx4zjw==
+uuid@^7.0.1, uuid@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.3.tgz#c5c9f2c8cf25dc0a372c4df1441c41f5bd0c680b"
+  integrity sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==
 
 v8-compile-cache@^2.0.3:
   version "2.1.0"

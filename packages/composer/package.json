@@ -27,6 +27,6 @@
   "dependencies": {
     "@airbnb/lunar-icons": "^3.1.0",
     "lodash": "^4.17.15",
-    "uuid": "^7.0.2"
+    "uuid": "^7.0.3"
   }
 }

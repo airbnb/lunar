@@ -42,6 +42,7 @@ module.exports = {
       },
       rules: {
         'max-classes-per-file': 'off',
+        'no-console': 'off',
 
         // Webpack alias imports
         'import/extensions': 'off',
