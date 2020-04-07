@@ -72,15 +72,15 @@
     "./packages/*"
   ],
   "dependencies": {
-    "@storybook/addon-a11y": "^5.3.17",
-    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-a11y": "^5.3.18",
+    "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-console": "^1.2.1",
-    "@storybook/addon-contexts": "^5.3.17",
-    "@storybook/addon-links": "^5.3.17",
-    "@storybook/addon-viewport": "^5.3.17",
-    "@storybook/addons": "^5.3.17",
-    "@storybook/react": "^5.3.17",
-    "markdown-to-jsx": "^6.11.0",
+    "@storybook/addon-contexts": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addon-viewport": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
+    "markdown-to-jsx": "^6.11.1",
     "react-element-to-jsx-string": "^14.3.1"
   },
   "devDependencies": {
