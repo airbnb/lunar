@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.1 - 2020-04-07
+
+#### 📦 Dependencies
+
+- **[aesthetic]** Update to latest (for performance gains). ([b3a42d0](https://github.com/airbnb/lunar/commit/b3a42d0))
+
+**Note:** Version bump only for package @airbnb/lunar-composer
+
+
+
+
+
 ## 2.1.0 - 2020-03-30
 
 #### 🚀 Updates

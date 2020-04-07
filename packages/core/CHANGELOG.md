@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.6.1 - 2020-04-07
+
+#### 📦 Dependencies
+
+- **[aesthetic]** Update to latest (for performance gains). ([b3a42d0](https://github.com/airbnb/lunar/commit/b3a42d0))
+- **[luxon]** Update to v1.23. ([14306f4](https://github.com/airbnb/lunar/commit/14306f4))
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.6.0 - 2020-03-30
 
 #### 🚀 Updates

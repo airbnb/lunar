@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.1.0 - 2020-04-07
+
+#### 🚀 Updates
+
+- New focus styles throughout. (#349) ([7ea005b](https://github.com/airbnb/lunar/commit/7ea005b)), closes [#349](https://github.com/airbnb/lunar/issues/349)
+
+#### 📦 Dependencies
+
+- **[aesthetic]** Update to latest (for performance gains). ([b3a42d0](https://github.com/airbnb/lunar/commit/b3a42d0))
+- **[final-form]** Update to v4.19. ([97debfb](https://github.com/airbnb/lunar/commit/97debfb))
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 3.0.2 - 2020-03-25
 
 #### 📦 Dependencies

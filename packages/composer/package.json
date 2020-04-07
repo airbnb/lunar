@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-composer",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "release": "1583350587083",
   "description": "Unified composer for doing all the things.",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "react": "^16.13.0"
   },
   "dependencies": {
-    "@airbnb/lunar-icons": "^3.1.0",
+    "@airbnb/lunar-icons": "^3.1.1",
     "lodash": "^4.17.15",
     "uuid": "^7.0.3"
   }

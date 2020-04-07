@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "release": "1583350587083",
   "description": "React toolkit and design language for Airbnb open source and internal projects.",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@airbnb/lunar-test-utils": "^3.0.1",
+    "@airbnb/lunar-test-utils": "^3.0.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },
