@@ -45,15 +45,15 @@ type FuseKey = { name: keyof SearchItemShape; weight: number };
 const defaultFuseKeys: FuseKey[] = [
   {
     name: 'label',
-    weight: 0.8,
+    weight: 0.35,
   },
   {
     name: 'keywords',
-    weight: 0.7,
+    weight: 0.3,
   },
   {
     name: 'description',
-    weight: 0.5,
+    weight: 0.25,
   },
 ];
 
@@ -107,7 +107,7 @@ export class Search extends React.Component<SearchProps & WithStylesProps> {
     if (this.props.indexParentPath) {
       fuseKeys.push({
         name: 'formattedParents',
-        weight: 0.2,
+        weight: 0.1,
       });
     }
 
