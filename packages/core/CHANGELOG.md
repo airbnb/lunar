@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.6.2 - 2020-04-09
+
+#### 🐞 Fixes
+
+- **[HierarchyPicker]** Scale weights to equal 1 (#354) ([299dd9a](https://github.com/airbnb/lunar/commit/299dd9a)), closes [#354](https://github.com/airbnb/lunar/issues/354)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.6.1 - 2020-04-07
 
 #### 📦 Dependencies
