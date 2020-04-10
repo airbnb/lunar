@@ -28,6 +28,8 @@ export type TooltipProps = {
   horizontalAlign?: 'center' | 'left' | 'right';
   /** True to use a light background with dark text. */
   inverted?: boolean;
+  /** Callback fired when the tooltip is closed. */
+  onClose?: () => void;
   /** Callback fired when the tooltip is shown. */
   onShow?: () => void;
   /** True to prevent dismissmal on mouse down. */
@@ -67,6 +69,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   static defaultProps = {
     disabled: false,
     inverted: false,
+    onClose() {},
     onShow() {},
     remainOnMouseDown: false,
     toggleOnClick: false,
@@ -184,6 +187,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
 
   private handleClose = () => {
     this.setState({ open: false });
+    this.props.onClose!();
   };
 
   private handleMouseEnter = () => {
