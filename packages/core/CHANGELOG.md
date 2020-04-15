@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.6.3 - 2020-04-15
+
+#### 🐞 Fixes
+
+- **[crosstab]** Create one channel per instance (#356) ([46ccb18](https://github.com/airbnb/lunar/commit/46ccb18)), closes [#356](https://github.com/airbnb/lunar/issues/356)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.6.2 - 2020-04-09
 
 #### 🐞 Fixes
