@@ -85,4 +85,10 @@ describe('crosstab', () => {
 
     crosstab.emit('selfEmit', 'yep', true);
   });
+
+  it('creates only one channel', () => {
+    const channel = crosstab.getChannel();
+    expect(channel).toBeDefined();
+    expect(crosstab.getChannel()).toBe(channel);
+  });
 });

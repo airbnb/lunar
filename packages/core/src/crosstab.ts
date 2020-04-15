@@ -18,6 +18,10 @@ export class Crosstab {
       return undefined;
     }
 
+    if (this.channel) {
+      return this.channel;
+    }
+
     this.channel = new BroadcastChannel('crosstab');
     this.channel.addEventListener('message', this.handleMessage);
 
