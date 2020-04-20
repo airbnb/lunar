@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.8.0 - 2020-04-20
+
+#### 🚀 Updates
+
+- **[Tooltip]** Add `onClose`  prop (#355) ([3eab555](https://github.com/airbnb/lunar/commit/3eab555)), closes [#355](https://github.com/airbnb/lunar/issues/355)
+
+#### 🐞 Fixes
+
+- **[Term]** Fix `large` prop conflicting with `small` default. Update stories. (#358) ([5816442](https://github.com/airbnb/lunar/commit/5816442)), closes [#358](https://github.com/airbnb/lunar/issues/358)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.7.0 - 2020-04-20
 
 #### 🚀 Updates
