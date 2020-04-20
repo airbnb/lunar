@@ -18,7 +18,7 @@ const EMPTY_TARGET_RECT: ClientRect = {
 };
 
 export type TooltipProps = {
-  /** Accessibility label. If not specified, all tooltip content is duplicated in an accessibility portal rendered at all times. */
+  /** Accessibility label. If not specified, all tooltip content is duplicated, rendered in an off-screen element with a separate layer. */
   accessibilityLabel?: string;
   /** Inline content to hover. */
   children: NonNullable<React.ReactNode>;
