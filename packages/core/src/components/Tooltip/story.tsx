@@ -221,21 +221,21 @@ export function withAccessibilityLabel() {
       <Spacing bottom={1}>
         <Tooltip
           accessibilityLabel="Override accessibility content"
-          content="I have an aria-labelledby instead of aria-label"
+          content="I have an aria-label instead of an aria-labelledby"
         >
           I have an{' '}
           <Text bold inline>
             aria-label
           </Text>{' '}
-          instead of aria-labelledby
+          instead of an aria-labelledby
         </Tooltip>
       </Spacing>
-      <Tooltip content="I have an aria-label instead of aria-labelledby">
+      <Tooltip content="I have an aria-labelledby instead of an aria-label">
         I have an{' '}
         <Text bold inline>
           aria-labelledby
         </Text>{' '}
-        instead of aria-label
+        instead of an aria-label
       </Tooltip>
     </>
   );
