@@ -28,16 +28,16 @@ export function termsUsingTextProperties() {
   return (
     <TermList>
       <Term bold label="Bold term">
-        16
+        with &quot;bold&quot; prop
       </Term>
       <Term muted label="Muted term">
-        4
+        with &quot;muted&quot; prop
       </Term>
       <Term small={false} label="Regular term">
-        8
+        {'with "small={false}" prop'}
       </Term>
       <Term large label="Large term">
-        12
+        with &quot;large&quot; prop
       </Term>
     </TermList>
   );
