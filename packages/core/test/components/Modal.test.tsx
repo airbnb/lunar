@@ -315,6 +315,21 @@ describe('<Modal />', () => {
     expect(wrapper.find('header').find(Text).prop('children')).toBe('Subtitle');
   });
 
+  it('renders a top bar', () => {
+    const { wrapper } = setup(
+      {
+        title: null,
+        topBar: 'Top bar',
+      },
+      false /* isShallow */,
+    );
+
+    expect(wrapper.find('header')).toHaveLength(0);
+
+    const div = wrapper.find(ModalInnerContent).find('div').at(1);
+    expect(div.text()).toContain('Top bar');
+  });
+
   it('no header if no title is provided', () => {
     const { wrapper } = setup(
       {

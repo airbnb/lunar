@@ -1,5 +1,6 @@
 import React from 'react';
 import IconClose from '@airbnb/lunar-icons/lib/interface/IconClose';
+import Row from '../../Row';
 import Text from '../../Text';
 import Title from '../../Title';
 import IconButton from '../../IconButton';
@@ -23,6 +24,10 @@ export type ModalInnerContentProps = {
   subtitle?: React.ReactNode;
   /** Dialog header title. */
   title?: React.ReactNode;
+  /** Top bar, above dialog header. */
+  topBar?: React.ReactNode;
+  /** Whether the top bar content is centered. */
+  topBarCentered?: boolean;
   /** Callback for when the Dialog should be closed.  */
   onClose: (event: React.MouseEvent | React.KeyboardEvent) => void;
   /** Custom style sheet. */
@@ -39,6 +44,8 @@ export default function ModalInnerContent({
   scrollable,
   subtitle,
   title,
+  topBar,
+  topBarCentered,
   styleSheet,
 }: ModalInnerContentProps) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetInnerContent);
@@ -46,24 +53,38 @@ export default function ModalInnerContent({
   const withHeader = Boolean(title || subtitle);
   const withFooter = Boolean(footer);
 
+  const closeButton = (
+    <IconButton onClick={onClose}>
+      <IconClose
+        accessibilityLabel={T.phrase('lunar.common.close', 'Close')}
+        color={theme.color.muted}
+        size={theme.unit * 3}
+      />
+    </IconButton>
+  );
+
   return (
     <div className={cx(styles.wrapper)}>
+      {topBar && (
+        <div className={cx(styles.header, styles.topBar, topBarCentered && styles.topBar_centered)}>
+          <Row middleAlign after={closeButton}>
+            {topBar}
+          </Row>
+        </div>
+      )}
+
       {withHeader && (
         <header className={cx(styles.header, scrollable && styles.header_scrollable)}>
-          {title && <Title level={3}>{title}</Title>}
-          {subtitle && <Text muted>{subtitle}</Text>}
+          <Row after={topBar ? null : closeButton}>
+            <div className={cx(styles.headerInner)}>
+              {title && <Title level={3}>{title}</Title>}
+              {subtitle && <Text muted>{subtitle}</Text>}
+            </div>
+          </Row>
         </header>
       )}
 
-      <div className={cx(styles.close, !withHeader && styles.close_float)}>
-        <IconButton onClick={onClose}>
-          <IconClose
-            accessibilityLabel={T.phrase('lunar.common.close', 'Close')}
-            color={theme.color.muted}
-            size={theme.unit * 3}
-          />
-        </IconButton>
-      </div>
+      {!withHeader && !topBar && <div className={cx(styles.close_float)}>{closeButton}</div>}
 
       <div
         className={cx(
@@ -71,6 +92,7 @@ export default function ModalInnerContent({
           !withHeader && styles.body_paddingTop,
           !withFooter && styles.body_paddingBottom,
           scrollable && styles.body_scrollable,
+          scrollable && !withHeader && styles.body_scrollable_noHeader,
           small && scrollable && styles.body_scrollableSmall,
           large && scrollable && styles.body_scrollableLarge,
         )}
