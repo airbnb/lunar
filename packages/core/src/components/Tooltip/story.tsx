@@ -40,7 +40,7 @@ class TooltipOnCloseDemo extends React.Component<{}> {
 
   handleOnShow = () => {
     this.setState({
-      text: `Open`,
+      text: 'Open',
     });
   };
 
