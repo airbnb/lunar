@@ -79,6 +79,13 @@ describe('<Tooltip />', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
+    it('fires onClose callback when closed', () => {
+      const onCloseSpy = jest.fn();
+      wrapper.setProps({ onClose: onCloseSpy });
+      childContainer.simulate('mouseleave');
+      expect(onCloseSpy).toHaveBeenCalled();
+    });
+
     describe('with remainOnMouseDown', () => {
       beforeEach(() => {
         wrapper.setProps({ remainOnMouseDown: true });

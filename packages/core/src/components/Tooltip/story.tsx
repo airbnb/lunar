@@ -35,6 +35,40 @@ class TooltipDemo extends React.Component<{}, { text: string; clicked: boolean }
   }
 }
 
+class TooltipOnCloseDemo extends React.Component<{}> {
+  state = { text: 'Closed' };
+
+  handleOnShow = () => {
+    this.setState({
+      text: 'Open',
+    });
+  };
+
+  handleOnClose = () => {
+    this.setState({
+      text: 'Closed',
+    });
+  };
+
+  render() {
+    return (
+      <div style={{ textAlign: 'center' }}>
+        <Spacing top={10}>
+          <Tooltip
+            content="Tooltip"
+            verticalAlign="above"
+            onClose={this.handleOnClose}
+            onShow={this.handleOnShow}
+          >
+            <Button>Hover me</Button>
+          </Tooltip>
+          <Text>The tooltip is {this.state.text}</Text>
+        </Spacing>
+      </div>
+    );
+  }
+}
+
 class TooltipOnShowDemo extends React.Component<{}, { text: string; count: number }> {
   state = { text: 'Hovered 0 times', count: 0 };
 
@@ -213,6 +247,14 @@ export function toggleWithClick() {
 
 toggleWithClick.story = {
   name: 'Toggle tooltip on click',
+};
+
+export function handleOnClose() {
+  return <TooltipOnCloseDemo />;
+}
+
+handleOnClose.story = {
+  name: 'Callback fired when tooltip is shown and closed',
 };
 
 export function withAccessibilityLabel() {
