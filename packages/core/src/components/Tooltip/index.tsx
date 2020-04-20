@@ -18,6 +18,8 @@ const EMPTY_TARGET_RECT: ClientRect = {
 };
 
 export type TooltipProps = {
+  /** Accessibility label. If not specified, all tooltip content is duplicated, rendered in an off-screen element with a separate layer. */
+  accessibilityLabel?: string;
   /** Inline content to hover. */
   children: NonNullable<React.ReactNode>;
   /** What to show in the tooltip. */
@@ -265,13 +267,14 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   }
 
   render() {
-    const { cx, styles, children, content, disabled, underlined } = this.props;
+    const { accessibilityLabel, cx, styles, children, content, disabled, underlined } = this.props;
     const { open, labelID } = this.state;
 
     return (
       <span ref={this.containerRef} className={cx(styles.container)}>
         <div
-          aria-labelledby={labelID}
+          aria-labelledby={accessibilityLabel ? undefined : labelID}
+          aria-label={accessibilityLabel}
           className={cx(!disabled && underlined && styles.underlined)}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
@@ -281,11 +284,13 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
         </div>
 
         {/* render off-screen element in a separate layer */}
-        <Portal>
-          <div id={labelID} className={cx(styles.offscreen)}>
-            {content}
-          </div>
-        </Portal>
+        {!accessibilityLabel && (
+          <Portal>
+            <div id={labelID} className={cx(styles.offscreen)}>
+              {content}
+            </div>
+          </Portal>
+        )}
 
         {open ? this.renderPopUp() : null}
       </span>
