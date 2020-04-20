@@ -35,9 +35,10 @@ export default function Term({
     <div>
       <dt>
         <Row after={endAlign && after}>
-          <Text inline small uppercased={uppercased} {...textProps}>
+          <Text inline small={!textProps.large} uppercased={uppercased} {...textProps}>
             {label}
           </Text>
+
           {!endAlign && after && (
             <Spacing inline left={1}>
               {after!}
@@ -45,6 +46,7 @@ export default function Term({
           )}
         </Row>
       </dt>
+
       <dd className={cx(styles.dd)}>
         <Text>{children}</Text>
       </dd>

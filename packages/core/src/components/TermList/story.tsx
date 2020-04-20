@@ -13,40 +13,61 @@ export default {
 };
 
 export function standaloneTerm() {
-  return <Term label="Clusters">8</Term>;
+  return (
+    <TermList>
+      <Term label="Clusters">8</Term>
+    </TermList>
+  );
 }
 
 standaloneTerm.story = {
   name: 'Standalone term.',
 };
 
-export function standaloneTermWithRegularLabel() {
-  return <Term label="Clusters">8</Term>;
+export function termsUsingTextProperties() {
+  return (
+    <TermList>
+      <Term bold label="Bold term">
+        with &quot;bold&quot; prop
+      </Term>
+      <Term muted label="Muted term">
+        with &quot;muted&quot; prop
+      </Term>
+      <Term small={false} label="Regular term">
+        {'with "small={false}" prop'}
+      </Term>
+      <Term large label="Large term">
+        with &quot;large&quot; prop
+      </Term>
+    </TermList>
+  );
 }
 
-standaloneTermWithRegularLabel.story = {
-  name: 'Standalone Term with regular sized label.',
+termsUsingTextProperties.story = {
+  name: 'Examples of Term using Text properties.',
 };
 
 export function standaloneTermWithAfterContent() {
   return (
-    <Term
-      label="Clusters"
-      after={
-        <>
-          <Link small href="https://github.com/airbnb/lunar">
-            Details
-          </Link>
-          <Spacing inline left={1}>
+    <TermList>
+      <Term
+        label="Clusters"
+        after={
+          <>
             <Link small href="https://github.com/airbnb/lunar">
-              Git
+              Details
             </Link>
-          </Spacing>
-        </>
-      }
-    >
-      8
-    </Term>
+            <Spacing inline left={1}>
+              <Link small href="https://github.com/airbnb/lunar">
+                Git
+              </Link>
+            </Spacing>
+          </>
+        }
+      >
+        8
+      </Term>
+    </TermList>
   );
 }
 
@@ -86,20 +107,16 @@ export function standaloneTermWithAfterContentEndAligned() {
 }
 
 standaloneTermWithAfterContentEndAligned.story = {
-  name: 'Standalone Term in a card with after content end aligned.',
+  name: 'Standalone Term in a Card with after content end-aligned.',
 };
 
 export function listOfTerms() {
   return (
-    <Card>
-      <Content>
-        <TermList>
-          <Term label="Total Clusters">16</Term>
-          <Term label="Active Clusters">4</Term>
-          <Term label="Inactive Clusters">12</Term>
-        </TermList>
-      </Content>
-    </Card>
+    <TermList>
+      <Term label="Total Clusters">16</Term>
+      <Term label="Active Clusters">4</Term>
+      <Term label="Inactive Clusters">12</Term>
+    </TermList>
   );
 }
 
@@ -109,20 +126,14 @@ listOfTerms.story = {
 
 export function horizontalListOfTerms() {
   return (
-    <div style={{ width: '50%' }}>
-      <Card>
-        <Content>
-          <TermList horizontal>
-            <Term label="Total Clusters">16</Term>
-            <Term label="Inactive Clusters">12</Term>
-            <Term label="Active">123456789</Term>
-          </TermList>
-        </Content>
-      </Card>
-    </div>
+    <TermList horizontal>
+      <Term label="Total Clusters">16</Term>
+      <Term label="Inactive Clusters">12</Term>
+      <Term label="Active">123456789</Term>
+    </TermList>
   );
 }
 
 horizontalListOfTerms.story = {
-  name: 'Horizontal list of terms wrapped in List.',
+  name: 'Horizontal list of terms.',
 };
