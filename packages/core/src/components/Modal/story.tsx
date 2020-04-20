@@ -23,7 +23,7 @@ class ModalDemo extends React.Component<
 > {
   state = { visible: true };
 
-  handleToggle = () => this.setState(prevState => ({ visible: !prevState.visible }));
+  handleToggle = () => this.setState((prevState) => ({ visible: !prevState.visible }));
 
   handleClose = () => this.setState({ visible: false });
 
