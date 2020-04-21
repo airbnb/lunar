@@ -5,6 +5,7 @@ import Alert from '../../src/components/Alert';
 import MutedButton from '../../src/components/MutedButton';
 import ErrorMessage, { getErrorMessage } from '../../src/components/ErrorMessage';
 import StatusText from '../../src/components/StatusText';
+import { ErrorObject } from '../../src/types';
 
 describe('getErrorMessage()', () => {
   it('returns empty string for no message', () => {
@@ -74,8 +75,14 @@ describe('getErrorMessage()', () => {
     ).toBe('404 - FooBar - Systems are offline!');
   });
 
-  it('supports Error objects', () => {
+  it('supports Error instances', () => {
     expect(getErrorMessage(new Error('Danger Will Robinson!'))).toBe('Danger Will Robinson!');
+  });
+
+  it('supports Error instances with additional properties', () => {
+    const error = new Error('Not useful message') as ErrorObject; // Satisfy TS.
+    error.error_message = 'Very useful message';
+    expect(getErrorMessage(error)).toBe('Very useful message');
   });
 });
 
@@ -168,6 +175,34 @@ describe('<ErrorMessage />', () => {
         error_message: 'Failure',
         error_id: 'ABC',
       },
+    });
+
+    expect(
+      wrapper
+        .find(Alert)
+        .find(MutedButton)
+        .contains(<T k="lunar.error.viewDetails" phrase="View error details" />),
+    ).toBe(true);
+    expect(typeof wrapper.find(Alert).find(MutedButton).prop('onClick')).toBe('function');
+  });
+
+  it('renders a button if an error instance containing an error ID is passed', () => {
+    const error = new Error('Whatever') as ErrorObject; // Satisfy TS.
+
+    const wrapper = shallow(<ErrorMessage error={error} />);
+
+    expect(
+      wrapper
+        .find(Alert)
+        .find(MutedButton)
+        .contains(<T k="lunar.error.viewDetails" phrase="View error details" />),
+    ).toBe(false);
+
+    error.error_message = 'Failure';
+    error.error_id = 'ABC';
+
+    wrapper.setProps({
+      error,
     });
 
     expect(

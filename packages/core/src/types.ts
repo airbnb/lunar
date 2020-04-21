@@ -13,17 +13,17 @@ export type Translator = (
   options?: TranslateOptions,
 ) => string;
 
-export type ErrorType =
-  | {
-      error_id?: string;
-      error_code?: number | string;
-      error_message?: string;
-      error_details?: string;
-      error_url?: string;
-      debug_info?: { [key: string]: string };
-      user_message?: string;
-    }
-  | Error;
+export type ErrorObject = {
+  error_id?: string;
+  error_code?: number | string;
+  error_message?: string;
+  error_details?: string;
+  error_url?: string;
+  debug_info?: { [key: string]: string };
+  user_message?: string;
+};
+
+export type ErrorType = ErrorObject | (Error & ErrorObject);
 
 export type StatusType = 'notice' | 'info' | 'success' | 'warning' | 'danger' | 'muted';
 
