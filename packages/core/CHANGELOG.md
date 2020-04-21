@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.9.0 - 2020-04-21
+
+#### 🚀 Updates
+
+- **[Modal]** Add `topBar` and `topBarCentered` support. (#359) ([243c289](https://github.com/airbnb/lunar/commit/243c289)), closes [#359](https://github.com/airbnb/lunar/issues/359)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.8.0 - 2020-04-20
 
 #### 🚀 Updates
