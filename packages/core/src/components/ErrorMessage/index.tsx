@@ -12,15 +12,11 @@ export function getErrorMessage(error: string | ErrorType, includeCode: boolean 
     return error;
   }
 
-  if (error instanceof Error) {
-    return error.message;
-  }
-
   const debug = error.debug_info;
 
   const message = debug
     ? `${debug.error_class} - ${debug.error_message || debug.response_message}`
-    : error.user_message || error.error_details || error.error_message;
+    : error.user_message || error.error_details || error.error_message || (error as Error).message;
 
   if (includeCode && error.error_code) {
     return `${error.error_code} - ${message}`;
@@ -60,9 +56,9 @@ export default function ErrorMessage({
   }
 
   const message = subtitle || getErrorMessage(error);
-  const code = error instanceof Error ? null : error.error_code;
-  const id = error instanceof Error ? null : error.error_id;
-  const url = error instanceof Error ? '' : error.error_url;
+  const code = error.error_code || '';
+  const id = error.error_id || '';
+  const url = error.error_url || '';
 
   if (inline) {
     return <StatusText danger>{message}</StatusText>;
