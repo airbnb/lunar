@@ -16,6 +16,8 @@ class ModalDemo extends React.Component<
     showScrollable?: boolean;
     showSubtitle?: boolean;
     showTitle?: boolean;
+    showTopBar?: boolean;
+    showTopBarCentered?: boolean;
   },
   { visible: boolean }
 > {
@@ -36,6 +38,8 @@ class ModalDemo extends React.Component<
       showScrollable,
       showSubtitle,
       showTitle,
+      showTopBar,
+      showTopBarCentered,
     } = this.props;
 
     return (
@@ -71,6 +75,8 @@ class ModalDemo extends React.Component<
             small={showSmall}
             subtitle={showSubtitle ? 'Modal Sub-Title' : undefined}
             title={showTitle ? <LoremIpsum short /> : undefined}
+            topBar={showTopBar ? <Text bold>Top bar</Text> : undefined}
+            topBarCentered={showTopBarCentered}
             onClose={this.handleClose}
           >
             <Text>
@@ -151,12 +157,44 @@ withTitleAndFooter.story = {
   name: 'With title and footer',
 };
 
+export function withTopBar() {
+  return <ModalDemo showTopBar />;
+}
+
+withTopBar.story = {
+  name: 'With top bar, not centered',
+};
+
+export function withTopBarCentered() {
+  return <ModalDemo showTopBar showTopBarCentered />;
+}
+
+withTopBarCentered.story = {
+  name: 'With top bar, centered',
+};
+
 export function scrollableContent() {
   return <ModalDemo showFooter showTitle showScrollable />;
 }
 
 scrollableContent.story = {
   name: 'Scrollable content',
+};
+
+export function withTopBarAndFooter() {
+  return <ModalDemo showFooter showTopBar showTopBarCentered showScrollable />;
+}
+
+withTopBarAndFooter.story = {
+  name: 'With top bar, topBarCentered, footer, and scrollable',
+};
+
+export function withTitleTopBarAndFooter() {
+  return <ModalDemo showTitle showFooter showTopBar showScrollable />;
+}
+
+withTitleTopBarAndFooter.story = {
+  name: 'With top bar, title, footer, and scrollable',
 };
 
 export function scrollableContentWithoutFooter() {

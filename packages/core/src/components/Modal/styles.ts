@@ -107,7 +107,11 @@ export const styleSheetInnerContent: StyleSheet = ({ color, ui, unit }) => ({
   },
 
   header: {
-    padding: `${unit * 3}px ${unit * 4}px ${unit * 3}px ${unit * 3}px`,
+    padding: `${unit * 2}px ${unit * 2}px ${unit * 3}px ${unit * 3}px`,
+  },
+
+  headerInner: {
+    paddingTop: unit,
   },
 
   header_scrollable: {
@@ -127,18 +131,18 @@ export const styleSheetInnerContent: StyleSheet = ({ color, ui, unit }) => ({
     },
   },
 
-  close: {
-    position: 'absolute',
-    top: unit * 2,
-    right: unit * 2,
-    zIndex: Z_INDEX_MODAL,
+  topBar: {
+    borderBottom: ui.border,
+    paddingBottom: unit * 2,
+  },
+
+  topBar_centered: {
+    textAlign: 'center',
+    paddingLeft: unit * 8, // width of close button + padding around to offset top bar content
   },
 
   close_float: {
     float: 'right',
-    position: 'relative',
-    top: 0,
-    right: 0,
     margin: `${unit * 2}px ${unit * 2}px ${unit / 2}px ${unit / 2}px`,
   },
 
@@ -167,6 +171,12 @@ export const styleSheetInnerContent: StyleSheet = ({ color, ui, unit }) => ({
       marginLeft: -unit * 3,
       height: unit / 2,
       background: color.accent.bg,
+    },
+  },
+
+  body_scrollable_noHeader: {
+    ':before': {
+      display: 'none',
     },
   },
 

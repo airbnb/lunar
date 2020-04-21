@@ -89,6 +89,8 @@ export class ModalInner extends React.Component<ModalInnerProps & WithStylesProp
       styles,
       subtitle,
       title,
+      topBar,
+      topBarCentered,
     } = this.props;
 
     const showLargeContent = large || !!image;
@@ -101,6 +103,8 @@ export class ModalInner extends React.Component<ModalInnerProps & WithStylesProp
         scrollable={scrollable}
         subtitle={subtitle}
         title={title}
+        topBar={topBar}
+        topBarCentered={topBarCentered}
         onClose={this.handleClose}
       >
         {children}
