@@ -6,6 +6,7 @@ import Spacing from '../Spacing';
 import StatusText from '../StatusText';
 import { ErrorType } from '../../types';
 import Core from '../..';
+import ButtonGroup from '../ButtonGroup';
 
 export function getErrorMessage(error: string | ErrorType, includeCode: boolean = false): string {
   if (typeof error === 'string') {
@@ -67,27 +68,31 @@ export default function ErrorMessage({
     >
       {message}
 
-      {errorID && (
+      {(errorID || traceID) && (
         <Spacing top={1}>
-          <MutedButton
-            inverted
-            openInNewWindow
-            href={error.error_url || Core.settings.errorURL.replace('{{id}}', errorID)}
-          >
-            <T k="lunar.error.viewDetails" phrase="View error details" />
-          </MutedButton>
-        </Spacing>
-      )}
+          <ButtonGroup>
+            {errorID && (
+              <MutedButton
+                inverted
+                small
+                openInNewWindow
+                href={error.error_url || Core.settings.errorURL.replace('{{id}}', errorID)}
+              >
+                <T k="lunar.error.viewDetails" phrase="View error details" />
+              </MutedButton>
+            )}
 
-      {traceID && (
-        <Spacing top={1}>
-          <MutedButton
-            inverted
-            openInNewWindow
-            href={Core.settings.traceURL.replace('{{id}}', traceID)}
-          >
-            <T k="lunar.trace.viewDetails" phrase="View trace details" />
-          </MutedButton>
+            {traceID && (
+              <MutedButton
+                inverted
+                small
+                openInNewWindow
+                href={Core.settings.traceURL.replace('{{id}}', traceID)}
+              >
+                <T k="lunar.trace.viewDetails" phrase="View trace details" />
+              </MutedButton>
+            )}
+          </ButtonGroup>
         </Spacing>
       )}
     </Alert>
