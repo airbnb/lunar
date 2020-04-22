@@ -6,8 +6,14 @@ import MutedButton from '../../src/components/MutedButton';
 import ErrorMessage, { getErrorMessage } from '../../src/components/ErrorMessage';
 import StatusText from '../../src/components/StatusText';
 import { ErrorObject } from '../../src/types';
+import Core from '../../src';
 
 describe('getErrorMessage()', () => {
+  beforeAll(() => {
+    Core.settings.errorURL = 'http://error-url-test.com/{{id}}';
+    Core.settings.traceURL = 'http://trace-url-test.com/{{id}}';
+  });
+
   it('returns empty string for no message', () => {
     expect(getErrorMessage({})).toBe('');
   });
@@ -183,7 +189,9 @@ describe('<ErrorMessage />', () => {
         .find(MutedButton)
         .contains(<T k="lunar.error.viewDetails" phrase="View error details" />),
     ).toBe(true);
-    expect(typeof wrapper.find(Alert).find(MutedButton).prop('onClick')).toBe('function');
+    expect(wrapper.find(Alert).find(MutedButton).prop('href')).toBe(
+      'http://error-url-test.com/ABC',
+    );
   });
 
   it('renders a button if an error instance containing an error ID is passed', () => {
@@ -211,6 +219,43 @@ describe('<ErrorMessage />', () => {
         .find(MutedButton)
         .contains(<T k="lunar.error.viewDetails" phrase="View error details" />),
     ).toBe(true);
-    expect(typeof wrapper.find(Alert).find(MutedButton).prop('onClick')).toBe('function');
+    expect(wrapper.find(Alert).find(MutedButton).prop('href')).toBe(
+      'http://error-url-test.com/ABC',
+    );
+  });
+
+  it('renders a button if an trace ID is passed', () => {
+    const error = new Error('Whatever') as ErrorObject; // Satisfy TS.
+
+    const wrapper = shallow(
+      <ErrorMessage
+        error={{
+          error_message: 'Failure',
+        }}
+      />,
+    );
+
+    expect(
+      wrapper
+        .find(Alert)
+        .find(MutedButton)
+        .contains(<T k="lunar.trace.viewDetails" phrase="View trace details" />),
+    ).toBe(false);
+
+    error.trace_id = 'tRaCiD1337==';
+
+    wrapper.setProps({
+      error,
+    });
+
+    expect(
+      wrapper
+        .find(Alert)
+        .find(MutedButton)
+        .contains(<T k="lunar.trace.viewDetails" phrase="View trace details" />),
+    ).toBe(true);
+    expect(wrapper.find(Alert).find(MutedButton).prop('href')).toBe(
+      'http://trace-url-test.com/tRaCiD1337==',
+    );
   });
 });
