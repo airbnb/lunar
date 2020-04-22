@@ -21,6 +21,7 @@ export type ErrorObject = {
   error_url?: string;
   debug_info?: { [key: string]: string };
   user_message?: string;
+  trace_id?: string;
 };
 
 export type ErrorType = ErrorObject | (Error & ErrorObject);

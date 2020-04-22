@@ -25,6 +25,7 @@ export type Settings = {
   defaultTimezone?: TimeZone;
   emojiCDN?: EmojiPath;
   errorURL?: string;
+  traceURL?: string;
   fontFaces?: { [fontFamily: string]: FontFace[] };
   fontFamily?: string;
   logger?: Logger | null;
@@ -41,6 +42,7 @@ class Core {
     defaultTimezone: getTimezoneFromClient() || DEFAULT_TIMEZONE,
     emojiCDN: '',
     errorURL: '',
+    traceURL: '',
     fontFaces: {},
     fontFamily:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',

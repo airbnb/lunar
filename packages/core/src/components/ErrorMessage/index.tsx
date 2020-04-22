@@ -6,6 +6,7 @@ import Spacing from '../Spacing';
 import StatusText from '../StatusText';
 import { ErrorType } from '../../types';
 import Core from '../..';
+import ButtonGroup from '../ButtonGroup';
 
 export function getErrorMessage(error: string | ErrorType, includeCode: boolean = false): string {
   if (typeof error === 'string') {
@@ -23,11 +24,6 @@ export function getErrorMessage(error: string | ErrorType, includeCode: boolean 
   }
 
   return message || '';
-}
-
-// istanbul ignore next
-function createRedirectURL(id: string, url?: string) {
-  return () => window.open(url || Core.settings.errorURL.replace('{{id}}', id), '_blank');
 }
 
 export type ErrorMessageProps = {
@@ -57,8 +53,8 @@ export default function ErrorMessage({
 
   const message = subtitle || getErrorMessage(error);
   const code = error.error_code || '';
-  const id = error.error_id || '';
-  const url = error.error_url || '';
+  const errorID = error.error_id || '';
+  const traceID = error.trace_id || '';
 
   if (inline) {
     return <StatusText danger>{message}</StatusText>;
@@ -72,11 +68,31 @@ export default function ErrorMessage({
     >
       {message}
 
-      {id && (
+      {(errorID || traceID) && (
         <Spacing top={1}>
-          <MutedButton inverted onClick={createRedirectURL(id, url)}>
-            <T k="lunar.error.viewDetails" phrase="View error details" />
-          </MutedButton>
+          <ButtonGroup>
+            {errorID && (
+              <MutedButton
+                inverted
+                small
+                openInNewWindow
+                href={error.error_url || Core.settings.errorURL.replace('{{id}}', errorID)}
+              >
+                <T k="lunar.error.viewDetails" phrase="View error details" />
+              </MutedButton>
+            )}
+
+            {traceID && (
+              <MutedButton
+                inverted
+                small
+                openInNewWindow
+                href={Core.settings.traceURL.replace('{{id}}', traceID)}
+              >
+                <T k="lunar.trace.viewDetails" phrase="View trace details" />
+              </MutedButton>
+            )}
+          </ButtonGroup>
         </Spacing>
       )}
     </Alert>

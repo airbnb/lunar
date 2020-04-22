@@ -1,5 +1,6 @@
 import React from 'react';
 import ErrorMessage from '.';
+import { ErrorObject } from '../../types';
 
 export default {
   title: 'Core/ErrorMessage',
@@ -30,4 +31,16 @@ export function fromAnApiEndpointError() {
 
 fromAnApiEndpointError.story = {
   name: 'From an API endpoint error.',
+};
+
+export function fromAnApiEndpointErrorWithTraceID() {
+  // Would be shown for an APIError from airbnb-api-resource.
+  const error = new Error('Oh noes') as ErrorObject;
+  error.trace_id = 'tRaCeId==';
+
+  return <ErrorMessage error={error} />;
+}
+
+fromAnApiEndpointErrorWithTraceID.story = {
+  name: 'From an API endpoint error with Trace ID.',
 };
