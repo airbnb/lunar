@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import T from '../../src/components/Translate';
 import Alert from '../../src/components/Alert';
-import MutedButton from '../../src/components/MutedButton';
 import ErrorMessage, { getErrorMessage } from '../../src/components/ErrorMessage';
 import StatusText from '../../src/components/StatusText';
 import { ErrorObject } from '../../src/types';
@@ -160,7 +159,7 @@ describe('<ErrorMessage />', () => {
     expect(alert.contains('Failure')).toBe(true);
   });
 
-  it('renders a button if an error ID is passed', () => {
+  it('renders an error ID if error object passed', () => {
     const wrapper = shallow(
       <ErrorMessage
         error={{
@@ -169,12 +168,7 @@ describe('<ErrorMessage />', () => {
       />,
     );
 
-    expect(
-      wrapper
-        .find(Alert)
-        .find(MutedButton)
-        .contains(<T k="lunar.error.viewDetails" phrase="View error details" />),
-    ).toBe(false);
+    expect(wrapper.find(Alert).find(StatusText)).toHaveLength(0);
 
     wrapper.setProps({
       error: {
@@ -183,28 +177,15 @@ describe('<ErrorMessage />', () => {
       },
     });
 
-    expect(
-      wrapper
-        .find(Alert)
-        .find(MutedButton)
-        .contains(<T k="lunar.error.viewDetails" phrase="View error details" />),
-    ).toBe(true);
-    expect(wrapper.find(Alert).find(MutedButton).prop('href')).toBe(
-      'http://error-url-test.com/ABC',
-    );
+    expect(wrapper.find(Alert).find(StatusText).prop('children')).toMatch('ABC');
   });
 
-  it('renders a button if an error instance containing an error ID is passed', () => {
+  it('renders an error ID if error instance passed', () => {
     const error = new Error('Whatever') as ErrorObject; // Satisfy TS.
 
     const wrapper = shallow(<ErrorMessage error={error} />);
 
-    expect(
-      wrapper
-        .find(Alert)
-        .find(MutedButton)
-        .contains(<T k="lunar.error.viewDetails" phrase="View error details" />),
-    ).toBe(false);
+    expect(wrapper.find(Alert).find(StatusText)).toHaveLength(0);
 
     error.error_message = 'Failure';
     error.error_id = 'ABC';
@@ -213,18 +194,10 @@ describe('<ErrorMessage />', () => {
       error,
     });
 
-    expect(
-      wrapper
-        .find(Alert)
-        .find(MutedButton)
-        .contains(<T k="lunar.error.viewDetails" phrase="View error details" />),
-    ).toBe(true);
-    expect(wrapper.find(Alert).find(MutedButton).prop('href')).toBe(
-      'http://error-url-test.com/ABC',
-    );
+    expect(wrapper.find(Alert).find(StatusText).prop('children')).toMatch('ABC');
   });
 
-  it('renders a button if an trace ID is passed', () => {
+  it('renders a trace ID if passed', () => {
     const error = new Error('Whatever') as ErrorObject; // Satisfy TS.
 
     const wrapper = shallow(
@@ -235,12 +208,7 @@ describe('<ErrorMessage />', () => {
       />,
     );
 
-    expect(
-      wrapper
-        .find(Alert)
-        .find(MutedButton)
-        .contains(<T k="lunar.trace.viewDetails" phrase="View trace details" />),
-    ).toBe(false);
+    expect(wrapper.find(Alert).find(StatusText)).toHaveLength(0);
 
     error.trace_id = 'tRaCiD1337==';
 
@@ -248,14 +216,6 @@ describe('<ErrorMessage />', () => {
       error,
     });
 
-    expect(
-      wrapper
-        .find(Alert)
-        .find(MutedButton)
-        .contains(<T k="lunar.trace.viewDetails" phrase="View trace details" />),
-    ).toBe(true);
-    expect(wrapper.find(Alert).find(MutedButton).prop('href')).toBe(
-      'http://trace-url-test.com/tRaCiD1337==',
-    );
+    expect(wrapper.find(Alert).find(StatusText).prop('children')).toMatch('tRaCiD1337==');
   });
 });

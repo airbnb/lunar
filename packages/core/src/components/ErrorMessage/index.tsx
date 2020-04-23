@@ -1,12 +1,11 @@
 import React from 'react';
 import T from '../Translate';
 import Alert from '../Alert';
-import MutedButton from '../MutedButton';
 import Spacing from '../Spacing';
 import StatusText from '../StatusText';
 import { ErrorType } from '../../types';
-import Core from '../..';
-import ButtonGroup from '../ButtonGroup';
+import Copy from '../Copy';
+import StatusLabel from '../StatusLabel';
 
 export function getErrorMessage(error: string | ErrorType, includeCode: boolean = false): string {
   if (typeof error === 'string') {
@@ -68,31 +67,27 @@ export default function ErrorMessage({
     >
       {message}
 
-      {(errorID || traceID) && (
+      {errorID && (
         <Spacing top={1}>
-          <ButtonGroup>
-            {errorID && (
-              <MutedButton
-                inverted
-                small
-                openInNewWindow
-                href={error.error_url || Core.settings.errorURL.replace('{{id}}', errorID)}
-              >
-                <T k="lunar.error.viewDetails" phrase="View error details" />
-              </MutedButton>
-            )}
+          <StatusLabel compact>
+            <T k="lunar.error.id" phrase="Error ID" />
+          </StatusLabel>
+          <StatusText inline bold muted micro>
+            {errorID}
+          </StatusText>
+          <Copy text={errorID} />
+        </Spacing>
+      )}
 
-            {traceID && (
-              <MutedButton
-                inverted
-                small
-                openInNewWindow
-                href={Core.settings.traceURL.replace('{{id}}', traceID)}
-              >
-                <T k="lunar.trace.viewDetails" phrase="View trace details" />
-              </MutedButton>
-            )}
-          </ButtonGroup>
+      {traceID && (
+        <Spacing top={1}>
+          <StatusLabel compact>
+            <T k="lunar.trace.id" phrase="Trace ID" />
+          </StatusLabel>
+          <StatusText inline bold muted micro>
+            {traceID}
+          </StatusText>
+          <Copy text={traceID} />
         </Spacing>
       )}
     </Alert>
