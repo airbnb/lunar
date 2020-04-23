@@ -2,6 +2,7 @@ import React from 'react';
 import componentName from '../../prop-types/componentName';
 import { Logger } from '../../types';
 import ErrorMessage from '../ErrorMessage';
+import T from '../Translate';
 
 export type ErrorBoundaryProps = {
   /** Content to wrap. */
@@ -49,6 +50,13 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
       return this.props.children;
     }
 
-    return <ErrorMessage error={error} />;
+    return (
+      <ErrorMessage
+        error={error}
+        title={
+          <T k="lunar.error.featureCrashed" phrase="This feature has crashed or failed to load." />
+        }
+      />
+    );
   }
 }
