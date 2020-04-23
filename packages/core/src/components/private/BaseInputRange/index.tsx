@@ -40,7 +40,7 @@ export type BaseInputRangeProps = {
   /** Step size for the range. */
   step?: number;
   /** Current value. */
-  value: number;
+  value?: number;
   /** Width of the input. */
   width?: number;
 };
@@ -78,7 +78,7 @@ class BaseInputRange extends React.Component<
   };
 
   renderTooltip(leftOffset: number) {
-    const { renderTooltipContent, value, cx, styles } = this.props;
+    const { renderTooltipContent, value = 0, cx, styles } = this.props;
     return (
       <div
         role="tooltip"
@@ -100,7 +100,7 @@ class BaseInputRange extends React.Component<
       max = 100,
       min = 0,
       step,
-      value,
+      value = 0,
       width = 300,
       cx,
       styles,
@@ -117,13 +117,13 @@ class BaseInputRange extends React.Component<
 
     return (
       <div
-        className={cx(styles.container, { width })}
+        className={cx(styles.container, disabled && styles.container_disabled, { width })}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
         <input
           disabled={disabled}
-          className={cx(styles.input, {
+          className={cx(styles.input, disabled && styles.input_disabled, {
             // fill from start to current value, with transparent edges
             background: `linear-gradient(to right, 
             transparent 0px,
@@ -143,7 +143,7 @@ class BaseInputRange extends React.Component<
           onChange={this.handleChange}
         />
 
-        {/** Give illusion of border radius which is gone due to background gradient */}
+        {/** Give illusion of border radius with two dots on end (background gradient above removes it) */}
         {[min, max].map((bound) => {
           const pxPosition = getCorrectedPosition(bound, min, max, width);
           const isOverlappingHandle = Math.abs(handlePositionPx - pxPosition) <= HANDLE_SIZE;

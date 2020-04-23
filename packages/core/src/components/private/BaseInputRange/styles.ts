@@ -6,10 +6,14 @@ export const HALF_HANDLE_SIZE = HANDLE_SIZE / 2;
 export const TRACK_HEIGHT = 4;
 export const MARK_SIZE = TRACK_HEIGHT;
 
-export const stylesheetInputRange: StyleSheet = ({ unit, ui, color, font }) => ({
+export const stylesheetInputRange: StyleSheet = ({ unit, ui, color, font, pattern }) => ({
   container: {
     position: 'relative',
     height: 3 * unit,
+  },
+
+  container_disabled: {
+    opacity: 0.4,
   },
 
   input: {
@@ -19,7 +23,6 @@ export const stylesheetInputRange: StyleSheet = ({ unit, ui, color, font }) => (
     height: TRACK_HEIGHT,
     margin: 0,
     background: color.core.neutral[2],
-    borderRadius: ui.borderRadius,
     outline: 'none',
     overflow: 'visible',
     cursor: 'pointer',
@@ -43,6 +46,12 @@ export const stylesheetInputRange: StyleSheet = ({ unit, ui, color, font }) => (
         background: color.base,
         boxShadow: `0 0 0 2px ${color.accent.borderActive}`,
       },
+    },
+  },
+
+  input_disabled: {
+    '@selectors': {
+      ':hover::-webkit-slider-thumb': { boxShadow: `0 0 0 2px ${color.accent.borderActive}` },
     },
   },
 

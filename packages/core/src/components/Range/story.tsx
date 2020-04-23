@@ -11,7 +11,10 @@ export default {
 export function StandardRangeSlider() {
   const [value, setValue] = useState(50);
   return (
-    <Range name="range-basic" label="Range input" value={value} onChange={(v) => setValue(v)} />
+    <>
+      <Range label="Range" value={value} onChange={(v) => setValue(v)} />
+      <Range disabled label="Disabled" value={50} onChange={(v) => setValue(v)} />
+    </>
   );
 }
 
