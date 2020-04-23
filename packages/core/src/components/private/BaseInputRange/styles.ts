@@ -91,17 +91,6 @@ export const stylesheetInputRange: StyleSheet = ({ unit, ui, color, font, patter
   tooltip: {
     position: 'absolute',
     pointerEvents: 'none',
-    animationName: {
-      name: 'fadeUp',
-      from: {
-        opacity: 0,
-        transform: `translateY(-${unit * 1.5}px)`,
-      },
-      to: {
-        opacity: 1,
-        transform: `translateY(0px)`,
-      },
-    },
   },
 
   tooltipContent: {

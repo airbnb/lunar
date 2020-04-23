@@ -5,14 +5,23 @@ import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import Text from '../../Text';
 import { stylesheetInputRange, HANDLE_SIZE, HALF_HANDLE_SIZE, MARK_SIZE } from './styles';
 
+/**
+ * By default, the **edges** (not the _center_) of the slider handle align with
+ * the **edges** of the slider track. Thus the total width of the slider is not
+ * `100%` but `100% - HANDLE_SIZE_PX`. The default position is correct at 50%,
+ * so we offset based on a fractional distance from the center ()
+ * position based on the percent
+ */
 const getCorrectedPosition = memoize(
   (value: number, min: number, max: number, width: number) => {
     const valueRange = max - min;
     const centerX = width / 2;
     const pxPosition = ((value - min) / valueRange) * width;
-    const pxFromCenter = ((value - min) / valueRange) * width - centerX;
-    const pxOffset = (pxFromCenter / centerX) * HALF_HANDLE_SIZE;
-    const leftPosition = pxPosition - pxOffset;
+    // positive offset if value < center, negative offset if value > center
+    const pxFromCenter = centerX - pxPosition;
+    const fractionFromCenter = pxFromCenter / centerX;
+    const pxOffset = fractionFromCenter * HALF_HANDLE_SIZE;
+    const leftPosition = pxPosition + pxOffset;
     return leftPosition;
   },
   (...args) => JSON.stringify(args),
@@ -116,11 +125,7 @@ class BaseInputRange extends React.Component<
     const handlePositionPx = getCorrectedPosition(value, min, max, width);
 
     return (
-      <div
-        className={cx(styles.container, disabled && styles.container_disabled, { width })}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
-      >
+      <div className={cx(styles.container, disabled && styles.container_disabled, { width })}>
         <input
           disabled={disabled}
           className={cx(styles.input, disabled && styles.input_disabled, {
@@ -141,6 +146,10 @@ class BaseInputRange extends React.Component<
           step={`${step}`}
           type="range"
           onChange={this.handleChange}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+          onFocus={this.handleMouseEnter}
+          onBlur={this.handleMouseLeave}
         />
 
         {/** Give illusion of border radius with two dots on end (background gradient above removes it) */}
