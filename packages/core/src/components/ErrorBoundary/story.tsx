@@ -2,7 +2,9 @@ import React from 'react';
 import ErrorBoundary from '.';
 
 function TestComponent() {
-  throw new Error('This was thrown from a child.');
+  const error = new Error('This was thrown from a child.');
+  (error as unknown).error_id = '6db2d1a0275c97134535b4681914f8b6d';
+  throw error;
 
   // eslint-disable-next-line
   return null;

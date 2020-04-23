@@ -109,7 +109,9 @@ describe('<ErrorMessage />', () => {
     const alert = wrapper.find(Alert);
 
     expect(alert).toHaveLength(1);
-    expect(alert.prop('title')).toEqual(<T k="lunar.error.unknown" phrase="Unknown error" />);
+    expect(alert.prop('title')).toEqual(
+      <T k="lunar.error.featureCrashed" phrase="This feature has crashed or failed to load." />,
+    );
     expect(alert.contains('Failure')).toBe(true);
   });
 

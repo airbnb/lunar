@@ -1,7 +1,7 @@
 import React from 'react';
 import componentName from '../../prop-types/componentName';
-import Tripped from './private/Tripped';
 import { Logger } from '../../types';
+import ErrorMessage from '../ErrorMessage';
 
 export type ErrorBoundaryProps = {
   /** Content to wrap. */
@@ -26,7 +26,7 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
     name: 'UnknownBoundary',
   };
 
-  state = {
+  state: ErrorBoundaryState = {
     error: null,
   };
 
@@ -49,6 +49,6 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
       return this.props.children;
     }
 
-    return <Tripped />;
+    return <ErrorMessage error={error} />;
   }
 }

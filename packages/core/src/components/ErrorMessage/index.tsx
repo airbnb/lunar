@@ -62,7 +62,12 @@ export default function ErrorMessage({
   return (
     <Alert
       danger
-      title={title || code || <T k="lunar.error.unknown" phrase="Unknown error" />}
+      title={
+        title ||
+        code || (
+          <T k="lunar.error.featureCrashed" phrase="This feature has crashed or failed to load." />
+        )
+      }
       onClose={onClose}
     >
       {message}
