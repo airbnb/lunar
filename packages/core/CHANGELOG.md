@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.11.0 - 2020-04-24
+
+#### 🚀 Updates
+
+- **[ErrorMessage,ErrorBoundary]** Show error info and error/trace IDs (#363) ([bf0965a](https://github.com/airbnb/lunar/commit/bf0965a)), closes [#363](https://github.com/airbnb/lunar/issues/363)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.10.0 - 2020-04-22
 
 #### 🚀 Updates
