@@ -35,8 +35,8 @@ fromAnApiEndpointError.story = {
 
 export function fromAnApiEndpointErrorWithTraceID() {
   // Would be shown for an APIError from airbnb-api-resource.
-  const error = new Error('Oh noes') as ErrorObject;
-  error.trace_id = 'tRaCeId==';
+  const error = new Error('This is an error message.') as ErrorObject;
+  error.trace_id = 'tRaDDDDS34534534qqqqqCeId==';
 
   return <ErrorMessage error={error} />;
 }

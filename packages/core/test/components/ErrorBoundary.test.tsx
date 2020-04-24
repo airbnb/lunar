@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ErrorBoundary from '../../src/components/ErrorBoundary';
-import Tripped from '../../src/components/ErrorBoundary/private/Tripped';
+import ErrorMessage from '../../src/components/ErrorMessage';
 
 describe('<ErrorBoundary />', () => {
   const props = {
@@ -19,15 +19,17 @@ describe('<ErrorBoundary />', () => {
     const wrapper = shallow(<ErrorBoundary {...props}>Foo</ErrorBoundary>);
 
     expect(wrapper.contains('Foo')).toBe(true);
-    expect(wrapper.find(Tripped)).toHaveLength(0);
+    expect(wrapper.find(ErrorMessage)).toHaveLength(0);
   });
 
   it('will render a simple alert', () => {
     const wrapper = shallow(<ErrorBoundary {...props}>Foo</ErrorBoundary>);
 
-    wrapper.setState({ error: new Error() });
+    const error = new Error();
+    wrapper.setState({ error });
 
-    expect(wrapper.find(Tripped)).toHaveLength(1);
+    expect(wrapper.find(ErrorMessage)).toHaveLength(1);
+    expect(wrapper.find(ErrorMessage).prop('error')).toBe(error);
   });
 
   it('will catch error and set state', () => {
