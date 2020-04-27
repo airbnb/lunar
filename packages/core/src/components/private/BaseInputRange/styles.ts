@@ -1,108 +1,110 @@
 import { StyleSheet } from '../../../hooks/useStyles';
-import toRGBA from '../../../utils/toRGBA';
 
-export const HANDLE_SIZE = 14;
+export const HANDLE_SIZE = 18;
 export const HALF_HANDLE_SIZE = HANDLE_SIZE / 2;
 export const TRACK_HEIGHT = 4;
-export const MARK_SIZE = TRACK_HEIGHT;
+export const ANNOTATION_SIZE = TRACK_HEIGHT;
 
-export const stylesheetInputRange: StyleSheet = ({ unit, ui, color, font, pattern }) => ({
-  container: {
-    position: 'relative',
-    height: 3 * unit,
-  },
+export const stylesheetInputRange: StyleSheet = ({ unit, ui, color, font, pattern }) => {
+  const CONTAINER_HEIGHT = 3 * unit;
 
-  container_disabled: {
-    opacity: 0.4,
-  },
+  return {
+    container: {
+      position: 'relative',
+      height: CONTAINER_HEIGHT,
+    },
 
-  input: {
-    transform: 'translateY(-2px)',
-    '-webkit-appearance': 'none',
-    width: '100%',
-    height: TRACK_HEIGHT,
-    margin: 0,
-    background: color.core.neutral[2],
-    outline: 'none',
-    overflow: 'visible',
-    cursor: 'pointer',
+    container_disabled: {
+      opacity: 0.4,
+    },
 
-    '@selectors': {
-      ':hover::-webkit-slider-thumb, :active::-webkit-slider-thumb, :focus::-webkit-slider-thumb': {
-        boxShadow: `0 0 0 2px ${color.accent.borderActive}, 0 0 0 5px ${toRGBA(
-          color.accent.borderActive,
-          20,
-        )}`,
-      },
+    input: {
+      transform: 'translateY(-2px)', // center-align
+      appearance: 'none',
+      width: '100%',
+      height: TRACK_HEIGHT,
+      margin: 0,
+      background: color.core.neutral[2],
+      outline: 'none',
+      overflow: 'visible',
+      cursor: 'pointer',
 
-      '::-webkit-slider-thumb': {
-        '-webkit-appearance': 'none',
-        zIndex: 1,
-        transition: `opacity ${ui.transitionTime}`,
-        width: HANDLE_SIZE,
-        height: HANDLE_SIZE,
-        border: 'none',
-        borderRadius: HANDLE_SIZE,
-        background: color.base,
-        boxShadow: `0 0 0 2px ${color.accent.borderActive}`,
+      '@selectors': {
+        '::-webkit-slider-thumb': {
+          appearance: 'none',
+          zIndex: 1,
+          transition: `opacity ${ui.transitionTime}, backgroundColor ${ui.transitionTime}`,
+          width: HANDLE_SIZE,
+          height: HANDLE_SIZE,
+          border: `2px solid ${color.accent.borderActive}`,
+          borderRadius: HANDLE_SIZE,
+          backgroundColor: color.accent.bg,
+        },
+
+        ':not([disabled]):active::-webkit-slider-thumb, :not([disabled]):focus::-webkit-slider-thumb': {
+          ...pattern.themedFocus,
+          backgroundColor: color.accent.bgHover,
+        },
+
+        ':not([disabled]):hover::-webkit-slider-thumb': {
+          backgroundColor: color.accent.bgHover,
+        },
       },
     },
-  },
 
-  input_disabled: {
-    '@selectors': {
-      ':hover::-webkit-slider-thumb': { boxShadow: `0 0 0 2px ${color.accent.borderActive}` },
+    annotation: {
+      position: 'absolute',
+      top: CONTAINER_HEIGHT / 2 - 1,
+      width: ANNOTATION_SIZE,
+      height: ANNOTATION_SIZE,
+      borderRadius: ANNOTATION_SIZE,
+      backgroundColor: color.core.neutral[3],
+      pointerEvents: 'none',
     },
-  },
 
-  annotation: {
-    position: 'absolute',
-    top: 1.25 * unit + 1, // align in track center
-    width: TRACK_HEIGHT,
-    height: TRACK_HEIGHT,
-    borderRadius: TRACK_HEIGHT,
-    background: color.core.neutral[3],
-    pointerEvents: 'none',
-  },
+    annotation_bounds: {
+      backgroundColor: color.core.neutral[2],
+    },
 
-  annotation_bounds: {
-    background: color.core.neutral[2],
-  },
+    annotation_bounds_active: {
+      backgroundColor: color.core.primary[3],
+    },
 
-  annotation_bounds_active: {
-    background: color.core.primary[3],
-  },
+    annotation_active: {
+      backgroundColor: color.core.primary[1],
+    },
 
-  annotation_active: {
-    background: color.core.primary[1],
-  },
+    annotation_hidden: {
+      backgroundColor: 'transparent',
+    },
 
-  annotation_hidden: {
-    background: 'transparent',
-  },
+    annotationLabel: {
+      position: 'absolute',
+      ...font.textMicro,
+      left: '50%',
+      transform: `translate(-50%, ${HANDLE_SIZE}px)`,
+    },
 
-  annotationLabel: {
-    position: 'absolute',
-    ...font.textMicro,
-    left: '50%',
-    transform: `translate(-50%, ${HANDLE_SIZE}px)`,
-  },
+    tooltip: {
+      position: 'absolute',
+      pointerEvents: 'none',
+    },
 
-  tooltip: {
-    position: 'absolute',
-    pointerEvents: 'none',
-  },
+    tooltipContent: {
+      display: 'inline-block',
+      paddingTop: 0.5 * unit,
+      paddingRight: unit,
+      paddingBottom: 0.5 * unit,
+      paddingLeft: unit,
+      backgroundColor: color.accent.bg,
+      boxShadow: ui.boxShadowMedium,
+      borderRadius: ui.borderRadius,
+      textAlign: 'initial',
+      transform: `translate(-50%, ${0.5 * unit}px)`,
+    },
 
-  tooltipContent: {
-    display: 'inline-block',
-    paddingTop: 0.5 * unit,
-    paddingRight: unit,
-    paddingBottom: 0.5 * unit,
-    paddingLeft: unit,
-    backgroundColor: color.accent.blackout,
-    boxShadow: ui.boxShadowMedium,
-    borderRadius: ui.borderRadius,
-    textAlign: 'initial',
-    transform: `translate(-50%, ${0.5 * unit}px)`,
-  },
-});
+    tooltipContent_inverted: {
+      backgroundColor: color.accent.blackout,
+    },
+  };
+};
