@@ -104,6 +104,7 @@ class BaseRange extends React.Component<BaseRangeProps & WithStylesProps, BaseRa
     const {
       annotations,
       disabled,
+      id,
       max = 100,
       min = 0,
       step,
@@ -125,6 +126,7 @@ class BaseRange extends React.Component<BaseRangeProps & WithStylesProps, BaseRa
     return (
       <div className={cx(styles.container, disabled && styles.container_disabled, { width })}>
         <input
+          id={id}
           disabled={disabled}
           className={cx(styles.input, {
             // fill from start to current value, with transparent edges
