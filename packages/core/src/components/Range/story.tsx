@@ -64,7 +64,8 @@ export function RangeSliderWithTooltip() {
       <Range showTooltip label="Tooltip on hover" value={value} onChange={(v) => setValue(v)} />
       <Range
         showTooltip
-        label="Custom renderer"
+        invertTooltip
+        label="Inverted with custom renderer"
         value={value}
         renderTooltipContent={() => '🍍'}
         onChange={(v) => setValue(v)}
