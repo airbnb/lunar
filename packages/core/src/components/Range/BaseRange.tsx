@@ -1,8 +1,8 @@
 import React from 'react';
 import memoize from 'lodash/memoize';
 
-import withStyles, { WithStylesProps } from '../../../composers/withStyles';
-import Text from '../../Text';
+import Text from '../Text';
+import withStyles, { WithStylesProps } from '../../composers/withStyles';
 import { stylesheetInputRange, HANDLE_SIZE, HALF_HANDLE_SIZE, ANNOTATION_SIZE } from './styles';
 
 /**
@@ -26,7 +26,7 @@ const getPxPosition = memoize(
   (...args) => JSON.stringify(args),
 );
 
-export type BaseInputRangeProps = {
+export type BaseRangeProps = {
   /** Whether to always show a tooltip with value. */
   alwaysShowTooltip?: boolean;
   /** Any values to annotate. */
@@ -55,14 +55,11 @@ export type BaseInputRangeProps = {
   width?: number;
 };
 
-type BaseInputRangeState = {
+type BaseRangeState = {
   showPopup: boolean;
 };
 
-class BaseInputRange extends React.Component<
-  BaseInputRangeProps & WithStylesProps,
-  BaseInputRangeState
-> {
+class BaseRange extends React.Component<BaseRangeProps & WithStylesProps, BaseRangeState> {
   static defaultProps = {
     renderTooltipContent: (value: number) => value.toFixed(0),
   };
@@ -203,4 +200,4 @@ class BaseInputRange extends React.Component<
   }
 }
 
-export default withStyles(stylesheetInputRange, { passThemeProp: true })(BaseInputRange);
+export default withStyles(stylesheetInputRange, { passThemeProp: true })(BaseRange);

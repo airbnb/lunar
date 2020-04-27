@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import FormField, { FormFieldProps, partitionFieldProps } from '../FormField';
-import BaseInputRange, { BaseInputRangeProps } from '../private/BaseInputRange';
+import BaseRange, { BaseRangeProps } from './BaseRange';
 import { IgnoreAttributes } from '../private/FormInput';
 
-export type RangeProps = Omit<BaseInputRangeProps, 'id'> &
+export type RangeProps = Omit<BaseRangeProps, 'id'> &
   FormFieldProps &
   Omit<React.InputHTMLAttributes<HTMLInputElement>, IgnoreAttributes>;
 
@@ -15,8 +15,8 @@ export default function Range(props: RangeProps) {
 
   return (
     <FormField {...fieldProps} id={id}>
-      {/** inputProps.value is a string, we need a number */}
-      <BaseInputRange {...inputProps} value={props.value} id={id} />
+      {/** inputProps.value is typed as a string, BaseRange takes a number. */}
+      <BaseRange {...inputProps} value={props.value} id={id} />
     </FormField>
   );
 }

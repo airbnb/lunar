@@ -1,4 +1,4 @@
-import { StyleSheet } from '../../../hooks/useStyles';
+import { StyleSheet } from '../../hooks/useStyles';
 
 export const HANDLE_SIZE = 18;
 export const HALF_HANDLE_SIZE = HANDLE_SIZE / 2;
