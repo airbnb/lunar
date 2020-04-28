@@ -36,7 +36,7 @@ export const stylesheetInputRange: StyleSheet = ({ unit, ui, color, font, patter
           transition: `opacity ${ui.transitionTime}, backgroundColor ${ui.transitionTime}`,
           width: HANDLE_SIZE,
           height: HANDLE_SIZE,
-          border: `2px solid ${color.accent.borderActive}`,
+          border: `2px solid ${color.core.primary[3]}`,
           borderRadius: HANDLE_SIZE,
           backgroundColor: color.accent.bg,
         },
@@ -44,10 +44,12 @@ export const stylesheetInputRange: StyleSheet = ({ unit, ui, color, font, patter
         ':not([disabled]):active::-webkit-slider-thumb, :not([disabled]):focus::-webkit-slider-thumb': {
           ...pattern.themedFocus,
           backgroundColor: color.accent.bgHover,
+          borderColor: color.core.primary[4],
         },
 
         ':not([disabled]):hover::-webkit-slider-thumb': {
           backgroundColor: color.accent.bgHover,
+          borderColor: color.core.primary[4],
         },
       },
     },
