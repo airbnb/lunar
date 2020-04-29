@@ -74,6 +74,7 @@ class DatePickerResetDemo extends React.Component<{}, ResetState> {
         showResetButton
         initialMonth={new Date(2019, 1, 1)}
         selectedDays={selectedDays}
+        // @ts-ignore valid `at` won't return `null`
         todayButton={DateTime.format({
           at: Date.now(),
           medium: true,
@@ -174,6 +175,7 @@ class DatePickerMouseRangeSelectDemo extends React.Component<{}, RangeState> {
             modifiers={modifiers}
             numberOfMonths={2}
             selectedDays={selectedDays}
+            // @ts-ignore valid `at` won't return `null`
             todayButton={DateTime.format({
               at: Date.now(),
               medium: true,
@@ -209,6 +211,7 @@ export function displayATodayButton() {
   return (
     <DatePicker
       initialMonth={new Date(2019, 1, 1)}
+      // @ts-ignore valid `at` won't return `null`
       todayButton={DateTime.format({
         at: Date.now(),
         medium: true,

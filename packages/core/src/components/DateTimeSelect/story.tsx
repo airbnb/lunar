@@ -169,3 +169,18 @@ export function withInlineLabel() {
 withInlineLabel.story = {
   name: 'With inline label.',
 };
+
+export function withInvalidDate() {
+  return (
+    <DateTimeSelect
+      name="dts-basic"
+      label="Label"
+      value="[Hidden]"
+      onChange={() => console.log('onChange')}
+    />
+  );
+}
+
+withInvalidDate.story = {
+  name: "Fallback to today's date if value is invalid",
+};

@@ -97,7 +97,7 @@ export default class DateTime extends React.PureComponent<DateTimeProps> {
     withDay: false,
   };
 
-  static format(props: DateTimeProps): string {
+  static format(props: DateTimeProps): string | null {
     const {
       at,
       clock,
@@ -128,21 +128,24 @@ export default class DateTime extends React.PureComponent<DateTimeProps> {
       sourceFormat,
       timezone,
     });
+
+    if (!timeStamp || (timeStamp && !timeStamp.isValid)) {
+      if (__DEV__) {
+        console.error('Invalid timestamp passed to `DateTime`.');
+      }
+
+      return null;
+    }
+
     let format = baseFormat || '';
     let affixDay = withDay;
     let affixTime = true;
-
-    if (__DEV__) {
-      if (!timeStamp.isValid) {
-        throw new Error('Invalid timestamp passed to `DateTime`.');
-      }
-    }
 
     // Disable future dates
     if (noFuture) {
       const now = createDateTime(null, { timezone });
 
-      if (timeStamp > now) {
+      if (now && timeStamp > now) {
         timeStamp = now;
       }
     }
@@ -187,8 +190,13 @@ export default class DateTime extends React.PureComponent<DateTimeProps> {
     return timeStamp.toFormat(format);
   }
 
-  static relative(timeStamp: DateTimeType, options: ToRelativeOptions = {}): string {
+  static relative(timeStamp: DateTimeType, options: ToRelativeOptions = {}): string | null {
     const relative = createDateTime(timeStamp);
+
+    if (!relative) {
+      return null;
+    }
+
     const diff = DateTime.diff(relative, options.base);
     const fewPhrase =
       options.style === 'narrow'
@@ -215,15 +223,21 @@ export default class DateTime extends React.PureComponent<DateTimeProps> {
   }
 
   static diff(to: DateTimeType, from: DateTimeType | null = null): number {
-    return (
-      createDateTime(to, { timezone: 'UTC' }).toMillis() -
-      createDateTime(from, { timezone: 'UTC' }).toMillis()
-    );
+    const toDate = createDateTime(to, { timezone: 'UTC' });
+    const fromDate = createDateTime(from, { timezone: 'UTC' });
+
+    if (toDate && fromDate) {
+      return toDate.toMillis() - fromDate.toMillis();
+    }
+
+    return 0;
   }
 
   getRefreshInterval() {
     const { at, sourceFormat } = this.props;
-    const difference = Math.abs(DateTime.diff(createDateTime(at, { sourceFormat })));
+    const difference = Math.abs(
+      DateTime.diff(createDateTime(at, { sourceFormat }) ?? MAX_RELATIVE_DATETIME_REFRESH_INTERVAL),
+    );
 
     // Decay refresh rate based on how long its been since the given timestamp
     // < 1 minute: update every 5 seconds
@@ -239,8 +253,9 @@ export default class DateTime extends React.PureComponent<DateTimeProps> {
 
   rfc() {
     const { at, sourceFormat } = this.props;
+    const date = createDateTime(at, { sourceFormat });
 
-    return createDateTime(at, { sourceFormat }).toFormat("yyyy-MM-dd'T'HH:mm:ssZZ"); // RFC3339
+    return date ? date.toFormat("yyyy-MM-dd'T'HH:mm:ssZZ") : ''; // RFC3339
   }
 
   renderTimeElement = () => {

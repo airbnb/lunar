@@ -35,13 +35,24 @@ export default function DateTimeRange({
   const fromTimeStamp = createDateTime(from, { locale, timezone });
   const toTimeStamp = createDateTime(to, { locale, timezone });
 
-  if (__DEV__) {
-    if (!fromTimeStamp.isValid || !toTimeStamp.isValid) {
-      throw new Error('Invalid timestamps passed to `DateTimeRange`.');
+  if (
+    !fromTimeStamp ||
+    !toTimeStamp ||
+    (fromTimeStamp && !fromTimeStamp.isValid) ||
+    (toTimeStamp && !toTimeStamp.isValid)
+  ) {
+    if (__DEV__) {
+      console.error(
+        `Invalid ${!fromTimeStamp ? 'fromTimeStamp' : 'toTimeStamp'} passed to \`DateTimeRange\`.`,
+      );
     }
 
+    return <Empty />;
+  }
+
+  if (__DEV__) {
     if (toTimeStamp < fromTimeStamp) {
-      throw new Error('Invalid chronological order of timestamps passed to `DateTimeRange`.');
+      console.error('Invalid chronological order of timestamps passed to `DateTimeRange`.');
     }
   }
 

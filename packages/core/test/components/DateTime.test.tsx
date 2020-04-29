@@ -227,7 +227,7 @@ describe('<DateTime />', () => {
     describe('rendered output', () => {
       it('formats to relative time in the future', () => {
         const wrapper = shallow(
-          <DateTime relative at={createDateTime().plus({ years: 70 })} timezone="UTC" />,
+          <DateTime relative at={createDateTime()?.plus({ years: 70 })} timezone="UTC" />,
         ).dive();
 
         expect(wrapper.text()).toBe('in 69 years');
@@ -243,9 +243,13 @@ describe('<DateTime />', () => {
 
       it('uses the provided time when noFuture is set and the time is in the past', () => {
         const wrapper = shallow(
-          <DateTime relative noFuture at={createDateTime().minus({ seconds: 5 })} timezone="UTC" />,
+          <DateTime
+            relative
+            noFuture
+            at={createDateTime()?.minus({ seconds: 5 })}
+            timezone="UTC"
+          />,
         ).dive();
-
         expect(wrapper.text()).toBe('a few seconds ago');
       });
     });
@@ -255,6 +259,7 @@ describe('<DateTime />', () => {
     let base: LuxonDateTime;
 
     beforeEach(() => {
+      // @ts-ignore can't be undefined with the date being set...
       base = createDateTime(new Date(Date.UTC(2019, 1, 1)));
     });
 
