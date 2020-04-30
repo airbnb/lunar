@@ -66,6 +66,8 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     sortDirection: this.props.sortDirectionOverride!,
   };
 
+  timeoutId: number = 0;
+
   constructor(props: DataTableProps & WithStylesProps) {
     super(props);
     if (this.props.dataTableRef) {
@@ -114,10 +116,7 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     const { dynamicRowHeight, data, filterData, width, height, sortByCacheKey } = this.props;
     const { sortBy, sortDirection } = this.state;
     const dimensionsChanged = width !== prevProps.width || height !== prevProps.height;
-    const sortChanged =
-      sortBy !== prevState.sortBy ||
-      sortDirection !== prevState.sortDirection ||
-      sortByCacheKey !== prevProps.sortByCacheKey;
+    const sortChanged = sortByCacheKey !== prevProps.sortByCacheKey;
     const sortedData: IndexedParentRow[] = this.getData(
       data!,
       sortBy,
@@ -134,19 +133,18 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
             x.metadata.originalIndex !== oldFilteredData[i].metadata.originalIndex,
         ));
 
-    if (dynamicRowHeight && (filteredDataChanged || dimensionsChanged || sortChanged)) {
-      // We need to make sure the cache is cleared before React tries to re-render.
-      window.setTimeout(() => {
-        this.cache.clearAll();
-        this.forceUpdate();
-      }, 0);
-    }
-
     if (this.props.data !== prevProps.data) {
       this.keys = getKeys(this.props.keys!, this.props.data!);
 
       this.setState({
         expandedRows: new Set(),
+      });
+    } else if (dynamicRowHeight && (filteredDataChanged || dimensionsChanged || sortChanged)) {
+      // We need to make sure the cache is cleared before React tries to re-render.
+      if (this.timeoutId) window.clearTimeout(this.timeoutId);
+      this.timeoutId = window.setTimeout(() => {
+        this.cache.clearAll();
+        this.forceUpdate();
       });
     }
   }
@@ -224,10 +222,11 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     if (dynamicRowHeight) {
       // We need to make sure the cache is cleared before React tries to re-render.
-      window.setTimeout(() => {
+      if (this.timeoutId) window.clearTimeout(this.timeoutId);
+      this.timeoutId = window.setTimeout(() => {
         this.cache.clearAll();
         this.forceUpdate();
-      }, 0);
+      });
     }
   };
 
