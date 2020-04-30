@@ -1,15 +1,15 @@
-import { WidthProperties, RowHeightOptions } from "./types";
+import { WidthProperties, RowHeightOptions } from './types';
 
 export const SELECTION_OPTIONS = {
-  ACTIVE: "ACTIVE",
-  DISABLED: "DISABLED",
-  INACTIVE: "INACTIVE",
-  HAS_ACTIVE_CHILD: "HAS_ACTIVE_CHILD",
+  ACTIVE: 'ACTIVE',
+  DISABLED: 'DISABLED',
+  INACTIVE: 'INACTIVE',
+  HAS_ACTIVE_CHILD: 'HAS_ACTIVE_CHILD',
 };
 
 export const STATUS_OPTIONS = {
-  ALERT: "ALERT",
-  WARNING: "WARNING",
+  ALERT: 'ALERT',
+  WARNING: 'WARNING',
 };
 
 type HeightMap = {

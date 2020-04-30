@@ -1,19 +1,19 @@
-import React from "react";
-import { SortDirectionType, Table } from "react-virtualized";
-import { WithStylesProps } from "../../composers/withStyles";
-import { DataTable } from "./DataTable";
+import React from 'react';
+import { SortDirectionType, Table } from 'react-virtualized';
+import { WithStylesProps } from '../../composers/withStyles';
+import { DataTable } from './DataTable';
 
 export type DataTableRef = (instance: DataTable) => void;
 export type TableRef = React.RefObject<Table>;
-export type RowHeightOptions = "micro" | "small" | "regular" | "large" | "xLarge" | "jumbo";
+export type RowHeightOptions = 'micro' | 'small' | 'regular' | 'large' | 'xLarge' | 'jumbo';
 export type HeightOptions = RowHeightOptions | undefined;
-export type ColumnLabelCase = "sentence" | "title" | "uppercase" | "";
+export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '';
 
 export type DefaultDataTableProps = keyof DataTableProps;
 
 export type SortByValueAccessor<T extends GenericRow = GenericRow> = (
   row: T,
-  columnKey: string
+  columnKey: string,
 ) => unknown;
 
 export interface DataTableProps {
@@ -210,7 +210,7 @@ export type RendererProps<T = RowData> = {
   /** Whether or not zebra mode is enabled. */
   zebra: boolean;
   /** Theme from Lunar. */
-  theme: WithStylesProps["theme"];
+  theme: WithStylesProps['theme'];
 };
 
 export type Renderer<T = RowData> = React.ComponentType<RendererProps<T>>;
