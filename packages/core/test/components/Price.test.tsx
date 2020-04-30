@@ -11,6 +11,12 @@ describe('<Price />', () => {
       expect(wrapper.find(Empty)).toHaveLength(1);
     });
 
+    it('renders empty if invalid amount', () => {
+      const wrapper = shallow(<Price amount="[Hidden]" currency="USD" />);
+
+      expect(wrapper.find(Empty)).toHaveLength(1);
+    });
+
     it('render the amount in the currency', () => {
       const wrapper = shallow(<Price amount={12300} currency="JPY" />);
 

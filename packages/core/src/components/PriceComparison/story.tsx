@@ -31,3 +31,25 @@ export function onlyUsdAmounts() {
 onlyUsdAmounts.story = {
   name: 'Only USD amounts.',
 };
+
+export function withAnInvalidAmount() {
+  return (
+    <div>
+      {/* invalid amount type on purprose to demonstrate the fallback
+      // @ts-ignore */}
+      <PriceComparison amount="[Hidden]" amountUSD="[Hidden]" currency="EUR" />
+      <br />
+      {/* invalid amount type on purprose to demonstrate the fallback
+      // @ts-ignore */}
+      <PriceComparison amount="[Hidden]" currency="EUR" />
+      <br />
+      {/* invalid amount type on purprose to demonstrate the fallback
+      // @ts-ignore */}
+      <PriceComparison amountUSD="[Hidden]" currency="EUR" />
+    </div>
+  );
+}
+
+withAnInvalidAmount.story = {
+  name: 'Fallback when invalid amounts are provided.',
+};
