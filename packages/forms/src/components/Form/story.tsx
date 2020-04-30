@@ -15,6 +15,7 @@ import ToggleButtonController from './ToggleButtonController';
 import DatePickerInput from './DatePickerInput';
 import DateTimeSelect from './DateTimeSelect';
 import Multicomplete from './Multicomplete';
+import Range from './Range';
 import FormActions from '../FormActions';
 import Form from '.';
 
@@ -313,6 +314,18 @@ export function withAllFields() {
           </ButtonGroup>
         )}
       </ToggleButtonController>
+
+      <Range
+        unregisterOnUnmount
+        alwaysShowTooltip
+        label="Range slider"
+        name="range_slider"
+        validator={isRequired}
+        // set a default
+        // defaultValue={2}
+        min={0}
+        max={10}
+      />
 
       <br />
       <br />
