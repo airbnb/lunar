@@ -32,7 +32,7 @@ export default function PriceGroup({ amounts, divider = ', ', ...restProps }: Pr
   const output: JSX.Element[] = [];
 
   let invalidAmounts = 0;
-  currencies.forEach(currency => {
+  currencies.forEach((currency) => {
     const amount = amounts[currency];
 
     if (typeof amount === 'string' && isNaN(Number(amount))) {

@@ -99,7 +99,7 @@ export default function DatePicker(props: DatePickerProps) {
       modifiers={getCustomModifiers(modifiers, styles, cx)}
       month={month}
       months={getMonths()}
-      navbarElement={navProps => (
+      navbarElement={(navProps) => (
         <NavBar
           {...navProps}
           noFooter={!todayButton}
