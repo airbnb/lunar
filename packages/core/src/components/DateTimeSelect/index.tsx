@@ -96,7 +96,7 @@ export class DateTimeSelect extends React.Component<
 
       this.setState({
         date,
-        meridiem: date && date.get('hour') <= 11 ? 'am' : 'pm',
+        meridiem: date?.get('hour') <= 11 ? 'am' : 'pm',
       });
     }
   }
