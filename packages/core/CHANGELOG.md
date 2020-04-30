@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.12.1 - 2020-04-30
+
+#### 🐞 Fixes
+
+- **[DataTable]** Don't cast undefined to a string (#365) ([e09dac8](https://github.com/airbnb/lunar/commit/e09dac8)), closes [#365](https://github.com/airbnb/lunar/issues/365)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.12.0 - 2020-04-30
 
 #### 🚀 Updates
