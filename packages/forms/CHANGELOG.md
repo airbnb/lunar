@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.2.0 - 2020-04-30
+
+#### 🚀 Updates
+
+- **[Range]** Add input range component (#362) ([3996ebf](https://github.com/airbnb/lunar/commit/3996ebf)), closes [#362](https://github.com/airbnb/lunar/issues/362)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ## 3.1.0 - 2020-04-07
 
 #### 🚀 Updates
