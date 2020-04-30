@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.13.0 - 2020-04-30
+
+#### 🚀 Updates
+
+- **[DateTime, DateTimeRange, DateTimeSelect, Price, PriceComparison, PriceGroup]** Add empty fallback if an invalid value is provided. (#366) ([a37c2cc](https://github.com/airbnb/lunar/commit/a37c2cc)), closes [#366](https://github.com/airbnb/lunar/issues/366)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.12.1 - 2020-04-30
 
 #### 🐞 Fixes
