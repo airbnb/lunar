@@ -384,14 +384,14 @@ describe('<DataTable /> does not break with weird props', () => {
     width: 500,
     tableHeaderLabel: 'My Table',
     zebra: true,
-    rowHeight: 'regular',
+    rowHeight: 'regular' as const,
     columnMetadata,
     columnToLabel: {
       name: 'CUSTOM NAME',
     },
     expandable: true,
-    columnHeaderHeight: 'micro',
-    tableHeaderHeight: 'large',
+    columnHeaderHeight: 'micro' as const,
+    tableHeaderHeight: 'large' as const,
     keys: ['name'],
     showRowDividers: true,
   };
