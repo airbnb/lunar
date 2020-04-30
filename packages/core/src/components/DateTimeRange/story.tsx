@@ -47,3 +47,25 @@ export function differentYearsRangeWithCustomSeparator() {
 differentYearsRangeWithCustomSeparator.story = {
   name: 'Different years range with custom separator.',
 };
+
+export function withAnInvalidValues() {
+  return (
+    <div>
+      <div>
+        Invalid from: <DateTimeRange from="[Hidden]" to={new Date(2019, 1, 17, 0, 0, 0)} />
+      </div>
+
+      <div>
+        Invalid to: <DateTimeRange from={new Date(2019, 1, 15, 0, 0, 0)} to="[Hidden]" />
+      </div>
+
+      <div>
+        Both invalid: <DateTimeRange from="[Hidden]" to="[Hidden]" />
+      </div>
+    </div>
+  );
+}
+
+withAnInvalidValues.story = {
+  name: 'Fallback when an invalid date values are provided.',
+};

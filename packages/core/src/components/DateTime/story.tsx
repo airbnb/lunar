@@ -1,5 +1,6 @@
 import React from 'react';
 import DateTime from '.';
+import Empty from '../Empty';
 
 const future = new Date();
 future.setDate(future.getDate() + 12);
@@ -76,4 +77,25 @@ export function usingStaticMethod() {
 
 usingStaticMethod.story = {
   name: 'Using static method.',
+};
+
+export function withAnInvalidAtValue() {
+  return (
+    <div>
+      <div>
+        Component fallback: <DateTime at="[Hidden]" />
+      </div>
+
+      <div>Static method with fallback: {DateTime.format({ at: '[Hidden]', long: true })}</div>
+
+      <div>
+        Static method with custom fallback:{' '}
+        {DateTime.format({ at: '[Hidden]', long: true }) || <Empty />}
+      </div>
+    </div>
+  );
+}
+
+withAnInvalidAtValue.story = {
+  name: 'Fallback when an invalid date value is provided.',
 };

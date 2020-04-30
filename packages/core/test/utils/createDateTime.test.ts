@@ -13,6 +13,7 @@ describe('createDateTime()', () => {
     const utc = DateTime.utc();
     const time = createDateTime(null, { timezone: 'America/New_York' });
 
+    // @ts-ignore wont be undefined
     expect(utc.toISO()).not.toBe(time.toISO());
   });
 
@@ -20,6 +21,7 @@ describe('createDateTime()', () => {
     const utc = DateTime.utc();
     const time = createDateTime(null, { timezone: 'UTC' });
 
+    // @ts-ignore wont be undefined
     expect(parseISO(utc.toISO())).toBe(parseISO(time.toISO()));
   });
 
@@ -28,6 +30,7 @@ describe('createDateTime()', () => {
     const time = createDateTime(luxon, { timezone: 'UTC' });
 
     expect(time).toBeInstanceOf(DateTime);
+    // @ts-ignore wont be undefined
     expect(time.toISO()).toBe(luxon.toISO());
 
     // Test immutability
@@ -39,7 +42,9 @@ describe('createDateTime()', () => {
     const time = createDateTime(luxon, { timezone: 'Europe/Paris' });
 
     expect(time).toBeInstanceOf(DateTime);
+    // @ts-ignore wont be undefined
     expect(time.valueOf()).toBe(luxon.valueOf());
+    // @ts-ignore wont be undefined
     expect(time.zoneName).toBe('Europe/Paris');
   });
 
@@ -48,6 +53,7 @@ describe('createDateTime()', () => {
     const time = createDateTime(date, { timezone: 'UTC' });
 
     expect(time).toBeInstanceOf(DateTime);
+    // @ts-ignore wont be undefined
     expect(time.toISO()).toBe(date.toISOString());
   });
 
@@ -56,6 +62,7 @@ describe('createDateTime()', () => {
     const time = createDateTime(date, { timezone: 'UTC' });
 
     expect(time).toBeInstanceOf(DateTime);
+    // @ts-ignore wont be undefined
     expect(time.toISO()).toBe('1988-02-26T00:00:00.000Z');
   });
 
@@ -64,6 +71,7 @@ describe('createDateTime()', () => {
     const time = createDateTime(date, { timezone: 'UTC', sourceFormat: 'MMMM d, yyyy' });
 
     expect(time).toBeInstanceOf(DateTime);
+    // @ts-ignore wont be undefined
     expect(time.toISO()).toBe('1988-02-26T00:00:00.000Z');
   });
 
@@ -72,6 +80,7 @@ describe('createDateTime()', () => {
     const time = createDateTime(date);
 
     expect(time).toBeInstanceOf(DateTime);
+    // @ts-ignore wont be undefined
     expect(time.toMillis()).toBe(date);
   });
 
@@ -87,6 +96,7 @@ describe('createDateTime()', () => {
     const time = createDateTime(0);
 
     expect(time).toBeInstanceOf(DateTime);
+    // @ts-ignore wont be undefined
     expect(time.toMillis()).toBe(0);
   });
 
@@ -94,6 +104,7 @@ describe('createDateTime()', () => {
     const time = createDateTime(-123);
 
     expect(time).toBeInstanceOf(DateTime);
+    // @ts-ignore wont be undefined
     expect(time.toMillis()).toBe(-123);
   });
 
@@ -102,6 +113,7 @@ describe('createDateTime()', () => {
     const time = createDateTime('');
 
     expect(time).toBeInstanceOf(DateTime);
+    // @ts-ignore wont be undefined
     expect(time.toMillis()).toBeGreaterThanOrEqual(date);
   });
 
@@ -111,6 +123,13 @@ describe('createDateTime()', () => {
     const time = createDateTime(date, { timezone: 'UTC' });
 
     expect(time).toBeInstanceOf(DateTime);
+    // @ts-ignore wont be undefined
     expect(parseISO(time.toISO())).toBe(parseISO(date.toISOString()));
+  });
+
+  it('throws an error if date is invalid', () => {
+    expect(() => createDateTime('[Hidden]')).toThrow(
+      'Error: Invalid DateTime: unparsable: the input "[Hidden]" can\'t be parsed as ISO 8601',
+    );
   });
 });

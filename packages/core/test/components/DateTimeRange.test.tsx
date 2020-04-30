@@ -58,12 +58,10 @@ describe('<DateTimeRange />', () => {
 
   it('errors for an invalid time', () => {
     expect(() => shallow(<DateTimeRange from="2016-02-33" to={dateA} timezone="UTC" />)).toThrow(
-      'Invalid DateTime: unit out of range: you specified 33 (of type number) as a day, which is invalid',
+      'Invalid Date',
     );
 
-    expect(() => shallow(<DateTimeRange from={dateA} to="2016-02-33" />)).toThrow(
-      'Invalid DateTime: unit out of range: you specified 33 (of type number) as a day, which is invalid',
-    );
+    expect(() => shallow(<DateTimeRange from={dateA} to="2016-02-33" />)).toThrow('Invalid Date');
   });
 
   it('errors for inproperly ordered times', () => {

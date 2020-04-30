@@ -71,7 +71,7 @@ export default class DatePickerInput extends React.Component<
     // Update the parent form with the selected value.
     // We also don't have a real event object, so fake it.
     this.props.onChange(
-      this.formatDate(day),
+      this.formatDate(day)!,
       day,
       // @ts-ignore
       {},
@@ -84,6 +84,7 @@ export default class DatePickerInput extends React.Component<
 
   parseDate = (value: string, format?: string, locale?: string) => {
     try {
+      // @ts-ignore Allow it to fail
       return createDateTime(value, {
         sourceFormat: format ?? this.getFormat(),
         locale: locale ?? this.props.locale,
@@ -103,7 +104,7 @@ export default class DatePickerInput extends React.Component<
       locale: locale ?? this.props.locale,
       noTime: true,
       noTimezone: true,
-    });
+    })!;
   };
 
   render() {

@@ -31,3 +31,12 @@ export function roundedAmountInJpy() {
 roundedAmountInJpy.story = {
   name: 'Rounded amount in JPY.',
 };
+
+export function withAnInvalidAmount() {
+  // @ts-ignore invalid amount type on purprose to demonstrate the fallback
+  return <Price amount="[Hidden]" currency="USD" />;
+}
+
+withAnInvalidAmount.story = {
+  name: 'Fallback when an invalid amount is provided.',
+};

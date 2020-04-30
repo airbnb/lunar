@@ -1,10 +1,11 @@
 import React from 'react';
 import { DEFAULT_CURRENCY } from '../../constants';
+import Empty from '../Empty';
 import Price, { CommonProps } from '../Price';
 import { Amount } from '../../types';
 
 export type PriceAmountDefinition = {
-  [currency: string]: number | Amount;
+  [currency: string]: Amount | number | string;
 };
 
 export type PriceGroupProps = CommonProps & {
@@ -29,6 +30,19 @@ export default function PriceGroup({ amounts, divider = ', ', ...restProps }: Pr
 
   // Loop through and generate the prices
   const output: JSX.Element[] = [];
+
+  let invalidAmounts = 0;
+  currencies.forEach((currency) => {
+    const amount = amounts[currency];
+
+    if (typeof amount === 'string' && isNaN(Number(amount))) {
+      invalidAmounts += 1;
+    }
+  });
+
+  if (invalidAmounts === currencies.length) {
+    return <Empty />;
+  }
 
   currencies.forEach((currency, i) => {
     if (i > 0) {

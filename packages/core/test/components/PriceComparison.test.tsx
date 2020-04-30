@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import PriceComparison from '../../src/components/PriceComparison';
+import Empty from '../../src/components/Empty';
 
 describe('<PriceComparison />', () => {
   it('render the amount in the currency', () => {
@@ -9,16 +10,36 @@ describe('<PriceComparison />', () => {
     expect(wrapper.text()).toBe('¥12,300');
   });
 
+  it('renders empty if invalid amount', () => {
+    const wrapper = mount(<PriceComparison amount="[Hidden]" currency="JPY" />);
+
+    expect(wrapper.find(Empty)).toHaveLength(1);
+  });
+
   it('render the USD amount if no native amount passed', () => {
     const wrapper = mount(<PriceComparison amountUSD={123} currency="JPY" />);
 
     expect(wrapper.text()).toBe('$123.00');
   });
 
+  it('renders empty if invalid amountUSD', () => {
+    const wrapper = mount(<PriceComparison amountUSD="[Hidden]" currency="JPY" />);
+
+    expect(wrapper.find(Empty)).toHaveLength(1);
+  });
+
   it('render both native and USD amounts', () => {
     const wrapper = mount(<PriceComparison amount={12300} amountUSD={123} currency="JPY" />);
 
     expect(wrapper.text()).toBe('¥12,300, $123.00');
+  });
+
+  it('renders empty if invalid amount and amountUSD', () => {
+    const wrapper = mount(
+      <PriceComparison amount="[Hidden]" amountUSD="[Hidden]" currency="JPY" />,
+    );
+
+    expect(wrapper.find(Empty)).toHaveLength(1);
   });
 
   it('handles zeros accordingly', () => {

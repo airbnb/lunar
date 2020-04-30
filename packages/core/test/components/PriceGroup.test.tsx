@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import PriceGroup from '../../src/components/PriceGroup';
+import Empty from '../../src/components/Empty';
 
 describe('<PriceGroup />', () => {
   it('render a single amount', () => {
@@ -9,10 +10,29 @@ describe('<PriceGroup />', () => {
     expect(wrapper.text()).toBe('£123.00');
   });
 
+  it('renders empty if invalid amount', () => {
+    const wrapper = mount(<PriceGroup amounts={{ GBP: '[Hidden]' }} />);
+
+    expect(wrapper.find(Empty)).toHaveLength(1);
+  });
+
   it('render multiple amounts', () => {
     const wrapper = mount(<PriceGroup amounts={{ GBP: 123, JPY: 456 }} />);
 
     expect(wrapper.text()).toBe('£123.00, ¥456');
+  });
+
+  it('renders empty if all amounts are invalid', () => {
+    const wrapper = mount(<PriceGroup amounts={{ GBP: '[Hidden]', JPY: '[Hidden]' }} />);
+
+    expect(wrapper.find(Empty)).toHaveLength(1);
+  });
+
+  it('renders empty if an amount is invalid in multiple amounts', () => {
+    const wrapper = mount(<PriceGroup amounts={{ GBP: 123, JPY: '[Hidden]' }} />);
+
+    expect(wrapper.find(Empty)).toHaveLength(1);
+    expect(wrapper.text()).toBe('£123.00, —');
   });
 
   it('render multiple amounts but place USD last', () => {

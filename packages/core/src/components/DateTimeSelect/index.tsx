@@ -66,10 +66,15 @@ export class DateTimeSelect extends React.Component<
     yearPastBuffer: 80,
   };
 
-  private date = createDateTime(this.props.value, {
-    locale: this.props.locale,
-    timezone: this.props.timezone,
-  }).set({ minute: 0, second: 0 });
+  private date: DateTime = (
+    createDateTime(this.props.value, {
+      locale: this.props.locale,
+      timezone: this.props.timezone,
+    }) ?? this.getNowDate()
+  ).set({
+    minute: 0,
+    second: 0,
+  });
 
   state = {
     id: uuid(),
@@ -83,16 +88,28 @@ export class DateTimeSelect extends React.Component<
     // Don't set minute/second to 0 here, because when used in conjunction with the form kit,
     // the value is always passed down, causing the numbers to always reset to 0.
     if (value !== prevProps.value) {
-      const date = createDateTime(value, {
-        locale,
-        timezone,
-      });
+      const date =
+        createDateTime(value, {
+          locale,
+          timezone,
+        }) ?? this.getNowDate();
 
       this.setState({
         date,
-        meridiem: date.get('hour') <= 11 ? 'am' : 'pm',
+        meridiem: date?.get('hour') <= 11 ? 'am' : 'pm',
       });
     }
+  }
+
+  getNowDate() {
+    const { locale, timezone } = this.props;
+    let date = DateTime.utc().setLocale(locale!);
+
+    if (timezone && timezone !== 'UTC') {
+      date = date.setZone(timezone as string);
+    }
+
+    return date;
   }
 
   getDayRange(): Range {
@@ -140,7 +157,7 @@ export class DateTimeSelect extends React.Component<
   }
 
   getYearRange(): Range {
-    const now = createDateTime();
+    const now = createDateTime() ?? this.getNowDate();
 
     return createRange(
       now.year - this.props.yearPastBuffer!,

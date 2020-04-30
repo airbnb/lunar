@@ -23,7 +23,7 @@ export type CommonProps = {
 
 export type PriceProps = CommonProps & {
   /** The amount as a number. */
-  amount?: Amount | number | null;
+  amount?: Amount | number | null | string;
   /** Native currency of the amount. */
   currency?: Currency;
 };
@@ -43,7 +43,11 @@ function Price({
   let currency = baseCurrency;
   let micros = baseMicros;
 
-  if (baseAmount === undefined || baseAmount === null) {
+  if (
+    baseAmount === undefined ||
+    baseAmount === null ||
+    (typeof baseAmount === 'string' && isNaN(Number(baseAmount)))
+  ) {
     return <Empty />;
   }
 
@@ -51,6 +55,8 @@ function Price({
     currency = baseAmount.currency;
     micros = baseAmount.is_micros_accuracy;
     amount = micros ? baseAmount.amount_micros : baseAmount.amount;
+  } else if (typeof baseAmount === 'string') {
+    amount = Number(baseAmount);
   } else if (typeof baseAmount === 'number') {
     amount = baseAmount;
   }
@@ -73,7 +79,7 @@ function Price({
 }
 
 Price.propTypes = {
-  amount: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
+  amount: PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.string]),
   display: PropTypes.oneOf(['symbol', 'code', 'name']),
 };
 

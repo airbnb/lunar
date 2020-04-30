@@ -17,10 +17,10 @@ export { DateTime };
 export default function createDateTime(
   value?: DateTimeType,
   { locale, sourceFormat, timezone }: Options = {},
-): DateTime {
+): DateTime | undefined {
   const options: BaseOptions = { locale: locale || clientLocale };
-  let date;
 
+  let date;
   if (timezone === false) {
     options.zone = utcZone;
   } else if (timezone === true) {
@@ -39,24 +39,32 @@ export default function createDateTime(
     return DateTime.fromISO(moment.toISOString(), options);
   }
 
-  // Parse in different formats
-  if (value instanceof DateTime) {
-    date = value.setLocale(options.locale!).setZone(options.zone);
-  } else if (value instanceof Date) {
-    date = DateTime.fromJSDate(value, options);
-  } else if (typeof value === 'string' && value) {
-    date = sourceFormat
-      ? DateTime.fromFormat(value, sourceFormat, options)
-      : DateTime.fromISO(value, options);
-  } else if (typeof value === 'number') {
-    date = DateTime.fromMillis(value, options);
-  } else {
-    date = DateTime.utc().setLocale(options.locale!);
+  try {
+    // Parse in different formats
+    if (value instanceof DateTime) {
+      date = value.setLocale(options.locale!).setZone(options.zone);
+    } else if (value instanceof Date) {
+      date = DateTime.fromJSDate(value, options);
+    } else if (typeof value === 'string' && value) {
+      date = sourceFormat
+        ? DateTime.fromFormat(value, sourceFormat, options)
+        : DateTime.fromISO(value, options);
+    } else if (typeof value === 'number') {
+      date = DateTime.fromMillis(value, options);
+    } else {
+      date = DateTime.utc().setLocale(options.locale!);
 
-    if (options.zone !== 'UTC') {
-      date = date.setZone(options.zone);
+      if (options.zone !== 'UTC') {
+        date = date.setZone(options.zone);
+      }
     }
-  }
 
-  return date;
+    return date;
+  } catch (error) {
+    if (__DEV__) {
+      console.error(error);
+    }
+
+    return undefined;
+  }
 }
