@@ -1,19 +1,19 @@
-import React from 'react';
-import { SortDirectionType, Table } from 'react-virtualized';
-import { WithStylesProps } from '../../composers/withStyles';
-import { DataTable } from './DataTable';
+import React from "react";
+import { SortDirectionType, Table } from "react-virtualized";
+import { WithStylesProps } from "../../composers/withStyles";
+import { DataTable } from "./DataTable";
 
 export type DataTableRef = (instance: DataTable) => void;
 export type TableRef = React.RefObject<Table>;
-export type RowHeightOptions = string;
+export type RowHeightOptions = "micro" | "small" | "regular" | "large" | "xLarge" | "jumbo";
 export type HeightOptions = RowHeightOptions | undefined;
-export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '';
+export type ColumnLabelCase = "sentence" | "title" | "uppercase" | "";
 
 export type DefaultDataTableProps = keyof DataTableProps;
 
 export type SortByValueAccessor<T extends GenericRow = GenericRow> = (
   row: T,
-  columnKey: string,
+  columnKey: string
 ) => unknown;
 
 export interface DataTableProps {
@@ -45,6 +45,8 @@ export interface DataTableProps {
   height?: number;
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];
+  /** If dynamicRowHeight is enabled, this sets the maximum value for measured row height. */
+  maximumDynamicRowHeight?: number;
   /** If dynamicRowHeight is enabled, this sets the minimum value for measured row height. */
   minimumDynamicRowHeight?: number;
   /**
@@ -208,7 +210,7 @@ export type RendererProps<T = RowData> = {
   /** Whether or not zebra mode is enabled. */
   zebra: boolean;
   /** Theme from Lunar. */
-  theme: WithStylesProps['theme'];
+  theme: WithStylesProps["theme"];
 };
 
 export type Renderer<T = RowData> = React.ComponentType<RendererProps<T>>;
