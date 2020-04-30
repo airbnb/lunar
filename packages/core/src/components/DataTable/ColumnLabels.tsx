@@ -74,7 +74,7 @@ export default function ColumnLabels({
 
       // TODO: The types here are very wrong and confusing.
       const { children } = col.props;
-      const key = String(children[0].props.children);
+      const key = children[0].props.children ? String(children[0].props.children) : '';
       const label = columnToLabel[key]
         ? columnToLabel[key]
         : key && caseColumnLabel(key, columnLabelCase!);
@@ -87,7 +87,7 @@ export default function ColumnLabels({
       const showDivider = showColumnDividers && !!label && !isRightmost;
 
       const sortable =
-        !columnMetadata || !columnMetadata[key] || columnMetadata[key].disableSorting !== 1;
+        !columnMetadata || !columnMetadata?.[key] || columnMetadata[key].disableSorting !== 1;
 
       const newHeader = (
         <Spacing left={indent && !isLeftmost ? 2 : 0}>
