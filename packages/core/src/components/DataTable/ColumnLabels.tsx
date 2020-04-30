@@ -87,7 +87,7 @@ export default function ColumnLabels({
       const showDivider = showColumnDividers && !!label && !isRightmost;
 
       const sortable =
-        !columnMetadata || !columnMetadata?.[key] || columnMetadata[key].disableSorting !== 1;
+        !columnMetadata || !columnMetadata[key] || columnMetadata[key].disableSorting !== 1;
 
       const newHeader = (
         <Spacing left={indent && !isLeftmost ? 2 : 0}>
