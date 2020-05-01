@@ -149,6 +149,10 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
     }
   }
 
+  componentWillUnmount() {
+    if (this.timeoutId) window.clearTimeout(this.timeoutId);
+  }
+
   private getTableHeight = (expandedDataList: ExpandedRow[]): number => {
     const { height, rowHeight, showAllRows, dynamicRowHeight } = this.props;
     // @ts-ignore _rowHeightCache is missing from DataTable types
