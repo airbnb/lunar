@@ -1,4 +1,4 @@
-import { WidthProperties } from './types';
+import { WidthProperties, RowHeightOptions } from './types';
 
 export const SELECTION_OPTIONS = {
   ACTIVE: 'ACTIVE',
@@ -13,7 +13,7 @@ export const STATUS_OPTIONS = {
 };
 
 type HeightMap = {
-  [key: string]: number;
+  [key in RowHeightOptions]: number;
 };
 
 export const HEIGHT_TO_PX: HeightMap = {
@@ -21,6 +21,7 @@ export const HEIGHT_TO_PX: HeightMap = {
   small: 48,
   regular: 56,
   large: 64,
+  xLarge: 80,
   jumbo: 108,
 };
 

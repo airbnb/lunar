@@ -5,7 +5,7 @@ import { DataTable } from './DataTable';
 
 export type DataTableRef = (instance: DataTable) => void;
 export type TableRef = React.RefObject<Table>;
-export type RowHeightOptions = string;
+export type RowHeightOptions = 'micro' | 'small' | 'regular' | 'large' | 'xLarge' | 'jumbo';
 export type HeightOptions = RowHeightOptions | undefined;
 export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '';
 
@@ -45,6 +45,8 @@ export interface DataTableProps {
   height?: number;
   /** References row fields to render as columns, infered from data if not specified. */
   keys?: string[];
+  /** If dynamicRowHeight is enabled, this sets the maximum value for measured row height. */
+  maximumDynamicRowHeight?: number;
   /** If dynamicRowHeight is enabled, this sets the minimum value for measured row height. */
   minimumDynamicRowHeight?: number;
   /**
