@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.14.1 - 2020-05-01
+
+#### 🐞 Fixes
+
+- **[DataTable]** rowHeight xLarge => xlarge (#368) ([078a64a](https://github.com/airbnb/lunar/commit/078a64a)), closes [#368](https://github.com/airbnb/lunar/issues/368)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.14.0 - 2020-05-01
 
 #### 🚀 Updates
