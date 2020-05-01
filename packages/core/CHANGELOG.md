@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.14.0 - 2020-05-01
+
+#### 🚀 Updates
+
+- **[DataTable]** Add xLarge row size. Fix forceUpdate logic (#367) ([ebab32b](https://github.com/airbnb/lunar/commit/ebab32b)), closes [#367](https://github.com/airbnb/lunar/issues/367)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.13.0 - 2020-04-30
 
 #### 🚀 Updates
