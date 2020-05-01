@@ -5,7 +5,7 @@ import { DataTable } from './DataTable';
 
 export type DataTableRef = (instance: DataTable) => void;
 export type TableRef = React.RefObject<Table>;
-export type RowHeightOptions = 'micro' | 'small' | 'regular' | 'large' | 'xLarge' | 'jumbo';
+export type RowHeightOptions = 'micro' | 'small' | 'regular' | 'large' | 'xlarge' | 'jumbo';
 export type HeightOptions = RowHeightOptions | undefined;
 export type ColumnLabelCase = 'sentence' | 'title' | 'uppercase' | '';
 
