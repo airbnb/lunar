@@ -141,12 +141,18 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
       });
     } else if (dynamicRowHeight && (filteredDataChanged || dimensionsChanged || sortChanged)) {
       // We need to make sure the cache is cleared before React tries to re-render.
-      if (this.timeoutId) window.clearTimeout(this.timeoutId);
-      this.timeoutId = window.setTimeout(() => {
-        this.cache.clearAll();
-        this.forceUpdate();
-      });
+      if (!this.timeoutId) {
+        this.timeoutId = window.setTimeout(() => {
+          this.cache.clearAll();
+          this.forceUpdate();
+          this.timeoutId = 0;
+        });
+      }
     }
+  }
+
+  componentWillUnmount() {
+    if (this.timeoutId) window.clearTimeout(this.timeoutId);
   }
 
   private getTableHeight = (expandedDataList: ExpandedRow[]): number => {
@@ -222,11 +228,13 @@ export class DataTable extends React.Component<DataTableProps & WithStylesProps,
 
     if (dynamicRowHeight) {
       // We need to make sure the cache is cleared before React tries to re-render.
-      if (this.timeoutId) window.clearTimeout(this.timeoutId);
-      this.timeoutId = window.setTimeout(() => {
-        this.cache.clearAll();
-        this.forceUpdate();
-      });
+      if (!this.timeoutId) {
+        this.timeoutId = window.setTimeout(() => {
+          this.cache.clearAll();
+          this.forceUpdate();
+          this.timeoutId = 0;
+        });
+      }
     }
   };
 

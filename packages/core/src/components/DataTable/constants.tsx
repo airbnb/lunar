@@ -21,7 +21,7 @@ export const HEIGHT_TO_PX: HeightMap = {
   small: 48,
   regular: 56,
   large: 64,
-  xLarge: 80,
+  xlarge: 80,
   jumbo: 108,
 };
 
