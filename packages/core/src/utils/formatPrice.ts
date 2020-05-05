@@ -59,9 +59,9 @@ export default function formatPrice(
 
     return amountStr;
   } catch (error) {
-    // if (__DEV__) {
-    //   console.error(error);
-    // }
+    if (__DEV__) {
+      console.error(error);
+    }
 
     return '';
   }
