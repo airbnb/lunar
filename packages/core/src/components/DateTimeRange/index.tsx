@@ -42,6 +42,7 @@ export default function DateTimeRange({
     (toTimeStamp && !toTimeStamp.isValid)
   ) {
     if (__DEV__) {
+      // eslint-disable-next-line no-console
       console.error(
         `Invalid ${!fromTimeStamp ? 'fromTimeStamp' : 'toTimeStamp'} passed to \`DateTimeRange\`.`,
       );
@@ -52,6 +53,7 @@ export default function DateTimeRange({
 
   if (__DEV__) {
     if (toTimeStamp < fromTimeStamp) {
+      // eslint-disable-next-line no-console
       console.error('Invalid chronological order of timestamps passed to `DateTimeRange`.');
     }
   }

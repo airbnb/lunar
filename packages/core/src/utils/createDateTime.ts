@@ -62,6 +62,7 @@ export default function createDateTime(
     return date;
   } catch (error) {
     if (__DEV__) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
 

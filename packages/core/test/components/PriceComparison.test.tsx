@@ -4,6 +4,16 @@ import PriceComparison from '../../src/components/PriceComparison';
 import Empty from '../../src/components/Empty';
 
 describe('<PriceComparison />', () => {
+  let errSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    errSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    errSpy.mockRestore();
+  });
+
   it('render the amount in the currency', () => {
     const wrapper = mount(<PriceComparison amount={12300} currency="JPY" />);
 

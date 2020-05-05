@@ -131,6 +131,7 @@ export default class DateTime extends React.PureComponent<DateTimeProps> {
 
     if (!timeStamp || (timeStamp && !timeStamp.isValid)) {
       if (__DEV__) {
+        // eslint-disable-next-line no-console
         console.error('Invalid timestamp passed to `DateTime`.');
       }
 

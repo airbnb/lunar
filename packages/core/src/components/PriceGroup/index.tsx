@@ -31,8 +31,8 @@ export default function PriceGroup({ amounts, divider = ', ', ...restProps }: Pr
 
   // Loop through and generate the prices
   const output: JSX.Element[] = [];
-
   let invalidAmounts = 0;
+
   currencies.forEach((currency) => {
     const amount = amounts[currency];
     if (

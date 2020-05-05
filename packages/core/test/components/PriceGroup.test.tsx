@@ -4,6 +4,16 @@ import PriceGroup from '../../src/components/PriceGroup';
 import Empty from '../../src/components/Empty';
 
 describe('<PriceGroup />', () => {
+  let errSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    errSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    errSpy.mockRestore();
+  });
+
   it('render a single amount', () => {
     const wrapper = mount(<PriceGroup amounts={{ GBP: 123 }} />);
 

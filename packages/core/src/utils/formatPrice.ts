@@ -13,7 +13,7 @@ export default function formatPrice(
   price: number | string,
   currency?: Currency,
   options: Options = {},
-): string {
+): string | undefined {
   const locale = options.locale || Core.locale();
   const priceNum = Number(price);
   const negative = priceNum < 0;
@@ -60,9 +60,10 @@ export default function formatPrice(
     return amountStr;
   } catch (error) {
     if (__DEV__) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
 
-    return '';
+    return undefined;
   }
 }

@@ -4,6 +4,16 @@ import Price from '../../src/components/Price';
 import Empty from '../../src/components/Empty';
 
 describe('<Price />', () => {
+  let errSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    errSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    errSpy.mockRestore();
+  });
+
   describe('numeric amount', () => {
     it('renders empty if no amount', () => {
       const wrapper = shallow(<Price currency="USD" />);
