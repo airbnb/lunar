@@ -38,7 +38,7 @@ function Price({
   precision = 0,
   round,
   trimTrailingZeros,
-}: PriceProps): JSX.Element | null {
+}: PriceProps) {
   let amount = 0;
   let currency = baseCurrency;
   let micros = baseMicros;
