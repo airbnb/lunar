@@ -31,30 +31,38 @@ export default function formatPrice(
     amount = Math.abs(amount);
   }
 
-  let amountStr = '';
+  try {
+    let amountStr = '';
 
-  // Format as a currency
-  if (currency) {
-    amountStr = amount.toLocaleString(locale, {
-      style: 'currency',
-      currency,
-      currencyDisplay: options.display || 'symbol',
-    });
+    // Format as a currency
+    if (currency) {
+      amountStr = amount.toLocaleString(locale, {
+        style: 'currency',
+        currency,
+        currencyDisplay: options.display || 'symbol',
+      });
 
-    // Format as a number
-  } else {
-    amountStr = amount.toLocaleString(locale);
+      // Format as a number
+    } else {
+      amountStr = amount.toLocaleString(locale);
+    }
+
+    // Remove ending zeros
+    if (options.trimTrailingZeros) {
+      amountStr = amountStr.replace(/\.0+$/, '');
+    }
+
+    // Wrap the value in parenthesis if negative
+    if (negative) {
+      amountStr = `(${amountStr})`;
+    }
+
+    return amountStr;
+  } catch (error) {
+    // if (__DEV__) {
+    //   console.error(error);
+    // }
+
+    return '';
   }
-
-  // Remove ending zeros
-  if (options.trimTrailingZeros) {
-    amountStr = amountStr.replace(/\.0+$/, '');
-  }
-
-  // Wrap the value in parenthesis if negative
-  if (negative) {
-    amountStr = `(${amountStr})`;
-  }
-
-  return amountStr;
 }

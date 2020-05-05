@@ -23,6 +23,12 @@ describe('<Price />', () => {
       expect(wrapper.text()).toBe('¥12,300');
     });
 
+    it('render empty if invalid currency', () => {
+      const wrapper = shallow(<Price amount={12300} currency="[Hidden]" />);
+
+      expect(wrapper.find(Empty)).toHaveLength(1);
+    });
+
     it('rounds the amount', () => {
       const wrapper = shallow(<Price round amount={53120.78} currency="USD" />);
 

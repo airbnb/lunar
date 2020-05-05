@@ -40,3 +40,12 @@ export function withAnInvalidAmount() {
 withAnInvalidAmount.story = {
   name: 'Fallback when an invalid amount is provided.',
 };
+
+export function withAnInvalidCurrency() {
+  // @ts-ignore invalid amount type on purprose to demonstrate the fallback
+  return <Price amount={100} currency="[Hidden]" />;
+}
+
+withAnInvalidCurrency.story = {
+  name: 'Fallback when an invalid currency is provided.',
+};

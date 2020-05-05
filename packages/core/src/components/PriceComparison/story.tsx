@@ -37,19 +37,43 @@ export function withAnInvalidAmount() {
     <div>
       {/* invalid amount type on purprose to demonstrate the fallback
       // @ts-ignore */}
+      Both native and USD amounts:{' '}
       <PriceComparison amount="[Hidden]" amountUSD="[Hidden]" currency="EUR" />
       <br />
       {/* invalid amount type on purprose to demonstrate the fallback
       // @ts-ignore */}
-      <PriceComparison amount="[Hidden]" currency="EUR" />
+      Only native amounts: <PriceComparison amount="[Hidden]" currency="EUR" />
       <br />
       {/* invalid amount type on purprose to demonstrate the fallback
       // @ts-ignore */}
-      <PriceComparison amountUSD="[Hidden]" currency="EUR" />
+      Only USD amounts: <PriceComparison amountUSD="[Hidden]" currency="EUR" />
     </div>
   );
 }
 
 withAnInvalidAmount.story = {
   name: 'Fallback when invalid amounts are provided.',
+};
+
+export function withAnInvalidCurrency() {
+  return (
+    <div>
+      {/* invalid amount type on purprose to demonstrate the fallback
+      // @ts-ignore */}
+      Both native and USD amounts:{' '}
+      <PriceComparison amount={123} amountUSD={123} currency="[Hidden]" />
+      <br />
+      {/* invalid amount type on purprose to demonstrate the fallback
+      // @ts-ignore */}
+      Only native amounts: <PriceComparison amount={123} currency="[Hidden]" />
+      <br />
+      {/* invalid amount type on purprose to demonstrate the fallback
+      // @ts-ignore */}
+      Only USD amounts: <PriceComparison amountUSD={123} currency="[Hidden]" />
+    </div>
+  );
+}
+
+withAnInvalidCurrency.story = {
+  name: 'Fallback when invalid currencies are provided.',
 };

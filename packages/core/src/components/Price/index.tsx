@@ -38,7 +38,7 @@ function Price({
   precision = 0,
   round,
   trimTrailingZeros,
-}: PriceProps) {
+}: PriceProps): JSX.Element | null {
   let amount = 0;
   let currency = baseCurrency;
   let micros = baseMicros;
@@ -65,17 +65,15 @@ function Price({
     amount /= MICROS;
   }
 
-  return (
-    <span>
-      {formatPrice(amount, currency, {
-        display,
-        precision,
-        round,
-        trimTrailingZeros,
-        locale: locale || Core.locale(),
-      })}
-    </span>
-  );
+  const formattedPrice = formatPrice(amount, currency, {
+    display,
+    precision,
+    round,
+    trimTrailingZeros,
+    locale: locale || Core.locale(),
+  });
+
+  return <span>{formattedPrice || <Empty />}</span>;
 }
 
 Price.propTypes = {
