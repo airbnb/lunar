@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.15.0 - 2020-05-05
+
+#### 🚀 Updates
+
+- **[Price, PriceComparison, PriceGroup]** Handle invalid currency values. (#369) ([161cf92](https://github.com/airbnb/lunar/commit/161cf92)), closes [#369](https://github.com/airbnb/lunar/issues/369)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.14.1 - 2020-05-01
 
 #### 🐞 Fixes
