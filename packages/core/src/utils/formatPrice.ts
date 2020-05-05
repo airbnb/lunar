@@ -13,7 +13,7 @@ export default function formatPrice(
   price: number | string,
   currency?: Currency,
   options: Options = {},
-): string {
+): string | undefined {
   const locale = options.locale || Core.locale();
   const priceNum = Number(price);
   const negative = priceNum < 0;
@@ -31,30 +31,39 @@ export default function formatPrice(
     amount = Math.abs(amount);
   }
 
-  let amountStr = '';
+  try {
+    let amountStr = '';
 
-  // Format as a currency
-  if (currency) {
-    amountStr = amount.toLocaleString(locale, {
-      style: 'currency',
-      currency,
-      currencyDisplay: options.display || 'symbol',
-    });
+    // Format as a currency
+    if (currency) {
+      amountStr = amount.toLocaleString(locale, {
+        style: 'currency',
+        currency,
+        currencyDisplay: options.display || 'symbol',
+      });
 
-    // Format as a number
-  } else {
-    amountStr = amount.toLocaleString(locale);
+      // Format as a number
+    } else {
+      amountStr = amount.toLocaleString(locale);
+    }
+
+    // Remove ending zeros
+    if (options.trimTrailingZeros) {
+      amountStr = amountStr.replace(/\.0+$/, '');
+    }
+
+    // Wrap the value in parenthesis if negative
+    if (negative) {
+      amountStr = `(${amountStr})`;
+    }
+
+    return amountStr;
+  } catch (error) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
+
+    return undefined;
   }
-
-  // Remove ending zeros
-  if (options.trimTrailingZeros) {
-    amountStr = amountStr.replace(/\.0+$/, '');
-  }
-
-  // Wrap the value in parenthesis if negative
-  if (negative) {
-    amountStr = `(${amountStr})`;
-  }
-
-  return amountStr;
 }

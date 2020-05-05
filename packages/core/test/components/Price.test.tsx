@@ -4,6 +4,16 @@ import Price from '../../src/components/Price';
 import Empty from '../../src/components/Empty';
 
 describe('<Price />', () => {
+  let errSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    errSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    errSpy.mockRestore();
+  });
+
   describe('numeric amount', () => {
     it('renders empty if no amount', () => {
       const wrapper = shallow(<Price currency="USD" />);
@@ -21,6 +31,12 @@ describe('<Price />', () => {
       const wrapper = shallow(<Price amount={12300} currency="JPY" />);
 
       expect(wrapper.text()).toBe('¥12,300');
+    });
+
+    it('render empty if invalid currency', () => {
+      const wrapper = shallow(<Price amount={12300} currency="[Hidden]" />);
+
+      expect(wrapper.find(Empty)).toHaveLength(1);
     });
 
     it('rounds the amount', () => {

@@ -3,6 +3,7 @@ import { DEFAULT_CURRENCY } from '../../constants';
 import Empty from '../Empty';
 import Price, { CommonProps } from '../Price';
 import { Amount } from '../../types';
+import formatPrice from '../../utils/formatPrice';
 
 export type PriceAmountDefinition = {
   [currency: string]: Amount | number | string;
@@ -30,12 +31,15 @@ export default function PriceGroup({ amounts, divider = ', ', ...restProps }: Pr
 
   // Loop through and generate the prices
   const output: JSX.Element[] = [];
-
   let invalidAmounts = 0;
+
   currencies.forEach((currency) => {
     const amount = amounts[currency];
-
-    if (typeof amount === 'string' && isNaN(Number(amount))) {
+    if (
+      ((typeof amount === 'string' || typeof amount === 'number') &&
+        !formatPrice(amount, currency, { display: 'symbol' })) ||
+      (typeof amount === 'string' && isNaN(Number(amount)))
+    ) {
       invalidAmounts += 1;
     }
   });

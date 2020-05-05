@@ -65,17 +65,15 @@ function Price({
     amount /= MICROS;
   }
 
-  return (
-    <span>
-      {formatPrice(amount, currency, {
-        display,
-        precision,
-        round,
-        trimTrailingZeros,
-        locale: locale || Core.locale(),
-      })}
-    </span>
-  );
+  const formattedPrice = formatPrice(amount, currency, {
+    display,
+    precision,
+    round,
+    trimTrailingZeros,
+    locale: locale || Core.locale(),
+  });
+
+  return <span>{formattedPrice || <Empty />}</span>;
 }
 
 Price.propTypes = {

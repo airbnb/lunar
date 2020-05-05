@@ -4,6 +4,16 @@ import PriceComparison from '../../src/components/PriceComparison';
 import Empty from '../../src/components/Empty';
 
 describe('<PriceComparison />', () => {
+  let errSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    errSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    errSpy.mockRestore();
+  });
+
   it('render the amount in the currency', () => {
     const wrapper = mount(<PriceComparison amount={12300} currency="JPY" />);
 
@@ -12,6 +22,12 @@ describe('<PriceComparison />', () => {
 
   it('renders empty if invalid amount', () => {
     const wrapper = mount(<PriceComparison amount="[Hidden]" currency="JPY" />);
+
+    expect(wrapper.find(Empty)).toHaveLength(1);
+  });
+
+  it('renders empty if invalid currency', () => {
+    const wrapper = mount(<PriceComparison amount={12300} currency="[Hidden]" />);
 
     expect(wrapper.find(Empty)).toHaveLength(1);
   });
@@ -28,6 +44,12 @@ describe('<PriceComparison />', () => {
     expect(wrapper.find(Empty)).toHaveLength(1);
   });
 
+  it('renders amountUSD provided if invalid comparision currency', () => {
+    const wrapper = mount(<PriceComparison amountUSD={123} currency="[Hidden]" />);
+
+    expect(wrapper.text()).toBe('$123.00');
+  });
+
   it('render both native and USD amounts', () => {
     const wrapper = mount(<PriceComparison amount={12300} amountUSD={123} currency="JPY" />);
 
@@ -38,6 +60,12 @@ describe('<PriceComparison />', () => {
     const wrapper = mount(
       <PriceComparison amount="[Hidden]" amountUSD="[Hidden]" currency="JPY" />,
     );
+
+    expect(wrapper.find(Empty)).toHaveLength(1);
+  });
+
+  it('renders empty if invalid currency with both amounts given', () => {
+    const wrapper = mount(<PriceComparison amount={12300} amountUSD={123} currency="[Hidden]" />);
 
     expect(wrapper.find(Empty)).toHaveLength(1);
   });

@@ -4,6 +4,16 @@ import PriceGroup from '../../src/components/PriceGroup';
 import Empty from '../../src/components/Empty';
 
 describe('<PriceGroup />', () => {
+  let errSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    errSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    errSpy.mockRestore();
+  });
+
   it('render a single amount', () => {
     const wrapper = mount(<PriceGroup amounts={{ GBP: 123 }} />);
 
@@ -28,11 +38,24 @@ describe('<PriceGroup />', () => {
     expect(wrapper.find(Empty)).toHaveLength(1);
   });
 
+  it('renders empty if all currencies are invalid', () => {
+    const wrapper = mount(<PriceGroup amounts={{ '[Hidden1]': 123, '[Hidden2]': 456 }} />);
+
+    expect(wrapper.find(Empty)).toHaveLength(1);
+  });
+
   it('renders empty if an amount is invalid in multiple amounts', () => {
     const wrapper = mount(<PriceGroup amounts={{ GBP: 123, JPY: '[Hidden]' }} />);
 
     expect(wrapper.find(Empty)).toHaveLength(1);
     expect(wrapper.text()).toBe('£123.00, —');
+  });
+
+  it('renders empty if a currency is invalid in multiple amounts', () => {
+    const wrapper = mount(<PriceGroup amounts={{ GBP: 123, '[Hidden]': 456 }} />);
+
+    expect(wrapper.find(Empty)).toHaveLength(1);
+    expect(wrapper.text()).toBe('—, £123.00');
   });
 
   it('render multiple amounts but place USD last', () => {
