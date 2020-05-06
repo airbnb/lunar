@@ -38,6 +38,11 @@ export const styleSheetLoader: StyleSheet = ({ color, unit }) => ({
     animationFillMode: 'both',
     verticalAlign: 'middle',
     backgroundColor: color.core.primary[3],
+    '@selectors': {
+      ':last-child': {
+        marginRight: 0,
+      },
+    },
   },
 
   dot_inverted: {
