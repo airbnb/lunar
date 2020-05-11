@@ -16,6 +16,7 @@ import {
   FieldValidator,
   MutableState,
 } from 'final-form';
+import arrayMutators, { Mutators as ArrayMutators } from 'final-form-arrays';
 import T from '@airbnb/lunar/lib/components/Translate';
 import { getErrorMessage } from '@airbnb/lunar/lib/components/ErrorMessage';
 import FormErrorMessage from '@airbnb/lunar/lib/components/FormErrorMessage';
@@ -101,6 +102,7 @@ export default class Form<Data extends object = {}> extends React.Component<
       initialValues,
       mutators: {
         setFieldConfig: this.setFieldConfig,
+        ...arrayMutators,
       },
       onSubmit: this.handleSubmit,
       validate: this.handleValidate,
@@ -426,6 +428,8 @@ export default class Form<Data extends object = {}> extends React.Component<
           getFields: this.getFields,
           getState: this.getState,
           register: this.registerField,
+          // Since we have a known list of mutators, we can type it more specifically
+          mutators: (this.form.mutators as unknown) as ArrayMutators,
           submit: this.submitForm,
         }}
       >

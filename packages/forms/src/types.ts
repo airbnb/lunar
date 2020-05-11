@@ -9,6 +9,18 @@ import {
   FieldValidator,
   Unsubscribe,
 } from 'final-form';
+import { Mutators } from 'final-form-arrays';
+
+export {
+  IsEqual,
+  FormState,
+  FieldState,
+  FieldSubscriber,
+  FieldSubscription,
+  FieldValidator,
+  Unsubscribe,
+  Mutators,
+};
 
 // value:
 // string - Autocomplete, DatePickerInput, DateTimeSelect, FileInput, Input, RadioButton, RadioButtonController, Select, TextArea, ToggleButtonController
@@ -26,6 +38,7 @@ export type Context = {
   getFields: () => FieldState<any>[];
   getState: () => FormState<any>;
   register: (field: Field<any>, onUpdate: FieldSubscriber<any>) => Unsubscribe;
+  mutators: Mutators;
   submit: () => Promise<object | undefined>;
 };
 

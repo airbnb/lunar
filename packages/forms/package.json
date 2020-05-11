@@ -30,6 +30,7 @@
     "@types/lodash": "*",
     "airbnb-prop-types": "^2.15.0",
     "final-form": "^4.19.1",
+    "final-form-arrays": "^3.0.2",
     "lodash": "^4.17.15",
     "shallowequal": "^1.1.0",
     "uuid": "^7.0.3"
