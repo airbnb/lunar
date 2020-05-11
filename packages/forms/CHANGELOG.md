@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.3.0 - 2020-05-11
+
+#### 🚀 Updates
+
+- **[Forms]** Add support for arrays of fields. (#371) ([a4ce4b0](https://github.com/airbnb/lunar/commit/a4ce4b0)), closes [#371](https://github.com/airbnb/lunar/issues/371)
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ## 3.2.0 - 2020-04-30
 
 #### 🚀 Updates

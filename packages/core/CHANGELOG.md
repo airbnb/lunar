@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.15.1 - 2020-05-11
+
+#### 🐞 Fixes
+
+- **[Loader]** remove redundant spacing (#370) ([700b338](https://github.com/airbnb/lunar/commit/700b338)), closes [#370](https://github.com/airbnb/lunar/issues/370)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.15.0 - 2020-05-05
 
 #### 🚀 Updates
