@@ -1,6 +1,6 @@
 {
   "name": "@airbnb/lunar-forms",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "release": "1583350587083",
   "description": "Form functionality for Lunar.",
   "license": "MIT",
@@ -12,7 +12,6 @@
   "publishConfig": {
     "access": "public"
   },
-
   "scripts": {
     "build": "yarn run build:cjs && yarn run build:esm",
     "build:cjs": "BUILD=cjs babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./lib",
