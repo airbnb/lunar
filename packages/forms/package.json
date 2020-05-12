@@ -12,6 +12,7 @@
   "publishConfig": {
     "access": "public"
   },
+
   "scripts": {
     "build": "yarn run build:cjs && yarn run build:esm",
     "build:cjs": "BUILD=cjs babel --root-mode upward --extensions .ts,.tsx ./src --out-dir ./lib",
