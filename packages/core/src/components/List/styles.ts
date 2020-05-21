@@ -16,7 +16,7 @@ export const styleSheetList: StyleSheet = ({ unit }) => ({
   list_gutter: {
     '@selectors': {
       '> li': {
-        margin: `0 0 ${unit * 2}px 0`,
+        margin: `0 0 ${unit}px 0`,
       },
 
       '> li:last-child': {
@@ -28,7 +28,7 @@ export const styleSheetList: StyleSheet = ({ unit }) => ({
   list_gutter_reversed: {
     '@selectors': {
       '> li': {
-        margin: `${unit * 2}px 0 0 0`,
+        margin: `${unit}px 0 0 0`,
       },
 
       '> li:last-child': {
