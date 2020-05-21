@@ -52,17 +52,17 @@ export default function List({
         middleAlign && styles.list_middleAlign,
       )}
     >
-      {React.Children.map(children, (child) => {
+      {React.Children.map(children as React.ReactElement[], (child: React.ReactElement) => {
         if (!child) {
           return null;
         }
 
         if (horizontal && (child.props.compact || child.props.spacious || child.props.spacious)) {
-          if ((child as React.ReactElement).type === Item) {
-            return React.cloneElement(child as React.ReactElement<ListItemProps>, { horizontal });
+          if (child.type === Item) {
+            return React.cloneElement(child, { horizontal });
           }
 
-          return <Item horizontal>{(child as React.ReactElement).props.children}</Item>;
+          return <Item horizontal>{child.props.children}</Item>;
         }
 
         return child;
