@@ -16,6 +16,8 @@ export type ListProps = {
   middleAlign?: boolean;
   /** Renders an `<ol></ol>`. */
   ordered?: boolean;
+  /** Render items in reverse order visually. */
+  reversed?: boolean;
   /** Wrap horizontal list. */
   wrap?: boolean;
   /** Custom style sheet. */
@@ -28,6 +30,7 @@ export default function List({
   horizontal,
   middleAlign,
   ordered,
+  reversed,
   wrap,
   styleSheet,
 }: ListProps) {
@@ -38,10 +41,14 @@ export default function List({
     <Tag
       className={cx(
         styles.list,
+        reversed && styles.list_reversed,
         !horizontal && gutter && styles.list_gutter,
+        !horizontal && gutter && reversed && styles.list_gutter_reversed,
         horizontal && styles.list_horizontal,
+        horizontal && reversed && styles.list_reversed_horizontal,
         horizontal && gutter && styles.list_gutter_horizontal,
-        horizontal && wrap && styles.list_horizontal_wrap,
+        horizontal && gutter && reversed && styles.list_gutter_horizontal_reversed,
+        horizontal && wrap && styles.list_wrap,
         middleAlign && styles.list_middleAlign,
       )}
     >
@@ -51,7 +58,11 @@ export default function List({
         }
 
         if (horizontal) {
-          return React.cloneElement(child as React.ReactElement<ListItemProps>, { horizontal });
+          if ((child as React.ReactElement).type === Item) {
+            return React.cloneElement(child as React.ReactElement<ListItemProps>, { horizontal });
+          }
+
+          return <Item horizontal>{(child as React.ReactElement).props.children}</Item>;
         }
 
         return child;
