@@ -57,7 +57,7 @@ export default function List({
           return null;
         }
 
-        if (horizontal) {
+        if (horizontal && (child.props.compact || child.props.spacious || child.props.spacious)) {
           if ((child as React.ReactElement).type === Item) {
             return React.cloneElement(child as React.ReactElement<ListItemProps>, { horizontal });
           }

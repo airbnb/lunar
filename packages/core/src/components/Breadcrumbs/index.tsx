@@ -15,7 +15,7 @@ export type BreadcrumbsProps = {
 export default function Breadcrumbs({ accessibilityLabel, children }: BreadcrumbsProps) {
   return (
     <nav aria-label={accessibilityLabel}>
-      <List horizontal ordered>
+      <List horizontal gutter ordered>
         {children}
       </List>
     </nav>

@@ -53,7 +53,7 @@ export default function Breadcrumb({
   };
 
   return (
-    <li className={cx(styles.li)}>
+    <li>
       <ButtonOrLink
         {...aria}
         className={cx(

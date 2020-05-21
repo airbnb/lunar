@@ -48,12 +48,4 @@ export const styleSheetBreadcrumb: StyleSheet = ({ color, font, pattern, transit
   breadcrumb_selected: {
     fontWeight: font.weights.bold,
   },
-
-  li: {
-    marginRight: unit,
-
-    ':last-child': {
-      marginRight: 0,
-    },
-  },
 });
