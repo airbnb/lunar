@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
-import Item, { ListItemProps } from './Item';
+import Item from './Item';
 import { styleSheetList } from './styles';
 
 export { Item };
