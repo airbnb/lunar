@@ -75,11 +75,11 @@ export function listWithHorizontal() {
         </Text>
       </Item>
 
-      <Item>
+      <li>
         <Text>
           <LoremIpsum short />
         </Text>
-      </Item>
+      </li>
 
       <Item>
         <Text>
@@ -103,11 +103,11 @@ export function listWithHorizontalAndGutter() {
         </Text>
       </Item>
 
-      <Item>
+      <li>
         <Text>
           <LoremIpsum short />
         </Text>
-      </Item>
+      </li>
 
       <Item>
         <Text>
@@ -131,13 +131,13 @@ export function listWithHorizontalMiddleAlignAndGutter() {
         </Text>
       </Item>
 
-      <Item>
+      <li>
         <Text>
           <LoremIpsum short />
           <br />
           <LoremIpsum short />
         </Text>
-      </Item>
+      </li>
 
       <Item>
         <Text>
@@ -180,7 +180,47 @@ listWithHorizontalAndWrap.story = {
   name: 'List with `horizontal` and `wrap`.',
 };
 
-export function listWithOrderedToRenderAsOlOl() {
+export function listWithReversed() {
+  return (
+    <>
+      <List reversed>
+        <Item>
+          <Text>1</Text>
+        </Item>
+
+        <li>
+          <Text>2</Text>
+        </li>
+
+        <Item>
+          <Text>3</Text>
+        </Item>
+      </List>
+
+      <br />
+
+      <List horizontal reversed>
+        <Item>
+          <Text>1</Text>
+        </Item>
+
+        <li>
+          <Text>2</Text>
+        </li>
+
+        <Item>
+          <Text>3</Text>
+        </Item>
+      </List>
+    </>
+  );
+}
+
+listWithReversed.story = {
+  name: 'List with `reversed` and List with `horizontal reversed`.',
+};
+
+export function listWithOrderedToRenderAsOl() {
   return (
     <List ordered>
       <Item>
@@ -204,7 +244,7 @@ export function listWithOrderedToRenderAsOlOl() {
   );
 }
 
-listWithOrderedToRenderAsOlOl.story = {
+listWithOrderedToRenderAsOl.story = {
   name: 'List with `ordered` to render as `<ol></ol>`.',
 };
 
@@ -290,4 +330,32 @@ export function itemsWithSpaciousPadding() {
 
 itemsWithSpaciousPadding.story = {
   name: 'Items with `spacious` padding.',
+};
+
+export function itemsWithBorderedHorizontal() {
+  return (
+    <List horizontal gutter>
+      <Item compact bordered>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item compact bordered>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+
+      <Item compact bordered>
+        <Text>
+          <LoremIpsum short />
+        </Text>
+      </Item>
+    </List>
+  );
+}
+
+itemsWithBorderedHorizontal.story = {
+  name: 'Items with `bordered`, `compact`, `horizontal`, and `gutter`.',
 };

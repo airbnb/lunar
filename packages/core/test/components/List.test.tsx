@@ -71,14 +71,34 @@ describe('<List />', () => {
     expect(wrapper.prop('className')).toContain('list_gutter');
   });
 
+  it('renders a reversed list with gutters', () => {
+    const wrapper = shallow(
+      <List gutter reversed>
+        <Item>Item 1</Item>
+      </List>,
+    );
+
+    expect(wrapper.prop('className')).toContain('list_gutter_reversed');
+  });
+
   it('renders a horizontal list with gutters', () => {
     const wrapper = shallow(
-      <List gutter horizontal>
+      <List horizontal gutter>
         <Item>Item 1</Item>
       </List>,
     );
 
     expect(wrapper.prop('className')).toContain('list_gutter_horizontal');
+  });
+
+  it('renders a reversed horizontal list with gutters', () => {
+    const wrapper = shallow(
+      <List reversed horizontal gutter>
+        <Item>Item 1</Item>
+      </List>,
+    );
+
+    expect(wrapper.prop('className')).toContain('list_gutter_horizontal_reversed');
   });
 
   it('renders a horizontal list', () => {
@@ -89,6 +109,26 @@ describe('<List />', () => {
     );
 
     expect(wrapper.prop('className')).toContain('list_horizontal');
+  });
+
+  it('renders a reversed list', () => {
+    const wrapper = shallow(
+      <List reversed>
+        <Item>Item 1</Item>
+      </List>,
+    );
+
+    expect(wrapper.prop('className')).toContain('list_reversed');
+  });
+
+  it('renders a horizontal reversed list', () => {
+    const wrapper = shallow(
+      <List horizontal reversed>
+        <Item>Item 1</Item>
+      </List>,
+    );
+
+    expect(wrapper.prop('className')).toContain('list_reversed_horizontal');
   });
 
   it('renders a list with middleAlign', () => {

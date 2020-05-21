@@ -2,15 +2,21 @@ import { StyleSheet } from '../../hooks/useStyles';
 
 export const styleSheetList: StyleSheet = ({ unit }) => ({
   list: {
+    display: 'flex',
+    flexDirection: 'column',
     listStyle: 'none',
     margin: 0,
     padding: 0,
   },
 
+  list_horizontal: {
+    flexDirection: 'row',
+  },
+
   list_gutter: {
     '@selectors': {
       '> li': {
-        marginBottom: unit,
+        margin: `0 0 ${unit}px 0`,
       },
 
       '> li:last-child': {
@@ -19,11 +25,22 @@ export const styleSheetList: StyleSheet = ({ unit }) => ({
     },
   },
 
+  list_gutter_reversed: {
+    '@selectors': {
+      '> li': {
+        margin: `${unit}px 0 0 0`,
+      },
+
+      '> li:last-child': {
+        marginTop: 0,
+      },
+    },
+  },
+
   list_gutter_horizontal: {
     '@selectors': {
       '> li': {
-        marginBottom: 0,
-        marginRight: unit * 2,
+        margin: `0 ${unit * 2}px 0 0`,
       },
 
       '> li:last-child': {
@@ -32,15 +49,32 @@ export const styleSheetList: StyleSheet = ({ unit }) => ({
     },
   },
 
-  list_horizontal: {
-    display: 'flex',
+  list_gutter_horizontal_reversed: {
+    '@selectors': {
+      '> li': {
+        margin: `0 0 0 ${unit * 2}px`,
+      },
+
+      '> li:last-child': {
+        marginLeft: 0,
+      },
+    },
   },
 
   list_middleAlign: {
     alignItems: 'center',
   },
 
-  list_horizontal_wrap: {
+  list_reversed: {
+    flexDirection: 'column-reverse',
+  },
+
+  list_reversed_horizontal: {
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-end',
+  },
+
+  list_wrap: {
     flexWrap: 'wrap',
   },
 });
