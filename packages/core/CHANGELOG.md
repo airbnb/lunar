@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.16.0 - 2020-05-22
+
+#### 🚀 Updates
+
+- **[List]** Add reversed prop to visually reverse the list items. (#374) ([4c2a87e](https://github.com/airbnb/lunar/commit/4c2a87e)), closes [#374](https://github.com/airbnb/lunar/issues/374)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.15.1 - 2020-05-11
 
 #### 🐞 Fixes
