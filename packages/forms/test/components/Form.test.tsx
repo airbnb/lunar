@@ -560,6 +560,38 @@ describe('<Form />', () => {
         },
       });
     });
+
+    it('allows intitialValue to be overridden', () => {
+      const config = {
+        name: 'foo',
+        defaultValue: '456',
+        validateDefaultValue: true,
+        validator() {},
+      };
+      const fields = { foo: { data: {} } };
+      const formState = { initialValues: { foo: '123' }, values: {} };
+
+      // @ts-ignore
+      instance.setFieldConfig(['foo', config], { fields, formState });
+
+      expect(fields).toEqual({
+        foo: {
+          data: { config },
+          initial: '123',
+          value: '456',
+          touched: true,
+        },
+      });
+
+      expect(formState).toEqual({
+        initialValues: {
+          foo: '123',
+        },
+        values: {
+          foo: '456',
+        },
+      });
+    });
   });
 
   describe('submitForm()', () => {
