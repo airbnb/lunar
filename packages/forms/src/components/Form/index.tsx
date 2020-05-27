@@ -342,7 +342,9 @@ export default class Form<Data extends object = {}> extends React.Component<
   ) {
     const field = fields[name];
     const initial = getIn(formState.initialValues!, name);
-    const value = typeof initial === 'undefined' ? config.defaultValue : initial;
+    const value =
+      getIn(formState.values!, name) ??
+      (typeof initial === 'undefined' ? config.defaultValue : initial);
 
     if (!field) {
       return;
@@ -350,14 +352,14 @@ export default class Form<Data extends object = {}> extends React.Component<
 
     field.data.config = config;
     // @ts-ignore
-    field.initial = value;
+    field.initial = initial ?? value;
     // @ts-ignore
     field.value = value;
     field.touched = config.validateDefaultValue || false;
 
     // These are needed for form "reset" to work correctly!
     /* eslint-disable no-param-reassign */
-    formState.initialValues = setIn(formState.initialValues!, name, value);
+    formState.initialValues = setIn(formState.initialValues!, name, initial ?? value);
     formState.values = setIn(formState.values, name, value);
     /* eslint-enable no-param-reassign */
   }
