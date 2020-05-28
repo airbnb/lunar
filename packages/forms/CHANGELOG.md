@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 3.3.2 - 2020-05-28
+
+**Note:** Version bump only for package @airbnb/lunar-forms
+
+
+
+
+
 ### 3.3.1 - 2020-05-12
 
 **Note:** Version bump only for package @airbnb/lunar-forms
