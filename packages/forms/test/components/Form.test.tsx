@@ -560,6 +560,37 @@ describe('<Form />', () => {
         },
       });
     });
+
+    it('initial value is ignored if a field already has a value', () => {
+      const config = {
+        name: 'foo',
+        validateDefaultValue: true,
+        validator() {},
+      };
+      const fields = { foo: { data: {} } };
+      const formState = { initialValues: { foo: '123' }, values: { foo: '456' } };
+
+      // @ts-ignore
+      instance.setFieldConfig(['foo', config], { fields, formState });
+
+      expect(fields).toEqual({
+        foo: {
+          data: { config },
+          initial: '123',
+          value: '456',
+          touched: true,
+        },
+      });
+
+      expect(formState).toEqual({
+        initialValues: {
+          foo: '123',
+        },
+        values: {
+          foo: '456',
+        },
+      });
+    });
   });
 
   describe('submitForm()', () => {
