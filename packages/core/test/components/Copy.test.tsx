@@ -4,6 +4,7 @@ import copy from 'copy-to-clipboard';
 import IconCopy from '@airbnb/lunar-icons/lib/interface/IconCopy';
 import Copy from '../../src/components/Copy';
 import IconButton from '../../src/components/IconButton';
+import { Tooltip } from '../../src/components/Tooltip';
 
 jest.mock('copy-to-clipboard', () => jest.fn(() => true));
 
@@ -49,5 +50,13 @@ describe('<Copy />', () => {
 
     expect(spy).toHaveBeenCalledWith('foo', true);
     expect(copy).toHaveBeenCalledWith('foo');
+  });
+
+  it('inverts the Tooltip if specified', () => {
+    const wrapper = shallow(<Copy invertTooltip={false} text="foo" />);
+
+    expect(wrapper.dive().find(Tooltip).prop('inverted')).toBe(false);
+    wrapper.setProps({ invertTooltip: true });
+    expect(wrapper.dive().find(Tooltip).prop('inverted')).toBe(true);
   });
 });
