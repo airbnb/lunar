@@ -51,7 +51,12 @@ withACustomElementToTriggerTheCopy.story = {
 };
 
 export function withInvertedTooltip() {
-  return <Copy invertTooltip text="Inverted tooltip." prompt="Yo copy me..." />;
+  return (
+    <Text>
+      Check out this inverted tooltip{' '}
+      <Copy invertTooltip text="Inverted tooltip." prompt="Yo copy me..." />.
+    </Text>
+  );
 }
 
 withInvertedTooltip.story = {
