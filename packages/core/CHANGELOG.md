@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.17.0 - 2020-06-04
+
+#### 🚀 Updates
+
+- **[Copy]** Add invertTooltip prop (#380) ([d2ea8da](https://github.com/airbnb/lunar/commit/d2ea8da)), closes [#380](https://github.com/airbnb/lunar/issues/380)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.16.0 - 2020-05-22
 
 #### 🚀 Updates
