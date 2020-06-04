@@ -10,6 +10,8 @@ export type CopyProps = {
   children?: React.ReactElement;
   /** Pass an HTML element attribute id to the Link. */
   id?: string;
+  /** Invert the colors of the tooltip. */
+  invertTooltip?: boolean;
   /** String of text to be copied to the clipboard. */
   text: string;
   /** Callback fired when text is copied. */
@@ -31,6 +33,7 @@ export default function Copy({
   children,
   text,
   id,
+  invertTooltip,
   trackingName,
   underlined,
   prompt,
@@ -64,6 +67,7 @@ export default function Copy({
   return (
     <Tooltip
       remainOnMouseDown
+      inverted={invertTooltip}
       content={
         copied ? (
           <T k="lunar.copy.copied" phrase="Copied!" />
