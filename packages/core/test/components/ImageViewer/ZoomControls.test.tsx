@@ -13,6 +13,7 @@ describe('<ZoomControls />', () => {
   const props = {
     onScale: setScaleSpy,
     scale: 1,
+    size: '1em',
   };
 
   describe('zoom buttons', () => {
