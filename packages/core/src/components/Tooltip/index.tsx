@@ -17,6 +17,9 @@ const EMPTY_TARGET_RECT: ClientRect = {
   width: 0,
 };
 
+const MOUSE_ENTER_DELAY = 0;
+const MOUSE_LEAVE_DELAY = 0.1;
+
 export type TooltipProps = {
   /** Accessibility label. If not specified, all tooltip content is duplicated, rendered in an off-screen element with a separate layer. */
   accessibilityLabel?: string;
@@ -30,10 +33,12 @@ export type TooltipProps = {
   horizontalAlign?: 'center' | 'left' | 'right';
   /** True to use a light background with dark text. */
   inverted?: boolean;
-  /** Callback fired when the tooltip is closed. */
+  /** Callback fired when the tooltip is closed. Not supported when using the popover prop. */
   onClose?: () => void;
   /** Callback fired when the tooltip is shown. */
   onShow?: () => void;
+  /** True to enable interactive popover functionality */
+  popover?: boolean;
   /** True to prevent dismissmal on mouse down. */
   remainOnMouseDown?: boolean;
   /** True to toggle tooltip display on click.  */
@@ -73,6 +78,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
     inverted: false,
     onClose() {},
     onShow() {},
+    popover: false,
     remainOnMouseDown: false,
     toggleOnClick: false,
     underlined: false,
@@ -94,6 +100,9 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   mounted: boolean = false;
 
   rafHandle: number = 0;
+
+  // Only used when Popover is enabled
+  delayTimer: number | null = null;
 
   static getDerivedStateFromProps({ disabled }: TooltipProps) {
     if (disabled) {
@@ -194,7 +203,11 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
 
   private handleMouseEnter = () => {
     if (!this.props.toggleOnClick) {
-      this.handleOpen();
+      if (this.props.popover) {
+        this.delaySetPopupVisible(true, MOUSE_ENTER_DELAY);
+      } else {
+        this.handleOpen();
+      }
     }
   };
 
@@ -213,8 +226,48 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
 
   private handleMouseLeave = () => {
     if (!this.props.toggleOnClick) {
-      this.handleClose();
+      if (this.props.popover) {
+        this.delaySetPopupVisible(false, MOUSE_LEAVE_DELAY);
+      } else {
+        this.handleClose();
+      }
     }
+  };
+
+  setPopupVisible(open: boolean) {
+    const { open: previousOpen } = this.state;
+    this.clearDelayTimer();
+    if (previousOpen !== open) {
+      if (open === false) {
+        this.handleClose();
+      } else {
+        this.handleOpen();
+      }
+    }
+  }
+  clearDelayTimer() {
+    if (this.delayTimer) {
+      clearTimeout(this.delayTimer);
+      this.delayTimer = null;
+    }
+  }
+  delaySetPopupVisible(open: boolean, delayS: number) {
+    const delay = delayS * 1000;
+    this.clearDelayTimer();
+    if (delay) {
+      this.delayTimer = window.setTimeout(() => {
+        this.setPopupVisible(open);
+        this.clearDelayTimer();
+      }, delay);
+    } else {
+      this.setPopupVisible(open);
+    }
+  }
+  handlePopupMouseEnter = () => {
+    this.clearDelayTimer();
+  };
+  handlePopupMouseLeave = () => {
+    this.delaySetPopupVisible(false, MOUSE_LEAVE_DELAY);
   };
 
   private renderPopUp() {
@@ -227,6 +280,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
       content,
       inverted,
       verticalAlign,
+      popover,
     } = this.props;
     const { open, targetRect, tooltipHeight, targetRectReady } = this.state;
 
@@ -250,22 +304,37 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
     const distance = unit / 2;
     const invert = inverted || Tooltip.inverted;
 
+    const handleMouseEnter = popover ? this.handlePopupMouseEnter : undefined;
+    const handleMouseLeave = popover ? this.handlePopupMouseLeave : undefined;
+
+    const popupContent = (
+      <div
+        ref={this.handleTooltipRef}
+        role="tooltip"
+        className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
+          width,
+          marginLeft: marginLeft[align as keyof StyleStruct],
+          marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
+          textAlign: align,
+        })}
+      >
+        <div
+          className={cx(styles.content, invert && styles.content_inverted)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <Text inverted={invert}>{content}</Text>
+        </div>
+      </div>
+    );
+
+    if (popover) {
+      return open && <div style={{ position: 'absolute', zIndex: 1 }}>{popupContent}</div>;
+    }
+
     return (
       <Overlay noBackground open={open} onClose={this.handleClose}>
-        <div
-          ref={this.handleTooltipRef}
-          role="tooltip"
-          className={cx(styles.tooltip, above ? styles.tooltip_above : styles.tooltip_below, {
-            width,
-            marginLeft: marginLeft[align as keyof StyleStruct],
-            marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
-            textAlign: align,
-          })}
-        >
-          <div className={cx(styles.content, invert && styles.content_inverted)}>
-            <Text inverted={invert}>{content}</Text>
-          </div>
-        </div>
+        {popupContent}
       </Overlay>
     );
   }
