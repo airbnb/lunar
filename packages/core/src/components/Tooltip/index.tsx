@@ -17,8 +17,7 @@ const EMPTY_TARGET_RECT: ClientRect = {
   width: 0,
 };
 
-const MOUSE_ENTER_DELAY = 0;
-const MOUSE_LEAVE_DELAY = 0.1;
+const MOUSE_LEAVE_DELAY = 100; // 100ms
 
 export type TooltipProps = {
   /** Accessibility label. If not specified, all tooltip content is duplicated, rendered in an off-screen element with a separate layer. */
@@ -102,7 +101,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   rafHandle: number = 0;
 
   // Only used when Popover is enabled
-  delayTimer: number | null = null;
+  delayTimeoutId = 0;
 
   static getDerivedStateFromProps({ disabled }: TooltipProps) {
     if (disabled) {
@@ -204,7 +203,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   private handleMouseEnter = () => {
     if (!this.props.toggleOnClick) {
       if (this.props.popover) {
-        this.delaySetPopupVisible(true, MOUSE_ENTER_DELAY);
+        this.delayedSetPopoverVisible(true);
       } else {
         this.handleOpen();
       }
@@ -227,14 +226,14 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   private handleMouseLeave = () => {
     if (!this.props.toggleOnClick) {
       if (this.props.popover) {
-        this.delaySetPopupVisible(false, MOUSE_LEAVE_DELAY);
+        this.delayedSetPopoverVisible(false, MOUSE_LEAVE_DELAY);
       } else {
         this.handleClose();
       }
     }
   };
 
-  setPopupVisible(open: boolean) {
+  setPopoverVisible(open: boolean) {
     const { open: previousOpen } = this.state;
     this.clearDelayTimer();
     if (previousOpen !== open) {
@@ -247,31 +246,26 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   }
 
   clearDelayTimer() {
-    if (this.delayTimer) {
-      clearTimeout(this.delayTimer);
-      this.delayTimer = null;
-    }
+    clearTimeout(this.delayTimeoutId);
   }
 
-  delaySetPopupVisible(open: boolean, delayS: number) {
-    const delay = delayS * 1000;
+  delayedSetPopoverVisible(open: boolean, delayMs: number = 0) {
     this.clearDelayTimer();
-    if (delay) {
-      this.delayTimer = window.setTimeout(() => {
-        this.setPopupVisible(open);
-        this.clearDelayTimer();
-      }, delay);
+    if (delayMs) {
+      this.delayTimeoutId = window.setTimeout(() => {
+        this.setPopoverVisible(open);
+      }, delayMs);
     } else {
-      this.setPopupVisible(open);
+      this.setPopoverVisible(open);
     }
   }
 
-  handlePopupMouseEnter = () => {
+  handlePopoverMouseEnter = () => {
     this.clearDelayTimer();
   };
 
-  handlePopupMouseLeave = () => {
-    this.delaySetPopupVisible(false, MOUSE_LEAVE_DELAY);
+  handlePopoverMouseLeave = () => {
+    this.delayedSetPopoverVisible(false, MOUSE_LEAVE_DELAY);
   };
 
   private renderPopUp() {
@@ -308,8 +302,8 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
     const distance = unit / 2;
     const invert = inverted || Tooltip.inverted;
 
-    const handleMouseEnter = popover ? this.handlePopupMouseEnter : undefined;
-    const handleMouseLeave = popover ? this.handlePopupMouseLeave : undefined;
+    const handleMouseEnter = popover ? this.handlePopoverMouseEnter : undefined;
+    const handleMouseLeave = popover ? this.handlePopoverMouseLeave : undefined;
 
     const popupContent = (
       <div
