@@ -98,6 +98,41 @@ describe('<Tooltip />', () => {
     });
   });
 
+  describe('popover', () => {
+    beforeEach(() => {
+      wrapper.setProps({ popover: true });
+      wrapper.setState({ open: true });
+    });
+
+    it('does not yet close when the mouse left the popup for fewer than 100ms', () => {
+      jest.useFakeTimers();
+
+      childContainer.simulate('mouseleave');
+      // Popover is programmed with a 100ms lag between mouseleave and close
+      // so this shouldn't be closed yet
+      setTimeout(() => {
+        expect(wrapper.state('open')).toBeTruthy();
+      }, 99);
+      jest.runAllTimers();
+    });
+
+    it('closes when child exited for 100ms', () => {
+      jest.useFakeTimers();
+
+      childContainer.simulate('mouseleave');
+      // Popover is programmed with a 100ms lag between mouseleave and close
+      setTimeout(() => {
+        expect(wrapper.state('open')).not.toBeTruthy();
+      }, 100);
+      jest.runAllTimers();
+    });
+
+    it('closes when child mousedowned', () => {
+      childContainer.simulate('mousedown');
+      expect(wrapper.state('open')).not.toBeTruthy();
+    });
+  });
+
   it('unmounts cleanly', () => {
     const instance = wrapper.instance() as BaseTooltip;
     wrapper.unmount();
