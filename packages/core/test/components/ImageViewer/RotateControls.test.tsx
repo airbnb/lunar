@@ -9,7 +9,7 @@ describe('<RotateControls />', () => {
   const rotateSpy = jest.fn();
   const props = {
     onRotation: rotateSpy,
-    size: '1em',
+    iconSize: '1em',
   };
   let wrapper: Enzyme.ShallowWrapper<RotateControlsProps>;
 

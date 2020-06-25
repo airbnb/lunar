@@ -43,7 +43,7 @@ export type ZoomControlsProps = {
   /** Callback when scale / zoom changes */
   onScale: (scale: number) => void;
   /** Size of the icons. */
-  size?: number | string;
+  iconSize?: number | string;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
 };
@@ -52,7 +52,7 @@ export type ZoomControlsProps = {
 export default function ZoomControls({ styleSheet, ...props }: ZoomControlsProps) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetZoomControls);
   const [visible, setVisible] = useState(false);
-  const { onScale, scale = 1, size = '2em' } = props;
+  const { onScale, scale = 1, iconSize = '2em' } = props;
 
   const zoomOptions = ZOOM_OPTIONS.map((zoom: { label: string; scale: number }) => ({
     ...zoom,
@@ -75,7 +75,7 @@ export default function ZoomControls({ styleSheet, ...props }: ZoomControlsProps
         <IconButton disabled={scale === 1} onClick={handleZoomOut}>
           <IconRemove
             accessibilityLabel={T.phrase('lunar.image.zoomOut', 'Zoom out')}
-            size={size}
+            size={iconSize}
           />
         </IconButton>
 
@@ -84,7 +84,7 @@ export default function ZoomControls({ styleSheet, ...props }: ZoomControlsProps
         </Button>
 
         <IconButton onClick={handleZoomIn}>
-          <IconAdd accessibilityLabel={T.phrase('lunar.image.zoomIn', 'Zoom in')} size={size} />
+          <IconAdd accessibilityLabel={T.phrase('lunar.image.zoomIn', 'Zoom in')} size={iconSize} />
         </IconButton>
       </ButtonGroup>
 
