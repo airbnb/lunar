@@ -17,7 +17,7 @@ const EMPTY_TARGET_RECT: ClientRect = {
   width: 0,
 };
 
-const MOUSE_LEAVE_DELAY = 100; // 100ms
+const MOUSE_LEAVE_DELAY_MS = 100;
 
 export type TooltipProps = {
   /** Accessibility label. If not specified, all tooltip content is duplicated, rendered in an off-screen element with a separate layer. */
@@ -100,8 +100,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
 
   rafHandle: number = 0;
 
-  // Only used when Popover is enabled
-  delayTimeoutId = 0;
+  popoverDelayTimeoutId = 0;
 
   static getDerivedStateFromProps({ disabled }: TooltipProps) {
     if (disabled) {
@@ -226,7 +225,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   private handleMouseLeave = () => {
     if (!this.props.toggleOnClick) {
       if (this.props.popover) {
-        this.delayedSetPopoverVisible(false, MOUSE_LEAVE_DELAY);
+        this.delayedSetPopoverVisible(false, MOUSE_LEAVE_DELAY_MS);
       } else {
         this.handleClose();
       }
@@ -246,13 +245,13 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   }
 
   clearDelayTimer() {
-    clearTimeout(this.delayTimeoutId);
+    clearTimeout(this.popoverDelayTimeoutId);
   }
 
   delayedSetPopoverVisible(open: boolean, delayMs: number = 0) {
     this.clearDelayTimer();
     if (delayMs) {
-      this.delayTimeoutId = window.setTimeout(() => {
+      this.popoverDelayTimeoutId = window.setTimeout(() => {
         this.setPopoverVisible(open);
       }, delayMs);
     } else {
@@ -265,7 +264,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
   };
 
   handlePopoverMouseLeave = () => {
-    this.delayedSetPopoverVisible(false, MOUSE_LEAVE_DELAY);
+    this.delayedSetPopoverVisible(false, MOUSE_LEAVE_DELAY_MS);
   };
 
   private renderPopUp() {
@@ -327,7 +326,7 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
     );
 
     if (popover) {
-      return open && <div style={{ position: 'absolute', zIndex: 1 }}>{popupContent}</div>;
+      return open && <div className={cx(styles.popover)}>{popupContent}</div>;
     }
 
     return (
