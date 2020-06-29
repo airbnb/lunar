@@ -32,7 +32,7 @@ export type TooltipProps = {
   horizontalAlign?: 'center' | 'left' | 'right';
   /** True to use a light background with dark text. */
   inverted?: boolean;
-  /** Callback fired when the tooltip is closed. Not supported when using the popover prop. */
+  /** Callback fired when the tooltip is closed. */
   onClose?: () => void;
   /** Callback fired when the tooltip is shown. */
   onShow?: () => void;
