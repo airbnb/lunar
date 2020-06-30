@@ -1,8 +1,10 @@
 import React from 'react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
+import { withexpandMultiple } from '../Accordion/story';
 import Button from '../Button';
 import Text from '../Text';
 import Spacing from '../Spacing';
+import Link from '../Link';
 import Tooltip from '.';
 
 class TooltipDemo extends React.Component<{}, { text: string; clicked: boolean }> {
@@ -285,4 +287,105 @@ export function withAccessibilityLabel() {
 
 withAccessibilityLabel.story = {
   name: 'With accessibility label',
+};
+
+export function popoverDisplaysWhenAnElementIsHovered() {
+  const content = (
+    <>
+      <Text>Links inside popovers are clickable!</Text>
+      <Link openInNewWindow href="https://github.com/airbnb/lunar">
+        Click me!
+      </Link>
+    </>
+  );
+  return (
+    <div>
+      <Tooltip popover content={content}>
+        <Button>Hover Me</Button>
+      </Tooltip>
+
+      <Text inline>← Has a popover</Text>
+
+      <Text>
+        <LoremIpsum />
+      </Text>
+
+      <div style={{ textAlign: 'right' }}>
+        <Text inline>Also has a popover →</Text>
+        <Tooltip
+          inverted
+          popover
+          content={
+            <Text inverted>This uncomfortably wide Popover should have left-aligned text.</Text>
+          }
+          width={100}
+        >
+          <Button>Hover Me</Button>
+        </Tooltip>
+      </div>
+
+      <Text>
+        <LoremIpsum />
+      </Text>
+
+      <div style={{ textAlign: 'center' }}>
+        <Tooltip popover content="This Popover should most definitely be centered" width={21}>
+          <Button>
+            Hover Me too
+            <br />
+            please
+          </Button>
+        </Tooltip>
+      </div>
+    </div>
+  );
+}
+
+popoverDisplaysWhenAnElementIsHovered.story = {
+  name: 'Popover displays when an element is hovered and popover prop is enabled.',
+};
+
+export function popoverExpandsAndShrinksWithContent() {
+  return (
+    <div>
+      <Tooltip popover content={withexpandMultiple()}>
+        <Button>Hover Me</Button>
+      </Tooltip>
+
+      <Text inline>← Has a popover that can expand and collapse</Text>
+
+      <Text>
+        <LoremIpsum />
+      </Text>
+
+      <Spacing top={10}>
+        <div style={{ textAlign: 'right' }}>
+          <Text inline>Also has a popover that can expand and collapse →</Text>
+          <Tooltip popover content={withexpandMultiple()} width={100}>
+            <Button>Hover Me</Button>
+          </Tooltip>
+        </div>
+      </Spacing>
+
+      <Text>
+        <LoremIpsum />
+      </Text>
+
+      <Spacing top={10}>
+        <div style={{ textAlign: 'center' }}>
+          <Tooltip popover content={withexpandMultiple()} width={100}>
+            <Button>
+              Hover Me too
+              <br />
+              please
+            </Button>
+          </Tooltip>
+        </div>
+      </Spacing>
+    </div>
+  );
+}
+
+popoverExpandsAndShrinksWithContent.story = {
+  name: 'Popover expands and shrinks with content.',
 };
