@@ -1,11 +1,12 @@
 import React from 'react';
+import useStyles, { StyleSheet } from '..././../hooks/useStyles';
 import withStyles, { WithStylesProps } from '../../../composers/withStyles';
 import FocusTrap from '../../FocusTrap';
 import focusFirstFocusableChild from '../../../utils/focus/focusFirstFocusableChild';
 import ModalImageLayout, { ModalImageConfig } from './ImageLayout';
 import ModalInnerContent, { ModalInnerContentProps } from './InnerContent';
 import {
-  styleSheetInner as styleSheet,
+  styleSheetInner,
   MODAL_MAX_WIDTH_SMALL,
   MODAL_MAX_WIDTH_MEDIUM,
   MODAL_MAX_WIDTH_LARGE,
@@ -78,7 +79,6 @@ export class ModalInner extends React.Component<ModalInnerProps & WithStylesProp
 
   render() {
     const {
-      cx,
       children,
       footer,
       image,
@@ -86,12 +86,14 @@ export class ModalInner extends React.Component<ModalInnerProps & WithStylesProp
       small,
       fluid,
       scrollable,
-      styles,
       subtitle,
       title,
       topBar,
       topBarCentered,
+      styleSheet,
     } = this.props;
+    
+    const [styles, cx] = useStyles(styleSheet ?? styleSheetInner);
 
     const showLargeContent = large || !!image;
 
@@ -131,4 +133,4 @@ export class ModalInner extends React.Component<ModalInnerProps & WithStylesProp
   }
 }
 
-export default withStyles(styleSheet)(ModalInner);
+export default ModalInner;
