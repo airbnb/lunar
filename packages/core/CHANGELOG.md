@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.18.0 - 2020-06-30
+
+#### 🚀 Updates
+
+- **[Tooltip]** Add `popover` prop (#382) ([19f4364](https://github.com/airbnb/lunar/commit/19f4364)), closes [#382](https://github.com/airbnb/lunar/issues/382)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.17.0 - 2020-06-04
 
 #### 🚀 Updates
