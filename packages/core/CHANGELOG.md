@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.19.0 - 2020-07-01
+
+#### 🚀 Updates
+
+- **[RotateControls, ZoomControls]** Add icon size prop (#381) ([79d0866](https://github.com/airbnb/lunar/commit/79d0866)), closes [#381](https://github.com/airbnb/lunar/issues/381)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.18.0 - 2020-06-30
 
 #### 🚀 Updates
