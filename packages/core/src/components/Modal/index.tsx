@@ -8,6 +8,7 @@ import { styleSheetModal } from './styles';
 export type ModalProps = ModalInnerProps & {
   /** Custom style sheet. */
   innerStyleSheet?: StyleSheet;
+  innerContentStyleSheet?: StyleSheet;
 };
 
 /** A modal component with a backdrop and a standardized layout. */

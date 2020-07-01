@@ -1,11 +1,11 @@
 import React from 'react';
-import withStyles, { WithStylesProps } from '../../../composers/withStyles';
+import useStyles, { StyleSheet } from '../../../hooks/useStyles';
 import FocusTrap from '../../FocusTrap';
 import focusFirstFocusableChild from '../../../utils/focus/focusFirstFocusableChild';
 import ModalImageLayout, { ModalImageConfig } from './ImageLayout';
 import ModalInnerContent, { ModalInnerContentProps } from './InnerContent';
 import {
-  styleSheetInner as styleSheet,
+  styleSheetInner,
   MODAL_MAX_WIDTH_SMALL,
   MODAL_MAX_WIDTH_MEDIUM,
   MODAL_MAX_WIDTH_LARGE,
@@ -20,10 +20,13 @@ export type ModalInnerProps = ModalInnerContentProps & {
   fluid?: boolean;
   /** Keep modal open when clicking outside of the modal (in the blackout). */
   persistOnOutsideClick?: boolean;
+  /** Custom style sheet. */
+  styleSheet?: StyleSheet;
+  innerContentStyleSheet?: StyleSheet;
 };
 
 /** A Dialog component with a backdrop and a standardized layout. */
-export class ModalInner extends React.Component<ModalInnerProps & WithStylesProps> {
+export class ModalInner extends React.Component<ModalInnerProps> {
   dialogRef = React.createRef<HTMLDivElement>();
 
   lastActiveElement: HTMLElement | null = null;
@@ -78,7 +81,6 @@ export class ModalInner extends React.Component<ModalInnerProps & WithStylesProp
 
   render() {
     const {
-      cx,
       children,
       footer,
       image,
@@ -86,12 +88,15 @@ export class ModalInner extends React.Component<ModalInnerProps & WithStylesProp
       small,
       fluid,
       scrollable,
-      styles,
       subtitle,
       title,
       topBar,
       topBarCentered,
+      styleSheet,
+      innerContentStyleSheet,
     } = this.props;
+
+    const [styles, cx] = useStyles(styleSheet ?? styleSheetInner);
 
     const showLargeContent = large || !!image;
 
@@ -106,6 +111,7 @@ export class ModalInner extends React.Component<ModalInnerProps & WithStylesProp
         topBar={topBar}
         topBarCentered={topBarCentered}
         onClose={this.handleClose}
+        styleSheet={innerContentStyleSheet}
       >
         {children}
       </ModalInnerContent>
@@ -131,4 +137,4 @@ export class ModalInner extends React.Component<ModalInnerProps & WithStylesProp
   }
 }
 
-export default withStyles(styleSheet)(ModalInner);
+export default ModalInner;
