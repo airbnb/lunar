@@ -13,6 +13,7 @@ export type Options = {
   disabledOpacity?: number;
   fontFamily: string;
   transitionTime?: string;
+  mode: 'dark' | 'light';
 };
 
 const borderWidth = 1;
@@ -31,6 +32,7 @@ export default function buildTheme(
     color,
     disabledOpacity = 0.3,
     transitionTime = '300ms',
+    mode
   } = options;
 
   const accent = {
@@ -68,6 +70,7 @@ export default function buildTheme(
   const unit = 8;
 
   return {
+    mode,
     color: {
       accent,
       base,
