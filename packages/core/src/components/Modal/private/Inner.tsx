@@ -20,7 +20,7 @@ export type ModalInnerProps = ModalInnerContentProps & {
   fluid?: boolean;
   /** Keep modal open when clicking outside of the modal (in the blackout). */
   persistOnOutsideClick?: boolean;
-  styleSheet: StyleSheet;
+  styleSheet?: StyleSheet;
 };
 
 /** A Dialog component with a backdrop and a standardized layout. */
