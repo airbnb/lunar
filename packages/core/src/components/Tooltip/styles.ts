@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui, mode }) => ({
+export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui }) => ({
   container: {
     display: 'inline-block',
   },
@@ -55,10 +55,7 @@ export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui, mode }
   },
 
   content_inverted: {
-    backgroundColor:
-      mode === 'light'
-        ? '#181818' // Dark mode base color
-        : '#FFF', // Light mode base color
+    backgroundColor: color.baseInverse,
   },
 
   popover: {

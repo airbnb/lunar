@@ -98,7 +98,6 @@ export type Hexcode = string;
 export type ColorRange = [Hexcode, Hexcode, Hexcode, Hexcode, Hexcode, Hexcode, Hexcode];
 
 export type Theme = {
-  mode: 'dark' | 'light';
   color: {
     accent: {
       bg: Hexcode;
@@ -115,6 +114,7 @@ export type Theme = {
       textError: Hexcode;
     };
     base: Hexcode;
+    baseInverse: Hexcode;
     brand: {
       luxury: ColorRange;
       plus: ColorRange;
