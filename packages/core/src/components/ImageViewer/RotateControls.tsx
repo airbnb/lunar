@@ -10,11 +10,13 @@ export type RotateControlsProps = {
   rotation?: number;
   /** Callback when rotation changes */
   onRotation: (rotation: number) => void;
+  /** Size of the icons. */
+  iconSize?: number | string;
 };
 
 /** Rotate controls that can be used with an image viewer component */
 export default function RotateControls(props: RotateControlsProps) {
-  const { onRotation, rotation = 0 } = props;
+  const { onRotation, rotation = 0, iconSize = '2em' } = props;
 
   const handleRotateLeft = useCallback(() => onRotation(rotation - 90 < 0 ? 270 : rotation - 90), [
     onRotation,
@@ -33,14 +35,14 @@ export default function RotateControls(props: RotateControlsProps) {
             'lunar.image.rotateCounterClockwise',
             'Rotate counter clockwise',
           )}
-          size="2em"
+          size={iconSize}
         />
       </IconButton>
 
       <IconButton onClick={handleRotateRight}>
         <IconRotateRight
           accessibilityLabel={T.phrase('lunar.image.rotateClockwise', 'Rotate clockwise')}
-          size="2em"
+          size={iconSize}
         />
       </IconButton>
     </ButtonGroup>
