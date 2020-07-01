@@ -29,5 +29,5 @@ export default (fontFamily: string) =>
     color,
     disabledOpacity: 0.2,
     fontFamily,
-    mode: "dark"
+    mode: 'dark',
   });

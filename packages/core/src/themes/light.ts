@@ -28,5 +28,5 @@ export default (fontFamily: string) =>
     brand,
     color,
     fontFamily,
-    mode: "light"
+    mode: 'light',
   });

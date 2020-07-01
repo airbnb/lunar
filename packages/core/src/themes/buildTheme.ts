@@ -32,7 +32,7 @@ export default function buildTheme(
     color,
     disabledOpacity = 0.3,
     transitionTime = '300ms',
-    mode
+    mode,
   } = options;
 
   const accent = {
