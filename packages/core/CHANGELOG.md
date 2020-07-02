@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.21.0 - 2020-07-02
+
+#### 🚀 Updates
+
+- **[tooltip]** Set font color for inverted tooltip (#388) ([0c57553](https://github.com/airbnb/lunar/commit/0c57553)), closes [#388](https://github.com/airbnb/lunar/issues/388)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.20.0 - 2020-07-02
 
 #### 🚀 Updates
