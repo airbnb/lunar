@@ -55,6 +55,7 @@ export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui }) => (
   },
 
   content_inverted: {
+    color: color.base,
     backgroundColor: color.baseInverse,
   },
 
