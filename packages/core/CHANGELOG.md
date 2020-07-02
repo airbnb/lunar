@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.20.0 - 2020-07-02
+
+#### 🚀 Updates
+
+- **[tooltip]** Make inverted text readable in dark mode (#386) ([c218858](https://github.com/airbnb/lunar/commit/c218858)), closes [#386](https://github.com/airbnb/lunar/issues/386)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.19.0 - 2020-07-01
 
 #### 🚀 Updates
