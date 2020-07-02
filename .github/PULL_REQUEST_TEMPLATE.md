@@ -1,4 +1,4 @@
-to: @williaster @hayes @alecklandgraf
+to: @williaster @alecklandgraf
 
 ## Description
 
