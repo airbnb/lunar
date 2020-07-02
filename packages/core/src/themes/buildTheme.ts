@@ -5,6 +5,7 @@ import toRGBA from '../utils/toRGBA';
 
 export type Options = {
   base: string;
+  baseInverse: string;
   borderRadius?: number;
   boxShadow?: [number, number];
   boxShadowColor?: string;
@@ -24,6 +25,7 @@ export default function buildTheme(
 ): Theme {
   const {
     base,
+    baseInverse,
     borderRadius = 4,
     boxShadow = [2, 4],
     boxShadowColor = base,
@@ -71,6 +73,7 @@ export default function buildTheme(
     color: {
       accent,
       base,
+      baseInverse,
       brand,
       core: color,
       clear: 'transparent',

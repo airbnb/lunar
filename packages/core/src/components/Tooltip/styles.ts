@@ -55,7 +55,7 @@ export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui }) => (
   },
 
   content_inverted: {
-    backgroundColor: color.accent.blackout,
+    backgroundColor: color.baseInverse,
   },
 
   popover: {

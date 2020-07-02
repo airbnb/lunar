@@ -24,6 +24,7 @@ const color: Theme['color']['core'] = {
 export default (fontFamily: string) =>
   buildTheme({
     base: '#fff',
+    baseInverse: '#181818',
     boxShadowColor: color.neutral[6],
     brand,
     color,

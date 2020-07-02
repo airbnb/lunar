@@ -114,6 +114,7 @@ export type Theme = {
       textError: Hexcode;
     };
     base: Hexcode;
+    baseInverse: Hexcode;
     brand: {
       luxury: ColorRange;
       plus: ColorRange;
