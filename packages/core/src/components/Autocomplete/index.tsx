@@ -446,7 +446,19 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
   }
 
   getInputProps(props: AutocompleteProps<T> & { hasPrefix: boolean; hasSuffix: boolean }) {
-    const { disabled, invalid, name, optional, placeholder, onBlur, onFocus, small, large, hasPrefix, hasSuffix } = props;
+    const {
+      disabled,
+      invalid,
+      name,
+      optional,
+      placeholder,
+      onBlur,
+      onFocus,
+      small,
+      large,
+      hasPrefix,
+      hasSuffix,
+    } = props;
     const { id } = this.state;
 
     // Should match the props passed within `Input`
