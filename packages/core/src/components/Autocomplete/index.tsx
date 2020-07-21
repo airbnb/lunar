@@ -445,8 +445,8 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     return items;
   }
 
-  getInputProps(props: AutocompleteProps<T>) {
-    const { disabled, invalid, name, optional, placeholder, onBlur, onFocus, small, large, prefix, suffix } = props;
+  getInputProps(props: AutocompleteProps<T> & { hasPrefix: boolean; hasSuffix: boolean }) {
+    const { disabled, invalid, name, optional, placeholder, onBlur, onFocus, small, large, hasPrefix, hasSuffix } = props;
     const { id } = this.state;
 
     // Should match the props passed within `Input`
@@ -461,8 +461,8 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
       placeholder: placeholder ?? T.phrase('lunar.common.search', 'Search'),
       small,
       large,
-      hasPrefix: !!prefix,
-      hasSuffix: !!suffix,
+      hasPrefix,
+      hasSuffix,
       type: 'text',
     };
   }
@@ -702,13 +702,13 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
 
   render() {
     const { id, open, value } = this.state;
-    const { children, fieldProps } = partitionFieldProps(this.props);
+    const { children, fieldProps, inputProps } = partitionFieldProps(this.props);
 
     return (
       <FormField {...fieldProps} id={id}>
         <div style={{ display: 'block', position: 'relative' }}>
           <BaseInput
-            {...this.getInputProps(this.props)}
+            {...this.getInputProps(inputProps)}
             role="combobox"
             value={value}
             aria-autocomplete="list"
