@@ -28,7 +28,7 @@ export type TooltipProps = {
   content: NonNullable<React.ReactNode>;
   /** True to disable tooltip but still show children. */
   disabled?: boolean;
-  /** Manually override calculated horizontal align */
+  /** Manually override calculated horizontal align. */
   horizontalAlign?: 'center' | 'left' | 'right';
   /** True to use a light background with dark text. */
   inverted?: boolean;
@@ -36,7 +36,7 @@ export type TooltipProps = {
   onClose?: () => void;
   /** Callback fired when the tooltip is shown. */
   onShow?: () => void;
-  /** True to enable interactive popover functionality */
+  /** True to enable interactive popover functionality. */
   popover?: boolean;
   /** True to prevent dismissmal on mouse down. */
   remainOnMouseDown?: boolean;
@@ -44,7 +44,7 @@ export type TooltipProps = {
   toggleOnClick?: boolean;
   /** True to add a dotted bottom border. */
   underlined?: boolean;
-  /** Manually override calculated vertical align */
+  /** Manually override calculated vertical align. */
   verticalAlign?: 'above' | 'below';
   /** Width of the tooltip in units. */
   width?: number;
