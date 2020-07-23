@@ -314,23 +314,17 @@ export class Tooltip extends React.Component<TooltipProps & WithStylesProps, Too
           marginTop: above ? -(tooltipHeight + targetRect.height + distance) : distance,
           textAlign: align,
         })}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        <div
-          className={cx(styles.content, invert && styles.content_inverted)}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
+        <div className={cx(styles.content, invert && styles.content_inverted)}>
           <Text inverted={invert}>{content}</Text>
         </div>
       </div>
     );
 
-    if (popover) {
-      return open && <div className={cx(styles.popover)}>{popupContent}</div>;
-    }
-
     return (
-      <Overlay noBackground open={open} onClose={this.handleClose}>
+      <Overlay noBackground enableMouseInteraction={popover} open={open} onClose={this.handleClose}>
         {popupContent}
       </Overlay>
     );
