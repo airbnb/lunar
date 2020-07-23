@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.22.0 - 2020-07-23
+
+#### 🚀 Updates
+
+- **[Overlay]** Add `enableMouseInteraction` prop (#391) ([26e905d](https://github.com/airbnb/lunar/commit/26e905d)), closes [#391](https://github.com/airbnb/lunar/issues/391)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.21.1 - 2020-07-22
 
 #### 🐞 Fixes
