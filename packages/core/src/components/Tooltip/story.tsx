@@ -2,6 +2,8 @@ import React from 'react';
 import LoremIpsum from ':storybook/components/LoremIpsum';
 import { withexpandMultiple } from '../Accordion/story';
 import Button from '../Button';
+import DataTable from '../DataTable';
+import { RendererProps } from '../DataTable/types';
 import Text from '../Text';
 import Spacing from '../Spacing';
 import Link from '../Link';
@@ -388,4 +390,53 @@ export function popoverExpandsAndShrinksWithContent() {
 
 popoverExpandsAndShrinksWithContent.story = {
   name: 'Popover expands and shrinks with content.',
+};
+
+export function popoverEscapesDataTableRow() {
+  return (
+    <DataTable
+      showRowDividers
+      data={[
+        { data: { name: 'John' } },
+        { data: { name: 'John' } },
+        { data: { name: 'John' } },
+        { data: { name: 'John' } },
+        { data: { name: 'John' } },
+        { data: { name: 'John' } },
+        { data: { name: 'John' } },
+        { data: { name: 'John' } },
+        { data: { name: 'John' } },
+        { data: { name: 'John' } },
+      ]}
+      keys={['name']}
+      renderers={{
+        name: ({ row }: RendererProps<{ name: string }>) => {
+          const { name } = row.rowData.data;
+
+          return (
+            <Tooltip
+              popover
+              content={
+                <>
+                  <Text bold>Certified by {name}</Text>
+                  <div>
+                    <LoremIpsum short />
+                  </div>
+                  <Link openInNewWindow href="https://github.com/airbnb/lunar">
+                    Click me!
+                  </Link>
+                </>
+              }
+            >
+              <Text>{name}</Text>
+            </Tooltip>
+          );
+        },
+      }}
+    />
+  );
+}
+
+popoverEscapesDataTableRow.story = {
+  name: 'Popover can escape a DataTable row.',
 };
