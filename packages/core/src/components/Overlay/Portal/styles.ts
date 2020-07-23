@@ -10,12 +10,19 @@ export const styleSheetPortal: StyleSheet = ({ color }) => ({
     right: 0,
     bottom: 0,
     overflow: 'auto',
-    userSelect: 'none',
+  },
+
+  withPointerEvents: {
+    pointerEvents: 'all',
   },
 
   noBg: {
     pointerEvents: 'none',
     overflow: 'hidden',
+  },
+
+  noUserSelect: {
+    userSelect: 'none',
   },
 
   opaque: {

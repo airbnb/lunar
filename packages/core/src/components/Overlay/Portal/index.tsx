@@ -8,6 +8,8 @@ import { styleSheetPortal } from './styles';
 
 export type PortalProps = {
   children?: React.ReactNode;
+  /** Enable userSelect and pointer events. */
+  enableMouseInteraction?: boolean;
   /** True removes the background. */
   noBackground: boolean;
   /** Callback for when the overlay should be closed. */
@@ -86,7 +88,7 @@ export class Portal extends React.Component<PortalProps & WithStylesProps, Porta
   );
 
   render() {
-    const { cx, children, styles, x, y, noBackground } = this.props;
+    const { cx, children, enableMouseInteraction, styles, x, y, noBackground } = this.props;
     const { height } = this.state;
 
     return (
@@ -94,13 +96,21 @@ export class Portal extends React.Component<PortalProps & WithStylesProps, Porta
         <FocusTrap>
           <div
             ref={this.ref}
-            className={cx(styles.container, noBackground ? styles.noBg : styles.opaque)}
+            className={cx(
+              styles.container,
+              !enableMouseInteraction && styles.noUserSelect,
+              noBackground ? styles.noBg : styles.opaque,
+            )}
             role="presentation"
             onClick={this.handleClick}
             onScroll={this.handleScrollThrottled}
           >
             <div
-              className={cx(styles.content, { paddingTop: y, marginLeft: x, minHeight: height })}
+              className={cx(
+                styles.content,
+                { paddingTop: y, marginLeft: x, minHeight: height },
+                enableMouseInteraction && styles.withPointerEvents,
+              )}
             >
               {children}
             </div>

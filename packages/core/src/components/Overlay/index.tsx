@@ -7,6 +7,8 @@ import Portal from './Portal';
 export type OverlayProps = {
   /** Content to display within the overlay. */
   children?: React.ReactNode;
+  /** Enable userSelect and pointer events. */
+  enableMouseInteraction?: boolean;
   /** True to be visible. */
   open?: boolean;
   /** True for non-modal appearance. */
@@ -24,6 +26,7 @@ export type OverlayState = {
 /** An overlay that masks the entire viewport and displays a chunk of content over it. */
 export default class Overlay extends React.PureComponent<OverlayProps, OverlayState> {
   static defaultProps = {
+    enableMouseInteraction: false,
     noBackground: false,
     open: false,
   };
@@ -98,13 +101,15 @@ export default class Overlay extends React.PureComponent<OverlayProps, OverlaySt
   private handleScroll = throttle(() => this.props.onClose(), 100);
 
   render() {
-    const { onClose, open, children, noBackground } = this.props as Required<OverlayProps>;
+    const { onClose, enableMouseInteraction, open, children, noBackground } = this
+      .props as Required<OverlayProps>;
     const { x, y, targetRectReady } = this.state;
 
     return (
       <div ref={this.ref}>
         {open && targetRectReady && (
           <Portal
+            enableMouseInteraction={enableMouseInteraction}
             x={x}
             y={y}
             noBackground={noBackground}
