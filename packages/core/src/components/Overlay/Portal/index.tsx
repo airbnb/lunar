@@ -109,7 +109,7 @@ export class Portal extends React.Component<PortalProps & WithStylesProps, Porta
               className={cx(
                 styles.content,
                 { paddingTop: y, marginLeft: x, minHeight: height },
-                enableMouseInteraction && styles.hasPointerEvents,
+                enableMouseInteraction && styles.withPointerEvents,
               )}
             >
               {children}

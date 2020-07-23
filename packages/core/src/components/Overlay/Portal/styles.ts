@@ -12,7 +12,7 @@ export const styleSheetPortal: StyleSheet = ({ color }) => ({
     overflow: 'auto',
   },
 
-  hasPointerEvents: {
+  withPointerEvents: {
     pointerEvents: 'all',
   },
 
