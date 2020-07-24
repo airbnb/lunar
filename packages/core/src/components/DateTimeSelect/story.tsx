@@ -183,4 +183,5 @@ export function withInvalidDate() {
 
 withInvalidDate.story = {
   name: "Fallback to today's date if value is invalid",
+  parameters: { happo: false },
 };
