@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.23.0 - 2020-07-24
+
+#### 🚀 Updates
+
+- **[Tooltip]** Render Popover's popup in Overlay component (#392) ([e7812ce](https://github.com/airbnb/lunar/commit/e7812ce)), closes [#392](https://github.com/airbnb/lunar/issues/392)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.22.0 - 2020-07-23
 
 #### 🚀 Updates
