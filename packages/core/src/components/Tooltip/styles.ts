@@ -58,9 +58,4 @@ export const styleSheetTooltip: StyleSheet = ({ unit, color, pattern, ui }) => (
     color: color.base,
     backgroundColor: color.baseInverse,
   },
-
-  popover: {
-    position: 'absolute',
-    zIndex: 1,
-  },
 });
