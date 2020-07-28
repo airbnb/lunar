@@ -12,7 +12,7 @@ export const styleSheetFormField: StyleSheet = ({ unit }) => ({
   },
 
   field_compactSpacing: {
-    marginBottom: unit * 2,
+    marginBottom: unit * 1.5,
   },
 
   field_noSpacing: {
