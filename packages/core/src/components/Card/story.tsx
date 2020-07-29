@@ -326,6 +326,38 @@ asCompact.story = {
   name: 'As compact.',
 };
 
+export function noShadow() {
+  return (
+    <Card noShadow>
+      <Content>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Content>
+    </Card>
+  );
+}
+
+noShadow.story = {
+  name: 'No shadow.',
+};
+
+export function selected() {
+  return (
+    <Card selected>
+      <Content>
+        <Text>
+          <LoremIpsum />
+        </Text>
+      </Content>
+    </Card>
+  );
+}
+
+selected.story = {
+  name: 'Selected.',
+};
+
 export function cardAsAButtonWithMiddleAlignment() {
   return (
     <Card>
