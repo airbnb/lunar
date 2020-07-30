@@ -85,6 +85,16 @@ describe('<Link />', () => {
     expect(wrapper.find(ButtonOrLink).prop('className')).toMatch('link_muted');
   });
 
+  it('renders truncated', () => {
+    const wrapper = mountUseStyles(
+      <Link truncated href="/">
+        Truncated
+      </Link>,
+    );
+
+    expect(wrapper.find(ButtonOrLink).prop('className')).toMatch('link_truncated');
+  });
+
   it('renders the child component with an inline=false prop when block prop is passed', () => {
     const wrapper = mountUseStyles(
       <Link block href="/foo">
