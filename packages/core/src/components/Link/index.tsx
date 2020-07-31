@@ -23,12 +23,14 @@ export type LinkProps = ButtonOrLinkProps & {
   muted?: boolean;
   /** Decrease font size to small. */
   small?: boolean;
+  /** Truncate the link text with an ellipsis. */
+  truncated?: boolean;
   /** Bold font. */
   bold?: boolean;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
   /** Pass text props to the underlying text. */
-  textProps?: Omit<TextProps, 'children' | 'styleSheet'>;
+  textProps?: Omit<TextProps, 'children' | 'styleSheet' | 'truncated'>;
 };
 
 /** A standard link for... linking to things. */
@@ -42,6 +44,7 @@ function Link({
   micro,
   muted,
   small,
+  truncated,
   bold,
   styleSheet,
   textProps = {},
@@ -61,6 +64,7 @@ function Link({
           disabled && styles.link_disabled,
           block && styles.link_block,
           baseline && styles.link_baseline,
+          truncated && styles.link_truncated,
         )}
       >
         {children}

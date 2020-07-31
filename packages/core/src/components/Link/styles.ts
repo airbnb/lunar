@@ -65,4 +65,10 @@ export const linkStyleSheet: StyleSheet = ({ color, pattern, transition }) => ({
       textDecoration: 'none',
     },
   },
+
+  link_truncated: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
 });
