@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.24.0 - 2020-07-31
+
+#### 🚀 Updates
+
+- **[Link]** Add `truncated` prop (#397) ([29abe18](https://github.com/airbnb/lunar/commit/29abe18)), closes [#397](https://github.com/airbnb/lunar/issues/397)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.23.1 - 2020-07-28
 
 #### 📘 Docs
