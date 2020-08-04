@@ -26,7 +26,8 @@ export default function Card({ children, noShadow, overflow, selected, styleShee
 
   return (
     <div
-      className={cx(styles.card,
+      className={cx(
+        styles.card,
         overflow && styles.card_overflow,
         noShadow && styles.card_noShadow,
         selected && styles.card_selected,
