@@ -12,11 +12,12 @@ export const styleSheetCard: StyleSheet = ({ color, pattern, ui }) => ({
   },
 
   card_noShadow: {
-    border: ui.border,
+    boxShadow: 'none',
   },
 
   card_selected: {
-    border: `2px solid ${color.core.primary[3]}`,
+    border: ui.borderThick,
+    borderColor: color.core.primary[3],
   },
 });
 
