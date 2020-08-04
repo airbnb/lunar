@@ -1,6 +1,6 @@
 import { StyleSheet } from '../../hooks/useStyles';
 
-export const styleSheetCard: StyleSheet = ({ color, pattern }) => ({
+export const styleSheetCard: StyleSheet = ({ color, pattern, ui }) => ({
   card: {
     ...pattern.box,
     background: color.accent.bg,
@@ -9,6 +9,15 @@ export const styleSheetCard: StyleSheet = ({ color, pattern }) => ({
 
   card_overflow: {
     overflow: 'visible',
+  },
+
+  card_noShadow: {
+    boxShadow: 'none',
+  },
+
+  card_selected: {
+    border: ui.borderThick,
+    borderColor: color.core.primary[3],
   },
 });
 
