@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.25.0 - 2020-08-05
+
+#### 🚀 Updates
+
+- **[Card]** Adding two props 'noShadow' and 'selected' for Card (#396) ([a57ae8e](https://github.com/airbnb/lunar/commit/a57ae8e)), closes [#396](https://github.com/airbnb/lunar/issues/396)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.24.0 - 2020-07-31
 
 #### 🚀 Updates
