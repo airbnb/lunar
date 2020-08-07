@@ -46,7 +46,7 @@ export type ZoomControlsProps = {
   iconSize?: number | string;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
-  /** Bottom edge of dropdown menu */
+  /** Place dropdown menu above */
   dropdownAbove?: boolean;
 };
 
