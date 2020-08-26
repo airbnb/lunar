@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.26.0 - 2020-08-26
+
+#### 🚀 Updates
+
+- **[ImageViewer]** Add `dropdownAbove` prop (#398) ([8aa31dd](https://github.com/airbnb/lunar/commit/8aa31dd)), closes [#398](https://github.com/airbnb/lunar/issues/398)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.25.0 - 2020-08-05
 
 #### 🚀 Updates
