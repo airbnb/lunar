@@ -6,13 +6,32 @@ import Row from '../Row';
 type ImageViewerDemoProps = {
   width?: string;
   height?: string;
+  controlsBottom?: boolean;
 };
 
-function ImageViewerDemo({ width, height }: ImageViewerDemoProps) {
+function ImageViewerDemo({ width, height, controlsBottom }: ImageViewerDemoProps) {
   const [scale, setScale] = useState(1);
   const [rotation, setRotation] = useState(0);
 
-  return (
+  return controlsBottom ? (
+    <>
+      <ImageViewer
+        alt="Testing"
+        scale={scale}
+        src={space}
+        rotation={rotation}
+        height={height}
+        width={width}
+      />
+      <Row
+        before={
+          <RotateControls rotation={rotation} onRotation={(value: number) => setRotation(value)} />
+        }
+      >
+        <ZoomControls dropdownAbove scale={scale} onScale={(value: number) => setScale(value)} />
+      </Row>
+    </>
+  ) : (
     <>
       <Row
         before={
@@ -62,4 +81,12 @@ export function withSetWidthAndHeightPortrait() {
 
 withSetWidthAndHeightPortrait.story = {
   name: 'With set width and height, portrait.',
+};
+
+export function withControlsBottom() {
+  return <ImageViewerDemo controlsBottom />;
+}
+
+withControlsBottom.story = {
+  name: 'With dropdownAbove set.',
 };

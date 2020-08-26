@@ -46,13 +46,15 @@ export type ZoomControlsProps = {
   iconSize?: number | string;
   /** Custom style sheet. */
   styleSheet?: StyleSheet;
+  /** Place dropdown menu above */
+  dropdownAbove?: boolean;
 };
 
 /** Zoom controls that can be used with an image viewer component */
 export default function ZoomControls({ styleSheet, ...props }: ZoomControlsProps) {
   const [styles, cx] = useStyles(styleSheet ?? styleSheetZoomControls);
   const [visible, setVisible] = useState(false);
-  const { onScale, scale = 1, iconSize = '2em' } = props;
+  const { onScale, scale = 1, iconSize = '2em', dropdownAbove } = props;
 
   const zoomOptions = ZOOM_OPTIONS.map((zoom: { label: string; scale: number }) => ({
     ...zoom,
@@ -89,7 +91,13 @@ export default function ZoomControls({ styleSheet, ...props }: ZoomControlsProps
       </ButtonGroup>
 
       {visible && (
-        <Dropdown visible={visible} left="0" zIndex={5} onClickOutside={toggleZoomMenu}>
+        <Dropdown
+          visible={visible}
+          bottom={dropdownAbove ? '100%' : undefined}
+          left="0"
+          zIndex={5}
+          onClickOutside={toggleZoomMenu}
+        >
           <Menu accessibilityLabel={T.phrase('lunar.image.zoomMenu', 'Zoom dropdown menu')}>
             {zoomOptions.map((zoom) => (
               <Item key={zoom.scale} onClick={zoom.handleOnClick}>
