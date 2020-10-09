@@ -66,7 +66,7 @@ function ImageViewerDemo({ width, height, controlsBottom }: ImageViewerDemoProps
         brightness={brightness}
         contrast={contrast}
         height={height}
-        width={width} 
+        width={width}
       />
     </>
   );
