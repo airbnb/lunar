@@ -17,13 +17,10 @@
   ],
   "references": [
     {
-      "path": "."
+      "path": "../test-utils"
     },
     {
       "path": "../icons"
-    },
-    {
-      "path": "../test-utils"
     }
   ]
 }

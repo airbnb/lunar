@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-// import space from ':storybook/images/space.jpg';
-// import space from './colors.png';
-import space from './govID.jpeg';
+import space from ':storybook/images/space.jpg';
 import ImageViewer, { FilterControls, ZoomControls, RotateControls } from '.';
-import Row from '../Row';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 type ImageViewerDemoProps = {
