@@ -66,11 +66,11 @@ export default function ImageViewer({
   };
 
   const handleMouseMove = (event: MouseEvent) => {
-    event.preventDefault();
-
     if (!dragging) {
       return;
     }
+
+    event.preventDefault();
 
     const xDiff = lastMouseLocation.x - event.pageX;
     const yDiff = lastMouseLocation.y - event.pageY;
