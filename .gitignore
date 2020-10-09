@@ -25,6 +25,8 @@ public/
 node_modules/
 tmp/
 storybook-static/
+stories/
+packages/
 
 # Custom
 *.min.js
