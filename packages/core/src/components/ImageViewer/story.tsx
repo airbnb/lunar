@@ -38,8 +38,8 @@ function ImageViewerDemo({ width, height, controlsBottom }: ImageViewerDemoProps
         <FilterControls
           dropdownAbove
           brightness={brightness}
-          onBrightnessChange={(value: number) => setBrightness(value)}
           contrast={contrast}
+          onBrightnessChange={(value: number) => setBrightness(value)}
           onContrastChange={(value: number) => setContrast(value)}
         />
         <RotateControls rotation={rotation} onRotation={(value: number) => setRotation(value)} />
@@ -51,8 +51,8 @@ function ImageViewerDemo({ width, height, controlsBottom }: ImageViewerDemoProps
       <div className={cx(styles.controls)}>
         <FilterControls
           brightness={brightness}
-          onBrightnessChange={(value: number) => setBrightness(value)}
           contrast={contrast}
+          onBrightnessChange={(value: number) => setBrightness(value)}
           onContrastChange={(value: number) => setContrast(value)}
         />
         <RotateControls rotation={rotation} onRotation={(value: number) => setRotation(value)} />
