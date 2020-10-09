@@ -92,6 +92,7 @@ export default function FilterControls(props: FilterControlsProps) {
                     <Text>{T.phrase('lunar.image.brightness', 'Brightness')}</Text>
                   </div>
                   <Range
+                    label="brightness"
                     hideLabel
                     width={200}
                     min={-0.5}
@@ -106,6 +107,7 @@ export default function FilterControls(props: FilterControlsProps) {
                     <Text>{T.phrase('lunar.image.contrast', 'Contrast')}</Text>
                   </div>
                   <Range
+                    label="contrast"
                     hideLabel
                     width={200}
                     min={-0.5}
