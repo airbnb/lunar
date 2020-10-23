@@ -643,7 +643,7 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
     return this.getFilteredItems(this.state).map((item: T, index) => {
       const value = this.props.getItemValue!(item);
       const selected = this.props.isItemSelected
-        ? this.props.isItemSelected(item, value)
+        ? this.props.isItemSelected(item, this.state.value)
         : value === this.state.value;
       const props: React.HTMLAttributes<HTMLDivElement> = {};
 
