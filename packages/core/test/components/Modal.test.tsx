@@ -98,7 +98,7 @@ describe('<Modal />', () => {
         Foo
       </ModalInner>,
     );
-    
+
     // @ts-ignore
     eventMap.click!({ target: null });
 
