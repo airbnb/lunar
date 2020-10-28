@@ -71,9 +71,10 @@ describe('<Modal />', () => {
       eventMap[event] = cb;
     });
 
-    shallowWithStyles(<ModalInner onClose={closeSpy}>Foo</ModalInner>);
+    mountWithStyles(<ModalInner onClose={closeSpy}>Foo</ModalInner>);
 
-    eventMap.click!();
+    // @ts-ignore
+    eventMap.click!({ target: null });
 
     expect(closeSpy).toHaveBeenCalled();
   });
@@ -92,19 +93,19 @@ describe('<Modal />', () => {
       eventMap[event] = cb;
     });
 
-    shallowWithStyles(
+    mountWithStyles(
       <ModalInner persistOnOutsideClick onClose={closeSpy}>
         Foo
       </ModalInner>,
     );
 
-    eventMap.click!();
+    // @ts-ignore
+    eventMap.click!({ target: null });
 
     expect(closeSpy).not.toHaveBeenCalled();
   });
 
   it('does not close when clicked on self', () => {
-    const target = document.createElement('div');
     const closeSpy = jest.fn();
 
     const eventMap: EventMap = {
@@ -118,38 +119,31 @@ describe('<Modal />', () => {
       eventMap[event] = cb;
     });
 
-    const wrapper = shallowWithStyles(<ModalInner onClose={closeSpy}>Foo</ModalInner>);
-    const instance = wrapper.instance();
+    const wrapper = mountWithStyles(<ModalInner onClose={closeSpy}>Foo</ModalInner>);
 
     // @ts-ignore
-    instance.dialogRef = { current: target };
-
-    // @ts-ignore
-    eventMap.click!({ preventDefault: jest.fn(), target });
+    eventMap.click!({ preventDefault: jest.fn(), target: wrapper.getDOMNode() });
 
     expect(closeSpy).toHaveBeenCalledTimes(0);
   });
 
-  describe('componentDidMount', () => {
+  describe('event listener', () => {
     it('adds event listener', () => {
       const eventSpy = jest.spyOn(document, 'addEventListener');
 
-      shallowWithStyles(<ModalInner onClose={() => {}}>Foo</ModalInner>);
+      mountWithStyles(<ModalInner onClose={() => {}}>Foo</ModalInner>);
 
       expect(eventSpy).toHaveBeenCalledWith('click', expect.any(Function), true);
 
       eventSpy.mockRestore();
     });
-  });
 
-  describe('componentWillUnmount', () => {
     it('removes event listener', () => {
       const eventSpy = jest.spyOn(document, 'removeEventListener');
 
-      const wrapper = shallowWithStyles(<ModalInner onClose={() => {}}>Foo</ModalInner>);
+      const wrapper = mountWithStyles(<ModalInner onClose={() => {}}>Foo</ModalInner>);
 
-      // @ts-ignore
-      wrapper.instance().componentWillUnmount();
+      wrapper.unmount();
 
       expect(eventSpy).toHaveBeenCalledWith('click', expect.any(Function), true);
 
@@ -158,29 +152,29 @@ describe('<Modal />', () => {
   });
 
   it('different class for small size', () => {
-    const wrapper = shallowWithStyles(<ModalInner onClose={jest.fn()}>Foo</ModalInner>);
-    const small = shallowWithStyles(
+    const wrapper = mountWithStyles(<ModalInner onClose={jest.fn()}>Foo</ModalInner>);
+    const small = mountWithStyles(
       <ModalInner small onClose={jest.fn()}>
         Foo
       </ModalInner>,
     );
 
-    expect(wrapper.prop('className')).not.toBe(small.prop('className'));
+    expect(wrapper.getDOMNode().className).not.toBe(small.getDOMNode().className);
   });
 
   it('different class for large size', () => {
-    const wrapper = shallowWithStyles(<ModalInner onClose={jest.fn()}>Foo</ModalInner>);
-    const large = shallowWithStyles(
+    const wrapper = mountWithStyles(<ModalInner onClose={jest.fn()}>Foo</ModalInner>);
+    const large = mountWithStyles(
       <ModalInner large onClose={jest.fn()}>
         Foo
       </ModalInner>,
     );
 
-    expect(wrapper.prop('className')).not.toBe(large.prop('className'));
+    expect(wrapper.getDOMNode().className).not.toBe(large.getDOMNode().className);
   });
 
   it('same class for image as large size', () => {
-    const wrapper = shallowWithStyles(
+    const wrapper = mountWithStyles(
       <ModalInner
         image={{
           type: 'center',
@@ -191,24 +185,24 @@ describe('<Modal />', () => {
         Foo
       </ModalInner>,
     );
-    const large = shallowWithStyles(
+    const large = mountWithStyles(
       <ModalInner large onClose={jest.fn()}>
         Foo
       </ModalInner>,
     );
 
-    expect(wrapper.prop('className')).toBe(large.prop('className'));
+    expect(wrapper.getDOMNode().className).toBe(large.getDOMNode().className);
   });
 
   it('different class for fluid size', () => {
-    const wrapper = shallowWithStyles(<ModalInner onClose={jest.fn()}>Foo</ModalInner>);
-    const fluid = shallowWithStyles(
+    const wrapper = mountWithStyles(<ModalInner onClose={jest.fn()}>Foo</ModalInner>);
+    const fluid = mountWithStyles(
       <ModalInner fluid onClose={jest.fn()}>
         Foo
       </ModalInner>,
     );
 
-    expect(wrapper.prop('className')).not.toBe(fluid.prop('className'));
+    expect(wrapper.getDOMNode().className).not.toBe(fluid.getDOMNode().className);
   });
 
   it('focuses the first element on open', () => {
