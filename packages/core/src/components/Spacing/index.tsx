@@ -4,6 +4,7 @@ import { styleSheetSpacing, cleanClassName } from './styles';
 
 export type SpacingRange =
   | 0
+  | 0.25
   | 0.5
   | 1
   | 1.5
