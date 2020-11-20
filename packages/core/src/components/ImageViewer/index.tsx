@@ -77,6 +77,8 @@ export default function ImageViewer({
       return;
     }
 
+    event.preventDefault();
+
     const xDiff = lastMouseLocation.x - event.pageX;
     const yDiff = lastMouseLocation.y - event.pageY;
 

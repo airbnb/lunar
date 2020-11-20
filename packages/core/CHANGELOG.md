@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.27.0 - 2020-11-04
+
+#### 🚀 Updates
+
+- **[ModalInner]** refactor with hooks (#407) ([34e5a3f](https://github.com/airbnb/lunar/commit/34e5a3f)), closes [#407](https://github.com/airbnb/lunar/issues/407)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
+### 3.26.1 - 2020-10-10
+
+#### 🐞 Fixes
+
+- **[ImageViewer]** Only call document.preventDefault() when dragging (#403) ([bfb682d](https://github.com/airbnb/lunar/commit/bfb682d)), closes [#403](https://github.com/airbnb/lunar/issues/403)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.26.0 - 2020-08-26
 
 #### 🚀 Updates
