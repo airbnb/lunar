@@ -10,17 +10,17 @@ import T from '../Translate';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
 
 export type FilterControlsProps = {
-  /** The current brightness. 1 by default. */
+  /** The current brightness. 1 by default. Valid range: 0 -> ∞. */
   brightness?: number;
-  /** Callback when brightness changes */
+  /** Callback when brightness changes. */
   onBrightnessChange: (brightness: number) => void;
-  /** The current contrast. 1 by default. */
+  /** The current contrast. 1 by default. Valid range: 0 -> ∞. */
   contrast?: number;
-  /** Callback when contrast changes */
+  /** Callback when contrast changes. */
   onContrastChange: (contrast: number) => void;
   /** Size of the icons. */
   iconSize?: number | string;
-  /** Place dropdown menu above */
+  /** Place dropdown menu above. */
   dropdownAbove?: boolean;
 };
 
