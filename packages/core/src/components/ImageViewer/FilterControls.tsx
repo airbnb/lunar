@@ -29,7 +29,7 @@ const styleSheet: StyleSheet = () => ({
     position: 'relative',
   },
   filterLabel: {
-    width: 100, 
+    width: 100,
   },
   filterRow: {
     alignItems: 'baseline',
