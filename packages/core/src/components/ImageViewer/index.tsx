@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useStyles, { StyleSheet } from '../../hooks/useStyles';
+import FilterControls from './FilterControls';
 import ZoomControls from './ZoomControls';
 import RotateControls from './RotateControls';
 import ResponsiveImage from '../ResponsiveImage';
@@ -18,6 +19,10 @@ export type ImageViewerProps = {
   src: string;
   /** The current scale / zoom level. 1 by default. */
   scale?: number;
+  /** The current brightness. 1 by default. */
+  brightness?: number;
+  /** The current contrast. 1 by default. */
+  contrast?: number;
   /** Render width. Unconstrained (css value 'none') by default. */
   width?: number | string;
   /** Custom style sheet. */
@@ -36,6 +41,8 @@ export default function ImageViewer({
   height = 'none',
   rotation = 0,
   scale = 1,
+  brightness = 1,
+  contrast = 1,
   src,
   width,
   styleSheet,
@@ -101,6 +108,7 @@ export default function ImageViewer({
   const translateX = (y * sinRotation + x * cosRotation) / scale;
   const translateY = (y * cosRotation - x * sinRotation) / scale;
   const transform = `scale(${scale}) rotate(${rotation}deg) translateY(${translateY}px) translateX(${translateX}px)`;
+  const filter = `brightness(${brightness}) contrast(${contrast})`;
 
   return (
     <div
@@ -110,7 +118,7 @@ export default function ImageViewer({
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
     >
-      <div className={cx(styles.image)} style={{ transform }}>
+      <div className={cx(styles.image)} style={{ transform, filter }}>
         <ResponsiveImage
           contain
           noShadow
@@ -125,4 +133,4 @@ export default function ImageViewer({
   );
 }
 
-export { ZoomControls, RotateControls };
+export { FilterControls, ZoomControls, RotateControls };
