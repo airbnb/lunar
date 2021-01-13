@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.28.0 - 2021-01-13
+
+#### 🚀 Updates
+
+- **[ImageViewer]** Add FilterControls component to ImageViewer (#402) ([98f26c4](https://github.com/airbnb/lunar/commit/98f26c4)), closes [#402](https://github.com/airbnb/lunar/issues/402)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ## 3.27.0 - 2020-11-04
 
 #### 🚀 Updates
