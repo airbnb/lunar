@@ -148,8 +148,8 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
         portal
         visible
         header={header}
-        onClose={onClose}
         styleSheet={styleSheetLightboxSheet}
+        onClose={onClose}
       >
         <LightboxImage
           aside={aside}
