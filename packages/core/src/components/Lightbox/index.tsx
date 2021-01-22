@@ -2,6 +2,7 @@ import React from 'react';
 import Sheet from '../Sheet';
 import LightboxImage, { LightboxImageProps } from './Image';
 import Header from './Header';
+import { styleSheetLightboxSheet } from './styles';
 
 export type LightboxProps = {
   /** Images to show. */
@@ -140,7 +141,16 @@ export default class Lightbox extends React.PureComponent<LightboxProps, Lightbo
     );
 
     return (
-      <Sheet compact headerShadow noAnimation portal visible header={header} onClose={onClose}>
+      <Sheet
+        compact
+        headerShadow
+        noAnimation
+        portal
+        visible
+        header={header}
+        styleSheet={styleSheetLightboxSheet}
+        onClose={onClose}
+      >
         <LightboxImage
           aside={aside}
           alt={alt}

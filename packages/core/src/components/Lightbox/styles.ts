@@ -1,4 +1,7 @@
+import { ComponentBlock } from 'aesthetic';
+import { Z_INDEX_LIGHTBOX } from '../../constants';
 import { StyleSheet } from '../../hooks/useStyles';
+import { styleSheetSheet } from '../Sheet/styles';
 
 export const styleSheetHeader: StyleSheet = ({ unit }) => ({
   header: {
@@ -49,3 +52,12 @@ export const styleSheetImage: StyleSheet = ({ color, unit }) => ({
     padding: unit * 3,
   },
 });
+
+export const styleSheetLightboxSheet: StyleSheet = (theme) => {
+  const sheetStyle = styleSheetSheet(theme);
+
+  // Override zIndex
+  (sheetStyle.sheet as ComponentBlock).zIndex = Z_INDEX_LIGHTBOX;
+
+  return sheetStyle;
+};
