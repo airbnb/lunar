@@ -102,6 +102,7 @@ export const STATUSES = ['notice', 'info', 'success', 'warning', 'danger', 'mute
 export const BRANDS = ['luxury', 'plus'];
 export const Z_INDEX_MODAL = 2000;
 export const Z_INDEX_PORTAL = 2000; // Same as Modal to fix Tooltip in Modal
+export const Z_INDEX_LIGHTBOX = 2004; // Lightbox is full screen and appears on top of everything else
 export const Z_INDEX_TOAST = 3000;
 
 // EMOJIS
