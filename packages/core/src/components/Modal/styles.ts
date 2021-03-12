@@ -1,5 +1,4 @@
 import { StyleSheet } from '../../hooks/useStyles';
-import { Z_INDEX_MODAL } from '../../constants';
 import toRGBA from '../../utils/toRGBA';
 
 export const MODAL_MAX_WIDTH_SMALL = 400;
@@ -14,7 +13,6 @@ export const styleSheetModal: StyleSheet = ({ unit, color }) => ({
     position: 'fixed',
     right: 0,
     top: 0,
-    zIndex: Z_INDEX_MODAL,
   },
 
   wrapper: {
