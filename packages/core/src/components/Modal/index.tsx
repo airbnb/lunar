@@ -46,16 +46,8 @@ export default function Modal({
   return (
     <Portal>
       <div className={cx(containerZIndex, styles.container)}>
-        <div
-          role='presentation'
-          className={cx(styles.wrapper)}
-          onKeyUp={handleKeyUp}
-        >
-          <ModalInner
-            {...props}
-            styleSheet={innerStyleSheet}
-            onClose={onClose}
-          />
+        <div role="presentation" className={cx(styles.wrapper)} onKeyUp={handleKeyUp}>
+          <ModalInner {...props} styleSheet={innerStyleSheet} onClose={onClose} />
         </div>
       </div>
     </Portal>
