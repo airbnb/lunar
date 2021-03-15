@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 3.29.0 - 2021-03-15
+
+#### 🚀 Updates
+
+- **[Modal]** Add optional zIndex to props (#412) ([5fa4524](https://github.com/airbnb/lunar/commit/5fa4524)), closes [#412](https://github.com/airbnb/lunar/issues/412)
+
+**Note:** Version bump only for package @airbnb/lunar
+
+
+
+
+
 ### 3.28.1 - 2021-01-22
 
 **Note:** Version bump only for package @airbnb/lunar
