@@ -1,22 +1,19 @@
 import { DocumentNode } from 'graphql';
-import get from 'lodash/get';
-import set from 'lodash/set';
-import { DataProxy } from 'apollo-cache';
-import { MutationFetchResult } from 'react-apollo';
+import { get, set } from 'lodash/fp';
+import { DataProxy, MutationResult } from '@apollo/client';
 import prepareQuery from '../utils/prepareQuery';
 import getQueryName from '../utils/getQueryName';
 
 export default function addToList<Result, Vars = {}>(
-  docOrQuery: DocumentNode | DataProxy.Query<Vars>,
+  docOrQuery: DocumentNode | DataProxy.Query<Vars, Result>,
   listPath: string,
   mutationPath: string,
 ) {
-  const query = prepareQuery<Vars>(docOrQuery);
+  const query = prepareQuery<Result, Vars>(docOrQuery);
 
-  return (cache: DataProxy, mutationResult: MutationFetchResult<Result>) => {
+  return (cache: DataProxy, mutationResult: MutationResult<Result>) => {
     const queryResult = cache.readQuery<Result>(query);
-    const nextResult = { ...queryResult };
-    const list = get(queryResult, listPath);
+    const list = get(listPath, queryResult);
 
     if (typeof list === 'undefined' || !Array.isArray(list)) {
       if (__DEV__) {
@@ -26,7 +23,7 @@ export default function addToList<Result, Vars = {}>(
       }
     }
 
-    const data = get(mutationResult.data, mutationPath);
+    const data = get(mutationPath, mutationResult);
 
     if (typeof data === 'undefined') {
       if (__DEV__) {
@@ -36,7 +33,7 @@ export default function addToList<Result, Vars = {}>(
       }
     }
 
-    set(nextResult, listPath, [...list, data]);
+    const nextResult = set(listPath, [...list, data], { ...queryResult });
 
     cache.writeQuery({
       ...query,

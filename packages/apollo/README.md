@@ -6,12 +6,6 @@ Provides out of the box support for GraphQL, powered by [Apollo](https://www.apo
 yarn add @airbnb/lunar-apollo
 ```
 
-This package relies on GraphQL related packages to also be installed.
-
-```bash static
-yarn add graphql graphql-tag
-```
-
 ## Setup
 
 Initialize the package to create an Apollo client. The following option settings may be passed to
