@@ -1,4 +1,4 @@
-import { ApolloClient } from '@apollo/client';
+import ApolloClient from 'apollo-client';
 import Apollo, { Settings, HttpLink } from '../src';
 
 describe('Apollo', () => {

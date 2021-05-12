@@ -1,9 +1,10 @@
 import React from 'react';
-import { gql, MutationFunction } from '@apollo/client';
+import gql from 'graphql-tag';
 import Button from '@airbnb/lunar/lib/components/Button';
 import Shimmer from '@airbnb/lunar/lib/components/Shimmer';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
-import { MockedProvider } from '@apollo/client/testing';
+import { MutationFunction } from 'react-apollo';
+import { MockedProvider } from '@apollo/react-testing';
 import Mutation from '.';
 
 const MUTATION = gql`
@@ -108,11 +109,7 @@ customLoadingComponent.story = {
 export function customErrorComponent() {
   return (
     <MockedProvider mocks={[errorMock]} addTypename={false}>
-      <Mutation
-        mutation={MUTATION}
-        variables={variables}
-        error={(error) => <ErrorMessage error={error} />}
-      >
+      <Mutation mutation={MUTATION} error={(error) => <ErrorMessage error={error} />}>
         {(updateUser) => <UpdateButton onUpdate={updateUser} />}
       </Mutation>
     </MockedProvider>

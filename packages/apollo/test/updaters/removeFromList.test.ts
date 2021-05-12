@@ -1,4 +1,5 @@
-import { gql, InMemoryCache } from '@apollo/client';
+import gql from 'graphql-tag';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import removeFromList from '../../src/updaters/removeFromList';
 
 const QUERY = gql`
@@ -9,12 +10,6 @@ const QUERY = gql`
       things {
         id
         type
-      }
-      nested {
-        thingies {
-          id
-          type
-        }
       }
     }
   }
@@ -38,13 +33,6 @@ describe('removeFromList()', () => {
             { id: 2, type: 'B', __typename: 'thing' },
             { id: 3, type: 'C', __typename: 'thing' },
           ],
-          nested: {
-            thingies: [
-              { id: 1, type: 'A', __typename: 'thingies' },
-              { id: 2, type: 'B', __typename: 'thingies' },
-            ],
-            __typename: 'nested',
-          },
           __typename: 'something',
         },
       },
@@ -76,7 +64,6 @@ describe('removeFromList()', () => {
 
   it('removes item from list based on ID', () => {
     removeFromList(QUERY, 'something.things', 3)(cache);
-    removeFromList(QUERY, 'something.nested.thingies', 2)(cache);
 
     expect(cache.readQuery({ query: QUERY })).toEqual({
       something: {
@@ -86,10 +73,6 @@ describe('removeFromList()', () => {
           { id: 1, type: 'A', __typename: 'thing' },
           { id: 2, type: 'B', __typename: 'thing' },
         ],
-        nested: {
-          thingies: [{ id: 1, type: 'A', __typename: 'thingies' }],
-          __typename: 'nested',
-        },
         __typename: 'something',
       },
     });
