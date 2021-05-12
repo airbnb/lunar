@@ -1,11 +1,12 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { WrappingComponent } from '@airbnb/lunar-test-utils';
 import Loader from '@airbnb/lunar/lib/components/Loader';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
-import { MockedProvider, MockedResponse, wait } from '@apollo/react-testing';
+import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import Query from '../../src/components/Query';
+import { wait } from '../utils';
 
 const QUERY = gql`
   query getSomething {
