@@ -1,3 +1,3 @@
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/client';
 
 export default useQuery;
