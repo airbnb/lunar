@@ -1,6 +1,6 @@
 import React from 'react';
 import { mountWithStyles, WrappingComponent } from '@airbnb/lunar-test-utils';
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from 'react-apollo';
 import Apollo from '../../src';
 import Provider from '../../src/components/Provider';
 

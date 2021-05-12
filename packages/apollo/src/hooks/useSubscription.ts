@@ -1,3 +1,3 @@
-import { useSubscription } from '@apollo/client';
+import { useSubscription } from 'react-apollo';
 
 export default useSubscription;

@@ -1,12 +1,12 @@
 import React from 'react';
-import { gql, MutationResult, MutationFunction } from '@apollo/client';
+import { MutationResult, MutationFunction } from 'react-apollo';
 import { mount } from 'enzyme';
+import gql from 'graphql-tag';
 import { WrappingComponent } from '@airbnb/lunar-test-utils';
 import Loader from '@airbnb/lunar/lib/components/Loader';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
-import { MockedProvider, MockedResponse } from '@apollo/client/testing';
+import { MockedProvider, MockedResponse, wait } from '@apollo/react-testing';
 import Mutation from '../../src/components/Mutation';
-import { wait } from '../utils';
 
 const MUTATION = gql`
   mutation updateSomething($id: Int!, $name: String!) {
@@ -31,13 +31,8 @@ function ApolloComponent({
   );
 }
 
-type Variables = {
-  id: number;
-  name: string;
-};
-
 describe('Mutation', () => {
-  const childHandler = (mutate: MutationFunction<unknown, Variables>) => (
+  const childHandler = (mutate: MutationFunction<unknown, {}>) => (
     <button type="button" onClick={() => mutate({ variables: { id: 123, name: 'Something' } })}>
       Submit
     </button>
