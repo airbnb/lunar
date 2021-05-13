@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 4.0.0 - 2021-05-13
+
+#### 💥 Breaking
+
+- Update Apollo v3 and Graphql v15 (#415) ([b5788bb](https://github.com/airbnb/lunar/commit/b5788bb)), closes [#415](https://github.com/airbnb/lunar/issues/415)
+
+**Note:** Version bump only for package @airbnb/lunar-apollo
+
+
+
+
+
 ### 3.0.4 - 2021-05-12
 
 **Note:** Version bump only for package @airbnb/lunar-apollo
