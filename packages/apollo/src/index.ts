@@ -1,17 +1,20 @@
 import Core from '@airbnb/lunar';
-import { ApolloClient, ApolloClientOptions } from 'apollo-client';
-import { InMemoryCache, InMemoryCacheConfig } from 'apollo-cache-inmemory';
-import { ApolloLink } from 'apollo-link';
-import { onError } from 'apollo-link-error';
-import { HttpLink } from 'apollo-link-http';
+import {
+  ApolloClient,
+  ApolloClientOptions,
+  InMemoryCache,
+  InMemoryCacheConfig,
+  ApolloLink,
+  HttpLink,
+} from '@apollo/client';
+import { onError } from '@apollo/client/link/error';
 import Mutation from './components/Mutation';
 import Query from './components/Query';
 import Provider from './components/Provider';
 // @ts-ignore
 import pkg from '../package.json';
 
-export * from 'apollo-client';
-export * from 'apollo-cache-inmemory';
+export * from '@apollo/client';
 
 export { onError, HttpLink, Mutation, Query, Provider };
 

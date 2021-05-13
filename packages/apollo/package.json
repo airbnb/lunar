@@ -19,29 +19,18 @@
   },
   "peerDependencies": {
     "@airbnb/lunar": "^3.0.0",
-    "graphql": "^14.1.0",
-    "graphql-tag": "^2.10.0",
-    "react": "^16.8.0",
-    "react-apollo": "^3.0.0"
+    "graphql": "^15.5.0",
+    "react": "^16.8.0"
   },
   "devDependencies": {
     "@airbnb/lunar-test-utils": "^3.0.2",
-    "@apollo/react-testing": "^3.1.3",
-    "graphql": "^14.6.0",
-    "graphql-tag": "^2.10.3",
+    "graphql": "^15.5.0",
     "react": "^16.13.0",
-    "react-apollo": "^3.1.3",
     "react-test-renderer": "^16.13.1"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.12",
     "@types/lodash": "*",
-    "apollo-cache": "^1.3.4",
-    "apollo-cache-inmemory": "^1.6.5",
-    "apollo-client": "^2.6.8",
-    "apollo-link": "^1.2.13",
-    "apollo-link-error": "^1.1.12",
-    "apollo-link-http": "^1.5.16",
-    "apollo-utilities": "^1.3.3",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.21"
   }
 }

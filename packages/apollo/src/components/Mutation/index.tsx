@@ -1,12 +1,9 @@
 import React from 'react';
+import { MutationResult, MutationFunction, OperationVariables, ApolloError } from '@apollo/client';
 import {
   Mutation as BaseMutation,
   MutationComponentOptions,
-  MutationResult,
-  MutationFunction,
-  OperationVariables,
-} from 'react-apollo';
-import { ApolloError } from 'apollo-client';
+} from '@apollo/client/react/components';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
 import Loader from '@airbnb/lunar/lib/components/Loader';
 import renderElementOrFunction, {

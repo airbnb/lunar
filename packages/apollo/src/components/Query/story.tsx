@@ -1,8 +1,8 @@
 import React from 'react';
 import Shimmer from '@airbnb/lunar/lib/components/Shimmer';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
-import { MockedProvider } from '@apollo/react-testing';
-import gql from 'graphql-tag';
+import { MockedProvider } from '@apollo/client/testing';
+import { gql } from '@apollo/client';
 import Query from '.';
 
 const QUERY = gql`
