@@ -55,8 +55,9 @@ export type AutocompleteProps<T extends Item = Item> = Omit<BaseInputProps, 'id'
     getItemValue?: (item: T) => string;
     /** Determine if an item is selectable. Non-selectable items will be disabled in the list. */
     isItemSelectable?: (item: T, selected?: boolean) => boolean;
-    /** Determine if an item is selected. Will compare values by default if not defined. */
-    isItemSelected?: (item: T, value: string) => boolean;
+    /** Determine if an item is selected. Always return false by default. Set
+     * as `null` to compare item values with the selected value. */
+    isItemSelected?: null | ((item: T, value: string) => boolean);
     /** Load and show items with the current value when focused. */
     loadItemsOnFocus?: boolean;
     /** Load and show items on mount. */
