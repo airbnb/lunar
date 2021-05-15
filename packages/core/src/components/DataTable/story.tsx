@@ -520,3 +520,27 @@ export function ATableWithDynamicSortKey() {
     </>
   );
 }
+
+export function aTableWithCenterAndRightAlignColumnHeaders() {
+  return (
+    <DataTable
+      showColumnDividers
+      data={getData()}
+      keys={['name', 'jobTitle', 'tenureDays']}
+      columnMetadata={{
+        name: {
+        },
+        jobTitle: {
+          centerAlign: 1,
+        },
+        tenureDays: {
+          rightAlign: 1,
+        },
+      }}
+    />
+  );
+}
+
+aTableWithCenterAndRightAlignColumnHeaders.story = {
+  name: 'A table with center align and right align column headers.',
+};

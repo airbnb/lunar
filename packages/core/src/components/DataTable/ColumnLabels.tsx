@@ -67,6 +67,11 @@ export default function ColumnLabels({
       width: '100%',
     };
 
+    const centerAlignmentStyle: React.CSSProperties = {
+      justifyContent: 'center',
+      width: '100%',
+    };
+
     const newColumns = columns.map((col, idx) => {
       if (!React.isValidElement<ColumnChildrenProps>(col)) {
         return col;
@@ -89,11 +94,14 @@ export default function ColumnLabels({
       const sortable =
         !columnMetadata || !columnMetadata[key] || columnMetadata[key].disableSorting !== 1;
 
+      const alignStyle = columnMetadata?.[key]?.rightAlign ? rightAlignmentStyle : 
+        columnMetadata?.[key]?.centerAlign ? centerAlignmentStyle : {};
+
       const newHeader = (
         <Spacing left={indent && !isLeftmost ? 2 : 0}>
           <div style={heightStyle} className={cx(showDivider && styles && styles.column_divider)}>
             <div
-              style={columnMetadata?.[key]?.rightAlign ? rightAlignmentStyle : {}}
+              style={alignStyle}
               className={cx(styles?.headerRow)}
             >
               <Text micro muted>
