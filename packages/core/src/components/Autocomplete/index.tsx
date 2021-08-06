@@ -536,6 +536,10 @@ export default class Autocomplete<T extends Item = Item> extends React.Component
           loading: false,
         };
 
+        if (input !== this.state.value) {
+          delete nextState['items'];
+        }
+
         if (callback) {
           this.setState(nextState, callback);
         } else {
