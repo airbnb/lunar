@@ -204,7 +204,7 @@ describe('<Autocomplete />', () => {
 
       wrapper.find(BaseInput).simulate('keydown', { key: 'ArrowDown', preventDefault: jest.fn() });
 
-      setTimeout(() => expect(wrapper.state('highlightedIndex')).toBe(0), 0);
+      expect(wrapper.state('highlightedIndex')).toBe(0);
     });
 
     it('supports `ArrowDown` event and does not set state if no items', () => {
@@ -215,8 +215,7 @@ describe('<Autocomplete />', () => {
 
       wrapper.find(BaseInput).simulate('keydown', { key: 'ArrowDown', preventDefault: jest.fn() });
 
-      // @ts-ignore
-      setTimeout(() => expect(wrapper.state('highlightedIndex')).toBeNull(), 0);
+      expect(wrapper.state('highlightedIndex')).toBeNull();
     });
 
     it('supports `ArrowUp` event and sets state', () => {
@@ -230,8 +229,7 @@ describe('<Autocomplete />', () => {
 
       wrapper.find(BaseInput).simulate('keydown', { key: 'ArrowUp', preventDefault: jest.fn() });
 
-      // @ts-ignore
-      setTimeout(() => expect(wrapper.state('highlightedIndex')).toBe(2), 0);
+      expect(wrapper.state('highlightedIndex')).toBe(1);
     });
 
     it('supports `ArrowUp` event and does not set state if no items', () => {
@@ -242,8 +240,7 @@ describe('<Autocomplete />', () => {
 
       wrapper.find(BaseInput).simulate('keydown', { key: 'ArrowUp', preventDefault: jest.fn() });
 
-      // @ts-ignore
-      setTimeout(() => expect(wrapper.state('highlightedIndex')).toBeNull(), 0);
+      expect(wrapper.state('highlightedIndex')).toBeNull();
     });
 
     it('supports `Escape` event', () => {
@@ -257,11 +254,8 @@ describe('<Autocomplete />', () => {
       wrapper.find(BaseInput).simulate('keydown', { key: 'Escape' });
 
       expect(instance.ignoreBlur).toBe(false);
-
-      setTimeout(() => {
-        expect(wrapper.state('highlightedIndex')).toBeNull();
-        expect(wrapper.state('open')).toBe(false);
-      }, 0);
+      expect(wrapper.state('highlightedIndex')).toBeNull();
+      expect(wrapper.state('open')).toBe(false);
     });
 
     it('supports `Tab` event', () => {
@@ -339,9 +333,7 @@ describe('<Autocomplete />', () => {
     });
 
     it('supports `Enter` event - text entered + menu item has been highlighted + enter is hit', () => {
-      const spy = jest.fn();
       const input = document.createElement('input');
-      input.focus = spy;
       instance.inputRef = { current: input };
       instance.ignoreBlur = true;
 
@@ -359,18 +351,16 @@ describe('<Autocomplete />', () => {
         .find(BaseInput)
         .simulate('keydown', { key: 'Enter', keyCode: 13, preventDefault: jest.fn() });
 
-      setTimeout(() => {
-        expect(instance.ignoreBlur).toBe(false);
-        expect(wrapper.state('open')).toBe(false);
-        expect(wrapper.state('highlightedIndex')).toBeNull();
-        expect(spy).toHaveBeenCalled();
-      }, 0);
+      expect(instance.ignoreBlur).toBe(false);
+      expect(wrapper.state('open')).toBe(false);
+      expect(wrapper.state('highlightedIndex')).toBeNull();
     });
   });
 
   describe('handleSelect()', () => {
     it('calls `onSelectItem` prop with found item', () => {
       const spy = jest.fn();
+      const pdSpy = jest.fn();
 
       wrapper.setProps({
         onSelectItem: spy,
@@ -382,11 +372,18 @@ describe('<Autocomplete />', () => {
           { value: 'foo', name: 'Foo' },
         ],
         highlightedIndex: 1,
+        open: true,
       });
 
-      wrapper.find(BaseInput).simulate('keydown', { key: 'Enter' });
+      wrapper
+        .find(BaseInput)
+        .simulate('keydown', { key: 'Enter', keyCode: 13, preventDefault: pdSpy });
 
-      setTimeout(() => expect(spy).toHaveBeenCalledWith({ value: 'foo', name: 'Foo' }), 0);
+      expect(spy).toHaveBeenCalledWith(
+        'foo',
+        { value: 'foo', name: 'Foo' },
+        { key: 'Enter', keyCode: 13, preventDefault: pdSpy },
+      );
     });
 
     it('clears the value when selected', () => {
@@ -401,13 +398,14 @@ describe('<Autocomplete />', () => {
         ],
         highlightedIndex: 1,
         value: 'foo',
+        open: true,
       });
 
-      wrapper.find(BaseInput).simulate('keydown', { key: 'Enter' });
+      wrapper
+        .find(BaseInput)
+        .simulate('keydown', { key: 'Enter', keyCode: 13, preventDefault: jest.fn() });
 
-      setTimeout(() => {
-        expect(wrapper.state('value')).toBe('');
-      }, 0);
+      expect(wrapper.state('value')).toBe('');
     });
   });
 
