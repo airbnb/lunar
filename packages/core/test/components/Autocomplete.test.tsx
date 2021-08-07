@@ -617,6 +617,94 @@ describe('<Autocomplete />', () => {
       );
     });
 
+    it('handles success with multiple promises, first promise resolves first', async () => {
+      jest.spyOn(instance, 'loadItemsDebounced').mockImplementation(
+        () =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve({
+                input: 'foo',
+                response: { results: [{ id: 7 }, { id: 8 }, { id: 9 }] },
+              });
+            }, 50);
+          }),
+      );
+      wrapper.setState({
+        value: 'foo',
+      });
+      const firstPromise = instance.loadItems('foo');
+
+      jest.spyOn(instance, 'loadItemsDebounced').mockImplementation(
+        () =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve({
+                input: 'bar',
+                response: { results: [{ id: 10 }, { id: 11 }, { id: 12 }] },
+              });
+            }, 100);
+          }),
+      );
+      wrapper.setState({
+        value: 'bar',
+      });
+      const secondPromise = instance.loadItems('bar');
+
+      await firstPromise;
+      await secondPromise;
+
+      expect(wrapper.state()).toEqual(
+        expect.objectContaining({
+          items: [{ id: 10 }, { id: 11 }, { id: 12 }],
+          loading: false,
+        }),
+      );
+    });
+
+    it('handles success with multiple promises, second promise resolves first', async () => {
+      jest.spyOn(instance, 'loadItemsDebounced').mockImplementation(
+        () =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve({
+                input: 'foo',
+                response: { results: [{ id: 7 }, { id: 8 }, { id: 9 }] },
+              });
+            }, 100);
+          }),
+      );
+      wrapper.setState({
+        value: 'foo',
+      });
+      const firstPromise = instance.loadItems('foo');
+
+      jest.spyOn(instance, 'loadItemsDebounced').mockImplementation(
+        () =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve({
+                input: 'bar',
+                response: { results: [{ id: 10 }, { id: 11 }, { id: 12 }] },
+              });
+            }, 50);
+          }),
+      );
+      wrapper.setState({
+        value: 'bar',
+      });
+      const secondPromise = instance.loadItems('bar');
+
+      await firstPromise;
+      await secondPromise;
+
+      expect(wrapper.state()).toEqual(
+        expect.objectContaining({
+          items: [{ id: 10 }, { id: 11 }, { id: 12 }],
+          loading: false,
+        }),
+      );
+    });
+
     it('handles error', async () => {
       jest
         .spyOn(instance, 'loadItemsDebounced')
