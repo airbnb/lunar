@@ -10,11 +10,6 @@ before_script:
 jobs:
   fast_finish: true
   include:
-    - stage: Checks
-      name: Pull Request
-      if: type = pull_request
-      script: yarn run check:pr
-      node_js: '12'
     - name: Build Sizes
       if: type = pull_request
       script:
