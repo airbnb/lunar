@@ -1,6 +1,6 @@
-import { gql, InMemoryCache } from '@apollo/client';
+import gql from 'graphql-tag';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import addToList from '../../src/updaters/addToList';
-import Apollo from '../../src';
 
 const QUERY = gql`
   query getSomething {
@@ -16,16 +16,6 @@ const QUERY = gql`
 `;
 
 describe('addToList()', () => {
-  Apollo.initialize();
-  Apollo.bootstrapClient();
-
-  const mutationResult = (data?: object) => ({
-    loading: false,
-    called: true,
-    client: Apollo.getClient(),
-    ...data,
-  });
-
   let cache: InMemoryCache;
 
   beforeEach(() => {
@@ -60,20 +50,20 @@ describe('addToList()', () => {
         `,
         'something.things',
         'updateThing',
-      )(cache, mutationResult());
+      )(cache, {});
     }).toThrowErrorMatchingSnapshot();
   });
 
   it('errors if property name is not an array', () => {
     expect(() => {
       // Should be `something.things`
-      addToList(QUERY, 'something.name', 'updateThing')(cache, mutationResult());
+      addToList(QUERY, 'something.name', 'updateThing')(cache, {});
     }).toThrowErrorMatchingSnapshot();
   });
 
   it('errors if mutation data does not exist', () => {
     expect(() => {
-      addToList(QUERY, 'something.things', 'updateThing')(cache, mutationResult());
+      addToList(QUERY, 'something.things', 'updateThing')(cache, {});
     }).toThrowErrorMatchingSnapshot();
   });
 
@@ -82,16 +72,15 @@ describe('addToList()', () => {
       QUERY,
       'something.things',
       'updateThing',
-    )(
-      cache,
-      mutationResult({
+    )(cache, {
+      data: {
         updateThing: {
           id: 3,
           type: 'C',
           __typename: 'thing',
         },
-      }),
-    );
+      },
+    });
 
     expect(cache.readQuery({ query: QUERY })).toEqual({
       something: {

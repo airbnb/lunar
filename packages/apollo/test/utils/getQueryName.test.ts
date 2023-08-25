@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import gql from 'graphql-tag';
 import getQueryName from '../../src/utils/getQueryName';
 
 describe('getQueryName()', () => {

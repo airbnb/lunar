@@ -1,6 +1,11 @@
 import React from 'react';
-import { QueryResult, OperationVariables, ApolloError } from '@apollo/client';
-import { Query as BaseQuery, QueryComponentOptions } from '@apollo/client/react/components';
+import {
+  Query as BaseQuery,
+  QueryComponentOptions,
+  QueryResult,
+  OperationVariables,
+} from 'react-apollo';
+import { ApolloError } from 'apollo-client';
 import ErrorMessage from '@airbnb/lunar/lib/components/ErrorMessage';
 import Loader from '@airbnb/lunar/lib/components/Loader';
 import renderElementOrFunction, {

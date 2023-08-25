@@ -1,3 +1,3 @@
-import { useMutation } from '@apollo/client';
+import { useMutation } from 'react-apollo';
 
 export default useMutation;
