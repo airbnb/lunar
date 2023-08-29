@@ -133,7 +133,11 @@
     "url-loader": "^4.0.0"
   },
   "resolutions": {
-    "jsdom": "^15.0.0"
+    "jsdom": "^15.0.0",
+    "fsevents": "^2.3.2"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
   },
   "nimbus": {
     "drivers": [
